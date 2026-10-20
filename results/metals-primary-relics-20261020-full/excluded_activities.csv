@@ -1,0 +1,52 @@
+name,product,location,reason
+"treatment of used Li-ion battery, hydrometallurgical treatment",cobalt,GLO,secondary or recycling activity
+"treatment of used Li-ion battery, pyrometallurgical treatment",cobalt,GLO,secondary or recycling activity
+"aluminium alloy production, AlLi","copper, cathode",CA-QC,recovered copper during alloy production
+"aluminium alloy production, AlLi","copper, cathode",RoW,recovered copper during alloy production
+"aluminium alloy production, Metallic Matrix Composite","copper, cathode",CA-QC,recovered copper during alloy production
+"aluminium alloy production, Metallic Matrix Composite","copper, cathode",RoW,recovered copper during alloy production
+treatment of copper cake,"copper, cathode",GLO,secondary or recycling activity
+treatment of copper scrap by electrolytic refining,"copper, cathode",RER,secondary or recycling activity
+treatment of copper scrap by electrolytic refining,"copper, cathode",RoW,secondary or recycling activity
+"treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining","copper, cathode",RoW,secondary or recycling activity
+"treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining","copper, cathode",SE,secondary or recycling activity
+"treatment of non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical processing","copper, cathode",GLO,secondary or recycling activity
+"treatment of non-Fe-Co-metals, from used Li-ion battery, pyrometallurgical processing","copper, cathode",GLO,secondary or recycling activity
+treatment of used cable,"copper, cathode",GLO,secondary or recycling activity
+"treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",gold,RoW,secondary or recycling activity
+"treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",gold,SE,secondary or recycling activity
+"gold mine operation and gold production, unrefined","gold, unrefined",RoW,unrefined intermediate
+"gold mine operation and gold production, unrefined","gold, unrefined",ZA,unrefined intermediate
+"treatment of sulfidic tailing, off-site, high gold content","gold, unrefined",ZA,unrefined intermediate
+zinc mine operation,"gold, unrefined",GLO,unrefined intermediate
+"treatment of electronics scrap, metals recovery in copper smelter",lead,RoW,secondary or recycling activity
+"treatment of electronics scrap, metals recovery in copper smelter",lead,SE,secondary or recycling activity
+"treatment of scrap lead acid battery, remelting",lead,RER,secondary or recycling activity
+"treatment of scrap lead acid battery, remelting",lead,RoW,secondary or recycling activity
+"magnesium, for reuse in hafnium sponge production, to generic market for magnesium",magnesium,FR,secondary or recycling activity
+"magnesium, for reuse in hafnium sponge production, to generic market for magnesium",magnesium,RoW,secondary or recycling activity
+"magnesium, for reuse in hafnium sponge production, to generic market for magnesium",magnesium,US,secondary or recycling activity
+"magnesium, for reuse in titanium sponge production, to generic market for magnesium",magnesium,CN,secondary or recycling activity
+"magnesium, for reuse in titanium sponge production, to generic market for magnesium",magnesium,JP,secondary or recycling activity
+"magnesium, for reuse in titanium sponge production, to generic market for magnesium",magnesium,RoW,secondary or recycling activity
+"magnesium, for reuse in zirconium sponge production, to generic market for magnesium",magnesium,FR,secondary or recycling activity
+"magnesium, for reuse in zirconium sponge production, to generic market for magnesium",magnesium,RoW,secondary or recycling activity
+"magnesium, for reuse in zirconium sponge production, to generic market for magnesium",magnesium,US,secondary or recycling activity
+"treatment of non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical processing",manganese,GLO,secondary or recycling activity
+treatment of used fluorescent lamp,mercury,GLO,secondary or recycling activity
+"treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining","nickel, class 1",RoW,secondary or recycling activity
+"treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining","nickel, class 1",SE,secondary or recycling activity
+treatment of automobile catalyst,palladium,RER,secondary or recycling activity
+treatment of automobile catalyst,palladium,RoW,secondary or recycling activity
+"treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",palladium,RoW,secondary or recycling activity
+"treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",palladium,SE,secondary or recycling activity
+treatment of automobile catalyst,platinum,RER,secondary or recycling activity
+treatment of automobile catalyst,platinum,RoW,secondary or recycling activity
+treatment of automobile catalyst,rhodium,RER,secondary or recycling activity
+treatment of automobile catalyst,rhodium,RoW,secondary or recycling activity
+treatment of crust from Parkes process for lead production,silver,GLO,secondary or recycling activity
+"treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",silver,RoW,secondary or recycling activity
+"treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",silver,SE,secondary or recycling activity
+treatment of waste x-ray film,silver,GLO,secondary or recycling activity
+silver mine operation with extraction,"silver, unrefined",PE,unrefined intermediate
+"zinc scrap, post-consumer to generic market for zinc",zinc,GLO,secondary or recycling activity

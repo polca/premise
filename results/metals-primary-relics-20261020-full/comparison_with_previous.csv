@@ -1,0 +1,285 @@
+metal,name,product,location,previous_score,current_score,difference
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot",CA,0.9435280064659917,0.9901111138724088,0.046583107406417135
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot",CN,1.0007571907510289,0.9996845198793488,-0.0010726708716800593
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot","IAI Area, Africa",0.980160465485137,1.0021866281402072,0.02202616265507018
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot","IAI Area, Asia, without China and GCC",1.1383288302076682,1.0064719046583868,-0.1318569255492814
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot","IAI Area, Gulf Cooperation Council",1.0396301559740657,1.0121330329624243,-0.027497123011641422
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot","IAI Area, Russia and Eastern Europe",0.996387624364953,1.0048283633546855,0.008440738989732521
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot","IAI Area, South America",0.9890572322395088,1.0145390582297311,0.025481825990222307
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot","IAI Area, Western and Central Europe",0.8988031817648056,0.9863508206670301,0.0875476389022245
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot",RoW,1.007130527975104,1.0010827817937922,-0.006047746181311764
+Aluminium,"aluminium production, primary, ingot","aluminium, primary, ingot",UN-OCEANIA,1.036009135176577,1.0076790521522778,-0.02833008302429918
+Aluminium,"aluminium production, primary, liquid, Söderberg","aluminium, primary, liquid",GLO,1.0113530849845582,1.0091646438608282,-0.002188441123730067
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid",CA,0.9434590059854631,0.9900406542314715,0.04658164824600841
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid",CN,1.0006752445781542,0.9996007495255209,-0.0010744950526332397
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid","IAI Area, Africa",0.9801024876862605,1.0021287171847175,0.022026229498457006
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid","IAI Area, Asia, without China and GCC",1.138244797646993,1.0063877392062825,-0.13185705844071038
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid","IAI Area, Gulf Cooperation Council",1.0395464442542075,1.0120468574169579,-0.027499586837249623
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid","IAI Area, Russia and Eastern Europe",0.9771446684655,0.9991311659046,0.021986497439100083
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid","IAI Area, South America",0.979583441030529,1.0166370590346423,0.03705361800411333
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid","IAI Area, Western and Central Europe",0.8959136990846414,0.985693687847637,0.08977998876299564
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid",RoW,0.9773037225257836,0.9993038247740541,0.022000102248270537
+Aluminium,"aluminium production, primary, liquid, prebake","aluminium, primary, liquid",UN-OCEANIA,1.0359420231948195,1.0076111761190703,-0.028330847075749288
+Antimony,antimony production,antimony,CN,1.000000027129222,0.999999977150999,-4.9978223004565336e-08
+Antimony,antimony production,antimony,RoW,1.000000027248162,0.999999977257406,-4.999075597922342e-08
+Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,,0.4970806478241284,
+Arsenic,7N arsenic production,7N Arsenic,GLO,2.554389694113546e-07,2.527724046635843e-07,-2.6665647477703076e-09
+Beryllium,beryllium production,beryllium,RoW,0.9991179657264482,0.9991179657299261,3.4778846469407654e-12
+Beryllium,beryllium production,beryllium,US,0.9991179657264482,0.999117965729802,3.3538727350901354e-12
+Cadmium,"cadmium production, primary",cadmium,CA-QC,1.000000030681732,1.0000000422851334,1.1603401350868126e-08
+Cadmium,"cadmium production, primary",cadmium,RoW,1.0000000312757853,1.000000044777652,1.3501866735765589e-08
+Cadmium,"cadmium production, semiconductor-grade","cadmium, semiconductor-grade",RoW,1.0000000255607493,1.0000000446441828,1.90834335001e-08
+Cadmium,"cadmium production, semiconductor-grade","cadmium, semiconductor-grade",US,1.0000000261659503,1.0000000519680015,2.580205116231582e-08
+Cadmium,primary zinc production from concentrate,cadmium,RoW,1.0000000327857512,1.0000000455437315,1.2757980227817711e-08
+Chromium,chromium production,chromium,RER,1.000278840710329,1.0002652974474933,-1.3543262835646885e-05
+Chromium,chromium production,chromium,RoW,1.0000634151255912,1.0000994861065258,3.6070980934610475e-05
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,AU,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,BE,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,BR,,1.00004508858832,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,CA,,1.0000450982113591,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,CD,,1.0000451212831722,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,CN,1.0000452053990723,1.0000451328250286,-7.257404366356468e-08
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,FI,,1.0000451212831727,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,FR,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,IN,,1.0000451051443644,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,JP,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,MA,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,MG,,1.0000451212831727,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,NC,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,NO,,1.0000451212831722,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,RU,,1.0000451212831727,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,ZA,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",cobalt,ZM,,1.0000451212831725,
+Cobalt,"cobalt metal production, from copper mining, via electrolysis, mass allocation",cobalt,CN,1.0000413383543676,1.0000412754707035,-6.288366405371448e-08
+Cobalt,cobalt production,cobalt,GLO,1.0001250304246516,1.0001243964814244,-6.33943227246192e-07
+Cobalt,primary zinc production from concentrate,cobalt,RoW,1.0000319435473692,1.000031603631251,-3.399161181416588e-07
+Copper,cobalt production,"copper, cathode",GLO,1.0104865712510103,1.0104854769455585,-1.094305451809774e-06
+Copper,"copper production, cathode, solvent extraction and electrowinning process","copper, cathode",GLO,1.0277399335401984,1.0277641719815238,2.4238441325374893e-05
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,0.9046224685610345,0.9046471232524569,2.465469142243215e-05
+Copper,gold mine operation and refining,"copper, cathode",SE,1.0009272319821254,1.0009277719188552,5.39936729770929e-07
+Copper,"platinum group metal mine operation, ore with high palladium content","copper, cathode",RU,1.0015857089398315,1.0015917555219735,6.046582142094081e-06
+Copper,"platinum group metal, extraction and refinery operations","copper, cathode",ZA,1.0020112283356943,1.0020128815375282,1.6532018338732968e-06
+Copper,primary zinc production from concentrate,"copper, cathode",RoW,0.013537376748468347,0.01353870449620065,1.3277477323037773e-06
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,,0.2528910908858202,
+Gallium,7N gallium production,7N Gallium,GLO,1.4285713993580385,1.4285713995369653,1.789268733176641e-10
+Gallium,"high-grade gallium production, from low-grade gallium","gallium, high-grade",CN,1.0000000389198669,1.0000000391548403,2.349733740913962e-10
+Gold,gold mine operation and refining,gold,SE,1.0001178466049414,1.000118149860959,3.032560176308152e-07
+Gold,gold production,gold,AU,1.0000702203958758,1.000070351960421,1.3156454525820038e-07
+Gold,gold production,gold,CA,1.0000237425343763,1.0000238201275096,7.759313325195194e-08
+Gold,gold production,gold,TZ,1.0000316397457045,1.000031718258921,7.851321637275532e-08
+Gold,gold production,gold,US,1.0000466411488724,1.000046719360535,7.821166247978795e-08
+Gold,gold refinery operation,gold,RoW,1.0048253999680414,1.0048256476487964,2.476807550166882e-07
+Gold,gold refinery operation,gold,ZA,0.9643955542382444,0.9643957894151487,2.3517690428409566e-07
+Gold,gold-silver mine operation with refinery,gold,CA-QC,1.0002362331722674,1.0002434727767757,7.239604508324504e-06
+Gold,gold-silver mine operation with refinery,gold,PG,1.0000584380980657,1.000060831506952,2.3934088861921055e-06
+Gold,gold-silver mine operation with refinery,gold,RoW,1.0000602026728584,1.0000612642071254,1.0615342669328953e-06
+Gold,"platinum group metal, extraction and refinery operations",gold,ZA,1.0004370402692406,1.0004377820613808,7.417921401575711e-07
+Gold,primary zinc production from concentrate,gold,RoW,1.0001472857978637,1.0001479925670802,7.067692164852701e-07
+Gold,"processing of anode slime from electrorefining of copper, anode",gold,GLO,1.0000183618634153,1.0000188226112718,4.6074785653438255e-07
+Gold,silver-gold mine operation with refinery,gold,CL,1.0001152391423094,1.0001155129462291,2.738039197591746e-07
+Gold,silver-gold mine operation with refinery,gold,RoW,1.000109277141268,1.0001095414249965,2.6428372845721526e-07
+Hafnium,"hafnium sponge production, from hafnium tetrachloride",hafnium sponge,CN,,1.0000000040971107,
+Hafnium,"hafnium sponge production, from hafnium tetrachloride",hafnium sponge,FR,1.0000000001134008,1.0000000163570648,1.6243663969461863e-08
+Hafnium,"hafnium sponge production, from hafnium tetrachloride",hafnium sponge,RU,,1.0000000045031867,
+Hafnium,"hafnium sponge production, from hafnium tetrachloride",hafnium sponge,RoW,1.0000000001086073,1.0000000041303005,4.02169320068424e-09
+Hafnium,"hafnium sponge production, from hafnium tetrachloride",hafnium sponge,UA,,1.00000000509158,
+Hafnium,"hafnium sponge production, from hafnium tetrachloride",hafnium sponge,US,1.0000000001036833,1.0000000084124951,8.308811860757714e-09
+Holmium,"holmium production, calcium reduction",holmium,GLO,,0.01133964745127905,
+Indium,indium production,indium,BE,,1.0000004178529847,
+Indium,indium production,indium,BR,,1.0000003995835751,
+Indium,indium production,indium,CA,,1.0000004457000427,
+Indium,indium production,indium,CN,,1.0000004065887516,
+Indium,indium production,indium,FR,,1.0000004178529844,
+Indium,indium production,indium,IT,,1.0000004178529847,
+Indium,indium production,indium,JP,,1.0000004177792696,
+Indium,indium production,indium,KR,,1.000000418416541,
+Indium,indium production,indium,PE,,1.0000004176213786,
+Indium,indium production,indium,RER,1.0000000953932615,1.0000004479753646,3.5258210306921e-07
+Indium,indium production,indium,RU,,1.0000004181490274,
+Indium,indium production,indium,RoW,1.0000000954500272,1.0000004128013917,3.173513645204906e-07
+Iridium,"platinum group metal, extraction and refinery operations",iridium,RU,1.0,1.0,0.0
+Iridium,"platinum group metal, extraction and refinery operations",iridium,ZA,1.0,1.0,0.0
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,1.112911642117947,1.1129247941909761,1.3152073029099043e-05
+Iron,sponge iron production,sponge iron,IN,1.284663473936307,1.2848450832274902,0.00018160929118327118
+Lead,gold mine operation and refining,lead,SE,1.0000081819450748,1.0000092259666087,1.0440215338913816e-06
+Lead,primary lead production from concentrate,lead,AE,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,AR,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,AT,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,AU,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,BA,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,BE,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,BG,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,BO,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,BR,,1.0005476285845192,
+Lead,primary lead production from concentrate,lead,CA,,1.0005476371457764,
+Lead,primary lead production from concentrate,lead,CL,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,CN,,1.0005476507796105,
+Lead,primary lead production from concentrate,lead,CO,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,CR,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,CU,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,CZ,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,DE,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,DO,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,DZ,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,EE,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,EG,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,ES,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,FR,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,GB,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,GH,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,GLO,1.0005335780887448,1.0005382849450326,4.7068562878394005e-06
+Lead,primary lead production from concentrate,lead,GR,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,GT,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,HN,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,HR,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,ID,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,IE,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,IL,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,IN,,1.0005478788305087,
+Lead,primary lead production from concentrate,lead,IR,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,IT,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,JP,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,KE,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,KP,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,KR,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,KZ,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,LB,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,LK,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,MA,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,MM,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,MX,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,MY,,1.0005478914529116,
+Lead,primary lead production from concentrate,lead,MZ,,1.0005478914529107,
+Lead,primary lead production from concentrate,lead,NG,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,NL,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,OM,,1.0005478914529107,
+Lead,primary lead production from concentrate,lead,PE,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,PH,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,PK,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,PL,,1.0005478914529116,
+Lead,primary lead production from concentrate,lead,PT,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,RO,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,RS,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,RU,,1.0005478914529107,
+Lead,primary lead production from concentrate,lead,SA,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,SE,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,SI,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,SK,,1.0005478914529116,
+Lead,primary lead production from concentrate,lead,SN,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,TH,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,TJ,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,TR,,1.0005478914529107,
+Lead,primary lead production from concentrate,lead,TW,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,TZ,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,UA,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,UG,,1.0005478914529116,
+Lead,primary lead production from concentrate,lead,US,,1.0005477815884165,
+Lead,primary lead production from concentrate,lead,UZ,,1.000547891452911,
+Lead,primary lead production from concentrate,lead,VE,,1.0005478914529111,
+Lead,primary lead production from concentrate,lead,VN,,1.0005478914529107,
+Lead,primary lead production from concentrate,lead,ZA,,1.0005478914529113,
+Lead,primary lead production from concentrate,lead,ZM,,1.0005478914529111,
+Lead,primary zinc production from concentrate,lead,RoW,0.0001616788406538166,1.0001763213231984,1.0000146424825447
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,1.8504252858592163e-11,7.389584712797219e-11,5.539159426938003e-11
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,1.7479016140273403e-11,6.747399639418756e-11,4.999498025391416e-11
+Magnesium,"magnesium production, electrolysis",magnesium,BR,,1.000022960577577,
+Magnesium,"magnesium production, electrolysis",magnesium,IL,1.000023075875222,1.0000229605005935,-1.1537462851762825e-07
+Magnesium,"magnesium production, electrolysis",magnesium,KR,,1.000036366527255,
+Magnesium,"magnesium production, electrolysis",magnesium,MY,,1.0000204576452176,
+Magnesium,"magnesium production, electrolysis",magnesium,RU,,1.0000506137942704,
+Magnesium,"magnesium production, electrolysis",magnesium,RoW,1.0000230694117913,1.0000229540684764,-1.153433148992633e-07
+Magnesium,"magnesium production, electrolysis",magnesium,TR,,1.0000282678505008,
+Magnesium,"magnesium production, electrolysis",magnesium,US,,1.000022960577577,
+Magnesium,"magnesium production, pidgeon process",magnesium,CN,1.0000683627462716,1.0000783836678926,1.00209216209457e-05
+Manganese,manganese production,manganese,CN,,1.0000246982799912,
+Manganese,manganese production,manganese,IN,,1.0000137569051022,
+Manganese,manganese production,manganese,MY,,1.0000184391229585,
+Manganese,manganese production,manganese,NO,,1.0000185885848099,
+Manganese,manganese production,manganese,RER,1.000000523461473,1.0000154672223371,1.4943760864083444e-05
+Manganese,manganese production,manganese,RoW,1.0000088566922567,1.000018454368853,9.597676596362348e-06
+Manganese,manganese production,manganese,UA,,1.0000185885848099,
+Mercury,mercury production,mercury,GLO,1.0000000001241132,1.000000000124393,2.7977620220553945e-13
+Molybdenum,molybdenum production,molybdenum,RER,0.9999943699511462,1.0000011843274441,6.8143762979033795e-06
+Molybdenum,molybdenum production,molybdenum,RoW,0.9999944932260808,1.000000202714662,5.709488581140398e-06
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,,0.14197902230984155,
+Nickel,cobalt production,"nickel, class 1",GLO,1.0070194521862015,1.007000046820825,-1.940536537659021e-05
+Nickel,"platinum group metal mine operation, ore with high palladium content","nickel, class 1",RU,1.000761062018769,1.0007482262650425,-1.2835753726569976e-05
+Nickel,"platinum group metal, extraction and refinery operations","nickel, class 1",ZA,1.0022112353337638,1.0022041916136954,-7.043720068322656e-06
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,1.1581496798356887,1.158146182323368,-3.497512320649321e-06
+Nickel,"smelting and refining of nickel concentrate, 16% Ni","nickel, class 1",GLO,1.0239534551176503,1.0240029451213701,4.949000371978762e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,1.1906981136443457,1.1906965163710823,-1.597273263431731e-06
+Palladium,"platinum group metal mine operation, ore with high palladium content",palladium,RU,1.0000028856576593,1.000002882333753,-3.323906261343268e-09
+Palladium,"platinum group metal, extraction and refinery operations",palladium,ZA,1.0000116843233144,1.000011703760814,1.9437499609864517e-08
+Platinum,"platinum group metal mine operation, ore with high palladium content",platinum,CA,,1.000004545876076,
+Platinum,"platinum group metal mine operation, ore with high palladium content",platinum,RS,,1.0000052663325247,
+Platinum,"platinum group metal mine operation, ore with high palladium content",platinum,RU,1.0000043809201655,1.0000045562279714,1.7530780582752925e-07
+Platinum,"platinum group metal mine operation, ore with high palladium content",platinum,US,,1.0000045458760762,
+Platinum,"platinum group metal, extraction and refinery operations",platinum,CN,,1.0000571314483429,
+Platinum,"platinum group metal, extraction and refinery operations",platinum,ET,,1.00005566410501,
+Platinum,"platinum group metal, extraction and refinery operations",platinum,FI,,1.0000561962946757,
+Platinum,"platinum group metal, extraction and refinery operations",platinum,PL,,1.0000572329756108,
+Platinum,"platinum group metal, extraction and refinery operations",platinum,ZA,1.0000569817737983,1.0000571828280813,2.0105428299999062e-07
+Platinum,"platinum group metal, extraction and refinery operations",platinum,ZW,,1.0000562270403102,
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,,0.12004820636594947,
+Rhenium,"copper mine operation and beneficiation, sulfide ore",rhenium,CL,1.0000000002268998,1.000000000246261,1.9361179326438105e-11
+Rhenium,"copper mine operation and beneficiation, sulfide ore",rhenium,CN,1.0000000000981004,1.0000000001073277,9.227285602264601e-12
+Rhenium,"copper mine operation and beneficiation, sulfide ore",rhenium,US,1.0000000002915133,1.0000000003107323,1.9219070779286085e-11
+Rhodium,"platinum group metal mine operation, ore with high palladium content",rhodium,RU,1.0000000471761175,1.000000047368349,1.9223156400016705e-10
+Rhodium,"platinum group metal, extraction and refinery operations",rhodium,ZA,1.0000000854465843,1.00000008627749,8.309057886179971e-10
+Ruthenium,"platinum group metal, extraction and refinery operations",ruthenium,RU,1.0,1.0,0.0
+Ruthenium,"platinum group metal, extraction and refinery operations",ruthenium,ZA,1.0,1.0,0.0
+Selenium,"processing of anode slime from electrorefining of copper, anode",selenium,GLO,1.0000000014345811,1.000000001447783,1.3201884030422661e-11
+Selenium,selenium production,selenium,RER,1.0000000653475203,1.0000000658905834,5.430631500047411e-10
+Selenium,selenium production,selenium,RoW,1.0000000653405765,1.0000000658760382,5.354616749997376e-10
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,0.0015250822115628515,0.001717445691183455,0.00019236347962060352
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,0.001769051183592072,0.001960372604799739,0.000191321421207667
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,0.0030502399696748623,0.003051930230256679,1.690260581816913e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,0.0019644462600778055,0.001964212940018471,-2.3332005933459493e-07
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,0.0016409749240042743,0.0016413700327500556,3.951087457812995e-07
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,0.0018138293630834646,0.0018108859502515345,-2.9434128319301422e-06
+Silver,gold mine operation and refining,silver,SE,1.0000043143538166,1.0000078421230922,3.527769275590842e-06
+Silver,gold-silver mine operation with refinery,silver,CA-QC,1.0000091011609724,1.0000101828194865,1.0816585140904778e-06
+Silver,gold-silver mine operation with refinery,silver,PG,1.0000155677591522,1.000015929958723,3.621995707803194e-07
+Silver,gold-silver mine operation with refinery,silver,RoW,1.000014130251063,1.000014484728405,3.544773419239533e-07
+Silver,primary zinc production from concentrate,silver,RoW,0.0001705755047063907,0.00017541220143225302,4.836696725862312e-06
+Silver,"processing of anode slime from electrorefining of copper, anode",silver,GLO,1.0000020869833222,1.0000022491238763,1.6214055409413675e-07
+Silver,silver-gold mine operation with refinery,silver,CL,1.0000047680370465,1.0000053698896965,6.01852649939616e-07
+Silver,silver-gold mine operation with refinery,silver,RoW,1.000005142622721,1.000006770543109,1.627920388047599e-06
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",BG,,1.0000000000497251,
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",CA,,1.0000000000468774,
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",CA-QC,1.000000000044709,1.0000000000468818,2.1729285037963564e-12
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",CN,,1.0000000000506266,
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",JP,,1.0000000000497187,
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",RU,,1.0000000000497022,
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",RoW,1.0000000000462939,1.0000000000498734,3.5795810759964297e-12
+Tellurium,"tellurium production, semiconductor-grade","tellurium, semiconductor-grade",SE,,1.00000000004996,
+Terbium,"terbium production, calcium reduction",terbium,GLO,,0.05533997992004207,
+Tin,tin production,tin,AU,,0.9999998931267888,
+Tin,tin production,tin,BE,,0.9999999421844494,
+Tin,tin production,tin,BO,,0.9999998995661787,
+Tin,tin production,tin,BR,,0.9999998989487933,
+Tin,tin production,tin,CN,,0.9999999034999749,
+Tin,tin production,tin,ID,,0.9999998934355477,
+Tin,tin production,tin,IN,,0.9999999383747417,
+Tin,tin production,tin,JP,,0.9999999608327311,
+Tin,tin production,tin,MY,,0.9999999023253866,
+Tin,tin production,tin,PE,0.9999996233408232,0.999999728337032,1.0499620883841487e-07
+Tin,tin production,tin,PL,,0.9999999182750603,
+Tin,tin production,tin,RU,,0.9999998983863394,
+Tin,tin production,tin,RW,,0.9999999350292564,
+Tin,tin production,tin,RoW,0.9999997928936318,0.999999908236045,1.153424131761227e-07
+Tin,tin production,tin,TH,,0.9999999165166604,
+Tin,tin production,tin,TW,,0.9999999485422773,
+Tin,tin production,tin,VN,,0.9999999350903532,
+Titanium,titanium production,titanium,CN,,1.0002771865372342,
+Titanium,titanium production,titanium,GLO,1.014544629644728,1.0002764720775286,-0.014268157567199458
+Titanium,titanium production,titanium,JP,,1.0002764720775286,
+Titanium,titanium production,titanium,KZ,,1.0002764720775286,
+Titanium,titanium production,titanium,RU,,1.0002764720775286,
+Titanium,titanium production,titanium,UA,,1.0002764720775286,
+Titanium,"titanium sponge production, from titanium tetrachloride",titanium sponge,CN,0.9988196655670772,0.9988212810428919,1.6154758146758041e-06
+Titanium,"titanium sponge production, from titanium tetrachloride",titanium sponge,JP,1.0261019767932358,1.0012871186990864,-0.024814858094149406
+Titanium,"titanium sponge production, from titanium tetrachloride",titanium sponge,RoW,1.0261535758852618,1.0013385056287993,-0.024815070256462457
+Zinc,gold mine operation and refining,zinc,SE,1.0000953306365186,1.0001617577995172,6.642716299865015e-05
+Zinc,primary zinc production from concentrate,zinc,CA-QC,1.0006372879541579,1.00068783842983,5.055047567203985e-05
+Zinc,primary zinc production from concentrate,zinc,RoW,1.0027505833712307,1.0028313218172153,8.073844598466273e-05

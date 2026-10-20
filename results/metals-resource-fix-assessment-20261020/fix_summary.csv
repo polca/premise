@@ -1,0 +1,9 @@
+fix,changed_datasets,changed_indicators,changed_pairs,largest_absolute_change,within_5_percent,within_10_percent
+A,283,Antimony,283,1.0117477186660961,260,261
+B,284,Copper,284,1.0000047523683984,262,263
+C,282,Silver,282,1.00001019023884,262,263
+D,188,Lithium,188,1.1357018779671235,261,263
+E,39,Arsenic,39,1.5454361742042932,261,262
+F,284,Silicon,284,15.573280982755676,267,268
+G,284,Cerium; Dysprosium; Erbium; Europium; Gadolinium; Holmium; Lanthanum; Neodymium; Praseodymium; Samarium; Terbium; Thulium; Ytterbium; Yttrium,3752,2.510663250552845,263,266
+combined,284,Antimony; Arsenic; Cerium; Copper; Dysprosium; Erbium; Europium; Gadolinium; Holmium; Lanthanum; Lithium; Neodymium; Praseodymium; Samarium; Silicon; Silver; Terbium; Thulium; Ytterbium; Yttrium,5112,15.573280982755676,270,274

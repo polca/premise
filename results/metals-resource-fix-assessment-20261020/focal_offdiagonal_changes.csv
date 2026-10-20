@@ -1,0 +1,402 @@
+fix,metal,name,product,location,indicator,own_element,before,after,difference
+combined,Antimony,antimony production,antimony,CN,Cerium,False,2.7500409491542313e-05,2.7437168303094865e-05,-6.324118844744859e-08
+combined,Antimony,antimony production,antimony,CN,Copper,False,0.0274660984325425,0.027474603556780136,8.50512423763488e-06
+combined,Antimony,antimony production,antimony,CN,Dysprosium,False,8.186948221013297e-08,1.298164123456105e-07,4.794693013547752e-08
+combined,Antimony,antimony production,antimony,CN,Erbium,False,3.794679690878696e-08,1.1820842406667605e-11,-3.793497606638029e-08
+combined,Antimony,antimony production,antimony,CN,Europium,False,1.2487082224613618e-07,1.1222265553197338e-07,-1.2648166714162798e-08
+combined,Antimony,antimony production,antimony,CN,Gadolinium,False,4.80112582740087e-07,3.812662024805766e-07,-9.884638025951035e-08
+combined,Antimony,antimony production,antimony,CN,Holmium,False,1.4522848240058473e-08,3.785165374049743e-14,-1.4522810388404732e-08
+combined,Antimony,antimony production,antimony,CN,Lanthanum,False,1.3799151354165921e-05,1.4050184774611628e-05,2.5103342044570615e-07
+combined,Antimony,antimony production,antimony,CN,Lithium,False,1.9542180080771563e-11,2.816440247317269e-08,2.814486029309192e-08
+combined,Antimony,antimony production,antimony,CN,Neodymium,False,1.0471287232218016e-05,1.0739340670042697e-05,2.6805343782468096e-07
+combined,Antimony,antimony production,antimony,CN,Praseodymium,False,3.4730645343787353e-06,3.581460931584623e-06,1.0839639720588789e-07
+combined,Antimony,antimony production,antimony,CN,Samarium,False,5.66301918852838e-07,4.653008198961706e-07,-1.0100109895666739e-07
+combined,Antimony,antimony production,antimony,CN,Silicon,False,0.08708396375281413,0.0882870192773305,0.0012030555245163635
+combined,Antimony,antimony production,antimony,CN,Silver,False,6.242114755383667e-07,6.521879733149022e-07,2.797649777653538e-08
+combined,Antimony,antimony production,antimony,CN,Terbium,False,1.7358818099180238e-08,3.8968014409161336e-08,2.1609196309981095e-08
+combined,Antimony,antimony production,antimony,CN,Thulium,False,4.216310585849797e-09,1.0989189666934993e-14,-4.21629959666013e-09
+combined,Antimony,antimony production,antimony,CN,Ytterbium,False,3.747831874257239e-08,5.374943560033606e-12,-3.747294379901236e-08
+combined,Antimony,antimony production,antimony,CN,Yttrium,False,5.089735680124516e-07,3.156045457556286e-08,-4.774131134368887e-07
+combined,Antimony,antimony production,antimony,RoW,Cerium,False,2.750875015206111e-05,2.744609533941224e-05,-6.265481264887001e-08
+combined,Antimony,antimony production,antimony,RoW,Copper,False,0.02746702821611879,0.027475533704915983,8.505488797194154e-06
+combined,Antimony,antimony production,antimony,RoW,Dysprosium,False,8.120227760316148e-08,1.2859081640043804e-07,4.738853879727656e-08
+combined,Antimony,antimony production,antimony,RoW,Erbium,False,3.759497168802427e-08,1.1822231221369681e-11,-3.75831494568029e-08
+combined,Antimony,antimony production,antimony,RoW,Europium,False,1.247952641736333e-07,1.1226437261812152e-07,-1.2530891555511777e-08
+combined,Antimony,antimony production,antimony,RoW,Gadolinium,False,4.793141374858027e-07,3.8138424043677446e-07,-9.79298970490282e-08
+combined,Antimony,antimony production,antimony,RoW,Holmium,False,1.438819908112042e-08,3.784919853278175e-14,-1.4388161231921887e-08
+combined,Antimony,antimony production,antimony,RoW,Lanthanum,False,1.3799404849624993e-05,1.4056080934932766e-05,2.566760853077732e-07
+combined,Antimony,antimony production,antimony,RoW,Lithium,False,1.9531625234234702e-11,2.817089403030183e-08,2.8151362405067594e-08
+combined,Antimony,antimony production,antimony,RoW,Neodymium,False,1.046992321831256e-05,1.073482170395384e-05,2.648984856412795e-07
+combined,Antimony,antimony production,antimony,RoW,Praseodymium,False,3.4728471255452298e-06,3.580017951638168e-06,1.0717082609293852e-07
+combined,Antimony,antimony production,antimony,RoW,Samarium,False,5.655700011106997e-07,4.65507125352192e-07,-1.0006287575850774e-07
+combined,Antimony,antimony production,antimony,RoW,Silicon,False,0.08707959691920167,0.08828266810985808,0.0012030711906564106
+combined,Antimony,antimony production,antimony,RoW,Silver,False,6.251533192137249e-07,6.532056697962358e-07,2.8052350582511008e-08
+combined,Antimony,antimony production,antimony,RoW,Terbium,False,1.7252986044595816e-08,3.862984951989667e-08,2.1376863475300855e-08
+combined,Antimony,antimony production,antimony,RoW,Thulium,False,4.177218896339454e-09,1.0988476867203182e-14,-4.177207907862587e-09
+combined,Antimony,antimony production,antimony,RoW,Ytterbium,False,3.7130837035562534e-08,5.375565361824753e-12,-3.712546147020071e-08
+combined,Antimony,antimony production,antimony,RoW,Yttrium,False,5.045913884539582e-07,3.169502048053877e-08,-4.7289636797341943e-07
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Cerium,False,1.9618498100066866e-05,1.958476479196189e-05,-3.3733308104975004e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Copper,False,0.013830464518334223,0.013834753550149964,4.289031815739894e-06
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Dysprosium,False,6.317877601551782e-08,9.132364025580179e-08,2.814486424028397e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Erbium,False,2.024108199189142e-08,6.245687525908666e-12,-2.023483630436551e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Europium,False,9.255196119022093e-08,8.580533722841064e-08,-6.746623961810283e-09
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Gadolinium,False,3.1828963886603744e-07,2.655642774108432e-07,-5.2725361455194285e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Holmium,False,7.746586956717552e-09,1.838926072659006e-14,-7.746568567456825e-09
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Lanthanum,False,1.113890607188687e-05,1.1091453741670777e-05,-4.745233021609339e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Lithium,False,1.1152622396010978e-11,1.3495003093698955e-08,1.3483850471302944e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Neodymium,False,7.054788928690944e-06,7.2132363408789914e-06,1.584474121880481e-07
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Praseodymium,False,2.3245479248257624e-06,2.3873455985495325e-06,6.279767372377033e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Samarium,False,4.461680322637976e-07,3.922924493931801e-07,-5.387558287061749e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Silicon,False,0.027122437359659163,0.02771896963351768,0.0005965322738585147
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Silver,False,3.2029372899987315e-07,3.347267146565477e-07,1.443298565667458e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Terbium,False,2.0964731847530887e-08,3.3213001101764594e-08,1.2248269254233706e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Thulium,False,2.2490090132403996e-09,5.3388175719974486e-15,-2.2490036744228276e-09
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Ytterbium,False,1.9991192521732923e-08,2.8376564517197176e-12,-1.9988354865281204e-08
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,Yttrium,False,3.4302311394116263e-07,8.79518596761304e-08,-2.5507125426503223e-07
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Antimony,False,5.696306911321175e-06,1.145939247531361e-05,5.763085563992435e-06
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Cerium,False,3.324523248263939e-05,3.317110926807013e-05,-7.412321456926188e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Copper,False,0.018048864248040024,0.018055001009051594,6.1367610115685365e-06
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Dysprosium,False,1.9267580136936922e-07,2.570449946355191e-07,6.436919326614989e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Erbium,False,4.4474725235325044e-08,4.102596331884963e-12,-4.447062263899316e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Europium,False,1.8088202736881608e-07,1.6605740789544306e-07,-1.4824619473373005e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Gadolinium,False,5.41700677380421e-07,4.258479043512187e-07,-1.1585277302920226e-07
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Holmium,False,1.702119118679417e-08,4.596286898207927e-14,-1.7021145223925187e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Lanthanum,False,2.408376340467361e-05,2.3803564401020548e-05,-2.801990036530617e-07
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Lithium,False,1.318530007868101e-11,6.076685891414631e-08,6.075367361406763e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Neodymium,False,1.085300087491331e-05,1.1214972153223112e-05,3.619712783098013e-07
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Praseodymium,False,3.493451670022364e-06,3.636331551135174e-06,1.428798811128102e-07
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Samarium,False,1.001734550398272e-06,8.832001879107828e-07,-1.1853436248748924e-07
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Silicon,False,0.010322160326013206,0.010962881654784836,0.0006407213287716294
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Silver,False,6.155355769813991e-06,6.550598143900097e-06,3.9524237408610616e-07
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Terbium,False,7.837849145329509e-08,1.0600135668948918e-07,2.762286523619409e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Thulium,False,4.941635924191389e-09,1.334405850405479e-14,-4.9416225801328846e-09
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Ytterbium,False,4.392565550036892e-08,1.9115504244459398e-12,-4.392374394994448e-08
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,Yttrium,False,9.511804463602507e-07,3.9471412939210395e-07,-5.564663169681468e-07
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Antimony,False,9.718410025409758e-06,1.9550957054702965e-05,9.83254702929321e-06
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Cerium,False,1.0923944194619748e-06,1.0548171649119439e-06,-3.757725455003099e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Dysprosium,False,4.654059196072302e-08,7.836216667672694e-08,3.182157471600393e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Erbium,False,2.2546632076641833e-08,1.5350436795895062e-12,-2.2545097032962243e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Europium,False,1.254161625002349e-08,5.026174313566871e-09,-7.515441936456619e-09
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Gadolinium,False,7.256807644760449e-08,1.3835865929643964e-08,-5.873221051796053e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Holmium,False,8.62895797926144e-09,8.688994548357388e-15,-8.628949290266891e-09
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Lanthanum,False,1.0232890046105637e-06,9.385613268754686e-07,-8.472767773509513e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Lithium,False,3.299933621975973e-12,1.5812599639379906e-09,1.5779600303160146e-09
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Neodymium,False,6.191691276597075e-07,7.977495025583394e-07,1.7858037489863187e-07
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Praseodymium,False,1.881807187400059e-07,2.59043773453939e-07,7.086305471393305e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Samarium,False,8.55208474553468e-08,2.54210815472047e-08,-6.00997659081421e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Silicon,False,0.006847675650436188,0.006960710166005986,0.00011303451556979853
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Silver,False,2.174527274545608e-06,2.3008523093936827e-06,1.2632503484807488e-07
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Terbium,False,9.051991002413855e-09,2.2827838233560513e-08,1.3775847231146658e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Thulium,False,2.50518123383384e-09,2.5226113050279138e-15,-2.505178711222535e-09
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Ytterbium,False,2.2268279074281574e-08,7.032845165529059e-13,-2.226757578976502e-08
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,Yttrium,False,2.9470170801869917e-07,1.2780380732014226e-08,-2.8192132728668494e-07
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Cerium,False,0.21784949452803806,0.0017743741294812543,-0.2160751203985568
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Erbium,False,0.12964508159340582,9.478177298571921e-09,-0.12964507211522852
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Europium,False,0.0432231242511673,8.10017236665267e-06,-0.043215024078800644
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Gadolinium,False,0.33774110511960687,2.3710694492862228e-05,-0.337717394425114
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Holmium,False,0.04961725358734991,3.5703736980807754e-09,-0.049617250016976214
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Lanthanum,False,1.9617421734498883,0.0010775870747896654,-1.9606645863750987
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Neodymium,False,1.5899502177412808,0.0006086782449732375,-1.5893415394963075
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Praseodymium,False,0.4371489000107651,0.00020051968716994217,-0.4369483803235952
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Samarium,False,0.34575916275262325,3.897246620998551e-05,-0.34572019028641326
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Terbium,False,0.04321693083068758,2.417317389404039e-06,-0.04321451351329818
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Thulium,False,0.014405008444836352,1.0365600894984839e-09,-0.014405007408276263
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Ytterbium,False,0.1280445277909582,9.281009294426212e-09,-0.1280445185099489
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Yttrium,False,1.6405820534009508,1.1811945333839446e-05,-1.640570241455617
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Antimony,False,1.4731510878055275e-05,2.8731178253706243e-05,1.399966737565097e-05
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Arsenic,False,4.040708590728124e-05,4.040945668256501e-05,2.370775283761303e-09
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Cerium,False,0.21784949452803806,0.0017743741294812543,-0.2160751203985568
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Copper,False,0.8388262696107542,0.8389586511623731,0.000132381551618896
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Erbium,False,0.12964508159340582,9.478177298571921e-09,-0.12964507211522852
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Europium,False,0.0432231242511673,8.10017236665267e-06,-0.043215024078800644
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Gadolinium,False,0.33774110511960687,2.3710694492862228e-05,-0.337717394425114
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Holmium,False,0.04961725358734991,3.5703736980807754e-09,-0.049617250016976214
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Lanthanum,False,1.9617421734498883,0.0010775870747896654,-1.9606645863750987
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Lithium,False,4.959642912613031e-06,6.485673897176904e-06,1.526030984563872e-06
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Neodymium,False,1.5899502177412808,0.0006086782449732375,-1.5893415394963075
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Praseodymium,False,0.4371489000107651,0.00020051968716994217,-0.4369483803235952
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Samarium,False,0.34575916275262325,3.897246620998551e-05,-0.34572019028641326
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Silicon,False,0.6818218852220366,0.6936303220975775,0.011808436875540897
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Silver,False,0.00018656528269146927,0.0001895850042462528,3.0197215547835264e-06
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Terbium,False,0.04321693083068758,2.417317389404039e-06,-0.04321451351329818
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Thulium,False,0.014405008444836352,1.0365600894984839e-09,-0.014405007408276263
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Ytterbium,False,0.1280445277909582,9.281009294426212e-09,-0.1280445185099489
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,Yttrium,False,1.6405820534009508,1.1811945333839446e-05,-1.640570241455617
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Cerium,False,0.05019857384153644,0.0008162418677811686,-0.04938233197375527
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Dysprosium,False,0.05779634483430787,1.2153404110107346e-06,-0.05779512949389686
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Erbium,False,0.02962940132253396,2.1686033802037485e-09,-0.02962939915393058
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Europium,False,0.009879961048865486,3.49465433711893e-06,-0.009876466394528367
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Gadolinium,False,0.07719392064408634,1.1168394899216394e-05,-0.07718275224918712
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Lanthanum,False,0.44853037557201747,0.00043602767156425415,-0.4480943479004532
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Neodymium,False,0.36352301404223547,0.0002914585678641668,-0.3632315554743713
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Praseodymium,False,0.09995798690992394,9.687810947550668e-05,-0.09986110880044843
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Samarium,False,0.07902721466021619,1.5484077629510096e-05,-0.07901173058258668
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Terbium,False,0.009876903182363481,5.728420387537264e-07,-0.009876330340324728
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Thulium,False,0.003292155560556617,2.369006141429708e-10,-0.0032921553236560028
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Ytterbium,False,0.029263606875354255,2.1222147060517838e-09,-0.02926360475313955
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,Yttrium,False,0.3749426069132478,2.708062917466947e-06,-0.37493989885033036
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Antimony,False,3.3876860748819187e-06,6.608339323141071e-06,3.2206532482591524e-06
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Cerium,False,0.05019857384153644,0.0008162418677811686,-0.04938233197375527
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Copper,False,0.19763221525251037,0.1976633413403836,3.112608787322699e-05
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Dysprosium,False,0.05779634483430787,1.2153404110107346e-06,-0.05779512949389686
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Erbium,False,0.02962940132253396,2.1686033802037485e-09,-0.02962939915393058
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Europium,False,0.009879961048865486,3.49465433711893e-06,-0.009876466394528367
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Gadolinium,False,0.07719392064408634,1.1168394899216394e-05,-0.07718275224918712
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Lanthanum,False,0.44853037557201747,0.00043602767156425415,-0.4480943479004532
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Lithium,False,1.13349258678184e-06,1.4869820287686506e-06,3.534894419868106e-07
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Neodymium,False,0.36352301404223547,0.0002914585678641668,-0.3632315554743713
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Praseodymium,False,0.09995798690992394,9.687810947550668e-05,-0.09986110880044843
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Samarium,False,0.07902721466021619,1.5484077629510096e-05,-0.07901173058258668
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Silicon,False,0.19230851100956892,0.19741353063319667,0.005105019623627763
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Silver,False,4.296186559710578e-05,4.367109576092367e-05,7.092301638178876e-07
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Terbium,False,0.009876903182363481,5.728420387537264e-07,-0.009876330340324728
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Thulium,False,0.003292155560556617,2.369006141429708e-10,-0.0032921553236560028
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Ytterbium,False,0.029263606875354255,2.1222147060517838e-09,-0.02926360475313955
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,Yttrium,False,0.3749426069132478,2.708062917466947e-06,-0.37493989885033036
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Antimony,False,2.973574276525977e-07,5.957566070618973e-07,2.983991794092996e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Cerium,False,7.430843935744166e-05,7.396779575991935e-05,-3.4064359752230295e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Copper,False,0.09191556194789066,0.09192895840827629,1.3396460385632346e-05
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Dysprosium,False,6.27486746701127e-07,9.167661197490799e-07,2.892793730479529e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Erbium,False,2.0439321830214652e-07,3.408107826715609e-11,-2.0435913722387936e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Europium,False,4.3608750754430516e-07,3.679589837419104e-07,-6.812852380239471e-08
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Gadolinium,False,1.4847150480599618e-06,9.522941049793103e-07,-5.324209430806514e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Holmium,False,7.822456524680817e-08,5.919465865292868e-13,-7.822397330022164e-08
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Lanthanum,False,5.472565927326297e-05,5.389642323217086e-05,-8.292360410921095e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Neodymium,False,2.5628213945170403e-05,2.7254339953506443e-05,1.6261260083360395e-06
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Praseodymium,False,8.198409371370471e-06,8.842367523775393e-06,6.439581524049213e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Samarium,False,2.4897149419520874e-06,1.945198097229113e-06,-5.445168447229743e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Silicon,False,0.24948471675085251,0.25119196255636256,0.0017072458055100315
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Silver,False,8.781682246640605e-06,9.06665701565139e-06,2.8497476901078403e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Terbium,False,2.0540736978294876e-07,3.305156705304058e-07,1.2510830074745704e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Thulium,False,2.271035660993829e-08,1.7185546350083588e-13,-2.271018475447479e-08
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Ytterbium,False,2.0186984958864007e-07,1.617470543361648e-11,-2.0185367488320645e-07
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,Yttrium,False,3.425368026789025e-06,8.617433594548063e-07,-2.5636246673342186e-06
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Antimony,False,2.661797896949001e-07,5.331553228165346e-07,2.669755331216346e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Cerium,False,6.915375351934378e-05,6.889100406048218e-05,-2.6274945886160666e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Copper,False,0.08701498514553932,0.08702736111036756,1.2375964828235902e-05
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Dysprosium,False,5.218361223311562e-07,7.407153522224471e-07,2.1887922989129097e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Erbium,False,1.576562443351418e-07,3.1540169907459385e-11,-1.5762470416523434e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Europium,False,3.9563771267607197e-07,3.430880026848879e-07,-5.254970999118408e-08
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Gadolinium,False,1.2971645023251262e-06,8.864897952368328e-07,-4.106747070882935e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Holmium,False,6.033757516029675e-08,5.655153558337708e-13,-6.033700964494092e-08
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Lanthanum,False,5.056868279587606e-05,5.02278477477025e-05,-3.408350481735565e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Neodymium,False,2.3445623302953142e-05,2.4675039643247774e-05,1.2294163402946322e-06
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Praseodymium,False,7.516615931928719e-06,8.00508562751947e-06,4.884696955907502e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Samarium,False,2.2356647863439983e-06,1.8157396018881003e-06,-4.1992518445589804e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Silicon,False,0.2372033834007999,0.23790058362017732,0.0006972002193774015
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Silver,False,8.23415153846764e-06,8.49596968944728e-06,2.618181509796408e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Terbium,False,1.8113756944670259e-07,2.7644354572464966e-07,9.530597627794708e-08
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Thulium,False,1.7517359726398286e-08,1.641818803102997e-13,-1.7517195544517976e-08
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Ytterbium,False,1.5570987430510728e-07,1.4993661276601835e-11,-1.5569488064383068e-07
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,Yttrium,False,2.7808328759002114e-06,8.02026364386962e-07,-1.9788065115132495e-06
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Cerium,False,0.019399668788860434,0.00010179093636128803,-0.019297877852499146
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Dysprosium,False,0.02258594758763132,4.966772058738467e-07,-0.022585450910425447
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Erbium,False,0.011578727546978189,8.466636853415865e-10,-0.011578726700314504
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Europium,False,0.0038600722292549427,4.966588373457939e-07,-0.003859575570417597
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Gadolinium,False,0.0301631910870264,1.3241665493650412e-06,-0.030161866920477034
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Holmium,False,0.004431364875985178,3.188794705719089e-10,-0.004431364557105707
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Lanthanum,False,0.1751790033981998,7.084963456829851e-05,-0.1751081537636315
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Praseodymium,False,0.03903516371884685,1.0977475383047719e-05,-0.0390241862434638
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Samarium,False,0.03087917756156561,2.5732098162499495e-06,-0.03087660435174936
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Terbium,False,0.003859745759867594,2.2969837531073428e-07,-0.0038595160614922834
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Thulium,False,0.0012865252275267472,9.257790909746044e-11,-0.001286525134948838
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Ytterbium,False,0.011435780539848815,8.289756190521524e-10,-0.011435779710873195
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Yttrium,False,0.1465219682736495,1.054684368118064e-06,-0.14652091358928138
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Antimony,False,1.3194752918625903e-06,2.573630857642237e-06,1.2541555657796469e-06
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Cerium,False,0.019399668788860434,0.00010179093636128803,-0.019297877852499146
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Copper,False,0.07474259951534212,0.07475452066390947,1.1921148567347232e-05
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Dysprosium,False,0.02258594758763132,4.966772058738467e-07,-0.022585450910425447
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Erbium,False,0.011578727546978189,8.466636853415865e-10,-0.011578726700314504
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Europium,False,0.0038600722292549427,4.966588373457939e-07,-0.003859575570417597
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Gadolinium,False,0.0301631910870264,1.3241665493650412e-06,-0.030161866920477034
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Holmium,False,0.004431364875985178,3.188794705719089e-10,-0.004431364557105707
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Lanthanum,False,0.1751790033981998,7.084963456829851e-05,-0.1751081537636315
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Lithium,False,4.4295072054874214e-07,0.00017515104221612108,0.00017470809149557233
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Praseodymium,False,0.03903516371884685,1.0977475383047719e-05,-0.0390241862434638
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Samarium,False,0.03087917756156561,2.5732098162499495e-06,-0.03087660435174936
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Silicon,False,0.05535266057895605,0.05593889086453571,0.000586230285579664
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Silver,False,1.665151091664054e-05,1.6919419238037466e-05,2.679083213969255e-07
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Terbium,False,0.003859745759867594,2.2969837531073428e-07,-0.0038595160614922834
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Thulium,False,0.0012865252275267472,9.257790909746044e-11,-0.001286525134948838
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Ytterbium,False,0.011435780539848815,8.289756190521524e-10,-0.011435779710873195
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,Yttrium,False,0.1465219682736495,1.054684368118064e-06,-0.14652091358928138
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Cerium,False,0.05965917338347789,0.0003105962765733647,-0.059348577106904526
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Dysprosium,False,0.0694606864736519,1.4011344952324922e-06,-0.06945928533915667
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Erbium,False,0.035609148833334076,2.602627925674117e-09,-0.03560914623070615
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Europium,False,0.011871232895002708,1.517473867652941e-06,-0.011869715421135055
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Gadolinium,False,0.09276366172075111,4.038186235358343e-06,-0.09275962353451575
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Holmium,False,0.013628192801284715,9.806651133509314e-10,-0.013628191820619601
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Lanthanum,False,0.5387432874700006,0.0002151027711118081,-0.5385281846988887
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Neodymium,False,0.43664053014465326,0.00010195737128027016,-0.436538572773373
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Samarium,False,0.09496559561768843,7.872881141263166e-06,-0.09495772273654716
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Terbium,False,0.011870238546774539,6.707794196082056e-07,-0.01186956776735493
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Thulium,False,0.003956571921998022,2.847092223437486e-10,-0.0039565716372888
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Ytterbium,False,0.03516953047013335,2.5488670479800746e-09,-0.035169527921266305
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Yttrium,False,0.4506127754592049,3.2402736191983195e-06,-0.4506095351855857
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Antimony,False,4.04293210811967e-06,7.884817262809471e-06,3.8418851546898005e-06
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Cerium,False,0.05965917338347789,0.0003105962765733647,-0.059348577106904526
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Copper,False,0.22847784079512323,0.22851404016455062,3.6199369427379065e-05
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Dysprosium,False,0.0694606864736519,1.4011344952324922e-06,-0.06945928533915667
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Erbium,False,0.035609148833334076,2.602627925674117e-09,-0.03560914623070615
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Europium,False,0.011871232895002708,1.517473867652941e-06,-0.011869715421135055
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Gadolinium,False,0.09276366172075111,4.038186235358343e-06,-0.09275962353451575
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Holmium,False,0.013628192801284715,9.806651133509314e-10,-0.013628191820619601
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Lanthanum,False,0.5387432874700006,0.0002151027711118081,-0.5385281846988887
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Lithium,False,1.3622461729235501e-06,0.00018048272918634142,0.00017912048301341787
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Neodymium,False,0.43664053014465326,0.00010195737128027016,-0.436538572773373
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Samarium,False,0.09496559561768843,7.872881141263166e-06,-0.09495772273654716
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Silicon,False,0.1666272169426818,0.16837937474941483,0.001752157806733034
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Silver,False,5.111349594606507e-05,5.193403863751108e-05,8.205426914460093e-07
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Terbium,False,0.011870238546774539,6.707794196082056e-07,-0.01186956776735493
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Thulium,False,0.003956571921998022,2.847092223437486e-10,-0.0039565716372888
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Ytterbium,False,0.03516953047013335,2.5488670479800746e-09,-0.035169527921266305
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,Yttrium,False,0.4506127754592049,3.2402736191983195e-06,-0.4506095351855857
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Antimony,False,4.7140778220886796e-09,9.476246062140793e-09,4.762168240052114e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Cerium,False,1.592596877147993e-07,1.2820651659606534e-07,-3.105317111873397e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Copper,False,0.0006985141034598937,0.0006987578171466995,2.4371368680591435e-07
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Dysprosium,False,3.653198537878034e-08,6.433048632221606e-08,2.779850094343571e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Erbium,False,1.863199951573357e-08,5.269043798924351e-13,-1.8631472611353678e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Europium,False,6.782752156396521e-09,5.72120071937539e-10,-6.210632084458982e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Gadolinium,False,5.026164399587543e-08,1.7265596934878318e-09,-4.85350843023876e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Holmium,False,7.130765266598107e-09,2.1044860658290908e-15,-7.130763162112041e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Lanthanum,False,3.552315270515429e-07,1.802458213261225e-07,-1.7498570572542037e-07
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Neodymium,False,2.723606320238503e-07,4.2884431433023565e-07,1.5648368230638534e-07
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Praseodymium,False,7.732763058266167e-08,1.3879691795764188e-07,6.14692873749802e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Samarium,False,5.236238932344941e-08,2.6855276248201002e-09,-4.967686169862931e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Silver,False,3.220414909329992e-08,3.381108727012133e-08,1.6069381768214133e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Terbium,False,6.323519175387664e-09,1.812944087071813e-08,1.1805921695330468e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Thulium,False,2.0702220791535424e-09,6.109798149033278e-16,-2.0702214681737275e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Ytterbium,False,1.8401975227070932e-08,2.401697003448519e-13,-1.8401735057370587e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Yttrium,False,2.364649495646642e-07,1.0630100842123308e-09,-2.3540193948045188e-07
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Antimony,False,8.060377967109698e-09,1.6200909576113504e-08,8.140531609003808e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Cerium,False,3.499936378582588e-07,3.219824377274595e-07,-2.8011200130799333e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Copper,False,0.0008234320267967072,0.0008237166533744092,2.8462657770197734e-07
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Dysprosium,False,3.335048618377116e-08,5.771263385380328e-08,2.4362147670032122e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Erbium,False,1.680685862053076e-08,7.668746820772933e-13,-1.6806091745848682e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Europium,False,7.068775893665427e-09,1.4665393979388698e-09,-5.602236495726557e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Gadolinium,False,4.808232291734206e-08,4.301669907928209e-09,-4.378065300941385e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Holmium,False,6.432254551676186e-09,2.5173789223644213e-15,-6.432252034297263e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Lanthanum,False,4.459093047879885e-07,3.3775917102335544e-07,-1.0815013376463311e-07
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Lithium,False,1.81664704977555e-12,1.3251652454588996e-09,1.323348598409124e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Neodymium,False,3.1465643142528075e-07,4.5158376092372374e-07,1.3692732949844296e-07
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Praseodymium,False,9.245305062840858e-08,1.4651907824072113e-07,5.406602761231256e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Samarium,False,5.185551031372175e-08,7.0495680029190425e-09,-4.4805942310802705e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Silver,False,7.768391741419239e-08,8.117723791198574e-08,3.493320497793344e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Terbium,False,5.94233002335816e-09,1.6391414283717832e-08,1.044908426035967e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Thulium,False,1.867428655097033e-09,7.308519312472365e-16,-1.867427924245102e-09
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Ytterbium,False,1.6599366896651197e-08,3.4878507187348484e-13,-1.6599018111579324e-08
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Yttrium,False,2.147574220022404e-07,4.051893595782512e-09,-2.1070552840645788e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Antimony,False,7.56570401425028e-09,1.5216517017129036e-08,7.650813002878756e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Cerium,False,2.3278945473630696e-07,2.3090095123213744e-07,-1.888503504169523e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Copper,False,0.0008122613855074691,0.0008125393119898934,2.7792648242426154e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Erbium,False,1.1334228006250386e-09,1.8565634575407326e-12,-1.1315662371674979e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Gadolinium,False,6.027876783108546e-09,3.075773691279648e-09,-2.9521030918288977e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Lanthanum,False,1.566061247183173e-07,2.3227855844710748e-07,7.567243372879017e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Lithium,False,2.8114425419787967e-12,1.623193651687308e-09,1.6203822091453291e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Neodymium,False,9.131141611163348e-08,9.368830171933375e-08,2.376885607700273e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Praseodymium,False,2.931255285609266e-08,3.0662356317441235e-08,1.3498034613485754e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Samarium,False,8.154161033640942e-09,5.161753158790362e-09,-2.9924078748505803e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Silver,False,8.237823708819913e-08,8.370923240806252e-08,1.330995319863389e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Ytterbium,False,1.1194299506761893e-09,8.380183963892407e-13,-1.1185919322798e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Yttrium,False,1.592675967561001e-08,1.6661586567532993e-09,-1.426060101885671e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Antimony,False,5.947220142747698e-09,1.1957585484196402e-08,6.010365341448703e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Cerium,False,2.134155022126383e-07,1.7174871163875397e-07,-4.166679057388435e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Copper,False,0.0008308474916277781,0.0008311348202790323,2.873286512541823e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Dysprosium,False,4.9060142012916825e-08,8.709409410731034e-08,3.8033952094393517e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Erbium,False,2.5000198640278593e-08,6.890737970651904e-13,-2.4999509566481528e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Europium,False,9.113125935936336e-09,7.797710008312958e-10,-8.33335493510504e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Gadolinium,False,6.742133531625741e-08,2.2975201625209173e-09,-6.512381515373649e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Holmium,False,9.567977284006118e-09,2.182603733983539e-15,-9.567975101402384e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Lanthanum,False,4.79746834942823e-07,1.9285908398267368e-07,-2.8688775096014937e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Neodymium,False,3.6456923391170985e-07,5.789740871925277e-07,2.144048532808179e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Praseodymium,False,1.0341809088302429e-07,1.8731935646095846e-07,8.390126557793415e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Samarium,False,7.039437571284734e-08,3.7382768319581815e-09,-6.665609888088915e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Silver,False,6.512317277576748e-08,6.751347815647003e-08,2.390305380702556e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Terbium,False,8.50999518161771e-09,2.4557282681511658e-08,1.6047287499893948e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Thulium,False,2.777799729150073e-09,6.336591369553127e-16,-2.777799095490936e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Ytterbium,False,2.4691554744930845e-08,3.132886904348956e-13,-2.469124145624041e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Yttrium,False,3.174397229561192e-07,2.195872866674967e-09,-3.1524385008944424e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Antimony,False,4.10526442124569e-09,8.253069111033158e-09,4.1478046897874684e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Cerium,False,1.331257450467435e-07,9.962056922140615e-08,-3.350517582533736e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Copper,False,0.0007147583926319286,0.0007150087156714235,2.50323039494876e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Dysprosium,False,3.9369125107909685e-08,7.02211844581584e-08,3.085205935024871e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Erbium,False,2.010319500900492e-08,4.88640439172941e-13,-2.0102706368565748e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Europium,False,7.148535913304616e-09,4.475026475457406e-10,-6.701033265758876e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Gadolinium,False,5.3705678154367613e-08,1.3382100991886856e-09,-5.236746805517893e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Holmium,False,7.693815395218825e-09,1.6917934473861827e-15,-7.693813703425378e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Lanthanum,False,3.618225113143538e-07,1.1243702650838121e-07,-2.4938548480597256e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Neodymium,False,2.8042452746014083e-07,4.5441164647424686e-07,1.7398711901410603e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Praseodymium,False,7.897832412674788e-08,1.4696461854227402e-07,6.798629441552614e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Samarium,False,5.571974624217764e-08,2.119090643571924e-09,-5.360065559860572e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Silver,False,2.9303831554306697e-08,3.078981894831763e-08,1.4859873940109298e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Terbium,False,6.794358024384981e-09,1.977364519390718e-08,1.2979287169522202e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Thulium,False,2.233688238024443e-09,4.911658319856887e-16,-2.233687746858611e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Ytterbium,False,1.985500784434306e-08,2.2236358181984436e-13,-1.985478548076124e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Yttrium,False,2.549623977370644e-07,9.740092938519543e-10,-2.5398838844321247e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Antimony,False,1.0279792350956726e-08,2.0656037199384695e-08,1.0376244848427969e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Cerium,False,3.186495156194863e-07,2.914758304781294e-07,-2.7173685141356896e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Copper,False,0.0008051706571359246,0.0008054486298535252,2.7797271760064144e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Dysprosium,False,3.200432697480467e-08,5.656735597092947e-08,2.4563028996124807e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Erbium,False,1.6304315639789528e-08,5.749302756471537e-13,-1.630374070951388e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Europium,False,6.663955620459768e-09,1.229220957934911e-09,-5.434734662524857e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Gadolinium,False,4.647929742999434e-08,4.00769375634417e-09,-4.247160367365017e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Holmium,False,6.239923286906871e-09,1.8148010063176344e-15,-6.239921472105865e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Lanthanum,False,3.961149951139812e-07,2.250599182316801e-07,-1.7105507688230107e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Neodymium,False,3.039977875612384e-07,4.4239336762430285e-07,1.3839558006306444e-07
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Praseodymium,False,8.963513857598995e-08,1.4388498494100725e-07,5.424984636501729e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Samarium,False,4.8809998515192475e-08,5.341082915823948e-09,-4.346891559936853e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Silver,False,1.0835698682295406e-07,1.1354078709261247e-07,5.183800269658411e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Terbium,False,5.555281545347365e-09,1.5952968814010826e-08,1.0397687268663461e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Thulium,False,1.811590548533341e-09,5.268777040869582e-16,-1.811590021655637e-09
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Ytterbium,False,1.6103028139539944e-08,2.613843349534299e-13,-1.610276675520499e-08
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Yttrium,False,2.070564844116953e-07,4.564457237470852e-09,-2.0249202717422444e-07
+combined,Silver,primary zinc production from concentrate,silver,RoW,Antimony,False,0.0007839532166280844,0.0015771135022206594,0.0007931602855925751
+combined,Silver,primary zinc production from concentrate,silver,RoW,Cerium,False,8.811998711535357e-05,8.508874939436618e-05,-3.0312377209873972e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Copper,False,1.092124300642164,1.0925076591105491,0.0003833584683851788
+combined,Silver,primary zinc production from concentrate,silver,RoW,Dysprosium,False,3.754281668834374e-06,6.321226980704991e-06,2.566945311870618e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Erbium,False,1.818765166597241e-06,1.238270978290656e-10,-1.8186413394994119e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Europium,False,1.0116923331429608e-06,4.0544551281322394e-07,-6.062468203297368e-07
+combined,Silver,primary zinc production from concentrate,silver,RoW,Gadolinium,False,5.853836144360467e-06,1.116095346346689e-06,-4.737740798013778e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Holmium,False,6.960706212512758e-07,7.009135935355501e-13,-6.960699203376822e-07
+combined,Silver,primary zinc production from concentrate,silver,RoW,Lanthanum,False,8.254547267912451e-05,7.571076055605106e-05,-6.8347121230734556e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Lithium,False,2.661951624220021e-10,1.27555218625508e-07,1.27289023463086e-07
+combined,Silver,primary zinc production from concentrate,silver,RoW,Neodymium,False,4.994640624188832e-05,6.435191760214919e-05,1.4405511360260868e-05
+combined,Silver,primary zinc production from concentrate,silver,RoW,Praseodymium,False,1.5179940678464385e-05,2.08962381200637e-05,5.716297441599316e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Samarium,False,6.898695025720589e-06,2.0506378798843966e-06,-4.848057145836193e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Silicon,False,0.5523802401866752,0.5614983753026803,0.0091181351160051
+combined,Silver,primary zinc production from concentrate,silver,RoW,Terbium,False,7.301953512420398e-07,1.84144917230457e-06,1.1112538210625305e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Thulium,False,2.0208500979755733e-07,2.0349104206775856e-13,-2.0208480630651527e-07
+combined,Silver,primary zinc production from concentrate,silver,RoW,Ytterbium,False,1.7963113143771086e-06,5.673172809053144e-11,-1.796254582649018e-06
+combined,Silver,primary zinc production from concentrate,silver,RoW,Yttrium,False,2.3772650358138402e-05,1.0309527031229773e-06,-2.2741697655015424e-05
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Cerium,False,0.2787102047149944,0.002022508054505212,-0.2766876966604892
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Dysprosium,False,0.32383114233747023,6.372207266958085e-06,-0.3238247701302033
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Erbium,False,0.16601262997420785,1.2134768662130924e-08,-0.16601261783943919
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Europium,False,0.055346912760743744,9.373429798946453e-06,-0.0553375393309448
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Gadolinium,False,0.43247946979266716,2.6868062308949003e-05,-0.4324526017303582
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Holmium,False,0.06353569806810262,4.571916289997091e-09,-0.06353569349618633
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Lanthanum,False,2.5119277226238483,0.0012644720710035529,-2.510663250552845
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Neodymium,False,2.0358647222243254,0.0006868612706094623,-2.035177860953716
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Praseodymium,False,0.5597453188466327,0.00022575301526372993,-0.559519565831369
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Samarium,False,0.44274621705824846,4.590537798376815e-05,-0.4427003116802647
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Thulium,False,0.018445846979586396,1.3273305093930432e-09,-0.018445845652255887
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Ytterbium,False,0.16396309486733135,1.1883489192676677e-08,-0.16396308298384216
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,Yttrium,False,2.1007919251867606,1.511773869111721e-05,-2.1007768074480695
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Antimony,False,1.885020073055115e-05,3.6763118497432055e-05,1.791291776688091e-05
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Arsenic,False,5.1603385728480116e-05,5.160641773030511e-05,3.032001825000498e-09
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Cerium,False,0.2787102047149944,0.002022508054505212,-0.2766876966604892
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Copper,False,1.070681432900282,1.0708504726307952,0.0001690397305131943
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Dysprosium,False,0.32383114233747023,6.372207266958085e-06,-0.3238247701302033
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Erbium,False,0.16601262997420785,1.2134768662130924e-08,-0.16601261783943919
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Europium,False,0.055346912760743744,9.373429798946453e-06,-0.0553375393309448
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Gadolinium,False,0.43247946979266716,2.6868062308949003e-05,-0.4324526017303582
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Holmium,False,0.06353569806810262,4.571916289997091e-09,-0.06353569349618633
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Lanthanum,False,2.5119277226238483,0.0012644720710035529,-2.510663250552845
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Lithium,False,6.3508997061344335e-06,8.301863191879266e-06,1.950963485744833e-06
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Neodymium,False,2.0358647222243254,0.0006868612706094623,-2.035177860953716
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Praseodymium,False,0.5597453188466327,0.00022575301526372993,-0.559519565831369
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Samarium,False,0.44274621705824846,4.590537798376815e-05,-0.4427003116802647
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Silicon,False,0.8266200195529951,0.83848497121645,0.011864951663454934
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Silver,False,0.00023859262648381283,0.00024244060599390958,3.847979510096744e-06
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Thulium,False,0.018445846979586396,1.3273305093930432e-09,-0.018445845652255887
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Ytterbium,False,0.16396309486733135,1.1883489192676677e-08,-0.16396308298384216
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,Yttrium,False,2.1007919251867606,1.511773869111721e-05,-2.1007768074480695

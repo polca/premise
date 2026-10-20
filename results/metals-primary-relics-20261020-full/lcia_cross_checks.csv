@@ -1,0 +1,53 @@
+stage,name,location,metal,direct_lcia,vectorized
+source,"aluminium production, primary, ingot",CA,Aluminium,0.943538737148525,0.9435387371485245
+source,cobalt production,GLO,Copper,0.6394492578539454,0.6394492578539448
+source,"copper production, cathode, solvent extraction and electrowinning process",GLO,Copper,1.4328528985948783,1.432852898594879
+source,"electrorefining of copper, anode",GLO,Copper,0.9187943419969086,0.9187943419969088
+source,gold mine operation and refining,SE,Copper,0.8230336130960018,0.8230336130960018
+source,"platinum group metal mine operation, ore with high palladium content",RU,Copper,0.2616111229642214,0.2616111229642213
+source,"platinum group metal, extraction and refinery operations",ZA,Copper,0.03746691360966716,0.03746691360966714
+source,primary zinc production from concentrate,RoW,Copper,0.0644183795638757,0.0644183795638757
+source,gold mine operation and refining,SE,Gold,0.12830740523339937,0.12830740523339934
+source,gold production,AU,Gold,1.0871027096728993,1.0871027096728987
+source,gold production,CA,Gold,1.1765594896658855,1.1765594896658853
+source,gold production,TZ,Gold,1.0870686032071188,1.0870686032071193
+source,gold production,US,Gold,1.136477924994981,1.1364779249949808
+source,gold refinery operation,RoW,Gold,1.3665249426342816,1.3665249426342816
+source,gold refinery operation,ZA,Gold,1.3121145687500058,1.3121145687500049
+source,gold-silver mine operation with refinery,CA-QC,Gold,1.1119412370977424,1.1119412370977424
+source,gold-silver mine operation with refinery,PG,Gold,1.097128238688603,1.097128238688604
+source,gold-silver mine operation with refinery,RoW,Gold,1.1573434147253794,1.157343414725379
+source,"platinum group metal, extraction and refinery operations",ZA,Gold,0.02589346476296821,0.025893464762968225
+source,primary zinc production from concentrate,RoW,Gold,0.023902762688228368,0.023902762688228368
+source,"processing of anode slime from electrorefining of copper, anode",GLO,Gold,0.0023454757591314986,0.0023454757591314995
+source,silver-gold mine operation with refinery,CL,Gold,0.7992759486055887,0.7992759486055891
+source,silver-gold mine operation with refinery,RoW,Gold,0.799269471939444,0.799269471939444
+source,gold mine operation and refining,SE,Zinc,0.049855551099582854,0.04985555109958286
+source,primary zinc production from concentrate,CA-QC,Zinc,0.8661680444260833,0.8661680444260835
+source,primary zinc production from concentrate,RoW,Zinc,0.6940242627987429,0.6940242627987433
+premise,"aluminium production, primary, ingot",CA,Aluminium,0.9901111138724089,0.9901111138724088
+premise,cobalt production,GLO,Copper,1.0104854769455593,1.0104854769455585
+premise,"copper production, cathode, solvent extraction and electrowinning process",GLO,Copper,1.0277641719815245,1.0277641719815238
+premise,"electrorefining of copper, anode",GLO,Copper,0.9046471232524568,0.9046471232524569
+premise,gold mine operation and refining,SE,Copper,1.000927771918855,1.0009277719188552
+premise,"platinum group metal mine operation, ore with high palladium content",RU,Copper,1.0015917555219738,1.0015917555219735
+premise,"platinum group metal, extraction and refinery operations",ZA,Copper,1.002012881537528,1.0020128815375282
+premise,primary zinc production from concentrate,RoW,Copper,0.013538704496200657,0.01353870449620065
+premise,gold mine operation and refining,SE,Gold,1.0001181498609586,1.000118149860959
+premise,gold production,AU,Gold,1.0000703519604213,1.000070351960421
+premise,gold production,CA,Gold,1.0000238201275093,1.0000238201275096
+premise,gold production,TZ,Gold,1.000031718258921,1.000031718258921
+premise,gold production,US,Gold,1.000046719360535,1.000046719360535
+premise,gold refinery operation,RoW,Gold,1.0048256476487964,1.0048256476487964
+premise,gold refinery operation,ZA,Gold,0.9643957894151487,0.9643957894151487
+premise,gold-silver mine operation with refinery,CA-QC,Gold,1.0002434727767764,1.0002434727767757
+premise,gold-silver mine operation with refinery,PG,Gold,1.000060831506952,1.000060831506952
+premise,gold-silver mine operation with refinery,RoW,Gold,1.0000612642071256,1.0000612642071254
+premise,"platinum group metal, extraction and refinery operations",ZA,Gold,1.0004377820613803,1.0004377820613808
+premise,primary zinc production from concentrate,RoW,Gold,1.0001479925670804,1.0001479925670802
+premise,"processing of anode slime from electrorefining of copper, anode",GLO,Gold,1.0000188226112716,1.0000188226112718
+premise,silver-gold mine operation with refinery,CL,Gold,1.0001155129462287,1.0001155129462291
+premise,silver-gold mine operation with refinery,RoW,Gold,1.0001095414249972,1.0001095414249965
+premise,gold mine operation and refining,SE,Zinc,1.0001617577995165,1.0001617577995172
+premise,primary zinc production from concentrate,CA-QC,Zinc,1.0006878384298292,1.00068783842983
+premise,primary zinc production from concentrate,RoW,Zinc,1.002831321817216,1.0028313218172153

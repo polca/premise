@@ -1,0 +1,139 @@
+metal,name,product,location,contributor,contributor_product,contributor_location,contribution
+Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,CN,0.49708044878064034
+Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,TJ,7.903128411897116e-08
+Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,RU,5.780967294576419e-08
+Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,MM,1.4540434592226561e-08
+Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,IR,1.2566648148029095e-08
+Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,TR,1.175609572055055e-08
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,ferronickel,GLO,1.5270042062824066e-07
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,sulfuric acid,GLO,4.732782288743471e-08
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,"electrolyte, copper-rich",GLO,2.687232154536397e-08
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,copper cake,GLO,2.544576237030087e-08
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,nickel sulfate,GLO,3.217859032192308e-10
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,"electrolyte, nickel-rich",GLO,2.926265196188061e-11
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.247330074994472
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.2116516439315558
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,molybdenite mine operation,"copper concentrate, sulfide ore",GLO,0.09904945205481522
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.07102972701461081
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.05218958591946631
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.040104325813294144
+Copper,primary zinc production from concentrate,"copper, cathode",RoW,"copper production, cathode, solvent extraction and electrowinning process","copper, cathode",GLO,0.002948198183680699
+Copper,primary zinc production from concentrate,"copper, cathode",RoW,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.002744478223426904
+Copper,primary zinc production from concentrate,"copper, cathode",RoW,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.002348575391551726
+Copper,primary zinc production from concentrate,"copper, cathode",RoW,molybdenite mine operation,"copper concentrate, sulfide ore",GLO,0.0010990942537533429
+Copper,primary zinc production from concentrate,"copper, cathode",RoW,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.0007881756353808328
+Copper,primary zinc production from concentrate,"copper, cathode",RoW,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.0005791175296770681
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,0.2528878999669466
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,"rare earth element mine operation and beneficiation, bastnaesite ore","rare earth oxide concentrate, 70% REO",CN-SC,2.573997241434419e-06
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,CN,5.045785580279623e-07
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,RoW,7.466892210978856e-08
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,RER,2.3103296822662565e-08
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,RNA,1.3950135474742946e-08
+Gallium,7N gallium production,7N Gallium,GLO,"high-grade gallium production, from low-grade gallium","gallium, high-grade",CN,1.428571343480524
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, powder","zeolite, powder",RoW,3.4450104207528936e-08
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, powder","zeolite, powder",RER,1.700894258599568e-08
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, slurry, without water, in 50% solution state","zeolite, slurry, without water, in 50% solution state",RoW,2.1330934406230417e-09
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, slurry, without water, in 50% solution state","zeolite, slurry, without water, in 50% solution state",RER,1.0533520053650603e-09
+Gallium,7N gallium production,7N Gallium,GLO,"sodium percarbonate production, powder","sodium percarbonate, powder",RoW,3.7138128956216655e-10
+Holmium,"holmium production, calcium reduction",holmium,GLO,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,0.011339646635288036
+Holmium,"holmium production, calcium reduction",holmium,GLO,citric acid production,citric acid,CN,6.036877473257097e-10
+Holmium,"holmium production, calcium reduction",holmium,GLO,citric acid production,citric acid,RoW,6.908267426801186e-11
+Holmium,"holmium production, calcium reduction",holmium,GLO,citric acid production,citric acid,RER,6.901596207075493e-11
+Holmium,"holmium production, calcium reduction",holmium,GLO,citric acid production,citric acid,RNA,5.769185397603022e-11
+Holmium,"holmium production, calcium reduction",holmium,GLO,esters of versatic acid production,esters of versatic acid,RoW,1.6297465567666074e-11
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,"iron ore mine operation, 46% Fe","iron ore, crude ore, 46% Fe",GLO,1.0866125829194968
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,iron ore mine operation and beneficiation,iron ore concentrate,CA-QC,0.025542011458538193
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,"iron ore mine operation, 63% Fe","iron ore, crude ore, 63% Fe",IN,0.0005578343180139504
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,ferronickel production,ferronickel,GLO,0.00010880424209057978
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,cobalt production,sulfuric acid,GLO,3.0169275420137572e-05
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,cobalt production,ferronickel,GLO,2.4801045441761687e-05
+Iron,sponge iron production,sponge iron,IN,"iron ore mine operation, 63% Fe","iron ore, crude ore, 63% Fe",IN,1.2805149314895148
+Iron,sponge iron production,sponge iron,IN,"iron ore mine operation, 46% Fe","iron ore, crude ore, 46% Fe",GLO,0.003873513354106968
+Iron,sponge iron production,sponge iron,IN,iron ore mine operation and beneficiation,iron ore concentrate,CA-QC,0.00022074625461680547
+Iron,sponge iron production,sponge iron,IN,ferronickel production,ferronickel,GLO,0.0001607434643714646
+Iron,sponge iron production,sponge iron,IN,cobalt production,ferronickel,GLO,3.6640170343947025e-05
+Iron,sponge iron production,sponge iron,IN,vanadium-titanomagnetite mine operation and beneficiation,iron ore concentrate,CN,1.4094780409556381e-05
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium brine production, from evaporation pond","lithium brine, from evaporation pond",CL,2.6686082727215057e-11
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,citric acid production,citric acid,CN,1.3628653844977202e-11
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium brine production, from evaporation pond, from Salar de Cauchari-Olaroz","lithium brine, from evaporation pond",AR,1.0843671897667057e-11
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium brine production, from Li-ion selective adsorption","lithium brine, from Li-ion selective adsorption",CN,4.41463077701945e-12
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium brine production, from evaporation pond, from Salar de Olaroz","lithium brine, from evaporation pond",AR,3.943339055971232e-12
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,soy-based resin production,"polyester resin, unsaturated",RoW,3.4351217809064596e-12
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium brine production, from evaporation pond","lithium brine, from evaporation pond",CL,2.4658569320436612e-11
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,citric acid production,citric acid,CN,1.1755390077557391e-11
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium brine production, from evaporation pond, from Salar de Cauchari-Olaroz","lithium brine, from evaporation pond",AR,1.0019808373898349e-11
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium brine production, from Li-ion selective adsorption","lithium brine, from Li-ion selective adsorption",CN,4.0792228725368824e-12
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium brine production, from evaporation pond, from Salar de Olaroz","lithium brine, from evaporation pond",AR,3.643738215893603e-12
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,soy-based resin production,"polyester resin, unsaturated",RoW,3.259658031231997e-12
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,0.1419466048364261
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth element mine operation and beneficiation, bastnaesite ore","rare earth oxide concentrate, 70% REO",CN-SC,2.162344394018405e-05
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,citric acid production,citric acid,CN,7.2193924545162876e-06
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth element mine operation and beneficiation, bastnaesite and monazite ore","rare earth oxide concentrate, 50% REO",CN-NM,1.4417691208598908e-06
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,citric acid production,citric acid,RoW,9.617288874651004e-07
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,citric acid production,citric acid,RNA,5.876120856348436e-07
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,"nickel mine operation and benefication to nickel concentrate, 16% Ni","nickel concentrate, 16% Ni",CA-QC,1.1309476558769478
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,"nickel concentrate, 16% Ni",GLO,0.024060410981500132
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,"electrolyte, nickel-rich",GLO,0.0020506180807754533
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,ferronickel production,ferronickel,GLO,0.0010229818578865446
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,ferronickel,GLO,2.5892366577976828e-05
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,sulfuric acid,GLO,1.1938683644510053e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,"nickel mine operation and benefication to nickel concentrate, 7% Ni","nickel concentrate, 7% Ni",CN,1.1888692369015303
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,ferronickel production,ferronickel,GLO,0.0017032435022756617
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,cobalt production,ferronickel,GLO,4.311025145997225e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,cobalt production,sulfuric acid,GLO,3.881500602720924e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,"nickel mine operation and benefication to nickel concentrate, 16% Ni","nickel concentrate, 16% Ni",CA-QC,2.8100220026723934e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,cobalt production,"nickel, class 1",GLO,4.009812972140991e-06
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,0.12001600923120273
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth element mine operation and beneficiation, bastnaesite ore","rare earth oxide concentrate, 70% REO",CN-SC,2.1532938957052047e-05
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,citric acid production,citric acid,CN,7.298145280849713e-06
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth element mine operation and beneficiation, bastnaesite and monazite ore","rare earth oxide concentrate, 50% REO",CN-NM,1.1993526379166554e-06
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,citric acid production,citric acid,RoW,9.70029794082214e-07
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,citric acid production,citric acid,RNA,6.0185882828009e-07
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,limestone quarry operation,"limestone, unprocessed",RoW,0.0012946732836340966
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,limestone quarry operation,"limestone, unprocessed",CH,0.000317215697410242
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,cobalt production,ferronickel,GLO,5.225022254028392e-05
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,limestone quarry operation,"limestone, unprocessed",IN,4.618688823777791e-05
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,cobalt production,"electrolyte, copper-rich",GLO,2.685624876312e-06
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,cobalt production,copper cake,GLO,2.5437387482071316e-06
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,limestone quarry operation,"limestone, unprocessed",RoW,0.0016994847671374163
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,limestone quarry operation,"limestone, unprocessed",IN,0.00010696787396045596
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,limestone quarry operation,"limestone, unprocessed",CH,8.101180390194598e-05
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,cobalt production,ferronickel,GLO,5.7266926904774455e-05
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,"limestone production, crushed, for mill, average","limestone, crushed, for mill",CA,7.102269166755259e-06
+Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,cobalt production,"electrolyte, copper-rich",GLO,3.136504469727493e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,limestone quarry operation,"limestone, unprocessed",RoW,0.002733195865511772
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,limestone quarry operation,"limestone, unprocessed",IN,0.0001644753646040054
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,limestone quarry operation,"limestone, unprocessed",CH,0.00010025564148321726
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,cobalt production,ferronickel,GLO,4.283571143837029e-05
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,cobalt production,"electrolyte, copper-rich",GLO,3.0625560063887707e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,cobalt production,sulfuric acid,GLO,3.0015787173866675e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,limestone quarry operation,"limestone, unprocessed",RoW,0.001706777968238809
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,limestone quarry operation,"limestone, unprocessed",IN,0.00010611729205948439
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,limestone quarry operation,"limestone, unprocessed",CH,8.553724171899828e-05
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,cobalt production,ferronickel,GLO,5.60726816052761e-05
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,cobalt production,"electrolyte, copper-rich",GLO,3.1661943426405546e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,cobalt production,copper cake,GLO,2.9989658490022066e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,limestone quarry operation,"limestone, unprocessed",RoW,0.0011894922989384483
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,limestone quarry operation,"limestone, unprocessed",CH,0.0003594291230161516
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,cobalt production,ferronickel,GLO,4.858161681077856e-05
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,limestone quarry operation,"limestone, unprocessed",IN,3.695531840728511e-05
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,cobalt production,"electrolyte, copper-rich",GLO,2.7583986420110738e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,cobalt production,copper cake,GLO,2.6127232470090697e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,limestone quarry operation,"limestone, unprocessed",RoW,0.0015667516811686394
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,limestone quarry operation,"limestone, unprocessed",IN,0.00010377533796170574
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,limestone quarry operation,"limestone, unprocessed",CH,8.095002838357861e-05
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,cobalt production,ferronickel,GLO,4.844430359529543e-05
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,cobalt production,"electrolyte, copper-rich",GLO,3.0631626302113287e-06
+Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,cobalt production,copper cake,GLO,2.9013141689834334e-06
+Silver,primary zinc production from concentrate,silver,RoW,silver-gold mine operation with refinery,silver,RoW,0.00013396241117593713
+Silver,primary zinc production from concentrate,silver,RoW,zinc mine operation,bulk lead-zinc concentrate,GLO,1.983715129539939e-05
+Silver,primary zinc production from concentrate,silver,RoW,"processing of anode slime from electrorefining of copper, anode",silver,GLO,1.6048864356591556e-05
+Silver,primary zinc production from concentrate,silver,RoW,zinc mine operation,"limestone, milled, loose",GLO,2.6727853650238912e-06
+Silver,primary zinc production from concentrate,silver,RoW,gold mine operation and refining,silver,SE,1.2311907920710796e-06
+Silver,primary zinc production from concentrate,silver,RoW,gold-silver mine operation with refinery,silver,RoW,7.061644690429324e-07
+Terbium,"terbium production, calcium reduction",terbium,GLO,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,0.05533753934274443
+Terbium,"terbium production, calcium reduction",terbium,GLO,"rare earth element mine operation and beneficiation, bastnaesite ore","rare earth oxide concentrate, 70% REO",CN-SC,1.9765901044762256e-06
+Terbium,"terbium production, calcium reduction",terbium,GLO,citric acid production,citric acid,CN,3.802749013101586e-07
+Terbium,"terbium production, calcium reduction",terbium,GLO,citric acid production,citric acid,RoW,5.652229861223312e-08
+Terbium,"terbium production, calcium reduction",terbium,GLO,citric acid production,citric acid,RER,1.690474930009184e-08
+Terbium,"terbium production, calcium reduction",terbium,GLO,citric acid production,citric acid,RNA,1.0011055792831933e-08

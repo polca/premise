@@ -1,0 +1,39 @@
+fix,metal,name,product,location,before,after,offdiagonal_changed_indicators
+A,Antimony,antimony production,antimony,CN,0.9999999771509991,2.0117476957098543,0
+combined,Antimony,antimony production,antimony,CN,0.9999999771509991,2.0117476957098543,18
+A,Antimony,antimony production,antimony,RoW,0.9999999772574064,2.0117476959235026,0
+combined,Antimony,antimony production,antimony,RoW,0.9999999772574064,2.0117476959235026,18
+A,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,0.49708064782412836,1.0000008707075703,0
+combined,Antimony,"antimony production, iron precipitation of stibnite",antimony,CN,0.49708064782412836,1.0000008707075703,18
+E,Arsenic,7N arsenic production,7N Arsenic,GLO,2.5277240466358424e-07,1.5454364269766978,0
+combined,Arsenic,7N arsenic production,7N Arsenic,GLO,2.5277240466358424e-07,1.5454364269766978,19
+B,Copper,primary zinc production from concentrate,"copper, cathode",RoW,0.013538704496200656,1.0135434568645991,0
+combined,Copper,primary zinc production from concentrate,"copper, cathode",RoW,0.013538704496200656,1.0135434568645991,18
+G,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,0.2528910908858201,1.1906796937360837,13
+combined,Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,0.2528910908858201,1.1906796937360837,19
+G,Holmium,"holmium production, calcium reduction",holmium,GLO,0.01133964745127905,1.0412328157511175,13
+combined,Holmium,"holmium production, calcium reduction",holmium,GLO,0.01133964745127905,1.0412328157511175,18
+D,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,7.389584712797218e-11,1.1357018780410193,0
+combined,Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,7.389584712797218e-11,1.1357018780410193,18
+D,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,6.747399639418756e-11,1.0941251342326577,0
+combined,Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,6.747399639418756e-11,1.0941251342326577,18
+G,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,0.14197902230984147,1.064262427333419,13
+combined,Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,0.14197902230984147,1.064262427333419,18
+G,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,0.12004820636594941,1.0642619668761844,13
+combined,Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,0.12004820636594941,1.0642619668761844,18
+F,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,0.0017174456911834555,1.001738963189171,0
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,0.0017174456911834555,1.001738963189171,17
+F,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,0.0019603726047997387,1.0019895351751336,0
+combined,Silicon,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,0.0019603726047997387,1.0019895351751336,18
+F,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,0.0030519302302566783,1.0031065258391036,0
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,0.0030519302302566783,1.0031065258391036,13
+F,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,0.0019642129400184714,1.001993885843526,0
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,0.0019642129400184714,1.001993885843526,17
+F,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,0.0016413700327500558,1.0016628755200887,0
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,0.0016413700327500558,1.0016628755200887,17
+F,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,0.0018108859502515347,1.001835221363025,0
+combined,Silicon,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,0.0018108859502515347,1.001835221363025,17
+C,Silver,primary zinc production from concentrate,silver,RoW,0.00017541220143225294,1.0001856024402724,0
+combined,Silver,primary zinc production from concentrate,silver,RoW,0.00017541220143225294,1.0001856024402724,18
+G,Terbium,"terbium production, calcium reduction",terbium,GLO,0.05533997992004207,1.041235886959994,13
+combined,Terbium,"terbium production, calcium reduction",terbium,GLO,0.05533997992004207,1.041235886959994,19

@@ -1,0 +1,123 @@
+fix,name,product,location,element,before_direct_resource,after_direct_resource
+A,stibnite mine operation and beneficiation,stibnite concentrate,MM,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,IR,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,RoW,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,CA,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,GT,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,KG,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,AU,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,TR,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,CN,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,TJ,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,VN,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,RU,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,EC,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,MX,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,LA,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,BO,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,KZ,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,PK,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,CA-QC,Antimony,0.24943856834512806,0.501807477185752
+A,stibnite mine operation and beneficiation,stibnite concentrate,HN,Antimony,0.24943856834512806,0.501807477185752
+B,primary zinc production from concentrate,"copper, cathode",RoW,Copper,0,1
+C,primary zinc production from concentrate,silver,RoW,Silver,0,1
+D,"lithium carbonate production, from concentrated brine",lithium carbonate,GLO,Lithium,0,0.1878518839324383
+D,"lithium carbonate production, from spodumene",lithium carbonate,RoW,Lithium,0,0.1878518839324383
+D,"lithium carbonate production, from spodumene",lithium carbonate,CN,Lithium,0,0.1878518839324383
+E,sodium arsenide production from Imperial smelting furnace,sodium arsenide,GLO,Arsenic,0,0.5206833338401479
+F,"silicon production, metallurgical grade","silicon, metallurgical grade",NO,Silicon,0,1
+F,"silicon production, metallurgical grade","silicon, metallurgical grade",RoW,Silicon,0,1
+F,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",NO,Silicon,0,1
+F,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",US,Silicon,0,1
+F,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",APAC,Silicon,0,1
+F,"silicon production, metallurgical grade, photovoltaic supply chain","silicon, metallurgical grade",CN,Silicon,0,1
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,RoW,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,CN-FJ,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,IN,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,NO,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,RU,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,CN,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,VN,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,MY,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",cerium oxide,AU,Cerium,0,0.8140883368000279
+G,"rare earth oxides production, from rare earth carbonate concentrate",dysprosium oxide,CN,Dysprosium,0,0.8713206808633849
+G,"rare earth oxides production, from rare earth carbonate concentrate",dysprosium oxide,RoW,Dysprosium,0,0.8713206808633849
+G,"rare earth oxides production, from rare earth carbonate concentrate",dysprosium oxide,CN-FJ,Dysprosium,0,0.8713206808633849
+G,"rare earth oxides production, from rare earth carbonate concentrate",erbium oxide,CN-FJ,Erbium,0,0.8745225677424414
+G,"rare earth oxides production, from rare earth carbonate concentrate",erbium oxide,CN,Erbium,0,0.8745225677424414
+G,"rare earth oxides production, from rare earth carbonate concentrate",erbium oxide,RoW,Erbium,0,0.8745225677424414
+G,"rare earth oxides production, from rare earth carbonate concentrate",europium oxide,RoW,Europium,0,0.8636158272359167
+G,"rare earth oxides production, from rare earth carbonate concentrate",europium oxide,CN-FJ,Europium,0,0.8636158272359167
+G,"rare earth oxides production, from rare earth carbonate concentrate",europium oxide,CN,Europium,0,0.8636158272359167
+G,"rare earth oxides production, from rare earth carbonate concentrate",gadolinium oxide,RoW,Gadolinium,0,0.8675933869797543
+G,"rare earth oxides production, from rare earth carbonate concentrate",gadolinium oxide,CN-FJ,Gadolinium,0,0.8675933869797543
+G,"rare earth oxides production, from rare earth carbonate concentrate",gadolinium oxide,CN,Gadolinium,0,0.8675933869797543
+G,"rare earth oxides production, from rare earth carbonate concentrate",holmium oxide,CN,Holmium,0,0.8729759772502693
+G,"rare earth oxides production, from rare earth carbonate concentrate",holmium oxide,RoW,Holmium,0,0.8729759772502693
+G,"rare earth oxides production, from rare earth carbonate concentrate",holmium oxide,CN-FJ,Holmium,0,0.8729759772502693
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,NO,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,IN,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,RoW,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,VN,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,AU,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,CN-FJ,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,MY,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,CN,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lanthanum oxide,RU,Lanthanum,0,0.8526831482375782
+G,"rare earth oxides production, from rare earth carbonate concentrate",lutetium oxide,CN-FJ,Lutetium,0,0.8793834904880399
+G,"rare earth oxides production, from rare earth carbonate concentrate",lutetium oxide,RoW,Lutetium,0,0.8793834904880399
+G,"rare earth oxides production, from rare earth carbonate concentrate",lutetium oxide,CN,Lutetium,0,0.8793834904880399
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,RoW,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,NO,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,RU,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,CN,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,AU,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,IN,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,CN-FJ,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,VN,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,MY,Neodymium,0,0.857355987410879
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,RoW,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,CN-FJ,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,IN,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,MY,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,CN,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,AU,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,VN,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,NO,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,RU,Praseodymium,0,0.8277041545552739
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,MY,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,VN,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,RU,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,AU,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,NO,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,CN,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,IN,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,RoW,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",samarium oxide,CN-FJ,Samarium,0,0.8623611696590645
+G,"rare earth oxides production, from rare earth carbonate concentrate",terbium oxide,RoW,Terbium,0,0.850215542606712
+G,"rare earth oxides production, from rare earth carbonate concentrate",terbium oxide,CN,Terbium,0,0.850215542606712
+G,"rare earth oxides production, from rare earth carbonate concentrate",terbium oxide,CN-FJ,Terbium,0,0.850215542606712
+G,"rare earth oxides production, from rare earth carbonate concentrate",thulium oxide,CN,Thulium,0,0.8756120786562279
+G,"rare earth oxides production, from rare earth carbonate concentrate",thulium oxide,CN-FJ,Thulium,0,0.8756120786562279
+G,"rare earth oxides production, from rare earth carbonate concentrate",thulium oxide,RoW,Thulium,0,0.8756120786562279
+G,"rare earth oxides production, from rare earth carbonate concentrate",ytterbium oxide,CN-FJ,Ytterbium,0,0.878207096402571
+G,"rare earth oxides production, from rare earth carbonate concentrate",ytterbium oxide,CN,Ytterbium,0,0.878207096402571
+G,"rare earth oxides production, from rare earth carbonate concentrate",ytterbium oxide,RoW,Ytterbium,0,0.878207096402571
+G,"rare earth oxides production, from rare earth carbonate concentrate",yttrium oxide,CN,Yttrium,0,0.7874439547673722
+G,"rare earth oxides production, from rare earth carbonate concentrate",yttrium oxide,RoW,Yttrium,0,0.7874439547673722
+G,"rare earth oxides production, from rare earth carbonate concentrate",yttrium oxide,CN-FJ,Yttrium,0,0.7874439547673722
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Lanthanum,0.12250000238418579,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Yttrium,0.10249999910593033,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Erbium,0.008100000210106373,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Thulium,0.0008999999845400453,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Holmium,0.003100000089034438,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Praseodymium,0.027300000190734863,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Samarium,0.02160000056028366,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Ytterbium,0.00800000037997961,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Dysprosium,0.015799999237060547,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Gadolinium,0.0210999995470047,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Lutetium,0.0008999999845400453,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Europium,0.0027000000700354576,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Cerium,0.013500000350177288,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Terbium,0.0027000000700354576,0
+G,"rare earth element mine operation and beneficiation, ion adsorption clays",rare earth carbonate concentrate,CN,Neodymium,0.09929999709129333,0

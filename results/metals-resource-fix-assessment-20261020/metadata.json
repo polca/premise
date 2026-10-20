@@ -1,0 +1,41 @@
+{
+  "analysis": "exact isolated biosphere-matrix sensitivity; not a premise production implementation",
+  "baseline": "results/metals-primary-relics-20261020-full",
+  "database": "metals-primary-relics-20261020-full",
+  "project": "metals-correctness-3.12-cutoff",
+  "database_fingerprint": "ea912279c3377bfa102c44a874681b588933715bb719588f0e6d7b4b259e2ed2",
+  "saved_database_unchanged": true,
+  "technosphere_matrix_unchanged": true,
+  "saved_biosphere_matrix_unchanged": true,
+  "functional_unit": "1 kg reference product",
+  "producers": 284,
+  "indicators": 65,
+  "fixes": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G"
+  ],
+  "combined_is_sum_of_individual_effects": true,
+  "baseline_max_absolute_score_difference": 1.8189894035458565e-12,
+  "independent_checks": 19,
+  "independent_max_difference": 2.842170943040401e-14,
+  "patch_counts": {
+    "A": 20,
+    "B": 1,
+    "C": 1,
+    "D": 3,
+    "E": 1,
+    "F": 6,
+    "G": 90
+  },
+  "oxide_formula_conventions": "CeO2, Pr6O11, Tb4O7; other carbonate-route single-element oxides M2O3",
+  "script_sha256": "f8d58ccb9cba31e52c819412d4f2b96391e50c4b8e49a1688ea026aac7ccc79a",
+  "seconds": 17.71469070899184,
+  "transferred_rare_earths_without_relics_indicator": [
+    "Lutetium"
+  ]
+}

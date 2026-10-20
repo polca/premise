@@ -1,0 +1,20 @@
+fix,name,location,max_all_indicator_difference,normal_lcia_difference
+A,antimony production,CN,1.1102230246251565e-16,4.440892098500626e-16
+A,antimony production,RoW,2.7755575615628914e-17,0.0
+A,"antimony production, iron precipitation of stibnite",CN,2.220446049250313e-16,2.220446049250313e-16
+E,7N arsenic production,GLO,1.3322676295501878e-15,2.220446049250313e-16
+B,primary zinc production from concentrate,RoW,2.220446049250313e-16,2.220446049250313e-16
+G,"dysprosium production, calcium reduction",GLO,2.842170943040401e-14,0.0
+G,"holmium production, calcium reduction",GLO,1.7763568394002505e-15,0.0
+D,"lithium metal production, for Li-O2 battery",RER,1.7763568394002505e-15,0.0
+D,"lithium production, lithium chloride electrolysis",GLO,7.105427357601002e-15,2.220446049250313e-16
+G,"neodymium production, molten salt electrolysis",CN,1.7763568394002505e-15,0.0
+G,"praseodymium production, molten salt electrolysis",CN,3.552713678800501e-15,4.440892098500626e-16
+F,"silicon production, metallurgical grade",NO,1.3877787807814457e-17,0.0
+F,"silicon production, metallurgical grade",RoW,3.469446951953614e-17,2.220446049250313e-16
+F,"silicon production, metallurgical grade, photovoltaic supply chain",APAC,4.440892098500626e-16,4.440892098500626e-16
+F,"silicon production, metallurgical grade, photovoltaic supply chain",CN,2.220446049250313e-16,2.220446049250313e-16
+F,"silicon production, metallurgical grade, photovoltaic supply chain",NO,2.220446049250313e-16,2.220446049250313e-16
+F,"silicon production, metallurgical grade, photovoltaic supply chain",US,2.220446049250313e-16,2.220446049250313e-16
+C,primary zinc production from concentrate,RoW,8.881784197001252e-16,2.220446049250313e-16
+G,"terbium production, calcium reduction",GLO,3.552713678800501e-15,0.0
