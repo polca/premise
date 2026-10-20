@@ -233,6 +233,8 @@ ATOMIC_MASSES = {
     "H": 1.00794,
     "O": 15.999,
     "Ti": 47.867,
+    "Sb": 121.76,
+    "S": 32.06,
 }
 
 
@@ -259,8 +261,8 @@ METAL_BEARING_PRODUCT_CONTENT_FACTORS = {
         "stibnite concentrate",
         "antimony",
     ): (
-        0.24943856834512806,
-        "recoverable Sb content represented by the antimony production chain",
+        0.70 * element_mass_fraction("Sb", {"Sb": 2, "S": 3}),
+        "documented 70 wt% Sb2S3 concentrate; stoichiometric Sb content",
     ),
     (
         "chromite ore concentrate",

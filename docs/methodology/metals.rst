@@ -525,6 +525,13 @@ the original target resource amount in the dataset is retained while the other
 co-mined metal resource flows are set to zero. Non-target non-metal resource
 flows, including gangue, are preserved.
 
+Stibnite concentrate uses its documented 70 wt% Sb2S3 content, or approximately
+0.501807 kg Sb/kg concentrate. This replaces a factor fitted to the legacy
+refining recipe. The explicit iron-precipitation recipe requires approximately
+1 kg Sb resource/kg output; the legacy lead-smelting proxy requires about
+2.012 kg/kg with its retained 4.009 kg concentrate input. The latter is an
+inventory/yield limitation, not a reason to reduce the concentrate's Sb content.
+
 The correction is data-driven and applied directly from the transformed
 database. *premise* scans non-market datasets from the mining-share mapping and
 additional extraction-like datasets with kilogram-scale

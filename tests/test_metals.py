@@ -1345,8 +1345,17 @@ def test_post_allocation_correction_uses_stibnite_alias():
 
     assert correct_metal_resource_exchanges(dataset, strict=True) is True
     amounts = {exc["name"]: exc["amount"] for exc in dataset["exchanges"]}
-    assert amounts["Antimony"] == pytest.approx(0.24943856834512806)
+    assert amounts["Antimony"] == pytest.approx(0.501807477185752)
     assert amounts["Gangue"] == 0.6
+
+
+def test_stibnite_content_preserves_different_refining_yields():
+    factor, _ = metals_module.get_metal_bearing_product_content_factor(
+        "stibnite concentrate", "Antimony"
+    )
+    assert factor * 1.99279613291 == pytest.approx(1)
+    # The legacy lead-smelting proxy's larger feed is not normalized away.
+    assert factor * 4.009 == pytest.approx(2.011746176)
 
 
 def test_post_allocation_correction_uses_phosphate_alias():
