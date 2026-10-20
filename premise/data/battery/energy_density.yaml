@@ -163,6 +163,7 @@ LMO:
   ecoinvent_aliases:
     name:
       - market for battery cell, Li-ion, LiMn2O4
+      - market for battery cell, li-ion, limn2o4
       - market for battery, Li-ion, LiMn2O4, rechargeable, prismatic
       - market for battery capacity, Li-ion, LiMn2O4
 
@@ -298,7 +299,7 @@ LEAD-ACID:
 # Published baseline reference design; no assumed annual density improvement.
 ASSB-polymer:
   ecoinvent_aliases:
-    name: market for battery capacity, ASSB, polymer
+    name: market for battery capacity, all-solid-state battery, polymer
   target:
     2020:
       mean: 0.1708073285047623
@@ -312,7 +313,7 @@ ASSB-polymer:
 # Published baseline reference design; no assumed annual density improvement.
 ASSB-oxidic:
   ecoinvent_aliases:
-    name: market for battery capacity, ASSB, oxidic
+    name: market for battery capacity, all-solid-state battery, oxidic
   target:
     2020:
       mean: 0.3161617539697314
@@ -326,7 +327,7 @@ ASSB-oxidic:
 # Published baseline reference design; no assumed annual density improvement.
 ASSB-sulfidic:
   ecoinvent_aliases:
-    name: market for battery capacity, ASSB, sulfidic
+    name: market for battery capacity, all-solid-state battery, sulfidic
   target:
     2020:
       mean: 0.3166231748883239

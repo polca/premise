@@ -152,9 +152,9 @@ class Battery(BaseTransformation):
                 "NMC811": "market for battery capacity, Li-ion, NMC811",
                 "NMC900-Si": "market for battery capacity, Li-ion, NMC955",
                 "SIB": "market for battery capacity, Sodium-ion, SiB",
-                "ASSB (polymer)": "market for battery capacity, ASSB, polymer",
-                "ASSB (oxidic)": "market for battery capacity, ASSB, oxidic",
-                "ASSB (sulfidic)": "market for battery capacity, ASSB, sulfidic",
+                "ASSB (polymer)": "market for battery capacity, all-solid-state battery, polymer",
+                "ASSB (oxidic)": "market for battery capacity, all-solid-state battery, oxidic",
+                "ASSB (sulfidic)": "market for battery capacity, all-solid-state battery, sulfidic",
             }.items()
         }
 
