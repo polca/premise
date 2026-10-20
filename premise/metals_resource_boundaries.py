@@ -198,6 +198,122 @@ def plan_silicon_boundary(dataset, providers, available_flows, plan):
         plan.diagnostics.append((dataset, "primary_silicon_boundary_unresolved"))
 
 
+RARE_EARTH_ATOMIC_MASSES = {
+    "Cerium": 140.116,
+    "Dysprosium": 162.5,
+    "Erbium": 167.259,
+    "Europium": 151.964,
+    "Gadolinium": 157.25,
+    "Holmium": 164.93033,
+    "Lanthanum": 138.90547,
+    "Lutetium": 174.9668,
+    "Neodymium": 144.242,
+    "Praseodymium": 140.90766,
+    "Samarium": 150.36,
+    "Terbium": 158.92535,
+    "Thulium": 168.93422,
+    "Ytterbium": 173.045,
+    "Yttrium": 88.90584,
+}
+RARE_EARTH_CARBONATE = "rare earth carbonate concentrate"
+RARE_EARTH_CARRIER_NAME = (
+    "rare earth element mine operation and beneficiation, ion adsorption clays"
+)
+RARE_EARTH_OXIDE_NAME = (
+    "rare earth oxides production, from rare earth carbonate concentrate"
+)
+
+
+def carbonate_branch_resolves(exchange, providers, carrier_ids, visited=None):
+    dataset = provider(exchange, providers)
+    visited = set() if visited is None else visited
+    if dataset is None or id(dataset) in visited:
+        return False
+    if id(dataset) in carrier_ids:
+        return True
+    if (
+        not dataset.get("name", "").startswith(("market for ", "market group for "))
+        or dataset.get("reference product") != RARE_EARTH_CARBONATE
+    ):
+        return False
+    branches = [
+        e for e in material_inputs(dataset) if e.get("product") == RARE_EARTH_CARBONATE
+    ]
+    return bool(branches) and all(
+        carbonate_branch_resolves(e, providers, carrier_ids, visited | {id(dataset)})
+        for e in branches
+    )
+
+
+def plan_rare_earth_carbonate_branch(database, providers, available_flows, plan):
+    """Validate the complete shared branch before transferring any REE resource."""
+    carriers = [
+        d
+        for d in database
+        if d.get("name") == RARE_EARTH_CARRIER_NAME
+        and d.get("reference product") == RARE_EARTH_CARBONATE
+    ]
+    oxides = [d for d in database if d.get("name") == RARE_EARTH_OXIDE_NAME]
+    if not carriers and not oxides:
+        return
+    candidates = [*carriers, *oxides]
+    plan.reserved_ids.update(id(d) for d in candidates)
+    oxide_elements = {
+        element.lower() + " oxide": element for element in RARE_EARTH_ATOMIC_MASSES
+    }
+    covered = {oxide_elements.get(d.get("reference product")) for d in oxides}
+    required = {
+        element
+        for d in carriers
+        for element in RARE_EARTH_ATOMIC_MASSES
+        if ground_resources(d, element)
+    }
+    carrier_ids = {id(d) for d in carriers}
+    valid = bool(carriers and oxides) and all(unit_output(d) for d in candidates)
+    valid &= None not in covered and required <= covered and covered <= available_flows
+    for d in carriers:
+        valid &= all(len(ground_resources(d, element)) <= 1 for element in required)
+    for d in oxides:
+        element = oxide_elements.get(d.get("reference product"))
+        primary = [
+            e for e in material_inputs(d) if e.get("product") == RARE_EARTH_CARBONATE
+        ]
+        valid &= bool(primary) and all(
+            carbonate_branch_resolves(e, providers, carrier_ids) for e in primary
+        )
+        valid &= len(ground_resources(d, element)) <= 1
+    # Do not clear a shared feedstock that also supplies an unhandled route.
+    for d in database:
+        if id(d) in plan.reserved_ids or d.get("name", "").startswith(
+            ("market for ", "market group for ")
+        ):
+            continue
+        if any(e.get("product") == RARE_EARTH_CARBONATE for e in material_inputs(d)):
+            valid = False
+    if not valid:
+        plan.diagnostics.extend(
+            (d, "rare_earth_carbonate_boundary_unresolved") for d in candidates
+        )
+        return
+    for d in carriers:
+        for element in required:
+            plan.assignments.append(
+                (d, element, 0.0, "rare_earth_carbonate_carrier_transfer")
+            )
+    for d in oxides:
+        element = oxide_elements[d["reference product"]]
+        atoms, oxygen = {
+            "Cerium": (1, 2),
+            "Praseodymium": (6, 11),
+            "Terbium": (4, 7),
+        }.get(element, (2, 3))
+        metal_mass = atoms * RARE_EARTH_ATOMIC_MASSES[element]
+        fraction = metal_mass / (metal_mass + oxygen * 15.999)
+        plan.assignments.append(
+            (d, element, fraction, "separated_rare_earth_oxide_attribution")
+        )
+
+
 def build_resource_boundary_plan(database, available_flows):
     """Plan exact boundaries and reserve failed candidates from generic fallback."""
     plan = ResourceBoundaryPlan()
@@ -245,4 +361,5 @@ def build_resource_boundary_plan(database, available_flows):
             )
         else:
             plan.diagnostics.append((dataset, "primary_coproduct_boundary_unresolved"))
+    plan_rare_earth_carbonate_branch(database, providers, available_flows, plan)
     return plan

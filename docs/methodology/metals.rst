@@ -606,6 +606,23 @@ Later purification inherits this extraction. Sand resource and process inputs
 are retained, and generic sand receives no elemental-Silicon characterization
 factor. The nominal product convention is not an independent purity assay.
 
+For the ion-adsorption-clay carbonate branch, rare-earth resource attribution
+is transferred as one coupled operation from the carbonate carriers to every
+separated single-element oxide output, including regional proxies. Formula
+conventions are CeO2, Pr6O11, Tb4O7 and the other named sesquioxides (M2O3).
+All extracted REEs must have supported oxide outputs and existing biosphere
+flows; every positive carbonate-market branch must resolve to the declared
+carriers. An unknown consumer, unsupported oxide, missing provider, cycle or
+duplicate target preserves the whole branch. This prevents clearing shared
+extraction while repairing only a subset of its outputs.
+
+Only transferred REE resources are cleared on these carbonate carriers. Clay,
+gangue, other resources, quantities and reduction losses are retained. The
+separate 50%/70% REO branches and their mixed oxides are unchanged. Dysprosium's
+selected losses consequently retain about 1.19 kg Dy resource/kg metal after
+this correction. Lutetium participates in the complete resource transfer but
+has no indicator in the current 65-indicator RELICS mapping.
+
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.

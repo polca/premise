@@ -5,6 +5,11 @@ import pytest
 import premise.metals as metals_module
 from premise.metals import Metals
 from premise.metals_resource_boundaries import build_resource_boundary_plan
+from premise.metals_resource_boundaries import (
+    RARE_EARTH_CARBONATE,
+    RARE_EARTH_CARRIER_NAME,
+    RARE_EARTH_OXIDE_NAME,
+)
 
 
 def dataset(name, product, exchanges=(), location="GLO"):
@@ -304,3 +309,103 @@ def test_silicon_boundary_requires_primary_reduction_recipe(problem):
     else:
         primary["name"] = "silicon production, electronic grade"
     assert not build_resource_boundary_plan(database, {"Silicon"}).assignments
+
+
+def carbonate_branch():
+    carrier = dataset(
+        RARE_EARTH_CARRIER_NAME,
+        RARE_EARTH_CARBONATE,
+        [
+            resource("Neodymium", 0.0993),
+            resource("Dysprosium", 0.0158),
+            resource("Clay, unspecified", 2500),
+        ],
+        "CN",
+    )
+    market = dataset(
+        f"market for {RARE_EARTH_CARBONATE}", RARE_EARTH_CARBONATE, [feed(carrier)]
+    )
+    nd = dataset(
+        RARE_EARTH_OXIDE_NAME, "neodymium oxide", [feed(market, 1.4147346)], "CN"
+    )
+    dy = dataset(
+        RARE_EARTH_OXIDE_NAME, "dysprosium oxide", [feed(market, 14.388964)], "CN"
+    )
+    metal = dataset(
+        "dysprosium production, calcium reduction", "dysprosium", [feed(dy, 1.366517)]
+    )
+    return [carrier, market, nd, dy, metal]
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+def test_complete_rare_earth_transfer_removes_shared_basket_once(reverse, monkeypatch):
+    database = carbonate_branch()
+    carrier, market, nd, dy, metal = database
+    before = deepcopy(database)
+    unrelated = dataset(
+        "rare earth element mine operation and beneficiation, bastnaesite ore",
+        "rare earth oxide concentrate, 70% REO",
+        [resource("Neodymium", 0.12), resource("Dysprosium", 0.002)],
+    )
+    database.append(unrelated)
+    other_before = deepcopy(unrelated)
+    if reverse:
+        database.reverse()
+    correct(database, monkeypatch)
+    assert [e["amount"] for e in carrier["exchanges"]] == [0, 0, 2500]
+    assert nd["exchanges"][-1]["amount"] == pytest.approx(0.857355987410879)
+    assert dy["exchanges"][-1]["amount"] == pytest.approx(0.8713206808633849)
+    assert nd["exchanges"][:-1] == before[2]["exchanges"]
+    assert dy["exchanges"][:-1] == before[3]["exchanges"]
+    assert market == before[1] and metal == before[4] and unrelated == other_before
+    first = deepcopy(database)
+    correct(database, monkeypatch)
+    assert database == first
+
+
+@pytest.mark.parametrize(
+    "failure",
+    [
+        "missing_oxide",
+        "missing_flow",
+        "missing_supplier",
+        "cycle",
+        "unknown_consumer",
+        "unknown_product",
+        "duplicate_resource",
+    ],
+)
+def test_incomplete_rare_earth_branch_is_preserved_atomically(failure, monkeypatch):
+    database = carbonate_branch()
+    carrier, market, nd, dy, metal = database
+    if failure == "missing_oxide":
+        database.remove(nd)
+    elif failure == "missing_supplier":
+        database.remove(carrier)
+    elif failure == "cycle":
+        market["exchanges"] = [feed(market)]
+    elif failure == "unknown_consumer":
+        database.append(
+            dataset("other carbonate processing", "other product", [feed(market)])
+        )
+    elif failure == "unknown_product":
+        nd["reference product"] = "mixed rare earth oxide"
+    elif failure == "duplicate_resource":
+        carrier["exchanges"].append(resource("Neodymium", 0.1))
+    flows = {"Neodymium", "Dysprosium"} - (
+        {"Neodymium"} if failure == "missing_flow" else set()
+    )
+    plan = build_resource_boundary_plan(database, flows)
+    assert not plan.assignments
+    assert plan.diagnostics
+    before = deepcopy(database)
+    if failure != "missing_flow":
+        correct(database, monkeypatch)
+        assert database == before
+
+
+def test_rare_earth_boundaries_preserve_consequential(monkeypatch):
+    database = carbonate_branch()
+    before = deepcopy(database)
+    correct(database, monkeypatch, system="consequential")
+    assert database == before
