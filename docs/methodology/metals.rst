@@ -591,6 +591,14 @@ extraction on a non-brine mineral supplier blocks this boundary to prevent
 double counting. The source secondary share, Spodumene mineral indicator and
 downstream losses are retained; mineral and elemental indicators are not additive.
 
+``sodium arsenide production from Imperial smelting furnace`` receives
+0.520683 kg Arsenic/kg nominal Na3As at its documented co-product boundary,
+with a uniquely resolved zinc feed and no arsenic-bearing material feed.
+Subsequent arsine conversion and high-purity arsenic production retain their
+losses and inherit this extraction. The zinc-based proxy's Zinc requirement
+remains: this fills missing arsenic attribution, not the unresolved host-metal
+proxy allocation. Alternative arsenide syntheses are excluded.
+
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.

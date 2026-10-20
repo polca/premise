@@ -129,6 +129,41 @@ def plan_lithium_boundary(dataset, providers, available_flows, plan):
         plan.diagnostics.append((dataset, "primary_lithium_boundary_unresolved"))
 
 
+SODIUM_ARSENIDE_FRACTION = 74.921595 / (3 * 22.98976928 + 74.921595)
+
+
+def plan_arsenic_boundary(dataset, providers, available_flows, plan):
+    if (dataset.get("name"), dataset.get("reference product")) != (
+        "sodium arsenide production from Imperial smelting furnace",
+        "sodium arsenide",
+    ):
+        return
+    plan.reserved_ids.add(id(dataset))
+    feeds = material_inputs(dataset)
+    zinc = [e for e in feeds if e.get("product") == "zinc"]
+    valid = (
+        unit_output(dataset)
+        and "Arsenic" in available_flows
+        and len(ground_resources(dataset, "Arsenic")) <= 1
+        and sum(e["amount"] for e in zinc) >= SODIUM_ARSENIDE_FRACTION
+        and all(provider(e, providers) is not None for e in zinc)
+        and not any(
+            "arsen" in (e.get("product") or e.get("name", "")).lower() for e in feeds
+        )
+    )
+    if valid:
+        plan.assignments.append(
+            (
+                dataset,
+                "Arsenic",
+                SODIUM_ARSENIDE_FRACTION,
+                "primary_sodium_arsenide_attribution",
+            )
+        )
+    else:
+        plan.diagnostics.append((dataset, "primary_arsenic_boundary_unresolved"))
+
+
 def build_resource_boundary_plan(database, available_flows):
     """Plan exact boundaries and reserve failed candidates from generic fallback."""
     plan = ResourceBoundaryPlan()
@@ -144,6 +179,7 @@ def build_resource_boundary_plan(database, available_flows):
 
     for dataset in database:
         plan_lithium_boundary(dataset, providers, available_flows, plan)
+        plan_arsenic_boundary(dataset, providers, available_flows, plan)
         element = {"copper, cathode": "Copper", "silver": "Silver"}.get(
             dataset.get("reference product")
         )

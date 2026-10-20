@@ -205,3 +205,49 @@ def test_lithium_boundary_requires_proven_primary_mineral_chain(problem):
     plan = build_resource_boundary_plan(database, {"Lithium"})
     assert not plan.assignments
     assert id(carbonate) in plan.reserved_ids
+
+
+def test_arsenide_resource_preserves_zinc_proxy_and_purification_inputs(monkeypatch):
+    zinc = dataset("market for zinc", "zinc", [resource("Zinc", 1)])
+    arsenide = dataset(
+        "sodium arsenide production from Imperial smelting furnace",
+        "sodium arsenide",
+        [feed(zinc, 0.52083)],
+    )
+    arsine = dataset("arsine production", "arsine", [feed(arsenide, 1.94)])
+    arsenic = dataset(
+        "arsenic production, high purity, from arsine",
+        "arsenic, high purity, from arsine",
+        [feed(arsine, 1.529944)],
+    )
+    database = [zinc, arsenide, arsine, arsenic]
+    before = deepcopy(database)
+    correct(database, monkeypatch)
+    assert arsenide["exchanges"][-1]["amount"] == pytest.approx(0.5206833338401479)
+    assert arsenide["exchanges"][:-1] == before[1]["exchanges"]
+    for index in (0, 2, 3):
+        assert database[index] == before[index]
+    first = deepcopy(database)
+    correct(database, monkeypatch)
+    assert database == first
+
+
+@pytest.mark.parametrize(
+    "problem", ["missing_zinc", "arsenic_feed", "unrelated_synthesis"]
+)
+def test_arsenide_boundary_excludes_other_routes(problem):
+    zinc = dataset("market for zinc", "zinc")
+    arsenic = dataset("market for arsenic", "arsenic")
+    arsenide = dataset(
+        "sodium arsenide production from Imperial smelting furnace",
+        "sodium arsenide",
+        [feed(zinc, 0.52083)],
+    )
+    database = [zinc, arsenic, arsenide]
+    if problem == "missing_zinc":
+        database.remove(zinc)
+    elif problem == "arsenic_feed":
+        arsenide["exchanges"].append(feed(arsenic))
+    else:
+        arsenide["name"] = "sodium arsenide synthesis"
+    assert not build_resource_boundary_plan(database, {"Arsenic"}).assignments
