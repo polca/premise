@@ -59,6 +59,76 @@ def unit_output(dataset):
     )
 
 
+LITHIUM_CARBONATE_FRACTION = 2 * 6.94 / (2 * 6.94 + 12.011 + 3 * 15.999)
+LITHIUM_CARBONATE_FEEDS = {
+    "lithium carbonate production, from concentrated brine": "lithium brine, 6.7 % Li",
+    "lithium carbonate production, from spodumene": "spodumene",
+}
+
+
+def primary_lithium_feed(exchange, product, providers, visited=None):
+    """Resolve every primary mineral-market branch; cycles are not absence."""
+    dataset = provider(exchange, providers)
+    visited = set() if visited is None else visited
+    if dataset is None or id(dataset) in visited:
+        return False
+    if dataset.get("reference product") != product:
+        return False
+    if dataset.get("name", "").startswith(("market for ", "market group for ")):
+        branches = [e for e in material_inputs(dataset) if e.get("product") == product]
+        return bool(branches) and all(
+            primary_lithium_feed(e, product, providers, visited | {id(dataset)})
+            for e in branches
+        )
+    name = dataset.get("name", "").lower()
+    if any(term in name for term in ("recycl", "treatment", "scrap", "waste", "used")):
+        return False
+    if name != "lithium brine inspissation" and not any(
+        term in name for term in ("mine", "mining", "production", "extraction")
+    ):
+        return False
+    # Brine is already a declared downstream-attribution carrier in metals.py.
+    # A different mineral with its own Li extraction must not be counted twice.
+    return product == "lithium brine, 6.7 % Li" or not any(
+        e.get("amount", 0) != 0 for e in ground_resources(dataset, "Lithium")
+    )
+
+
+def plan_lithium_boundary(dataset, providers, available_flows, plan):
+    product = LITHIUM_CARBONATE_FEEDS.get(dataset.get("name"))
+    if product is None or dataset.get("reference product") != "lithium carbonate":
+        return
+    plan.reserved_ids.add(id(dataset))
+    feeds = material_inputs(dataset)
+    primary = [e for e in feeds if e.get("product") == product]
+    auxiliaries = [
+        e
+        for e in feeds
+        if e not in primary
+        and "lithium" in (e.get("product") or e.get("name", "")).lower()
+    ]
+    valid = (
+        unit_output(dataset)
+        and "Lithium" in available_flows
+        and len(ground_resources(dataset, "Lithium")) <= 1
+        and sum(e["amount"] for e in primary) >= LITHIUM_CARBONATE_FRACTION
+        and all(primary_lithium_feed(e, product, providers) for e in primary)
+        and sum(e["amount"] for e in auxiliaries) < LITHIUM_CARBONATE_FRACTION
+        and all(provider(e, providers) is not None for e in auxiliaries)
+    )
+    if valid:
+        plan.assignments.append(
+            (
+                dataset,
+                "Lithium",
+                LITHIUM_CARBONATE_FRACTION,
+                "primary_lithium_carbonate_attribution",
+            )
+        )
+    else:
+        plan.diagnostics.append((dataset, "primary_lithium_boundary_unresolved"))
+
+
 def build_resource_boundary_plan(database, available_flows):
     """Plan exact boundaries and reserve failed candidates from generic fallback."""
     plan = ResourceBoundaryPlan()
@@ -73,6 +143,7 @@ def build_resource_boundary_plan(database, available_flows):
         ].append(dataset)
 
     for dataset in database:
+        plan_lithium_boundary(dataset, providers, available_flows, plan)
         element = {"copper, cathode": "Copper", "silver": "Silver"}.get(
             dataset.get("reference product")
         )

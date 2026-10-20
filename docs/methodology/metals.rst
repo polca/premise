@@ -582,6 +582,15 @@ their upstream burdens are retained; they cannot replace the missing primary
 co-product extraction. Failed supplier/unit/flow checks preserve the candidate
 and emit a diagnostic instead of falling back to generic attribution.
 
+Primary lithium carbonate production from concentrated brine or spodumene has
+a dataset-specific Li2CO3 content boundary (0.187852 kg Li/kg carbonate). Every
+positive primary mineral-market branch must resolve to a supported primary
+provider. Recycled carbonate and downstream chloride conversion, electrolysis
+and foil finishing receive no additional extraction. Existing elemental Li
+extraction on a non-brine mineral supplier blocks this boundary to prevent
+double counting. The source secondary share, Spodumene mineral indicator and
+downstream losses are retained; mineral and elemental indicators are not additive.
+
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.

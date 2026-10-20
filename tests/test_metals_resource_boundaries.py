@@ -130,3 +130,78 @@ def test_scoped_resource_boundaries_preserve_consequential(monkeypatch):
     before = deepcopy(database)
     correct(database, monkeypatch, system="consequential")
     assert database == before
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+@pytest.mark.parametrize(
+    "source,product",
+    [
+        ("from concentrated brine", "lithium brine, 6.7 % Li"),
+        ("from spodumene", "spodumene"),
+    ],
+)
+def test_primary_carbonate_counts_li_once_upstream_of_refining(
+    source, product, reverse, monkeypatch
+):
+    mineral = dataset(
+        (
+            "lithium brine inspissation"
+            if "brine" in product
+            else "spodumene mine operation"
+        ),
+        product,
+    )
+    if product == "spodumene":
+        mineral["exchanges"].append(resource("Spodumene", 1))
+    market = dataset(f"market for {product}", product, [feed(mineral)])
+    carbonate = dataset(
+        f"lithium carbonate production, {source}",
+        "lithium carbonate",
+        [feed(market, 5)],
+    )
+    chloride = dataset(
+        "lithium chloride production", "lithium chloride", [feed(carbonate, 0.88)]
+    )
+    metal = dataset(
+        "lithium production, lithium chloride electrolysis",
+        "lithium",
+        [feed(chloride, 6.62)],
+    )
+    database = [mineral, market, carbonate, chloride, metal]
+    if reverse:
+        database.reverse()
+    before = {id(d): deepcopy(d["exchanges"]) for d in database}
+    correct(database, monkeypatch)
+    assert carbonate["exchanges"][-1]["amount"] == pytest.approx(0.1878518839324383)
+    for ds in (mineral, market, chloride, metal):
+        assert ds["exchanges"] == before[id(ds)]
+    assert carbonate["exchanges"][:-1] == before[id(carbonate)]
+    first = deepcopy(database)
+    correct(database, monkeypatch)
+    assert database == first
+
+
+@pytest.mark.parametrize(
+    "problem", ["cycle", "missing", "secondary", "existing_extraction"]
+)
+def test_lithium_boundary_requires_proven_primary_mineral_chain(problem):
+    mineral = dataset("spodumene mine operation", "spodumene")
+    market = dataset("market for spodumene", "spodumene", [feed(mineral)])
+    carbonate = dataset(
+        "lithium carbonate production, from spodumene",
+        "lithium carbonate",
+        [feed(market, 8)],
+    )
+    database = [mineral, market, carbonate]
+    if problem == "cycle":
+        market["exchanges"] = [feed(market)]
+    elif problem == "missing":
+        database.remove(mineral)
+    elif problem == "secondary":
+        mineral["name"] = "treatment of waste spodumene"
+        market["exchanges"] = [feed(mineral)]
+    else:
+        mineral["exchanges"].append(resource("Lithium", 0.01))
+    plan = build_resource_boundary_plan(database, {"Lithium"})
+    assert not plan.assignments
+    assert id(carbonate) in plan.reserved_ids
