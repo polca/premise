@@ -17,6 +17,9 @@ The ``metals`` update changes selected direct material inputs in energy and
 transport technologies, corrects specified resource-allocation flows, and
 builds metal supply markets. It operates across different activity units;
 material coefficients require explicit conversions to each reference product.
+For mining and concentrate datasets, corrected resource flows describe
+:ref:`resource attribution, rather than the full physical composition of the
+product <metals-resource-attribution>`.
 
 .. figure:: /_static/process-diagrams/metals.svg
    :class: process-diagram
@@ -494,6 +497,8 @@ eight stacks already multiply each stack's oxide recipe; kg/MW must not be
 multiplied by eight again. The correction does not validate all system-level
 SOEC metal demand. Primary/secondary shares and saved results are unchanged.
 
+.. _metals-resource-attribution:
+
 Post-allocation correction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -504,26 +509,73 @@ refining and remove resource burdens associated with displaced coproducts.
 These operations conflict with the source model's substitution convention; see
 ecoinvent's `system-model documentation <https://support.ecoinvent.org/system-models>`_.
 
-Regarding the co-production of metals in multifunctional processes
-(i.e., co-mining of metals), *premise* modifies the database to allocate
-according to physical mass balance: extraction of individual elements in the
-ore is fully attributed to the production of the respective metal; while other
-elementary and intermediate flows follow an economic allocation, which is the
-default option to deal with multi-functionality in ecoinvent. As discussed in
-`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2020), this is a
-resource-attribution convention. It does not validate physical recovery yields,
-ore grades or the allocation of the remaining inventory.
+Several metals can be extracted from the same ore. In ecoinvent's attributional
+models, economic allocation generally shares the inputs and emissions of a
+process between its valuable products. The metal resource flows assigned to
+one product therefore need not match the metals physically contained in it.
 
-For example, the amount of platinum resource included in the dataset representing
-the mining of 1 kg of platinum is set to 1 kg, while the amount of other
-metals (e.g., palladium, rhodium) is set to zero. For metal-bearing
-intermediates, such as beryllium hydroxide, chromite ore concentrate, or
-titanium dioxide products, the target resource flow is set to the target-metal
-content of 1 kg of the reference product instead of being forced to 1 kg. If
-no explicit content factor is known for an ore, concentrate, or mineral product,
-the original target resource amount in the dataset is retained while the other
-co-mined metal resource flows are set to zero. Non-target non-metal resource
-flows, including gangue, are preserved.
+The *premise* correction changes how metal extraction is attributed: its aim is
+to assign extraction of each element to the supply chain of the corresponding
+metal product. Other inputs and emissions keep their existing allocation under
+this correction. This is a resource-attribution convention, as discussed by
+`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2020). It does
+not reconstruct a complete physical balance for every stage of production.
+
+What a zero resource flow means
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An elementary resource flow records extraction from the environment attributed
+to a product. It is different from a product property, such as the gold content
+of a concentrate. **Setting a resource flow to zero does not mean that the
+element is physically absent from the product.** It also does not mean that
+the element has already been separated or that no extraction took place.
+
+For example, consider ``copper mine operation and beneficiation, sulfide ore``
+with the reference product ``copper concentrate, sulfide ore``. Where Gold and
+Tellurium resource exchanges are present, the correction sets them to zero
+because they are not the target metal of this copper product. This happens at
+the mining and beneficiation dataset, without waiting for smelting or later
+separation. The concentrate output and its downstream processing inputs are
+unchanged by this correction. Gold and tellurium can therefore still be
+physically present in the concentrate despite their zero direct resource flows.
+
+Using mining and concentrate datasets directly
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The correction is intended to support resource accounting for metal products
+through their supply chains. It does not give every intermediate a complete
+record of all the elements physically extracted with it. If a study ends at
+the mine or uses a concentrate directly, its corrected resource results must
+be read with this distinction in mind. They can omit co-mined elements that
+remain in that intermediate. This also affects resource impact indicators
+calculated from those flows.
+
+For questions about the physical composition of a concentrate or all metals
+removed from the ground at a mine, use product properties and process-specific
+material balances, including losses to tailings and other outputs. Neither
+the corrected elementary flows nor the original economically allocated flows
+alone establish that physical balance. A dataset can still be used under its
+stated allocation convention, but its zero resource flows must not be read as
+zero metal content or zero physical co-extraction.
+
+How resource amounts are set
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For a pure-metal reference product, the target resource flow is nominally set
+to 1 kg per kg of product where the correction applies. Other co-mined metal
+resource flows are set to zero. For metal-bearing intermediates, such as
+beryllium hydroxide, chromite ore concentrate, or titanium dioxide products,
+an explicit content factor is used where available instead of treating 1 kg
+of intermediate as 1 kg of pure metal. If no explicit factor is known for an
+ore, concentrate, or mineral product, the original target resource amount is
+retained while other co-mined metal resource flows are set to zero. That
+retained amount is not an independently established metal content. Non-metal
+resource flows, including gangue, are preserved.
+
+Downstream material requirements and losses are retained. A refined-metal
+supply chain can therefore require more than 1 kg of attributed metal resource
+per kg of product. A result close to 1 kg/kg is not, by itself, proof of a
+correct physical balance throughout the supply chain.
 
 Stibnite concentrate uses its documented 70 wt% Sb2S3 content, or approximately
 0.501807 kg Sb/kg concentrate. This replaces a factor fitted to the legacy
