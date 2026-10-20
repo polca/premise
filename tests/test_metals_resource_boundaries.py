@@ -251,3 +251,56 @@ def test_arsenide_boundary_excludes_other_routes(problem):
     else:
         arsenide["name"] = "sodium arsenide synthesis"
     assert not build_resource_boundary_plan(database, {"Arsenic"}).assignments
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "silicon production, metallurgical grade",
+        "silicon production, metallurgical grade, photovoltaic supply chain",
+    ],
+)
+def test_silicon_boundary_preserves_sand_and_downstream_purification(name, monkeypatch):
+    sand = dataset("silica sand production", "silica sand")
+    primary = dataset(name, "silicon, metallurgical grade", [feed(sand, 2.7)])
+    refining = dataset(
+        "silicon production, electronic grade",
+        "silicon, electronic grade",
+        [feed(primary, 1.1)],
+    )
+    database = [sand, primary, refining]
+    before = deepcopy(database)
+    correct(database, monkeypatch)
+    assert primary["exchanges"][-1] == resource("Silicon", 1) | {"uncertainty type": 0}
+    assert primary["exchanges"][:-1] == before[1]["exchanges"]
+    assert sand == before[0] and refining == before[2]
+    first = deepcopy(database)
+    correct(database, monkeypatch)
+    assert database == first
+
+
+@pytest.mark.parametrize(
+    "problem", ["missing", "duplicate", "silicon_feed", "no_silica", "downstream"]
+)
+def test_silicon_boundary_requires_primary_reduction_recipe(problem):
+    sand = dataset("market for silica sand", "silica sand")
+    silicon = dataset(
+        "market for silicon, metallurgical grade", "silicon, metallurgical grade"
+    )
+    primary = dataset(
+        "silicon production, metallurgical grade",
+        "silicon, metallurgical grade",
+        [feed(sand, 2.7)],
+    )
+    database = [sand, silicon, primary]
+    if problem == "missing":
+        database.remove(sand)
+    elif problem == "duplicate":
+        database.append(deepcopy(sand))
+    elif problem == "silicon_feed":
+        primary["exchanges"].append(feed(silicon, 1))
+    elif problem == "no_silica":
+        primary["exchanges"] = []
+    else:
+        primary["name"] = "silicon production, electronic grade"
+    assert not build_resource_boundary_plan(database, {"Silicon"}).assignments

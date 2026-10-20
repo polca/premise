@@ -164,6 +164,40 @@ def plan_arsenic_boundary(dataset, providers, available_flows, plan):
         plan.diagnostics.append((dataset, "primary_arsenic_boundary_unresolved"))
 
 
+SILICON_PRIMARY_NAMES = {
+    "silicon production, metallurgical grade",
+    "silicon production, metallurgical grade, photovoltaic supply chain",
+}
+
+
+def plan_silicon_boundary(dataset, providers, available_flows, plan):
+    if (
+        dataset.get("name") not in SILICON_PRIMARY_NAMES
+        or dataset.get("reference product") != "silicon, metallurgical grade"
+    ):
+        return
+    plan.reserved_ids.add(id(dataset))
+    feeds = material_inputs(dataset)
+    silica = [e for e in feeds if e.get("product") == "silica sand"]
+    silicon = [
+        e for e in feeds if "silicon" in (e.get("product") or e.get("name", "")).lower()
+    ]
+    valid = (
+        unit_output(dataset)
+        and "Silicon" in available_flows
+        and len(ground_resources(dataset, "Silicon")) <= 1
+        and sum(e["amount"] for e in silica) >= 1
+        and all(provider(e, providers) is not None for e in [*silica, *silicon])
+        and sum(e["amount"] for e in silicon) < 1
+    )
+    if valid:
+        plan.assignments.append(
+            (dataset, "Silicon", 1.0, "primary_metallurgical_silicon_attribution")
+        )
+    else:
+        plan.diagnostics.append((dataset, "primary_silicon_boundary_unresolved"))
+
+
 def build_resource_boundary_plan(database, available_flows):
     """Plan exact boundaries and reserve failed candidates from generic fallback."""
     plan = ResourceBoundaryPlan()
@@ -180,6 +214,7 @@ def build_resource_boundary_plan(database, available_flows):
     for dataset in database:
         plan_lithium_boundary(dataset, providers, available_flows, plan)
         plan_arsenic_boundary(dataset, providers, available_flows, plan)
+        plan_silicon_boundary(dataset, providers, available_flows, plan)
         element = {"copper, cathode": "Copper", "silver": "Silver"}.get(
             dataset.get("reference product")
         )

@@ -599,6 +599,13 @@ losses and inherit this extraction. The zinc-based proxy's Zinc requirement
 remains: this fills missing arsenic attribution, not the unresolved host-metal
 proxy allocation. Alternative arsenide syntheses are excluded.
 
+The two exact metallurgical-silicon reduction process names receive nominal
+1 kg Silicon/kg output only with a uniquely resolved positive silica-sand feed
+of at least 1 kg and less than 1 kg of named silicon-bearing material inputs.
+Later purification inherits this extraction. Sand resource and process inputs
+are retained, and generic sand receives no elemental-Silicon characterization
+factor. The nominal product convention is not an independent purity assay.
+
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.
