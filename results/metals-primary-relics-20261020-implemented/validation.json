@@ -1,0 +1,58 @@
+{
+  "regression_tests": {
+    "passed": 367,
+    "failures": 0,
+    "version_labels": 11,
+    "scope": "metals, scoped resource boundaries, activity mappings and change reporting; fixture cases include supported versions and consequential preservation"
+  },
+  "real_inventory_check": {
+    "datasets": 30443,
+    "assessed_assignments": 122,
+    "non_resource_exchanges_unchanged": true,
+    "idempotent": true,
+    "matches_isolated_assessment": true
+  },
+  "fresh_lcia": {
+    "producer_rows": 284,
+    "indicators": 65,
+    "compared_scores": 18460,
+    "resource_assignments_checked": 122,
+    "matches_isolated_assessment_at_export_precision": true,
+    "max_absolute_score_difference_at_export_precision": 1.8189894035458565e-12,
+    "export_precision": "Processed Brightway resource amounts are float32 values represented in float64 matrices; verified for every proposed assignment.",
+    "maximum_difference_from_unquantized_assessment": 1.0640757741597895e-07
+  },
+  "integration_matrix_directory": "../metals-resource-boundaries-all-versions-20261020",
+  "implementation_commits": [
+    "59ddae9a",
+    "370edda2",
+    "2262752d",
+    "aa8fe938",
+    "c7795370",
+    "636e2ee3",
+    "5d69664b",
+    "a374fa66b04a5b48a249e5625efcce2e53d4def4"
+  ],
+  "integration_matrix": {
+    "counts": {
+      "not_available": 1,
+      "failed": 5,
+      "passed": 13
+    },
+    "successful_scenario_updates": 26,
+    "core_commit": "5d69664b"
+  },
+  "final_guard_validation": {
+    "commit": "a374fa66b04a5b48a249e5625efcce2e53d4def4",
+    "code_sha256": {
+      "metals.py": "fd3a4c0885fc36e1d909abbddf47b994c025a8a857364646d740d9cbb8be5343",
+      "metals_resource_boundaries.py": "bbf40799173cfab4f62ac95537104247c61aa1b53c5721ffaeb6e5eb2747fcbe"
+    },
+    "negative_fixture_cases": 22,
+    "real_scenario_updates": 2,
+    "status": "passed",
+    "real_inventory_matches_assessment": true,
+    "all_other_exchanges_unchanged": true,
+    "idempotent": true
+  }
+}

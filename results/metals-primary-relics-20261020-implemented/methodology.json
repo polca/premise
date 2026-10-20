@@ -1,0 +1,21 @@
+{
+  "system model": "cutoff",
+  "requested year": 2020,
+  "unsupported years": "preserve source; no extrapolation or endpoint hold",
+  "consequential supply": "preserve source marginal markets and substitution resource flows",
+  "attributional resource correction": "declared attribution convention; not a physical recovery model",
+  "recycling": "source-market shares; no dynamic scrap-stock model",
+  "mining constraints": "not modelled; no ore-grade, capacity or depletion projection",
+  "market decisions": {
+    "market_preserved_transport_missing": 52
+  },
+  "material decisions": {
+    "metals.material_rule.applied": 604,
+    "metals.material_rule.preserved_source": 201,
+    "metals.material_rule.provider_missing": 6,
+    "metals.material_rule.intensity_missing": 23,
+    "metals.material_rule.component_scope_unverified": 78,
+    "metals.material_rule.zero_intensity": 11,
+    "metals.material_rule.year_outside_support": 3
+  }
+}

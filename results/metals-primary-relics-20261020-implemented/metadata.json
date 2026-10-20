@@ -1,0 +1,80 @@
+{
+  "project": "metals-correctness-3.12-cutoff",
+  "source": "ecoinvent-3.12-cutoff",
+  "database": "metals-primary-relics-20261020-implemented",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "version": "3.12",
+  "system_model": "cutoff",
+  "scenario": {
+    "model": "image",
+    "pathway": "SSP2-M",
+    "year": 2020
+  },
+  "updates": [
+    "metals"
+  ],
+  "encrypted_iam": true,
+  "full_metals_update_limitation": null,
+  "metals_sha256": "fd3a4c0885fc36e1d909abbddf47b994c025a8a857364646d740d9cbb8be5343",
+  "resource_boundaries_sha256": "a52ca34d3c746cca4ced57b36dcafece2e7750e155700bfec6d4b342fac6fdd6",
+  "activities_mapping_sha256": "be4295e0c129afff95b77de28fb1ec2dc5d2ef33a3380b7215c477ae431112c4",
+  "git_commit": "5d69664be58c8c9dd0dbab5afc5cf811bad3348b",
+  "build_seconds": 19.846112041996093,
+  "relics_version": "0.0.6",
+  "relics_mapping_sha256": "c2cde55d0468c6153937b3707ec692b83cda426d0028837fc211550d9c4e0af0",
+  "database_fingerprints": {
+    "ecoinvent-3.12-cutoff": "60add02291fe72157ac0445b309f67395f14797163395b6601691a5b27d34c57",
+    "metals-primary-relics-20261020-implemented": "2f9da948b4200a8801bb085f0fc97bf69b31cf21d03f7722d62dda979bfcf70c"
+  },
+  "selected_producers": 284,
+  "elements": 38,
+  "within_5_percent": 270,
+  "within_10_percent": 274,
+  "seconds": 59.19280350001645,
+  "selection": "individual kilogram elemental primary producers; markets, concentrates, compounds, alloys, unrefined and secondary outputs excluded",
+  "source_comparison": "matching original ecoinvent identities; imported foreground producers may have no source counterpart",
+  "benchmark": "1 kg extracted/kg refined product; screening convention, not proof of physical recovery or purity",
+  "numerical_verification": {
+    "producers": 284,
+    "max_absolute_residual": 2.3283064365386963e-10,
+    "max_direct_lcia_difference": 1.3322676295501878e-15,
+    "reference_production_amounts_all_one": true
+  },
+  "comparison_with_previous_audit": {
+    "directory": "results/metals-primary-relics-20261020-full",
+    "matched_producers": 284,
+    "max_absolute_score_difference": 1.545436216762924,
+    "changed_by_more_than_1e_minus_8": 32,
+    "new_producers": 0,
+    "removed_producers": 0
+  },
+  "calculation_completed_utc": "2026-10-20T09:35:16.576338+00:00",
+  "indicators_per_producer": 65,
+  "analysis_scripts_sha256": {
+    "dev/audit_refined_metals_relics.py": "9737d8171a489513446415b521171bed806d83c5c38da8311f62b002da9eef01",
+    "dev/diagnose_refined_metals_relics.py": "4cdeecb450fe4ed8dc8b5e46b9d2274508ec88e24ca7ee9bdc68eac9fd0affcf",
+    "dev/report_refined_metals_relics.py": "3f2c1ee43f477f5f50539042db1ecbc4e3bae102f7d365b8277446f64f45d40b",
+    "dev/package_refined_metals_relics.py": "18bb0eec054be0eb6bdaab7a593884628ee2f2c6326287c4104352027a373952"
+  },
+  "final_guard_verification": {
+    "commit": "a374fa66b04a5b48a249e5625efcce2e53d4def4",
+    "code_sha256": {
+      "metals.py": "fd3a4c0885fc36e1d909abbddf47b994c025a8a857364646d740d9cbb8be5343",
+      "metals_resource_boundaries.py": "bbf40799173cfab4f62ac95537104247c61aa1b53c5721ffaeb6e5eb2747fcbe"
+    },
+    "real_inventory_equivalent_to_assessed_export": true,
+    "real_source_2020_2050_builds_passed": true
+  },
+  "reproduction_scripts_sha256": {
+    "dev/audit_refined_metals_relics.py": "9737d8171a489513446415b521171bed806d83c5c38da8311f62b002da9eef01",
+    "dev/diagnose_refined_metals_relics.py": "4cdeecb450fe4ed8dc8b5e46b9d2274508ec88e24ca7ee9bdc68eac9fd0affcf",
+    "dev/package_refined_metals_relics.py": "18bb0eec054be0eb6bdaab7a593884628ee2f2c6326287c4104352027a373952",
+    "dev/report_refined_metals_relics.py": "3f2c1ee43f477f5f50539042db1ecbc4e3bae102f7d365b8277446f64f45d40b",
+    "dev/heatmap_primary_metals_relics.py": "0442518d714077786a3f27434d5c9dd958b4cb44ebf4c60fd66095fc2fea9c48",
+    "dev/assess_relics_resource_fixes.py": "f8d58ccb9cba31e52c819412d4f2b96391e50c4b8e49a1688ea026aac7ccc79a",
+    "dev/report_relics_fix_assessment.py": "fc6e62a86e92fba3d30e6ff11cf65ee7f04c8ae2ea845297d8f09b11d8155a0b",
+    "dev/validate_relics_boundary_implementation.py": "ebfa77333918f7c49e135c7f9e04780cd1a21db018d2b9e88b0d9f857b8c7ad3",
+    "dev/check_implemented_relics_scores.py": "a27b1c334a65469660d8f78ea86b488a9961982a1c633a8c89ca26c7b87a1605",
+    "dev/test_metals_all_versions.py": "e693e16ea0276b4cb2a43f2475c16c4bf348f73bd5814b5378216ca1ba8cf08f"
+  }
+}

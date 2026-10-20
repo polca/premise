@@ -1,0 +1,17 @@
+{
+  "id": "3.7-cutoff",
+  "version": "3.7",
+  "system_model": "cutoff",
+  "premise_system_model": "cutoff",
+  "source": "ecoinvent-3.7-cutoff",
+  "project": "brightpath-reference-3.7-cutoff",
+  "biosphere": "ecoinvent-3.7-biosphere",
+  "available": true,
+  "status": "failed",
+  "scenarios": [],
+  "stage": "initialization",
+  "error_type": "ValueError",
+  "error": "Fix the unlinked exchanges before proceeding",
+  "seconds": 8.303290165989893,
+  "completed_utc": "2026-10-20T09:33:34.133801+00:00"
+}

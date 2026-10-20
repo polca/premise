@@ -1,0 +1,10 @@
+{
+  "producer_rows": 284,
+  "indicators": 65,
+  "compared_scores": 18460,
+  "resource_assignments_checked": 122,
+  "matches_isolated_assessment_at_export_precision": true,
+  "max_absolute_score_difference_at_export_precision": 1.8189894035458565e-12,
+  "export_precision": "Processed Brightway resource amounts are float32 values represented in float64 matrices; verified for every proposed assignment.",
+  "maximum_difference_from_unquantized_assessment": 1.0640757741597895e-07
+}

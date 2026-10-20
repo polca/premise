@@ -1,0 +1,79 @@
+{
+  "id": "3.10-consequential",
+  "version": "3.10",
+  "system_model": "consequential",
+  "premise_system_model": "consequential",
+  "source": "ecoinvent-3.10-consequential",
+  "project": "ecoinvent-3.10-consequential",
+  "biosphere": "ecoinvent-3.10-biosphere",
+  "available": true,
+  "status": "passed",
+  "scenarios": [
+    {
+      "model": "image",
+      "pathway": "SSP2-M",
+      "year": 2020,
+      "datasets": 24071,
+      "material_update_metrics": {
+        "compiled pairs": 926,
+        "executed pairs": 926,
+        "provider index lookups": 69
+      },
+      "validation_issue_counts": {
+        "warning": 117
+      },
+      "warning_counts_by_rule": {
+        "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+        "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+        "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+        "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 11,
+        "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+      },
+      "component_input_groups_unchanged": 24
+    },
+    {
+      "model": "image",
+      "pathway": "SSP2-M",
+      "year": 2050,
+      "datasets": 24071,
+      "material_update_metrics": {
+        "compiled pairs": 926,
+        "executed pairs": 926,
+        "provider index lookups": 22
+      },
+      "validation_issue_counts": {
+        "warning": 108
+      },
+      "warning_counts_by_rule": {
+        "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+        "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+        "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+        "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+        "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+      },
+      "component_input_groups_unchanged": 24
+    }
+  ],
+  "mapping_counts": {
+    "ICEV": 3,
+    "EV": 4,
+    "Wind-DDPM": 0,
+    "Wind-Gearbox": 6,
+    "PEMFC": 1,
+    "SOFC - Y": 2,
+    "PEMEL": 1,
+    "AEL": 1,
+    "HTEL - Yttrium": 1,
+    "c-Si": 26,
+    "a-Si": 2,
+    "CIGS": 3,
+    "CdTe": 4,
+    "perovskite": 3,
+    "Parabolic Trough - PB": 2,
+    "CSP Tower - PB": 2,
+    "Nuclear": 15
+  },
+  "preserved_component_datasets": 6,
+  "seconds": 28.32827683299547,
+  "completed_utc": "2026-10-20T09:37:39.982532+00:00"
+}

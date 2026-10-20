@@ -1,0 +1,9 @@
+{
+  "commit": "a374fa66b04a5b48a249e5625efcce2e53d4def4",
+  "code_sha256": {
+    "metals.py": "fd3a4c0885fc36e1d909abbddf47b994c025a8a857364646d740d9cbb8be5343",
+    "metals_resource_boundaries.py": "bbf40799173cfab4f62ac95537104247c61aa1b53c5721ffaeb6e5eb2747fcbe"
+  },
+  "scope": "Final shared-carrier guard; complete ecoinvent 3.12 cutoff metals updates, IMAGE SSP2-M 2020 and 2050; no database export.",
+  "status": "passed"
+}

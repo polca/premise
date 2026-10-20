@@ -1,0 +1,65 @@
+{
+  "project": "metals-correctness-3.12-cutoff",
+  "source": "ecoinvent-3.12-cutoff",
+  "database": "metals-primary-relics-20261020-full",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "version": "3.12",
+  "system_model": "cutoff",
+  "scenario": {
+    "model": "image",
+    "pathway": "SSP2-M",
+    "year": 2020
+  },
+  "updates": [
+    "metals"
+  ],
+  "encrypted_iam": true,
+  "full_metals_update_limitation": null,
+  "metals_sha256": "e4db576a84ba76c71defb630c033f04b8850b526477e2044c13d611bb3097c7e",
+  "activities_mapping_sha256": "be4295e0c129afff95b77de28fb1ec2dc5d2ef33a3380b7215c477ae431112c4",
+  "git_commit": "70177f07f974025c3498f16e30a83186103fe33a",
+  "build_seconds": 35.279381625005044,
+  "relics_version": "0.0.6",
+  "relics_mapping_sha256": "c2cde55d0468c6153937b3707ec692b83cda426d0028837fc211550d9c4e0af0",
+  "database_fingerprints": {
+    "ecoinvent-3.12-cutoff": "60add02291fe72157ac0445b309f67395f14797163395b6601691a5b27d34c57",
+    "metals-primary-relics-20261020-full": "ea912279c3377bfa102c44a874681b588933715bb719588f0e6d7b4b259e2ed2"
+  },
+  "selected_producers": 284,
+  "elements": 38,
+  "within_5_percent": 261,
+  "within_10_percent": 262,
+  "seconds": 70.7581827500253,
+  "selection": "individual kilogram elemental primary producers; markets, concentrates, compounds, alloys, unrefined and secondary outputs excluded",
+  "source_comparison": "matching original ecoinvent identities; imported foreground producers may have no source counterpart",
+  "benchmark": "1 kg extracted/kg refined product; screening convention, not proof of physical recovery or purity",
+  "numerical_verification": {
+    "producers": 284,
+    "max_absolute_residual": 2.3283064365386963e-10,
+    "max_direct_lcia_difference": 1.3322676295501878e-15,
+    "reference_production_amounts_all_one": true
+  },
+  "comparison_with_previous_audit": {
+    "directory": "results/metals-refined-relics-20261019-recalculated",
+    "matched_producers": 128,
+    "max_absolute_score_difference": 1.0000146424825447,
+    "changed_by_more_than_1e_minus_8": 103,
+    "new_producers": 156,
+    "removed_producers": 0,
+    "matched_within_5_percent": 111,
+    "matched_within_10_percent": 112,
+    "previous_within_5_percent": 104,
+    "previous_within_10_percent": 107
+  },
+  "calculation_completed_utc": "2026-10-20T07:44:57.781511+00:00",
+  "indicators_per_producer": 65,
+  "analysis_scripts_sha256": {
+    "dev/audit_refined_metals_relics.py": "2805bb2b9717c564ccb9c3fe3126c3609af1b3963284b1b74b8d686e21eaea39",
+    "dev/diagnose_refined_metals_relics.py": "4cdeecb450fe4ed8dc8b5e46b9d2274508ec88e24ca7ee9bdc68eac9fd0affcf",
+    "dev/report_refined_metals_relics.py": "3f2c1ee43f477f5f50539042db1ecbc4e3bae102f7d365b8277446f64f45d40b",
+    "dev/package_refined_metals_relics.py": "18bb0eec054be0eb6bdaab7a593884628ee2f2c6326287c4104352027a373952"
+  },
+  "relics_source_path": "/Users/romain/.Trash/relics",
+  "relics_mapping_identical_to_previous_audit": true,
+  "analysis_scripts_archive": "reproduction_scripts.zip; extract at repository root to recreate dev scripts"
+}

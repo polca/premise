@@ -1,0 +1,85 @@
+metal,name,product,location,contributor,contributor_product,contributor_location,contribution
+Antimony,antimony production,antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,CN,1.057997532295891
+Antimony,antimony production,antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,TJ,0.3787312026472689
+Antimony,antimony production,antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,RU,0.2770336734809412
+Antimony,antimony production,antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,MM,0.06968020754715286
+Antimony,antimony production,antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,IR,0.06022149101340062
+Antimony,antimony production,antimony,CN,stibnite mine operation and beneficiation,stibnite concentrate,TR,0.05633718748613548
+Antimony,antimony production,antimony,RoW,stibnite mine operation and beneficiation,stibnite concentrate,CN,1.0579975324080346
+Antimony,antimony production,antimony,RoW,stibnite mine operation and beneficiation,stibnite concentrate,TJ,0.37873120268741284
+Antimony,antimony production,antimony,RoW,stibnite mine operation and beneficiation,stibnite concentrate,RU,0.27703367351030567
+Antimony,antimony production,antimony,RoW,stibnite mine operation and beneficiation,stibnite concentrate,MM,0.06968020755453867
+Antimony,antimony production,antimony,RoW,stibnite mine operation and beneficiation,stibnite concentrate,IR,0.060221491019783864
+Antimony,antimony production,antimony,RoW,stibnite mine operation and beneficiation,stibnite concentrate,TR,0.056337187492107005
+Arsenic,7N arsenic production,7N Arsenic,GLO,sodium arsenide production from Imperial smelting furnace,sodium arsenide,GLO,1.5454362167629243
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,ferronickel,GLO,1.5270042062824066e-07
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,sulfuric acid,GLO,4.732782288743471e-08
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,"electrolyte, copper-rich",GLO,2.687232154536397e-08
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,copper cake,GLO,2.544576237030087e-08
+Arsenic,7N arsenic production,7N Arsenic,GLO,cobalt production,nickel sulfate,GLO,3.217859032192308e-10
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.247330074994472
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.2116516439315558
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,molybdenite mine operation,"copper concentrate, sulfide ore",GLO,0.09904945205481522
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.07102972701461081
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.05218958591946631
+Copper,"electrorefining of copper, anode","copper, cathode",GLO,"copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.040104325813294144
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,"rare earth oxides production, from rare earth carbonate concentrate",dysprosium oxide,CN,1.1906764809792414
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,"rare earth element mine operation and beneficiation, bastnaesite ore","rare earth oxide concentrate, 70% REO",CN-SC,2.573997241434419e-06
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,CN,5.045785580279623e-07
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,RoW,7.466892210978856e-08
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,RER,2.3103296822662565e-08
+Dysprosium,"dysprosium production, calcium reduction",dysprosium,GLO,citric acid production,citric acid,RNA,1.3950135474742946e-08
+Gallium,7N gallium production,7N Gallium,GLO,"high-grade gallium production, from low-grade gallium","gallium, high-grade",CN,1.428571343480524
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, powder","zeolite, powder",RoW,3.4450104207528936e-08
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, powder","zeolite, powder",RER,1.700894258599568e-08
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, slurry, without water, in 50% solution state","zeolite, slurry, without water, in 50% solution state",RoW,2.1330934406230417e-09
+Gallium,7N gallium production,7N Gallium,GLO,"zeolite production, slurry, without water, in 50% solution state","zeolite, slurry, without water, in 50% solution state",RER,1.0533520053650603e-09
+Gallium,7N gallium production,7N Gallium,GLO,"sodium percarbonate production, powder","sodium percarbonate, powder",RoW,3.7138128956216655e-10
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,"iron ore mine operation, 46% Fe","iron ore, crude ore, 46% Fe",GLO,1.0866125829194968
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,iron ore mine operation and beneficiation,iron ore concentrate,CA-QC,0.025542011458538193
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,"iron ore mine operation, 63% Fe","iron ore, crude ore, 63% Fe",IN,0.0005578343180139504
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,ferronickel production,ferronickel,GLO,0.00010880424209057978
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,cobalt production,sulfuric acid,GLO,3.0169275420137572e-05
+Iron,"pig iron production, with natural gas-based direct reduction",iron,GLO,cobalt production,ferronickel,GLO,2.4801045441761687e-05
+Iron,sponge iron production,sponge iron,IN,"iron ore mine operation, 63% Fe","iron ore, crude ore, 63% Fe",IN,1.2805149314895148
+Iron,sponge iron production,sponge iron,IN,"iron ore mine operation, 46% Fe","iron ore, crude ore, 46% Fe",GLO,0.003873513354106968
+Iron,sponge iron production,sponge iron,IN,iron ore mine operation and beneficiation,iron ore concentrate,CA-QC,0.00022074625461680547
+Iron,sponge iron production,sponge iron,IN,ferronickel production,ferronickel,GLO,0.0001607434643714646
+Iron,sponge iron production,sponge iron,IN,cobalt production,ferronickel,GLO,3.6640170343947025e-05
+Iron,sponge iron production,sponge iron,IN,vanadium-titanomagnetite mine operation and beneficiation,iron ore concentrate,CN,1.4094780409556381e-05
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium carbonate production, from spodumene",lithium carbonate,CN,0.595350966874965
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium carbonate production, from concentrated brine",lithium carbonate,GLO,0.38613865118161594
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium carbonate production, from spodumene",lithium carbonate,RoW,0.15421230216508697
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium brine production, from evaporation pond","lithium brine, from evaporation pond",CL,2.6686082727215057e-11
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,citric acid production,citric acid,CN,1.3628653844977202e-11
+Lithium,"lithium metal production, for Li-O2 battery",lithium metal,RER,"lithium brine production, from evaporation pond, from Salar de Cauchari-Olaroz","lithium brine, from evaporation pond",AR,1.0843671897667057e-11
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium carbonate production, from spodumene",lithium carbonate,CN,0.5735558504784822
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium carbonate production, from concentrated brine",lithium carbonate,GLO,0.3720025578250199
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium carbonate production, from spodumene",lithium carbonate,RoW,0.1485667665693355
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium brine production, from evaporation pond","lithium brine, from evaporation pond",CL,2.4658569320436612e-11
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,citric acid production,citric acid,CN,1.1755390077557391e-11
+Lithium,"lithium production, lithium chloride electrolysis",lithium,GLO,"lithium brine production, from evaporation pond, from Salar de Cauchari-Olaroz","lithium brine, from evaporation pond",AR,1.0019808373898349e-11
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,CN,0.9029991884064051
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,MY,0.11121204072627522
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,RU,0.0202203697796882
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,IN,0.017027681170773093
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,VN,0.0106422999883771
+Neodymium,"neodymium production, molten salt electrolysis",neodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",neodymium oxide,NO,0.0010642300731733183
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,"nickel mine operation and benefication to nickel concentrate, 16% Ni","nickel concentrate, 16% Ni",CA-QC,1.1309476558769478
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,"nickel concentrate, 16% Ni",GLO,0.024060410981500132
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,"electrolyte, nickel-rich",GLO,0.0020506180807754533
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,ferronickel production,ferronickel,GLO,0.0010229818578865446
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,ferronickel,GLO,2.5892366577976828e-05
+Nickel,processing of nickel-rich materials,"nickel, class 1",GLO,cobalt production,sulfuric acid,GLO,1.1938683644510053e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,"nickel mine operation and benefication to nickel concentrate, 7% Ni","nickel concentrate, 7% Ni",CN,1.1888692369015303
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,ferronickel production,ferronickel,GLO,0.0017032435022756617
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,cobalt production,ferronickel,GLO,4.311025145997225e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,cobalt production,sulfuric acid,GLO,3.881500602720924e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,"nickel mine operation and benefication to nickel concentrate, 16% Ni","nickel concentrate, 16% Ni",CA-QC,2.8100220026723934e-05
+Nickel,"smelting and refining of nickel concentrate, 7% Ni","nickel, class 1",CN,cobalt production,"nickel, class 1",GLO,4.009812972140991e-06
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,CN,0.9029989338672169
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,MY,0.11121200937760634
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,RU,0.020220364079930577
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,IN,0.017027676370976817
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,VN,0.010642296988504637
+Praseodymium,"praseodymium production, molten salt electrolysis",praseodymium,CN,"rare earth oxides production, from rare earth carbonate concentrate",praseodymium oxide,AU,0.001064229773186051

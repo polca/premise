@@ -1,0 +1,20 @@
+version,system_model,status,scenario_updates,error
+3.5,cutoff,not_available,0,
+3.6,cutoff,failed,0,Fix the unlinked exchanges before proceeding
+3.7,cutoff,failed,0,Fix the unlinked exchanges before proceeding
+3.7.1,cutoff,failed,0,Fix the unlinked exchanges before proceeding
+3.8,cutoff,failed,0,Fix the unlinked exchanges before proceeding
+3.8,consequential,failed,0,Fix the unlinked exchanges before proceeding
+3.9,cutoff,passed,2,
+3.9,consequential,passed,2,
+3.9.1,cutoff,passed,2,
+3.9.1,consequential,passed,2,
+3.10,cutoff,passed,2,
+3.10,consequential,passed,2,
+3.10.1,cutoff,passed,2,
+3.10.1,consequential,passed,2,
+3.11,cutoff,passed,2,
+3.11,consequential,passed,2,
+3.12,cutoff,passed,2,
+3.12,consequential,passed,2,
+3.12,EN15804,passed,2,

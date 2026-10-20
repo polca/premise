@@ -1,0 +1,1140 @@
+{
+  "scope": "Complete metals update; IMAGE SSP2-M 2020 and 2050; compact backend; no scenario DB exports.",
+  "code_sha256": {
+    "metals.py": "fd3a4c0885fc36e1d909abbddf47b994c025a8a857364646d740d9cbb8be5343",
+    "metals_resource_boundaries.py": "a52ca34d3c746cca4ced57b36dcafece2e7750e155700bfec6d4b342fac6fdd6"
+  },
+  "configuration_sha256": {
+    "activities_mapping.yml": "be4295e0c129afff95b77de28fb1ec2dc5d2ef33a3380b7215c477ae431112c4",
+    "metal_products.yaml": "e9df3c10d124df64d28a2123c2784fd1f3bd12874cfbf54730d6e2cf6fa00467",
+    "technology_conversion_factors.yaml": "e7df575052373770a9c3bc633e10231af047e10b1e62809791209dde8388994d"
+  },
+  "counts": {
+    "not_available": 1,
+    "failed": 5,
+    "passed": 13
+  },
+  "cases": [
+    {
+      "id": "3.5-cutoff",
+      "version": "3.5",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.5-cutoff",
+      "available": false,
+      "status": "not_available"
+    },
+    {
+      "id": "3.6-cutoff",
+      "version": "3.6",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.6-cutoff",
+      "project": "brightpath-reference-3.6-cutoff",
+      "biosphere": "ecoinvent-3.6-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 9.227896416996373,
+      "completed_utc": "2026-10-20T09:33:23.593564+00:00"
+    },
+    {
+      "id": "3.7-cutoff",
+      "version": "3.7",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.7-cutoff",
+      "project": "brightpath-reference-3.7-cutoff",
+      "biosphere": "ecoinvent-3.7-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 8.303290165989893,
+      "completed_utc": "2026-10-20T09:33:34.133801+00:00"
+    },
+    {
+      "id": "3.7.1-cutoff",
+      "version": "3.7.1",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.7.1-cutoff",
+      "project": "premise-metals-version-3.7.1-cutoff-20261019",
+      "biosphere": "ecoinvent-3.7.1-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 7.8661164170189295,
+      "completed_utc": "2026-10-20T09:33:44.064614+00:00"
+    },
+    {
+      "id": "3.8-cutoff",
+      "version": "3.8",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.8-cutoff",
+      "project": "ecoinvent-3.8-cutoff",
+      "biosphere": "ecoinvent-3.8-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 8.19189008299145,
+      "completed_utc": "2026-10-20T09:33:54.318624+00:00"
+    },
+    {
+      "id": "3.8-consequential",
+      "version": "3.8",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.8-consequential",
+      "project": "ecoinvent-3.8-consequential",
+      "biosphere": "ecoinvent-3.8-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 8.323360625014175,
+      "completed_utc": "2026-10-20T09:34:04.834872+00:00"
+    },
+    {
+      "id": "3.9-cutoff",
+      "version": "3.9",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.9-cutoff",
+      "project": "ecoinvent-3.9-cutoff",
+      "biosphere": "ecoinvent-3.9-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 25197,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 66
+          },
+          "validation_issue_counts": {
+            "warning": 266
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 8,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 205
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 24560,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 185
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 78
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 39.14965341700008,
+      "completed_utc": "2026-10-20T09:34:46.142191+00:00"
+    },
+    {
+      "id": "3.9-consequential",
+      "version": "3.9",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.9-consequential",
+      "project": "brightpath-reference-3.9-consequential",
+      "biosphere": "ecoinvent-3.9-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 22157,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 70
+          },
+          "validation_issue_counts": {
+            "warning": 119
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 13,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 22157,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 108
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 27.829523958003847,
+      "completed_utc": "2026-10-20T09:35:16.348207+00:00"
+    },
+    {
+      "id": "3.9.1-cutoff",
+      "version": "3.9.1",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.9.1-cutoff",
+      "project": "ecoinvent-3.9.1-cutoff",
+      "biosphere": "ecoinvent-3.9.1-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 25180,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 66
+          },
+          "validation_issue_counts": {
+            "warning": 266
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 8,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 205
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 24543,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 185
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 78
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 38.36983695800882,
+      "completed_utc": "2026-10-20T09:35:56.884114+00:00"
+    },
+    {
+      "id": "3.9.1-consequential",
+      "version": "3.9.1",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.9.1-consequential",
+      "project": "ecoinvent-3.9.1-consequential",
+      "biosphere": "ecoinvent-3.9.1-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 22157,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 70
+          },
+          "validation_issue_counts": {
+            "warning": 119
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 13,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 22157,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 108
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 27.29543412500061,
+      "completed_utc": "2026-10-20T09:36:26.243730+00:00"
+    },
+    {
+      "id": "3.10-cutoff",
+      "version": "3.10",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.10-cutoff",
+      "project": "ecoinvent-3.10-cutoff",
+      "biosphere": "ecoinvent-3.10-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 27463,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 264
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 205
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 26826,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 185
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 78
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 41.25247370899888,
+      "completed_utc": "2026-10-20T09:37:09.565245+00:00"
+    },
+    {
+      "id": "3.10-consequential",
+      "version": "3.10",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.10-consequential",
+      "project": "ecoinvent-3.10-consequential",
+      "biosphere": "ecoinvent-3.10-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 24071,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 69
+          },
+          "validation_issue_counts": {
+            "warning": 117
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 11,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 24071,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 108
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 28.32827683299547,
+      "completed_utc": "2026-10-20T09:37:39.982532+00:00"
+    },
+    {
+      "id": "3.10.1-cutoff",
+      "version": "3.10.1",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.10.1-cutoff",
+      "project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "biosphere": "ecoinvent-3.10.1-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 27463,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 264
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 205
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 26826,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 185
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 78
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 40.422982290998334,
+      "completed_utc": "2026-10-20T09:38:22.367251+00:00"
+    },
+    {
+      "id": "3.10.1-consequential",
+      "version": "3.10.1",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.10.1-consequential",
+      "project": "premise-metals-version-3.10.1-consequential-20261019",
+      "biosphere": "ecoinvent-3.10.1-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 24071,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 69
+          },
+          "validation_issue_counts": {
+            "warning": 117
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 11,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 24071,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 108
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 28.18352204200346,
+      "completed_utc": "2026-10-20T09:38:52.807903+00:00"
+    },
+    {
+      "id": "3.11-cutoff",
+      "version": "3.11",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.11-cutoff",
+      "project": "ecoinvent-3.11-cutoff",
+      "biosphere": "biosphere-3.11",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 29322,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 248
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 52,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 188
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 28691,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 182
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 75
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 44.79795379200368,
+      "completed_utc": "2026-10-20T09:39:39.568134+00:00"
+    },
+    {
+      "id": "3.11-consequential",
+      "version": "3.11",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.11-consequential",
+      "project": "ecoinvent-3.11-consequential",
+      "biosphere": "ecoinvent-3.11-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 25516,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 69
+          },
+          "validation_issue_counts": {
+            "warning": 117
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 11,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 25516,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 108
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 29.98928799998248,
+      "completed_utc": "2026-10-20T09:40:11.529899+00:00"
+    },
+    {
+      "id": "3.12-cutoff",
+      "version": "3.12",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.12-cutoff",
+      "project": "ecoinvent-3.12-cutoff",
+      "biosphere": "ecoinvent-3.12-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 30443,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 248
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 52,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 188
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 29812,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 182
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 75
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 27.9610598750005,
+      "completed_utc": "2026-10-20T09:40:41.506773+00:00"
+    },
+    {
+      "id": "3.12-consequential",
+      "version": "3.12",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.12-consequential",
+      "project": "ecoinvent-3.12-consequential",
+      "biosphere": "ecoinvent-3.12-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 26466,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 69
+          },
+          "validation_issue_counts": {
+            "warning": 117
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 11,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 26466,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 108
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 1
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 31.228380249987822,
+      "completed_utc": "2026-10-20T09:41:15.028040+00:00"
+    },
+    {
+      "id": "3.12-EN15804",
+      "version": "3.12",
+      "system_model": "EN15804",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.12-EN15804",
+      "project": "ecoinvent-3.12-EN15804",
+      "biosphere": "ecoinvent-3.12-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 30509,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 249
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 52,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 189
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 29878,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 183
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 76
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 45.42536954197567,
+      "completed_utc": "2026-10-20T09:42:02.441904+00:00"
+    }
+  ]
+}
