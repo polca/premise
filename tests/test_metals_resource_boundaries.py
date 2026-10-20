@@ -496,3 +496,24 @@ def test_boundary_correction_preserves_quantities_and_model_scope_across_version
         first = deepcopy(database)
         correct(database, monkeypatch, version=version)
         assert database == first
+
+
+@pytest.mark.parametrize("version", premise_config["SUPPORTED_EI_VERSIONS"])
+@pytest.mark.parametrize("valid_other_boundary", [False, True])
+def test_other_managed_boundary_is_still_an_unhandled_carbonate_consumer(
+    version, valid_other_boundary, monkeypatch
+):
+    database = carbonate_branch()
+    carrier, market, nd, dy, metal = database
+    brine = dataset("lithium brine inspissation", "lithium brine, 6.7 % Li")
+    carbonate = dataset(
+        "lithium carbonate production, from concentrated brine",
+        "lithium carbonate",
+        [feed(market, 0.001)],
+    )
+    if valid_other_boundary:
+        carbonate["exchanges"].append(feed(brine, 4.19))
+    database.extend([brine, carbonate])
+    before_branch = deepcopy(database[:5])
+    correct(database, monkeypatch, version=version)
+    assert database[:5] == before_branch

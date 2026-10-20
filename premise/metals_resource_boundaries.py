@@ -261,7 +261,8 @@ def plan_rare_earth_carbonate_branch(database, providers, available_flows, plan)
     if not carriers and not oxides:
         return
     candidates = [*carriers, *oxides]
-    plan.reserved_ids.update(id(d) for d in candidates)
+    branch_ids = {id(d) for d in candidates}
+    plan.reserved_ids.update(branch_ids)
     oxide_elements = {
         element.lower() + " oxide": element for element in RARE_EARTH_ATOMIC_MASSES
     }
@@ -288,7 +289,7 @@ def plan_rare_earth_carbonate_branch(database, providers, available_flows, plan)
         valid &= len(ground_resources(d, element)) <= 1
     # Do not clear a shared feedstock that also supplies an unhandled route.
     for d in database:
-        if id(d) in plan.reserved_ids or d.get("name", "").startswith(
+        if id(d) in branch_ids or d.get("name", "").startswith(
             ("market for ", "market group for ")
         ):
             continue

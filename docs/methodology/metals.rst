@@ -615,6 +615,8 @@ flows; every positive carbonate-market branch must resolve to the declared
 carriers. An unknown consumer, unsupported oxide, missing provider, cycle or
 duplicate target preserves the whole branch. This prevents clearing shared
 extraction while repairing only a subset of its outputs.
+Consumers handled by another resource boundary still count as unhandled
+carbonate users unless they belong to this oxide branch.
 
 Only transferred REE resources are cleared on these carbonate carriers. Clay,
 gangue, other resources, quantities and reduction losses are retained. The
