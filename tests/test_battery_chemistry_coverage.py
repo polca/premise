@@ -45,7 +45,12 @@ def without_assb_exchanges(database):
         ds["exchanges"] = [
             exc
             for exc in ds["exchanges"]
-            if not exc["name"].startswith("market for battery capacity, ASSB,")
+            if not exc["name"].startswith(
+                (
+                    "market for battery capacity, ASSB,",
+                    "market for battery capacity, all-solid-state battery,",
+                )
+            )
         ]
     return data
 

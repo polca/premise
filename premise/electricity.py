@@ -2413,6 +2413,10 @@ class Electricity(BaseTransformation):
             ws.equals("unit", "kilowatt hour"),
             ws.doesnt_contain_any("name", list_to_preserve),
         ):
+            # Installed battery kWh are not delivered electricity. Select by
+            # product so renamed capacity markets keep their manufacturing BOM.
+            if dataset["reference product"].startswith("electricity storage capacity"):
+                continue
             # add tag
             dataset["has_downstream_consumer"] = False
             dataset["exchanges"] = [

@@ -1662,80 +1662,178 @@ class BatteryValidation(BaseDatasetValidator):
         super().__init__(model, scenario, year, regions, database)
         self.iam_data = iam_data
 
+    @staticmethod
+    def _battery_product(exchange):
+        return str(
+            exchange.get("product", exchange.get("reference product", ""))
+        ).lower()
+
+    def _check_capacity_shares(self, dataset, exchanges):
+        # Shares represent installed kWh, not a battery mass in kg.
+        total = sum(exc["amount"] for exc in exchanges)
+        if any(exc["amount"] < 0 for exc in exchanges) or not np.isclose(
+            total, 1.0, rtol=1e-3, atol=1e-8
+        ):
+            self.log_issue(
+                dataset,
+                "Incorrect market shares",
+                f"Installed-capacity shares must be nonnegative and sum to 1; got {total}.",
+                issue_type="major",
+            )
+
+    def _check_modular_capacity(self, dataset, exchanges, energy_density):
+        # The revised recipes separate cell kg, non-cell hardware per kWh and
+        # controls in units. Cell and hardware providers already include EoL.
+        roles = {"cell": [], "hardware": [], "controls": []}
+        unexpected = []
+        for exc in exchanges:
+            product = self._battery_product(exc)
+            if (
+                product.startswith("battery cell,")
+                and "including end-of-life treatment" in product
+            ):
+                role, unit = "cell", "kilogram"
+            elif product.startswith("battery pack component provision,"):
+                role, unit = "hardware", "kilowatt hour"
+            elif product.startswith(
+                (
+                    "battery monitoring and central control system,",
+                    "battery control and cooling system,",
+                    "battery auxiliaries supply and end-of-life treatment,",
+                )
+            ):
+                role, unit = "controls", "unit"
+            else:
+                unexpected.append(exc["name"])
+                continue
+            if exc.get("unit") != unit or exc["amount"] < 0:
+                unexpected.append(exc["name"])
+            roles[role].append(exc)
+        missing = [
+            role
+            for role, values in roles.items()
+            if not values or sum(e["amount"] for e in values) <= 0
+        ]
+        if unexpected or missing:
+            self.log_issue(
+                dataset,
+                "Invalid modular battery capacity",
+                f"Expected cell kg including EoL, hardware per kWh including EoL and controls in units; missing={missing}, unexpected or incorrectly signed/unit inputs={unexpected}.",
+                issue_type="major",
+            )
+            return
+        hardware = sum(e["amount"] for e in roles["hardware"])
+        if not np.isclose(hardware, 1.0, rtol=1e-3, atol=1e-8):
+            self.log_issue(
+                dataset,
+                "Incorrect battery hardware capacity",
+                f"Non-cell hardware must provide 1 kWh per installed kWh; got {hardware}.",
+                issue_type="major",
+            )
+        target = energy_density.get(dataset["name"])
+        baseline = dataset.get("log parameters", {}).get("old battery mass")
+        density = dataset.get("battery cell energy density")
+        expected = None
+        if target is not None and baseline is not None:
+            # Source-corrected cells need not have the old absolute density.
+            # The transform applies relative learning to their baseline mass.
+            years = sorted(target)
+            current = np.interp(self.year, years, [target[y]["mean"] for y in years])
+            expected = baseline * target[2020]["mean"] / current
+        elif (
+            target is None
+            and density is not None
+            and np.isfinite(density)
+            and density > 0
+        ):
+            expected = 1.0 / density
+        if expected is not None:
+            mass = sum(e["amount"] for e in roles["cell"])
+            if not np.isclose(mass, expected, rtol=1e-3, atol=1e-8):
+                self.log_issue(
+                    dataset,
+                    "Incorrect battery cell mass",
+                    f"Cell mass is {mass} kg/kWh; expected {expected} kg/kWh from the source mass and relative density learning.",
+                    issue_type="major",
+                )
+
+    def _check_legacy_capacity(self, dataset, exchanges):
+        # Retain the older manufactured-pack / equal-mass waste contract.
+        # Only kg belong in this mass balance; operation energy is not mass.
+        masses = [exc for exc in exchanges if exc.get("unit") == "kilogram"]
+        manufactured = sum(exc["amount"] for exc in masses if exc["amount"] > 0)
+        discarded = -sum(exc["amount"] for exc in masses if exc["amount"] < 0)
+        if not np.isclose(manufactured - discarded, 0.0, rtol=0.0, atol=1e-8):
+            self.log_issue(
+                dataset,
+                "EoL not balanced with battery input",
+                f"Manufactured pack mass is {manufactured} kg/kWh; discarded mass is {discarded} kg/kWh.",
+                issue_type="major",
+            )
+        if manufactured < 2:
+            self.log_issue(
+                dataset,
+                "Energy density too high",
+                f"Manufactured pack mass is {manufactured} kg/kWh, not at least 2 kg/kWh for this legacy inventory.",
+                issue_type="major",
+            )
+
     def check_battery_capacity(self):
-        # Check that the battery capacity is within the expected range
+        # Import locally: battery transforms import this validation class.
+        from .battery import load_cell_energy_density
+
+        energy_density = load_cell_energy_density()
         for ds in ws.get_many(
             self.database,
             ws.contains("name", "market for battery capacity"),
             ws.equals("location", "GLO"),
             ws.equals("unit", "kilowatt hour"),
-            ws.either(
-                *[
-                    ws.contains("name", s)
-                    for s in ["(MIX)", "(LFP)", "(NCx)", "(PLiB)", "(CONT", "(TC"]
-                ]
-            ),
         ):
-            # check that sum of technosphere exchanges sum to 1
-            total = sum(
-                [
-                    exc["amount"]
-                    for exc in ds["exchanges"]
-                    if exc["type"] == "technosphere"
-                ]
-            )
-            if not np.isclose(total, 1.0, rtol=1e-3):
-                message = f"Total exchange amount is {total}, not 1.0"
-                self.log_issue(
-                    ds, "Incorrect market shares", message, issue_type="major"
-                )
-
-        for ds in ws.get_many(
-            self.database,
-            ws.contains("name", "market for battery capacity, "),
-            ws.equals("location", "GLO"),
-            ws.equals("unit", "kilowatt hour"),
-            ws.exclude(
-                ws.either(
-                    *[
-                        ws.contains("name", s)
-                        for s in ["MIX", "LFP", "NCx", "PLiB", "TC", "CONT"]
-                    ]
-                )
-            ),
-        ):
-            # check that um of technosphere exchanges equal zero
-            total = sum(
-                [
-                    exc["amount"]
-                    for exc in ds["exchanges"]
-                    if exc["type"] == "technosphere"
-                ]
-            )
-            if not np.isclose(total, 0.0, rtol=1e-3):
-                message = f"Total exchange amount is {total}, not 0.0"
+            exchanges = list(ws.technosphere(ds))
+            if any(
+                _export_numeric_scalar(exc.get("amount")) is None
+                or not np.isfinite(exc["amount"])
+                for exc in exchanges
+            ):
                 self.log_issue(
                     ds,
-                    "EoL not balanced with battery input",
-                    message,
+                    "Invalid battery exchange amount",
+                    "Battery inputs must be finite numbers.",
                     issue_type="major",
                 )
-
-            # also check that sum of positive technosphere exchanges
-            # have a correct value
-            total = sum(
-                [
-                    exc["amount"]
-                    for exc in ds["exchanges"]
-                    if exc["type"] == "technosphere" and exc["amount"] > 0
-                ]
-            )
-            # this sum needs to be at least 2
-            if total < 2:
-                message = f"Total exchange amount is {total}, not at least 2"
-                self.log_issue(
-                    ds, "Energy density too high", message, issue_type="major"
+                continue
+            products = [self._battery_product(exc) for exc in exchanges]
+            modular = any(
+                product.startswith(
+                    (
+                        "battery cell,",
+                        "battery pack component provision,",
+                        "battery monitoring and central control system,",
+                        "battery control and cooling system,",
+                        "battery auxiliaries supply and end-of-life treatment,",
+                    )
                 )
+                for product in products
+            )
+            capacity = [
+                exc
+                for exc, product in zip(exchanges, products)
+                if product.startswith("electricity storage capacity")
+                and exc.get("unit") == "kilowatt hour"
+            ]
+            if modular:
+                self._check_modular_capacity(ds, exchanges, energy_density)
+            elif capacity:
+                if len(capacity) != len(exchanges):
+                    self.log_issue(
+                        ds,
+                        "Invalid battery capacity market",
+                        "A capacity market must supply installed-capacity kWh; non-capacity inputs cannot be summed as shares.",
+                        issue_type="major",
+                    )
+                self._check_capacity_shares(ds, capacity)
+            else:
+                self._check_legacy_capacity(ds, exchanges)
 
     def run_battery_checks(self):
         self.check_battery_capacity()
@@ -2918,6 +3016,9 @@ class ElectricityValidation(BaseDatasetValidator):
                 (
                     dataset["name"].lower().startswith("market group for electricity")
                     or dataset["name"].lower().startswith("market for electricity")
+                )
+                and not dataset.get("reference product", "").startswith(
+                    "electricity storage capacity"
                 )
                 and dataset["location"] not in self.regions
                 and not any(
