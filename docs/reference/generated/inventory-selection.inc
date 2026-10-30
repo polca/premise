@@ -8,7 +8,7 @@
      - 3.8
      - All supported configurations
    * - ``lci-Carma-CCS.xlsx``
-     - 3.5
+     - 3.6
      - All supported configurations
    * - ``lci-ESU-oil-and-gas.xlsx``
      - 3.7
@@ -40,6 +40,9 @@
    * - ``lci-batteries-ASSB.xlsx``
      - 3.10
      - All supported configurations
+   * - ``lci-batteries-LFP-native-312.xlsx``
+     - 3.12
+     - 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential; 3.11 cutoff; 3.11 consequential; 3.12 cutoff; 3.12 consequential
    * - ``lci-batteries-LiO2.xlsx``
      - 3.9
      - All supported configurations
@@ -79,6 +82,9 @@
    * - ``lci-biogas.xlsx``
      - 3.6
      - All supported configurations
+   * - ``lci-biomethane-capture-MDEA-proxy-312.xlsx``
+     - 3.12
+     - 3.12 cutoff
    * - ``lci-buses.xlsx``
      - 3.7
      - All supported configurations
@@ -112,9 +118,15 @@
    * - ``lci-electric-heating.xlsx``
      - 3.10
      - All supported configurations
+   * - ``lci-epr-m5-native-312.xlsx``
+     - 3.12
+     - 3.12 cutoff
    * - ``lci-final-energy.xlsx``
      - 3.10
      - All supported configurations
+   * - ``lci-fkm-gasket-native-312.xlsx``
+     - 3.12
+     - 3.12 cutoff; 3.12 consequential
    * - ``lci-fuel_cell.xlsx``
      - 3.10
      - All supported configurations
@@ -169,6 +181,9 @@
    * - ``lci-hydrogen-wood-gasification.xlsx``
      - 3.7
      - All supported configurations
+   * - ``lci-iridium-economic-proxy.xlsx``
+     - 3.12
+     - All supported configurations
    * - ``lci-lithium.xlsx``
      - 3.8
      - All supported configurations
@@ -190,6 +205,12 @@
    * - ``lci-pass_cars.xlsx``
      - 3.12
      - All supported configurations
+   * - ``lci-pfsa-ew1100.xlsx``
+     - 3.9
+     - All supported configurations
+   * - ``lci-ptfe-gasket-native-312.xlsx``
+     - 3.12
+     - 3.12 cutoff; 3.12 consequential
    * - ``lci-rail-freight.xlsx``
      - 3.9
      - All supported configurations

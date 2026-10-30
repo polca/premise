@@ -100,6 +100,14 @@ from .sector_validation import validate_sector_contract
 from .steel import _update_steel
 from .transformation import _SCENARIO_GIS_CACHE_KEY, _SCENARIO_ROW_CACHE_KEY
 from .transport import _update_vehicles
+from .ptfe_gasket import use_native_ptfe_gasket
+from .pipeline_coating import use_native_pipeline_coating
+from .fkm_gasket import use_native_fkm_gasket
+from .transformer_core import (
+    TRANSFORMER_CORE_CACHE_REVISION,
+    native_transformer_core_enabled,
+    use_native_transformer_core,
+)
 from .validation_framework import (
     VALIDATION_RULESET_VERSION,
     InventoryGraphValidator,
@@ -144,6 +152,218 @@ from .renewables import _update_wind_turbines
 logger = logging.getLogger("module")
 
 
+def _select_nmc955_modern_references(filepaths, importers):
+    """Remove superseded records only after atomic source-role validation."""
+    source_keys = (
+        (
+            "battery cell production, Li-ion, NMC955",
+            "battery cell, Li-ion, NMC955",
+            "GLO",
+            "kilogram",
+        ),
+        (
+            "cathode, NMC955, for Li-ion battery",
+            "cathode, NMC955, for Li-ion battery",
+            "GLO",
+            "kilogram",
+        ),
+        ("NMC955 oxide", "NMC955 oxide", "GLO", "kilogram"),
+        ("NMC955 hydroxide", "NMC955 hydroxide", "GLO", "kilogram"),
+        (
+            "anode paste production, silicon-graphite, for lithium-ion battery, nmc955",
+            "anode paste, silicon-graphite, for Li-ion battery, NMC955",
+            "CN",
+            "kilogram",
+        ),
+        (
+            "battery pack component production and end-of-life treatment, lithium-ion, nmc955, without cells and controls",
+            "battery pack component provision, Li-ion, NMC955, without cells and controls",
+            "GLO",
+            "kilowatt hour",
+        ),
+    )
+    capacity_keys = (
+        (
+            "market for battery capacity, Li-ion, NMC955",
+            "electricity storage capacity",
+            "GLO",
+            "kilowatt hour",
+        ),
+        (
+            "market for battery capacity, Li-ion, NMC955, stationary",
+            "electricity storage capacity",
+            "GLO",
+            "kilowatt hour",
+        ),
+    )
+    fields = ("name", "reference product", "location", "unit")
+
+    def identity(record):
+        return tuple(record.get(field) for field in fields)
+
+    def one_importer(path):
+        matches = [
+            imp
+            for (candidate, _), imp in zip(filepaths, importers, strict=True)
+            if candidate == path
+        ]
+        if len(matches) != 1:
+            raise ValueError("NMC955 reference importer selection changed")
+        return matches[0]
+
+    def validate_records(importer, expected, complete=False):
+        if complete and len(importer.data) != len(expected):
+            raise ValueError("NMC955 companion activity count changed")
+        for target in expected:
+            matches = [record for record in importer.data if identity(record) == target]
+            if len(matches) != 1:
+                raise ValueError("NMC955 producer identity is missing or duplicated")
+            production = [
+                e
+                for e in matches[0].get("exchanges", ())
+                if e.get("type") == "production"
+            ]
+            if (
+                len(production) != 1
+                or identity(production[0]) != target
+                or production[0].get("amount") != 1
+            ):
+                raise ValueError("NMC955 producer reference output changed")
+
+    source = one_importer(FILEPATH_BATTERIES_NMC955_LTO)
+    capacity = one_importer(FILEPATH_BATTERY_CAPACITY)
+    modern = one_importer(FILEPATH_NMC955_MODERN_312)
+    fixed = one_importer(FILEPATH_NMC955_FIXED_REFERENCE_38)
+    rebased = one_importer(FILEPATH_NMC955_CAPACITY_REFERENCE_310)
+    validate_records(source, source_keys)
+    validate_records(capacity, capacity_keys)
+    modern_keys = source_keys[:5]
+    validate_records(modern, modern_keys, complete=True)
+    validate_records(fixed, (source_keys[-1],), complete=True)
+    validate_records(rebased, capacity_keys, complete=True)
+    # Commit both projections only after all affected importers pass. Unrelated
+    # source edits are accepted; review/application artifacts hold byte pins.
+    source_data = [
+        record for record in source.data if identity(record) not in source_keys
+    ]
+    capacity_data = [
+        record for record in capacity.data if identity(record) not in capacity_keys
+    ]
+    source.data = source_data
+    capacity.data = capacity_data
+
+
+def _select_nmc532_native_312(importer, database):
+    """Select the ALIGN-011 reference after narrow, atomic semantic checks."""
+    private = (
+        "battery cell production, lithium-ion, nmc532, prismatic",
+        "battery cell, Li-ion, NMC532, prismatic",
+        "GLO",
+        "kilogram",
+    )
+    reference = (
+        "battery cell production, Li-ion, NMC532",
+        "battery cell, Li-ion, NMC532",
+        "GLO",
+        "kilogram",
+    )
+    expected = {
+        "battery pack production, lithium-ion, nmc532, without electronics": (
+            "battery pack, Li-ion, NMC532, without electronics",
+            None,
+        ),
+        "market for battery cell, lithium-ion, nmc532, including end-of-life treatment": (
+            "battery cell, Li-ion, NMC532, including end-of-life treatment",
+            1,
+        ),
+    }
+    fields = ("name", "reference product", "location", "unit")
+    producers = [r for r in importer.data if r.get("name") == private[0]]
+    if len(producers) != 1 or tuple(producers[0].get(k) for k in fields) != private:
+        raise ValueError("NMC532 private producer identity changed")
+    production = [e for e in producers[0]["exchanges"] if e.get("type") == "production"]
+    if (
+        len(production) != 1
+        or tuple(production[0].get(k) for k in fields) != private
+        or production[0]["amount"] != 1
+    ):
+        raise ValueError("NMC532 private producer reference output changed")
+    purchases = [
+        (r, i, e)
+        for r in importer.data
+        for i, e in enumerate(r["exchanges"])
+        if e.get("type") == "technosphere" and e.get("name") == private[0]
+    ]
+    if len(purchases) != 2 or {r["name"] for r, _, _ in purchases} != set(expected):
+        raise ValueError("NMC532 requires exactly the two reviewed consumers")
+    for record, _, exchange in purchases:
+        product, amount = expected[record["name"]]
+        if (
+            (
+                record.get("reference product"),
+                record.get("location"),
+                record.get("unit"),
+            )
+            != (product, "GLO", "kilogram")
+            or tuple(exchange.get(k) for k in fields) != private
+            or not isinstance(exchange.get("amount"), (int, float))
+            or isinstance(exchange["amount"], bool)
+            or not 0 < exchange["amount"] < float("inf")
+            or (amount is not None and exchange["amount"] != amount)
+        ):
+            raise ValueError("NMC532 consumer identity or cell quantity changed")
+    lifecycle = next(r for r, _, _ in purchases if expected[r["name"]][1] == 1)
+    retirement = [
+        e
+        for e in lifecycle["exchanges"]
+        if e.get("name") == "market for used Li-ion battery"
+    ]
+    if len(retirement) != 1 or tuple(
+        retirement[0].get(k) for k in (*fields, "type", "amount")
+    ) != (
+        "market for used Li-ion battery",
+        "used Li-ion battery",
+        "GLO",
+        "kilogram",
+        "technosphere",
+        -1,
+    ):
+        raise ValueError("NMC532 lifecycle must retain one kg retirement exactly once")
+    interfaces = [r for r in database if tuple(r.get(k) for k in fields) == reference]
+    if len(interfaces) != 1:
+        raise ValueError("NMC532 requires exactly one loaded GLO reference")
+    scientific = ("type", *fields, "amount")
+    actual = [tuple(e.get(k) for k in scientific) for e in interfaces[0]["exchanges"]]
+    approved = [
+        ("production", *reference, 1),
+        ("technosphere", reference[0], reference[1], "CN", "kilogram", 1),
+    ]
+    if sorted(actual) != sorted(approved) or any(
+        e.get("uncertainty type", 0) > 1 for e in interfaces[0]["exchanges"]
+    ):
+        raise ValueError(
+            "NMC532 GLO reference conflicts with approved native interface"
+        )
+    # Validate everything before changing data; unrelated source edits are allowed.
+    replacements = {id(record): index for record, index, _ in purchases}
+    selected = []
+    for record in importer.data:
+        if record is producers[0]:
+            continue
+        if id(record) in replacements:
+            index = replacements[id(record)]
+            updated = dict(record)
+            updated["exchanges"] = list(record["exchanges"])
+            exchange = dict(record["exchanges"][index])
+            exchange.update(name=reference[0], product=reference[1])
+            exchange["reference product"] = reference[1]
+            exchange.pop("input", None)
+            updated["exchanges"][index] = exchange
+            record = updated
+        selected.append(record)
+    importer.data = selected
+
+
 def _normalize_inventory_before_certification(database, provenance_owner=None):
     """Apply idempotent historical normalizations before baseline capture."""
 
@@ -180,6 +400,7 @@ FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CO_FIRING_INVENTORIES = INVENTORY_DIR / "lci-co-firing-power-plants.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
+FILEPATH_BIOMETHANE_CAPTURE_MDEA_312 = INVENTORY_DIR / "lci-biomethane-capture-MDEA-proxy-312.xlsx"
 FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
@@ -187,6 +408,9 @@ FILEPATH_WASTE_CHP_INVENTORIES = INVENTORY_DIR / "lci-waste-CHP.xlsx"
 
 FILEPATH_CARBON_FIBER_INVENTORIES = INVENTORY_DIR / "lci-carbon-fiber.xlsx"
 FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distribution.xlsx"
+FILEPATH_PIPELINE_COATING_NATIVE_312 = (
+    INVENTORY_DIR / "lci-pipeline-coating-native-312.xlsx"
+)
 
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
 FILEPATH_HYDROGEN_SOLAR_INVENTORIES = (
@@ -269,9 +493,18 @@ FILEPATH_AMMONIA = INVENTORY_DIR / "lci-ammonia.xlsx"
 FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
 FILEPATH_GRAPHITE = INVENTORY_DIR / "lci-graphite.xlsx"
+FILEPATH_LFP_REFERENCE = INVENTORY_DIR / "lci-batteries-LFP-native-312.xlsx"
 FILEPATH_BATTERIES_NMC_NCA_LFP = INVENTORY_DIR / "lci-batteries-NMC111-811-NCA-LFP.xlsx"
 FILEPATH_BATTERIES_NMC622_532 = INVENTORY_DIR / "lci-batteries-NMC622-NMC532.xlsx"
+FILEPATH_NMC532_NATIVE_312 = INVENTORY_DIR / "lci-nmc532-native-312-reference.xlsx"
 FILEPATH_BATTERIES_NMC955_LTO = INVENTORY_DIR / "lci-batteries-NMC955-LTO.xlsx"
+FILEPATH_NMC955_MODERN_312 = INVENTORY_DIR / "lci-batteries-NMC955-modern-312.xlsx"
+FILEPATH_NMC955_FIXED_REFERENCE_38 = (
+    INVENTORY_DIR / "lci-batteries-NMC955-fixed-reference-38.xlsx"
+)
+FILEPATH_NMC955_CAPACITY_REFERENCE_310 = (
+    INVENTORY_DIR / "lci-batteries-NMC955-capacity-reference-310.xlsx"
+)
 FILEPATH_LIO2_BATTERY = INVENTORY_DIR / "lci-batteries-LiO2.xlsx"
 FILEPATH_LIS_BATTERY = INVENTORY_DIR / "lci-batteries-LiS.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
@@ -279,6 +512,7 @@ FILEPATH_PHOTOVOLTAICS_2026 = INVENTORY_DIR / "lci-PV-2026.xlsx"
 FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY = INVENTORY_DIR / "lci-PV-2026-electricity.xlsx"
 FILEPATH_PHOTOVOLTAICS_CIGS = INVENTORY_DIR / "lci-PV-CIGS.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
+FILEPATH_EPR_M5_NATIVE_312 = INVENTORY_DIR / "lci-epr-m5-native-312.xlsx"
 FILEPATH_NUCLEAR_EPR = INVENTORY_DIR / "lci-nuclear_EPR.xlsx"
 FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
 FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
@@ -301,6 +535,10 @@ FILEPATH_ELECTRIC_HEATING = INVENTORY_DIR / "lci-electric-heating.xlsx"
 FILEPATH_GERMANIUM = INVENTORY_DIR / "lci-germanium.xlsx"
 FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
 FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
+FILEPATH_IRIDIUM_ECONOMIC_PROXY = INVENTORY_DIR / "lci-iridium-economic-proxy.xlsx"
+FILEPATH_PTFE_GASKET_NATIVE_312 = INVENTORY_DIR / "lci-ptfe-gasket-native-312.xlsx"
+FILEPATH_PFSA_EW1100 = INVENTORY_DIR / "lci-pfsa-ew1100.xlsx"
+FILEPATH_FKM_GASKET_NATIVE_312 = INVENTORY_DIR / "lci-fkm-gasket-native-312.xlsx"
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
@@ -1002,12 +1240,67 @@ class NewDatabase:
                 FILEPATH_FINAL_ENERGY,
                 FILEPATH_BATTERY_CAPACITY,
                 FILEPATH_ASSB_BATTERIES,
+                FILEPATH_BATTERIES_NMC_NCA_LFP,
+                FILEPATH_LFP_REFERENCE,
+                FILEPATH_BATTERIES_NMC622_532,
+                FILEPATH_BATTERIES_NMC955_LTO,
+                FILEPATH_HOME_STORAGE_BATTERIES,
+                # Reviewed native-resistor purchases in the Li-S/BMS source
+                # must also replace previously cached custom component inputs.
+                FILEPATH_LIS_BATTERY,
+                # Propagate reviewed SIB magnesium-feed corrections to imports.
+                FILEPATH_SIB_BATTERY,
+                # Propagate reviewed organic-redox catalyst ledger corrections.
+                FILEPATH_ORGANIC_REDOX_BATTERY,
+                # Propagate reviewed Li-O2 final-assembly corrections to imports.
+                FILEPATH_LIO2_BATTERY,
                 FILEPATH_ELECTRIC_CAR_MECHANICAL,
                 FILEPATH_VANADIUM_REDOX_BATTERY,
                 FILEPATH_VRFB_REFERENCE,
+                # Rebuild imported sources when electrolysis material supplies
+                # or buyers change; compact checkpoints inherit this reference.
+                FILEPATH_PGM,
+                FILEPATH_IRIDIUM_ECONOMIC_PROXY,
+                FILEPATH_HYDROGEN_INVENTORIES,
+                FILEPATH_HYDROGEN_DISTRI_INVENTORIES,
+                FILEPATH_PTFE_GASKET_NATIVE_312,
+                FILEPATH_PFSA_EW1100,
+                FILEPATH_FKM_GASKET_NATIVE_312,
             ):
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
+            if (
+                getattr(self, "version", None) == "3.12"
+                and getattr(self, "system_model", None) == "cutoff"
+            ):
+                digest.update(FILEPATH_PIPELINE_COATING_NATIVE_312.name.encode())
+                digest.update(FILEPATH_PIPELINE_COATING_NATIVE_312.read_bytes())
+                digest.update(
+                    Path(inspect.getfile(use_native_pipeline_coating)).read_bytes()
+                )
+                digest.update(FILEPATH_BIOMETHANE_CAPTURE_MDEA_312.name.encode())
+                digest.update(FILEPATH_BIOMETHANE_CAPTURE_MDEA_312.read_bytes())
+                digest.update(FILEPATH_EPR_M5_NATIVE_312.name.encode())
+                digest.update(FILEPATH_EPR_M5_NATIVE_312.read_bytes())
+                digest.update(FILEPATH_NMC532_NATIVE_312.name.encode())
+                digest.update(FILEPATH_NMC532_NATIVE_312.read_bytes())
+                digest.update(inspect.getsource(_select_nmc532_native_312).encode())
+                for path in (
+                    FILEPATH_NMC955_MODERN_312,
+                    FILEPATH_NMC955_FIXED_REFERENCE_38,
+                    FILEPATH_NMC955_CAPACITY_REFERENCE_310,
+                ):
+                    digest.update(path.name.encode())
+                    digest.update(path.read_bytes())
+                digest.update(
+                    inspect.getsource(_select_nmc955_modern_references).encode()
+                )
+            if native_transformer_core_enabled(getattr(self, "version", None)):
+                # Imported 3.12 transformers now buy finished native core steel.
+                # Older targets and unmodified native source caches retain keys.
+                digest.update(
+                    f"transformer_core_{TRANSFORMER_CORE_CACHE_REVISION}".encode()
+                )
             inventory_label += f"_vehicles_{digest.hexdigest()[:16]}"
         source_label = ""
         if (
@@ -1207,7 +1500,7 @@ class NewDatabase:
         data, unlinked = [], []
         filepaths = [
             (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
-            (FILEPATH_CARMA_INVENTORIES, "3.5"),
+            (FILEPATH_CARMA_INVENTORIES, "3.6"),
             (FILEPATH_CO_FIRING_INVENTORIES, "3.5"),
             (FILEPATH_CHP_INVENTORIES, "3.5"),
             (FILEPATH_CC_INVENTORIES, "3.9"),
@@ -1224,6 +1517,9 @@ class NewDatabase:
             (FILEPATH_LIO2_BATTERY, "3.9"),
             (FILEPATH_VANADIUM, "3.9"),
             (FILEPATH_VRFB_REFERENCE, "3.10"),
+            # One source-profile-compatible membrane reference for the
+            # electrolysis and flow-battery buyers below.
+            (FILEPATH_PFSA_EW1100, "3.9"),
             (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
             (FILEPATH_ORGANIC_REDOX_BATTERY, "3.9"),
             (FILEPATH_SIB_BATTERY, "3.9"),
@@ -1234,6 +1530,9 @@ class NewDatabase:
             (FILEPATH_IND_ELECTRIC_BOILER, "3.10"),
             (FILEPATH_PHOTOVOLTAICS, "3.7"),
             (FILEPATH_PGM, "3.8"),
+            # Independent CLIC iridium reference. Keep its source profile
+            # separate from the unchanged legacy PGM recipes (3.8).
+            (FILEPATH_IRIDIUM_ECONOMIC_PROXY, "3.12"),
             (FILEPATH_HYDROGEN_INVENTORIES, "3.9"),
             (FILEPATH_HYDROGEN_SOLAR_INVENTORIES, "3.9"),
             (FILEPATH_HYDROGEN_PYROLYSIS_INVENTORIES, "3.9"),
@@ -1312,6 +1611,49 @@ class NewDatabase:
 
         selected_filepaths = []
         for filepath in filepaths:
+            if (
+                filepath[0] == FILEPATH_HYDROGEN_DISTRI_INVENTORIES
+                and self.version == "3.12"
+                and getattr(self, "system_model", None) == "cutoff"
+            ):
+                selected_filepaths.append((FILEPATH_PIPELINE_COATING_NATIVE_312, "3.12"))
+            if (
+                filepath[0] == FILEPATH_CC_INVENTORIES
+                and self.version == "3.12"
+                and getattr(self, "system_model", None) == "cutoff"
+            ):
+                selected_filepaths.append((FILEPATH_BIOMETHANE_CAPTURE_MDEA_312, "3.12"))
+            if (
+                filepath[0] == FILEPATH_NUCLEAR_EPR
+                and self.version == "3.12"
+                and getattr(self, "system_model", None) == "cutoff"
+            ):
+                selected_filepaths.append((FILEPATH_EPR_M5_NATIVE_312, "3.12"))
+            if (
+                filepath[0] == FILEPATH_BATTERIES_NMC955_LTO
+                and self.version == "3.12"
+                and getattr(self, "system_model", None) == "cutoff"
+            ):
+                selected_filepaths.append((FILEPATH_NMC532_NATIVE_312, "3.12"))
+                selected_filepaths.extend(
+                    [
+                        (FILEPATH_NMC955_MODERN_312, "3.12"),
+                        (FILEPATH_NMC955_FIXED_REFERENCE_38, "3.8"),
+                    ]
+                )
+            if filepath[0] == FILEPATH_BATTERIES_NMC_NCA_LFP and Version(
+                self.version
+            ) >= Version("3.9"):
+                selected_filepaths.append((FILEPATH_LFP_REFERENCE, "3.12"))
+                continue
+            if filepath[0] == FILEPATH_PFSA_EW1100 and Version(self.version) >= Version(
+                "3.12"
+            ):
+                selected_filepaths.append((FILEPATH_FKM_GASKET_NATIVE_312, "3.12"))
+            if filepath[0] == FILEPATH_HYDROGEN_INVENTORIES and Version(
+                self.version
+            ) >= Version("3.12"):
+                selected_filepaths.append((FILEPATH_PTFE_GASKET_NATIVE_312, "3.12"))
             if filepath[0] == FILEPATH_PHOTOVOLTAICS:
                 selected_filepaths.extend(
                     [
@@ -1335,16 +1677,44 @@ class NewDatabase:
             ] and self.version in ["3.11", "3.12"]:
                 continue
 
+            if (
+                filepath[0] == FILEPATH_BATTERY_CAPACITY
+                and self.version == "3.12"
+                and getattr(self, "system_model", None) == "cutoff"
+            ):
+                selected_filepaths.append(
+                    (FILEPATH_NMC955_CAPACITY_REFERENCE_310, "3.10")
+                )
             selected_filepaths.append(filepath)
 
         # Excel extraction is independent and read-only. All migrations,
         # linking, duplicate checks, and merges below remain sequential in the
         # original workbook order.
         preloaded_importers = _extract_default_inventory_importers(selected_filepaths)
+        if self.version == "3.12" and getattr(self, "system_model", None) == "cutoff":
+            _select_nmc955_modern_references(selected_filepaths, preloaded_importers)
 
         for filepath, preloaded_importer in zip(
             selected_filepaths, preloaded_importers
         ):
+            if (
+                filepath[0] == FILEPATH_BATTERIES_NMC955_LTO
+                and self.version == "3.12"
+                and getattr(self, "system_model", None) == "cutoff"
+            ):
+                _select_nmc532_native_312(preloaded_importer, self._database)
+            if filepath[0] == FILEPATH_HYDROGEN_DISTRI_INVENTORIES:
+                use_native_pipeline_coating(
+                    preloaded_importer, self.version, self.system_model, self._database
+                )
+            if filepath[0] == FILEPATH_HYDROGEN_INVENTORIES:
+                use_native_ptfe_gasket(preloaded_importer, self.version)
+            if filepath[0] == FILEPATH_VANADIUM_REDOX_BATTERY:
+                use_native_fkm_gasket(
+                    preloaded_importer,
+                    self.version,
+                    other_importers=preloaded_importers,
+                )
             inventory = DefaultInventory(
                 database=self._database,
                 version_in=filepath[1],
@@ -1353,6 +1723,11 @@ class NewDatabase:
                 system_model=self.system_model,
                 keep_uncertainty_data=self.keep_imports_uncertainty,
                 preloaded_importer=preloaded_importer,
+                post_migration=(
+                    use_native_transformer_core
+                    if filepath[0] == FILEPATH_HYDROGEN_INVENTORIES
+                    else None
+                ),
             )
             datasets = inventory.merge_inventory()
             if collect_data:

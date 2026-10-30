@@ -29,7 +29,7 @@ from wurst import searching as ws
 
 from .clean_datasets import remove_categories, remove_uncertainty
 from .data_collection import get_delimiter
-from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR
+from .filesystem_constants import DATA_DIR, DIR_CACHED_DB
 from .geomap import Geomap
 from .utils import rescale_exchange
 
@@ -1580,7 +1580,7 @@ class BaseInventoryImport:
             for exchange in dataset["exchanges"]:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
-                    if not "product" in exchange:
+                    if "product" not in exchange:
                         try:
                             exchange["product"] = self.correct_product_field(
                                 (
@@ -1896,6 +1896,7 @@ class DefaultInventory(BaseInventoryImport):
         system_model,
         keep_uncertainty_data,
         preloaded_importer=None,
+        post_migration=None,
     ):
         super().__init__(
             database,
@@ -1906,12 +1907,17 @@ class DefaultInventory(BaseInventoryImport):
             keep_uncertainty_data,
             preloaded_importer,
         )
+        # Default sources can explicitly select a reviewed target-specific
+        # recipe after migration, without changing their authored profile.
+        self.post_migration = post_migration
 
     def load_inventory(self) -> bw2io.ExcelImporter:
         return ExcelImporter(self.path)
 
     def prepare_inventory(self) -> None:
         migrate_import_db(self.import_db, self.version_in, self.version_out)
+        if self.post_migration is not None:
+            self.post_migration(self.import_db, self.version_out, self.database)
         self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         if self.system_model == "consequential":
