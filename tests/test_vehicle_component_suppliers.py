@@ -182,16 +182,31 @@ def test_canonical_recipe_quantities_and_uncertainty_are_preserved(
 ):
     _, manifest, module, blocks = shared_component_audit
     by_identity = {module.identity(block.metadata): block for block in blocks}
+    reference = json.loads(
+        (Path(__file__).parent / "data/vehicle-component-recipes.json").read_text()
+    )
+    expected = {
+        module.identity(recipe["identity"]): recipe for recipe in reference["recipes"]
+    }
     for canonical in manifest["canonical_recipes"]:
         block = by_identity[module.identity(canonical["identity"])]
         assert block.filename == canonical["file"]
-        assert module.recipe_hash(block, {}) == canonical["recipe_sha256"]
+        original = expected[module.identity(canonical["identity"])]
+        assert block.metadata_rows == original["metadata"]
+        assert [
+            {
+                key: value
+                for key, value in exchange.items()
+                if key not in module.IGNORED_EXCHANGE_FIELDS
+            }
+            for _, exchange in block.exchanges
+        ] == original["exchanges"]
+
     assert len(manifest["retired_components"]) == 28
     for retired in manifest["retired_components"]:
         metadata = retired["original_metadata"]
         assert metadata["source"]
         assert metadata["vehicle inventory provenance"]
-        assert retired["original_recipe_sha256"]
 
 
 def test_component_cleanup_is_idempotent(shared_component_audit):
@@ -204,8 +219,30 @@ def test_component_cleanup_is_idempotent(shared_component_audit):
     }
 
 
-def test_component_cleanup_preserves_cached_formulas(shared_component_audit):
+def test_component_cleanup_preserves_cached_formulas(shared_component_audit, tmp_path):
+    import shutil
+    from xml.etree import ElementTree as ET
+    from zipfile import ZipFile
+
+    from inventory_assertions import formula_caches
+
     _, manifest, module, _ = shared_component_audit
-    for filename, expected in manifest["preserved_formula_caches"].items():
-        assert module.formula_cache_signature(INVENTORY_DIR / filename) == expected
-    assert manifest["preserved_formula_caches"]["lci-final-energy.xlsx"]["count"] == 459
+
+    def caches(path):
+        with ZipFile(path) as archive:
+            return {
+                name: formula_caches(ET.fromstring(archive.read(name)))
+                for name in archive.namelist()
+                if name.startswith("xl/worksheets/") and name.endswith(".xml")
+            }
+
+    for filename in manifest["preserved_formula_caches"]:
+        path = tmp_path / filename
+        shutil.copyfile(INVENTORY_DIR / filename, path)
+        before = caches(path)
+        first = module.read_blocks(path)[0]
+        module.patch_workbook(
+            path, {first.sheet: {first.start: {2: "renamed component"}}}, {}
+        )
+        assert caches(path) == before
+        assert module.read_blocks(path)[0].metadata["name"] == "renamed component"
