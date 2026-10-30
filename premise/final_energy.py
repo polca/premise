@@ -8,6 +8,7 @@ from typing import List
 from .data_collection import IAMDataCollection
 from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, InventorySet
+from .battery_mass import convert_battery_mass_inputs
 
 
 def _update_final_energy(
@@ -30,6 +31,9 @@ def _update_final_energy(
         system_model=system_model,
     )
 
+    # A final-energy-only update still reconstructs equipment from the vehicle
+    # sources. Restore their declared capacity route if transport was skipped.
+    convert_battery_mass_inputs(final_energy.database)
     final_energy.regionalize_heating_datasets()
 
     # Reconstruct scoped transport wrappers from the already updated regional

@@ -85,3 +85,22 @@ scenario deployment:
 * ``train, fuel cell``
 
 Source metadata should be read in the selected workbook.
+
+Rail power-module wafer allocation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The generic rail-converter power module retains **0.02 kg silicon per kg
+module**. The native fabricated-wafer purchase uses **270 micrometres** as
+an allocation reference and **2330 kg/m3** silicon density:
+``0.02 / (2330 * 270e-6) = 0.03179144810046098 m2/kg module``.
+The previous 300 micrometre reference corresponds to
+0.028612303290414882 m2/kg and remains a diagnostic alternative.
+
+Neither thickness establishes measured rail-IGBT geometry or actual device
+technology. The module composition and the fabricated-IC-wafer supplier
+remain engineering proxies. Native fabrication and yields are counted once,
+without another raw-wafer or complete packaged-device purchase. All other
+module materials, the **1 kWh/kg** assembly allowance, parent module purchases,
+rail masses, counts, lifetimes and service denominators remain unchanged.
+Both source declarations remain **3.9**. The pinned reference is
+``scripts/data/rail-wafer-allocation-adoption-20261027.json``.

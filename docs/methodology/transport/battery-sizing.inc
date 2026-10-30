@@ -1,6 +1,43 @@
 Constant-range battery accounting
 ---------------------------------
 
+Static imported inventories and runtime capacity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The additional car and truck manufacturing inventories use one native NMC622
+complete-pack purchase in kilograms, with one matching used-battery retirement.
+This is the shared static inventory reference used by CLIC. It is a manufacturing
+proxy: its mass is not a measurement of NMC622 energy density or of the physical
+vehicle pack.
+
+At the start of transport regionalization, Premise converts explicitly marked
+mass purchases back to their declared battery-capacity suppliers. The
+``battery mass to capacity`` JSON metadata records the vehicle family, baseline
+mass purchase, baseline **lifetime** capacity purchase, exact capacity supplier
+and matching retirement amount. The conversion factor is baseline lifetime kWh
+divided by baseline proxy kg. It does not use scenario-year density or multiply
+by lifetime replacements again.
+
+The capacity supplier includes manufacture and end of life. The conversion
+therefore replaces the mass purchase and removes only its matching foreground
+retirement, retaining their original records as runtime provenance. Other
+manufacturing inputs, vehicle mass assumptions and battery-sizing contracts
+remain unchanged. Unmarked datasets, including native ecoinvent inventories,
+are not converted. Missing or ambiguous suppliers and inconsistent conversion
+metadata raise errors before any marked inventories are changed.
+
+This representation change is applied once, before the constant-range sizing
+below. Subsequent chemistry shares and cell-density learning remain battery
+scenario transformations, with fixed non-cell hardware owned by their capacity
+references. Raw imported inventories remain usable as mass-based static LCIs.
+The conversion metadata survives source and scenario caching. A final-energy-only
+update also activates these contracts before deriving equipment per MJ when the
+transport update has been skipped. Dedicated high-power FCEV capacity suppliers
+are preserved; they are not replaced by the generic MIX market.
+
+Regional sizing
+~~~~~~~~~~~~~~~
+
 Refreshed car and truck inventories carry a ``vehicle battery sizing`` metadata
 contract for BEV and plug-in-hybrid energy batteries. Premise uses the final
 traction-electricity purchase after scenario efficiency scaling, relative to

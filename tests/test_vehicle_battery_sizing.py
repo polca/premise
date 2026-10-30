@@ -5,6 +5,7 @@ from copy import deepcopy
 from types import SimpleNamespace
 
 import pytest
+from battery_mass_support import activate_static_vehicle_batteries
 
 from premise.inventory_store import compact_exchange_payload
 from premise.transport import Transport
@@ -474,6 +475,9 @@ def test_installed_metadata_survives_excel_import_and_matches_purchases(
     from premise.filesystem_constants import INVENTORY_DIR
 
     datasets = ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
+    activate_static_vehicle_batteries(
+        datasets, {"pass_cars": "car", "trucks": "truck"}[family]
+    )
     services = [
         d for d in datasets if d["name"].startswith("transport,") and SPEC_KEY in d
     ]

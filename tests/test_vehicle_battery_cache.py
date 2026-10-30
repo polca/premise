@@ -13,6 +13,8 @@ from premise.inventory_store import CompactInventoryStore, InventoryStore
 from premise.new_database import NewDatabase
 from premise.vehicle_battery import SPEC_KEY, STATE_KEY, resize_regional_batteries
 from premise.vehicle_energy_use import SOURCE_KEY, select_source, source_name
+from premise.battery_mass import SPEC_KEY as MASS_SPEC_KEY, convert_battery_mass_inputs
+from battery_mass_support import with_capacity_suppliers
 
 
 @pytest.fixture(scope="module")
@@ -20,6 +22,7 @@ def road_catalogue():
     data = []
     for stem in ("pass_cars", "trucks", "buses", "two_wheelers", "final-energy"):
         data.extend(ExcelImporter(INVENTORY_DIR / f"lci-{stem}.xlsx").data)
+    data = with_capacity_suppliers(data)
     for dataset in data:
         for exchange in dataset["exchanges"]:
             if "reference product" in exchange:
@@ -124,6 +127,7 @@ def test_final_energy_battery_allocation_survives_real_cache_and_runtime_update(
 @pytest.fixture(scope="module", params=["pass_cars", "trucks", "buses"])
 def catalogue(request):
     data = ExcelImporter(INVENTORY_DIR / f"lci-{request.param}.xlsx").data
+    data = with_capacity_suppliers(data)
     for dataset in data:
         for exchange in dataset["exchanges"]:
             if "reference product" in exchange:
@@ -170,6 +174,10 @@ def test_source_cache_preserves_range_sizing_and_MJ_allocation(
     for original in originals:
         if SPEC_KEY in original:
             assert by_name[original["name"]].get(SPEC_KEY) == original[SPEC_KEY]
+        if MASS_SPEC_KEY in original:
+            assert (
+                by_name[original["name"]].get(MASS_SPEC_KEY) == original[MASS_SPEC_KEY]
+            )
 
     name = {
         "pass_cars": "transport, passenger car, battery electric, Medium",
@@ -197,6 +205,7 @@ def test_source_cache_preserves_range_sizing_and_MJ_allocation(
         vehicle_map={"BEV": [service]},
         add_to_index=lambda _: None,
     )
+    convert_battery_mass_inputs(data, spec["family"])
     resize_regional_batteries(transform)
     state = service[STATE_KEY]
     assert state["capacity kWh"] == pytest.approx(

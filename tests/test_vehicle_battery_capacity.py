@@ -8,6 +8,7 @@ import pytest
 from bw2io import ExcelImporter
 
 from premise.filesystem_constants import INVENTORY_DIR
+from battery_mass_support import activate_static_vehicle_batteries
 
 PARAMETERS_DIR = Path(__file__).parent / "data" / "vehicle_inventory_parameters"
 
@@ -16,6 +17,9 @@ PARAMETERS_DIR = Path(__file__).parent / "data" / "vehicle_inventory_parameters"
 def catalogue(request):
     family, expected_phevs = request.param
     datasets = ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
+    activate_static_vehicle_batteries(
+        datasets, {"pass_cars": "car", "trucks": "truck"}[family]
+    )
     with (PARAMETERS_DIR / f"lci-{family}.parameters.csv").open() as stream:
         parameters = list(csv.DictReader(stream))
     phevs = [p for p in parameters if p["powertrain"].startswith("PHEV-")]
@@ -138,6 +142,7 @@ def test_phev_replacements_follow_the_family_lifetime_policy(catalogue):
 @pytest.fixture(scope="module")
 def truck_hevs():
     datasets = ExcelImporter(str(INVENTORY_DIR / "lci-trucks.xlsx")).data
+    activate_static_vehicle_batteries(datasets, "truck")
     with (PARAMETERS_DIR / "lci-trucks.parameters.csv").open() as stream:
         parameters = [
             row for row in csv.DictReader(stream) if row["powertrain"] == "HEV-d"

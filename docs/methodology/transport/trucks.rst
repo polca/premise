@@ -350,3 +350,52 @@ with the physical manufacturing-mass mismatch recorded explicitly. Corrected
 .. include:: lpg-fallback.inc
 
 .. include:: vehicle-provenance.inc
+
+150 kW charger-cabinet finishing boundary
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The qualified 150 kW cabinet reference purchases **593.6378316624472 kg**
+of generic steel-working service per cabinet, reduced from
+**742.6821116624471 kg**. The **149.04428 kg** ferritic shell is excluded
+under the same melt/finish ownership convention used for the 200 kW shell.
+This assigns service ownership without establishing duplicate physical steel
+stock or complete actual finishing coverage.
+
+All material purchases, native embedded stock and uncertainty, remaining
+ordinary-steel service, other services, assembly, parent purchases and
+retirement remain unchanged. No native inventory is modified or recovery
+credit added. Original technosphere and biosphere declarations both remain
+**3.12**. The pinned reference is
+``scripts/data/charger-finishing-adoption-20261027.json``.
+
+Ferritic-steel nominal argon outlet
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The grade 430 charger-enclosure steel reference releases
+**0.02138737625378074 kg argon to generic air per kg finished steel**, equal
+to its unchanged liquid-argon purchase. This is an explicit complete-venting
+assumption; actual factory emissions and gas retention remain unmeasured.
+It reuses the existing ecoinvent 3.12 biosphere flow rather than defining a
+new flow.
+
+Existing CO2 and nitrogen outlets, material and energy purchases, uncertainty
+and downstream steel quantities remain unchanged. The correction establishes
+neither complete emissions coverage nor an LCIA improvement and adds no
+heat-recovery credit. Both original source declarations remain **3.12**.
+The pinned reference is ``scripts/data/ferritic-argon-adoption-20261027.json``.
+
+Charging-display coating geometry
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 7-inch charging display uses a qualified **0.013832 m2** active area and
+**200 nm** indium tin oxide film. This purchases
+**2.7663999999999995e-9 m3** of native sputtering service per display. At
+**7140 kg/m3**, retained film mass is **1.9752095999999996e-5 kg**, subtracted
+once from the glass allowance to leave **0.26197404852393796 kg glass**.
+
+The geometry remains a cross-revision engineering proxy. Native sputtering
+target losses are counted once, with no separate indium purchase or foreground
+target-loss multiplier. The documented **1.65 kg** hardware reference, other
+component purchases, assembly, uncertainty and downstream doses remain
+unchanged. Both original source declarations remain **3.12**. The pinned
+reference is ``scripts/data/display-coating-adoption-20261027.json``.

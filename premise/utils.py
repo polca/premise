@@ -37,9 +37,9 @@ from .geomap import Geomap
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 CACHE_MANIFEST_SUFFIX = ".manifest.json"
-# Version 6 removed vehicle sizing specifications before transformations and
-# propagated that loss into compact source checkpoints. Rebuild both caches.
-CACHE_SCHEMA_VERSION = 7
+# Preserve static battery conversion contracts and activation provenance through
+# source caches and their dependent compact checkpoints.
+CACHE_SCHEMA_VERSION = 8
 FUEL_CO2_TRANSFER_KEY = "premise fuel CO2 reclassification"
 
 
@@ -1152,6 +1152,8 @@ _CACHE_TRIMMED_DATASET_FIELDS = {
     "pv capacity kwp",
     "pv technology",
     "vehicle battery sizing",
+    "battery mass to capacity",
+    "premise battery mass to capacity",
     "energy use source",
     "name",
     "reference product",
@@ -1166,6 +1168,8 @@ _CACHE_METADATA_EXCLUDED_FIELDS = {
     "pv capacity kwp",
     "pv technology",
     "vehicle battery sizing",
+    "battery mass to capacity",
+    "premise battery mass to capacity",
     "energy use source",
     "name",
     "reference product",

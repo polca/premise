@@ -5,26 +5,25 @@ IAM data, and integrate them into the database.
 """
 
 import math
-import uuid
-from typing import Any, Dict, List, Union
+from typing import Dict, List
 
 import numpy as np
-import xarray as xr
 import yaml
 from wurst import searching as ws
 
 from .activity_maps import InventorySet
-from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR
+from .filesystem_constants import DATA_DIR
 from .logger import create_logger
 from .provenance import record_change_event
 from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, IAMDataCollection
-from .utils import eidb_label, rescale_exchanges, rescale_exchange
+from .utils import rescale_exchanges, rescale_exchange
 from .car_energy import apply_floor, car_class, fuel_balance
 from .fuels.carbon import update_vehicle_fuel_co2
 from .vehicle_emissions import fuel_proportional_emission
 from .vehicle_energy import vehicle_energy_exchange
 from .vehicle_battery import resize_regional_batteries, SPEC_KEY as BATTERY_SIZING_KEY
+from .battery_mass import convert_battery_mass_inputs
 from .vehicle_hydrogen import (
     compression_electricity_product,
     finish_hydrogen_compression,
@@ -231,12 +230,19 @@ class Transport(BaseTransformation):
         Regionalize transport datasets, which are currently only available in RER, CA and RoW.
         """
 
+        # Shared source inventories use a static pack-mass proxy. Restore their
+        # declared capacity purchase before linking and constant-range sizing.
+        self.convert_battery_mass_inputs()
         # create and regionalize transport datasets
         self.process_and_add_activities(
             mapping=self.vehicle_map,
             efficiency_adjustment_fn=self.adjust_transport_efficiency,
         )
         resize_regional_batteries(self)
+
+    def convert_battery_mass_inputs(self):
+        """Activate explicit static battery-mass contracts for this vehicle family."""
+        return convert_battery_mass_inputs(self.database, self.vehicle_type)
 
     def create_vehicle_markets(self) -> list:
         """
