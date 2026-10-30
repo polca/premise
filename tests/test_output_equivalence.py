@@ -64,16 +64,22 @@ def test_canonical_dataset_detects_numerical_and_metadata_changes():
 
 
 def test_semantic_snapshot_is_independent_of_dataset_codes(tmp_path):
-    left = equivalence.write_semantic_snapshot(
-        [dataset(code="left")], tmp_path / "left", write_details=False
-    )
-    right = equivalence.write_semantic_snapshot(
-        [dataset(code="right", exchange_order=True)],
-        tmp_path / "right",
-        write_details=False,
-    )
+    import gzip
+    import json
 
-    assert left["semantic_sha256"] == right["semantic_sha256"]
+    for name, record in (
+        ("left", dataset(code="left")),
+        ("right", dataset(code="right", exchange_order=True)),
+    ):
+        equivalence.write_semantic_snapshot(
+            [record], tmp_path / name, write_details=True
+        )
+
+    def contents(name):
+        with gzip.open(tmp_path / f"{name}.jsonl.gz", "rt") as file:
+            return [json.loads(line)["dataset"] for line in file]
+
+    assert contents("left") == contents("right")
 
 
 def test_equivalence_build_requires_a_fixed_python_hash_seed(monkeypatch):

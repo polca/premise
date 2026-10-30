@@ -1,17 +1,16 @@
 """VRFB concentration, redox charge, lifetime and signed-disposal contracts."""
 
-from copy import deepcopy
-import hashlib
-from pathlib import Path
 import runpy
 import shutil
+from copy import deepcopy
+from pathlib import Path
 from xml.etree import ElementTree as ET
 from zipfile import ZipFile
 
-from bw2io import ExcelImporter
 import numpy as np
-from openpyxl import load_workbook
 import pytest
+from bw2io import ExcelImporter
+from openpyxl import load_workbook
 
 from premise.battery import Battery, load_cell_energy_density
 from premise.filesystem_constants import INVENTORY_DIR
@@ -212,11 +211,11 @@ def formulas(path):
 def test_authoring_is_idempotent_and_retains_formula_caches(tmp_path, filename, patch):
     path = tmp_path / filename
     shutil.copyfile(INVENTORY_DIR / filename, path)
-    before = hashlib.sha256(path.read_bytes()).hexdigest()
+    before = path.read_bytes()
     formula_before = formulas(path)
     assert AUTHOR[patch](path) is False
     assert formulas(path) == formula_before
-    assert hashlib.sha256(path.read_bytes()).hexdigest() == before
+    assert path.read_bytes() == before
 
 
 @pytest.mark.parametrize(

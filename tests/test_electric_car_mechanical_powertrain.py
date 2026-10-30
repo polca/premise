@@ -1,18 +1,17 @@
 """Component and per-MJ checks independent of whole-ICE proxy substitution."""
 
-from copy import deepcopy
-import hashlib
 import json
-from pathlib import Path
 import runpy
 import shutil
+from copy import deepcopy
+from pathlib import Path
 
-from bw2io import ExcelImporter
 import numpy as np
 import pytest
+from bw2io import ExcelImporter
 
-from premise.filesystem_constants import INVENTORY_DIR
 from premise import vehicle_energy_use as energy
+from premise.filesystem_constants import INVENTORY_DIR
 
 OLD = "market for internal combustion engine, passenger car"
 PRODUCT = "mechanical powertrain, electric passenger car"
@@ -357,6 +356,6 @@ def test_workbook_updater_is_idempotent_without_rewriting_inputs(tmp_path):
     ]:
         path = tmp_path / filename
         shutil.copyfile(INVENTORY_DIR / filename, path)
-        before = hashlib.sha256(path.read_bytes()).hexdigest()
+        before = path.read_bytes()
         assert updater[function](path) == 0
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == before
+        assert path.read_bytes() == before
