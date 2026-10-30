@@ -376,7 +376,7 @@ def test_load_carma():
     db, version = get_db()
     carma = DefaultInventory(
         db,
-        version_in="3.5",
+        version_in="3.6",
         version_out="3.8",
         path=FILEPATH_CARMA_INVENTORIES,
         system_model="cutoff",
