@@ -1,0 +1,43 @@
+{
+  "lci-batteries-ASSB.xlsx": {
+    "predecessor_fixture": "reviewed-source-predecessors-20261028/lci-batteries-ASSB.xlsx",
+    "review": "ALIGN-087: three approved European HDPE supplier identities; preserve the original 20261027 scientific oracle.",
+    "predecessor_evidence": "CLIC alignment-review-20261028-87-assb-European-HDPE-review/source-workbook-before.xlsx",
+    "latest_review": "ALIGN-116: propagate previously approved H04 passive material proportions to three fixed component helpers only; all cells, controls, lifetimes, retirement, electricity, uncertainty and original source3.10 preserved. Retain independent original scientific oracle and predecessor fixture."
+  },
+  "lci-batteries-NMC955-LTO.xlsx": {
+    "predecessor_fixture": "reviewed-source-predecessors-20261028/lci-batteries-NMC955-LTO.xlsx",
+    "review": "ALIGN-088: reviewed LFP hardware cell-market alias at A753 only; preserve the original 20261027 scientific oracle.",
+    "predecessor_evidence": "Captured current source before ALIGN-088; independently retained in clic-align88-applied-20261028/before/premise/data/additional_inventories/lci-batteries-NMC955-LTO.xlsx",
+    "latest_review": "ALIGN-112/113/114: approved NMC111 dry-cathode, NMC811 silicon-graphite and NCA source-specific design integrations; current recipes validated separately. Retain independent original scientific oracle and predecessor fixture."
+  },
+  "lci-batteries-LiS.xlsx": {
+    "predecessor_fixture": "reviewed-source-predecessors-20261028/lci-batteries-LiS.xlsx",
+    "review": "ALIGN-090: explicit cooling product metadata only at I1129/I1133; preserve all prior scientific/XML oracles.",
+    "predecessor_evidence": "Original LiS source independently captured before ALIGN-090, matching LiS-before.xlsx.",
+    "added_product_fields": [
+      {
+        "activity": "battery control and cooling system production, 16 modules",
+        "exchange_index": 3,
+        "value": "cooling system"
+      }
+    ],
+    "added_xml_cells": {
+      "I1129": "product",
+      "I1133": "cooling system"
+    }
+  },
+  "lci-batteries-LiO2.xlsx": {
+    "predecessor_fixture": "reviewed-source-predecessors-20261028/lci-batteries-LiO2.xlsx",
+    "review": "ALIGN-091: approved 29.07 kg RER cooler and 0.41 MJ final assembly in the auxiliary capacity route; unchanged paired source 3.9. Preserve prior scientific/XML oracles in a guarded predecessor view.",
+    "predecessor_evidence": "Captured original source before ALIGN-091; identical to approved candidate before.xlsx.",
+    "intermediate_views": [
+      {
+        "fixture": "reviewed-source-predecessors-20261028/lci-batteries-LiO2-ALIGN091.xlsx",
+        "review": "Approved ALIGN-091 intermediate snapshot; independently captured before ALIGN-092 freight preservation.",
+        "stage": "auxiliary-cooling-and-assembly"
+      }
+    ],
+    "latest_review": "Approved cell/fixed finished-pack freight baseline preservation: four freight purchases appended to each existing helper, explicit product metadata; keep approved091 intermediate and original pre091 scientific/XML views independently pinned."
+  }
+}
