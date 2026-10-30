@@ -20,6 +20,66 @@ under :doc:`transport/index`.
    /methodology/battery-mobile
    /methodology/battery-stationary
 
+.. _lfp-curated-reference:
+
+Curated LFP manufacturing reference (ALIGN088)
+----------------------------------------------
+
+The complete-pack activity ``market for battery, Li-ion, LFP, curated reference``
+follows the approved **CLIC dataset 1235** layout on a **203.4928 kg** pack basis:
+196.85 kg of hardware including 147.58 kg of cells, one 4.4928 kg central control
+unit, sixteen 0.07 kg monitoring boards (1.12 kg), and 1.03 kg of auxiliary
+controls. Exchanges are scaled to
+one kg of complete pack. This is a static engineering manufacturing reference;
+retirement and end-of-life credits belong to separate lifecycle inventories.
+
+The cell supply follows the target ecoinvent version:
+
+* For **3.8**, ``lci-batteries-NMC111-811-NCA-LFP.xlsx`` retains its authored
+  source version **3.8** and the legacy GLO cell-manufacturing recipe. Its
+  original ``market for battery cell, Li-ion, LFP`` and five freight inputs
+  remain available to existing buyers. The additional
+  ``market for battery cell, Li-ion, LFP, curated supply`` buys exactly one kg
+  of that original market; this alias adds no manufacture or freight.
+* From **3.9** onward, ``lci-batteries-LFP-native-312.xlsx`` is imported with
+  authored source version **3.12** and adapted to the target through the
+  ordinary inventory migration route for technosphere and biosphere exchanges.
+  Its curated cell market retains five freight inputs and buys a GLO wrapper
+  that purchases one kg of native CN LFP cells. The native CN supplier is
+  available from 3.9; the legacy recipe supplies the 3.8 route.
+
+Both routes use the same reviewed pack layout. The custom root and curated
+cell-market names distinguish these added foreground activities from native
+ecoinvent inventories, whose names remain unchanged. The complete pack retains
+the reference product ``battery, Li-ion, LFP, rechargeable, prismatic``, GLO
+location and kilogram unit. The authored source profile remains attached to
+each workbook when its exchanges are migrated to another target version.
+
+Li-O2 capacity-route auxiliaries
+--------------------------------
+
+The separated Li-O2 capacity route uses the same qualified RER cooling
+reference as standalone battery manufacture: 29.07 kg per physical reference
+system of 63.5 gross kWh. The fixed auxiliary unit retains the 55 kg oxygen
+tank and 4 kg central-control allowance, with its existing 88.07 kg retirement
+quantity. The cooler remains an engineering proxy, rather than a measured
+Li-O2 thermal design.
+
+The auxiliary unit also owns the existing 0.41 MJ final-assembly allowance,
+purchased as 0.41/3.6 kWh of US medium-voltage electricity. This counts assembly
+once when the capacity route bypasses full-battery manufacture. The standalone
+route keeps its own assembly input. Source technosphere and biosphere versions
+both remain 3.9; ordinary inventory migration adapts the exchanges to the target.
+
+The separated route retains the four finished-system delivery legs from the
+full-battery market. The cell provider owns delivery per kg of cells; the
+fixed component provider owns delivery for all 151.25 kg of noncell equipment
+per 63.5 gross kWh, including the 88.07 kg auxiliary system. The auxiliary
+provider has no second delivery charge. This reproduces the original
+333.85 kg system at baseline while existing cell-density changes affect
+only the cell share of delivery. Component-manufacturing transport remains
+in its original suppliers.
+
 NMC955 dry-anode boundary correction
 ------------------------------------
 

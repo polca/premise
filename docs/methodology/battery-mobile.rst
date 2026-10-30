@@ -345,7 +345,8 @@ Battery imports depend on the source ecoinvent version. The NMC111/811/NCA/LFP
 supplement is skipped for 3.9 and later because those inventories are already
 represented in the background. The NMC622/NMC532 supplement is skipped for
 3.11 and 3.12. Other battery supplements are selected separately by the
-constructor's import registry.
+constructor's import registry, including the
+:ref:`curated LFP manufacturing reference <lfp-curated-reference>` from 3.9.
 NMC-111, NMC-622 NMC-811 and NCA Lithium-ion battery inventories are originally
 from `Dai <https://www.mdpi.com/2313-0105/5/2/48>`__ et al. 2019. They have been adapted to ecoinvent by `Crenna <https://doi.org/10.1016/j.resconrec.2021.105619>`__ et al, 2021.
 LFP and LTO Lithium-ion battery inventories are from  `Schmidt <https://doi.org/10.1021/acs.est.8b05313>`__ et al. 2019.
@@ -364,7 +365,7 @@ They introduce the following datasets:
   market for battery, Li-ion, NMC622, rechargeable, prismatic     GLO         Dai et al. 2019, Crenna et al. 2021
   market for battery, Li-ion, NMC811, rechargeable, prismatic     GLO         Dai et al. 2019, Crenna et al. 2021
   market for battery, Li-ion, NCA, rechargeable, prismatic        GLO         Dai et al. 2019, Crenna et al. 2021
-  market for battery, Li-ion, LFP, rechargeable, prismatic        GLO         Schmidt et al. 2019
+  market for battery, Li-ion, LFP, curated reference              GLO         Schmidt et al. 2019; curated layout
   market for battery cell, Li-ion, LTO                            GLO         Schmidt et al. 2019
   market for battery, Li-sulfur, Li-S                             GLO         Wickerts et al. (2023)
   market for battery, Li-oxygen, Li-O2                            GLO         Wang et al. (2020)
@@ -383,5 +384,7 @@ Li-S inventories can be found here: `LCI_batteries3 <https://github.com/polca/pr
 Li-O2 inventories can be found here: `LCI_batteries4 <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-LiO2.xlsx>`__.
 And SIB inventories can be found here: `LCI_batteries5 <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-SIB.xlsx>`__.
 
-When using ecoinvent 3.9 and above, the NMC-111, NMC-811, LFP and NCA battery inventories
-are not imported (as are already present the ecoinvent database).
+From ecoinvent 3.9 onward, the legacy NMC111/811/NCA/LFP workbook is skipped;
+the curated LFP reference is imported separately with authored source version
+3.12 through ordinary inventory migration. Native battery inventories retain
+their original identities.
