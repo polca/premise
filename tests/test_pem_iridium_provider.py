@@ -14,6 +14,7 @@ from premise.filesystem_constants import INVENTORY_DIR
 from premise.metals import Metals
 from premise.metals_rules import (
     MetalsConfigError,
+    ProviderSelector,
     load_material_rules,
     load_technology_conversions,
 )
@@ -22,6 +23,7 @@ from premise.metal_input_comparison import configured_metal_products
 
 STACK = "electrolyzer production, 1MWe, PEM, Stack"
 REFINERY = "platinum group metal, extraction and refinery operations"
+PROXY = "iridium production, economic allocation, proxy"
 
 
 @pytest.fixture(scope="module")
@@ -33,7 +35,8 @@ def source():
     )
     providers = [
         d
-        for d in ExcelImporter(INVENTORY_DIR / "lci-PGM.xlsx").data
+        for filename in ("lci-PGM.xlsx", "lci-iridium-economic-proxy.xlsx")
+        for d in ExcelImporter(INVENTORY_DIR / filename).data
         if d["reference product"] == "iridium"
     ]
     for d in [stack, *providers]:
@@ -87,6 +90,45 @@ def iridium(ds):
     ]
 
 
+@pytest.fixture(params=[PROXY, REFINERY], ids=["proxy", "explicit-legacy-rule"])
+def boundary(source, request):
+    return existing_boundary(source, request.param)
+
+
+def existing_boundary(source, provider_name):
+    stack, providers = deepcopy(source)
+    selected_rule = rule()
+    if provider_name == REFINERY:
+        # Exercise the historical matcher contract without admitting a second
+        # identity in production or copying the licensed refinery inventory.
+        (exc,) = iridium(stack)
+        exc["name"] = REFINERY
+        providers = [p for p in providers if p["location"] != "ZA"]
+        providers.append(
+            {
+                "name": REFINERY,
+                "reference product": "iridium",
+                "location": "ZA",
+                "unit": "kilogram",
+                "exchanges": [
+                    {
+                        "name": REFINERY,
+                        "type": "production",
+                        "product": "iridium",
+                        "location": "ZA",
+                        "unit": "kilogram",
+                        "amount": 1,
+                    }
+                ],
+            }
+        )
+        selected_rule = replace(
+            selected_rule,
+            existing_provider_fallback=ProviderSelector(REFINERY, "iridium"),
+        )
+    return stack, providers, selected_rule, provider_name
+
+
 @pytest.mark.parametrize(
     "version", ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
 )
@@ -100,19 +142,19 @@ def iridium(ds):
         (2050, 0.4 / (2 * 1.9)),
     ],
 )
-def test_real_stack_uses_exact_existing_refinery_and_kg_per_MW(
-    source, version, year, expected
+def test_real_stack_uses_exact_existing_provider_and_kg_per_MW(
+    boundary, version, year, expected
 ):
-    original, providers = source
+    original, providers, selected_rule, provider_name = boundary
     ds = deepcopy(original)
     before = deepcopy(providers)
-    m = model(providers, year, version)
+    m = model(providers, year, version, material_rule=selected_rule)
     m.update_metal_use(ds, "PEMEL")
     (old,), (new,) = iridium(original), iridium(ds)
     assert old["amount"] == 0.8
     assert new["amount"] == pytest.approx(expected)
     assert (new["name"], new["product"], new["location"], new["unit"]) == (
-        REFINERY,
+        provider_name,
         "iridium",
         "ZA",
         "kilogram",
@@ -127,13 +169,13 @@ def test_real_stack_uses_exact_existing_refinery_and_kg_per_MW(
     (decision,) = m.material_decisions
     assert decision["status"] == "updated"
     assert decision["requested provider name"] == "market for iridium"
-    assert decision["provider name"] == REFINERY
+    assert decision["provider name"] == provider_name
     assert decision["provider location"] == "ZA"
     assert decision["provider selection"] == "existing input fallback"
     assert decision["provider fallback rank"] is None
     assert decision["technology conversion factor"] == 1
     assert m.material_update_diagnostics == []
-    assert (REFINERY, "iridium") in configured_metal_products()
+    assert (PROXY, "iridium") in configured_metal_products()
     m.update_metal_use(ds, "PEMEL")
     assert iridium(ds) == [new]
 
@@ -189,8 +231,8 @@ def test_present_configured_market_is_preferred(source):
         "two outputs",
     ],
 )
-def test_unrecognized_existing_boundary_is_preserved_and_diagnosed(source, change):
-    ds, providers = deepcopy(source)
+def test_unrecognized_existing_boundary_is_preserved_and_diagnosed(boundary, change):
+    ds, providers, selected_rule, _ = boundary
     (exc,) = iridium(ds)
     za = next(p for p in providers if p["location"] == "ZA")
     if change == "no input":
@@ -225,7 +267,7 @@ def test_unrecognized_existing_boundary_is_preserved_and_diagnosed(source, chang
             output["product"] = "platinum"
         elif change == "two outputs":
             za["exchanges"].append(deepcopy(output))
-    m = model(providers)
+    m = model(providers, material_rule=selected_rule)
     if change == "inactive provider":
         m.is_in_index = lambda p: False
     before = deepcopy(ds)
@@ -309,6 +351,35 @@ def test_fallback_is_opted_in_only_for_pem_iridium():
     assert [
         r.id for r in load_material_rules().rules if r.existing_provider_fallback
     ] == ["pemel-iridium-iridium"]
+    assert rule().existing_provider_fallback == ProviderSelector(PROXY, "iridium")
+
+
+def test_production_rule_does_not_admit_historical_refinery(source):
+    ds, providers, _, _ = existing_boundary(source, REFINERY)
+    before = deepcopy(ds)
+    m = model(providers)
+    m.update_metal_use(ds, "PEMEL")
+    assert ds == before
+    assert (
+        m.material_decisions[0]["reason code"]
+        == "metals.material_rule.provider_missing"
+    )
+
+
+def test_real_stack_and_provider_have_exact_proxy_identity(source):
+    stack, providers = source
+    (exc,) = iridium(stack)
+    assert (exc["name"], exc["product"], exc["location"], exc["unit"]) == (
+        PROXY,
+        "iridium",
+        "ZA",
+        "kilogram",
+    )
+    assert exc["amount"] == 0.8
+    assert {(p["name"], p["location"]) for p in providers} == {
+        (PROXY, "ZA"),
+        (REFINERY, "RU"),
+    }
 
 
 def test_iridium_back_calculates_through_real_hydrogen_lifetime_allocation(source):

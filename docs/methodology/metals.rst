@@ -156,10 +156,12 @@ prevented application of the separate, supported material-intensity series:
 the PEM stack kept its original 0.8 kg iridium input at every year.
 
 The rule now explicitly declares ``existing_provider_fallback`` for
-``platinum group metal, extraction and refinery operations`` producing
-``iridium``. This supplier comes from ``lci-PGM.xlsx``; it is not assumed to
-exist as a native ecoinvent iridium market. The existing stack uses its
-South African activity. When the requested market is absent, retain that
+``iridium production, economic allocation, proxy`` producing ``iridium``.
+This independently constructed South African reference comes from
+``lci-iridium-economic-proxy.xlsx`` and is shared with CLIC. It replaces the
+legacy South African iridium recipe obtained by rescaling ecoinvent's platinum
+inventory. It is not a native ecoinvent iridium market. When the requested
+market is absent, retain that
 same supplier and geography instead of constructing a new mix. A valid
 configured market remains preferred when available.
 
@@ -180,6 +182,26 @@ recipe's stack demand already includes replacements; changing kg/stack does
 not add another lifetime factor. Provenance records the requested market,
 actual refinery, retained location, selection mode and converted target.
 Direct-metal comparisons include the declared fallback provider.
+
+The static PEM stack still purchases **0.8 kg** iridium. The new supplier uses
+the approved Argonne-derived, economic-allocation reference, including the
+commercial-dose flotation proxies and purchased-water adjustment. It remains
+a partial engineering inventory: final-refinery reagent make-up, remaining
+direct emissions, resource extraction, complete water returns and waste
+treatment are unresolved. Missing exchanges must not be interpreted as zero
+burdens. Changes in impacts relative to the legacy recipe are a model
+substitution, not a measured improvement in mining performance.
+
+The supplier's source technosphere and biosphere versions are both 3.12. Its
+separate import declaration preserves the remaining PGM workbook's 3.8 source
+version and the electrolysis workbook's 3.9 source version. Premise's existing
+migration machinery translates each source to the requested output version;
+the foreground workbook omits machine-specific native links. This does not
+claim that older output versions reproduce identical background burdens.
+The foreground compilation is CC BY 4.0; referenced background data retain
+their separate terms. The compiler, scientific sources and incomplete-boundary
+qualifications are recorded in the workbook and its pinned authoring reference
+in ``scripts/data/iridium-economic-proxy-adoption-20261027.json``.
 
 Matched PEM catalyst reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -840,7 +862,9 @@ Inventories
 * `Cobalt <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-cobalt.xlsx>`_.
 * `Germanium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-germanium.xlsx>`_, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
 * `Graphite <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-graphite.xlsx>`_.
-* `Iridium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* Iridium: the South African supply uses the independently constructed,
+  Argonne-derived economic-allocation proxy shared with CLIC, declared against
+  ecoinvent 3.12. The remaining legacy PGM recipes retain their source model.
 * `Lithium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-lithium.xlsx>`_.
 * `Rhenium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-rhenium.xlsx>`_, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
 * `Ruthenium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.

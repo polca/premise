@@ -1435,9 +1435,9 @@ rules:
     name: market for iridium
     reference_product: iridium
   existing_provider_fallback:
-    name: platinum group metal, extraction and refinery operations
+    name: iridium production, economic allocation, proxy
     reference_product: iridium
-  comment: If the configured market is absent, retain one already linked kilogram iridium refinery supplier and its geography. Check exact identity and one-kg reference output; do not select another producer or infer a market mix. Apply only with the matched NREL 87625 catalyst group; see pem_catalyst_reference.json for the loading trajectory and limitations.
+  comment: If the configured market is absent, retain one already linked kilogram iridium economic-allocation proxy supplier and its geography. Check exact identity and one-kg reference output; do not select another producer or infer a market mix. Apply only with the matched NREL 87625 catalyst group; see pem_catalyst_reference.json for the loading trajectory and limitations.
   exchange_amount_factor: 1.0
   application: set_direct_amount
   ecoinvent_form: iridium
