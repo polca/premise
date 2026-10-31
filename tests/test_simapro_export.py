@@ -1,8 +1,8 @@
 """Exercise the real Brightpath writer and Premise's export lifecycle."""
 
-from copy import deepcopy
 import csv
 import json
+from copy import deepcopy
 
 import pytest
 
@@ -81,6 +81,23 @@ def scenario():
 def rows(path):
     with path.open(encoding="latin-1", newline="") as stream:
         return list(csv.reader(stream, delimiter=";"))
+
+
+def test_unsupported_en15804_profile_fails_before_publishing(
+    brightpath, scenario, tmp_path, monkeypatch
+):
+    from brightpath.profiles import simapro
+
+    def unsupported(**kwargs):
+        raise ValueError("Unsupported EN15804 naming profile")
+
+    monkeypatch.setattr(simapro, "format_simapro_technosphere_name", unsupported)
+    original = deepcopy(scenario)
+    destination = tmp_path / "new directory"
+    with pytest.raises(RuntimeError, match="EN15804 SimaPro"):
+        simapro_export.export_scenario(scenario, destination, "3.12", "EN15804")
+    assert scenario == original
+    assert not destination.exists()
 
 
 @pytest.mark.parametrize(

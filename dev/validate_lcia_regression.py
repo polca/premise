@@ -57,7 +57,7 @@ def main():
     references = _load_reference_scores()
     case = references["cases"][args.case]
     version, source_model = args.case.removeprefix("ecoinvent-").split("-", 1)
-    system_model = "cutoff" if source_model == "EN15804" else source_model
+    system_model = source_model
     scenario_labels = list(case["scores"])
     names = [f"{args.database_prefix}-{label}" for label in scenario_labels]
     if args.case not in bd.projects:

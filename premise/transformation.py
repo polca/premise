@@ -17,24 +17,34 @@ from dataclasses import dataclass
 from functools import lru_cache
 from itertools import groupby, product
 from pathlib import Path
-from typing import Any, Dict, List, NamedTuple, Sequence, Set, Tuple, Union
+from typing import (  # noqa: F401
+    Any,
+    Dict,
+    List,
+    NamedTuple,
+    Sequence,
+    Set,
+    Tuple,
+    Union,
+)
 
 import numpy as np
 import xarray as xr
 import yaml
 from constructive_geometries import resolved_row
-from wurst import reference_product
+from wurst import reference_product  # noqa: F401
 from wurst import searching as ws
-from wurst import transformations as wt
+from wurst import transformations as wt  # noqa: F401
 from xarray import DataArray
 
-from .activity_maps import InventorySet
+from .activity_maps import InventorySet as InventorySet
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
 from .inventory_copy import clone_inventory_dataset
 from .inventory_store import IndexedInventoryList, compact_exchange_payload
 from .provenance import record_change_event
+from .system_models import ATTRIBUTIONAL_SYSTEM_MODELS, reference_output_amount
 from .utils import get_fuel_properties, rescale_exchange
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
@@ -1158,6 +1168,9 @@ class BaseTransformation:
 
         conversion_factor = conversion_factor or {}
         blacklist = blacklist or {}
+        market_model = (
+            "cutoff" if system_model in ATTRIBUTIONAL_SYSTEM_MODELS else system_model
+        )
 
         if production_volumes is not None:
             regions = [region for region in self.regions if region != "World"]
@@ -1234,6 +1247,7 @@ class BaseTransformation:
             self.add_geo_definition_metadata(market_dataset)
 
             unconverted_share = 0.0
+            en15804_output_signs = {}
             for technology, activities in mapping.items():
                 if (technology, region) in technology_shares_dict:
                     share = technology_shares_dict.get((technology, region), 0)
@@ -1260,7 +1274,7 @@ class BaseTransformation:
                     if len(suppliers) > 1:
                         suppliers = get_shares_from_production_volume(suppliers)
 
-                    if technology not in blacklist.get(system_model, []):
+                    if technology not in blacklist.get(market_model, []):
                         factor = conversion_factor.get(
                             (technology, region),
                             conversion_factor.get(technology, 1.0),
@@ -1276,6 +1290,18 @@ class BaseTransformation:
                                 "uncertainty type": 0,
                                 "type": "technosphere",
                             }
+                            if (
+                                flip_treatment_supplier_sign
+                                and system_model == "EN15804"
+                                and self.is_treatment_supplier(supplier)
+                            ):
+                                key = tuple(
+                                    exchange[k]
+                                    for k in ("name", "product", "location", "unit")
+                                )
+                                en15804_output_signs[key] = reference_output_amount(
+                                    supplier
+                                )
                             if retain_validation_technology:
                                 exchange["premise market technology"] = technology
                             market_dataset["exchanges"].append(exchange)
@@ -1301,12 +1327,23 @@ class BaseTransformation:
             else:
                 continue
 
-            if flip_treatment_supplier_sign and system_model == "cutoff":
+            if (
+                flip_treatment_supplier_sign
+                and system_model in ATTRIBUTIONAL_SYSTEM_MODELS
+            ):
                 for exc in market_dataset["exchanges"]:
                     if exc["type"] == "technosphere" and self.is_treatment_supplier(
                         exc
                     ):
-                        exc["amount"] = -abs(exc["amount"])
+                        if system_model == "EN15804":
+                            key = tuple(
+                                exc[k] for k in ("name", "product", "location", "unit")
+                            )
+                            exc["amount"] = math.copysign(
+                                abs(exc["amount"]), en15804_output_signs[key]
+                            )
+                        else:
+                            exc["amount"] = -abs(exc["amount"])
 
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset)

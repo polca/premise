@@ -3,11 +3,11 @@ export.py contains all the functions to format, prepare and export databases.
 """
 
 import csv
-import unicodedata
 import json
 import multiprocessing as mp
 import os
 import re
+import unicodedata
 import uuid
 from collections import defaultdict
 from functools import lru_cache
@@ -501,7 +501,9 @@ def write_formatted_data(name, data, filepath):
     return filepath
 
 
-def build_datapackage(df, inventories, list_scenarios, ei_version, name):
+def build_datapackage(
+    df, inventories, list_scenarios, ei_version, name, system_model="cutoff"
+):
     """
     Create and export a scenario datapackage.
     """
@@ -525,7 +527,7 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
     package.descriptor["dependencies"] = [
         {
             "name": "ecoinvent",
-            "system model": "cut-off",
+            "system model": "cut-off" if system_model == "cutoff" else system_model,
             "version": ei_version,
             "type": "source",
         },

@@ -1,14 +1,14 @@
 """Export complete prepared scenarios through Brightpath's SimaPro writer."""
 
-from collections import Counter
-from dataclasses import asdict
 import hashlib
 import json
 import math
-from pathlib import Path
 import sys
 import tempfile
 import warnings
+from collections import Counter
+from dataclasses import asdict
+from pathlib import Path
 
 from .export_payload import normalize_activity_parameters
 from .olca_export import _identity, _plain, build_process_categories
@@ -20,16 +20,16 @@ def check_brightpath():
         raise RuntimeError("Brightpath SimaPro export requires Python 3.12+.")
     try:
         from brightpath.formats.simapro_csv import write_simapro_csv  # noqa: F401
-        from brightpath.profiles.simapro_biosphere import (
+        from brightpath.profiles.simapro_biosphere import (  # noqa: F401
             FINAL_WASTE_NAMES,
             resolve_ecoinvent_flow_name,
-        )  # noqa: F401
-        from brightpath.profiles.simapro_category_types import (
+        )
+        from brightpath.profiles.simapro_category_types import (  # noqa: F401
             resolve_category_type,
-        )  # noqa: F401
-        from brightpath.profiles.simapro_waste import (
+        )
+        from brightpath.profiles.simapro_waste import (  # noqa: F401
             resolve_classified_waste,
-        )  # noqa: F401
+        )
         from brightpath.utils import get_simapro_units
     except ImportError as error:
         raise ImportError(
@@ -44,6 +44,28 @@ def check_brightpath():
             "Update Brightpath to a version with full-inventory SimaPro unit "
             "mappings (see the SimaPro export guide)."
         )
+
+
+def check_system_model_support(system_model):
+    """Keep unsupported exporter profiles from being mislabeled as cut-off."""
+    if system_model != "EN15804":
+        return
+    from brightpath.models import BackgroundProfile
+    from brightpath.profiles.simapro import format_simapro_technosphere_name
+
+    try:
+        format_simapro_technosphere_name(
+            name="market for aluminium scrap, new",
+            reference_product="aluminium scrap, new",
+            location="RoW",
+            unit="kilogram",
+            profile=BackgroundProfile("ecoinvent", "3.12", "EN15804"),
+        )
+    except ValueError as error:
+        raise RuntimeError(
+            "The installed Brightpath does not support EN15804 SimaPro names. "
+            "EN15804 SimaPro export requires a compatible Brightpath naming profile."
+        ) from error
 
 
 def build_document(scenario, version, system_model):
@@ -225,6 +247,7 @@ def build_document(scenario, version, system_model):
 def export_scenario(scenario, filepath, version, system_model):
     """Write CSV and a review report only after successful Brightpath rendering."""
     check_brightpath()
+    check_system_model_support(system_model)
     from brightpath import __version__ as brightpath_version
     from brightpath.formats.simapro_csv import write_simapro_csv
 

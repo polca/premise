@@ -5,25 +5,25 @@ and those provided by the user.
 
 import csv
 import itertools
+import json
 import logging
-import uuid
 import unicodedata
+import uuid
+from collections import deque
 from functools import lru_cache
 from pathlib import Path, PurePosixPath
 from typing import Dict, List, Union
 from urllib.parse import urlsplit
-import json
-from collections import deque
 
 import bw2io
 import numpy as np
 import pandas as pd
 import requests
 import yaml
-from packaging.specifiers import SpecifierSet
-from packaging.version import Version
 from bw2io import CSVImporter, ExcelImporter
 from bw2io.units import normalize_units
+from packaging.specifiers import SpecifierSet
+from packaging.version import Version
 from prettytable import PrettyTable
 from wurst import searching as ws
 
@@ -31,6 +31,7 @@ from .clean_datasets import remove_categories, remove_uncertainty
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR, DIR_CACHED_DB
 from .geomap import Geomap
+from .system_models import adapt_en15804_scrap_exchanges
 from .utils import rescale_exchange
 
 FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
@@ -1920,6 +1921,9 @@ class DefaultInventory(BaseInventoryImport):
             self.post_migration(self.import_db, self.version_out, self.database)
         self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
+        if self.system_model == "EN15804":
+            adapt_en15804_scrap_exchanges(self.import_db.data, self.database)
+
         if self.system_model == "consequential":
             self.import_db.data = (
                 check_for_datasets_compliance_with_consequential_database(
@@ -2002,6 +2006,9 @@ class VariousVehicles(BaseInventoryImport):
     def prepare_inventory(self):
         migrate_import_db(self.import_db, self.version_in, self.version_out)
         self.adapt_hydrogen_market_exchanges_for_legacy_versions()
+
+        if self.system_model == "EN15804":
+            adapt_en15804_scrap_exchanges(self.import_db.data, self.database)
 
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
@@ -2089,6 +2096,9 @@ class AdditionalInventory(BaseInventoryImport):
                     self.import_db.data, self.consequential_blacklist, self.version_out
                 )
             )
+
+        if self.system_model == "EN15804":
+            adapt_en15804_scrap_exchanges(self.import_db.data, self.database)
 
         self.import_db.data = remove_categories(self.import_db.data)
         self.lower_case_technosphere_exchanges()

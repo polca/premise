@@ -33,7 +33,7 @@
      - All supported configurations
    * - ``lci-afforestation.xlsx``
      - 3.12
-     - 3.11 cutoff; 3.11 consequential; 3.12 cutoff; 3.12 consequential
+     - 3.11 cutoff; 3.11 consequential; 3.12 cutoff; 3.12 consequential; 3.12 EN15804
    * - ``lci-ammonia.xlsx``
      - 3.9
      - All supported configurations
@@ -42,7 +42,7 @@
      - All supported configurations
    * - ``lci-batteries-LFP-native-312.xlsx``
      - 3.12
-     - 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential; 3.11 cutoff; 3.11 consequential; 3.12 cutoff; 3.12 consequential
+     - 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential; 3.11 cutoff; 3.11 consequential; 3.12 cutoff; 3.12 consequential; 3.12 EN15804
    * - ``lci-batteries-LiO2.xlsx``
      - 3.9
      - All supported configurations
@@ -58,6 +58,15 @@
    * - ``lci-batteries-NMC955-LTO.xlsx``
      - 3.8
      - All supported configurations
+   * - ``lci-batteries-NMC955-capacity-reference-310.xlsx``
+     - 3.10
+     - 3.12 cutoff; 3.12 EN15804
+   * - ``lci-batteries-NMC955-fixed-reference-38.xlsx``
+     - 3.8
+     - 3.12 cutoff; 3.12 EN15804
+   * - ``lci-batteries-NMC955-modern-312.xlsx``
+     - 3.12
+     - 3.12 cutoff; 3.12 EN15804
    * - ``lci-batteries-SIB.xlsx``
      - 3.9
      - All supported configurations
@@ -84,7 +93,7 @@
      - All supported configurations
    * - ``lci-biomethane-capture-MDEA-proxy-312.xlsx``
      - 3.12
-     - 3.12 cutoff
+     - 3.12 cutoff; 3.12 EN15804
    * - ``lci-buses.xlsx``
      - 3.7
      - All supported configurations
@@ -120,13 +129,13 @@
      - All supported configurations
    * - ``lci-epr-m5-native-312.xlsx``
      - 3.12
-     - 3.12 cutoff
+     - 3.12 cutoff; 3.12 EN15804
    * - ``lci-final-energy.xlsx``
      - 3.10
      - All supported configurations
    * - ``lci-fkm-gasket-native-312.xlsx``
      - 3.12
-     - 3.12 cutoff; 3.12 consequential
+     - 3.12 cutoff; 3.12 consequential; 3.12 EN15804
    * - ``lci-fuel_cell.xlsx``
      - 3.10
      - All supported configurations
@@ -190,6 +199,9 @@
    * - ``lci-methanol-heating.xlsx``
      - 3.10
      - All supported configurations
+   * - ``lci-nmc532-native-312-reference.xlsx``
+     - 3.12
+     - 3.12 cutoff; 3.12 EN15804
    * - ``lci-nuclear-heat.xlsx``
      - 3.10
      - All supported configurations
@@ -208,9 +220,12 @@
    * - ``lci-pfsa-ew1100.xlsx``
      - 3.9
      - All supported configurations
+   * - ``lci-pipeline-coating-native-312.xlsx``
+     - 3.12
+     - 3.12 cutoff; 3.12 EN15804
    * - ``lci-ptfe-gasket-native-312.xlsx``
      - 3.12
-     - 3.12 cutoff; 3.12 consequential
+     - 3.12 cutoff; 3.12 consequential; 3.12 EN15804
    * - ``lci-rail-freight.xlsx``
      - 3.9
      - All supported configurations

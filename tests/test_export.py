@@ -18,6 +18,33 @@ def test_simapro_units():
     assert simapro_units["cubic meter-year"] == "m3y"
 
 
+@pytest.mark.parametrize(
+    "system_model,expected",
+    [("cutoff", "cut-off"), ("consequential", "consequential"), ("EN15804", "EN15804")],
+)
+def test_datapackage_records_actual_system_model(
+    tmp_path, monkeypatch, system_model, expected
+):
+    import json
+    from zipfile import ZipFile
+
+    import premise.export as module
+
+    monkeypatch.setattr(module, "DIR_DATAPACKAGE_TEMP", tmp_path / "working")
+    monkeypatch.setattr(module, "DIR_DATAPACKAGE", tmp_path / "packages")
+    module.build_datapackage(
+        df=pd.DataFrame({"value": [1]}),
+        inventories=dummy_db,
+        list_scenarios=["original", "remind - SSP2-Test - 2050"],
+        ei_version="3.12",
+        name="profile-test",
+        system_model=system_model,
+    )
+    with ZipFile(tmp_path / "packages/profile-test.zip") as archive:
+        descriptor = json.loads(archive.read("datapackage.json"))
+    assert descriptor["dependencies"][0]["system model"] == expected
+
+
 def test_simapro_compartments():
     simapro_compartments = get_simapro_compartments()
     assert simapro_compartments["in water"] == "in water"

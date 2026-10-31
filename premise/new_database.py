@@ -27,10 +27,18 @@ from packaging.version import Version
 from tqdm import tqdm
 
 from . import __version__
-from .cache_cleanup import with_cache_session
 from .battery import _update_battery
 from .biomass import _update_biomass
+from .cache_cleanup import with_cache_session
+from .carbon_dioxide_removal import _update_cdr
 from .cement import _update_cement
+from .change_report import (
+    ChangeReportArtifacts,
+    ChangeReportCacheEntry,
+    ReportScenario,
+    generate_structured_change_report,
+    generate_validation_diagnostic_workbook,
+)
 from .clean_datasets import (
     CA_CEMENT_REFRACTORY_CACHE_REVISION,
     CA_CEMENT_REFRACTORY_VERSIONS,
@@ -39,17 +47,8 @@ from .clean_datasets import (
     DatabaseCleaner,
 )
 from .data_collection import IAMDataCollection
-from .carbon_dioxide_removal import _update_cdr
-from .change_report import (
-    ChangeReportArtifacts,
-    ChangeReportCacheEntry,
-    ReportScenario,
-    generate_structured_change_report,
-    generate_validation_diagnostic_workbook,
-)
 from .electricity import _update_electricity
 from .emissions import _update_emissions
-from .final_energy import _update_final_energy
 from .export import (
     Export,
     _build_superstructure_db,
@@ -68,6 +67,8 @@ from .filesystem_constants import (
     IAM_OUTPUT_DIR,
     INVENTORY_DIR,
 )
+from .final_energy import _update_final_energy
+from .fkm_gasket import use_native_fkm_gasket
 from .fuels.base import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import (
@@ -76,6 +77,7 @@ from .inventory_imports import (
     DefaultInventory,
 )
 from .inventory_store import (
+    STORE_SCHEMA_VERSION,
     CompactInventoryStore,
     IndexedInventoryList,
     InventoryStore,
@@ -83,14 +85,16 @@ from .inventory_store import (
     InventoryStoreError,
     InventoryStoreVersionError,
     ReadOnlyInventoryStore,
-    STORE_SCHEMA_VERSION,
     _compact_scenario_mapping,
     _hydrate_scenario_mapping,
     create_inventory_store,
 )
 from .metals import _update_metals
 from .mining import _update_mining
+from .pipeline_coating import use_native_pipeline_coating
 from .provenance import ProvenanceCollector, record_change_event
+from .ptfe_gasket import use_native_ptfe_gasket
+from .renewables import _update_wind_turbines
 from .report import generate_summary_report
 from .scenario_array import (
     _load_scenario_array_dependencies,
@@ -98,15 +102,41 @@ from .scenario_array import (
 )
 from .sector_validation import validate_sector_contract
 from .steel import _update_steel
+from .system_models import ATTRIBUTIONAL_SYSTEM_MODELS, adapt_en15804_scrap_exchanges
 from .transformation import _SCENARIO_GIS_CACHE_KEY, _SCENARIO_ROW_CACHE_KEY
-from .transport import _update_vehicles
-from .ptfe_gasket import use_native_ptfe_gasket
-from .pipeline_coating import use_native_pipeline_coating
-from .fkm_gasket import use_native_fkm_gasket
 from .transformer_core import (
     TRANSFORMER_CORE_CACHE_REVISION,
     native_transformer_core_enabled,
     use_native_transformer_core,
+)
+from .transport import _update_vehicles
+from .utils import (
+    CACHE_SCHEMA_VERSION,
+    cache_ref_exists,
+    cache_ref_fingerprint,
+    clear_existing_cache,
+    clear_runtime_caches,
+    create_cache,
+    create_scenario_list,
+    database_metadata,
+    delete_all_pickles,
+    eidb_label,
+    end_of_process,
+    hide_messages,
+    info_on_utils_functions,
+    load_cached_database,
+    load_constants,
+    load_database,
+    print_version,
+    resolve_cache_ref,
+    restore_cached_classifications,
+    scenario_metadata,
+    warning_about_biogenic_co2,
+)
+from .validation import (
+    normalize_exact_deterministic_exchange_duplicates,
+    normalize_inventory_numeric_types,
+    normalize_inventory_uncertainty,
 )
 from .validation_framework import (
     VALIDATION_RULESET_VERSION,
@@ -119,35 +149,6 @@ from .validation_framework import (
     ValidationRuleResult,
     inventory_baseline_snapshot,
 )
-from .validation import (
-    normalize_exact_deterministic_exchange_duplicates,
-    normalize_inventory_numeric_types,
-    normalize_inventory_uncertainty,
-)
-from .utils import (
-    CACHE_SCHEMA_VERSION,
-    cache_ref_fingerprint,
-    cache_ref_exists,
-    database_metadata,
-    clear_existing_cache,
-    clear_runtime_caches,
-    create_scenario_list,
-    delete_all_pickles,
-    eidb_label,
-    hide_messages,
-    info_on_utils_functions,
-    load_constants,
-    load_cached_database,
-    load_database,
-    print_version,
-    resolve_cache_ref,
-    warning_about_biogenic_co2,
-    end_of_process,
-    create_cache,
-    restore_cached_classifications,
-    scenario_metadata,
-)
-from .renewables import _update_wind_turbines
 
 logger = logging.getLogger("module")
 
@@ -400,7 +401,9 @@ FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CO_FIRING_INVENTORIES = INVENTORY_DIR / "lci-co-firing-power-plants.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
-FILEPATH_BIOMETHANE_CAPTURE_MDEA_312 = INVENTORY_DIR / "lci-biomethane-capture-MDEA-proxy-312.xlsx"
+FILEPATH_BIOMETHANE_CAPTURE_MDEA_312 = (
+    INVENTORY_DIR / "lci-biomethane-capture-MDEA-proxy-312.xlsx"
+)
 FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
@@ -794,13 +797,13 @@ def check_system_model(system_model: str) -> str:
     if not isinstance(system_model, str):
         raise TypeError(
             "The argument `system_model` must be a string"
-            "('consequential', 'cutoff')."
+            "('consequential', 'cutoff', 'EN15804')."
         )
 
-    if system_model not in ("consequential", "cutoff"):
+    if system_model not in ("consequential", "cutoff", "EN15804"):
         raise ValueError(
-            "The argument `system_model` must be one of the two values:"
-            "'consequential', 'cutoff'."
+            "The argument `system_model` must be one of: "
+            "'consequential', 'cutoff', 'EN15804'."
         )
 
     return system_model
@@ -881,7 +884,7 @@ class NewDatabase:
     :ivar source_type: the source of the ecoinvent database. Can be `brightway` or `ecospold`.
     :vartype source_type: str
     :vartype source_db: str
-    :ivar system_model: Can be `cutoff` (default) or `consequential`.
+    :ivar system_model: Can be `cutoff` (default), `consequential` or `EN15804`.
     :vartype system_model: str
     :ivar system_model_args: arguments for the system model.
     :vartype system_model_args: dict
@@ -929,7 +932,7 @@ class NewDatabase:
         :param source_db: name of the source ecoinvent database in the current project. Default is None.
         :param source_file_path: file path to the ecospold files, if source_type is `ecospold`. Default is None.
         :param additional_inventories: list of additional inventories to import. Default is None.
-        :param system_model: system model to use. Can be `cutoff` (default) or `consequential`. Default is `cutoff`.
+        :param system_model: system model to use: `cutoff` (default), `consequential` or `EN15804`.
         :param system_args: arguments for the system model. Default is None.
         :param use_cached_inventories: whether to use cached inventories. Default is True.
         :param use_cached_database: whether to use a cached database. Default is True.
@@ -1269,9 +1272,13 @@ class NewDatabase:
             ):
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
+            if getattr(self, "system_model", None) == "EN15804":
+                digest.update(
+                    Path(inspect.getfile(adapt_en15804_scrap_exchanges)).read_bytes()
+                )
             if (
                 getattr(self, "version", None) == "3.12"
-                and getattr(self, "system_model", None) == "cutoff"
+                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
             ):
                 digest.update(FILEPATH_PIPELINE_COATING_NATIVE_312.name.encode())
                 digest.update(FILEPATH_PIPELINE_COATING_NATIVE_312.read_bytes())
@@ -1303,6 +1310,9 @@ class NewDatabase:
                 )
             inventory_label += f"_vehicles_{digest.hexdigest()[:16]}"
         source_label = ""
+        model_label = (
+            "_en15804" if getattr(self, "system_model", None) == "EN15804" else ""
+        )
         if (
             not inventories
             and getattr(self, "version", None) in CA_CEMENT_REFRACTORY_VERSIONS
@@ -1320,7 +1330,7 @@ class NewDatabase:
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"
             f"{self._cache_database_name(db_name)}_{uncertainty_label}"
-            f"{inventory_label}{source_label}.pickle"
+            f"{inventory_label}{source_label}{model_label}.pickle"
         )
 
     @staticmethod
@@ -1614,25 +1624,29 @@ class NewDatabase:
             if (
                 filepath[0] == FILEPATH_HYDROGEN_DISTRI_INVENTORIES
                 and self.version == "3.12"
-                and getattr(self, "system_model", None) == "cutoff"
+                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
             ):
-                selected_filepaths.append((FILEPATH_PIPELINE_COATING_NATIVE_312, "3.12"))
+                selected_filepaths.append(
+                    (FILEPATH_PIPELINE_COATING_NATIVE_312, "3.12")
+                )
             if (
                 filepath[0] == FILEPATH_CC_INVENTORIES
                 and self.version == "3.12"
-                and getattr(self, "system_model", None) == "cutoff"
+                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
             ):
-                selected_filepaths.append((FILEPATH_BIOMETHANE_CAPTURE_MDEA_312, "3.12"))
+                selected_filepaths.append(
+                    (FILEPATH_BIOMETHANE_CAPTURE_MDEA_312, "3.12")
+                )
             if (
                 filepath[0] == FILEPATH_NUCLEAR_EPR
                 and self.version == "3.12"
-                and getattr(self, "system_model", None) == "cutoff"
+                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
             ):
                 selected_filepaths.append((FILEPATH_EPR_M5_NATIVE_312, "3.12"))
             if (
                 filepath[0] == FILEPATH_BATTERIES_NMC955_LTO
                 and self.version == "3.12"
-                and getattr(self, "system_model", None) == "cutoff"
+                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
             ):
                 selected_filepaths.append((FILEPATH_NMC532_NATIVE_312, "3.12"))
                 selected_filepaths.extend(
@@ -1680,7 +1694,7 @@ class NewDatabase:
             if (
                 filepath[0] == FILEPATH_BATTERY_CAPACITY
                 and self.version == "3.12"
-                and getattr(self, "system_model", None) == "cutoff"
+                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
             ):
                 selected_filepaths.append(
                     (FILEPATH_NMC955_CAPACITY_REFERENCE_310, "3.10")
@@ -1691,7 +1705,10 @@ class NewDatabase:
         # linking, duplicate checks, and merges below remain sequential in the
         # original workbook order.
         preloaded_importers = _extract_default_inventory_importers(selected_filepaths)
-        if self.version == "3.12" and getattr(self, "system_model", None) == "cutoff":
+        if (
+            self.version == "3.12"
+            and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
+        ):
             _select_nmc955_modern_references(selected_filepaths, preloaded_importers)
 
         for filepath, preloaded_importer in zip(
@@ -1700,7 +1717,7 @@ class NewDatabase:
             if (
                 filepath[0] == FILEPATH_BATTERIES_NMC955_LTO
                 and self.version == "3.12"
-                and getattr(self, "system_model", None) == "cutoff"
+                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
             ):
                 _select_nmc532_native_312(preloaded_importer, self._database)
             if filepath[0] == FILEPATH_HYDROGEN_DISTRI_INVENTORIES:
@@ -3450,9 +3467,14 @@ class NewDatabase:
         :return: Paths to the Brightpath CSVs.
 
         """
-        from .simapro_export import check_brightpath, export_scenario
+        from .simapro_export import (
+            check_brightpath,
+            check_system_model_support,
+            export_scenario,
+        )
 
         check_brightpath()
+        check_system_model_support(getattr(self, "system_model", None))
         artifacts = []
         filepath = filepath or Path(Path.cwd() / "export" / "simapro")
 
@@ -3657,6 +3679,7 @@ class NewDatabase:
             list_scenarios=list_scenarios,
             ei_version=self.version,
             name=name,
+            system_model=self.system_model,
         )
 
         self._run_automatic_reports()

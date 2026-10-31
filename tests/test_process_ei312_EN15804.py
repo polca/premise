@@ -6,10 +6,10 @@ import bw2data
 import bw2io
 import pytest
 from dotenv import load_dotenv
+from lcia_regression import assert_lcia_regression_scores, get_lcia_regression_method
 
 from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
-from lcia_regression import assert_lcia_regression_scores, get_lcia_regression_method
 
 load_dotenv()
 
@@ -55,7 +55,7 @@ def test_brightway():
         source_db=f"ecoinvent-{ei_version}-{system_model}",
         source_version=ei_version,
         key=key,
-        system_model="cutoff",
+        system_model="EN15804",
         biosphere_name=bio_db,
         inventory_backend="compact",
     )

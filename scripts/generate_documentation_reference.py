@@ -52,6 +52,18 @@ def inventory_selection(tree, version, system_model):
         "self": SimpleNamespace(version=version, system_model=system_model),
         "Version": Version,
     }
+    # Selection uses this shared literal without importing the Brightway stack.
+    model_tree = ast.parse((ROOT / "premise/system_models.py").read_text())
+    assignment = next(
+        n
+        for n in model_tree.body
+        if isinstance(n, ast.Assign)
+        and any(
+            isinstance(t, ast.Name) and t.id == "ATTRIBUTIONAL_SYSTEM_MODELS"
+            for t in n.targets
+        )
+    )
+    env["ATTRIBUTIONAL_SYSTEM_MODELS"] = ast.literal_eval(assignment.value)
     for node in tree.body:
         if isinstance(node, ast.Assign) and any(
             isinstance(t, ast.Name) and t.id.startswith("FILEPATH_")
@@ -145,7 +157,11 @@ def generate():
     configurations = []
     selections = {}
     for version in constants["SUPPORTED_EI_VERSIONS"]:
-        for model in ["cutoff", "consequential"]:
+        # EN15804 native supplier contracts are currently verified for 3.12.
+        models = ["cutoff", "consequential"] + (
+            ["EN15804"] if version == "3.12" else []
+        )
+        for model in models:
             if model == "consequential" and Version(version) < Version("3.8"):
                 continue
             key = f"{version} {model}"
