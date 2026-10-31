@@ -1,6 +1,7 @@
 """Dependency-light inventory normalization shared by validation and reporting."""
 
 import math
+
 import numpy as np
 
 
@@ -32,14 +33,25 @@ def normalize_inventory_numeric_types(database, on_change=None):
 
     for dataset in database:
         changed = False
+        preserve_battery_amount = None
+        if "battery mass to capacity" in dataset:
+            # Import lazily to keep ordinary normalization dependency-light.
+            from .battery_mass import preserve_cached_battery_amount
+
+            preserve_battery_amount = preserve_cached_battery_amount
         for value in dataset.values():
             if isinstance(value, dict):
                 for key, item in value.items():
                     changed = assign_if_converted(value, key, item) or changed
         for exchange in dataset.get("exchanges", ()):
             amount = exchange.get("amount")
+            preserve_amount = (
+                preserve_battery_amount is not None
+                and preserve_battery_amount(dataset, exchange)
+            )
             if (
-                isinstance(amount, (int, float, np.number, np.ndarray))
+                not preserve_amount
+                and isinstance(amount, (int, float, np.number, np.ndarray))
                 and not isinstance(amount, (bool, np.bool_))
                 and (not isinstance(amount, np.ndarray) or amount.size == 1)
             ):
@@ -48,6 +60,8 @@ def normalize_inventory_numeric_types(database, on_change=None):
                     exchange["amount"] = normalized_amount
                     changed = True
             for key, value in tuple(exchange.items()):
+                if key == "amount" and preserve_amount:
+                    continue
                 changed = assign_if_converted(exchange, key, value) or changed
         if changed and on_change is not None:
             on_change(dataset, "numeric_types")

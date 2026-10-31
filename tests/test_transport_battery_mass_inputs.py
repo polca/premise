@@ -14,12 +14,14 @@ import premise.final_energy as final_energy_module
 import premise.transport as transport_module
 import premise.utils as utils_module
 from premise.battery_mass import (
+    LEGACY_MASS_PROVIDER,
     MASS_PROVIDER,
     RETIREMENT_PROVIDER,
     SPEC_KEY,
     STATE_KEY,
     convert_battery_mass_inputs,
 )
+from premise.inventory_normalization import normalize_inventory_numeric_types
 from premise.inventory_store import (
     CompactInventoryStore,
     IndexedInventoryList,
@@ -945,6 +947,39 @@ def test_numpy_floating_exchange_amounts_are_valid(database, scalar_type):
     database[0]["exchanges"][3]["amount"] = scalar_type(-mass)
     assert convert_battery_mass_inputs(database, "car") == 1
     assert capacity_purchase(database[0])["amount"].hex() == capacity.hex()
+
+
+@pytest.mark.parametrize("legacy", [False, True])
+def test_normalized_source_cache_checkpoint_retains_battery_precision(
+    database, legacy, tmp_path, monkeypatch
+):
+    mass, capacity = set_cache_baseline(database[0])
+    if legacy:
+        purchase = database[0]["exchanges"][2]
+        purchase.update(exchange(LEGACY_MASS_PROVIDER, mass))
+    cached = source_cache_round_trip(database, tmp_path, monkeypatch)
+    normalize_inventory_numeric_types(cached)
+    assert isinstance(cached[0]["exchanges"][2]["amount"], np.float32)
+    assert isinstance(cached[0]["exchanges"][3]["amount"], np.float32)
+    checkpoint = CompactInventoryStore(cached).checkpoint(tmp_path / "normalized.store")
+    working = get_scenario_inventory({"_inventory_checkpoint": checkpoint})
+    normalize_inventory_numeric_types(working)
+    assert convert_battery_mass_inputs(working, "car") == 1
+    assert capacity_purchase(working[0])["amount"] == capacity
+    assert working[0][STATE_KEY]["original mass exchange"]["amount"] == np.float32(mass)
+
+
+@pytest.mark.parametrize("index", [2, 3])
+def test_normalization_does_not_hide_one_ulp_battery_error(
+    database, index, tmp_path, monkeypatch
+):
+    set_cache_baseline(database[0])
+    cached = source_cache_round_trip(database, tmp_path, monkeypatch)
+    purchase = cached[0]["exchanges"][index]
+    purchase["amount"] = np.nextafter(purchase["amount"], np.float32(np.inf))
+    normalize_inventory_numeric_types(cached)
+    assert isinstance(purchase["amount"], np.float32)
+    assert_rejected_atomically(cached)
 
 
 @pytest.mark.parametrize(
