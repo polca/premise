@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Preserve fossil combustion CO2 for conventional kerosene and natural-gas
+  synthetic kerosene with CCS. Use the configured `kerosene` IAM variable
+  instead of the absent `kerosene, from petroleum` label, and include the
+  missing natural-gas/CCS pathway in the fossil list. This prevents aviation
+  CO2 from being incorrectly reclassified as non-fossil, which understated
+  impacts in methods such as EF 3.1 climate change. Fuel quantities and total
+  emitted CO2 are unchanged. Rebuild affected scenario databases to apply.
 - Preserve anhydrous-LiOH equivalents when custom NCA and NMC811 oxides
   purchase battery-grade lithium hydroxide monohydrate: 0.438071575 and
   0.431062430 kg/kg oxide respectively. Release the added water of

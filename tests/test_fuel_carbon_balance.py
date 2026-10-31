@@ -1,7 +1,9 @@
 from copy import deepcopy
 from types import SimpleNamespace
 
+import numpy as np
 import pytest
+import xarray as xr
 from stats_arrays import UncertaintyBase, uncertainty_choices
 
 from premise.fuels.base import Fuels
@@ -205,6 +207,86 @@ def test_liquid_ccs_uses_residual_emissions():
     assert amounts(ds)["Carbon dioxide, non-fossil"] == pytest.approx(
         0.040204744786024094 * 0.45
     )
+
+
+@pytest.mark.parametrize(
+    "fossil_variable",
+    [
+        "kerosene",
+        "kerosene, synthetic, from natural gas, energy allocation",
+        "kerosene, synthetic, from natural gas, energy allocation, with CCS",
+        "kerosene, synthetic, from coal, energy allocation",
+        "kerosene, synthetic, from coal, energy allocation, with CCS",
+    ],
+)
+@pytest.mark.parametrize("non_fossil_share", [0, 0.3, 1])
+@pytest.mark.parametrize("location", ["R1", "CH", "GLO"])
+@pytest.mark.parametrize("compact", [False, True])
+def test_generated_kerosene_markets_preserve_aircraft_carbon_origin(
+    fossil_variable, non_fossil_share, location, compact
+):
+    """Exercise the caller's fuel labels, not just the carbon-transfer helper."""
+    from premise.inventory_store import compact_exchange_payload
+
+    non_fossil_variable = "kerosene, synthetic, from biomass, energy allocation"
+    fuel_map = {fossil_variable: [], non_fossil_variable: []}
+    blend = xr.DataArray(
+        np.array([1 - non_fossil_share, non_fossil_share]).reshape(2, 1, 1),
+        dims=("variables", "region", "year"),
+        coords={"variables": list(fuel_map), "region": ["R1"], "year": [2030]},
+    )
+    fossil = emission("Carbon dioxide, fossil", 0.315)
+    fossil["categories"] = ("air", "lower stratosphere + upper troposphere")
+    fuel = dict(
+        name="market for kerosene",
+        product="kerosene",
+        location="GLO",
+        unit="kilogram",
+        amount=0.1,
+        type="technosphere",
+    )
+    other = emission("Nitrogen oxides", 0.002)
+    ds = dict(
+        name="transport, freight, aircraft, dedicated freight, long haul",
+        location=location,
+        exchanges=[fuel, fossil, emission("Carbon dioxide, non-fossil", 0.02), other],
+    )
+    if compact:
+        ds["exchanges"] = [compact_exchange_payload(e) for e in ds["exchanges"]]
+
+    fuels = object.__new__(Fuels)
+    fuels.database = [ds]
+    fuels.fuel_map = fuel_map
+    fuels.iam_data = SimpleNamespace(production_volumes=blend, kerosene_blend=blend)
+    fuels.regions = ["R1", "World"]
+    fuels.year = 2030
+    fuels.model = "remind"
+    fuels.system_model = "cutoff"
+    fuels.ecoinvent_to_iam_loc = {"CH": "R1", "GLO": "World"}
+    fuels.biosphere_flows = get_biosphere_code("3.12")
+    fuels.is_in_index = lambda exc, loc: True
+    fuels.mapping = SimpleNamespace(
+        generate_sets_from_filters=lambda *args: {},
+        generate_fuel_map=lambda **kwargs: fuel_map,
+    )
+    # Unrelated activity generation is outside this carbon-origin regression.
+    fuels.process_and_add_activities = lambda **kwargs: None
+    fuels.generate_biofuel_activities = lambda: None
+    fuels._filter_biodiesel_feedstocks = lambda: None
+    fuels._filter_bioethanol_feedstocks = lambda: None
+    fuels.process_and_add_fuel_markets = lambda **kwargs: None
+
+    for _ in range(2):
+        fuels.generate_synthetic_fuel_activities()
+        assert amounts(ds) == pytest.approx(
+            {
+                "Carbon dioxide, fossil": 0.315 * (1 - non_fossil_share),
+                "Carbon dioxide, non-fossil": 0.02 + 0.315 * non_fossil_share,
+            }
+        )
+        assert sum(amounts(ds).values()) == pytest.approx(0.335)
+        assert ds["exchanges"][0]["amount"] == 0.1
+        assert dict(ds["exchanges"][3]) == other
 
 
 def test_compact_exchanges_do_not_duplicate_biogenic_flow():
