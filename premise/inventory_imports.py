@@ -1186,6 +1186,50 @@ class BaseInventoryImport:
 
             print(table)
 
+        # Duplicate detection is case-insensitive. Consumers of a discarded
+        # spelling must use the exact identity of the retained native provider.
+        aliases = {}
+        for dataset in already_exist:
+            matches = [
+                native
+                for native in self.database
+                if native["name"].lower() == dataset["name"].lower()
+                and native["reference product"].lower()
+                == dataset["reference product"].lower()
+                and native["location"] == dataset["location"]
+                and native["unit"] == dataset["unit"]
+            ]
+            if len(matches) == 1:
+                aliases[
+                    (
+                        dataset["name"],
+                        dataset["reference product"],
+                        dataset["location"],
+                        dataset["unit"],
+                    )
+                ] = matches[0]
+        for dataset in self.import_db.data:
+            for exchange in dataset.get("exchanges", ()):
+                if exchange.get("type") != "technosphere":
+                    continue
+                key = (
+                    exchange["name"],
+                    exchange.get("product", exchange.get("reference product")),
+                    exchange.get("location"),
+                    exchange.get("unit"),
+                )
+                native = aliases.get(key)
+                if native is not None and key[:2] != (
+                    native["name"],
+                    native["reference product"],
+                ):
+                    exchange.update(
+                        name=native["name"], product=native["reference product"]
+                    )
+                    if "reference product" in exchange:
+                        exchange["reference product"] = native["reference product"]
+                    exchange.pop("input", None)
+
         self.import_db.data = [
             ds for ds in self.import_db.data if ds not in already_exist
         ]
@@ -1296,6 +1340,53 @@ class BaseInventoryImport:
                     exc.get("type") != "production" and exc.get("amount") in (0, 0.0)
                 )
             ]
+
+    def adapt_reviewed_38_chemical_proxies(self) -> None:
+        """Apply the reviewed legacy proxies only to their bundled inventories."""
+        if Version(self.version_out) != Version("3.8"):
+            return
+        policies = {
+            "lci-batteries-ASSB.xlsx": (
+                ("market for lithium iron phosphate", "lithium iron phosphate", "RoW"),
+                (
+                    "Lithium iron phosphate [LiFePO4]",
+                    "Lithium iron phosphate [LiFePO4]",
+                    "JP",
+                ),
+                "ecoinvent 3.8 proxy: bundled Japanese LFP synthesis replaces the "
+                "unavailable native LFP market; original kg quantity retained.",
+            ),
+            "lci-iridium-economic-proxy.xlsx": (
+                ("market for sodium ethyl xanthate", "sodium ethyl xanthate", "GLO"),
+                ("market for chemical, organic", "chemical, organic", "GLO"),
+                "ecoinvent 3.8 proxy: generic organic chemical manufacturing burden "
+                "replaces the unavailable sodium ethyl xanthate market; original kg "
+                "quantity retained. This weaker proxy does not establish chemical "
+                "or environmental equivalence.",
+            ),
+        }
+        policy = policies.get(Path(self.inventory_filename).name)
+        if policy is None:
+            return
+        source, target, comment = policy
+        for dataset in self.import_db.data:
+            for exchange in dataset.get("exchanges", ()):
+                if (
+                    exchange.get("type") == "technosphere"
+                    and exchange.get("unit") == "kilogram"
+                    and (
+                        exchange.get("name"),
+                        exchange.get("reference product", exchange.get("product")),
+                        exchange.get("location"),
+                    )
+                    == source
+                ):
+                    exchange.update(
+                        name=target[0], product=target[1], location=target[2]
+                    )
+                    exchange["reference product"] = target[1]
+                    exchange.pop("input", None)
+                    exchange["comment"] = comment + " " + exchange.get("comment", "")
 
     def adapt_hydrogen_market_exchanges_for_legacy_versions(self) -> None:
         """
@@ -1919,6 +2010,7 @@ class DefaultInventory(BaseInventoryImport):
         migrate_import_db(self.import_db, self.version_in, self.version_out)
         if self.post_migration is not None:
             self.post_migration(self.import_db, self.version_out, self.database)
+        self.adapt_reviewed_38_chemical_proxies()
         self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         if self.system_model == "EN15804":

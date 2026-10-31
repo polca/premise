@@ -293,6 +293,37 @@
     reference product: iron scrap, unsorted
     location: GLO
 
+# Approved consequential adaptation of the supplemental vehicle cut-off
+# handoffs. Keep signed kg quantities and uncertainty; the native markets
+# supply consequential treatment/substitution. RoW is an explicit geographic
+# proxy for new aluminium scrap, for which no GLO market exists.
+- name: aluminium scrap, new, Recycled Content cut-off
+  reference product: aluminium scrap, new
+  unit: kilogram
+  location: GLO
+  replacement:
+    name: market for aluminium scrap, new
+    reference product: aluminium scrap, new
+    location: RoW
+
+- name: aluminium scrap, post-consumer, Recycled Content cut-off
+  reference product: aluminium scrap, post-consumer
+  unit: kilogram
+  location: GLO
+  replacement:
+    name: market for aluminium scrap, post-consumer
+    reference product: aluminium scrap, post-consumer
+    location: GLO
+
+- name: copper scrap, sorted, pressed, Recycled Content cut-off
+  reference product: copper scrap, sorted, pressed
+  unit: kilogram
+  location: GLO
+  replacement:
+    name: market for copper scrap, sorted, pressed
+    reference product: copper scrap, sorted, pressed
+    location: GLO
+
 - name: blast furnace slag, Recycled Content cut-off
   reference product: blast furnace slag
   unit: kilogram
@@ -386,6 +417,30 @@
     name: market for sodium hydroxide, without water, in 50% solution state
     reference product: sodium hydroxide, without water, in 50% solution state
     location: GLO
+
+# Consequential marginal HDPE supply replaces the unavailable recycled route.
+# Retain European supply in 3.12, where the former GLO market is regionalized.
+- name: polyethylene, high density, granulate, recycled to generic market for high density PE granulate
+  reference product: polyethylene, high density, granulate
+  unit: kilogram
+  location: Europe without Switzerland
+  replacement:
+    name: market for polyethylene, high density, granulate
+    reference product: polyethylene, high density, granulate
+    location:
+      "<3.12": GLO
+      ">=3.12": RER
+
+- name: polyethylene, high density, granulate, recycled to generic market for polyethylene, high density, granulate
+  reference product: polyethylene, high density, granulate
+  unit: kilogram
+  location: RoW
+  replacement:
+    name: market for polyethylene, high density, granulate
+    reference product: polyethylene, high density, granulate
+    location:
+      "<3.12": GLO
+      ">=3.12": RER
 
 - name: Sohio process
   reference product: acetonitrile

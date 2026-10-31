@@ -62,6 +62,7 @@ from .export import (
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
 from .filesystem_constants import (
+    DATA_DIR,
     DIR_CACHED_DB,
     DIR_CACHED_FILES,
     IAM_OUTPUT_DIR,
@@ -1272,9 +1273,25 @@ class NewDatabase:
             ):
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
+            digest.update(
+                inspect.getsource(
+                    BaseInventoryImport.check_for_already_existing_datasets
+                ).encode()
+            )
+            if getattr(self, "version", None) == "3.8":
+                digest.update(
+                    inspect.getsource(
+                        BaseInventoryImport.adapt_reviewed_38_chemical_proxies
+                    ).encode()
+                )
             if getattr(self, "system_model", None) == "EN15804":
                 digest.update(
                     Path(inspect.getfile(adapt_en15804_scrap_exchanges)).read_bytes()
+                )
+            elif getattr(self, "system_model", None) == "consequential":
+                # System-model substitutions are part of the imported recipe.
+                digest.update(
+                    (DATA_DIR / "consequential" / "blacklist.yaml").read_bytes()
                 )
             if (
                 getattr(self, "version", None) == "3.12"
