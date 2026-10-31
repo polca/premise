@@ -215,3 +215,199 @@ A supplier-score counterfactual attributes 0.0196497417 kg CO2-eq of the
 0.0380899638 kg CO2-eq increase directly to this quantity correction; the same
 energy correction also propagates through upstream fuel markets. This causal
 check supports refreshing the value despite its larger percentage change.
+
+## Approved reference review, 31 October 2026
+
+The ecoinvent 3.10 consequential / IMAGE SSP2-VLHO 2050 Swiss low-voltage
+electricity reference is refreshed with user approval. The functional unit is
+one kWh of the CH low-voltage electricity market, using the configured IPCC
+2013 GWP100 method. The 3% relative and 1e-9 absolute tolerances are unchanged.
+
+| Previous reference | Historical rebuild | Current controlled rebuild | New reference |
+| --- | --- | --- | --- |
+| 0.020819954475643783 | 0.0201099626452748 | 0.02012391871166371 | 0.02012391871166371 |
+
+Scores are kg CO2-eq/kWh. The historical rebuild uses the reference commit
+`aad47eae`, matching encrypted IAM inputs, the compact backend and
+`PYTHONHASHSEED=0`. Its original three-scenario integration test reproduces the
+historical rebuild value, including with default report generation. The current
+controlled rebuild uses the current worktree with the same source project and
+method. The current full integration run gave 0.020117887930879652, within 0.03%
+of the controlled rebuild. Both UMFPACK and SuperLU reproduce the controlled
+scores closely, excluding solver instability as the explanation.
+
+The historical commit also misses the stored reference. The origin of that
+discrepancy remains unconfirmed. This approved refresh records the validated
+current output; it changes no inventory coefficients, scenario definitions,
+methods or tolerances. Other outstanding reference differences remain under
+review.
+
+The original three-scenario 3.10 consequential integration test passes after
+the refresh, including all 15 LCIA comparisons and its additional LCA check.
+
+The analogous ecoinvent 3.11 consequential / IMAGE SSP2-VLHO 2050 Swiss
+low-voltage electricity reference is also refreshed with user approval, from
+0.02036883743148212 to 0.019630616626011066 kg CO2-eq/kWh. A fixed-seed rebuild
+of `aad47eae` gives 0.019637698525297734, within 0.04% of the current result.
+The current integration build passes inventory and export validation; its other
+14 LCIA comparisons meet the existing tolerances. This update changes only the
+one expected score, retaining the method, functional unit and 3% tolerance.
+The full three-scenario 3.11 consequential integration rerun passes after this
+update, including all 15 LCIA comparisons and its additional LCA check.
+
+The ecoinvent 3.12 consequential / IMAGE SSP2-VLHO 2050 Swiss low-voltage
+electricity reference is refreshed with user approval, from
+0.02025572805969673 to 0.019530277530099203 kg CO2-eq/kWh. The fixed-seed
+historical rebuild gives 0.019533702823056782, within 0.02% of the current
+result. Only this expected score changes; the inventory coefficients, method,
+functional unit and 3% relative tolerance are retained.
+The full three-scenario 3.12 consequential integration rerun passes, including
+all 15 LCIA comparisons and its additional LCA check.
+
+The ecoinvent 3.8 cut-off / IMAGE SSP2-VLHO 2050 Swiss low-voltage
+electricity reference is refreshed with user approval, from
+0.01749772929936413 to 0.016851242477964448 kg CO2-eq/kWh. The historical
+rebuild gives 0.01708337394051675; the current result is 1.36% below that
+rebuild. The method, inventory coefficients and 3% tolerance are retained.
+The separate TIAM diesel reference in the same integration test remains under
+review before the full-file rerun.
+
+The ecoinvent 3.9.1 consequential / IMAGE SSP2-VLHO 2050 Swiss low-voltage
+electricity reference is refreshed with user approval, from
+0.02077945731165172 to 0.020152543098023504 kg CO2-eq/kWh. The historical
+rebuild gives 0.020082313738978355, within 0.35% of the current result. Only
+the expected score and review notes change; the method, inventory coefficients
+and 3% tolerance are retained.
+The full three-scenario 3.9.1 consequential integration rerun passes, including
+all 15 LCIA comparisons and its additional LCA check.
+
+The ecoinvent 3.8 consequential / IMAGE SSP2-VLHO 2050 Swiss low-voltage
+electricity reference is refreshed with user approval, from
+0.018711945923389622 to 0.0180931018765829 kg CO2-eq/kWh. The historical
+rebuild gives 0.018124668814854784, within 0.18% of the current result. The
+method, inventory coefficients and 3% tolerance are unchanged.
+The full three-scenario 3.8 consequential integration rerun passes, including
+all 15 LCIA comparisons and its additional LCA check.
+
+## Isolated 3.8 cut-off diesel diagnosis, 31 October 2026
+
+The TIAM SSP2-RCP19 2050 diesel score was reproduced in a fresh environment
+with separate historical/current source snapshots and private Brightway roots.
+The historical build at `aad47eae` gives 0.18378421188517066, matching the stored
+0.1837842111464194 to 7.39e-10. The current build gives
+0.17621421161062167 kg CO2-eq/kg, a 4.11896% decrease. Native records, dependency
+versions, IAM input bytes, functional unit and LCIA method are held constant.
+
+Sequential controls attribute 69.32% of the decrease to removal of the
+unsupported potassium sulfate purchase (`bd7ad59f`), 7.43% to other updates,
+8.06% to truck battery sizing with cargo fixed, and 15.19% to increased cargo
+under fixed payload utilization. The historical cache removed the existing
+sizing metadata; `b844a9d0` preserves it so the intended scenario sizing runs.
+Historical transport supply chains plus sulfate restoration recover 99.45%
+of the full difference; the remaining 0.55% has not been individually traced.
+
+JRC Table 231 supports sulfate as a non-credited output rather than a purchase.
+The transport contribution follows the documented model, with the scientific
+qualification that increased cargo is an additional fixed-utilization
+assumption, not independently established by TIAM. Holding cargo fixed still
+gives 0.1773638981461366, 3.4934% below the historical score. Three relevant
+vehicle suites pass (263 tests). This audit changes no diesel reference or
+tolerance. Aggregate evidence, limitations and reproduction scripts are in
+[`results/lcia-diesel38-isolated-20261031`](../../results/lcia-diesel38-isolated-20261031/README.rst).
+
+Following review of this isolated diagnosis, the user approved refreshing the
+3.8 cut-off / TIAM diesel reference from 0.1837842111464194 to
+0.17621421161062167 kg CO2-eq/kg. Only that expected value changes; the method,
+functional unit, inventory coefficients and 3% relative tolerance are retained.
+The complete three-scenario 3.8 cut-off integration rerun passes, including all
+15 LCIA comparisons and its additional LCA check.
+
+## Approved 3.9.1 cut-off diesel reference review, 31 October 2026
+
+The approved refresh is TIAM SSP2-RCP19 2050 diesel, Europe without
+Switzerland, from 0.1960268324260079 to 0.18849716086515955 kg CO2-eq/kg
+(-3.84114%). The historical `aad47eae` rebuild gives 0.1960268331714873,
+matching the stored reference to 7.45e-10. Following user approval, only this
+expected value and review notes change; the method, functional unit, inventory
+coefficients and 3% tolerance are retained.
+
+Read-only matrix controls on the historical and current databases identify
+the same pathways reviewed for 3.8 cut-off. Removing only the sulfate purchase
+from the historical system gives 0.18992619320354287, accounting for 81.02%
+of the decrease. Restoring it in the current system gives 0.1945100105483542
+(79.86% on that basis). Restoring historical road-transport supply chains
+and the sulfate purchase together gives 0.19602862586693745, within 0.00092%
+of the historical rebuild. This identifies essentially the entire change,
+with the same documented vehicle/battery and payload assumptions as the
+approved 3.8 review. Whole-chain effects interact and are not additive.
+
+The controls restore 34 regional sulfate purchases and redirect 8,072 current
+consumer edges to 784 exact matching historical road-transport providers.
+They alter matrices in memory only. Evidence is retained privately in
+`/private/tmp/premise-diesel39-sulfate-check.json` and
+`/private/tmp/premise-diesel39-combined-counterfactual.json`.
+The complete three-scenario 3.9.1 cut-off integration rerun passes, including
+all 15 LCIA comparisons and its additional LCA check.
+
+## Approved 3.10 cut-off diesel reference review, 31 October 2026
+
+The approved TIAM SSP2-RCP19 2050 diesel reference, Europe without Switzerland,
+is 0.2106008475987415 rather than 0.21779146737887428 kg CO2-eq/kg (-3.30161%).
+The historical `aad47eae` rebuild gives 0.21779146847056235, reproducing the
+stored reference within floating-point precision. Following user approval,
+only this expected value and review notes change; the inventory coefficients,
+functional unit, method and 3% tolerance are retained.
+
+Removing only the sulfate purchase from the historical system gives
+0.21218043923833188, explaining about 78% of the decrease on that basis.
+Restoring sulfate plus historical road-transport supply chains in the current
+system gives 0.21802022236908392, 0.105% above the historical score. The combined
+control over-recovers the decrease by 3.18%; other updates partly offset these
+two pathways, and that small remainder has not been individually attributed.
+This supports the same reviewed sulfate and vehicle-accounting explanation,
+including the documented payload assumption, without claiming an exact
+additive decomposition. The control restores 34 sulfate purchases and redirects
+8,736 current consumer edges to 784 exact matching historical road providers.
+It changes no stored inventory data. Private evidence is in
+`/private/tmp/premise-diesel310-sulfate-check.json` and
+`/private/tmp/premise-diesel310-combined-counterfactual.json`.
+The complete three-scenario 3.10 cut-off integration rerun passes, including
+all 15 LCIA comparisons and its additional LCA check.
+
+## Approved 3.12 EN15804 diesel reference review, 31 October 2026
+
+The final approved refresh is TIAM SSP2-RCP19 2050 diesel, Europe without
+Switzerland, from 0.14801012562412413 to 0.14111062017035847 kg CO2-eq/kg
+(-4.66151%). The historical `aad47eae` rebuild gives 0.14801012434102145,
+reproducing the stored reference within floating-point precision. Following user
+approval, only this expected value and review notes change; inventory
+coefficients, method, functional unit and 3% tolerance are retained.
+
+Removing sulfate alone from the historical system gives 0.14265146453304794,
+explaining about 77.67% of the decrease. Restoring sulfate and historical
+road-transport supply chains in the current system gives 0.14803488262553646,
+within 0.017% of the historical result. The small overshoot is not individually
+attributed; whole-chain effects interact. The same reviewed sulfate correction
+and documented vehicle/battery/payload assumptions apply. The control restores
+34 sulfate purchases and redirects 9,697 current consumer edges to 784 exact
+matching historical road providers, entirely in memory. Evidence is retained
+privately in `/private/tmp/premise-dieselEN15804-sulfate-check.json` and
+`/private/tmp/premise-dieselEN15804-combined-counterfactual.json`.
+The complete three-scenario EN15804 integration rerun passes, including all
+15 LCIA comparisons and its additional LCA check.
+
+## Final verification, 31 October 2026
+
+Exactly ten expected scores were refreshed with user approval: six electricity
+and four diesel references. Activity identities, units, LCIA methods, inventory
+coefficients and the 3% relative / 1e-9 absolute tolerances are unchanged.
+All nine previously failing integration tests pass their complete reruns.
+The LCIA regression helper suite also passes (six tests).
+
+Merging the original full suite's three JUnit batches with those nine affected
+test reruns accounts for all 3,508 original tests: **3,507 passed, zero failures,
+zero errors and one intentional skip** (`Passenger-car calibration only`).
+This is a combined result ledger, not a new full-suite invocation after the
+reference-only edits. Private evidence is retained in
+`/private/tmp/premise-final-suite-20261031.json`, which lists the original
+batches, successful rerun XML files and the skip reason.
