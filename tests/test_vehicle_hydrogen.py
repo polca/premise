@@ -202,27 +202,31 @@ def test_validator_detects_unscaled_electricity_from_current_fuel_input():
 
 def test_installed_workbooks_retain_explicit_role_through_excel_import():
     from bw2io import ExcelImporter
+
     from premise.filesystem_constants import INVENTORY_DIR
     from premise.vehicle_hydrogen import compression_specification
 
-    # Independent equal-ratio, intercooled ideal-gas compression calculation.
-    expected = (
-        3
-        * (1.4 / 0.4)
-        * (8.314462618 / 0.00201588)
-        * 300
-        * ((700 / 30) ** (0.4 / 1.4 / 3) - 1)
-        / (0.56 * 0.92 * 3_600_000)
-    )
     counts = []
     for filename in ("lci-pass_cars.xlsx", "lci-trucks.xlsx"):
+        # Road trucks use the reviewed 350-bar storage reference. Passenger
+        # cars retain 700 bar; both explicit delivery scenarios start at 30 bar.
+        pressure = 350 if filename == "lci-trucks.xlsx" else 700
+        # Independent equal-ratio, intercooled ideal-gas compression calculation.
+        expected = (
+            3
+            * (1.4 / 0.4)
+            * (8.314462618 / 0.00201588)
+            * 300
+            * ((pressure / 30) ** (0.4 / 1.4 / 3) - 1)
+            / (0.56 * 0.92 * 3_600_000)
+        )
         data = ExcelImporter(str(INVENTORY_DIR / filename)).data
         selected = [ds for ds in data if COMPRESSION_KEY in ds]
         counts.append(len(selected))
         for ds in selected:
             spec = compression_specification(ds)
             assert spec["inlet pressure bar"] == 30
-            assert spec["tank pressure bar"] == 700
+            assert spec["tank pressure bar"] == pressure
             assert spec["electricity kWh per kg H2"] == pytest.approx(expected)
             prepared = prepare_hydrogen_compression(ds)
             compression = [
