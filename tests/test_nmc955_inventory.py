@@ -4,12 +4,26 @@ from copy import deepcopy
 
 import pytest
 from bw2io import ExcelImporter
+from inventory_assertions import assert_declared_classifications
 
 from premise.filesystem_constants import INVENTORY_DIR
 
-PASTE = "anode paste production, silicon-graphite, for Li-ion battery, NMC955"
+PASTE = "anode paste production, silicon-graphite, for lithium-ion battery, nmc955"
 PRODUCT = "anode paste, silicon-graphite, for Li-ion battery, NMC955"
 CELL = "battery cell production, Li-ion, NMC955"
+CELL_SUPPLIER = (
+    "market for battery cell, lithium-ion, nmc955, including end-of-life treatment"
+)
+FIXED_COMPONENTS = "battery pack component production and end-of-life treatment, lithium-ion, nmc955, without cells and controls"
+PACK_DESIGN = "battery pack production, lithium-ion, nmc955, without electronics"
+CONTROLS = (
+    "battery monitoring and central control system production, lithium-ion, nmc955"
+)
+# Crenna 2021 SI, NMC111 J82:J83: source-precision geometry adopted by the
+# reviewed NMC955 adaptation (issue 46), retaining the dry-paste composition.
+DRY_PASTE_PER_CELL = 24.4 / 119.79
+COPPER_FOIL_PER_CELL = 14.83 / 119.79
+
 CAPACITY_MARKETS = (
     "market for battery capacity, Li-ion, NMC955",
     "market for battery capacity, Li-ion, NMC955, stationary",
@@ -105,10 +119,12 @@ def test_cell_anode_has_one_collector_and_correct_dry_ingredients(inventory):
     paste_input = exchange(cell, PASTE)
     assert paste_input["reference product"] == PRODUCT
     assert paste_input["location"] == paste["location"]
-    assert paste_input["amount"] == pytest.approx(0.2)
+    assert paste_input["amount"] == pytest.approx(DRY_PASTE_PER_CELL)
     foil = exchange(cell, "copper collector foil, for Li-ion battery")
-    assert foil["amount"] == pytest.approx(0.12)
-    assert paste_input["amount"] + foil["amount"] == pytest.approx(0.32)
+    assert foil["amount"] == pytest.approx(COPPER_FOIL_PER_CELL)
+    assert paste_input["amount"] + foil["amount"] == pytest.approx(
+        (24.4 + 14.83) / 119.79
+    )
     assert not any("copper" in e["name"] for e in paste["exchanges"])
     assert not any(
         e["name"] == "market for anode, silicon coated graphite, for Li-ion battery"
@@ -116,10 +132,28 @@ def test_cell_anode_has_one_collector_and_correct_dry_ingredients(inventory):
     )
     assert paste_input["amount"] * exchange(
         paste, "market for graphite, battery grade"
-    )["amount"] == pytest.approx(0.17108)
+    )["amount"] == pytest.approx(DRY_PASTE_PER_CELL * 0.8554)
     assert paste_input["amount"] * exchange(
         paste, "market for silicon, metallurgical grade"
-    )["amount"] == pytest.approx(0.01692)
+    )["amount"] == pytest.approx(DRY_PASTE_PER_CELL * 0.0846)
+    # Count retained materials once; rolling/extrusion are processing services.
+    material_masses = {
+        PASTE: 24.4,
+        "cathode, NMC955, for Li-ion battery": 49.3365,
+        "electrolyte, for Li-ion battery": 17.52,
+        "copper collector foil, for Li-ion battery": 14.83,
+        "aluminium collector foil, for Li-ion battery": 3.7135,
+        "market for aluminium, wrought alloy": 2.18 + 1.21,
+        "market for copper, anode": 4.01,
+        "battery separator": 2.1,
+        "market for polyethylene terephthalate, granulate, amorphous": 0.3381,
+        "market for polypropylene, granulate": 0.1519,
+    }
+    for name, mass in material_masses.items():
+        assert exchange(cell, name)["amount"] == pytest.approx(mass / 119.79)
+    assert sum(exchange(cell, name)["amount"] for name in material_masses) == (
+        pytest.approx(1)
+    )
 
 
 def test_dry_paste_keeps_source_processing_energy_and_solvent(inventory):
@@ -164,13 +198,13 @@ def test_dry_anode_boundary_survives_premise_migration(version, monkeypatch):
     data = importer.import_db.data
     paste = activity(data, PASTE)
     cell = activity(data, CELL)
-    assert paste["classifications"]
+    assert_declared_classifications(importer, paste)
     assert exchange(cell, PASTE)["product"] == PRODUCT
     assert exchange(cell, PASTE)["location"] == paste["location"]
-    assert exchange(cell, PASTE)["amount"] == pytest.approx(0.2)
+    assert exchange(cell, PASTE)["amount"] == pytest.approx(DRY_PASTE_PER_CELL)
     assert exchange(cell, "copper collector foil, for Li-ion battery")[
         "amount"
-    ] == pytest.approx(0.12)
+    ] == pytest.approx(COPPER_FOIL_PER_CELL)
     solids = [
         e
         for e in paste["exchanges"]
@@ -192,26 +226,27 @@ def test_dry_anode_boundary_survives_premise_migration(version, monkeypatch):
 
 
 def assert_capacity_mass_balance(market, cell_fraction, densities):
-    manufacture = exchange(market, "market for battery, Li-ion, NMC955")
-    disposal = exchange(market, "market for used Li-ion battery")
+    # The split route samples cell kg/kWh. Its supplier purchases one cell kg
+    # and retires exactly that mass; fixed hardware/controls are separate.
+    manufacture = exchange(market, CELL_SUPPLIER)
     assert market["battery cell mass share"] == pytest.approx(cell_fraction)
-    assert manufacture["unit"] == disposal["unit"] == "kilogram"
-    assert manufacture["uncertainty type"] == disposal["uncertainty type"] == 5
-    # Cell kg per pack kg * cell kWh per cell kg * pack kg = one kWh.
-    assert manufacture["amount"] * cell_fraction * densities["mean"] == pytest.approx(1)
-    assert manufacture["minimum"] * cell_fraction * densities[
-        "maximum"
-    ] == pytest.approx(1)
-    assert manufacture["maximum"] * cell_fraction * densities[
-        "minimum"
-    ] == pytest.approx(1)
+    assert manufacture["unit"] == "kilogram"
+    assert manufacture["uncertainty type"] == 5
+    assert manufacture["amount"] * densities["mean"] == pytest.approx(1)
+    assert manufacture["minimum"] * densities["maximum"] == pytest.approx(1)
+    assert manufacture["maximum"] * densities["minimum"] == pytest.approx(1)
     assert manufacture["minimum"] <= manufacture["loc"] <= manufacture["maximum"]
     assert manufacture["loc"] == manufacture["amount"]
-    assert disposal["amount"] == -manufacture["amount"]
-    assert disposal["loc"] == -manufacture["loc"]
-    assert disposal["minimum"] == -manufacture["maximum"]
-    assert disposal["maximum"] == -manufacture["minimum"]
-    assert disposal["negative"] is True
+    fixed = exchange(market, FIXED_COMPONENTS)
+    assert fixed["amount"] == 1 and fixed["unit"] == "kilowatt hour"
+    assert fixed["uncertainty type"] == 0
+    assert exchange(market, CONTROLS)["amount"] > 0
+    assert not any(
+        e["type"] == "technosphere"
+        and e["name"]
+        in ("market for battery, Li-ion, NMC955", "market for used Li-ion battery")
+        for e in market["exchanges"]
+    )
 
 
 @pytest.mark.parametrize("name", CAPACITY_MARKETS)
@@ -220,7 +255,7 @@ def test_capacity_conversion_uses_manufactured_cell_fraction(
 ):
     from premise.battery import load_cell_energy_density
 
-    pack = activity(inventory, "battery production, Li-ion, NMC955")
+    pack = activity(inventory, PACK_DESIGN)
     fraction = exchange(pack, CELL)["amount"] / exchange(pack, pack["name"])["amount"]
     market = activity(capacity_inventory, name)
     assert_capacity_mass_balance(
@@ -234,7 +269,7 @@ def test_capacity_mean_and_bounds_follow_density_change(
 ):
     from premise.battery import Battery, load_cell_energy_density
 
-    pack = activity(inventory, "battery production, Li-ion, NMC955")
+    pack = activity(inventory, PACK_DESIGN)
     fraction = exchange(pack, CELL)["amount"] / exchange(pack, pack["name"])["amount"]
     battery = object.__new__(Battery)
     battery.database = [
@@ -242,14 +277,20 @@ def test_capacity_mean_and_bounds_follow_density_change(
     ]
     battery.year = year
     battery.write_log = lambda *args, **kwargs: None
+    fixed_before = {
+        m["name"]: deepcopy(exchange(m, FIXED_COMPONENTS)) for m in battery.database
+    }
+    controls_before = {
+        m["name"]: deepcopy(exchange(m, CONTROLS)) for m in battery.database
+    }
     battery.adjust_battery_mass()
     targets = load_cell_energy_density()
     fraction_of_period = (year - 2020) / 30
     for market in battery.database:
-        manufacture = exchange(market, "market for battery, Li-ion, NMC955")
-        disposal = exchange(market, "market for used Li-ion battery")
-        assert manufacture["amount"] * fraction * density == pytest.approx(1)
-        assert disposal["amount"] == -manufacture["amount"]
+        manufacture = exchange(market, CELL_SUPPLIER)
+        assert manufacture["amount"] * density == pytest.approx(1)
+        assert exchange(market, FIXED_COMPONENTS) == fixed_before[market["name"]]
+        assert exchange(market, CONTROLS) == controls_before[market["name"]]
         target = targets[market["name"]]
         densities = {
             key: (1 - fraction_of_period) * target[2020][key]
@@ -273,10 +314,18 @@ def test_capacity_conversion_survives_premise_migration(
         [], "3.10", version, INVENTORY_DIR / "lci-battery-capacity.xlsx", "cutoff", True
     )
     importer.prepare_inventory()
-    pack = activity(inventory, "battery production, Li-ion, NMC955")
+    pack = activity(inventory, PACK_DESIGN)
     fraction = exchange(pack, CELL)["amount"] / exchange(pack, pack["name"])["amount"]
     targets = load_cell_energy_density()
     for name in CAPACITY_MARKETS:
         assert_capacity_mass_balance(
             activity(importer.import_db.data, name), fraction, targets[name][2020]
         )
+
+
+def test_cell_supplier_couples_manufacture_and_retirement_for_every_sample(inventory):
+    supplier = activity(inventory, CELL_SUPPLIER)
+    assert supplier["unit"] == "kilogram"
+    assert exchange(supplier, supplier["name"])["amount"] == 1
+    assert exchange(supplier, CELL)["amount"] == 1
+    assert exchange(supplier, "market for used Li-ion battery")["amount"] == -1

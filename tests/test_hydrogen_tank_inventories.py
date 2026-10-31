@@ -1,5 +1,7 @@
 """Published dry tank material and manufacturing-energy boundaries, without ecoinvent."""
 
+import json
+import math
 from pathlib import Path
 
 import pytest
@@ -24,7 +26,9 @@ def test_imported_tank_closes_dry_mass_and_preserves_source_energy(inventories):
     mass = 87.71
     energy = 12.87
     materials = {
-        "market for aluminium alloy, AlLi": 7.09,
+        # The source lists aluminium ingot without an alloy grade. The reviewed
+        # ordinary-aluminium proxy replaces the unsupported AlLi supplier only.
+        "market for aluminium, wrought alloy": 7.09,
         "carbon fiber production, weaved, at factory": 19.78,
         "epoxy resin production, liquid": 29.67,
         "market for glass fibre": 5.6,
@@ -58,6 +62,9 @@ def test_imported_tank_closes_dry_mass_and_preserves_source_energy(inventories):
         assert exchanges[key]["unit"] == "kilogram"
         assert exchanges[key]["reference product"]
         assert exchanges[key]["location"]
+    aluminium = exchanges["market for aluminium, wrought alloy"]
+    assert aluminium["reference product"] == "aluminium, wrought alloy"
+    assert aluminium["location"] == "GLO"
     assert exchanges[electricity]["unit"] == "kilowatt hour"
     assert exchanges[electricity]["amount"] * mass * 3.6 == pytest.approx(energy)
     assert "12.87 MJ / 3.6 / 87.71 kg" in dataset["comment"]
@@ -92,7 +99,7 @@ def test_tank_correction_survives_premise_migration(version, monkeypatch):
 
 
 @pytest.mark.parametrize("version", ["3.9", "3.10", "3.11", "3.12"])
-def test_restored_rail_tank_preserves_dry_mass_energy_and_links(version, monkeypatch):
+def test_rail_storage_preserves_legacy_recipe_and_lifetime_system(version, monkeypatch):
     from premise.filesystem_constants import INVENTORY_DIR
     from premise.inventory_imports import DefaultInventory
 
@@ -107,7 +114,9 @@ def test_restored_rail_tank_preserves_dry_mass_energy_and_links(version, monkeyp
     (tank,) = [d for d in importer.import_db.data if d["name"] == name]
     assert tank["unit"] == "kilogram"
     assert tank["reference product"] == "hydrogen tank"
-    assert "83b9c0ae" in tank["inventory provenance"]
+    provenance = json.loads(tank["inventory provenance"])
+    assert provenance["role"] == "retained legacy component"
+    assert provenance["restored in"] == "lci-rail-freight.xlsx"
     exchanges = {e["name"]: e for e in tank["exchanges"] if e["type"] == "technosphere"}
     materials = {
         "market for steel, chromium steel 18/8": 10.591,
@@ -129,7 +138,43 @@ def test_restored_rail_tank_preserves_dry_mass_energy_and_links(version, monkeyp
         for d in importer.import_db.data
         if d["name"] == "production of locomotive, fuel cell, hydrogen"
     ]
-    (purchase,) = [e for e in locomotive["exchanges"] if e["name"] == name]
-    assert purchase["unit"] == tank["unit"]
-    assert purchase["product"] == tank["reference product"]
-    assert purchase["amount"] == pytest.approx(30323.84571428572)
+    # Issue 69 supersedes the old 30,323.85 kg road-tank allocation. One rail
+    # lifetime system contains all replacements; the retained legacy recipe
+    # above remains independently checked without requiring a current buyer.
+    system_name = "hydrogen fuel tank system production, rail, 700 bar"
+    (system,) = [d for d in importer.import_db.data if d["name"] == system_name]
+    (purchase,) = [e for e in locomotive["exchanges"] if e["name"] == system_name]
+    assert purchase["unit"] == system["unit"] == "unit"
+    assert purchase["product"] == system["reference product"]
+    assert purchase["amount"] == 1
+    assert not any(e["name"] == name for e in locomotive["exchanges"])
+    cylinder = "hydrogen fuel tank production, rail, type 3 cylinder, 700 bar"
+    rack = "hydrogen fuel tank mounting rack production, rail"
+    controls = "hydrogen fuel tank valve and control system production, rail"
+    # Preserve the old implied installed hydrogen budget, then round up to
+    # complete 8.3 kg survey cylinders; replacements belong inside the system.
+    hydrogen_budget = 30323.84571428572 / 4 * 5.6 / 93
+    installed_cylinders = math.ceil(hydrogen_budget / 8.3)
+    inputs = [e for e in system["exchanges"] if e["type"] == "technosphere"]
+    assert {e["name"]: e["amount"] for e in inputs} == {
+        cylinder: installed_cylinders * (40 / 10),
+        rack: 1,
+        controls: 40 / 20,
+    }
+    for link in inputs:
+        (supplier,) = [d for d in importer.import_db.data if d["name"] == link["name"]]
+        assert link["product"] == supplier["reference product"]
+        assert link["unit"] == supplier["unit"] == "unit"
+        assert link["location"] == supplier["location"]
+    # FCH2RAIL D1.5 Table 20: 8.3 kg H2 and 179 kg including gas per cylinder.
+    # The 55-cylinder choice and 95% material retention are engineering inputs.
+    (vessel,) = [d for d in importer.import_db.data if d["name"] == cylinder]
+    dry_mass = 179 - 8.3
+    feeds = [e for e in vessel["exchanges"] if e["type"] == "technosphere"]
+    assert sum(e["amount"] for e in feeds if e["unit"] == "kilogram") * 0.95 == (
+        pytest.approx(dry_mass)
+    )
+    power = [e for e in feeds if e["unit"] == "kilowatt hour"]
+    assert sum(e["amount"] for e in power) == pytest.approx(dry_mass)
+    assert installed_cylinders * 8.3 >= hydrogen_budget
+    assert installed_cylinders * 8.3 - hydrogen_budget < 8.3

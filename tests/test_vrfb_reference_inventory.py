@@ -18,6 +18,8 @@ from premise.filesystem_constants import INVENTORY_DIR
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/update_vanadium_reference_inventory.py"
 AUTHOR = runpy.run_path(str(SCRIPT))
+CONDITIONING = "vanadium electrolyte conditioning"
+USED_MARKET = "market for used redox-flow battery, vanadium"
 CAPACITY = "market for battery capacity, redox-flow, Vanadium, stationary"
 PACK = "market for battery, redox-flow, Vanadium"
 ELECTROLYTE = "vanadium electrolyte solution production"
@@ -50,7 +52,7 @@ def data():
 
 def test_solution_assay_redox_and_complete_mass_balance(data):
     electrolyte = activity(data, ELECTROLYTE)
-    conditioning = activity(data, AUTHOR["CONDITIONING"])
+    conditioning = activity(data, CONDITIONING)
     oxide = amount(electrolyte, "vanadium pentoxide production")
     acid = amount(electrolyte, "market for sulfuric acid")
     phosphate = amount(
@@ -70,11 +72,15 @@ def test_solution_assay_redox_and_complete_mass_balance(data):
     assert amount(
         conditioning, "market for electricity, medium voltage"
     ) == pytest.approx(mol_V * 0.0509415 * 1.69)
-    assert amount(electrolyte, AUTHOR["CONDITIONING"]) == 1
+    assert amount(electrolyte, CONDITIONING) == 1
     assert not any(
         e["name"] == "market for water, deionised" for e in electrolyte["exchanges"]
     )
-    assert conditioning["unit"] == "unit"
+    assert conditioning["unit"] == "kilogram"
+    assert (
+        next(e for e in electrolyte["exchanges"] if e["name"] == CONDITIONING)["unit"]
+        == conditioning["unit"]
+    )
     assert "remaining-error warning is unresolved" in electrolyte["comment"]
 
 
@@ -133,8 +139,8 @@ def test_capacity_is_supported_by_both_reservoirs_without_double_counting_V(data
         electrolyte_kg
     )
     assert x["treatment of stack, for VRFB system"] == pytest.approx(x[STACK] * 10016)
-    assert amount(capacity, AUTHOR["USED_MARKET"]) == pytest.approx(-mass)
-    waste = activity(data, AUTHOR["USED_MARKET"])
+    assert amount(capacity, USED_MARKET) == pytest.approx(-mass)
+    waste = activity(data, USED_MARKET)
     assert waste["production amount"] == -1
     assert sum(
         -e["amount"] for e in waste["exchanges"] if e["type"] == "technosphere"
@@ -211,6 +217,9 @@ def formulas(path):
 def test_authoring_is_idempotent_and_retains_formula_caches(tmp_path, filename, patch):
     path = tmp_path / filename
     shutil.copyfile(INVENTORY_DIR / filename, path)
+    # An authoring operation must be a no-op on its own output. The live
+    # workbook also contains later, independently authored inventory changes.
+    AUTHOR[patch](path)
     before = path.read_bytes()
     formula_before = formulas(path)
     assert AUTHOR[patch](path) is False
@@ -284,7 +293,7 @@ def test_oxygen_biosphere_exchange_survives_import_linking(version):
         "cutoff",
         True,
     )
-    conditioning = activity(importer.import_db.data, AUTHOR["CONDITIONING"])
+    conditioning = activity(importer.import_db.data, CONDITIONING)
     before = amount(conditioning, "Oxygen")
     importer.add_biosphere_links()
     (oxygen,) = [e for e in conditioning["exchanges"] if e["name"] == "Oxygen"]

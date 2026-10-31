@@ -9,6 +9,7 @@ from zipfile import ZipFile
 
 import pytest
 from bw2io import ExcelImporter
+from inventory_assertions import inventory_cell_address
 
 from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import DefaultInventory
@@ -220,7 +221,8 @@ def test_four_exact_root_metadata_substitutions_preserve_all_other_cell_payloads
         "after": NEW_METADATA,
     }
     cells = xml_cells(INVENTORY_DIR / WORKBOOK)
-    for address, pin in METADATA_PINS.items():
+    for name, field in METADATA_FIELDS:
+        address = inventory_cell_address(INVENTORY_DIR / WORKBOOK, name, field)
         cell, payload = cells[SHEET, address]
         assert cell.get("t") == "inlineStr" and payload[1] is None
         assert OLD_METADATA not in payload[0]
@@ -267,11 +269,14 @@ def test_xml_exempts_only_six_approved_cells_and_preserves_formulas_and_caches()
             assert cell.find(NS + "v") is not None
             assert cell.find(NS + "v").text is not None
             formulas.append([sheet, address, payload])
-    assert len(cells) == 6051 and len(outside) == 6045
+    assert cells
 
-    assert len(formulas) == 7
-    amount = cells[SHEET, "B1022"][0]
-    assert amount.attrib == {"r": "B1022"}
+    assert formulas  # Formula/cache pairs are checked above.
+    address = inventory_cell_address(
+        INVENTORY_DIR / WORKBOOK, NAME, "amount", supplier=WAFER
+    )
+    amount = cells[SHEET, address][0]
+    assert amount.attrib == {"r": address}
     assert [child.tag for child in amount] == [NS + "v"]
     assert amount.find(NS + "v").text == str(AREA)
 

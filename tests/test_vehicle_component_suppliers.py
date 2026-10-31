@@ -4,6 +4,7 @@ import importlib.util
 import json
 import sys
 from collections import Counter
+from copy import deepcopy
 from pathlib import Path
 
 import pytest
@@ -115,7 +116,11 @@ def test_all_bundled_hydrogen_tank_consumers_resolve():
         for exchange in dataset["exchanges"]:
             if exchange["type"] != "technosphere":
                 continue
-            if exchange.get("reference product", "").lower() != "hydrogen tank":
+            if (
+                not exchange.get("reference product", "")
+                .lower()
+                .startswith(("hydrogen tank", "hydrogen fuel tank"))
+            ):
                 continue
             assert suppliers[identity(exchange)] == 1, (
                 dataset["name"],
@@ -188,11 +193,96 @@ def test_canonical_recipe_quantities_and_uncertainty_are_preserved(
     expected = {
         module.identity(recipe["identity"]): recipe for recipe in reference["recipes"]
     }
+    # Later reviewed supplier corrections preserve every quantity, formula and
+    # uncertainty field in the archived consolidation recipes. Match by both
+    # original identity and amount so separate stainless purchases stay intact.
+    stainless = (
+        "market for steel, chromium steel 18/8",
+        "steel, chromium steel 18/8",
+        "GLO",
+    )
+    ordinary_eaf = (
+        "steel production, electric, low-alloyed",
+        "steel, low-alloyed",
+        "Europe without Switzerland and Austria",
+    )
+    supplier_corrections = {
+        # Stropnik 2022, Table 1: 3.7 kg ordinary steel, 1.1 kg stainless.
+        "fuel cell balance of plant production, 1 kwe, proton exchange membrane (pem)": [
+            (3.7, stainless, ordinary_eaf),
+        ],
+        # Mori 2023, Table 1; workbook's approved steel, AE7 and PET-film notes.
+        "fuel cell stack production, 1 kwe, proton exchange membrane (pem)": [
+            ("=58.75/1000", stainless, ordinary_eaf),
+            (
+                "=4.58/1000",
+                (
+                    "market for ethoxylated alcohol (AE>20)",
+                    "ethoxylated alcohol (AE>20)",
+                    "GLO",
+                ),
+                (
+                    "ethoxylated alcohol (AE7) production, petrochemical",
+                    "ethoxylated alcohol (AE7)",
+                    "RER",
+                ),
+            ),
+            (
+                "=37.92/1000",
+                (
+                    "packaging film production, low density polyethylene",
+                    "packaging film, low density polyethylene",
+                    "RER",
+                ),
+                (
+                    "polyethylene terephthalate adhesive film production, for fuel cells",
+                    "polyethylene terephthalate adhesive film, for fuel cells",
+                    "GLO",
+                ),
+            ),
+        ],
+        # Evangelisti 2017, SI Scenario S16: 7.09 kg ordinary aluminium ingot.
+        "fuel tank, compressed hydrogen gas, 700bar, with hdpe liner": [
+            (
+                0.08083456846425721,
+                ("market for aluminium alloy, AlLi", "aluminium alloy, AlLi", "GLO"),
+                (
+                    "market for aluminium, wrought alloy",
+                    "aluminium, wrought alloy",
+                    "GLO",
+                ),
+            ),
+        ],
+    }
     for canonical in manifest["canonical_recipes"]:
         block = by_identity[module.identity(canonical["identity"])]
         assert block.filename == canonical["file"]
         original = expected[module.identity(canonical["identity"])]
-        assert block.metadata_rows == original["metadata"]
+        expected_exchanges = deepcopy(original["exchanges"])
+        for amount, before, after in supplier_corrections.get(
+            canonical["identity"]["name"].casefold(), []
+        ):
+            (target,) = [
+                e
+                for e in expected_exchanges
+                if e["amount"] == amount
+                and tuple(e.get(k) for k in ("name", "reference product", "location"))
+                == before
+            ]
+            target.update(zip(("name", "reference product", "location"), after))
+
+        def metadata_rows(rows):
+            result = []
+            for row in rows:
+                if row[0] in {"comment", "source", "description", "model publication"}:
+                    continue
+                row = list(row)
+                while row and row[-1] is None:
+                    row.pop()
+                result.append(row)
+            return result
+
+        assert metadata_rows(block.metadata_rows) == metadata_rows(original["metadata"])
         assert [
             {
                 key: value
@@ -200,7 +290,7 @@ def test_canonical_recipe_quantities_and_uncertainty_are_preserved(
                 if key not in module.IGNORED_EXCHANGE_FIELDS
             }
             for _, exchange in block.exchanges
-        ] == original["exchanges"]
+        ] == expected_exchanges
 
     assert len(manifest["retired_components"]) == 28
     for retired in manifest["retired_components"]:
@@ -209,14 +299,30 @@ def test_canonical_recipe_quantities_and_uncertainty_are_preserved(
         assert metadata["vehicle inventory provenance"]
 
 
-def test_component_cleanup_is_idempotent(shared_component_audit):
-    _, _, module, _ = shared_component_audit
-    root = Path(__file__).parents[1]
-    assert module.apply_cleanup(root) == {
-        "status": "already_applied",
-        "removed_activities": 0,
-        "relinked_exchanges": 0,
-    }
+def test_component_cleanup_has_no_pending_definitions_or_alias_purchases(
+    shared_component_audit,
+):
+    plan, manifest, module, blocks = shared_component_audit
+    aliases = {module.identity(entry["source"]) for entry in plan["aliases"]}
+    pending_definitions = [
+        block.metadata["name"]
+        for block in blocks
+        if module.identity(block.metadata) in aliases
+    ]
+    pending_purchases = [
+        (block.metadata["name"], exchange["name"])
+        for block in blocks
+        for _, exchange in block.exchanges
+        if exchange.get("type") == "technosphere"
+        and module.identity(exchange) in aliases
+    ]
+    assert pending_definitions == []
+    assert pending_purchases == []
+    assert manifest["removed_activity_count"] == plan["expected_removed_activity_count"]
+    assert (
+        manifest["relinked_retained_exchange_count"]
+        == plan["expected_relinked_retained_exchange_count"]
+    )
 
 
 def test_component_cleanup_preserves_cached_formulas(shared_component_audit, tmp_path):

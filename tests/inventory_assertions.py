@@ -142,3 +142,51 @@ def recipe_quantities(record):
             )
         )
     return sorted(rows, key=repr)
+
+
+def inventory_cell_address(workbook, activity, field, supplier=None):
+    """Find a unique metadata/exchange cell without assuming an Excel row."""
+    from openpyxl import load_workbook
+
+    matches = []
+    source = load_workbook(workbook, read_only=True, data_only=True)
+    try:
+        for sheet in source:
+            selected = False
+            exchanges = False
+            columns = None
+            for row in sheet.iter_rows():
+                values = [cell.value for cell in row]
+                if not any(value is not None for value in values):
+                    continue
+                if values[0] == "Activity":
+                    selected = values[1] == activity
+                    exchanges, columns = False, None
+                    continue
+                if not selected:
+                    continue
+                if values[0] == "Exchanges":
+                    exchanges = True
+                    continue
+                if supplier is None and not exchanges and values[0] == field:
+                    matches.append(row[1].coordinate)
+                elif supplier is not None and exchanges:
+                    if columns is None:
+                        columns = {value: i for i, value in enumerate(values) if value}
+                    elif values[columns["name"]] == supplier:
+                        matches.append(row[columns[field]].coordinate)
+    finally:
+        source.close()
+    assert len(matches) == 1, (activity, field, supplier, matches)
+    return matches[0]
+
+
+def assert_declared_classifications(importer, dataset):
+    """Classifications are populated only when the import registry declares them."""
+    from premise.inventory_imports import get_classification_entry
+
+    expected = get_classification_entry(
+        importer.classifications, dataset["name"], dataset["reference product"]
+    )
+    if expected:
+        assert dict(dataset["classifications"]) == expected

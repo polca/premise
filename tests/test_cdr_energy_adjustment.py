@@ -1,13 +1,15 @@
+from copy import deepcopy
 from types import SimpleNamespace
 
 import numpy as np
-from openpyxl import load_workbook
 import pytest
 import xarray as xr
+from openpyxl import load_workbook
 
 from premise.carbon_dioxide_removal import CarbonDioxideRemoval
 from premise.data_collection import IAMDataCollection
 from premise.filesystem_constants import INVENTORY_DIR
+from premise.inventory_imports import migrate_import_db
 
 CDR_INVENTORY = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 AFFORESTATION_INVENTORY = INVENTORY_DIR / "lci-afforestation.xlsx"
@@ -662,21 +664,21 @@ def get_inventory_activity(name, inventory=CDR_INVENTORY):
     raise AssertionError(f"Activity not found: {name}")
 
 
-@pytest.mark.parametrize(
-    ("activity_name", "hydrogen_amount"),
-    [
-        (
-            "carbon dioxide, captured and stored, with a solvent-based direct air "
-            "capture system, 1MtCO2, with hydrogen heat, and grid electricity",
-            9.18 / (120 * 0.9),
-        ),
-        (
-            "carbon dioxide, captured and stored, with a sorbent-based direct air "
-            "capture system, 100ktCO2, with hydrogen heat, and grid electricity",
-            11.9 / (120 * 0.9),
-        ),
-    ],
-)
+DAC_HYDROGEN_CASES = [
+    (
+        "carbon dioxide, captured and stored, with a solvent-based direct air "
+        "capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        9.18 / (120 * 0.9),
+    ),
+    (
+        "carbon dioxide, captured and stored, with a sorbent-based direct air "
+        "capture system, 100ktCO2, with hydrogen heat, and grid electricity",
+        11.9 / (120 * 0.9),
+    ),
+]
+
+
+@pytest.mark.parametrize(("activity_name", "hydrogen_amount"), DAC_HYDROGEN_CASES)
 def test_dac_hydrogen_proxy_inventories_replace_natural_gas_heat(
     activity_name, hydrogen_amount
 ):
@@ -688,15 +690,62 @@ def test_dac_hydrogen_proxy_inventories_replace_natural_gas_heat(
         for exc in exchanges
     )
 
-    hydrogen = next(
+    (hydrogen,) = [
         exc
         for exc in exchanges
-        if exc["name"] == "market for hydrogen, gaseous, low pressure"
-    )
+        if exc["type"] == "technosphere"
+        and exc.get("reference product")
+        in ("hydrogen, gaseous, low pressure", "hydrogen, gaseous")
+    ]
+    # The reviewed source is authored for ecoinvent 3.9. Regional low-pressure
+    # suppliers are introduced by migration, not selected in the raw workbook.
+    assert hydrogen["name"] == "market for hydrogen, gaseous"
     assert hydrogen["amount"] == pytest.approx(hydrogen_amount)
-    assert hydrogen["location"] == "RER"
+    assert hydrogen["location"] == "GLO"
     assert hydrogen["unit"] == "kilogram"
-    assert hydrogen["reference product"] == "hydrogen, gaseous, low pressure"
+    assert hydrogen["reference product"] == "hydrogen, gaseous"
+
+
+@pytest.mark.parametrize(("activity_name", "hydrogen_amount"), DAC_HYDROGEN_CASES)
+@pytest.mark.parametrize("version", ["3.8", "3.9", "3.10", "3.11", "3.12"])
+def test_dac_hydrogen_migration_preserves_demand_and_regional_supply(
+    activity_name, hydrogen_amount, version
+):
+    _, exchanges = get_inventory_activity(activity_name)
+    (source,) = [
+        exc
+        for exc in exchanges
+        if exc["type"] == "technosphere"
+        and exc.get("reference product") == "hydrogen, gaseous"
+    ]
+    importer = SimpleNamespace(
+        data=[{"name": activity_name, "exchanges": [deepcopy(source)]}]
+    )
+    migrate_import_db(importer, "3.9", version)
+    migrated = importer.data[0]["exchanges"]
+    if version in {"3.8", "3.9"}:
+        product = "hydrogen, gaseous"
+        shares = {"GLO": 1.0}
+    else:
+        product = "hydrogen, gaseous, low pressure"
+        # Reviewed 3.9 global-market split; selecting only RER changes supply.
+        shares = {
+            "CN": 0.15535184611103117,
+            "RoW": 0.6563441938664649,
+            "RER": 0.09224004518207454,
+            "US": 0.09606391484042927,
+        }
+    assert len(migrated) == len(shares)
+    assert {exc["location"] for exc in migrated} == set(shares)
+    assert sum(exc["amount"] for exc in migrated) == pytest.approx(hydrogen_amount)
+    for exc in migrated:
+        assert exc["name"] == f"market for {product}"
+        assert exc["reference product"] == product
+        assert exc["type"] == "technosphere"
+        assert exc["unit"] == "kilogram"
+        assert exc["uncertainty type"] == source["uncertainty type"]
+        for field in ("amount", "loc", "minimum", "maximum"):
+            assert exc[field] == pytest.approx(source[field] * shares[exc["location"]])
 
 
 @pytest.mark.parametrize(

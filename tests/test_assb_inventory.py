@@ -1,12 +1,13 @@
 """Independent capacity/material checks for the three published ASSB designs."""
 
-from copy import deepcopy
 import json
+from copy import deepcopy
 from types import SimpleNamespace
 
-from bw2io import ExcelImporter
 import numpy as np
 import pytest
+from bw2io import ExcelImporter
+from inventory_assertions import assert_declared_classifications
 
 from premise.battery import Battery, load_cell_energy_density
 from premise.data_collection import IAMDataCollection
@@ -51,7 +52,9 @@ def feed(ds, name):
 def test_pouch_dry_mass_and_cathode_capacity_close(
     inventory, chemistry, cam, capacity, voltage
 ):
-    cell = activity(inventory, f"battery cell production, ASSB, {chemistry}")
+    cell = activity(
+        inventory, f"battery cell production, all-solid-state battery, {chemistry}"
+    )
     retained = [
         e
         for e in cell["exchanges"]
@@ -75,9 +78,13 @@ def test_pouch_dry_mass_and_cathode_capacity_close(
 @pytest.mark.parametrize("year", [2020, 2035, 2050])
 def test_capacity_pack_cell_and_end_of_life_close(inventory, chemistry, year):
     data = deepcopy(inventory)
-    cell = activity(data, f"battery cell production, ASSB, {chemistry}")
-    pack = activity(data, f"battery production, ASSB, {chemistry}")
-    market = activity(data, f"market for battery capacity, ASSB, {chemistry}")
+    cell = activity(
+        data, f"battery cell production, all-solid-state battery, {chemistry}"
+    )
+    pack = activity(data, f"battery production, all-solid-state battery, {chemistry}")
+    market = activity(
+        data, f"market for battery capacity, all-solid-state battery, {chemistry}"
+    )
     battery = object.__new__(Battery)
     battery.database = data
     battery.year = year
@@ -85,12 +92,26 @@ def test_capacity_pack_cell_and_end_of_life_close(inventory, chemistry, year):
     before = deepcopy(market)
     battery.adjust_battery_mass()
     assert {k: v for k, v in market.items() if k != "log parameters"} == before
-    pack_market = activity(data, f"market for battery, ASSB, {chemistry}")
+    pack_market = activity(
+        data, f"market for battery, all-solid-state battery, {chemistry}"
+    )
     assert feed(pack_market, pack["name"]) == 1
-    pack_kg = feed(market, pack_market["name"])
+    cell_supplier = activity(
+        data,
+        f"market for battery cell, all-solid-state battery, {chemistry}, including end-of-life treatment",
+    )
+    cell_kg = feed(market, cell_supplier["name"])
     assert feed(pack, cell["name"]) == pytest.approx(FRACTION)
-    assert pack_kg * FRACTION * cell["battery cell energy density"] == pytest.approx(1)
-    assert feed(market, "market for used Li-ion battery") == pytest.approx(-pack_kg)
+    assert cell_kg * cell["battery cell energy density"] == pytest.approx(1)
+    assert feed(market, pack_market["name"]) == 0  # No second complete-pack purchase.
+    assert feed(cell_supplier, cell["name"]) == 1
+    assert feed(cell_supplier, "market for used Li-ion battery") == -1
+    fixed = activity(
+        data,
+        f"battery pack component production and end-of-life treatment, all-solid-state battery, {chemistry}, without cells and controls",
+    )
+    assert feed(market, fixed["name"]) == 1
+    assert not any("battery cell production" in e["name"] for e in fixed["exchanges"])
     assert load_cell_energy_density()[market["name"]][2020]["mean"] == pytest.approx(
         cell["battery cell energy density"]
     )
@@ -102,7 +123,9 @@ def test_capacity_pack_cell_and_end_of_life_close(inventory, chemistry, year):
 
 
 def test_sulfide_cathode_yields_purchase_exactly_one_kwh(inventory, sources):
-    cell = activity(inventory, "battery cell production, ASSB, sulfidic")
+    cell = activity(
+        inventory, "battery cell production, all-solid-state battery, sulfidic"
+    )
     mass_per_kwh = 1 / cell["battery cell energy density"]
     data = sources["rietdorf_cell"]
     retained_cam = (
@@ -122,8 +145,12 @@ def test_sulfide_cathode_yields_purchase_exactly_one_kwh(inventory, sources):
     ] * 200 * 3.75 == pytest.approx(data["cell_energy_Wh"])
 
 
-def test_sulfide_hdpe_uses_market_with_original_material_quantity(inventory, sources):
-    cell = activity(inventory, "battery cell production, ASSB, sulfidic")
+def test_sulfide_hdpe_uses_published_recycled_supplier_at_original_quantity(
+    inventory, sources
+):
+    cell = activity(
+        inventory, "battery cell production, all-solid-state battery, sulfidic"
+    )
     (exchange,) = [
         e
         for e in cell["exchanges"]
@@ -140,14 +167,15 @@ def test_sulfide_hdpe_uses_market_with_original_material_quantity(inventory, sou
         * cell["source capacity normalization"]
         * cell["battery cell energy density"]
     )
-    assert exchange["name"] == "market for polyethylene, high density, granulate"
-    assert exchange["location"] == "GLO"
+    assert f"{exchange['name']} ({exchange['location']})" == source["supplier"]
     assert exchange["unit"] == "kilogram"
     assert exchange["amount"] == pytest.approx(expected)
 
 
 def test_sulfide_plating_uses_area_and_original_process_units(inventory, sources):
-    cell = activity(inventory, "battery cell production, ASSB, sulfidic")
+    cell = activity(
+        inventory, "battery cell production, all-solid-state battery, sulfidic"
+    )
     normalization = cell["source capacity normalization"]
     area = 0.610659 * normalization  # m2 per normalized kWh, not kg nickel.
     kg_per_kwh = 1 / cell["battery cell energy density"]
@@ -169,16 +197,22 @@ def test_sulfide_plating_uses_area_and_original_process_units(inventory, sources
 
 
 def test_electrolyte_identity_and_lithium_supply_are_explicit(inventory):
-    peo = activity(inventory, "polyethylene oxide production, proxy, for ASSB")
+    peo = activity(
+        inventory, "polyethylene oxide production, for all-solid-state battery"
+    )
     assert feed(peo, "market for ethylene oxide") == 1
     polymer = activity(
-        inventory, "polymer electrolyte production, PEO-LiTFSI, for ASSB"
+        inventory,
+        "polymer electrolyte production, polyethylene oxide-lithium bis(trifluoromethanesulfonyl)imide, for all-solid-state battery",
     )
     assert feed(polymer, peo["name"]) == pytest.approx(0.8)
     assert feed(
         polymer, "LiTFSi, (CF3SO2)2NLi, production, for LiS battery"
     ) == pytest.approx(0.2)
-    llzo = activity(inventory, "oxide electrolyte production, LLZO, for ASSB")
+    llzo = activity(
+        inventory,
+        "oxide electrolyte production, lithium lanthanum zirconium oxide, for all-solid-state battery",
+    )
     for name, quantity in [
         ("lithium carbonate", 0.339),
         ("lanthanum oxide", 0.582),
@@ -203,9 +237,12 @@ def test_premise_import_retains_capacity_identity_and_biosphere_links(
         [], "3.10", version, INVENTORY_DIR / "lci-batteries-ASSB.xlsx", "cutoff", False
     )
     importer.prepare_inventory()
-    assert len(importer.import_db.data) == 15
+    original = ExcelImporter(INVENTORY_DIR / "lci-batteries-ASSB.xlsx").data
+    assert {ds["name"] for ds in importer.import_db.data} == {
+        ds["name"] for ds in original
+    }
     for ds in importer.import_db.data:
-        assert ds["classifications"]
+        assert_declared_classifications(importer, ds)
         for e in ds["exchanges"]:
             if e["type"] == "biosphere":
                 assert e["input"][1]
@@ -215,11 +252,19 @@ def test_premise_import_retains_capacity_identity_and_biosphere_links(
                 assert e.get("product") or e.get("reference product")
     for chemistry in CHEMISTRIES:
         market = activity(
-            importer.import_db.data, f"market for battery capacity, ASSB, {chemistry}"
+            importer.import_db.data,
+            f"market for battery capacity, all-solid-state battery, {chemistry}",
         )
-        assert sum(
-            e["amount"] for e in market["exchanges"] if e["type"] == "technosphere"
-        ) == pytest.approx(0)
+        original_market = activity(original, market["name"])
+
+        def purchases(record):
+            return [
+                (e["name"], e["amount"], e["unit"])
+                for e in record["exchanges"]
+                if e["type"] == "technosphere"
+            ]
+
+        assert purchases(market) == purchases(original_market)
 
 
 @pytest.mark.parametrize("scenario", ["MIX", "PLIB", "LFP", "NCX"])
@@ -246,7 +291,7 @@ def test_installed_forecasts_preserve_distinct_chemistries(inventory, scenario, 
     ) == pytest.approx(1)
     for chemistry in CHEMISTRIES:
         assert feed(
-            market, f"market for battery capacity, ASSB, {chemistry}"
+            market, f"market for battery capacity, all-solid-state battery, {chemistry}"
         ) == pytest.approx(shares.sel(chemistry=f"ASSB ({chemistry})").item() / total)
     assert feed(
         market, "market for battery capacity, Sodium-ion, SiB"
@@ -270,11 +315,15 @@ def test_no_write_foreground_solve_has_no_hidden_conventional_cells(
             if e["type"] == "technosphere" and key in keys:
                 matrix[keys[key], j] -= e["amount"]
     demand = np.zeros(len(inventory))
-    market = activity(inventory, f"market for battery capacity, ASSB, {chemistry}")
+    market = activity(
+        inventory, f"market for battery capacity, all-solid-state battery, {chemistry}"
+    )
     demand[keys[(market["name"], market["reference product"], "GLO")]] = 1
     supply = np.linalg.solve(matrix, demand)
     expected_cells = 1 / market["battery cell energy density"]
-    cell = activity(inventory, f"battery cell production, ASSB, {chemistry}")
+    cell = activity(
+        inventory, f"battery cell production, all-solid-state battery, {chemistry}"
+    )
     assert supply[
         keys[(cell["name"], cell["reference product"], "GLO")]
     ] == pytest.approx(expected_cells)
@@ -283,7 +332,7 @@ def test_no_write_foreground_solve_has_no_hidden_conventional_cells(
             supply[
                 keys[
                     (
-                        f"battery cell production, ASSB, {other}",
+                        f"battery cell production, all-solid-state battery, {other}",
                         f"battery cell, ASSB, {other}",
                         "GLO",
                     )

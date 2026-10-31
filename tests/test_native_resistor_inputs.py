@@ -444,6 +444,15 @@ def test_real_preparation_of_three_consumers_closes_on_native_and_retains_quanti
         for e in d["exchanges"]
         if e["type"] == "technosphere" and e["name"] not in NAMES
     }
+    if system_model == "consequential":
+        identities = {
+            (
+                ("market for copper scrap, sorted, pressed", *key[1:])
+                if key[0] == "copper scrap, sorted, pressed, Recycled Content cut-off"
+                else key
+            )
+            for key in identities
+        }
     background = [
         dict(zip(("name", "reference product", "location", "unit"), key), exchanges=[])
         for key in sorted(identities)
@@ -464,7 +473,15 @@ def test_real_preparation_of_three_consumers_closes_on_native_and_retains_quanti
     assert len(importer.import_db.data) == 3
     for name in NAMES:
         prepared = activity(importer.import_db.data, name)
-        assert vector(prepared) == vector(activity(raw.data, name))
+        expected = deepcopy(activity(raw.data, name))
+        if system_model == "consequential":
+            for e in expected["exchanges"]:
+                if (
+                    e["name"]
+                    == "copper scrap, sorted, pressed, Recycled Content cut-off"
+                ):
+                    e["name"] = "market for copper scrap, sorted, pressed"
+        assert vector(prepared) == vector(expected)
         assert all(
             e["product"] == e["reference product"] for e in prepared["exchanges"]
         )

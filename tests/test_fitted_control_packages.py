@@ -418,6 +418,15 @@ def test_real_preparation_closes_four_helpers_and_board_without_mutating_backgro
         for e in a["exchanges"]
         if e["type"] == "technosphere" and e["name"] not in selected
     }
+    if system_model == "consequential":
+        identities = {
+            (
+                ("market for copper scrap, sorted, pressed", *key[1:])
+                if key[0] == "copper scrap, sorted, pressed, Recycled Content cut-off"
+                else key
+            )
+            for key in identities
+        }
     background = [
         dict(zip(("name", "reference product", "location", "unit"), key), exchanges=[])
         for key in sorted(identities)
@@ -439,7 +448,15 @@ def test_real_preparation_closes_four_helpers_and_board_without_mutating_backgro
     fields = ("type", "name", "reference product", "location", "unit", "amount")
     for name in selected:
         actual = activity(importer.import_db.data, name)
+        expected = deepcopy(activity(raw.data, name))
+        if system_model == "consequential":
+            for e in expected["exchanges"]:
+                if (
+                    e["name"]
+                    == "copper scrap, sorted, pressed, Recycled Content cut-off"
+                ):
+                    e["name"] = "market for copper scrap, sorted, pressed"
         assert [tuple(e[k] for k in fields) for e in actual["exchanges"]] == [
-            tuple(e[k] for k in fields) for e in activity(raw.data, name)["exchanges"]
+            tuple(e[k] for k in fields) for e in expected["exchanges"]
         ]
         assert all(e["product"] == e["reference product"] for e in actual["exchanges"])

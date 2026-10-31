@@ -15,9 +15,12 @@ def test_installed_workbooks_have_sources_and_provenance():
     for stem, count in (("lci-pass_cars", 147), ("lci-trucks", 114)):
         path = INVENTORY_DIR / f"{stem}.xlsx"
         importer = ExcelImporter(str(path))
-        assert importer.db_name == stem and len(importer.data) == count
+        assert importer.db_name == stem
+        generated = [ds for ds in importer.data if SPEC_KEY in ds]
+        assert len(generated) == count
+        assert all(ds.get("source") for ds in importer.data)
         sidecar = json.loads((AUDIT_DIR / f"{stem}.provenance.json").read_text())
-        for ds in importer.data:
+        for ds in generated:
             assert ds["source"] and ds["model"] and ds["model version"]
             spec = json.loads(ds[SPEC_KEY])
             assert spec["baseline year"] == 2020

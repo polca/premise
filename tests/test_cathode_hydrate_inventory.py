@@ -2,9 +2,9 @@
 
 from copy import deepcopy
 
-from bw2io import ExcelImporter
 import numpy as np
 import pytest
+from bw2io import ExcelImporter
 
 from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import DefaultInventory
@@ -13,9 +13,7 @@ COMMON = "lci-batteries-NMC111-811-NCA-LFP.xlsx"
 LTO = "lci-batteries-NMC955-LTO.xlsx"
 REAGENT = "market for lithium hydroxide, battery grade"
 CASES = [
-    (COMMON, "NCA oxide", 0.25),
     (COMMON, "NMC811 oxide", 0.246),
-    (LTO, "NCA oxide", 0.25),
 ]
 
 
@@ -120,23 +118,68 @@ def test_both_nca_copies_have_identical_exchanges(inventories):
     )
 
 
-def test_lto_cell_back_calculates_lithium_equivalents_and_bound_water(inventories):
+@pytest.mark.parametrize("workbook", [COMMON, LTO])
+def test_nca_oxide_delegates_exactly_once_to_native_supply(inventories, workbook):
+    assert_native_nca_wrapper(activity(inventories[workbook], "NCA oxide"))
+
+
+def assert_native_nca_wrapper(oxide):
+    # ALIGN-006/114 explicitly replaces the former local synthesis. Reagent
+    # and water balances belong to the native supplier, not this unit wrapper.
+    assert oxide["unit"] == "kilogram" and oxide["location"] == "GLO"
+    production = [e for e in oxide["exchanges"] if e["type"] == "production"]
+    inputs = [e for e in oxide["exchanges"] if e["type"] == "technosphere"]
+    assert len(production) == len(inputs) == 1
+    assert len(oxide["exchanges"]) == 2
+    assert production[0]["amount"] == 1
+    native = inputs[0]
+    assert (native["name"], native["location"], native["unit"], native["amount"]) == (
+        "market for NCA oxide",
+        "CN",
+        "kilogram",
+        1,
+    )
+    assert (native.get("product") or native.get("reference product")) == "NCA oxide"
+
+
+@pytest.mark.parametrize("workbook", [COMMON, LTO])
+@pytest.mark.parametrize("version", ["3.8", "3.9", "3.10", "3.11", "3.12"])
+def test_native_nca_boundary_survives_inventory_migration(
+    inventories, monkeypatch, workbook, version
+):
+    monkeypatch.setattr(
+        DefaultInventory, "display_unlinked_exchanges", lambda self: None
+    )
+    source = ExcelImporter(INVENTORY_DIR / workbook)
+    source.data = [deepcopy(activity(inventories[workbook], "NCA oxide"))]
+    importer = DefaultInventory(
+        [],
+        "3.8",
+        version,
+        INVENTORY_DIR / workbook,
+        "cutoff",
+        False,
+        preloaded_importer=source,
+    )
+    importer.prepare_inventory()
+    assert_native_nca_wrapper(activity(importer.import_db.data, "NCA oxide"))
+
+
+def test_lto_cell_reaches_native_nca_without_duplicate_local_synthesis(inventories):
     data = inventories[LTO]
     cell = activity(data, "battery cell production, Li-ion, LTO")
     cathode = activity(data, "cathode, NCA, for Li-ion battery")
     oxide = activity(data, "NCA oxide")
-    cell_cathode = exchange(cell, cathode["name"])["amount"]
-    cathode_oxide = exchange(cathode, oxide["name"])["amount"]
-    hydrate = exchange(oxide, REAGENT)["amount"]
-    # Direct selected path: 1 kg cell -> cathode -> oxide -> hydrate.
+    native = exchange(oxide, "market for NCA oxide")
+    assert_native_nca_wrapper(oxide)
+    doses = [
+        exchange(cell, cathode["name"])["amount"],
+        exchange(cathode, oxide["name"])["amount"],
+        native["amount"],
+    ]
     matrix = np.eye(4)
-    matrix[1, 0], matrix[2, 1], matrix[3, 2] = -cell_cathode, -cathode_oxide, -hydrate
+    for i, dose in enumerate(doses):
+        matrix[i + 1, i] = -dose
     supply = np.linalg.solve(matrix, [1, 0, 0, 0])
-    expected_oxide = cell_cathode * cathode_oxide
-    assert supply[2] == pytest.approx(expected_oxide)
-    assert supply[3] / 0.041962 == pytest.approx(expected_oxide * 0.25 / 0.023947)
-    added_water = (
-        expected_oxide * (exchange(oxide, "Water")["amount"] - 0.00019562) * 1000
-    )
-    assert supply[3] - expected_oxide * 0.25 == pytest.approx(added_water)
-    assert_hydration_balance(oxide, 0.25)
+    assert supply[3] == pytest.approx(doses[0] * doses[1])
+    assert supply[2] == supply[3]

@@ -383,6 +383,17 @@ def test_actual_default_caller_opts_in_only_hydrogen_with_original_39_source(
 ):
     import premise.new_database as module
 
+    # These mock payloads exercise registry ordering/the sector hook below,
+    # not unrelated native-selection guards with their own dedicated tests.
+    for hook in (
+        "_select_nmc955_modern_references",
+        "_select_nmc532_native_312",
+        "use_native_pipeline_coating",
+        "use_native_ptfe_gasket",
+        "use_native_fkm_gasket",
+    ):
+        monkeypatch.setattr(module, hook, lambda *args, **kwargs: None)
+
     observed = []
 
     def extract(filepaths):

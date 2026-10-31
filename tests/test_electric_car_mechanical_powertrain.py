@@ -5,18 +5,22 @@ import runpy
 import shutil
 from copy import deepcopy
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
+from battery_mass_support import activate_static_vehicle_batteries
 from bw2io import ExcelImporter
+from inventory_assertions import assert_declared_classifications
 
 from premise import vehicle_energy_use as energy
 from premise.filesystem_constants import INVENTORY_DIR
+from premise.inventory_imports import migrate_import_db
 
 OLD = "market for internal combustion engine, passenger car"
 PRODUCT = "mechanical powertrain, electric passenger car"
 MARKET = f"market for {PRODUCT}"
-AUXILIARY = f"market for {energy.COMMON_AUXILIARY_BATTERY}"
+AUXILIARY = "market for auxiliary battery, passenger car"
 
 
 @pytest.fixture(scope="module")
@@ -75,10 +79,10 @@ def test_electric_cars_do_not_buy_combustion_engines(cars):
         assert feed(car, MARKET) + feed(car, AUXILIARY) == pytest.approx(
             expected, rel=2e-6
         )
-        assert feed(car, "market for electric motor, electric passenger car") > 0
+        assert feed(car, "traction powertrain production, permanent magnet motor") > 0
         assert feed(car, "market for inverter, for electric passenger car") > 0
         if "battery electric" in car["name"]:
-            assert feed(car, "market for charger, electric passenger car") > 0
+            assert feed(car, "charger production, road vehicle, onboard") > 0
         if "fuel cell electric" in car["name"]:
             assert any(
                 "fuel cell" in e["name"]
@@ -149,34 +153,42 @@ def test_mechanical_end_of_life_uses_its_own_materials(mechanical):
         if e["type"] == "technosphere" and e["unit"] == "kilogram"
     ]
     assert sum(e["amount"] for e in waste) == pytest.approx(-1)
-    assert feed(treatment, "market for iron scrap, unsorted") == pytest.approx(-0.436)
-    assert feed(
-        treatment, "market for aluminium scrap, post-consumer"
-    ) == pytest.approx(-0.384)
+
+    def scrap_mass(product):
+        return sum(
+            e["amount"]
+            for e in waste
+            if (e.get("product") or e.get("reference product")) == product
+        )
+
+    assert scrap_mass("iron scrap, unsorted") == pytest.approx(-0.436)
+    assert scrap_mass("aluminium scrap, post-consumer") == pytest.approx(-0.384)
     assert not any(
         "copper" in e["name"] or "electronics scrap" in e["name"] for e in waste
     )
 
 
-def test_vehicle_scrap_uses_native_markets_in_both_workbooks(mechanical):
+def test_vehicle_scrap_preserves_cutoff_handoffs_in_both_workbooks(mechanical):
     inventories = [
         mechanical,
         ExcelImporter(INVENTORY_DIR / "lci-two_wheelers.xlsx").data,
     ]
-    locations = {
-        "iron scrap, unsorted": "GLO",
-        "aluminium scrap, new": "RoW",
-        "aluminium scrap, post-consumer": "GLO",
+    scrap_products = {
+        "iron scrap, unsorted",
+        "aluminium scrap, new",
+        "aluminium scrap, post-consumer",
     }
     checked = 0
     for datasets in inventories:
         for dataset in datasets:
             for exchange in dataset["exchanges"]:
                 product = exchange.get("product") or exchange.get("reference product")
-                if exchange["type"] != "technosphere" or product not in locations:
+                if exchange["type"] != "technosphere" or product not in scrap_products:
                     continue
-                assert exchange["name"] == f"market for {product}"
-                assert exchange["location"] == locations[product]
+                # R148 retains unburdened cut-off handoffs. Negative market
+                # purchases would introduce credits for the market's burdens.
+                assert exchange["name"] == f"{product}, Recycled Content cut-off"
+                assert exchange["location"] == "GLO"
                 assert exchange["unit"] == "kilogram"
                 assert exchange["amount"] < 0
                 checked += 1
@@ -184,9 +196,7 @@ def test_vehicle_scrap_uses_native_markets_in_both_workbooks(mechanical):
 
 
 def test_common_battery_does_not_mean_zero_full_vehicle_lead(cars, mechanical):
-    source = activity(
-        mechanical, "auxiliary battery production, passenger car, historical proxy"
-    )
+    source = activity(mechanical, "auxiliary battery production, passenger car")
     assert feed(source, "market for lead") == pytest.approx(13 / 18)
     for car in electric_cars(cars):
         original_mass = feed(car, MARKET) + feed(car, AUXILIARY)
@@ -200,7 +210,14 @@ def test_common_battery_does_not_mean_zero_full_vehicle_lead(cars, mechanical):
 
 @pytest.mark.parametrize("field", ["product", "reference product", "name only"])
 def test_common_auxiliary_boundary_does_not_exclude_traction_batteries(field):
-    e = {"name": AUXILIARY, "type": "technosphere", "unit": "kilogram"}
+    # Name-only fallback protects the legacy alias; current renamed purchases
+    # carry the unchanged explicit product role.
+    supplier = (
+        f"market for {energy.COMMON_AUXILIARY_BATTERY}"
+        if field == "name only"
+        else AUXILIARY
+    )
+    e = {"name": supplier, "type": "technosphere", "unit": "kilogram"}
     if field != "name only":
         e[field] = energy.COMMON_AUXILIARY_BATTERY
     assert energy.equipment(e) is False
@@ -222,7 +239,13 @@ def test_common_auxiliary_boundary_does_not_exclude_traction_batteries(field):
 def test_final_energy_reconstructs_mechanics_and_excludes_common_battery(
     cars, final_energy, name
 ):
-    wrapper = activity(final_energy, name)
+    # Compare the runtime representations at one ecoinvent version. Raw cars
+    # are authored for 3.12 with an explicit pack-mass conversion contract;
+    # stored final-energy activities use capacity purchases and 3.10 names.
+    cars = deepcopy(cars)
+    activate_static_vehicle_batteries(cars, "car")
+    wrapper = deepcopy(activity(final_energy, name))
+    migrate_import_db(SimpleNamespace(data=[wrapper]), "3.10", "3.12")
     record = json.loads(wrapper[energy.SOURCE_KEY])
     source = activity(cars, record["source"][0])
     vehicle = next(
@@ -267,13 +290,30 @@ def test_final_energy_reconstructs_mechanics_and_excludes_common_battery(
     energy.normalize(rebuilt, source, cars)
     assert feed(rebuilt, MARKET) == pytest.approx(feed(wrapper, MARKET))
     assert not any(e["name"] in {OLD, AUXILIARY} for e in rebuilt["exchanges"])
+    for dataset in (production, wrapper, rebuilt):
+        assert not any(
+            e["type"] == "technosphere"
+            and (
+                e["name"].startswith("market for battery, Li-ion,")
+                or e["name"] == "market for used Li-ion battery"
+            )
+            for e in dataset["exchanges"]
+        ), dataset["name"]
+
     # Existing electric motor/controls/traction-battery and fuel-cell quantities
     # must agree after independent normalization of the actual source service.
-    for e in wrapper["exchanges"]:
-        if e["type"] == "technosphere":
-            assert feed(rebuilt, e["name"]) == pytest.approx(
-                feed(wrapper, e["name"]), rel=2e-6
-            )
+    def quantities(dataset):
+        result = {}
+        for exchange in dataset["exchanges"]:
+            if exchange["type"] == "technosphere":
+                key = energy.identity(exchange)
+                result[key] = result.get(key, 0) + exchange["amount"]
+        return result
+
+    expected, actual = quantities(wrapper), quantities(rebuilt)
+    assert actual.keys() == expected.keys()
+    for key, amount in expected.items():
+        assert actual[key] == pytest.approx(amount, rel=2e-6), key
 
 
 def test_foreground_solve_closes_treatment_and_keeps_auxiliary_separate(mechanical):
@@ -290,8 +330,15 @@ def test_foreground_solve_closes_treatment_and_keeps_auxiliary_separate(mechanic
     demand = np.zeros(len(mechanical))
     demand[keys[(MARKET, PRODUCT, "GLO")]] = 1
     supply = np.linalg.solve(matrix, demand)
+    expected_used = {
+        MARKET,
+        "mechanical powertrain production, electric passenger car",
+        "market for used mechanical powertrain, electric passenger car",
+        "treatment of used mechanical powertrain, electric passenger car",
+    }
+    assert expected_used <= {ds["name"] for ds in mechanical}
     for ds, value in zip(mechanical, supply):
-        assert value == pytest.approx(0 if "auxiliary battery" in ds["name"] else 1)
+        assert value == pytest.approx(1 if ds["name"] in expected_used else 0)
 
 
 @pytest.mark.parametrize("version", ["3.10", "3.11", "3.12"])
@@ -310,8 +357,14 @@ def test_premise_import_retains_internal_products_and_waste_signs(version, monke
         False,
     )
     importer.prepare_inventory()
-    assert len(importer.import_db.data) == 6
-    assert all(ds["classifications"] for ds in importer.import_db.data)
+    original = ExcelImporter(
+        INVENTORY_DIR / "lci-electric-car-mechanical-powertrain.xlsx"
+    ).data
+    assert {ds["name"] for ds in importer.import_db.data} == {
+        ds["name"] for ds in original
+    }
+    for ds in importer.import_db.data:
+        assert_declared_classifications(importer, ds)
     for ds in importer.import_db.data:
         production = [e for e in ds["exchanges"] if e["type"] == "production"]
         assert len(production) == 1

@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 import xarray as xr
 
+from premise.electricity import Electricity
 from premise.photovoltaic import (
     country_adapters,
     identity,
@@ -16,7 +17,6 @@ from premise.photovoltaic import (
     module_area,
     module_exchange,
 )
-from premise.electricity import Electricity
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
@@ -329,6 +329,8 @@ def test_reference_cleaning_is_preserved_without_efficiency_change(inventories):
 )
 def test_default_import_selects_exactly_one_pv_core(monkeypatch, version, system_model):
     import premise.new_database as module
+
+    monkeypatch.setattr(module, "_select_nmc955_modern_references", lambda *args: None)
 
     selected = []
     monkeypatch.setattr(
