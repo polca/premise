@@ -356,7 +356,7 @@ Previously exported Brightway databases or files must be regenerated;
 installing the new package does not modify them in place.
 
 Battery-control resistor supplies
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Three reviewed control-electronics references in ``lci-batteries-LiS.xlsx``
 use the existing GLO ``market for resistor, surface-mounted`` as a qualified
@@ -385,7 +385,7 @@ pinned authoring reference is
 ``tests/data/inventory_review/native-resistor-inputs-adoption-20261027.json``.
 
 Battery-monitor capacitor families
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The fitted 134-capacitor bundle corrects **39 Class 2 to C0G assignments**:
 four 0402, two 0603 and 33 0805 parts. The corrected family counts are
@@ -412,7 +412,7 @@ and formula caches are preserved, with the new helpers appended to the source.
 The pinned reference is ``tests/data/inventory_review/capacitor-family-adoption-20261027.json``.
 
 Control-package wafer allocation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The CC2662R1FTWRGZRQ1, LM5168FQDDARQ1 and TXU0204QPWRQ1 package references,
 and the battery-monitoring ASIC proxy, convert their unchanged silicon masses
@@ -432,7 +432,7 @@ remain outside this correction. Both original source declarations stay
 ``tests/data/inventory_review/control-package-wafer-adoption-20261027.json``.
 
 Battery-control connector material reference
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The connector recipe uses a qualified material reference based on **five
 Molex headers, 36 contacts and 8.594 g**. The additional Samtec geometric
@@ -457,7 +457,7 @@ and retirement ownership preserved. Both source declarations remain **3.9**.
 The pinned reference is ``tests/data/inventory_review/connector-reference-adoption-20261027.json``.
 
 Additional fitted monitoring-board packages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The 70 g monitoring-board reference itemizes one each of TPS3436BDADADDFRQ1,
 TPS71533QDCKRQ1, TPD6E004RSER and ISO7741FQDWRQ1. Their combined full declared
@@ -483,7 +483,7 @@ manufacturing and trace-metal coverage. The pinned reference is
 ``tests/data/inventory_review/fitted-control-packages-adoption-20261027.json``.
 
 Standalone interface and embedded residual boundaries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The standalone auxiliary interface replaces **0.24 kg glass fibre plus
 0.16 kg epoxy** with **0.12987012987012989 m2** of native unmounted Pb-free
@@ -533,7 +533,7 @@ changed recipes invalidate imported sources and their dependent compact
 checkpoints. Native source-database cache keys remain unchanged.
 
 Magnesium precipitation land boundary
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The active synthetic magnesium-hydroxide precipitation stage removes its
 inherited **1.63 square meter-year/kg** mineral-extraction occupation.
@@ -549,7 +549,7 @@ and uncertainty remain unchanged. Both original source declarations stay
 fingerprinting propagates the correction to rebuilt imports.
 
 Nickel-on-alumina catalyst reagent-stock ledger
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The qualified hydrogenation-catalyst reference includes carrier water for
 its two assumed **50% nitric-acid and caustic stocks**. The unchanged
@@ -571,7 +571,7 @@ fingerprint. Revisions invalidate imported sources and dependent compact
 checkpoints while preserving native source-database cache keys.
 
 4-HO-TEMPO peroxide-carrier water
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The 4-HO-TEMPO batch counts **0.065 kg carrier water** accompanying its
 unchanged **0.065 kg active peroxide**, supplied as **0.130 kg of 50% solution**.
@@ -607,7 +607,7 @@ declarations stay **3.9**. The pinned reference is
 organic-redox source fingerprinting propagates the correction.
 
 Flow-battery aluminium end-plate losses
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The nominal plate reference buys **1 kg** generic wrought alloy,
 **1 kg** aluminium rolling service and the unchanged **1 kg** average
@@ -630,7 +630,7 @@ stay **3.9**. The pinned reference is
 source fingerprinting propagates the correction.
 
 VRFB controller mass and moulding inputs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Per kg controller, retained PP housing **0.15210236949152542 kg**, LCD
 **0.5750483805084746 kg** and electronics **0.27284925 kg** total **1 kg**.
@@ -649,7 +649,7 @@ The pinned reference is ``tests/data/inventory_review/vrfb-controller-adoption-2
 Existing VRFB source fingerprinting propagates the correction.
 
 Lithium-foil internal manufacturing return
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Per kg finished foil, the adopted source convention purchases **1 kg net
 external lithium** from lithium-chloride electrolysis and returns manufacturing
@@ -672,7 +672,7 @@ field; the full historical text remains appended. The pinned reference is
 fingerprinting propagates the correction.
 
 Dry zinc-chloride carrier-water accounting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The retained **1.363 kg** nominal dry-salt batch uses **0.72916 kg**
 pure-equivalent HCl. Under the adopted **30 wt%** stock-preparation convention,
@@ -696,7 +696,7 @@ the explanatory comment change. The pinned reference is
 redox source fingerprinting propagates the correction.
 
 Li-S factory allocation per nominal capacity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The reviewed static reference allocates **5e-7 operating-factory units per
 nominal kWh**. At the retained **150 Wh/kg cell**, this is **7.5e-8 factory
@@ -718,7 +718,7 @@ remain untouched. The pinned reference is
 source fingerprinting propagates the correction.
 
 Li-O2 final-assembly electricity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Apply **0.41 MJ** of final-assembly electricity once per complete **333.85 kg**
 manufacturing reference. The corresponding US medium-voltage electricity
@@ -744,7 +744,7 @@ compact checkpoints after workbook changes while preserving native database
 cache paths.
 
 Standalone Li-O2 cooling supplier
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Standalone battery manufacture reuses the existing **RER** ``cooling system
 production, for Li-O2 battery`` reference. It includes radiator, manifolds,
@@ -767,7 +767,7 @@ source declarations remain **3.9**. The pinned reference is
 fingerprinting propagates the correction.
 
 Central-control fasteners and coupled mass accounting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The central-control material reference uses **2.8 g** fasteners, retaining
 **0.49 kg** mounted board, **2.8 kg** HV equipment and **1.2 kg** LV equipment.
@@ -806,7 +806,7 @@ unchanged. Other monitoring, cooling and source-profile differences from CLIC
 remain separately reviewed.
 
 Sixteen-module monitoring reference
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The 16-module control assembly adopts **16 monitoring boards at 70 g each**,
 purchasing **1.12 kg** of the existing mounted-board recipe. The source's
@@ -829,7 +829,7 @@ capacity. Existing Li-S/capacity cache fingerprints propagate the correction.
 The pinned reference is ``tests/data/inventory_review/sixteen-monitor-adoption-20261027.json``.
 
 Radiator and manifold aluminium feed
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The existing RER radiator and manifold references each purchase **1 kg** from
 ``market for aluminium, wrought alloy`` (GLO), replacing the mixed-metal-scrap
@@ -855,7 +855,7 @@ remains a separate decision. Existing Li-O2 source fingerprinting propagates
 the corrected component recipes.
 
 Sixteen-module detailed cooling reference
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The subsequent approved cooling decision supersedes the cooling and retirement
 allowances in the preceding 16-module monitoring subsection. This assembly
@@ -884,7 +884,7 @@ profiles. The pinned reference is
 fingerprints propagate this correction to imported inventory caches.
 
 Li-O2 module-monitor manufacturing reference
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Li-O2 module-packaging reference purchases the existing GLO mounted
 battery-module monitor board recipe in place of the generic mounted-board

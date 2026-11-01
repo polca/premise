@@ -16,6 +16,7 @@ markets combine them and adjust fuel-consuming activities.
 
    /methodology/biomass
    /methodology/fuels/hydrogen
+   /methodology/fuels/pipeline-coating
    /methodology/fuels/biofuels
    /methodology/fuels/synthetic
    /methodology/fuels/ammonia

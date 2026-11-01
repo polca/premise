@@ -154,7 +154,7 @@ that reference. Both source declarations stay 3.9. The pinned reference is
 ``tests/data/inventory_review/lanthanum-reject-fate-adoption-20261027.json``.
 
 SiC wafer full-crystal material accounting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The physical-vapour-transport wafer helper counts the historical reference's
 full **100 mm crystal**, including its unusable regions. Forty-seven wafers
@@ -175,7 +175,7 @@ source declarations both stay 3.9. The pinned reference is
 ``tests/data/inventory_review/sic-full-boule-adoption-20261027.json``.
 
 Transformer-core supply for ecoinvent 3.12
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The dedicated 1.1 MVA electrolysis transformer retains **947.32 kg core
 steel**. When building with ecoinvent 3.12, it purchases the native RER

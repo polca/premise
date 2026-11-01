@@ -2,7 +2,7 @@ Constant-range battery accounting
 ---------------------------------
 
 Static imported inventories and runtime capacity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The additional car and truck manufacturing inventories use one native NMC622
 complete-pack purchase in kilograms, with one matching used-battery retirement.

@@ -3,11 +3,13 @@
 from pathlib import Path
 import os
 import runpy
+import sys
 import tempfile
 
 
 def main():
     repo = Path(__file__).resolve().parents[2]
+    sys.path.insert(0, str(repo))
     # Never switch or modify the reader's Brightway project for these examples.
     with tempfile.TemporaryDirectory(prefix="premise-doc-examples-") as directory:
         previous = os.environ.get("BRIGHTWAY2_DIR")

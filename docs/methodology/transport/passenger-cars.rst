@@ -226,7 +226,7 @@ energy use and supply changes. Review the validation report separately for
 read-only emission diagnostics.
 
 Electric mechanical-powertrain inventory correction
-----------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Carculator's imported BEV and fuel-cell cars previously assigned their
 mechanical-powertrain mass to ``market for internal combustion engine,
@@ -267,7 +267,7 @@ scrap fractions are not applied to mechanical equipment, and no new
 primary/secondary scenario or future recycling efficiency is imposed.
 
 Common auxiliary battery and mass accounting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The old source's starter-battery ingredients are isolated as a provisional
 common auxiliary-battery input in full vehicles. On its 275 kg reference basis,
@@ -298,7 +298,7 @@ Their source metadata records the common component as excluded and retains
 the original model provenance together with the local correction.
 
 Reproduction and limits
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 ``data/transport/electric_mechanical_powertrain.json`` records the source,
 component masses, waste factors, allocation basis and treatment limitations.
@@ -317,10 +317,10 @@ they do not certify a contemporary EV design. The background combustion-engine
 recipe's remaining mass-accounting limitations are described below.
 
 Historical combustion-drivetrain aluminium correction
-------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Source basis and quantities
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For ecoinvent 3.10, 3.11 and 3.12 cutoff, source cleaning corrects the recognized
 native ``internal combustion engine production, passenger car`` recipe and its
@@ -367,7 +367,7 @@ recycling-efficiency estimate. Negative cutoff scrap and waste-reference signs
 are preserved. No primary/secondary market shares change.
 
 Guards, cache handling and limitations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The correction requires unique GLO kilogram production, waste-market and
 shredding activities, their original signed reference outputs and waste links,

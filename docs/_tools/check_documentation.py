@@ -186,6 +186,7 @@ def check(root, repo):
         "methodology/fuels/index": [
             "/methodology/biomass",
             "hydrogen",
+            "pipeline-coating",
             "biofuels",
             "synthetic",
             "ammonia",

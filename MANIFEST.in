@@ -25,3 +25,9 @@ exclude docs/examples/pv-comparison-summary.json
 exclude docs/examples/pv-comparison-metadata.json
 exclude premise/data/solar/pv_2026_gwp100_reference.csv
 exclude premise/data/metals/ecoinvent_factors.csv
+
+# Minimal benchmark helpers exercised by the unit tests.
+include benchmarks/compare_build_outputs.py
+include benchmarks/compare_update_workflows.py
+include benchmarks/check_validation_warnings.py
+include benchmarks/check_validation_performance.py

@@ -352,7 +352,7 @@ with the physical manufacturing-mass mismatch recorded explicitly. Corrected
 .. include:: vehicle-provenance.inc
 
 150 kW charger-cabinet finishing boundary
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The qualified 150 kW cabinet reference purchases **593.6378316624472 kg**
 of generic steel-working service per cabinet, reduced from
@@ -369,7 +369,7 @@ credit added. Original technosphere and biosphere declarations both remain
 ``tests/data/inventory_review/charger-finishing-adoption-20261027.json``.
 
 Ferritic-steel nominal argon outlet
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The grade 430 charger-enclosure steel reference releases
 **0.02138737625378074 kg argon to generic air per kg finished steel**, equal
@@ -385,7 +385,7 @@ heat-recovery credit. Both original source declarations remain **3.12**.
 The pinned reference is ``tests/data/inventory_review/ferritic-argon-adoption-20261027.json``.
 
 Charging-display coating geometry
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The 7-inch charging display uses a qualified **0.013832 m2** active area and
 **200 nm** indium tin oxide film. This purchases

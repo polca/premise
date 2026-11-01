@@ -44,7 +44,7 @@ After the setup in :doc:`/getting_started/first-scenario`:
    ndb.update("cement")
 
 Canadian plant refractory normalization
----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Source cleaning for ecoinvent 3.11 and 3.12 corrects a recognized refractory
 input in ``integrated cement plant construction`` (CA, reference product

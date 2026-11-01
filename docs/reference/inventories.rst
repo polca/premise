@@ -26,7 +26,7 @@ ecoinvent 3.12 cut-off. See :doc:`inventory-migration` for background linking
 between versions and :doc:`/user_guide/external-scenarios` for custom inventories.
 
 Qualified MDEA capture burden proxy
-----------------------------------
+-----------------------------------
 
 Only for ecoinvent 3.12 cut-off, the source-3.12 companion
 ``lci-biomethane-capture-MDEA-proxy-312.xlsx`` loads before the original

@@ -556,5 +556,11 @@
     "review_date": "2026-11-01",
     "disposition": "Retained the physical-probing implementation plan and identified the implemented automated core, pending human review and additional stress-case execution.",
     "review_level": "Implementation scope screening; not a completed scientific assessment"
+  },
+  {
+    "page": "methodology/fuels/pipeline-coating.rst",
+    "review_date": "2026-11-01",
+    "disposition": "Connected the existing pipeline-coating reference to the fuel navigation and checked implementation paths after topic regrouping; existing scientific assumptions are retained.",
+    "review_level": "Documentation and navigation consistency; not independent inventory validation"
   }
 ]
