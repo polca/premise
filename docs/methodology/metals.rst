@@ -200,6 +200,14 @@ elementary-flow name is ``Iridium``, with categories
 economic allocation factor used for pooled operating burdens. No
 mining or refining recovery-loss factor is assumed.
 
+Retain this supplier as a qualified partial reference. There is no quantified
+bound on the effect of its unresolved coverage; economic allocation alone
+does not establish completeness. Assess the supplier substitution at a fixed
+iridium quantity, and assess catalyst-loading changes with the supplier held
+fixed. Their combined effect on a future stack must not be attributed wholly
+to cleaner production or wholly to lower metal demand. Filling coverage gaps
+requires additional source data rather than treating missing flows as zero.
+
 The supplier's source technosphere and biosphere versions are both 3.12. Its
 separate import declaration preserves the remaining PGM workbook's 3.8 source
 version and the electrolysis workbook's 3.9 source version. Premise's existing
@@ -275,6 +283,15 @@ especially under dynamic operation; this is not a demonstrated commercial
 trajectory. The unchanged lifetime allocation remains a separate proxy,
 as described below. Evaluate the constant-loading sensitivity alongside the
 prospective case when assessing how this assumption affects metal demand.
+
+In the paired GWP audit, holding the 2022 electrode loadings fixed while
+retaining 2050 supplier impacts and the same hardware raises the stack score
+from approximately 9.09 to 13.64 t CO2-eq per MW. This is a recipe sensitivity
+with background unit impacts held fixed, not a separate full scenario build.
+It isolates the optimistic catalyst-loading assumption from the independently
+reviewed iridium-supplier substitution and hardware coatings. The prospective
+trajectory is retained as an explicit scenario reference; the sensitivity does
+not validate unchanged durability or efficiency at the lower loadings.
 
 Equal CSV mean/median/min/max values specify a deterministic scenario, not
 zero engineering uncertainty. Outside the 2020–2050 support, preserve source
@@ -386,6 +403,14 @@ comparison; it deliberately omits coverage and is not evidence of zero
 physical coating. Combine any coating case with either catalyst scenario.
 These are engineering sensitivities, not statistical bounds or demonstrated
 commercial designs. The default is ``--coating-case reference``.
+
+The retained reference gives approximately 9.09 t CO2-eq/MW stack in the paired
+2050 GWP audit. With the same catalyst loadings and frozen background impacts,
+the one-face coating sensitivity gives 7.50 t and the 20 nm sensitivity gives
+6.55 t CO2-eq/MW. These are recipe sensitivities, not separate full scenario
+builds. They isolate the thickness/coverage assumptions from catalyst loading
+and the iridium-supplier substitution; they do not bound unresolved deposition
+or microscopic-surface effects.
 
 Retained catalyst and nominal flat-film coating masses assume 100%
 incorporation at the direct metal-purchase boundary. Real pore/fibre area,

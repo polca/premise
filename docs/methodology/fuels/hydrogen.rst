@@ -322,6 +322,17 @@ of market output. This does not mean all truck, ship and pipeline variants
 listed in the inventory catalogue are deployed in every scenario.
 Relinking connects the resulting suppliers to consuming activities.
 
+Recipes explicitly named ``market-average hydrogen`` adopt this scenario
+supply. During hydrogen-market creation, ``_regionalize_hydrogen_activities`` maps
+their native liquid, generic gaseous, or medium-pressure merchant hydrogen
+market identities to the generated low-pressure market before the recipes
+are copied into IAM regions. Geographic relinking
+then resolves the regional provider. Hydrogen quantities, uncertainty and
+existing process-energy inputs are retained; the source workbooks are unchanged.
+This is an explicit choice of the documented 30-bar pipeline-delivery boundary,
+not physical equivalence between native delivery routes. Other hydrogen
+consumers and technology-specific production purchases are unaffected.
+
 Assumptions and limitations
 -----------------------------
 
@@ -329,6 +340,27 @@ Compare hydrogen at the same pressure, state and delivery boundary.
 External electrolysis assumptions are distinct from IAM projections. When
 checking energy floors, inspect actual exchanges as well as logged totals;
 the exchange behavior described below applies.
+
+PEM balance-of-plant treatment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The imported ``treatment of electrolyzer balance of plant, 1MWe, PEM`` has a
+negative one-unit reference output. Consequently, demanding minus one unit
+represents treatment of one used system. In the paired GWP audit its plus-one
+reference score changes from -2,139.26 to -3,184.50 kg CO2-eq: the corresponding
+treatment burden increases by 48.86%, rather than creating a climate benefit.
+
+The current boundary includes a matched power-conversion/drive treatment kit.
+It replaces displaced bulk-material retirement rather than adding a second
+whole converter, and follows the documented equipment and replacement counts.
+Packaging is treated with manufacture, not again as installed WEEE. The
+separate 32 kg industrial-electronics plastic route accounts for the nominal
+100 kg control assembly's housing; its duplicate mixed-plastic entry is zero.
+The 764.6 kg direct polymer retirement remains separate. Drive ratings,
+electronic partitioning, lifetime and actual WEEE fate retain the explicitly
+documented engineering assumptions; mass/sign consistency does not validate
+a complete industrial disposal route. Operating hydrogen electricity demand
+is unchanged by these equipment-boundary corrections.
 
 Implementation limitation: energy floors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

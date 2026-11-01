@@ -43,8 +43,16 @@ selection or a changing ammonia technology mix.
 Markets and downstream links
 ------------------------------
 
-The market-average-hydrogen route can draw on the hydrogen supply prepared
-by the fuels update. Whether ammonia affects a study depends on downstream
+The market-average-hydrogen route uses the regional IAM hydrogen market
+prepared by the fuels update, when available. A hydrogen-specific step maps
+native liquid, generic gaseous, and medium-pressure merchant market identities
+to the generated gaseous low-pressure market before geographic relinking.
+This adopts its documented 30-bar pipeline-delivery boundary, retaining the
+source hydrogen quantity and existing process-energy inputs. It is an explicit
+scenario supply assumption, not a claim that the native delivery boundaries
+are physically equivalent. The source workbook is unchanged.
+
+Whether ammonia affects a study depends on downstream
 exchanges reaching it. The presence of an ammonia route in the database does
 not demonstrate that fertilizer consumers have all been redirected to it.
 

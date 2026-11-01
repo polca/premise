@@ -65,6 +65,24 @@ service must establish which activity it actually demands.
 Assumptions and limitations
 -----------------------------
 
+The electric source inventories treat reported operating electricity as grid
+energy, including charging losses. The extra historical factor of 1.1 was
+removed from electricity purchases without changing hardware, replacement
+counts or lifetime kilometres. Equipment attributed per purchased MJ therefore
+increases by 1.1. The electricity input per MJ remains 1/3.6 kWh. This changes
+the normalization boundary, not annual vehicle procurement or available
+battery energy.
+
+The selected off-board charging reference separates motor/controller equipment
+from charging conversion once. A 3 kW station uses three 1 kW source charger
+units, a declared modular power/mass analogue rather than a validated combined
+product. Dedicated mechanical-energy equipment replaces mixed/glider proxies
+at the declared mechanical mass; it does not duplicate a common glider.
+Electrical compatibility, detailed component topology and material grades
+remain engineering qualifications. Higher battery MIX burdens and this
+equipment/grid-energy boundary jointly explain the reviewed per-MJ outlier;
+it must not be described as a deterioration in grid electricity alone.
+
 Inventory driving conditions, vehicle sizes and powertrains constrain
 coverage. A missing fleet is not a zero fleet, and a regional proxy is not a
 new vehicle simulation. Fleet weights describe transport service, not an
