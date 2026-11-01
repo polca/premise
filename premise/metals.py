@@ -594,27 +594,6 @@ def extend_dataframe(df, mapping):
     return new_df
 
 
-def get_ecoinvent_metal_factors():
-    """
-    Load dataframe with ecoinvent factors for metals
-    and convert to xarray
-    """
-
-    filepath = DATA_DIR / "metals" / "ecoinvent_factors.csv"
-    df = pd.read_csv(filepath)
-
-    # create column "activity" as a tuple
-    # of the columns "name", "product" and "location".
-    df["activity"] = list(zip(df["name"], df["product"], df["location"]))
-    df = df.drop(columns=["name", "product", "location"])
-    df = df.melt(id_vars=["activity"], var_name="metal", value_name="value")
-
-    # create an xarray with dimensions activity, metal and year
-    ds = df.groupby(["activity", "metal"]).sum()["value"].to_xarray()
-
-    return ds
-
-
 def fetch_mapping(filepath: str) -> dict:
     """Returns a dictionary from a YML file"""
 

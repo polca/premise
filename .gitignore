@@ -83,3 +83,5 @@ Thumbs.db
 /docs/examples/pv-comparison-summary.json
 /docs/examples/pv-comparison-metadata.json
 /docs/development/lcia-regression-reference-review.md
+/premise/data/solar/pv_2026_gwp100_reference.csv
+/premise/data/metals/ecoinvent_factors.csv
