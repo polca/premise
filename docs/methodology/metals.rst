@@ -187,10 +187,18 @@ The static PEM stack still purchases **0.8 kg** iridium. The new supplier uses
 the approved Argonne-derived, economic-allocation reference, including the
 commercial-dose flotation proxies and purchased-water adjustment. It remains
 a partial engineering inventory: final-refinery reagent make-up, remaining
-direct emissions, resource extraction, complete water returns and waste
+direct emissions, extraction recovery losses, complete water returns and waste
 treatment are unresolved. Missing exchanges must not be interpreted as zero
 burdens. Changes in impacts relative to the legacy recipe are a model
 substitution, not a measured improvement in mining performance.
+
+The supplier includes **1 kg of Iridium, in ground per kg of iridium supplied**.
+This product-content resource attribution was approved on 2026-11-01 and
+is a Premise extension to the historical CLIC source snapshot. The
+elementary-flow name is ``Iridium``, with categories
+``natural resource::in ground``. Its amount is not multiplied by the
+economic allocation factor used for pooled operating burdens. No
+mining or refining recovery-loss factor is assumed.
 
 The supplier's source technosphere and biosphere versions are both 3.12. Its
 separate import declaration preserves the remaining PGM workbook's 3.8 source

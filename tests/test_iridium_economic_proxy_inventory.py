@@ -12,7 +12,7 @@ from bw2io import ExcelImporter
 from test_pem_iridium_provider import iridium, model, source
 
 from premise.filesystem_constants import INVENTORY_DIR
-from premise.inventory_imports import DefaultInventory
+from premise.inventory_imports import DefaultInventory, get_biosphere_code
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKBOOK = "lci-iridium-economic-proxy.xlsx"
@@ -69,8 +69,13 @@ def exchange_key(exchange):
 
 def assert_snapshot_exchanges(dataset, snapshot):
     expected = {exchange_key(e): e["amount"] for e in snapshot["exchanges"]}
-    actual = {exchange_key(e): e["amount"] for e in dataset["exchanges"]}
+    # The historical CLIC snapshot remains unchanged. Premise adds the
+    # approved product-content resource attribution at the supplier gate.
     assert len(expected) == len(snapshot["exchanges"]) == 12
+    expected[
+        ("biosphere", "Iridium", None, None, "kilogram", ("natural resource", "in ground"))
+    ] = 1
+    actual = {exchange_key(e): e["amount"] for e in dataset["exchanges"]}
     assert len(actual) == len(dataset["exchanges"]) == len(expected)
     assert actual.keys() == expected.keys()
     for key, amount in expected.items():
@@ -102,7 +107,11 @@ def test_workbook_has_exact_approved_schema_and_quantities(adoption):
         "iridium",
         "ZA",
     )
-    assert snapshot["comment"] in dataset["comment"]
+    assert snapshot["comment"].replace(
+        "mineral-resource extraction, recovery losses, land",
+        "recovery losses beyond product-content resource attribution, land",
+    ) in dataset["comment"]
+    assert "APPROVED PREMISE RESOURCE ATTRIBUTION, 2026-11-01" in dataset["comment"]
     assert snapshot["source"] in dataset["source"]
     assert dataset["license"] == adoption["license"] == "CC-BY-4.0"
     assert (
@@ -128,13 +137,43 @@ def test_premise_preparation_preserves_proxy_boundary_and_amounts(imported, adop
     (production,) = [e for e in imported["exchanges"] if e["type"] == "production"]
     assert production["product"] == "iridium"
     assert production["amount"] == 1
-    (sulfur,) = [e for e in imported["exchanges"] if e["type"] == "biosphere"]
+    (sulfur,) = [e for e in imported["exchanges"] if e["name"] == "Sulfur dioxide"]
     assert sulfur["categories"] == ("air", "non-urban air or from high stacks")
     assert sulfur["input"][1] == "78c3efe4-421c-4d30-82e4-b97ac5124993"
     assert dict(imported["classifications"]) == {
         "ISIC rev.4 ecoinvent": "2420: Manufacture of basic precious and other non-ferrous metals",
         "CPC": "41330: Platinum, unwrought or in semi-manufactured forms, or in powder form",
     }
+
+
+def test_iridium_resource_is_linked_and_keeps_one_kg_per_kg_output(imported):
+    (resource,) = [e for e in imported["exchanges"] if e["name"] == "Iridium"]
+    assert resource["type"] == "biosphere"
+    assert resource["unit"] == "kilogram"
+    assert resource["categories"] == ("natural resource", "in ground")
+    assert resource["amount"] == imported["production amount"] == 1
+    assert resource["input"][1] == get_biosphere_code("3.12")[
+        ("Iridium", "natural resource", "in ground", "kilogram")
+    ]
+    assert "recovery-loss factor" in resource["comment"]
+    assert "economic allocation" in resource["comment"]
+
+
+@pytest.mark.parametrize(
+    "version", ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+)
+def test_iridium_resource_links_in_supported_biospheres(version):
+    importer = DefaultInventory(
+        [], "3.12", version, INVENTORY_DIR / WORKBOOK, "cutoff", True
+    )
+    importer.add_biosphere_links()
+    (dataset,) = importer.import_db.data
+    name = "Iridium, in ground" if version == "3.8" else "Iridium"
+    (resource,) = [e for e in dataset["exchanges"] if e["name"] == name]
+    assert resource["input"][1] == get_biosphere_code(version)[
+        (name, "natural resource", "in ground", "kilogram")
+    ]
+    assert resource["amount"] == 1
 
 
 def test_runtime_selects_the_prepared_proxy_without_mutating_it(imported):
