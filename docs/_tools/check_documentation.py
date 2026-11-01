@@ -211,6 +211,7 @@ def check(root, repo):
             "inventories",
             "reports",
             "validation",
+            "physical-audits",
             "interpreting-results",
             "export/index",
             "examples",
@@ -225,6 +226,7 @@ def check(root, repo):
             "architecture",
             "internals",
             "validation-internals",
+            "physical-inventory-probing-plan",
             "supplier-selection",
             "performance-history",
             "consequential-validation-history",
@@ -280,6 +282,9 @@ def check(root, repo):
     api = pages.get(root / "reference/api.html")
     for ident in (
         "premise.NewDatabase",
+        "premise.audit_database",
+        "premise.audit_brightway_database",
+        "premise.audit_campaign",
         "premise.NewDatabase.update",
         "premise.NewDatabase.get_inventory_store",
         "premise.NewDatabase.get_validation_report",

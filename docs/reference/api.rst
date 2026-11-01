@@ -50,6 +50,30 @@ Validation and reports
 
 .. autoclass:: premise.ChangeReportArtifacts
 
+Physical inventory audits
+---------------------------
+
+.. autofunction:: premise.audit_database
+
+.. autofunction:: premise.audit_brightway_database
+
+.. autofunction:: premise.audit_campaign
+
+.. autofunction:: premise.compare_audits
+
+.. autoclass:: premise.AuditConfig
+
+.. autoclass:: premise.PhysicalContract
+
+.. autoclass:: premise.ExchangeBudget
+
+.. autoclass:: premise.BudgetTerm
+
+.. autoclass:: premise.AuditCase
+
+.. autoclass:: premise.AuditReport
+   :members: score, write, read, has_errors
+
 Utilities
 -----------
 

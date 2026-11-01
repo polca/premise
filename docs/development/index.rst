@@ -15,6 +15,7 @@ implementation details. Dated measurements and audit notes follow.
    /development/architecture
    /development/internals
    /development/validation-internals
+   /development/physical-inventory-probing-plan
    /development/supplier-selection
    /development/performance-history
    /development/consequential-validation-history

@@ -544,5 +544,17 @@
     "review_date": "2026-10-15",
     "disposition": "Distinguished the original campaign from subsequent shared-component integration and bus sizing included in 2.5.5.",
     "review_level": "Documentation and implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "user_guide/physical-audits.rst",
+    "review_date": "2026-11-01",
+    "disposition": "Added the reusable physical-audit API, explicit contracts and budgets, matched campaigns, report interpretation and pytest activation; separate numerical consistency from scientific plausibility and pending human review.",
+    "review_level": "Documentation and implementation consistency; not independent scientific validation"
+  },
+  {
+    "page": "development/physical-inventory-probing-plan.rst",
+    "review_date": "2026-11-01",
+    "disposition": "Retained the physical-probing implementation plan and identified the implemented automated core, pending human review and additional stress-case execution.",
+    "review_level": "Implementation scope screening; not a completed scientific assessment"
   }
 ]

@@ -39,8 +39,8 @@ of scenario generation and validation.
      - Battery transformations, emissions and carbon removal
    * - ``premise.fuels``
      - Fuel supply chains, markets and carbon accounting
-   * - ``premise.validation``
-     - Validation rules and structured reports
+   * - ``premise.validation`` and ``premise.audit``
+     - Validation rules and independent physical auditing
    * - ``premise.export`` and ``premise.reporting``
      - Export backends, change reports and result comparison functions
    * - ``premise.core``

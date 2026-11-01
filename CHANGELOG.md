@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file.
 
 ### Added
 
+- Add reusable read-only physical inventory audits for premise inventory stores
+  and written Brightway databases, with stratified/random/risk sampling,
+  physical CO2, water, land and 65 RELICS indicators, independent carbon-origin
+  tracing, sourced quantity/ledger contracts and matched campaigns. Export
+  scores, coverage, evidence and searchable reports. Include analytical and
+  fault-injection pytest checks for carbon misclassification, missing resources,
+  unit/sign errors and supplier boundaries.
 - Support `system_model="EN15804"` through the existing `NewDatabase` argument.
   Preserve the system-model label during import, transformation and export,
   use native EN15804 scrap suppliers with their reference-output signs, and
