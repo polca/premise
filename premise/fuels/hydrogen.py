@@ -1,11 +1,10 @@
-from collections import defaultdict
-
 from .utils import (
     fetch_mapping,
     adjust_electrolysis_electricity_requirement,
 )
 from .config import HYDROGEN_SOURCES
-from ..transformation import ws, uuid, np
+from ..transformation import ws
+from ..provenance import record_change_event
 
 hydrogen_parameters = fetch_mapping(HYDROGEN_SOURCES)
 
@@ -42,6 +41,76 @@ class HydrogenMixin:
             additional_exchanges_fn=self._add_transport_to_hydrogen_datasets,
             flip_treatment_supplier_sign=True,
         )
+
+        # Normalize imported market-average recipes before they are copied by
+        # synthetic-fuel regionalization. Adopt the generated market's 30-bar
+        # pipeline boundary only for these recipes; geographic relinking resolves
+        # their regional suppliers while preserving quantities and uncertainty.
+        target = {
+            "name": "market for hydrogen, gaseous, low pressure",
+            "reference product": "hydrogen, gaseous, low pressure",
+            "unit": "kilogram",
+        }
+        if not any(self.is_in_index(target, region) for region in self.regions):
+            return
+
+        source_markets = {
+            ("market for hydrogen, liquid", "hydrogen, liquid"),
+            ("market for hydrogen, gaseous", "hydrogen, gaseous"),
+            (
+                "market for hydrogen, gaseous, medium pressure, merchant",
+                "hydrogen, gaseous, medium pressure, merchant",
+            ),
+        }
+        for dataset in self.database:
+            if "market-average hydrogen" not in dataset["name"].casefold():
+                continue
+
+            changed_inputs = []
+            for exchange in dataset["exchanges"]:
+                source = (
+                    exchange.get("name"),
+                    exchange.get("reference product", exchange.get("product")),
+                )
+                if (
+                    exchange["type"] != "technosphere"
+                    or exchange["unit"] != "kilogram"
+                    or source not in source_markets
+                ):
+                    continue
+
+                changed_inputs.append(
+                    {
+                        "name": source[0],
+                        "product": source[1],
+                        "location": exchange["location"],
+                        "amount": exchange["amount"],
+                    }
+                )
+                exchange["name"] = target["name"]
+                exchange["product"] = target["reference product"]
+                if "reference product" in exchange:
+                    exchange["reference product"] = target["reference product"]
+                exchange.pop("input", None)
+
+            if changed_inputs:
+                record_change_event(
+                    self,
+                    dataset,
+                    sector="fuels",
+                    reason_code="fuels.market_average_hydrogen",
+                    explanation=(
+                        "Market-average hydrogen follows the regional IAM mix "
+                        "at the generated market's 30-bar pipeline-delivery "
+                        "boundary. Hydrogen quantities and existing process "
+                        "energy are retained; this replaces the static native "
+                        "merchant-supply boundary."
+                    ),
+                    computed_target_values={
+                        "source hydrogen inputs": changed_inputs,
+                        "target hydrogen market": target,
+                    },
+                )
 
     def _adjust_hydrogen_efficiency(self, dataset, technology):
         """
@@ -109,9 +178,9 @@ class HydrogenMixin:
             else:
                 exc["maximum"] = exc["loc"] * 1.1
 
-        dataset["log parameters"][
-            "new energy input for hydrogen production"
-        ] = new_energy_use
+        dataset["log parameters"]["new energy input for hydrogen production"] = (
+            new_energy_use
+        )
 
     def _generate_supporting_hydrogen_datasets(self):
         keywords = [
