@@ -375,7 +375,7 @@ def test_ast_default_selection_keeps_legacy_profile_and_native_before_pfsa_buyer
     generator = runpy.run_path(
         str(ROOT / "docs/_tools/generate_documentation_reference.py")
     )
-    tree = ast.parse((ROOT / "premise/new_database.py").read_text())
+    tree = ast.parse((ROOT / "premise/database/new_database.py").read_text())
     selected = generator["inventory_selection"](tree, version, system_model)
     assert selected.count((LEGACY, "3.9")) == 1
     native = [item for item in selected if item[0] == NATIVE]

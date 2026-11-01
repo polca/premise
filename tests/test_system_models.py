@@ -252,6 +252,6 @@ def test_documentation_inventory_selection_keeps_en15804_attributional_sources()
     generator = runpy.run_path(
         str(root / "docs/_tools/generate_documentation_reference.py")
     )
-    tree = ast.parse((root / "premise/new_database.py").read_text())
+    tree = ast.parse((root / "premise/database/new_database.py").read_text())
     select = generator["inventory_selection"]
     assert select(tree, "3.12", "EN15804") == select(tree, "3.12", "cutoff")

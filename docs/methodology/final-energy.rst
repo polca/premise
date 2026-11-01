@@ -100,8 +100,8 @@ equipment boundary before comparing it with a complete transport service.
 Sources and inventory details
 -------------------------------
 
-The implementation is ``premise/final_energy.py``; activity selection uses
+The implementation is ``premise/energy/final_energy.py``; activity selection uses
 ``InventorySet.generate_final_energy_map``. Transport equipment selection and
-normalization are implemented in ``premise/vehicle_energy_use.py``. See
+normalization are implemented in ``premise/transport/vehicle_energy_use.py``. See
 :doc:`/reference/iam-variables`
 for mapping conventions and :doc:`/user_guide/updates` for execution order.

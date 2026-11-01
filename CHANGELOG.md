@@ -11,6 +11,12 @@ All notable changes to this project are documented in this file.
   use native EN15804 scrap suppliers with their reference-output signs, and
   apply the existing attributional behavior where appropriate.
 
+### Changed
+
+- Group Python modules into topic packages, including transport, inventory,
+  materials, electricity and reporting. Preserve public entry points and legacy
+  module imports for existing callers and cached class paths.
+
 ### Fixed
 
 - Link recipes explicitly named `market-average hydrogen` to Premise's regional

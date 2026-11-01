@@ -53,7 +53,7 @@ def inventory_selection(tree, version, system_model):
         "Version": Version,
     }
     # Selection uses this shared literal without importing the Brightway stack.
-    model_tree = ast.parse((ROOT / "premise/system_models.py").read_text())
+    model_tree = ast.parse((ROOT / "premise/iam/system_models.py").read_text())
     assignment = next(
         n
         for n in model_tree.body
@@ -95,7 +95,7 @@ def generate():
     constants = yaml.safe_load(
         (ROOT / "premise/iam_variables_mapping/constants.yaml").read_text()
     )
-    tree = ast.parse((ROOT / "premise/new_database.py").read_text())
+    tree = ast.parse((ROOT / "premise/database/new_database.py").read_text())
     cls = next(
         n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == "NewDatabase"
     )

@@ -2,7 +2,7 @@ from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from .properties import CNG_ENERGY_MJ_PER_KG
 from .utils import fetch_mapping
 from .config import METHANE_SOURCES
-from ..transformation import ws
+from ..core.transformation import ws
 
 from collections import defaultdict
 

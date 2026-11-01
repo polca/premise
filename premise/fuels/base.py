@@ -9,16 +9,19 @@ from .utils import fetch_mapping
 from .config import FUEL_GROUPS
 from .properties import annotate_cng_properties
 from .carbon import update_vehicle_fuel_co2
-from ..transformation import (
+from ..core.transformation import (
     BaseTransformation,
 )
-from ..validation import FuelsValidation
-from ..validation_framework import record_validation_phase
-from ..activity_maps import InventorySet
-from ..inventory_imports import get_biosphere_code
-from ..logger import create_logger
-from ..provenance import record_change_event
-from ..inventory_store import get_scenario_inventory, replace_scenario_inventory
+from ..validation.validation import FuelsValidation
+from ..validation.validation_framework import record_validation_phase
+from ..inventory.activity_maps import InventorySet
+from ..inventory.inventory_imports import get_biosphere_code
+from ..core.logger import create_logger
+from ..reporting.provenance import record_change_event
+from ..inventory.inventory_store import (
+    get_scenario_inventory,
+    replace_scenario_inventory,
+)
 
 logger = create_logger("fuel")
 

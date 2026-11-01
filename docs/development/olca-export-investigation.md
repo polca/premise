@@ -92,7 +92,7 @@ Brightpath prerequisite fixes are committed: flow identity (`530603b`), lognorma
 conversion (`eab8893`), and opt-in local method mapping (`b614533`). The mapping
 reads licensed method data locally; it does not bundle the package.
 
-Premise now has a JSON-LD adapter in `premise/olca_export.py`. The default
+Premise now has a JSON-LD adapter in `premise/export/olca_export.py`. The default
 `write_db_to_olca` route requires Python 3.12+, ecoinvent 3.12, and an explicit
 `method_package`; `format="simapro"` retains the previous route. The adapter
 checks provider closure and ambiguity, namespaces process and product IDs by

@@ -8,7 +8,7 @@ from premise.data_collection import get_metals_intensity_factors_data
 
 import premise.metals as metals_module
 import premise.metals_rules as metals_rules_module
-import premise.validation as validation_module
+import premise.validation.validation as validation_module
 from premise.activity_maps import InventorySet
 from premise.filesystem_constants import DATA_DIR
 from premise.metals import (

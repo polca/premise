@@ -5,7 +5,7 @@ import pytest
 import xarray as xr
 from types import SimpleNamespace
 
-import premise.validation as validation_module
+import premise.validation.validation as validation_module
 from premise.geomap import Geomap
 from premise.inventory_imports import canonicalize_classification_key
 from premise.validation import (

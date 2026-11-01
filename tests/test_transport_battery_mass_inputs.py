@@ -11,7 +11,7 @@ import pytest
 from wurst import searching as ws
 
 import premise.final_energy as final_energy_module
-import premise.transport as transport_module
+import premise.transport.transport as transport_module
 import premise.utils as utils_module
 from premise.battery_mass import (
     LEGACY_MASS_PROVIDER,

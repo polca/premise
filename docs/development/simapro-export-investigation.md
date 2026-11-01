@@ -161,8 +161,8 @@ their signs. The previously generated comparison CSVs predate this correction.
 
 ## Source locations
 
-- Premise: `premise/new_database.py:write_db_to_simapro`,
-  `premise/export.py:Export.export_db_to_simapro`, and
+- Premise: `premise/database/new_database.py:write_db_to_simapro`,
+  `premise/export/export.py:Export.export_db_to_simapro`, and
   `premise/data/utils/export/simapro*`.
 - Brightpath: `brightpath/formats/simapro_csv.py`,
   `brightpath/profiles/simapro.py`, `brightpath/profiles/simapro_categories.py`,

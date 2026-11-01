@@ -9,7 +9,7 @@ import bw2io
 import pytest
 from dotenv import load_dotenv
 
-import premise.export as export_module
+import premise.export.export as export_module
 from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
 from lcia_regression import assert_lcia_regression_scores, get_lcia_regression_method

@@ -1,7 +1,7 @@
 from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from collections import defaultdict
 
-from ..transformation import ws
+from ..core.transformation import ws
 from .config import (
     LIQUID_FUEL_SOURCES,
     REGION_BIODIESEL_FEEDSTOCK_MAP,

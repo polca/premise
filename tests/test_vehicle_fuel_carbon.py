@@ -269,7 +269,7 @@ def test_validator_detects_wrong_split_even_with_correct_total():
 def test_transport_entrypoint_uses_final_suppliers_and_efficiency(
     monkeypatch, kind, year, factor
 ):
-    import premise.transport as module
+    import premise.transport.transport as module
 
     regions = ["EUR", "USA", "World"]
     name = (

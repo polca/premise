@@ -5,7 +5,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from premise import transport, validation as v
+from premise.transport import transport
+from premise.validation import validation as v
 
 
 def air(name, amount, **extra):

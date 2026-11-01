@@ -15,7 +15,7 @@ from openpyxl.styles import Font
 ROOT = Path(__file__).resolve().parents[2]
 INVENTORIES = ROOT / "premise/data/additional_inventories"
 spec = importlib.util.spec_from_file_location(
-    "photovoltaic", ROOT / "premise/photovoltaic.py"
+    "photovoltaic", ROOT / "premise/electricity/photovoltaic.py"
 )
 pv = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pv)

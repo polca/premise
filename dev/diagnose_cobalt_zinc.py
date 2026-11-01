@@ -388,7 +388,7 @@ def main():
         "unit": "kg extracted element",
         "database_fingerprints": config["database_fingerprints"],
         "metals_py_sha256": hashlib.sha256(
-            (args.repo / "premise/metals.py").read_bytes()
+            (args.repo / "premise/materials/metals.py").read_bytes()
         ).hexdigest(),
         "scores": scores(args, config, bd),
     }

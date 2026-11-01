@@ -351,7 +351,7 @@ def test_explicit_energy_units_and_delivered_cng_basis():
 
 
 def test_consequential_validator_compares_energy_shares(monkeypatch):
-    import premise.validation as validation
+    import premise.validation.validation as validation
 
     markets = build_market(
         ["gasoline", "bioethanol, from sugar"], [0.2, 0.8], "gasoline"

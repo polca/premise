@@ -3,8 +3,8 @@ from .utils import (
     adjust_electrolysis_electricity_requirement,
 )
 from .config import HYDROGEN_SOURCES
-from ..transformation import ws
-from ..provenance import record_change_event
+from ..core.transformation import ws
+from ..reporting.provenance import record_change_event
 
 hydrogen_parameters = fetch_mapping(HYDROGEN_SOURCES)
 

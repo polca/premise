@@ -1,7 +1,7 @@
 Supplier-selection implementation
 ===================================
 
-This decision tree describes helpers in ``premise/transformation.py``.
+This decision tree describes helpers in ``premise/core/transformation.py``.
 The methodological explanation is in :doc:`/methodology/regionalization`;
 these helper functions are not the public integration API.
 

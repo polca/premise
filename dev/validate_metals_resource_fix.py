@@ -202,7 +202,7 @@ def main():
             ), f"Verified build differs from scored database: {identity}"
         assert (
             verified["code_sha256"]["metals.py"]
-            == hashlib.sha256((ROOT / "premise/metals.py").read_bytes()).hexdigest()
+            == hashlib.sha256((ROOT / "premise/materials/metals.py").read_bytes()).hexdigest()
         )
         checks["verified_export_equivalent"] = True
         checks["verified_code_sha256"] = verified["code_sha256"]

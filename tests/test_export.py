@@ -28,7 +28,7 @@ def test_datapackage_records_actual_system_model(
     import json
     from zipfile import ZipFile
 
-    import premise.export as module
+    import premise.export.export as module
 
     monkeypatch.setattr(module, "DIR_DATAPACKAGE_TEMP", tmp_path / "working")
     monkeypatch.setattr(module, "DIR_DATAPACKAGE", tmp_path / "packages")
@@ -185,7 +185,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
 
             return DummyNormalizer()
 
-    monkeypatch.setattr("premise.export.BaseDatasetValidator", DummyValidator)
+    monkeypatch.setattr("premise.export.export.BaseDatasetValidator", DummyValidator)
 
     scenario = {
         "model": "image",

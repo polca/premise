@@ -212,7 +212,7 @@ Consequential fuel markets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Consequential markets use marginal production mixes calculated in
-``premise/marginal_mixes.py``. Technologies registered as constrained suppliers,
+``premise/iam/marginal_mixes.py``. Technologies registered as constrained suppliers,
 including pathways dependent on residual or waste feedstocks, are set to zero before
 the remaining marginal shares are normalized.
 

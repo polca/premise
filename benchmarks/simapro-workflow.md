@@ -173,7 +173,7 @@ behavior and validation/report settings are unchanged.
 ## Optimization priorities suggested by the measurements
 
 1. Reduce repeated exchange normalization, canonical JSON serialization, and
-   signature construction in `premise/change_report.py`. The focused profile
+   signature construction in `premise/reporting/change_report.py`. The focused profile
    records 22.45 million canonical JSON calls and 9.15 million exchange-signature
    calls. Investigate reuse of source exchange descriptors across scenarios
    and avoiding repeated normalization within indexing/comparison, while

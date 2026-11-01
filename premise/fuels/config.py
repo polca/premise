@@ -1,4 +1,4 @@
-from ..filesystem_constants import DATA_DIR, VARIABLES_DIR
+from ..core.filesystem_constants import DATA_DIR, VARIABLES_DIR
 
 REGION_CLIMATE_MAP = VARIABLES_DIR / "iam_region_to_climate.yaml"
 REGION_BIODIESEL_FEEDSTOCK_MAP = (

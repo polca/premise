@@ -306,7 +306,7 @@ datasets to update their efficiency accordingly.
 To do so, the required panel area (in m2) per kW of capacity is
 adjusted down when the projected efficiency exceeds the current efficiency.
 Existing higher efficiencies are preserved. Dataset names
-are matched against technology aliases in ``premise/electricity.py``. Datasets containing ``perovskite-on-silicon tandem`` are mapped
+are matched against technology aliases in ``premise/electricity/electricity.py``. Datasets containing ``perovskite-on-silicon tandem`` are mapped
 to the dedicated ``perovskite-Si tandem`` trajectory when it is available in
 the CSV; when that trajectory is absent they fall back to the generic
 ``perovskite`` trajectory.

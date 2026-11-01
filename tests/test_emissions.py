@@ -12,7 +12,7 @@ from premise.inventory_store import CompactInventoryStore, LegacyInventoryStore
 
 def test_legacy_emissions_replacement_preserves_source_and_nested_metadata(monkeypatch):
     from types import SimpleNamespace
-    import premise.emissions as module
+    import premise.emissions.emissions as module
 
     original = [
         {

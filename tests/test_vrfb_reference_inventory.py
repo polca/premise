@@ -272,7 +272,7 @@ def test_import_dependency_order():
     )
     import ast
 
-    tree = ast.parse((ROOT / "premise/new_database.py").read_text())
+    tree = ast.parse((ROOT / "premise/database/new_database.py").read_text())
     order = [x[0] for x in generator["inventory_selection"](tree, "3.12", "cutoff")]
     assert (
         order.index("lci-vrfb-reference-conditioning.xlsx")

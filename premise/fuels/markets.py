@@ -3,15 +3,15 @@ import copy
 import numpy as np
 import math
 
-from ..activity_maps import InventorySet, get_mapping
+from ..inventory.activity_maps import InventorySet, get_mapping
 from .utils import (
     fetch_mapping,
     update_co2_emissions,
     update_dataset,
     calculate_fuel_properties,
 )
-from ..transformation import ws, get_shares_from_production_volume
-from ..utils import get_fuel_properties
+from ..core.transformation import ws, get_shares_from_production_volume
+from ..core.utils import get_fuel_properties
 from .properties import (
     PROPERTIES_KEY,
     CarbonOriginResolver,

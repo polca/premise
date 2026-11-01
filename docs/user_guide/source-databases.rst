@@ -49,7 +49,7 @@ indicate the database name in `source_db` and its version in `source_version`:
     ``source_db`` must match the **name of the database in your Brightway project** (it is not a fixed string).
 
 EN15804 source databases
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use ``system_model="EN15804"`` when the source database is the ecoinvent
 EN15804 system model, for example::

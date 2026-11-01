@@ -500,7 +500,7 @@ def test_ast_actual_default_selection_is_versioned_and_precedes_hydrogen(
     generator = runpy.run_path(
         str(ROOT / "docs/_tools/generate_documentation_reference.py")
     )
-    tree = ast.parse((ROOT / "premise/new_database.py").read_text())
+    tree = ast.parse((ROOT / "premise/database/new_database.py").read_text())
     selection = generator["inventory_selection"](tree, version, system_model)
     assert selection.count((LEGACY, "3.9")) == 1
     native = [

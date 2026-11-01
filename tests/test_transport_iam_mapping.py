@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import yaml
 
-import premise.transport as transport_module
+import premise.transport.transport as transport_module
 from premise.transport import Transport
 
 MAPPING = (

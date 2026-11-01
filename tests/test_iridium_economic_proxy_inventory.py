@@ -234,7 +234,7 @@ def test_default_import_registers_separate_source_versions(version, system_model
     generator = runpy.run_path(
         str(ROOT / "docs/_tools/generate_documentation_reference.py")
     )
-    tree = ast.parse((ROOT / "premise/new_database.py").read_text())
+    tree = ast.parse((ROOT / "premise/database/new_database.py").read_text())
     selection = generator["inventory_selection"](tree, version, system_model)
     assert selection.count((WORKBOOK, "3.12")) == 1
     assert selection.count(("lci-PGM.xlsx", "3.8")) == 1

@@ -4,7 +4,7 @@ from collections import defaultdict
 from copy import deepcopy
 import math
 
-from ..utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange
+from ..core.utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange
 from .properties import PROPERTIES_KEY, activity_key
 
 _TRANSFER_KEY = FUEL_CO2_TRANSFER_KEY
@@ -367,7 +367,7 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
 
 def update_vehicle_fuel_co2(database, version, vehicle_type=None):
     """Refresh road-vehicle CO2 from the currently linked suppliers and amounts."""
-    from ..inventory_imports import get_biosphere_code
+    from ..inventory.inventory_imports import get_biosphere_code
 
     providers = {activity_key(ds): ds for ds in database}
     flows = get_biosphere_code(version)

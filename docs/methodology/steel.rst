@@ -78,7 +78,7 @@ and updates key metadata such as production volume.
 Efficiency adjustment
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The adjustment in ``premise/steel.py`` calculates the inverse mapped efficiency
+The adjustment in ``premise/materials/steel.py`` calculates the inverse mapped efficiency
 change, applies the route-specific energy bounds, and scales technosphere
 exchanges matching its configured fuel-name filters plus direct fossil CO2.
 The source route structure is retained. The filters also include electricity;
