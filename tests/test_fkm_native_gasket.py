@@ -66,7 +66,10 @@ def purchase(data, buyer, supplier=GASKET_NAME):
 @pytest.fixture(scope="module")
 def adoption():
     return json.loads(
-        (ROOT / "tests/data/inventory_review/fkm-gasket-native-312-adoption-20261027.json").read_text()
+        (
+            ROOT
+            / "tests/data/inventory_review/fkm-gasket-native-312-adoption-20261027.json"
+        ).read_text()
     )
 
 

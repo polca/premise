@@ -186,7 +186,9 @@ def exchange_key(exc):
 def previous_controller_cells(cells, actual):
     """Validate ALIGN-041 before reversing its five cells for the PFSA oracle."""
     approved = json.loads(
-        (ROOT / "tests/data/inventory_review/vrfb-controller-adoption-20261027.json").read_text()
+        (
+            ROOT / "tests/data/inventory_review/vrfb-controller-adoption-20261027.json"
+        ).read_text()
     )
     before = approved["before_snapshot"]
 
@@ -262,7 +264,9 @@ def previous_controller_cells(cells, actual):
 @pytest.fixture(scope="module")
 def adoption():
     return json.loads(
-        (ROOT / "tests/data/inventory_review/pfsa-ew1100-adoption-20261027.json").read_text()
+        (
+            ROOT / "tests/data/inventory_review/pfsa-ew1100-adoption-20261027.json"
+        ).read_text()
     )
 
 

@@ -54,7 +54,8 @@ def science(record):
 def reference():
     approved = json.loads(
         (
-            ROOT / "tests/data/inventory_review/lis-factory-allocation-adoption-20261027.json"
+            ROOT
+            / "tests/data/inventory_review/lis-factory-allocation-adoption-20261027.json"
         ).read_text()
     )
     assert approved["case_id"] == "ALIGN-044"

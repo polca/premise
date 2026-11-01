@@ -66,7 +66,8 @@ def state(source):
 def adoption():
     return json.loads(
         (
-            ROOT / "tests/data/inventory_review/transformer-native-core-adoption-20261027.json"
+            ROOT
+            / "tests/data/inventory_review/transformer-native-core-adoption-20261027.json"
         ).read_text()
     )
 

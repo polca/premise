@@ -180,7 +180,9 @@ def xml_cells(path):
 @pytest.fixture(scope="module")
 def adoption():
     return json.loads(
-        (ROOT / "tests/data/inventory_review/capacitor-family-adoption-20261027.json").read_text()
+        (
+            ROOT / "tests/data/inventory_review/capacitor-family-adoption-20261027.json"
+        ).read_text()
     )
 
 
@@ -200,7 +202,10 @@ def raw():
 @pytest.fixture(scope="module")
 def connector_note(raw):
     plan = json.loads(
-        (ROOT / "tests/data/inventory_review/connector-reference-adoption-20261027.json").read_text()
+        (
+            ROOT
+            / "tests/data/inventory_review/connector-reference-adoption-20261027.json"
+        ).read_text()
     )
     comment = activity(raw.data, CONNECTOR)["comment"]
     old = plan["before_snapshot"]["comment"]
@@ -213,7 +218,10 @@ def connector_note(raw):
 @pytest.fixture(scope="module")
 def control_wafer_adoption():
     return json.loads(
-        (ROOT / "tests/data/inventory_review/control-package-wafer-adoption-20261027.json").read_text()
+        (
+            ROOT
+            / "tests/data/inventory_review/control-package-wafer-adoption-20261027.json"
+        ).read_text()
     )
 
 

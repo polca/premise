@@ -88,7 +88,8 @@ def expected_adoption(data):
 def adoption():
     return json.loads(
         (
-            ROOT / "tests/data/inventory_review/ptfe-gasket-native-312-adoption-20261027.json"
+            ROOT
+            / "tests/data/inventory_review/ptfe-gasket-native-312-adoption-20261027.json"
         ).read_text()
     )
 

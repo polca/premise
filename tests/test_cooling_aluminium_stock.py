@@ -67,7 +67,8 @@ def vector(e):
 
 def reference():
     payload = (
-        ROOT / "tests/data/inventory_review/cooling-aluminium-stock-adoption-20261027.json"
+        ROOT
+        / "tests/data/inventory_review/cooling-aluminium-stock-adoption-20261027.json"
     ).read_bytes()
 
     p = json.loads(payload)

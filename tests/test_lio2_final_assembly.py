@@ -53,7 +53,10 @@ def vector(e):
 @pytest.fixture(scope="module")
 def adoption():
     return json.loads(
-        (ROOT / "tests/data/inventory_review/lio2-final-assembly-adoption-20261027.json").read_text()
+        (
+            ROOT
+            / "tests/data/inventory_review/lio2-final-assembly-adoption-20261027.json"
+        ).read_text()
     )
 
 

@@ -24,7 +24,8 @@ REFINERY = "platinum group metal, extraction and refinery operations"
 def adoption():
     return json.loads(
         (
-            ROOT / "tests/data/inventory_review/iridium-economic-proxy-adoption-20261027.json"
+            ROOT
+            / "tests/data/inventory_review/iridium-economic-proxy-adoption-20261027.json"
         ).read_text()
     )
 
