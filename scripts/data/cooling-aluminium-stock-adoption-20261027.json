@@ -1,0 +1,730 @@
+{
+  "case_id": "ALIGN-049",
+  "approval": "Approved by Romain Sacchi,2026-10-27;approved. next?",
+  "workbook": "lci-batteries-LiO2.xlsx",
+  "sheet": "Battery - LiO2",
+  "before_workbook_sha256": "c137a88b1171494a4a4bd358457bdd5357ab502b1762d3be04f051120a5dedaa",
+  "changes": [
+    {
+      "after": "market for aluminium, wrought alloy",
+      "before": "market for aluminium, in mixed metal scrap",
+      "cell": "A466",
+      "field": "name"
+    },
+    {
+      "after": "GLO",
+      "before": "Europe without Switzerland",
+      "cell": "E466",
+      "field": "location"
+    },
+    {
+      "after": "aluminium, wrought alloy",
+      "before": "aluminium, in mixed metal scrap",
+      "cell": "G466",
+      "field": "reference product"
+    },
+    {
+      "after": "market for aluminium, wrought alloy",
+      "before": "market for aluminium, in mixed metal scrap",
+      "cell": "A483",
+      "field": "name"
+    },
+    {
+      "after": "GLO",
+      "before": "Europe without Switzerland",
+      "cell": "E483",
+      "field": "location"
+    },
+    {
+      "after": "aluminium, wrought alloy",
+      "before": "aluminium, in mixed metal scrap",
+      "cell": "G483",
+      "field": "reference product"
+    }
+  ],
+  "notes": [
+    {
+      "cell": "B457",
+      "before": "Retrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+      "prefix": "APPROVED COOLING-COMPONENT ALUMINIUM STOCK, 2026-10-27. Purchase 1 kg from market for aluminium, wrought alloy, GLO, per kg component, replacing aluminium in mixed metal scrap from Europe without Switzerland. The former scrap input did not establish a finished metal supply before forming; the generic wrought-alloy market is the adopted metal-stock proxy. Actual alloy grade and recycled fraction remain unverified; this does not claim 100 percent secondary aluminium or measured radiator/manifold alloy. Preserve the 1 kg stock quantity, component output, forming, freight, infrastructure and all other exchanges. Do not add a second remelting process, recovery credit, yield correction or cancellation of native processing stock/losses/uncertainty. Original technosphere and biosphere declarations both remain 3.9. This narrowly corrects the feed identity; other inherited thermal, forming and equipment assumptions are not certified. Historical source text follows unchanged.\n\n",
+      "activity_index": 23,
+      "activity": "radiator production, for Li-O2 battery"
+    },
+    {
+      "cell": "B474",
+      "before": "Retrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+      "prefix": "APPROVED COOLING-COMPONENT ALUMINIUM STOCK, 2026-10-27. Purchase 1 kg from market for aluminium, wrought alloy, GLO, per kg component, replacing aluminium in mixed metal scrap from Europe without Switzerland. The former scrap input did not establish a finished metal supply before forming; the generic wrought-alloy market is the adopted metal-stock proxy. Actual alloy grade and recycled fraction remain unverified; this does not claim 100 percent secondary aluminium or measured radiator/manifold alloy. Preserve the 1 kg stock quantity, component output, forming, freight, infrastructure and all other exchanges. Do not add a second remelting process, recovery credit, yield correction or cancellation of native processing stock/losses/uncertainty. Original technosphere and biosphere declarations both remain 3.9. This narrowly corrects the feed identity; other inherited thermal, forming and equipment assumptions are not certified. Historical source text follows unchanged.\n\n",
+      "activity_index": 24,
+      "activity": "manifolds production, for Li-O2 battery"
+    }
+  ],
+  "affected_activities": [
+    {
+      "index": 23,
+      "before": {
+        "comment": "Retrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "location": "RER",
+        "production amount": 1,
+        "reference product": "radiator",
+        "unit": "kilogram",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "name": "radiator production, for Li-O2 battery",
+        "exchanges": [
+          {
+            "name": "radiator production, for Li-O2 battery",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "production",
+            "reference product": "radiator"
+          },
+          {
+            "name": "market for aluminium, in mixed metal scrap",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "Europe without Switzerland",
+            "type": "technosphere",
+            "reference product": "aluminium, in mixed metal scrap"
+          },
+          {
+            "name": "sheet rolling, aluminium",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "sheet rolling, aluminium"
+          },
+          {
+            "name": "market for transport, freight train",
+            "amount": 0.2,
+            "unit": "ton kilometer",
+            "location": "Europe without Switzerland",
+            "type": "technosphere",
+            "reference product": "transport, freight train"
+          },
+          {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "amount": 0.1,
+            "unit": "ton kilometer",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6"
+          },
+          {
+            "name": "aluminium casting facility construction",
+            "amount": 1.5e-10,
+            "unit": "unit",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "aluminium casting facility"
+          }
+        ],
+        "worksheet name": "Battery - LiO2",
+        "database": "battery_lithium-oxygen"
+      },
+      "after": {
+        "comment": "APPROVED COOLING-COMPONENT ALUMINIUM STOCK, 2026-10-27. Purchase 1 kg from market for aluminium, wrought alloy, GLO, per kg component, replacing aluminium in mixed metal scrap from Europe without Switzerland. The former scrap input did not establish a finished metal supply before forming; the generic wrought-alloy market is the adopted metal-stock proxy. Actual alloy grade and recycled fraction remain unverified; this does not claim 100 percent secondary aluminium or measured radiator/manifold alloy. Preserve the 1 kg stock quantity, component output, forming, freight, infrastructure and all other exchanges. Do not add a second remelting process, recovery credit, yield correction or cancellation of native processing stock/losses/uncertainty. Original technosphere and biosphere declarations both remain 3.9. This narrowly corrects the feed identity; other inherited thermal, forming and equipment assumptions are not certified. Historical source text follows unchanged.\n\nRetrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "location": "RER",
+        "production amount": 1,
+        "reference product": "radiator",
+        "unit": "kilogram",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "name": "radiator production, for Li-O2 battery",
+        "exchanges": [
+          {
+            "name": "radiator production, for Li-O2 battery",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "production",
+            "reference product": "radiator"
+          },
+          {
+            "name": "market for aluminium, wrought alloy",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "GLO",
+            "type": "technosphere",
+            "reference product": "aluminium, wrought alloy"
+          },
+          {
+            "name": "sheet rolling, aluminium",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "sheet rolling, aluminium"
+          },
+          {
+            "name": "market for transport, freight train",
+            "amount": 0.2,
+            "unit": "ton kilometer",
+            "location": "Europe without Switzerland",
+            "type": "technosphere",
+            "reference product": "transport, freight train"
+          },
+          {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "amount": 0.1,
+            "unit": "ton kilometer",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6"
+          },
+          {
+            "name": "aluminium casting facility construction",
+            "amount": 1.5e-10,
+            "unit": "unit",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "aluminium casting facility"
+          }
+        ],
+        "worksheet name": "Battery - LiO2",
+        "database": "battery_lithium-oxygen"
+      },
+      "CLIC_dataset_id": 1151
+    },
+    {
+      "index": 24,
+      "before": {
+        "comment": "Retrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "location": "RER",
+        "production amount": 1,
+        "reference product": "manifolds",
+        "unit": "kilogram",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "name": "manifolds production, for Li-O2 battery",
+        "exchanges": [
+          {
+            "name": "manifolds production, for Li-O2 battery",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "production",
+            "reference product": "manifolds"
+          },
+          {
+            "name": "market for aluminium, in mixed metal scrap",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "Europe without Switzerland",
+            "type": "technosphere",
+            "reference product": "aluminium, in mixed metal scrap"
+          },
+          {
+            "name": "metal working, average for aluminium product manufacturing",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "metal working, average for aluminium product manufacturing"
+          },
+          {
+            "name": "market for transport, freight train",
+            "amount": 0.2,
+            "unit": "ton kilometer",
+            "location": "Europe without Switzerland",
+            "type": "technosphere",
+            "reference product": "transport, freight train"
+          },
+          {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "amount": 0.1,
+            "unit": "ton kilometer",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6"
+          },
+          {
+            "name": "aluminium casting facility construction",
+            "amount": 1.5e-10,
+            "unit": "unit",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "aluminium casting facility"
+          }
+        ],
+        "worksheet name": "Battery - LiO2",
+        "database": "battery_lithium-oxygen"
+      },
+      "after": {
+        "comment": "APPROVED COOLING-COMPONENT ALUMINIUM STOCK, 2026-10-27. Purchase 1 kg from market for aluminium, wrought alloy, GLO, per kg component, replacing aluminium in mixed metal scrap from Europe without Switzerland. The former scrap input did not establish a finished metal supply before forming; the generic wrought-alloy market is the adopted metal-stock proxy. Actual alloy grade and recycled fraction remain unverified; this does not claim 100 percent secondary aluminium or measured radiator/manifold alloy. Preserve the 1 kg stock quantity, component output, forming, freight, infrastructure and all other exchanges. Do not add a second remelting process, recovery credit, yield correction or cancellation of native processing stock/losses/uncertainty. Original technosphere and biosphere declarations both remain 3.9. This narrowly corrects the feed identity; other inherited thermal, forming and equipment assumptions are not certified. Historical source text follows unchanged.\n\nRetrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "location": "RER",
+        "production amount": 1,
+        "reference product": "manifolds",
+        "unit": "kilogram",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "name": "manifolds production, for Li-O2 battery",
+        "exchanges": [
+          {
+            "name": "manifolds production, for Li-O2 battery",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "production",
+            "reference product": "manifolds"
+          },
+          {
+            "name": "market for aluminium, wrought alloy",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "GLO",
+            "type": "technosphere",
+            "reference product": "aluminium, wrought alloy"
+          },
+          {
+            "name": "metal working, average for aluminium product manufacturing",
+            "amount": 1,
+            "unit": "kilogram",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "metal working, average for aluminium product manufacturing"
+          },
+          {
+            "name": "market for transport, freight train",
+            "amount": 0.2,
+            "unit": "ton kilometer",
+            "location": "Europe without Switzerland",
+            "type": "technosphere",
+            "reference product": "transport, freight train"
+          },
+          {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "amount": 0.1,
+            "unit": "ton kilometer",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6"
+          },
+          {
+            "name": "aluminium casting facility construction",
+            "amount": 1.5e-10,
+            "unit": "unit",
+            "location": "RER",
+            "type": "technosphere",
+            "reference product": "aluminium casting facility"
+          }
+        ],
+        "worksheet name": "Battery - LiO2",
+        "database": "battery_lithium-oxygen"
+      },
+      "CLIC_dataset_id": 1152
+    }
+  ],
+  "activity_count": 34,
+  "dimension": "A1:T637",
+  "formula_count": 176,
+  "preserved_quantity_cells": {
+    "B466": 1,
+    "B483": 1
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "native_stock_supplier_pins": {
+    "before": {
+      "catalog_uuid_pair": [
+        "9522f85a-4209-5934-984d-6a8d64fe9003",
+        "d7ff1811-40af-5f9c-a645-21a05091fa39"
+      ],
+      "identity": [
+        "market for aluminium, in mixed metal scrap",
+        "aluminium, in mixed metal scrap",
+        "Europe without Switzerland",
+        "kilogram"
+      ]
+    },
+    "native_catalogue_sha256": "cbf2cd63ecfbf890aadfddee3a510d44b40ac7545363b66791b090a51c93acb8",
+    "native_profile": {
+      "family": "ecoinvent",
+      "system_model": "cutoff",
+      "version": "3.9"
+    },
+    "proposed": {
+      "catalog_uuid_pair": [
+        "63868d2a-5a6c-5e76-ba20-8e94366da66d",
+        "fef44ccb-917e-4c8d-bb35-a1898827b659"
+      ],
+      "identity": [
+        "market for aluminium, wrought alloy",
+        "aluminium, wrought alloy",
+        "GLO",
+        "kilogram"
+      ]
+    }
+  },
+  "public_primary_sources": [
+    {
+      "supports": "This product is collected scrap delivered for treatment, not a finished wrought-metal supply.",
+      "title": "ecoinvent mixed-metal-scrap market documentation",
+      "url": "https://ecoquery.ecoinvent.org/3.10/EN15804/dataset/22929",
+      "version_scope": "Public3.10EN15804documentation supports product/boundary semantics; no3.9inventorycoefficients inferred."
+    },
+    {
+      "supports": "Rolling processes ingots; it excludes the bulk base material and balances only losses with primary input.",
+      "title": "ecoinvent aluminium rolling documentation",
+      "url": "https://ecoquery.ecoinvent.org/3.9.1/consequential/dataset/8923",
+      "version_scope": "Public3.9.1consequentialdocumentation; used for physical service boundary, not cutoffnumericalcoefficients."
+    },
+    {
+      "supports": "Wrought alloy is a metal product suitable as a generic forming-stock reference.",
+      "title": "ecoinvent wrought-alloy market",
+      "url": "https://ecoquery.ecoinvent.org/3.12/cutoff/dataset/5813",
+      "version_scope": "Meaning only; replacementidentity/UUID is independently pinned in original3.9catalogue."
+    }
+  ],
+  "published_authority": {
+    "file_sha256": "290cc920dc3b0436fb216c63908f455f9f7b9eec46ed21751b0b381ef51f5114",
+    "path": "/Users/romain/GitHub/clic/output/inventory-comparison/curated-update-plan-v1.1-review/selective-authored-profiles-bindings-validation-20261024-r2/selected-source-nodes.json",
+    "pointers": [
+      "/before/264",
+      "/after/264",
+      "/before/265",
+      "/after/265"
+    ]
+  },
+  "candidate_revisions": [
+    {
+      "candidate_key": "ALIGN-049:revision:1151",
+      "dataset_id": 1151,
+      "base_version_id": 1151,
+      "base_semantic_version": "1.0.0",
+      "base_snapshot_sha256": "0006dd14790d06aabe7fdfb2a48e1705d8d994249a49b719bb5a250777b0e7f2",
+      "base_snapshot": {
+        "code": "1245bab6df05c5358655068d414792f7",
+        "comment": "Retrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "database": "battery_lithium-oxygen",
+        "exchanges": [
+          {
+            "amount": 1,
+            "input": [
+              "battery_lithium-oxygen",
+              "1245bab6df05c5358655068d414792f7"
+            ],
+            "location": "RER",
+            "name": "radiator production, for Li-O2 battery",
+            "reference product": "radiator",
+            "type": "production",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "Europe without Switzerland",
+            "name": "market for aluminium, in mixed metal scrap",
+            "reference product": "aluminium, in mixed metal scrap",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "RER",
+            "name": "sheet rolling, aluminium",
+            "reference product": "sheet rolling, aluminium",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 0.2,
+            "location": "Europe without Switzerland",
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 0.1,
+            "location": "RER",
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 1.5e-10,
+            "location": "RER",
+            "name": "aluminium casting facility construction",
+            "reference product": "aluminium casting facility",
+            "type": "technosphere",
+            "unit": "unit"
+          }
+        ],
+        "location": "RER",
+        "name": "radiator production, for Li-O2 battery",
+        "production amount": 1,
+        "reference product": "radiator",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "unit": "kilogram",
+        "worksheet name": "Battery - LiO2"
+      },
+      "candidate_snapshot": {
+        "code": "1245bab6df05c5358655068d414792f7",
+        "comment": "APPROVED COOLING-COMPONENT ALUMINIUM STOCK, 2026-10-27. Purchase 1 kg from market for aluminium, wrought alloy, GLO, per kg component, replacing aluminium in mixed metal scrap from Europe without Switzerland. The former scrap input did not establish a finished metal supply before forming; the generic wrought-alloy market is the adopted metal-stock proxy. Actual alloy grade and recycled fraction remain unverified; this does not claim 100 percent secondary aluminium or measured radiator/manifold alloy. Preserve the 1 kg stock quantity, component output, forming, freight, infrastructure and all other exchanges. Do not add a second remelting process, recovery credit, yield correction or cancellation of native processing stock/losses/uncertainty. Original technosphere and biosphere declarations both remain 3.9. This narrowly corrects the feed identity; other inherited thermal, forming and equipment assumptions are not certified. Historical source text follows unchanged.\n\nRetrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "database": "battery_lithium-oxygen",
+        "exchanges": [
+          {
+            "amount": 1,
+            "input": [
+              "battery_lithium-oxygen",
+              "1245bab6df05c5358655068d414792f7"
+            ],
+            "location": "RER",
+            "name": "radiator production, for Li-O2 battery",
+            "reference product": "radiator",
+            "type": "production",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "GLO",
+            "name": "market for aluminium, wrought alloy",
+            "reference product": "aluminium, wrought alloy",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "RER",
+            "name": "sheet rolling, aluminium",
+            "reference product": "sheet rolling, aluminium",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 0.2,
+            "location": "Europe without Switzerland",
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 0.1,
+            "location": "RER",
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 1.5e-10,
+            "location": "RER",
+            "name": "aluminium casting facility construction",
+            "reference product": "aluminium casting facility",
+            "type": "technosphere",
+            "unit": "unit"
+          }
+        ],
+        "location": "RER",
+        "name": "radiator production, for Li-O2 battery",
+        "production amount": 1,
+        "reference product": "radiator",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "unit": "kilogram",
+        "worksheet name": "Battery - LiO2"
+      },
+      "candidate_snapshot_sha256": "8994ae89164390c26c42ff7bfa2b43c05eec4092cb25bcaee11ab36494b9a9f7",
+      "target_background": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.9"
+      },
+      "target_biosphere": {
+        "family": "ecoinvent",
+        "version": "3.9"
+      },
+      "metadata_policy": "Inherit original metadata, license and attribution; append this correction provenance.",
+      "revision_status": "approved_planned_not_staged",
+      "new_version_id": null,
+      "published_base_immutable": true,
+      "native_stock_binding": {
+        "catalog_uuid_pair": [
+          "63868d2a-5a6c-5e76-ba20-8e94366da66d",
+          "fef44ccb-917e-4c8d-bb35-a1898827b659"
+        ],
+        "identity": [
+          "market for aluminium, wrought alloy",
+          "aluminium, wrought alloy",
+          "GLO",
+          "kilogram"
+        ]
+      },
+      "propagation_policy": "Use corrected revisions in the next curated handoff and validate dependent selector bindings. No published binding rewritten in place."
+    },
+    {
+      "candidate_key": "ALIGN-049:revision:1152",
+      "dataset_id": 1152,
+      "base_version_id": 1152,
+      "base_semantic_version": "1.0.0",
+      "base_snapshot_sha256": "bc0f6fde69ab24d6740471dc05a80bff2434bff7407b4eba6487c7cd03ac1a0d",
+      "base_snapshot": {
+        "code": "67c6e0b187a5a3477c3e53a1efc6e066",
+        "comment": "Retrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "database": "battery_lithium-oxygen",
+        "exchanges": [
+          {
+            "amount": 1,
+            "input": [
+              "battery_lithium-oxygen",
+              "67c6e0b187a5a3477c3e53a1efc6e066"
+            ],
+            "location": "RER",
+            "name": "manifolds production, for Li-O2 battery",
+            "reference product": "manifolds",
+            "type": "production",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "Europe without Switzerland",
+            "name": "market for aluminium, in mixed metal scrap",
+            "reference product": "aluminium, in mixed metal scrap",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "RER",
+            "name": "metal working, average for aluminium product manufacturing",
+            "reference product": "metal working, average for aluminium product manufacturing",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 0.2,
+            "location": "Europe without Switzerland",
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 0.1,
+            "location": "RER",
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 1.5e-10,
+            "location": "RER",
+            "name": "aluminium casting facility construction",
+            "reference product": "aluminium casting facility",
+            "type": "technosphere",
+            "unit": "unit"
+          }
+        ],
+        "location": "RER",
+        "name": "manifolds production, for Li-O2 battery",
+        "production amount": 1,
+        "reference product": "manifolds",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "unit": "kilogram",
+        "worksheet name": "Battery - LiO2"
+      },
+      "candidate_snapshot": {
+        "code": "67c6e0b187a5a3477c3e53a1efc6e066",
+        "comment": "APPROVED COOLING-COMPONENT ALUMINIUM STOCK, 2026-10-27. Purchase 1 kg from market for aluminium, wrought alloy, GLO, per kg component, replacing aluminium in mixed metal scrap from Europe without Switzerland. The former scrap input did not establish a finished metal supply before forming; the generic wrought-alloy market is the adopted metal-stock proxy. Actual alloy grade and recycled fraction remain unverified; this does not claim 100 percent secondary aluminium or measured radiator/manifold alloy. Preserve the 1 kg stock quantity, component output, forming, freight, infrastructure and all other exchanges. Do not add a second remelting process, recovery credit, yield correction or cancellation of native processing stock/losses/uncertainty. Original technosphere and biosphere declarations both remain 3.9. This narrowly corrects the feed identity; other inherited thermal, forming and equipment assumptions are not certified. Historical source text follows unchanged.\n\nRetrieved from Ellingsen et al. (2013). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "database": "battery_lithium-oxygen",
+        "exchanges": [
+          {
+            "amount": 1,
+            "input": [
+              "battery_lithium-oxygen",
+              "67c6e0b187a5a3477c3e53a1efc6e066"
+            ],
+            "location": "RER",
+            "name": "manifolds production, for Li-O2 battery",
+            "reference product": "manifolds",
+            "type": "production",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "GLO",
+            "name": "market for aluminium, wrought alloy",
+            "reference product": "aluminium, wrought alloy",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 1,
+            "location": "RER",
+            "name": "metal working, average for aluminium product manufacturing",
+            "reference product": "metal working, average for aluminium product manufacturing",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          {
+            "amount": 0.2,
+            "location": "Europe without Switzerland",
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 0.1,
+            "location": "RER",
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+            "type": "technosphere",
+            "unit": "ton kilometer"
+          },
+          {
+            "amount": 1.5e-10,
+            "location": "RER",
+            "name": "aluminium casting facility construction",
+            "reference product": "aluminium casting facility",
+            "type": "technosphere",
+            "unit": "unit"
+          }
+        ],
+        "location": "RER",
+        "name": "manifolds production, for Li-O2 battery",
+        "production amount": 1,
+        "reference product": "manifolds",
+        "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+        "unit": "kilogram",
+        "worksheet name": "Battery - LiO2"
+      },
+      "candidate_snapshot_sha256": "b80a64d3eb256d97908a2aedf204dbc23aaf51f30edc759c509f09a6c5859171",
+      "target_background": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.9"
+      },
+      "target_biosphere": {
+        "family": "ecoinvent",
+        "version": "3.9"
+      },
+      "metadata_policy": "Inherit original metadata, license and attribution; append this correction provenance.",
+      "revision_status": "approved_planned_not_staged",
+      "new_version_id": null,
+      "published_base_immutable": true,
+      "native_stock_binding": {
+        "catalog_uuid_pair": [
+          "63868d2a-5a6c-5e76-ba20-8e94366da66d",
+          "fef44ccb-917e-4c8d-bb35-a1898827b659"
+        ],
+        "identity": [
+          "market for aluminium, wrought alloy",
+          "aluminium, wrought alloy",
+          "GLO",
+          "kilogram"
+        ]
+      },
+      "propagation_policy": "Use corrected revisions in the next curated handoff and validate dependent selector bindings. No published binding rewritten in place."
+    }
+  ],
+  "staging_performed": false,
+  "published_versions_modified": false,
+  "LiS_cooling_switch_deferred": true
+}

@@ -1,0 +1,462 @@
+{
+  "case_id": "ALIGN-039",
+  "approval": "Approved by Romain Sacchi,2026-10-27; approved. next?",
+  "workbook": "lci-batteries-organic-and-hybrid-redox-flow.xlsx",
+  "sheet": "lci-Redox-Flow-batteries",
+  "before_workbook_sha256": "42f6572a64593ed69a074e5c30877dae1f6e99275c39a130694536cfffe82157",
+  "activity": "TMATEMPO quantitative production",
+  "before_snapshot": {
+    "location": "RER",
+    "reference product": "TMATEMPO quantitative",
+    "type": "process",
+    "unit": "kilogram",
+    "comment": "TEMPTMA OXIDATION REAGENT-BASIS CORRECTION, 2026-10-20. Source: https://patents.google.com/patent/EP3497081A1/en , Example 1, step B. Its batch contains 90 g intermediate 2, 3 g NaOH (75 mmol), 2.3 g anhydrous MgSO4, 120 mL water and 1.15 mol H2O2 (117 mL of 30 wt% solution); reported recovered product is 96 g. The current reference output is 1 kg product and already buys 90/96 = 0.9375 kg intermediate 2. Normalize the corrected reagent to the SAME 96 g product, not 90 g reactant or a litre of solution. The native without-water reference products count pure chemical mass. The concentration in their names describes delivery state, not a second multiplier on an already-pure dose. This is a patent-route reference, not a measured industrial vendor process. Other uncorrected process, pH-adjustment, utility, isolation/purity and waste inventories are not certified by this targeted reagent correction. Existing supplemental workbook only; no native, runtime, YAML or indicator edits. Restore 1.15 mol * 34.014000 g/mol / 96 g product = 0.407459375 kg PURE H2O2/kg product, replacing 0.1184 kg/kg. Use the explicitly stated moles, rather than inventing a density from rounded solution volume. The purchased 50 wt% stock carries one kg water per kg pure peroxide; add only the dilution deficit H2O2*(1/0.30-1/0.50) = 0.543279166666667 kg deionised water/kg product to represent the source 30 wt% addition. Do not buy the full 30% solution mass as pure H2O2, or add its full carrier water again. This dilution water is additional to the inherited initial makeup-water estimate; that estimate and the existing solvent scaling are retained, not independently revalidated. Peroxide decomposition, pH-adjustment reagents, condensate/recycle and liquid-waste composition remain unresolved; no guessed oxygen vent or extra generic waste treatment is introduced. Preserve the corrected NaOH dose and every other chemical, metal, energy, freight, product-output and battery-service coefficient.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nTEMPTMA OXIDATION REAGENT-BASIS CORRECTION, 2026-10-20. Source: https://patents.google.com/patent/EP3497081A1/en , Example 1, step B. Its batch contains 90 g intermediate 2, 3 g NaOH (75 mmol), 2.3 g anhydrous MgSO4, 120 mL water and 1.15 mol H2O2 (117 mL of 30 wt% solution); reported recovered product is 96 g. The current reference output is 1 kg product and already buys 90/96 = 0.9375 kg intermediate 2. Normalize the corrected reagent to the SAME 96 g product, not 90 g reactant or a litre of solution. The native without-water reference products count pure chemical mass. The concentration in their names describes delivery state, not a second multiplier on an already-pure dose. This is a patent-route reference, not a measured industrial vendor process. Other uncorrected process, pH-adjustment, utility, isolation/purity and waste inventories are not certified by this targeted reagent correction. Existing supplemental workbook only; no native, runtime, YAML or indicator edits. Restore 0.003/0.096 = 0.03125 kg PURE NaOH/kg product, replacing 0.0000939 kg/kg. The original 3 g and 75 mmol specify neat NaOH equivalent; do not divide by two for the 50% market. Retain the existing GLO market and its standard regional migration shares. Do not change the source product, existing solvent/water estimate, MgSO4, peroxide, catalyst, freight, electricity or wastes in this commit. Aqueous carrier water and full liquid-waste composition remain part of the unresolved process-water balance; no false closed mass balance or fabricated NaOH recovery credit is claimed.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nTEMPTMA was modeled based on the production process described by \"Worldwide Pat., 2016\". First, TAA is reacted with dimethylamine under palladium-C catalyst at -10\u00b0C. Hydrogen is then added to the reaction mixture at 60\u00b0C. Afterwards, the catalyst is filtered and reused in the same process. The solvent was recirculated as well. In this step, Intermediate 1 is produced. The energy required in this step only includes energy needed to reach the reaction temperature \ud835\udc38\ud835\udc5f\ud835\udc52\ud835\udc4e\ud835\udc50\ud835\udc61\ud835\udc56\ud835\udc5c\ud835\udc5b.\n\nIntermediate 1 obtained in the previous step is dissolved in a 1:1 mixture of acetonitrile and toluene and transferred to a pressure reactor. After that, the reaction mixture is heated to 70\u00b0C, and chloromethane is added. Then, the precipitation is collected by reducing the temperature to 20\u00b0C. The precipitation is\nthen washed with toluene, to obtain Intermediate 2. The energy required in this step only includes energy needed to reach the reaction temperature \ud835\udc38\ud835\udc5f\ud835\udc52\ud835\udc4e\ud835\udc50\ud835\udc61\ud835\udc56\ud835\udc5c\ud835\udc5b.\n\nSubsequently, Intermediate 2, sodium hydroxide, and magnesium sulfate (MgSO4) are dissolved in water. The mixture is then heated to 90\u00b0C, and 30wt% hydrogen peroxide (H2O2) is added dropwise. Afterwards, it takes a few days for the chemical mixture to react. Here, an approximate reaction time (24 h) is applied in the calculations. When the reaction is finished, the resulting precipitate (exhausted MgSO4) is removed by filtration, and the pH of the solution is adjusted to 5. The solution is then stirred at 90\u00b0C to remove hydrogen peroxide. The desired product TEMPTMA is obtained after removing water and drying at 40\u00b0C. The process was scaled up in LCA model, meaning that solvent usage was reduced by 20%, and solvent recirculation was considered, following the approach described above in the production of TEMPO-4-sulfate potassium.\n\nThe original inventory is presented in: \"Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G\"",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "name": "TMATEMPO quantitative production",
+    "exchanges": [
+      {
+        "name": "Heat, waste",
+        "amount": 2.08638818039347,
+        "unit": "megajoule",
+        "categories": "air",
+        "type": "biosphere",
+        "database": "biosphere3"
+      },
+      {
+        "name": "TMATEMPO quantitative production",
+        "amount": 1,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "production",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "TMATEMPO quantitative"
+      },
+      {
+        "name": "market for sodium hydroxide, without water, in 50% solution state",
+        "amount": 0.03125,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "sodium hydroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "hydrogen peroxide production, product in 50% solution state",
+        "amount": 0.407459375,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hydrogen peroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "N,N,N-2,2,6,6-heptamethylpiperidin-4-ammonium chloride production, intermediate 2, for RFB",
+        "amount": 0.9375,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "N,N,N-2,2,6,6-heptamethylpiperidin-4-ammonium chloride, intermediate 2, for RFB"
+      },
+      {
+        "name": "market for magnesium sulfate",
+        "amount": 0.0241,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "magnesium sulfate"
+      },
+      {
+        "name": "market for transport, freight train",
+        "amount": 0.666823629725705,
+        "location": "Europe without Switzerland",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "amount": 0.111137271620951,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5"
+      },
+      {
+        "name": "market for water, deionised",
+        "amount": 1.5459791666666667,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "water, deionised"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.5494726,
+        "location": "Europe without Switzerland",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.0300796464428112,
+        "location": "Europe without Switzerland",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "steam production, in chemical industry",
+        "amount": 1.40371683399785,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "steam, in chemical industry"
+      },
+      {
+        "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+        "amount": -0.0241,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hazardous waste, for incineration"
+      },
+      {
+        "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+        "amount": -0.559,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "spent solvent mixture"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery"
+  },
+  "after_snapshot": {
+    "location": "RER",
+    "reference product": "TMATEMPO quantitative",
+    "type": "process",
+    "unit": "kilogram",
+    "comment": "TEMPTMA OXIDATION REAGENT-BASIS CORRECTION, 2026-10-20. Source: https://patents.google.com/patent/EP3497081A1/en , Example 1, step B. Its batch contains 90 g intermediate 2, 3 g NaOH (75 mmol), 2.3 g anhydrous MgSO4, 120 mL water and 1.15 mol H2O2 (117 mL of 30 wt% solution); reported recovered product is 96 g. The current reference output is 1 kg product and already buys 90/96 = 0.9375 kg intermediate 2. Normalize the corrected reagent to the SAME 96 g product, not 90 g reactant or a litre of solution. The native without-water reference products count pure chemical mass. The concentration in their names describes delivery state, not a second multiplier on an already-pure dose. This is a patent-route reference, not a measured industrial vendor process. Other uncorrected process, pH-adjustment, utility, isolation/purity and waste inventories are not certified by this targeted reagent correction. Existing supplemental workbook only; no native, runtime, YAML or indicator edits. Restore 1.15 mol * 34.014000 g/mol / 96 g product = 0.407459375 kg PURE H2O2/kg product, replacing 0.1184 kg/kg. Use the explicitly stated moles, rather than inventing a density from rounded solution volume. The purchased 50 wt% stock carries one kg water per kg pure peroxide; add only the dilution deficit H2O2*(1/0.30-1/0.50) = 0.543279166666667 kg deionised water/kg product to represent the source 30 wt% addition. Do not buy the full 30% solution mass as pure H2O2, or add its full carrier water again. This dilution water is additional to the inherited initial makeup-water estimate; that estimate and the existing solvent scaling are retained, not independently revalidated. Peroxide decomposition, pH-adjustment reagents, condensate/recycle and liquid-waste composition remain unresolved; no guessed oxygen vent or extra generic waste treatment is introduced. Preserve the corrected NaOH dose and every other chemical, metal, energy, freight, product-output and battery-service coefficient.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nTEMPTMA OXIDATION REAGENT-BASIS CORRECTION, 2026-10-20. Source: https://patents.google.com/patent/EP3497081A1/en , Example 1, step B. Its batch contains 90 g intermediate 2, 3 g NaOH (75 mmol), 2.3 g anhydrous MgSO4, 120 mL water and 1.15 mol H2O2 (117 mL of 30 wt% solution); reported recovered product is 96 g. The current reference output is 1 kg product and already buys 90/96 = 0.9375 kg intermediate 2. Normalize the corrected reagent to the SAME 96 g product, not 90 g reactant or a litre of solution. The native without-water reference products count pure chemical mass. The concentration in their names describes delivery state, not a second multiplier on an already-pure dose. This is a patent-route reference, not a measured industrial vendor process. Other uncorrected process, pH-adjustment, utility, isolation/purity and waste inventories are not certified by this targeted reagent correction. Existing supplemental workbook only; no native, runtime, YAML or indicator edits. Restore 0.003/0.096 = 0.03125 kg PURE NaOH/kg product, replacing 0.0000939 kg/kg. The original 3 g and 75 mmol specify neat NaOH equivalent; do not divide by two for the 50% market. Retain the existing GLO market and its standard regional migration shares. Do not change the source product, existing solvent/water estimate, MgSO4, peroxide, catalyst, freight, electricity or wastes in this commit. Aqueous carrier water and full liquid-waste composition remain part of the unresolved process-water balance; no false closed mass balance or fabricated NaOH recovery credit is claimed.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nTEMPTMA was modeled based on the production process described by \"Worldwide Pat., 2016\". First, TAA is reacted with dimethylamine under palladium-C catalyst at -10\u00b0C. Hydrogen is then added to the reaction mixture at 60\u00b0C. Afterwards, the catalyst is filtered and reused in the same process. The solvent was recirculated as well. In this step, Intermediate 1 is produced. The energy required in this step only includes energy needed to reach the reaction temperature \ud835\udc38\ud835\udc5f\ud835\udc52\ud835\udc4e\ud835\udc50\ud835\udc61\ud835\udc56\ud835\udc5c\ud835\udc5b.\n\nIntermediate 1 obtained in the previous step is dissolved in a 1:1 mixture of acetonitrile and toluene and transferred to a pressure reactor. After that, the reaction mixture is heated to 70\u00b0C, and chloromethane is added. Then, the precipitation is collected by reducing the temperature to 20\u00b0C. The precipitation is\nthen washed with toluene, to obtain Intermediate 2. The energy required in this step only includes energy needed to reach the reaction temperature \ud835\udc38\ud835\udc5f\ud835\udc52\ud835\udc4e\ud835\udc50\ud835\udc61\ud835\udc56\ud835\udc5c\ud835\udc5b.\n\nSubsequently, Intermediate 2, sodium hydroxide, and magnesium sulfate (MgSO4) are dissolved in water. The mixture is then heated to 90\u00b0C, and 30wt% hydrogen peroxide (H2O2) is added dropwise. Afterwards, it takes a few days for the chemical mixture to react. Here, an approximate reaction time (24 h) is applied in the calculations. When the reaction is finished, the resulting precipitate (exhausted MgSO4) is removed by filtration, and the pH of the solution is adjusted to 5. The solution is then stirred at 90\u00b0C to remove hydrogen peroxide. The desired product TEMPTMA is obtained after removing water and drying at 40\u00b0C. The process was scaled up in LCA model, meaning that solvent usage was reduced by 20%, and solvent recirculation was considered, following the approach described above in the production of TEMPO-4-sulfate potassium.\n\nThe original inventory is presented in: \"Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G\"",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "name": "TMATEMPO quantitative production",
+    "exchanges": [
+      {
+        "name": "Heat, waste",
+        "amount": 2.08638818039347,
+        "unit": "megajoule",
+        "categories": "air",
+        "type": "biosphere",
+        "database": "biosphere3"
+      },
+      {
+        "name": "TMATEMPO quantitative production",
+        "amount": 1,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "production",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "TMATEMPO quantitative"
+      },
+      {
+        "name": "market for sodium hydroxide, without water, in 50% solution state",
+        "amount": 0.03125,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "sodium hydroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "hydrogen peroxide production, product in 50% solution state",
+        "amount": 0.407459375,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hydrogen peroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "N,N,N-2,2,6,6-heptamethylpiperidin-4-ammonium chloride production, intermediate 2, for RFB",
+        "amount": 0.9375,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "N,N,N-2,2,6,6-heptamethylpiperidin-4-ammonium chloride, intermediate 2, for RFB"
+      },
+      {
+        "name": "market for magnesium sulfate",
+        "amount": 0.0241,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "magnesium sulfate"
+      },
+      {
+        "name": "market for transport, freight train",
+        "amount": 0.666823629725705,
+        "location": "Europe without Switzerland",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "amount": 0.111137271620951,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5"
+      },
+      {
+        "name": "market for water, deionised",
+        "amount": 1.9534385416666666,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "water, deionised"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.5494726,
+        "location": "Europe without Switzerland",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.0300796464428112,
+        "location": "Europe without Switzerland",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "steam production, in chemical industry",
+        "amount": 1.40371683399785,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "steam, in chemical industry"
+      },
+      {
+        "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+        "amount": -0.0241,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hazardous waste, for incineration"
+      },
+      {
+        "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+        "amount": -0.559,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "spent solvent mixture"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery"
+  },
+  "water_quantity_cell": "B156",
+  "before_water_kg_per_kg_product": 1.5459791666666667,
+  "after_water_kg_per_kg_product": 1.9534385416666666,
+  "additional_water_kg_per_kg_product": 0.407459375,
+  "comment_cell": "B144",
+  "dimension": "A1:N1389",
+  "formula_reference_audit": {
+    "formula_count": 17,
+    "dependent_formula_cells": []
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "CLIC_dataset_id": 1347,
+  "CLIC_version_id": 4549,
+  "CLIC_snapshot_sha256": "9c11b40454d9993ad73828d25cc2bc111188cb3f84214f3ef44abece7dc830dc",
+  "CLIC_snapshot": {
+    "code": "2fd9dccabc17c02f45424bc3652887fd",
+    "name": "TMATEMPO quantitative production",
+    "type": "process",
+    "unit": "kilogram",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "comment": "TEMPTMA was modeled based on the production process described by \"Worldwide Pat., 2016\". First, TAA is reacted with dimethylamine under palladium-C catalyst at -10\u00b0C. Hydrogen is then added to the reaction mixture at 60\u00b0C. Afterwards, the catalyst is filtered and reused in the same process. The solvent was recirculated as well. In this step, Intermediate 1 is produced. The energy required in this step only includes energy needed to reach the reaction temperature \ud835\udc38\ud835\udc5f\ud835\udc52\ud835\udc4e\ud835\udc50\ud835\udc61\ud835\udc56\ud835\udc5c\ud835\udc5b.\n\nIntermediate 1 obtained in the previous step is dissolved in a 1:1 mixture of acetonitrile and toluene and transferred to a pressure reactor. After that, the reaction mixture is heated to 70\u00b0C, and chloromethane is added. Then, the precipitation is collected by reducing the temperature to 20\u00b0C. The precipitation is\nthen washed with toluene, to obtain Intermediate 2. The energy required in this step only includes energy needed to reach the reaction temperature \ud835\udc38\ud835\udc5f\ud835\udc52\ud835\udc4e\ud835\udc50\ud835\udc61\ud835\udc56\ud835\udc5c\ud835\udc5b.\n\nSubsequently, Intermediate 2, sodium hydroxide, and magnesium sulfate (MgSO4) are dissolved in water. The mixture is then heated to 90\u00b0C, and 30wt% hydrogen peroxide (H2O2) is added dropwise. Afterwards, it takes a few days for the chemical mixture to react. Here, an approximate reaction time (24 h) is applied in the calculations. When the reaction is finished, the resulting precipitate (exhausted MgSO4) is removed by filtration, and the pH of the solution is adjusted to 5. The solution is then stirred at 90\u00b0C to remove hydrogen peroxide. The desired product TEMPTMA is obtained after removing water and drying at 40\u00b0C. The process was scaled up in LCA model, meaning that solvent usage was reduced by 20%, and solvent recirculation was considered, following the approach described above in the production of TEMPO-4-sulfate potassium.\n\nThe original inventory is presented in: \"Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G\"\n\nCurated planning decision: R145:C208. New revision only; original published version preserved.",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+    "location": "RER",
+    "exchanges": [
+      {
+        "name": "Heat, waste",
+        "type": "biosphere",
+        "unit": "megajoule",
+        "amount": 2.08638818039347,
+        "database": "biosphere3",
+        "categories": [
+          "air"
+        ]
+      },
+      {
+        "name": "TMATEMPO quantitative production",
+        "type": "production",
+        "unit": "kilogram",
+        "input": [
+          "vanadium-organic-and-hybrid-redox-flow-battery",
+          "2fd9dccabc17c02f45424bc3652887fd"
+        ],
+        "amount": 1,
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "location": "RER",
+        "reference product": "TMATEMPO quantitative"
+      },
+      {
+        "name": "market for sodium hydroxide, without water, in 50% solution state",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.03125,
+        "database": "cutoff39",
+        "location": "GLO",
+        "reference product": "sodium hydroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "hydrogen peroxide production, product in 50% solution state",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.407459375,
+        "database": "cutoff39",
+        "location": "RER",
+        "reference product": "hydrogen peroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "N,N,N-2,2,6,6-heptamethylpiperidin-4-ammonium chloride production, intermediate 2, for RFB",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "input": [
+          "vanadium-organic-and-hybrid-redox-flow-battery",
+          "dc8dd578ed6942e09fd5f3605a0f15c8"
+        ],
+        "amount": 0.9375,
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "location": "RER",
+        "reference product": "N,N,N-2,2,6,6-heptamethylpiperidin-4-ammonium chloride, intermediate 2, for RFB"
+      },
+      {
+        "name": "market for magnesium sulfate",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.0241,
+        "database": "cutoff39",
+        "location": "GLO",
+        "reference product": "magnesium sulfate"
+      },
+      {
+        "name": "market for transport, freight train",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.666823629725705,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.111137271620951,
+        "database": "cutoff39",
+        "location": "RER",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5"
+      },
+      {
+        "name": "market for water, deionised",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 1.9534385416666666,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "water, deionised"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 0.5494726,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 0.0300796464428112,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "steam production, in chemical industry",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 1.40371683399785,
+        "database": "cutoff39",
+        "location": "RER",
+        "reference product": "steam, in chemical industry"
+      },
+      {
+        "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": -0.0241,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "hazardous waste, for incineration"
+      },
+      {
+        "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": -0.559,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "spent solvent mixture"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "reference product": "TMATEMPO quantitative"
+  },
+  "active_peroxide_kg_per_kg_product": 0.407459375,
+  "reference_output_kg": 1,
+  "initial_water_kg_per_kg_product": 1.0027,
+  "peroxide_stock_mass_fraction": 0.3,
+  "water_outlet_unassigned_kg_per_kg_product": 0.407459375,
+  "source_decision": "refinement-round-145/delegated-peroxide-carrier-water-corrections.json",
+  "source_decision_sha256": "d6a12a909af962eeaed5ccd011c32ece147a974767dead5f277b0153269b433a"
+}

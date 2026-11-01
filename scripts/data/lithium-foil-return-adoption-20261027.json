@@ -1,0 +1,245 @@
+{
+  "case_id": "ALIGN-042",
+  "approval": "Approved by Romain Sacchi,2026-10-27; approved. next?",
+  "workbook": "lci-batteries-LiS.xlsx",
+  "sheet": "Battery - Li-S",
+  "before_workbook_sha256": "9a40ab76d3fb52dfd48436232e7e3cce2a6d6302e9bbc1304bfbced8bd9452cf",
+  "activity": "lithium foil production, for LiS battery",
+  "before_snapshot": {
+    "comment": "APPROVED LITHIUM-FOIL ROLLING ENGINEERING REFERENCE, item31, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 TableS17 requires lithium-adapted rolling; processing assumptions below are an engineering completion, not reported measurements. Replace the ordinary aluminium-specific rolling service at4.95kgprocessed/kgfinishedLi foil by a dedicated material-neutral mechanical rolling service. Assume0.5kWh electricity perkg rolling throughput, hence2.475kWh perkgfinishedfoil additionally to source2.1kWh generalprocess electricity,4.2MJ cooling and5MJheat retained once. This represents4.95kg cumulative rolling throughput, NOT4.95kg retained lithium or a measured pass count. Assume98percent final lithium retention:1/0.98=1.0204081632653061kg Li from source electrolysis perkgfoil;0.02040816326530612kg process loss. No aluminium feed or aluminium scrap is inherited; ordinary Al rolling elsewhere unchanged. Treat loss through existing hazardous-waste incineration as an explicit reactive-lithium fate proxy; real inert handling/passivation and associated emissions are not modeled. No lithium recovery/secondary-supply credit. Source/reference utilities are engineering proxies; atmosphere/inert gas, lubrication, facility and practical rolling yield/energy remain gaps. Sensitivities90-100percent yield and0.1-1kWh/kg throughput; energy does not scale with yield here because throughput is declared perkgfinishedfoil. No source-specific measured yield is claimed.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nSource: Wickerts et al. (2023). Prospective Life Cycle Assessment of Lithium-Sulfur Batteries for Stationary Energy Storage. ACS Sustainable Chemistry & Engineering. https://doi.org/10.1021/acssuschemeng.3c00141",
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "lithium foil",
+    "unit": "kilogram",
+    "source": "Originally from  Wickerts et al. (2023). Prospective Life Cycle Assessment of Lithium-Sulfur Batteries for Stationary Energy Storage. ACS Sustainable Chemistry & Engineering. Based on data and descriptions from Deng et al. (2017), Chordia et al. (2021), Heimes et al. (2018) and Schnell et al. (2018)",
+    "name": "lithium foil production, for LiS battery",
+    "exchanges": [
+      {
+        "name": "lithium foil production, for LiS battery",
+        "amount": 1,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "production",
+        "reference product": "lithium foil"
+      },
+      {
+        "name": "market for cooling energy",
+        "amount": 4.2,
+        "unit": "megajoule",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "cooling energy"
+      },
+      {
+        "name": "lithium foil rolling",
+        "amount": 4.95,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "lithium foil rolling",
+        "Comment": "APPROVED LITHIUM-FOIL ROLLING ENGINEERING REFERENCE, item31, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 TableS17 requires lithium-adapted rolling; processing assumptions below are an engineering completion, not reported measurements. Replace the ordinary aluminium-specific rolling service at4.95kgprocessed/kgfinishedLi foil by a dedicated material-neutral mechanical rolling service. Assume0.5kWh electricity perkg rolling throughput, hence2.475kWh perkgfinishedfoil additionally to source2.1kWh generalprocess electricity,4.2MJ cooling and5MJheat retained once. This represents4.95kg cumulative rolling throughput, NOT4.95kg retained lithium or a measured pass count. Assume98percent final lithium retention:1/0.98=1.0204081632653061kg Li from source electrolysis perkgfoil;0.02040816326530612kg process loss. No aluminium feed or aluminium scrap is inherited; ordinary Al rolling elsewhere unchanged. Treat loss through existing hazardous-waste incineration as an explicit reactive-lithium fate proxy; real inert handling/passivation and associated emissions are not modeled. No lithium recovery/secondary-supply credit. Source/reference utilities are engineering proxies; atmosphere/inert gas, lubrication, facility and practical rolling yield/energy remain gaps. Sensitivities90-100percent yield and0.1-1kWh/kg throughput; energy does not scale with yield here because throughput is declared perkgfinishedfoil. No source-specific measured yield is claimed."
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 2.1,
+        "unit": "kilowatt hour",
+        "location": "Europe without Switzerland",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market for heat, district or industrial, natural gas",
+        "amount": 5,
+        "unit": "megajoule",
+        "location": "RoW",
+        "type": "technosphere",
+        "reference product": "heat, district or industrial, natural gas"
+      },
+      {
+        "name": "electrolysis of lithium chloride",
+        "amount": 1.0204081632653061,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "lithium"
+      },
+      {
+        "name": "market for hazardous waste, for incineration",
+        "amount": -0.020408163265306145,
+        "unit": "kilogram",
+        "location": "RoW",
+        "type": "technosphere",
+        "reference product": "hazardous waste, for incineration",
+        "Comment": "Assumed2percent lithium loss; reactive-metal fate proxy, not validated safe disposal or recovery."
+      }
+    ],
+    "worksheet name": "Battery - Li-S",
+    "database": "batteries"
+  },
+  "after_snapshot": {
+    "comment": "APPROVED LITHIUM-FOIL ROLLING ENGINEERING REFERENCE, item31, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 TableS17 requires lithium-adapted rolling; processing assumptions below are an engineering completion, not reported measurements. Replace the ordinary aluminium-specific rolling service at4.95kgprocessed/kgfinishedLi foil by a dedicated material-neutral mechanical rolling service. Assume0.5kWh electricity perkg rolling throughput, hence2.475kWh perkgfinishedfoil additionally to source2.1kWh generalprocess electricity,4.2MJ cooling and5MJheat retained once. This represents4.95kg cumulative rolling throughput, NOT4.95kg retained lithium or a measured pass count. Assume98percent final lithium retention:1/0.98=1.0204081632653061kg Li from source electrolysis perkgfoil;0.02040816326530612kg process loss. No aluminium feed or aluminium scrap is inherited; ordinary Al rolling elsewhere unchanged. Treat loss through existing hazardous-waste incineration as an explicit reactive-lithium fate proxy; real inert handling/passivation and associated emissions are not modeled. No lithium recovery/secondary-supply credit. Source/reference utilities are engineering proxies; atmosphere/inert gas, lubrication, facility and practical rolling yield/energy remain gaps. Sensitivities90-100percent yield and0.1-1kWh/kg throughput; energy does not scale with yield here because throughput is declared perkgfinishedfoil. No source-specific measured yield is claimed.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nSource: Wickerts et al. (2023). Prospective Life Cycle Assessment of Lithium-Sulfur Batteries for Stationary Energy Storage. ACS Sustainable Chemistry & Engineering. https://doi.org/10.1021/acssuschemeng.3c00141",
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "lithium foil",
+    "unit": "kilogram",
+    "source": "Originally from  Wickerts et al. (2023). Prospective Life Cycle Assessment of Lithium-Sulfur Batteries for Stationary Energy Storage. ACS Sustainable Chemistry & Engineering. Based on data and descriptions from Deng et al. (2017), Chordia et al. (2021), Heimes et al. (2018) and Schnell et al. (2018)",
+    "name": "lithium foil production, for LiS battery",
+    "exchanges": [
+      {
+        "name": "lithium foil production, for LiS battery",
+        "amount": 1,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "production",
+        "reference product": "lithium foil"
+      },
+      {
+        "name": "market for cooling energy",
+        "amount": 4.2,
+        "unit": "megajoule",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "cooling energy"
+      },
+      {
+        "name": "lithium foil rolling",
+        "amount": 4.95,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "lithium foil rolling",
+        "Comment": "APPROVED LITHIUM-FOIL ROLLING ENGINEERING REFERENCE, item31, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 TableS17 requires lithium-adapted rolling; processing assumptions below are an engineering completion, not reported measurements. Replace the ordinary aluminium-specific rolling service at4.95kgprocessed/kgfinishedLi foil by a dedicated material-neutral mechanical rolling service. Assume0.5kWh electricity perkg rolling throughput, hence2.475kWh perkgfinishedfoil additionally to source2.1kWh generalprocess electricity,4.2MJ cooling and5MJheat retained once. This represents4.95kg cumulative rolling throughput, NOT4.95kg retained lithium or a measured pass count. Assume98percent final lithium retention:1/0.98=1.0204081632653061kg Li from source electrolysis perkgfoil;0.02040816326530612kg process loss. No aluminium feed or aluminium scrap is inherited; ordinary Al rolling elsewhere unchanged. Treat loss through existing hazardous-waste incineration as an explicit reactive-lithium fate proxy; real inert handling/passivation and associated emissions are not modeled. No lithium recovery/secondary-supply credit. Source/reference utilities are engineering proxies; atmosphere/inert gas, lubrication, facility and practical rolling yield/energy remain gaps. Sensitivities90-100percent yield and0.1-1kWh/kg throughput; energy does not scale with yield here because throughput is declared perkgfinishedfoil. No source-specific measured yield is claimed."
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 2.1,
+        "unit": "kilowatt hour",
+        "location": "Europe without Switzerland",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market for heat, district or industrial, natural gas",
+        "amount": 5,
+        "unit": "megajoule",
+        "location": "RoW",
+        "type": "technosphere",
+        "reference product": "heat, district or industrial, natural gas"
+      },
+      {
+        "name": "electrolysis of lithium chloride",
+        "amount": 1,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "lithium"
+      }
+    ],
+    "worksheet name": "Battery - Li-S",
+    "database": "batteries"
+  },
+  "quantity_cell": "B302",
+  "before_lithium_kg": 1.0204081632653061,
+  "after_lithium_kg": 1,
+  "removed_row": 303,
+  "removed_exchange": {
+    "name": "market for hazardous waste, for incineration",
+    "amount": -0.020408163265306145,
+    "unit": "kilogram",
+    "location": "RoW",
+    "type": "technosphere",
+    "reference product": "hazardous waste, for incineration",
+    "Comment": "Assumed2percent lithium loss; reactive-metal fate proxy, not validated safe disposal or recovery."
+  },
+  "comment_cell": "H299",
+  "comment_exchange": "lithium foil rolling",
+  "comment_field": "Comment",
+  "before_rolling_comment": "APPROVED LITHIUM-FOIL ROLLING ENGINEERING REFERENCE, item31, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 TableS17 requires lithium-adapted rolling; processing assumptions below are an engineering completion, not reported measurements. Replace the ordinary aluminium-specific rolling service at4.95kgprocessed/kgfinishedLi foil by a dedicated material-neutral mechanical rolling service. Assume0.5kWh electricity perkg rolling throughput, hence2.475kWh perkgfinishedfoil additionally to source2.1kWh generalprocess electricity,4.2MJ cooling and5MJheat retained once. This represents4.95kg cumulative rolling throughput, NOT4.95kg retained lithium or a measured pass count. Assume98percent final lithium retention:1/0.98=1.0204081632653061kg Li from source electrolysis perkgfoil;0.02040816326530612kg process loss. No aluminium feed or aluminium scrap is inherited; ordinary Al rolling elsewhere unchanged. Treat loss through existing hazardous-waste incineration as an explicit reactive-lithium fate proxy; real inert handling/passivation and associated emissions are not modeled. No lithium recovery/secondary-supply credit. Source/reference utilities are engineering proxies; atmosphere/inert gas, lubrication, facility and practical rolling yield/energy remain gaps. Sensitivities90-100percent yield and0.1-1kWh/kg throughput; energy does not scale with yield here because throughput is declared perkgfinishedfoil. No source-specific measured yield is claimed.",
+  "rolling_throughput_kg": 4.95,
+  "dimension": "A1:Q1868",
+  "formula_reference_audit": {
+    "formula_count": 127,
+    "dependent_formula_cells": []
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "CLIC_dataset_id": 1169,
+  "CLIC_version_id": 5553,
+  "CLIC_snapshot_sha256": "ea13eb25542e01d8301fc0dcebc3cce33cf637a194ce2de1ecc6b7e6555717b3",
+  "CLIC_snapshot": {
+    "code": "7c1bc08dcf47f8a7d0f0024ef69f74ec",
+    "name": "lithium foil production, for LiS battery",
+    "unit": "kilogram",
+    "source": "Originally from  Wickerts et al. (2023). Prospective Life Cycle Assessment of Lithium-Sulfur Batteries for Stationary Energy Storage. ACS Sustainable Chemistry & Engineering. Based on data and descriptions from Deng et al. (2017), Chordia et al. (2021), Heimes et al. (2018) and Schnell et al. (2018)",
+    "comment": "C100: source-convention internal return of manufacturing offcuts, 1 kg net lithium per kg finished foil, without an external scrap-disposal purchase or recovery credit. The dedicated material-neutral mechanical-energy reference is expanded as 2.475 kWh GLO electricity, separate from retained 2.1 kWh general electricity, 4.2 MJ cooling and 5 MJ heat. The 4.95 coefficient is the source density adjustment, not measured rolling throughput. No aluminium feed/scrap or 98% external-loss/incineration scenario is inherited. Internal handling, remelting, inert atmosphere, lubrication and practical factory coverage remain unquantified. The existing complete-cell factory allocation is retained once; no standalone rolling factory is invented.\n\nHistorical source/curation record:\nSource: Wickerts et al. (2023). Prospective Life Cycle Assessment of Lithium-Sulfur Batteries for Stationary Energy Storage. ACS Sustainable Chemistry & Engineering. https://doi.org/10.1021/acssuschemeng.3c00141\n\nCurated planning decision: R106-R135:C083-C084-C100. New revision only; original published version preserved.",
+    "database": "batteries",
+    "location": "GLO",
+    "exchanges": [
+      {
+        "name": "lithium foil production, for LiS battery",
+        "type": "production",
+        "unit": "kilogram",
+        "input": [
+          "batteries",
+          "7c1bc08dcf47f8a7d0f0024ef69f74ec"
+        ],
+        "amount": 1,
+        "location": "GLO",
+        "reference product": "lithium foil"
+      },
+      {
+        "name": "market for cooling energy",
+        "type": "technosphere",
+        "unit": "megajoule",
+        "amount": 4.2,
+        "location": "GLO",
+        "reference product": "cooling energy"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 2.1,
+        "location": "Europe without Switzerland",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market for heat, district or industrial, natural gas",
+        "type": "technosphere",
+        "unit": "megajoule",
+        "amount": 5,
+        "location": "RoW",
+        "reference product": "heat, district or industrial, natural gas"
+      },
+      {
+        "name": "electrolysis of lithium chloride",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 1,
+        "location": "GLO",
+        "reference product": "lithium"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 2.475,
+        "comment": "C100: 4.95 density-adjusted service reference * assumed 0.5 kWh/reference-kg; not measured throughput or pass count.",
+        "location": "GLO",
+        "reference product": "electricity, medium voltage"
+      }
+    ],
+    "worksheet name": "Battery - Li-S",
+    "production amount": 1,
+    "reference product": "lithium foil"
+  },
+  "source_decision": "refinement-round-107/lithium-foil-internal-return-user-decision.json",
+  "source_decision_sha256": "2183db804c29e4261583703c273d6fb25460dfd50dbd23248f329b8ef4484e48"
+}

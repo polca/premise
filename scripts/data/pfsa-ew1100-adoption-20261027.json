@@ -1,0 +1,178 @@
+{
+  "CLIC_dataset_id": 3642,
+  "CLIC_snapshot_sha256": "d810cfbd1ae3d5a280a83878e9197231ac947ddc636a90bd893d0b3436e69e62",
+  "CLIC_version_id": 4564,
+  "approval": "ALIGN-018; approved by Romain Sacchi, 2026-10-27",
+  "compiler": {
+    "affiliation": "Laboratory for Energy Systems Analysis, Paul Scherrer Institute",
+    "email": "romain.sacchi@psi.ch",
+    "name": "Romain Sacchi"
+  },
+  "consumer_membrane_kg": {
+    "PEM_electrolyser_stack": 16,
+    "hybrid_flow_battery_stack": 0.132,
+    "vanadium_flow_battery_stack": 150
+  },
+  "format": "premise-shared-pfsa-ew1100-adoption-v1",
+  "license": "CC-BY-NC-4.0",
+  "original_workbooks": [
+    {
+      "consumer_row": 175,
+      "end_exclusive": 661,
+      "original_name": "perfluorosulfonic acid membrane production, electrolysis, ew1100",
+      "original_product": "PFSA membrane, electrolysis, EW1100",
+      "sha256": "8936324185094e10988b704d55d4991a5d5e11fc395fb49d1a157ed885e29f5e",
+      "sheet": "lci",
+      "start": 636,
+      "workbook": "lci-hydrogen-electrolysis.xlsx"
+    },
+    {
+      "consumer_row": 14,
+      "end_exclusive": 519,
+      "original_name": "perfluorosulfonic acid membrane production, vanadium redox-flow battery, ew1100",
+      "original_product": "PFSA membrane, vanadium redox-flow battery, EW1100",
+      "sha256": "3aca3407a3392481625ecb2aecafd05ac9e2d15dbe48511c373d892c590996f7",
+      "sheet": "Sheet1",
+      "start": 494,
+      "workbook": "lci-batteries-vanadium-redox-flow.xlsx"
+    }
+  ],
+  "snapshot": {
+    "comment": "Qualified user-approved CLIC polymer candidate only; not a measured industrial recipe, commercial-grade equivalence or scientific certification. Existing lifetime purchases and all unrelated exchanges are preserved. Automatic propagation does not authorize changes to protected PV dependency closures.\n\nOne shared dry, unreinforced acid-form EW1100 engineering reference for PEM, VRFB and the already-linked HFB application. Net NaOH/HCl chemistry is an engineering variant, not the source's KOH/HNO3 workup. Intermediate conversion100%, finished retention90% once. Keep10 kg process water,39.31 MJ aggregate heat and1 kWh electricity/kg once; the cited39.31 MJ forming reference is not a measured complete chemical-factory energy budget. No automatic extra carrier water. Purification, auxiliaries, reinforcement, hydration, PFAS fugitives and specific fluoride/HF abatement remain coverage gaps, not zero-emission claims.",
+    "exchanges": [
+      {
+        "amount": 1,
+        "location": "GLO",
+        "name": "perfluorosulfonic acid membrane production, ew1100, engineering reference",
+        "product": "PFSA membrane, EW1100, dry acid form, engineering reference",
+        "reference product": "PFSA membrane, EW1100, dry acid form, engineering reference",
+        "type": "production",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 1.0666093025141414,
+        "location": "GLO",
+        "name": "market for tetrafluoroethylene",
+        "product": "tetrafluoroethylene",
+        "reference product": "tetrafluoroethylene",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.08086565656565657,
+        "location": "RER",
+        "name": "market for sulfur trioxide",
+        "product": "sulfur trioxide",
+        "reference product": "sulfur trioxide",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.15038135208080808,
+        "location": "RER",
+        "name": "market for sodium hypochlorite, without water, in 15% solution state",
+        "product": "sodium hypochlorite, without water, in 15% solution state",
+        "reference product": "sodium hypochlorite, without water, in 15% solution state",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.10705811975757576,
+        "location": "GLO",
+        "name": "market for soda ash, dense",
+        "product": "soda ash, dense",
+        "reference product": "soda ash, dense",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.0808015541010101,
+        "location": "GLO",
+        "name": "market for sodium hydroxide, without water, in 50% solution state",
+        "product": "sodium hydroxide, without water, in 50% solution state",
+        "reference product": "sodium hydroxide, without water, in 50% solution state",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.03682626262626263,
+        "location": "RoW",
+        "name": "market for hydrochloric acid, without water, in 30% solution state",
+        "product": "hydrochloric acid, without water, in 30% solution state",
+        "reference product": "hydrochloric acid, without water, in 30% solution state",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 10,
+        "location": "RoW",
+        "name": "market for tap water",
+        "product": "tap water",
+        "reference product": "tap water",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": -0.010322524065827272,
+        "location": "RoW",
+        "name": "market for wastewater, average",
+        "product": "wastewater, average",
+        "reference product": "wastewater, average",
+        "type": "technosphere",
+        "unit": "cubic meter"
+      },
+      {
+        "amount": -0.11111111111111116,
+        "location": "RoW",
+        "name": "treatment of waste plastic, mixture, municipal incineration",
+        "product": "waste plastic, mixture",
+        "reference product": "waste plastic, mixture",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 39.31,
+        "location": "RoW",
+        "name": "market for heat, district or industrial, natural gas",
+        "product": "heat, district or industrial, natural gas",
+        "reference product": "heat, district or industrial, natural gas",
+        "type": "technosphere",
+        "unit": "megajoule"
+      },
+      {
+        "amount": 1,
+        "location": "GLO",
+        "name": "market group for electricity, medium voltage",
+        "product": "electricity, medium voltage",
+        "reference product": "electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour"
+      },
+      {
+        "amount": 0.08890707070707071,
+        "categories": [
+          "air",
+          "non-urban air or from high stacks"
+        ],
+        "name": "Carbon dioxide, fossil",
+        "type": "biosphere",
+        "unit": "kilogram"
+      }
+    ],
+    "location": "GLO",
+    "name": "perfluorosulfonic acid membrane production, ew1100, engineering reference",
+    "reference product": "PFSA membrane, EW1100, dry acid form, engineering reference",
+    "source": "Weber et al.2018 DOI10.1021/acs.est.8b02073 SISec1.2.1/TableS2 describesTFE+SO3->FDA,HFPoxidationwithNaOCl->HFPO,FDA+2HFPOadduct,Na2CO3pyrolysistoPSEPVE,polymerization90%yieldand39.31MJ/kgformingheat. Harzer2021PhD https://mediatum.ub.tum.de/doc/1634530/1634530.pdf synthesisfigurecorroboratesPSEPVE/alkalihydrolysis/acidconversion. ElectrolyzermembraneEW1100reference:Mechanical Characterization of Electrolyzer Membranes and Components Under Compression,2024 DOI10.1149/1945-7111/ad7a26. Theseareseparatechemistry/referenceproperties,not a measuredcompleteNafionfactory.",
+    "type": "process",
+    "unit": "kilogram"
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "case_id": "ALIGN-036",
+  "approval": "Approved by Romain Sacchi,2026-10-27; approved. next?",
+  "workbook": "lci-batteries-SIB.xlsx",
+  "sheet": "sodium-ion batteries",
+  "before_workbook_sha256": "cdc73bf57a0d5e8a612b044484de4abda7e16933af81c14851e2ac683d49ef9f",
+  "activity": "magnesium hydroxide production, precipitation",
+  "before_snapshot": {
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "magnesium hydroxide, precipitation",
+    "unit": "kilogram",
+    "source": "Peters et al.2016 DOI10.1039/C6EE00640J SI TableS11 and Zhang2024 DOI10.1016/j.resconrec.2023.107362:105.79kg NaCl-brine proxy,1.2kg hydratedlime and1.78kWh perkgMgOH2. https://www.rsc.org/suppdata/c6/ee/c6ee00640j/c6ee00640j1.pdf . These source proxies are NOT a chemical assay or measured yield.",
+    "comment": "Nomenclature revision, 2026-10-19. Former activity name: magnesium hydroxide, balanced precipitation engineering reference. Former reference product: magnesium hydroxide, balanced precipitation engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED Mg-BEARING FEED AND PRECIPITATION REFERENCE, issue86, 2026-10-18. Peters et al.2016 DOI10.1039/C6EE00640J SI TableS11 and Zhang2024 DOI10.1016/j.resconrec.2023.107362:105.79kg NaCl-brine proxy,1.2kg hydratedlime and1.78kWh perkgMgOH2. https://www.rsc.org/suppdata/c6/ee/c6ee00640j/c6ee00640j1.pdf . These source proxies are NOT a chemical assay or measured yield. OriginalNaCl-brine contains no specifiedMg;1.2kgCaOH2 is below stoichiometric1.27045kg/kgpureMgOH2. Introduce a separately named balanced engineering recipe rather than pretend the original brine composition was measured. ReactionMgCl2+CaOH2->MgOH2+CaCl2. Assume95% recovery of precipitated product (90-100%sensitivity),100%MgCl2 precipitation then5%solidhandlingreject. GrossMgCl2=1.718407199603632kg andCaOH2=1.3373270966129123kg per1kgfinishedMgOH2. Keep105.79kg totalreferencebrine mass by using104.07159280039637kgwater; dissolvedMgCl2 andMgassays are DERIVED from this throughput/yield assumption,not observedsalarlakecomposition. Do not buy sodiumchloride as Mg feed or use MgCl2 cut-off coproducts from Ti/Zr/Hf sponge manufacture. Missing primaryMgCl2 supply is supplied through an explicit synthetic equivalent:MgO+2HCl->MgCl2+H2O,using real existingMgOmarket anddryHCl-equivalentmarket. This is an alternative primary chemical feed route,NOT a validated naturalbrine mining LCI; actual brine extraction/evaporation allocation may be substantially lower and requires a separate dataset.100%upstreamprecursorconversion with2MJheat+0.5kWh/kgdryMgCl2 allowance is explicit; rejectproduction,acidcarrierwater andgradepurification remain gaps. Its reactionwater is emitted as water after nominaldrying; acid market already uses dryHCl reference mass. Parent precipitation retains source1.78kWh,6.42MJwasteheat,land/freight coefficients andadds matched0.05263157894736836kgMgOH2solidreject to genericinertdisposal plus106.07469551766555kgaqueousCaCl2/carrierfiltrate to genericwastewatertreatment atassumed1000kg/m3. Saline-density5% andspecificbrinetreatment sensitivity required:genericwastewater is a treatmentproxy,not demonstrateddesalination or dissolvedMgdischargefate. No recoveredCaCl2salescredit,noMgmetal smelting andno inventedzero-upstream-magnesium. Active NMMT precursor purchase routes to thisnewreference at unchanged0.0275kg/kgactivepowder;legacyMgOH2provider retainedannotated fortraceability. Otherbattery recipes/capacitylearning unchanged; no native/runtime/YAML orprimary-secondaryshare edits.",
+    "type": "processwithreferenceproduct",
+    "name": "magnesium hydroxide production, precipitation",
+    "exchanges": [
+      {
+        "name": "magnesium hydroxide production, precipitation",
+        "amount": 1,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "reference product": "magnesium hydroxide, precipitation",
+        "product": "magnesium hydroxide, precipitation"
+      },
+      {
+        "name": "market for lime, hydrated, loose weight",
+        "amount": 1.3373270966129123,
+        "location": "RoW",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "lime, hydrated, loose weight",
+        "product": "lime, hydrated, loose weight"
+      },
+      {
+        "name": "magnesium brine production, with magnesium chloride",
+        "amount": 105.79,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "magnesium brine, with magnesium chloride",
+        "product": "magnesium brine, with magnesium chloride"
+      },
+      {
+        "name": "market for transport, freight, lorry, unspecified",
+        "amount": 0.12,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight, lorry, unspecified",
+        "product": "transport, freight, lorry, unspecified"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 1.78,
+        "location": "RER",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage",
+        "product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for transport, freight train",
+        "amount": 0.717,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight train",
+        "product": "transport, freight train"
+      },
+      {
+        "name": "market for wastewater, average",
+        "amount": -0.10607469551766555,
+        "location": "RoW",
+        "unit": "cubic meter",
+        "type": "technosphere",
+        "reference product": "wastewater, average",
+        "product": "wastewater, average"
+      },
+      {
+        "name": "market for inert waste, for final disposal",
+        "amount": -0.05263157894736836,
+        "location": "RoW",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "inert waste, for final disposal",
+        "product": "inert waste, for final disposal"
+      },
+      {
+        "name": "Heat, waste",
+        "amount": 6.42,
+        "unit": "megajoule",
+        "categories": "air",
+        "type": "biosphere"
+      },
+      {
+        "name": "Occupation, mineral extraction site",
+        "amount": 1.63,
+        "unit": "square meter-year",
+        "categories": "natural resource::land",
+        "type": "biosphere"
+      }
+    ],
+    "worksheet name": "sodium-ion batteries",
+    "database": "SIB"
+  },
+  "after_snapshot": {
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "magnesium hydroxide, precipitation",
+    "unit": "kilogram",
+    "source": "Peters et al.2016 DOI10.1039/C6EE00640J SI TableS11 and Zhang2024 DOI10.1016/j.resconrec.2023.107362:105.79kg NaCl-brine proxy,1.2kg hydratedlime and1.78kWh perkgMgOH2. https://www.rsc.org/suppdata/c6/ee/c6ee00640j/c6ee00640j1.pdf . These source proxies are NOT a chemical assay or measured yield.",
+    "comment": "Nomenclature revision, 2026-10-19. Former activity name: magnesium hydroxide, balanced precipitation engineering reference. Former reference product: magnesium hydroxide, balanced precipitation engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED Mg-BEARING FEED AND PRECIPITATION REFERENCE, issue86, 2026-10-18. Peters et al.2016 DOI10.1039/C6EE00640J SI TableS11 and Zhang2024 DOI10.1016/j.resconrec.2023.107362:105.79kg NaCl-brine proxy,1.2kg hydratedlime and1.78kWh perkgMgOH2. https://www.rsc.org/suppdata/c6/ee/c6ee00640j/c6ee00640j1.pdf . These source proxies are NOT a chemical assay or measured yield. OriginalNaCl-brine contains no specifiedMg;1.2kgCaOH2 is below stoichiometric1.27045kg/kgpureMgOH2. Introduce a separately named balanced engineering recipe rather than pretend the original brine composition was measured. ReactionMgCl2+CaOH2->MgOH2+CaCl2. Assume95% recovery of precipitated product (90-100%sensitivity),100%MgCl2 precipitation then5%solidhandlingreject. GrossMgCl2=1.718407199603632kg andCaOH2=1.3373270966129123kg per1kgfinishedMgOH2. Keep105.79kg totalreferencebrine mass by using104.07159280039637kgwater; dissolvedMgCl2 andMgassays are DERIVED from this throughput/yield assumption,not observedsalarlakecomposition. Do not buy sodiumchloride as Mg feed or use MgCl2 cut-off coproducts from Ti/Zr/Hf sponge manufacture. Missing primaryMgCl2 supply is supplied through an explicit synthetic equivalent:MgO+2HCl->MgCl2+H2O,using real existingMgOmarket anddryHCl-equivalentmarket. This is an alternative primary chemical feed route,NOT a validated naturalbrine mining LCI; actual brine extraction/evaporation allocation may be substantially lower and requires a separate dataset.100%upstreamprecursorconversion with2MJheat+0.5kWh/kgdryMgCl2 allowance is explicit; rejectproduction,acidcarrierwater andgradepurification remain gaps. Its reactionwater is emitted as water after nominaldrying; acid market already uses dryHCl reference mass. Parent precipitation retains source1.78kWh,6.42MJwasteheat,land/freight coefficients andadds matched0.05263157894736836kgMgOH2solidreject to genericinertdisposal plus106.07469551766555kgaqueousCaCl2/carrierfiltrate to genericwastewatertreatment atassumed1000kg/m3. Saline-density5% andspecificbrinetreatment sensitivity required:genericwastewater is a treatmentproxy,not demonstrateddesalination or dissolvedMgdischargefate. No recoveredCaCl2salescredit,noMgmetal smelting andno inventedzero-upstream-magnesium. Active NMMT precursor purchase routes to thisnewreference at unchanged0.0275kg/kgactivepowder;legacyMgOH2provider retainedannotated fortraceability. Otherbattery recipes/capacitylearning unchanged; no native/runtime/YAML orprimary-secondaryshare edits.",
+    "type": "processwithreferenceproduct",
+    "name": "magnesium hydroxide production, precipitation",
+    "exchanges": [
+      {
+        "name": "magnesium hydroxide production, precipitation",
+        "amount": 1,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "reference product": "magnesium hydroxide, precipitation",
+        "product": "magnesium hydroxide, precipitation"
+      },
+      {
+        "name": "market for lime, hydrated, loose weight",
+        "amount": 1.3373270966129123,
+        "location": "RoW",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "lime, hydrated, loose weight",
+        "product": "lime, hydrated, loose weight"
+      },
+      {
+        "name": "magnesium brine production, with magnesium chloride",
+        "amount": 105.79,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "magnesium brine, with magnesium chloride",
+        "product": "magnesium brine, with magnesium chloride"
+      },
+      {
+        "name": "market for transport, freight, lorry, unspecified",
+        "amount": 0.12,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight, lorry, unspecified",
+        "product": "transport, freight, lorry, unspecified"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 1.78,
+        "location": "RER",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage",
+        "product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for transport, freight train",
+        "amount": 0.717,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight train",
+        "product": "transport, freight train"
+      },
+      {
+        "name": "market for wastewater, average",
+        "amount": -0.10607469551766555,
+        "location": "RoW",
+        "unit": "cubic meter",
+        "type": "technosphere",
+        "reference product": "wastewater, average",
+        "product": "wastewater, average"
+      },
+      {
+        "name": "market for inert waste, for final disposal",
+        "amount": -0.05263157894736836,
+        "location": "RoW",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "inert waste, for final disposal",
+        "product": "inert waste, for final disposal"
+      },
+      {
+        "name": "Heat, waste",
+        "amount": 6.42,
+        "unit": "megajoule",
+        "categories": "air",
+        "type": "biosphere"
+      }
+    ],
+    "worksheet name": "sodium-ion batteries",
+    "database": "SIB"
+  },
+  "removed_exchange": {
+    "name": "Occupation, mineral extraction site",
+    "amount": 1.63,
+    "unit": "square meter-year",
+    "categories": "natural resource::land",
+    "type": "biosphere"
+  },
+  "removed_row": 616,
+  "comment_cell": "B603",
+  "dimension": "A1:K616",
+  "formula_reference_audit": {
+    "formula_count": 34,
+    "dependent_formula_cells": []
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "CLIC_dataset_id": 1326,
+  "CLIC_version_id": 5556,
+  "CLIC_snapshot_sha256": "73d09329bca7b4e92c3d72598f7b241815a1befa7169f738af7271b7445eb79f",
+  "CLIC_snapshot": {
+    "code": "7c0810ec0eea541cb547aacf43172a0b",
+    "name": "magnesium hydroxide production",
+    "type": "process",
+    "unit": "kilogram",
+    "source": "Engineering reconstruction of the declared Premise MgO/HCl, brine mixing and precipitation scenario; not a measured Peters2016 or Zhang2024 magnesium plant. Source benchmark and original provenance: Zhang, S., Steubing, B., Potter, H. K., Hansson, P. A., & Nordberg, \u00c5. (2024). Future climate impacts of sodium-ion batteries. Resources, Conservation and Recycling, 202, 107362. https://doi.org/10.1016/j.resconrec.2023.107362",
+    "comment": "C156: adopted synthetic MgO/HCl wet-feed and lime-precipitation engineering reference under five typed approvals, reusing this record and the precursor's unchanged 0.0275 kg purchase. This is not measured natural-brine extraction or a verified battery-grade/regional production route. No drying and redissolution of the MgCl2 intermediate: acid-carrier and reaction water remain in solution, reducing additional tap water to 100.6755283 kg/kg product without duplicate carrier purchase or reaction-water release. Nominal 95% post-reaction retention and its 90-100% deterministic sensitivity, 2.6392036 kWh electricity, 3.4368144 MJ purchased heat, 0.12 road and 0.717 rail tonne-km, and inherited 6.42 MJ waste heat are qualified engineering assumptions, not measured industrial values. Waste heat is an emission, not another purchased energy input. Remove only inherited own-stage 1.63 m2-year extraction occupation; chemical-plant land remains unquantified, not zero. Retain 0.1060746955 m3 average wastewater and 0.05263157895 kg generic inert-waste disposal as treatment-burden proxies. Nominal filtrate contains about 2.0031 kg calcium chloride at assumed 1000 kg/m3. No actual saline-treatment efficiency, chloride fate, legal waste class or environmental completeness is certified; no recovery credit or guessed emission. Native 3.12 supplier names are used only in this new revision. The approved historical candidate's complete qualified provenance is retained below.\n\nApproved C156 treatment-burden proxies: retain0.1060746955m3 average-wastewater treatment and0.05263157895kg generic inert-waste disposal perkgMgOH2. The nominal 106.0747kg filtrate at assumed1000kg/m3 contains about2.0031kgCaCl2 equivalent. Neither proxy establishes actual saline-treatment performance, chloride fate, disposal, legal waste classification or environmental completeness. Add no salt-recovery credit or invented emission. Prior approved synthetic-route, land, wet-feed and operating assumptions remain explicit engineering proxies; own-stage chemical-plant land is unquantified, not zero. This is an inactive proposed revision of existing1326, not a duplicate or publication. Rights, currentPSI equivalent reuse and final composed release validation remain. Three inherited supplier identities use their documented native3.12 names from the packaged3.10-to3.11 replacement rules: hydrated lime, diesel road freight and fleet-average rail freight. Quantities, units and geographies are unchanged; original published profiles and inventories are not migrated. Earlier source/proxy/approval provenance follows verbatim.\n\nApproved C156 operating reference: retain nominal95% post-reaction product retention with90-100% deterministic sensitivity; complete stoichiometric conversion followed by handling reject is an engineering scenario, not measured industrial yield. Retain2.6392036kWh electricity,3.4368144MJ purchased process heat,0.12road+0.717rail tonne-km and the inherited6.42MJ waste-heat release perkgMgOH2. These are qualified engineering allowances, not measured wet-process performance, verified transport distances or drying duty. Waste heat is an emission, not an additional energy input. Keep approved route, land and wet-feed choices; own-stage plant land remains unquantified. Saline-liquid and solid-waste treatment still require separate approval. This inactive preview preserves every exchange quantity and the original provenance below; it does not authorize publication or production changes.\n\nApproved C156 wet-feed scenario: keep syntheticMgCl2 in solution without drying and re-dissolving it. At the declared nominal basis perkgMgOH2, 3.0709019kg acid carrier and0.3251626kg reaction water remain in the existing 104.0715928kg intermediate-water total. Additional tap water is100.6755283kg; do not also emit retained reaction water to air or buy carrier water again. Active reagents, nominal filtrate throughput and the approved land correction are preserved. Existing utility and treatment quantities remain unapproved engineering allowances/proxies, not measured wet-process performance or a drying duty. Source rights, native/dependency validation and currentPSI binding remain outstanding. This is an inactive proposed revision only. Earlier provenance and superseded boundary notes follow.\n\nApproved C156 land-boundary correction: remove the inherited own-stage 1.63m2-year mineral-extraction occupation. This synthetic chemical-route reference does not establish a chemical-plant land/facility footprint. Own-stage plant land remains unquantified, not zero; no substitute area or transformation is invented. Upstream supplier inventories are untouched. All water, utility, yield and treatment quantities remain unchanged and qualified pending separate decisions. This is an inactive proposed revision, not a published or production database change. Historical notes follow.\n\nInactive C156 synthetic-route alternative for existing CLIC1326. Keep the historical RER identity as an explicit regional compatibility assumption, not a measured plant location. Inline the two scalar MgCl2/brine helpers without changing their quantities or inventing new Mg records. This is primary MgO/HCl synthesis followed by brine mixing and lime precipitation, not measured natural-brine extraction. 95% solid retention, dry-equivalent acid supply, filtrate/solid waste, utilities and inherited freight/land remain qualified. In particular, the retained mineral-extraction occupation does not establish a synthetic chemical-plant land/facility boundary; it requires an explicit separate decision. Do not add guessed transformations or another factory, or use sponge-process MgCl2 cut-off products. This new source-profile3.12 recipe is not adopted or staged.\n\nPremise scenario provenance:\nNomenclature revision, 2026-10-19. Former activity name: magnesium hydroxide, balanced precipitation engineering reference. Former reference product: magnesium hydroxide, balanced precipitation engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED Mg-BEARING FEED AND PRECIPITATION REFERENCE, issue86, 2026-10-18. Peters et al.2016 DOI10.1039/C6EE00640J SI TableS11 and Zhang2024 DOI10.1016/j.resconrec.2023.107362:105.79kg NaCl-brine proxy,1.2kg hydratedlime and1.78kWh perkgMgOH2. https://www.rsc.org/suppdata/c6/ee/c6ee00640j/c6ee00640j1.pdf . These source proxies are NOT a chemical assay or measured yield. OriginalNaCl-brine contains no specifiedMg;1.2kgCaOH2 is below stoichiometric1.27045kg/kgpureMgOH2. Introduce a separately named balanced engineering recipe rather than pretend the original brine composition was measured. ReactionMgCl2+CaOH2->MgOH2+CaCl2. Assume95% recovery of precipitated product (90-100%sensitivity),100%MgCl2 precipitation then5%solidhandlingreject. GrossMgCl2=1.718407199603632kg andCaOH2=1.3373270966129123kg per1kgfinishedMgOH2. Keep105.79kg totalreferencebrine mass by using104.07159280039637kgwater; dissolvedMgCl2 andMgassays are DERIVED from this throughput/yield assumption,not observedsalarlakecomposition. Do not buy sodiumchloride as Mg feed or use MgCl2 cut-off coproducts from Ti/Zr/Hf sponge manufacture. Missing primaryMgCl2 supply is supplied through an explicit synthetic equivalent:MgO+2HCl->MgCl2+H2O,using real existingMgOmarket anddryHCl-equivalentmarket. This is an alternative primary chemical feed route,NOT a validated naturalbrine mining LCI; actual brine extraction/evaporation allocation may be substantially lower and requires a separate dataset.100%upstreamprecursorconversion with2MJheat+0.5kWh/kgdryMgCl2 allowance is explicit; rejectproduction,acidcarrierwater andgradepurification remain gaps. Its reactionwater is emitted as water after nominaldrying; acid market already uses dryHCl reference mass. Parent precipitation retains source1.78kWh,6.42MJwasteheat,land/freight coefficients andadds matched0.05263157894736836kgMgOH2solidreject to genericinertdisposal plus106.07469551766555kgaqueousCaCl2/carrierfiltrate to genericwastewatertreatment atassumed1000kg/m3. Saline-density5% andspecificbrinetreatment sensitivity required:genericwastewater is a treatmentproxy,not demonstrateddesalination or dissolvedMgdischargefate. No recoveredCaCl2salescredit,noMgmetal smelting andno inventedzero-upstream-magnesium. Active NMMT precursor purchase routes to thisnewreference at unchanged0.0275kg/kgactivepowder;legacyMgOH2provider retainedannotated fortraceability. Otherbattery recipes/capacitylearning unchanged; no native/runtime/YAML orprimary-secondaryshare edits.\n\nOriginal CLIC provenance:\nSource: Zhang, S., Steubing, B., Potter, H. K., Hansson, P. A., & Nordberg, \u00c5. (2024). Future climate impacts of sodium-ion batteries. Resources, Conservation and Recycling, 202, 107362. https://doi.org/10.1016/j.resconrec.2023.107362\n\nHistorical source/curation record:\nSource: Zhang, S., Steubing, B., Potter, H. K., Hansson, P. A., & Nordberg, \u00c5. (2024). Future climate impacts of sodium-ion batteries. Resources, Conservation and Recycling, 202, 107362. https://doi.org/10.1016/j.resconrec.2023.107362\n\nCurated planning decision: R62-R68:C156. New revision only; original published version preserved.",
+    "database": "SIB",
+    "location": "RER",
+    "exchanges": [
+      {
+        "name": "magnesium hydroxide production",
+        "type": "production",
+        "unit": "kilogram",
+        "input": [
+          "SIB",
+          "7c0810ec0eea541cb547aacf43172a0b"
+        ],
+        "amount": 1,
+        "database": "SIB",
+        "location": "RER",
+        "reference product": "magnesium hydroxide"
+      },
+      {
+        "name": "market for lime, hydrated, loose weight",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 1.3373270966129123,
+        "product": "hydrated lime, loose",
+        "location": "RoW",
+        "reference product": "lime, hydrated, loose weight"
+      },
+      {
+        "name": "market for magnesium oxide",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.7274689750835017,
+        "product": "magnesium oxide",
+        "location": "GLO",
+        "reference product": "magnesium oxide"
+      },
+      {
+        "name": "market for hydrochloric acid, without water, in 30% solution state",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 1.3161008283839972,
+        "product": "hydrochloric acid, without water, in 30% solution state",
+        "location": "RoW",
+        "reference product": "hydrochloric acid, without water, in 30% solution state"
+      },
+      {
+        "name": "market for heat, district or industrial, natural gas",
+        "type": "technosphere",
+        "unit": "megajoule",
+        "amount": 3.436814399207264,
+        "product": "heat, district or industrial, natural gas",
+        "location": "RoW",
+        "reference product": "heat, district or industrial, natural gas"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 0.859203599801816,
+        "product": "electricity, medium voltage",
+        "location": "GLO",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market for tap water",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 100.67552826363651,
+        "product": "tap water",
+        "location": "RoW",
+        "reference product": "tap water"
+      },
+      {
+        "name": "market for transport, freight, lorry, unspecified",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.12,
+        "product": "transport, freight, lorry, diesel, unspecified",
+        "location": "RER",
+        "reference product": "transport, freight, lorry, unspecified"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 1.78,
+        "product": "electricity, medium voltage",
+        "location": "RER",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for transport, freight train",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.717,
+        "product": "transport, freight, train, fleet average",
+        "location": "RER",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "market for wastewater, average",
+        "type": "technosphere",
+        "unit": "cubic meter",
+        "amount": -0.10607469551766555,
+        "product": "wastewater, average",
+        "location": "RoW",
+        "reference product": "wastewater, average"
+      },
+      {
+        "name": "market for inert waste, for final disposal",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": -0.05263157894736836,
+        "product": "inert waste, for final disposal",
+        "location": "RoW",
+        "reference product": "inert waste, for final disposal"
+      },
+      {
+        "name": "Heat, waste",
+        "type": "biosphere",
+        "unit": "megajoule",
+        "amount": 6.42,
+        "categories": [
+          "air"
+        ]
+      }
+    ],
+    "worksheet name": "sodium-ion batteries",
+    "reference product": "magnesium hydroxide"
+  },
+  "preserve_legacy_land_cell": "B276",
+  "preserve_NMMT_dose_cell": "B147",
+  "preserve_NMMT_dose_kg": 0.0275,
+  "source_decision": "refinement-round-63/magnesium-land-user-decision.json",
+  "source_decision_sha256": "6aa2b26aaefb6e39ab612e63ef55c8c17c3fbc8330b1a4ea17ff1a8a1bfdb35d"
+}

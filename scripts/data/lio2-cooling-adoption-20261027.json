@@ -1,0 +1,556 @@
+{
+  "case_id": "ALIGN-046",
+  "approval": "Approved by Romain Sacchi,2026-10-27;approved. next?",
+  "workbook": "lci-batteries-LiO2.xlsx",
+  "sheet": "Battery - LiO2",
+  "before_workbook_sha256": "3c88d53efec7504200c254dd0487a6fe629cc365edd81df994e543aae88edbf2",
+  "activity": "battery production, Li-O2",
+  "before_snapshot": {
+    "comment": "APPROVED Li-O2 FINAL-ASSEMBLY ELECTRICITY, 2026-10-27. Apply the 0.41 MJ final-assembly allowance once per complete 333.85 kg manufacturing reference: 0.41/3.6/333.85 kWh per kg battery. Retain the curated scalar 0.00034113790291714506 kWh/kg, numerically equivalent within rounding. Use the source US medium-voltage electricity proxy. This is final complete-system assembly, separate from existing cell processing and casing manufacture; do not also apply it per cell, per kg as a full 0.41 MJ, or per delivered/lifetime kWh. The 333.85 kg detailed component sum is an adopted engineering basis, not a resolution of conflicting 321 kg system and 267 kg pack source headlines. Preserve all eight existing exchanges, including the zero duplicate-retirement fragment, output, upstream recipes and all consumers. Cooling and control differences from curated CLIC remain separate; this addition does not establish whole-recipe equivalence or authorize future learning. Original field declarations for technosphere and biosphere both remain 3.9. Historical source text follows unchanged.\n\nAPPROVED Li-O2 HIERARCHICAL ENGINEERING RECONCILIATION, item18, 2026-10-18. Wang,Deng,Yuan2020 DOI10.1016/j.jclepro.2020.121339, SI TablesS3/S4/S5/S16; Kanthal resistance-wire datasheet https://www.kanthal.com/products/datasheets/material-datasheets/wire/resistance-heating-wire-and-resistance-wire/nikrothal-80/. Adopt TableS3 detailed retained geometry: cell182.6kg, module hardware19.51, pack hardware43.67, oxygen tank55, BMS4,cooling29.07 =>333.85kg at63.5grosskWh. This conflicts with source headline321kg/267kg pack and with TableS5 gross material figures; do not mix those bases. Scalable cell/module/pack hardware=245.78kg; fixed-per-reference auxiliary hardware=88.07kg. Listed component masses, not proportional normalization of contradictory gross LCI tables, define this engineering reference. Known cell ingredients total182.59kg;0.01kg unspecified cathode catalyst remains a documented composition gap, not zero-metal proof. The sourceS4 fluoropolymer binder is not substituted for the unidentified S3 catalyst; binder quantity/fate is also unresolved, and that old process input is disabled in this reference. Electrolyte total59.11kg is split by inheritedS4 salt:solvent ratio.016:.308; LiClO4 process is the inherited salt provider, and ethylene-glycol dimethyl ether remains an explicitly imperfect TEGDME solvent proxy. Lithium protective film/pouch/separator process recipes remain inherited and unvalidated. Collector feed is1kg metal/kg foil at100percent reference retention; matching rolling and restored facility proxy are preserved. Terminal metal fractions are2.44kgAl/10.5kg and8.06kgCu/10.5kg, with matching working services; old overlapping gross feed and implied manufacturing scrap are disabled under the explicit100percent retention reference. Module and pack known material inputs followS3, with no new gross-yield claim. Module monitor.67kg is counted once; BMS4kg is assigned to central protection only using4/4.518 of the separate engineering central-control package. This functional repartition is an assumption, not a source breakdown. Cooling uses7kg Al plus22.07kg pureEG reference (alternative50/50 coolant is a sensitivity); thermal duty, pump/hoses remain gaps. Heater.2kg uses an idealized binary80Ni/20Cr resistance-alloy reference, consistent with a NiCr class but not a complete measured battery heater/Nikrothal composition; electronic/heater construction is unresolved. Preserve historical source-specific S16 recycling coefficients without new recovery credits. Capacity purchases245.78/63.5kg scalable hardware plus one auxiliary lifecycle unit per63.5kWh. Its negative waste equals scalable mass; auxiliary unit carries its own88.07kg waste. Future density factors scale hardware and its waste together; fixed auxiliary manufacture/treatment stay paired. Existing relative density learning is retained as an engineering ratio; absolute cell energy63.5/182.6=.347754655kWh/kg and fixed recipe are not a validated future design. Original full-battery market remains manufacturing-only at333.85kg component-sum basis; capacity uses the separately named hardware market. Vehicle energy/lifetime allocation is unchanged. Source contradictions, catalyst, solvent, future structure and recovery performance remain explicit gaps.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED Li-O2 SINGLE RECYCLING BOUNDARY, 2026-10-18. Wang, Deng and Yuan (2020), DOI 10.1016/j.jclepro.2020.121339, supporting information Table S16, explicitly describes recycling per 1 kg Li-O2 battery system. Its six treatment coefficients are retained. Set the former -1/321 kg/kg internal treatment fragment to a deterministic zero and apply end of life only at market for battery capacity, Li-ion, Li-O2: the full purchased battery mass is sent to treatment of LiO2 battery, for recycling (RER; waste LiO2 battery). Standalone manufacture is manufacturing-only. DefaultInventory may retain the zero exchange; it contributes no treatment flow. Do not add a second generic Li-ion route. This restores a single historical source-specific accounting route; treatment yields, whole-system mass normalization, modern recovery and primary/secondary shares remain unvalidated. No new recovery credit or change to manufacturing recipes, density or lifetime.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nSystem: 63.5kWh Li-O2 || Mass (excl. O2 tanks): 267 kg || Battery energy density: 238 Wh/kg || System energy density (incl. O2 tanks): 198 Wh/kg || Battery lifetime: 305 kWh/kg (1.76 MJ/km x 2e5 km / 321 kg). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "battery, Li-O2",
+    "unit": "kilogram",
+    "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "name": "battery production, Li-O2",
+    "exchanges": [
+      {
+        "name": "battery production, Li-O2",
+        "amount": 1,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "production",
+        "reference product": "battery, Li-O2",
+        "comment": "Battery system mass: 321 kg"
+      },
+      {
+        "name": "battery cell production, Li-O2",
+        "amount": 0.5469522240527184,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "battery cell",
+        "comment": "Values taken from Fig 3"
+      },
+      {
+        "name": "module packaging, for Li-O2 battery",
+        "amount": 0.05843941890070392,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "module packaging"
+      },
+      {
+        "name": "pack packaging, for Li-O2 battery",
+        "amount": 0.13080724876441518,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "pack packaging"
+      },
+      {
+        "name": "oxygen tank production, for Li-O2 battery",
+        "amount": 0.16474464579901155,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "oxygen tank"
+      },
+      {
+        "name": "battery central control and protection unit production",
+        "amount": 0.002651932002076728,
+        "unit": "unit",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "battery central control and protection unit"
+      },
+      {
+        "name": "battery cooling system production, lithium-oxygen",
+        "amount": 0.08707503369776846,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "battery cooling system, lithium-oxygen"
+      },
+      {
+        "name": "treatment of LiO2 battery, for recycling",
+        "amount": 0,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "waste LiO2 battery",
+        "comment": "Disabled duplicate treatment fragment: original formula -1/321 kg waste/kg battery; now zero. The capacity market applies the complete mass through the existing LiO2-specific recycling activity. See activity comment for source and limits."
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.00034113790291714506,
+        "unit": "kilowatt hour",
+        "location": "US",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage"
+      }
+    ],
+    "worksheet name": "Battery - LiO2",
+    "database": "battery_lithium-oxygen"
+  },
+  "after_snapshot": {
+    "comment": "APPROVED Li-O2 FINAL-ASSEMBLY ELECTRICITY, 2026-10-27. Apply the 0.41 MJ final-assembly allowance once per complete 333.85 kg manufacturing reference: 0.41/3.6/333.85 kWh per kg battery. Retain the curated scalar 0.00034113790291714506 kWh/kg, numerically equivalent within rounding. Use the source US medium-voltage electricity proxy. This is final complete-system assembly, separate from existing cell processing and casing manufacture; do not also apply it per cell, per kg as a full 0.41 MJ, or per delivered/lifetime kWh. The 333.85 kg detailed component sum is an adopted engineering basis, not a resolution of conflicting 321 kg system and 267 kg pack source headlines. Preserve all eight existing exchanges, including the zero duplicate-retirement fragment, output, upstream recipes and all consumers. Cooling and control differences from curated CLIC remain separate; this addition does not establish whole-recipe equivalence or authorize future learning. Original field declarations for technosphere and biosphere both remain 3.9. Historical source text follows unchanged.\n\nAPPROVED Li-O2 HIERARCHICAL ENGINEERING RECONCILIATION, item18, 2026-10-18. Wang,Deng,Yuan2020 DOI10.1016/j.jclepro.2020.121339, SI TablesS3/S4/S5/S16; Kanthal resistance-wire datasheet https://www.kanthal.com/products/datasheets/material-datasheets/wire/resistance-heating-wire-and-resistance-wire/nikrothal-80/. Adopt TableS3 detailed retained geometry: cell182.6kg, module hardware19.51, pack hardware43.67, oxygen tank55, BMS4,cooling29.07 =>333.85kg at63.5grosskWh. This conflicts with source headline321kg/267kg pack and with TableS5 gross material figures; do not mix those bases. Scalable cell/module/pack hardware=245.78kg; fixed-per-reference auxiliary hardware=88.07kg. Listed component masses, not proportional normalization of contradictory gross LCI tables, define this engineering reference. Known cell ingredients total182.59kg;0.01kg unspecified cathode catalyst remains a documented composition gap, not zero-metal proof. The sourceS4 fluoropolymer binder is not substituted for the unidentified S3 catalyst; binder quantity/fate is also unresolved, and that old process input is disabled in this reference. Electrolyte total59.11kg is split by inheritedS4 salt:solvent ratio.016:.308; LiClO4 process is the inherited salt provider, and ethylene-glycol dimethyl ether remains an explicitly imperfect TEGDME solvent proxy. Lithium protective film/pouch/separator process recipes remain inherited and unvalidated. Collector feed is1kg metal/kg foil at100percent reference retention; matching rolling and restored facility proxy are preserved. Terminal metal fractions are2.44kgAl/10.5kg and8.06kgCu/10.5kg, with matching working services; old overlapping gross feed and implied manufacturing scrap are disabled under the explicit100percent retention reference. Module and pack known material inputs followS3, with no new gross-yield claim. Module monitor.67kg is counted once; BMS4kg is assigned to central protection only using4/4.518 of the separate engineering central-control package. This functional repartition is an assumption, not a source breakdown. Cooling uses7kg Al plus22.07kg pureEG reference (alternative50/50 coolant is a sensitivity); thermal duty, pump/hoses remain gaps. Heater.2kg uses an idealized binary80Ni/20Cr resistance-alloy reference, consistent with a NiCr class but not a complete measured battery heater/Nikrothal composition; electronic/heater construction is unresolved. Preserve historical source-specific S16 recycling coefficients without new recovery credits. Capacity purchases245.78/63.5kg scalable hardware plus one auxiliary lifecycle unit per63.5kWh. Its negative waste equals scalable mass; auxiliary unit carries its own88.07kg waste. Future density factors scale hardware and its waste together; fixed auxiliary manufacture/treatment stay paired. Existing relative density learning is retained as an engineering ratio; absolute cell energy63.5/182.6=.347754655kWh/kg and fixed recipe are not a validated future design. Original full-battery market remains manufacturing-only at333.85kg component-sum basis; capacity uses the separately named hardware market. Vehicle energy/lifetime allocation is unchanged. Source contradictions, catalyst, solvent, future structure and recovery performance remain explicit gaps.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED Li-O2 SINGLE RECYCLING BOUNDARY, 2026-10-18. Wang, Deng and Yuan (2020), DOI 10.1016/j.jclepro.2020.121339, supporting information Table S16, explicitly describes recycling per 1 kg Li-O2 battery system. Its six treatment coefficients are retained. Set the former -1/321 kg/kg internal treatment fragment to a deterministic zero and apply end of life only at market for battery capacity, Li-ion, Li-O2: the full purchased battery mass is sent to treatment of LiO2 battery, for recycling (RER; waste LiO2 battery). Standalone manufacture is manufacturing-only. DefaultInventory may retain the zero exchange; it contributes no treatment flow. Do not add a second generic Li-ion route. This restores a single historical source-specific accounting route; treatment yields, whole-system mass normalization, modern recovery and primary/secondary shares remain unvalidated. No new recovery credit or change to manufacturing recipes, density or lifetime.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nSystem: 63.5kWh Li-O2 || Mass (excl. O2 tanks): 267 kg || Battery energy density: 238 Wh/kg || System energy density (incl. O2 tanks): 198 Wh/kg || Battery lifetime: 305 kWh/kg (1.76 MJ/km x 2e5 km / 321 kg). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "battery, Li-O2",
+    "unit": "kilogram",
+    "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "name": "battery production, Li-O2",
+    "exchanges": [
+      {
+        "name": "battery production, Li-O2",
+        "amount": 1,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "production",
+        "reference product": "battery, Li-O2",
+        "comment": "Battery system mass: 321 kg"
+      },
+      {
+        "name": "battery cell production, Li-O2",
+        "amount": 0.5469522240527184,
+        "unit": "kilogram",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "battery cell",
+        "comment": "Values taken from Fig 3"
+      },
+      {
+        "name": "module packaging, for Li-O2 battery",
+        "amount": 0.05843941890070392,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "module packaging"
+      },
+      {
+        "name": "pack packaging, for Li-O2 battery",
+        "amount": 0.13080724876441518,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "pack packaging"
+      },
+      {
+        "name": "oxygen tank production, for Li-O2 battery",
+        "amount": 0.16474464579901155,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "oxygen tank"
+      },
+      {
+        "name": "battery central control and protection unit production",
+        "amount": 0.002651932002076728,
+        "unit": "unit",
+        "location": "GLO",
+        "type": "technosphere",
+        "reference product": "battery central control and protection unit"
+      },
+      {
+        "name": "cooling system production, for Li-O2 battery",
+        "amount": 0.08707503369776846,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "cooling system"
+      },
+      {
+        "name": "treatment of LiO2 battery, for recycling",
+        "amount": 0,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "waste LiO2 battery",
+        "comment": "Disabled duplicate treatment fragment: original formula -1/321 kg waste/kg battery; now zero. The capacity market applies the complete mass through the existing LiO2-specific recycling activity. See activity comment for source and limits."
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.00034113790291714506,
+        "unit": "kilowatt hour",
+        "location": "US",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage"
+      }
+    ],
+    "worksheet name": "Battery - LiO2",
+    "database": "battery_lithium-oxygen"
+  },
+  "changes": [
+    {
+      "after": "cooling system production, for Li-O2 battery",
+      "before": "battery cooling system production, lithium-oxygen",
+      "cell": "A283",
+      "field": "name"
+    },
+    {
+      "after": "RER",
+      "before": "GLO",
+      "cell": "E283",
+      "field": "location"
+    },
+    {
+      "after": "cooling system",
+      "before": "battery cooling system, lithium-oxygen",
+      "cell": "G283",
+      "field": "reference product"
+    }
+  ],
+  "comment_cell": "B269",
+  "quantity_preserved": {
+    "cached_value": 0.08707503369776846,
+    "cell": "B283",
+    "formula": "0.08707503369776846",
+    "unit": "kilogram"
+  },
+  "supplier_snapshot": {
+    "comment": "Retrieved from Ellingsen et al. (2013). For thermal management the battery is equipped with a cooling system. The cooling system is made of six sub-components: radiator, manifolds, clamps & fasteners, pipe fitting, thermal gap pad, and coolant (Milj\u00f8bil Grenland 2012). The aluminum radiator is the main component of the cooling system. As a medium of convective heat the cooling system includes a glycol coolant, which is contained within aluminum manifolds. Steel clamps, and pipe fittings of plastic and rubber are used for sealing. Thermal conductivity is further ensured with the use of a thermal gap pad made of fiberglasSreinforced filler and polymer. Infrastructure is the same as Milj\u00f8bil\u2019s facility required for the assembly of the battery. No energy or processes are included as assembly of cooling system is performed by manually. It has been assumed that the coolant circulating in the manifolds is ethylene glycol. Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "location": "RER",
+    "production amount": 1,
+    "reference product": "cooling system",
+    "unit": "kilogram",
+    "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "name": "cooling system production, for Li-O2 battery",
+    "exchanges": [
+      {
+        "name": "cooling system production, for Li-O2 battery",
+        "amount": 1,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "production",
+        "reference product": "cooling system"
+      },
+      {
+        "name": "radiator production, for Li-O2 battery",
+        "amount": 0.87,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "radiator"
+      },
+      {
+        "name": "manifolds production, for Li-O2 battery",
+        "amount": 0.038,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "manifolds"
+      },
+      {
+        "name": "clamps and fasteners production, for Li-O2 battery",
+        "amount": 0.023,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "clamps and fasteners"
+      },
+      {
+        "name": "pipe fitting production, for Li-O2 battery",
+        "amount": 0.00096,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "pipe fitting"
+      },
+      {
+        "name": "thermal pad production, for Li-O2 battery",
+        "amount": 0.02,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "thermal pad"
+      },
+      {
+        "name": "ethylene glycol production",
+        "amount": 0.048,
+        "unit": "kilogram",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "ethylene glycol",
+        "comment": 0.006202616822429906
+      },
+      {
+        "name": "market for transport, freight train",
+        "amount": 0.22,
+        "unit": "ton kilometer",
+        "location": "Europe without Switzerland",
+        "type": "technosphere",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+        "amount": 0.1,
+        "unit": "ton kilometer",
+        "location": "RER",
+        "type": "technosphere",
+        "reference product": "transport, freight, lorry >32 metric ton, EURO6"
+      }
+    ],
+    "worksheet name": "Battery - LiO2",
+    "database": "battery_lithium-oxygen"
+  },
+  "CLIC_supplier_dataset_id": 1150,
+  "CLIC_supplier_version_id": 1150,
+  "CLIC_supplier_snapshot_sha256": "d44fd089d029b8fb5c5d171eceba6686a51d56ac31357cacf50c9f26636a8ca4",
+  "CLIC_supplier_snapshot": {
+    "code": "3ef46c5a1a1e339fc2463757117c8f9b",
+    "comment": "Retrieved from Ellingsen et al. (2013). For thermal management the battery is equipped with a cooling system. The cooling system is made of six sub-components: radiator, manifolds, clamps & fasteners, pipe fitting, thermal gap pad, and coolant (Milj\u00f8bil Grenland 2012). The aluminum radiator is the main component of the cooling system. As a medium of convective heat the cooling system includes a glycol coolant, which is contained within aluminum manifolds. Steel clamps, and pipe fittings of plastic and rubber are used for sealing. Thermal conductivity is further ensured with the use of a thermal gap pad made of fiberglasSreinforced filler and polymer. Infrastructure is the same as Milj\u00f8bil\u2019s facility required for the assembly of the battery. No energy or processes are included as assembly of cooling system is performed by manually. It has been assumed that the coolant circulating in the manifolds is ethylene glycol. Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "database": "battery_lithium-oxygen",
+    "exchanges": [
+      {
+        "amount": 1,
+        "input": [
+          "battery_lithium-oxygen",
+          "3ef46c5a1a1e339fc2463757117c8f9b"
+        ],
+        "location": "RER",
+        "name": "cooling system production, for Li-O2 battery",
+        "reference product": "cooling system",
+        "type": "production",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.87,
+        "input": [
+          "battery_lithium-oxygen",
+          "1245bab6df05c5358655068d414792f7"
+        ],
+        "location": "RER",
+        "name": "radiator production, for Li-O2 battery",
+        "reference product": "radiator",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.038,
+        "input": [
+          "battery_lithium-oxygen",
+          "67c6e0b187a5a3477c3e53a1efc6e066"
+        ],
+        "location": "RER",
+        "name": "manifolds production, for Li-O2 battery",
+        "reference product": "manifolds",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.023,
+        "input": [
+          "battery_lithium-oxygen",
+          "a2fe0f84777a35f3d44ca4e3053d506e"
+        ],
+        "location": "RER",
+        "name": "clamps and fasteners production, for Li-O2 battery",
+        "reference product": "clamps and fasteners",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.00096,
+        "input": [
+          "battery_lithium-oxygen",
+          "021e6bc69467e87729fe6f5f051c4432"
+        ],
+        "location": "RER",
+        "name": "pipe fitting production, for Li-O2 battery",
+        "reference product": "pipe fitting",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.02,
+        "input": [
+          "battery_lithium-oxygen",
+          "7b82b8f3cf293225c20a724911e50549"
+        ],
+        "location": "RER",
+        "name": "thermal pad production, for Li-O2 battery",
+        "reference product": "thermal pad",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.048,
+        "comment": 0.006202616822429906,
+        "location": "RER",
+        "name": "ethylene glycol production",
+        "reference product": "ethylene glycol",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.22,
+        "location": "Europe without Switzerland",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "type": "technosphere",
+        "unit": "ton kilometer"
+      },
+      {
+        "amount": 0.1,
+        "location": "RER",
+        "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+        "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+        "type": "technosphere",
+        "unit": "ton kilometer"
+      }
+    ],
+    "location": "RER",
+    "name": "cooling system production, for Li-O2 battery",
+    "production amount": 1,
+    "reference product": "cooling system",
+    "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "unit": "kilogram",
+    "worksheet name": "Battery - LiO2"
+  },
+  "CLIC_supplier_profile_pin_source": "paired-authored-profiles-bindings-validation-20261024-r1/selected-source-nodes.json",
+  "CLIC_supplier_profile_pin_source_sha256": "e29fcc098d41e92da5ea30035481b5e3522bfb1fb4f4244591b28b2478220d90",
+  "dimension": "A1:T637",
+  "activity_count": 34,
+  "formula_count": 176,
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "CLIC_dataset_id": 1142,
+  "CLIC_version_id": 5675,
+  "CLIC_snapshot_sha256": "88ce1a7fe113a01f59fd641fb05dad84a24e91882d2bd814e5141aa0ea62f6ab",
+  "CLIC_snapshot": {
+    "code": "d9dba1622206e3d4663c8b778d018865",
+    "comment": "Curated planning decision: R105-R152:battery_recipes.\n\nR105/R111: detailed 333.85 kg / 63.5 kWh component reference; source 321/267 kg headlines remain distinct. Four kg central material proxy (not fractional installed count); 0.67 kg monitoring owned by 1139, and 0.41 MJ assembly once. Reuse original kg cooling recipe, not the raw head's new pure-EG recipe. Disable internal retirement fragment; capacity owns one whole-system retirement. Original cell, packaging and cooling process recipes remain qualified; CNT/catalyst/solvent/oxygen chemistry, source-specific S16 route adoption and detailed thermal design are unimplemented. Component mass allocation is not a closed material balance.\n\nHistorical source/curation record:\nSystem: 63.5kWh Li-O2 || Mass (excl. O2 tanks): 267 kg || Battery energy density: 238 Wh/kg || System energy density (incl. O2 tanks): 198 Wh/kg || Battery lifetime: 305 kWh/kg (1.76 MJ/km x 2e5 km / 321 kg). Source: Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "database": "battery_lithium-oxygen",
+    "exchanges": [
+      {
+        "amount": 1,
+        "comment": "Battery system mass: 321 kg",
+        "input": [
+          "battery_lithium-oxygen",
+          "d9dba1622206e3d4663c8b778d018865"
+        ],
+        "location": "GLO",
+        "name": "battery production, Li-O2",
+        "reference product": "battery, Li-O2",
+        "type": "production",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.5469522240527183,
+        "comment": "Values taken from Fig 3",
+        "input": [
+          "battery_lithium-oxygen",
+          "9e0c716cd05160d2342a95e83ae1818b"
+        ],
+        "location": "GLO",
+        "name": "battery cell production, Li-O2",
+        "reference product": "battery cell",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.05843941890070391,
+        "input": [
+          "battery_lithium-oxygen",
+          "0dcecde570d57621218ff010e65cce9d"
+        ],
+        "location": "RER",
+        "name": "module packaging, for Li-O2 battery",
+        "reference product": "module packaging",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.13080724876441516,
+        "input": [
+          "battery_lithium-oxygen",
+          "fe948acb16f3b3d5c408d124905496c5"
+        ],
+        "location": "RER",
+        "name": "pack packaging, for Li-O2 battery",
+        "reference product": "pack packaging",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.16474464579901152,
+        "input": [
+          "battery_lithium-oxygen",
+          "e4f011772a694a865afa7d03065732ff"
+        ],
+        "location": "RER",
+        "name": "oxygen tank production, for Li-O2 battery",
+        "reference product": "oxygen tank",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.0026668066206781194,
+        "input": [
+          "battery_lithium-oxygen",
+          "830cb7ef6ff05b1752070216b5bbb98c"
+        ],
+        "location": "GLO",
+        "name": "battery central control and protection unit production",
+        "reference product": "battery central control and protection unit",
+        "type": "technosphere",
+        "unit": "unit"
+      },
+      {
+        "amount": 0.08707503369776845,
+        "input": [
+          "battery_lithium-oxygen",
+          "3ef46c5a1a1e339fc2463757117c8f9b"
+        ],
+        "location": "RER",
+        "name": "cooling system production, for Li-O2 battery",
+        "reference product": "cooling system",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0,
+        "input": [
+          "battery_lithium-oxygen",
+          "3e2e01a31de5a22e71359fe23cd42ac6"
+        ],
+        "location": "RER",
+        "name": "treatment of LiO2 battery, for recycling",
+        "reference product": "waste LiO2 battery",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.00034113790291714506,
+        "comment": "Wang Table S5 pack assembly: 0.41 MJ per 63.5kWh reference system, once at final complete-system manufacture; not cell processing or casing manufacture. US grid follows the source. The component-sum system mass is an explicit engineering choice pending adoption.",
+        "location": "US",
+        "name": "market group for electricity, medium voltage",
+        "reference product": "electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour"
+      }
+    ],
+    "location": "GLO",
+    "name": "battery production, Li-O2",
+    "production amount": 1,
+    "reference product": "battery, Li-O2",
+    "source": "Originally from Wang, F., Deng, Y., & Yuan, C. (2020). Life cycle assessment of lithium oxygen battery for electric vehicles. Journal of Cleaner Production, 264, 121339. https://doi.org/10.1016/j.jclepro.2020.121339",
+    "unit": "kilogram",
+    "worksheet name": "Battery - LiO2"
+  },
+  "source_decisions_sha256": {
+    "refinement-round-105/LiO2-system-basis-user-decision.json": "385551d482e8287394a03b683d4abef9e524da49702886bb175919446f8f2f48",
+    "refinement-round-111/delegated-comparable-mass-preserving-control-proxy.json": "7d3c52da6489b8c625bac9c8872c745cdd7403aa597d235a11527d2436a3eb53"
+  },
+  "compiled_policy_source": "dev/compile_curated_battery_recipe_batch.py:655",
+  "compiled_policy_sha256": "6e5cbb002ec1a203bc80896421c02a2ae58213c390ef2758cccf44999598f639",
+  "control_alignment_remains_separate": true
+}

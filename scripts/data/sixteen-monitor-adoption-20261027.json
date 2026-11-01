@@ -1,0 +1,559 @@
+{
+  "case_id": "ALIGN-048",
+  "approval": "Approved by Romain Sacchi,2026-10-27;approved. next?",
+  "amount_cell_count": 2,
+  "note_cell_count": 3,
+  "workbooks": [
+    {
+      "workbook": "lci-batteries-LiS.xlsx",
+      "sheet": "Battery - Li-S",
+      "before_workbook_sha256": "b79f32a315f4fe0e4d9479026c512938d8e6d81cb15138a348084f2f0b84de43",
+      "source_background": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.9"
+      },
+      "source_biosphere": {
+        "family": "ecoinvent",
+        "version": "3.9"
+      },
+      "dimension": "A1:Q1868",
+      "activity_count": 85,
+      "changes": [
+        {
+          "after": 1.12,
+          "before": 1.1,
+          "cell": "B1132",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 2,
+          "before_exchange": {
+            "name": "printed circuit board production, battery module control, mounted",
+            "amount": 1.1,
+            "location": "GLO",
+            "unit": "kilogram",
+            "type": "technosphere",
+            "reference product": "printed circuit board, battery module control, mounted"
+          },
+          "before_formula": null,
+          "after_formula": null
+        },
+        {
+          "after": -15.6124,
+          "before": -15.5924,
+          "cell": "B1134",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 4,
+          "before_exchange": {
+            "name": "market for used Li-ion battery",
+            "amount": -15.5924,
+            "location": "GLO",
+            "unit": "kilogram",
+            "type": "technosphere",
+            "reference product": "used Li-ion battery"
+          },
+          "before_formula": null,
+          "after_formula": null
+        }
+      ],
+      "notes": [
+        {
+          "cell": "B1126",
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "before": "APPROVED CENTRAL-CONTROL FASTENER AND MASS RECONCILIATION, 2026-10-27. The shared central-control reference uses 0.0028 kg fasteners rather than 0.028 kg, retaining 0.49 kg mounted board, 2.8 kg HV equipment and 1.2 kg LV equipment: nominal reference mass 4.4928 kg instead of 4.518 kg. This remains a qualified material reference, not a verified complete manufacturer BOM, actual circuit topology or literal fractional controller count. Keep one central unit, 1.1 kg monitoring and the existing 9.9996 kg cooling reference; retire 15.5924 kg once through the existing treatment proxy. Do not substitute the different 15.6128 kg CLIC combined allowance without separate monitoring/cooling decisions. Original technosphere and biosphere declarations both remain 3.9. Fixed counts and other recipes remain unchanged except for the explicitly coupled mass accounting. Historical source text follows unchanged.\n\nNomenclature revision, 2026-10-19. Former activity name: battery controls and cooling, 16-module engineering reference. Former reference product: battery controls and cooling, 16-module engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED ENGINEERING CONTROL/THERMAL COVERAGE, item13, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072. Separate module monitoring from central protection: per16-module reference,1.1kg populated PCB monitors, central0.49kg populated PCB+2.8kg HV system+1.2kg LV system+.028kg fasteners=4.518kg. Use existing HV/LV/fastener process providers and generic populated through-hole PCB perkg; this is an explicit board-technology/material proxy rather than the source-specific board fabrication model. No whole BMS is added on top. Adopt one nominal10kg liquid-cooling assembly per reference: Al9.08, steel.23, PVC/rubber pipe.0096, thermal pad.2 (silicon.06, glass.02, ABS.12), ethylene glycol.48kg; source-rounded sum9.9996kg. Metal working/injection services are included; 100percent retention of listed finished materials is assumed. No stationary rack housing/container, common vehicle body or roadway is added. Monitoring/protection/cooling are added once as a unit-valued capacity input; kg module and matching waste remain separate, so density learning does not shrink fixed controls. Central and cooling hardware are conservatively co-replaced with each delivered pack; longer independent hardware life is not established. End-of-life uses the existing generic used Li-ion route for15.6176kg of auxiliary hardware per reference, without recovery credits; this is a treatment proxy for controls/cooling, not proof of chemistry-specific recovery. Source thermal duty, pump/radiator performance, protection ratings, inverter/pack interface, full outer pack enclosure and vehicle-specific module topology remain coverage/design gaps. The SIB cell-mass-equivalent module retains its existing18.768kg cell+6.203kg module hardware reference; it is not a demonstrated integer21700-cell topology. LiS uses the corrected19.306152kg cell+6.203kg module hardware. These are engineering references, not fleet-validated designs; use0.5-2x auxiliary-size and independent-replacement-life sensitivities.",
+          "prefix": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.9. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\n",
+          "target": "activity_comment"
+        }
+      ],
+      "affected_activities": [
+        {
+          "index": 53,
+          "before": {
+            "location": "GLO",
+            "production amount": 1,
+            "reference product": "battery control and cooling system, 16 modules",
+            "unit": "unit",
+            "source": "Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072.",
+            "comment": "APPROVED CENTRAL-CONTROL FASTENER AND MASS RECONCILIATION, 2026-10-27. The shared central-control reference uses 0.0028 kg fasteners rather than 0.028 kg, retaining 0.49 kg mounted board, 2.8 kg HV equipment and 1.2 kg LV equipment: nominal reference mass 4.4928 kg instead of 4.518 kg. This remains a qualified material reference, not a verified complete manufacturer BOM, actual circuit topology or literal fractional controller count. Keep one central unit, 1.1 kg monitoring and the existing 9.9996 kg cooling reference; retire 15.5924 kg once through the existing treatment proxy. Do not substitute the different 15.6128 kg CLIC combined allowance without separate monitoring/cooling decisions. Original technosphere and biosphere declarations both remain 3.9. Fixed counts and other recipes remain unchanged except for the explicitly coupled mass accounting. Historical source text follows unchanged.\n\nNomenclature revision, 2026-10-19. Former activity name: battery controls and cooling, 16-module engineering reference. Former reference product: battery controls and cooling, 16-module engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED ENGINEERING CONTROL/THERMAL COVERAGE, item13, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072. Separate module monitoring from central protection: per16-module reference,1.1kg populated PCB monitors, central0.49kg populated PCB+2.8kg HV system+1.2kg LV system+.028kg fasteners=4.518kg. Use existing HV/LV/fastener process providers and generic populated through-hole PCB perkg; this is an explicit board-technology/material proxy rather than the source-specific board fabrication model. No whole BMS is added on top. Adopt one nominal10kg liquid-cooling assembly per reference: Al9.08, steel.23, PVC/rubber pipe.0096, thermal pad.2 (silicon.06, glass.02, ABS.12), ethylene glycol.48kg; source-rounded sum9.9996kg. Metal working/injection services are included; 100percent retention of listed finished materials is assumed. No stationary rack housing/container, common vehicle body or roadway is added. Monitoring/protection/cooling are added once as a unit-valued capacity input; kg module and matching waste remain separate, so density learning does not shrink fixed controls. Central and cooling hardware are conservatively co-replaced with each delivered pack; longer independent hardware life is not established. End-of-life uses the existing generic used Li-ion route for15.6176kg of auxiliary hardware per reference, without recovery credits; this is a treatment proxy for controls/cooling, not proof of chemistry-specific recovery. Source thermal duty, pump/radiator performance, protection ratings, inverter/pack interface, full outer pack enclosure and vehicle-specific module topology remain coverage/design gaps. The SIB cell-mass-equivalent module retains its existing18.768kg cell+6.203kg module hardware reference; it is not a demonstrated integer21700-cell topology. LiS uses the corrected19.306152kg cell+6.203kg module hardware. These are engineering references, not fleet-validated designs; use0.5-2x auxiliary-size and independent-replacement-life sensitivities.",
+            "type": "processwithreferenceproduct",
+            "name": "battery control and cooling system production, 16 modules",
+            "exchanges": [
+              {
+                "name": "battery control and cooling system production, 16 modules",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "production",
+                "reference product": "battery control and cooling system, 16 modules"
+              },
+              {
+                "name": "battery central control and protection unit production",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "technosphere",
+                "reference product": "battery central control and protection unit"
+              },
+              {
+                "name": "printed circuit board production, battery module control, mounted",
+                "amount": 1.1,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "printed circuit board, battery module control, mounted"
+              },
+              {
+                "name": "battery cooling system production, liquid cooling",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "technosphere",
+                "reference product": "battery cooling system, liquid cooling"
+              },
+              {
+                "name": "market for used Li-ion battery",
+                "amount": -15.5924,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "used Li-ion battery"
+              }
+            ],
+            "worksheet name": "Battery - Li-S",
+            "database": "batteries"
+          },
+          "after": {
+            "location": "GLO",
+            "production amount": 1,
+            "reference product": "battery control and cooling system, 16 modules",
+            "unit": "unit",
+            "source": "Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072.",
+            "comment": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.9. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\nAPPROVED CENTRAL-CONTROL FASTENER AND MASS RECONCILIATION, 2026-10-27. The shared central-control reference uses 0.0028 kg fasteners rather than 0.028 kg, retaining 0.49 kg mounted board, 2.8 kg HV equipment and 1.2 kg LV equipment: nominal reference mass 4.4928 kg instead of 4.518 kg. This remains a qualified material reference, not a verified complete manufacturer BOM, actual circuit topology or literal fractional controller count. Keep one central unit, 1.1 kg monitoring and the existing 9.9996 kg cooling reference; retire 15.5924 kg once through the existing treatment proxy. Do not substitute the different 15.6128 kg CLIC combined allowance without separate monitoring/cooling decisions. Original technosphere and biosphere declarations both remain 3.9. Fixed counts and other recipes remain unchanged except for the explicitly coupled mass accounting. Historical source text follows unchanged.\n\nNomenclature revision, 2026-10-19. Former activity name: battery controls and cooling, 16-module engineering reference. Former reference product: battery controls and cooling, 16-module engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED ENGINEERING CONTROL/THERMAL COVERAGE, item13, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072. Separate module monitoring from central protection: per16-module reference,1.1kg populated PCB monitors, central0.49kg populated PCB+2.8kg HV system+1.2kg LV system+.028kg fasteners=4.518kg. Use existing HV/LV/fastener process providers and generic populated through-hole PCB perkg; this is an explicit board-technology/material proxy rather than the source-specific board fabrication model. No whole BMS is added on top. Adopt one nominal10kg liquid-cooling assembly per reference: Al9.08, steel.23, PVC/rubber pipe.0096, thermal pad.2 (silicon.06, glass.02, ABS.12), ethylene glycol.48kg; source-rounded sum9.9996kg. Metal working/injection services are included; 100percent retention of listed finished materials is assumed. No stationary rack housing/container, common vehicle body or roadway is added. Monitoring/protection/cooling are added once as a unit-valued capacity input; kg module and matching waste remain separate, so density learning does not shrink fixed controls. Central and cooling hardware are conservatively co-replaced with each delivered pack; longer independent hardware life is not established. End-of-life uses the existing generic used Li-ion route for15.6176kg of auxiliary hardware per reference, without recovery credits; this is a treatment proxy for controls/cooling, not proof of chemistry-specific recovery. Source thermal duty, pump/radiator performance, protection ratings, inverter/pack interface, full outer pack enclosure and vehicle-specific module topology remain coverage/design gaps. The SIB cell-mass-equivalent module retains its existing18.768kg cell+6.203kg module hardware reference; it is not a demonstrated integer21700-cell topology. LiS uses the corrected19.306152kg cell+6.203kg module hardware. These are engineering references, not fleet-validated designs; use0.5-2x auxiliary-size and independent-replacement-life sensitivities.",
+            "type": "processwithreferenceproduct",
+            "name": "battery control and cooling system production, 16 modules",
+            "exchanges": [
+              {
+                "name": "battery control and cooling system production, 16 modules",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "production",
+                "reference product": "battery control and cooling system, 16 modules"
+              },
+              {
+                "name": "battery central control and protection unit production",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "technosphere",
+                "reference product": "battery central control and protection unit"
+              },
+              {
+                "name": "printed circuit board production, battery module control, mounted",
+                "amount": 1.12,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "printed circuit board, battery module control, mounted"
+              },
+              {
+                "name": "battery cooling system production, liquid cooling",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "technosphere",
+                "reference product": "battery cooling system, liquid cooling"
+              },
+              {
+                "name": "market for used Li-ion battery",
+                "amount": -15.6124,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "used Li-ion battery"
+              }
+            ],
+            "worksheet name": "Battery - Li-S",
+            "database": "batteries"
+          }
+        }
+      ],
+      "formula_reference_audit": {
+        "formula_count": 127,
+        "dependent_formula_cells": []
+      }
+    },
+    {
+      "workbook": "lci-battery-capacity.xlsx",
+      "sheet": "Battery - NMC",
+      "before_workbook_sha256": "84e023702e2809b92d9940c991a9ecca3d0ce04c235de93fc01cf828f2a579e1",
+      "source_background": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.10"
+      },
+      "source_biosphere": {
+        "family": "ecoinvent",
+        "version": "3.10"
+      },
+      "dimension": "A1:N379",
+      "activity_count": 35,
+      "changes": [],
+      "notes": [
+        {
+          "cell": "L132",
+          "activity_index": 9,
+          "activity": "market for battery capacity, Li-sulfur, Li-S",
+          "before": "Engineering auxiliary input; fixed unit reference, includes own separate15.6176kg waste.",
+          "prefix": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.10. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\n",
+          "target": "worksheet_note"
+        },
+        {
+          "cell": "L158",
+          "activity_index": 11,
+          "activity": "market for battery capacity, Sodium-ion, SiB",
+          "before": "Engineering auxiliary input; fixed unit reference, includes own separate15.6176kg waste.",
+          "prefix": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.10. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\n",
+          "target": "worksheet_note"
+        }
+      ],
+      "affected_activities": [],
+      "formula_reference_audit": {
+        "formula_count": 159,
+        "dependent_formula_cells": []
+      }
+    }
+  ],
+  "CLIC_reference": {
+    "background": {
+      "family": "ecoinvent",
+      "system_model": "cutoff",
+      "version": "3.12"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.12"
+    },
+    "dataset_id": 3710,
+    "snapshot": {
+      "comment": "R109/R110: 16 physical 70 g monitor boards, one 4.4928 kg central reference and 10 kg existing cooling 1150; retire 15.6128 kg once. The source-rounded cooling subcomponent sum 9.9996 kg remains provenance, not the purchased reference mass. Electronics dependencies require joint composition.\n\nPinned source provenance:\nNomenclature revision, 2026-10-19. Former activity name: battery controls and cooling, 16-module engineering reference. Former reference product: battery controls and cooling, 16-module engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy300um2330kg/m3 includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED ENGINEERING CONTROL/THERMAL COVERAGE, item13, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072. Separate module monitoring from central protection: per16-module reference,1.1kg populated PCB monitors, central0.49kg populated PCB+2.8kg HV system+1.2kg LV system+.028kg fasteners=4.518kg. Use existing HV/LV/fastener process providers and generic populated through-hole PCB perkg; this is an explicit board-technology/material proxy rather than the source-specific board fabrication model. No whole BMS is added on top. Adopt one nominal10kg liquid-cooling assembly per reference: Al9.08, steel.23, PVC/rubber pipe.0096, thermal pad.2 (silicon.06, glass.02, ABS.12), ethylene glycol.48kg; source-rounded sum9.9996kg. Metal working/injection services are included; 100percent retention of listed finished materials is assumed. No stationary rack housing/container, common vehicle body or roadway is added. Monitoring/protection/cooling are added once as a unit-valued capacity input; kg module and matching waste remain separate, so density learning does not shrink fixed controls. Central and cooling hardware are conservatively co-replaced with each delivered pack; longer independent hardware life is not established. End-of-life uses the existing generic used Li-ion route for15.6176kg of auxiliary hardware per reference, without recovery credits; this is a treatment proxy for controls/cooling, not proof of chemistry-specific recovery. Source thermal duty, pump/radiator performance, protection ratings, inverter/pack interface, full outer pack enclosure and vehicle-specific module topology remain coverage/design gaps. The SIB cell-mass-equivalent module retains its existing18.768kg cell+6.203kg module hardware reference; it is not a demonstrated integer21700-cell topology. LiS uses the corrected19.306152kg cell+6.203kg module hardware. These are engineering references, not fleet-validated designs; use0.5-2x auxiliary-size and independent-replacement-life sensitivities.",
+      "exchanges": [
+        {
+          "amount": 1,
+          "location": "GLO",
+          "name": "battery control and cooling system production, 16 modules",
+          "reference product": "battery control and cooling system, 16 modules",
+          "type": "production",
+          "unit": "unit"
+        },
+        {
+          "amount": 1,
+          "location": "GLO",
+          "name": "battery central control and protection unit production",
+          "reference product": "battery central control and protection unit",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 1.12,
+          "location": "GLO",
+          "name": "printed circuit board production, battery module control, mounted",
+          "reference product": "printed circuit board, battery module control, mounted",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 10,
+          "location": "RER",
+          "name": "cooling system production, for Li-O2 battery",
+          "reference product": "cooling system",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": -15.6128,
+          "location": "GLO",
+          "name": "market for used Li-ion battery",
+          "reference product": "used Li-ion battery",
+          "type": "technosphere",
+          "unit": "kilogram"
+        }
+      ],
+      "location": "GLO",
+      "name": "battery control and cooling system production, 16 modules",
+      "production amount": 1,
+      "reference product": "battery control and cooling system, 16 modules",
+      "source": "Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072.",
+      "type": "processwithreferenceproduct",
+      "unit": "unit",
+      "worksheet name": "Battery - Li-S"
+    },
+    "snapshot_sha256": "f1b7a88c0f044816b6719a2649bd8ba05be94e14acf6cfb34b3a21835a881a3b",
+    "version_id": 5631
+  },
+  "CLIC_board_reference": {
+    "background": {
+      "family": "ecoinvent",
+      "system_model": "cutoff",
+      "version": "3.12"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.12"
+    },
+    "dataset_id": 3676,
+    "snapshot": {
+      "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nFour further fitted packages at one each/module; then-current residual recomputed; standalone 40% native bare board and 60% components; embedded four-material residual without laminate or known components; CC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here. Embedded residual2kWh/kg is unmeasured component preparation, separate from existing board assembly. The70g/490g budgets and paired downstream whole-board retirement remain unchanged.\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE CONTEXT-SPECIFIC RESIDUAL SENSITIVITY. Replace full-board proxy inside an already-structured board by a normalized Cu/ferrite/Al/nylon material-coverage mix, excluding its40%laminate and already enumerated capacitor/resistor/logic/regulator/solder classes. This is a new engineering assumption, NOT an identified finished-component BOM or proof that missing Au/Ag/Sb, isolation, MCU, winding/connector manufacture and process emissions are zero. Keep exact residual mass, known fitted purchases, board mass, original board structure/assembly and existing retirement.\n\nINACTIVE SOURCE-COVERAGE ADDENDUM: preserve approved C12539capacitor corrections,134capacitors/128resistors and70g board. Four existing fitted source packages become explicit; their full declared mass, including unidentified fractions, is removed from the residual allowance. CC2662R1FRGZT and twoESD2CAN24DBZR remain unquantified; do not silently substitute the different central MCU or turn absent declarations into zero burdens. The BQ79718 source monitor versus existing BQ79616 material analogue remains a separate known limitation.\n\nC125 refinement preview, not publication authority. All 134 fitted TI BOM capacitors are classified by dielectric AND case. Correct 39 Class2-to-C0G misclassifications: four0402, two0603 and thirty-three0805. Family masses and compositions are cross-manufacturer engineering transfers, not measured Murata/TDK parts. Preserve the inherited1.06mg allowance for two KEMET0402 parts without claiming that a generic datasheet verifies exact part mass. The70g monitor-board basis is unchanged; a lower capacitor subtotal only increases the explicitly unresolved interface allowance, not measured laminate or invented component chemistry. Preserve other doses, assembly and retirement; do not purchase an extra populated board. The95% known-feed retention, mixed-waste proxy, utilities, unknown dopants, source rights and industrial coverage remain qualifications. No open-publication clearance, current CLIC binding or performance equivalence is certified.\n\nNomenclature revision, 2026-10-19. Former activity name: battery module control board, engineering material reference. Former reference product: battery module control board, engineering material reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED BATTERY CONNECTOR MATERIAL/PLATING REFERENCE, issue68,2026-10-18. TI TIDA020076 SLURB87 fittedBOM:sixheaders,46pins. Molex manufacturer705510038(4pin,1.023g),705550045(11pin,2.564g),705550040(6pin,1.420g),https://www.molex.com/en-us/products/part-detail/705550045 ; matingAu0.381um,tailSn1.905um,brass/phosphorbronze,highTthermoplastic. SamtecFTSH-105-01-F-DV-K,10pin,LCP/phosphorbronze,3microinch=0.0762umselectiveAu,matteSn: https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-mkt.pdf . Replace computerperipheralbusconnectors only in theexisting module/centralcontrolboards by a scopedcount-weightedheaderfamily. Actualfittedcohort=2x4pinMolex+2x11pinMolex+1x6pinMolex+1x10pinSamtec,not not-fittedconnectors. This defines referencecomposition; preserve20g/moduleboard and100g/centralboardconnector allowances because board-specific completeharness/matingconnectorcounts are unverified. These doses implyfractionalcohort equivalents,NOT a claimof sixheaders totalling20g or that thecentralboard has theTI layout. Thus materialproxy is improved while exactfullconnectorquantity remains a sourcegap. ForMolex36contacts use0.64mmsquaresection*10mmdevelopedlength,3mmmatingzone and3.30mmtail as explicitgeometryassumptions,not dimensionallycompleteCAD. Finishedmassusesmanufacturerweights; subtractAu/Ni/Snplate fromgeometricbulkmetal beforealloysplit,remainingmasshousing. Metalbaseengineering50/50brassCu70Zn30 andphosphorbronzeCu95.8Sn4P0.2; actualtwoallowedalloys proportions unknown. Samtecgeometry10x0.4mmsquare*(3.05+2.24+1)mmcontacts,6.2x3.43x2.24mmhousingminuspinholes;terminaldensity8800kg/m3,housing1400kg/m3 assumptions. Samtecactualnetmass unavailable; include calculatedhousing/contact/platingmass,not distributorpackagingweight. Nickelunderplate1.27um is a declaredengineeringassumption forbothfamilies,test0.5-2.5um; SamtectailSn1.905um borrowedMolexreference. Preserve trueAu,Ni,Sn,Cu,Zn,P; no zeroAu orallbulkmetal-as-gold. PA6/glassfiber70/30 is an explicitheat-resistantthermoplastic supplyproxy forMolex andLCP housing,not actualresinchemistry; resinflame-retardants andtraceadditives unresolved. Knownmaterialmanufacture95%retention withmatchedmixedwaste,1kWh/kgassemblyreference. Sensitivitycontactlength6-14mm,platedlength1-4mm,sourcegradevariantAu0.0762-0.762um,connectorallowance0.5-2x. No additionalboardarea,wholeelectronics orharness inventorydoublecount. Fixedboard/controlmass andexistingcompletecontrolEOL unchanged. These are actual referenceboardparts withunverifiedvehiclequalification,not certifiedautomotiveBOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED AUXILIARY BATTERY BOARD BOUNDARY, issue58, 2026-10-18. TI TIDA020076 SLURB87 component classes; TI package declarations and KEMET/Bourns references documented in issues55-57; Wickerts2024 DOI10.1021/acssuschemeng.4c01782.s001 and Ellingsen2014 DOI10.1111/jiec.12072 regulator/board allowances. Additional interface BOM below is explicitly engineered,not manufacturermeasured. Replace the remaining0.84-1.03kg/reference generic mountedTHT regulator allowance by a scoped auxiliarypower/interface assembly, distinct from16x70g modulemonitorboards and the490g centralboard. No second fullBMS,centralprocessor,monitorASIC,tractionconverter or duplicated board area is added. Onekg finishedreference has glass0.24,epoxy0.16,copper0.18,ferrite0.15,Alheatspreaders0.10,nylonconnectors/insulation0.09,solder0.03,Class2capacitors0.025,nonzeroresistors0.005,logicpackages0.01 and regulatorpackages0.01kg. These are explicit function-level mass allowances with unknown actual counts/ratings; materialcomposition is an engineering sensitivity reference, not measured exact auxiliaryboards. 40%barelaminate and combined18%Cu include boardtracks and inductorwindings, so no additional wholeinductors or mountedboard proxy. Use package unit counts derived from actual selected package masses, and documented ceramic/resistor families; retain real preciousmetals without genericZn-as-Sb. Maintain total original regulator allowance and paired complete-control disposal, not invent a source-measured mass reduction. Replace the small unresolved generic mountedcomponent remainders inside existing central/moduleboards by this explicitly identified auxiliary-component analogue at unchanged residual mass; it includes laminate by engineering transfer, and is not evidence that the residual is an actual second fitted board. Their detailed fittedpart inputs remain, no recount. Retain uncertainty as actual-component coveragegaps: transformer/diode/isolationpart ratings,trace metals,laminate layout,thermaldesign,assemblyyield and exact topology. Test zero-to-double additional interface allowance as an explicit coverage sensitivity. Component supplymanufacture is separate from boardassembly2kWh/kg;100%final assemblyretention assumed. No chassis, native inventory mutation or extra EOL on top of currentcompletecontrol treatment.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED PACKAGE-SPECIFIC CONTROL SEMICONDUCTORS, issue57, 2026-10-18. TI manufacturer material-content reports https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=LM5168FQDDARQ1 ; ?opn=TXU0204QPWRQ1 ; ?opn=CC2662R1FTWRGZRQ1 , accessed2026-10-18; TI TIDA020076 fitted BOM and CC2662 WBMS controller guide. Use one explicitly selected first returned material declaration per part, never sum alternative assembly-site tables. LM5168 FlyBuck regulator,TXU0204 logic translator andCC2662 WBMS MCU have distinct die,frame,bonds,mold and plating. Sum constituent rows excluding subtotals to recover declared package mass. Retain actual Zn alloying,Ag attach and Au/Pd plating; no arbitraryZn-for-Sb conversion or global antimony deletion. Sb is not listed in these selected declarations, which is not proof of analyticalzeroSb in all electronics. Purchase fabricated die wafer area from declared Si mass at explicit300micrometrethickness,2330kg/m3; no second rawSi charge. Silica-sand supply is an explicit fused-silica proxy with missing fusion/purity energy. Fe uses lowalloy steel proxy, resin uses epoxy/phenolic analogues, elementalP/chlorine feeds are nominal material proxies. Proprietary composition remains unresolved. Package assembly1kWh/kg and100%final retention are engineering assumptions,not suppliermeasured yield or complete semiconductor packaging LCI. Module priorlogic allowances1.5g and0.4g are replaced by oneTXU and oneLM5168 package,consistent with fitted reference parts; released mass remains explicitly unresolved board components. Other actualMCU/isolation packages are still coveragegaps,not proven identical. Central5gMCU allowance becomes oneCC2662 (firstselectedsite) and residual mass,not dozens of fictitious MCU packages. BQ79616 monitor package unchanged. Fixed70g/490g board budgets and their downstream endoflife retained. No motherboard/chassis electronics added. Process service, film,purity,actualsite and unknown-component sensitivity remain necessary; no certifiedexactvehicleBOM claim.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED RESISTOR FUNCTION/MATERIAL REFERENCE, issue56, 2026-10-18. Bourns CR0603 Material Declaration,2022-08-01, https://www.bourns.com/docs/product-mds/cr0603_mds.pdf?sfvrsn=d79410bf_3 (manufacturer indexed declaration; direct download currently errors). Vishay CRCW...C doc28773 https://www.vishay.com/docs/28773/crcwce3.pdf package masses; TI TIDA020076 SLURB87 fitted BOM. Use declared CR0603 1.9339mg classic thick-film composition as a scoped engineering analogue, not a claim of exact Vishay/Yageo paste chemistry. Ceramic1.6618mg=96%alumina/4%silica; conductor0.0447mg=95%Ag/5%glass; film0.0255mg=25%RuO2,40%Ag,15%Pd,20%lead-containingglass; epoxy0.0335mg; NiCr0.0025mg=80%Ni20%Cr; Ni0.0878mg; Sn0.0781mg. Lead-containingglass uses explicit30wt%PbO/70%silica assumption (test0-60%), never alllead. Ordinary conductor glass is flat-glass proxy. 17zero-ohm jumpers use same body/termination but film replaced byAg, a function-based engineering assumption; test alternative pastes rather than claiming analyticallyzeroPd. Retain legitimatePd/Ag/Ru in111nonzero resistors. Ru supplied by existing ZA ruthenium coproduct inventory, not silently substituted byPd; its historical PGM allocation remains unvalidated. RuO2 uses stoichiometric Ru+oxygen and3MJ/kgheat+0.5kWh/kgprocess proxies. 95%known-material retention with matched mixed manufacturing waste,1kWh/kg+5MJ/kg; supplier/plating/printing losses uncertain. Fittedcounts63x0402,21x0603,4x0805,38x1206,2x2010; zero counts1,12,4,0,0. Manufacturer family masses0.65,2,5.5,10mg for firstfour;2010=25.5mg explicit legacy-family engineering mass reference. No unmounted parts. Component mass difference goes to unresolved residual board proxy, preserving70g complete monitorboard; central3g allowance keeps its mass and uses nonzero-family analogue. TerminationSn and assembly solder remain separate. No native/global supplier edits, new EOL or precious-metal credit. Source specific paste variants, resistance dependence, actual Vishay grades, jumper film and2010 mass are coverage/sensitivity gaps.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED CERAMIC-CAPACITOR MATERIAL FAMILIES, issue55, 2026-10-18. YAGEO/KEMET June2026 MCD-Ceramic.pdf Annex1 Class2,Annex2 flex,Annex3 C0G https://yageogroup.com/content/Resource%20Library/Material%20Declaration/MCD-Ceramic.pdf ; TI TIDA020076 fitted BOM SLURB87; KEMET C0402C120J3GACAUTO datasheet1.06mg. Source-family material transfer is an engineering analogue for other manufacturers, not exactpart substitution. Separate BaTiO3 Class2, flexible Ag-epoxy termination and CaZrO3 C0G; do not model all ceramics as barite,allBaTiO3 or universalPd-bearing electrodes. Use declared percase Ni/Cu/Sn/Ag and ceramic masses. Keep miscellaneous composition explicitly unresolved: no inventedzeroPd proof or assignment of all dopants tooneoxide. ActualTi,Murata,TDK part-grade material/yields remain unmeasured; engineer source-family proxies preserving function/classes. Calcine BaCO3+TiO2->BaTiO3+CO2 and CaCO3+ZrO2->CaZrO3+CO2 at nominalpurestoichiometry,3MJ/kgheat+0.5kWh/kg milling assumptions. No orebarite substituted for refinedcarbonate. Componentmanufacture95%retention for knownmaterials with equalmixedsolidwaste,1kWh/kg+5MJ/kgprocessreference; actualpowderprocessing,cofiring/plating losses,water and emissions are gaps. Unknownretainedfraction and its manufacturingloss are not fabricated. Provideroutputs1kg finishedpart includingexplicitunknownmass; knownmaterialcoverage reported rather than normalizedto100%. TI70gmonitorboard has134fittedceramicparts:55Class2 0402,27Class2 0603,38Class2 0805,6Class2 1206,1flex0805,7C0G0402.2KEMETC0G parts use1.06mg each,other5use1.2mgfamilyreference. Not-fittedparts excluded. Preserveoriginalboardtotalmass by transferringcomponentmass difference to/from its explicitlyunresolvedresidualcomponentproxy; do not normalize allboardingredients. Centralboard2gcapacitor allowance becomesClass2 0603family analogue,stillunvalidated counts. Othergenericboard/passiveinputs remainuntiltheirscopedreferencesaredefined; native suppliers are untouched. Existingassemblysolder remainsseparate fromcomponentterminationSn. Existingcontrol/endoflife massbudgetsunchanged. Retain genuinelegacyPd recipes for otherconsumers and document unresolvedtrace dopants; no globalmetalCFedit or primary-secondaryclaim. Sensitivities90-100%retention,case-specificdesign,ceramicdopants andprecious-metal terminationchoices.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy300um2330kg/m3 includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.",
+      "exchanges": [
+        {
+          "amount": 1,
+          "location": "GLO",
+          "name": "printed circuit board production, battery module control, mounted",
+          "reference product": "printed circuit board, battery module control, mounted",
+          "type": "production",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.26706766917293234,
+          "location": "GLO",
+          "name": "market for glass fibre",
+          "reference product": "glass fibre",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.1783308270676692,
+          "location": "RER",
+          "name": "market for epoxy resin, liquid",
+          "reference product": "epoxy resin, liquid",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.1414736842105263,
+          "location": "GLO",
+          "name": "market for copper, cathode",
+          "reference product": "copper, cathode",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 6.357142857142857e-05,
+          "location": "GLO",
+          "name": "market for nickel, class 1",
+          "reference product": "nickel, class 1",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 1.3785714285714285e-06,
+          "location": "GLO",
+          "name": "market for gold",
+          "reference product": "gold",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": -0.022255639097744338,
+          "location": "CH",
+          "name": "market for waste plastic, mixture",
+          "reference product": "waste plastic, mixture",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": -0.0070736842105263075,
+          "location": "GLO",
+          "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+          "reference product": "copper scrap, sorted, pressed",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 14.285714285714285,
+          "location": "GLO",
+          "name": "battery monitoring integrated circuit production, copper wire bonding",
+          "reference product": "battery monitoring integrated circuit, copper wire bonding",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 0.2857142857142857,
+          "location": "GLO",
+          "name": "connector production, battery control board, plated contacts",
+          "reference product": "connector, battery control board, plated contacts",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 14.285714285714285,
+          "location": "GLO",
+          "name": "semiconductor package production, txu0204qpwrq1",
+          "reference product": "semiconductor package, TXU0204QPWRQ1",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 0.014285714285714285,
+          "location": "GLO",
+          "name": "market for inductor, miniature radio frequency chip",
+          "reference product": "inductor, miniature radio frequency chip",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.014285714285714285,
+          "location": "GLO",
+          "name": "market for diode, glass-, for surface-mounting",
+          "reference product": "diode, glass-, for surface-mounting",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 14.285714285714285,
+          "location": "GLO",
+          "name": "semiconductor package production, lm5168fqddarq1",
+          "reference product": "semiconductor package, LM5168FQDDARQ1",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 14.285714285714285,
+          "location": "GLO",
+          "name": "capacitor assembly production, battery monitoring board, 134 capacitors",
+          "reference product": "capacitor assembly, battery monitoring board, 134 capacitors",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 14.285714285714285,
+          "location": "GLO",
+          "name": "resistor assembly production, battery monitoring board, 128 resistors",
+          "reference product": "resistor assembly, battery monitoring board, 128 resistors",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 0.014285714285714285,
+          "location": "GLO",
+          "name": "market for solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+          "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 15.714285714285714,
+          "location": "GLO",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "type": "technosphere",
+          "unit": "kilowatt hour"
+        },
+        {
+          "amount": 14.285714285714285,
+          "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+          "location": "GLO",
+          "name": "semiconductor package production, tps3436bdadaddfrq1",
+          "reference product": "semiconductor package, TPS3436BDADADDFRQ1",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 14.285714285714285,
+          "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+          "location": "GLO",
+          "name": "semiconductor package production, tps71533qdckrq1",
+          "reference product": "semiconductor package, TPS71533QDCKRQ1",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 14.285714285714285,
+          "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+          "location": "GLO",
+          "name": "semiconductor package production, tpd6e004rser",
+          "reference product": "semiconductor package, TPD6E004RSER",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 14.285714285714285,
+          "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+          "location": "GLO",
+          "name": "semiconductor package production, iso7741fqdwrq1",
+          "reference product": "semiconductor package, ISO7741FQDWRQ1",
+          "type": "technosphere",
+          "unit": "unit"
+        },
+        {
+          "amount": 0.025699201209890075,
+          "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+          "location": "GLO",
+          "name": "market for copper, cathode",
+          "reference product": "copper, cathode",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.02141600100824173,
+          "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+          "location": "GLO",
+          "name": "market for ferrite",
+          "reference product": "ferrite",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.01427733400549449,
+          "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+          "location": "GLO",
+          "name": "market for aluminium, wrought alloy",
+          "reference product": "aluminium, wrought alloy",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.012849600604945038,
+          "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+          "location": "RER",
+          "name": "market for nylon 6",
+          "reference product": "nylon 6",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        {
+          "amount": 0.14848427365714267,
+          "comment": "Preserved2kWh/kg residual processing allowance, now an unverified component-preparation allowance, not another board-assembly operation or measured factory burden.",
+          "location": "GLO",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "type": "technosphere",
+          "unit": "kilowatt hour"
+        }
+      ],
+      "location": "GLO",
+      "name": "printed circuit board production, battery module control, mounted",
+      "production amount": 1,
+      "reference product": "printed circuit board, battery module control, mounted",
+      "source": "TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641.",
+      "type": "processwithreferenceproduct",
+      "unit": "kilogram",
+      "worksheet name": "Battery - Li-S"
+    },
+    "snapshot_sha256": "1892471f0df5687beeaeb344ff11aaa9497ac25eaf9cce31385eed65463cce98",
+    "version_id": 5591
+  },
+  "source_decision": "refinement-round-109/sixteen-module-monitor-user-decision.json",
+  "source_decision_sha256": "3c2eda253efb79c3c402cc0f7091b77abad47dd720c856ee457897aef46537b9",
+  "monitor_boards": 16,
+  "board_mass_kg": 0.07,
+  "monitoring_kg": 1.12,
+  "original_source_monitoring_kg": 1.1,
+  "retirement_kg": 15.6124,
+  "cooling_model_alignment_separate": true,
+  "full_graph_CLIC_equivalence_claimed": false
+}

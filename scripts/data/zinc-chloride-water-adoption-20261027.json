@@ -1,0 +1,339 @@
+{
+  "case_id": "ALIGN-043",
+  "approval": "Approved by Romain Sacchi, 2026-10-27; approved. next?",
+  "workbook": "lci-batteries-organic-and-hybrid-redox-flow.xlsx",
+  "sheet": "lci-Redox-Flow-batteries",
+  "before_workbook_sha256": "91850b37aa0968fd354cd778e5a876f4f5e654c1e11b71d6ab880ae4dc9cc9f2",
+  "activity": "zinc chloride (ZnCl2) production, electroactive RFBs",
+  "before_snapshot": {
+    "code": "d9b79177394946b58cefbc09b167204d",
+    "location": "RER",
+    "reference product": "zinc chloride (ZnCl2), electroactive RFBs",
+    "type": "process",
+    "unit": "kilogram",
+    "comment": "DRY ZINC-CHLORIDE MANUFACTURE REFERENCE,2026-10-20. User selected dry salt supply with aqueous supply tested separately. Retain source 0.6538kgZn+0.72916kgPURE-equivalentHCl per1.363kg nominal ZnCl2. Zn+2HCl->ZnCl2+H2 generates0.02016kgH2 per source batch. The existing0.02kgHydrogen-to-air row already represents this rounded source byproduct; retain it exactly and do not add another H2flow. Exact common-atomic-mass salt is1.3628kg; inherited1.363kg is source rounding (0.0147%),not a large sizing error. Do not silently change metal feeds or the rounded product reference. The30wt% acid supplier carries 1.70137333333333kg water in this batch; its purchase already includes this carrier,so do not buy it again. Dry reference removes it as Water to air,in cubic meters at1000kg/m3. Nominal unrecovered reactionH2 goes to air with no sale,energy or recycling credit; actual gas capture/acid fumes/impurity purification are unknown. UN ECAFE1965 Asian Industrial Development NewsNo1,p97 documents Zn/HCl dissolution,H2,filtration and evaporation/fusion around300C. https://repository.unescap.org/items/f7aa8333-be2e-4a42-97d5-63438c4e11eb/full (indexed process text inspected; fullPDF inaccessible in this session). Commercial solid grades exist,for example98-100.5%assay https://anmolchem.in/Zinc-Chloride-USP.php ; this is availability evidence,not plant-LCI or measured yield. Original study Zhang2025 DOI10.1039/D4EB00027G doesnot specify supplied phase. Selected dry reference requires explicit utilities rather than treating reagent purchases as complete manufacture. Water-only gross load uses25->100C,cp4.18kJ/kgK andlatent2255kJ/kg (NIST https://www.nist.gov/document/chapter-9pdf),giving 4.36997740666667MJ/batch. Add an EXPLICIT1MJ/kg salt finishing/dehydration allowance,not measured ZnCl2heat capacity or fusion enthalpy. Divide useful process load by selected0.70equipment heat-transfer utilization. Native furnace already models fuel conversion; do not add/divide by a second combustion efficiency. This gives 8.18996772380952MJ purchased industrial-gas furnace heat per source batch. It is an engineering reference,not measured commercial energy. Dissolution exotherm is assumed unrecovered in a cooled initial operation; test recovered heat separately,without a fictitious energy coproduct. No recovered condensate credit. Auxiliary0.10kWh/kg salt covers assumed agitation,pumping,filtration and controls; it is not a measured equipment BOM. Test finishing0.3-3MJ/kg,transfer0.4-0.9,aux0.02-0.3 kWh/kg and50%water-heat recovery coherently. Actual boiling elevation/vacuum,hydration/purity,plant losses,utilities/emissions and gas management remain unqualified. No invented trace-metal assay or primary/secondary split. Source Zn/acid/transport/output, HFB salt doses and downstream water,capacity,hardware,chemical replacements and lifetime denominators are unchanged. Aqueous counterfactual must retain carrier in product,subtract it from make-up water and scale delivery transport; do not apply dry evaporation to that counterfactual. Existing supplemental workbook only; no runtime,YAML or method changes.",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "name": "zinc chloride (ZnCl2) production, electroactive RFBs",
+    "exchanges": [
+      {
+        "name": "Hydrogen",
+        "amount": 0.02,
+        "unit": "kilogram",
+        "categories": "air",
+        "type": "biosphere",
+        "database": "biosphere3"
+      },
+      {
+        "name": "zinc chloride (ZnCl2) production, electroactive RFBs",
+        "amount": 1.363,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "production",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "zinc chloride (ZnCl2), electroactive RFBs"
+      },
+      {
+        "name": "market for hydrochloric acid, without water, in 30% solution state",
+        "amount": 0.72916,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hydrochloric acid, without water, in 30% solution state"
+      },
+      {
+        "name": "market for transport, freight train",
+        "amount": 0.6,
+        "location": "Europe without Switzerland",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "amount": 0.1,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5"
+      },
+      {
+        "name": "market for zinc",
+        "amount": 0.6538,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "zinc"
+      },
+      {
+        "name": "heat production, natural gas, at industrial furnace >100kW",
+        "amount": 8.189967723809524,
+        "location": "RoW",
+        "unit": "megajoule",
+        "type": "technosphere",
+        "reference product": "heat, district or industrial, natural gas"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.1363,
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "Water",
+        "amount": 0.0017013733333333333,
+        "unit": "cubic meter",
+        "categories": "air",
+        "type": "biosphere",
+        "database": "biosphere3"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery"
+  },
+  "after_snapshot": {
+    "code": "d9b79177394946b58cefbc09b167204d",
+    "location": "RER",
+    "reference product": "zinc chloride (ZnCl2), electroactive RFBs",
+    "type": "process",
+    "unit": "kilogram",
+    "comment": "DRY ZINC-CHLORIDE MANUFACTURE REFERENCE,2026-10-20. User selected dry salt supply with aqueous supply tested separately. Retain source 0.6538kgZn+0.72916kgPURE-equivalentHCl per1.363kg nominal ZnCl2. Zn+2HCl->ZnCl2+H2 generates0.02016kgH2 per source batch. The existing0.02kgHydrogen-to-air row already represents this rounded source byproduct; retain it exactly and do not add another H2flow. Exact common-atomic-mass salt is1.3628kg; inherited1.363kg is source rounding (0.0147%),not a large sizing error. Do not silently change metal feeds or the rounded product reference. The30wt% acid supplier carries 1.70137333333333kg water in this batch; its purchase already includes this carrier,so do not buy it again. Dry reference removes it as Water to air,in cubic meters at1000kg/m3. Nominal unrecovered reactionH2 goes to air with no sale,energy or recycling credit; actual gas capture/acid fumes/impurity purification are unknown. UN ECAFE1965 Asian Industrial Development NewsNo1,p97 documents Zn/HCl dissolution,H2,filtration and evaporation/fusion around300C. https://repository.unescap.org/items/f7aa8333-be2e-4a42-97d5-63438c4e11eb/full (indexed process text inspected; fullPDF inaccessible in this session). Commercial solid grades exist,for example98-100.5%assay https://anmolchem.in/Zinc-Chloride-USP.php ; this is availability evidence,not plant-LCI or measured yield. Original study Zhang2025 DOI10.1039/D4EB00027G doesnot specify supplied phase. Selected dry reference requires explicit utilities rather than treating reagent purchases as complete manufacture. Water-only gross load uses25->100C,cp4.18kJ/kgK andlatent2255kJ/kg (NIST https://www.nist.gov/document/chapter-9pdf),giving 4.36997740666667MJ/batch. Add an EXPLICIT1MJ/kg salt finishing/dehydration allowance,not measured ZnCl2heat capacity or fusion enthalpy. Divide useful process load by selected0.70equipment heat-transfer utilization. Native furnace already models fuel conversion; do not add/divide by a second combustion efficiency. This gives 8.18996772380952MJ purchased industrial-gas furnace heat per source batch. It is an engineering reference,not measured commercial energy. Dissolution exotherm is assumed unrecovered in a cooled initial operation; test recovered heat separately,without a fictitious energy coproduct. No recovered condensate credit. Auxiliary0.10kWh/kg salt covers assumed agitation,pumping,filtration and controls; it is not a measured equipment BOM. Test finishing0.3-3MJ/kg,transfer0.4-0.9,aux0.02-0.3 kWh/kg and50%water-heat recovery coherently. Actual boiling elevation/vacuum,hydration/purity,plant losses,utilities/emissions and gas management remain unqualified. No invented trace-metal assay or primary/secondary split. Source Zn/acid/transport/output, HFB salt doses and downstream water,capacity,hardware,chemical replacements and lifetime denominators are unchanged. Aqueous counterfactual must retain carrier in product,subtract it from make-up water and scale delivery transport; do not apply dry evaporation to that counterfactual. Existing supplemental workbook only; no runtime,YAML or method changes.",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "name": "zinc chloride (ZnCl2) production, electroactive RFBs",
+    "exchanges": [
+      {
+        "name": "Hydrogen",
+        "amount": 0.02,
+        "unit": "kilogram",
+        "categories": "air",
+        "type": "biosphere",
+        "database": "biosphere3"
+      },
+      {
+        "name": "zinc chloride (ZnCl2) production, electroactive RFBs",
+        "amount": 1.363,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "production",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "zinc chloride (ZnCl2), electroactive RFBs"
+      },
+      {
+        "name": "market for hydrochloric acid, without water, in 30% solution state",
+        "amount": 0.72916,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hydrochloric acid, without water, in 30% solution state"
+      },
+      {
+        "name": "market for transport, freight train",
+        "amount": 0.6,
+        "location": "Europe without Switzerland",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "amount": 0.1,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5"
+      },
+      {
+        "name": "market for zinc",
+        "amount": 0.6538,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "zinc"
+      },
+      {
+        "name": "heat production, natural gas, at industrial furnace >100kW",
+        "amount": 8.189967723809524,
+        "location": "RoW",
+        "unit": "megajoule",
+        "type": "technosphere",
+        "reference product": "heat, district or industrial, natural gas"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.1363,
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "Water",
+        "amount": 0.0017013733333333333,
+        "unit": "cubic meter",
+        "categories": "air",
+        "type": "biosphere",
+        "database": "biosphere3"
+      },
+      {
+        "amount": 1.7013733333333334,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "name": "market for water, deionised",
+        "reference product": "water, deionised",
+        "type": "technosphere",
+        "unit": "kilogram"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery"
+  },
+  "addition_row": 1390,
+  "addition_exchange": {
+    "amount": 1.7013733333333334,
+    "database": "cutoff39",
+    "location": "Europe without Switzerland",
+    "name": "market for water, deionised",
+    "reference product": "water, deionised",
+    "type": "technosphere",
+    "unit": "kilogram"
+  },
+  "comment_cell": "B1377",
+  "dimension": "A1:N1389",
+  "activity_count": 53,
+  "formula_reference_audit": {
+    "formula_count": 17,
+    "dependent_formula_cells": []
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "CLIC_dataset_id": 1349,
+  "CLIC_version_id": 4550,
+  "CLIC_snapshot_sha256": "4498ec89bffe93c93d07703ac378a10f40b9b1c40253aa52694c91ff37291916",
+  "CLIC_snapshot": {
+    "code": "d9b79177394946b58cefbc09b167204d",
+    "comment": "The original inventory is presented in: \"Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G\"\n\nCurated planning decision: R146:C234. New revision only; original published version preserved.",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+    "exchanges": [
+      {
+        "amount": 0.02,
+        "categories": [
+          "air"
+        ],
+        "database": "biosphere3",
+        "name": "Hydrogen",
+        "type": "biosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 1.363,
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "input": [
+          "vanadium-organic-and-hybrid-redox-flow-battery",
+          "d9b79177394946b58cefbc09b167204d"
+        ],
+        "location": "RER",
+        "name": "zinc chloride (ZnCl2) production, electroactive RFBs",
+        "reference product": "zinc chloride (ZnCl2), electroactive RFBs",
+        "type": "production",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.72916,
+        "database": "cutoff39",
+        "location": "RER",
+        "name": "market for hydrochloric acid, without water, in 30% solution state",
+        "reference product": "hydrochloric acid, without water, in 30% solution state",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 0.6,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "type": "technosphere",
+        "unit": "ton kilometer"
+      },
+      {
+        "amount": 0.1,
+        "database": "cutoff39",
+        "location": "RER",
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+        "type": "technosphere",
+        "unit": "ton kilometer"
+      },
+      {
+        "amount": 0.6538,
+        "database": "cutoff39",
+        "location": "GLO",
+        "name": "market for zinc",
+        "reference product": "zinc",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 8.189967723809524,
+        "location": "RoW",
+        "name": "heat production, natural gas, at industrial furnace >100kW",
+        "reference product": "heat, district or industrial, natural gas",
+        "type": "technosphere",
+        "unit": "megajoule"
+      },
+      {
+        "amount": 0.1363,
+        "location": "GLO",
+        "name": "market group for electricity, medium voltage",
+        "reference product": "electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour"
+      },
+      {
+        "amount": 0.0017013733333333333,
+        "categories": [
+          "air"
+        ],
+        "database": "biosphere3",
+        "name": "Water",
+        "type": "biosphere",
+        "unit": "cubic meter"
+      },
+      {
+        "amount": 1.7013733333333334,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "name": "market for water, deionised",
+        "reference product": "water, deionised",
+        "type": "technosphere",
+        "unit": "kilogram"
+      }
+    ],
+    "location": "RER",
+    "name": "zinc chloride (ZnCl2) production, electroactive RFBs",
+    "reference product": "zinc chloride (ZnCl2), electroactive RFBs",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "type": "process",
+    "unit": "kilogram",
+    "worksheet name": "lci-Redox-Flow-batteries"
+  },
+  "source_decision": "refinement-round-146/dry-zinc-chloride-process-user-decision.json",
+  "source_decision_sha256": "9b20c4f9760d26296f9aa8e1ce92918038ec151ac629776f43d2c3a75d150230",
+  "after_dimension": "A1:N1390"
+}

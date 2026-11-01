@@ -1,0 +1,357 @@
+{
+  "case_id": "ALIGN-038",
+  "approval": "Approved by Romain Sacchi,2026-10-27; approved. next?",
+  "workbook": "lci-batteries-organic-and-hybrid-redox-flow.xlsx",
+  "sheet": "lci-Redox-Flow-batteries",
+  "before_workbook_sha256": "e4f21ed5739741039487da9b8a593b07f913d3acdb17040afced8ae056886690",
+  "activity": "production of 4-HO-TEMPO",
+  "before_snapshot": {
+    "location": "GLO",
+    "reference product": "4-HO-TEMPO",
+    "comment": "4-HO-TEMPO is modeled based on the production process described in \"US5629426A, 1995\". First, 4-OH-TEMP, EDTA disodium salt dehydrate, and anhydrous sodium carbonate were mixed with deionized water at 60 \u2103. Next, 50% hydrogen peroxide is added slowly to the mixture and then stirred for 18 h. The conversion of 4-HO-TEMPO is 99.2%.\n\nThe original inventory is presented in: \"Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G\"",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "type": "process",
+    "unit": "kilogram",
+    "name": "production of 4-HO-TEMPO",
+    "exchanges": [
+      {
+        "name": "production of 4-HO-TEMPO",
+        "amount": 0.108673330176,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "4-HO-TEMPO"
+      },
+      {
+        "name": "production of 4-HO-TEMP",
+        "amount": 0.1,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "4-HO-TEMP"
+      },
+      {
+        "name": "ethylenediaminetetraacetic acid disodium salt (EDTA Na2) production",
+        "amount": 0.00029,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "ethylenediaminetetraacetic acid disodium salt (EDTA Na2)"
+      },
+      {
+        "name": "market for hydrogen peroxide, without water, in 50% solution state",
+        "amount": 0.065,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hydrogen peroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "market for soda ash, dense",
+        "amount": 0.00014,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "soda ash, dense"
+      },
+      {
+        "name": "market for transport, freight, lorry, unspecified",
+        "amount": 0.016543,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight, lorry, unspecified"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.5294600164,
+        "location": "RER",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for transport, freight train",
+        "amount": 0.099258,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+        "amount": -0.136756669824,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "spent solvent mixture"
+      },
+      {
+        "name": "water production, deionised",
+        "amount": 0.08,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "water, deionised"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery"
+  },
+  "after_snapshot": {
+    "location": "GLO",
+    "reference product": "4-HO-TEMPO",
+    "comment": "4-HO-TEMPO is modeled based on the production process described in \"US5629426A, 1995\". First, 4-OH-TEMP, EDTA disodium salt dehydrate, and anhydrous sodium carbonate were mixed with deionized water at 60 \u2103. Next, 50% hydrogen peroxide is added slowly to the mixture and then stirred for 18 h. The conversion of 4-HO-TEMPO is 99.2%.\n\nThe original inventory is presented in: \"Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G\"",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "type": "process",
+    "unit": "kilogram",
+    "name": "production of 4-HO-TEMPO",
+    "exchanges": [
+      {
+        "name": "production of 4-HO-TEMPO",
+        "amount": 0.108673330176,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "4-HO-TEMPO"
+      },
+      {
+        "name": "production of 4-HO-TEMP",
+        "amount": 0.1,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "4-HO-TEMP"
+      },
+      {
+        "name": "ethylenediaminetetraacetic acid disodium salt (EDTA Na2) production",
+        "amount": 0.00029,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "reference product": "ethylenediaminetetraacetic acid disodium salt (EDTA Na2)"
+      },
+      {
+        "name": "market for hydrogen peroxide, without water, in 50% solution state",
+        "amount": 0.065,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "hydrogen peroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "market for soda ash, dense",
+        "amount": 0.00014,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "soda ash, dense"
+      },
+      {
+        "name": "market for transport, freight, lorry, unspecified",
+        "amount": 0.016543,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight, lorry, unspecified"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 0.5294600164,
+        "location": "RER",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for transport, freight train",
+        "amount": 0.099258,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+        "amount": -0.136756669824,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "spent solvent mixture"
+      },
+      {
+        "name": "water production, deionised",
+        "amount": 0.145,
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "database": "cutoff39",
+        "reference product": "water, deionised"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery"
+  },
+  "water_quantity_cell": "B45",
+  "before_water_kg_per_batch": 0.08,
+  "after_water_kg_per_batch": 0.145,
+  "additional_water_kg_per_batch": 0.065,
+  "comment_cell": "B30",
+  "dimension": "A1:N1389",
+  "formula_reference_audit": {
+    "formula_count": 17,
+    "dependent_formula_cells": []
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "CLIC_dataset_id": 1340,
+  "CLIC_version_id": 4548,
+  "CLIC_snapshot_sha256": "71a7c3e9200fa20e8b55a6a81707e1aff2062f8494965ea1f0e1485f161462fc",
+  "CLIC_snapshot": {
+    "code": "815dad10eec51e9a9a547a21233879c9",
+    "name": "production of 4-HO-TEMPO",
+    "type": "process",
+    "unit": "kilogram",
+    "source": "Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G",
+    "comment": "4-HO-TEMPO is modeled based on the production process described in \"US5629426A, 1995\". First, 4-OH-TEMP, EDTA disodium salt dehydrate, and anhydrous sodium carbonate were mixed with deionized water at 60 \u2103. Next, 50% hydrogen peroxide is added slowly to the mixture and then stirred for 18 h. The conversion of 4-HO-TEMPO is 99.2%.\n\nThe original inventory is presented in: \"Zhang, S., Ramanujam, A. S., Arvidsson, R., Michieletto, A., & Schubert, U. S. (2025). Prospective life cycle assessment of organic redox flow batteries. EES Batteries. doi: https://doi.org/10.1039/D4EB00027G\"\n\nCurated planning decision: R145:peroxide-water. New revision only; original published version preserved.",
+    "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+    "location": "GLO",
+    "exchanges": [
+      {
+        "name": "production of 4-HO-TEMPO",
+        "type": "production",
+        "unit": "kilogram",
+        "input": [
+          "vanadium-organic-and-hybrid-redox-flow-battery",
+          "815dad10eec51e9a9a547a21233879c9"
+        ],
+        "amount": 0.108673330176,
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "location": "GLO",
+        "reference product": "4-HO-TEMPO"
+      },
+      {
+        "name": "production of 4-HO-TEMP",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "input": [
+          "vanadium-organic-and-hybrid-redox-flow-battery",
+          "54aef799a6a9b2600f58412f157493e3"
+        ],
+        "amount": 0.1,
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "location": "RER",
+        "reference product": "4-HO-TEMP"
+      },
+      {
+        "name": "ethylenediaminetetraacetic acid disodium salt (EDTA Na2) production",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "input": [
+          "vanadium-organic-and-hybrid-redox-flow-battery",
+          "5da323ca5c9f1a478eba80b987680cfa"
+        ],
+        "amount": 0.00029,
+        "database": "vanadium-organic-and-hybrid-redox-flow-battery",
+        "location": "RER",
+        "reference product": "ethylenediaminetetraacetic acid disodium salt (EDTA Na2)"
+      },
+      {
+        "name": "market for hydrogen peroxide, without water, in 50% solution state",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.065,
+        "database": "cutoff39",
+        "location": "RER",
+        "reference product": "hydrogen peroxide, without water, in 50% solution state"
+      },
+      {
+        "name": "market for soda ash, dense",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.00014,
+        "database": "cutoff39",
+        "location": "GLO",
+        "reference product": "soda ash, dense"
+      },
+      {
+        "name": "market for transport, freight, lorry, unspecified",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.016543,
+        "database": "cutoff39",
+        "location": "RER",
+        "reference product": "transport, freight, lorry, unspecified"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 0.5294600164,
+        "database": "cutoff39",
+        "location": "RER",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "market group for transport, freight train",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.099258,
+        "database": "cutoff39",
+        "location": "RER",
+        "reference product": "transport, freight train"
+      },
+      {
+        "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": -0.136756669824,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "spent solvent mixture"
+      },
+      {
+        "name": "water production, deionised",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.145,
+        "database": "cutoff39",
+        "location": "Europe without Switzerland",
+        "reference product": "water, deionised"
+      }
+    ],
+    "worksheet name": "lci-Redox-Flow-batteries",
+    "reference product": "4-HO-TEMPO"
+  },
+  "active_peroxide_kg_per_batch": 0.065,
+  "output_kg_per_batch": 0.108673330176,
+  "water_outlet_unassigned_kg_per_batch": 0.065,
+  "source_decision": "refinement-round-145/delegated-peroxide-carrier-water-corrections.json",
+  "source_decision_sha256": "d6a12a909af962eeaed5ccd011c32ece147a974767dead5f277b0153269b433a"
+}

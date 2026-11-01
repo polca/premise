@@ -1,0 +1,82 @@
+{
+  "CLIC_dataset_id": 3643,
+  "CLIC_snapshot_sha256": "4ba42c3a47e686a8716901c3d1aadbe4d17696ed320e20343096c73a750f6212",
+  "CLIC_version_id": 4565,
+  "approval": "ALIGN-017; approved by Romain Sacchi, 2026-10-27",
+  "compiler": {
+    "affiliation": "Laboratory for Energy Systems Analysis, Paul Scherrer Institute",
+    "email": "romain.sacchi@psi.ch",
+    "name": "Romain Sacchi"
+  },
+  "consumer_gasket_kg": 144.2,
+  "format": "premise-native-ptfe-gasket-adoption-v1",
+  "legacy_source_version": "3.9",
+  "legacy_source_workbook": "lci-hydrogen-electrolysis.xlsx",
+  "legacy_workbook_sha256": "8936324185094e10988b704d55d4991a5d5e11fc395fb49d1a157ed885e29f5e",
+  "license": "CC-BY-4.0",
+  "snapshot": {
+    "comment": "Qualified user-approved CLIC polymer candidate only; not a measured industrial recipe, commercial-grade equivalence or scientific certification. Existing lifetime purchases and all unrelated exchanges are preserved. Automatic propagation does not authorize changes to protected PV dependency closures.\n\nNative3.12 emulsion-route dry PTFE is an upstream resin-production burden proxy for granular molding stock, NOT a verified interchangeable granular compression grade. Select unfilled, non-expanded compression/sinter/skive/cut forming, not ordinary melt injection. Assume95% forming/cutting retention, with3 MJ heat and0.2 kWh/kg finished as engineering allowances. Native polymerization yields/burdens are embedded upstream. Remove local monomer and7.5 MJ/0.5 kWh polymerization allowances. Retain the existing solid-reject proxy without a new native-service residual, filler, processing aid, emission or credit. Finished-gasket EOL is owned by the unchanged stack-treatment inventory. Only3.12 target compatibility is proposed; no latest3.9 promise.",
+    "exchanges": [
+      {
+        "amount": 1,
+        "location": "GLO",
+        "name": "polytetrafluoroethylene gasket production, forming, resin supply proxy",
+        "product": "PTFE gasket, unfilled, engineering reference",
+        "reference product": "PTFE gasket, unfilled, engineering reference",
+        "type": "production",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 1.0526315789473684,
+        "location": "GLO",
+        "name": "market for polytetrafluoroethylene",
+        "product": "polytetrafluoroethylene",
+        "reference product": "polytetrafluoroethylene",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      {
+        "amount": 3,
+        "location": "RoW",
+        "name": "market for heat, district or industrial, natural gas",
+        "product": "heat, district or industrial, natural gas",
+        "reference product": "heat, district or industrial, natural gas",
+        "type": "technosphere",
+        "unit": "megajoule"
+      },
+      {
+        "amount": 0.2,
+        "location": "GLO",
+        "name": "market group for electricity, medium voltage",
+        "product": "electricity, medium voltage",
+        "reference product": "electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour"
+      },
+      {
+        "amount": -0.05263157894736836,
+        "location": "RoW",
+        "name": "market for waste plastic, mixture",
+        "product": "waste plastic, mixture",
+        "reference product": "waste plastic, mixture",
+        "type": "technosphere",
+        "unit": "kilogram"
+      }
+    ],
+    "location": "GLO",
+    "name": "polytetrafluoroethylene gasket production, forming, resin supply proxy",
+    "reference product": "PTFE gasket, unfilled, engineering reference",
+    "source": "Independent foreground forming reference for 1 kg of unfilled PTFE gasket. Purchases 1/0.95 kg of native ecoinvent 3.12 PTFE resin as a production-burden proxy; the native emulsion-route resin is not a verified granular moulding grade. The approved 95% forming/cutting retention, 3 MJ heat and 0.2 kWh electricity per kg finished are explicit engineering assumptions, not supplier measurements. Manufacturing reject is 1/0.95 - 1 kg, assigned to the existing generic waste-plastic outlet as an imperfect burden proxy; no recovery credit or validated fluoropolymer abatement is claimed. Resin polymerisation burdens remain embedded in the external supplier: no separate local monomer, 7.5 MJ heat or 0.5 kWh electricity purchase is present. Finished-gasket disposal remains with the existing stack-treatment inventory. Chemours granular PTFE processing guidance and Daikin M/F-series product descriptions support the forming-route distinction, not these numerical allowances. Gerloff 2021 (10.1016/j.est.2021.102759) and the Power-to-Methane SI (10.1021/acssuschemeng.1c02002.s001, page S12) provide application context and the separately retained 144.2 kg stack purchase; that purchase is not a coefficient of this per-kg forming recipe. The PtM SI is CC BY-NC 4.0; this foreground designation does not relicense that SI or decide the rights in the consumer inventory. Hintzer et al., Fluoropolymers (10.1002/14356007.a11_393.pub2), is historical property/process context. CC BY 4.0 covers only the compiler's rights in the original foreground compilation, subject to authenticated authority; source publications, trademarks and native supplier inventory bodies remain separately licensed.",
+    "type": "process",
+    "unit": "kilogram"
+  },
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.12"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.12"
+  }
+}

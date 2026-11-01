@@ -1,0 +1,1902 @@
+{
+  "approval": "ALIGN-030; approved by Romain Sacchi, 2026-10-27",
+  "workbook": "lci-batteries-LiS.xlsx",
+  "before_workbook_sha256": "aefd44104995de6241d7e59a8e3cd040484b6b320a48fcb9a56d63635240ea51",
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "before_board_snapshot": {
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "printed circuit board, battery module control, mounted",
+    "unit": "kilogram",
+    "source": "TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641.",
+    "comment": "APPROVED MOLEX CONNECTOR MATERIAL/REJECT-FATE REFERENCE, 2026-10-27. Use the qualified five-Molex-header, 36-contact, 8.594 g cohort material reference, scaled by mass to the unchanged 20 g/module-board and 100 g/central-board allowances. This material reference excludes the additional Samtec geometric estimate; it does not establish that a Samtec header is absent from fitted hardware or certify a complete header census. Corrected plating-volume bookkeeping subtracts coating volume from finished-contact volume before applying alloy density, then closes the housing residual. Retain the thin-layer approximation, geometry, alloy proportions, plating thickness and 70/30 nylon/glass housing as engineering assumptions. The 95% net material-handling reference is not measured deposition efficiency or manufacturing loss. Nominal rejects remain 0.05263157894736836 kg/kg finished connector; composition, physical destination and treatment burdens are unassigned. Remove the unsupported hazardous-waste incineration purchase without claiming zero physical loss, zero impact or environmental improvement. Retain 1 kWh/kg assembly, all downstream allowances, board masses and existing retirement ownership, with no extra component retirement or recovery credit. Both original source declarations stay 3.9. This qualification supersedes older Samtec-inclusive material and reject-treatment descriptions retained below as history.\n\nAPPROVED 39-PART CAPACITOR FAMILY CORRECTION, 2026-10-27. Reclassify four 0402, two 0603 and thirty-three 0805 fitted parts from Class 2 to C0G. Preserve 134 capacitors and the 70 g monitor-board reference. Capacitor subtotal changes from 0.00127361 to 0.00098098 kg per board; the 0.00029263 kg difference increases the existing unresolved-component coverage allowance. This is proxy coverage bookkeeping, not additional measured interface hardware or laminate. The residual proxy purchase increases by 0.00029263/0.07 kg/kg board; all other parent doses, assembly and retirement stay unchanged. Two KEMET 0402 parts retain their inherited 1.06 mg allowance without an exact-part mass claim. Family compositions are cross-manufacturer engineering proxies; actual fitted-part assays, unknown dopants, 95% known-feed retention, mixed-waste treatment and process utilities remain qualified assumptions. Unknown retained material is not renormalized into measured ingredients. New C0G 0603/0805 helpers buy the existing calcium-zirconate precursor once; no extra populated board or packaged component is purchased. Technosphere and biosphere source declarations both remain 3.9. This correction supersedes older family/count descriptions retained below as history.\n\nNomenclature revision, 2026-10-19. Former activity name: battery module control board, engineering material reference. Former reference product: battery module control board, engineering material reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED BATTERY CONNECTOR MATERIAL/PLATING REFERENCE, issue68,2026-10-18. TI TIDA020076 SLURB87 fittedBOM:sixheaders,46pins. Molex manufacturer705510038(4pin,1.023g),705550045(11pin,2.564g),705550040(6pin,1.420g),https://www.molex.com/en-us/products/part-detail/705550045 ; matingAu0.381um,tailSn1.905um,brass/phosphorbronze,highTthermoplastic. SamtecFTSH-105-01-F-DV-K,10pin,LCP/phosphorbronze,3microinch=0.0762umselectiveAu,matteSn: https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-mkt.pdf . Replace computerperipheralbusconnectors only in theexisting module/centralcontrolboards by a scopedcount-weightedheaderfamily. Actualfittedcohort=2x4pinMolex+2x11pinMolex+1x6pinMolex+1x10pinSamtec,not not-fittedconnectors. This defines referencecomposition; preserve20g/moduleboard and100g/centralboardconnector allowances because board-specific completeharness/matingconnectorcounts are unverified. These doses implyfractionalcohort equivalents,NOT a claimof sixheaders totalling20g or that thecentralboard has theTI layout. Thus materialproxy is improved while exactfullconnectorquantity remains a sourcegap. ForMolex36contacts use0.64mmsquaresection*10mmdevelopedlength,3mmmatingzone and3.30mmtail as explicitgeometryassumptions,not dimensionallycompleteCAD. Finishedmassusesmanufacturerweights; subtractAu/Ni/Snplate fromgeometricbulkmetal beforealloysplit,remainingmasshousing. Metalbaseengineering50/50brassCu70Zn30 andphosphorbronzeCu95.8Sn4P0.2; actualtwoallowedalloys proportions unknown. Samtecgeometry10x0.4mmsquare*(3.05+2.24+1)mmcontacts,6.2x3.43x2.24mmhousingminuspinholes;terminaldensity8800kg/m3,housing1400kg/m3 assumptions. Samtecactualnetmass unavailable; include calculatedhousing/contact/platingmass,not distributorpackagingweight. Nickelunderplate1.27um is a declaredengineeringassumption forbothfamilies,test0.5-2.5um; SamtectailSn1.905um borrowedMolexreference. Preserve trueAu,Ni,Sn,Cu,Zn,P; no zeroAu orallbulkmetal-as-gold. PA6/glassfiber70/30 is an explicitheat-resistantthermoplastic supplyproxy forMolex andLCP housing,not actualresinchemistry; resinflame-retardants andtraceadditives unresolved. Knownmaterialmanufacture95%retention withmatchedmixedwaste,1kWh/kgassemblyreference. Sensitivitycontactlength6-14mm,platedlength1-4mm,sourcegradevariantAu0.0762-0.762um,connectorallowance0.5-2x. No additionalboardarea,wholeelectronics orharness inventorydoublecount. Fixedboard/controlmass andexistingcompletecontrolEOL unchanged. These are actual referenceboardparts withunverifiedvehiclequalification,not certifiedautomotiveBOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED AUXILIARY BATTERY BOARD BOUNDARY, issue58, 2026-10-18. TI TIDA020076 SLURB87 component classes; TI package declarations and KEMET/Bourns references documented in issues55-57; Wickerts2024 DOI10.1021/acssuschemeng.4c01782.s001 and Ellingsen2014 DOI10.1111/jiec.12072 regulator/board allowances. Additional interface BOM below is explicitly engineered,not manufacturermeasured. Replace the remaining0.84-1.03kg/reference generic mountedTHT regulator allowance by a scoped auxiliarypower/interface assembly, distinct from16x70g modulemonitorboards and the490g centralboard. No second fullBMS,centralprocessor,monitorASIC,tractionconverter or duplicated board area is added. Onekg finishedreference has glass0.24,epoxy0.16,copper0.18,ferrite0.15,Alheatspreaders0.10,nylonconnectors/insulation0.09,solder0.03,Class2capacitors0.025,nonzeroresistors0.005,logicpackages0.01 and regulatorpackages0.01kg. These are explicit function-level mass allowances with unknown actual counts/ratings; materialcomposition is an engineering sensitivity reference, not measured exact auxiliaryboards. 40%barelaminate and combined18%Cu include boardtracks and inductorwindings, so no additional wholeinductors or mountedboard proxy. Use package unit counts derived from actual selected package masses, and documented ceramic/resistor families; retain real preciousmetals without genericZn-as-Sb. Maintain total original regulator allowance and paired complete-control disposal, not invent a source-measured mass reduction. Replace the small unresolved generic mountedcomponent remainders inside existing central/moduleboards by this explicitly identified auxiliary-component analogue at unchanged residual mass; it includes laminate by engineering transfer, and is not evidence that the residual is an actual second fitted board. Their detailed fittedpart inputs remain, no recount. Retain uncertainty as actual-component coveragegaps: transformer/diode/isolationpart ratings,trace metals,laminate layout,thermaldesign,assemblyyield and exact topology. Test zero-to-double additional interface allowance as an explicit coverage sensitivity. Component supplymanufacture is separate from boardassembly2kWh/kg;100%final assemblyretention assumed. No chassis, native inventory mutation or extra EOL on top of currentcompletecontrol treatment.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED PACKAGE-SPECIFIC CONTROL SEMICONDUCTORS, issue57, 2026-10-18. TI manufacturer material-content reports https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=LM5168FQDDARQ1 ; ?opn=TXU0204QPWRQ1 ; ?opn=CC2662R1FTWRGZRQ1 , accessed2026-10-18; TI TIDA020076 fitted BOM and CC2662 WBMS controller guide. Use one explicitly selected first returned material declaration per part, never sum alternative assembly-site tables. LM5168 FlyBuck regulator,TXU0204 logic translator andCC2662 WBMS MCU have distinct die,frame,bonds,mold and plating. Sum constituent rows excluding subtotals to recover declared package mass. Retain actual Zn alloying,Ag attach and Au/Pd plating; no arbitraryZn-for-Sb conversion or global antimony deletion. Sb is not listed in these selected declarations, which is not proof of analyticalzeroSb in all electronics. Purchase fabricated die wafer area from declared Si mass at the270micrometre allocation reference,2330kg/m3 (300micrometre diagnostic alternative; fitted die geometry unverified); no second rawSi charge. Silica-sand supply is an explicit fused-silica proxy with missing fusion/purity energy. Fe uses lowalloy steel proxy, resin uses epoxy/phenolic analogues, elementalP/chlorine feeds are nominal material proxies. Proprietary composition remains unresolved. Package assembly1kWh/kg and100%final retention are engineering assumptions,not suppliermeasured yield or complete semiconductor packaging LCI. Module priorlogic allowances1.5g and0.4g are replaced by oneTXU and oneLM5168 package,consistent with fitted reference parts; released mass remains explicitly unresolved board components. Other actualMCU/isolation packages are still coveragegaps,not proven identical. Central5gMCU allowance becomes oneCC2662 (firstselectedsite) and residual mass,not dozens of fictitious MCU packages. BQ79616 monitor package unchanged. Fixed70g/490g board budgets and their downstream endoflife retained. No motherboard/chassis electronics added. Process service, film,purity,actualsite and unknown-component sensitivity remain necessary; no certifiedexactvehicleBOM claim.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED RESISTOR FUNCTION/MATERIAL REFERENCE, issue56, 2026-10-18. Bourns CR0603 Material Declaration,2022-08-01, https://www.bourns.com/docs/product-mds/cr0603_mds.pdf?sfvrsn=d79410bf_3 (manufacturer indexed declaration; direct download currently errors). Vishay CRCW...C doc28773 https://www.vishay.com/docs/28773/crcwce3.pdf package masses; TI TIDA020076 SLURB87 fitted BOM. Use declared CR0603 1.9339mg classic thick-film composition as a scoped engineering analogue, not a claim of exact Vishay/Yageo paste chemistry. Ceramic1.6618mg=96%alumina/4%silica; conductor0.0447mg=95%Ag/5%glass; film0.0255mg=25%RuO2,40%Ag,15%Pd,20%lead-containingglass; epoxy0.0335mg; NiCr0.0025mg=80%Ni20%Cr; Ni0.0878mg; Sn0.0781mg. Lead-containingglass uses explicit30wt%PbO/70%silica assumption (test0-60%), never alllead. Ordinary conductor glass is flat-glass proxy. 17zero-ohm jumpers use same body/termination but film replaced byAg, a function-based engineering assumption; test alternative pastes rather than claiming analyticallyzeroPd. Retain legitimatePd/Ag/Ru in111nonzero resistors. Ru supplied by existing ZA ruthenium coproduct inventory, not silently substituted byPd; its historical PGM allocation remains unvalidated. RuO2 uses stoichiometric Ru+oxygen and3MJ/kgheat+0.5kWh/kgprocess proxies. 95%known-material retention with matched mixed manufacturing waste,1kWh/kg+5MJ/kg; supplier/plating/printing losses uncertain. Fittedcounts63x0402,21x0603,4x0805,38x1206,2x2010; zero counts1,12,4,0,0. Manufacturer family masses0.65,2,5.5,10mg for firstfour;2010=25.5mg explicit legacy-family engineering mass reference. No unmounted parts. Component mass difference goes to unresolved residual board proxy, preserving70g complete monitorboard; central3g allowance keeps its mass and uses nonzero-family analogue. TerminationSn and assembly solder remain separate. No native/global supplier edits, new EOL or precious-metal credit. Source specific paste variants, resistance dependence, actual Vishay grades, jumper film and2010 mass are coverage/sensitivity gaps.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED CERAMIC-CAPACITOR MATERIAL FAMILIES, issue55, 2026-10-18. YAGEO/KEMET June2026 MCD-Ceramic.pdf Annex1 Class2,Annex2 flex,Annex3 C0G https://yageogroup.com/content/Resource%20Library/Material%20Declaration/MCD-Ceramic.pdf ; TI TIDA020076 fitted BOM SLURB87; KEMET C0402C120J3GACAUTO datasheet1.06mg. Source-family material transfer is an engineering analogue for other manufacturers, not exactpart substitution. Separate BaTiO3 Class2, flexible Ag-epoxy termination and CaZrO3 C0G; do not model all ceramics as barite,allBaTiO3 or universalPd-bearing electrodes. Use declared percase Ni/Cu/Sn/Ag and ceramic masses. Keep miscellaneous composition explicitly unresolved: no inventedzeroPd proof or assignment of all dopants tooneoxide. ActualTi,Murata,TDK part-grade material/yields remain unmeasured; engineer source-family proxies preserving function/classes. Calcine BaCO3+TiO2->BaTiO3+CO2 and CaCO3+ZrO2->CaZrO3+CO2 at nominalpurestoichiometry,3MJ/kgheat+0.5kWh/kg milling assumptions. No orebarite substituted for refinedcarbonate. Componentmanufacture95%retention for knownmaterials with equalmixedsolidwaste,1kWh/kg+5MJ/kgprocessreference; actualpowderprocessing,cofiring/plating losses,water and emissions are gaps. Unknownretainedfraction and its manufacturingloss are not fabricated. Provideroutputs1kg finishedpart includingexplicitunknownmass; knownmaterialcoverage reported rather than normalizedto100%. TI70gmonitorboard has134fittedceramicparts:51Class2 0402,25Class2 0603,5Class2 0805,6Class2 1206,1flex0805,11C0G0402,2C0G0603,33C0G0805.2KEMETC0G0402 parts retain the inherited1.06mg allowance each,other9use1.2mgfamilyreference; exact fitted-part assays remain unverified. Not-fittedparts excluded. Preserveoriginalboardtotalmass by transferringcomponentmass difference to/from its explicitlyunresolvedresidualcomponentproxy; do not normalize allboardingredients. Centralboard2gcapacitor allowance becomesClass2 0603family analogue,stillunvalidated counts. Othergenericboard/passiveinputs remainuntiltheirscopedreferencesaredefined; native suppliers are untouched. Existingassemblysolder remainsseparate fromcomponentterminationSn. Existingcontrol/endoflife massbudgetsunchanged. Retain genuinelegacyPd recipes for otherconsumers and document unresolvedtrace dopants; no globalmetalCFedit or primary-secondaryclaim. Sensitivities90-100%retention,case-specificdesign,ceramicdopants andprecious-metal terminationchoices.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.",
+    "type": "processwithreferenceproduct",
+    "name": "printed circuit board production, battery module control, mounted",
+    "exchanges": [
+      {
+        "name": "printed circuit board production, battery module control, mounted",
+        "amount": 1,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "reference product": "printed circuit board, battery module control, mounted",
+        "product": "printed circuit board, battery module control, mounted"
+      },
+      {
+        "name": "market for glass fibre",
+        "amount": 0.26706766917293234,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "glass fibre",
+        "product": "glass fibre"
+      },
+      {
+        "name": "market for epoxy resin, liquid",
+        "amount": 0.1783308270676692,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "epoxy resin, liquid",
+        "product": "epoxy resin, liquid"
+      },
+      {
+        "name": "market for copper, cathode",
+        "amount": 0.1414736842105263,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "copper, cathode",
+        "product": "copper, cathode"
+      },
+      {
+        "name": "market for nickel, class 1",
+        "amount": 6.357142857142857e-05,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "nickel, class 1",
+        "product": "nickel, class 1"
+      },
+      {
+        "name": "market for gold",
+        "amount": 1.3785714285714285e-06,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "gold",
+        "product": "gold"
+      },
+      {
+        "name": "market for waste plastic, mixture",
+        "amount": -0.022255639097744338,
+        "location": "CH",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "waste plastic, mixture",
+        "product": "waste plastic, mixture"
+      },
+      {
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "amount": -0.0070736842105263075,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "copper scrap, sorted, pressed",
+        "product": "copper scrap, sorted, pressed"
+      },
+      {
+        "name": "battery monitoring integrated circuit production, copper wire bonding",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "battery monitoring integrated circuit, copper wire bonding",
+        "product": "battery monitoring integrated circuit, copper wire bonding"
+      },
+      {
+        "name": "connector production, battery control board, plated contacts",
+        "amount": 0.2857142857142857,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "connector, battery control board, plated contacts",
+        "product": "connector, battery control board, plated contacts"
+      },
+      {
+        "name": "semiconductor package production, txu0204qpwrq1",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "semiconductor package, TXU0204QPWRQ1",
+        "product": "integrated circuit, logic type"
+      },
+      {
+        "name": "market for inductor, miniature radio frequency chip",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "inductor, miniature radio frequency chip",
+        "product": "inductor, miniature radio frequency chip"
+      },
+      {
+        "name": "market for diode, glass-, for surface-mounting",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "diode, glass-, for surface-mounting",
+        "product": "diode, glass-, for surface-mounting"
+      },
+      {
+        "name": "semiconductor package production, lm5168fqddarq1",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "semiconductor package, LM5168FQDDARQ1",
+        "product": "integrated circuit, logic type"
+      },
+      {
+        "name": "capacitor assembly production, battery monitoring board, 134 capacitors",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "capacitor assembly, battery monitoring board, 134 capacitors",
+        "product": "capacitor, for surface-mounting"
+      },
+      {
+        "name": "resistor assembly production, battery monitoring board, 128 resistors",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "resistor assembly, battery monitoring board, 128 resistors",
+        "product": "resistor, surface-mounted"
+      },
+      {
+        "name": "market for solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry"
+      },
+      {
+        "name": "battery auxiliary interface and power conditioning unit production",
+        "amount": 0.08448289937142849,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "battery auxiliary interface and power conditioning unit",
+        "product": "printed wiring board, surface mounted, unspecified, Pb free"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 15.714285714285714,
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage",
+        "product": "electricity, medium voltage"
+      }
+    ],
+    "worksheet name": "Battery - Li-S",
+    "database": "batteries"
+  },
+  "after_board_snapshot": {
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "printed circuit board, battery module control, mounted",
+    "unit": "kilogram",
+    "source": "TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641.",
+    "comment": "APPROVED MOLEX CONNECTOR MATERIAL/REJECT-FATE REFERENCE, 2026-10-27. Use the qualified five-Molex-header, 36-contact, 8.594 g cohort material reference, scaled by mass to the unchanged 20 g/module-board and 100 g/central-board allowances. This material reference excludes the additional Samtec geometric estimate; it does not establish that a Samtec header is absent from fitted hardware or certify a complete header census. Corrected plating-volume bookkeeping subtracts coating volume from finished-contact volume before applying alloy density, then closes the housing residual. Retain the thin-layer approximation, geometry, alloy proportions, plating thickness and 70/30 nylon/glass housing as engineering assumptions. The 95% net material-handling reference is not measured deposition efficiency or manufacturing loss. Nominal rejects remain 0.05263157894736836 kg/kg finished connector; composition, physical destination and treatment burdens are unassigned. Remove the unsupported hazardous-waste incineration purchase without claiming zero physical loss, zero impact or environmental improvement. Retain 1 kWh/kg assembly, all downstream allowances, board masses and existing retirement ownership, with no extra component retirement or recovery credit. Both original source declarations stay 3.9. This qualification supersedes older Samtec-inclusive material and reject-treatment descriptions retained below as history.\n\nAPPROVED 39-PART CAPACITOR FAMILY CORRECTION, 2026-10-27. Reclassify four 0402, two 0603 and thirty-three 0805 fitted parts from Class 2 to C0G. Preserve 134 capacitors and the 70 g monitor-board reference. Capacitor subtotal changes from 0.00127361 to 0.00098098 kg per board; the 0.00029263 kg difference increases the existing unresolved-component coverage allowance. This is proxy coverage bookkeeping, not additional measured interface hardware or laminate. The residual proxy purchase increases by 0.00029263/0.07 kg/kg board; all other parent doses, assembly and retirement stay unchanged. Two KEMET 0402 parts retain their inherited 1.06 mg allowance without an exact-part mass claim. Family compositions are cross-manufacturer engineering proxies; actual fitted-part assays, unknown dopants, 95% known-feed retention, mixed-waste treatment and process utilities remain qualified assumptions. Unknown retained material is not renormalized into measured ingredients. New C0G 0603/0805 helpers buy the existing calcium-zirconate precursor once; no extra populated board or packaged component is purchased. Technosphere and biosphere source declarations both remain 3.9. This correction supersedes older family/count descriptions retained below as history.\n\nNomenclature revision, 2026-10-19. Former activity name: battery module control board, engineering material reference. Former reference product: battery module control board, engineering material reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED BATTERY CONNECTOR MATERIAL/PLATING REFERENCE, issue68,2026-10-18. TI TIDA020076 SLURB87 fittedBOM:sixheaders,46pins. Molex manufacturer705510038(4pin,1.023g),705550045(11pin,2.564g),705550040(6pin,1.420g),https://www.molex.com/en-us/products/part-detail/705550045 ; matingAu0.381um,tailSn1.905um,brass/phosphorbronze,highTthermoplastic. SamtecFTSH-105-01-F-DV-K,10pin,LCP/phosphorbronze,3microinch=0.0762umselectiveAu,matteSn: https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-mkt.pdf . Replace computerperipheralbusconnectors only in theexisting module/centralcontrolboards by a scopedcount-weightedheaderfamily. Actualfittedcohort=2x4pinMolex+2x11pinMolex+1x6pinMolex+1x10pinSamtec,not not-fittedconnectors. This defines referencecomposition; preserve20g/moduleboard and100g/centralboardconnector allowances because board-specific completeharness/matingconnectorcounts are unverified. These doses implyfractionalcohort equivalents,NOT a claimof sixheaders totalling20g or that thecentralboard has theTI layout. Thus materialproxy is improved while exactfullconnectorquantity remains a sourcegap. ForMolex36contacts use0.64mmsquaresection*10mmdevelopedlength,3mmmatingzone and3.30mmtail as explicitgeometryassumptions,not dimensionallycompleteCAD. Finishedmassusesmanufacturerweights; subtractAu/Ni/Snplate fromgeometricbulkmetal beforealloysplit,remainingmasshousing. Metalbaseengineering50/50brassCu70Zn30 andphosphorbronzeCu95.8Sn4P0.2; actualtwoallowedalloys proportions unknown. Samtecgeometry10x0.4mmsquare*(3.05+2.24+1)mmcontacts,6.2x3.43x2.24mmhousingminuspinholes;terminaldensity8800kg/m3,housing1400kg/m3 assumptions. Samtecactualnetmass unavailable; include calculatedhousing/contact/platingmass,not distributorpackagingweight. Nickelunderplate1.27um is a declaredengineeringassumption forbothfamilies,test0.5-2.5um; SamtectailSn1.905um borrowedMolexreference. Preserve trueAu,Ni,Sn,Cu,Zn,P; no zeroAu orallbulkmetal-as-gold. PA6/glassfiber70/30 is an explicitheat-resistantthermoplastic supplyproxy forMolex andLCP housing,not actualresinchemistry; resinflame-retardants andtraceadditives unresolved. Knownmaterialmanufacture95%retention withmatchedmixedwaste,1kWh/kgassemblyreference. Sensitivitycontactlength6-14mm,platedlength1-4mm,sourcegradevariantAu0.0762-0.762um,connectorallowance0.5-2x. No additionalboardarea,wholeelectronics orharness inventorydoublecount. Fixedboard/controlmass andexistingcompletecontrolEOL unchanged. These are actual referenceboardparts withunverifiedvehiclequalification,not certifiedautomotiveBOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED AUXILIARY BATTERY BOARD BOUNDARY, issue58, 2026-10-18. TI TIDA020076 SLURB87 component classes; TI package declarations and KEMET/Bourns references documented in issues55-57; Wickerts2024 DOI10.1021/acssuschemeng.4c01782.s001 and Ellingsen2014 DOI10.1111/jiec.12072 regulator/board allowances. Additional interface BOM below is explicitly engineered,not manufacturermeasured. Replace the remaining0.84-1.03kg/reference generic mountedTHT regulator allowance by a scoped auxiliarypower/interface assembly, distinct from16x70g modulemonitorboards and the490g centralboard. No second fullBMS,centralprocessor,monitorASIC,tractionconverter or duplicated board area is added. Onekg finishedreference has glass0.24,epoxy0.16,copper0.18,ferrite0.15,Alheatspreaders0.10,nylonconnectors/insulation0.09,solder0.03,Class2capacitors0.025,nonzeroresistors0.005,logicpackages0.01 and regulatorpackages0.01kg. These are explicit function-level mass allowances with unknown actual counts/ratings; materialcomposition is an engineering sensitivity reference, not measured exact auxiliaryboards. 40%barelaminate and combined18%Cu include boardtracks and inductorwindings, so no additional wholeinductors or mountedboard proxy. Use package unit counts derived from actual selected package masses, and documented ceramic/resistor families; retain real preciousmetals without genericZn-as-Sb. Maintain total original regulator allowance and paired complete-control disposal, not invent a source-measured mass reduction. Replace the small unresolved generic mountedcomponent remainders inside existing central/moduleboards by this explicitly identified auxiliary-component analogue at unchanged residual mass; it includes laminate by engineering transfer, and is not evidence that the residual is an actual second fitted board. Their detailed fittedpart inputs remain, no recount. Retain uncertainty as actual-component coveragegaps: transformer/diode/isolationpart ratings,trace metals,laminate layout,thermaldesign,assemblyyield and exact topology. Test zero-to-double additional interface allowance as an explicit coverage sensitivity. Component supplymanufacture is separate from boardassembly2kWh/kg;100%final assemblyretention assumed. No chassis, native inventory mutation or extra EOL on top of currentcompletecontrol treatment.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED PACKAGE-SPECIFIC CONTROL SEMICONDUCTORS, issue57, 2026-10-18. TI manufacturer material-content reports https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=LM5168FQDDARQ1 ; ?opn=TXU0204QPWRQ1 ; ?opn=CC2662R1FTWRGZRQ1 , accessed2026-10-18; TI TIDA020076 fitted BOM and CC2662 WBMS controller guide. Use one explicitly selected first returned material declaration per part, never sum alternative assembly-site tables. LM5168 FlyBuck regulator,TXU0204 logic translator andCC2662 WBMS MCU have distinct die,frame,bonds,mold and plating. Sum constituent rows excluding subtotals to recover declared package mass. Retain actual Zn alloying,Ag attach and Au/Pd plating; no arbitraryZn-for-Sb conversion or global antimony deletion. Sb is not listed in these selected declarations, which is not proof of analyticalzeroSb in all electronics. Purchase fabricated die wafer area from declared Si mass at the270micrometre allocation reference,2330kg/m3 (300micrometre diagnostic alternative; fitted die geometry unverified); no second rawSi charge. Silica-sand supply is an explicit fused-silica proxy with missing fusion/purity energy. Fe uses lowalloy steel proxy, resin uses epoxy/phenolic analogues, elementalP/chlorine feeds are nominal material proxies. Proprietary composition remains unresolved. Package assembly1kWh/kg and100%final retention are engineering assumptions,not suppliermeasured yield or complete semiconductor packaging LCI. Module priorlogic allowances1.5g and0.4g are replaced by oneTXU and oneLM5168 package,consistent with fitted reference parts; released mass remains explicitly unresolved board components. Other actualMCU/isolation packages are still coveragegaps,not proven identical. Central5gMCU allowance becomes oneCC2662 (firstselectedsite) and residual mass,not dozens of fictitious MCU packages. BQ79616 monitor package unchanged. Fixed70g/490g board budgets and their downstream endoflife retained. No motherboard/chassis electronics added. Process service, film,purity,actualsite and unknown-component sensitivity remain necessary; no certifiedexactvehicleBOM claim.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED RESISTOR FUNCTION/MATERIAL REFERENCE, issue56, 2026-10-18. Bourns CR0603 Material Declaration,2022-08-01, https://www.bourns.com/docs/product-mds/cr0603_mds.pdf?sfvrsn=d79410bf_3 (manufacturer indexed declaration; direct download currently errors). Vishay CRCW...C doc28773 https://www.vishay.com/docs/28773/crcwce3.pdf package masses; TI TIDA020076 SLURB87 fitted BOM. Use declared CR0603 1.9339mg classic thick-film composition as a scoped engineering analogue, not a claim of exact Vishay/Yageo paste chemistry. Ceramic1.6618mg=96%alumina/4%silica; conductor0.0447mg=95%Ag/5%glass; film0.0255mg=25%RuO2,40%Ag,15%Pd,20%lead-containingglass; epoxy0.0335mg; NiCr0.0025mg=80%Ni20%Cr; Ni0.0878mg; Sn0.0781mg. Lead-containingglass uses explicit30wt%PbO/70%silica assumption (test0-60%), never alllead. Ordinary conductor glass is flat-glass proxy. 17zero-ohm jumpers use same body/termination but film replaced byAg, a function-based engineering assumption; test alternative pastes rather than claiming analyticallyzeroPd. Retain legitimatePd/Ag/Ru in111nonzero resistors. Ru supplied by existing ZA ruthenium coproduct inventory, not silently substituted byPd; its historical PGM allocation remains unvalidated. RuO2 uses stoichiometric Ru+oxygen and3MJ/kgheat+0.5kWh/kgprocess proxies. 95%known-material retention with matched mixed manufacturing waste,1kWh/kg+5MJ/kg; supplier/plating/printing losses uncertain. Fittedcounts63x0402,21x0603,4x0805,38x1206,2x2010; zero counts1,12,4,0,0. Manufacturer family masses0.65,2,5.5,10mg for firstfour;2010=25.5mg explicit legacy-family engineering mass reference. No unmounted parts. Component mass difference goes to unresolved residual board proxy, preserving70g complete monitorboard; central3g allowance keeps its mass and uses nonzero-family analogue. TerminationSn and assembly solder remain separate. No native/global supplier edits, new EOL or precious-metal credit. Source specific paste variants, resistance dependence, actual Vishay grades, jumper film and2010 mass are coverage/sensitivity gaps.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED CERAMIC-CAPACITOR MATERIAL FAMILIES, issue55, 2026-10-18. YAGEO/KEMET June2026 MCD-Ceramic.pdf Annex1 Class2,Annex2 flex,Annex3 C0G https://yageogroup.com/content/Resource%20Library/Material%20Declaration/MCD-Ceramic.pdf ; TI TIDA020076 fitted BOM SLURB87; KEMET C0402C120J3GACAUTO datasheet1.06mg. Source-family material transfer is an engineering analogue for other manufacturers, not exactpart substitution. Separate BaTiO3 Class2, flexible Ag-epoxy termination and CaZrO3 C0G; do not model all ceramics as barite,allBaTiO3 or universalPd-bearing electrodes. Use declared percase Ni/Cu/Sn/Ag and ceramic masses. Keep miscellaneous composition explicitly unresolved: no inventedzeroPd proof or assignment of all dopants tooneoxide. ActualTi,Murata,TDK part-grade material/yields remain unmeasured; engineer source-family proxies preserving function/classes. Calcine BaCO3+TiO2->BaTiO3+CO2 and CaCO3+ZrO2->CaZrO3+CO2 at nominalpurestoichiometry,3MJ/kgheat+0.5kWh/kg milling assumptions. No orebarite substituted for refinedcarbonate. Componentmanufacture95%retention for knownmaterials with equalmixedsolidwaste,1kWh/kg+5MJ/kgprocessreference; actualpowderprocessing,cofiring/plating losses,water and emissions are gaps. Unknownretainedfraction and its manufacturingloss are not fabricated. Provideroutputs1kg finishedpart includingexplicitunknownmass; knownmaterialcoverage reported rather than normalizedto100%. TI70gmonitorboard has134fittedceramicparts:51Class2 0402,25Class2 0603,5Class2 0805,6Class2 1206,1flex0805,11C0G0402,2C0G0603,33C0G0805.2KEMETC0G0402 parts retain the inherited1.06mg allowance each,other9use1.2mgfamilyreference; exact fitted-part assays remain unverified. Not-fittedparts excluded. Preserveoriginalboardtotalmass by transferringcomponentmass difference to/from its explicitlyunresolvedresidualcomponentproxy; do not normalize allboardingredients. Centralboard2gcapacitor allowance becomesClass2 0603family analogue,stillunvalidated counts. Othergenericboard/passiveinputs remainuntiltheirscopedreferencesaredefined; native suppliers are untouched. Existingassemblysolder remainsseparate fromcomponentterminationSn. Existingcontrol/endoflife massbudgetsunchanged. Retain genuinelegacyPd recipes for otherconsumers and document unresolvedtrace dopants; no globalmetalCFedit or primary-secondaryclaim. Sensitivities90-100%retention,case-specificdesign,ceramicdopants andprecious-metal terminationchoices.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.",
+    "type": "processwithreferenceproduct",
+    "name": "printed circuit board production, battery module control, mounted",
+    "exchanges": [
+      {
+        "name": "printed circuit board production, battery module control, mounted",
+        "amount": 1,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "reference product": "printed circuit board, battery module control, mounted",
+        "product": "printed circuit board, battery module control, mounted"
+      },
+      {
+        "name": "market for glass fibre",
+        "amount": 0.26706766917293234,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "glass fibre",
+        "product": "glass fibre"
+      },
+      {
+        "name": "market for epoxy resin, liquid",
+        "amount": 0.1783308270676692,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "epoxy resin, liquid",
+        "product": "epoxy resin, liquid"
+      },
+      {
+        "name": "market for copper, cathode",
+        "amount": 0.1414736842105263,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "copper, cathode",
+        "product": "copper, cathode"
+      },
+      {
+        "name": "market for nickel, class 1",
+        "amount": 6.357142857142857e-05,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "nickel, class 1",
+        "product": "nickel, class 1"
+      },
+      {
+        "name": "market for gold",
+        "amount": 1.3785714285714285e-06,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "gold",
+        "product": "gold"
+      },
+      {
+        "name": "market for waste plastic, mixture",
+        "amount": -0.022255639097744338,
+        "location": "CH",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "waste plastic, mixture",
+        "product": "waste plastic, mixture"
+      },
+      {
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "amount": -0.0070736842105263075,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "copper scrap, sorted, pressed",
+        "product": "copper scrap, sorted, pressed"
+      },
+      {
+        "name": "battery monitoring integrated circuit production, copper wire bonding",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "battery monitoring integrated circuit, copper wire bonding",
+        "product": "battery monitoring integrated circuit, copper wire bonding"
+      },
+      {
+        "name": "connector production, battery control board, plated contacts",
+        "amount": 0.2857142857142857,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "connector, battery control board, plated contacts",
+        "product": "connector, battery control board, plated contacts"
+      },
+      {
+        "name": "semiconductor package production, txu0204qpwrq1",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "semiconductor package, TXU0204QPWRQ1",
+        "product": "integrated circuit, logic type"
+      },
+      {
+        "name": "market for inductor, miniature radio frequency chip",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "inductor, miniature radio frequency chip",
+        "product": "inductor, miniature radio frequency chip"
+      },
+      {
+        "name": "market for diode, glass-, for surface-mounting",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "diode, glass-, for surface-mounting",
+        "product": "diode, glass-, for surface-mounting"
+      },
+      {
+        "name": "semiconductor package production, lm5168fqddarq1",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "semiconductor package, LM5168FQDDARQ1",
+        "product": "integrated circuit, logic type"
+      },
+      {
+        "name": "capacitor assembly production, battery monitoring board, 134 capacitors",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "capacitor assembly, battery monitoring board, 134 capacitors",
+        "product": "capacitor, for surface-mounting"
+      },
+      {
+        "name": "resistor assembly production, battery monitoring board, 128 resistors",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "reference product": "resistor assembly, battery monitoring board, 128 resistors",
+        "product": "resistor, surface-mounted"
+      },
+      {
+        "name": "market for solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry"
+      },
+      {
+        "name": "battery auxiliary interface and power conditioning unit production",
+        "amount": 0.07424213682857134,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "battery auxiliary interface and power conditioning unit",
+        "product": "printed wiring board, surface mounted, unspecified, Pb free"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 15.714285714285714,
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage",
+        "product": "electricity, medium voltage"
+      },
+      {
+        "name": "semiconductor package production, tps3436bdadaddfrq1",
+        "reference product": "semiconductor package, TPS3436BDADADDFRQ1",
+        "product": "semiconductor package, TPS3436BDADADDFRQ1",
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "amount": 14.285714285714285
+      },
+      {
+        "name": "semiconductor package production, tps71533qdckrq1",
+        "reference product": "semiconductor package, TPS71533QDCKRQ1",
+        "product": "semiconductor package, TPS71533QDCKRQ1",
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "amount": 14.285714285714285
+      },
+      {
+        "name": "semiconductor package production, tpd6e004rser",
+        "reference product": "semiconductor package, TPD6E004RSER",
+        "product": "semiconductor package, TPD6E004RSER",
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "amount": 14.285714285714285
+      },
+      {
+        "name": "semiconductor package production, iso7741fqdwrq1",
+        "reference product": "semiconductor package, ISO7741FQDWRQ1",
+        "product": "semiconductor package, ISO7741FQDWRQ1",
+        "location": "GLO",
+        "unit": "unit",
+        "type": "technosphere",
+        "amount": 14.285714285714285
+      }
+    ],
+    "worksheet name": "Battery - Li-S",
+    "database": "batteries"
+  },
+  "CLIC_board_snapshot": {
+    "name": "printed circuit board production, battery module control, mounted",
+    "type": "processwithreferenceproduct",
+    "unit": "kilogram",
+    "source": "TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641.",
+    "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nFour further fitted packages at one each/module; then-current residual recomputed; standalone 40% native bare board and 60% components; embedded four-material residual without laminate or known components; CC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here. Embedded residual2kWh/kg is unmeasured component preparation, separate from existing board assembly. The70g/490g budgets and paired downstream whole-board retirement remain unchanged.\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE CONTEXT-SPECIFIC RESIDUAL SENSITIVITY. Replace full-board proxy inside an already-structured board by a normalized Cu/ferrite/Al/nylon material-coverage mix, excluding its40%laminate and already enumerated capacitor/resistor/logic/regulator/solder classes. This is a new engineering assumption, NOT an identified finished-component BOM or proof that missing Au/Ag/Sb, isolation, MCU, winding/connector manufacture and process emissions are zero. Keep exact residual mass, known fitted purchases, board mass, original board structure/assembly and existing retirement.\n\nINACTIVE SOURCE-COVERAGE ADDENDUM: preserve approved C12539capacitor corrections,134capacitors/128resistors and70g board. Four existing fitted source packages become explicit; their full declared mass, including unidentified fractions, is removed from the residual allowance. CC2662R1FRGZT and twoESD2CAN24DBZR remain unquantified; do not silently substitute the different central MCU or turn absent declarations into zero burdens. The BQ79718 source monitor versus existing BQ79616 material analogue remains a separate known limitation.\n\nC125 refinement preview, not publication authority. All 134 fitted TI BOM capacitors are classified by dielectric AND case. Correct 39 Class2-to-C0G misclassifications: four0402, two0603 and thirty-three0805. Family masses and compositions are cross-manufacturer engineering transfers, not measured Murata/TDK parts. Preserve the inherited1.06mg allowance for two KEMET0402 parts without claiming that a generic datasheet verifies exact part mass. The70g monitor-board basis is unchanged; a lower capacitor subtotal only increases the explicitly unresolved interface allowance, not measured laminate or invented component chemistry. Preserve other doses, assembly and retirement; do not purchase an extra populated board. The95% known-feed retention, mixed-waste proxy, utilities, unknown dopants, source rights and industrial coverage remain qualifications. No open-publication clearance, current CLIC binding or performance equivalence is certified.\n\nNomenclature revision, 2026-10-19. Former activity name: battery module control board, engineering material reference. Former reference product: battery module control board, engineering material reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED BATTERY CONNECTOR MATERIAL/PLATING REFERENCE, issue68,2026-10-18. TI TIDA020076 SLURB87 fittedBOM:sixheaders,46pins. Molex manufacturer705510038(4pin,1.023g),705550045(11pin,2.564g),705550040(6pin,1.420g),https://www.molex.com/en-us/products/part-detail/705550045 ; matingAu0.381um,tailSn1.905um,brass/phosphorbronze,highTthermoplastic. SamtecFTSH-105-01-F-DV-K,10pin,LCP/phosphorbronze,3microinch=0.0762umselectiveAu,matteSn: https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-mkt.pdf . Replace computerperipheralbusconnectors only in theexisting module/centralcontrolboards by a scopedcount-weightedheaderfamily. Actualfittedcohort=2x4pinMolex+2x11pinMolex+1x6pinMolex+1x10pinSamtec,not not-fittedconnectors. This defines referencecomposition; preserve20g/moduleboard and100g/centralboardconnector allowances because board-specific completeharness/matingconnectorcounts are unverified. These doses implyfractionalcohort equivalents,NOT a claimof sixheaders totalling20g or that thecentralboard has theTI layout. Thus materialproxy is improved while exactfullconnectorquantity remains a sourcegap. ForMolex36contacts use0.64mmsquaresection*10mmdevelopedlength,3mmmatingzone and3.30mmtail as explicitgeometryassumptions,not dimensionallycompleteCAD. Finishedmassusesmanufacturerweights; subtractAu/Ni/Snplate fromgeometricbulkmetal beforealloysplit,remainingmasshousing. Metalbaseengineering50/50brassCu70Zn30 andphosphorbronzeCu95.8Sn4P0.2; actualtwoallowedalloys proportions unknown. Samtecgeometry10x0.4mmsquare*(3.05+2.24+1)mmcontacts,6.2x3.43x2.24mmhousingminuspinholes;terminaldensity8800kg/m3,housing1400kg/m3 assumptions. Samtecactualnetmass unavailable; include calculatedhousing/contact/platingmass,not distributorpackagingweight. Nickelunderplate1.27um is a declaredengineeringassumption forbothfamilies,test0.5-2.5um; SamtectailSn1.905um borrowedMolexreference. Preserve trueAu,Ni,Sn,Cu,Zn,P; no zeroAu orallbulkmetal-as-gold. PA6/glassfiber70/30 is an explicitheat-resistantthermoplastic supplyproxy forMolex andLCP housing,not actualresinchemistry; resinflame-retardants andtraceadditives unresolved. Knownmaterialmanufacture95%retention withmatchedmixedwaste,1kWh/kgassemblyreference. Sensitivitycontactlength6-14mm,platedlength1-4mm,sourcegradevariantAu0.0762-0.762um,connectorallowance0.5-2x. No additionalboardarea,wholeelectronics orharness inventorydoublecount. Fixedboard/controlmass andexistingcompletecontrolEOL unchanged. These are actual referenceboardparts withunverifiedvehiclequalification,not certifiedautomotiveBOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED AUXILIARY BATTERY BOARD BOUNDARY, issue58, 2026-10-18. TI TIDA020076 SLURB87 component classes; TI package declarations and KEMET/Bourns references documented in issues55-57; Wickerts2024 DOI10.1021/acssuschemeng.4c01782.s001 and Ellingsen2014 DOI10.1111/jiec.12072 regulator/board allowances. Additional interface BOM below is explicitly engineered,not manufacturermeasured. Replace the remaining0.84-1.03kg/reference generic mountedTHT regulator allowance by a scoped auxiliarypower/interface assembly, distinct from16x70g modulemonitorboards and the490g centralboard. No second fullBMS,centralprocessor,monitorASIC,tractionconverter or duplicated board area is added. Onekg finishedreference has glass0.24,epoxy0.16,copper0.18,ferrite0.15,Alheatspreaders0.10,nylonconnectors/insulation0.09,solder0.03,Class2capacitors0.025,nonzeroresistors0.005,logicpackages0.01 and regulatorpackages0.01kg. These are explicit function-level mass allowances with unknown actual counts/ratings; materialcomposition is an engineering sensitivity reference, not measured exact auxiliaryboards. 40%barelaminate and combined18%Cu include boardtracks and inductorwindings, so no additional wholeinductors or mountedboard proxy. Use package unit counts derived from actual selected package masses, and documented ceramic/resistor families; retain real preciousmetals without genericZn-as-Sb. Maintain total original regulator allowance and paired complete-control disposal, not invent a source-measured mass reduction. Replace the small unresolved generic mountedcomponent remainders inside existing central/moduleboards by this explicitly identified auxiliary-component analogue at unchanged residual mass; it includes laminate by engineering transfer, and is not evidence that the residual is an actual second fitted board. Their detailed fittedpart inputs remain, no recount. Retain uncertainty as actual-component coveragegaps: transformer/diode/isolationpart ratings,trace metals,laminate layout,thermaldesign,assemblyyield and exact topology. Test zero-to-double additional interface allowance as an explicit coverage sensitivity. Component supplymanufacture is separate from boardassembly2kWh/kg;100%final assemblyretention assumed. No chassis, native inventory mutation or extra EOL on top of currentcompletecontrol treatment.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED PACKAGE-SPECIFIC CONTROL SEMICONDUCTORS, issue57, 2026-10-18. TI manufacturer material-content reports https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=LM5168FQDDARQ1 ; ?opn=TXU0204QPWRQ1 ; ?opn=CC2662R1FTWRGZRQ1 , accessed2026-10-18; TI TIDA020076 fitted BOM and CC2662 WBMS controller guide. Use one explicitly selected first returned material declaration per part, never sum alternative assembly-site tables. LM5168 FlyBuck regulator,TXU0204 logic translator andCC2662 WBMS MCU have distinct die,frame,bonds,mold and plating. Sum constituent rows excluding subtotals to recover declared package mass. Retain actual Zn alloying,Ag attach and Au/Pd plating; no arbitraryZn-for-Sb conversion or global antimony deletion. Sb is not listed in these selected declarations, which is not proof of analyticalzeroSb in all electronics. Purchase fabricated die wafer area from declared Si mass at explicit300micrometrethickness,2330kg/m3; no second rawSi charge. Silica-sand supply is an explicit fused-silica proxy with missing fusion/purity energy. Fe uses lowalloy steel proxy, resin uses epoxy/phenolic analogues, elementalP/chlorine feeds are nominal material proxies. Proprietary composition remains unresolved. Package assembly1kWh/kg and100%final retention are engineering assumptions,not suppliermeasured yield or complete semiconductor packaging LCI. Module priorlogic allowances1.5g and0.4g are replaced by oneTXU and oneLM5168 package,consistent with fitted reference parts; released mass remains explicitly unresolved board components. Other actualMCU/isolation packages are still coveragegaps,not proven identical. Central5gMCU allowance becomes oneCC2662 (firstselectedsite) and residual mass,not dozens of fictitious MCU packages. BQ79616 monitor package unchanged. Fixed70g/490g board budgets and their downstream endoflife retained. No motherboard/chassis electronics added. Process service, film,purity,actualsite and unknown-component sensitivity remain necessary; no certifiedexactvehicleBOM claim.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED RESISTOR FUNCTION/MATERIAL REFERENCE, issue56, 2026-10-18. Bourns CR0603 Material Declaration,2022-08-01, https://www.bourns.com/docs/product-mds/cr0603_mds.pdf?sfvrsn=d79410bf_3 (manufacturer indexed declaration; direct download currently errors). Vishay CRCW...C doc28773 https://www.vishay.com/docs/28773/crcwce3.pdf package masses; TI TIDA020076 SLURB87 fitted BOM. Use declared CR0603 1.9339mg classic thick-film composition as a scoped engineering analogue, not a claim of exact Vishay/Yageo paste chemistry. Ceramic1.6618mg=96%alumina/4%silica; conductor0.0447mg=95%Ag/5%glass; film0.0255mg=25%RuO2,40%Ag,15%Pd,20%lead-containingglass; epoxy0.0335mg; NiCr0.0025mg=80%Ni20%Cr; Ni0.0878mg; Sn0.0781mg. Lead-containingglass uses explicit30wt%PbO/70%silica assumption (test0-60%), never alllead. Ordinary conductor glass is flat-glass proxy. 17zero-ohm jumpers use same body/termination but film replaced byAg, a function-based engineering assumption; test alternative pastes rather than claiming analyticallyzeroPd. Retain legitimatePd/Ag/Ru in111nonzero resistors. Ru supplied by existing ZA ruthenium coproduct inventory, not silently substituted byPd; its historical PGM allocation remains unvalidated. RuO2 uses stoichiometric Ru+oxygen and3MJ/kgheat+0.5kWh/kgprocess proxies. 95%known-material retention with matched mixed manufacturing waste,1kWh/kg+5MJ/kg; supplier/plating/printing losses uncertain. Fittedcounts63x0402,21x0603,4x0805,38x1206,2x2010; zero counts1,12,4,0,0. Manufacturer family masses0.65,2,5.5,10mg for firstfour;2010=25.5mg explicit legacy-family engineering mass reference. No unmounted parts. Component mass difference goes to unresolved residual board proxy, preserving70g complete monitorboard; central3g allowance keeps its mass and uses nonzero-family analogue. TerminationSn and assembly solder remain separate. No native/global supplier edits, new EOL or precious-metal credit. Source specific paste variants, resistance dependence, actual Vishay grades, jumper film and2010 mass are coverage/sensitivity gaps.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED CERAMIC-CAPACITOR MATERIAL FAMILIES, issue55, 2026-10-18. YAGEO/KEMET June2026 MCD-Ceramic.pdf Annex1 Class2,Annex2 flex,Annex3 C0G https://yageogroup.com/content/Resource%20Library/Material%20Declaration/MCD-Ceramic.pdf ; TI TIDA020076 fitted BOM SLURB87; KEMET C0402C120J3GACAUTO datasheet1.06mg. Source-family material transfer is an engineering analogue for other manufacturers, not exactpart substitution. Separate BaTiO3 Class2, flexible Ag-epoxy termination and CaZrO3 C0G; do not model all ceramics as barite,allBaTiO3 or universalPd-bearing electrodes. Use declared percase Ni/Cu/Sn/Ag and ceramic masses. Keep miscellaneous composition explicitly unresolved: no inventedzeroPd proof or assignment of all dopants tooneoxide. ActualTi,Murata,TDK part-grade material/yields remain unmeasured; engineer source-family proxies preserving function/classes. Calcine BaCO3+TiO2->BaTiO3+CO2 and CaCO3+ZrO2->CaZrO3+CO2 at nominalpurestoichiometry,3MJ/kgheat+0.5kWh/kg milling assumptions. No orebarite substituted for refinedcarbonate. Componentmanufacture95%retention for knownmaterials with equalmixedsolidwaste,1kWh/kg+5MJ/kgprocessreference; actualpowderprocessing,cofiring/plating losses,water and emissions are gaps. Unknownretainedfraction and its manufacturingloss are not fabricated. Provideroutputs1kg finishedpart includingexplicitunknownmass; knownmaterialcoverage reported rather than normalizedto100%. TI70gmonitorboard has134fittedceramicparts:55Class2 0402,27Class2 0603,38Class2 0805,6Class2 1206,1flex0805,7C0G0402.2KEMETC0G parts use1.06mg each,other5use1.2mgfamilyreference. Not-fittedparts excluded. Preserveoriginalboardtotalmass by transferringcomponentmass difference to/from its explicitlyunresolvedresidualcomponentproxy; do not normalize allboardingredients. Centralboard2gcapacitor allowance becomesClass2 0603family analogue,stillunvalidated counts. Othergenericboard/passiveinputs remainuntiltheirscopedreferencesaredefined; native suppliers are untouched. Existingassemblysolder remainsseparate fromcomponentterminationSn. Existingcontrol/endoflife massbudgetsunchanged. Retain genuinelegacyPd recipes for otherconsumers and document unresolvedtrace dopants; no globalmetalCFedit or primary-secondaryclaim. Sensitivities90-100%retention,case-specificdesign,ceramicdopants andprecious-metal terminationchoices.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy300um2330kg/m3 includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.",
+    "location": "GLO",
+    "exchanges": [
+      {
+        "name": "printed circuit board production, battery module control, mounted",
+        "type": "production",
+        "unit": "kilogram",
+        "amount": 1,
+        "location": "GLO",
+        "reference product": "printed circuit board, battery module control, mounted"
+      },
+      {
+        "name": "market for glass fibre",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.26706766917293234,
+        "location": "GLO",
+        "reference product": "glass fibre"
+      },
+      {
+        "name": "market for epoxy resin, liquid",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.1783308270676692,
+        "location": "RER",
+        "reference product": "epoxy resin, liquid"
+      },
+      {
+        "name": "market for copper, cathode",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.1414736842105263,
+        "location": "GLO",
+        "reference product": "copper, cathode"
+      },
+      {
+        "name": "market for nickel, class 1",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 6.357142857142857e-05,
+        "location": "GLO",
+        "reference product": "nickel, class 1"
+      },
+      {
+        "name": "market for gold",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 1.3785714285714285e-06,
+        "location": "GLO",
+        "reference product": "gold"
+      },
+      {
+        "name": "market for waste plastic, mixture",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": -0.022255639097744338,
+        "location": "CH",
+        "reference product": "waste plastic, mixture"
+      },
+      {
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": -0.0070736842105263075,
+        "location": "GLO",
+        "reference product": "copper scrap, sorted, pressed"
+      },
+      {
+        "name": "battery monitoring integrated circuit production, copper wire bonding",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "reference product": "battery monitoring integrated circuit, copper wire bonding"
+      },
+      {
+        "name": "connector production, battery control board, plated contacts",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.2857142857142857,
+        "location": "GLO",
+        "reference product": "connector, battery control board, plated contacts"
+      },
+      {
+        "name": "semiconductor package production, txu0204qpwrq1",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "reference product": "semiconductor package, TXU0204QPWRQ1"
+      },
+      {
+        "name": "market for inductor, miniature radio frequency chip",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "reference product": "inductor, miniature radio frequency chip"
+      },
+      {
+        "name": "market for diode, glass-, for surface-mounting",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "reference product": "diode, glass-, for surface-mounting"
+      },
+      {
+        "name": "semiconductor package production, lm5168fqddarq1",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "reference product": "semiconductor package, LM5168FQDDARQ1"
+      },
+      {
+        "name": "capacitor assembly production, battery monitoring board, 134 capacitors",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "reference product": "capacitor assembly, battery monitoring board, 134 capacitors"
+      },
+      {
+        "name": "resistor assembly production, battery monitoring board, 128 resistors",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "location": "GLO",
+        "reference product": "resistor assembly, battery monitoring board, 128 resistors"
+      },
+      {
+        "name": "market for solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.014285714285714285,
+        "location": "GLO",
+        "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 15.714285714285714,
+        "location": "GLO",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "semiconductor package production, tps3436bdadaddfrq1",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+        "location": "GLO",
+        "reference product": "semiconductor package, TPS3436BDADADDFRQ1"
+      },
+      {
+        "name": "semiconductor package production, tps71533qdckrq1",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+        "location": "GLO",
+        "reference product": "semiconductor package, TPS71533QDCKRQ1"
+      },
+      {
+        "name": "semiconductor package production, tpd6e004rser",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+        "location": "GLO",
+        "reference product": "semiconductor package, TPD6E004RSER"
+      },
+      {
+        "name": "semiconductor package production, iso7741fqdwrq1",
+        "type": "technosphere",
+        "unit": "unit",
+        "amount": 14.285714285714285,
+        "comment": "One fitted source package per70g reference board; not an extra arbitrary device.",
+        "location": "GLO",
+        "reference product": "semiconductor package, ISO7741FQDWRQ1"
+      },
+      {
+        "name": "market for copper, cathode",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.025699201209890075,
+        "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+        "location": "GLO",
+        "reference product": "copper, cathode"
+      },
+      {
+        "name": "market for ferrite",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.02141600100824173,
+        "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+        "location": "GLO",
+        "reference product": "ferrite"
+      },
+      {
+        "name": "market for aluminium, wrought alloy",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.01427733400549449,
+        "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+        "location": "GLO",
+        "reference product": "aluminium, wrought alloy"
+      },
+      {
+        "name": "market for nylon 6",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.012849600604945038,
+        "comment": "Unresolved-component material-coverage sensitivity only: not additional PCB laminate, fitted capacitors/resistors/ICs/connectors or measured component composition. Cu is assigned to unidentified component stock, not known board tracks; trace metals and fabrication coverage remain unknown.",
+        "location": "RER",
+        "reference product": "nylon 6"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 0.14848427365714267,
+        "comment": "Preserved2kWh/kg residual processing allowance, now an unverified component-preparation allowance, not another board-assembly operation or measured factory burden.",
+        "location": "GLO",
+        "reference product": "electricity, medium voltage"
+      }
+    ],
+    "worksheet name": "Battery - Li-S",
+    "production amount": 1,
+    "reference product": "printed circuit board, battery module control, mounted"
+  },
+  "CLIC_board_snapshot_sha256": "1892471f0df5687beeaeb344ff11aaa9497ac25eaf9cce31385eed65463cce98",
+  "CLIC_board_dataset_id": 3676,
+  "CLIC_board_version_id": 5591,
+  "new_helpers": [
+    {
+      "CLIC_dataset_id": 3668,
+      "CLIC_version_id": 5583,
+      "CLIC_snapshot": {
+        "name": "semiconductor package production, tps3436bdadaddfrq1",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=TPS3436BDADADDFRQ1",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: TPS3436BDADADDFRQ1, first TI assembly variant; nominal package23.422924mg, unknown constituents{'Proprietary Materials': 2e-06, 'Imidazole Derivative': 0.000533}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, tps3436bdadaddfrq1",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, TPS3436BDADADDFRQ1"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.6145341999999998e-05,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "copper, cathode"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.63e-10,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "gold"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.922e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "palladium"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.3969e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "silica sand"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 7.80466e-07,
+            "comment": "",
+            "location": "RER",
+            "reference product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for steel, low-alloyed",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.3212e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "steel, low-alloyed"
+          },
+          {
+            "name": "market for phosphorus, white, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.493e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "phosphorus, white, liquid"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.324e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "zinc"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.7071999999999996e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "nickel, class 1"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.6543219999999996e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.9276e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "carbon black"
+          },
+          {
+            "name": "market for chlorine, gaseous",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 6.4e-11,
+            "comment": "",
+            "location": "RER",
+            "reference product": "chlorine, gaseous"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 3.9437768240343345e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 2.3422923999999998e-05,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, TPS3436BDADADDFRQ1"
+      },
+      "CLIC_snapshot_sha256": "97a3f2cbe5158a1564f458ba3f346de441a0bb3b40f2b4eba80b0cc0914dfe51",
+      "snapshot": {
+        "name": "semiconductor package production, tps3436bdadaddfrq1",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=TPS3436BDADADDFRQ1",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: TPS3436BDADADDFRQ1, first TI assembly variant; nominal package23.422924mg, unknown constituents{'Proprietary Materials': 2e-06, 'Imidazole Derivative': 0.000533}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, tps3436bdadaddfrq1",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, TPS3436BDADADDFRQ1",
+            "product": "semiconductor package, TPS3436BDADADDFRQ1"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.6145341999999998e-05,
+            "location": "GLO",
+            "reference product": "copper, cathode",
+            "product": "copper, cathode"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.63e-10,
+            "location": "GLO",
+            "reference product": "gold",
+            "product": "gold"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.922e-09,
+            "location": "GLO",
+            "reference product": "palladium",
+            "product": "palladium"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.3969e-08,
+            "location": "GLO",
+            "reference product": "silica sand",
+            "product": "silica sand"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 7.80466e-07,
+            "location": "RER",
+            "reference product": "epoxy resin, liquid",
+            "product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for steel, low-alloyed",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.3212e-07,
+            "location": "GLO",
+            "reference product": "steel, low-alloyed",
+            "product": "steel, low-alloyed"
+          },
+          {
+            "name": "market for phosphorus, white, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.493e-08,
+            "location": "GLO",
+            "reference product": "phosphorus, white, liquid",
+            "product": "phosphorus, white, liquid"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.324e-08,
+            "location": "GLO",
+            "reference product": "zinc",
+            "product": "zinc"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.7071999999999996e-08,
+            "location": "GLO",
+            "reference product": "nickel, class 1",
+            "product": "nickel, class 1"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.6543219999999996e-06,
+            "location": "GLO",
+            "reference product": "silica sand",
+            "product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.9276e-08,
+            "location": "GLO",
+            "reference product": "carbon black",
+            "product": "carbon black"
+          },
+          {
+            "name": "market for chlorine, gaseous",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 6.4e-11,
+            "location": "RER",
+            "reference product": "chlorine, gaseous",
+            "product": "chlorine, gaseous"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 3.9437768240343345e-07,
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit",
+            "product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 2.3422923999999998e-05,
+            "location": "GLO",
+            "reference product": "electricity, medium voltage",
+            "product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, TPS3436BDADADDFRQ1",
+        "production amount": 1,
+        "worksheet name": "Battery - Li-S",
+        "database": "batteries"
+      },
+      "part": "TPS3436BDADADDFRQ1",
+      "full_package_mass_kg": 2.3422924e-05,
+      "known_nominal_material_kg": 2.3422388999999994e-05,
+      "unresolved_nominal_material_kg": 5.350000000069329e-10,
+      "start_row": 1725,
+      "end_row": 1749
+    },
+    {
+      "CLIC_dataset_id": 3669,
+      "CLIC_version_id": 5584,
+      "CLIC_snapshot": {
+        "name": "semiconductor package production, tps71533qdckrq1",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=TPS71533QDCKRQ1",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: TPS71533QDCKRQ1, first TI assembly variant; nominal package6.965561mg, unknown constituents{'Proprietary Non Halide Flame Retardant': 0.018}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, tps71533qdckrq1",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, TPS71533QDCKRQ1"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.6905099999999998e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "copper, cathode"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.378e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "gold"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.7899999999999998e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "palladium"
+          },
+          {
+            "name": "market for silver",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.6089999999999994e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "silver"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.59129e-07,
+            "comment": "",
+            "location": "RER",
+            "reference product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for steel, low-alloyed",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 6.4625e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "steel, low-alloyed"
+          },
+          {
+            "name": "market for phosphorus, white, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.269e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "phosphorus, white, liquid"
+          },
+          {
+            "name": "market for lead",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.38e-10,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "lead"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.438e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "zinc"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.09016e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "nickel, class 1"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.126555e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.4e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "carbon black"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 2.052344619297409e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 6.965561e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, TPS71533QDCKRQ1"
+      },
+      "CLIC_snapshot_sha256": "6b989b6c12752f41862fb5babca41a0fe679b982721f62866391db643855fcc3",
+      "snapshot": {
+        "name": "semiconductor package production, tps71533qdckrq1",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=TPS71533QDCKRQ1",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: TPS71533QDCKRQ1, first TI assembly variant; nominal package6.965561mg, unknown constituents{'Proprietary Non Halide Flame Retardant': 0.018}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, tps71533qdckrq1",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, TPS71533QDCKRQ1",
+            "product": "semiconductor package, TPS71533QDCKRQ1"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.6905099999999998e-06,
+            "location": "GLO",
+            "reference product": "copper, cathode",
+            "product": "copper, cathode"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.378e-09,
+            "location": "GLO",
+            "reference product": "gold",
+            "product": "gold"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.7899999999999998e-08,
+            "location": "GLO",
+            "reference product": "palladium",
+            "product": "palladium"
+          },
+          {
+            "name": "market for silver",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.6089999999999994e-08,
+            "location": "GLO",
+            "reference product": "silver",
+            "product": "silver"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.59129e-07,
+            "location": "RER",
+            "reference product": "epoxy resin, liquid",
+            "product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for steel, low-alloyed",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 6.4625e-08,
+            "location": "GLO",
+            "reference product": "steel, low-alloyed",
+            "product": "steel, low-alloyed"
+          },
+          {
+            "name": "market for phosphorus, white, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.269e-09,
+            "location": "GLO",
+            "reference product": "phosphorus, white, liquid",
+            "product": "phosphorus, white, liquid"
+          },
+          {
+            "name": "market for lead",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.38e-10,
+            "location": "GLO",
+            "reference product": "lead",
+            "product": "lead"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.438e-09,
+            "location": "GLO",
+            "reference product": "zinc",
+            "product": "zinc"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.09016e-07,
+            "location": "GLO",
+            "reference product": "nickel, class 1",
+            "product": "nickel, class 1"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.126555e-06,
+            "location": "GLO",
+            "reference product": "silica sand",
+            "product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 5.4e-09,
+            "location": "GLO",
+            "reference product": "carbon black",
+            "product": "carbon black"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 2.052344619297409e-07,
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit",
+            "product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 6.965561e-06,
+            "location": "GLO",
+            "reference product": "electricity, medium voltage",
+            "product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, TPS71533QDCKRQ1",
+        "production amount": 1,
+        "worksheet name": "Battery - Li-S",
+        "database": "batteries"
+      },
+      "part": "TPS71533QDCKRQ1",
+      "full_package_mass_kg": 6.965561e-06,
+      "known_nominal_material_kg": 6.947561e-06,
+      "unresolved_nominal_material_kg": 1.7999999999999658e-08,
+      "start_row": 1752,
+      "end_row": 1776
+    },
+    {
+      "CLIC_dataset_id": 3670,
+      "CLIC_version_id": 5585,
+      "CLIC_snapshot": {
+        "name": "semiconductor package production, tpd6e004rser",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=TPD6E004RSER",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: TPD6E004RSER, first TI assembly variant; nominal package2.839255mg, unknown constituents{'Metal Hydroxide': 0.057696}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, tpd6e004rser",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, TPD6E004RSER"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.4569e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "gold"
+          },
+          {
+            "name": "market for titanium dioxide",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.0499999999999999e-09,
+            "comment": "",
+            "location": "RER",
+            "reference product": "titanium dioxide"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.4245399999999999e-07,
+            "comment": "",
+            "location": "RER",
+            "reference product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.1832959999999999e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "copper, cathode"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.9344799999999997e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "nickel, class 1"
+          },
+          {
+            "name": "market for chromium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.8199999999999998e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "chromium"
+          },
+          {
+            "name": "market for tin",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.108e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "tin"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.688e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "zinc"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.23e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "palladium"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 9.409949999999999e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.33e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "carbon black"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 2.742028294388809e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 2.839255e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, TPD6E004RSER"
+      },
+      "CLIC_snapshot_sha256": "223dbff6fc681eba0081d25a09639ebad792dc43161d669c200d0c0a67291462",
+      "snapshot": {
+        "name": "semiconductor package production, tpd6e004rser",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=TPD6E004RSER",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: TPD6E004RSER, first TI assembly variant; nominal package2.839255mg, unknown constituents{'Metal Hydroxide': 0.057696}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, tpd6e004rser",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, TPD6E004RSER",
+            "product": "semiconductor package, TPD6E004RSER"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.4569e-08,
+            "location": "GLO",
+            "reference product": "gold",
+            "product": "gold"
+          },
+          {
+            "name": "market for titanium dioxide",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.0499999999999999e-09,
+            "location": "RER",
+            "reference product": "titanium dioxide",
+            "product": "titanium dioxide"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.4245399999999999e-07,
+            "location": "RER",
+            "reference product": "epoxy resin, liquid",
+            "product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.1832959999999999e-06,
+            "location": "GLO",
+            "reference product": "copper, cathode",
+            "product": "copper, cathode"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.9344799999999997e-07,
+            "location": "GLO",
+            "reference product": "nickel, class 1",
+            "product": "nickel, class 1"
+          },
+          {
+            "name": "market for chromium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.8199999999999998e-09,
+            "location": "GLO",
+            "reference product": "chromium",
+            "product": "chromium"
+          },
+          {
+            "name": "market for tin",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.108e-09,
+            "location": "GLO",
+            "reference product": "tin",
+            "product": "tin"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.688e-09,
+            "location": "GLO",
+            "reference product": "zinc",
+            "product": "zinc"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.23e-08,
+            "location": "GLO",
+            "reference product": "palladium",
+            "product": "palladium"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 9.409949999999999e-07,
+            "location": "GLO",
+            "reference product": "silica sand",
+            "product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 2.33e-09,
+            "location": "GLO",
+            "reference product": "carbon black",
+            "product": "carbon black"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 2.742028294388809e-07,
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit",
+            "product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 2.839255e-06,
+            "location": "GLO",
+            "reference product": "electricity, medium voltage",
+            "product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, TPD6E004RSER",
+        "production amount": 1,
+        "worksheet name": "Battery - Li-S",
+        "database": "batteries"
+      },
+      "part": "TPD6E004RSER",
+      "full_package_mass_kg": 2.839255e-06,
+      "known_nominal_material_kg": 2.7815589999999997e-06,
+      "unresolved_nominal_material_kg": 5.76960000000002e-08,
+      "start_row": 1779,
+      "end_row": 1802
+    },
+    {
+      "CLIC_dataset_id": 3671,
+      "CLIC_version_id": 5586,
+      "CLIC_snapshot": {
+        "name": "semiconductor package production, iso7741fqdwrq1",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=ISO7741FQDWRQ1",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: ISO7741FQDWRQ1, first TI assembly variant; nominal package683.625638mg, unknown constituents{'Proprietary Materials': 1.9e-05}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, iso7741fqdwrq1",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, ISO7741FQDWRQ1"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 0.000301409651,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "copper, cathode"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.90241e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "nickel, class 1"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.647e-09,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "gold"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.2252999999999999e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "palladium"
+          },
+          {
+            "name": "market for silver",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.59465e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "silver"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.7220384e-05,
+            "comment": "",
+            "location": "RER",
+            "reference product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for steel, low-alloyed",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 7.1001e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "steel, low-alloyed"
+          },
+          {
+            "name": "market for phosphorus, white, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.6305e-08,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "phosphorus, white, liquid"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.0869999999999995e-07,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "zinc"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 0.000331818076,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.8537319999999998e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "carbon black"
+          },
+          {
+            "name": "market for chlorine, gaseous",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 7.415e-09,
+            "comment": "",
+            "location": "RER",
+            "reference product": "chlorine, gaseous"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 5.082896200921952e-06,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 0.0006836256379999999,
+            "comment": "",
+            "location": "GLO",
+            "reference product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, ISO7741FQDWRQ1"
+      },
+      "CLIC_snapshot_sha256": "0901e642ef211528c126af4012920f2ee3631ea94349af91d7828294b48c4d7d",
+      "snapshot": {
+        "name": "semiconductor package production, iso7741fqdwrq1",
+        "type": "process",
+        "unit": "unit",
+        "source": "https://www.ti.com/quality-reliability-packaging-download/de-de/report?opn=ISO7741FQDWRQ1",
+        "comment": "Local reviewed candidate: electronics_components:C125-C128-C138:R109-R132. Original published histories remain immutable.\nCC2662R1FRGZT (one) and ESD2CAN24DBZR (two) remain unquantified within residual coverage; full topology/trace metals/manufacture unverified. C105 monitoring ASIC dependency must be supplied by sibling, not duplicated here\n\nHistorical source/refinement provenance (superseded where qualified above):\nINACTIVE SOURCE-FITTED PACKAGE REFERENCE: ISO7741FQDWRQ1, first TI assembly variant; nominal package683.625638mg, unknown constituents{'Proprietary Materials': 1.9e-05}. Use270um silicon allocation to existing fabricated-IC wafer; not measured die thickness/node/fab geography or proof of native retained mass. Native raw-wafer/yield/fabrication stays once. Known material markets, silica-sand/steel/resin/elemental feed grades and1kWh/kg package assembly are qualified proxies, not full package chemistry/manufacture. Trade-secret hydroxide/flame retardant, proprietary material and imidazole-derivative identity stay unassigned, never normalized away or converted into invented Sb/Al. No component EOL is added on top of the board/system retirement. Source reference counts do not prove every CLIC battery uses this circuit. C127 allocation and publication gates remain.",
+        "location": "GLO",
+        "exchanges": [
+          {
+            "name": "semiconductor package production, iso7741fqdwrq1",
+            "type": "production",
+            "unit": "unit",
+            "amount": 1,
+            "location": "GLO",
+            "reference product": "semiconductor package, ISO7741FQDWRQ1",
+            "product": "semiconductor package, ISO7741FQDWRQ1"
+          },
+          {
+            "name": "market for copper, cathode",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 0.000301409651,
+            "location": "GLO",
+            "reference product": "copper, cathode",
+            "product": "copper, cathode"
+          },
+          {
+            "name": "market for nickel, class 1",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.90241e-07,
+            "location": "GLO",
+            "reference product": "nickel, class 1",
+            "product": "nickel, class 1"
+          },
+          {
+            "name": "market for gold",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.647e-09,
+            "location": "GLO",
+            "reference product": "gold",
+            "product": "gold"
+          },
+          {
+            "name": "market for palladium",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.2252999999999999e-08,
+            "location": "GLO",
+            "reference product": "palladium",
+            "product": "palladium"
+          },
+          {
+            "name": "market for silver",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.59465e-07,
+            "location": "GLO",
+            "reference product": "silver",
+            "product": "silver"
+          },
+          {
+            "name": "market for epoxy resin, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.7220384e-05,
+            "location": "RER",
+            "reference product": "epoxy resin, liquid",
+            "product": "epoxy resin, liquid"
+          },
+          {
+            "name": "market for steel, low-alloyed",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 7.1001e-06,
+            "location": "GLO",
+            "reference product": "steel, low-alloyed",
+            "product": "steel, low-alloyed"
+          },
+          {
+            "name": "market for phosphorus, white, liquid",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 4.6305e-08,
+            "location": "GLO",
+            "reference product": "phosphorus, white, liquid",
+            "product": "phosphorus, white, liquid"
+          },
+          {
+            "name": "market for zinc",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 3.0869999999999995e-07,
+            "location": "GLO",
+            "reference product": "zinc",
+            "product": "zinc"
+          },
+          {
+            "name": "market for silica sand",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 0.000331818076,
+            "location": "GLO",
+            "reference product": "silica sand",
+            "product": "silica sand"
+          },
+          {
+            "name": "market for carbon black",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 1.8537319999999998e-06,
+            "location": "GLO",
+            "reference product": "carbon black",
+            "product": "carbon black"
+          },
+          {
+            "name": "market for chlorine, gaseous",
+            "type": "technosphere",
+            "unit": "kilogram",
+            "amount": 7.415e-09,
+            "location": "RER",
+            "reference product": "chlorine, gaseous",
+            "product": "chlorine, gaseous"
+          },
+          {
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "type": "technosphere",
+            "unit": "square meter",
+            "amount": 5.082896200921952e-06,
+            "location": "GLO",
+            "reference product": "wafer, fabricated, for integrated circuit",
+            "product": "wafer, fabricated, for integrated circuit"
+          },
+          {
+            "name": "market group for electricity, medium voltage",
+            "type": "technosphere",
+            "unit": "kilowatt hour",
+            "amount": 0.0006836256379999999,
+            "location": "GLO",
+            "reference product": "electricity, medium voltage",
+            "product": "electricity, medium voltage"
+          }
+        ],
+        "reference product": "semiconductor package, ISO7741FQDWRQ1",
+        "production amount": 1,
+        "worksheet name": "Battery - Li-S",
+        "database": "batteries"
+      },
+      "part": "ISO7741FQDWRQ1",
+      "full_package_mass_kg": 0.000683625638,
+      "known_nominal_material_kg": 0.000683625619,
+      "unresolved_nominal_material_kg": 1.9000000032499964e-11,
+      "start_row": 1805,
+      "end_row": 1829
+    }
+  ],
+  "old_board_start": 1206,
+  "old_board_end": 1234,
+  "old_board_comment_cell": "B1212",
+  "old_board_residual_cell": "B1233",
+  "new_board_start": 1832,
+  "new_board_end": 1864,
+  "board_row_delta": 626,
+  "new_board_comment_cell": "B1838",
+  "new_board_residual_cell": "B1859",
+  "new_package_purchase_rows": [
+    1861,
+    1862,
+    1863,
+    1864
+  ],
+  "original_dimension": "A1:Q1722",
+  "new_dimension": "A1:Q1864",
+  "board_mass_kg": 0.07,
+  "added_full_package_mass_kg_per_board": 0.000716853378,
+  "old_residual_kg_per_kg_board": 0.08448289937142849,
+  "new_residual_kg_per_kg_board": 0.07424213682857134,
+  "old_residual_kg_per_board": 0.005913802955999995,
+  "new_residual_kg_per_board": 0.005196949577999994,
+  "retained_capacitor_count": 134,
+  "retained_resistor_count": 128,
+  "unquantified_fitted_parts": {
+    "CC2662R1FRGZT": 1,
+    "ESD2CAN24DBZR": 2
+  },
+  "formula_reference_audit": {
+    "dependent_formula_cells": []
+  },
+  "compiler": {
+    "name": "Romain Sacchi",
+    "organization": "Laboratory for Energy Systems Analysis, Paul Scherrer Institute",
+    "email": "romain.sacchi@psi.ch"
+  }
+}

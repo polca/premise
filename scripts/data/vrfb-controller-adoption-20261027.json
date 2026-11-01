@@ -1,0 +1,299 @@
+{
+  "case_id": "ALIGN-041",
+  "approval": "Approved by Romain Sacchi,2026-10-27; approved. next?",
+  "workbook": "lci-batteries-vanadium-redox-flow.xlsx",
+  "sheet": "Sheet1",
+  "before_workbook_sha256": "59911c92aac4350e27d169aaf8bbaff93fa4c8015315d4712694e2cb0e3c6113",
+  "activity": "battery management system assembly, for VRFB system",
+  "before_snapshot": {
+    "location": "RER",
+    "production amount": 1,
+    "comment": "APPROVED VRFB CONTROLLER FINISHED-MASS NORMALIZATION, issue79,2026-10-18. Source inherited Weber etal2018 DOI10.1021/acs.est.8b02073 control-design proxy:0.18kgPP housing+0.68kgLCD+0.32kgcontrol electronics=1.18kg finished components per declared1kg controller. Injection moulding is a service, not another retained plastic mass. Adopt an explicit mass-normalized version of this same reference architecture: divide these three finished-component inputs and housing-moulding service by1.18, preserving their relative recipe, and keep the provider output1kg. This is an engineering correction of the contradictory kg basis, not proof the original study intended any one fraction to be different. No source basis supports deleting the display, setting a metal tozero or treating0.68kg as an invented0.0068kg typo. The original archive carries an unresolved remaining-error warning; it doesnot independently establish a complete modern VRFB controller design. Keep parent process-control mix0.91kg stack interface+0.09kg BMS perkg controls and system13kg controls as the selected installed mass budget, rather than multiplying system mass by1.18 and preserving the overallocated reference. This changes BMS-attributed ingredients by factor1/1.18 while the stack interface is unchanged. Original freight0.1tkm lorry and0.6tkm rail remain route references per1kg delivered controller; no extra scaling of fixed route distance. Display supply includes its native upstream composition/processes and is not represented as bare indium or all precious metals. Exact LCD size,resolution,board topology,component metals,stock life and controller replacement intervals remain unverified source gaps. System electrolyte,stack replacement and installed energy capacity/lifetime are unchanged. No global native control/LCIA edits, no new recovery credit or primary-secondary-share claim.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nHere, it is assumed that a monitoring system is required per stack and thus one BMS is required to control them. It must be noted that this is assumed to be major simplification, while the process control system is a relevant component. In fact, the modeling of the process control system is a crucial aspect since electronics potentially show high impacts in several categories. Therefore, this major gap needs to be fulfilled by future research.",
+    "source": "Life Cycle Assessment of a Vanadium Redox Flow Battery, Selina Weber, Jens F. Peters, Manuel Baumann, and Marcel Weil, Environ. Sci. Technol. 2018, 52, 10864\u221210873, DOI: 10.1021/acs.est.8b02073",
+    "reference product": "battery management system, for VRFB system",
+    "type": "process",
+    "unit": "kilogram",
+    "name": "battery management system assembly, for VRFB system",
+    "exchanges": [
+      {
+        "name": "battery management system assembly, for VRFB system",
+        "amount": 1,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "production",
+        "reference product": "battery management system, for VRFB system"
+      },
+      {
+        "name": "market for polypropylene, granulate",
+        "amount": 0.15254237288135591,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polypropylene, granulate",
+        "comment": "PP housing, material"
+      },
+      {
+        "name": "market for injection moulding",
+        "amount": 0.15254237288135591,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "injection moulding",
+        "comment": "PP housing, production"
+      },
+      {
+        "name": "market for liquid crystal display, unmounted",
+        "amount": 0.576271186440678,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "liquid crystal display, unmounted",
+        "comment": "Display"
+      },
+      {
+        "name": "market for electronics, for control units",
+        "amount": 0.27118644067796605,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "electronics, for control units",
+        "comment": "Electronics"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "amount": 0.1,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+        "comment": "Transport, lorry"
+      },
+      {
+        "name": "market for transport, freight train",
+        "amount": 0.6,
+        "location": "Europe without Switzerland",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight train",
+        "comment": "Transport, train"
+      }
+    ],
+    "worksheet name": "Sheet1",
+    "database": "vanadium-redox-flow-battery"
+  },
+  "after_snapshot": {
+    "location": "RER",
+    "production amount": 1,
+    "comment": "APPROVED VRFB CONTROLLER FINISHED-MASS NORMALIZATION, issue79,2026-10-18. Source inherited Weber etal2018 DOI10.1021/acs.est.8b02073 control-design proxy:0.18kgPP housing+0.68kgLCD+0.32kgcontrol electronics=1.18kg finished components per declared1kg controller. Injection moulding is a service, not another retained plastic mass. Adopt an explicit mass-normalized version of this same reference architecture: divide these three finished-component inputs and housing-moulding service by1.18, preserving their relative recipe, and keep the provider output1kg. This is an engineering correction of the contradictory kg basis, not proof the original study intended any one fraction to be different. No source basis supports deleting the display, setting a metal tozero or treating0.68kg as an invented0.0068kg typo. The original archive carries an unresolved remaining-error warning; it doesnot independently establish a complete modern VRFB controller design. Keep parent process-control mix0.91kg stack interface+0.09kg BMS perkg controls and system13kg controls as the selected installed mass budget, rather than multiplying system mass by1.18 and preserving the overallocated reference. This changes BMS-attributed ingredients by factor1/1.18 while the stack interface is unchanged. Original freight0.1tkm lorry and0.6tkm rail remain route references per1kg delivered controller; no extra scaling of fixed route distance. Display supply includes its native upstream composition/processes and is not represented as bare indium or all precious metals. Exact LCD size,resolution,board topology,component metals,stock life and controller replacement intervals remain unverified source gaps. System electrolyte,stack replacement and installed energy capacity/lifetime are unchanged. No global native control/LCIA edits, no new recovery credit or primary-secondary-share claim.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nHere, it is assumed that a monitoring system is required per stack and thus one BMS is required to control them. It must be noted that this is assumed to be major simplification, while the process control system is a relevant component. In fact, the modeling of the process control system is a crucial aspect since electronics potentially show high impacts in several categories. Therefore, this major gap needs to be fulfilled by future research.",
+    "source": "Life Cycle Assessment of a Vanadium Redox Flow Battery, Selina Weber, Jens F. Peters, Manuel Baumann, and Marcel Weil, Environ. Sci. Technol. 2018, 52, 10864\u221210873, DOI: 10.1021/acs.est.8b02073",
+    "reference product": "battery management system, for VRFB system",
+    "type": "process",
+    "unit": "kilogram",
+    "name": "battery management system assembly, for VRFB system",
+    "exchanges": [
+      {
+        "name": "battery management system assembly, for VRFB system",
+        "amount": 1,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "production",
+        "reference product": "battery management system, for VRFB system"
+      },
+      {
+        "name": "market for polypropylene, granulate",
+        "amount": 0.15302049244620264,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polypropylene, granulate",
+        "comment": "PP housing, material"
+      },
+      {
+        "name": "market for injection moulding",
+        "amount": 0.15302049244620264,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "injection moulding",
+        "comment": "PP housing, production"
+      },
+      {
+        "name": "market for liquid crystal display, unmounted",
+        "amount": 0.5750483805084746,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "liquid crystal display, unmounted",
+        "comment": "Display"
+      },
+      {
+        "name": "market for electronics, for control units",
+        "amount": 0.27284925,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "electronics, for control units",
+        "comment": "Electronics"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "amount": 0.1,
+        "location": "RER",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+        "comment": "Transport, lorry"
+      },
+      {
+        "name": "market for transport, freight train",
+        "amount": 0.6,
+        "location": "Europe without Switzerland",
+        "unit": "ton kilometer",
+        "type": "technosphere",
+        "reference product": "transport, freight train",
+        "comment": "Transport, train"
+      }
+    ],
+    "worksheet name": "Sheet1",
+    "database": "vanadium-redox-flow-battery"
+  },
+  "changes": [
+    {
+      "after": 0.15302049244620264,
+      "before": 0.15254237288135591,
+      "cell": "B304",
+      "supplier": "market for polypropylene, granulate",
+      "unit": "kilogram"
+    },
+    {
+      "after": 0.15302049244620264,
+      "before": 0.15254237288135591,
+      "cell": "B305",
+      "supplier": "market for injection moulding",
+      "unit": "kilogram"
+    },
+    {
+      "after": 0.5750483805084746,
+      "before": 0.576271186440678,
+      "cell": "B306",
+      "supplier": "market for liquid crystal display, unmounted",
+      "unit": "kilogram"
+    },
+    {
+      "after": 0.27284925,
+      "before": 0.27118644067796605,
+      "cell": "B307",
+      "supplier": "market for electronics, for control units",
+      "unit": "kilogram"
+    }
+  ],
+  "comment_cell": "B296",
+  "dimension": "A1:P597",
+  "formula_reference_audit": {
+    "formula_count": 56,
+    "dependent_formula_cells": []
+  },
+  "finished_component_kg_per_kg_controller": {
+    "electronics": 0.27284925,
+    "lcd": 0.5750483805084746,
+    "pp": 0.15210236949152542
+  },
+  "qualified_moulding_retention": 0.994,
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.9"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.9"
+  },
+  "CLIC_dataset_id": 1394,
+  "CLIC_version_id": 5554,
+  "CLIC_snapshot_sha256": "e674075a17c9ae5ec3e372932528ca297f0a3cce2423ba68732365757c3e7fa1",
+  "CLIC_snapshot": {
+    "code": "ec00e670828065f74dea430f17471767",
+    "name": "battery management system assembly, for VRFB system",
+    "type": "process",
+    "unit": "kilogram",
+    "source": "Life Cycle Assessment of a Vanadium Redox Flow Battery, Selina Weber, Jens F. Peters, Manuel Baumann, and Marcel Weil, Environ. Sci. Technol. 2018, 52, 10864\u221210873, DOI: 10.1021/acs.est.8b02073",
+    "comment": "C149: source component masses divided by the manufacturer 1.18 kg device reference. Finished housing PP 0.15210236949152542 kg requires 0.15302049244620264 kg each of regional PP feed and moulding service at the qualified 99.4% yield. The seven native regional shares, 0.5750483805084746 kg LCD and 0.27284925 kg control electronics are retained. Native auxiliaries and treatment occur once. The inherited 15-inch LCD is a mass proxy for the source seven-inch device, not dimensional equivalence. Transport, parent 13 kg control budget and 91/9 monitoring/BMS shares are unchanged assumptions. No unallocated native polymer residual is converted into invented waste, emissions or recovery credit.\n\nHistorical source/curation record:\nHere, it is assumed that a monitoring system is required per stack and thus one BMS is required to control them. It must be noted that this is assumed to be major simplification, while the process control system is a relevant component. In fact, the modeling of the process control system is a crucial aspect since electronics potentially show high impacts in several categories. Therefore, this major gap needs to be fulfilled by future research.\n\nCurated planning decision: R133-R152:C149-C151-C190. New revision only; original published version preserved.",
+    "database": "vanadium-redox-flow-battery",
+    "location": "RER",
+    "exchanges": [
+      {
+        "name": "battery management system assembly, for VRFB system",
+        "type": "production",
+        "unit": "kilogram",
+        "amount": 1,
+        "location": "RER",
+        "reference product": "battery management system, for VRFB system"
+      },
+      {
+        "name": "market for polypropylene, granulate",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.15302049244620264,
+        "comment": "PP housing, material",
+        "location": "GLO",
+        "uncertainty type": 0,
+        "reference product": "polypropylene, granulate"
+      },
+      {
+        "name": "market for injection moulding",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.15302049244620264,
+        "comment": "PP housing, production",
+        "location": "GLO",
+        "uncertainty type": 0,
+        "reference product": "injection moulding"
+      },
+      {
+        "name": "market for liquid crystal display, unmounted",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.5750483805084746,
+        "comment": "Display",
+        "location": "GLO",
+        "uncertainty type": 0,
+        "reference product": "liquid crystal display, unmounted"
+      },
+      {
+        "name": "market for electronics, for control units",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 0.27284925,
+        "comment": "Electronics",
+        "location": "GLO",
+        "uncertainty type": 0,
+        "reference product": "electronics, for control units"
+      },
+      {
+        "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.1,
+        "comment": "Transport, lorry",
+        "location": "RER",
+        "uncertainty type": 0,
+        "reference product": "transport, freight, lorry 16-32 metric ton, EURO5"
+      },
+      {
+        "name": "market for transport, freight train",
+        "type": "technosphere",
+        "unit": "ton kilometer",
+        "amount": 0.6,
+        "comment": "Transport, train",
+        "location": "Europe without Switzerland",
+        "uncertainty type": 0,
+        "reference product": "transport, freight train"
+      }
+    ],
+    "worksheet name": "Sheet1",
+    "production amount": 1,
+    "reference product": "battery management system, for VRFB system"
+  },
+  "source_decision": "refinement-round-141/delegated-bounded-controller-and-EPR-accounting.json",
+  "source_decision_sha256": "0402675dd940849aac021779bfa2e8ee391cfcc0aac95ad7649f7da31cc245e1"
+}

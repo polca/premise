@@ -1,0 +1,596 @@
+{
+  "case_id": "ALIGN-032",
+  "approval": "Approved by Romain Sacchi,2026-10-27; approved. next?",
+  "workbook": "lci-trucks.xlsx",
+  "sheet": "test",
+  "before_workbook_sha256": "347ca9947d365a4d1da3374c918a191bb92fe3551d3a33e94ce0faaede61bdaa",
+  "activity": "power cabinet production, charger, 150 kw",
+  "before_snapshot": {
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "power cabinet, charger, 150 kW",
+    "unit": "unit",
+    "source": "ABB2019/2021 PantoUP brochure9AKK107991A4055 RevB https://library.e.abb.com/public/a1c552cfb24c4b6ca6fc3ddef737c884/9AKK107991A4055-Rev%20B_Panto_UP_Brochure_01-2021.pdf ; ABB2021 HVC portfolio9AKK107991A6983 RevC pp13-16; ABB Terra1842023 PEP ABBG-00284-V01.01-EN p6 bulk-material ANALOGUE, not HVC BOM. PSI2023 vehicle LCI Table70 for24year/10bus service reference.",
+    "comment": "Nomenclature revision, 2026-10-19. Former activity name: power cabinet,150kW HVC mass-based engineering reference. Former reference product: power cabinet,150kW HVC mass-based engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED450KW PANTO-UP HARDWARE REFERENCE, issue49, 2026-10-18. ABB2019/2021 PantoUP brochure9AKK107991A4055 RevB https://library.e.abb.com/public/a1c552cfb24c4b6ca6fc3ddef737c884/9AKK107991A4055-Rev%20B_Panto_UP_Brochure_01-2021.pdf ; ABB2021 HVC portfolio9AKK107991A6983 RevC pp13-16; ABB Terra1842023 PEP ABBG-00284-V01.01-EN p6 bulk-material ANALOGUE, not HVC BOM. PSI2023 vehicle LCI Table70 for24year/10bus service reference. Retain original bus-up architecture: three150kW/1340kg cabinets plus500kg pole/interface, total4520kg before separate installed feeder cables. The historical7.533333333*600kg multiplier already reproduces4520kg; the error is its old Level2 material mix plus additional complete charging stand, not proof of an incorrect cabinet count. Do not substitute1650kg PantoDown pole or add a stationary battery. Replace historical charger/stand path by dedicated mass-budget reference. One shared7inchHMI+PLC2kg is included within totalcabinet mass, not added on top; source HMI is in mastercabinet, one-set architecture assumed. Each six-face2030x1170x770mm cabinet has2mm/7700kg/m3 ferritic430 enclosure as GEOMETRY ASSUMPTION. Material430 reference83%unalloyedsteel+17%metalCr,1kWh+4MJ/kg melt/finish is an explicit supply/process proxy, not measured430 metallurgy or proof of zero traceNi. Remaining cabinet mass uses full Terra184 bulk-class fractions per395kg as a deliberately explicit engineering analogue, including8kgunknown/395kg left unassigned, not invented as zero metal. Topology, transformer core grade, semiconductors, cooling and actual HVC tin/critical-metal contents remain unvalidated. In particular8kgTin/395kg is the published TerraEPD category, not an HVC measurement; test0.1-1x this transferred tin factor and0.5-2x other non-enclosure material factors while retaining fixed cabinet mass and reporting residual coverage. No extra genericpowerPCB on top of all bulk ingredients. Internal heat sinks/air cooling are included in transferred categories; cooling system type/service fluids and semiconductor die recipe remain gaps. Reference500kg interface explicitly assumed to include45kg contactdome,12kgPUcontrolbox and443kg support, since source nested mass boundaries are not fully specified; alternative add45+12kg to500kg in sensitivity. Dome public materials glassfiber/Cucontactrails/AlCP-PErails represented20kgGFRP+20kgCu+5kgAl engineering partition; controlbox6kgsteel+2kgCu+1kgAl+3kgprotection/comms-board allowance; pole443kgordinarycarbonsteel. These are not manufacturerBOMs. The moving roof pantograph belongs to the bus: no mass/recipe was recovered, so retain it as an explicit vehicle-side COVERAGE GAP, not an invented second offboardpantograph. External feeder reference10m: two parallel185mm2Cu conductors perDCpole plus70mm2protectiveearth;20kgPE cableinsulation/jackets and1kgcontrolcable proxy.10m is design assumption within manufacturer distance envelope, not a measured site. Ampacity/voltage drop/installation/field lengths need engineeringverification; no road/commoncivilinfrastructure added. Bulk inputs100%finalretention reference plus genericmetalworking/assembly1kWh/kg; no fabricatedmeasuredscrapyield. Keep original24yearlife,10bussharing and four perkmstationdoses; public RLT/warranty does not establish actual lifetime. Replacement sensitivity1-2.4cabinetsets in24years; support remainsone. Manufacturer94-96%charger efficiency is not the total battery/grid efficiency; leave existing vehicle purchased energy/losses untouched and add no duplicate operating/standby energy. End-of-life, maintenance, roofpantograph and unresolvedcomposition are recorded gaps; no recoverycredits or primary-secondaryclaim. Budget: {\"power_cabinets\":3,\"cabinet_kg_each\":1340,\"shared_HMI_and_PLC_kg\":2,\"assumed_2mm_enclosure_kg_each\":149.04428,\"other_internal_reference_kg_each\":1190.2890533333332,\"cabinet_material_analogue_unknown_fraction\":0.020253164556962026,\"pole_interface_reference_kg\":500,\"contact_dome_kg\":45,\"control_box_kg\":12,\"remaining_pole_structure_kg\":443,\"external_DC_copper_kg\":66.304,\"protective_earth_copper_kg\":6.271999999999999,\"service_life_years_assumed\":24,\"buses_shared_per_station_assumed\":10}",
+    "type": "processwithreferenceproduct",
+    "name": "power cabinet production, charger, 150 kw",
+    "exchanges": [
+      {
+        "name": "power cabinet production, charger, 150 kw",
+        "amount": 1,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "production",
+        "reference product": "power cabinet, charger, 150 kW",
+        "product": "power cabinet, charger, 150 kW"
+      },
+      {
+        "name": "ferritic steel production, grade 430, charger enclosure",
+        "amount": 149.04428,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "ferritic steel, grade 430, charger enclosure",
+        "product": "ferritic steel, grade 430, charger enclosure"
+      },
+      {
+        "name": "market for steel, low-alloyed",
+        "amount": 593.6378316624472,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "steel, low-alloyed",
+        "product": "steel, low-alloyed"
+      },
+      {
+        "name": "market for aluminium, wrought alloy",
+        "amount": 241.07120067510544,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "aluminium, wrought alloy",
+        "product": "aluminium, wrought alloy"
+      },
+      {
+        "name": "market for copper, cathode",
+        "amount": 129.57577036286918,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "copper, cathode",
+        "product": "copper, cathode"
+      },
+      {
+        "name": "market for nylon 6",
+        "amount": 33.147290092827,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "nylon 6",
+        "product": "nylon 6"
+      },
+      {
+        "name": "market for polyvinyl chloride, suspension polymerised",
+        "amount": 27.120510075949365,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polyvinyl chloride, suspension polymerised",
+        "product": "polyvinyl chloride, suspension polymerised"
+      },
+      {
+        "name": "market for tin",
+        "amount": 24.107120067510547,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "tin",
+        "product": "tin"
+      },
+      {
+        "name": "market for cable, ribbon cable, 20-pin, with plugs",
+        "amount": 24.107120067510547,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "cable, ribbon cable, 20-pin, with plugs",
+        "product": "cable, ribbon cable, 20-pin, with plugs"
+      },
+      {
+        "name": "market for polyurethane, rigid foam",
+        "amount": 24.107120067510547,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polyurethane, rigid foam",
+        "product": "polyurethane, rigid foam"
+      },
+      {
+        "name": "market for ferrite",
+        "amount": 15.06695004219409,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "ferrite",
+        "product": "ferrite"
+      },
+      {
+        "name": "market for polycarbonate",
+        "amount": 15.06695004219409,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polycarbonate",
+        "product": "polycarbonate"
+      },
+      {
+        "name": "market for acrylonitrile-butadiene-styrene copolymer",
+        "amount": 12.053560033755273,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "acrylonitrile-butadiene-styrene copolymer",
+        "product": "acrylonitrile-butadiene-styrene copolymer"
+      },
+      {
+        "name": "market for glass fibre",
+        "amount": 12.053560033755273,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "glass fibre",
+        "product": "glass fibre"
+      },
+      {
+        "name": "market for epoxy resin, liquid",
+        "amount": 9.040170025316455,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "epoxy resin, liquid",
+        "product": "epoxy resin, liquid"
+      },
+      {
+        "name": "market for polyethylene, high density, granulate",
+        "amount": 6.026780016877637,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polyethylene, high density, granulate",
+        "product": "polyethylene, high density, granulate"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 1340,
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage",
+        "product": "electricity, medium voltage"
+      },
+      {
+        "name": "metal working, average for steel product manufacturing",
+        "amount": 742.6821116624471,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "metal working, average for steel product manufacturing",
+        "product": "metal working, average for steel product manufacturing"
+      },
+      {
+        "name": "metal working, average for copper product manufacturing",
+        "amount": 129.57577036286918,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "metal working, average for copper product manufacturing",
+        "product": "metal working, average for copper product manufacturing"
+      },
+      {
+        "name": "metal working, average for aluminium product manufacturing",
+        "amount": 241.07120067510544,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "metal working, average for aluminium product manufacturing",
+        "product": "metal working, average for aluminium product manufacturing"
+      }
+    ],
+    "worksheet name": "test",
+    "database": "lci-trucks"
+  },
+  "after_snapshot": {
+    "location": "GLO",
+    "production amount": 1,
+    "reference product": "power cabinet, charger, 150 kW",
+    "unit": "unit",
+    "source": "ABB2019/2021 PantoUP brochure9AKK107991A4055 RevB https://library.e.abb.com/public/a1c552cfb24c4b6ca6fc3ddef737c884/9AKK107991A4055-Rev%20B_Panto_UP_Brochure_01-2021.pdf ; ABB2021 HVC portfolio9AKK107991A6983 RevC pp13-16; ABB Terra1842023 PEP ABBG-00284-V01.01-EN p6 bulk-material ANALOGUE, not HVC BOM. PSI2023 vehicle LCI Table70 for24year/10bus service reference.",
+    "comment": "Nomenclature revision, 2026-10-19. Former activity name: power cabinet,150kW HVC mass-based engineering reference. Former reference product: power cabinet,150kW HVC mass-based engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED450KW PANTO-UP HARDWARE REFERENCE, issue49, 2026-10-18. ABB2019/2021 PantoUP brochure9AKK107991A4055 RevB https://library.e.abb.com/public/a1c552cfb24c4b6ca6fc3ddef737c884/9AKK107991A4055-Rev%20B_Panto_UP_Brochure_01-2021.pdf ; ABB2021 HVC portfolio9AKK107991A6983 RevC pp13-16; ABB Terra1842023 PEP ABBG-00284-V01.01-EN p6 bulk-material ANALOGUE, not HVC BOM. PSI2023 vehicle LCI Table70 for24year/10bus service reference. Retain original bus-up architecture: three150kW/1340kg cabinets plus500kg pole/interface, total4520kg before separate installed feeder cables. The historical7.533333333*600kg multiplier already reproduces4520kg; the error is its old Level2 material mix plus additional complete charging stand, not proof of an incorrect cabinet count. Do not substitute1650kg PantoDown pole or add a stationary battery. Replace historical charger/stand path by dedicated mass-budget reference. One shared7inchHMI+PLC2kg is included within totalcabinet mass, not added on top; source HMI is in mastercabinet, one-set architecture assumed. Each six-face2030x1170x770mm cabinet has2mm/7700kg/m3 ferritic430 enclosure as GEOMETRY ASSUMPTION. Material430 reference83%unalloyedsteel+17%metalCr,1kWh+4MJ/kg melt/finish is an explicit supply/process proxy, not measured430 metallurgy or proof of zero traceNi. Remaining cabinet mass uses full Terra184 bulk-class fractions per395kg as a deliberately explicit engineering analogue, including8kgunknown/395kg left unassigned, not invented as zero metal. Topology, transformer core grade, semiconductors, cooling and actual HVC tin/critical-metal contents remain unvalidated. In particular8kgTin/395kg is the published TerraEPD category, not an HVC measurement; test0.1-1x this transferred tin factor and0.5-2x other non-enclosure material factors while retaining fixed cabinet mass and reporting residual coverage. No extra genericpowerPCB on top of all bulk ingredients. Internal heat sinks/air cooling are included in transferred categories; cooling system type/service fluids and semiconductor die recipe remain gaps. Reference500kg interface explicitly assumed to include45kg contactdome,12kgPUcontrolbox and443kg support, since source nested mass boundaries are not fully specified; alternative add45+12kg to500kg in sensitivity. Dome public materials glassfiber/Cucontactrails/AlCP-PErails represented20kgGFRP+20kgCu+5kgAl engineering partition; controlbox6kgsteel+2kgCu+1kgAl+3kgprotection/comms-board allowance; pole443kgordinarycarbonsteel. These are not manufacturerBOMs. The moving roof pantograph belongs to the bus: no mass/recipe was recovered, so retain it as an explicit vehicle-side COVERAGE GAP, not an invented second offboardpantograph. External feeder reference10m: two parallel185mm2Cu conductors perDCpole plus70mm2protectiveearth;20kgPE cableinsulation/jackets and1kgcontrolcable proxy.10m is design assumption within manufacturer distance envelope, not a measured site. Ampacity/voltage drop/installation/field lengths need engineeringverification; no road/commoncivilinfrastructure added. Bulk inputs100%finalretention reference plus genericmetalworking/assembly1kWh/kg; no fabricatedmeasuredscrapyield. Keep original24yearlife,10bussharing and four perkmstationdoses; public RLT/warranty does not establish actual lifetime. Replacement sensitivity1-2.4cabinetsets in24years; support remainsone. Manufacturer94-96%charger efficiency is not the total battery/grid efficiency; leave existing vehicle purchased energy/losses untouched and add no duplicate operating/standby energy. End-of-life, maintenance, roofpantograph and unresolvedcomposition are recorded gaps; no recoverycredits or primary-secondaryclaim. Budget: {\"power_cabinets\":3,\"cabinet_kg_each\":1340,\"shared_HMI_and_PLC_kg\":2,\"assumed_2mm_enclosure_kg_each\":149.04428,\"other_internal_reference_kg_each\":1190.2890533333332,\"cabinet_material_analogue_unknown_fraction\":0.020253164556962026,\"pole_interface_reference_kg\":500,\"contact_dome_kg\":45,\"control_box_kg\":12,\"remaining_pole_structure_kg\":443,\"external_DC_copper_kg\":66.304,\"protective_earth_copper_kg\":6.271999999999999,\"service_life_years_assumed\":24,\"buses_shared_per_station_assumed\":10}",
+    "type": "processwithreferenceproduct",
+    "name": "power cabinet production, charger, 150 kw",
+    "exchanges": [
+      {
+        "name": "power cabinet production, charger, 150 kw",
+        "amount": 1,
+        "location": "GLO",
+        "unit": "unit",
+        "type": "production",
+        "reference product": "power cabinet, charger, 150 kW",
+        "product": "power cabinet, charger, 150 kW"
+      },
+      {
+        "name": "ferritic steel production, grade 430, charger enclosure",
+        "amount": 149.04428,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "ferritic steel, grade 430, charger enclosure",
+        "product": "ferritic steel, grade 430, charger enclosure"
+      },
+      {
+        "name": "market for steel, low-alloyed",
+        "amount": 593.6378316624472,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "steel, low-alloyed",
+        "product": "steel, low-alloyed"
+      },
+      {
+        "name": "market for aluminium, wrought alloy",
+        "amount": 241.07120067510544,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "aluminium, wrought alloy",
+        "product": "aluminium, wrought alloy"
+      },
+      {
+        "name": "market for copper, cathode",
+        "amount": 129.57577036286918,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "copper, cathode",
+        "product": "copper, cathode"
+      },
+      {
+        "name": "market for nylon 6",
+        "amount": 33.147290092827,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "nylon 6",
+        "product": "nylon 6"
+      },
+      {
+        "name": "market for polyvinyl chloride, suspension polymerised",
+        "amount": 27.120510075949365,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polyvinyl chloride, suspension polymerised",
+        "product": "polyvinyl chloride, suspension polymerised"
+      },
+      {
+        "name": "market for tin",
+        "amount": 24.107120067510547,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "tin",
+        "product": "tin"
+      },
+      {
+        "name": "market for cable, ribbon cable, 20-pin, with plugs",
+        "amount": 24.107120067510547,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "cable, ribbon cable, 20-pin, with plugs",
+        "product": "cable, ribbon cable, 20-pin, with plugs"
+      },
+      {
+        "name": "market for polyurethane, rigid foam",
+        "amount": 24.107120067510547,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polyurethane, rigid foam",
+        "product": "polyurethane, rigid foam"
+      },
+      {
+        "name": "market for ferrite",
+        "amount": 15.06695004219409,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "ferrite",
+        "product": "ferrite"
+      },
+      {
+        "name": "market for polycarbonate",
+        "amount": 15.06695004219409,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polycarbonate",
+        "product": "polycarbonate"
+      },
+      {
+        "name": "market for acrylonitrile-butadiene-styrene copolymer",
+        "amount": 12.053560033755273,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "acrylonitrile-butadiene-styrene copolymer",
+        "product": "acrylonitrile-butadiene-styrene copolymer"
+      },
+      {
+        "name": "market for glass fibre",
+        "amount": 12.053560033755273,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "glass fibre",
+        "product": "glass fibre"
+      },
+      {
+        "name": "market for epoxy resin, liquid",
+        "amount": 9.040170025316455,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "epoxy resin, liquid",
+        "product": "epoxy resin, liquid"
+      },
+      {
+        "name": "market for polyethylene, high density, granulate",
+        "amount": 6.026780016877637,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "polyethylene, high density, granulate",
+        "product": "polyethylene, high density, granulate"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "amount": 1340,
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "reference product": "electricity, medium voltage",
+        "product": "electricity, medium voltage"
+      },
+      {
+        "name": "metal working, average for steel product manufacturing",
+        "amount": 593.6378316624472,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "metal working, average for steel product manufacturing",
+        "product": "metal working, average for steel product manufacturing"
+      },
+      {
+        "name": "metal working, average for copper product manufacturing",
+        "amount": 129.57577036286918,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "metal working, average for copper product manufacturing",
+        "product": "metal working, average for copper product manufacturing"
+      },
+      {
+        "name": "metal working, average for aluminium product manufacturing",
+        "amount": 241.07120067510544,
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "reference product": "metal working, average for aluminium product manufacturing",
+        "product": "metal working, average for aluminium product manufacturing"
+      }
+    ],
+    "worksheet name": "test",
+    "database": "lci-trucks"
+  },
+  "quantity_cell": "B5793",
+  "comment_cell": "B5772",
+  "before_service_kg_per_cabinet": 742.6821116624471,
+  "after_service_kg_per_cabinet": 593.6378316624472,
+  "ferritic_shell_kg_excluded_from_generic_service": 149.04428,
+  "source_background": {
+    "family": "ecoinvent",
+    "system_model": "cutoff",
+    "version": "3.12"
+  },
+  "source_biosphere": {
+    "family": "ecoinvent",
+    "version": "3.12"
+  },
+  "CLIC_dataset_id": 3744,
+  "CLIC_version_id": 5684,
+  "CLIC_snapshot_sha256": "857c5c7b12fd50337974ffdd42e22de9b42404001798da4c7344597cfc4ef90e",
+  "CLIC_snapshot": {
+    "name": "power cabinet production, charger, 150 kw",
+    "type": "processwithreferenceproduct",
+    "unit": "unit",
+    "source": "ABB2019/2021 PantoUP brochure9AKK107991A4055 RevB https://library.e.abb.com/public/a1c552cfb24c4b6ca6fc3ddef737c884/9AKK107991A4055-Rev%20B_Panto_UP_Brochure_01-2021.pdf ; ABB2021 HVC portfolio9AKK107991A6983 RevC pp13-16; ABB Terra1842023 PEP ABBG-00284-V01.01-EN p6 bulk-material ANALOGUE, not HVC BOM. PSI2023 vehicle LCI Table70 for24year/10bus service reference.",
+    "comment": "Reviewed local vehicle equipment reference: vehicle_equipment:R96-R148:C088-C139. Qualified material/assembly assumptions are retained; historical workbook APPROVED labels are not authority. Source/publication rights and current PSI versions; full composed native 3.12 migration, supplier selection, all helper roots, affected consumers, protected PV closures and export/restore validation before any staging or publication.\n\nR100: ferritic shell finishing owned by existing qualified grade430 reference; ordinary steel service retained.\n\nNomenclature revision, 2026-10-19. Former activity name: power cabinet,150kW HVC mass-based engineering reference. Former reference product: power cabinet,150kW HVC mass-based engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED450KW PANTO-UP HARDWARE REFERENCE, issue49, 2026-10-18. ABB2019/2021 PantoUP brochure9AKK107991A4055 RevB https://library.e.abb.com/public/a1c552cfb24c4b6ca6fc3ddef737c884/9AKK107991A4055-Rev%20B_Panto_UP_Brochure_01-2021.pdf ; ABB2021 HVC portfolio9AKK107991A6983 RevC pp13-16; ABB Terra1842023 PEP ABBG-00284-V01.01-EN p6 bulk-material ANALOGUE, not HVC BOM. PSI2023 vehicle LCI Table70 for24year/10bus service reference. Retain original bus-up architecture: three150kW/1340kg cabinets plus500kg pole/interface, total4520kg before separate installed feeder cables. The historical7.533333333*600kg multiplier already reproduces4520kg; the error is its old Level2 material mix plus additional complete charging stand, not proof of an incorrect cabinet count. Do not substitute1650kg PantoDown pole or add a stationary battery. Replace historical charger/stand path by dedicated mass-budget reference. One shared7inchHMI+PLC2kg is included within totalcabinet mass, not added on top; source HMI is in mastercabinet, one-set architecture assumed. Each six-face2030x1170x770mm cabinet has2mm/7700kg/m3 ferritic430 enclosure as GEOMETRY ASSUMPTION. Material430 reference83%unalloyedsteel+17%metalCr,1kWh+4MJ/kg melt/finish is an explicit supply/process proxy, not measured430 metallurgy or proof of zero traceNi. Remaining cabinet mass uses full Terra184 bulk-class fractions per395kg as a deliberately explicit engineering analogue, including8kgunknown/395kg left unassigned, not invented as zero metal. Topology, transformer core grade, semiconductors, cooling and actual HVC tin/critical-metal contents remain unvalidated. In particular8kgTin/395kg is the published TerraEPD category, not an HVC measurement; test0.1-1x this transferred tin factor and0.5-2x other non-enclosure material factors while retaining fixed cabinet mass and reporting residual coverage. No extra genericpowerPCB on top of all bulk ingredients. Internal heat sinks/air cooling are included in transferred categories; cooling system type/service fluids and semiconductor die recipe remain gaps. Reference500kg interface explicitly assumed to include45kg contactdome,12kgPUcontrolbox and443kg support, since source nested mass boundaries are not fully specified; alternative add45+12kg to500kg in sensitivity. Dome public materials glassfiber/Cucontactrails/AlCP-PErails represented20kgGFRP+20kgCu+5kgAl engineering partition; controlbox6kgsteel+2kgCu+1kgAl+3kgprotection/comms-board allowance; pole443kgordinarycarbonsteel. These are not manufacturerBOMs. The moving roof pantograph belongs to the bus: no mass/recipe was recovered, so retain it as an explicit vehicle-side COVERAGE GAP, not an invented second offboardpantograph. External feeder reference10m: two parallel185mm2Cu conductors perDCpole plus70mm2protectiveearth;20kgPE cableinsulation/jackets and1kgcontrolcable proxy.10m is design assumption within manufacturer distance envelope, not a measured site. Ampacity/voltage drop/installation/field lengths need engineeringverification; no road/commoncivilinfrastructure added. Bulk inputs100%finalretention reference plus genericmetalworking/assembly1kWh/kg; no fabricatedmeasuredscrapyield. Keep original24yearlife,10bussharing and four perkmstationdoses; public RLT/warranty does not establish actual lifetime. Replacement sensitivity1-2.4cabinetsets in24years; support remainsone. Manufacturer94-96%charger efficiency is not the total battery/grid efficiency; leave existing vehicle purchased energy/losses untouched and add no duplicate operating/standby energy. End-of-life, maintenance, roofpantograph and unresolvedcomposition are recorded gaps; no recoverycredits or primary-secondaryclaim. Budget: {\"power_cabinets\":3,\"cabinet_kg_each\":1340,\"shared_HMI_and_PLC_kg\":2,\"assumed_2mm_enclosure_kg_each\":149.04428,\"other_internal_reference_kg_each\":1190.2890533333332,\"cabinet_material_analogue_unknown_fraction\":0.020253164556962026,\"pole_interface_reference_kg\":500,\"contact_dome_kg\":45,\"control_box_kg\":12,\"remaining_pole_structure_kg\":443,\"external_DC_copper_kg\":66.304,\"protective_earth_copper_kg\":6.271999999999999,\"service_life_years_assumed\":24,\"buses_shared_per_station_assumed\":10}",
+    "location": "GLO",
+    "exchanges": [
+      {
+        "name": "power cabinet production, charger, 150 kw",
+        "type": "production",
+        "unit": "unit",
+        "amount": 1,
+        "location": "GLO",
+        "reference product": "power cabinet, charger, 150 kW"
+      },
+      {
+        "name": "ferritic steel production, grade 430, charger enclosure",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 149.04428,
+        "location": "GLO",
+        "reference product": "ferritic steel, grade 430, charger enclosure"
+      },
+      {
+        "name": "market for steel, low-alloyed",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 593.6378316624472,
+        "location": "GLO",
+        "reference product": "steel, low-alloyed"
+      },
+      {
+        "name": "market for aluminium, wrought alloy",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 241.07120067510544,
+        "location": "GLO",
+        "reference product": "aluminium, wrought alloy"
+      },
+      {
+        "name": "market for copper, cathode",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 129.57577036286918,
+        "location": "GLO",
+        "reference product": "copper, cathode"
+      },
+      {
+        "name": "market for nylon 6",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 33.147290092827,
+        "location": "RER",
+        "reference product": "nylon 6"
+      },
+      {
+        "name": "market for polyvinyl chloride, suspension polymerised",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 27.120510075949365,
+        "location": "RER",
+        "reference product": "polyvinyl chloride, suspension polymerised"
+      },
+      {
+        "name": "market for tin",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 24.107120067510547,
+        "location": "GLO",
+        "reference product": "tin"
+      },
+      {
+        "name": "market for cable, ribbon cable, 20-pin, with plugs",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 24.107120067510547,
+        "location": "GLO",
+        "reference product": "cable, ribbon cable, 20-pin, with plugs"
+      },
+      {
+        "name": "market for polyurethane, rigid foam",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 24.107120067510547,
+        "location": "RER",
+        "reference product": "polyurethane, rigid foam"
+      },
+      {
+        "name": "market for ferrite",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 15.06695004219409,
+        "location": "GLO",
+        "reference product": "ferrite"
+      },
+      {
+        "name": "market for polycarbonate",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 15.06695004219409,
+        "location": "RER",
+        "reference product": "polycarbonate"
+      },
+      {
+        "name": "market for acrylonitrile-butadiene-styrene copolymer",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 12.053560033755273,
+        "location": "GLO",
+        "reference product": "acrylonitrile-butadiene-styrene copolymer"
+      },
+      {
+        "name": "market for glass fibre",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 12.053560033755273,
+        "location": "GLO",
+        "reference product": "glass fibre"
+      },
+      {
+        "name": "market for epoxy resin, liquid",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 9.040170025316455,
+        "location": "RER",
+        "reference product": "epoxy resin, liquid"
+      },
+      {
+        "name": "market for polyethylene, high density, granulate",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 6.026780016877637,
+        "location": "RER",
+        "reference product": "polyethylene, high density, granulate"
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 1340,
+        "location": "GLO",
+        "reference product": "electricity, medium voltage"
+      },
+      {
+        "name": "metal working, average for steel product manufacturing",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 593.6378316624472,
+        "location": "RER",
+        "reference product": "metal working, average for steel product manufacturing"
+      },
+      {
+        "name": "metal working, average for copper product manufacturing",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 129.57577036286918,
+        "location": "RER",
+        "reference product": "metal working, average for copper product manufacturing"
+      },
+      {
+        "name": "metal working, average for aluminium product manufacturing",
+        "type": "technosphere",
+        "unit": "kilogram",
+        "amount": 241.07120067510544,
+        "location": "RER",
+        "reference product": "metal working, average for aluminium product manufacturing"
+      }
+    ],
+    "production amount": 1,
+    "reference product": "power cabinet, charger, 150 kW"
+  },
+  "formula_reference_audit": {
+    "formula_cells": 0,
+    "dependent_formula_cells": []
+  },
+  "corrected_audit_coordinate": {
+    "previous_proposal_row": 5710,
+    "actual_exchange_row": 5793,
+    "reason": "Validate activity/supplier identity against the current workbook XML; prior audit row5710 instead belongs to an HMI ABS input. No edit used the incorrect coordinate."
+  },
+  "decision_source": "refinement-round-100/delegated-comparable-charger-material-scopes.json",
+  "decision_source_sha256": "e87006345d6ceaacad3fafa3e6bdbcf2c156627d50dd8bb954e35b4565a2a5f7"
+}

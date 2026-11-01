@@ -1,0 +1,444 @@
+{
+  "case_id": "ALIGN-050",
+  "approval": "Approved by Romain Sacchi, 2026-10-27; approved. next?",
+  "change_cell_count": 6,
+  "note_cell_count": 3,
+  "workbooks": [
+    {
+      "workbook": "lci-batteries-LiS.xlsx",
+      "sheet": "Battery - Li-S",
+      "before_workbook_sha256": "d026b54b7bee74499f2fb89ba0288765823f7802fcba42c667dd5ffd519577c8",
+      "source_background": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.9"
+      },
+      "source_biosphere": {
+        "family": "ecoinvent",
+        "version": "3.9"
+      },
+      "dimension": "A1:Q1868",
+      "activity_count": 85,
+      "changes": [
+        {
+          "after": "cooling system production, for Li-O2 battery",
+          "before": "battery cooling system production, liquid cooling",
+          "cell": "A1133",
+          "field": "name",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 3,
+          "before_exchange": {
+            "name": "battery cooling system production, liquid cooling",
+            "amount": 1,
+            "location": "GLO",
+            "unit": "unit",
+            "type": "technosphere",
+            "reference product": "battery cooling system, liquid cooling"
+          },
+          "before_formula": null,
+          "after_formula": null,
+          "kind": "text"
+        },
+        {
+          "after": 10,
+          "before": 1,
+          "cell": "B1133",
+          "field": "amount",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 3,
+          "before_exchange": {
+            "name": "battery cooling system production, liquid cooling",
+            "amount": 1,
+            "location": "GLO",
+            "unit": "unit",
+            "type": "technosphere",
+            "reference product": "battery cooling system, liquid cooling"
+          },
+          "before_formula": null,
+          "after_formula": null,
+          "kind": "numeric"
+        },
+        {
+          "after": "RER",
+          "before": "GLO",
+          "cell": "C1133",
+          "field": "location",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 3,
+          "before_exchange": {
+            "name": "battery cooling system production, liquid cooling",
+            "amount": 1,
+            "location": "GLO",
+            "unit": "unit",
+            "type": "technosphere",
+            "reference product": "battery cooling system, liquid cooling"
+          },
+          "before_formula": null,
+          "after_formula": null,
+          "kind": "text"
+        },
+        {
+          "after": "kilogram",
+          "before": "unit",
+          "cell": "D1133",
+          "field": "unit",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 3,
+          "before_exchange": {
+            "name": "battery cooling system production, liquid cooling",
+            "amount": 1,
+            "location": "GLO",
+            "unit": "unit",
+            "type": "technosphere",
+            "reference product": "battery cooling system, liquid cooling"
+          },
+          "before_formula": null,
+          "after_formula": null,
+          "kind": "text"
+        },
+        {
+          "after": "cooling system",
+          "before": "battery cooling system, liquid cooling",
+          "cell": "G1133",
+          "field": "reference product",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 3,
+          "before_exchange": {
+            "name": "battery cooling system production, liquid cooling",
+            "amount": 1,
+            "location": "GLO",
+            "unit": "unit",
+            "type": "technosphere",
+            "reference product": "battery cooling system, liquid cooling"
+          },
+          "before_formula": null,
+          "after_formula": null,
+          "kind": "text"
+        },
+        {
+          "after": -15.6128,
+          "before": -15.6124,
+          "cell": "B1134",
+          "field": "amount",
+          "formula": null,
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "exchange_index": 4,
+          "before_exchange": {
+            "name": "market for used Li-ion battery",
+            "amount": -15.6124,
+            "location": "GLO",
+            "unit": "kilogram",
+            "type": "technosphere",
+            "reference product": "used Li-ion battery"
+          },
+          "before_formula": null,
+          "after_formula": null,
+          "kind": "numeric"
+        }
+      ],
+      "notes": [
+        {
+          "cell": "B1126",
+          "activity_index": 53,
+          "activity": "battery control and cooling system production, 16 modules",
+          "before": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.9. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\nAPPROVED CENTRAL-CONTROL FASTENER AND MASS RECONCILIATION, 2026-10-27. The shared central-control reference uses 0.0028 kg fasteners rather than 0.028 kg, retaining 0.49 kg mounted board, 2.8 kg HV equipment and 1.2 kg LV equipment: nominal reference mass 4.4928 kg instead of 4.518 kg. This remains a qualified material reference, not a verified complete manufacturer BOM, actual circuit topology or literal fractional controller count. Keep one central unit, 1.1 kg monitoring and the existing 9.9996 kg cooling reference; retire 15.5924 kg once through the existing treatment proxy. Do not substitute the different 15.6128 kg CLIC combined allowance without separate monitoring/cooling decisions. Original technosphere and biosphere declarations both remain 3.9. Fixed counts and other recipes remain unchanged except for the explicitly coupled mass accounting. Historical source text follows unchanged.\n\nNomenclature revision, 2026-10-19. Former activity name: battery controls and cooling, 16-module engineering reference. Former reference product: battery controls and cooling, 16-module engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED ENGINEERING CONTROL/THERMAL COVERAGE, item13, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072. Separate module monitoring from central protection: per16-module reference,1.1kg populated PCB monitors, central0.49kg populated PCB+2.8kg HV system+1.2kg LV system+.028kg fasteners=4.518kg. Use existing HV/LV/fastener process providers and generic populated through-hole PCB perkg; this is an explicit board-technology/material proxy rather than the source-specific board fabrication model. No whole BMS is added on top. Adopt one nominal10kg liquid-cooling assembly per reference: Al9.08, steel.23, PVC/rubber pipe.0096, thermal pad.2 (silicon.06, glass.02, ABS.12), ethylene glycol.48kg; source-rounded sum9.9996kg. Metal working/injection services are included; 100percent retention of listed finished materials is assumed. No stationary rack housing/container, common vehicle body or roadway is added. Monitoring/protection/cooling are added once as a unit-valued capacity input; kg module and matching waste remain separate, so density learning does not shrink fixed controls. Central and cooling hardware are conservatively co-replaced with each delivered pack; longer independent hardware life is not established. End-of-life uses the existing generic used Li-ion route for15.6176kg of auxiliary hardware per reference, without recovery credits; this is a treatment proxy for controls/cooling, not proof of chemistry-specific recovery. Source thermal duty, pump/radiator performance, protection ratings, inverter/pack interface, full outer pack enclosure and vehicle-specific module topology remain coverage/design gaps. The SIB cell-mass-equivalent module retains its existing18.768kg cell+6.203kg module hardware reference; it is not a demonstrated integer21700-cell topology. LiS uses the corrected19.306152kg cell+6.203kg module hardware. These are engineering references, not fleet-validated designs; use0.5-2x auxiliary-size and independent-replacement-life sensitivities.",
+          "prefix": "APPROVED SIXTEEN-MODULE RER COOLING REFERENCE, 2026-10-27. Purchase 10 kg of cooling system production, for Li-O2 battery, RER, using the approved wrought-alloy radiator and manifold inputs. Retain one 4.4928 kg central unit and 1.12 kg monitoring boards. Retire the nominal purchased total of 15.6128 kg once through the existing treatment proxy. Listed cooling materials total 9.9996 kg: the 0.0004 kg difference from the nominal 10 kg is retained as source rounding, without filler, yield correction or recovery credit. Adopt the inherited RER forming, regional inputs, freight and infrastructure assumptions; thermal design, stock grade and procurement remain qualified engineering assumptions, not measured equipment performance. The full pad/pipe injection-service convention remains as written. Preserve other consumers, supplier recipes, capacity purchases, module mass, lifetime, formulas and uncertainties. Original technosphere and biosphere declarations both remain 3.9. This qualification supersedes earlier cooling/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\n",
+          "target": "activity_comment"
+        }
+      ],
+      "affected_activities": [
+        {
+          "index": 53,
+          "before": {
+            "location": "GLO",
+            "production amount": 1,
+            "reference product": "battery control and cooling system, 16 modules",
+            "unit": "unit",
+            "source": "Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072.",
+            "comment": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.9. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\nAPPROVED CENTRAL-CONTROL FASTENER AND MASS RECONCILIATION, 2026-10-27. The shared central-control reference uses 0.0028 kg fasteners rather than 0.028 kg, retaining 0.49 kg mounted board, 2.8 kg HV equipment and 1.2 kg LV equipment: nominal reference mass 4.4928 kg instead of 4.518 kg. This remains a qualified material reference, not a verified complete manufacturer BOM, actual circuit topology or literal fractional controller count. Keep one central unit, 1.1 kg monitoring and the existing 9.9996 kg cooling reference; retire 15.5924 kg once through the existing treatment proxy. Do not substitute the different 15.6128 kg CLIC combined allowance without separate monitoring/cooling decisions. Original technosphere and biosphere declarations both remain 3.9. Fixed counts and other recipes remain unchanged except for the explicitly coupled mass accounting. Historical source text follows unchanged.\n\nNomenclature revision, 2026-10-19. Former activity name: battery controls and cooling, 16-module engineering reference. Former reference product: battery controls and cooling, 16-module engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED ENGINEERING CONTROL/THERMAL COVERAGE, item13, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072. Separate module monitoring from central protection: per16-module reference,1.1kg populated PCB monitors, central0.49kg populated PCB+2.8kg HV system+1.2kg LV system+.028kg fasteners=4.518kg. Use existing HV/LV/fastener process providers and generic populated through-hole PCB perkg; this is an explicit board-technology/material proxy rather than the source-specific board fabrication model. No whole BMS is added on top. Adopt one nominal10kg liquid-cooling assembly per reference: Al9.08, steel.23, PVC/rubber pipe.0096, thermal pad.2 (silicon.06, glass.02, ABS.12), ethylene glycol.48kg; source-rounded sum9.9996kg. Metal working/injection services are included; 100percent retention of listed finished materials is assumed. No stationary rack housing/container, common vehicle body or roadway is added. Monitoring/protection/cooling are added once as a unit-valued capacity input; kg module and matching waste remain separate, so density learning does not shrink fixed controls. Central and cooling hardware are conservatively co-replaced with each delivered pack; longer independent hardware life is not established. End-of-life uses the existing generic used Li-ion route for15.6176kg of auxiliary hardware per reference, without recovery credits; this is a treatment proxy for controls/cooling, not proof of chemistry-specific recovery. Source thermal duty, pump/radiator performance, protection ratings, inverter/pack interface, full outer pack enclosure and vehicle-specific module topology remain coverage/design gaps. The SIB cell-mass-equivalent module retains its existing18.768kg cell+6.203kg module hardware reference; it is not a demonstrated integer21700-cell topology. LiS uses the corrected19.306152kg cell+6.203kg module hardware. These are engineering references, not fleet-validated designs; use0.5-2x auxiliary-size and independent-replacement-life sensitivities.",
+            "type": "processwithreferenceproduct",
+            "name": "battery control and cooling system production, 16 modules",
+            "exchanges": [
+              {
+                "name": "battery control and cooling system production, 16 modules",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "production",
+                "reference product": "battery control and cooling system, 16 modules"
+              },
+              {
+                "name": "battery central control and protection unit production",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "technosphere",
+                "reference product": "battery central control and protection unit"
+              },
+              {
+                "name": "printed circuit board production, battery module control, mounted",
+                "amount": 1.12,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "printed circuit board, battery module control, mounted"
+              },
+              {
+                "name": "battery cooling system production, liquid cooling",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "technosphere",
+                "reference product": "battery cooling system, liquid cooling"
+              },
+              {
+                "name": "market for used Li-ion battery",
+                "amount": -15.6124,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "used Li-ion battery"
+              }
+            ],
+            "worksheet name": "Battery - Li-S",
+            "database": "batteries"
+          },
+          "after": {
+            "location": "GLO",
+            "production amount": 1,
+            "reference product": "battery control and cooling system, 16 modules",
+            "unit": "unit",
+            "source": "Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072.",
+            "comment": "APPROVED SIXTEEN-MODULE RER COOLING REFERENCE, 2026-10-27. Purchase 10 kg of cooling system production, for Li-O2 battery, RER, using the approved wrought-alloy radiator and manifold inputs. Retain one 4.4928 kg central unit and 1.12 kg monitoring boards. Retire the nominal purchased total of 15.6128 kg once through the existing treatment proxy. Listed cooling materials total 9.9996 kg: the 0.0004 kg difference from the nominal 10 kg is retained as source rounding, without filler, yield correction or recovery credit. Adopt the inherited RER forming, regional inputs, freight and infrastructure assumptions; thermal design, stock grade and procurement remain qualified engineering assumptions, not measured equipment performance. The full pad/pipe injection-service convention remains as written. Preserve other consumers, supplier recipes, capacity purchases, module mass, lifetime, formulas and uncertainties. Original technosphere and biosphere declarations both remain 3.9. This qualification supersedes earlier cooling/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\nAPPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.9. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\nAPPROVED CENTRAL-CONTROL FASTENER AND MASS RECONCILIATION, 2026-10-27. The shared central-control reference uses 0.0028 kg fasteners rather than 0.028 kg, retaining 0.49 kg mounted board, 2.8 kg HV equipment and 1.2 kg LV equipment: nominal reference mass 4.4928 kg instead of 4.518 kg. This remains a qualified material reference, not a verified complete manufacturer BOM, actual circuit topology or literal fractional controller count. Keep one central unit, 1.1 kg monitoring and the existing 9.9996 kg cooling reference; retire 15.5924 kg once through the existing treatment proxy. Do not substitute the different 15.6128 kg CLIC combined allowance without separate monitoring/cooling decisions. Original technosphere and biosphere declarations both remain 3.9. Fixed counts and other recipes remain unchanged except for the explicitly coupled mass accounting. Historical source text follows unchanged.\n\nNomenclature revision, 2026-10-19. Former activity name: battery controls and cooling, 16-module engineering reference. Former reference product: battery controls and cooling, 16-module engineering reference. Activity/product labels and supplier references only; coefficients, formulas, uncertainty, declared output and unit are unchanged. Original engineering assumptions, functional-unit basis and limitations remain below.\n\nAPPROVED FUNCTION-SPECIFIC BATTERY CONTROL ELECTRONICS, issue35, 2026-10-18. TI TIDA020076 public BOM https://www.ti.com/lit/pdf/SLURB87; TI BQ79616PAPRQ1 material declaration https://www.ti.com/quality-reliability-packaging-download/report?opn=BQ79616PAPRQ1; TI CC2662 BCU guide https://www.ti.com/lit/pdf/SWRU641. Preserve existing central0.49kg, module1.12kg or1.1kg/16 and residual-pack electronics mass/count budgets. Replace central and identified module-monitor boards, not unidentified residual pack electronics. Engineering monitor70g (1.1kg reference uses68.75g/board through mass scaling),16channelBQ79616one/70g instead of TI18channelBQ79718; this is a declared alternative, not an exact TI board replica or validated channel architecture. Source TIDA fitted passives134ceramiccapacitors(62x0402,27x0603,39x0805,6x1206),128resistors(63x0402,21x0603,4x0805,38x1206,2x2010). Assumed individual masses0402=1mg,0603=3mg,0805=10mg,1206=30mg,2010=60mg,ceramiccapacitor0805=15mg; component-specific manufacturer masses remain unknown. Monitoring bareboard100x100mm,6copperlayers35um,50percent retainedcopper,1.6mm1850kg/m3FR4; centralbareboard0.1m2,4layers samegeometry. Central490g size is legacy mass-constrained engineering reference, not manufacturer dimensions:validate area0.03-0.1m2,layer4-8 andparts independently. FR4 proxy60percentglass/40epoxy plus2g/m2soldermask;ENIGfinish1percentarea,5umNi,0.05umAu.95percentCu/glass/epoxyretention reference with matching waste; etching/process chemistry remains a gap,assume10kWh/m2 bareboard and1kWh/board finalassembly. Monitor20gconnectors,1.5gotherlogic,1gmagnetics,1gdiodes,0.4gRF/crystals,1gsolder;central100gconnectors,5glogic,2gcapacitors,3gresistors,5gsolder. Use existing constituent manufacturing proxies, so logic/resistor/ceramiccap/connector upstreamPd/Ta/Sb/Au remain and are not assumed absent. Remaining component mass explicitly retains a generic populated-board proxy; trace-metal completeness is NOT proven by bulk closure. TI declared366.484301mg BQpackage explicitly purchases Cu/Fe/Ni/Ag/Au/Pd/Pb/Zn/Mn/S/SiO2/epoxy/phenolic/carbonblack and fabricatedsilicondie once. Gold0.034234mg,Pd0.179949mg,Ag4.372259mg perpackage; no generic1percentgoldbondwire. Phosphorus0.048897mg unmodeled due to absent exact feed; mass/trace gap documented. Fabricatedwafer proxy270um allocation reference at2330kg/m3 (300um diagnostic alternative; fitted die geometry unverified) includes die manufacture, no duplicate elementalSi purchase. No new EOL:existing complete control mass treatment remains once. Component fabrication yields beyond bareboard, automobile qualification, functional reliability andfutureelectronics evolution remain gaps; sensitivity0.5-2xcomponentcounts andunknowncomponentmetalrecipes. This is a transparent engineering reference, not recovered manufacturer complete BOM.\nPREVIOUS NOTES (retained as history; the correction above takes precedence):\nAPPROVED ENGINEERING CONTROL/THERMAL COVERAGE, item13, 2026-10-18. Wickerts corrected SI DOI10.1021/acssuschemeng.4c01782.s001 S26/S27; original Ellingsen2014 SI S39/S40, DOI10.1111/jiec.12072. Separate module monitoring from central protection: per16-module reference,1.1kg populated PCB monitors, central0.49kg populated PCB+2.8kg HV system+1.2kg LV system+.028kg fasteners=4.518kg. Use existing HV/LV/fastener process providers and generic populated through-hole PCB perkg; this is an explicit board-technology/material proxy rather than the source-specific board fabrication model. No whole BMS is added on top. Adopt one nominal10kg liquid-cooling assembly per reference: Al9.08, steel.23, PVC/rubber pipe.0096, thermal pad.2 (silicon.06, glass.02, ABS.12), ethylene glycol.48kg; source-rounded sum9.9996kg. Metal working/injection services are included; 100percent retention of listed finished materials is assumed. No stationary rack housing/container, common vehicle body or roadway is added. Monitoring/protection/cooling are added once as a unit-valued capacity input; kg module and matching waste remain separate, so density learning does not shrink fixed controls. Central and cooling hardware are conservatively co-replaced with each delivered pack; longer independent hardware life is not established. End-of-life uses the existing generic used Li-ion route for15.6176kg of auxiliary hardware per reference, without recovery credits; this is a treatment proxy for controls/cooling, not proof of chemistry-specific recovery. Source thermal duty, pump/radiator performance, protection ratings, inverter/pack interface, full outer pack enclosure and vehicle-specific module topology remain coverage/design gaps. The SIB cell-mass-equivalent module retains its existing18.768kg cell+6.203kg module hardware reference; it is not a demonstrated integer21700-cell topology. LiS uses the corrected19.306152kg cell+6.203kg module hardware. These are engineering references, not fleet-validated designs; use0.5-2x auxiliary-size and independent-replacement-life sensitivities.",
+            "type": "processwithreferenceproduct",
+            "name": "battery control and cooling system production, 16 modules",
+            "exchanges": [
+              {
+                "name": "battery control and cooling system production, 16 modules",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "production",
+                "reference product": "battery control and cooling system, 16 modules"
+              },
+              {
+                "name": "battery central control and protection unit production",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "unit",
+                "type": "technosphere",
+                "reference product": "battery central control and protection unit"
+              },
+              {
+                "name": "printed circuit board production, battery module control, mounted",
+                "amount": 1.12,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "printed circuit board, battery module control, mounted"
+              },
+              {
+                "name": "cooling system production, for Li-O2 battery",
+                "amount": 10,
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "cooling system"
+              },
+              {
+                "name": "market for used Li-ion battery",
+                "amount": -15.6128,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "used Li-ion battery"
+              }
+            ],
+            "worksheet name": "Battery - Li-S",
+            "database": "batteries"
+          }
+        }
+      ],
+      "formula_reference_audit": {
+        "formula_count": 127,
+        "dependent_formula_cells": []
+      }
+    },
+    {
+      "workbook": "lci-battery-capacity.xlsx",
+      "sheet": "Battery - NMC",
+      "before_workbook_sha256": "bd38547c0b373d0df060b9d34b46526d2ca45d31d6a47fe16d5b145cace0cbdb",
+      "source_background": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.10"
+      },
+      "source_biosphere": {
+        "family": "ecoinvent",
+        "version": "3.10"
+      },
+      "dimension": "A1:N379",
+      "activity_count": 35,
+      "changes": [],
+      "notes": [
+        {
+          "cell": "L132",
+          "activity_index": 9,
+          "activity": "market for battery capacity, Li-sulfur, Li-S",
+          "before": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.10. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\nEngineering auxiliary input; fixed unit reference, includes own separate15.6176kg waste.",
+          "prefix": "APPROVED SIXTEEN-MODULE RER COOLING REFERENCE, 2026-10-27. Purchase 10 kg of cooling system production, for Li-O2 battery, RER, using the approved wrought-alloy radiator and manifold inputs. Retain one 4.4928 kg central unit and 1.12 kg monitoring boards. Retire the nominal purchased total of 15.6128 kg once through the existing treatment proxy. Listed cooling materials total 9.9996 kg: the 0.0004 kg difference from the nominal 10 kg is retained as source rounding, without filler, yield correction or recovery credit. Adopt the inherited RER forming, regional inputs, freight and infrastructure assumptions; thermal design, stock grade and procurement remain qualified engineering assumptions, not measured equipment performance. The full pad/pipe injection-service convention remains as written. Preserve other consumers, supplier recipes, capacity purchases, module mass, lifetime, formulas and uncertainties. Original technosphere and biosphere declarations both remain 3.10. This qualification supersedes earlier cooling/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\n",
+          "target": "worksheet_note"
+        },
+        {
+          "cell": "L158",
+          "activity_index": 11,
+          "activity": "market for battery capacity, Sodium-ion, SiB",
+          "before": "APPROVED SIXTEEN-MODULE MONITORING REFERENCE, 2026-10-27. Adopt sixteen 70 g monitoring boards, giving 1.12 kg monitoring in this 16-module assembly. The source 1.1 kg allowance remains a distinct reported mass reference, not a proven error. Actual board masses and control topology remain unverified engineering assumptions; this does not certify a complete fitted BOM. Preserve one central reference of 4.4928 kg and the existing cooling reference with 9.9996 kg represented material: retire 15.6124 kg once through the existing treatment proxy. Do not import the different 15.6128 kg CLIC combined allowance while retaining a different cooling reference. Keep central/cooling counts, supplier recipes, capacity purchases, module mass, lifetime and other quantities unchanged. Original technosphere and biosphere declarations both remain 3.10. This qualification supersedes earlier monitor/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\nEngineering auxiliary input; fixed unit reference, includes own separate15.6176kg waste.",
+          "prefix": "APPROVED SIXTEEN-MODULE RER COOLING REFERENCE, 2026-10-27. Purchase 10 kg of cooling system production, for Li-O2 battery, RER, using the approved wrought-alloy radiator and manifold inputs. Retain one 4.4928 kg central unit and 1.12 kg monitoring boards. Retire the nominal purchased total of 15.6128 kg once through the existing treatment proxy. Listed cooling materials total 9.9996 kg: the 0.0004 kg difference from the nominal 10 kg is retained as source rounding, without filler, yield correction or recovery credit. Adopt the inherited RER forming, regional inputs, freight and infrastructure assumptions; thermal design, stock grade and procurement remain qualified engineering assumptions, not measured equipment performance. The full pad/pipe injection-service convention remains as written. Preserve other consumers, supplier recipes, capacity purchases, module mass, lifetime, formulas and uncertainties. Original technosphere and biosphere declarations both remain 3.10. This qualification supersedes earlier cooling/retirement descriptions within this 16-module reference only. Historical source text follows unchanged.\n\n",
+          "target": "worksheet_note"
+        }
+      ],
+      "affected_activities": [],
+      "formula_reference_audit": {
+        "formula_count": 159,
+        "dependent_formula_cells": []
+      }
+    }
+  ],
+  "approved_proposal": {
+    "CLIC_cooler_dataset_id": 1150,
+    "CLIC_cooler_snapshot_sha256": "d44fd089d029b8fb5c5d171eceba6686a51d56ac31357cacf50c9f26636a8ca4",
+    "CLIC_cooler_version_id": 1150,
+    "CLIC_dataset_id": 3710,
+    "CLIC_snapshot_sha256": "f1b7a88c0f044816b6719a2649bd8ba05be94e14acf6cfb34b3a21835a881a3b",
+    "CLIC_version_id": 5631,
+    "Premise_workbook": "lci-batteries-LiS.xlsx",
+    "Premise_workbook_sha256": "d026b54b7bee74499f2fb89ba0288765823f7802fcba42c667dd5ffd519577c8",
+    "alignment_direction": "CLIC to Premise using approved049stock-corrected dependency candidates",
+    "approval_pending": true,
+    "approval_question": "Approve selecting10kgofthecorrectedRERcooler and15.6128kgnominalretirement forthe16-moduleassembly, withsixcells/threenotes andallotherquantities/originalpairedprofilespreserved?",
+    "approved_stock_candidate_keys": [
+      "ALIGN-049:revision:1151",
+      "ALIGN-049:revision:1152"
+    ],
+    "bulk_listed_materials_kg_both_references": 9.9996,
+    "capacity_annotations": {
+      "all_imported_records_and_purchases_preserved": true,
+      "before_workbook_sha256": "bd38547c0b373d0df060b9d34b46526d2ca45d31d6a47fe16d5b145cace0cbdb",
+      "note_cells": [
+        "L132",
+        "L158"
+      ],
+      "sheet": "Battery - NMC",
+      "workbook": "lci-battery-capacity.xlsx"
+    },
+    "case_id": "ALIGN-050",
+    "changes": [
+      {
+        "after": "cooling system production, for Li-O2 battery",
+        "before": "battery cooling system production, liquid cooling",
+        "cell": "A1133",
+        "field": "name",
+        "formula": null
+      },
+      {
+        "after": 10,
+        "before": 1,
+        "cell": "B1133",
+        "field": "amount",
+        "formula": null
+      },
+      {
+        "after": "RER",
+        "before": "GLO",
+        "cell": "C1133",
+        "field": "location",
+        "formula": null
+      },
+      {
+        "after": "kilogram",
+        "before": "unit",
+        "cell": "D1133",
+        "field": "unit",
+        "formula": null
+      },
+      {
+        "after": "cooling system",
+        "before": "battery cooling system, liquid cooling",
+        "cell": "G1133",
+        "field": "reference product",
+        "formula": null
+      },
+      {
+        "after": -15.6128,
+        "before": -15.6124,
+        "cell": "B1134",
+        "field": "retirement_amount",
+        "formula": null
+      }
+    ],
+    "direct_assembly_science_matches_CLIC_after_proposed_change": true,
+    "expanded_native_audit_sha256": "29d8c54d31d12c23ca69111bb5fa91b0684b4e74c1ad9d0ddddb9530924afe0a",
+    "implementation_performed": false,
+    "manufacturing_choice": "Adopt RERsource forming, regional inputs, freight and infrastructure. AverageAlworking9.08->.38kg, rolling0->8.7kg,injection.1296->.2096kg, glass/PVCmarketGLO->productionRER,rail/lorry0->4.10392/1.95196tkm; existingfacilityallowancesadded.",
+    "note_cells": [
+      "B1126"
+    ],
+    "preserve": "Onecentralunit,1.12kgmonitors,allhelpersandotherconsumers,capacitypurchases,modulemass/lifetime,allotherformulas/uncertainty andoriginalpairedbackgroundversions.",
+    "qualification": "Qualified inherited equipment/thermal/stock-grade/procurement/transport assumptions, not measured validatedcoolerdesign. Full-pad/pipeinjection-service convention retainedaswritten withoutclaimingcomposite-formingclosure oraltering nativecoefficients.",
+    "retirement_choice": "Use10kgpurchasednominalcooler in15.6128kgretirement, retaining.0004kggap fromlistedmaterials as documented source rounding; no filler,yieldcorrection orrecoverycredit.",
+    "sheet": "Battery - Li-S",
+    "source_profiles_preserved": {
+      "lci-batteries-LiO2.xlsx": {
+        "background": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        }
+      },
+      "lci-batteries-LiS.xlsx": {
+        "background": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        }
+      },
+      "lci-battery-capacity.xlsx": {
+        "background": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.10"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      }
+    },
+    "title": "Sixteen-module assembly: select the corrected detailed RER cooling reference",
+    "wrought_aluminium_kg_both_references": 9.08
+  },
+  "nominal_cooling_kg": 10,
+  "listed_cooling_materials_kg": 9.9996,
+  "retirement_kg": 15.6128,
+  "full_graph_CLIC_equivalence_claimed": false
+}
