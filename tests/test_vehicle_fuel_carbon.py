@@ -72,6 +72,9 @@ def vehicle(fuel, kind="car", location="RER", production=1):
         if kind == "car"
         else "transport, freight, lorry"
     )
+    if kind == "train":
+        name = "transport, freight train, diesel-electric"
+        product = "transport, freight train"
     return {
         "name": name,
         "reference product": product,
@@ -264,7 +267,7 @@ def test_validator_detects_wrong_split_even_with_correct_total():
     assert all(i[1] == "vehicle fuel carbon split incorrect" for i in issues)
 
 
-@pytest.mark.parametrize("kind", ["car", "truck"])
+@pytest.mark.parametrize("kind", ["car", "truck", "train"])
 @pytest.mark.parametrize("year,factor", [(2020, 1), (2050, 0.5)])
 def test_transport_entrypoint_uses_final_suppliers_and_efficiency(
     monkeypatch, kind, year, factor
@@ -289,6 +292,7 @@ def test_transport_entrypoint_uses_final_suppliers_and_efficiency(
         regions=regions,
         passenger_car_efficiencies=efficiencies,
         road_freight_efficiencies=efficiencies,
+        rail_freight_efficiencies=efficiencies,
         passenger_car_fleet=None,
         road_freight_fleet=None,
         bus_fleet=None,
@@ -340,3 +344,61 @@ def test_transport_entrypoint_uses_final_suppliers_and_efficiency(
     before = deepcopy(transport.database)
     module._update_vehicles(scenario, kind, "3.12", "cutoff")
     assert transport.database == before
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "transport, freight train, diesel-electric",
+        "transport, freight train, electric",
+        "transport, freight train, fuel cell, hydrogen",
+        "diesel, burned in passenger train",
+    ],
+)
+@pytest.mark.parametrize("share", [0, 0.4, 1])
+@pytest.mark.parametrize("compact", [False, True])
+def test_rail_reclassifies_inherited_world_split_without_changing_exhaust(
+    name, share, compact
+):
+    world = supplier("World", 0.25, 3.15, name="market for diesel")
+    local = supplier("JPN", share, 3.2, name="market for diesel")
+    ds = vehicle(world, kind="train")
+    ds["name"] = name
+    ds["exchanges"][2]["amount"] = 0.02
+    reclassify_fuel_co2(ds, 0.3, 0.25, FLOWS, "inherited diesel classification")
+    ds["exchanges"].append(emission("Carbon dioxide, fossil", -0.001))
+    ds["location"] = "JPN"
+    ds["exchanges"][1]["location"] = "JPN"
+    if compact:
+        ds["exchanges"] = [compact_exchange_payload(e) for e in ds["exchanges"]]
+    unaffected = [
+        dict(e)
+        for e in ds["exchanges"]
+        if e["type"] != "biosphere" or e["name"] == "Nitrogen oxides" or e["amount"] < 0
+    ]
+    update_vehicle_fuel_co2([world, local, ds], "3.12", "train")
+    assert amounts(ds) == pytest.approx((0.02 * (1 - share), 0.02 * share))
+    assert [
+        dict(e)
+        for e in ds["exchanges"]
+        if e["type"] != "biosphere" or e["name"] == "Nitrogen oxides" or e["amount"] < 0
+    ] == unaffected
+    once = deepcopy(ds)
+    update_vehicle_fuel_co2([world, local, ds], "3.12", "train")
+    assert ds == once
+
+
+def test_rail_unknown_supplier_and_missing_exhaust_remain_unmodified():
+    fuel = supplier(name="market for diesel")
+    ds = vehicle(fuel, kind="train")
+    fuel.pop(PROPERTIES_KEY)
+    before = deepcopy(ds)
+    update_vehicle_fuel_co2([fuel, ds], "3.12", "train")
+    assert ds == before
+    fuel[PROPERTIES_KEY] = supplier()[PROPERTIES_KEY]
+    ds["exchanges"] = [
+        e for e in ds["exchanges"] if e.get("name") != "Carbon dioxide, fossil"
+    ]
+    before = deepcopy(ds)
+    update_vehicle_fuel_co2([fuel, ds], "3.12", "train")
+    assert ds == before

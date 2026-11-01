@@ -85,9 +85,10 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         trspt.create_vehicle_markets()
         trspt.relink_transport_datasets()
 
-    if vehicle_type in {"car", "truck"}:
+    if vehicle_type in {"car", "truck", "train"}:
         # Reuse the fuel module's accounting after regional supplier linking,
-        # IAM efficiency scaling and any passenger-car energy floor.
+        # IAM efficiency scaling and any passenger-car energy floor. Rail
+        # refreshes classification while retaining its recorded exhaust total.
         update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
 
     replace_scenario_inventory(scenario, trspt.database)

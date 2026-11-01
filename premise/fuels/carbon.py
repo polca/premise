@@ -154,10 +154,15 @@ def reclassify_fuel_co2(dataset, fuel_co2, non_fossil_share, biosphere_flows, fu
 
 
 def is_vehicle_fuel_consumer(dataset, vehicle_type=None):
-    """Select direct car/truck services, excluding manufacture and fleet markets."""
+    """Select operating services and rail combustion wrappers, excluding markets."""
     prefixes = {
         "car": "transport, passenger car,",
         "truck": "transport, freight, lorry,",
+        "train": (
+            "transport, freight train,",
+            "transport, passenger train,",
+            "diesel, burned in passenger train",
+        ),
     }
     return any(
         dataset.get("name", "").startswith(prefix)
@@ -366,7 +371,11 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
 
 
 def update_vehicle_fuel_co2(database, version, vehicle_type=None):
-    """Refresh road-vehicle CO2 from the currently linked suppliers and amounts."""
+    """Refresh CO2 from final linked fuels after regionalization and scaling.
+
+    Rail keeps its recorded exhaust total and only refreshes carbon origin.
+    Cars and trucks retain their existing full-oxidation accounting.
+    """
     from ..inventory.inventory_imports import get_biosphere_code
 
     providers = {activity_key(ds): ds for ds in database}
@@ -376,4 +385,24 @@ def update_vehicle_fuel_co2(database, version, vehicle_type=None):
             continue
         balance = vehicle_fuel_carbon(dataset, providers)
         if balance is not None and balance["status"] == "resolved":
+            if is_vehicle_fuel_consumer(dataset, "train"):
+                potential = balance["fossil CO2 kg"] + balance["non-fossil CO2 kg"]
+                if potential <= 0:
+                    continue
+                total = sum(
+                    exchange["amount"]
+                    for exchange in dataset["exchanges"]
+                    if _positive_air_co2(exchange)
+                )
+                if total == 0:
+                    continue
+                fraction = balance["non-fossil CO2 kg"] / potential
+                balance = dict(
+                    balance,
+                    **{
+                        "fossil CO2 kg": total * (1 - fraction),
+                        "non-fossil CO2 kg": total * fraction,
+                        "convention": "Recorded rail exhaust total; carbon origin from final linked fuel purchases",
+                    },
+                )
             replace_vehicle_fuel_co2(dataset, balance, flows)

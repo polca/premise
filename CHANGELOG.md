@@ -26,6 +26,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Refresh rail combustion CO2 origin after regional fuel linking and efficiency
+  updates. Use the final supplier's carbon composition while preserving the
+  recorded exhaust total, including auxiliary diesel and passenger-train
+  combustion wrappers.
 - Link recipes explicitly named `market-average hydrogen` to Premise's regional
   IAM hydrogen markets before copying them into scenario regions. Handle native
   liquid, gaseous and medium-pressure merchant market identities while retaining
