@@ -149,4 +149,4 @@ premise = [
 ]
 
 [tool.setuptools.exclude-package-data]
-premise = ["data/iam_output_files/*"]
+premise = ["data/iam_output_files/*", "data/solar/pv_2026_gwp100_reference.csv", "data/metals/ecoinvent_factors.csv"]

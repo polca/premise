@@ -12,3 +12,13 @@ prune docs/.ipynb_checkpoints
 prune docs/_templates/.ipynb_checkpoints
 prune premise/data/iam_output_files
 global-exclude .DS_Store *.py[cod]
+
+# Keep private licensed outputs out of source distributions too.
+prune results
+prune scripts
+exclude tests/data/lcia_regression_scores.yaml
+exclude docs/development/lcia-regression-reference-review.md
+exclude docs/examples/pv-comparison-summary.json
+exclude docs/examples/pv-comparison-metadata.json
+exclude premise/data/solar/pv_2026_gwp100_reference.csv
+exclude premise/data/metals/ecoinvent_factors.csv
