@@ -13,6 +13,9 @@ prune docs/_templates/.ipynb_checkpoints
 prune premise/data/iam_output_files
 global-exclude .DS_Store *.py[cod]
 
+recursive-include tests/support *.py
+recursive-include tests/data *.json *.yaml *.yml
+
 # Keep private licensed outputs out of source distributions too.
 prune results
 prune scripts
