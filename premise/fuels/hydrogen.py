@@ -178,9 +178,9 @@ class HydrogenMixin:
             else:
                 exc["maximum"] = exc["loc"] * 1.1
 
-        dataset["log parameters"]["new energy input for hydrogen production"] = (
-            new_energy_use
-        )
+        dataset["log parameters"][
+            "new energy input for hydrogen production"
+        ] = new_energy_use
 
     def _generate_supporting_hydrogen_datasets(self):
         keywords = [

@@ -73,7 +73,14 @@ def assert_snapshot_exchanges(dataset, snapshot):
     # approved product-content resource attribution at the supplier gate.
     assert len(expected) == len(snapshot["exchanges"]) == 12
     expected[
-        ("biosphere", "Iridium", None, None, "kilogram", ("natural resource", "in ground"))
+        (
+            "biosphere",
+            "Iridium",
+            None,
+            None,
+            "kilogram",
+            ("natural resource", "in ground"),
+        )
     ] = 1
     actual = {exchange_key(e): e["amount"] for e in dataset["exchanges"]}
     assert len(actual) == len(dataset["exchanges"]) == len(expected)
@@ -107,10 +114,13 @@ def test_workbook_has_exact_approved_schema_and_quantities(adoption):
         "iridium",
         "ZA",
     )
-    assert snapshot["comment"].replace(
-        "mineral-resource extraction, recovery losses, land",
-        "recovery losses beyond product-content resource attribution, land",
-    ) in dataset["comment"]
+    assert (
+        snapshot["comment"].replace(
+            "mineral-resource extraction, recovery losses, land",
+            "recovery losses beyond product-content resource attribution, land",
+        )
+        in dataset["comment"]
+    )
     assert "APPROVED PREMISE RESOURCE ATTRIBUTION, 2026-11-01" in dataset["comment"]
     assert snapshot["source"] in dataset["source"]
     assert dataset["license"] == adoption["license"] == "CC-BY-4.0"
@@ -152,9 +162,12 @@ def test_iridium_resource_is_linked_and_keeps_one_kg_per_kg_output(imported):
     assert resource["unit"] == "kilogram"
     assert resource["categories"] == ("natural resource", "in ground")
     assert resource["amount"] == imported["production amount"] == 1
-    assert resource["input"][1] == get_biosphere_code("3.12")[
-        ("Iridium", "natural resource", "in ground", "kilogram")
-    ]
+    assert (
+        resource["input"][1]
+        == get_biosphere_code("3.12")[
+            ("Iridium", "natural resource", "in ground", "kilogram")
+        ]
+    )
     assert "recovery-loss factor" in resource["comment"]
     assert "economic allocation" in resource["comment"]
 
@@ -170,9 +183,12 @@ def test_iridium_resource_links_in_supported_biospheres(version):
     (dataset,) = importer.import_db.data
     name = "Iridium, in ground" if version == "3.8" else "Iridium"
     (resource,) = [e for e in dataset["exchanges"] if e["name"] == name]
-    assert resource["input"][1] == get_biosphere_code(version)[
-        (name, "natural resource", "in ground", "kilogram")
-    ]
+    assert (
+        resource["input"][1]
+        == get_biosphere_code(version)[
+            (name, "natural resource", "in ground", "kilogram")
+        ]
+    )
     assert resource["amount"] == 1
 
 

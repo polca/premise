@@ -105,11 +105,15 @@ def test_live_caller_loads_reference_before_selecting_legacy_consumers(
     def extract(paths):
         return [
             SimpleNamespace(
-                data=deepcopy(legacy)
-                if path == module.FILEPATH_BATTERIES_NMC955_LTO
-                else [deepcopy(interface)]
-                if path == module.FILEPATH_NMC532_NATIVE_312
-                else []
+                data=(
+                    deepcopy(legacy)
+                    if path == module.FILEPATH_BATTERIES_NMC955_LTO
+                    else (
+                        [deepcopy(interface)]
+                        if path == module.FILEPATH_NMC532_NATIVE_312
+                        else []
+                    )
+                )
             )
             for path, _ in paths
         ]
