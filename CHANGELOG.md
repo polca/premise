@@ -2,10 +2,35 @@
 
 All notable changes to this project are documented in this file.
 
-## [Unreleased]
+## [2.6.0] - Unreleased
+
+### Added
+
+- Support `system_model="EN15804"` through the existing `NewDatabase` argument.
+  Preserve the system-model label during import, transformation and export,
+  use native EN15804 scrap suppliers with their reference-output signs, and
+  apply the existing attributional behavior where appropriate.
 
 ### Fixed
 
+- Link recipes explicitly named `market-average hydrogen` to Premise's regional
+  IAM hydrogen markets before copying them into scenario regions. Handle native
+  liquid, gaseous and medium-pressure merchant market identities while retaining
+  hydrogen quantities, uncertainty and existing process-energy inputs. Document
+  the adopted 30-bar pipeline-delivery boundary; rebuild scenarios to apply.
+- Add 1 kg of in-ground iridium per kg supplied by the economic-allocation
+  iridium proxy. This restores missing resource attribution without applying the
+  economic allocation factor to the metal content or assuming recovery losses.
+  Verify biosphere linking across ecoinvent 3.8–3.12; GWP is unchanged by this
+  resource-flow addition.
+- Resolve supplementary-inventory supplier gaps using native version aliases,
+  consequential HDPE markets and the reviewed ecoinvent 3.8 chemical proxies.
+  Keep source quantities and document the geographical and proxy assumptions.
+- Align reviewed battery, transport, hydrogen, fuel, carbon-capture and power
+  inventories with their documented manufacturing and reference-unit boundaries.
+  Package target-specific native profiles, provider-selection helpers and source
+  fixtures, and invalidate affected import caches. Preserve cached battery-mass
+  precision and match truck compression metadata to its 350-bar storage boundary.
 - Preserve fossil combustion CO2 for conventional kerosene and natural-gas
   synthetic kerosene with CCS. Use the configured `kerosene` IAM variable
   instead of the absent `kerosene, from petroleum` label, and include the
@@ -60,15 +85,17 @@ All notable changes to this project are documented in this file.
 
 - Replace independently combined PEM catalyst observations with the matched
   NREL 87625 baseline: 0.526316 kg Ir and 0.263158 kg Pt per nominal MW of
-  stack DC capacity, with zero Ru for this pure-Ir design. Hold the reference
-  fixed over 2020–2050 rather than assume independent future metal reductions.
+  stack DC capacity, with zero Ru for this pure-Ir design. Use this baseline
+  through 2022 and the matched prospective loading trajectory described above
+  thereafter, with a constant-loading sensitivity available separately.
   Guard the complete catalyst group before changing inputs; preserve source
   recipes if required suppliers or supported intensities are unavailable.
   Package primary-source inputs, historical observations, citation mismatch,
   limitations and an offline CSV updater. This covers active-electrode catalyst;
-  additional Pt hardware coatings, other materials, processing and full system
-  performance remain unresolved. Lifetime allocation and saved results are
-  unchanged; rebuild scenarios to apply it.
+  hardware coatings follow the separate reference described above. Other
+  materials, processing and full system performance retain documented gaps.
+  Lifetime allocation and saved results are unchanged; rebuild scenarios to
+  apply it.
 
 - Apply the configured PEM-electrolyzer iridium trajectory when its requested
   metal market is absent, using an explicit fallback to the existing refinery
@@ -159,6 +186,23 @@ All notable changes to this project are documented in this file.
   that internal cell fraction and market freight. Rebuild scenario databases
   to apply this correction; cell chemistry and performance require separate
   validation.
+
+### Tests
+
+- Replace workbook hashes and recipe fingerprints with explicit scientific
+  quantities, source contracts and canonical export comparisons.
+- Refresh ten individually reviewed LCIA regression references while retaining
+  the existing 3% tolerance. Document the historical rebuilds and the effects of
+  sulfate and road-transport corrections.
+- Add regression coverage for regional hydrogen links, EN15804 behavior, native
+  inventory selection and iridium resource attribution.
+
+### Documentation
+
+- Document reviewed battery, PEM, GaAs PV and transport assumptions, including
+  sensitivity results, changed inventory boundaries and unresolved coverage.
+  Distinguish resource-attribution corrections from changes in physical recovery
+  or manufacturing performance.
 
 ## [2.5.5] - 2026-10-15
 
