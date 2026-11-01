@@ -455,12 +455,7 @@ The baseline retains polishing after each lift-off. Polishing every ten cycles
 and 90% gold recovery are separate optimization cases and are not silently
 included in this reference.
 
-In the paired 2050 GWP audit, changing only substrate-manufacture allocation
-gives approximately 371.86, 155.05 and 135.78 kg CO2-eq per 0.28 kWp installation
-at 10, 100 and 500 uses respectively. These matrix counterfactuals retain the
-current recurring process coefficients and background feedback; they are not
-new full scenario builds or durability confidence bounds. Fresh-wafer
-manufacturing and module-assembly changes require separate assessment.
+Substrate-reuse sensitivity was assessed with unchanged recurring process coefficients and background feedback. Numerical LCIA outputs are retained locally.
 
 GaAs fresh-wafer material balance and supporting references
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -475,10 +470,7 @@ As, assigning 0.052631579 kg process loss to a hazardous-disposal proxy.
 This is a distinct engineering reference, not a verbatim reproduction of S6.
 Separate upstream refining and downstream crystal-growth/sawing losses remain.
 
-Changing only overall boule retention from 90% to 100% gives approximately
-156.30 to 153.94 kg CO2-eq per installation in the audit, holding substrate
-uses at 100 and other inputs fixed. Hazardous underground disposal is a fate
-proxy; actual Ga/As volatilization, recovery and treatment remain unresolved.
+Boule-retention sensitivity holds substrate reuse and other inputs fixed. Hazardous underground disposal is a fate proxy; actual Ga/As volatilization, recovery and treatment remain unresolved. Numerical LCIA outputs are retained locally.
 
 The remaining supporting references are retained with their documented limits:
 

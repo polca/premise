@@ -51,7 +51,7 @@ ORIGINAL_CELLS = {
 
 def reference():
     payload = (
-        ROOT / "scripts/data/sixteen-cooling-adoption-20261027.json"
+        ROOT / "tests/data/inventory_review/sixteen-cooling-adoption-20261027.json"
     ).read_bytes()
 
     return json.loads(payload)
@@ -242,13 +242,13 @@ def test_nominal_cooling_and_sixteen_boards_close_retirement_without_filling_rou
 
 def test_direct_CLIC_science_and_corrected_stock_children_are_reused(current):
     old = json.loads(
-        (ROOT / "scripts/data/sixteen-monitor-adoption-20261027.json").read_text()
+        (ROOT / "tests/data/inventory_review/sixteen-monitor-adoption-20261027.json").read_text()
     )
     clic = old["CLIC_reference"]["snapshot"]
 
     assert science(activity(current[LIS].data, WRAPPER)) == science(clic)
     cooling = json.loads(
-        (ROOT / "scripts/data/lio2-cooling-adoption-20261027.json").read_text()
+        (ROOT / "tests/data/inventory_review/lio2-cooling-adoption-20261027.json").read_text()
     )
     supplier = cooling["CLIC_supplier_snapshot"]
 
@@ -256,7 +256,7 @@ def test_direct_CLIC_science_and_corrected_stock_children_are_reused(current):
     assert science(activity(data, COOLING)) == science(supplier)
     stock = json.loads(
         (
-            ROOT / "scripts/data/cooling-aluminium-stock-adoption-20261027.json"
+            ROOT / "tests/data/inventory_review/cooling-aluminium-stock-adoption-20261027.json"
         ).read_text()
     )
 

@@ -63,7 +63,7 @@ def worksheet():
 @pytest.fixture(scope="module")
 def adoption():
     return json.loads(
-        (ROOT / "scripts/data/zinc-chloride-water-adoption-20261027.json").read_text()
+        (ROOT / "tests/data/inventory_review/zinc-chloride-water-adoption-20261027.json").read_text()
     )
 
 

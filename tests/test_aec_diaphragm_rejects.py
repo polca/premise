@@ -139,7 +139,7 @@ def xml_cells(path):
 @pytest.fixture(scope="module")
 def adoption():
     return json.loads(
-        (ROOT / "scripts/data/aec-diaphragm-reject-adoption-20261027.json").read_text()
+        (ROOT / "tests/data/inventory_review/aec-diaphragm-reject-adoption-20261027.json").read_text()
     )
 
 

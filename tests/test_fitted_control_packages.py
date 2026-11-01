@@ -69,7 +69,7 @@ def exchange(data, name):
 def plan():
     return json.loads(
         (
-            ROOT / "scripts/data/fitted-control-packages-adoption-20261027.json"
+            ROOT / "tests/data/inventory_review/fitted-control-packages-adoption-20261027.json"
         ).read_text()
     )
 

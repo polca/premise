@@ -88,7 +88,7 @@ def expected_adoption(data):
 def adoption():
     return json.loads(
         (
-            ROOT / "scripts/data/ptfe-gasket-native-312-adoption-20261027.json"
+            ROOT / "tests/data/inventory_review/ptfe-gasket-native-312-adoption-20261027.json"
         ).read_text()
     )
 
@@ -497,7 +497,7 @@ def test_ast_actual_default_selection_is_versioned_and_precedes_hydrogen(
     version, system_model
 ):
     generator = runpy.run_path(
-        str(ROOT / "scripts/generate_documentation_reference.py")
+        str(ROOT / "docs/_tools/generate_documentation_reference.py")
     )
     tree = ast.parse((ROOT / "premise/new_database.py").read_text())
     selection = generator["inventory_selection"](tree, version, system_model)

@@ -39,7 +39,7 @@ PINS = {
 
 def reference():
     payload = (
-        ROOT / "scripts/data/sixteen-monitor-adoption-20261027.json"
+        ROOT / "tests/data/inventory_review/sixteen-monitor-adoption-20261027.json"
     ).read_bytes()
 
     return json.loads(payload)

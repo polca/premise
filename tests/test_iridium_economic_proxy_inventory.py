@@ -24,7 +24,7 @@ REFINERY = "platinum group metal, extraction and refinery operations"
 def adoption():
     return json.loads(
         (
-            ROOT / "scripts/data/iridium-economic-proxy-adoption-20261027.json"
+            ROOT / "tests/data/inventory_review/iridium-economic-proxy-adoption-20261027.json"
         ).read_text()
     )
 
@@ -231,7 +231,7 @@ def test_pgm_workbook_retains_other_providers():
 @pytest.mark.parametrize("system_model", ["cutoff", "consequential"])
 def test_default_import_registers_separate_source_versions(version, system_model):
     generator = runpy.run_path(
-        str(ROOT / "scripts/generate_documentation_reference.py")
+        str(ROOT / "docs/_tools/generate_documentation_reference.py")
     )
     tree = ast.parse((ROOT / "premise/new_database.py").read_text())
     selection = generator["inventory_selection"](tree, version, system_model)

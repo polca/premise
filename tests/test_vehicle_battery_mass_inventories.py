@@ -881,7 +881,7 @@ def test_repository_adoption_plan_reproduces_all_approved_inputs():
 
     repository = Path(__file__).resolve().parents[1]
     migration = runpy.run_path(
-        str(repository / "scripts/align_vehicle_battery_mass_inputs.py")
+        str(repository / "tests/support/align_vehicle_battery_mass_inputs.py")
     )
     plan_path = migration["DEFAULT_PLAN"]
     assert plan_path.is_relative_to(repository)

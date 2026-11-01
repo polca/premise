@@ -217,7 +217,7 @@ claim that older output versions reproduce identical background burdens.
 The foreground compilation is CC BY 4.0; referenced background data retain
 their separate terms. The compiler, scientific sources and incomplete-boundary
 qualifications are recorded in the workbook and its pinned authoring reference
-in ``scripts/data/iridium-economic-proxy-adoption-20261027.json``.
+in ``tests/data/inventory_review/iridium-economic-proxy-adoption-20261027.json``.
 
 Matched PEM catalyst reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -305,7 +305,7 @@ matched group, requested year, selected intensities and temporal support.
 The reference inputs, projection assumptions, previous constant coefficients,
 historical observations, citation audit and limits are packaged in
 ``data/metals/pem_catalyst_reference.json``. Run
-``python scripts/update_pem_catalyst_reference.py`` to reproduce only the nine
+``python tests/support/update_pem_catalyst_reference.py`` to reproduce only the nine
 PEMEL Ir/Pt/Ru CSV rows at 2020, 2022 and 2050. Pt rows contain the combined
 cathode-catalyst and selected hardware-coating quantity. The updater guards recognized
 source values, preserves unrelated records including embedded newlines,
@@ -318,7 +318,7 @@ CSV without changing runtime data:
 
 .. code-block:: console
 
-   python scripts/update_pem_catalyst_reference.py --scenario fixed-baseline --output /tmp/metals-fixed-baseline.csv
+   python tests/support/update_pem_catalyst_reference.py --scenario fixed-baseline --output /tmp/metals-fixed-baseline.csv
 
 For an intentional sensitivity build, omit ``--output`` to select the
 constant case in the local runtime CSV, then rebuild scenarios. Run the
@@ -388,10 +388,10 @@ Export explicit sensitivities without changing the runtime CSV:
 
 .. code-block:: console
 
-   python scripts/update_pem_catalyst_reference.py --coating-case one-face --output /tmp/metals-one-face.csv
-   python scripts/update_pem_catalyst_reference.py --coating-case thin-film --output /tmp/metals-thin-film.csv
-   python scripts/update_pem_catalyst_reference.py --coating-case active-area --output /tmp/metals-active-area.csv
-   python scripts/update_pem_catalyst_reference.py --coating-case none --output /tmp/metals-catalyst-only.csv
+   python tests/support/update_pem_catalyst_reference.py --coating-case one-face --output /tmp/metals-one-face.csv
+   python tests/support/update_pem_catalyst_reference.py --coating-case thin-film --output /tmp/metals-thin-film.csv
+   python tests/support/update_pem_catalyst_reference.py --coating-case active-area --output /tmp/metals-active-area.csv
+   python tests/support/update_pem_catalyst_reference.py --coating-case none --output /tmp/metals-catalyst-only.csv
 
 ``one-face`` halves the nominal coated-face count. ``thin-film`` uses 20 nm
 on both components, one fifth of reference coating mass. A
@@ -524,9 +524,9 @@ explicit scenario sensitivities instead:
 
 .. code-block:: console
 
-   python scripts/update_soec_ceramic_reference.py
-   python scripts/update_soec_ceramic_reference.py --scenario fixed-baseline --output /tmp/metals-soec-fixed.csv
-   python scripts/update_soec_ceramic_reference.py --scenario linear-capacity --output /tmp/metals-soec-linear.csv
+   python tests/support/update_soec_ceramic_reference.py
+   python tests/support/update_soec_ceramic_reference.py --scenario fixed-baseline --output /tmp/metals-soec-fixed.csv
+   python tests/support/update_soec_ceramic_reference.py --scenario linear-capacity --output /tmp/metals-soec-linear.csv
 
 ``fixed-baseline`` holds the corrected ceramic package constant through
 2050. ``linear-capacity`` scales the source component masses linearly to

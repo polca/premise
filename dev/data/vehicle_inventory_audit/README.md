@@ -20,7 +20,7 @@ metadata, source hashes, canonical recipe fingerprints, and consumer counts.
 Canonical amounts and uncertainty remain unchanged; model-specific metadata is
 retained here and references remain traceable in consumer exchange comments.
 
-`python scripts/deduplicate_vehicle_components.py` checks the reviewed source
+`python tests/support/deduplicate_vehicle_components.py` checks the reviewed source
 state without writing; `--apply` applies that exact campaign's cleanup. Repeated
 execution on the unchanged result is a no-op. A regenerated or otherwise changed
 source must be reviewed again rather than bypassing the checksum guards. The

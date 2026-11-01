@@ -1,14 +1,24 @@
 from pathlib import Path
+import os
 
 import bw2calc
 import bw2data
 import pytest
 import yaml
 
-REFERENCE_SCORES = Path(__file__).parent / "data" / "lcia_regression_scores.yaml"
+REFERENCE_SCORES = Path(
+    os.environ.get(
+        "PREMISE_LCIA_REFERENCE_SCORES",
+        Path(__file__).parent / "data" / "lcia_regression_scores.yaml",
+    )
+)
 
 
 def _load_reference_scores():
+    if not REFERENCE_SCORES.is_file():
+        pytest.skip(
+            "Private LCIA references unavailable; set PREMISE_LCIA_REFERENCE_SCORES"
+        )
     with open(REFERENCE_SCORES, encoding="utf-8") as stream:
         return yaml.safe_load(stream)
 
@@ -199,7 +209,7 @@ def assert_lcia_regression_scores(case_key, database_names):
             if lca.score != pytest.approx(expected, rel=rel, abs=abs_):
                 divergences.append(
                     f"{case_key}/{database_name}/{activity_key}: "
-                    f"expected {expected}, got {lca.score}, method={method!r}"
+                    f"private reference differs, method={method!r}"
                 )
 
     if divergences:

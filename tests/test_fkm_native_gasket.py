@@ -66,7 +66,7 @@ def purchase(data, buyer, supplier=GASKET_NAME):
 @pytest.fixture(scope="module")
 def adoption():
     return json.loads(
-        (ROOT / "scripts/data/fkm-gasket-native-312-adoption-20261027.json").read_text()
+        (ROOT / "tests/data/inventory_review/fkm-gasket-native-312-adoption-20261027.json").read_text()
     )
 
 
@@ -370,7 +370,7 @@ def test_ast_default_selection_keeps_legacy_profile_and_native_before_pfsa_buyer
     version, system_model
 ):
     generator = runpy.run_path(
-        str(ROOT / "scripts/generate_documentation_reference.py")
+        str(ROOT / "docs/_tools/generate_documentation_reference.py")
     )
     tree = ast.parse((ROOT / "premise/new_database.py").read_text())
     selected = generator["inventory_selection"](tree, version, system_model)

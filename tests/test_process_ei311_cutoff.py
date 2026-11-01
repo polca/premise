@@ -84,7 +84,6 @@ def test_brightway():
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
-    print(lca.score)
 
     try:
         # uses BW2

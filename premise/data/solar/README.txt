@@ -113,7 +113,7 @@ missing conversions stop the material update plan before it is applied.
 
 Reproduction and validation
 ---------------------------
-Run `python scripts/build_pv_2026.py` from the repository root to rebuild the
+Run `python tests/support/build_pv_2026.py` from the repository root to rebuild the
 country adapters and CIGS supplement from the versioned inputs. The reviewed
 core is the numerical source; this script adds integration metadata and the
 REF-to-GLO geographic adaptation. All exported exchange amounts are numeric;

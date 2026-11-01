@@ -52,7 +52,7 @@ def vector(e):
 
 def reference():
     approved = json.loads(
-        (ROOT / "scripts/data/lio2-cooling-adoption-20261027.json").read_text()
+        (ROOT / "tests/data/inventory_review/lio2-cooling-adoption-20261027.json").read_text()
     )
     assert approved["case_id"] == "ALIGN-046"
 

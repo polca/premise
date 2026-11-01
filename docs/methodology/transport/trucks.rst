@@ -109,7 +109,7 @@ projection. Do not substitute pooled electricity or liquid-fuel demand for
 individual technologies without accounting for hybrid contributions.
 
 The original REMIND preprocessing must retain ``Energy intensity`` variables
-in addition to ``Efficiency``. ``scripts/restore_vehicle_intensities.py`` can
+in addition to ``Efficiency``. ``tests/support/restore_vehicle_intensities.py`` can
 append the mapped rows to an encrypted scenario from its matching original.
 It verifies model/pathway and existing transport values, preserves the existing
 plaintext bytes, and writes a new encrypted file plus hashes for review.
@@ -366,7 +366,7 @@ ordinary-steel service, other services, assembly, parent purchases and
 retirement remain unchanged. No native inventory is modified or recovery
 credit added. Original technosphere and biosphere declarations both remain
 **3.12**. The pinned reference is
-``scripts/data/charger-finishing-adoption-20261027.json``.
+``tests/data/inventory_review/charger-finishing-adoption-20261027.json``.
 
 Ferritic-steel nominal argon outlet
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -382,7 +382,7 @@ Existing CO2 and nitrogen outlets, material and energy purchases, uncertainty
 and downstream steel quantities remain unchanged. The correction establishes
 neither complete emissions coverage nor an LCIA improvement and adds no
 heat-recovery credit. Both original source declarations remain **3.12**.
-The pinned reference is ``scripts/data/ferritic-argon-adoption-20261027.json``.
+The pinned reference is ``tests/data/inventory_review/ferritic-argon-adoption-20261027.json``.
 
 Charging-display coating geometry
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -398,4 +398,4 @@ target losses are counted once, with no separate indium purchase or foreground
 target-loss multiplier. The documented **1.65 kg** hardware reference, other
 component purchases, assembly, uncertainty and downstream doses remain
 unchanged. Both original source declarations remain **3.12**. The pinned
-reference is ``scripts/data/display-coating-adoption-20261027.json``.
+reference is ``tests/data/inventory_review/display-coating-adoption-20261027.json``.

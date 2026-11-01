@@ -250,7 +250,7 @@ def test_en15804_iam_market_shares_match_attributional_normalization():
 def test_documentation_inventory_selection_keeps_en15804_attributional_sources():
     root = Path(__file__).parents[1]
     generator = runpy.run_path(
-        str(root / "scripts/generate_documentation_reference.py")
+        str(root / "docs/_tools/generate_documentation_reference.py")
     )
     tree = ast.parse((root / "premise/new_database.py").read_text())
     select = generator["inventory_selection"]

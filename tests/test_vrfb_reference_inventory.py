@@ -16,7 +16,7 @@ from premise.battery import Battery, load_cell_energy_density
 from premise.filesystem_constants import INVENTORY_DIR
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "scripts/update_vanadium_reference_inventory.py"
+SCRIPT = ROOT / "tests/support/update_vanadium_reference_inventory.py"
 AUTHOR = runpy.run_path(str(SCRIPT))
 CONDITIONING = "vanadium electrolyte conditioning"
 USED_MARKET = "market for used redox-flow battery, vanadium"
@@ -268,7 +268,7 @@ def test_cache_fingerprints_include_both_vrfb_workbooks(tmp_path, monkeypatch):
 
 def test_import_dependency_order():
     generator = runpy.run_path(
-        str(ROOT / "scripts/generate_documentation_reference.py")
+        str(ROOT / "docs/_tools/generate_documentation_reference.py")
     )
     import ast
 

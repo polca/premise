@@ -72,7 +72,6 @@ def test_brightway():
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
-    print(lca.score)
 
     # destroy all objects
     del ndb

@@ -120,7 +120,6 @@ def test_brightway(updated_ei312_cutoff):
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
-    print(lca.score)
 
     try:
         # uses BW2
@@ -218,4 +217,3 @@ def test_superstructure_export(updated_ei312_cutoff, tmp_path, monkeypatch):
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
-    print(lca.score)

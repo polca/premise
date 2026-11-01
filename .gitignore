@@ -74,3 +74,12 @@ tests/*.env
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Local analyses and licensed result values #
+/results/
+/scripts/
+/script/
+/tests/data/lcia_regression_scores.yaml
+/docs/examples/pv-comparison-summary.json
+/docs/examples/pv-comparison-metadata.json
+/docs/development/lcia-regression-reference-review.md

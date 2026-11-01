@@ -59,7 +59,7 @@ ROLLING = "lithium foil rolling"
 def plan():
     return json.loads(
         (
-            ROOT / "scripts/data/interface-context-boundaries-adoption-20261027.json"
+            ROOT / "tests/data/inventory_review/interface-context-boundaries-adoption-20261027.json"
         ).read_text()
     )
 
@@ -92,7 +92,7 @@ def science(dataset):
 
 def foil_reference():
     approved = json.loads(
-        (ROOT / "scripts/data/lithium-foil-return-adoption-20261027.json").read_text()
+        (ROOT / "tests/data/inventory_review/lithium-foil-return-adoption-20261027.json").read_text()
     )
     assert approved["case_id"] == "ALIGN-042"
 

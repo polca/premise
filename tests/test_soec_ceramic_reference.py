@@ -24,7 +24,7 @@ from premise.metals_rules import (
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "soec_updater", ROOT / "scripts/update_soec_ceramic_reference.py"
+    "soec_updater", ROOT / "tests/support/update_soec_ceramic_reference.py"
 )
 updater = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(updater)

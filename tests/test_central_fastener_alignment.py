@@ -92,7 +92,7 @@ ORIGINAL_LITERALS = {
 
 def reference():
     payload = (
-        ROOT / "scripts/data/central-fastener-adoption-20261027.json"
+        ROOT / "tests/data/inventory_review/central-fastener-adoption-20261027.json"
     ).read_bytes()
 
     return json.loads(payload)

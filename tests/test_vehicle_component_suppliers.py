@@ -139,7 +139,7 @@ def shared_component_audit():
     plan = json.loads((audit / "component-reuse-plan.json").read_text())
     manifest = json.loads((audit / "shared-component-reuse.json").read_text())
     specification = importlib.util.spec_from_file_location(
-        "component_cleanup_audit", root / "scripts/deduplicate_vehicle_components.py"
+        "component_cleanup_audit", root / "tests/support/deduplicate_vehicle_components.py"
     )
     module = importlib.util.module_from_spec(specification)
     sys.modules[specification.name] = module

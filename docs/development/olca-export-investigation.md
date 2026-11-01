@@ -175,9 +175,7 @@ electricity market group with `ei - IPCC 2013`. The four climate indicators agre
 with a Brightway LCI characterized using the same package factors and exported
 coverage within 5.01e-8 relative difference (comparison tolerance 1e-7).
 An independent SciPy solve of the serialized matrices agrees with openLCA within
-1.49e-10 relative difference. GWP100 is 0.189578476882 kg CO2-eq in openLCA and
-0.189578486090 in Brightway. Excluded definitions contributed zero for this
-particular demand and method; this does not imply zero impact in other cases.
+1.49e-10 relative difference. Numerical LCIA outputs are retained locally.
 This is a deterministic climate comparison, not a Monte Carlo or all-method
 validation. Results are not asserted to be bit-identical.
 

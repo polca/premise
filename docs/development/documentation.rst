@@ -49,7 +49,7 @@ Keep developer maintenance instructions in Development; link from Methodology.
 Every substantive sector scope includes an SVG process diagram. The reviewed
 steps and data-availability conditions live in
 ``docs/methodology/process-diagrams.json``. Regenerate the portable figures
-with ``python scripts/generate_methodology_diagrams.py``. CI checks generated
+with ``python docs/_tools/generate_methodology_diagrams.py``. CI checks generated
 files and scope placement. Diagram arrows describe the current transformation;
 keep optional steps and skip conditions consistent with code. Do not add
 migration narratives or review-status tables to the public sector explanation.
@@ -98,11 +98,11 @@ From the repository root, in a dedicated Python environment:
 
    python -m pip install -e ".[docs]"
    python -m sphinx -b html -W --keep-going docs docs/_build/html
-   python scripts/check_documentation.py docs/_build/html
-   python scripts/check_documentation_examples.py
-   python scripts/generate_documentation_reference.py --check
-   python scripts/generate_methodology_diagrams.py --check
-   python scripts/check_documentation_content.py
+   python docs/_tools/check_documentation.py docs/_build/html
+   python docs/_tools/check_documentation_examples.py
+   python docs/_tools/generate_documentation_reference.py --check
+   python docs/_tools/generate_methodology_diagrams.py --check
+   python docs/_tools/check_documentation_content.py
 
 For a release, review defaults and import conditions against code, regenerate
 the reference tables, and update page dispositions in ``content-review.json``.
@@ -110,7 +110,7 @@ Review sector source years, the scientific backlog and unresolved citations.
 Record which examples actually executed, including their inputs and date.
 Do not infer scientific approval from a successful link or build check.
 
-Run ``python scripts/generate_documentation_reference.py`` after intentionally
+Run ``python docs/_tools/generate_documentation_reference.py`` after intentionally
 changing configuration or source metadata. CI checks the generated results
 without importing an ecoinvent database. The isolated constructor-selection
 evaluation generates a selection table; it is not a substitute for importer
@@ -130,3 +130,12 @@ server failures must not make every documentation change fail:
 Read the output to distinguish broken URLs from authentication, rate limiting
 and network failures. Do not suppress a broken internal link to obtain a green
 build.
+
+Local analysis outputs
+----------------------
+
+Generated scores and one-off analysis programs are kept outside version control.
+The minimum documentation checks live in ``docs/_tools``; inventory-test helpers
+and input fixtures live under ``tests/support`` and ``tests/data/inventory_review``.
+Licensed LCIA references must be supplied locally or through
+``PREMISE_LCIA_REFERENCE_SCORES``; score comparisons skip when they are unavailable.

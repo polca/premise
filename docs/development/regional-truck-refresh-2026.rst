@@ -84,46 +84,7 @@ generation metadata.
 Controlled comparison
 ---------------------
 
-The full REMIND SSP2-NPi 2020 comparison uses ecoinvent 3.12 cutoff and the
-same updated passenger cars in both databases. All 52 RER truck catalogue
-services and the 20 EUR services are compared across 16 EF 3.1 headline
-categories: 1,152 score pairs, per tonne-kilometre, without weighting.
-RER forwarding activities are resolved before contribution analysis.
-
-The EUR 40 t BEV climate result changes from 0.071151 to 0.093807 kg CO2-eq/tkm
-(+31.8%). Its payload falls from 13.8 to 10.3 t; multiplying each score by its
-own payload gives a 1.6% decrease per vehicle-kilometre. For the 18 t BEV the
-tkm result doubles, while the vkm result falls 13.5%, with payload falling
-from 7.4 to 3.2 t. These are unit diagnostics, not common-payload simulations.
-
-The largest ozone-depletion changes trace mainly to newly included refrigerant
-supply and increased fuel demand per tkm. The old 18 t LPG fuel purchase implies
-4.65 MJ/vkm despite a comment reporting 9.289 MJ/vkm; the corrected proxy uses
-9.03 MJ/vkm. Its large climate increase partly corrects that old inconsistency
-and the old fossil/biogenic carbon split. It is not simply a technology trend.
-
-The build has zero validation errors and 401 warnings, the baseline warning
-count. All 3,429 non-production template exchanges link; all 38 selectors,
-42 production battery quantities and 205 EUR non-CO2 checks pass. The affected
-metals suite passes 81 tests. Twenty established shared component identities
-now resolve to their refreshed recipes, while 13 new supporting activities
-retain qualified names. Results for bus, final-energy and ship inventories can
-therefore change through those refreshed suppliers, in addition to the
-widespread effects of freight transport.
-
-Independent SuperLU solves reproduce the scores within 9.92e-8 relative
-difference, with maximum demand residual 3.11e-15. The original solver's
-conditioning warning remains documented. Proxy emission factors and PHEV
-replacement aggregation are not independently validated by these checks.
-
-The reproducible scripts and detailed report are in the sibling
-``carculator_utils`` checkout, under ``dev/`` and
-``results/premise_trucks_regional_20261013/``. The persistent comparison project
-is ``premise-cars-2020-ef31-20261012``. The new database is
-``premise-remind-SSP2-NPi-2020-trucks-new-20261013-regional``; the baseline
-``premise-remind-SSP2-NPi-2020-cars-new-20261013-coldstart18-r2`` is retained.
-The installation receipt contains saved-database score checks and installed
-file hashes.
+Numerical LCIA outputs and comparison tables are retained locally and are not distributed.
 
 Delivered CNG reference correction
 ----------------------------------

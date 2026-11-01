@@ -101,7 +101,7 @@ projection. Do not substitute pooled electricity or liquid-fuel demand for
 individual technologies without accounting for hybrid contributions.
 
 The original REMIND preprocessing must retain ``Energy intensity`` variables
-in addition to ``Efficiency``. ``scripts/restore_vehicle_intensities.py`` can
+in addition to ``Efficiency``. ``tests/support/restore_vehicle_intensities.py`` can
 append the mapped rows to an encrypted scenario from its matching original.
 It verifies model/pathway and existing transport values, preserves the existing
 plaintext bytes, and writes a new encrypted file plus hashes for review.
@@ -303,7 +303,7 @@ Reproduction and limits
 ``data/transport/electric_mechanical_powertrain.json`` records the source,
 component masses, waste factors, allocation basis and treatment limitations.
 After a compatible car inventory refresh, run
-``python scripts/update_electric_car_mechanical_inventory.py``. The script
+``python tests/support/update_electric_car_mechanical_inventory.py``. The script
 builds the component workbook, patches the 17 electric vehicle production
 activities and changes ten cells in the two final-energy wrappers. All 459
 final-energy formulas and their cached values are retained. Existing

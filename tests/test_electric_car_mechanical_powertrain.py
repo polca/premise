@@ -400,7 +400,7 @@ def test_registry_order_and_cache_invalidation(tmp_path, monkeypatch):
 def test_workbook_updater_is_idempotent_without_rewriting_inputs(tmp_path):
     script = (
         Path(__file__).parents[1]
-        / "scripts/update_electric_car_mechanical_inventory.py"
+        / "tests/support/update_electric_car_mechanical_inventory.py"
     )
     updater = runpy.run_path(str(script))
     for filename, function in [

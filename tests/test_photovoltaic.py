@@ -20,7 +20,7 @@ from premise.photovoltaic import (
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "build_pv", ROOT / "scripts/build_pv_2026.py"
+    "build_pv", ROOT / "tests/support/build_pv_2026.py"
 )
 builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)

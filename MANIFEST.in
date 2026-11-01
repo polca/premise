@@ -4,9 +4,9 @@ include LICENSE
 include README.md
 include docs/Makefile docs/make.bat
 recursive-include docs *.csv *.inc *.md *.png *.rst *.svg *.py *.css *.html *.ico *.json *.yaml *.txt
-include scripts/check_documentation*.py
-include scripts/generate_documentation_reference.py
-include scripts/generate_methodology_diagrams.py
+include docs/_tools/check_documentation*.py
+include docs/_tools/generate_documentation_reference.py
+include docs/_tools/generate_methodology_diagrams.py
 prune docs/_build
 prune docs/.ipynb_checkpoints
 prune docs/_templates/.ipynb_checkpoints

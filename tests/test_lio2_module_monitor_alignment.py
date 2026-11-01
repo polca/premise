@@ -41,7 +41,7 @@ ORIGINAL_CELLS = {
 
 def reference():
     payload = (
-        ROOT / "scripts/data/lio2-module-monitor-adoption-20261027.json"
+        ROOT / "tests/data/inventory_review/lio2-module-monitor-adoption-20261027.json"
     ).read_bytes()
 
     return json.loads(payload)

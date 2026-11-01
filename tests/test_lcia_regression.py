@@ -138,6 +138,18 @@ def test_assert_lcia_regression_scores_reports_all_divergences(monkeypatch):
         lcia_regression.assert_lcia_regression_scores("test-case", ["test-database"])
 
     message = str(error.value)
+    assert "expected" not in message
+    assert "got" not in message
     assert "2 LCIA regression score(s) changed" in message
     assert "test-case/test-database/activity-a" in message
     assert "test-case/test-database/activity-b" in message
+
+
+def test_missing_private_reference_file_skips_without_public_scores(
+    monkeypatch, tmp_path
+):
+    monkeypatch.setattr(lcia_regression, "REFERENCE_SCORES", tmp_path / "private.yaml")
+    with pytest.raises(
+        pytest.skip.Exception, match="Private LCIA references unavailable"
+    ):
+        lcia_regression._load_reference_scores()

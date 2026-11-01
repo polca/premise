@@ -29,7 +29,7 @@ PTL_PT = 0.12418421052631581
 BPP_PT = 0.15769219228230213
 COATING_PT = PTL_PT + BPP_PT
 spec = importlib.util.spec_from_file_location(
-    "pem_updater", ROOT / "scripts/update_pem_catalyst_reference.py"
+    "pem_updater", ROOT / "tests/support/update_pem_catalyst_reference.py"
 )
 updater = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(updater)
