@@ -51,7 +51,7 @@ upgrading does not alter saved databases.
 
 - Support Python 3.12 through 3.15 with modern Brightway, NumPy 2 and current
   SciPy, pandas, xarray and PyArrow. Restrict old numerical-library caps to the
-  legacy Brightway extra and Conda variant. Remove unused mandatory dependencies
+  legacy Brightway extra. Remove unused mandatory dependencies
   on `unfold` and `premise_gwp`; these companion tools are installed separately.
   Test each supported Python version in CI, with licensed builds on 3.12 and 3.15.
   Preserve double precision when rescaling cached float32 exchanges under NumPy 2;
@@ -65,8 +65,8 @@ upgrading does not alter saved databases.
   Verify installed Conda artifacts outside the checkout with declared requirement
   checks, exporter imports, a synthetic Brightway LCA and Conda's native dependency
   checker. Require Brotli 1.2 for the archive reader.
-  Pin the legacy Conda Brightway stack to the same tested versions as the pip
-  extra, preventing an incompatible modern calculator with legacy database data.
+  Retire the unsupported legacy Conda variant; legacy Brightway remains tested
+  through pip on Python 3.12. Avoid mixing a modern calculator with legacy data.
 - Stabilize physical-audit solves across mixed reference-unit scales using
   power-of-two equilibration and residual refinement. Keep strict numerical
   checks and record refinement metadata; document native solver precision

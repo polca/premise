@@ -14,7 +14,7 @@
   {
     "page": "getting_started/installation.rst",
     "review_date": "2026-11-02",
-    "disposition": "Documented Python 3.12–3.15 with pip, Conda 3.12–3.14 pending upstream cchardet packaging, the Python 3.12 NumPy/PyArrow ABI boundary, legacy constraints, separate companions and flexible Conda channels.",
+    "disposition": "Documented modern pip Python 3.12–3.15, modern Conda 3.12–3.14, legacy pip Python 3.12, retired unsupported legacy Conda, numerical ABI constraints and flexible Conda channels.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -566,7 +566,7 @@
   {
     "page": "development/releases-2-6.rst",
     "review_date": "2026-11-02",
-    "disposition": "Updated Python and numerical-library compatibility and optional companion-tool guidance for release 2.6.0.",
+    "disposition": "Updated Python compatibility, separate companion installation and retirement of the unsupported legacy Conda variant while retaining tested legacy pip support.",
     "review_level": "Release and implementation consistency; not independent scientific validation"
   }
 ]

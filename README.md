@@ -150,16 +150,17 @@ This means that ``premise`` will output databases that are compatible with Brigh
 >    pip install "premise[bw2]"
 
 
-A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud. 
+Development Conda packages support modern Brightway on Python 3.12–3.14.
+Use flexible channel priority in a separate environment:
 
-Similarly, you should specify that you want to use Brightway 2.5 (with `activity-browser>=3.x.x`-compatibility):
+    conda create -n premise python=3.14
+    conda activate premise
+    conda config --env --set channel_priority flexible
+    conda install -c conda-forge -c cmutel -c romainsacchi premise-bw25
 
-    conda install -c conda-forge premise-bw25
-
-Or rather use Brightway2 (with `activity-browser<3.0.0`-compatibility):
-
-    conda install -c conda-forge premise-bw2
+Use pip for Python 3.15 or legacy Brightway on Python 3.12. The legacy
+`premise-bw2` Conda variant is no longer generated because its calculator has
+no Python 3.12 Conda build.
 
 
 How to use it?

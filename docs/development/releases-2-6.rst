@@ -18,7 +18,8 @@ Upgrading to 2.6.0
   reference and review differences in inventory boundaries and quantities.
 * Modern Brightway supports Python 3.12 through 3.15 with NumPy 2 and current
   SciPy, pandas, xarray and PyArrow. Legacy Brightway remains on Python 3.12
-  with NumPy 1.x. The unused companion tools ``unfold`` and ``premise_gwp``
+  with NumPy 1.x, installed through pip. The ``premise-bw2`` Conda variant
+  is retired; modern Conda packages cover Python 3.12–3.14. The unused companion tools ``unfold`` and ``premise_gwp``
   are installed separately, so their NumPy caps do not constrain Premise.
   Brightpath 1.0.0a14 or newer is required for correct SimaPro normal
   uncertainty export. See

@@ -10,56 +10,6 @@ source:
   path: ..
 
 outputs:
-  - name: premise-bw2
-    build:
-      noarch: python
-      script: python -m pip install "$SRC_DIR" --no-deps --no-build-isolation -vv
-    requirements:
-      host:
-        - pip
-        - python >=3.12,<3.13
-        - setuptools
-        - wheel
-      run:
-        - bw2data ==3.6.6
-        - bw2calc ==1.8.2
-        - python >=3.12,<3.13
-        - bottleneck
-        - brotli-python >=1.2
-        - brightpath >=1.0.0a14,<2
-        - bw2io ==0.8.12
-        - ecoinvent_interface
-        - constructive_geometries>=1.0.0
-        - cryptography
-        - datapackage
-        - deepdiff >=8.6.2,<9
-        - numpy <2.0.0
-        - openpyxl >=3.1.5,<3.2.0
-        - lxml >=4.9.3,<7
-        - pandas <3.0.0
-        - platformdirs
-        - portalocker >=2.8
-        - prettytable
-        - pyarrow <26
-        - pycountry
-        - pyYaml
-        - requests
-        - schema
-        - scipy<1.14.0
-        - sparse>=0.14.0
-        - wurst>=0.4
-        - xarray >=2024.6
-        - tqdm
-    test:
-      requires:
-        - python >=3.12,<3.13
-      imports:
-        - premise
-        - brightpath
-      commands:
-        - python -c "import premise; print(premise.__version__)"
-        - python -c "from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping"
-
   - name: premise-bw25
     build:
       noarch: python

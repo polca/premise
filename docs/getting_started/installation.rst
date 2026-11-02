@@ -20,8 +20,8 @@ current SciPy, xarray and PyArrow releases are supported. pandas stays below
 3.1 until the country-conversion dependency supports its changed CSV parsing;
 DeepDiff stays below 9 while its native dependency lacks Python 3.15 support.
 On Python 3.12, PyArrow stays below 26 so existing NumPy 1.x environments remain
-usable. Newer Python versions use NumPy 2 and can install PyArrow 26. Conda
-variants retain PyArrow below 26, including their builds for newer Python
+usable. Newer Python versions use NumPy 2 and can install PyArrow 26. The Conda
+package retains PyArrow below 26, including its builds for newer Python
 versions, to keep compatibility with NumPy 1.x on Python 3.12.
 
 Conda packages support Python 3.12–3.14. Use pip for Python 3.15 until upstream
@@ -53,7 +53,9 @@ For workflows requiring Brightway 2, install the legacy extra in a separate
 It pins ``bw2data==3.6.6``, NumPy below 2 and SciPy below 1.14 because this
 backend uses APIs removed from newer numerical libraries. These legacy-only
 constraints do not apply to modern Brightway. Do not install both extras into
-one Python environment.
+one Python environment. Legacy support is provided through pip; the
+``premise-bw2`` Conda variant is no longer generated because its calculator
+has no Python 3.12 Conda build.
 
 Optional companion tools
 --------------------------
