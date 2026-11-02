@@ -53,6 +53,8 @@ upgrading does not alter saved databases.
   power-of-two equilibration and residual refinement. Keep strict numerical
   checks and record refinement metadata; document native solver precision
   differences. Batch sampled indicator columns to reduce repeated sparse scans.
+- Include lignocellulosic biomass in independent carbon-origin tracing so
+  biomass IGCC screening accounts for the main feed alongside fossil utilities.
 - Keep licensed LCIA smoke calculations running when private numerical
   references are unavailable. Report omitted regression comparisons explicitly,
   retain version-specific method selection and require finite LCIA results.

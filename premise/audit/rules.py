@@ -115,7 +115,14 @@ def fuel_family(product):
             return family
     if any(
         p.startswith(s)
-        for s in ("wood chip", "wood pellet", "biomass", "bagasse", "straw")
+        for s in (
+            "wood chip",
+            "wood pellet",
+            "biomass",
+            "lignocellulosic biomass",
+            "bagasse",
+            "straw",
+        )
     ):
         return "biomass"
     return None

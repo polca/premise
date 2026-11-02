@@ -106,6 +106,29 @@ def feed(node, amount=1, **extra):
     )
 
 
+def test_lignocellulosic_igcc_includes_main_fuel_alongside_fossil_auxiliaries():
+    biomass = process("biomass production", "lignocellulosic biomass")
+    gas = process(
+        "natural gas extraction",
+        "natural gas, high pressure",
+        exchanges=[flow("Gas, natural", 1, unit="cubic meter")],
+    )
+    plant = process(
+        "electricity production, at biomass-fired IGCC power plant",
+        "electricity, high voltage",
+        unit="kilowatt hour",
+        exchanges=[
+            feed(biomass, 1),
+            feed(gas, 0.01),
+            flow("Carbon dioxide, non-fossil", 0.5 * 44 / 12, ("air",)),
+            flow("Carbon dioxide, fossil", 0.01 * 0.75 * 44 / 12, ("air",)),
+        ],
+    )
+    report = audit_database([biomass, gas, plant])
+    assert "CARBON.ORIGIN" not in ids(report)
+    assert not report.has_errors
+
+
 def carbon_graph(biogenic_share=0, corrupt=False):
     fossil = process(
         "kerosene production, petroleum refinery operation",
