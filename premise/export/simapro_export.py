@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+from importlib.metadata import version
 import math
 import sys
 import tempfile
@@ -9,6 +10,8 @@ import warnings
 from collections import Counter
 from dataclasses import asdict
 from pathlib import Path
+
+from packaging.version import Version
 
 from .export_payload import normalize_activity_parameters
 from .olca_export import _identity, _plain, build_process_categories
@@ -18,6 +21,17 @@ def check_brightpath():
     """Fail before scenario preparation when the writer is unavailable."""
     if sys.version_info < (3, 12):
         raise RuntimeError("Brightpath SimaPro export requires Python 3.12+.")
+    try:
+        installed_version = version("brightpath")
+    except ImportError as error:
+        raise ImportError(
+            "Install Brightpath >=1.0.0a14 for SimaPro export."
+        ) from error
+    if Version(installed_version) < Version("1.0.0a14"):
+        raise ImportError(
+            "SimaPro export requires Brightpath >=1.0.0a14 for native normal "
+            "uncertainty serialization (2*SD). Upgrade Brightpath and retry."
+        )
     try:
         from brightpath.formats.simapro_csv import write_simapro_csv  # noqa: F401
         from brightpath.profiles.simapro_biosphere import (  # noqa: F401
