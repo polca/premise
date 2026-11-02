@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import lru_cache
+import json
 from math import isfinite
 from pathlib import Path
 from typing import Any, Mapping
@@ -11,9 +12,11 @@ from typing import Any, Mapping
 import yaml
 
 from ..core.utils import DATA_DIR
+from ..core.filesystem_constants import VARIABLES_DIR
 
 MATERIAL_RULES_PATH = DATA_DIR / "metals" / "metal_products.yaml"
 CONVERSION_FACTORS_PATH = DATA_DIR / "metals" / "technology_conversion_factors.yaml"
+RESOURCE_POLICY_PATH = DATA_DIR / "metals" / "resource_attribution.json"
 INTENSITY_UNITS = frozenset(
     {"kg/MW", "kg/kWh", "kg metal/kg vehicle", "kg metal/kg motor"}
 )
@@ -36,21 +39,13 @@ class ProviderSelector:
     reference_product: str
 
     def for_version(self, version: str | None) -> ProviderSelector:
-        """Resolve the gallium rename recorded in the 3.10 -> 3.11 migration."""
-
-        # See utils/import/migrations/cutoff/
-        # ecoinvent-3.10-cutoff-ecoinvent-3.11-cutoff.json. The renamed market
-        # also exists in 3.12; retain the configured provider in older sources.
-        if str(version) in {"3.11", "3.12"} and (
-            self.name,
-            self.reference_product,
-        ) == (
-            "market for gallium, semiconductor-grade",
-            "gallium, semiconductor-grade",
-        ):
-            return ProviderSelector(
-                "market for gallium, high-grade", "gallium, high-grade"
-            )
+        """Resolve the configured, version-scoped native supplier aliases."""
+        for alias in load_resource_policy()["provider_aliases"]:
+            if str(version) in alias["versions"] and (
+                self.name,
+                self.reference_product,
+            ) == tuple(alias["source"]):
+                return ProviderSelector(*alias["target"])
         return self
 
 
@@ -572,8 +567,55 @@ __all__ = [
     "MetalsRulesConfig",
     "ProviderSelector",
     "TechnologyConversion",
+    "configured_metal_products",
     "conversion_factors_as_dataframe_records",
     "load_material_rules",
+    "load_resource_policy",
     "load_technology_conversions",
     "material_rules_as_dataframe_records",
 ]
+
+
+def load_resource_policy():
+    """Read source-qualified attribution data without changing its scientific scope."""
+    signature = RESOURCE_POLICY_PATH.stat()
+    return _read_resource_policy(
+        str(RESOURCE_POLICY_PATH), signature.st_mtime_ns, signature.st_size
+    )
+
+
+@lru_cache(maxsize=8)
+def _read_resource_policy(filename, modified, size):
+    data = json.loads(Path(filename).read_text())
+    if data.get("schema_version") != 1:
+        raise MetalsConfigError("Unsupported resource-attribution configuration")
+    keys = set()
+    for entry in data["content_factors"]:
+        key = entry["product"], entry["element"]
+        if (
+            key in keys
+            or not all(key)
+            or not isfinite(entry["kg_per_kg"])
+            or entry["kg_per_kg"] < 0
+        ):
+            raise MetalsConfigError("Invalid or duplicate metal-bearing content factor")
+        keys.add(key)
+    return data
+
+
+def configured_metal_products():
+    """Return the configured provider interfaces across supported source versions."""
+    versions = yaml.safe_load((VARIABLES_DIR / "constants.yaml").read_text())[
+        "SUPPORTED_EI_VERSIONS"
+    ]
+    return frozenset(
+        (provider.name, provider.reference_product)
+        for rule in load_material_rules().enabled_rules
+        if rule.provider is not None
+        for provider in (
+            rule.provider,
+            *(rule.provider.for_version(version) for version in versions),
+            rule.existing_provider_fallback,
+        )
+        if provider is not None
+    )

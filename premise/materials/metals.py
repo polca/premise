@@ -27,6 +27,7 @@ from .metals_rules import (
     MetalsConfigError,
     conversion_factors_as_dataframe_records,
     load_material_rules,
+    load_resource_policy,
     load_technology_conversions,
     material_rules_as_dataframe_records,
 )
@@ -51,6 +52,8 @@ from ..validation.validation import MetalsValidation
 from ..validation.validation_framework import record_validation_phase
 
 logger = create_logger("metal")
+
+_RESOURCE_POLICY = load_resource_policy()
 
 NATURAL_RESOURCE_IN_GROUND = ("natural resource", "in ground")
 MARKET_DATASET_PREFIXES = ("market for ", "market group for ")
@@ -108,40 +111,18 @@ METAL_EXTRACTION_DATASET_KEYWORDS = (
     "quarry",
     "smelting",
 )
-RESOURCE_CARRIER_PRODUCTS_WITH_DOWNSTREAM_ATTRIBUTION = {
-    "copper-cobalt ore",
-    "copper, anode",
-    "lead concentrate",
-    "lithium brine, 6.7 % Li",
-    "platinum group metal concentrate",
-    "sodium chloride, brine solution",
-    "sodium chloride, powder",
-    "zinc concentrate",
-}
+RESOURCE_CARRIER_PRODUCTS_WITH_DOWNSTREAM_ATTRIBUTION = set(
+    _RESOURCE_POLICY["carrier_products"]
+)
 RESOURCE_CARRIER_DATASETS_WITH_DOWNSTREAM_ATTRIBUTION = {
-    (
-        "cobalt hydroxide, via hydrometallurigcal ore procesing, mass allocation",
-        "cobalt hydroxide",
-    ),
-    (
-        "cobalt sulfate production, from copper mining, mass allocation",
-        "cobalt sulfate",
-    ),
-    (
-        "copper-cobalt mining, industrial, mass allocation",
-        "copper-cobalt ore",
-    ),
-    (
-        "copper-cobalt mining, artisanal",
-        "copper-cobalt ore",
-    ),
+    tuple(row) for row in _RESOURCE_POLICY["carrier_datasets"]
 }
 # Explicit downstream attribution boundary for the concentrate whose resource
 # flows are cleared above. Zinc/zinc-oxide process inputs do not replace this
 # primary feed; they retain their own supply-chain burdens. This is a resource
 # allocation convention, not an inferred ore grade or recovery yield.
 PRIMARY_RESOURCE_ATTRIBUTION_FEEDS = {
-    ("primary zinc production from concentrate", "zinc"): "zinc concentrate",
+    tuple(row["identity"]): row["product"] for row in _RESOURCE_POLICY["primary_feeds"]
 }
 METAL_RESOURCE_FLOW_NAMES = {
     "Aluminium",
@@ -229,14 +210,7 @@ RESOURCE_FLOW_ALIASES = {
     "metamorphous rock graphite containing": "graphite",
 }
 
-ATOMIC_MASSES = {
-    "Be": 9.0121831,
-    "H": 1.00794,
-    "O": 15.999,
-    "Ti": 47.867,
-    "Sb": 121.76,
-    "S": 32.06,
-}
+ATOMIC_MASSES = _RESOURCE_POLICY["calculation_parameters"]["ATOMIC_MASSES"]
 
 
 def element_mass_fraction(element: str, formula: dict) -> float:
@@ -247,94 +221,16 @@ def element_mass_fraction(element: str, formula: dict) -> float:
     return ATOMIC_MASSES[element] * formula[element] / molecular_mass
 
 
-TITANIUM_DIOXIDE_TITANIUM_FRACTION = element_mass_fraction("Ti", {"Ti": 1, "O": 2})
-TITANIUM_CHAIN_CONTENT_ADJUSTMENT = 1.002720132146914
+TITANIUM_DIOXIDE_TITANIUM_FRACTION = _RESOURCE_POLICY["calculation_parameters"][
+    "TITANIUM_DIOXIDE_TITANIUM_FRACTION"
+]
+TITANIUM_CHAIN_CONTENT_ADJUSTMENT = _RESOURCE_POLICY["calculation_parameters"][
+    "TITANIUM_CHAIN_CONTENT_ADJUSTMENT"
+]
 
 METAL_BEARING_PRODUCT_CONTENT_FACTORS = {
-    (
-        "beryllium hydroxide",
-        "beryllium",
-    ): (
-        element_mass_fraction("Be", {"Be": 1, "O": 2, "H": 2}),
-        "stoichiometric Be content in Be(OH)2",
-    ),
-    (
-        "stibnite concentrate",
-        "antimony",
-    ): (
-        0.70 * element_mass_fraction("Sb", {"Sb": 2, "S": 3}),
-        "documented 70 wt% Sb2S3 concentrate; stoichiometric Sb content",
-    ),
-    (
-        "chromite ore concentrate",
-        "chromium",
-    ): (
-        0.2655735274241075,
-        "recoverable Cr content represented by the chromium production chain",
-    ),
-    (
-        "manganese concentrate",
-        "manganese",
-    ): (
-        0.26295358364884125,
-        "recoverable Mn content represented by the manganese production chain",
-    ),
-    (
-        "molybdenite",
-        "molybdenum",
-    ): (
-        0.54545591456969,
-        "recoverable Mo content represented by the molybdenum production chain",
-    ),
-    (
-        "gold, unrefined",
-        "gold",
-    ): (
-        0.8373709757567793,
-        "recoverable Au content represented by the gold production chain",
-    ),
-    (
-        "tin concentrate",
-        "tin",
-    ): (
-        0.48379101906039534,
-        "recoverable Sn content represented by the tin production chain",
-    ),
-    (
-        "titania slag, 94% titanium dioxide",
-        "titanium",
-    ): (
-        0.94 * TITANIUM_DIOXIDE_TITANIUM_FRACTION * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
-        "94% TiO2 Ti content adjusted to the titanium production chain",
-    ),
-    (
-        "rutile, 95% titanium dioxide",
-        "titanium",
-    ): (
-        0.95 * TITANIUM_DIOXIDE_TITANIUM_FRACTION * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
-        "95% TiO2 Ti content adjusted to the titanium production chain",
-    ),
-    (
-        "ilmenite, 54% titanium dioxide",
-        "titanium",
-    ): (
-        0.54 * TITANIUM_DIOXIDE_TITANIUM_FRACTION * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
-        "54% TiO2 Ti content adjusted to the titanium production chain",
-    ),
-    (
-        "zinc concentrate",
-        "zinc",
-    ): (
-        0.6377594812446097,
-        "recoverable Zn content represented by the zinc production chain",
-    ),
-    (
-        "lead concentrate",
-        "lead",
-    ): (
-        1 / 1.7629377841949463,
-        "recoverable Pb content represented by the lead production chain",
-    ),
+    (row["product"], row["element"]): (row["kg_per_kg"], row["basis"])
+    for row in _RESOURCE_POLICY["content_factors"]
 }
 
 PURE_PRODUCT_EXCLUDED_TERMS = {

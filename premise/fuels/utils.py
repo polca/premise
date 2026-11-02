@@ -3,6 +3,16 @@ import numpy as np
 import yaml
 
 from .config import CROPS_PROPERTIES
+from ..core.filesystem_constants import DATA_DIR
+
+
+@lru_cache(maxsize=1)
+def _compression_parameters():
+    import json
+
+    return json.loads((DATA_DIR / "fuels/compression_parameters.json").read_text())[
+        "parameters"
+    ]
 
 
 @lru_cache()
@@ -20,12 +30,12 @@ def get_compression_effort(
 
     """
     # Constants
-    COMPRESSIBILITY_FACTOR = 1.03198
-    NUM_COMPRESSOR_STAGES = 2
-    INLET_TEMPERATURE = 310.95  # K
-    RATIO_SPECIFIC_HEATS = 1.4
-    MOLECULAR_MASS_H2 = 2.15  # g/mol
-    COMPRESSOR_EFFICIENCY = 0.75
+    COMPRESSIBILITY_FACTOR = _compression_parameters()["COMPRESSIBILITY_FACTOR"]
+    NUM_COMPRESSOR_STAGES = _compression_parameters()["NUM_COMPRESSOR_STAGES"]
+    INLET_TEMPERATURE = _compression_parameters()["INLET_TEMPERATURE"]
+    RATIO_SPECIFIC_HEATS = _compression_parameters()["RATIO_SPECIFIC_HEATS"]
+    MOLECULAR_MASS_H2 = _compression_parameters()["MOLECULAR_MASS_H2"]
+    COMPRESSOR_EFFICIENCY = _compression_parameters()["COMPRESSOR_EFFICIENCY"]
 
     # Intermediate calculations
     mass_flow_rate = flow_rate / (24 * 3600)  # convert to kg/s
@@ -150,53 +160,6 @@ def get_crops_properties() -> dict:
         crop_props = yaml.safe_load(stream)
 
     return crop_props
-
-
-def update_co2_emissions(
-    dataset: dict, amount_non_fossil_co2: float, biosphere_flows: dict
-) -> dict:
-    """Update fossil and non-fossil CO2 emissions of the dataset."""
-    # Test for the presence of a fossil CO2 flow
-    if not any(
-        exc for exc in dataset["exchanges"] if exc["name"] == "Carbon dioxide, fossil"
-    ):
-        return dataset
-
-    # subtract the biogenic CO2 amount to the initial fossil CO2 emission amount
-    for exc in ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, fossil")):
-        dataset.setdefault("log parameters", {}).update(
-            {"initial amount of fossil CO2": exc["amount"]}
-        )
-        exc["amount"] -= amount_non_fossil_co2
-        if exc["amount"] < 0:
-            exc["amount"] = 0
-        dataset.setdefault("log parameters", {}).update(
-            {"new amount of fossil CO2": exc["amount"]}
-        )
-
-    # add the non-fossil CO2 emission flow
-    non_fossil_co2 = {
-        "uncertainty type": 0,
-        "amount": amount_non_fossil_co2,
-        "type": "biosphere",
-        "name": "Carbon dioxide, non-fossil",
-        "unit": "kilogram",
-        "categories": ("air",),
-        "input": (
-            "biosphere3",
-            biosphere_flows[
-                ("Carbon dioxide, non-fossil", "air", "unspecified", "kilogram")
-            ],
-        ),
-    }
-
-    dataset.setdefault("log parameters", {}).update(
-        {"new amount of biogenic CO2": amount_non_fossil_co2}
-    )
-
-    dataset["exchanges"].append(non_fossil_co2)
-
-    return dataset
 
 
 def adjust_electrolysis_electricity_requirement(

@@ -7,6 +7,10 @@ alter supplier quantities or infer an ore grade from a desired LCIA result.
 from collections import defaultdict
 from dataclasses import dataclass, field
 
+from .metals_rules import load_resource_policy
+
+_BOUNDARIES = load_resource_policy()["boundaries"]
+
 
 @dataclass
 class ResourceBoundaryPlan:
@@ -59,11 +63,8 @@ def unit_output(dataset):
     )
 
 
-LITHIUM_CARBONATE_FRACTION = 2 * 6.94 / (2 * 6.94 + 12.011 + 3 * 15.999)
-LITHIUM_CARBONATE_FEEDS = {
-    "lithium carbonate production, from concentrated brine": "lithium brine, 6.7 % Li",
-    "lithium carbonate production, from spodumene": "spodumene",
-}
+LITHIUM_CARBONATE_FRACTION = _BOUNDARIES["LITHIUM_CARBONATE_FRACTION"]
+LITHIUM_CARBONATE_FEEDS = _BOUNDARIES["LITHIUM_CARBONATE_FEEDS"]
 
 
 def primary_lithium_feed(exchange, product, providers, visited=None):
@@ -85,20 +86,23 @@ def primary_lithium_feed(exchange, product, providers, visited=None):
     name = dataset.get("name", "").lower()
     if any(term in name for term in ("recycl", "treatment", "scrap", "waste", "used")):
         return False
-    if name != "lithium brine inspissation" and not any(
+    if name != _BOUNDARIES["lithium_primary_operation"] and not any(
         term in name for term in ("mine", "mining", "production", "extraction")
     ):
         return False
     # Brine is already a declared downstream-attribution carrier in metals.py.
     # A different mineral with its own Li extraction must not be counted twice.
-    return product == "lithium brine, 6.7 % Li" or not any(
+    return product == _BOUNDARIES["lithium_carrier"] or not any(
         e.get("amount", 0) != 0 for e in ground_resources(dataset, "Lithium")
     )
 
 
 def plan_lithium_boundary(dataset, providers, available_flows, plan):
     product = LITHIUM_CARBONATE_FEEDS.get(dataset.get("name"))
-    if product is None or dataset.get("reference product") != "lithium carbonate":
+    if (
+        product is None
+        or dataset.get("reference product") != _BOUNDARIES["lithium_product"]
+    ):
         return
     plan.reserved_ids.add(id(dataset))
     feeds = material_inputs(dataset)
@@ -131,18 +135,19 @@ def plan_lithium_boundary(dataset, providers, available_flows, plan):
         plan.diagnostics.append((dataset, "primary_lithium_boundary_unresolved"))
 
 
-SODIUM_ARSENIDE_FRACTION = 74.921595 / (3 * 22.98976928 + 74.921595)
+SODIUM_ARSENIDE_FRACTION = _BOUNDARIES["SODIUM_ARSENIDE_FRACTION"]
 
 
 def plan_arsenic_boundary(dataset, providers, available_flows, plan):
-    if (dataset.get("name"), dataset.get("reference product")) != (
-        "sodium arsenide production from Imperial smelting furnace",
-        "sodium arsenide",
+    if (dataset.get("name"), dataset.get("reference product")) != tuple(
+        _BOUNDARIES["arsenic_identity"]
     ):
         return
     plan.reserved_ids.add(id(dataset))
     feeds = material_inputs(dataset)
-    zinc = [e for e in feeds if e.get("product") == "zinc"]
+    zinc = [
+        e for e in feeds if e.get("product") == _BOUNDARIES["arsenic_primary_product"]
+    ]
     valid = (
         unit_output(dataset)
         and "Arsenic" in available_flows
@@ -166,21 +171,20 @@ def plan_arsenic_boundary(dataset, providers, available_flows, plan):
         plan.diagnostics.append((dataset, "primary_arsenic_boundary_unresolved"))
 
 
-SILICON_PRIMARY_NAMES = {
-    "silicon production, metallurgical grade",
-    "silicon production, metallurgical grade, photovoltaic supply chain",
-}
+SILICON_PRIMARY_NAMES = set(_BOUNDARIES["SILICON_PRIMARY_NAMES"])
 
 
 def plan_silicon_boundary(dataset, providers, available_flows, plan):
     if (
         dataset.get("name") not in SILICON_PRIMARY_NAMES
-        or dataset.get("reference product") != "silicon, metallurgical grade"
+        or dataset.get("reference product") != _BOUNDARIES["silicon_product"]
     ):
         return
     plan.reserved_ids.add(id(dataset))
     feeds = material_inputs(dataset)
-    silica = [e for e in feeds if e.get("product") == "silica sand"]
+    silica = [
+        e for e in feeds if e.get("product") == _BOUNDARIES["silicon_primary_product"]
+    ]
     silicon = [
         e for e in feeds if "silicon" in (e.get("product") or e.get("name", "")).lower()
     ]
@@ -200,30 +204,10 @@ def plan_silicon_boundary(dataset, providers, available_flows, plan):
         plan.diagnostics.append((dataset, "primary_silicon_boundary_unresolved"))
 
 
-RARE_EARTH_ATOMIC_MASSES = {
-    "Cerium": 140.116,
-    "Dysprosium": 162.5,
-    "Erbium": 167.259,
-    "Europium": 151.964,
-    "Gadolinium": 157.25,
-    "Holmium": 164.93033,
-    "Lanthanum": 138.90547,
-    "Lutetium": 174.9668,
-    "Neodymium": 144.242,
-    "Praseodymium": 140.90766,
-    "Samarium": 150.36,
-    "Terbium": 158.92535,
-    "Thulium": 168.93422,
-    "Ytterbium": 173.045,
-    "Yttrium": 88.90584,
-}
-RARE_EARTH_CARBONATE = "rare earth carbonate concentrate"
-RARE_EARTH_CARRIER_NAME = (
-    "rare earth element mine operation and beneficiation, ion adsorption clays"
-)
-RARE_EARTH_OXIDE_NAME = (
-    "rare earth oxides production, from rare earth carbonate concentrate"
-)
+RARE_EARTH_ATOMIC_MASSES = _BOUNDARIES["RARE_EARTH_ATOMIC_MASSES"]
+RARE_EARTH_CARBONATE = _BOUNDARIES["RARE_EARTH_CARBONATE"]
+RARE_EARTH_CARRIER_NAME = _BOUNDARIES["RARE_EARTH_CARRIER_NAME"]
+RARE_EARTH_OXIDE_NAME = _BOUNDARIES["RARE_EARTH_OXIDE_NAME"]
 
 
 def carbonate_branch_resolves(exchange, providers, carrier_ids, visited=None):
@@ -307,13 +291,13 @@ def plan_rare_earth_carbonate_branch(database, providers, available_flows, plan)
             )
     for d in oxides:
         element = oxide_elements[d["reference product"]]
-        atoms, oxygen = {
-            "Cerium": (1, 2),
-            "Praseodymium": (6, 11),
-            "Terbium": (4, 7),
-        }.get(element, (2, 3))
+        atoms, oxygen = _BOUNDARIES["rare_earth_oxide_atoms"].get(
+            element, _BOUNDARIES["rare_earth_default_oxide_atoms"]
+        )
         metal_mass = atoms * RARE_EARTH_ATOMIC_MASSES[element]
-        fraction = metal_mass / (metal_mass + oxygen * 15.999)
+        fraction = metal_mass / (
+            metal_mass + oxygen * _BOUNDARIES["oxygen_atomic_mass"]
+        )
         plan.assignments.append(
             (d, element, fraction, "separated_rare_earth_oxide_attribution")
         )
@@ -336,17 +320,21 @@ def build_resource_boundary_plan(database, available_flows):
         plan_lithium_boundary(dataset, providers, available_flows, plan)
         plan_arsenic_boundary(dataset, providers, available_flows, plan)
         plan_silicon_boundary(dataset, providers, available_flows, plan)
-        element = {"copper, cathode": "Copper", "silver": "Silver"}.get(
+        element = _BOUNDARIES["primary_coproduct_elements"].get(
             dataset.get("reference product")
         )
         if (
-            dataset.get("name") != "primary zinc production from concentrate"
+            dataset.get("name") != _BOUNDARIES["primary_coproduct_source"]
             or not element
         ):
             continue
         plan.reserved_ids.add(id(dataset))
         feeds = material_inputs(dataset)
-        primary = [e for e in feeds if e.get("product") == "zinc concentrate"]
+        primary = [
+            e
+            for e in feeds
+            if e.get("product") == _BOUNDARIES["primary_coproduct_feed"]
+        ]
         auxiliary = [
             e
             for e in feeds

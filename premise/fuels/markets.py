@@ -6,7 +6,6 @@ import math
 from ..inventory.activity_maps import InventorySet, get_mapping
 from .utils import (
     fetch_mapping,
-    update_co2_emissions,
     update_dataset,
     calculate_fuel_properties,
 )

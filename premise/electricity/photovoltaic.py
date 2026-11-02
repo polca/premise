@@ -6,8 +6,15 @@ are generated separately; this module never reinterprets their yields as shares.
 
 from collections import defaultdict
 from copy import deepcopy
+from functools import lru_cache
+import json
 import math
+from pathlib import Path
 import re
+
+PV_PARAMETERS_PATH = (
+    Path(__file__).resolve().parents[1] / "data/solar/pv_2026_parameters.json"
+)
 
 PV_TECHNOLOGIES = {
     "single-crystalline silicon": "single-Si",
@@ -25,7 +32,12 @@ def identity(dataset):
     )
 
 
-def installation_metadata(dataset):
+@lru_cache(maxsize=1)
+def _reference_lifetime():
+    return json.loads(PV_PARAMETERS_PATH.read_text())["lifetime_years"]
+
+
+def installation_metadata(dataset, *, lifetime_years=None):
     """Describe the installed system, with MW converted explicitly to kWp."""
     name = dataset["name"].lower()
     if not name.startswith("photovoltaic installation construction"):
@@ -45,7 +57,9 @@ def installation_metadata(dataset):
         "pv capacity kwp": capacity,
         "pv mounting": mounting,
         "pv segment": "residential" if capacity <= 10 else "commercial",
-        "pv lifetime years": 30,
+        "pv lifetime years": (
+            _reference_lifetime() if lifetime_years is None else lifetime_years
+        ),
     }
 
 
@@ -74,9 +88,15 @@ def country_adapters(core, parameters, generation):
     Atlas yields follow the original workbook convention without an additional
     degradation multiplier. The preserved reference activities are not modified.
     """
-    plants = {identity(d): d for d in core if installation_metadata(d)}
+    plants = {
+        identity(d): d
+        for d in core
+        if installation_metadata(d, lifetime_years=parameters["lifetime_years"])
+    }
     for plant in plants.values():
-        plant.update(installation_metadata(plant))
+        plant.update(
+            installation_metadata(plant, lifetime_years=parameters["lifetime_years"])
+        )
     report = {
         d["location"]: d
         for d in core

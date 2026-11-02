@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "parameters": {
+    "COMPRESSIBILITY_FACTOR": 1.03198,
+    "NUM_COMPRESSOR_STAGES": 2,
+    "INLET_TEMPERATURE": 310.95,
+    "RATIO_SPECIFIC_HEATS": 1.4,
+    "MOLECULAR_MASS_H2": 2.15,
+    "COMPRESSOR_EFFICIENCY": 0.75
+  },
+  "qualification": "Inherited compressor engineering model parameters are preserved unchanged. Temperature, compressibility, stage count, efficiency and molar-mass parameter require source-specific interpretation; moving these values does not validate or correct the physical assumptions.",
+  "reference": "docs/methodology/fuels/hydrogen.rst",
+  "units": {
+    "COMPRESSIBILITY_FACTOR": "dimensionless",
+    "NUM_COMPRESSOR_STAGES": "count",
+    "INLET_TEMPERATURE": "kelvin",
+    "RATIO_SPECIFIC_HEATS": "dimensionless",
+    "MOLECULAR_MASS_H2": "gram per mole (inherited model parameter)",
+    "COMPRESSOR_EFFICIENCY": "dimensionless"
+  }
+}

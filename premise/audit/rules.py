@@ -3,25 +3,21 @@
 from __future__ import annotations
 
 from collections import defaultdict
+import json
 
 import numpy as np
 
+from ..core.filesystem_constants import DATA_DIR
 from .models import AuditFinding, PhysicalContract
 from ..validation.validation_framework import ValidationIssue
 
+_REFERENCES = json.loads(
+    (DATA_DIR / "utils/audit/reference_contracts.json").read_text()
+)
+
 
 def default_contracts():
-    return (
-        PhysicalContract(
-            name="premise.iridium_content",
-            indicator="metals.Iridium",
-            name_pattern=r"iridium production, economic allocation, proxy",
-            product_pattern="iridium",
-            minimum=1.0,
-            maximum=1.0,
-            source="Premise product-content attribution approved 2026-11-01; recovery losses unspecified",
-        ),
-    )
+    return tuple(PhysicalContract(**record) for record in _REFERENCES["contracts"])
 
 
 class RuleBook:
@@ -83,16 +79,8 @@ class RuleBook:
 # Source: molecular C fractions for ethanol/methanol/methane; hydrocarbon
 # intervals intentionally broad. Heating values are diagnostic conversions.
 FUEL_CONTENT = {
-    "kerosene": (0.82, 0.90, 43),
-    "diesel": (0.82, 0.90, 43),
-    "petrol": (0.80, 0.90, 43),
-    "fuel oil": (0.78, 0.92, 41),
-    "natural gas": (0.65, 0.82, 48),
-    "coal": (0.10, 0.98, 25),
-    "ethanol": (0.50, 0.54, 27),
-    "methanol": (0.36, 0.39, 20),
-    "biomass": (0.35, 0.60, 18),
-    "lpg": (0.78, 0.85, 46),
+    family: (*record["carbon_fraction_bounds"], record["diagnostic_lhv_MJ_per_kg"])
+    for family, record in _REFERENCES["fuel_content"].items()
 }
 
 
