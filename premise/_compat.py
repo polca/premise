@@ -38,7 +38,8 @@ MODULE_ALIASES = {
     "premise._report_inputs": "premise.reporting._report_inputs",
     "premise._report_parallel": "premise.reporting._report_parallel",
     "premise.score_comparison": "premise.reporting.score_comparison",
-    "premise.metal_input_comparison": "premise.reporting.metal_input_comparison",
+    "premise.metal_input_comparison": "premise.audit.campaign",
+    "premise.reporting.metal_input_comparison": "premise.audit.campaign",
     "premise.export_payload": "premise.export.export_payload",
     "premise.brightway2": "premise.export.brightway2",
     "premise.brightway25": "premise.export.brightway25",
@@ -69,7 +70,6 @@ MODULE_ALIASES = {
     "premise.biomass": "premise.energy.biomass",
     "premise.final_energy": "premise.energy.final_energy",
     "premise.carbon_dioxide_removal": "premise.emissions.carbon_dioxide_removal",
-    "premise.iam_variables_mapping.extract_mapping": "premise.iam.extract_mapping",
 }
 
 

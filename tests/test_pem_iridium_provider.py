@@ -15,11 +15,11 @@ from premise.metals import Metals
 from premise.metals_rules import (
     MetalsConfigError,
     ProviderSelector,
+    configured_metal_products,
     load_material_rules,
     load_technology_conversions,
 )
 import premise.metals_rules as rules_module
-from premise.metal_input_comparison import configured_metal_products
 
 STACK = "electrolyzer production, 1MWe, PEM, Stack"
 REFINERY = "platinum group metal, extraction and refinery operations"

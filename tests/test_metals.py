@@ -28,13 +28,11 @@ from premise.metals import (
 from premise.metals_rules import (
     MetalsConfigError,
     load_material_rules,
+    configured_metal_products,
     load_technology_conversions,
 )
 from premise.new_database import config as premise_config
-from premise.metal_input_comparison import (
-    compare_direct_metal_inputs,
-    configured_metal_products,
-)
+from premise.audit import compare_direct_metal_inputs
 
 
 def test_yaml_material_configuration_is_complete_and_valid():

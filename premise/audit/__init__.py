@@ -5,7 +5,7 @@ from .engine import audit_database, compare_audits
 from .brightway import audit_brightway_database
 from .indicators import Indicator, default_indicators
 from .budgets import BudgetTerm, ExchangeBudget
-from .campaign import AuditCase, audit_campaign
+from .campaign import AuditCase, audit_campaign, compare_direct_metal_inputs
 
 __all__ = (
     "AuditConfig",
@@ -21,4 +21,5 @@ __all__ = (
     "ExchangeBudget",
     "AuditCase",
     "audit_campaign",
+    "compare_direct_metal_inputs",
 )
