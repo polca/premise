@@ -96,4 +96,3 @@ def test_brightway():
 
     results = [lca.score for _ in zip(range(10), mclca)]
     assert all(isinstance(result, float) for result in results)
-    print(results)

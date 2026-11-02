@@ -132,7 +132,6 @@ def test_brightway(updated_ei312_cutoff):
 
     results = [lca.score for _ in zip(range(10), mclca)]
     assert all(isinstance(result, float) for result in results)
-    print(results)
 
 
 @pytest.mark.slow
