@@ -115,7 +115,9 @@ jobs:
 
       # Fork pull requests cannot access the licensed database credentials.
       # Every push and same-repository pull request must pass a fresh full build
-      # before the dependent PyPI and conda publication jobs can run.
+      # before the dependent PyPI and conda publication jobs can run. Without
+      # private LCIA references this gate checks a finite LCIA smoke result;
+      # reference comparisons run only when a private reference file is supplied.
       - name: Build ecoinvent 3.12 cutoff and validate Brightway results
         if: >-
           github.event_name == 'push' ||

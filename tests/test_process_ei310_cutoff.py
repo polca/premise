@@ -1,4 +1,5 @@
 import gc
+import math
 import os
 
 import bw2calc
@@ -73,6 +74,7 @@ def test_brightway():
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
+    assert math.isfinite(lca.score)
 
     # destroy all objects
     del ndb

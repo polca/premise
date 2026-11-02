@@ -145,11 +145,33 @@ def test_assert_lcia_regression_scores_reports_all_divergences(monkeypatch):
     assert "test-case/test-database/activity-b" in message
 
 
-def test_missing_private_reference_file_skips_without_public_scores(
+@pytest.mark.parametrize(
+    "case_key, indicator",
+    [
+        ("ecoinvent-3.12-cutoff", "global warming potential (GWP100)"),
+        ("ecoinvent-3.8-consequential", "GWP 100a"),
+    ],
+)
+def test_missing_private_references_do_not_skip_lcia_smoke(
+    monkeypatch, tmp_path, case_key, indicator
+):
+    monkeypatch.setattr(lcia_regression, "REFERENCE_SCORES", tmp_path / "private.yaml")
+    method = (case_key.rsplit("-", 1)[0], "IPCC 2013", "climate change", indicator)
+    monkeypatch.setattr(lcia_regression.bw2data, "methods", [method])
+    assert lcia_regression._load_reference_scores() is None
+    with pytest.warns(
+        UserWarning, match="numeric regression comparisons were not performed"
+    ):
+        lcia_regression.assert_lcia_regression_scores(case_key, ["test1"])
+    assert lcia_regression.get_lcia_regression_method(case_key) == method
+
+
+def test_missing_private_references_cannot_select_wrong_source_method(
     monkeypatch, tmp_path
 ):
     monkeypatch.setattr(lcia_regression, "REFERENCE_SCORES", tmp_path / "private.yaml")
-    with pytest.raises(
-        pytest.skip.Exception, match="Private LCIA references unavailable"
-    ):
-        lcia_regression._load_reference_scores()
+    monkeypatch.setattr(
+        lcia_regression.bw2data, "methods", [("ecoinvent-3.11",) + IPCC_2013]
+    )
+    with pytest.raises(AssertionError, match="another ecoinvent prefix"):
+        lcia_regression.get_lcia_regression_method("ecoinvent-3.12-cutoff")

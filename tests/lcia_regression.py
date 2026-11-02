@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import warnings
 
 import bw2calc
 import bw2data
@@ -16,9 +17,7 @@ REFERENCE_SCORES = Path(
 
 def _load_reference_scores():
     if not REFERENCE_SCORES.is_file():
-        pytest.skip(
-            "Private LCIA references unavailable; set PREMISE_LCIA_REFERENCE_SCORES"
-        )
+        return None
     with open(REFERENCE_SCORES, encoding="utf-8") as stream:
         return yaml.safe_load(stream)
 
@@ -129,6 +128,16 @@ def _resolve_lcia_method(method, case_key, available_methods):
 def get_lcia_regression_method(case_key):
     """Return the registered LCIA method tuple for an ecoinvent test case."""
     data = _load_reference_scores()
+    if data is None:
+        # A method identity is public metadata. Missing private scores must not
+        # skip the following LCIA smoke calculation in integration tests.
+        indicator = (
+            "GWP 100a"
+            if _ecoinvent_method_prefix(case_key) == "ecoinvent-3.8"
+            else "global warming potential (GWP100)"
+        )
+        method = ("IPCC 2013", "climate change", indicator)
+        return _resolve_lcia_method(method, case_key, bw2data.methods)
 
     try:
         method = tuple(data["cases"][case_key]["method"])
@@ -163,6 +172,15 @@ def _find_activity(database, activity):
 def assert_lcia_regression_scores(case_key, database_names):
     """Check deterministic LCIA scores for generated Brightway databases."""
     data = _load_reference_scores()
+    if data is None:
+        warnings.warn(
+            "Private LCIA references unavailable; numeric regression comparisons "
+            "were not performed. Set PREMISE_LCIA_REFERENCE_SCORES to enable them. "
+            "The integration test will still run its LCIA smoke calculation.",
+            UserWarning,
+            stacklevel=2,
+        )
+        return
     activities = data["activities"]
     tolerance = data.get("tolerance", {})
     rel = tolerance.get("relative", 1e-6)
