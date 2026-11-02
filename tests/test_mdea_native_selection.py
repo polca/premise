@@ -123,12 +123,10 @@ def test_real_ordered_preparation_biosphere_and_storage(
 ):
     # Isolate unrelated sources while using the actual constructor caller and
     # real DefaultInventory preparation for the complete carbon-capture book.
-    monkeypatch.setattr(module, "_select_nmc955_modern_references", lambda *args: None)
-    monkeypatch.setattr(module, "_select_nmc532_native_312", lambda *args: None)
-    monkeypatch.setattr(module, "use_native_ptfe_gasket", lambda *args: None)
+    monkeypatch.setattr(
+        module.inventory_profiles, "select_companion_profiles", lambda *args: None
+    )
     # This source-isolated caller supplies no pipeline coating importers.
-    monkeypatch.setattr(module, "use_native_pipeline_coating", lambda *args: None)
-    monkeypatch.setattr(module, "use_native_fkm_gasket", lambda *args, **kwargs: None)
     monkeypatch.setattr(
         module,
         "_extract_default_inventory_importers",

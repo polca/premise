@@ -103,4 +103,4 @@ without another raw-wafer or complete packaged-device purchase. All other
 module materials, the **1 kWh/kg** assembly allowance, parent module purchases,
 rail masses, counts, lifetimes and service denominators remain unchanged.
 Both source declarations remain **3.9**. The pinned reference is
-``tests/data/inventory_review/rail-wafer-allocation-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.

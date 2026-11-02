@@ -366,7 +366,7 @@ ordinary-steel service, other services, assembly, parent purchases and
 retirement remain unchanged. No native inventory is modified or recovery
 credit added. Original technosphere and biosphere declarations both remain
 **3.12**. The pinned reference is
-``tests/data/inventory_review/charger-finishing-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Ferritic-steel nominal argon outlet
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -382,7 +382,7 @@ Existing CO2 and nitrogen outlets, material and energy purchases, uncertainty
 and downstream steel quantities remain unchanged. The correction establishes
 neither complete emissions coverage nor an LCIA improvement and adds no
 heat-recovery credit. Both original source declarations remain **3.12**.
-The pinned reference is ``tests/data/inventory_review/ferritic-argon-adoption-20261027.json``.
+The pinned reference is ``tests/data/inventory_contracts.json``.
 
 Charging-display coating geometry
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -398,4 +398,4 @@ target losses are counted once, with no separate indium purchase or foreground
 target-loss multiplier. The documented **1.65 kg** hardware reference, other
 component purchases, assembly, uncertainty and downstream doses remain
 unchanged. Both original source declarations remain **3.12**. The pinned
-reference is ``tests/data/inventory_review/display-coating-adoption-20261027.json``.
+reference is ``tests/data/inventory_contracts.json``.

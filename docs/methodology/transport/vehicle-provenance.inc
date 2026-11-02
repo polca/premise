@@ -43,19 +43,13 @@ ageing proxy, its vehicle-lifetime mileage basis and the single PHEV mode
 weighting. Cold-start and evaporative factors retain their separate treatment.
 The correction does not validate the retained high truck NOx coefficients.
 
-Development-audit copies of ``lci-pass_cars.provenance.json`` and
-``lci-trucks.provenance.json`` retain generation metadata, source hashes and
-earlier provenance. They live under ``dev/data/vehicle_inventory_audit`` rather
-than being installed as additional inventories. They deliberately do not pin
-the current workbook archive hash, because later inventory maintenance does not
-change the recorded generation inputs.
-Regression snapshots under ``tests/data/vehicle_inventory_parameters`` preserve
-the full generated parameter tables without installing them as additional
-inventories. Excluded direct-noise flows are kept as development audit artifacts
-under ``dev/data/vehicle_inventory_audit``. Their generation hashes remain
-recorded in the provenance. Noise is not included in the imported inventory.
-The raw model export is identified by hash; the private audit retains that
-export without distributing the full background inventory.
+Source revisions and generation provenance remain embedded in the packaged
+activities and vehicle specifications. Regression fixtures under
+``tests/data/vehicle_inventory_parameters`` preserve the generated parameter
+values. ``tests/data/vehicle_component_suppliers.json`` records the canonical
+supplier interfaces, quantities, formulas and uncertainty checked against the
+current workbooks. Investigation receipts and excluded direct-noise exports
+remain local; noise is not included in the imported inventory.
 
 Refreshed truck components that replace established shared suppliers retain the
 canonical supplier identities used by the bus, final-energy and ship

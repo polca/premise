@@ -51,3 +51,17 @@ The public ``from premise import NewDatabase`` and
 module imports resolve centrally to the same implementations, allowing older
 cache class paths to load without copying implementation files at package root.
 New implementation imports should use their topic paths.
+
+Bundled inventory profiles
+--------------------------
+
+``premise/inventory/profiles.py`` applies source-specific selections as part of
+``DefaultInventory`` preparation, before or after ordinary version migration.
+The quantities, supplier identities and version/system-model boundaries are
+stored in ``premise/data/utils/import/inventory_profiles.json``. The constructor
+coordinates the sources; it does not implement individual component patches.
+Selections validate the complete affected scope before mutation and preserve
+unrelated inputs and uncertainty. Cache identities include applicable profile
+data and the shared implementation. Regression tests inspect the current
+packaged inventories using explicit scientific contracts, rather than replacing
+them with historical workbook copies.

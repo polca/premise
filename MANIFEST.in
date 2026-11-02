@@ -14,7 +14,7 @@ prune premise/data/iam_output_files
 global-exclude .DS_Store *.py[cod]
 
 recursive-include tests/support *.py
-recursive-include tests/data *.json *.yaml *.yml
+recursive-include tests/data *.json *.yaml *.yml *.csv *.md
 
 # Keep private licensed outputs out of source distributions too.
 prune results
@@ -31,3 +31,11 @@ include benchmarks/compare_build_outputs.py
 include benchmarks/compare_update_workflows.py
 include benchmarks/check_validation_warnings.py
 include benchmarks/check_validation_performance.py
+
+# Exclude local copies of retired investigations and workbook snapshots.
+prune dev
+prune tests/data/inventory_review
+prune tests/data/reviewed-source-predecessors-20261028
+exclude benchmarks/vanadium-inventory-correction.md
+exclude benchmarks/vanadium-inventory-exchanges.json
+exclude benchmarks/vanadium-inventory-validation.json

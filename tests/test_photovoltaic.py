@@ -330,7 +330,9 @@ def test_reference_cleaning_is_preserved_without_efficiency_change(inventories):
 def test_default_import_selects_exactly_one_pv_core(monkeypatch, version, system_model):
     import premise.new_database as module
 
-    monkeypatch.setattr(module, "_select_nmc955_modern_references", lambda *args: None)
+    monkeypatch.setattr(
+        module.inventory_profiles, "select_companion_profiles", lambda *args: None
+    )
 
     selected = []
     monkeypatch.setattr(

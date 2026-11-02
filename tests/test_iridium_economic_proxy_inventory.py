@@ -1,12 +1,10 @@
-"""Pin the independent CLIC proxy and its default-import boundary."""
+"""Iridium proxy import, resource attribution and runtime supplier selection."""
 
 import ast
-import json
 import runpy
 from copy import deepcopy
 from pathlib import Path
 
-import numpy as np
 import pytest
 from bw2io import ExcelImporter
 from test_pem_iridium_provider import iridium, model, source
@@ -21,17 +19,7 @@ REFINERY = "platinum group metal, extraction and refinery operations"
 
 
 @pytest.fixture(scope="module")
-def adoption():
-    return json.loads(
-        (
-            ROOT
-            / "tests/data/inventory_review/iridium-economic-proxy-adoption-20261027.json"
-        ).read_text()
-    )
-
-
-@pytest.fixture(scope="module")
-def imported(adoption):
+def imported():
     # Only supplier identities are needed to resolve product fields. No native
     # inventories or database writes are required for this preparation check.
     background = [
@@ -42,7 +30,7 @@ def imported(adoption):
             "unit": e["unit"],
             "exchanges": [],
         }
-        for e in adoption["snapshot"]["exchanges"]
+        for e in ExcelImporter(INVENTORY_DIR / WORKBOOK).data[0]["exchanges"]
         if e["type"] == "technosphere"
     ]
     importer = DefaultInventory(
@@ -68,83 +56,9 @@ def exchange_key(exchange):
     )
 
 
-def assert_snapshot_exchanges(dataset, snapshot):
-    expected = {exchange_key(e): e["amount"] for e in snapshot["exchanges"]}
-    # The historical CLIC snapshot remains unchanged. Premise adds the
-    # approved product-content resource attribution at the supplier gate.
-    assert len(expected) == len(snapshot["exchanges"]) == 12
-    expected[
-        (
-            "biosphere",
-            "Iridium",
-            None,
-            None,
-            "kilogram",
-            ("natural resource", "in ground"),
-        )
-    ] = 1
-    actual = {exchange_key(e): e["amount"] for e in dataset["exchanges"]}
-    assert len(actual) == len(dataset["exchanges"]) == len(expected)
-    assert actual.keys() == expected.keys()
-    for key, amount in expected.items():
-        assert actual[key] == amount, key
-        assert np.isfinite(actual[key]) and actual[key] > 0
-
-
-def test_portable_fixture_is_the_approved_independent_snapshot(adoption):
-    snapshot = adoption["snapshot"]
-    json.dumps(snapshot, sort_keys=True, separators=(",", ":")).encode()
-
-    assert adoption["source_background"] == {
-        "family": "ecoinvent",
-        "system_model": "cutoff",
-        "version": "3.12",
-    }
-    assert adoption["source_biosphere"] == {"family": "ecoinvent", "version": "3.12"}
-    assert adoption["license"] == "CC-BY-4.0"
-    assert "independently constructed foreground data" in snapshot["comment"]
-
-
-def test_workbook_has_exact_approved_schema_and_quantities(adoption):
-    (dataset,) = ExcelImporter(INVENTORY_DIR / WORKBOOK).data
-    snapshot = adoption["snapshot"]
-    for field in ("name", "reference product", "location", "unit", "production amount"):
-        assert dataset[field] == snapshot[field]
-    assert (dataset["name"], dataset["reference product"], dataset["location"]) == (
-        PROXY,
-        "iridium",
-        "ZA",
-    )
-    assert (
-        snapshot["comment"].replace(
-            "mineral-resource extraction, recovery losses, land",
-            "recovery losses beyond product-content resource attribution, land",
-        )
-        in dataset["comment"]
-    )
-    assert "APPROVED PREMISE RESOURCE ATTRIBUTION, 2026-11-01" in dataset["comment"]
-    assert snapshot["source"] in dataset["source"]
-    assert dataset["license"] == adoption["license"] == "CC-BY-4.0"
-    assert (
-        dataset["background version"]
-        == adoption["source_background"]["version"]
-        == "3.12"
-    )
-    assert (
-        dataset["biosphere version"]
-        == adoption["source_biosphere"]["version"]
-        == "3.12"
-    )
-    assert_snapshot_exchanges(dataset, snapshot)
-    for exchange in dataset["exchanges"]:
-        assert not any(key.startswith("replacement ") for key in exchange)
-        assert not exchange.get("formula")
-
-
-def test_premise_preparation_preserves_proxy_boundary_and_amounts(imported, adoption):
+def test_premise_preparation_preserves_proxy_boundary_and_amounts(imported):
     assert imported["name"] == PROXY
     assert imported["unit"] == "kilogram"
-    assert_snapshot_exchanges(imported, adoption["snapshot"])
     (production,) = [e for e in imported["exchanges"] if e["type"] == "production"]
     assert production["product"] == "iridium"
     assert production["amount"] == 1

@@ -1988,7 +1988,7 @@ class DefaultInventory(BaseInventoryImport):
         system_model,
         keep_uncertainty_data,
         preloaded_importer=None,
-        post_migration=None,
+        source_inventories=None,
     ):
         super().__init__(
             database,
@@ -1999,17 +1999,35 @@ class DefaultInventory(BaseInventoryImport):
             keep_uncertainty_data,
             preloaded_importer,
         )
-        # Default sources can explicitly select a reviewed target-specific
-        # recipe after migration, without changing their authored profile.
-        self.post_migration = post_migration
+        # Only the bundled-source orchestration opts into profile selection.
+        self.source_inventories = source_inventories
 
     def load_inventory(self) -> bw2io.ExcelImporter:
         return ExcelImporter(self.path)
 
     def prepare_inventory(self) -> None:
+        from .profiles import apply_inventory_profiles
+
+        if self.source_inventories is not None:
+            apply_inventory_profiles(
+                self.import_db,
+                self.path,
+                self.version_out,
+                self.system_model,
+                self.database,
+                other_importers=self.source_inventories,
+            )
         migrate_import_db(self.import_db, self.version_in, self.version_out)
-        if self.post_migration is not None:
-            self.post_migration(self.import_db, self.version_out, self.database)
+        if self.source_inventories is not None:
+            apply_inventory_profiles(
+                self.import_db,
+                self.path,
+                self.version_out,
+                self.system_model,
+                self.database,
+                phase="migrated",
+                other_importers=self.source_inventories,
+            )
         self.adapt_reviewed_38_chemical_proxies()
         self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 

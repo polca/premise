@@ -3,7 +3,7 @@
 Qualified pipeline coating references
 =====================================
 
-For ecoinvent **3.12 cutoff only**, the default hydrogen-distribution import
+For ecoinvent **3.12 attributional targets (cutoff and EN15804)**, the default hydrogen-distribution import
 uses two separate, complete hot-dip aluminium-zinc-silicon coating references
 from ``lci-pipeline-coating-native-312.xlsx``. These reproduce the approved
 CLIC distribution and transmission coating recipes (3652 and 3774), each per
@@ -13,7 +13,7 @@ utilities, direct emissions and qualified waste burdens.
 The legacy hydrogen-distribution workbook remains authored against **3.7**.
 Its distribution and transmission construction activities still purchase
 **75.25328256144047 kg** and **876.7114153394484 kg**, respectively. The import
-adapter changes only the supplier identity of these two purchases, preserving
+profile changes only the supplier identity of these two purchases, preserving
 their quantities, uncertainty parameters and all other parent exchanges. It
 omits the now-unused legacy alloy producer from this modern import view;
 the original source workbook is unchanged. The companion is prepared first
@@ -21,13 +21,13 @@ against its own 3.12 technosphere and biosphere references. An expanded buyer
 graph, changed quantity, incomplete selection or changed guarded recipe fails
 before applying the selection.
 
-Older targets and other system models retain the qualified legacy recipe.
+Older targets and consequential builds retain the qualified legacy recipe.
 The modern coating is not reverse-compiled into a 3.7 recipe: reverse
 aggregation loses ingredients and cannot establish equivalent burdens.
 No global supplier alias, parent background-version change or native
 background modification is introduced. Imported-inventory cache keys include
 the parent workbook and, for the selected modern route, the companion and
-complete adapter source; native source-database cache keys are unchanged.
+the applicable profile data and common profile-selection code; native source-database cache keys are unchanged.
 
 These remain **qualified engineering models**, not measured pipe-coating
 factory inventories or verified hydrogen-barrier performance. Their original
