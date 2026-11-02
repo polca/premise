@@ -13,8 +13,8 @@
   },
   {
     "page": "getting_started/installation.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Clarified the effective Python 3.12 support imposed by the NumPy/SciPy dependency caps; issue #318 remains unresolved.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -109,8 +109,8 @@
   },
   {
     "page": "user_guide/export/index.rst",
-    "review_date": "2026-09-28",
-    "disposition": "Explained Brightpath's role, optional Python 3.12+ setup, output formats, and removal of legacy export routes against the implemented exporters.",
+    "review_date": "2026-11-02",
+    "disposition": "Updated the minimum Brightpath version to the tested normal-uncertainty implementation.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -127,8 +127,8 @@
   },
   {
     "page": "user_guide/export/simapro.rst",
-    "review_date": "2026-10-07",
-    "disposition": "Updated native import evidence for the complete REMIND SSP1-PkBudg1000 2050 ecoinvent 3.12 cut-off scenario; SimaPro LCIA equivalence remains unverified.",
+    "review_date": "2026-11-02",
+    "disposition": "Documented native normal 2*SD wire convention, minimum Brightpath version and checked the real writer/read-back tests.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -566,7 +566,7 @@
   {
     "page": "development/releases-2-6.rst",
     "review_date": "2026-11-02",
-    "disposition": "Added 2.6 upgrade guidance covering profile selection, current-inventory scientific contracts, carbon/resource corrections, EN15804 and read-only physical auditing; source assumptions and unresolved coverage remain documented separately.",
+    "disposition": "Recorded effective Python support and the corrected SimaPro uncertainty dependency requirement.",
     "review_level": "Release and implementation consistency; not independent scientific validation"
   }
 ]

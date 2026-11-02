@@ -46,6 +46,13 @@ upgrading does not alter saved databases.
 
 ### Fixed
 
+- Keep licensed LCIA smoke calculations running when private numerical
+  references are unavailable. Report omitted regression comparisons explicitly,
+  retain version-specific method selection and require finite LCIA results.
+- Require Brightpath 1.0.0a14 or newer for SimaPro normal uncertainty export
+  using twice the standard deviation. Check actual writer/read-back preservation
+  of waste signs and water-unit conversions; replace obsolete variance-based
+  test expectations.
 - Isolate datapackage staging and remote inventory downloads per call. Include
   only the current scenario and inventory CSVs in datapackages, and clean up
   temporary files after successful or failed operations.

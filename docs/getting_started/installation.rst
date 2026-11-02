@@ -1,8 +1,11 @@
 Installation and requirements
 ===============================
 
-The package requires **Python 3.12 or newer**, as declared in
-``pyproject.toml``. Use a separate Python environment for each Brightway generation.
+Use **Python 3.12** for this release. The package declares ``Python >=3.12`` in
+``pyproject.toml``, but its NumPy and SciPy caps currently prevent supported
+installation on Python 3.13 or newer (see `issue #318
+<https://github.com/polca/premise/issues/318>`_). Use a separate Python environment
+for each Brightway generation.
 Ecoinvent data are supplied by the user, not bundled with *premise*.
 
 Modern Brightway

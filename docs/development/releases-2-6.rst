@@ -16,8 +16,10 @@ Upgrading to 2.6.0
 * Retain the ecoinvent source version, system model, IAM files and generation
   settings with each study. Compare rebuilt results against a documented
   reference and review differences in inventory boundaries and quantities.
-* Python 3.12 or newer remains required. The existing Brightway, Brightpath,
-  PyArrow and NumPy compatibility constraints remain in effect. See
+* Use Python 3.12 for this release. The NumPy and SciPy dependency caps prevent
+  supported installation on Python 3.13 or newer; issue #318 remains open.
+  Brightpath 1.0.0a14 or newer is required for correct SimaPro normal
+  uncertainty export. Existing PyArrow and NumPy constraints remain in effect. See
   :doc:`/getting_started/installation` for environment setup.
 * The supported ``from premise import NewDatabase`` entry point and inventory
   store API are unchanged. Existing module aliases and cached inventory class
@@ -105,3 +107,10 @@ reusable reference builders remain in ``tests/support``. The RELICS indicator
 definitions ship with their license; generated audit results do not ship.
 
 For earlier inventory-API and exporter migrations, see :doc:`releases-2-5`.
+
+Licensed integration runs use ``PREMISE_LCIA_REFERENCE_SCORES`` to locate private
+approved numerical references. When these are unavailable, the tests issue an
+explicit warning and still run their LCIA smoke calculations using the matching
+source-version method. They do not substitute generated scores as expected
+values. Release certification with private references checks the numerical
+regressions separately from public CI's finite-result smoke coverage.
