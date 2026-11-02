@@ -3,6 +3,7 @@
 from copy import deepcopy
 import json
 import re
+from itertools import permutations
 
 import numpy as np
 import pytest
@@ -20,6 +21,38 @@ from premise.audit import (
 )
 from premise.audit.graph import identity
 from premise.inventory_store import CompactInventoryStore, LegacyInventoryStore
+
+
+@pytest.mark.parametrize("order", list(permutations(range(3))))
+def test_ill_scaled_recycling_cycle_preserves_forward_and_adjoint_units(order):
+    from scipy.sparse import csc_matrix
+
+    from premise.audit.graph import Factorization
+
+    # A high-throughput cycle with a 2**-20 loss has an analytical solution.
+    # The unit conversion spans 2**40 without changing its physical yield.
+    conversion, loss = 2.0**40, 2.0**-20
+    matrix = csc_matrix(
+        [[1, -conversion, 0], [0, 1, -1 / conversion], [-(1 - loss), 0, 1]]
+    )
+    demand = np.array([0.0, 1.0, 0.0])
+    resource = np.array([2.0**-60, 0.0, 0.0])
+    supply = np.array([2.0**60, 2.0**20, 2.0**60 - 2.0**40])
+    scores = np.array([2.0**-40, 1.0, 2.0**-40])
+    order = np.array(order)
+    permuted = matrix[order, :][:, order].tocsc()
+    original = permuted.copy()
+    factor = Factorization(permuted)
+    forward = factor.solve(demand[order])
+    adjoint = factor.solve(resource[order], transpose=True)
+    # The near-unit cycle amplifies roundoff by its inverse loss, even after
+    # correcting the unit scales. Bound that intrinsic conditioning explicitly.
+    precision = 4 * np.finfo(float).eps / loss
+    np.testing.assert_allclose(forward, supply[order], rtol=precision, atol=0)
+    np.testing.assert_allclose(adjoint, scores[order], rtol=precision, atol=0)
+    assert resource[order] @ forward == pytest.approx(1.0, rel=precision)
+    assert demand[order] @ adjoint == pytest.approx(1.0, rel=precision)
+    assert (permuted != original).nnz == 0
 
 
 def process(

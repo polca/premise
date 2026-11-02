@@ -69,10 +69,24 @@ link and records the product-name count; unrelated names, units or products
 remain findings.
 
 One numerical factorization serves all audit indicators and sampled demands.
+The auditor balances equation and reference-unit scales with exact powers of
+two before factorization, then refines residuals and maps solutions back to
+the physical basis. Metadata record the solver, equilibration and refinement
+count. Forward, adjoint and componentwise residual checks retain their stated
+tolerances.
 A separate standard Brightway session checks up to 250 sampled demands by
 default, with one additional factorization. No LCIA methods or databases are
 registered by the audit. Brightway can refresh its normal processed caches
 when a database is marked dirty.
+
+Solver choice matters for severely ill-scaled inventories. Native SciPy-only
+Brightway calculations can disagree with refined audit results, particularly
+for trace resources in large infrastructure supply chains. These disagreements
+remain numerical findings. UMFPACK is recommended for investigating such cases;
+install ``scikit-umfpack`` in the Brightway environment when its platform and
+SuiteSparse requirements are met. The audit uses UMFPACK when available and
+otherwise uses SciPy. Do not interpret a numerical disagreement alone as proof
+of an inventory error.
 
 For a native control, set ``include_default_contracts=False``. This avoids
 applying a Premise-specific resource convention to an unmodified native source.

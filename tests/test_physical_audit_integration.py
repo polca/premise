@@ -34,13 +34,15 @@ from premise import AuditConfig,audit_brightway_database
 bd.projects.set_current(os.environ['PREMISE_AUDIT_PROJECT'])
 r=audit_brightway_database(os.environ['PREMISE_AUDIT_DATABASE'],
  config=AuditConfig(sample_size=int(os.environ.get('PREMISE_AUDIT_SAMPLE_SIZE','5000')),
+                    explanation_limit=10,
                     version=os.environ.get('PREMISE_AUDIT_VERSION'),
-                    system_model=os.environ.get('PREMISE_AUDIT_SYSTEM_MODEL')))
+                    system_model=os.environ.get('PREMISE_AUDIT_SYSTEM_MODEL')),
+ progress=lambda event: print(json.dumps(event),flush=True))
+r.write('physical-audit')
 assert r.metadata['scoring_status']=='completed'
-assert r.metadata['brightway_crosscheck']['failures']==0
+assert r.metadata['brightway_crosscheck']['failures']==0,r.metadata['brightway_crosscheck']
 assert not any(f.category in {'numerical','structure'} and f.issue.severity=='error' for f in r.findings)
 assert not any(f.rule_id.startswith('CONTRACT.') for f in r.findings)
-r.write('physical-audit')
 print(json.dumps(dict(sampled=len(r.sample),physical_findings=len(r.findings))))
 """
     result = subprocess.run(

@@ -187,6 +187,14 @@ def audit_database(
     )
     shape = len(indices), len(indicators)
     totals, local, positive, negative = (np.empty(shape) for _ in range(4))
+    production = graph.production[np.asarray(indices, dtype=int), None]
+    # Extract selected columns together: repeated column slicing of a CSR
+    # matrix scans the entire indicator matrix for every sampled activity.
+    local[:] = direct[:, indices].T.toarray() / production
+    local_positive = direct_positive[:, indices].T.toarray() / production
+    local_negative = direct_negative[:, indices].T.toarray() / production
+    positive[:] = np.maximum(local_positive, 0) + np.maximum(local_negative, 0)
+    negative[:] = np.minimum(local_positive, 0) + np.minimum(local_negative, 0)
     max_error = np.zeros(len(indicators))
     forward_residuals = []
     forward_residual_ratios = []
@@ -209,26 +217,19 @@ def audit_database(
         if not np.all(np.isfinite(supply)):
             return blocked(f"Nonfinite forward inventory for {graph.keys[i]}")
         totals[p] = direct @ supply
-        local[p] = direct[:, i].toarray().ravel() / graph.production[i]
         # A solved LCI can already cancel positive and negative supplies of
         # the very same upstream process. Split first-tier supplier scores
         # instead, preserving both branches without pretending to reconstruct
         # physical gross mining throughput from an allocated graph.
-        local_parts = [
-            matrix[:, i].toarray().ravel() / graph.production[i]
-            for matrix in (direct_positive, direct_negative)
-        ]
-        positive[p] = sum(np.maximum(v, 0) for v in local_parts)
-        negative[p] = sum(np.minimum(v, 0) for v in local_parts)
         for provider, amount, exc in getattr(graph, "scoring_inputs", graph.inputs)[i]:
             part = amount / graph.production[i] * all_scores[:, provider]
             positive[p] += np.maximum(part, 0)
             negative[p] += np.minimum(part, 0)
         error = abs(totals[p] - all_scores[:, i])
-        max_error = np.maximum(max_error, error)
         tolerance = config.numerical_atol + config.numerical_rtol * np.maximum(
             abs(totals[p]), abs(all_scores[:, i])
         )
+        max_error = np.maximum(max_error, error)
         book.status("NUMERICAL.FORWARD_ADJOINT")
         if np.any(error > tolerance):
             book.emit(
@@ -311,6 +312,8 @@ def audit_database(
         solver=factor.backend,
         forward_solves=factor.forward,
         transpose_solves=factor.transpose,
+        refinement_solves=factor.refinements,
+        matrix_equilibration="power-of-two row normalization and diagonal similarity",
         max_forward_adjoint_error=max_error.tolist(),
         max_scaled_forward_residual=max(forward_residuals, default=0),
         max_forward_residual_tolerance_ratio=max(forward_residual_ratios, default=0),

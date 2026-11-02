@@ -547,8 +547,8 @@
   },
   {
     "page": "user_guide/physical-audits.rst",
-    "review_date": "2026-11-01",
-    "disposition": "Added the reusable physical-audit API, explicit contracts and budgets, matched campaigns, report interpretation and pytest activation; separate numerical consistency from scientific plausibility and pending human review.",
+    "review_date": "2026-11-02",
+    "disposition": "Documented binary-exact numerical equilibration, residual refinement, preserved tolerances, solver precision limits and optional UMFPACK; licensed cohort checks retain physical findings for review.",
     "review_level": "Documentation and implementation consistency; not independent scientific validation"
   },
   {

@@ -49,6 +49,10 @@ upgrading does not alter saved databases.
 
 ### Fixed
 
+- Stabilize physical-audit solves across mixed reference-unit scales using
+  power-of-two equilibration and residual refinement. Keep strict numerical
+  checks and record refinement metadata; document native solver precision
+  differences. Batch sampled indicator columns to reduce repeated sparse scans.
 - Keep licensed LCIA smoke calculations running when private numerical
   references are unavailable. Report omitted regression comparisons explicitly,
   retain version-specific method selection and require finite LCIA results.

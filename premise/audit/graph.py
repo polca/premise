@@ -311,12 +311,56 @@ class Factorization:
     def __init__(self, matrix):
         self.A = matrix
         self.forward = self.transpose = 0
+        self.refinements = 0
+
+        # Inventory reference units and trace-resource coefficients can span
+        # many orders of magnitude. Equilibrate the equations before sparse
+        # pivoting. Powers of two preserve binary64 coefficients exactly; map
+        # both right-hand sides and solutions back to their physical basis.
+        def scale(norm):
+            exponent = np.frexp(norm)[1]
+            return np.where(norm > 0, np.exp2(np.clip(-exponent, -1022, 1022)), 1.0)
+
+        diagonal = abs(matrix.diagonal())
+        norm = np.asarray(abs(matrix).max(axis=1).toarray()).ravel()
+        self.row_scale = scale(np.where(diagonal > 0, diagonal, norm))
+        self.column_scale = np.ones(matrix.shape[1])
+        balanced = matrix.multiply(self.row_scale[:, None]).tocsc()
+        # Balance corresponding row/column norms by a diagonal similarity.
+        # Independent max-norm normalization can leave a recycling cycle's
+        # small but essential coefficients badly scaled.
+        for _ in range(32):
+            row_norm = np.asarray(abs(balanced).max(axis=1).toarray()).ravel()
+            col_norm = np.asarray(abs(balanced).max(axis=0).toarray()).ravel()
+            shift = np.rint(
+                0.5
+                * (
+                    np.log2(np.maximum(row_norm, np.finfo(float).tiny))
+                    - np.log2(np.maximum(col_norm, np.finfo(float).tiny))
+                )
+            )
+            shift = np.clip(shift, -32, 32)
+            if not np.any(shift):
+                break
+            factor = np.exp2(shift)
+            self.row_scale /= factor
+            self.column_scale *= factor
+            balanced = (
+                balanced.multiply((1 / factor)[:, None])
+                .multiply(factor[None, :])
+                .tocsc()
+            )
+        if not np.all(np.isfinite(balanced.data)) or np.count_nonzero(
+            balanced.data
+        ) != np.count_nonzero(matrix.data):
+            raise ValueError("Numerical equilibration lost a finite coefficient")
+        self.balanced = balanced
         try:
             from scikits import umfpack
         except ImportError:
             from scipy.sparse.linalg import splu
 
-            self.factor = splu(matrix)
+            self.factor = splu(balanced)
             self.backend = "scipy.splu"
             factor = self.factor
             self._solve = lambda rhs, transpose: factor.solve(
@@ -324,13 +368,13 @@ class Factorization:
             )
         else:
             self.factor = umfpack.UmfpackContext(
-                "dl" if matrix.indices.dtype == np.int64 else "di"
+                "dl" if balanced.indices.dtype == np.int64 else "di"
             )
-            self.factor.numeric(matrix)
+            self.factor.numeric(balanced)
             self.backend = "scikits.umfpack"
             factor = self.factor
             self._solve = lambda rhs, transpose: factor.solve(
-                umfpack.UMFPACK_At if transpose else umfpack.UMFPACK_A, matrix, rhs
+                umfpack.UMFPACK_At if transpose else umfpack.UMFPACK_A, balanced, rhs
             )
 
     def solve(self, rhs, transpose=False):
@@ -338,4 +382,15 @@ class Factorization:
             self.transpose += 1
         else:
             self.forward += 1
-        return self._solve(rhs, transpose)
+        target = (self.column_scale if transpose else self.row_scale) * rhs
+        solution = self._solve(target, transpose)
+        operator = self.balanced.T if transpose else self.balanced
+        for _ in range(2):
+            residual = target - operator @ solution
+            correction = self._solve(residual, transpose)
+            self.refinements += 1
+            refined = solution + correction
+            if np.array_equal(refined, solution):
+                break
+            solution = refined
+        return (self.row_scale if transpose else self.column_scale) * solution
