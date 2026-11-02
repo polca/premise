@@ -49,6 +49,13 @@ upgrading does not alter saved databases.
 
 ### Fixed
 
+- Support Python 3.12 through 3.15 with modern Brightway, NumPy 2 and current
+  SciPy, pandas, xarray and PyArrow. Restrict old numerical-library caps to the
+  legacy Brightway extra and Conda variant. Remove unused mandatory dependencies
+  on `unfold` and `premise_gwp`; these companion tools are installed separately.
+  Test each supported Python version in CI, with licensed builds on 3.12 and 3.15.
+  Preserve double precision when rescaling cached float32 exchanges under NumPy 2;
+  retain compatible pandas and DeepDiff versions for country parsing and Python 3.15.
 - Stabilize physical-audit solves across mixed reference-unit scales using
   power-of-two equilibration and residual refinement. Keep strict numerical
   checks and record refinement metadata; document native solver precision

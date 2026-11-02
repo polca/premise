@@ -16,10 +16,12 @@ Upgrading to 2.6.0
 * Retain the ecoinvent source version, system model, IAM files and generation
   settings with each study. Compare rebuilt results against a documented
   reference and review differences in inventory boundaries and quantities.
-* Use Python 3.12 for this release. The NumPy and SciPy dependency caps prevent
-  supported installation on Python 3.13 or newer; issue #318 remains open.
+* Modern Brightway supports Python 3.12 through 3.15 with NumPy 2 and current
+  SciPy, pandas, xarray and PyArrow. Legacy Brightway remains on Python 3.12
+  with NumPy 1.x. The unused companion tools ``unfold`` and ``premise_gwp``
+  are installed separately, so their NumPy caps do not constrain Premise.
   Brightpath 1.0.0a14 or newer is required for correct SimaPro normal
-  uncertainty export. Existing PyArrow and NumPy constraints remain in effect. See
+  uncertainty export. See
   :doc:`/getting_started/installation` for environment setup.
 * The supported ``from premise import NewDatabase`` entry point and inventory
   store API are unchanged. Existing module aliases and cached inventory class

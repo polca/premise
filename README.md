@@ -90,7 +90,8 @@ corrects fuel-carbon, resource and manufacturing accounting.**
 Premise does not modify saved databases. Reviewed inventories retain the source
 qualifications and unresolved coverage documented in the methodology.
 
-**Python 3.12 or newer remains required.** Brightpath handles openLCA and SimaPro
+**Modern Brightway supports Python 3.12–3.15.** Legacy Brightway requires
+Python 3.12 and NumPy 1.x. Brightpath handles openLCA and SimaPro
 exports; openLCA requires a matching local method package. The read-only inventory
 store API introduced in 2.5 remains the supported integration interface.
 
@@ -110,7 +111,7 @@ by modifying the inventory database ecoinvent 3 to reflect projected energy poli
 
 Requirements
 ------------
-* **Python 3.12 or newer**
+* **Python 3.12 or newer** with modern Brightway; Python 3.12 for legacy Brightway.
 * License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
 * Scenarios available through Premise can be consulted [here](https://premisedash-6f5a0259c487.herokuapp.com/).
 * If you want to use the results in the Brightway 2 framework, you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.

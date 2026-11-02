@@ -14,7 +14,7 @@
   {
     "page": "getting_started/installation.rst",
     "review_date": "2026-11-02",
-    "disposition": "Clarified the effective Python 3.12 support imposed by the NumPy/SciPy dependency caps; issue #318 remains unresolved.",
+    "disposition": "Documented Python 3.12–3.15 with modern Brightway, legacy Python 3.12 numerical constraints and separate companion-tool installation.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -115,8 +115,8 @@
   },
   {
     "page": "user_guide/export/datapackage.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Clarified independent datapackage export and separate unfold installation with environment requirements.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -566,7 +566,7 @@
   {
     "page": "development/releases-2-6.rst",
     "review_date": "2026-11-02",
-    "disposition": "Recorded effective Python support and the corrected SimaPro uncertainty dependency requirement.",
+    "disposition": "Updated Python and numerical-library compatibility and optional companion-tool guidance for release 2.6.0.",
     "review_level": "Release and implementation consistency; not independent scientific validation"
   }
 ]
