@@ -14,7 +14,7 @@
   {
     "page": "getting_started/installation.rst",
     "review_date": "2026-11-02",
-    "disposition": "Documented Python 3.12–3.15, the Python 3.12 NumPy/PyArrow ABI boundary, legacy constraints, separate companions and flexible Conda channels for compatible pyecospold metadata.",
+    "disposition": "Documented Python 3.12–3.15 with pip, Conda 3.12–3.14 pending upstream cchardet packaging, the Python 3.12 NumPy/PyArrow ABI boundary, legacy constraints, separate companions and flexible Conda channels.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {

@@ -65,14 +65,14 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.12
+        - python >=3.12,<3.15
         - setuptools
         - wheel
       run:
         - bw2data >=4.5
         - bw2calc >=2.4
         - bw_processing >=1.0
-        - python >=3.12
+        - python >=3.12,<3.15
         - bottleneck
         - brightpath >=1.0.0a14,<2
         - bw2io >=0.9.11
@@ -100,7 +100,7 @@ outputs:
         - tqdm
     test:
       requires:
-        - python >=3.12
+        - python >=3.12,<3.15
       imports:
         - premise
         - brightpath

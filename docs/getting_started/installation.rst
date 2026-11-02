@@ -24,12 +24,14 @@ usable. Newer Python versions use NumPy 2 and can install PyArrow 26. Conda
 variants retain PyArrow below 26, including their builds for newer Python
 versions, to keep compatibility with NumPy 1.x on Python 3.12.
 
-For Conda, use the required channels with flexible priority in a separate
+Conda packages support Python 3.12–3.14. Use pip for Python 3.15 until upstream
+Conda datapackage dependencies stop requiring the unavailable ``cchardet``
+build. Use the required channels with flexible priority in a separate
 environment:
 
 .. code-block:: console
 
-   conda create -n premise python=3.15
+   conda create -n premise python=3.14
    conda activate premise
    conda config --env --set channel_priority flexible
    conda install -c conda-forge -c cmutel -c romainsacchi premise-bw25

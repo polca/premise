@@ -60,6 +60,8 @@ upgrading does not alter saved databases.
   compatibility, while allowing PyArrow 26 in newer Python pip environments.
   Use flexible Conda channel priority to select compatible pyecospold metadata
   and check numerical-library and exporter imports in every installation job.
+  Conda supports Python 3.12–3.14 pending upstream datapackage/cchardet recipe
+  updates; Python 3.15 is supported through pip.
 - Stabilize physical-audit solves across mixed reference-unit scales using
   power-of-two equilibration and residual refinement. Keep strict numerical
   checks and record refinement metadata; document native solver precision

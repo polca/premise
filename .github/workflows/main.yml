@@ -245,13 +245,12 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.12", "3.13", "3.14", "3.15"]
+        python-version: ["3.12", "3.13", "3.14"]
         package: ["premise-bw2", "premise-bw25"]
         solver: ["libmamba"]
         exclude:
           - {package: premise-bw2, python-version: "3.13"}
           - {package: premise-bw2, python-version: "3.14"}
-          - {package: premise-bw2, python-version: "3.15"}
     steps:
       - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3
