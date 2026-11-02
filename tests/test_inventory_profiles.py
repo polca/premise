@@ -29,7 +29,14 @@ def one(importer, name):
 @pytest.mark.parametrize(
     "version,model,expected",
     [
-        ("3.8", "cutoff", set()),
+        (
+            "3.8",
+            "cutoff",
+            {
+                "chemical-proxy-lci-batteries-ASSB",
+                "chemical-proxy-lci-iridium-economic-proxy",
+            },
+        ),
         ("3.11", "cutoff", set()),
         (
             "3.12",
@@ -388,3 +395,55 @@ def test_default_preparation_keeps_profile_phases_around_migration(monkeypatch, 
         "consequential",
         "links",
     ]
+
+
+@pytest.mark.parametrize("version", ["3.8", "3.10", "3.12"])
+def test_native_policy_change_invalidates_only_applicable_source_cache(
+    version, tmp_path, monkeypatch
+):
+    import json
+
+    import premise.inventory.clean_datasets as cleaner
+    import premise.database.new_database as module
+
+    builder = object.__new__(module.NewDatabase)
+    builder.version = version
+    builder.system_model = "cutoff"
+    builder.keep_source_db_uncertainty = builder.keep_imports_uncertainty = False
+    policy = json.loads(cleaner.SOURCE_NORMALIZATIONS_PATH.read_text())
+    path = tmp_path / "source_normalizations.json"
+    path.write_text(json.dumps(policy))
+    monkeypatch.setattr(cleaner, "SOURCE_NORMALIZATIONS_PATH", path)
+    native = builder._database_cache_path("test")
+    imports = builder._database_cache_path("test", inventories=True)
+    policy["policies"]["passenger_car_engine_aluminium"]["edits"][0]["factor"] *= 0.9
+    path.write_text(json.dumps(policy))
+    assert (builder._database_cache_path("test") != native) == (
+        version in {"3.10", "3.12"}
+    )
+    assert builder._database_cache_path("test", inventories=True) == imports
+
+
+def test_source_selection_metadata_invalidates_applicable_import_cache(
+    tmp_path, monkeypatch
+):
+    import json
+
+    import premise.inventory.profiles as profiles_module
+    import premise.database.new_database as module
+
+    builder = object.__new__(module.NewDatabase)
+    builder.version = "3.12"
+    builder.system_model = "cutoff"
+    builder.keep_source_db_uncertainty = builder.keep_imports_uncertainty = False
+    policy = json.loads(profiles_module.PROFILE_PATH.read_text())
+    path = tmp_path / "inventory_profiles.json"
+    path.write_text(json.dumps(policy))
+    monkeypatch.setattr(profiles_module, "PROFILE_PATH", path)
+    native = builder._database_cache_path("test")
+    imports = builder._database_cache_path("test", inventories=True)
+    rule = next(r for r in policy["source_selection"] if r.get("before"))
+    rule["before"][0][1] = "3.11"
+    path.write_text(json.dumps(policy))
+    assert builder._database_cache_path("test") == native
+    assert builder._database_cache_path("test", inventories=True) != imports

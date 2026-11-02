@@ -1342,51 +1342,17 @@ class BaseInventoryImport:
             ]
 
     def adapt_reviewed_38_chemical_proxies(self) -> None:
-        """Apply the reviewed legacy proxies only to their bundled inventories."""
-        if Version(self.version_out) != Version("3.8"):
-            return
-        policies = {
-            "lci-batteries-ASSB.xlsx": (
-                ("market for lithium iron phosphate", "lithium iron phosphate", "RoW"),
-                (
-                    "Lithium iron phosphate [LiFePO4]",
-                    "Lithium iron phosphate [LiFePO4]",
-                    "JP",
-                ),
-                "ecoinvent 3.8 proxy: bundled Japanese LFP synthesis replaces the "
-                "unavailable native LFP market; original kg quantity retained.",
-            ),
-            "lci-iridium-economic-proxy.xlsx": (
-                ("market for sodium ethyl xanthate", "sodium ethyl xanthate", "GLO"),
-                ("market for chemical, organic", "chemical, organic", "GLO"),
-                "ecoinvent 3.8 proxy: generic organic chemical manufacturing burden "
-                "replaces the unavailable sodium ethyl xanthate market; original kg "
-                "quantity retained. This weaker proxy does not establish chemical "
-                "or environmental equivalence.",
-            ),
-        }
-        policy = policies.get(Path(self.inventory_filename).name)
-        if policy is None:
-            return
-        source, target, comment = policy
-        for dataset in self.import_db.data:
-            for exchange in dataset.get("exchanges", ()):
-                if (
-                    exchange.get("type") == "technosphere"
-                    and exchange.get("unit") == "kilogram"
-                    and (
-                        exchange.get("name"),
-                        exchange.get("reference product", exchange.get("product")),
-                        exchange.get("location"),
-                    )
-                    == source
-                ):
-                    exchange.update(
-                        name=target[0], product=target[1], location=target[2]
-                    )
-                    exchange["reference product"] = target[1]
-                    exchange.pop("input", None)
-                    exchange["comment"] = comment + " " + exchange.get("comment", "")
+        """Apply configured bundled-inventory aliases after version migration."""
+        from .profiles import apply_inventory_profiles
+
+        apply_inventory_profiles(
+            self.import_db,
+            self.inventory_filename,
+            self.version_out,
+            self.system_model,
+            getattr(self, "database", ()),
+            phase="aliases",
+        )
 
     def adapt_hydrogen_market_exchanges_for_legacy_versions(self) -> None:
         """

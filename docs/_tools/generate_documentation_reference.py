@@ -48,7 +48,13 @@ def inventory_selection(tree, version, system_model):
             isinstance(t, ast.Name) and t.id == "preloaded_importers" for t in n.targets
         )
     )
+    import sys
+
+    sys.path.insert(0, str(ROOT))
+    from premise.inventory import profiles as inventory_profiles
+
     env = {
+        "inventory_profiles": inventory_profiles,
         "self": SimpleNamespace(version=version, system_model=system_model),
         "Version": Version,
     }

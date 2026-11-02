@@ -2343,6 +2343,217 @@
         }
       ],
       "documentation": "docs/methodology/battery-mobile.rst"
+    },
+    {
+      "id": "chemical-proxy-lci-batteries-ASSB",
+      "source": "lci-batteries-ASSB.xlsx",
+      "phase": "aliases",
+      "equivalent_version": "3.8",
+      "exchange_aliases": [
+        {
+          "source": [
+            "market for lithium iron phosphate",
+            "lithium iron phosphate",
+            "RoW",
+            "kilogram"
+          ],
+          "target": [
+            "Lithium iron phosphate [LiFePO4]",
+            "Lithium iron phosphate [LiFePO4]",
+            "JP",
+            "kilogram"
+          ],
+          "comment": "ecoinvent 3.8 proxy: bundled Japanese LFP synthesis replaces the unavailable native LFP market; original kg quantity retained."
+        }
+      ]
+    },
+    {
+      "id": "chemical-proxy-lci-iridium-economic-proxy",
+      "source": "lci-iridium-economic-proxy.xlsx",
+      "phase": "aliases",
+      "equivalent_version": "3.8",
+      "exchange_aliases": [
+        {
+          "source": [
+            "market for sodium ethyl xanthate",
+            "sodium ethyl xanthate",
+            "GLO",
+            "kilogram"
+          ],
+          "target": [
+            "market for chemical, organic",
+            "chemical, organic",
+            "GLO",
+            "kilogram"
+          ],
+          "comment": "ecoinvent 3.8 proxy: generic organic chemical manufacturing burden replaces the unavailable sodium ethyl xanthate market; original kg quantity retained. This weaker proxy does not establish chemical or environmental equivalence."
+        }
+      ]
+    }
+  ],
+  "source_selection": [
+    {
+      "source": "FILEPATH_HYDROGEN_DISTRI_INVENTORIES",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_PIPELINE_COATING_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_CC_INVENTORIES",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_BIOMETHANE_CAPTURE_MDEA_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_NUCLEAR_EPR",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_EPR_M5_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_BATTERIES_NMC955_LTO",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_NMC532_NATIVE_312",
+          "3.12"
+        ],
+        [
+          "FILEPATH_NMC955_MODERN_312",
+          "3.12"
+        ],
+        [
+          "FILEPATH_NMC955_FIXED_REFERENCE_38",
+          "3.8"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_BATTERIES_NMC_NCA_LFP",
+      "minimum_version": "3.9",
+      "replacement": [
+        [
+          "FILEPATH_LFP_REFERENCE",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_PFSA_EW1100",
+      "minimum_version": "3.12",
+      "before": [
+        [
+          "FILEPATH_FKM_GASKET_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_HYDROGEN_INVENTORIES",
+      "minimum_version": "3.12",
+      "before": [
+        [
+          "FILEPATH_PTFE_GASKET_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_PHOTOVOLTAICS",
+      "replacement": [
+        [
+          "FILEPATH_PHOTOVOLTAICS_2026",
+          "3.12"
+        ],
+        [
+          "FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY",
+          "3.12"
+        ],
+        [
+          "FILEPATH_PHOTOVOLTAICS_CIGS",
+          "3.7"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_OIL_GAS_INVENTORIES",
+      "versions": [
+        "3.9",
+        "3.9.1",
+        "3.10",
+        "3.10.1",
+        "3.11",
+        "3.12"
+      ],
+      "omit": true
+    },
+    {
+      "source": "FILEPATH_BATTERIES_NMC622_532",
+      "versions": [
+        "3.11",
+        "3.12"
+      ],
+      "omit": true
+    },
+    {
+      "source": "FILEPATH_GRAPHITE",
+      "versions": [
+        "3.11",
+        "3.12"
+      ],
+      "omit": true
+    },
+    {
+      "source": "FILEPATH_BATTERY_CAPACITY",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_NMC955_CAPACITY_REFERENCE_310",
+          "3.10"
+        ]
+      ]
     }
   ]
 }

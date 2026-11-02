@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import pprint
 from numbers import Number
 from pathlib import Path
@@ -23,10 +24,34 @@ from ..core._bw2_backend_compat import ActivityDataset, ExchangeDataset, SQLiteB
 from ..iam.data_collection import get_delimiter
 from ..core.filesystem_constants import DATA_DIR
 
-CA_CEMENT_REFRACTORY_VERSIONS = frozenset({"3.11", "3.12"})
-CA_CEMENT_REFRACTORY_CACHE_REVISION = 1
-ICE_ALUMINIUM_VERSIONS = frozenset({"3.10", "3.11", "3.12"})
-ICE_ALUMINIUM_CACHE_REVISION = 1
+SOURCE_NORMALIZATIONS_PATH = DATA_DIR / "utils/import/source_normalizations.json"
+
+
+def source_normalization_data(version=None):
+    """Return applicable guarded native-source corrections and their provenance."""
+    data = json.loads(SOURCE_NORMALIZATIONS_PATH.read_text())
+    if data.get("schema_version") != 1:
+        raise ValueError("Unsupported native-source normalization configuration")
+    return {
+        name: policy
+        for name, policy in data["policies"].items()
+        if version is None or version in policy["versions"]
+    }
+
+
+_SOURCE_NORMALIZATIONS = source_normalization_data()
+CA_CEMENT_REFRACTORY_VERSIONS = frozenset(
+    _SOURCE_NORMALIZATIONS["canadian_cement_refractory"]["versions"]
+)
+CA_CEMENT_REFRACTORY_CACHE_REVISION = _SOURCE_NORMALIZATIONS[
+    "canadian_cement_refractory"
+]["cache_revision"]
+ICE_ALUMINIUM_VERSIONS = frozenset(
+    _SOURCE_NORMALIZATIONS["passenger_car_engine_aluminium"]["versions"]
+)
+ICE_ALUMINIUM_CACHE_REVISION = _SOURCE_NORMALIZATIONS["passenger_car_engine_aluminium"][
+    "cache_revision"
+]
 
 try:
     from bw2data.configuration import labels
@@ -737,233 +762,111 @@ class DatabaseCleaner:
                     }
                 )
 
-    def correct_canadian_cement_refractory(self) -> int:
-        """Normalize the recognized 13-plant refractory numerator to one plant.
-
-        The native Canadian plant is one unit, but its refractory input uses
-        all 13 surveyed plants' lifetime clinker output. Guard the source
-        identity and coefficient; leave other recipes and allocation unchanged.
-        """
-        if self.version not in CA_CEMENT_REFRACTORY_VERSIONS:
-            return 0
-
+    def _apply_source_normalization(self, name):
         from ..core.utils import rescale_exchange
 
-        corrected = 0
-        for dataset in self.database:
-            if (
-                dataset.get("name"),
-                dataset.get("reference product"),
-                dataset.get("location"),
-                dataset.get("unit"),
-            ) != (
-                "integrated cement plant construction",
-                "integrated cement plant",
-                "CA",
-                "unit",
-            ):
-                continue
-            if dataset.get("activity") not in (
-                None,
-                "",
-                "085620b0-f171-5666-8400-a7bcb0aacd6f",
-            ):
-                continue
-            production = [e for e in dataset["exchanges"] if e["type"] == "production"]
-            if (
-                len(production) != 1
-                or production[0].get("unit") != "unit"
-                or not isinstance(production[0].get("amount"), Number)
-                or not np.isclose(production[0]["amount"], 1, rtol=0, atol=1e-12)
-            ):
-                continue
-            matches = [
-                e
-                for e in dataset["exchanges"]
-                if (
-                    e.get("type"),
-                    e.get("name"),
-                    e.get("product") or e.get("reference product"),
-                    e.get("location"),
-                    e.get("unit"),
-                )
-                == (
-                    "technosphere",
-                    "market for refractory, basic, packed",
-                    "refractory, basic, packed",
-                    "GLO",
-                    "kilogram",
-                )
-            ]
-            if len(matches) != 1:
-                continue
-            exchange = matches[0]
-            amount = exchange.get("amount")
-            if (
-                not isinstance(amount, Number)
-                # Allow float32 storage rounding, not a changed recipe.
-                or not np.isclose(amount, 1492307607.08133, rtol=1e-7, atol=0)
-                or exchange.get("formula")
-                or exchange.get("uncertainty type") not in (None, 0, 1, 2, 3, 4, 5)
-            ):
-                continue
-            rescale_exchange(exchange, 1 / 13, remove_uncertainty=False)
-            if exchange.get("uncertainty type") in (None, 0) and "loc" in exchange:
-                exchange["loc"] = exchange["amount"]
-            note = (
-                "Premise CA cement refractory normalization v1: divided this input "
-                f"from {float(amount):.15g} kg by 13 to represent one average plant. "
-                "The native rate is 0.00130904176059766 kg refractory/kg clinker; "
-                "11.4 million tonnes/year is output from 13 plants, over 100 years. "
-                "See ecoinvent v3.11 change report, section 10.1.1 (page 134). "
-                "Other machinery and clinker/cement allocation are unchanged."
+        policy = source_normalization_data(self.version).get(name)
+        if policy is None:
+            return 0
+
+        def identity(record, exchange=False):
+            return (
+                record.get("name"),
+                (
+                    record.get("product") or record.get("reference product")
+                    if exchange
+                    else record.get("reference product")
+                ),
+                record.get("location"),
+                record.get("unit"),
             )
-            exchange["comment"] = (
-                (exchange.get("comment") or "") + "\n" + note
-            ).strip()
-            dataset["comment"] = ((dataset.get("comment") or "") + "\n" + note).strip()
+
+        def valid_dataset(record, spec):
+            if (
+                "activity_ids" in spec
+                and record.get("activity") not in spec["activity_ids"]
+            ):
+                return False
+            outputs = [e for e in record["exchanges"] if e.get("type") == "production"]
+            return (
+                len(outputs) == 1
+                and outputs[0].get("unit") == spec["identity"][3]
+                and isinstance(outputs[0].get("amount"), Number)
+                and np.isclose(outputs[0]["amount"], spec["output"], rtol=0, atol=1e-12)
+                and (spec["allow_output_formula"] or not outputs[0].get("formula"))
+            )
+
+        anchor_spec = policy["datasets"][policy["anchor"]]
+        anchors = [
+            d for d in self.database if identity(d) == tuple(anchor_spec["identity"])
+        ]
+        if policy["unique_anchor"] and len(anchors) != 1:
+            return 0
+        corrected = 0
+        for anchor in anchors:
+            datasets = {policy["anchor"]: anchor}
+            valid = valid_dataset(anchor, anchor_spec)
+            for role, spec in policy["datasets"].items():
+                if role == policy["anchor"]:
+                    continue
+                matches = [
+                    d for d in self.database if identity(d) == tuple(spec["identity"])
+                ]
+                if len(matches) != 1 or not valid_dataset(matches[0], spec):
+                    valid = False
+                    break
+                datasets[role] = matches[0]
+            if not valid:
+                continue
+            changes = []
+            for specification in [*policy["links"], *policy["edits"]]:
+                dataset = datasets[specification["dataset"]]
+                matches = [
+                    e
+                    for e in dataset["exchanges"]
+                    if e.get("type") == "technosphere"
+                    and identity(e, True) == tuple(specification["identity"])
+                ]
+                if (
+                    len(matches) != 1
+                    or not isinstance(matches[0].get("amount"), Number)
+                    or not np.isclose(
+                        matches[0]["amount"], specification["amount"], rtol=1e-7, atol=0
+                    )
+                    or matches[0].get("formula")
+                    or matches[0].get("uncertainty type")
+                    not in (None, 0, 1, 2, 3, 4, 5)
+                ):
+                    valid = False
+                    break
+                if "factor" in specification:
+                    changes.append((dataset, matches[0], specification["factor"]))
+            if not valid:
+                continue
+            notes = {}
+            for dataset, exchange, factor in changes:
+                note = policy["note"].format(amount=float(exchange["amount"]))
+                rescale_exchange(exchange, factor, remove_uncertainty=False)
+                if exchange.get("uncertainty type") in (None, 0) and "loc" in exchange:
+                    exchange["loc"] = exchange["amount"]
+                exchange["comment"] = (
+                    (exchange.get("comment") or "") + "\n" + note
+                ).strip()
+                notes[id(dataset)] = (dataset, note)
+            for dataset, note in notes.values():
+                dataset["comment"] = (
+                    (dataset.get("comment") or "") + "\n" + note
+                ).strip()
             corrected += 1
         return corrected
 
+    def correct_canadian_cement_refractory(self) -> int:
+        """Apply the configured, guarded native-source normalization."""
+        return self._apply_source_normalization("canadian_cement_refractory")
+
     def correct_passenger_car_engine_aluminium(self) -> int:
-        """Restore source aluminium purchases, scrap and proportional recovery.
-
-        Apply the three edits together only to the recognized native cutoff
-        production/treatment chain. Preserve its nominal mass and inherited
-        recovery fraction; this does not close the complete drivetrain budget.
-        """
-        if self.version not in ICE_ALUMINIUM_VERSIONS:
-            return 0
-
-        from ..core.utils import rescale_exchange
-
-        engine = "internal combustion engine, passenger car"
-        used = f"used {engine}"
-        production_name = "internal combustion engine production, passenger car"
-        treatment_name = f"treatment of {used}, shredding"
-
-        def dataset(name, product, output):
-            matches = [
-                d
-                for d in self.database
-                if (
-                    d.get("name"),
-                    d.get("reference product"),
-                    d.get("location"),
-                    d.get("unit"),
-                )
-                == (name, product, "GLO", "kilogram")
-            ]
-            if len(matches) != 1:
-                return None
-            ds = matches[0]
-            outputs = [e for e in ds["exchanges"] if e.get("type") == "production"]
-            if (
-                len(outputs) != 1
-                or outputs[0].get("unit") != "kilogram"
-                or not isinstance(outputs[0].get("amount"), Number)
-                or not np.isclose(outputs[0]["amount"], output, rtol=0, atol=1e-12)
-                or outputs[0].get("formula")
-            ):
-                return None
-            return ds
-
-        def exchange(ds, name, product, amount):
-            matches = [
-                e
-                for e in ds["exchanges"]
-                if (
-                    e.get("type"),
-                    e.get("name"),
-                    e.get("product") or e.get("reference product"),
-                    e.get("location"),
-                    e.get("unit"),
-                )
-                == ("technosphere", name, product, "GLO", "kilogram")
-            ]
-            if len(matches) != 1:
-                return None
-            exc = matches[0]
-            if (
-                not isinstance(exc.get("amount"), Number)
-                or not np.isclose(exc["amount"], amount, rtol=1e-7, atol=0)
-                or exc.get("formula")
-                or exc.get("uncertainty type") not in (None, 0, 1, 2, 3, 4, 5)
-            ):
-                return None
-            return exc
-
-        production = dataset(production_name, engine, 1)
-        treatment = dataset(treatment_name, used, -1)
-        market = dataset(f"market for {used}", used, -1)
-        if any(d is None for d in (production, treatment, market)):
-            return 0
-        if production.get("activity") not in (
-            None,
-            "",
-            "8f58b3aa-a2d2-5bb6-a286-965d91f95bd7",
-        ):
-            return 0
-        # The negative waste links and cutoff scrap identities also guard the
-        # system model. Do not change an allocation/substitution recipe.
-        links = [
-            exchange(production, f"market for {used}", used, -1),
-            exchange(market, treatment_name, used, -1),
-        ]
-        edits = [
-            (
-                production,
-                exchange(
-                    production,
-                    "market for aluminium, cast alloy",
-                    "aluminium, cast alloy",
-                    170.07 / 275,
-                ),
-            ),
-            (
-                production,
-                exchange(
-                    production,
-                    "aluminium scrap, new, Recycled Content cut-off",
-                    "aluminium scrap, new",
-                    -34.014 / 275,
-                ),
-            ),
-            (
-                treatment,
-                exchange(
-                    treatment,
-                    "aluminium scrap, post-consumer, Recycled Content cut-off",
-                    "aluminium scrap, post-consumer",
-                    -0.408771,
-                ),
-            ),
-        ]
-        if any(e is None for e in links) or any(e is None for _, e in edits):
-            return 0
-
-        factor = 61.875 / 170.07
-        note = (
-            "Premise passenger-car ICE aluminium correction v1: source gross "
-            "aluminium is 61.875 kg, with 12.375 kg manufacturing scrap and "
-            "49.5 kg retained per nominal 275 kg drivetrain (Notter et al. 2010, "
-            "supporting Table S2, https://doi.org/10.1021/es903729a; "
-            "Althaus and Gauch 2010, Table 80). Replace the native 170.07 kg "
-            "gross input and scale its manufacturing and post-consumer scrap "
-            "by 61.875/170.07 together. Post-consumer recovery retains the native "
-            "82.62188% of retained aluminium as an unvalidated treatment proxy. "
-            "Other treatment flows/emissions and nominal masses are unchanged; "
-            "the remaining steel, fluid/reference-mass and treatment mass gaps "
-            "are unresolved. No balancing residue or new recovery rate is inferred."
-        )
-        for ds, exc in edits:
-            rescale_exchange(exc, factor, remove_uncertainty=False)
-            if exc.get("uncertainty type") in (None, 0) and "loc" in exc:
-                exc["loc"] = exc["amount"]
-            exc["comment"] = ((exc.get("comment") or "") + "\n" + note).strip()
-        for ds in (production, treatment):
-            ds["comment"] = ((ds.get("comment") or "") + "\n" + note).strip()
-        return 1
+        """Apply the configured, guarded native-source normalization."""
+        return self._apply_source_normalization("passenger_car_engine_aluminium")
 
     def prepare_datasets(self, keep_uncertainty_data: bool) -> List[dict]:
         """Run the standard cleaning pipeline on the loaded database.

@@ -89,6 +89,10 @@ def profiles(version, system_model, phase=None, source=None):
             continue
         if "versions" in profile and str(version) not in profile["versions"]:
             continue
+        if "equivalent_version" in profile and version != Version(
+            profile["equivalent_version"]
+        ):
+            continue
         if "minimum_version" in profile and version < Version(
             profile["minimum_version"]
         ):
@@ -164,6 +168,37 @@ def _check_private_consumers(records, selected, others, profile):
 
 
 def _select(records, profile, database, others):
+    if "exchange_aliases" in profile:
+        changes = []
+        for record in records:
+            for edge in record.get("exchanges", ()):
+                for alias in profile["exchange_aliases"]:
+                    if (
+                        edge.get("type") == "technosphere"
+                        and edge.get("unit") == alias["source"][3]
+                        and (
+                            edge.get("name"),
+                            edge.get("reference product", edge.get("product")),
+                            edge.get("location"),
+                        )
+                        == tuple(alias["source"][:3])
+                    ):
+                        output = deepcopy(edge)
+                        target = alias["target"]
+                        output.update(
+                            name=target[0], product=target[1], location=target[2]
+                        )
+                        output["reference product"] = target[1]
+                        output.pop("input", None)
+                        output["comment"] = (
+                            alias["comment"] + " " + edge.get("comment", "")
+                        )
+                        changes.append((edge, output))
+        # Stage first, then preserve the importer's existing exchange identities.
+        for edge, output in changes:
+            edge.clear()
+            edge.update(output)
+        return records
     if any(
         record.get("name") in profile.get("external_only", ()) for record in records
     ):
@@ -339,3 +374,46 @@ def select_companion_profiles(filepaths, importers, version, system_model):
             )
         for importer, records in revised:
             importer.data = records
+
+
+def source_selection_rules(version, system_model):
+    """Return applicable companion-source roles without reading inventory bodies."""
+    if version is None:
+        return []
+    result = []
+    for rule in json.loads(PROFILE_PATH.read_text())["source_selection"]:
+        if "versions" in rule and str(version) not in rule["versions"]:
+            continue
+        if "minimum_version" in rule and Version(str(version)) < Version(
+            rule["minimum_version"]
+        ):
+            continue
+        if "system_models" in rule and system_model not in rule["system_models"]:
+            continue
+        result.append(rule)
+    return result
+
+
+def select_source_files(filepaths, version, system_model, catalog):
+    """Resolve declared source roles in their original preparation order."""
+    rules = source_selection_rules(version, system_model)
+    selected = []
+    for filepath in filepaths:
+        for rule in rules:
+            if catalog[rule["source"]] != filepath[0]:
+                continue
+            selected.extend(
+                (catalog[name], source_version)
+                for name, source_version in rule.get("before", ())
+            )
+            if "replacement" in rule:
+                selected.extend(
+                    (catalog[name], source_version)
+                    for name, source_version in rule["replacement"]
+                )
+                break
+            if rule.get("omit"):
+                break
+        else:
+            selected.append(filepath)
+    return selected

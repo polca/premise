@@ -76,6 +76,7 @@ from ..inventory.inventory_imports import (
     BaseInventoryImport,
     DefaultInventory,
 )
+from ..inventory.clean_datasets import source_normalization_data
 from ..inventory import profiles as inventory_profiles
 from ..inventory.inventory_store import (
     STORE_SCHEMA_VERSION,
@@ -1028,6 +1029,15 @@ class NewDatabase:
                     sort_keys=True,
                 ).encode()
             )
+            digest.update(
+                json.dumps(
+                    inventory_profiles.source_selection_rules(
+                        getattr(self, "version", None),
+                        getattr(self, "system_model", None),
+                    ),
+                    sort_keys=True,
+                ).encode()
+            )
             digest.update(Path(inspect.getfile(inventory_profiles)).read_bytes())
             for path in (
                 FILEPATH_PASS_CARS,
@@ -1124,6 +1134,17 @@ class NewDatabase:
             # Re-extract both manufacturing and treatment; old source lists and
             # compact checkpoints must not retain the inconsistent aluminium.
             source_label += f"_ice_aluminium_v{ICE_ALUMINIUM_CACHE_REVISION}"
+        if not inventories:
+            normalization_data = (
+                source_normalization_data(self.version)
+                if getattr(self, "version", None) is not None
+                else {}
+            )
+            if normalization_data:
+                fingerprint = hashlib.sha256(
+                    json.dumps(normalization_data, sort_keys=True).encode()
+                ).hexdigest()[:16]
+                source_label += f"_normalizations_{fingerprint}"
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"
@@ -1417,87 +1438,14 @@ class NewDatabase:
             # that premise can migrate them backwards when building with 3.11.
             filepaths.append((FILEPATH_AFFORESTATION_INVENTORIES, "3.12"))
 
-        selected_filepaths = []
-        for filepath in filepaths:
-            if (
-                filepath[0] == FILEPATH_HYDROGEN_DISTRI_INVENTORIES
-                and self.version == "3.12"
-                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
-            ):
-                selected_filepaths.append(
-                    (FILEPATH_PIPELINE_COATING_NATIVE_312, "3.12")
-                )
-            if (
-                filepath[0] == FILEPATH_CC_INVENTORIES
-                and self.version == "3.12"
-                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
-            ):
-                selected_filepaths.append(
-                    (FILEPATH_BIOMETHANE_CAPTURE_MDEA_312, "3.12")
-                )
-            if (
-                filepath[0] == FILEPATH_NUCLEAR_EPR
-                and self.version == "3.12"
-                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
-            ):
-                selected_filepaths.append((FILEPATH_EPR_M5_NATIVE_312, "3.12"))
-            if (
-                filepath[0] == FILEPATH_BATTERIES_NMC955_LTO
-                and self.version == "3.12"
-                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
-            ):
-                selected_filepaths.append((FILEPATH_NMC532_NATIVE_312, "3.12"))
-                selected_filepaths.extend(
-                    [
-                        (FILEPATH_NMC955_MODERN_312, "3.12"),
-                        (FILEPATH_NMC955_FIXED_REFERENCE_38, "3.8"),
-                    ]
-                )
-            if filepath[0] == FILEPATH_BATTERIES_NMC_NCA_LFP and Version(
-                self.version
-            ) >= Version("3.9"):
-                selected_filepaths.append((FILEPATH_LFP_REFERENCE, "3.12"))
-                continue
-            if filepath[0] == FILEPATH_PFSA_EW1100 and Version(self.version) >= Version(
-                "3.12"
-            ):
-                selected_filepaths.append((FILEPATH_FKM_GASKET_NATIVE_312, "3.12"))
-            if filepath[0] == FILEPATH_HYDROGEN_INVENTORIES and Version(
-                self.version
-            ) >= Version("3.12"):
-                selected_filepaths.append((FILEPATH_PTFE_GASKET_NATIVE_312, "3.12"))
-            if filepath[0] == FILEPATH_PHOTOVOLTAICS:
-                selected_filepaths.extend(
-                    [
-                        (FILEPATH_PHOTOVOLTAICS_2026, "3.12"),
-                        (FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY, "3.12"),
-                        (FILEPATH_PHOTOVOLTAICS_CIGS, "3.7"),
-                    ]
-                )
-                continue
-            # make an exception for FILEPATH_OIL_GAS_INVENTORIES
-            # ecoinvent version is 3.9
-            if filepath[0] in [
-                FILEPATH_OIL_GAS_INVENTORIES,
-                FILEPATH_BATTERIES_NMC_NCA_LFP,
-            ] and self.version in ["3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]:
-                continue
-
-            if filepath[0] in [
-                FILEPATH_BATTERIES_NMC622_532,
-                FILEPATH_GRAPHITE,
-            ] and self.version in ["3.11", "3.12"]:
-                continue
-
-            if (
-                filepath[0] == FILEPATH_BATTERY_CAPACITY
-                and self.version == "3.12"
-                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
-            ):
-                selected_filepaths.append(
-                    (FILEPATH_NMC955_CAPACITY_REFERENCE_310, "3.10")
-                )
-            selected_filepaths.append(filepath)
+        source_catalog = {
+            name: value
+            for name, value in globals().items()
+            if name.startswith("FILEPATH_")
+        }
+        selected_filepaths = inventory_profiles.select_source_files(
+            filepaths, self.version, getattr(self, "system_model", None), source_catalog
+        )
 
         # Excel extraction is independent and read-only. All migrations,
         # linking, duplicate checks, and merges below remain sequential in the
