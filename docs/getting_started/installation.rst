@@ -20,8 +20,9 @@ current SciPy, xarray and PyArrow releases are supported. pandas stays below
 3.1 until the country-conversion dependency supports its changed CSV parsing;
 DeepDiff stays below 9 while its native dependency lacks Python 3.15 support.
 On Python 3.12, PyArrow stays below 26 so existing NumPy 1.x environments remain
-usable. Newer Python versions use NumPy 2 and can install PyArrow 26. The modern
-Conda variant requires NumPy 2; the legacy variant retains NumPy 1.x.
+usable. Newer Python versions use NumPy 2 and can install PyArrow 26. Conda
+variants retain PyArrow below 26, including their builds for newer Python
+versions, to keep compatibility with NumPy 1.x on Python 3.12.
 
 For Conda, use the required channels with flexible priority in a separate
 environment:

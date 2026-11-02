@@ -81,14 +81,14 @@ outputs:
         - cryptography
         - datapackage
         - deepdiff >=8.6.2,<9
-        - numpy >=2,<3
+        - numpy >=1.26,<3
         - openpyxl >=3.1.5,<3.2.0
         - lxml >=4.9.3,<7
         - pandas >=2.2,<3.1
         - platformdirs
         - portalocker >=2.8
         - prettytable
-        - pyarrow >=16
+        - pyarrow >=16,<26
         - pycountry
         - pyYaml
         - requests

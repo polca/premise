@@ -274,9 +274,10 @@ jobs:
           for attempt in 1 2 3 4 5; do
             if conda install --name test --yes --solver libmamba \
               "python=${{ matrix.python-version }}" \
-              "$package_spec"; then
+              "$package_spec" pip; then
               if conda run --name test \
                 python -c "import premise; import numpy as np; import pyarrow as pa; from premise import NewDatabase; from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping; assert pa.array(np.array([1.0])).to_pylist() == [1.0]; print(premise.__version__)"; then
+                conda run --name test python -m pip check
                 exit 0
               fi
 
