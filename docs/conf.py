@@ -24,7 +24,10 @@ copyright = (
 author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "2.5.5"
+from premise import __version__
+
+release = ".".join(map(str, __version__))
+version = ".".join(map(str, __version__[:2]))
 
 # -- General configuration ---------------------------------------------------
 

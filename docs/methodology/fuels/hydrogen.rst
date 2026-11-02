@@ -65,7 +65,7 @@ and published CLIC versions are not rewritten by this import selection.
 
 The foreground compilation is CC BY 4.0 with compiler attribution and source
 qualifications recorded in the workbook. Its pinned scientific reference is
-``tests/data/inventory_review/ptfe-gasket-native-312-adoption-20261027.json``. Referenced
+``tests/data/inventory_contracts.json``. Referenced
 publications and native supplier inventories retain their separate terms.
 
 Shared PFSA membrane reference
@@ -96,7 +96,7 @@ and fluoride-specific abatement are not zero burdens. The shared reference
 retains its approved CC BY-NC 4.0 foreground terms, compiler attribution and
 source citations. Referenced publications and background inventories retain
 their separate terms. The pinned scientific reference is
-``tests/data/inventory_review/pfsa-ew1100-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 AEC diaphragm manufacturing rejects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,7 +115,7 @@ the other eight exchanges and finished-diaphragm retirement. The routing is
 a composition-based engineering treatment proxy; actual separation of mixed
 coating rejects, disposal and hazardous classification are unverified. The
 pinned scientific reference and catalogue receipts are in
-``tests/data/inventory_review/aec-diaphragm-reject-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 SOEC glass-seal manufacturing rejects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,7 +133,7 @@ Containment is a qualified treatment proxy. Actual disposal, hazardous
 classification, leaching and impacts are unverified; inert disposal remains
 a documented alternative at the same mass. Finished-seal retirement and
 unquantified volatile losses are separate. The pinned reference is
-``tests/data/inventory_review/soec-glass-reject-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Lanthanum-reject fate in SOEC interconnect supply
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -151,7 +151,7 @@ SOEC stack reference retains **8,976.1 kg alloy** and the same native
 sheet-working purchase, including its existing stock makeup and uncertainty.
 The unassigned nominal La-equivalent loss is **0.4724263157894732 kg** on
 that reference. Both source declarations stay 3.9. The pinned reference is
-``tests/data/inventory_review/lanthanum-reject-fate-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 SiC wafer full-crystal material accounting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -172,7 +172,7 @@ This historical geometry is a reference scenario, not measured modern-factory
 yield. Purification, charge losses, process gases, direct emissions and
 industrial qualification remain unresolved. Technosphere and biosphere
 source declarations both stay 3.9. The pinned reference is
-``tests/data/inventory_review/sic-full-boule-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Transformer-core supply for ecoinvent 3.12
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -196,7 +196,7 @@ ambiguous native supplier, or a changed scientific recipe, fails validation
 before replacement. Native background activities are never modified.
 Imported-inventory caches for 3.12 are invalidated; native source caches and
 older-target cache keys remain unchanged. The pinned authoring reference is
-``tests/data/inventory_review/transformer-native-core-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Hydrogen efficiency
 ~~~~~~~~~~~~~~~~~~~~

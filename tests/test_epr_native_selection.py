@@ -110,12 +110,10 @@ def test_real_ordered_newdatabase_preparation_and_catalog_closure(
     monkeypatch.setattr(module, "FILEPATH_EPR_M5_NATIVE_312", COMPANION)
     # Isolate unrelated selectors but exercise the real NewDatabase caller and
     # real DefaultInventory preparation for both EPR sources, in order.
-    monkeypatch.setattr(module, "_select_nmc955_modern_references", lambda *args: None)
-    monkeypatch.setattr(module, "_select_nmc532_native_312", lambda *args: None)
-    monkeypatch.setattr(module, "use_native_ptfe_gasket", lambda *args: None)
+    monkeypatch.setattr(
+        module.inventory_profiles, "select_companion_profiles", lambda *args: None
+    )
     # This source-isolated caller supplies no pipeline coating importers.
-    monkeypatch.setattr(module, "use_native_pipeline_coating", lambda *args: None)
-    monkeypatch.setattr(module, "use_native_fkm_gasket", lambda *args, **kwargs: None)
 
     def extract_sources(paths):
         return [

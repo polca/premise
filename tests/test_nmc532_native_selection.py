@@ -80,7 +80,9 @@ def test_selection_changes_only_two_supplier_edges_and_one_private_producer(
 ):
     original = deepcopy(legacy)
     importer = SimpleNamespace(data=deepcopy(original))
-    module._select_nmc532_native_312(importer, [interface])
+    module.inventory_profiles.apply_inventory_profiles(
+        importer, module.FILEPATH_BATTERIES_NMC955_LTO, "3.12", "cutoff", [interface]
+    )
     expected = [r for r in deepcopy(original) if r["name"] != PRIVATE]
     for name in (PACK, LIFECYCLE):
         record = activity(expected, name)
@@ -95,58 +97,6 @@ def test_selection_changes_only_two_supplier_edges_and_one_private_producer(
         if e["name"] == "market for used Li-ion battery"
     ]
     assert len(retirement) == 1 and retirement[0]["amount"] == -1
-
-
-@pytest.mark.parametrize("version", VERSIONS)
-@pytest.mark.parametrize("model", MODELS)
-def test_live_caller_loads_reference_before_selecting_legacy_consumers(
-    version, model, monkeypatch, legacy, interface
-):
-    def extract(paths):
-        return [
-            SimpleNamespace(
-                data=(
-                    deepcopy(legacy)
-                    if path == module.FILEPATH_BATTERIES_NMC955_LTO
-                    else (
-                        [deepcopy(interface)]
-                        if path == module.FILEPATH_NMC532_NATIVE_312
-                        else []
-                    )
-                )
-            )
-            for path, _ in paths
-        ]
-
-    observed = []
-
-    class Inventory:
-        def __init__(self, **kwargs):
-            self.data = kwargs["preloaded_importer"].data
-            self.list_unlinked = []
-            observed.append((kwargs["path"], kwargs["version_in"]))
-
-        def merge_inventory(self):
-            return self.data
-
-    monkeypatch.setattr(module, "_extract_default_inventory_importers", extract)
-    monkeypatch.setattr(module, "DefaultInventory", Inventory)
-    monkeypatch.setattr(module, "use_native_ptfe_gasket", lambda *args: None)
-    # This source-isolated caller supplies no pipeline coating importers.
-    monkeypatch.setattr(module, "use_native_pipeline_coating", lambda *args: None)
-    monkeypatch.setattr(module, "use_native_fkm_gasket", lambda *args, **kwargs: None)
-    # This caller fixture isolates NMC532 selection from other chemistry selectors.
-    monkeypatch.setattr(module, "_select_nmc955_modern_references", lambda *args: None)
-    actual = worker(version, model)._NewDatabase__import_inventories()
-    if (version, model) != ("3.12", "cutoff"):
-        assert actual == legacy
-        return
-    selected = SimpleNamespace(data=deepcopy(legacy))
-    module._select_nmc532_native_312(selected, [interface])
-    assert actual == [interface, *selected.data]
-    assert observed.index((module.FILEPATH_NMC532_NATIVE_312, "3.12")) < (
-        observed.index((module.FILEPATH_BATTERIES_NMC955_LTO, "3.8"))
-    )
 
 
 def test_current_pack_dose_and_future_uncertainty_survive_reordered_input(
@@ -170,7 +120,9 @@ def test_current_pack_dose_and_future_uncertainty_survive_reordered_input(
     expected.pop("input")
     expected.update(name=interface["name"], product=interface["reference product"])
     expected["reference product"] = interface["reference product"]
-    module._select_nmc532_native_312(importer, [interface])
+    module.inventory_profiles.apply_inventory_profiles(
+        importer, module.FILEPATH_BATTERIES_NMC955_LTO, "3.12", "cutoff", [interface]
+    )
     assert activity(importer.data, PACK)["exchanges"][-1] == expected
     assert importer.data[0]["comment"] == "Unrelated source correction"
 
@@ -193,7 +145,9 @@ def test_invalid_affected_contract_fails_before_mutation(legacy, interface, fail
         database = []
     unchanged = deepcopy(importer.data)
     with pytest.raises(ValueError):
-        module._select_nmc532_native_312(importer, database)
+        module.inventory_profiles.apply_inventory_profiles(
+            importer, module.FILEPATH_BATTERIES_NMC955_LTO, "3.12", "cutoff", database
+        )
     assert importer.data == unchanged
 
 
@@ -260,7 +214,9 @@ def test_companion_and_selected_consumers_prepare_with_explicit_products(
     assert bridge.list_unlinked == []
     database.extend(bridge.import_db.data)
     source = SimpleNamespace(data=deepcopy(legacy))
-    module._select_nmc532_native_312(source, database)
+    module.inventory_profiles.apply_inventory_profiles(
+        source, module.FILEPATH_BATTERIES_NMC955_LTO, "3.12", "cutoff", database
+    )
     source.data = [r for r in source.data if r["name"] in (PACK, LIFECYCLE)]
     selected = DefaultInventory(
         database,

@@ -271,8 +271,8 @@
   },
   {
     "page": "methodology/transport/passenger-cars.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-11-02",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -445,8 +445,8 @@
   },
   {
     "page": "development/documentation.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -493,8 +493,8 @@
   },
   {
     "page": "development/architecture.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -529,14 +529,14 @@
   },
   {
     "page": "development/passenger-car-refresh-2026.rst",
-    "review_date": "2026-10-14",
-    "disposition": "Retained as the implementation and validation record for the October 2026 passenger-car inventory refresh, including its comparison boundary, artifacts and stated limitations.",
+    "review_date": "2026-11-02",
+    "disposition": "Retained as the implementation and validation record for the October 2026 passenger-car inventory refresh, including its comparison boundary, artifacts and stated limitations. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation and implementation consistency; not independent inventory validation"
   },
   {
     "page": "development/regional-truck-refresh-2026.rst",
-    "review_date": "2026-10-14",
-    "disposition": "Retained as the implementation and validation record for the October 2026 regional-truck inventory refresh, including its proxy assumptions, comparison boundary and stated limitations.",
+    "review_date": "2026-11-02",
+    "disposition": "Retained as the implementation and validation record for the October 2026 regional-truck inventory refresh, including its proxy assumptions, comparison boundary and stated limitations. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation and implementation consistency; not independent inventory validation"
   },
   {
@@ -559,8 +559,14 @@
   },
   {
     "page": "methodology/fuels/pipeline-coating.rst",
-    "review_date": "2026-11-01",
-    "disposition": "Connected the existing pipeline-coating reference to the fuel navigation and checked implementation paths after topic regrouping; existing scientific assumptions are retained.",
+    "review_date": "2026-11-02",
+    "disposition": "Connected the existing pipeline-coating reference to the fuel navigation and checked implementation paths after topic regrouping; existing scientific assumptions are retained. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation and navigation consistency; not independent inventory validation"
+  },
+  {
+    "page": "development/releases-2-6.rst",
+    "review_date": "2026-11-02",
+    "disposition": "Added 2.6 upgrade guidance covering profile selection, current-inventory scientific contracts, carbon/resource corrections, EN15804 and read-only physical auditing; source assumptions and unresolved coverage remain documented separately.",
+    "review_level": "Release and implementation consistency; not independent scientific validation"
   }
 ]

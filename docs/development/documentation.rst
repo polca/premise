@@ -136,6 +136,6 @@ Local analysis outputs
 
 Generated scores and one-off analysis programs are kept outside version control.
 The minimum documentation checks live in ``docs/_tools``; inventory-test helpers
-and input fixtures live under ``tests/support`` and ``tests/data/inventory_review``.
+and scientific contracts live under ``tests/support`` and ``tests/data``.
 Licensed LCIA references must be supplied locally or through
 ``PREMISE_LCIA_REFERENCE_SCORES``; score comparisons skip when they are unavailable.

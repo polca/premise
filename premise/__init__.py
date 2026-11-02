@@ -38,7 +38,7 @@ __all__ = (
     "clear_inventory_cache",
     "get_regions_definition",
 )
-__version__ = (2, 5, 5)
+__version__ = (2, 6, 0)
 
 
 _EXPORT_MODULES = {

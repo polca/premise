@@ -395,20 +395,3 @@ def test_registry_order_and_cache_invalidation(tmp_path, monkeypatch):
     path.write_bytes(b"new recipe")
     assert builder._database_cache_path("test", inventories=True) != old
     assert builder._database_cache_path("test") == source
-
-
-def test_workbook_updater_is_idempotent_without_rewriting_inputs(tmp_path):
-    script = (
-        Path(__file__).parents[1]
-        / "tests/support/update_electric_car_mechanical_inventory.py"
-    )
-    updater = runpy.run_path(str(script))
-    for filename, function in [
-        ("lci-pass_cars.xlsx", "patch_cars"),
-        ("lci-final-energy.xlsx", "patch_energy"),
-    ]:
-        path = tmp_path / filename
-        shutil.copyfile(INVENTORY_DIR / filename, path)
-        before = path.read_bytes()
-        assert updater[function](path) == 0
-        assert path.read_bytes() == before

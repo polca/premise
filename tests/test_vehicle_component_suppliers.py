@@ -1,13 +1,9 @@
 """Shared vehicle components resolve to one canonical bundled supplier."""
 
-import importlib.util
 import json
-import sys
 from collections import Counter
-from copy import deepcopy
 from pathlib import Path
 
-import pytest
 from bw2io import ExcelImporter
 
 from premise.filesystem_constants import INVENTORY_DIR
@@ -132,224 +128,110 @@ def test_all_bundled_hydrogen_tank_consumers_resolve():
     assert "hydrogen, used in a fuel cell in a passenger train" in checked
 
 
-@pytest.fixture(scope="module")
-def shared_component_audit():
-    root = Path(__file__).parents[1]
-    audit = root / "dev/data/vehicle_inventory_audit"
-    plan = json.loads((audit / "component-reuse-plan.json").read_text())
-    manifest = json.loads((audit / "shared-component-reuse.json").read_text())
-    specification = importlib.util.spec_from_file_location(
-        "component_cleanup_audit",
-        root / "tests/support/deduplicate_vehicle_components.py",
+def test_retired_aliases_are_absent_and_canonical_suppliers_are_unique():
+    contract = json.loads(
+        (Path(__file__).parent / "data/vehicle_component_suppliers.json").read_text()
     )
-    module = importlib.util.module_from_spec(specification)
-    sys.modules[specification.name] = module
-    specification.loader.exec_module(module)
-    blocks = [
-        block
+    fields = ("name", "reference product", "location", "unit")
+
+    def identity(record):
+        values = [
+            record.get(k, record.get("product") if k == "reference product" else None)
+            for k in fields
+        ]
+        return (str(values[0]).casefold(), str(values[1]).casefold(), *values[2:])
+
+    retired = {identity(a["retired"]) for a in contract["aliases"]}
+    canonical = {identity(a["canonical"]) for a in contract["aliases"]}
+    records = [
+        (path.name, r)
         for path in sorted(INVENTORY_DIR.glob("*.xlsx"))
-        for block in module.read_blocks(path)
+        for r in ExcelImporter(path).data
     ]
-    return plan, manifest, module, blocks
-
-
-def test_model_specific_components_use_unique_existing_suppliers(
-    shared_component_audit,
-):
-    plan, manifest, module, blocks = shared_component_audit
-    retired = {alias["source"]["name"].casefold() for alias in plan["aliases"]}
-    canonical = {module.identity(alias["canonical"]) for alias in plan["aliases"]}
-    suppliers = Counter(module.identity(block.metadata) for block in blocks)
+    suppliers = Counter(identity(r) for _, r in records)
     assert len(retired) == 28 and len(canonical) == 15
     assert all(suppliers[key] == 1 for key in canonical)
     consumers = set()
-    for block in blocks:
-        assert block.metadata["name"].casefold() not in retired
-        for _, exchange in block.exchanges:
-            assert exchange.get("name", "").casefold() not in retired
-            if (
-                exchange.get("type") == "technosphere"
-                and module.identity(exchange) in canonical
-            ):
-                assert suppliers[module.identity(exchange)] == 1
-                consumers.add(block.filename)
+    for filename, record in records:
+        assert identity(record) not in retired
+        for edge in record["exchanges"]:
+            if edge["type"] != "technosphere":
+                continue
+            assert identity(edge) not in retired
+            if identity(edge) in canonical:
+                assert suppliers[identity(edge)] == 1
+                consumers.add(filename)
     assert {
         "lci-pass_cars.xlsx",
         "lci-trucks.xlsx",
         "lci-final-energy.xlsx",
         "lci-rail-freight.xlsx",
     } <= consumers
-    assert manifest["removed_activity_count"] == 28
-    assert manifest["relinked_retained_exchange_count"] == 174
 
 
-def test_canonical_recipe_quantities_and_uncertainty_are_preserved(
-    shared_component_audit,
-):
-    _, manifest, module, blocks = shared_component_audit
-    by_identity = {module.identity(block.metadata): block for block in blocks}
-    reference = json.loads(
-        (Path(__file__).parent / "data/vehicle-component-recipes.json").read_text()
-    )
-    expected = {
-        module.identity(recipe["identity"]): recipe for recipe in reference["recipes"]
-    }
-    # Later reviewed supplier corrections preserve every quantity, formula and
-    # uncertainty field in the archived consolidation recipes. Match by both
-    # original identity and amount so separate stainless purchases stay intact.
-    stainless = (
-        "market for steel, chromium steel 18/8",
-        "steel, chromium steel 18/8",
-        "GLO",
-    )
-    ordinary_eaf = (
-        "steel production, electric, low-alloyed",
-        "steel, low-alloyed",
-        "Europe without Switzerland and Austria",
-    )
-    supplier_corrections = {
-        # Stropnik 2022, Table 1: 3.7 kg ordinary steel, 1.1 kg stainless.
-        "fuel cell balance of plant production, 1 kwe, proton exchange membrane (pem)": [
-            (3.7, stainless, ordinary_eaf),
-        ],
-        # Mori 2023, Table 1; workbook's approved steel, AE7 and PET-film notes.
-        "fuel cell stack production, 1 kwe, proton exchange membrane (pem)": [
-            ("=58.75/1000", stainless, ordinary_eaf),
-            (
-                "=4.58/1000",
-                (
-                    "market for ethoxylated alcohol (AE>20)",
-                    "ethoxylated alcohol (AE>20)",
-                    "GLO",
-                ),
-                (
-                    "ethoxylated alcohol (AE7) production, petrochemical",
-                    "ethoxylated alcohol (AE7)",
-                    "RER",
-                ),
-            ),
-            (
-                "=37.92/1000",
-                (
-                    "packaging film production, low density polyethylene",
-                    "packaging film, low density polyethylene",
-                    "RER",
-                ),
-                (
-                    "polyethylene terephthalate adhesive film production, for fuel cells",
-                    "polyethylene terephthalate adhesive film, for fuel cells",
-                    "GLO",
-                ),
-            ),
-        ],
-        # Evangelisti 2017, SI Scenario S16: 7.09 kg ordinary aluminium ingot.
-        "fuel tank, compressed hydrogen gas, 700bar, with hdpe liner": [
-            (
-                0.08083456846425721,
-                ("market for aluminium alloy, AlLi", "aluminium alloy, AlLi", "GLO"),
-                (
-                    "market for aluminium, wrought alloy",
-                    "aluminium, wrought alloy",
-                    "GLO",
-                ),
-            ),
-        ],
-    }
-    for canonical in manifest["canonical_recipes"]:
-        block = by_identity[module.identity(canonical["identity"])]
-        assert block.filename == canonical["file"]
-        original = expected[module.identity(canonical["identity"])]
-        expected_exchanges = deepcopy(original["exchanges"])
-        for amount, before, after in supplier_corrections.get(
-            canonical["identity"]["name"].casefold(), []
-        ):
-            (target,) = [
-                e
-                for e in expected_exchanges
-                if e["amount"] == amount
-                and tuple(e.get(k) for k in ("name", "reference product", "location"))
-                == before
-            ]
-            target.update(zip(("name", "reference product", "location"), after))
+def authored_records(filename):
+    """Read quantity expressions directly, retaining formulas and uncertainty."""
+    import openpyxl
 
-        def metadata_rows(rows):
-            result = []
-            for row in rows:
-                if row[0] in {"comment", "source", "description", "model publication"}:
+    result = []
+    workbook = openpyxl.load_workbook(
+        INVENTORY_DIR / filename, read_only=True, data_only=False
+    )
+    try:
+        for sheet in workbook:
+            current, columns, header = None, None, False
+            for row in sheet.iter_rows(values_only=True):
+                marker = str(row[0] or "").casefold()
+                if marker == "activity" and isinstance(row[1], str):
+                    current = {"name": row[1], "exchanges": []}
+                    result.append(current)
+                    columns = None
+                elif current is None:
                     continue
-                row = list(row)
-                while row and row[-1] is None:
-                    row.pop()
-                result.append(row)
-            return result
-
-        assert metadata_rows(block.metadata_rows) == metadata_rows(original["metadata"])
-        assert [
-            {
-                key: value
-                for key, value in exchange.items()
-                if key not in module.IGNORED_EXCHANGE_FIELDS
-            }
-            for _, exchange in block.exchanges
-        ] == expected_exchanges
-
-    assert len(manifest["retired_components"]) == 28
-    for retired in manifest["retired_components"]:
-        metadata = retired["original_metadata"]
-        assert metadata["source"]
-        assert metadata["vehicle inventory provenance"]
-
-
-def test_component_cleanup_has_no_pending_definitions_or_alias_purchases(
-    shared_component_audit,
-):
-    plan, manifest, module, blocks = shared_component_audit
-    aliases = {module.identity(entry["source"]) for entry in plan["aliases"]}
-    pending_definitions = [
-        block.metadata["name"]
-        for block in blocks
-        if module.identity(block.metadata) in aliases
-    ]
-    pending_purchases = [
-        (block.metadata["name"], exchange["name"])
-        for block in blocks
-        for _, exchange in block.exchanges
-        if exchange.get("type") == "technosphere"
-        and module.identity(exchange) in aliases
-    ]
-    assert pending_definitions == []
-    assert pending_purchases == []
-    assert manifest["removed_activity_count"] == plan["expected_removed_activity_count"]
-    assert (
-        manifest["relinked_retained_exchange_count"]
-        == plan["expected_relinked_retained_exchange_count"]
-    )
+                elif marker == "exchanges":
+                    header = True
+                elif header and any(v is not None for v in row):
+                    columns = {str(v): i for i, v in enumerate(row) if v}
+                    assert {"name", "amount", "type"} <= columns.keys()
+                    header = False
+                elif columns is None and row[0]:
+                    current[row[0]] = row[1]
+                elif columns:
+                    edge = {k: row[i] for k, i in columns.items() if row[i] is not None}
+                    if edge.get("type") in {
+                        "production",
+                        "technosphere",
+                        "biosphere",
+                        "substitution",
+                    }:
+                        current["exchanges"].append(
+                            {
+                                k: v
+                                for k, v in edge.items()
+                                if k not in {"comment", "input", "output", "database"}
+                            }
+                        )
+    finally:
+        workbook.close()
+    return result
 
 
-def test_component_cleanup_preserves_cached_formulas(shared_component_audit, tmp_path):
-    import shutil
-    from xml.etree import ElementTree as ET
-    from zipfile import ZipFile
-
-    from inventory_assertions import formula_caches
-
-    _, manifest, module, _ = shared_component_audit
-
-    def caches(path):
-        with ZipFile(path) as archive:
-            return {
-                name: formula_caches(ET.fromstring(archive.read(name)))
-                for name in archive.namelist()
-                if name.startswith("xl/worksheets/") and name.endswith(".xml")
-            }
-
-    for filename in manifest["preserved_formula_caches"]:
-        path = tmp_path / filename
-        shutil.copyfile(INVENTORY_DIR / filename, path)
-        before = caches(path)
-        first = module.read_blocks(path)[0]
-        module.patch_workbook(
-            path, {first.sheet: {first.start: {2: "renamed component"}}}, {}
-        )
-        assert caches(path) == before
-        assert module.read_blocks(path)[0].metadata["name"] == "renamed component"
+def test_canonical_component_quantities_formulas_and_uncertainty():
+    references = json.loads(
+        (Path(__file__).parent / "data/vehicle_component_suppliers.json").read_text()
+    )["recipes"]
+    cached = {}
+    for reference in references:
+        if reference["workbook"] not in cached:
+            cached[reference["workbook"]] = authored_records(reference["workbook"])
+        records = cached[reference["workbook"]]
+        (record,) = [
+            r
+            for r in records
+            if r["name"].casefold() == reference["identity"]["name"].casefold()
+        ]
+        for key, value in reference["identity"].items():
+            assert record[key] == value
+        if reference["production_amount"] is not None:
+            assert record["production amount"] == reference["production_amount"]
+        assert record["exchanges"] == reference["exchanges"]

@@ -179,7 +179,7 @@ An independent SciPy solve of the serialized matrices agrees with openLCA within
 This is a deterministic climate comparison, not a Monte Carlo or all-method
 validation. Results are not asserted to be bit-identical.
 
-Diagnostic scripts are `dev/validate_olca_ei38.py` and
-`dev/compare_olca_ei38.py`. Local artifacts, including `lcia-comparison.json`, are
+Diagnostic scripts are the local export-validation command used for that investigation and
+the local comparison command used for that investigation. Local artifacts, including `lcia-comparison.json`, are
 under `export/olca/ei38/`; licensed inventory and method data are not committed.
 All 61 focused Premise tests and 953 Brightpath tests pass.

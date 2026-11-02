@@ -1,12 +1,10 @@
 """Vehicle source provenance must survive workbook import."""
 
 import json
-from pathlib import Path
 
 from premise.filesystem_constants import INVENTORY_DIR
 
 SPEC_KEY = "vehicle inventory provenance"
-AUDIT_DIR = Path(__file__).parents[1] / "dev" / "data" / "vehicle_inventory_audit"
 
 
 def test_installed_workbooks_have_sources_and_provenance():
@@ -19,15 +17,15 @@ def test_installed_workbooks_have_sources_and_provenance():
         generated = [ds for ds in importer.data if SPEC_KEY in ds]
         assert len(generated) == count
         assert all(ds.get("source") for ds in importer.data)
-        sidecar = json.loads((AUDIT_DIR / f"{stem}.provenance.json").read_text())
         for ds in generated:
             assert ds["source"] and ds["model"] and ds["model version"]
             spec = json.loads(ds[SPEC_KEY])
             assert spec["baseline year"] == 2020
-            assert (
-                spec["model generation date"]
-                == sidecar["generation provenance"]["model generation date"]
-            )
+            from datetime import date
+
+            date.fromisoformat(spec["model generation date"])
+            assert spec["model generation date"]
+
             assert ds["source"] == spec["activity source"]
             assert "https://doi.org/" in ds["model publication"]
     assert not (INVENTORY_DIR / "lci-truck-legacy-components.xlsx").exists()

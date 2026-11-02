@@ -69,7 +69,6 @@ from ..core.filesystem_constants import (
     INVENTORY_DIR,
 )
 from ..energy.final_energy import _update_final_energy
-from ..materials.fkm_gasket import use_native_fkm_gasket
 from ..fuels.base import _update_fuels
 from ..energy.heat import _update_heat
 from ..inventory.inventory_imports import (
@@ -77,6 +76,7 @@ from ..inventory.inventory_imports import (
     BaseInventoryImport,
     DefaultInventory,
 )
+from ..inventory import profiles as inventory_profiles
 from ..inventory.inventory_store import (
     STORE_SCHEMA_VERSION,
     CompactInventoryStore,
@@ -92,9 +92,7 @@ from ..inventory.inventory_store import (
 )
 from ..materials.metals import _update_metals
 from ..materials.mining import _update_mining
-from ..materials.pipeline_coating import use_native_pipeline_coating
 from ..reporting.provenance import ProvenanceCollector, record_change_event
-from ..materials.ptfe_gasket import use_native_ptfe_gasket
 from ..electricity.renewables import _update_wind_turbines
 from ..reporting.report import generate_summary_report
 from ..export.scenario_array import (
@@ -108,11 +106,6 @@ from ..iam.system_models import (
     adapt_en15804_scrap_exchanges,
 )
 from ..core.transformation import _SCENARIO_GIS_CACHE_KEY, _SCENARIO_ROW_CACHE_KEY
-from ..materials.transformer_core import (
-    TRANSFORMER_CORE_CACHE_REVISION,
-    native_transformer_core_enabled,
-    use_native_transformer_core,
-)
 from ..transport.transport import _update_vehicles
 from ..core.utils import (
     CACHE_SCHEMA_VERSION,
@@ -155,218 +148,6 @@ from ..validation.validation_framework import (
 )
 
 logger = logging.getLogger("module")
-
-
-def _select_nmc955_modern_references(filepaths, importers):
-    """Remove superseded records only after atomic source-role validation."""
-    source_keys = (
-        (
-            "battery cell production, Li-ion, NMC955",
-            "battery cell, Li-ion, NMC955",
-            "GLO",
-            "kilogram",
-        ),
-        (
-            "cathode, NMC955, for Li-ion battery",
-            "cathode, NMC955, for Li-ion battery",
-            "GLO",
-            "kilogram",
-        ),
-        ("NMC955 oxide", "NMC955 oxide", "GLO", "kilogram"),
-        ("NMC955 hydroxide", "NMC955 hydroxide", "GLO", "kilogram"),
-        (
-            "anode paste production, silicon-graphite, for lithium-ion battery, nmc955",
-            "anode paste, silicon-graphite, for Li-ion battery, NMC955",
-            "CN",
-            "kilogram",
-        ),
-        (
-            "battery pack component production and end-of-life treatment, lithium-ion, nmc955, without cells and controls",
-            "battery pack component provision, Li-ion, NMC955, without cells and controls",
-            "GLO",
-            "kilowatt hour",
-        ),
-    )
-    capacity_keys = (
-        (
-            "market for battery capacity, Li-ion, NMC955",
-            "electricity storage capacity",
-            "GLO",
-            "kilowatt hour",
-        ),
-        (
-            "market for battery capacity, Li-ion, NMC955, stationary",
-            "electricity storage capacity",
-            "GLO",
-            "kilowatt hour",
-        ),
-    )
-    fields = ("name", "reference product", "location", "unit")
-
-    def identity(record):
-        return tuple(record.get(field) for field in fields)
-
-    def one_importer(path):
-        matches = [
-            imp
-            for (candidate, _), imp in zip(filepaths, importers, strict=True)
-            if candidate == path
-        ]
-        if len(matches) != 1:
-            raise ValueError("NMC955 reference importer selection changed")
-        return matches[0]
-
-    def validate_records(importer, expected, complete=False):
-        if complete and len(importer.data) != len(expected):
-            raise ValueError("NMC955 companion activity count changed")
-        for target in expected:
-            matches = [record for record in importer.data if identity(record) == target]
-            if len(matches) != 1:
-                raise ValueError("NMC955 producer identity is missing or duplicated")
-            production = [
-                e
-                for e in matches[0].get("exchanges", ())
-                if e.get("type") == "production"
-            ]
-            if (
-                len(production) != 1
-                or identity(production[0]) != target
-                or production[0].get("amount") != 1
-            ):
-                raise ValueError("NMC955 producer reference output changed")
-
-    source = one_importer(FILEPATH_BATTERIES_NMC955_LTO)
-    capacity = one_importer(FILEPATH_BATTERY_CAPACITY)
-    modern = one_importer(FILEPATH_NMC955_MODERN_312)
-    fixed = one_importer(FILEPATH_NMC955_FIXED_REFERENCE_38)
-    rebased = one_importer(FILEPATH_NMC955_CAPACITY_REFERENCE_310)
-    validate_records(source, source_keys)
-    validate_records(capacity, capacity_keys)
-    modern_keys = source_keys[:5]
-    validate_records(modern, modern_keys, complete=True)
-    validate_records(fixed, (source_keys[-1],), complete=True)
-    validate_records(rebased, capacity_keys, complete=True)
-    # Commit both projections only after all affected importers pass. Unrelated
-    # source edits are accepted; review/application artifacts hold byte pins.
-    source_data = [
-        record for record in source.data if identity(record) not in source_keys
-    ]
-    capacity_data = [
-        record for record in capacity.data if identity(record) not in capacity_keys
-    ]
-    source.data = source_data
-    capacity.data = capacity_data
-
-
-def _select_nmc532_native_312(importer, database):
-    """Select the ALIGN-011 reference after narrow, atomic semantic checks."""
-    private = (
-        "battery cell production, lithium-ion, nmc532, prismatic",
-        "battery cell, Li-ion, NMC532, prismatic",
-        "GLO",
-        "kilogram",
-    )
-    reference = (
-        "battery cell production, Li-ion, NMC532",
-        "battery cell, Li-ion, NMC532",
-        "GLO",
-        "kilogram",
-    )
-    expected = {
-        "battery pack production, lithium-ion, nmc532, without electronics": (
-            "battery pack, Li-ion, NMC532, without electronics",
-            None,
-        ),
-        "market for battery cell, lithium-ion, nmc532, including end-of-life treatment": (
-            "battery cell, Li-ion, NMC532, including end-of-life treatment",
-            1,
-        ),
-    }
-    fields = ("name", "reference product", "location", "unit")
-    producers = [r for r in importer.data if r.get("name") == private[0]]
-    if len(producers) != 1 or tuple(producers[0].get(k) for k in fields) != private:
-        raise ValueError("NMC532 private producer identity changed")
-    production = [e for e in producers[0]["exchanges"] if e.get("type") == "production"]
-    if (
-        len(production) != 1
-        or tuple(production[0].get(k) for k in fields) != private
-        or production[0]["amount"] != 1
-    ):
-        raise ValueError("NMC532 private producer reference output changed")
-    purchases = [
-        (r, i, e)
-        for r in importer.data
-        for i, e in enumerate(r["exchanges"])
-        if e.get("type") == "technosphere" and e.get("name") == private[0]
-    ]
-    if len(purchases) != 2 or {r["name"] for r, _, _ in purchases} != set(expected):
-        raise ValueError("NMC532 requires exactly the two reviewed consumers")
-    for record, _, exchange in purchases:
-        product, amount = expected[record["name"]]
-        if (
-            (
-                record.get("reference product"),
-                record.get("location"),
-                record.get("unit"),
-            )
-            != (product, "GLO", "kilogram")
-            or tuple(exchange.get(k) for k in fields) != private
-            or not isinstance(exchange.get("amount"), (int, float))
-            or isinstance(exchange["amount"], bool)
-            or not 0 < exchange["amount"] < float("inf")
-            or (amount is not None and exchange["amount"] != amount)
-        ):
-            raise ValueError("NMC532 consumer identity or cell quantity changed")
-    lifecycle = next(r for r, _, _ in purchases if expected[r["name"]][1] == 1)
-    retirement = [
-        e
-        for e in lifecycle["exchanges"]
-        if e.get("name") == "market for used Li-ion battery"
-    ]
-    if len(retirement) != 1 or tuple(
-        retirement[0].get(k) for k in (*fields, "type", "amount")
-    ) != (
-        "market for used Li-ion battery",
-        "used Li-ion battery",
-        "GLO",
-        "kilogram",
-        "technosphere",
-        -1,
-    ):
-        raise ValueError("NMC532 lifecycle must retain one kg retirement exactly once")
-    interfaces = [r for r in database if tuple(r.get(k) for k in fields) == reference]
-    if len(interfaces) != 1:
-        raise ValueError("NMC532 requires exactly one loaded GLO reference")
-    scientific = ("type", *fields, "amount")
-    actual = [tuple(e.get(k) for k in scientific) for e in interfaces[0]["exchanges"]]
-    approved = [
-        ("production", *reference, 1),
-        ("technosphere", reference[0], reference[1], "CN", "kilogram", 1),
-    ]
-    if sorted(actual) != sorted(approved) or any(
-        e.get("uncertainty type", 0) > 1 for e in interfaces[0]["exchanges"]
-    ):
-        raise ValueError(
-            "NMC532 GLO reference conflicts with approved native interface"
-        )
-    # Validate everything before changing data; unrelated source edits are allowed.
-    replacements = {id(record): index for record, index, _ in purchases}
-    selected = []
-    for record in importer.data:
-        if record is producers[0]:
-            continue
-        if id(record) in replacements:
-            index = replacements[id(record)]
-            updated = dict(record)
-            updated["exchanges"] = list(record["exchanges"])
-            exchange = dict(record["exchanges"][index])
-            exchange.update(name=reference[0], product=reference[1])
-            exchange["reference product"] = reference[1]
-            exchange.pop("input", None)
-            updated["exchanges"][index] = exchange
-            record = updated
-        selected.append(record)
-    importer.data = selected
 
 
 def _normalize_inventory_before_certification(database, provenance_owner=None):
@@ -1238,6 +1019,16 @@ class NewDatabase:
             # These also invalidate compact source checkpoints via their cache
             # references, without invalidating the unmodified source database.
             digest = hashlib.sha256()
+            digest.update(
+                json.dumps(
+                    inventory_profiles.profiles(
+                        getattr(self, "version", None),
+                        getattr(self, "system_model", None),
+                    ),
+                    sort_keys=True,
+                ).encode()
+            )
+            digest.update(Path(inspect.getfile(inventory_profiles)).read_bytes())
             for path in (
                 FILEPATH_PASS_CARS,
                 FILEPATH_TRUCKS,
@@ -1302,16 +1093,12 @@ class NewDatabase:
             ):
                 digest.update(FILEPATH_PIPELINE_COATING_NATIVE_312.name.encode())
                 digest.update(FILEPATH_PIPELINE_COATING_NATIVE_312.read_bytes())
-                digest.update(
-                    Path(inspect.getfile(use_native_pipeline_coating)).read_bytes()
-                )
                 digest.update(FILEPATH_BIOMETHANE_CAPTURE_MDEA_312.name.encode())
                 digest.update(FILEPATH_BIOMETHANE_CAPTURE_MDEA_312.read_bytes())
                 digest.update(FILEPATH_EPR_M5_NATIVE_312.name.encode())
                 digest.update(FILEPATH_EPR_M5_NATIVE_312.read_bytes())
                 digest.update(FILEPATH_NMC532_NATIVE_312.name.encode())
                 digest.update(FILEPATH_NMC532_NATIVE_312.read_bytes())
-                digest.update(inspect.getsource(_select_nmc532_native_312).encode())
                 for path in (
                     FILEPATH_NMC955_MODERN_312,
                     FILEPATH_NMC955_FIXED_REFERENCE_38,
@@ -1319,15 +1106,6 @@ class NewDatabase:
                 ):
                     digest.update(path.name.encode())
                     digest.update(path.read_bytes())
-                digest.update(
-                    inspect.getsource(_select_nmc955_modern_references).encode()
-                )
-            if native_transformer_core_enabled(getattr(self, "version", None)):
-                # Imported 3.12 transformers now buy finished native core steel.
-                # Older targets and unmodified native source caches retain keys.
-                digest.update(
-                    f"transformer_core_{TRANSFORMER_CORE_CACHE_REVISION}".encode()
-                )
             inventory_label += f"_vehicles_{digest.hexdigest()[:16]}"
         source_label = ""
         model_label = (
@@ -1725,33 +1503,16 @@ class NewDatabase:
         # linking, duplicate checks, and merges below remain sequential in the
         # original workbook order.
         preloaded_importers = _extract_default_inventory_importers(selected_filepaths)
-        if (
-            self.version == "3.12"
-            and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
-        ):
-            _select_nmc955_modern_references(selected_filepaths, preloaded_importers)
+        inventory_profiles.select_companion_profiles(
+            selected_filepaths,
+            preloaded_importers,
+            self.version,
+            getattr(self, "system_model", None),
+        )
 
         for filepath, preloaded_importer in zip(
             selected_filepaths, preloaded_importers
         ):
-            if (
-                filepath[0] == FILEPATH_BATTERIES_NMC955_LTO
-                and self.version == "3.12"
-                and getattr(self, "system_model", None) in ATTRIBUTIONAL_SYSTEM_MODELS
-            ):
-                _select_nmc532_native_312(preloaded_importer, self._database)
-            if filepath[0] == FILEPATH_HYDROGEN_DISTRI_INVENTORIES:
-                use_native_pipeline_coating(
-                    preloaded_importer, self.version, self.system_model, self._database
-                )
-            if filepath[0] == FILEPATH_HYDROGEN_INVENTORIES:
-                use_native_ptfe_gasket(preloaded_importer, self.version)
-            if filepath[0] == FILEPATH_VANADIUM_REDOX_BATTERY:
-                use_native_fkm_gasket(
-                    preloaded_importer,
-                    self.version,
-                    other_importers=preloaded_importers,
-                )
             inventory = DefaultInventory(
                 database=self._database,
                 version_in=filepath[1],
@@ -1760,11 +1521,7 @@ class NewDatabase:
                 system_model=self.system_model,
                 keep_uncertainty_data=self.keep_imports_uncertainty,
                 preloaded_importer=preloaded_importer,
-                post_migration=(
-                    use_native_transformer_core
-                    if filepath[0] == FILEPATH_HYDROGEN_INVENTORIES
-                    else None
-                ),
+                source_inventories=preloaded_importers,
             )
             datasets = inventory.merge_inventory()
             if collect_data:

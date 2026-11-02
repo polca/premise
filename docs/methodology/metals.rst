@@ -217,7 +217,7 @@ claim that older output versions reproduce identical background burdens.
 The foreground compilation is CC BY 4.0; referenced background data retain
 their separate terms. The compiler, scientific sources and incomplete-boundary
 qualifications are recorded in the workbook and its pinned authoring reference
-in ``tests/data/inventory_review/iridium-economic-proxy-adoption-20261027.json``.
+in ``tests/data/inventory_contracts.json``.
 
 Matched PEM catalyst reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -872,32 +872,3 @@ def test_actual_imported_packs_restore_exact_capacity_and_are_idempotent(
     converted = deepcopy(database)
     assert convert_battery_mass_inputs(database, family) == 0
     assert database == converted
-
-
-def test_repository_adoption_plan_reproduces_all_approved_inputs():
-    """Future migration/check runs need only this checkout, not task artifacts."""
-    import runpy
-    from pathlib import Path
-
-    repository = Path(__file__).resolve().parents[1]
-    migration = runpy.run_path(
-        str(repository / "tests/support/align_vehicle_battery_mass_inputs.py")
-    )
-    plan_path = migration["DEFAULT_PLAN"]
-    assert plan_path.is_relative_to(repository)
-    rows = migration["load_plan"](plan_path)
-    actual = []
-    for r in rows:
-        c = r["contract"]
-        actual.append(
-            (
-                r["workbook"],
-                r["identity"]["name"],
-                c["baseline mass kg"],
-                c["baseline capacity kWh"],
-                c["retirement amount kg"],
-                c["capacity supplier"]["name"],
-                c["capacity supplier"]["reference product"],
-            )
-        )
-    assert actual == EXPECTED

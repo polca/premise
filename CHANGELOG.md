@@ -2,7 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
-## [2.6.0] - Unreleased
+## [2.6.0] - 2026-11-02
+
+This release adds physical inventory auditing and EN15804 support, corrects
+fuel-carbon and resource attribution, and incorporates reviewed inventory
+references. Regenerate scenario databases and exports to apply the corrections;
+upgrading does not alter saved databases.
 
 ### Added
 
@@ -23,6 +28,15 @@ All notable changes to this project are documented in this file.
 - Group Python modules into topic packages, including transport, inventory,
   materials, electricity and reporting. Preserve public entry points and legacy
   module imports for existing callers and cached class paths.
+- Apply bundled inventory profiles through shared import preparation. Keep
+  supplier choices, explicit recipe guards and version/system-model boundaries
+  in data; remove component-specific patch modules and constructor selectors.
+- Replace historical workbook replay and audit receipts with complete scientific
+  contracts checked against current inventories. Retain canonical vehicle
+  quantities, formulas, uncertainty and embedded generation provenance.
+- Remove completed investigation scripts, duplicated audit sidecars and remaining
+  generated numerical results. Keep reusable auditing, scientific references and
+  reference builders; exclude private results from package distributions.
 
 ### Fixed
 

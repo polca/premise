@@ -302,12 +302,10 @@ Reproduction and limits
 
 ``data/transport/electric_mechanical_powertrain.json`` records the source,
 component masses, waste factors, allocation basis and treatment limitations.
-After a compatible car inventory refresh, run
-``python tests/support/update_electric_car_mechanical_inventory.py``. The script
-builds the component workbook, patches the 17 electric vehicle production
-activities and changes ten cells in the two final-energy wrappers. All 459
-final-energy formulas and their cached values are retained. Existing
-combustion/hybrid activities and all other source activities remain unchanged.
+The packaged mechanical-powertrain reference and the current vehicle purchases
+are checked directly in ``tests/test_electric_car_mechanical_powertrain.py``.
+The completed migration tool and historical workbook patch receipts are retained
+locally.
 
 The new suppliers load before passenger cars, and their workbook participates
 in the import-cache fingerprint. Rebuild scenarios to apply the correction;

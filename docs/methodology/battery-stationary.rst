@@ -142,7 +142,7 @@ and the VRFB workbook's 3.9 source declaration. Imported-source caches include
 the new workbook and its buyer. The original VRFB workbook is unchanged.
 
 The pinned scientific reference and source qualifications are recorded in
-``tests/data/inventory_review/fkm-gasket-native-312-adoption-20261027.json``. The foreground
+``tests/data/inventory_contracts.json``. The foreground
 compilation retains the approved CC BY 4.0 terms and compiler attribution;
 external inventories retain their separate terms.
 
@@ -382,7 +382,7 @@ The Li-S workbook participates in the imported-inventory cache fingerprint,
 so changing these purchases invalidates stale imported sources and their
 compact checkpoints. Native source-database caches retain their keys. The
 pinned authoring reference is
-``tests/data/inventory_review/native-resistor-inputs-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Battery-monitor capacitor families
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -409,7 +409,7 @@ Unknown retained fractions and dopants remain unresolved rather than
 renormalized into known ingredients. Existing calcium-zirconate production is
 reused once. Both source declarations remain **3.9**. Original row addresses
 and formula caches are preserved, with the new helpers appended to the source.
-The pinned reference is ``tests/data/inventory_review/capacitor-family-adoption-20261027.json``.
+The pinned reference is ``tests/data/inventory_contracts.json``.
 
 Control-package wafer allocation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -429,7 +429,7 @@ for the fitted BQ79718 role; this is not a functional replacement claim.
 Package chemistry, fused-silica manufacture and unmodelled phosphorus gaps
 remain outside this correction. Both original source declarations stay
 **3.9**. The pinned reference is
-``tests/data/inventory_review/control-package-wafer-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Battery-control connector material reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -454,7 +454,7 @@ unsupported hazardous-waste incineration purchase is removed. This does not
 establish zero physical loss, zero impact or an environmental improvement.
 Assembly remains **1 kWh/kg**, with existing board masses, connector doses
 and retirement ownership preserved. Both source declarations remain **3.9**.
-The pinned reference is ``tests/data/inventory_review/connector-reference-adoption-20261027.json``.
+The pinned reference is ``tests/data/inventory_contracts.json``.
 
 Additional fitted monitoring-board packages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -480,7 +480,7 @@ within the workbook and four package helpers are appended, preserving all
 other inventories' row addresses and formula caches. This material reference
 does not certify electrical topology, vehicle qualification or complete
 manufacturing and trace-metal coverage. The pinned reference is
-``tests/data/inventory_review/fitted-control-packages-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Standalone interface and embedded residual boundaries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -506,7 +506,7 @@ Existing board budgets, fitted counts, component doses, assembly and retirement
 remain unchanged. Both original source declarations remain **3.9**. Other
 inventories, formula caches and non-worksheet workbook parts are preserved.
 The pinned reference is
-``tests/data/inventory_review/interface-context-boundaries-adoption-20261027.json``.
+``tests/data/inventory_contracts.json``.
 
 Magnesium precursor wet-feed water accounting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -526,7 +526,7 @@ complete industrial water accounting. Reagents, utility allowances, waste
 treatment, precursor quantities and filtrate throughput remain unchanged.
 The disconnected legacy recipe and separate land-occupation question remain
 outside this correction. Both original source declarations stay **3.9**.
-The pinned reference is ``tests/data/inventory_review/magnesium-wet-feed-adoption-20261027.json``.
+The pinned reference is ``tests/data/inventory_contracts.json``.
 
 The SIB workbook content participates in the import-cache fingerprint so
 changed recipes invalidate imported sources and their dependent compact
@@ -545,7 +545,7 @@ The disconnected legacy recipe and its land exchange, the **0.0275 kg**
 NMMT precursor dose, wet-feed water accounting, reagents, utilities, treatment
 and uncertainty remain unchanged. Both original source declarations stay
 **3.9**. The pinned reference is
-``tests/data/inventory_review/magnesium-land-adoption-20261027.json``. Existing SIB source
+``tests/data/inventory_contracts.json``. Existing SIB source
 fingerprinting propagates the correction to rebuilt imports.
 
 Nickel-on-alumina catalyst reagent-stock ledger
@@ -564,7 +564,7 @@ capture remain engineering assumptions. The oxygen outlet is calculated,
 not measured factory emissions. Existing water, nitrogen and NOx outlets,
 other chemicals, residue treatment, uncertainty and consumer quantities stay
 unchanged. Both original source declarations remain **3.9**. The pinned
-reference is ``tests/data/inventory_review/nickel-alumina-ledger-adoption-20261027.json``.
+reference is ``tests/data/inventory_contracts.json``.
 
 Organic/hybrid redox-flow workbook content participates in the import-cache
 fingerprint. Revisions invalidate imported sources and dependent compact
@@ -584,7 +584,7 @@ The added **0.065 kg/batch** retains an unassigned outlet. Evaporation,
 recovery, wastewater fate and complete reaction/workup mass closure remain
 unresolved. This input correction does not add a new outlet or treatment.
 Both original source declarations stay **3.9**. The pinned reference is
-``tests/data/inventory_review/tempo-carrier-water-adoption-20261027.json``. Existing organic
+``tests/data/inventory_contracts.json``. Existing organic
 redox source fingerprinting propagates the correction to rebuilt imports.
 
 TMATEMPO oxidation carrier water
@@ -603,7 +603,7 @@ remain unresolved. Output, active peroxide, existing neat-caustic and
 initial-water basis, pH adjustment, other chemicals, utilities, waste treatment,
 uncertainty and consumer quantities remain unchanged. Both original source
 declarations stay **3.9**. The pinned reference is
-``tests/data/inventory_review/tmatempo-carrier-water-adoption-20261027.json``. Existing
+``tests/data/inventory_contracts.json``. Existing
 organic-redox source fingerprinting propagates the correction.
 
 Flow-battery aluminium end-plate losses
@@ -626,7 +626,7 @@ Generic alloy and forming remain engineering proxies: the source specifies
 and processing equivalence remain unverified. Plate output, installed parent
 quantities and consumers are unchanged. Both original source declarations
 stay **3.9**. The pinned reference is
-``tests/data/inventory_review/aluminium-endplate-adoption-20261027.json``. Existing organic
+``tests/data/inventory_contracts.json``. Existing organic
 source fingerprinting propagates the correction.
 
 VRFB controller mass and moulding inputs
@@ -645,7 +645,7 @@ Suppliers, freight, output and consumer amounts stay unchanged. The parent
 **13 kg**, **91% monitoring / 9% BMS** allocation remains an assumption.
 Both original source declarations stay **3.9**. Existing profile-specific
 supplier mapping and regional PP shares for later targets are preserved.
-The pinned reference is ``tests/data/inventory_review/vrfb-controller-adoption-20261027.json``.
+The pinned reference is ``tests/data/inventory_contracts.json``.
 Existing VRFB source fingerprinting propagates the correction.
 
 Lithium-foil internal manufacturing return
@@ -668,7 +668,7 @@ is added. Both original source declarations remain **3.9**.
 Expanding the rolling helper reproduces the curated CLIC foil exchanges.
 The qualification is recorded in the rolling exchange's original ``Comment``
 field; the full historical text remains appended. The pinned reference is
-``tests/data/inventory_review/lithium-foil-return-adoption-20261027.json``. Existing LiS source
+``tests/data/inventory_contracts.json``. Existing LiS source
 fingerprinting propagates the correction.
 
 Dry zinc-chloride carrier-water accounting
@@ -692,7 +692,7 @@ unchanged. Both original source declarations remain **3.9**.
 
 Only the new final exchange row, its required worksheet-range extension and
 the explanatory comment change. The pinned reference is
-``tests/data/inventory_review/zinc-chloride-water-adoption-20261027.json``. Existing organic
+``tests/data/inventory_contracts.json``. Existing organic
 redox source fingerprinting propagates the correction.
 
 Li-S factory allocation per nominal capacity
@@ -714,7 +714,7 @@ all consumers remain unchanged. Both original source declarations remain
 Only the factory-dose cell and its exchange comment change. The comment
 preserves the historical text; unrelated uses of the original shared string
 remain untouched. The pinned reference is
-``tests/data/inventory_review/lis-factory-allocation-adoption-20261027.json``. Existing LiS
+``tests/data/inventory_contracts.json``. Existing LiS
 source fingerprinting propagates the correction.
 
 Li-O2 final-assembly electricity
@@ -738,7 +738,7 @@ learning.
 
 Only the final-assembly exchange and activity comment change. The comment
 retains the full historical text. The pinned reference is
-``tests/data/inventory_review/lio2-final-assembly-adoption-20261027.json``. Li-O2 source
+``tests/data/inventory_contracts.json``. Li-O2 source
 fingerprinting invalidates affected imported-inventory caches and dependent
 compact checkpoints after workbook changes while preserving native database
 cache paths.
@@ -763,7 +763,7 @@ comment change. All helper recipes, other consumers, output and the approved
 final-assembly electricity remain intact. The GLO helper remains available for
 its other existing uses. Control alignment remains separate. Both original
 source declarations remain **3.9**. The pinned reference is
-``tests/data/inventory_review/lio2-cooling-adoption-20261027.json``. Existing Li-O2 source
+``tests/data/inventory_contracts.json``. Existing Li-O2 source
 fingerprinting propagates the correction.
 
 Central-control fasteners and coupled mass accounting
@@ -799,7 +799,7 @@ materials.
 Each original technosphere/biosphere pair remains unchanged: **3.9** for
 Li-S/Li-O2, **3.8** for NMC955/LTO and **3.10** for battery capacity. The source
 quantities remain deterministic. The pinned reference is
-``tests/data/inventory_review/central-fastener-adoption-20261027.json``. NMC955/LTO joins the
+``tests/data/inventory_contracts.json``. NMC955/LTO joins the
 existing source-content cache fingerprints so corrections invalidate imported
 inventory caches and dependent compact checkpoints. Native cache paths stay
 unchanged. Other monitoring, cooling and source-profile differences from CLIC
@@ -826,7 +826,7 @@ annotations outside the exchange header; no new exchange metadata fields are
 introduced. All capacity inventories and their purchases remain unchanged.
 Original paired source declarations remain **3.9** for Li-S and **3.10** for
 capacity. Existing Li-S/capacity cache fingerprints propagate the correction.
-The pinned reference is ``tests/data/inventory_review/sixteen-monitor-adoption-20261027.json``.
+The pinned reference is ``tests/data/inventory_contracts.json``.
 
 Radiator and manifold aluminium feed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -846,7 +846,7 @@ declarations both remain **3.9**. This feed correction does not certify the
 other inherited thermal, forming or equipment assumptions.
 
 The pinned reference is
-``tests/data/inventory_review/cooling-aluminium-stock-adoption-20261027.json``. Matching new
+``tests/data/inventory_contracts.json``. Matching new
 CLIC revision candidates for datasets **1151/1152** are added to the curated
 plan, preserving published base versions. Candidate adoption requires the next
 handoff's dependency and selector validation; no CLIC database or publication
@@ -880,7 +880,7 @@ cached values remain intact. Original technosphere/biosphere pairs remain
 **3.9** for Li-S and Li-O2 and **3.10** for capacity; alignment of the assembly
 recipe does not establish full background-graph or LCIA equivalence across
 profiles. The pinned reference is
-``tests/data/inventory_review/sixteen-cooling-adoption-20261027.json``. Existing source-content
+``tests/data/inventory_contracts.json``. Existing source-content
 fingerprints propagate this correction to imported inventory caches.
 
 Li-O2 module-monitor manufacturing reference
@@ -899,7 +899,7 @@ change. Every amount, uncertainty, formula, cached value, consumer coefficient
 and retirement quantity remains unchanged. The existing monitor-board recipe
 is reused without modification. Original technosphere and biosphere versions
 both remain **3.9**. The reference is
-``tests/data/inventory_review/lio2-module-monitor-adoption-20261027.json``. Existing Li-O2
+``tests/data/inventory_contracts.json``. Existing Li-O2
 source-content cache fingerprints propagate the supplier correction.
 
 Additional-inventory baseline bookkeeping
