@@ -58,6 +58,16 @@ def rescale_exchange(
     assert isinstance(exchange, MutableMapping), "Must pass exchange mapping"
     assert isinstance(value, Number), "Constant factor ``value`` must be a number"
 
+    # Source caches store some coefficients as float32. NumPy 2 preserves that
+    # dtype when combining them with Python scalars; promote before arithmetic
+    # to retain the float64 rescaling used with NumPy 1.x.
+    for field in ("amount", "loc", "scale", "minimum", "maximum"):
+        number = exchange.get(field)
+        if isinstance(number, np.floating) and number.dtype.itemsize < 8:
+            exchange[field] = float(number)
+    if isinstance(value, np.floating) and value.dtype.itemsize < 8:
+        value = float(value)
+
     exchange["amount"] *= value
     if scale_fuel_co2_transfers and FUEL_CO2_TRANSFER_KEY in exchange:
         # Transfers are exchange amounts, not fractions. Keep them on the same

@@ -43,9 +43,9 @@ def test_negligible_purchased_heat_without_supply_is_excluded_and_recorded(year)
         values, "buildings_end_use", mapping
     )
 
-    assert float(result.sel(variables=technology, region="BRA")) == 0
-    assert float(result.sel(variables=technology, region="EAF")) == 0
-    assert float(result.sel(variables=technology, region="WEU")) == 1e-12
+    assert result.sel(variables=technology, region="BRA", year=year).item() == 0
+    assert result.sel(variables=technology, region="EAF", year=year).item() == 0
+    assert result.sel(variables=technology, region="WEU", year=year).item() == 1e-12
     assert values.identical(original)
     assert result.year.values.tolist() == [year]
     records = heat.diagnostics["buildings_end_use"][

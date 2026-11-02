@@ -18,6 +18,21 @@ import premise.utils as utils_module
 
 
 @pytest.mark.parametrize(
+    ("amount", "factor", "expected"),
+    [
+        (np.float32(1), 1 + 2**-30, 1 + 2**-30),
+        (1 + 2**-30, np.float32(1.25), 1.25 + 1.25 * 2**-30),
+    ],
+)
+def test_rescale_exchange_preserves_double_precision_with_float32_scalars(
+    amount, factor, expected
+):
+    exchange = {"amount": amount}
+    utils_module.rescale_exchange(exchange, factor)
+    assert exchange["amount"] == expected
+
+
+@pytest.mark.parametrize(
     ("value", "expected"),
     [
         (None, False),

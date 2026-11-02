@@ -186,7 +186,7 @@ def _product(exchange):
 
 def electricity_per_service(dataset):
     production = sum(
-        e["amount"] for e in dataset["exchanges"] if e["type"] == "production"
+        float(e["amount"]) for e in dataset["exchanges"] if e["type"] == "production"
     )
     if not math.isfinite(production) or production <= 0:
         raise ValueError("Vehicle service requires positive production")
@@ -199,7 +199,7 @@ def electricity_per_service(dataset):
         ):
             if not math.isfinite(exc["amount"]) or exc["amount"] < 0:
                 raise ValueError("Vehicle electricity must be finite and nonnegative")
-            electricity += exc["amount"]
+            electricity += float(exc["amount"])
     return electricity / production
 
 
