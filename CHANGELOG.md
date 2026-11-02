@@ -65,6 +65,8 @@ upgrading does not alter saved databases.
   Verify installed Conda artifacts outside the checkout with declared requirement
   checks, exporter imports, a synthetic Brightway LCA and Conda's native dependency
   checker. Require Brotli 1.2 for the archive reader.
+  Pin the legacy Conda Brightway stack to the same tested versions as the pip
+  extra, preventing an incompatible modern calculator with legacy database data.
 - Stabilize physical-audit solves across mixed reference-unit scales using
   power-of-two equilibration and residual refinement. Keep strict numerical
   checks and record refinement metadata; document native solver precision
