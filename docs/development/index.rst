@@ -7,6 +7,7 @@ implementation details. Dated measurements and audit notes follow.
 .. toctree::
    :maxdepth: 2
 
+   /development/releases-2-6
    /development/releases-2-5
    /development/contributing
    /development/documentation

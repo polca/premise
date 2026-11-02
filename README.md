@@ -66,63 +66,36 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
-What's new in 2.5.5
+What's new in 2.6.0
 -------------------
 
-**Version 2.5.5 refreshes passenger-car and truck inventories and corrects
-vehicle energy, battery and metals accounting.** The packaged 2020 inventories
-include revised PHEV, HEV and fuel-cell components with documented source and
-proxy limitations. Scenario generation requires no carculator installation.
+**Version 2.6.0 adds physical inventory auditing and EN15804 support, and
+corrects fuel-carbon, resource and manufacturing accounting.**
 
-This release also:
-
-- preserves electric range when resizing car, truck and bus batteries, and
-  applies density improvements to NMC532 capacity markets;
-- rebuilds final-energy transport activities from the updated vehicles with
-  consistent energy and battery allocations per MJ;
-- corrects fuel energy, final-supplier CO2, regional CNG supply, hydrogen tank
-  compression and the HDPE-lined 700-bar tank recipe;
-- preserves consequential metals accounting and source inventories where
-  future material intensities or transport routes are unsupported;
-- fixes external-scenario market-efficiency filters and per-variable excludes;
-  and
-- constrains PyArrow below 26 for compatibility with NumPy 1.x.
+- Audit thousands of activities using physical CO2, water, land and 65 RELICS
+  resource indicators, supplier tracing and explicit scientific contracts.
+  Use the read-only Python API or `python -m premise.audit`; keep generated
+  results local.
+- Select `system_model="EN15804"` through the existing `NewDatabase` argument
+  with the matching ecoinvent source database.
+- Preserve fossil CO2 from conventional kerosene and refresh rail CO2 origin
+  from final regional fuel suppliers. Restore iridium resource attribution
+  and apply reviewed battery, hydrogen, transport and other inventory references.
+- Import bundled source profiles through shared preparation, with explicit
+  scientific checks and target-specific supplier choices. Python modules are
+  grouped by topic; supported public imports and cached class paths remain
+  compatible.
 
 **Regenerate scenario databases and exports to apply these changes.** Updating
-the package does not modify saved databases. The vehicle modelling assumptions
-and remaining limitations are described in the
-[transport methodology](https://premise.readthedocs.io/en/latest/methodology/transport/index.html).
+Premise does not modify saved databases. Reviewed inventories retain the source
+qualifications and unresolved coverage documented in the methodology.
 
-**Python 3.12 or newer is required**, as in 2.5.3. Brightpath 1.0.0a4 or newer (below
-2.0) is installed as a dependency. openLCA export supports ecoinvent 3.8 and
-3.12 and requires a matching local LCIA method package. Export calls no longer
-accept the legacy `backend` or `format` selectors. Custom datapackages that
-relied on implicit absolute-efficiency limits must declare explicit `bounds`.
+**Python 3.12 or newer remains required.** Brightpath handles openLCA and SimaPro
+exports; openLCA requires a matching local method package. The read-only inventory
+store API introduced in 2.5 remains the supported integration interface.
 
-It builds on the main changes introduced in 2.5.0:
-
-- immutable inventory inspection and atomic mutations through
-  `NewDatabase.get_inventory_store()`;
-- compact, checkpoint-backed scenario storage and faster Brightway export;
-- validation certificates for scenario updates and every supported exporter;
-- structured Excel summaries plus exhaustive Parquet change records; and
-- 12 self-contained example notebooks organized as a learning path.
-
-The mutable `NewDatabase.database` attribute is no longer available after
-initialization. Most users do not need to replace it. Integrations that inspect
-inventories should use the store, while code that strictly requires a
-`list[dict]` can materialize one explicitly:
-
-```python
-store = ndb.get_inventory_store()  # read-only view
-activities = store.find({"location": "CH"})
-
-# Use only at integration boundaries; this duplicates the inventory in memory.
-database = ndb.materialize_inventory()
-```
-
-See the [2.5 migration and release guide](https://premise.readthedocs.io/en/latest/development/releases-2-5.html)
-and the [full 2.5.5 changelog](CHANGELOG.md#255---2026-10-15) for details.
+See the [2.6 release and migration guide](https://premise.readthedocs.io/en/latest/development/releases-2-6.html)
+and the [full 2.6.0 changelog](CHANGELOG.md#260---2026-11-02) for details.
 
 
 Documentation
