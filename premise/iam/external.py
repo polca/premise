@@ -2,14 +2,11 @@
 Implements external scenario data.
 """
 
-import logging
 import math
 import uuid
 from collections import defaultdict
 from functools import lru_cache
-from pathlib import Path
 from typing import List, Union
-from pprint import pprint
 
 import numpy as np
 import wurst
@@ -24,7 +21,6 @@ from ..inventory.clean_datasets import get_biosphere_flow_uuid
 from .data_collection import IAMDataCollection
 from .external_data_validation import check_inventories, find_iam_efficiency_change
 from ..core.efficiency_bounds import bound_external_efficiency
-from ..core.filesystem_constants import DATA_DIR
 from ..inventory.inventory_imports import (
     AdditionalInventory,
     get_biosphere_code,
@@ -41,25 +37,12 @@ from ..core.transformation import (
     get_shares_from_production_volume,
 )
 from ..core.utils import (
-    HiddenPrints,
     get_fuel_properties,
     rescale_exchange,
 )
+from ..core.logger import create_logger
 
-LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
-
-# directory for log files
-DIR_LOGS = Path.cwd() / "export" / "logs"
-# if DIR_LOG_REPORT folder does not exist
-# we create it
-if not Path(DIR_LOGS).exists():
-    Path(DIR_LOGS).mkdir(parents=True, exist_ok=True)
-
-with open(LOG_CONFIG, encoding="utf-8") as f:
-    config = yaml.safe_load(f.read())
-    logging.config.dictConfig(config)
-
-logger = logging.getLogger("external")
+logger = create_logger("external")
 
 
 def _interpolate_year_with_bounds(data: xr.DataArray, year: int) -> xr.DataArray:
@@ -186,18 +169,6 @@ def dictionary_merge(dict1, dict2):
             # If key is not in dict1, just add it
             dict1[key] = dict2[key]
     return dict1
-
-
-def get_mapping_between_ei_versions(version_in: str, version_out: str) -> dict:
-    mapping = generate_migration_maps(
-        version_in.replace(".", ""), version_out.replace(".", "")
-    )["data"]
-    m = {}
-
-    for i, j in mapping:
-        m[(i[0], i[1])] = j
-
-    return m
 
 
 def fetch_loc(loc: str) -> Union[str, None]:

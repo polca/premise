@@ -6,7 +6,6 @@ on the wurst database.
 """
 
 import copy
-import logging.config
 import math
 import uuid
 from bisect import bisect_left
@@ -16,7 +15,6 @@ from copy import deepcopy
 from dataclasses import dataclass
 from functools import lru_cache
 from itertools import groupby, product
-from pathlib import Path
 from typing import (  # noqa: F401
     Any,
     Dict,
@@ -30,7 +28,6 @@ from typing import (  # noqa: F401
 
 import numpy as np
 import xarray as xr
-import yaml
 from constructive_geometries import resolved_row
 from wurst import reference_product  # noqa: F401
 from wurst import searching as ws
@@ -39,27 +36,16 @@ from xarray import DataArray
 
 from ..inventory.activity_maps import InventorySet as InventorySet
 from ..iam.data_collection import IAMDataCollection
-from .filesystem_constants import DATA_DIR
 from ..iam.geomap import Geomap
 from ..inventory.inventory_copy import clone_inventory_dataset
 from ..inventory.inventory_store import IndexedInventoryList, compact_exchange_payload
 from ..reporting.provenance import record_change_event
 from ..iam.system_models import ATTRIBUTIONAL_SYSTEM_MODELS, reference_output_amount
 from .utils import get_fuel_properties, rescale_exchange
+from .logger import create_logger
 
-LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
-# directory for log files
-DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
-# if DIR_LOG_REPORT folder does not exist
-# we create it
-if not Path(DIR_LOG_REPORT).exists():
-    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
+logger = create_logger("module")
 
-with open(LOG_CONFIG, encoding="utf-8") as f:
-    config = yaml.safe_load(f.read())
-    logging.config.dictConfig(config)
-
-logger = logging.getLogger("module")
 
 _SCENARIO_GIS_CACHE_KEY = "__premise_gis_match_v1__"
 _SCENARIO_ROW_CACHE_KEY = "__premise_resolved_row_v1__"
