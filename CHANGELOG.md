@@ -62,6 +62,9 @@ upgrading does not alter saved databases.
   and check numerical-library and exporter imports in every installation job.
   Conda supports Python 3.12–3.14 pending upstream datapackage/cchardet recipe
   updates; Python 3.15 is supported through pip.
+  Verify installed Conda artifacts outside the checkout with declared requirement
+  checks, exporter imports, a synthetic Brightway LCA and Conda's native dependency
+  checker. Require Brotli 1.2 for the archive reader.
 - Stabilize physical-audit solves across mixed reference-unit scales using
   power-of-two equilibration and residual refinement. Keep strict numerical
   checks and record refinement metadata; document native solver precision

@@ -274,13 +274,15 @@ jobs:
             if conda install --name test --yes --solver libmamba \
               "python=${{ matrix.python-version }}" \
               "$package_spec" pip; then
-              if conda run --name test \
-                python -c "import premise; import numpy as np; import pyarrow as pa; from premise import NewDatabase; from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping; assert pa.array(np.array([1.0])).to_pylist() == [1.0]; print(premise.__version__)"; then
-                conda run --name test python -m pip check
+              if conda run --name test --cwd "$RUNNER_TEMP" \
+                python "$GITHUB_WORKSPACE/tests/support/check_installed_runtime.py"; then
+                # Conda's native MKL package has no pip distribution metadata.
+                # Check its own dependency graph, plus the real LCA above.
+                conda doctor --name test consistency
                 exit 0
               fi
 
-              echo "Installed $package_spec, but importing premise failed."
+              echo "Installed $package_spec, but its runtime checks failed."
               exit 1
             fi
 
