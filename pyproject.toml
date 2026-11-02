@@ -21,6 +21,10 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering",
 ]
@@ -38,62 +42,23 @@ docs = [
     "sphinx-rtd-theme>=3,<4",
 ]
 bw25 = [
-    "bw2calc >=2.0.1",
-    "bw2data >=4.3",
-    "bw2io >=0.9.4",
+    "bw2calc>=2.4",
+    "bw2data>=4.5",
+    "bw2io>=0.9.11",
     "bw_processing>=1.0",
-    "bottleneck",
-    "brightpath>=1.0.0a14,<2",
-    "ecoinvent_interface",
-    "constructive-geometries>=0.9.5",
-    "numpy <2.0.0",
-    "cryptography",
-    "datapackage",
-    "pandas",
-    "platformdirs",
-    "premise_gwp",
-    "prettytable",
-    "pyarrow<26",
-    "pycountry",
-    "pyYaml",
-    "requests",
-    "schema",
-    "scipy<1.14.0",  # scipy 1.14.0 is not compatible with bw2calc>2.0.1
-    "sparse>=0.14.0",
-    "wurst>=0.4",
-    "xarray<=2024.2.0",
-    "tqdm",
-    "unfold",
 ]
 
+# Legacy Brightway uses NumPy APIs removed in NumPy 2. Keep these constraints
+# in its extra so they do not restrict modern Brightway installations.
 bw2 = [
-    "bw2calc ==1.8.2",
-    "bw2data == 3.6.6",
-    "bw2io ==0.8.12",
-    "bottleneck",
-    "brightpath>=1.0.0a14,<2",
-    "ecoinvent_interface",
-    "constructive-geometries>=0.9.5",
-    "numpy <2.0.0",
-    "cryptography",
-    "datapackage",
-    "pandas",
-    "platformdirs",
-    "premise_gwp",
-    "prettytable",
+    "bw2calc==1.8.2",
+    "bw2data==3.6.6",
+    "bw2io==0.8.12",
+    "numpy<2",
+    "scipy<1.14",
+    "pandas<3",
     "pyarrow<26",
-    "pycountry",
-    "pyYaml",
-    "requests",
-    "schema",
-    "sparse>=0.14.0",
-    "wurst>=0.4",
-    "xarray<=2024.2.0",
-    "tqdm",
-    "unfold",
 ]
-
-
 
 [tool.setuptools]
 include-package-data = true

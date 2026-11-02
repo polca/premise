@@ -51,50 +51,26 @@ jobs:
   build:
     runs-on: ${{matrix.os}}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
+        python-version: ["3.12", "3.13", "3.14", "3.15"]
 
     needs: clean
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install system dependencies for pyenv
-        run: |
-          sudo apt-get update
-          sudo apt-get install build-essential zlib1g-dev libffi-dev libssl-dev \
-                               libbz2-dev libreadline-dev libsqlite3-dev liblzma-dev \
-                               libncurses-dev tk-dev
-
-      - name: Install python version
-        uses: gabrielfalcao/pyenv-action@v18
+      - uses: actions/setup-python@v5
         with:
-          default: 3.12
-          command: pip install -U pip  # upgrade pip after installing python
-
-
-      - name: create environment
-        run: |
-          pyenv install 3.12 && python -mvenv .venv312
-          
-
-      - name: Activate pyenv Python
-        run: |
-          pyenv install -s 3.12
-          pyenv global 3.12
-          python --version
+          python-version: ${{ matrix.python-version }}
+          cache: pip
 
       - name: Install dependencies
         run: |
-          pip install --upgrade setuptools wheel
-          pip install --upgrade pip
-          pip install --force-reinstall setuptools
-          pip install -r requirements.txt --upgrade pip
-          pip install pytest
-          pip install pytest-instafail
-          pip install -e . --verbose
-          pip check
-
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e ".[bw25]" pytest pytest-instafail
+          python -m pip check
 
       - name: Verify numerical runtime imports
         run: |
@@ -114,14 +90,16 @@ jobs:
           EI_PASSWORD: ${{ secrets.EI_PASSWORD }}
 
       # Fork pull requests cannot access the licensed database credentials.
-      # Every push and same-repository pull request must pass a fresh full build
-      # before the dependent PyPI and conda publication jobs can run. Without
+      # Pushes and same-repository pull requests must pass fresh full builds on
+      # the minimum and newest supported Python versions before publication.
+      # Without
       # private LCIA references this gate checks a finite LCIA smoke result;
       # reference comparisons run only when a private reference file is supplied.
       - name: Build ecoinvent 3.12 cutoff and validate Brightway results
         if: >-
-          github.event_name == 'push' ||
-          github.event.pull_request.head.repo.full_name == github.repository
+          (matrix.python-version == '3.12' || matrix.python-version == '3.15') &&
+          (github.event_name == 'push' ||
+          github.event.pull_request.head.repo.full_name == github.repository)
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
           EI_USERNAME: ${{ secrets.EI_USERNAME }}
@@ -267,9 +245,13 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.12",]
+        python-version: ["3.12", "3.13", "3.14", "3.15"]
         package: ["premise-bw2", "premise-bw25"]
         solver: ["libmamba"]
+        exclude:
+          - {package: premise-bw2, python-version: "3.13"}
+          - {package: premise-bw2, python-version: "3.14"}
+          - {package: premise-bw2, python-version: "3.15"}
     steps:
       - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3

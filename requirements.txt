@@ -1,4 +1,4 @@
-numpy<2.0.0
+numpy>=1.26,<3
 bottleneck
 brightpath>=1.0.0a14,<2
 bw2data
@@ -7,23 +7,23 @@ ecoinvent_interface
 constructive-geometries>=1.0.0
 cryptography
 datapackage
-pandas<3.0.0
-openpyxl>=3.1.0,<3.2.0
-lxml<6.0.0; platform_system == "Windows"
+# DeepDiff 9 pulls in cachebox, whose extension cannot build on Python 3.15.
+deepdiff>=8.6.2,<9
+# country_converter's CSV parser loses ISO codes such as NA with pandas 3.1.
+pandas>=2.2,<3.1
+openpyxl>=3.1.5,<3.2.0
+lxml>=4.9.3,<7
 platformdirs
 portalocker>=2.8
 pywin32; platform_system == "Windows"
-premise_gwp
 prettytable
-# PyArrow 26 requires NumPy >=2; premise still uses NumPy 1.x.
-pyarrow<26
+pyarrow>=16
 pycountry
 pyYaml
 requests
 schema
-scipy<1.14.0
+scipy>=1.13,<2
 sparse>=0.14.0
 wurst>=0.4
-xarray<=2024.2.0
+xarray>=2024.6
 tqdm
-unfold
