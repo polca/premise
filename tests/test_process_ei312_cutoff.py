@@ -178,11 +178,6 @@ def test_datapackage_export(updated_ei312_cutoff, tmp_path, monkeypatch):
         "DIR_DATAPACKAGE",
         tmp_path / "export" / "datapackage",
     )
-    monkeypatch.setattr(
-        export_module,
-        "DIR_DATAPACKAGE_TEMP",
-        tmp_path / "export" / "temp",
-    )
 
     ndb.write_datapackage(name="datapackage")
 

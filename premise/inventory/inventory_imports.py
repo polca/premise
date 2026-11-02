@@ -12,6 +12,8 @@ import uuid
 from collections import deque
 from functools import lru_cache
 from pathlib import Path, PurePosixPath
+from pathlib import Path as FilesystemPath
+from tempfile import TemporaryDirectory
 from typing import Dict, List, Union
 from urllib.parse import urlsplit
 
@@ -40,8 +42,6 @@ CORRESPONDENCE_BIO_FLOWS = (
 )
 FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.csv"
 
-TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
-TEMP_EXCEL_FILE = DIR_CACHED_DB / "temp.xlsx"
 
 MIGRATIONS_DIR = DATA_DIR / "utils" / "import" / "migrations"
 
@@ -2177,11 +2177,13 @@ class AdditionalInventory(BaseInventoryImport):
     def load_inventory(self):
         if isinstance(self.path, str):
             suffix = PurePosixPath(urlsplit(self.path).path).suffix
-            temp_file_path = TEMP_CSV_FILE if suffix == ".csv" else TEMP_EXCEL_FILE
-            self.download_file(self.path, temp_file_path)
-        else:
-            temp_file_path = self.path
+            with TemporaryDirectory(prefix="premise-inventory-") as directory:
+                local_path = FilesystemPath(directory) / ("inventory" + suffix)
+                self.download_file(self.path, local_path)
+                return self._read_inventory(local_path)
+        return self._read_inventory(self.path)
 
+    def _read_inventory(self, temp_file_path):
         if temp_file_path.suffix == ".xlsx":
             return ExcelImporter(temp_file_path)
         if temp_file_path.suffix == ".csv":
