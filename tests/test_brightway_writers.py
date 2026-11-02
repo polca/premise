@@ -10,6 +10,14 @@ from premise._fast_sqlite import fast_sqlite_settings
 from premise.inventory_store import CompactInventoryStore, InventoryStore
 
 
+@pytest.fixture
+def modern_backend():
+    import bw2data.utils
+
+    if not hasattr(bw2data.utils, "set_correct_process_type"):
+        pytest.skip("This fast writer targets the modern Brightway backend.")
+
+
 @pytest.mark.parametrize("writer", [brightway2_module, brightway25_module])
 @pytest.mark.parametrize("fast", [False, True])
 @pytest.mark.parametrize(
@@ -37,9 +45,12 @@ from premise.inventory_store import CompactInventoryStore, InventoryStore
     ],
 )
 def test_writers_export_parameters_readable_by_wurst(
-    monkeypatch, writer, fast, parameters, expected
+    monkeypatch, request, writer, fast, parameters, expected
 ):
     from wurst.brightway.extract_database import _list_or_dict
+
+    if fast and writer is brightway25_module:
+        request.getfixturevalue("modern_backend")
 
     captured = []
     original_parameters = deepcopy(parameters)
@@ -118,7 +129,9 @@ def test_fast_sqlite_settings_apply_and_restore_all_pragmas(tmp_path):
     assert restored == original
 
 
-def test_fast_writer_preserves_primary_exception_when_cleanup_fails(monkeypatch):
+def test_fast_writer_preserves_primary_exception_when_cleanup_fails(
+    monkeypatch, modern_backend
+):
     primary = RuntimeError("row insertion failed")
 
     monkeypatch.setattr(
@@ -723,6 +736,7 @@ def test_brightway2_fast_exchange_payload_normalizes_no_uncertainty_loc():
 
 def test_brightway25_fast_compaction_preserves_nonempty_activity_metadata(
     monkeypatch,
+    modern_backend,
 ):
     monkeypatch.setattr(
         "bw2data.utils.set_correct_process_type",
@@ -773,6 +787,7 @@ def test_brightway25_fast_compaction_preserves_nonempty_activity_metadata(
 
 def test_brightway25_fast_compaction_keeps_required_descriptive_fields(
     monkeypatch,
+    modern_backend,
 ):
     monkeypatch.setattr(
         "bw2data.utils.set_correct_process_type",
@@ -805,7 +820,7 @@ def test_brightway25_fast_compaction_keeps_required_descriptive_fields(
 
 @pytest.mark.parametrize("prepared", [False, True])
 def test_brightway25_fast_compaction_streams_columnar_exchange_views(
-    tmp_path, prepared
+    tmp_path, prepared, modern_backend
 ):
     data = [
         {

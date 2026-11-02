@@ -11,6 +11,9 @@ upgrading does not alter saved databases.
 
 ### Added
 
+- Gate package publication on unit tests for both supported Brightway stacks.
+  Run modern backend checks in the modern environment and explicitly scope
+  modern CSV-reader integration to compatible bw2io versions.
 - Add reusable read-only physical inventory audits for premise inventory stores
   and written Brightway databases, with stratified/random/risk sampling,
   physical CO2, water, land and 65 RELICS indicators, independent carbon-origin

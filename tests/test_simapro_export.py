@@ -486,10 +486,19 @@ def test_simapro_rejects_legacy_normal_uncertainty_writer(monkeypatch):
 def test_normal_uncertainty_survives_real_writer_and_reader(
     brightpath, scenario, tmp_path
 ):
+    import inspect
+
+    from bw2io import SimaProCSVImporter
     from brightpath.formats.simapro_csv import load_simapro_csv
     from brightpath.models import BackgroundProfile
     from brightpath.core import BiosphereProfile
     from brightpath.background.catalogs import BiosphereCatalog, InMemoryCatalogProvider
+
+    if "extractor" not in inspect.signature(SimaProCSVImporter).parameters:
+        pytest.skip(
+            "Brightpath's CSV reader requires modern bw2io; legacy CSV writing "
+            "is checked by the writer tests."
+        )
 
     path = simapro_export.export_scenario(scenario, tmp_path, "3.12", "cutoff")
     catalog = InMemoryCatalogProvider(
