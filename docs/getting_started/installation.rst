@@ -19,6 +19,23 @@ The ``bw25`` option installs the modern Brightway dependencies. NumPy 2 and
 current SciPy, xarray and PyArrow releases are supported. pandas stays below
 3.1 until the country-conversion dependency supports its changed CSV parsing;
 DeepDiff stays below 9 while its native dependency lacks Python 3.15 support.
+On Python 3.12, PyArrow stays below 26 so existing NumPy 1.x environments remain
+usable. Newer Python versions use NumPy 2 and can install PyArrow 26. The modern
+Conda variant requires NumPy 2; the legacy variant retains NumPy 1.x.
+
+For Conda, use the required channels with flexible priority in a separate
+environment:
+
+.. code-block:: console
+
+   conda create -n premise python=3.15
+   conda activate premise
+   conda config --env --set channel_priority flexible
+   conda install -c conda-forge -c cmutel -c romainsacchi premise-bw25
+
+Flexible priority lets Conda select a compatible ``pyecospold`` build from
+``cmutel``. The conda-forge build currently pins an older lxml release that
+blocks Python versions above 3.12.
 
 Legacy Brightway
 ------------------

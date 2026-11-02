@@ -260,7 +260,7 @@ jobs:
           channels: conda-forge,cmutel,konstantinstadler,haasad,pascallesage,romainsacchi
           allow-softlinks: true
           auto-update-conda: true
-          channel-priority: strict
+          channel-priority: flexible
           conda-remove-defaults: true
           activate-environment: test
           conda-solver: ${{ matrix.solver }}
@@ -276,7 +276,7 @@ jobs:
               "python=${{ matrix.python-version }}" \
               "$package_spec"; then
               if conda run --name test \
-                python -c "import premise; print(premise.__version__)"; then
+                python -c "import premise; import numpy as np; import pyarrow as pa; from premise import NewDatabase; from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping; assert pa.array(np.array([1.0])).to_pylist() == [1.0]; print(premise.__version__)"; then
                 exit 0
               fi
 

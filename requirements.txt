@@ -17,7 +17,9 @@ platformdirs
 portalocker>=2.8
 pywin32; platform_system == "Windows"
 prettytable
-pyarrow>=16
+# Python 3.12 also supports NumPy 1.x; PyArrow 26 requires the NumPy 2 ABI.
+pyarrow>=16,<26; python_version < "3.13"
+pyarrow>=16; python_version >= "3.13"
 pycountry
 pyYaml
 requests

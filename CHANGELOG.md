@@ -56,6 +56,10 @@ upgrading does not alter saved databases.
   Test each supported Python version in CI, with licensed builds on 3.12 and 3.15.
   Preserve double precision when rescaling cached float32 exchanges under NumPy 2;
   retain compatible pandas and DeepDiff versions for country parsing and Python 3.15.
+  Retain PyArrow below 26 on Python 3.12 for NumPy 1.x compatibility; require
+  NumPy 2 in the modern Conda variant when allowing PyArrow 26.
+  Use flexible Conda channel priority to select compatible pyecospold metadata
+  and check numerical-library and exporter imports in every installation job.
 - Stabilize physical-audit solves across mixed reference-unit scales using
   power-of-two equilibration and residual refinement. Keep strict numerical
   checks and record refinement metadata; document native solver precision
