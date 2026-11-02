@@ -163,8 +163,8 @@
   },
   {
     "page": "methodology/metals.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-11-02",
+    "disposition": "Qualified inherited chain-derived content factors and their version provenance limits; documented resource-attribution data location without changing factors.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -427,8 +427,8 @@
   },
   {
     "page": "reference/api.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Added the retained direct-metal-input comparison under the public audit package.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -494,7 +494,7 @@
   {
     "page": "development/architecture.rst",
     "review_date": "2026-11-02",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
+    "disposition": "Documented declarative native source normalization, companion selection, scientific policy data and temporary-file ownership; values and applicability are preserved.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {

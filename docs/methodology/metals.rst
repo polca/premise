@@ -616,6 +616,13 @@ zero metal content or zero physical co-extraction.
 How resource amounts are set
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The content factors, source identities and boundary choices are declared in
+``premise/data/metals/resource_attribution.json``. The existing factors retain
+their global version/system-model applicability. Several inherited factors
+represent recoverable content inferred from production chains; they are
+attribution conventions, not independently verified concentrate assays. Their
+original database-version derivations remain a separate scientific-review task.
+
 For a pure-metal reference product, the target resource flow is nominally set
 to 1 kg per kg of product where the correction applies. Other co-mined metal
 resource flows are set to zero. For metal-bearing intermediates, such as

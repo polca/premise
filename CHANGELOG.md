@@ -38,8 +38,17 @@ upgrading does not alter saved databases.
   generated numerical results. Keep reusable auditing, scientific references and
   reference builders; exclude private results from package distributions.
 
+- Consolidate native source corrections and companion-workbook selection in
+  declarative import data. Externalize metal attribution, compression assumptions
+  and independent audit references with their existing scope and qualifications;
+  preserve numerical values. Share photovoltaic lifetime and logging setup, and
+  retire unused mapping and comparison-writer code.
+
 ### Fixed
 
+- Isolate datapackage staging and remote inventory downloads per call. Include
+  only the current scenario and inventory CSVs in datapackages, and clean up
+  temporary files after successful or failed operations.
 - Refresh rail combustion CO2 origin after regional fuel linking and efficiency
   updates. Use the final supplier's carbon composition while preserving the
   recorded exhaust total, including auxiliary diesel and passenger-train

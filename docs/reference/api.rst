@@ -59,6 +59,8 @@ Physical inventory audits
 
 .. autofunction:: premise.audit_campaign
 
+.. autofunction:: premise.audit.compare_direct_metal_inputs
+
 .. autofunction:: premise.compare_audits
 
 .. autoclass:: premise.AuditConfig
