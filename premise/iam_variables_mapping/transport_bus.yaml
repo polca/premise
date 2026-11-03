@@ -11,6 +11,7 @@
       - Energy Service|Transportation|Passenger|Bus|Liquids|Fossil
     gcam: Distance|Transport|Pass|Road|Bus|Liquids
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Busses|Fossil Diesel Oil
     remind: FE|Transport|Pass|Road|Bus|Liquids
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids
     tiam-ucl: Final Energy|Transport|Bus|Diesel|Diesel
@@ -29,6 +30,7 @@
   iam_aliases:
     tiam-ucl: Distance|Transport|Bus|Gasoline|Gasoline
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Busses|Fossil Gasoline
     tiam-ucl: Final Energy|Transport|Bus|Gasoline|Gasoline
   ecoinvent_aliases:
     fltr:
@@ -59,6 +61,7 @@
     image: Energy Service|Transportation|Passenger|Bus|Gases
     gcam: Distance|Transport|Pass|Road|Bus|NG
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Busses|Natural Gas
     remind: FE|Transport|Pass|Road|Bus|Gases
     remind-eu: FE|Transport|Pass|Road|Bus|Gases
     tiam-ucl: Final Energy|Transport|Bus|Natural Gas|Natural Gas
@@ -75,6 +78,7 @@
     iam_aliases:
         tiam-ucl: Distance|Transport|Bus|Liquefied Petroleum Gas|Liquefied Petroleum Gas
     energy_use_aliases:
+        open-prom: Final Energy|Transportation|Passenger Transport - Busses|Liquefied Petroleum Gas
         tiam-ucl: Final Energy|Transport|Bus|Liquefied Petroleum Gas|Liquefied Petroleum Gas
     ecoinvent_aliases:
         fltr:
@@ -91,6 +95,7 @@
     image: Energy Service|Transportation|Passenger|Bus|Hydrogen
     gcam: Distance|Transport|Pass|Road|Bus|FCEV
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Busses|Hydrogen
     remind: FE|Transport|Pass|Road|Bus|FCEV
     remind-eu: FE|Transport|Pass|Road|Bus|FCEV
     tiam-ucl: Final Energy|Transport|Bus|Hydrogen Fuel Cell|Bus Hydrogen
@@ -109,6 +114,7 @@
     image: Energy Service|Transportation|Passenger|Bus|Electricity
     gcam: Distance|Transport|Pass|Road|Bus|BEV
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Busses|Electricity
     remind: FE|Transport|Pass|Road|Bus|Electricity
     remind-eu: FE|Transport|Pass|Road|Bus|Electricity
     image: Final Energy|Transportation|Passenger|Bus|Electricity
