@@ -1,4 +1,5 @@
 import itertools
+import json
 
 import pytest
 
@@ -17,6 +18,7 @@ from premise.declarative import (
     compose_patches,
 )
 from premise.emissions.declarative import EmissionsPatchPlanner
+from premise.transport.declarative import vehicle_emission_operations
 
 
 def patch(
@@ -192,3 +194,72 @@ def test_emissions_patch_covers_inactive_latent_electricity_activity():
     )
     assert planner.plan(reference).digest == emissions.digest
     assert compose_patches([electricity, emissions]).factors[0].factor == 0.4
+
+
+def test_vehicle_emission_operation_declares_source_without_sector_context():
+    source = ReferenceActivity.from_metadata(
+        identity="source",
+        name="transport, passenger car, gasoline, Medium, EURO-6",
+        product="transport, passenger car",
+        location="RER",
+        unit="kilometer",
+        exchanges=(
+            ReferenceExchange.from_metadata(
+                identity="source-co2",
+                input_identity="source-only-co2",
+                type="biosphere",
+                name="Carbon dioxide, fossil",
+                amount=0.1,
+                metadata={"categories": ["air"]},
+            ),
+            ReferenceExchange.from_metadata(
+                identity="source-nox",
+                input_identity="nox",
+                type="biosphere",
+                name="Nitrogen oxides",
+                amount=0.2,
+                metadata={"categories": ["air", "urban air close to ground"]},
+            ),
+        ),
+    )
+    wrapper = ReferenceActivity.from_metadata(
+        identity="wrapper",
+        name="petrol, burned in passenger car",
+        product="heat",
+        location="RER",
+        unit="megajoule",
+        exchanges=(
+            ReferenceExchange.from_metadata(
+                identity="wrapper-co2",
+                input_identity="co2",
+                type="biosphere",
+                name="Carbon dioxide, fossil",
+                amount=0.07,
+                metadata={"categories": ["air"]},
+            ),
+        ),
+        metadata={
+            "energy use source": json.dumps(
+                {
+                    "source": [
+                        source.name,
+                        source.product,
+                        source.location,
+                        source.unit,
+                    ],
+                    "purchased MJ per source service": 2.5,
+                }
+            )
+        },
+    )
+
+    operations = vehicle_emission_operations((wrapper, source))
+
+    assert len(operations) == 1
+    assert operations[0].operator == "vehicle-emissions-from-source"
+    assert operations[0].target == "wrapper"
+    assert operations[0].payload == {
+        "source": "source",
+        "purchased_mj_per_source_service": 2.5,
+        "fuel_proportional_flows": ["co2", "source-only-co2"],
+    }

@@ -166,6 +166,10 @@ class SharedOperation:
             "payload": json.loads(self.payload_json),
         }
 
+    @property
+    def payload(self) -> Any:
+        return json.loads(self.payload_json)
+
 
 @dataclass(frozen=True, order=True, slots=True)
 class ReferenceExchange:
@@ -230,6 +234,10 @@ class ReferenceExchange:
             "unit": self.unit,
             "metadata": json.loads(self.metadata_json),
         }
+
+    @property
+    def metadata(self) -> dict[str, Any]:
+        return json.loads(self.metadata_json)
 
 
 @dataclass(frozen=True, order=True, slots=True)
