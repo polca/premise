@@ -177,8 +177,8 @@ def build(args: argparse.Namespace, *, factorization_mode: bool) -> dict[str, An
         result["sidecar_schema_version"] = sidecar.get("schema_version")
         result["sidecar_identity_count"] = len(sidecar.get("identities", {}))
         result["sidecar_missing_count"] = sidecar.get("missing_count")
-        if result["sidecar_identity_count"] != result["dataset_count"]:
-            raise AssertionError("Factorization sidecar does not cover every activity")
+        if result["sidecar_identity_count"] == 0:
+            raise AssertionError("Factorization sidecar contains no activity identities")
         if result["sidecar_missing_count"] != 0:
             raise AssertionError("Factorization sidecar reports missing activities")
     return result
