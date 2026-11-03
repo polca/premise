@@ -17,6 +17,7 @@ implementation details. Dated measurements and audit notes follow.
    /development/internals
    /development/validation-internals
    /development/factorization
+   /development/declarative-composition
    /development/physical-inventory-probing-plan
    /development/supplier-selection
    /development/performance-history

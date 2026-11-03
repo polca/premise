@@ -13,6 +13,7 @@ import argparse
 import hashlib
 import json
 import os
+import platform
 import statistics
 import sys
 import time
@@ -22,6 +23,8 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
+
+from _process_tree_memory import ProcessTreeMemory
 
 from premise import NewDatabase
 from premise.core.utils import load_database
@@ -155,9 +158,13 @@ def build(args: argparse.Namespace, *, factorization_mode: bool) -> dict[str, An
         inventory_backend="compact",
         factorization_mode=factorization_mode,
     )
+    memory = ProcessTreeMemory().start()
     started = time.perf_counter()
-    ndb.update(args.sectors, persist=False)
-    elapsed = time.perf_counter() - started
+    try:
+        ndb.update(args.sectors, persist=False)
+    finally:
+        elapsed = time.perf_counter() - started
+        peak_rss = memory.stop()
     materialized = load_database(
         scenario=ndb.scenarios[0],
         original_database=ndb._load_original_database(),
@@ -168,6 +175,7 @@ def build(args: argparse.Namespace, *, factorization_mode: bool) -> dict[str, An
     result = {
         "factorization_mode": factorization_mode,
         "elapsed_seconds": elapsed,
+        "peak_rss_bytes": peak_rss,
         "dataset_count": len(materialized),
         "exchange_count": sum(len(ds.get("exchanges", ())) for ds in materialized),
         "graph_sha256": graph_digest(materialized),
@@ -204,6 +212,11 @@ def main() -> int:
     factorized = [run["elapsed_seconds"] for run in runs if run["factorization_mode"]]
     ratio = statistics.median(factorized) / statistics.median(standard)
     result = {
+        "environment": {
+            "platform": platform.platform(),
+            "python": platform.python_version(),
+            "processor": platform.processor(),
+        },
         "scenario": {
             "project": args.project,
             "source_database": args.source_db,

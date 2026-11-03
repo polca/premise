@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "19fc6b44077de13639158a5ff02806e40cff0f24",
+  "captured_on": "2026-11-03",
+  "environment": {
+    "machine": "Apple M4 Pro",
+    "memory_bytes": 51539607552,
+    "platform": "macOS-15.6-arm64-arm-64bit",
+    "python": "3.12.13",
+    "numpy": "1.26.4",
+    "premise": "2.6.0",
+    "bw2data": "4.8"
+  },
+  "scenario": {
+    "project": "ecoinvent-3.12-cutoff",
+    "source_database": "ecoinvent-3.12-cutoff",
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050,
+    "sectors": ["electricity", "emissions"],
+    "inventory_backend": "compact"
+  },
+  "measurement": {
+    "warmups_per_mode": 1,
+    "measured_repetitions_per_mode": 3,
+    "alternating_order": true,
+    "standard_seconds": [53.91910616704263, 54.785662290873006, 54.89018512493931],
+    "factorized_seconds": [54.810965874930844, 54.995216791983694, 55.509930207859725],
+    "standard_median_seconds": 54.785662290873006,
+    "factorized_median_seconds": 54.995216791983694,
+    "runtime_ratio": 1.0038249880050387,
+    "first_standard_peak_rss_bytes": 2392948736,
+    "first_factorized_peak_rss_bytes": 2776383488,
+    "rss_sampling": "aggregate process tree at 100 ms; later runs retain prior graph allocations"
+  },
+  "output": {
+    "dataset_count": 30634,
+    "exchange_count": 957671,
+    "graph_sha256": "10bf58dd2bdb754ddd4626d8d03809e86e3f18777d12e1a72ff105a4d16c9def",
+    "graph_identical": true,
+    "sidecar_schema_version": 3,
+    "sidecar_identity_count": 803,
+    "sidecar_missing_count": 0
+  }
+}
