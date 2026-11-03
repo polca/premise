@@ -17,6 +17,7 @@ __all__ = (
     "LegacyInventoryStore",
     "CompactInventoryStore",
     "InventoryStoreBuilder",
+    "FactorizationIdentityRegistry",
     "ChangeReportArtifacts",
     "PremiseValidationError",
     "ValidationIssue",
@@ -62,6 +63,7 @@ _EXPORT_MODULES = {
     "ChangeReportArtifacts": "reporting.change_report",
     "IncrementalDatabase": "database.incremental",
     "PathwaysDataPackage": "iam.pathways",
+    "FactorizationIdentityRegistry": "factorization",
     **dict.fromkeys(
         (
             "CompactInventoryStore",

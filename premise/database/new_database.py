@@ -14,7 +14,7 @@ import pickle
 import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from dataclasses import replace
 from datetime import datetime
 from pathlib import Path
@@ -78,6 +78,10 @@ from ..inventory.inventory_imports import (
 )
 from ..inventory.clean_datasets import source_normalization_data
 from ..inventory import profiles as inventory_profiles
+from ..factorization import (
+    FACTORIZATION_IDENTITY_SCHEMA_VERSION,
+    FactorizationIdentityRegistry,
+)
 from ..inventory.inventory_store import (
     STORE_SCHEMA_VERSION,
     CompactInventoryStore,
@@ -90,6 +94,7 @@ from ..inventory.inventory_store import (
     _compact_scenario_mapping,
     _hydrate_scenario_mapping,
     create_inventory_store,
+    get_scenario_inventory,
 )
 from ..materials.metals import _update_metals
 from ..materials.mining import _update_mining
@@ -707,6 +712,7 @@ class NewDatabase:
         generate_reports: bool = True,
         inventory_backend: Literal["compact", "legacy"] = "legacy",
         cleanup_expired_caches: bool = True,
+        factorization_mode: bool = False,
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -738,6 +744,9 @@ class NewDatabase:
         :param cleanup_expired_caches: Remove managed scenario checkpoints unused
             for more than 24 hours at startup, only when no other NewDatabase
             instance is alive. Unmarked legacy caches are never expired.
+        :param factorization_mode: collect stable activity identities in a private
+            sidecar for factorized matrix consumers. Inventory payloads and
+            standard exports are unchanged. Default is False.
         """
         self._inventory_api_active = False
         self.sector_update_methods = None
@@ -753,6 +762,8 @@ class NewDatabase:
         self.generate_reports = generate_reports
         self.build_id = uuid.uuid4().hex
         self._provenance_collector = ProvenanceCollector(self.build_id)
+        self.factorization_mode = bool(factorization_mode)
+        self._factorization_registries: dict[tuple, FactorizationIdentityRegistry] = {}
         self._change_report_cache: ChangeReportCacheEntry | None = None
         self._last_change_report_artifacts: ChangeReportArtifacts | None = None
         self._automatic_report_in_progress = False
@@ -1544,6 +1555,39 @@ class NewDatabase:
             self.build_id = build_id
             collector = self._provenance_collector = ProvenanceCollector(build_id)
         return collector
+
+    def _get_factorization_registry(
+        self, scenario: dict
+    ) -> FactorizationIdentityRegistry | None:
+        if not getattr(self, "factorization_mode", False):
+            return None
+        identity = self._scenario_identity(scenario)
+        return self._factorization_registries.setdefault(
+            identity, FactorizationIdentityRegistry()
+        )
+
+    def factorization_identities(self, scenario: int = 0) -> dict[str, str]:
+        """Return stable activity identities collected in factorization mode."""
+
+        return dict(self.factorization_metadata(scenario).get("identities", {}))
+
+    def factorization_metadata(self, scenario: int = 0) -> dict:
+        """Return the private identity and supplier-link sidecar."""
+
+        if not getattr(self, "factorization_mode", False):
+            raise RuntimeError(
+                "NewDatabase was not initialized with factorization_mode=True."
+            )
+        if scenario < 0 or scenario >= len(self.scenarios):
+            raise IndexError(
+                f"scenario position {scenario} is outside 0..{len(self.scenarios) - 1}."
+            )
+        payload = self.scenarios[scenario].get("_factorization_identities", {})
+        if int(payload.get("schema_version", -1)) != (
+            FACTORIZATION_IDENTITY_SCHEMA_VERSION
+        ):
+            return {}
+        return copy.deepcopy(payload)
 
     def _restore_scenario_provenance(
         self, scenario: dict, store: InventoryStore
@@ -2587,6 +2631,9 @@ class NewDatabase:
                     scenario=scenario_definition, scenario_position=position
                 )
                 collector = self._get_provenance_collector()
+                factorization = self._get_factorization_registry(scenario)
+                if factorization is not None:
+                    factorization.register_baseline(get_scenario_inventory(scenario))
 
                 for sector in sectors:
                     if sector in scenario.get("applied functions", []):
@@ -2610,6 +2657,10 @@ class NewDatabase:
                     fixed_args = self.sector_update_methods[sector]["args"]
                     if sector == "emissions" and "_inventory_store" not in scenario:
                         database = scenario.pop("_inventory_working_copy")
+                        if factorization is not None:
+                            scenario["_factorization_identities"] = (
+                                factorization.payload_for(database)
+                            )
                         # These indexes are neither serialized nor used by
                         # emissions. Persisted stores are reopened with their
                         # own indexes; diagnostics still build them on demand.
@@ -2623,7 +2674,15 @@ class NewDatabase:
                             scenario_cache_compatibility=not persist,
                             build_indexes=not persist,
                         )
-                    with collector.session(self._scenario_identity(scenario), sector):
+                    factorization_session = (
+                        factorization.session(sector)
+                        if factorization is not None
+                        else nullcontext()
+                    )
+                    with (
+                        collector.session(self._scenario_identity(scenario), sector),
+                        factorization_session,
+                    ):
                         scenario = update_func(scenario, *fixed_args)
                     contract_phase = validate_sector_contract(scenario, sector)
                     if contract_phase.errors:
@@ -2643,6 +2702,11 @@ class NewDatabase:
                     if "applied functions" not in scenario:
                         scenario["applied functions"] = []
                     scenario["applied functions"].append(sector)
+
+                if factorization is not None and "_inventory_working_copy" in scenario:
+                    scenario["_factorization_identities"] = factorization.payload_for(
+                        scenario["_inventory_working_copy"]
+                    )
 
                 self._clear_scenario_runtime_state(scenario)
                 self._store_updated_scenario(

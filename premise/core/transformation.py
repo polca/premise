@@ -759,6 +759,9 @@ class BaseTransformation:
 
         provider_semantics = self._get_provider_semantic_index()
         for d in ds:
+            from ..factorization import register_factorization_activity
+
+            register_factorization_activity(d)
             key = (copy.deepcopy(d["name"]), copy.deepcopy(d["reference product"]))
             semantic_key = key[0], key[1], d["location"]
             if semantic_key not in provider_semantics and hasattr(

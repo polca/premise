@@ -267,11 +267,16 @@ class IndexedInventoryList(list):
 
     def _record_validation_additions(self, additions: Iterable[Any]) -> None:
         sink = self._validation_added_targets
-        if sink is None:
-            return
         for item in additions:
-            if isinstance(item, Mapping):
+            if not isinstance(item, Mapping):
+                continue
+            if sink is not None:
                 sink[id(item)] = item
+            # Imported lazily to keep inventory-store startup independent from
+            # the optional factorization sidecar.
+            from ..factorization import register_factorization_activity
+
+            register_factorization_activity(item)
 
     def _invalidate(self) -> None:
         self._query_indexes = None
