@@ -3484,6 +3484,11 @@ class _InMemoryInventoryStore(InventoryStore):
     def _add_activity_unchecked(self, payload: Mapping[str, Any]) -> ActivityId:
         data = copy.deepcopy(dict(payload))
         self._normalize_scenario_activity(data)
+        # Compact-store additions bypass IndexedInventoryList.append. Register
+        # their normalized storage key while a factorization session is active.
+        from ..factorization import register_factorization_activity
+
+        register_factorization_activity(data)
         exchanges = data.pop("exchanges", [])
         activity_id = self._state.next_activity_id
         self._state.next_activity_id += 1

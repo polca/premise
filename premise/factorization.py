@@ -111,6 +111,7 @@ class FactorizationIdentityRegistry:
         self._created_counts: dict[tuple[str, tuple[str, str, str, str]], int] = {}
         self._baseline_registered = False
         self._active_sector: str | None = None
+        self._last_sector: str | None = None
 
     @staticmethod
     def _identity(token: str) -> str:
@@ -121,26 +122,25 @@ class FactorizationIdentityRegistry:
 
         if self._baseline_registered:
             return
-        occurrences: dict[tuple[tuple[str, str, str, str], str], int] = {}
+        occurrences: dict[tuple[str, str, str, str], int] = {}
         for dataset in datasets:
             database = dataset.get("database")
             code = dataset.get("code")
-            if database not in (None, "") and code not in (None, ""):
-                # Source inventory keys are already stable and avoid hashing
-                # every baseline exchange during scenario initialization.
+            if code not in (None, ""):
+                # Compact scenario activities can omit ``database`` but retain
+                # the immutable source code. Avoid hashing every baseline
+                # exchange when that stable storage identity is available.
                 token = json.dumps(
-                    ["baseline-key", str(database), str(code)],
+                    ["baseline-key", str(database or ""), str(code)],
                     ensure_ascii=False,
                     separators=(",", ":"),
                 )
             else:
                 semantics = activity_semantics(dataset)
-                fingerprint = activity_fingerprint(dataset)
-                group = semantics, fingerprint
-                ordinal = occurrences.get(group, 0)
-                occurrences[group] = ordinal + 1
+                ordinal = occurrences.get(semantics, 0)
+                occurrences[semantics] = ordinal + 1
                 token = json.dumps(
-                    ["baseline-content", semantics, fingerprint, ordinal],
+                    ["baseline-role", semantics, ordinal],
                     ensure_ascii=False,
                     separators=(",", ":"),
                 )
@@ -179,7 +179,7 @@ class FactorizationIdentityRegistry:
     @contextmanager
     def session(self, sector: str) -> Iterator[None]:
         previous = self._active_sector
-        self._active_sector = str(sector)
+        self._active_sector = self._last_sector = str(sector)
         token = _ACTIVE_REGISTRY.set(self)
         try:
             yield
@@ -201,6 +201,14 @@ class FactorizationIdentityRegistry:
                 if identity is not None:
                     self._by_object[id(dataset)] = identity
             if identity is None:
+                # A few legacy transformations still replace list entries
+                # instead of using the common creation boundary. Recover a
+                # deterministic identity at the final sidecar boundary while
+                # retaining the most recently active sector as provenance.
+                identity = self.register_created(
+                    dataset, sector=self._last_sector or "recovered"
+                )
+            if identity is None:
                 missing.append(dataset)
             elif code not in (None, ""):
                 identities[str(code)] = identity
@@ -214,6 +222,11 @@ class FactorizationIdentityRegistry:
 
         provider_identities: dict[str, dict[str, str]] = {}
         ambiguous_provider_count = 0
+        ambiguous_candidates = {
+            semantics: matches
+            for semantics, matches in candidates.items()
+            if len(matches) > 1
+        }
         for dataset in datasets:
             consumer_code = dataset.get("code")
             if consumer_code in (None, ""):
@@ -221,22 +234,22 @@ class FactorizationIdentityRegistry:
             links: dict[str, str] = {}
             occurrences: dict[tuple[Any, ...], int] = {}
             for exchange in dataset.get("exchanges", ()):
+                if exchange.get("type") != "technosphere":
+                    continue
+                raw_input = exchange.get("input")
+                if isinstance(raw_input, (list, tuple)) and len(raw_input) == 2:
+                    # Explicit storage keys are resolved directly by matrix
+                    # consumers and need no semantic sidecar link.
+                    continue
+                matches = ambiguous_candidates.get(activity_semantics(exchange), [])
+                if not matches:
+                    continue
                 semantics = exchange_semantics(exchange)
                 occurrence = occurrences.get(semantics, 0)
                 occurrences[semantics] = occurrence + 1
-                if exchange.get("type") != "technosphere":
-                    continue
                 exchange_key = exchange_identity_key(exchange, occurrence)
-                raw_input = exchange.get("input")
-                if isinstance(raw_input, (list, tuple)) and len(raw_input) == 2:
-                    provider = identities.get(str(raw_input[1]))
-                    if provider is not None:
-                        links[exchange_key] = provider
-                    continue
-                matches = candidates.get(activity_semantics(exchange), [])
-                if matches:
-                    links[exchange_key] = matches[0]
-                    ambiguous_provider_count += len(matches) > 1
+                links[exchange_key] = matches[0]
+                ambiguous_provider_count += 1
             if links:
                 provider_identities[str(consumer_code)] = links
         return {
@@ -246,6 +259,21 @@ class FactorizationIdentityRegistry:
             "ambiguous_provider_count": ambiguous_provider_count,
             "missing_count": len(missing),
         }
+
+    def merge_registered_identities(self, payload: Mapping[str, Any]) -> dict[str, Any]:
+        """Merge identities registered after a compact-store handoff."""
+
+        result = dict(payload)
+        identities = dict(result.get("identities", {}))
+        identities.update(self._by_code)
+        result.update(
+            {
+                "schema_version": self.schema_version,
+                "identities": identities,
+                "missing_count": int(result.get("missing_count", 0)),
+            }
+        )
+        return result
 
 
 _ACTIVE_REGISTRY: ContextVar[FactorizationIdentityRegistry | None] = ContextVar(

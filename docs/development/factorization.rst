@@ -14,12 +14,14 @@ After ``update``, consumers can retrieve a deep copy of the sidecar::
     metadata = ndb.factorization_metadata()
 
 ``metadata["identities"]`` maps each current activity code to a stable UUID.
-Source activities derive their UUID from their fixed database and code.
-Activities created by Premise derive it from the creating sector, their public
-semantic role, and a deterministic occurrence number. The
-``provider_identities`` mapping records the stable provider selected for each
-technosphere exchange, including exchanges whose public metadata match more
-than one generated activity.
+Source activities derive their UUID from their fixed database and code. Compact
+baseline activities which have not yet received a storage code use their public
+semantic role and a deterministic occurrence number; exchange amounts are not
+part of identity. Activities created by Premise derive their UUID from the
+creating sector, their public semantic role, and a deterministic occurrence
+number. The ``provider_identities`` mapping records the stable provider only
+for implicit technosphere exchanges whose public metadata match more than one
+activity. Explicit Brightway input keys need no sidecar disambiguation.
 
 Compatibility contract
 ----------------------
@@ -40,7 +42,8 @@ Performance contract
 
 Normal builds retain the default ``factorization_mode=False``. Factorized
 builds register source keys in one linear pass and collect additions only at
-existing inventory insertion boundaries. On a warm cache, the median complete
-update runtime should remain within 20 percent of the standard path. Record
-the source database, scenario, selected sectors, backend, cache state and at
-least three runs when checking this threshold.
+existing inventory insertion boundaries, including compact-store transactions.
+Keyless baseline identities never hash complete exchange payloads. On a warm
+cache, the median complete update runtime should remain within 20 percent of
+the standard path. Record the source database, scenario, selected sectors,
+backend, cache state and at least three runs when checking this threshold.

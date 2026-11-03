@@ -2704,10 +2704,19 @@ class NewDatabase:
                         scenario["applied functions"] = []
                     scenario["applied functions"].append(sector)
 
-                if factorization is not None and "_inventory_working_copy" in scenario:
-                    scenario["_factorization_identities"] = factorization.payload_for(
-                        scenario["_inventory_working_copy"]
-                    )
+                if factorization is not None:
+                    if "_inventory_working_copy" in scenario:
+                        scenario["_factorization_identities"] = (
+                            factorization.payload_for(
+                                scenario["_inventory_working_copy"]
+                            )
+                        )
+                    else:
+                        scenario["_factorization_identities"] = (
+                            factorization.merge_registered_identities(
+                                scenario.get("_factorization_identities", {})
+                            )
+                        )
 
                 self._clear_scenario_runtime_state(scenario)
                 self._store_updated_scenario(

@@ -2,7 +2,10 @@ import copy
 
 from premise import NewDatabase
 from premise.factorization import FactorizationIdentityRegistry, exchange_identity_key
-from premise.inventory.inventory_store import IndexedInventoryList
+from premise.inventory.inventory_store import (
+    IndexedInventoryList,
+    create_inventory_store,
+)
 
 
 def activity(code, *, amount=1.0):
@@ -45,6 +48,40 @@ def test_baseline_identity_uses_source_key_and_does_not_mutate_payload():
     assert first_identity == second_identity
     assert first == expected_first
     assert second == expected_second
+
+
+def test_baseline_identity_uses_code_when_compact_payload_omits_database():
+    first = activity("source-code")
+    second = activity("source-code")
+    first.pop("database")
+    second.pop("database")
+    first_registry = FactorizationIdentityRegistry()
+    second_registry = FactorizationIdentityRegistry()
+
+    first_registry.register_baseline([first])
+    second_registry.register_baseline([second])
+
+    assert (
+        first_registry.payload_for([first])["identities"]["source-code"]
+        == second_registry.payload_for([second])["identities"]["source-code"]
+    )
+
+
+def test_keyless_baseline_identity_tracks_role_not_exchange_amount():
+    first = activity("first")
+    second = activity("second", amount=2.0)
+    for dataset in (first, second):
+        dataset.pop("database")
+        dataset.pop("code")
+    first_registry = FactorizationIdentityRegistry()
+    second_registry = FactorizationIdentityRegistry()
+
+    first_registry.register_baseline([first])
+    second_registry.register_baseline([second])
+
+    assert first_registry.register_created(
+        first, sector="ignored"
+    ) == second_registry.register_created(second, sector="ignored")
 
 
 def test_creator_sector_distinguishes_semantically_identical_added_markets():
@@ -130,6 +167,39 @@ def test_identities_survive_inventory_materialization_to_new_objects():
 
     assert payload["missing_count"] == 0
     assert payload["identities"]["source-code"]
+
+
+def test_untracked_legacy_addition_gets_recovered_identity():
+    added = activity("legacy-addition")
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([])
+    with registry.session("electricity"):
+        pass
+
+    payload = registry.payload_for([added])
+
+    assert payload["missing_count"] == 0
+    assert payload["identities"]["legacy-addition"]
+
+
+def test_compact_store_addition_merges_into_existing_sidecar():
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([])
+    store = create_inventory_store([], backend="compact")
+
+    with registry.session("emissions"), store.transaction("add") as transaction:
+        transaction.add_activity(activity("compact-addition"))
+
+    payload = registry.merge_registered_identities(
+        {
+            "schema_version": registry.schema_version,
+            "identities": {},
+            "missing_count": 0,
+        }
+    )
+
+    assert payload["missing_count"] == 0
+    assert payload["identities"]["compact-addition"]
 
 
 def test_new_database_returns_a_copy_of_factorization_metadata():
