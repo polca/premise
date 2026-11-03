@@ -4,6 +4,7 @@ as well as export it back.
 
 """
 
+import copy
 import gc
 import hashlib
 import inspect

@@ -1,5 +1,6 @@
 import copy
 
+from premise import NewDatabase
 from premise.factorization import FactorizationIdentityRegistry
 from premise.inventory.inventory_store import IndexedInventoryList
 
@@ -128,3 +129,24 @@ def test_identities_survive_inventory_materialization_to_new_objects():
 
     assert payload["missing_count"] == 0
     assert payload["identities"]["source-code"]
+
+
+def test_new_database_returns_a_copy_of_factorization_metadata():
+    database = NewDatabase.__new__(NewDatabase)
+    database.factorization_mode = True
+    database.scenarios = [
+        {
+            "_factorization_identities": {
+                "schema_version": FactorizationIdentityRegistry.schema_version,
+                "identities": {"source-code": "stable-id"},
+            }
+        }
+    ]
+
+    metadata = database.factorization_metadata()
+    metadata["identities"]["source-code"] = "changed"
+
+    assert (
+        database.scenarios[0]["_factorization_identities"]["identities"]["source-code"]
+        == "stable-id"
+    )
