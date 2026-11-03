@@ -167,6 +167,161 @@ class SharedOperation:
         }
 
 
+@dataclass(frozen=True, order=True, slots=True)
+class ReferenceExchange:
+    identity: str
+    input_identity: str
+    type: str
+    name: str
+    amount: float
+    product: str = ""
+    location: str = ""
+    unit: str = ""
+    metadata_json: str = "{}"
+
+    def __post_init__(self) -> None:
+        if not self.identity or not self.input_identity or not self.type:
+            raise ValueError("Reference exchanges require stable identities and type")
+        amount = float(self.amount)
+        if not math.isfinite(amount):
+            raise ValueError("Reference exchange amounts must be finite")
+        object.__setattr__(self, "amount", amount)
+        object.__setattr__(
+            self,
+            "metadata_json",
+            _canonical_json(json.loads(self.metadata_json)),
+        )
+
+    @classmethod
+    def from_metadata(
+        cls,
+        *,
+        identity: str,
+        input_identity: str,
+        type: str,
+        name: str,
+        amount: float,
+        product: str = "",
+        location: str = "",
+        unit: str = "",
+        metadata: Mapping[str, Any] | None = None,
+    ) -> ReferenceExchange:
+        return cls(
+            identity=identity,
+            input_identity=input_identity,
+            type=type,
+            name=name,
+            amount=amount,
+            product=product,
+            location=location,
+            unit=unit,
+            metadata_json=_canonical_json(metadata or {}),
+        )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "identity": self.identity,
+            "input_identity": self.input_identity,
+            "type": self.type,
+            "name": self.name,
+            "amount": self.amount,
+            "product": self.product,
+            "location": self.location,
+            "unit": self.unit,
+            "metadata": json.loads(self.metadata_json),
+        }
+
+
+@dataclass(frozen=True, order=True, slots=True)
+class ReferenceActivity:
+    identity: str
+    name: str
+    product: str
+    location: str
+    unit: str
+    exchanges: tuple[ReferenceExchange, ...] = ()
+    metadata_json: str = "{}"
+
+    def __post_init__(self) -> None:
+        if not self.identity or not self.name:
+            raise ValueError("Reference activities require stable identity and name")
+        object.__setattr__(self, "exchanges", tuple(sorted(self.exchanges)))
+        object.__setattr__(
+            self,
+            "metadata_json",
+            _canonical_json(json.loads(self.metadata_json)),
+        )
+        _require_unique(self.exchanges, lambda item: item.identity, "reference exchange")
+
+    @classmethod
+    def from_metadata(
+        cls,
+        *,
+        identity: str,
+        name: str,
+        product: str,
+        location: str,
+        unit: str,
+        exchanges: Iterable[ReferenceExchange] = (),
+        metadata: Mapping[str, Any] | None = None,
+    ) -> ReferenceActivity:
+        return cls(
+            identity=identity,
+            name=name,
+            product=product,
+            location=location,
+            unit=unit,
+            exchanges=tuple(exchanges),
+            metadata_json=_canonical_json(metadata or {}),
+        )
+
+    @property
+    def metadata(self) -> dict[str, Any]:
+        return json.loads(self.metadata_json)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "identity": self.identity,
+            "name": self.name,
+            "product": self.product,
+            "location": self.location,
+            "unit": self.unit,
+            "exchanges": [exchange.to_dict() for exchange in self.exchanges],
+            "metadata": self.metadata,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class LatentReference:
+    model: str
+    pathway: str
+    year: int
+    activities: tuple[ReferenceActivity, ...]
+    schema_version: int = DECLARATIVE_PATCH_SCHEMA_VERSION
+
+    def __post_init__(self) -> None:
+        if self.schema_version != DECLARATIVE_PATCH_SCHEMA_VERSION:
+            raise ValueError(f"Unsupported reference schema: {self.schema_version}")
+        if not self.model or not self.pathway:
+            raise ValueError("Reference model and pathway must be non-empty")
+        object.__setattr__(self, "year", int(self.year))
+        object.__setattr__(self, "activities", tuple(sorted(self.activities)))
+        _require_unique(self.activities, lambda item: item.identity, "reference activity")
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "schema_version": self.schema_version,
+            "model": self.model,
+            "pathway": self.pathway,
+            "year": self.year,
+            "activities": [activity.to_dict() for activity in self.activities],
+        }
+
+    @property
+    def digest(self) -> str:
+        return hashlib.sha256(_canonical_json(self.to_dict()).encode()).hexdigest()
+
+
 @dataclass(frozen=True, slots=True)
 class SectorPatch:
     sector: str
@@ -413,10 +568,13 @@ __all__ = [
     "ComposedFactor",
     "ComposedPatch",
     "ExchangeFactor",
+    "LatentReference",
     "MatrixCoordinate",
     "MetadataProposal",
     "PatchConflict",
     "ProviderProposal",
+    "ReferenceActivity",
+    "ReferenceExchange",
     "SectorPatch",
     "SharedOperation",
     "compose_patches",

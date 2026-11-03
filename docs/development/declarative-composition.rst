@@ -40,3 +40,19 @@ migration. A sector is migrated only when its patch is context invariant, its
 composed inventory matches the canonical sequential output, and the runtime and
 memory gates remain satisfied. The production format must not contain
 prerequisite-gated pair corrections.
+
+Emissions pilot
+---------------
+
+The first migration pilot plans REMIND GAINS factors against the complete
+latent activity universe rather than the activities present when the emissions
+step happens to run. The planner freezes IAM arrays, geography mappings, and
+GAINS activity classification before emitting its patch. It does not receive a
+selected-sector list.
+
+For REMIND SSP2-NPi 2050, composing this invariant emissions patch with the
+electricity patch reproduces the canonical direct Premise A and B matrices:
+the coordinate sets are identical and no values differ outside the configured
+``1e-12`` relative and ``1e-15`` absolute tolerances. This pilot replaces the
+electricity/emissions interaction for matrix values; it is not certification of
+the other 18 sectors or of the final performance gates.

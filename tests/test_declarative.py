@@ -5,17 +5,23 @@ import pytest
 from premise.declarative import (
     ActivityProposal,
     ExchangeFactor,
+    LatentReference,
     MatrixCoordinate,
     MetadataProposal,
     PatchConflict,
     ProviderProposal,
+    ReferenceActivity,
+    ReferenceExchange,
     SectorPatch,
     SharedOperation,
     compose_patches,
 )
+from premise.emissions.declarative import EmissionsPatchPlanner
 
 
-def patch(sector, *, factor=1.0, **kwargs):
+def patch(
+    sector, *, factor=1.0, reference_digest="immutable-reference", **kwargs
+):
     factors = kwargs.pop(
         "factors",
         (
@@ -29,7 +35,7 @@ def patch(sector, *, factor=1.0, **kwargs):
         model="remind",
         pathway="SSP2-NPi",
         year=2050,
-        reference_digest="immutable-reference",
+        reference_digest=reference_digest,
         factors=factors,
         **kwargs,
     )
@@ -136,3 +142,53 @@ def test_reference_mismatch_duplicate_sector_and_nonfinite_factor_fail():
         ExchangeFactor(
             MatrixCoordinate("technosphere", "provider", "consumer"), float("nan")
         )
+
+
+def test_emissions_patch_covers_inactive_latent_electricity_activity():
+    latent_electricity = ReferenceActivity.from_metadata(
+        identity="latent-electricity",
+        name="electricity production, gas",
+        product="electricity",
+        location="EUR",
+        unit="kilowatt hour",
+        exchanges=(
+            ReferenceExchange.from_metadata(
+                identity="latent-nox-exchange",
+                input_identity="nox-flow",
+                type="biosphere",
+                name="Nitrogen oxides",
+                amount=0.1,
+                unit="kilogram",
+            ),
+        ),
+    )
+    reference = LatentReference(
+        model="remind",
+        pathway="SSP2-NPi",
+        year=2050,
+        activities=(latent_electricity,),
+    )
+    planner = EmissionsPatchPlanner(
+        pollutant_mapping={"Nitrogen oxides": "NOx"},
+        activity_sector_mapping={"electricity production, gas": "Power"},
+        location_mapping={},
+        gains_factors={("EUR", "NOx", "Power"): 0.4},
+        gains_regions=frozenset({"EUR"}),
+    )
+
+    emissions = planner.plan(reference)
+    electricity = patch(
+        "electricity",
+        factors=(),
+        reference_digest=reference.digest,
+        activities=(ActivityProposal("latent-electricity", "activate"),),
+    )
+
+    assert emissions.factors == (
+        ExchangeFactor(
+            MatrixCoordinate("biosphere", "nox-flow", "latent-electricity"),
+            0.4,
+        ),
+    )
+    assert planner.plan(reference).digest == emissions.digest
+    assert compose_patches([electricity, emissions]).factors[0].factor == 0.4
