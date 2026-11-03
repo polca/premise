@@ -66,3 +66,18 @@ emissions from the composed source column exactly once. The declaration does
 not name or inspect the emissions sector. On the same REMIND case, 53 such
 declarations reproduce the canonical cars-plus-emissions matrices exactly
 within tolerance.
+
+Provider and column ownership
+-----------------------------
+
+A sector that removes an activity from the semantic provider index declares
+the stable provider identity through ``relink-unavailable-providers``. The
+global resolver selects an active provider with the same product semantics for
+every composed consumer, including latent consumers activated by other
+sectors. The declaring planner never reads those consumers.
+
+A sector that empties an original activity also declares its resulting
+technosphere column as authoritative. This prevents latent additions from a
+different patch from restoring inputs that the owning sector deliberately
+removed. These two generic rules reproduce the canonical REMIND SSP2-NPi 2050
+cement-plus-steel graph and A/B matrices without a pair-specific correction.

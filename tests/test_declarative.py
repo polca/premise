@@ -3,6 +3,10 @@ import json
 
 import pytest
 
+from premise.core.declarative import (
+    authoritative_column_operations,
+    unavailable_provider_operation,
+)
 from premise.declarative import (
     ActivityProposal,
     ExchangeFactor,
@@ -21,9 +25,7 @@ from premise.emissions.declarative import EmissionsPatchPlanner
 from premise.transport.declarative import vehicle_emission_operations
 
 
-def patch(
-    sector, *, factor=1.0, reference_digest="immutable-reference", **kwargs
-):
+def patch(sector, *, factor=1.0, reference_digest="immutable-reference", **kwargs):
     factors = kwargs.pop(
         "factors",
         (
@@ -46,13 +48,12 @@ def patch(
 def test_patch_digest_is_independent_of_declaration_order():
     factors = (
         ExchangeFactor(MatrixCoordinate("biosphere", "co2", "activity"), 0.8),
-        ExchangeFactor(
-            MatrixCoordinate("technosphere", "provider", "activity"), 1.2
-        ),
+        ExchangeFactor(MatrixCoordinate("technosphere", "provider", "activity"), 1.2),
     )
-    assert patch("emissions", factors=factors).digest == patch(
-        "emissions", factors=tuple(reversed(factors))
-    ).digest
+    assert (
+        patch("emissions", factors=factors).digest
+        == patch("emissions", factors=tuple(reversed(factors))).digest
+    )
 
 
 def test_composition_is_caller_order_invariant_and_multiplies_factors():
@@ -95,7 +96,10 @@ def test_conflicting_activity_provider_and_metadata_proposals_fail():
     for left, right in cases:
         with pytest.raises(PatchConflict):
             compose_patches(
-                [patch("electricity", factors=(), **left), patch("fuels", factors=(), **right)]
+                [
+                    patch("electricity", factors=(), **left),
+                    patch("fuels", factors=(), **right),
+                ]
             )
 
 
@@ -262,4 +266,64 @@ def test_vehicle_emission_operation_declares_source_without_sector_context():
         "source": "source",
         "purchased_mj_per_source_service": 2.5,
         "fuel_proportional_flows": ["co2", "source-only-co2"],
+    }
+
+
+def test_unavailable_provider_declaration_is_derived_from_sector_metadata():
+    active = ReferenceActivity.from_metadata(
+        identity="regional-steel",
+        name="market for steel, low-alloyed",
+        product="steel, low-alloyed",
+        location="EUR",
+        unit="kilogram",
+    )
+    emptied = ReferenceActivity.from_metadata(
+        identity="global-steel",
+        name="market for steel, low-alloyed",
+        product="steel, low-alloyed",
+        location="GLO",
+        unit="kilogram",
+        metadata={"emptied": True},
+    )
+
+    operation = unavailable_provider_operation((active, emptied))
+
+    assert operation is not None
+    assert operation.operator == "relink-unavailable-providers"
+    assert operation.target == "technosphere"
+    assert operation.payload == {"providers": ["global-steel"]}
+
+
+def test_emptied_activity_declares_authoritative_technosphere_column():
+    activity = ReferenceActivity.from_metadata(
+        identity="old-cement",
+        name="cement production",
+        product="cement",
+        location="PE",
+        unit="kilogram",
+        exchanges=(
+            ReferenceExchange.from_metadata(
+                identity="production",
+                input_identity="old-cement",
+                type="technosphere",
+                name="cement production",
+                amount=1.0,
+            ),
+            ReferenceExchange.from_metadata(
+                identity="forward",
+                input_identity="regional-cement",
+                type="technosphere",
+                name="cement production",
+                amount=-1.0,
+            ),
+        ),
+        metadata={"emptied": True},
+    )
+
+    operations = authoritative_column_operations((activity,))
+
+    assert operations[0].operator == "authoritative-technosphere-column"
+    assert operations[0].target == "old-cement"
+    assert operations[0].payload == {
+        "allowed_providers": ["old-cement", "regional-cement"]
     }
