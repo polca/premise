@@ -1,7 +1,7 @@
 import copy
 
 from premise import NewDatabase
-from premise.factorization import FactorizationIdentityRegistry
+from premise.factorization import FactorizationIdentityRegistry, exchange_identity_key
 from premise.inventory.inventory_store import IndexedInventoryList
 
 
@@ -114,7 +114,8 @@ def test_sidecar_resolves_duplicate_provider_metadata_without_mutating_exchanges
     payload = registry.payload_for(database)
 
     first_identity = payload["identities"]["first-provider"]
-    assert payload["provider_identities"]["consumer"]["1"] == first_identity
+    exchange_key = exchange_identity_key(consumer["exchanges"][1], 0)
+    assert payload["provider_identities"]["consumer"][exchange_key] == first_identity
     assert payload["ambiguous_provider_count"] == 1
     assert database == expected
 

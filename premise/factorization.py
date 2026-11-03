@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 2
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 3
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
 
 
@@ -74,6 +74,30 @@ def activity_fingerprint(payload: Mapping[str, Any]) -> str:
         separators=(",", ":"),
     ).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
+
+
+def exchange_semantics(payload: Mapping[str, Any]) -> tuple[Any, ...]:
+    """Return stable exchange fields used for sidecar supplier links."""
+
+    return (
+        str(payload.get("type") or ""),
+        str(payload.get("name") or ""),
+        str(payload.get("product") or payload.get("reference product") or ""),
+        str(payload.get("location") or ""),
+        str(payload.get("unit") or ""),
+        tuple(str(value) for value in (payload.get("categories") or ())),
+        str(payload.get("comment") or ""),
+    )
+
+
+def exchange_identity_key(payload: Mapping[str, Any], occurrence: int) -> str:
+    """Serialize one semantic exchange occurrence for stable sidecar lookup."""
+
+    return json.dumps(
+        [exchange_semantics(payload), int(occurrence)],
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
 
 
 class FactorizationIdentityRegistry:
@@ -195,18 +219,23 @@ class FactorizationIdentityRegistry:
             if consumer_code in (None, ""):
                 continue
             links: dict[str, str] = {}
-            for exchange_index, exchange in enumerate(dataset.get("exchanges", ())):
+            occurrences: dict[tuple[Any, ...], int] = {}
+            for exchange in dataset.get("exchanges", ()):
+                semantics = exchange_semantics(exchange)
+                occurrence = occurrences.get(semantics, 0)
+                occurrences[semantics] = occurrence + 1
                 if exchange.get("type") != "technosphere":
                     continue
+                exchange_key = exchange_identity_key(exchange, occurrence)
                 raw_input = exchange.get("input")
                 if isinstance(raw_input, (list, tuple)) and len(raw_input) == 2:
                     provider = identities.get(str(raw_input[1]))
                     if provider is not None:
-                        links[str(exchange_index)] = provider
+                        links[exchange_key] = provider
                     continue
                 matches = candidates.get(activity_semantics(exchange), [])
                 if matches:
-                    links[str(exchange_index)] = matches[0]
+                    links[exchange_key] = matches[0]
                     ambiguous_provider_count += len(matches) > 1
             if links:
                 provider_identities[str(consumer_code)] = links
@@ -236,5 +265,7 @@ __all__ = [
     "FactorizationIdentityRegistry",
     "activity_fingerprint",
     "activity_semantics",
+    "exchange_identity_key",
+    "exchange_semantics",
     "register_factorization_activity",
 ]
