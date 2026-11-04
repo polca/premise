@@ -255,6 +255,7 @@ class FactorizationIdentityRegistry:
         self._created_identities.setdefault(group, []).append(identity)
         self._activity_origins[identity] = {
             "kind": "created",
+            "authority": "canonical-role",
             "role": list(semantics),
             "ordinal": ordinal,
         }
@@ -334,6 +335,7 @@ class FactorizationIdentityRegistry:
         self._by_object[id(dataset)] = identity
         self._activity_origins[identity] = {
             "kind": "derived",
+            "authority": "proxy",
             "source": source_identity,
             "source code": str(source_code or ""),
             "source role": list(activity_semantics(source)),
@@ -497,6 +499,7 @@ class FactorizationIdentityRegistry:
             self._by_object[id(dataset)] = identity
             self._activity_origins[identity] = {
                 "kind": "created",
+                "authority": "canonical-role",
                 "role": list(semantics),
                 "ordinal": 0,
             }

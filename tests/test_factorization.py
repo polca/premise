@@ -402,11 +402,13 @@ def test_factorization_payload_declares_created_and_derived_activity_origins():
     origins = registry.payload_for([source, created, derived])["activity_origins"]
     assert origins[created_identity] == {
         "kind": "created",
+        "authority": "canonical-role",
         "role": ["market for hydrogen", "hydrogen", "EUR", "kilogram"],
         "ordinal": 0,
     }
     assert origins[derived_identity] == {
         "kind": "derived",
+        "authority": "proxy",
         "source": registry.identity_for(source),
         "source code": "source-code",
         "source role": ["market for hydrogen", "hydrogen", "CHA", "kilogram"],
