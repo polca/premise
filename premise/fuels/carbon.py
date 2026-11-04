@@ -1,10 +1,11 @@
 """Reclassify emitted fuel carbon without changing the inventory's CO2 balance."""
 
+import math
 from collections import defaultdict
 from copy import deepcopy
-import math
 
 from ..core.utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange
+from ..reporting.provenance import record_change_event
 from .properties import PROPERTIES_KEY, activity_key
 
 _TRANSFER_KEY = FUEL_CO2_TRANSFER_KEY
@@ -370,7 +371,9 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
     dataset["exchanges"].extend(working["exchanges"][len(selected) :])
 
 
-def update_vehicle_fuel_co2(database, version, vehicle_type=None):
+def update_vehicle_fuel_co2(
+    database, version, vehicle_type=None, *, transformation=None
+):
     """Refresh CO2 from final linked fuels after regionalization and scaling.
 
     Rail keeps its recorded exhaust total and only refreshes carbon origin.
@@ -385,6 +388,13 @@ def update_vehicle_fuel_co2(database, version, vehicle_type=None):
             continue
         balance = vehicle_fuel_carbon(dataset, providers)
         if balance is not None and balance["status"] == "resolved":
+            before = deepcopy(
+                [
+                    exchange
+                    for exchange in dataset["exchanges"]
+                    if _positive_air_co2(exchange)
+                ]
+            )
             if is_vehicle_fuel_consumer(dataset, "train"):
                 potential = balance["fossil CO2 kg"] + balance["non-fossil CO2 kg"]
                 if potential <= 0:
@@ -406,3 +416,24 @@ def update_vehicle_fuel_co2(database, version, vehicle_type=None):
                     },
                 )
             replace_vehicle_fuel_co2(dataset, balance, flows)
+            after = [
+                exchange
+                for exchange in dataset["exchanges"]
+                if _positive_air_co2(exchange)
+            ]
+            if transformation is not None and before != after:
+                record_change_event(
+                    transformation,
+                    dataset,
+                    "modified",
+                    reason_code="vehicle_fuel_co2.reclassified",
+                    explanation=(
+                        "Reclassified vehicle exhaust carbon from the final linked "
+                        "fuel supply without changing the gross CO2 balance."
+                    ),
+                    computed_target_values={
+                        "fossil CO2 kg": balance["fossil CO2 kg"],
+                        "non-fossil CO2 kg": balance["non-fossil CO2 kg"],
+                        "convention": balance.get("convention"),
+                    },
+                )

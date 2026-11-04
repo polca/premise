@@ -46,13 +46,20 @@ def _tuple_tree(value: Any) -> Any:
 
 
 def _activity_identity(dataset: Mapping[str, Any]) -> dict[str, Any]:
-    return {
+    payload = {
         "code": dataset.get("code"),
         "name": dataset.get("name"),
         "product": dataset.get("reference product", dataset.get("product")),
         "location": dataset.get("location"),
         "unit": dataset.get("unit"),
     }
+    # Imported lazily to keep provenance usable without factorization mode.
+    from ..factorization import current_factorization_activity_identity
+
+    stable_identity = current_factorization_activity_identity(dataset)
+    if stable_identity is not None:
+        payload["factorization identity"] = stable_identity
+    return payload
 
 
 def _default_explanation(

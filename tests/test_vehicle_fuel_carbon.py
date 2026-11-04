@@ -5,6 +5,10 @@ from types import SimpleNamespace
 
 import pytest
 import xarray as xr
+from premise.inventory_imports import get_biosphere_code
+from premise.inventory_store import compact_exchange_payload
+from premise.transformation import BaseTransformation
+from premise.utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange, rescale_exchanges
 
 from premise.fuels.carbon import (
     reclassify_fuel_co2,
@@ -13,11 +17,8 @@ from premise.fuels.carbon import (
     vehicle_fuel_carbon,
 )
 from premise.fuels.properties import PROPERTIES_KEY, activity_key
-from premise.inventory_imports import get_biosphere_code
-from premise.inventory_store import compact_exchange_payload
-from premise.transformation import BaseTransformation
+from premise.reporting.provenance import ProvenanceCollector
 from premise.transport import Transport
-from premise.utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange, rescale_exchanges
 from premise.validation import CarValidation
 
 FLOWS = get_biosphere_code("3.12")
@@ -132,6 +133,26 @@ def test_actual_supplier_and_carbon_total_replace_inherited_split(share, compact
     update_vehicle_fuel_co2(database, "3.12")
     assert ds == once
     assert all(e["amount"] >= 0 for e in ds["exchanges"] if e["type"] == "biosphere")
+
+
+def test_vehicle_carbon_refresh_records_field_level_factorization_ownership():
+    fuel = supplier(share=0.2)
+    dataset = vehicle(fuel)
+    collector = ProvenanceCollector("vehicle-carbon-test")
+    transformation = SimpleNamespace(system_model="cutoff")
+
+    with collector.session(("scenario",), "fuels"):
+        update_vehicle_fuel_co2(
+            [fuel, dataset],
+            "3.12",
+            transformation=transformation,
+        )
+
+    events = collector.events_for(("scenario",))
+    assert len(events) == 1
+    assert events[0].sector == "fuels"
+    assert events[0].reason_code == "vehicle_fuel_co2.reclassified"
+    assert events[0].status == "modified"
 
 
 @pytest.mark.parametrize("factor", [0.4, 2])

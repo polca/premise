@@ -36,7 +36,9 @@ def _update_final_energy(
 
     # A final-energy-only update still reconstructs equipment from the vehicle
     # sources. Restore their declared capacity route if transport was skipped.
-    convert_battery_mass_inputs(final_energy.database)
+    convert_battery_mass_inputs(
+        final_energy.database, transformation=final_energy
+    )
     final_energy.regionalize_heating_datasets()
 
     # Reconstruct scoped transport wrappers from the already updated regional

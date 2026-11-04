@@ -11,32 +11,33 @@ import numpy as np
 import yaml
 from wurst import searching as ws
 
-from ..inventory.activity_maps import InventorySet
 from ..core.filesystem_constants import DATA_DIR
 from ..core.logger import create_logger
-from ..reporting.provenance import record_change_event
+from ..core.transformation import BaseTransformation, IAMDataCollection
+from ..core.utils import rescale_exchange, rescale_exchanges
+from ..fuels.carbon import update_vehicle_fuel_co2
+from ..inventory.activity_maps import InventorySet
 from ..inventory.inventory_store import (
     get_scenario_inventory,
     replace_scenario_inventory,
 )
-from ..core.transformation import BaseTransformation, IAMDataCollection
-from ..core.utils import rescale_exchanges, rescale_exchange
-from .car_energy import apply_floor, car_class, fuel_balance
-from ..fuels.carbon import update_vehicle_fuel_co2
-from .vehicle_emissions import fuel_proportional_emission
-from .vehicle_energy import vehicle_energy_exchange
-from .vehicle_battery import resize_regional_batteries, SPEC_KEY as BATTERY_SIZING_KEY
-from .battery_mass import convert_battery_mass_inputs
-from .vehicle_hydrogen import (
-    compression_electricity_product,
-    finish_hydrogen_compression,
-    prepare_hydrogen_compression,
-)
+from ..reporting.provenance import record_change_event
 from ..validation.validation import (
     CarValidation,
     TruckValidation,
 )
 from ..validation.validation_framework import record_validation_phase
+from .battery_mass import convert_battery_mass_inputs
+from .car_energy import apply_floor, car_class, fuel_balance
+from .vehicle_battery import SPEC_KEY as BATTERY_SIZING_KEY
+from .vehicle_battery import resize_regional_batteries
+from .vehicle_emissions import fuel_proportional_emission
+from .vehicle_energy import vehicle_energy_exchange
+from .vehicle_hydrogen import (
+    compression_electricity_product,
+    finish_hydrogen_compression,
+    prepare_hydrogen_compression,
+)
 
 logger = create_logger("transport")
 
@@ -89,7 +90,9 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         # Reuse the fuel module's accounting after regional supplier linking,
         # IAM efficiency scaling and any passenger-car energy floor. Rail
         # refreshes classification while retaining its recorded exhaust total.
-        update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
+        update_vehicle_fuel_co2(
+            trspt.database, version, vehicle_type, transformation=trspt
+        )
 
     replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache
@@ -246,7 +249,9 @@ class Transport(BaseTransformation):
 
     def convert_battery_mass_inputs(self):
         """Activate explicit static battery-mass contracts for this vehicle family."""
-        return convert_battery_mass_inputs(self.database, self.vehicle_type)
+        return convert_battery_mass_inputs(
+            self.database, self.vehicle_type, transformation=self
+        )
 
     def create_vehicle_markets(self) -> list:
         """

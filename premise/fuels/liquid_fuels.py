@@ -1,7 +1,8 @@
-from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from collections import defaultdict
 
 from ..core.transformation import ws
+from ..factorization import register_factorization_shared_operation
+from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from .config import (
     LIQUID_FUEL_SOURCES,
     REGION_BIODIESEL_FEEDSTOCK_MAP,
@@ -472,6 +473,29 @@ class SyntheticFuelsMixin:
             if total_weight > 0
         }
 
+        providers = [
+            {
+                "name": name,
+                "unit": "kilogram",
+                "co2_per_unit": co2_intensity,
+            }
+            for name in sorted(market_names)
+        ]
+        for region, mix in sorted(fuel_shares.items()):
+            total = sum(mix.values())
+            if total <= 0:
+                continue
+            share = 1 - sum(mix.get(key, 0.0) for key in fossil_variables) / total
+            register_factorization_shared_operation(
+                {
+                    "operator": "allocate-fuel-carbon-origin",
+                    "target": "positive-air-co2-pool",
+                    "providers": providers,
+                    "location": region,
+                    "non_fossil_share": min(1.0, max(0.0, share)),
+                }
+            )
+
         # Find and process datasets. This ordered scan is equivalent to the
         # historical Wurst predicates but avoids dispatching a callable for
         # every market name against every exchange.
@@ -519,6 +543,17 @@ class SyntheticFuelsMixin:
                 # after all fuel chains have been completed and relinked.
                 continue
 
+            before = tuple(
+                (
+                    exc.get("name"),
+                    tuple(exc.get("categories") or ()),
+                    float(exc.get("amount", 0.0)),
+                )
+                for exc in ds["exchanges"]
+                if exc.get("type") == "biosphere"
+                and exc.get("name")
+                in {"Carbon dioxide, fossil", "Carbon dioxide, non-fossil"}
+            )
             reclassify_fuel_co2(
                 ds,
                 sum_fuel * co2_intensity,
@@ -526,3 +561,16 @@ class SyntheticFuelsMixin:
                 getattr(self, "biosphere_flows", {}),
                 "|".join(sorted(market_names)),
             )
+            after = tuple(
+                (
+                    exc.get("name"),
+                    tuple(exc.get("categories") or ()),
+                    float(exc.get("amount", 0.0)),
+                )
+                for exc in ds["exchanges"]
+                if exc.get("type") == "biosphere"
+                and exc.get("name")
+                in {"Carbon dioxide, fossil", "Carbon dioxide, non-fossil"}
+            )
+            if before != after:
+                self.write_log(ds, "modified")

@@ -82,6 +82,7 @@ from ..inventory import profiles as inventory_profiles
 from ..factorization import (
     FACTORIZATION_IDENTITY_SCHEMA_VERSION,
     FactorizationIdentityRegistry,
+    activity_semantics,
 )
 from ..inventory.inventory_store import (
     STORE_SCHEMA_VERSION,
@@ -1612,6 +1613,56 @@ class NewDatabase:
         if registry is None:  # pragma: no cover - guarded by factorization_mode
             return {}
         payload = registry.payload_for(datasets)
+        current_identities = set(payload.get("identities", {}).values())
+        semantic_candidates: dict[tuple[str, str, str, str], list[str]] = {}
+        for dataset in datasets:
+            code = dataset.get("code")
+            identity = payload.get("identities", {}).get(str(code))
+            if identity is not None:
+                semantic_candidates.setdefault(activity_semantics(dataset), []).append(
+                    identity
+                )
+        event_identity_remapping: dict[str, str] = {}
+        semantic_positions: dict[tuple[str, str, str, str], int] = {}
+        ownership: dict[str, list[dict[str, str]]] = {}
+        for event in self._get_provenance_collector().events_for(
+            self._scenario_identity(definition)
+        ):
+            code = event.activity.get("code")
+            stable_identity = event.activity.get("factorization identity")
+            if stable_identity is None:
+                stable_identity = payload.get("identities", {}).get(str(code))
+            if stable_identity not in current_identities:
+                event_identity = str(stable_identity or "")
+                stable_identity = event_identity_remapping.get(event_identity)
+                if stable_identity is None:
+                    semantics = activity_semantics(event.activity)
+                    candidates = semantic_candidates.get(semantics, ())
+                    position = semantic_positions.get(semantics, 0)
+                    if position < len(candidates):
+                        stable_identity = candidates[position]
+                        semantic_positions[semantics] = position + 1
+                        if event_identity:
+                            event_identity_remapping[event_identity] = stable_identity
+            if stable_identity is None:
+                continue
+            declaration = {
+                "sector": event.sector,
+                "status": event.status,
+                "reason_code": event.reason_code,
+            }
+            declarations = ownership.setdefault(stable_identity, [])
+            if declaration not in declarations:
+                declarations.append(declaration)
+        payload["activity_ownership"] = {
+            identity: sorted(
+                declarations,
+                key=lambda item: (
+                    item["sector"], item["status"], item["reason_code"]
+                ),
+            )
+            for identity, declarations in sorted(ownership.items())
+        }
         definition["_factorization_identities"] = payload
         return copy.deepcopy(payload)
 

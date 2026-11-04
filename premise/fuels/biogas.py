@@ -1,10 +1,11 @@
+from collections import defaultdict
+
+from ..core.transformation import ws
+from ..factorization import register_factorization_shared_operation
 from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
+from .config import METHANE_SOURCES
 from .properties import CNG_ENERGY_MJ_PER_KG
 from .utils import fetch_mapping
-from .config import METHANE_SOURCES
-from ..core.transformation import ws
-
-from collections import defaultdict
 
 
 class BiogasMixin:
@@ -182,6 +183,37 @@ class BiogasMixin:
         vehicle_gas_name = "market for natural gas, medium pressure, vehicle grade"
         consumer_gas_names = gas_names | {vehicle_gas_name}
 
+        providers = [
+            {
+                "name": name,
+                "unit": (
+                    "kilogram" if name == vehicle_gas_name else "cubic meter"
+                ),
+                "co2_per_unit": (
+                    CNG_ENERGY_MJ_PER_KG * 0.06
+                    if name == vehicle_gas_name
+                    else 2.12
+                ),
+            }
+            for name in sorted(consumer_gas_names)
+        ]
+        for region, mix in sorted(fuel_shares.items()):
+            total = sum(mix.values())
+            if total <= 0:
+                continue
+            share = 1 - sum(
+                mix.get(key, 0.0) for key in ("natural gas", "methane, from coal")
+            ) / total
+            register_factorization_shared_operation(
+                {
+                    "operator": "allocate-fuel-carbon-origin",
+                    "target": "positive-air-co2-pool",
+                    "providers": providers,
+                    "location": region,
+                    "non_fossil_share": min(1.0, max(0.0, share)),
+                }
+            )
+
         # Find and process datasets
         datasets = ws.get_many(
             self.database,
@@ -233,6 +265,17 @@ class BiogasMixin:
             if sum_ng == 0 or is_vehicle_fuel_consumer(ds):
                 continue
 
+            before = tuple(
+                (
+                    exc.get("name"),
+                    tuple(exc.get("categories") or ()),
+                    float(exc.get("amount", 0.0)),
+                )
+                for exc in ds["exchanges"]
+                if exc.get("type") == "biosphere"
+                and exc.get("name")
+                in {"Carbon dioxide, fossil", "Carbon dioxide, non-fossil"}
+            )
             reclassify_fuel_co2(
                 ds,
                 sum_ng,
@@ -240,3 +283,16 @@ class BiogasMixin:
                 self.biosphere_flows,
                 "natural gas",
             )
+            after = tuple(
+                (
+                    exc.get("name"),
+                    tuple(exc.get("categories") or ()),
+                    float(exc.get("amount", 0.0)),
+                )
+                for exc in ds["exchanges"]
+                if exc.get("type") == "biosphere"
+                and exc.get("name")
+                in {"Carbon dioxide, fossil", "Carbon dioxide, non-fossil"}
+            )
+            if before != after:
+                self.write_log(ds, "modified")

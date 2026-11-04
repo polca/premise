@@ -1,27 +1,27 @@
 import xarray as xr
 
-from .hydrogen import HydrogenMixin
-from .biogas import BiogasMixin
-from .biofuels import BiofuelsMixin
-from .liquid_fuels import SyntheticFuelsMixin
-from .markets import FuelMarketsMixin
-from .utils import fetch_mapping
-from .config import FUEL_GROUPS
-from .properties import annotate_cng_properties
-from .carbon import update_vehicle_fuel_co2
+from ..core.logger import create_logger
 from ..core.transformation import (
     BaseTransformation,
 )
-from ..validation.validation import FuelsValidation
-from ..validation.validation_framework import record_validation_phase
 from ..inventory.activity_maps import InventorySet
 from ..inventory.inventory_imports import get_biosphere_code
-from ..core.logger import create_logger
-from ..reporting.provenance import record_change_event
 from ..inventory.inventory_store import (
     get_scenario_inventory,
     replace_scenario_inventory,
 )
+from ..reporting.provenance import record_change_event
+from ..validation.validation import FuelsValidation
+from ..validation.validation_framework import record_validation_phase
+from .biofuels import BiofuelsMixin
+from .biogas import BiogasMixin
+from .carbon import update_vehicle_fuel_co2
+from .config import FUEL_GROUPS
+from .hydrogen import HydrogenMixin
+from .liquid_fuels import SyntheticFuelsMixin
+from .markets import FuelMarketsMixin
+from .properties import annotate_cng_properties
+from .utils import fetch_mapping
 
 logger = create_logger("fuel")
 
@@ -71,7 +71,7 @@ def _update_fuels(scenario, version, system_model):
         fuels.clear_validation_provenance()
         fuels.relink_datasets()
         annotate_cng_properties(fuels.database)
-        update_vehicle_fuel_co2(fuels.database, version)
+        update_vehicle_fuel_co2(fuels.database, version, transformation=fuels)
         replace_scenario_inventory(scenario, fuels.database)
         scenario["cache"] = fuels.cache
         scenario["index"] = fuels.index

@@ -1670,6 +1670,18 @@ class BaseInventoryImport:
                                 )
                             )
 
+                    exchange.setdefault(
+                        "premise provider intents",
+                        [
+                            {
+                                "name": exchange["name"],
+                                "product": exchange["product"],
+                                "location": exchange["location"],
+                                "unit": exchange["unit"],
+                            }
+                        ],
+                    )
+
             self.fill_dataset_data_gaps(dataset)
 
         # Add a `code` field if missing

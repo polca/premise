@@ -14,6 +14,7 @@ import numpy as np
 from wurst import searching as ws
 
 from ..inventory.inventory_copy import clone_inventory_dataset
+from ..reporting.provenance import record_change_event
 from ..core.utils import rescale_exchange
 
 SPEC_KEY = "battery mass to capacity"
@@ -249,7 +250,7 @@ def _plan_conversion(dataset, parsed):
     return result, state
 
 
-def convert_battery_mass_inputs(database, vehicle_type=None):
+def convert_battery_mass_inputs(database, vehicle_type=None, transformation=None):
     """Convert only opt-in additional inventories, atomically and once per family.
 
     Unmarked native activities and legacy capacity inventories are untouched.
@@ -284,4 +285,19 @@ def convert_battery_mass_inputs(database, vehicle_type=None):
     for dataset, (exchanges, state) in plans:
         dataset["exchanges"] = exchanges
         dataset[STATE_KEY] = state
+        if transformation is not None:
+            record_change_event(
+                transformation,
+                dataset,
+                "modified",
+                reason_code="battery_mass.converted",
+                explanation=(
+                    "Converted the declared static battery-mass purchase and "
+                    "retirement pair to its explicit storage-capacity supplier."
+                ),
+                computed_target_values={
+                    "baseline mass kg": state["baseline mass kg"],
+                    "baseline capacity kWh": state["baseline capacity kWh"],
+                },
+            )
     return len(plans)

@@ -3486,13 +3486,17 @@ class _InMemoryInventoryStore(InventoryStore):
         self._normalize_scenario_activity(data)
         # Compact-store additions bypass IndexedInventoryList.append. Register
         # their normalized storage key while a factorization session is active.
-        from ..factorization import register_factorization_activity
+        from ..factorization import (
+            bind_factorization_activity_storage_id,
+            register_factorization_activity,
+        )
 
         register_factorization_activity(data)
         exchanges = data.pop("exchanges", [])
         activity_id = self._state.next_activity_id
         self._state.next_activity_id += 1
         self._state.activities[activity_id] = data
+        bind_factorization_activity_storage_id(data, activity_id)
         self._state.activity_order.append(activity_id)
         self._state.activity_exchanges[activity_id] = []
         for exchange in exchanges:

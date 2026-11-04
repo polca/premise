@@ -34,15 +34,16 @@ from wurst import searching as ws
 from wurst import transformations as wt  # noqa: F401
 from xarray import DataArray
 
-from ..inventory.activity_maps import InventorySet as InventorySet
+from ..factorization import FACTORIZATION_EXCHANGE_LINEAGE_FIELD
 from ..iam.data_collection import IAMDataCollection
 from ..iam.geomap import Geomap
+from ..iam.system_models import ATTRIBUTIONAL_SYSTEM_MODELS, reference_output_amount
+from ..inventory.activity_maps import InventorySet as InventorySet
 from ..inventory.inventory_copy import clone_inventory_dataset
 from ..inventory.inventory_store import IndexedInventoryList, compact_exchange_payload
 from ..reporting.provenance import record_change_event
-from ..iam.system_models import ATTRIBUTIONAL_SYSTEM_MODELS, reference_output_amount
-from .utils import get_fuel_properties, rescale_exchange
 from .logger import create_logger
+from .utils import get_fuel_properties, rescale_exchange
 
 logger = create_logger("module")
 
@@ -1837,10 +1838,20 @@ class BaseTransformation:
                     != (dataset["name"], dataset["reference product"], region)
                 ]
 
-            dataset = clone_inventory_dataset(dataset)
+            source_dataset = dataset
+            dataset = clone_inventory_dataset(source_dataset)
             dataset["location"] = region
             dataset["code"] = str(uuid.uuid4().hex)
             dataset["regionalized"] = True
+
+            from ..factorization import register_factorization_derived_activity
+
+            register_factorization_derived_activity(
+                dataset,
+                source=source_dataset,
+                operation="regionalized-proxy",
+                qualifier=region,
+            )
 
             for exc in ws.production(dataset):
                 if "input" in exc:
@@ -2032,22 +2043,35 @@ class BaseTransformation:
                 ] += amount
 
             # Keep documented uses separate even when they share a supplier.
-            unique_excs_to_relink = []
-            seen = set()
+            unique_excs_by_key = {}
             for exchange, fields in selected_candidates:
                 key = (*fields[:4], exchange.get("comment"))
-                if key in seen:
-                    continue
-                seen.add(key)
-                candidate = {
-                    "name": fields[0],
-                    "product": fields[1],
-                    "location": fields[2],
-                    "unit": fields[3],
-                }
-                if "comment" in exchange:
-                    candidate["comment"] = exchange["comment"]
-                unique_excs_to_relink.append(candidate)
+                candidate = unique_excs_by_key.get(key)
+                if candidate is None:
+                    candidate = {
+                        "name": fields[0],
+                        "product": fields[1],
+                        "location": fields[2],
+                        "unit": fields[3],
+                    }
+                    if "comment" in exchange:
+                        candidate["comment"] = exchange["comment"]
+                    unique_excs_by_key[key] = candidate
+                lineages = set(
+                    map(
+                        str,
+                        candidate.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ()),
+                    )
+                )
+                lineages.update(
+                    map(
+                        str,
+                        exchange.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ()),
+                    )
+                )
+                if lineages:
+                    candidate[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(lineages)
+            unique_excs_to_relink = list(unique_excs_by_key.values())
 
             # Process exchanges to relink
             new_exchanges = self.process_exchanges_to_relink(
@@ -2153,7 +2177,10 @@ class BaseTransformation:
             if amount != 0:
                 new_exchanges.extend(
                     self.create_new_exchanges(
-                        entries, amount, comment=exc.get("comment")
+                        entries,
+                        amount,
+                        comment=exc.get("comment"),
+                        requested_provider=exc,
                     )
                 )
         # Make exchanges unique and sum amounts for duplicates
@@ -2336,8 +2363,17 @@ class BaseTransformation:
 
         return entries, amount
 
-    def create_new_exchanges(self, entries, amount, comment=None):
+    def create_new_exchanges(
+        self, entries, amount, comment=None, requested_provider=None
+    ):
         exchanges = []
+        provider_intent = None
+        if requested_provider is not None:
+            provider_intent = {
+                key: requested_provider[key]
+                for key in ("name", "product", "location", "unit")
+                if key in requested_provider
+            }
         for entry in entries:
             exchange = {
                 "name": entry[0],
@@ -2349,6 +2385,17 @@ class BaseTransformation:
             }
             if comment is not None:
                 exchange["comment"] = comment
+            if provider_intent:
+                exchange["premise provider intents"] = [provider_intent]
+            lineages = (
+                requested_provider.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ())
+                if requested_provider is not None
+                else ()
+            )
+            if lineages:
+                exchange[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(
+                    set(map(str, lineages))
+                )
             exchanges.append(exchange)
         return exchanges
 
@@ -2379,6 +2426,7 @@ class BaseTransformation:
         )
         summarized = []
         for (name, product, location, unit, comment), exchanges in grouped_exchanges:
+            exchanges = list(exchanges)
             exchange = {
                 "name": name,
                 "product": product,
@@ -2389,6 +2437,33 @@ class BaseTransformation:
             }
             if comment is not None:
                 exchange["comment"] = comment
+            provider_intents = {
+                (
+                    str(intent.get("name") or ""),
+                    str(intent.get("product") or ""),
+                    str(intent.get("location") or ""),
+                    str(intent.get("unit") or ""),
+                )
+                for item in exchanges
+                for intent in item.get("premise provider intents", ())
+            }
+            if provider_intents:
+                exchange["premise provider intents"] = [
+                    {
+                        "name": intent[0],
+                        "product": intent[1],
+                        "location": intent[2],
+                        "unit": intent[3],
+                    }
+                    for intent in sorted(provider_intents)
+                ]
+            lineages = {
+                str(lineage)
+                for item in exchanges
+                for lineage in item.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ())
+            }
+            if lineages:
+                exchange[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(lineages)
             summarized.append(exchange)
         return [compact_exchange_payload(exchange) for exchange in summarized]
 

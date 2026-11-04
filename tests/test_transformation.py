@@ -4,10 +4,9 @@ from contextlib import contextmanager
 from types import SimpleNamespace
 
 import numpy as np
+import premise.transformation as transformation_module
 import pytest
 import xarray as xr
-
-import premise.transformation as transformation_module
 from premise.activity_maps import InventorySet
 from premise.marginal_mixes import get_list_contrained_suppliers
 from premise.transformation import (
@@ -17,6 +16,8 @@ from premise.transformation import (
     find_fuel_efficiency,
     prepare_fuel_filters,
 )
+
+from premise.factorization import FACTORIZATION_EXCHANGE_LINEAGE_FIELD
 
 
 def test_exclude_exchange_objects_does_not_compare_mapping_contents():
@@ -111,6 +112,64 @@ def test_summarize_exchanges_keeps_documented_uses_separate():
         ("Auxiliary electricity", 2.0),
         ("Hydrogen tank compression", 1.0),
     }
+
+
+def test_relinked_exchanges_preserve_requested_provider_intent():
+    transformation = object.__new__(BaseTransformation)
+    requested = {
+        "name": "market group for electricity, low voltage",
+        "product": "electricity, low voltage",
+        "location": "RER",
+        "unit": "kilowatt hour",
+    }
+
+    exchanges = transformation.create_new_exchanges(
+        [
+            (
+                "market group for electricity, low voltage",
+                "electricity, low voltage",
+                "GLO",
+                "kilowatt hour",
+                1.0,
+            )
+        ],
+        2.0,
+        requested_provider=requested,
+    )
+    summarized = transformation.summarize_exchanges(exchanges)
+
+    assert summarized[0]["premise provider intents"] == [requested]
+
+
+def test_relinked_exchanges_preserve_and_union_source_lineages():
+    transformation = object.__new__(BaseTransformation)
+    requested = {
+        "name": "market for fuel",
+        "product": "fuel",
+        "location": "RER",
+        "unit": "kilogram",
+        FACTORIZATION_EXCHANGE_LINEAGE_FIELD: ["source-b", "source-a"],
+    }
+
+    exchanges = transformation.create_new_exchanges(
+        [("market for fuel", "fuel", "GLO", "kilogram", 1.0)],
+        2.0,
+        requested_provider=requested,
+    )
+    exchanges.append(
+        {
+            **dict(exchanges[0]),
+            "amount": 1.0,
+            FACTORIZATION_EXCHANGE_LINEAGE_FIELD: ["source-c"],
+        }
+    )
+    summarized = transformation.summarize_exchanges(exchanges)
+
+    assert summarized[0][FACTORIZATION_EXCHANGE_LINEAGE_FIELD] == [
+        "source-a",
+        "source-b",
+        "source-c",
+    ]
 
 
 def make_market_transformation(monkeypatch, technology_shares):
