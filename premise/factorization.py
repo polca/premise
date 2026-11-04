@@ -14,7 +14,34 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 19
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 21
+FACTORIZATION_SECTOR_PRIORITY = {
+    sector: priority
+    for priority, sector in enumerate(
+        (
+            "biomass",
+            "electricity",
+            "cement",
+            "steel",
+            "fuels",
+            "renewable",
+            "metals",
+            "mining",
+            "heat",
+            "cdr",
+            "battery",
+            "cars",
+            "two_wheelers",
+            "trucks",
+            "ships",
+            "buses",
+            "trains",
+            "final energy",
+            "emissions",
+            "external",
+        )
+    )
+}
 FACTORIZATION_EXCHANGE_LINEAGE_FIELD = "_premise factorization exchange lineages"
 FACTORIZATION_PROVIDER_ROUTING_FIELD = "_premise factorization provider routing"
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
@@ -387,7 +414,12 @@ class FactorizationIdentityRegistry:
             _ACTIVE_REGISTRY.reset(token)
             self._active_sector = previous
 
-    def register_shared_operation(self, payload: Mapping[str, Any]) -> None:
+    def register_shared_operation(
+        self,
+        payload: Mapping[str, Any],
+        *,
+        declaration_identity: Any = None,
+    ) -> None:
         """Record one invariant generic reducer declaration in the sidecar."""
 
         if not self._active_sector:
@@ -396,8 +428,17 @@ class FactorizationIdentityRegistry:
             "sector": self._active_sector,
             **{str(key): _plain(value) for key, value in payload.items()},
         }
+        if operation.get("operator") == "cached-provider-route":
+            operation["composition_priority"] = FACTORIZATION_SECTOR_PRIORITY.get(
+                self._active_sector, len(FACTORIZATION_SECTOR_PRIORITY)
+            )
+        token_payload = (
+            operation
+            if declaration_identity is None
+            else [self._active_sector, _plain(declaration_identity)]
+        )
         token = json.dumps(
-            operation,
+            token_payload,
             ensure_ascii=False,
             sort_keys=True,
             separators=(",", ":"),
@@ -673,12 +714,16 @@ def register_factorization_activity(dataset: Mapping[str, Any]) -> str | None:
     return None if registry is None else registry.register_created(dataset)
 
 
-def register_factorization_shared_operation(payload: Mapping[str, Any]) -> None:
+def register_factorization_shared_operation(
+    payload: Mapping[str, Any], *, declaration_identity: Any = None
+) -> None:
     """Record a reducer declaration only while factorization mode is active."""
 
     registry = _ACTIVE_REGISTRY.get()
     if registry is not None:
-        registry.register_shared_operation(payload)
+        registry.register_shared_operation(
+            payload, declaration_identity=declaration_identity
+        )
 
 
 def factorization_session_active() -> bool:
@@ -728,6 +773,7 @@ def register_factorization_derived_activity(
 __all__ = [
     "FACTORIZATION_EXCHANGE_LINEAGE_FIELD",
     "FACTORIZATION_IDENTITY_SCHEMA_VERSION",
+    "FACTORIZATION_SECTOR_PRIORITY",
     "FACTORIZATION_PROVIDER_ROUTING_FIELD",
     "FactorizationIdentityRegistry",
     "activity_fingerprint",

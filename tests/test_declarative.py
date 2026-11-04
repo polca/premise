@@ -5,6 +5,7 @@ import pytest
 
 from premise.core.declarative import (
     authoritative_column_operations,
+    cached_provider_route_operation,
     canonical_provider_kind_operation,
     normalized_provider_vector_operation,
     unavailable_provider_operation,
@@ -143,7 +144,6 @@ def test_provider_kind_operation_declares_one_market_family_policy():
         product="natural gas, high pressure",
         unit="cubic meter",
     )
-
     assert operation is not None
     assert operation.operator == "canonicalize-provider-kind"
     assert operation.target == "technosphere"
@@ -160,6 +160,47 @@ def test_provider_kind_operation_declares_one_market_family_policy():
         )
         is None
     )
+
+
+def test_cached_provider_route_operation_is_canonical_and_validated():
+    operation = cached_provider_route_operation(
+        consumer_location="CAZ",
+        request=(
+            "market group for electricity, low voltage",
+            "electricity, low voltage",
+            "Canada without Quebec",
+            "kilowatt hour",
+        ),
+        providers=(
+            (
+                "market group for electricity, low voltage",
+                "electricity, low voltage",
+                "Canada without Quebec",
+                "kilowatt hour",
+                0.4,
+            ),
+            (
+                "market group for electricity, low voltage",
+                "electricity, low voltage",
+                "CA",
+                "kilowatt hour",
+                0.6,
+            ),
+        ),
+    )
+
+    assert operation.operator == "cached-provider-route"
+    assert operation.payload["consumer_location"] == "CAZ"
+    assert [provider["location"] for provider in operation.payload["providers"]] == [
+        "CA",
+        "Canada without Quebec",
+    ]
+    with pytest.raises(ValueError, match="sum to one"):
+        cached_provider_route_operation(
+            consumer_location="CAZ",
+            request=("market", "electricity", "CA", "kilowatt hour"),
+            providers=(("market", "electricity", "CA", "kilowatt hour", 0.5),),
+        )
 
 
 def test_final_energy_provider_kind_policies_are_selection_independent():

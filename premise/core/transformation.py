@@ -40,7 +40,10 @@ from ..factorization import (
     factorization_session_active,
     register_factorization_shared_operation,
 )
-from .declarative import canonical_provider_kind_operation
+from .declarative import (
+    cached_provider_route_operation,
+    canonical_provider_kind_operation,
+)
 from ..iam.data_collection import IAMDataCollection
 from ..iam.geomap import Geomap
 from ..iam.system_models import ATTRIBUTIONAL_SYSTEM_MODELS, reference_output_amount
@@ -2570,6 +2573,19 @@ class BaseTransformation:
 
         # Add the new entry to the cache.
         model_cache[exc_key] = entry
+        if factorization_session_active():
+            operation = cached_provider_route_operation(
+                consumer_location=location,
+                request=exc_key,
+                providers=tuple(
+                    (provider[0], provider[1], provider[2], provider[3], provider[4])
+                    for provider in entry
+                ),
+            )
+            register_factorization_shared_operation(
+                operation.to_dict(),
+                declaration_identity=(operation.operator, location, *exc_key),
+            )
 
     def is_exchange_in_cache(self, exchange: dict, dataset_location: str) -> bool:
         """

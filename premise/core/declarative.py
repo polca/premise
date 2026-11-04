@@ -11,6 +11,7 @@ RELINK_UNAVAILABLE_PROVIDERS = "relink-unavailable-providers"
 AUTHORITATIVE_TECHNOSPHERE_COLUMN = "authoritative-technosphere-column"
 NORMALIZE_PROVIDER_VECTOR = "normalize-provider-vector"
 CANONICALIZE_PROVIDER_KIND = "canonicalize-provider-kind"
+CACHED_PROVIDER_ROUTE = "cached-provider-route"
 
 
 def unavailable_provider_operation(
@@ -138,12 +139,60 @@ def canonical_provider_kind_operation(
     )
 
 
+def cached_provider_route_operation(
+    *,
+    consumer_location: str,
+    request: tuple[str, str, str, str],
+    providers: Iterable[tuple[str, str, str, str, float]],
+) -> SharedOperation:
+    """Declare one deterministic entry from Premise's relinking cache."""
+
+    request = tuple(map(str, request))
+    entries = tuple(
+        sorted((*map(str, provider[:4]), float(provider[4])) for provider in providers)
+    )
+    if not consumer_location or len(request) != 4 or not all(request):
+        raise ValueError("Cached provider routes require a complete request")
+    if not entries or any(
+        not all(provider[:4]) or not math.isfinite(provider[4]) or provider[4] < 0.0
+        for provider in entries
+    ):
+        raise ValueError("Cached provider routes require finite provider shares")
+    if not math.isclose(sum(provider[4] for provider in entries), 1.0):
+        raise ValueError("Cached provider-route shares must sum to one")
+    return SharedOperation.from_payload(
+        operator=CACHED_PROVIDER_ROUTE,
+        target="technosphere",
+        payload={
+            "consumer_location": str(consumer_location),
+            "request": {
+                "name": request[0],
+                "product": request[1],
+                "location": request[2],
+                "unit": request[3],
+            },
+            "providers": [
+                {
+                    "name": provider[0],
+                    "product": provider[1],
+                    "location": provider[2],
+                    "unit": provider[3],
+                    "share": provider[4],
+                }
+                for provider in entries
+            ],
+        },
+    )
+
+
 __all__ = [
     "AUTHORITATIVE_TECHNOSPHERE_COLUMN",
+    "CACHED_PROVIDER_ROUTE",
     "CANONICALIZE_PROVIDER_KIND",
     "NORMALIZE_PROVIDER_VECTOR",
     "RELINK_UNAVAILABLE_PROVIDERS",
     "authoritative_column_operations",
+    "cached_provider_route_operation",
     "canonical_provider_kind_operation",
     "normalized_provider_vector_operation",
     "unavailable_provider_operation",

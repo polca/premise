@@ -1,4 +1,5 @@
 import copy
+from types import SimpleNamespace
 
 from premise import NewDatabase
 from premise.factorization import (
@@ -8,6 +9,7 @@ from premise.factorization import (
     exchange_identity_key,
     register_factorization_shared_operation,
 )
+from premise.core.transformation import BaseTransformation
 from premise.inventory.inventory_store import (
     IndexedInventoryList,
     create_inventory_store,
@@ -416,6 +418,70 @@ def test_factorization_payload_declares_created_and_derived_activity_origins():
         "qualifier": "EUR",
         "role": ["market for hydrogen", "hydrogen", "EUR", "kilogram"],
     }
+
+
+def test_keyed_shared_operation_keeps_latest_declaration():
+    registry = FactorizationIdentityRegistry()
+    with registry.session("fuels"):
+        registry.register_shared_operation(
+            {
+                "operator": "cached-provider-route",
+                "target": "technosphere",
+                "share": 0.4,
+            },
+            declaration_identity=("route", "CAZ", "electricity"),
+        )
+        registry.register_shared_operation(
+            {
+                "operator": "cached-provider-route",
+                "target": "technosphere",
+                "share": 0.6,
+            },
+            declaration_identity=("route", "CAZ", "electricity"),
+        )
+
+    assert registry.payload_for([])["shared_operations"] == [
+        {
+            "composition_priority": 4,
+            "operator": "cached-provider-route",
+            "sector": "fuels",
+            "share": 0.6,
+            "target": "technosphere",
+        }
+    ]
+
+
+def test_factorization_session_declares_cached_provider_route():
+    transformation = SimpleNamespace(cache={}, model="remind")
+    request = {
+        "name": "market group for electricity, low voltage",
+        "product": "electricity, low voltage",
+        "location": "RER",
+        "unit": "kilowatt hour",
+    }
+    allocated = [
+        {**request, "location": "DE"},
+        {**request, "location": "FR"},
+    ]
+    registry = FactorizationIdentityRegistry()
+
+    with registry.session("fuels"):
+        BaseTransformation.add_new_entry_to_cache(
+            transformation,
+            "EUR",
+            request,
+            allocated,
+            [0.6, 0.4],
+        )
+
+    operation = registry.payload_for([])["shared_operations"][0]
+    assert operation["operator"] == "cached-provider-route"
+    assert operation["composition_priority"] == 4
+    assert operation["payload"]["consumer_location"] == "EUR"
+    assert [item["location"] for item in operation["payload"]["providers"]] == [
+        "DE",
+        "FR",
+    ]
 
 
 def test_derived_activity_preserves_inherited_exchange_lineage():
