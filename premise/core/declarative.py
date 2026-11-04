@@ -117,9 +117,7 @@ def canonical_provider_kind_operation(
 
     def stem(name: str) -> str:
         return next(
-            name.removeprefix(prefix)
-            for prefix in prefixes
-            if name.startswith(prefix)
+            name.removeprefix(prefix) for prefix in prefixes if name.startswith(prefix)
         )
 
     if stem(source_name) != stem(target_name) or not product or not unit:

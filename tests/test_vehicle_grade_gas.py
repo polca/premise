@@ -183,9 +183,7 @@ def test_cng_regionalization_declares_provider_kind_capability(fuels):
     assert {operation["payload"]["product"] for operation in operations} == {
         "natural gas, high pressure"
     }
-    assert {operation["payload"]["unit"] for operation in operations} == {
-        "cubic meter"
-    }
+    assert {operation["payload"]["unit"] for operation in operations} == {"cubic meter"}
 
 
 @pytest.mark.parametrize("fuels", [2020, 2050], indirect=True)
