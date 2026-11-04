@@ -381,6 +381,39 @@ def test_derived_identity_is_sector_independent_and_uses_source_lineage():
     assert other_identity != final_identity
 
 
+def test_factorization_payload_declares_created_and_derived_activity_origins():
+    source = activity("source-code")
+    created = activity("created-code")
+    created["location"] = "EUR"
+    derived = activity("derived-code")
+    derived["location"] = "EUR"
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([source])
+
+    with registry.session("fuels"):
+        created_identity = registry.register_created(created)
+        derived_identity = registry.register_derived(
+            derived,
+            source=source,
+            operation="regionalized-proxy",
+            qualifier="EUR",
+        )
+
+    origins = registry.payload_for([source, created, derived])["activity_origins"]
+    assert origins[created_identity] == {
+        "kind": "created",
+        "role": ["market for hydrogen", "hydrogen", "EUR", "kilogram"],
+        "ordinal": 0,
+    }
+    assert origins[derived_identity] == {
+        "kind": "derived",
+        "source": registry.identity_for(source),
+        "operation": "regionalized-proxy",
+        "qualifier": "EUR",
+        "role": ["market for hydrogen", "hydrogen", "EUR", "kilogram"],
+    }
+
+
 def test_derived_activity_preserves_inherited_exchange_lineage():
     identities = []
     for sector in ("final energy", "fuels"):

@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 17
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 18
 FACTORIZATION_EXCHANGE_LINEAGE_FIELD = "_premise factorization exchange lineages"
 FACTORIZATION_PROVIDER_ROUTING_FIELD = "_premise factorization provider routing"
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
@@ -115,6 +115,7 @@ class FactorizationIdentityRegistry:
         self._created_counts: dict[tuple[str, str, str, str], int] = {}
         self._created_identities: dict[tuple[str, str, str, str], list[str]] = {}
         self._created_identity_codes: dict[str, set[str]] = {}
+        self._activity_origins: dict[str, dict[str, Any]] = {}
         self._baseline_exchanges: dict[tuple[str, tuple[Any, ...], int], str] = {}
         self._baseline_registered = False
         self._active_sector: str | None = None
@@ -252,6 +253,11 @@ class FactorizationIdentityRegistry:
         )
         identity = self._identity(token)
         self._created_identities.setdefault(group, []).append(identity)
+        self._activity_origins[identity] = {
+            "kind": "created",
+            "role": list(semantics),
+            "ordinal": ordinal,
+        }
         self._by_object[id(dataset)] = identity
         if code not in (None, ""):
             self._by_code[str(code)] = identity
@@ -326,6 +332,13 @@ class FactorizationIdentityRegistry:
         )
         identity = self._identity(token)
         self._by_object[id(dataset)] = identity
+        self._activity_origins[identity] = {
+            "kind": "derived",
+            "source": source_identity,
+            "operation": str(operation),
+            "qualifier": _plain(qualifier),
+            "role": list(activity_semantics(dataset)),
+        }
         if code not in (None, ""):
             self._by_code[str(code)] = identity
 
@@ -480,6 +493,11 @@ class FactorizationIdentityRegistry:
             )
             identity = self._identity(token)
             self._by_object[id(dataset)] = identity
+            self._activity_origins[identity] = {
+                "kind": "created",
+                "role": list(semantics),
+                "ordinal": 0,
+            }
             if code not in (None, ""):
                 identities[str(code)] = identity
                 self._by_code[str(code)] = identity
@@ -494,6 +512,11 @@ class FactorizationIdentityRegistry:
                 "ambiguous_provider_count": 0,
                 "missing_exchange_count": 0,
                 "missing_count": len(missing),
+                "activity_origins": {
+                    identity: self._activity_origins[identity]
+                    for identity in sorted(set(identities.values()))
+                    if identity in self._activity_origins
+                },
                 "shared_operations": [
                     self._shared_operations[token]
                     for token in sorted(self._shared_operations)
@@ -596,6 +619,11 @@ class FactorizationIdentityRegistry:
             "ambiguous_provider_count": ambiguous_provider_count,
             "missing_exchange_count": 0,
             "missing_count": len(missing),
+            "activity_origins": {
+                identity: self._activity_origins[identity]
+                for identity in sorted(set(identities.values()))
+                if identity in self._activity_origins
+            },
             "shared_operations": [
                 self._shared_operations[token]
                 for token in sorted(self._shared_operations)
@@ -608,10 +636,20 @@ class FactorizationIdentityRegistry:
         result = dict(payload)
         identities = dict(result.get("identities", {}))
         identities.update(self._by_code)
+        current_identities = set(identities.values())
+        activity_origins = dict(result.get("activity_origins", {}))
+        activity_origins.update(
+            {
+                identity: origin
+                for identity, origin in self._activity_origins.items()
+                if identity in current_identities
+            }
+        )
         result.update(
             {
                 "schema_version": self.schema_version,
                 "identities": identities,
+                "activity_origins": activity_origins,
                 "missing_count": int(result.get("missing_count", 0)),
             }
         )
