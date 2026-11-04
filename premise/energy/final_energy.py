@@ -11,6 +11,7 @@ from ..inventory.inventory_store import (
     get_scenario_inventory,
     replace_scenario_inventory,
 )
+from ..reporting.provenance import record_change_event
 from ..transport.battery_mass import convert_battery_mass_inputs
 
 
@@ -78,6 +79,16 @@ def _update_final_energy(
                 continue
             source = select_source(vehicles, name, dataset["location"])
             normalize(dataset, source, vehicles)
+            record_change_event(
+                final_energy,
+                dataset,
+                "modified",
+                reason_code="final_energy.vehicle_energy.normalized",
+                explanation=(
+                    "Reconstructed the final-energy wrapper from its declared "
+                    "vehicle-service source."
+                ),
+            )
 
     final_energy.relink_datasets()
     replace_scenario_inventory(scenario, final_energy.database)
