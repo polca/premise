@@ -17,7 +17,11 @@ from premise.transformation import (
     prepare_fuel_filters,
 )
 
-from premise.factorization import FACTORIZATION_EXCHANGE_LINEAGE_FIELD
+from premise.factorization import (
+    FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
+    FACTORIZATION_PROVIDER_ROUTING_FIELD,
+    FactorizationIdentityRegistry,
+)
 
 
 def test_exclude_exchange_objects_does_not_compare_mapping_contents():
@@ -139,6 +143,27 @@ def test_relinked_exchanges_preserve_requested_provider_intent():
     summarized = transformation.summarize_exchanges(exchanges)
 
     assert summarized[0]["premise provider intents"] == [requested]
+    assert FACTORIZATION_PROVIDER_ROUTING_FIELD not in summarized[0]
+
+
+def test_relinked_exchanges_declare_fixed_routing_only_during_factorization():
+    transformation = object.__new__(BaseTransformation)
+    requested = {
+        "name": "market for natural gas",
+        "product": "natural gas",
+        "location": "RER",
+        "unit": "cubic meter",
+    }
+
+    with FactorizationIdentityRegistry().session("fuels"):
+        exchanges = transformation.create_new_exchanges(
+            [("market for natural gas", "natural gas", "EUR", "cubic meter", 1.0)],
+            2.0,
+            requested_provider=requested,
+        )
+        summarized = transformation.summarize_exchanges(exchanges)
+
+    assert summarized[0][FACTORIZATION_PROVIDER_ROUTING_FIELD] == "fixed"
 
 
 def test_relinked_exchanges_preserve_and_union_source_lineages():

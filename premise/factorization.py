@@ -14,8 +14,9 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 13
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 14
 FACTORIZATION_EXCHANGE_LINEAGE_FIELD = "_premise factorization exchange lineages"
+FACTORIZATION_PROVIDER_ROUTING_FIELD = "_premise factorization provider routing"
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
 
 
@@ -603,6 +604,12 @@ def register_factorization_shared_operation(payload: Mapping[str, Any]) -> None:
         registry.register_shared_operation(payload)
 
 
+def factorization_session_active() -> bool:
+    """Return whether mutations are running inside a factorization session."""
+
+    return _ACTIVE_REGISTRY.get() is not None
+
+
 def bind_factorization_activity_storage_id(
     dataset: Mapping[str, Any], storage_id: int
 ) -> str | None:
@@ -644,6 +651,7 @@ def register_factorization_derived_activity(
 __all__ = [
     "FACTORIZATION_EXCHANGE_LINEAGE_FIELD",
     "FACTORIZATION_IDENTITY_SCHEMA_VERSION",
+    "FACTORIZATION_PROVIDER_ROUTING_FIELD",
     "FactorizationIdentityRegistry",
     "activity_fingerprint",
     "activity_semantics",
@@ -651,6 +659,7 @@ __all__ = [
     "current_factorization_activity_identity",
     "exchange_identity_key",
     "exchange_semantics",
+    "factorization_session_active",
     "register_factorization_activity",
     "register_factorization_derived_activity",
 ]

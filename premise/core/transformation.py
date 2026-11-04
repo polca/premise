@@ -34,7 +34,11 @@ from wurst import searching as ws
 from wurst import transformations as wt  # noqa: F401
 from xarray import DataArray
 
-from ..factorization import FACTORIZATION_EXCHANGE_LINEAGE_FIELD
+from ..factorization import (
+    FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
+    FACTORIZATION_PROVIDER_ROUTING_FIELD,
+    factorization_session_active,
+)
 from ..iam.data_collection import IAMDataCollection
 from ..iam.geomap import Geomap
 from ..iam.system_models import ATTRIBUTIONAL_SYSTEM_MODELS, reference_output_amount
@@ -2387,6 +2391,8 @@ class BaseTransformation:
                 exchange["comment"] = comment
             if provider_intent:
                 exchange["premise provider intents"] = [provider_intent]
+            if factorization_session_active():
+                exchange[FACTORIZATION_PROVIDER_ROUTING_FIELD] = "fixed"
             lineages = (
                 requested_provider.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ())
                 if requested_provider is not None
@@ -2457,6 +2463,15 @@ class BaseTransformation:
                     }
                     for intent in sorted(provider_intents)
                 ]
+            provider_routing = {
+                str(item[FACTORIZATION_PROVIDER_ROUTING_FIELD])
+                for item in exchanges
+                if item.get(FACTORIZATION_PROVIDER_ROUTING_FIELD)
+            }
+            if len(provider_routing) == 1:
+                exchange[FACTORIZATION_PROVIDER_ROUTING_FIELD] = next(
+                    iter(provider_routing)
+                )
             lineages = {
                 str(lineage)
                 for item in exchanges
