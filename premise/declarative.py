@@ -120,23 +120,41 @@ class MetadataProposal:
     activity: str
     field: str
     value_json: str
+    condition: str = "always"
 
     def __post_init__(self) -> None:
         if not self.activity or not self.field:
             raise ValueError("Metadata proposals require activity and field identities")
+        if self.condition not in {"always", "has-biosphere-exchanges"}:
+            raise ValueError(f"Unsupported metadata condition: {self.condition!r}")
         canonical = _canonical_json(json.loads(self.value_json))
         object.__setattr__(self, "value_json", canonical)
 
     @classmethod
-    def from_value(cls, activity: str, field: str, value: Any) -> MetadataProposal:
-        return cls(activity=activity, field=field, value_json=_canonical_json(value))
+    def from_value(
+        cls,
+        activity: str,
+        field: str,
+        value: Any,
+        *,
+        condition: str = "always",
+    ) -> MetadataProposal:
+        return cls(
+            activity=activity,
+            field=field,
+            value_json=_canonical_json(value),
+            condition=condition,
+        )
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        payload = {
             "activity": self.activity,
             "field": self.field,
             "value": json.loads(self.value_json),
         }
+        if self.condition != "always":
+            payload["condition"] = self.condition
+        return payload
 
 
 @dataclass(frozen=True, order=True, slots=True)

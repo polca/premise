@@ -168,6 +168,7 @@ class EmissionsPatchPlanner:
                         activity.identity,
                         "log parameters",
                         log_parameters,
+                        condition="has-biosphere-exchanges",
                     )
                 )
 

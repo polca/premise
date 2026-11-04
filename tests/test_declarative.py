@@ -224,6 +224,7 @@ def test_emissions_patch_covers_inactive_latent_electricity_activity():
             0.4,
         ),
     )
+    assert emissions.metadata[0].condition == "has-biosphere-exchanges"
     assert planner.plan(reference).digest == emissions.digest
     assert compose_patches([electricity, emissions]).factors[0].factor == 0.4
 
