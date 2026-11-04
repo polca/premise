@@ -3,15 +3,33 @@ This module contains the class to create final energy use
 datasets based on IAM output data.
 """
 
-from typing import List
-
+from ..core.declarative import canonical_provider_kind_operation
+from ..core.transformation import BaseTransformation, InventorySet
+from ..factorization import register_factorization_shared_operation
 from ..iam.data_collection import IAMDataCollection
 from ..inventory.inventory_store import (
     get_scenario_inventory,
     replace_scenario_inventory,
 )
-from ..core.transformation import BaseTransformation, InventorySet
 from ..transport.battery_mass import convert_battery_mass_inputs
+
+
+def _declare_provider_kind_policies() -> None:
+    """Declare final-energy relinking policies without inspecting live providers."""
+
+    families = (
+        ("natural gas, high pressure", "cubic meter"),
+        ("heat, district or industrial, natural gas", "megajoule"),
+    )
+    for family, unit in families:
+        operation = canonical_provider_kind_operation(
+            source_name=f"market for {family}",
+            target_names=(f"market group for {family}",),
+            product=family,
+            unit=unit,
+        )
+        if operation is not None:
+            register_factorization_shared_operation(operation.to_dict())
 
 
 def _update_final_energy(
@@ -23,6 +41,8 @@ def _update_final_energy(
     if scenario["iam data"].final_energy_use is None:
         print("No final energy scenario data available -- skipping")
         return scenario
+
+    _declare_provider_kind_policies()
 
     final_energy = FinalEnergy(
         database=get_scenario_inventory(scenario),
@@ -44,10 +64,10 @@ def _update_final_energy(
     # energy and battery sizing once, before final supplier relinking.
     from ..transport.vehicle_energy_use import (
         SOURCE_KEY,
+        VehicleLookup,
         normalize,
         select_source,
         source_name,
-        VehicleLookup,
     )
 
     vehicles = VehicleLookup(final_energy.database)
@@ -84,14 +104,14 @@ class FinalEnergy(BaseTransformation):
 
     def __init__(
         self,
-        database: List[dict],
+        database: list[dict],
         iam_data: IAMDataCollection,
         model: str,
         pathway: str,
         year: int,
         version: str,
         system_model: str,
-        cache: dict = None,
+        cache: dict | None = None,
     ) -> None:
         super().__init__(
             database,

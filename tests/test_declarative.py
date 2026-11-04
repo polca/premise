@@ -24,6 +24,8 @@ from premise.declarative import (
     compose_patches,
 )
 from premise.emissions.declarative import EmissionsPatchPlanner
+from premise.energy.final_energy import _declare_provider_kind_policies
+from premise.factorization import FactorizationIdentityRegistry
 from premise.transport.declarative import vehicle_emission_operations
 
 
@@ -157,6 +159,23 @@ def test_provider_kind_operation_declares_one_market_family_policy():
             unit="cubic meter",
         )
         is None
+    )
+
+
+def test_final_energy_provider_kind_policies_are_selection_independent():
+    registry = FactorizationIdentityRegistry()
+    with registry.session("final energy"):
+        _declare_provider_kind_policies()
+
+    operations = registry.payload_for([])["shared_operations"]
+    assert len(operations) == 2
+    assert {operation["payload"]["product"] for operation in operations} == {
+        "natural gas, high pressure",
+        "heat, district or industrial, natural gas",
+    }
+    assert all(
+        operation["operator"] == "canonicalize-provider-kind"
+        for operation in operations
     )
 
 
