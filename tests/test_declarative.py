@@ -5,6 +5,7 @@ import pytest
 
 from premise.core.declarative import (
     authoritative_column_operations,
+    normalized_provider_vector_operation,
     unavailable_provider_operation,
 )
 from premise.declarative import (
@@ -327,3 +328,25 @@ def test_emptied_activity_declares_authoritative_technosphere_column():
     assert operations[0].payload == {
         "allowed_providers": ["old-cement", "regional-cement"]
     }
+
+
+def test_normalized_provider_vector_declaration_is_canonical_and_validated():
+    operation = normalized_provider_vector_operation(
+        target="market",
+        weights={"provider-b": 3, "provider-a": 1},
+        total=-4,
+        replace_providers=("legacy", "legacy"),
+    )
+
+    assert operation.operator == "normalize-provider-vector"
+    assert operation.target == "market"
+    assert operation.payload == {
+        "replace_providers": ["legacy"],
+        "total": -4.0,
+        "weights": {"provider-a": 1.0, "provider-b": 3.0},
+    }
+
+    with pytest.raises(ValueError, match="sum above zero"):
+        normalized_provider_vector_operation(
+            target="market", weights={"provider": 0}, total=-1
+        )

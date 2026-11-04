@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 3
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 5
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
 
 
@@ -109,6 +109,7 @@ class FactorizationIdentityRegistry:
         self._by_object: dict[int, str] = {}
         self._by_code: dict[str, str] = {}
         self._created_counts: dict[tuple[str, tuple[str, str, str, str]], int] = {}
+        self._baseline_exchanges: dict[tuple[str, tuple[Any, ...], int], str] = {}
         self._baseline_registered = False
         self._active_sector: str | None = None
         self._last_sector: str | None = None
@@ -147,6 +148,28 @@ class FactorizationIdentityRegistry:
             self._by_object[id(dataset)] = self._identity(token)
             if code not in (None, ""):
                 self._by_code[str(code)] = self._by_object[id(dataset)]
+            exchange_occurrences: dict[tuple[Any, ...], int] = {}
+            exchange_consumer = (
+                str(code) if code not in (None, "") else self._by_object[id(dataset)]
+            )
+            for exchange in dataset.get("exchanges", ()):
+                semantics = exchange_semantics(exchange)
+                occurrence = exchange_occurrences.get(semantics, 0)
+                exchange_occurrences[semantics] = occurrence + 1
+                exchange_token = json.dumps(
+                    [
+                        "baseline-exchange",
+                        exchange_consumer,
+                        semantics,
+                        occurrence,
+                    ],
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                )
+                identity = self._identity(exchange_token)
+                self._baseline_exchanges[(exchange_consumer, semantics, occurrence)] = (
+                    identity
+                )
         self._baseline_registered = True
 
     def register_created(
@@ -221,6 +244,7 @@ class FactorizationIdentityRegistry:
                 candidates.setdefault(activity_semantics(dataset), []).append(identity)
 
         provider_identities: dict[str, dict[str, str]] = {}
+        exchange_identities: dict[str, dict[str, str]] = {}
         ambiguous_provider_count = 0
         ambiguous_candidates = {
             semantics: matches
@@ -232,8 +256,26 @@ class FactorizationIdentityRegistry:
             if consumer_code in (None, ""):
                 continue
             links: dict[str, str] = {}
+            exchange_links: dict[str, str] = {}
             occurrences: dict[tuple[Any, ...], int] = {}
             for exchange in dataset.get("exchanges", ()):
+                semantics = exchange_semantics(exchange)
+                occurrence = occurrences.get(semantics, 0)
+                occurrences[semantics] = occurrence + 1
+                exchange_key = exchange_identity_key(exchange, occurrence)
+                consumer_identity = identities.get(str(consumer_code), "")
+                identity = self._baseline_exchanges.get(
+                    (str(consumer_code), semantics, occurrence)
+                )
+                if identity is None:
+                    token = json.dumps(
+                        ["exchange", consumer_identity, semantics, occurrence],
+                        ensure_ascii=False,
+                        separators=(",", ":"),
+                    )
+                    identity = self._identity(token)
+                exchange_links[exchange_key] = identity
+
                 if exchange.get("type") != "technosphere":
                     continue
                 raw_input = exchange.get("input")
@@ -242,21 +284,20 @@ class FactorizationIdentityRegistry:
                     # consumers and need no semantic sidecar link.
                     continue
                 matches = ambiguous_candidates.get(activity_semantics(exchange), [])
-                if not matches:
-                    continue
-                semantics = exchange_semantics(exchange)
-                occurrence = occurrences.get(semantics, 0)
-                occurrences[semantics] = occurrence + 1
-                exchange_key = exchange_identity_key(exchange, occurrence)
-                links[exchange_key] = matches[0]
-                ambiguous_provider_count += 1
+                if matches:
+                    links[exchange_key] = matches[0]
+                    ambiguous_provider_count += 1
             if links:
                 provider_identities[str(consumer_code)] = links
+            if exchange_links:
+                exchange_identities[str(consumer_code)] = exchange_links
         return {
             "schema_version": self.schema_version,
             "identities": identities,
             "provider_identities": provider_identities,
+            "exchange_identities": exchange_identities,
             "ambiguous_provider_count": ambiguous_provider_count,
+            "missing_exchange_count": 0,
             "missing_count": len(missing),
         }
 

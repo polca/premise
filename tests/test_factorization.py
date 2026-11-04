@@ -157,6 +157,55 @@ def test_sidecar_resolves_duplicate_provider_metadata_without_mutating_exchanges
     assert database == expected
 
 
+def test_sidecar_preserves_atomic_exchange_identities_after_materialization():
+    original = activity("source-code")
+    original["exchanges"].append(
+        {
+            "name": "Carbon dioxide, fossil",
+            "categories": ("air",),
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.5,
+        }
+    )
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([original])
+    first = registry.payload_for([original])
+    materialized = copy.deepcopy(original)
+    second = registry.payload_for([materialized])
+
+    assert first["exchange_identities"] == second["exchange_identities"]
+    assert len(first["exchange_identities"]["source-code"]) == 2
+
+
+def test_added_exchange_identity_depends_on_content_not_python_object_address():
+    source = activity("source-code")
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([source])
+    added = {
+        "name": "first input",
+        "product": "first product",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 0.5,
+    }
+    source["exchanges"].append(added)
+
+    first = registry.payload_for([source])
+    first_key = exchange_identity_key(added, 0)
+    first_identity = first["exchange_identities"]["source-code"][first_key]
+
+    # Reusing and mutating the same dictionary simulates the object-address
+    # reuse which occurs when sector updates remove and create many exchanges.
+    added.update(name="second input", product="second product")
+    second = registry.payload_for([source])
+    second_key = exchange_identity_key(added, 0)
+    second_identity = second["exchange_identities"]["source-code"][second_key]
+
+    assert second_identity != first_identity
+
+
 def test_identities_survive_inventory_materialization_to_new_objects():
     original = activity("source-code")
     registry = FactorizationIdentityRegistry()
@@ -220,4 +269,26 @@ def test_new_database_returns_a_copy_of_factorization_metadata():
     assert (
         database.scenarios[0]["_factorization_identities"]["identities"]["source-code"]
         == "stable-id"
+    )
+
+
+def test_new_database_finalizes_atomic_sidecar_on_materialized_output():
+    source = activity("source-code")
+    materialized = copy.deepcopy(source)
+    definition = {"model": "remind", "pathway": "SSP2-NPi", "year": 2050}
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([source])
+    database = NewDatabase.__new__(NewDatabase)
+    database.factorization_mode = True
+    database.scenarios = [definition]
+    database._factorization_registries = {
+        database._scenario_identity(definition): registry
+    }
+
+    payload = database.factorization_metadata_for([materialized])
+
+    assert payload["exchange_identities"]["source-code"]
+    assert (
+        database.factorization_metadata()["exchange_identities"]
+        == payload["exchange_identities"]
     )

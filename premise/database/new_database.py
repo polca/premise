@@ -1590,6 +1590,31 @@ class NewDatabase:
             return {}
         return copy.deepcopy(payload)
 
+    def factorization_metadata_for(self, datasets, scenario: int = 0) -> dict:
+        """Finalize the sidecar while a factorization consumer scans output.
+
+        Compact updates deliberately avoid a full exchange scan in the timed
+        update path. Exporters that already materialize the graph can call this
+        method once on that materialization to collect atomic edge identities
+        without increasing normal Premise runtime.
+        """
+
+        if not getattr(self, "factorization_mode", False):
+            raise RuntimeError(
+                "NewDatabase was not initialized with factorization_mode=True."
+            )
+        if scenario < 0 or scenario >= len(self.scenarios):
+            raise IndexError(
+                f"scenario position {scenario} is outside 0..{len(self.scenarios) - 1}."
+            )
+        definition = self.scenarios[scenario]
+        registry = self._get_factorization_registry(definition)
+        if registry is None:  # pragma: no cover - guarded by factorization_mode
+            return {}
+        payload = registry.payload_for(datasets)
+        definition["_factorization_identities"] = payload
+        return copy.deepcopy(payload)
+
     def _restore_scenario_provenance(
         self, scenario: dict, store: InventoryStore
     ) -> None:
