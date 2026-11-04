@@ -1613,6 +1613,48 @@ class NewDatabase:
         if registry is None:  # pragma: no cover - guarded by factorization_mode
             return {}
         payload = registry.payload_for(datasets)
+        return self._factorization_metadata_with_ownership(
+            payload, datasets, scenario=scenario
+        )
+
+    def factorization_metadata_for_activities(
+        self, datasets, scenario: int = 0
+    ) -> dict:
+        """Attach provenance using an existing sidecar and activity-only rows.
+
+        Compact sparse exports run after ``update`` has already finalized all
+        atomic exchange and provider identities. Reusing that sidecar avoids a
+        second million-row exchange scan while still adding delivery ownership.
+        """
+
+        if not getattr(self, "factorization_mode", False):
+            raise RuntimeError(
+                "NewDatabase was not initialized with factorization_mode=True."
+            )
+        if scenario < 0 or scenario >= len(self.scenarios):
+            raise IndexError(
+                f"scenario position {scenario} is outside 0..{len(self.scenarios) - 1}."
+            )
+        datasets = list(datasets)
+        definition = self.scenarios[scenario]
+        registry = self._get_factorization_registry(definition)
+        if registry is None:  # pragma: no cover - guarded by factorization_mode
+            return {}
+        activity_payload = registry.payload_for(datasets, include_exchanges=False)
+        payload = self.factorization_metadata(scenario)
+        payload["identities"] = activity_payload["identities"]
+        payload["missing_count"] = activity_payload["missing_count"]
+        return self._factorization_metadata_with_ownership(
+            payload, datasets, scenario=scenario
+        )
+
+    def _factorization_metadata_with_ownership(
+        self, payload: dict, datasets, *, scenario: int
+    ) -> dict:
+        """Merge activity provenance into an already finalized sidecar."""
+
+        datasets = list(datasets)
+        definition = self.scenarios[scenario]
         current_identities = set(payload.get("identities", {}).values())
         semantic_candidates: dict[tuple[str, str, str, str], list[str]] = {}
         for dataset in datasets:
@@ -1787,6 +1829,26 @@ class NewDatabase:
         return self.get_inventory_store(scenario).materialize(
             restore_metadata=restore_metadata
         )
+
+    def export_sparse_inventory(self, scenario: int = 0):
+        """Return a zero-copy sparse view over a compact scenario inventory.
+
+        Unlike the legacy matrix and Brightway writers, this handoff does not
+        construct a nested ``list[dict]`` database and does not touch the
+        filesystem.  Activity and exchange payloads remain owned by the
+        scenario's compact store and are exposed read-only to the consumer.
+        """
+
+        from ..export.sparse_inventory import export_sparse_inventory
+
+        exported = export_sparse_inventory(self.get_inventory_store(scenario))
+        if getattr(self, "factorization_mode", False):
+            exported.factorization_metadata = (
+                self.factorization_metadata_for_activities(
+                    exported.factorization_activities(), scenario=scenario
+                )
+            )
+        return exported
 
     def _validation_source_fingerprint(self) -> str:
         """Fingerprint source/cache identity without materialising the graph."""

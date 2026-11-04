@@ -122,6 +122,22 @@ def test_code_free_baseline_identity_survives_materialization_with_code():
     assert payload["identities"]["materialized-code"] == expected
 
 
+def test_activity_only_payload_does_not_scan_exchanges():
+    class UnscannableExchanges:
+        def __iter__(self):
+            raise AssertionError("activity-only payload scanned exchanges")
+
+    source = activity("source")
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([source])
+    source["exchanges"] = UnscannableExchanges()
+
+    payload = registry.payload_for([source], include_exchanges=False)
+
+    assert payload["identities"]["source"] == registry.identity_for(source)
+    assert payload["exchange_identities"] == {}
+
+
 def test_creator_sector_distinguishes_semantically_identical_added_markets():
     electricity = activity("electricity-market")
     fuels = activity("fuels-market")
@@ -387,6 +403,8 @@ def test_derived_activity_preserves_inherited_exchange_lineage():
         identities.append(
             next(iter(payload["exchange_identities"][derived["code"]].values()))
         )
+        derived_identity = payload["identities"][derived["code"]]
+        assert next(iter(payload["exchange_lineages"][derived_identity].values()))
         assert FACTORIZATION_EXCHANGE_LINEAGE_FIELD not in derived["exchanges"][0]
 
     assert identities[0] == identities[1]

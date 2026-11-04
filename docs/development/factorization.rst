@@ -37,6 +37,41 @@ use by ``db-assembler``. Callers should reject unknown ``schema_version``
 values. ``factorization_identities()`` remains a convenience method when only
 the activity-code mapping is needed.
 
+In-memory sparse handoff
+------------------------
+
+Consumers that immediately build matrix records should use the compact-store
+handoff instead of materializing a nested inventory::
+
+    ndb = NewDatabase(
+        ...,
+        inventory_backend="compact",
+        factorization_mode=True,
+    )
+    ndb.update(["electricity"], persist=False)
+    exported = ndb.export_sparse_inventory()
+
+    for activity in exported.iter_activities():
+        consume_activity(activity.storage_id, activity.payload)
+    for exchange in exported.iter_exchanges():
+        consume_exchange(
+            exchange.output_activity_id,
+            exchange.ordinal,
+            exchange.payload,
+        )
+
+``export_sparse_inventory`` is an in-memory, read-only view over the compact
+store. It neither calls ``materialize_inventory`` nor writes CSV files. The
+activity and exchange streams are re-iterable and retain dense store IDs so a
+consumer can construct integer matrix coordinates directly. Payload mappings
+are borrowed for the lifetime of the view and must not be mutated.
+
+The handoff includes the finalized factorization sidecar. Schema 17 records
+derived exchange lineages separately from provisional exchange UUIDs. A
+consumer derives the final UUID after activity identities have been reconciled;
+this prevents a pre-reconciliation UUID from depending on update context. The
+activity-only reconciliation does not rescan all exchanges.
+
 Performance contract
 --------------------
 
@@ -47,3 +82,8 @@ Keyless baseline identities never hash complete exchange payloads. On a warm
 cache, the median complete update runtime should remain within 20 percent of
 the standard path. Record the source database, scenario, selected sectors,
 backend, cache state and at least three runs when checking this threshold.
+
+For REMIND SSP2-NPi 2050 final energy, a warm compact update took 27.7 seconds
+and the in-memory sparse handoff took 0.78 seconds for 30,683 activities and
+988,796 stored exchange rows. This diagnostic is evidence for the handoff
+phase only; the project performance gate still requires alternating medians.

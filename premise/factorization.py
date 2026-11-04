@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 16
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 17
 FACTORIZATION_EXCHANGE_LINEAGE_FIELD = "_premise factorization exchange lineages"
 FACTORIZATION_PROVIDER_ROUTING_FIELD = "_premise factorization provider routing"
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
@@ -387,8 +387,18 @@ class FactorizationIdentityRegistry:
         )
         self._shared_operations[token] = operation
 
-    def payload_for(self, datasets: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
-        """Return identities keyed by current activity code for one scenario."""
+    def payload_for(
+        self,
+        datasets: Iterable[Mapping[str, Any]],
+        *,
+        include_exchanges: bool = True,
+    ) -> dict[str, Any]:
+        """Return identities keyed by current activity code for one scenario.
+
+        ``include_exchanges=False`` resolves only activity identities. It is
+        used by compact sparse exporters after atomic edge identities have
+        already been finalized during ``NewDatabase.update``.
+        """
 
         datasets = list(datasets)
         identities: dict[str, str] = {}
@@ -474,6 +484,22 @@ class FactorizationIdentityRegistry:
                 identities[str(code)] = identity
                 self._by_code[str(code)] = identity
 
+        if not include_exchanges:
+            return {
+                "schema_version": self.schema_version,
+                "identities": identities,
+                "provider_identities": {},
+                "exchange_identities": {},
+                "exchange_lineages": {},
+                "ambiguous_provider_count": 0,
+                "missing_exchange_count": 0,
+                "missing_count": len(missing),
+                "shared_operations": [
+                    self._shared_operations[token]
+                    for token in sorted(self._shared_operations)
+                ],
+            }
+
         candidates: dict[tuple[str, str, str, str], list[str]] = {}
         for dataset in datasets:
             code = dataset.get("code")
@@ -483,6 +509,7 @@ class FactorizationIdentityRegistry:
 
         provider_identities: dict[str, dict[str, str]] = {}
         exchange_identities: dict[str, dict[str, str]] = {}
+        exchange_lineages: dict[str, dict[str, list[str]]] = {}
         ambiguous_provider_count = 0
         ambiguous_candidates = {
             semantics: matches
@@ -495,6 +522,7 @@ class FactorizationIdentityRegistry:
                 continue
             links: dict[str, str] = {}
             exchange_links: dict[str, str] = {}
+            lineage_links: dict[str, list[str]] = {}
             occurrences: dict[tuple[Any, ...], int] = {}
             for exchange in dataset.get("exchanges", ()):
                 semantics = exchange_semantics(exchange)
@@ -506,6 +534,7 @@ class FactorizationIdentityRegistry:
                 inherited = tuple(sorted(set(map(str, inherited or ()))))
                 identity = None
                 if inherited:
+                    lineage_links[exchange_key] = list(inherited)
                     consumer_semantics = activity_semantics(dataset)
                     consumer_role = (
                         ["public-role", consumer_semantics]
@@ -554,11 +583,16 @@ class FactorizationIdentityRegistry:
                 provider_identities[str(consumer_code)] = links
             if exchange_links:
                 exchange_identities[str(consumer_code)] = exchange_links
+            if lineage_links:
+                stable_consumer = identities.get(str(consumer_code))
+                if stable_consumer is not None:
+                    exchange_lineages[str(stable_consumer)] = lineage_links
         return {
             "schema_version": self.schema_version,
             "identities": identities,
             "provider_identities": provider_identities,
             "exchange_identities": exchange_identities,
+            "exchange_lineages": exchange_lineages,
             "ambiguous_provider_count": ambiguous_provider_count,
             "missing_exchange_count": 0,
             "missing_count": len(missing),

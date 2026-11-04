@@ -41,6 +41,28 @@ composed inventory matches the canonical sequential output, and the runtime and
 memory gates remain satisfied. The production format must not contain
 prerequisite-gated pair corrections.
 
+Validation strategy
+-------------------
+
+Certification uses structural coverage instead of running every unordered
+sector pair through the expensive sequential oracle. It must include:
+
+* all 19 singleton sectors against the sequential Premise oracle;
+* the all-sector selection and every all-minus-one selection;
+* every edge in the measured read/write and coordinate-overlap graph, in both
+  caller orders;
+* overlap-connected triples and a deterministic strength-two/strength-three
+  covering array for larger selections; and
+* deterministic randomized larger subsets as a final safeguard.
+
+Disjoint pairs are covered by patch-context invariance plus property tests of
+the generic composer. Those tests exhaustively exercise commutativity,
+associativity, activation idempotence, duplicate-provider handling,
+normalization, and conflict rejection without rerunning Premise. A disjoint
+pair is promoted to an oracle case whenever instrumentation discovers a shared
+read, write, provider, activation, or reducer declaration. The all-sector case
+alone is never considered sufficient because independent errors can cancel.
+
 Emissions pilot
 ---------------
 
