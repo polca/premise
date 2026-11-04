@@ -80,14 +80,16 @@ electricity/emissions interaction for matrix values; it is not certification of
 the other 18 sectors or of the final performance gates.
 
 Vehicle emissions are a genuine shared operation rather than a pair-specific
-exception. Vehicle planners declare a stable wrapper identity, representative
-source identity, purchased-energy denominator, and fuel-derived flows. After
-ordinary factors are composed, the generic ``vehicle-emissions-from-source``
-reducer preserves the wrapper's fuel-derived emissions and refreshes its other
-emissions from the composed source column exactly once. The declaration does
-not name or inspect the emissions sector. On the same REMIND case, 53 such
-declarations reproduce the canonical cars-plus-emissions matrices exactly
-within tolerance.
+exception. The emissions planner declares a stable wrapper identity,
+representative source identity, purchased-energy denominator, and fuel-derived
+flows from the immutable latent reference. After ordinary factors are composed,
+the generic ``vehicle-emissions-from-source`` reducer preserves the wrapper's
+fuel-derived emissions and refreshes its other emissions from the composed
+source column exactly once. The declaration does not name or inspect any
+selected transport sector. On the same REMIND case, one unchanged emissions
+patch containing 53 declarations reproduces the canonical cars, buses, trucks,
+trains, ships, and two-wheelers pair matrices with no coordinate or value
+mismatch.
 
 Provider and column ownership
 -----------------------------

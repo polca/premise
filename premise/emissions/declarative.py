@@ -16,6 +16,7 @@ from ..declarative import (
     SectorPatch,
 )
 from ..inventory.activity_maps import GAINS_MAPPING, get_mapping
+from ..transport.declarative import vehicle_emission_operations
 
 
 def _activity_field(activity, field: str) -> str:
@@ -181,6 +182,7 @@ class EmissionsPatchPlanner:
                 for coordinate, factor in factors.items()
             ),
             metadata=tuple(metadata),
+            shared_operations=vehicle_emission_operations(reference.activities),
         )
 
 

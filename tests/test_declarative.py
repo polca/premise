@@ -228,6 +228,65 @@ def test_emissions_patch_covers_inactive_latent_electricity_activity():
     assert compose_patches([electricity, emissions]).factors[0].factor == 0.4
 
 
+def test_emissions_patch_declares_vehicle_refresh_from_immutable_reference():
+    source = ReferenceActivity.from_metadata(
+        identity="source",
+        name="transport, passenger bus, diesel",
+        product="transport, passenger bus",
+        location="RER",
+        unit="person kilometer",
+        exchanges=(
+            ReferenceExchange.from_metadata(
+                identity="source-nox",
+                input_identity="nox",
+                type="biosphere",
+                name="Nitrogen oxides",
+                amount=0.2,
+                metadata={"categories": ["air", "urban air close to ground"]},
+            ),
+        ),
+    )
+    wrapper = ReferenceActivity.from_metadata(
+        identity="wrapper",
+        name="diesel, burned in passenger bus",
+        product="heat",
+        location="RER",
+        unit="megajoule",
+        metadata={
+            "energy use source": json.dumps(
+                {
+                    "source": [
+                        source.name,
+                        source.product,
+                        source.location,
+                        source.unit,
+                    ],
+                    "purchased MJ per source service": 2.0,
+                }
+            )
+        },
+    )
+    reference = LatentReference(
+        model="remind",
+        pathway="SSP2-NPi",
+        year=2050,
+        activities=(source, wrapper),
+    )
+    planner = EmissionsPatchPlanner(
+        pollutant_mapping={},
+        activity_sector_mapping={},
+        location_mapping={},
+        gains_factors={},
+        gains_regions=frozenset(),
+    )
+
+    patch = planner.plan(reference)
+
+    assert patch.shared_operations == vehicle_emission_operations(reference.activities)
+    assert patch.shared_operations[0].operator == "vehicle-emissions-from-source"
+    assert patch.shared_operations[0].target == "wrapper"
+
+
 def test_vehicle_emission_operation_declares_source_without_sector_context():
     source = ReferenceActivity.from_metadata(
         identity="source",
