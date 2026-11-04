@@ -1,7 +1,10 @@
 from collections import defaultdict
 
 from ..core.transformation import ws
-from ..factorization import register_factorization_shared_operation
+from ..factorization import (
+    current_factorization_activity_identity,
+    register_factorization_shared_operation,
+)
 from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from .config import METHANE_SOURCES
 from .properties import CNG_ENERGY_MJ_PER_KG
@@ -105,9 +108,23 @@ class BiogasMixin:
             if not activities:
                 continue
 
-            self.process_and_add_activities(
-                mapping={"vehicle-grade natural gas": activities}
-            )
+            mapping = {"vehicle-grade natural gas": activities}
+            self.process_and_add_activities(mapping=mapping)
+            for dataset in mapping["vehicle-grade natural gas"]:
+                if not dataset.get("regionalized", False):
+                    continue
+                identity = current_factorization_activity_identity(dataset)
+                if identity is not None:
+                    register_factorization_shared_operation(
+                        {
+                            "operator": "enable-provider-kind-policy",
+                            "target": identity,
+                            "payload": {
+                                "product": "natural gas, high pressure",
+                                "unit": "cubic meter",
+                            },
+                        }
+                    )
 
             # Original geographic activities only forward the same product.
             # Use one kg from their IAM replacement, including World. The

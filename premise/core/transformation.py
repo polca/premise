@@ -38,7 +38,9 @@ from ..factorization import (
     FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
     FACTORIZATION_PROVIDER_ROUTING_FIELD,
     factorization_session_active,
+    register_factorization_shared_operation,
 )
+from .declarative import canonical_provider_kind_operation
 from ..iam.data_collection import IAMDataCollection
 from ..iam.geomap import Geomap
 from ..iam.system_models import ATTRIBUTIONAL_SYSTEM_MODELS, reference_output_amount
@@ -2178,6 +2180,14 @@ class BaseTransformation:
                 alt_names,
                 amount=amount,
             )
+            operation = canonical_provider_kind_operation(
+                source_name=str(exc["name"]),
+                target_names=(entry[0] for entry in entries),
+                product=str(exc["product"]),
+                unit=str(exc["unit"]),
+            )
+            if operation is not None:
+                register_factorization_shared_operation(operation.to_dict())
             if amount != 0:
                 new_exchanges.extend(
                     self.create_new_exchanges(

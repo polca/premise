@@ -166,6 +166,54 @@ def test_relinked_exchanges_declare_fixed_routing_only_during_factorization():
     assert summarized[0][FACTORIZATION_PROVIDER_ROUTING_FIELD] == "fixed"
 
 
+def test_relinking_declares_market_kind_canonicalization():
+    transformation = object.__new__(BaseTransformation)
+    transformation.find_new_exchange_entries = lambda *args, **kwargs: (
+        [
+            (
+                "market group for natural gas, high pressure",
+                "natural gas, high pressure",
+                "GLO",
+                "cubic meter",
+                1.0,
+            )
+        ],
+        2.0,
+    )
+    registry = FactorizationIdentityRegistry()
+
+    with registry.session("final energy"):
+        transformation.process_exchanges_to_relink(
+            {"name": "consumer", "location": "GLO", "exchanges": []},
+            [
+                {
+                    "name": "market for natural gas, high pressure",
+                    "product": "natural gas, high pressure",
+                    "location": "GLO",
+                    "unit": "cubic meter",
+                }
+            ],
+            [],
+        )
+
+    assert registry.payload_for([])["shared_operations"] == [
+        {
+            "operator": "canonicalize-provider-kind",
+            "payload": {
+                "product": "natural gas, high pressure",
+                "source_names": [
+                    "market for natural gas, high pressure",
+                    "market group for natural gas, high pressure",
+                ],
+                "target_name": "market group for natural gas, high pressure",
+                "unit": "cubic meter",
+            },
+            "sector": "final energy",
+            "target": "technosphere",
+        }
+    ]
+
+
 def test_relinked_exchanges_preserve_and_union_source_lineages():
     transformation = object.__new__(BaseTransformation)
     requested = {

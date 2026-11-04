@@ -5,6 +5,7 @@ import pytest
 
 from premise.core.declarative import (
     authoritative_column_operations,
+    canonical_provider_kind_operation,
     normalized_provider_vector_operation,
     unavailable_provider_operation,
 )
@@ -131,6 +132,32 @@ def test_shared_operator_retains_invariant_declarations_in_sector_order():
         "electricity-market",
     )
     assert result.shared_operations[0].sectors == ("electricity", "fuels")
+
+
+def test_provider_kind_operation_declares_one_market_family_policy():
+    operation = canonical_provider_kind_operation(
+        source_name="market for natural gas, high pressure",
+        target_names=("market group for natural gas, high pressure",),
+        product="natural gas, high pressure",
+        unit="cubic meter",
+    )
+
+    assert operation is not None
+    assert operation.operator == "canonicalize-provider-kind"
+    assert operation.target == "technosphere"
+    assert operation.payload["source_names"] == [
+        "market for natural gas, high pressure",
+        "market group for natural gas, high pressure",
+    ]
+    assert (
+        canonical_provider_kind_operation(
+            source_name="market for natural gas, high pressure",
+            target_names=("market for natural gas, high pressure",),
+            product="natural gas, high pressure",
+            unit="cubic meter",
+        )
+        is None
+    )
 
 
 def test_reference_mismatch_duplicate_sector_and_nonfinite_factor_fail():

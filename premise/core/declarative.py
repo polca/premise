@@ -10,6 +10,7 @@ from ..declarative import ReferenceActivity, SharedOperation
 RELINK_UNAVAILABLE_PROVIDERS = "relink-unavailable-providers"
 AUTHORITATIVE_TECHNOSPHERE_COLUMN = "authoritative-technosphere-column"
 NORMALIZE_PROVIDER_VECTOR = "normalize-provider-vector"
+CANONICALIZE_PROVIDER_KIND = "canonicalize-provider-kind"
 
 
 def unavailable_provider_operation(
@@ -101,11 +102,51 @@ def normalized_provider_vector_operation(
     )
 
 
+def canonical_provider_kind_operation(
+    *, source_name: str, target_names: Iterable[str], product: str, unit: str
+) -> SharedOperation | None:
+    """Declare a market/market-group canonicalization observed during relinking."""
+
+    prefixes = ("market for ", "market group for ")
+    targets = {str(name) for name in target_names}
+    if len(targets) != 1 or not source_name.startswith(prefixes):
+        return None
+    target_name = next(iter(targets))
+    if not target_name.startswith(prefixes) or target_name == source_name:
+        return None
+
+    def stem(name: str) -> str:
+        return next(
+            name.removeprefix(prefix)
+            for prefix in prefixes
+            if name.startswith(prefix)
+        )
+
+    if stem(source_name) != stem(target_name) or not product or not unit:
+        return None
+    family = stem(source_name)
+    return SharedOperation.from_payload(
+        operator=CANONICALIZE_PROVIDER_KIND,
+        target="technosphere",
+        payload={
+            "source_names": [
+                f"market for {family}",
+                f"market group for {family}",
+            ],
+            "target_name": target_name,
+            "product": product,
+            "unit": unit,
+        },
+    )
+
+
 __all__ = [
     "AUTHORITATIVE_TECHNOSPHERE_COLUMN",
+    "CANONICALIZE_PROVIDER_KIND",
     "NORMALIZE_PROVIDER_VECTOR",
     "RELINK_UNAVAILABLE_PROVIDERS",
     "authoritative_column_operations",
+    "canonical_provider_kind_operation",
     "normalized_provider_vector_operation",
     "unavailable_provider_operation",
 ]

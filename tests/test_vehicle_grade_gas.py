@@ -5,10 +5,11 @@ from types import SimpleNamespace
 
 import pytest
 import xarray as xr
+from premise.transformation import BaseTransformation
 
+from premise.factorization import FactorizationIdentityRegistry
 from premise.fuels import biogas
 from premise.fuels.base import Fuels
-from premise.transformation import BaseTransformation
 
 PRODUCT = "natural gas, medium pressure, vehicle grade"
 PRODUCTION = "natural gas production, medium pressure, vehicle grade"
@@ -163,6 +164,28 @@ def test_cng_regionalization_is_idempotent(fuels):
     fuels.regionalize_vehicle_grade_gas()
     assert fuels.database == before
     assert fuels.index == index_before
+
+
+@pytest.mark.parametrize("fuels", [2050], indirect=True)
+def test_cng_regionalization_declares_provider_kind_capability(fuels):
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline(fuels.database)
+
+    with registry.session("fuels"):
+        fuels.regionalize_vehicle_grade_gas()
+
+    operations = [
+        operation
+        for operation in registry.payload_for(fuels.database)["shared_operations"]
+        if operation["operator"] == "enable-provider-kind-policy"
+    ]
+    assert len(operations) == 2 * len(REGIONS)
+    assert {operation["payload"]["product"] for operation in operations} == {
+        "natural gas, high pressure"
+    }
+    assert {operation["payload"]["unit"] for operation in operations} == {
+        "cubic meter"
+    }
 
 
 @pytest.mark.parametrize("fuels", [2020, 2050], indirect=True)

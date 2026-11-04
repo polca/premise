@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 14
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 16
 FACTORIZATION_EXCHANGE_LINEAGE_FIELD = "_premise factorization exchange lineages"
 FACTORIZATION_PROVIDER_ROUTING_FIELD = "_premise factorization provider routing"
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
