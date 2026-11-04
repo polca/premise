@@ -186,13 +186,9 @@ class BiogasMixin:
         providers = [
             {
                 "name": name,
-                "unit": (
-                    "kilogram" if name == vehicle_gas_name else "cubic meter"
-                ),
+                "unit": ("kilogram" if name == vehicle_gas_name else "cubic meter"),
                 "co2_per_unit": (
-                    CNG_ENERGY_MJ_PER_KG * 0.06
-                    if name == vehicle_gas_name
-                    else 2.12
+                    CNG_ENERGY_MJ_PER_KG * 0.06 if name == vehicle_gas_name else 2.12
                 ),
             }
             for name in sorted(consumer_gas_names)
@@ -201,9 +197,13 @@ class BiogasMixin:
             total = sum(mix.values())
             if total <= 0:
                 continue
-            share = 1 - sum(
-                mix.get(key, 0.0) for key in ("natural gas", "methane, from coal")
-            ) / total
+            share = (
+                1
+                - sum(
+                    mix.get(key, 0.0) for key in ("natural gas", "methane, from coal")
+                )
+                / total
+            )
             register_factorization_shared_operation(
                 {
                     "operator": "allocate-fuel-carbon-origin",

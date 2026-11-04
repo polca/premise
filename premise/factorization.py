@@ -110,13 +110,9 @@ class FactorizationIdentityRegistry:
         self._by_object: dict[int, str] = {}
         self._by_code: dict[str, str] = {}
         self._by_storage_id: dict[int, str] = {}
-        self._baseline_identities: dict[
-            tuple[str, str, str, str], list[str]
-        ] = {}
+        self._baseline_identities: dict[tuple[str, str, str, str], list[str]] = {}
         self._created_counts: dict[tuple[str, str, str, str], int] = {}
-        self._created_identities: dict[
-            tuple[str, str, str, str], list[str]
-        ] = {}
+        self._created_identities: dict[tuple[str, str, str, str], list[str]] = {}
         self._created_identity_codes: dict[str, set[str]] = {}
         self._baseline_exchanges: dict[tuple[str, tuple[Any, ...], int], str] = {}
         self._baseline_registered = False
@@ -334,9 +330,7 @@ class FactorizationIdentityRegistry:
 
         source_code = source.get("code")
         source_consumer = (
-            str(source_code)
-            if source_code not in (None, "")
-            else source_identity
+            str(source_code) if source_code not in (None, "") else source_identity
         )
         source_occurrences: dict[tuple[Any, ...], int] = {}
         for source_exchange, derived_exchange in zip(
@@ -419,7 +413,9 @@ class FactorizationIdentityRegistry:
             semantics = activity_semantics(dataset)
             candidates = self._baseline_identities.get(semantics, ())
             position = baseline_positions.get(semantics, 0)
-            while position < len(candidates) and candidates[position] in used_identities:
+            while (
+                position < len(candidates) and candidates[position] in used_identities
+            ):
                 position += 1
             identity = None
             if position < len(candidates):
@@ -453,9 +449,7 @@ class FactorizationIdentityRegistry:
             for candidates in self._created_identities.values()
             for identity in candidates
         }
-        surviving_created: dict[
-            tuple[str, str, str, str], list[Mapping[str, Any]]
-        ] = {}
+        surviving_created: dict[tuple[str, str, str, str], list[Mapping[str, Any]]] = {}
         for dataset in datasets:
             code = dataset.get("code")
             identity = identities.get(str(code))
@@ -507,9 +501,7 @@ class FactorizationIdentityRegistry:
                 occurrences[semantics] = occurrence + 1
                 exchange_key = exchange_identity_key(exchange, occurrence)
                 consumer_identity = identities.get(str(consumer_code), "")
-                inherited = exchange.pop(
-                    FACTORIZATION_EXCHANGE_LINEAGE_FIELD, None
-                )
+                inherited = exchange.pop(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, None)
                 inherited = tuple(sorted(set(map(str, inherited or ()))))
                 identity = None
                 if inherited:
@@ -617,11 +609,7 @@ def bind_factorization_activity_storage_id(
     """Bind a compact activity row while a factorization session is active."""
 
     registry = _ACTIVE_REGISTRY.get()
-    return (
-        None
-        if registry is None
-        else registry.bind_storage_id(dataset, storage_id)
-    )
+    return None if registry is None else registry.bind_storage_id(dataset, storage_id)
 
 
 def current_factorization_activity_identity(

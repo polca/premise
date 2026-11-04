@@ -107,7 +107,9 @@ class ProviderProposal:
 
     def __post_init__(self) -> None:
         if not self.exchange or not self.provider:
-            raise ValueError("Provider proposals require stable exchange and provider IDs")
+            raise ValueError(
+                "Provider proposals require stable exchange and provider IDs"
+            )
 
     def to_dict(self) -> dict[str, str]:
         return {"exchange": self.exchange, "provider": self.provider}
@@ -150,9 +152,7 @@ class SharedOperation:
         object.__setattr__(self, "payload_json", canonical)
 
     @classmethod
-    def from_payload(
-        cls, operator: str, target: str, payload: Any
-    ) -> SharedOperation:
+    def from_payload(cls, operator: str, target: str, payload: Any) -> SharedOperation:
         return cls(
             operator=operator,
             target=target,
@@ -259,7 +259,9 @@ class ReferenceActivity:
             "metadata_json",
             _canonical_json(json.loads(self.metadata_json)),
         )
-        _require_unique(self.exchanges, lambda item: item.identity, "reference exchange")
+        _require_unique(
+            self.exchanges, lambda item: item.identity, "reference exchange"
+        )
 
     @classmethod
     def from_metadata(
@@ -314,7 +316,9 @@ class LatentReference:
             raise ValueError("Reference model and pathway must be non-empty")
         object.__setattr__(self, "year", int(self.year))
         object.__setattr__(self, "activities", tuple(sorted(self.activities)))
-        _require_unique(self.activities, lambda item: item.identity, "reference activity")
+        _require_unique(
+            self.activities, lambda item: item.identity, "reference activity"
+        )
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -379,9 +383,7 @@ class SectorPatch:
             "activities": [item.to_dict() for item in self.activities],
             "providers": [item.to_dict() for item in self.providers],
             "metadata": [item.to_dict() for item in self.metadata],
-            "shared_operations": [
-                item.to_dict() for item in self.shared_operations
-            ],
+            "shared_operations": [item.to_dict() for item in self.shared_operations],
         }
 
     @property
@@ -456,9 +458,7 @@ class ComposedPatch:
             "activities": [item.to_dict() for item in self.activities],
             "providers": [item.to_dict() for item in self.providers],
             "metadata": [item.to_dict() for item in self.metadata],
-            "shared_operations": [
-                item.to_dict() for item in self.shared_operations
-            ],
+            "shared_operations": [item.to_dict() for item in self.shared_operations],
         }
 
     @property
@@ -499,7 +499,9 @@ def compose_patches(patches: Iterable[SectorPatch]) -> ComposedPatch:
         for patch in ordered
     }
     if len(scenario_keys) != 1:
-        raise PatchConflict(f"Patches do not share one immutable reference: {scenario_keys}")
+        raise PatchConflict(
+            f"Patches do not share one immutable reference: {scenario_keys}"
+        )
 
     factor_groups: dict[MatrixCoordinate, list[tuple[str, float]]] = defaultdict(list)
     activities: dict[tuple[str, ...], list[tuple[str, str]]] = defaultdict(list)

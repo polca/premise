@@ -111,7 +111,9 @@ class EmissionsPatchPlanner:
             activity_sector_mapping=compile_activity_sector_mapping(reference),
             location_mapping=location_mapping,
             gains_factors=gains_factors,
-            gains_regions=frozenset(str(value) for value in updater._gains_region_index),
+            gains_regions=frozenset(
+                str(value) for value in updater._gains_region_index
+            ),
         )
 
     def _factor(self, *, region: str, pollutant: str, sector: str) -> float:

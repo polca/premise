@@ -1657,9 +1657,7 @@ class NewDatabase:
         payload["activity_ownership"] = {
             identity: sorted(
                 declarations,
-                key=lambda item: (
-                    item["sector"], item["status"], item["reason_code"]
-                ),
+                key=lambda item: (item["sector"], item["status"], item["reason_code"]),
             )
             for identity, declarations in sorted(ownership.items())
         }

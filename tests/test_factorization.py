@@ -166,8 +166,7 @@ def test_transient_creation_does_not_shift_delivered_logical_identity():
         rebuilt_registry.register_created(delivered)
 
     assert (
-        rebuilt_registry.payload_for([delivered])["identities"]["delivered"]
-        == expected
+        rebuilt_registry.payload_for([delivered])["identities"]["delivered"] == expected
     )
 
 
@@ -386,11 +385,7 @@ def test_derived_activity_preserves_inherited_exchange_lineage():
         derived["exchanges"][0]["location"] = "EUR"
         payload = registry.payload_for([derived])
         identities.append(
-            next(
-                iter(
-                    payload["exchange_identities"][derived["code"]].values()
-                )
-            )
+            next(iter(payload["exchange_identities"][derived["code"]].values()))
         )
         assert FACTORIZATION_EXCHANGE_LINEAGE_FIELD not in derived["exchanges"][0]
 
