@@ -409,6 +409,7 @@ def test_factorization_payload_declares_created_and_derived_activity_origins():
         "kind": "derived",
         "source": registry.identity_for(source),
         "source code": "source-code",
+        "source role": ["market for hydrogen", "hydrogen", "CHA", "kilogram"],
         "operation": "regionalized-proxy",
         "qualifier": "EUR",
         "role": ["market for hydrogen", "hydrogen", "EUR", "kilogram"],
