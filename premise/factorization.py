@@ -335,6 +335,7 @@ class FactorizationIdentityRegistry:
         self._activity_origins[identity] = {
             "kind": "derived",
             "source": source_identity,
+            "source code": str(source_code or ""),
             "operation": str(operation),
             "qualifier": _plain(qualifier),
             "role": list(activity_semantics(dataset)),

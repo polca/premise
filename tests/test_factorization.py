@@ -408,6 +408,7 @@ def test_factorization_payload_declares_created_and_derived_activity_origins():
     assert origins[derived_identity] == {
         "kind": "derived",
         "source": registry.identity_for(source),
+        "source code": "source-code",
         "operation": "regionalized-proxy",
         "qualifier": "EUR",
         "role": ["market for hydrogen", "hydrogen", "EUR", "kilogram"],
