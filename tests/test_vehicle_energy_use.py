@@ -1,9 +1,14 @@
 """Physical invariants, independent of the workbook-regeneration implementation."""
 
 from copy import deepcopy
+
 import pytest
 
 from premise import vehicle_energy_use as ve
+from premise.factorization import (
+    FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
+    FactorizationIdentityRegistry,
+)
 
 
 def exc(name, amount, unit, product=None, kind="technosphere"):
@@ -111,6 +116,33 @@ def test_repeated_normalization_does_not_double_equipment():
     first = deepcopy(wrapper)
     ve.normalize(wrapper, source, [source, vehicle])
     assert wrapper == first
+
+
+def test_normalization_preserves_exact_source_exchange_lineage():
+    wrapper, source, vehicle = model("kilometer", 1)
+    source["database"] = vehicle["database"] = "scenario"
+    source["code"] = "source"
+    vehicle["code"] = "vehicle"
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([source, vehicle])
+
+    with registry.session("final energy"):
+        ve.normalize(wrapper, source, [source, vehicle])
+
+    electricity = next(
+        exchange
+        for exchange in wrapper["exchanges"]
+        if exchange["name"] == "market for electricity"
+    )
+    motor = next(
+        exchange
+        for exchange in wrapper["exchanges"]
+        if exchange["name"] == "market for electric motor"
+    )
+    source_lineage = registry.exchange_lineages_for(source)[1]
+    vehicle_lineage = registry.exchange_lineages_for(vehicle)[1]
+    assert electricity[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] == list(source_lineage)
+    assert motor[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] == list(vehicle_lineage)
 
 
 @pytest.mark.parametrize(

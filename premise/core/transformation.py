@@ -37,12 +37,9 @@ from xarray import DataArray
 from ..factorization import (
     FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
     FACTORIZATION_PROVIDER_ROUTING_FIELD,
+    current_factorization_exchange_lineages,
     factorization_session_active,
     register_factorization_shared_operation,
-)
-from .declarative import (
-    cached_provider_route_operation,
-    canonical_provider_kind_operation,
 )
 from ..iam.data_collection import IAMDataCollection
 from ..iam.geomap import Geomap
@@ -51,6 +48,10 @@ from ..inventory.activity_maps import InventorySet as InventorySet
 from ..inventory.inventory_copy import clone_inventory_dataset
 from ..inventory.inventory_store import IndexedInventoryList, compact_exchange_payload
 from ..reporting.provenance import record_change_event
+from .declarative import (
+    cached_provider_route_operation,
+    canonical_provider_kind_operation,
+)
 from .logger import create_logger
 from .utils import get_fuel_properties, rescale_exchange
 
@@ -416,6 +417,25 @@ def _relinked_exchange(exc, location, factor=1.0, *, name=None, product=None):
     }
     if "comment" in exc:
         relinked["comment"] = exc["comment"]
+    lineages = exc.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ())
+    if lineages:
+        relinked[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(set(map(str, lineages)))
+    inherited_routing = exc.get(FACTORIZATION_PROVIDER_ROUTING_FIELD)
+    provider_changed = (
+        relinked["name"],
+        relinked["product"],
+        relinked["location"],
+        relinked["unit"],
+    ) != (
+        exc["name"],
+        exc["product"],
+        exc["location"],
+        exc["unit"],
+    )
+    if inherited_routing:
+        relinked[FACTORIZATION_PROVIDER_ROUTING_FIELD] = inherited_routing
+    elif provider_changed and factorization_session_active():
+        relinked[FACTORIZATION_PROVIDER_ROUTING_FIELD] = "fixed"
     return relinked
 
 
@@ -2023,6 +2043,17 @@ class BaseTransformation:
             if len(excs_to_relink) == 0:
                 continue
 
+            # Capture immutable source rows before relinking changes provider
+            # semantics. Later recipe derivations can then follow the precise
+            # exchange instead of inheriting an activity-wide provider rule.
+            resolved_lineages = current_factorization_exchange_lineages(
+                act, excs_to_relink
+            )
+            lineages_by_object = {
+                id(exchange): lineages
+                for exchange, lineages in zip(excs_to_relink, resolved_lineages)
+            }
+
             old_uncertainty = {}
 
             for exc, fields in selected_candidates:
@@ -2078,6 +2109,7 @@ class BaseTransformation:
                         exchange.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ()),
                     )
                 )
+                lineages.update(map(str, lineages_by_object.get(id(exchange), ())))
                 if lineages:
                     candidate[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(lineages)
             unique_excs_to_relink = list(unique_excs_by_key.values())
@@ -3108,6 +3140,16 @@ class BaseTransformation:
         dataset["exchanges"] = exchanges
         sum_before = sum(exchange_amounts)
 
+        # A regionalized proxy may rebuild its provider rows immediately after
+        # its activity lineage was registered. Resolve immutable source rows
+        # before candidate allocation changes their provider semantics.
+        resolved_lineages = current_factorization_exchange_lineages(dataset, exchanges)
+        for exchange, lineages in zip(exchanges, resolved_lineages):
+            if exchange.get("type") == "technosphere" and lineages:
+                exchange[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(
+                    set(map(str, lineages))
+                )
+
         new_exchanges = self.find_candidates(
             dataset,
             exclusive=exclusive,
@@ -3121,6 +3163,8 @@ class BaseTransformation:
         # product, location, unit and documented role
 
         grouped_exchanges = defaultdict(float)
+        grouped_lineages = defaultdict(set)
+        grouped_provider_routing = defaultdict(set)
         for exc in new_exchanges:
             key = (
                 exc["name"],
@@ -3130,6 +3174,13 @@ class BaseTransformation:
                 exc.get("comment"),
             )
             grouped_exchanges[key] += exc["amount"]
+            grouped_lineages[key].update(
+                map(str, exc.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ()))
+            )
+            if exc.get(FACTORIZATION_PROVIDER_ROUTING_FIELD):
+                grouped_provider_routing[key].add(
+                    str(exc[FACTORIZATION_PROVIDER_ROUTING_FIELD])
+                )
 
         new_exchanges = []
         for (name, prod, location, unit, comment), amount in grouped_exchanges.items():
@@ -3143,6 +3194,13 @@ class BaseTransformation:
             }
             if comment is not None:
                 exchange["comment"] = comment
+            if grouped_lineages[(name, prod, location, unit, comment)]:
+                exchange[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(
+                    grouped_lineages[(name, prod, location, unit, comment)]
+                )
+            routing = grouped_provider_routing[(name, prod, location, unit, comment)]
+            if len(routing) == 1:
+                exchange[FACTORIZATION_PROVIDER_ROUTING_FIELD] = next(iter(routing))
             new_exchanges.append(exchange)
 
         # apply uncertainties, if any

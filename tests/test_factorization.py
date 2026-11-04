@@ -2,6 +2,7 @@ import copy
 from types import SimpleNamespace
 
 from premise import NewDatabase
+from premise.core.transformation import BaseTransformation
 from premise.factorization import (
     FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
     FactorizationIdentityRegistry,
@@ -9,7 +10,6 @@ from premise.factorization import (
     exchange_identity_key,
     register_factorization_shared_operation,
 )
-from premise.core.transformation import BaseTransformation
 from premise.inventory.inventory_store import (
     IndexedInventoryList,
     create_inventory_store,
@@ -511,6 +511,46 @@ def test_derived_activity_preserves_inherited_exchange_lineage():
         assert FACTORIZATION_EXCHANGE_LINEAGE_FIELD not in derived["exchanges"][0]
 
     assert identities[0] == identities[1]
+
+
+def test_split_derived_exchanges_with_one_lineage_keep_distinct_identities():
+    source = activity("source-code")
+    source["exchanges"].append(
+        {
+            "name": "market for electricity",
+            "product": "electricity",
+            "location": "GLO",
+            "unit": "kilowatt hour",
+            "type": "technosphere",
+            "amount": 0.5,
+        }
+    )
+    registry = FactorizationIdentityRegistry()
+    registry.register_baseline([source])
+    derived = copy.deepcopy(source)
+    derived["code"] = "derived"
+
+    with registry.session("final energy"):
+        registry.register_derived(
+            derived,
+            source=source,
+            operation="regionalized-proxy",
+            qualifier="EUR",
+        )
+    production = derived["exchanges"][0]
+    inherited = derived["exchanges"][1][FACTORIZATION_EXCHANGE_LINEAGE_FIELD]
+    derived["exchanges"] = [production] + [
+        {
+            **copy.deepcopy(derived["exchanges"][1]),
+            "location": location,
+            FACTORIZATION_EXCHANGE_LINEAGE_FIELD: inherited,
+        }
+        for location in ("DE", "FR")
+    ]
+
+    payload = registry.payload_for([derived])
+
+    assert len(set(payload["exchange_identities"]["derived"].values())) == 3
 
 
 def test_compact_store_addition_merges_into_existing_sidecar():

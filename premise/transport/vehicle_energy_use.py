@@ -5,10 +5,15 @@ the source of the normalization; its production link supplies lifetime and
 payload/occupancy allocation, so these must never be applied a second time.
 """
 
-from copy import deepcopy
 import json
 import math
 import re
+from copy import deepcopy
+
+from ..factorization import (
+    FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
+    current_factorization_exchange_lineages,
+)
 
 POLICY = "energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance"
 SOURCE_KEY = "energy use source"
@@ -225,6 +230,15 @@ def scaled(e, factor):
     return result
 
 
+def scaled_from_source(e, factor, lineages=()):
+    """Scale an exchange while retaining its immutable source lineage."""
+
+    result = scaled(e, factor)
+    if lineages:
+        result[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(set(map(str, lineages)))
+    return result
+
+
 def resolve(database, exchange):
     key = identity(exchange)
     matches = (
@@ -297,7 +311,13 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
             )
         )
     )
-    energies = [e for e in source["exchanges"] if carrier(e) == main]
+    source_exchanges = list(source["exchanges"])
+    source_lineages = current_factorization_exchange_lineages(source, source_exchanges)
+    source_lineage_by_object = {
+        id(exchange): lineage
+        for exchange, lineage in zip(source_exchanges, source_lineages)
+    }
+    energies = [e for e in source_exchanges if carrier(e) == main]
     q = sum(float(e["amount"]) * energy_per_unit(e) for e in energies)
     if not math.isfinite(q) or q <= 0:
         raise ValueError(f"Missing positive {main} energy in {identity(source)}")
@@ -338,7 +358,7 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
         output.extend(scaled(e, factor) for e in old_fuels)
     else:
         for e in energies:
-            new = scaled(e, 1 / q)
+            new = scaled_from_source(e, 1 / q, source_lineage_by_object.get(id(e), ()))
             if len(old_fuels) == 1:
                 # Preserve geography but keep the source fuel grade and unit:
                 # hydrogen low-pressure supply needs its compression auxiliary.
@@ -352,7 +372,7 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
                         }
                     )
             output.append(new)
-    for e in source["exchanges"]:
+    for e in source_exchanges:
         if e["type"] == "production" or carrier(e) == main:
             continue
         if (
@@ -370,7 +390,13 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
             )
         ):
             vehicle = resolve(database, e)
-            for component in vehicle["exchanges"]:
+            vehicle_exchanges = list(vehicle["exchanges"])
+            vehicle_lineages = current_factorization_exchange_lineages(
+                vehicle, vehicle_exchanges
+            )
+            for component, component_lineages in zip(
+                vehicle_exchanges, vehicle_lineages
+            ):
                 if component["type"] == "production":
                     continue
                 decision = equipment(component)
@@ -429,7 +455,11 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
                                 raise ValueError(
                                     f"Motorcycle battery quantity {component['amount']} disagrees with nominal {nominal} and replacement total {total}: {identity(source)} / {identity(vehicle)}"
                                 )
-                    new = scaled(component, float(e["amount"]) * replacement_factor / q)
+                    new = scaled_from_source(
+                        component,
+                        float(e["amount"]) * replacement_factor / q,
+                        component_lineages,
+                    )
                     new["comment"] = (
                         str(component.get("comment", ""))
                         + f" Energy-use allocation: {component['amount']} * {e['amount']} / {q} MJ per {source['unit']}."
@@ -467,7 +497,9 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
                 and e["name"].startswith("Carbon dioxide")
             ):
                 continue
-            output.append(scaled(e, 1 / q))
+            output.append(
+                scaled_from_source(e, 1 / q, source_lineage_by_object.get(id(e), ()))
+            )
         else:
             excluded.append(
                 {"supplier": e["name"], "amount per source service": float(e["amount"])}

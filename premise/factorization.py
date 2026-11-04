@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 21
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 25
 FACTORIZATION_SECTOR_PRIORITY = {
     sector: priority
     for priority, sector in enumerate(
@@ -127,6 +127,12 @@ def exchange_identity_key(payload: Mapping[str, Any], occurrence: int) -> str:
         ensure_ascii=False,
         separators=(",", ":"),
     )
+
+
+def derived_exchange_role(payload: Mapping[str, Any]) -> tuple[Any, ...]:
+    """Return the provider-specific role for a derived exchange row."""
+
+    return exchange_semantics(payload)
 
 
 class FactorizationIdentityRegistry:
@@ -307,6 +313,59 @@ class FactorizationIdentityRegistry:
         if identity is not None:
             self._by_object[id(dataset)] = identity
         return identity
+
+    def exchange_lineages_for(
+        self,
+        dataset: Mapping[str, Any],
+        exchanges: Iterable[Mapping[str, Any]] | None = None,
+    ) -> tuple[tuple[str, ...], ...]:
+        """Return immutable lineages aligned with ``exchanges``.
+
+        Transformations which reconstruct an exchange recipe after creating a
+        derived activity cannot rely on the copied exchange metadata: the new
+        rows may come from a different source activity. Resolve each source row
+        against the baseline registry instead, without mutating that source.
+        """
+
+        rows = tuple(dataset.get("exchanges", ()) if exchanges is None else exchanges)
+        source_identity = self.identity_for(dataset)
+        if source_identity is None:
+            return tuple(() for _ in rows)
+        source_code = dataset.get("code")
+        source_consumer = (
+            str(source_code) if source_code not in (None, "") else source_identity
+        )
+        occurrences: dict[tuple[Any, ...], int] = {}
+        result: list[tuple[str, ...]] = []
+        for exchange in rows:
+            inherited = tuple(
+                sorted(
+                    set(
+                        map(
+                            str,
+                            exchange.get(FACTORIZATION_EXCHANGE_LINEAGE_FIELD, ()),
+                        )
+                    )
+                )
+            )
+            semantics = exchange_semantics(exchange)
+            occurrence = occurrences.get(semantics, 0)
+            occurrences[semantics] = occurrence + 1
+            if inherited:
+                result.append(inherited)
+                continue
+            identity = self._baseline_exchanges.get(
+                (source_consumer, semantics, occurrence)
+            )
+            if identity is None:
+                token = json.dumps(
+                    ["exchange", source_identity, semantics, occurrence],
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                )
+                identity = self._identity(token)
+            result.append((identity,))
+        return tuple(result)
 
     def bind_storage_id(
         self, dataset: Mapping[str, Any], storage_id: int
@@ -593,6 +652,7 @@ class FactorizationIdentityRegistry:
             exchange_links: dict[str, str] = {}
             lineage_links: dict[str, list[str]] = {}
             occurrences: dict[tuple[Any, ...], int] = {}
+            derived_role_occurrences: dict[tuple[Any, ...], int] = {}
             for exchange in dataset.get("exchanges", ()):
                 semantics = exchange_semantics(exchange)
                 occurrence = occurrences.get(semantics, 0)
@@ -613,10 +673,14 @@ class FactorizationIdentityRegistry:
                     if exchange.get("type") == "production":
                         lineage_payload = ["production-exchange", consumer_role]
                     else:
+                        role = derived_exchange_role(exchange)
+                        role_occurrence = derived_role_occurrences.get(role, 0)
+                        derived_role_occurrences[role] = role_occurrence + 1
                         lineage_payload = [
-                            "derived-exchange-lineages",
+                            "derived-exchange-role",
                             consumer_role,
-                            inherited,
+                            role,
+                            role_occurrence,
                         ]
                     lineage_token = json.dumps(
                         lineage_payload,
@@ -750,6 +814,19 @@ def current_factorization_activity_identity(
     return None if registry is None else registry.identity_for(dataset)
 
 
+def current_factorization_exchange_lineages(
+    dataset: Mapping[str, Any],
+    exchanges: Iterable[Mapping[str, Any]] | None = None,
+) -> tuple[tuple[str, ...], ...]:
+    """Return source-exchange lineages during an active factorization session."""
+
+    registry = _ACTIVE_REGISTRY.get()
+    if registry is None:
+        rows = tuple(dataset.get("exchanges", ()) if exchanges is None else exchanges)
+        return tuple(() for _ in rows)
+    return registry.exchange_lineages_for(dataset, exchanges)
+
+
 def register_factorization_derived_activity(
     dataset: Mapping[str, Any],
     *,
@@ -773,13 +850,15 @@ def register_factorization_derived_activity(
 __all__ = [
     "FACTORIZATION_EXCHANGE_LINEAGE_FIELD",
     "FACTORIZATION_IDENTITY_SCHEMA_VERSION",
-    "FACTORIZATION_SECTOR_PRIORITY",
     "FACTORIZATION_PROVIDER_ROUTING_FIELD",
+    "FACTORIZATION_SECTOR_PRIORITY",
     "FactorizationIdentityRegistry",
     "activity_fingerprint",
     "activity_semantics",
     "bind_factorization_activity_storage_id",
     "current_factorization_activity_identity",
+    "current_factorization_exchange_lineages",
+    "derived_exchange_role",
     "exchange_identity_key",
     "exchange_semantics",
     "factorization_session_active",

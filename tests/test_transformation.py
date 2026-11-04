@@ -519,8 +519,18 @@ def test_relink_technosphere_exchanges_preserves_exchange_roles(monkeypatch):
         "name": "hydrogen vehicle",
         "location": "CH",
         "exchanges": [
-            {**base, "amount": 0.02, "comment": "Hydrogen tank compression"},
-            {**base, "amount": 0.01, "comment": "Auxiliary electricity"},
+            {
+                **base,
+                "amount": 0.02,
+                "comment": "Hydrogen tank compression",
+                FACTORIZATION_EXCHANGE_LINEAGE_FIELD: ["tank-source"],
+            },
+            {
+                **base,
+                "amount": 0.01,
+                "comment": "Auxiliary electricity",
+                FACTORIZATION_EXCHANGE_LINEAGE_FIELD: ["aux-source"],
+            },
         ],
     }
 
@@ -542,6 +552,34 @@ def test_relink_technosphere_exchanges_preserves_exchange_roles(monkeypatch):
         ("Hydrogen tank compression", 0.02),
         ("Auxiliary electricity", 0.01),
     }
+    assert {
+        (
+            exchange["comment"],
+            tuple(exchange[FACTORIZATION_EXCHANGE_LINEAGE_FIELD]),
+        )
+        for exchange in result["exchanges"]
+    } == {
+        ("Hydrogen tank compression", ("tank-source",)),
+        ("Auxiliary electricity", ("aux-source",)),
+    }
+
+
+def test_relinked_exchange_marks_only_changed_provider_as_fixed():
+    exchange = {
+        "name": "market for fuel",
+        "product": "fuel",
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 1.0,
+    }
+
+    with FactorizationIdentityRegistry().session("final energy"):
+        unchanged = transformation_module._relinked_exchange(exchange, "RER")
+        changed = transformation_module._relinked_exchange(exchange, "EUR")
+
+    assert FACTORIZATION_PROVIDER_ROUTING_FIELD not in unchanged
+    assert changed[FACTORIZATION_PROVIDER_ROUTING_FIELD] == "fixed"
 
 
 def test_provider_groups_preserve_order_and_invalidate_after_index_mutation():

@@ -2,7 +2,9 @@ from collections import defaultdict
 
 from ..core.transformation import ws
 from ..factorization import (
+    FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
     current_factorization_activity_identity,
+    current_factorization_exchange_lineages,
     register_factorization_shared_operation,
 )
 from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
@@ -241,6 +243,14 @@ class BiogasMixin:
             # Sum relevant technosphere exchanges and remap locations
             sum_ng = 0
             non_fossil_ng = 0
+            dataset_exchanges = list(ds["exchanges"])
+            exchange_lineages = current_factorization_exchange_lineages(
+                ds, dataset_exchanges
+            )
+            lineages_by_object = {
+                id(exchange): lineages
+                for exchange, lineages in zip(dataset_exchanges, exchange_lineages)
+            }
             for exc in ws.technosphere(
                 ds, ws.either(*[ws.equals("name", name) for name in consumer_gas_names])
             ):
@@ -251,6 +261,11 @@ class BiogasMixin:
                     new_loc = self.ecoinvent_to_iam_loc.get(ds["location"], "World")
 
                 if self.is_in_index(exc, new_loc):
+                    lineages = lineages_by_object.get(id(exc), ())
+                    if lineages:
+                        exc[FACTORIZATION_EXCHANGE_LINEAGE_FIELD] = sorted(
+                            set(map(str, lineages))
+                        )
                     exc["location"] = new_loc
                     if exc["amount"] <= 0:
                         continue
