@@ -1543,12 +1543,14 @@ class NewDatabase:
             for item in scenario.get("external scenarios", ())
             if isinstance(item, dict)
         )
-        return (
+        identity = (
             scenario.get("model"),
             scenario.get("pathway"),
             scenario.get("year"),
             external,
         )
+        instance = scenario.get("_factorization_instance")
+        return identity if instance is None else (*identity, str(instance))
 
     def _get_provenance_collector(self) -> ProvenanceCollector:
         collector = getattr(self, "_provenance_collector", None)
@@ -2650,6 +2652,8 @@ class NewDatabase:
         sectors: [str, list, None] = None,
         *,
         persist: bool = True,
+        _sectors_by_scenario=None,
+        _sparse_consumer=None,
     ) -> None:
         """
         Update a specific sector by name.
@@ -2731,32 +2735,71 @@ class NewDatabase:
             },
         }
 
-        if isinstance(sectors, str):
-            description = f"Processing scenarios for sector '{sectors}'"
-            sectors = [
-                sectors,
-            ]
-        elif isinstance(sectors, list):
-            description = f"Processing scenarios for {len(sectors)} sectors"
-        elif sectors is None:
-            description = "Processing scenarios for all sectors"
-            sectors = [s for s in list(self.sector_update_methods.keys())]
+        if _sectors_by_scenario is None:
+            if isinstance(sectors, str):
+                description = f"Processing scenarios for sector '{sectors}'"
+                sectors = [sectors]
+            elif isinstance(sectors, list):
+                description = f"Processing scenarios for {len(sectors)} sectors"
+            elif sectors is None:
+                description = "Processing scenarios for all sectors"
+                sectors = list(self.sector_update_methods)
+            if not isinstance(sectors, list) or not all(
+                isinstance(item, str) for item in sectors
+            ):
+                raise TypeError("sectors must be a string or a list of strings.")
+            sector_plan = [tuple(sectors) for _ in self.scenarios]
+        else:
+            if sectors is not None:
+                raise ValueError(
+                    "sectors and _sectors_by_scenario cannot be supplied together."
+                )
+            if len(_sectors_by_scenario) != len(self.scenarios):
+                raise ValueError(
+                    "Per-scenario sector plan length must match the scenario count."
+                )
+            sector_plan = []
+            for selection in _sectors_by_scenario:
+                if isinstance(selection, str) or not all(
+                    isinstance(item, str) for item in selection
+                ):
+                    raise TypeError(
+                        "Each per-scenario sector selection must be a sequence of strings."
+                    )
+                sector_plan.append(tuple(selection))
+            description = "Processing independent per-scenario sector selections"
 
-        if not isinstance(sectors, list) or not all(
-            isinstance(item, str) for item in sectors
-        ):
-            raise TypeError("sectors must be a string or a list of strings.")
         unknown_sectors = [
-            item for item in sectors if item not in self.sector_update_methods
+            item
+            for selection in sector_plan
+            for item in selection
+            if item not in self.sector_update_methods
         ]
         if unknown_sectors:
-            raise ValueError(f"Unknown resource name(s): {unknown_sectors}")
+            raise ValueError(
+                f"Unknown resource name(s): {sorted(set(unknown_sectors))}"
+            )
+        if _sparse_consumer is not None:
+            if not getattr(self, "factorization_mode", False):
+                raise RuntimeError(
+                    "Sparse singleton consumption requires factorization_mode=True."
+                )
+            if persist:
+                raise ValueError(
+                    "Streaming sparse singleton consumption requires persist=False."
+                )
+            if any(len(selection) != 1 for selection in sector_plan):
+                raise ValueError(
+                    "Streaming sparse singleton consumption requires exactly "
+                    "one sector per scenario."
+                )
 
         with (
             self._reuse_update_source(),
             tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer,
         ):
             for position, scenario_definition in enumerate(self.scenarios):
+                scenario_sectors = sector_plan[position]
                 # Once another scenario starts updating, the previous scenario
                 # remains checkpoint-backed and must not keep a second complete
                 # store resident alongside the new working graph.
@@ -2772,7 +2815,7 @@ class NewDatabase:
                 if factorization is not None:
                     factorization.register_baseline(get_scenario_inventory(scenario))
 
-                for sector in sectors:
+                for sector in scenario_sectors:
                     if sector in scenario.get("applied functions", []):
                         print(
                             f"Function to update {sector} already applied to scenario."
@@ -2860,11 +2903,116 @@ class NewDatabase:
                     scenario,
                     persist=persist,
                 )
-                self._release_shared_geography_cache(scenario_definition, position)
+                if _sparse_consumer is not None:
+                    streamed_identity = self._scenario_identity(scenario_definition)
+                    try:
+                        _sparse_consumer(
+                            position,
+                            scenario_sectors[0],
+                            self.export_sparse_inventory(position),
+                        )
+                    finally:
+                        # The callback must consume the read-only view synchronously.
+                        # Release the complete scenario before preparing the next one.
+                        retained = {
+                            key: scenario_definition[key]
+                            for key in (
+                                "model",
+                                "pathway",
+                                "year",
+                                "filepath",
+                                "iam data",
+                                "external scenarios",
+                                "external data",
+                                "_factorization_instance",
+                                "applied functions",
+                            )
+                            if key in scenario_definition
+                        }
+                        scenario_definition.clear()
+                        scenario_definition.update(retained)
+                        self._factorization_registries.pop(streamed_identity, None)
+                        getattr(self, "_validation_reports", {}).pop(
+                            streamed_identity, None
+                        )
+                        self._get_provenance_collector().release(streamed_identity)
+                        self._release_shared_geography_cache(
+                            scenario_definition, position
+                        )
+                else:
+                    self._release_shared_geography_cache(
+                        scenario_definition, position
+                    )
                 # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update()
 
         print("Done!\n")
+
+    def update_factorized_singletons(
+        self,
+        sectors,
+        consumer,
+    ) -> None:
+        """Stream one immutable singleton sparse export per scenario.
+
+        Construct the object with one scenario definition. This method expands
+        that initialized definition into isolated runtime scenarios which share
+        the same read-only IAM input. Every scenario starts from the pristine
+        source, receives exactly one sector update, is consumed synchronously,
+        and is released before the next one. This avoids repeated NewDatabase/IAM
+        construction and prevents retaining every complete singleton graph in
+        memory.
+        """
+
+        if not self.factorization_mode:
+            raise RuntimeError(
+                "update_factorized_singletons requires factorization_mode=True."
+            )
+        if len(self.scenarios) != 1:
+            raise ValueError(
+                "Configure exactly one scenario; singleton streaming expands it "
+                "after IAM data has been initialized."
+            )
+        if isinstance(sectors, str):
+            raise TypeError("sectors must be a sequence of sector names.")
+        sectors = tuple(sectors)
+        if not sectors or not all(isinstance(sector, str) for sector in sectors):
+            raise TypeError("sectors must be a non-empty sequence of sector names.")
+        if len(sectors) != len(set(sectors)):
+            raise ValueError("Factorized singleton sector names must be unique.")
+        if not callable(consumer):
+            raise TypeError("consumer must be callable.")
+
+        base_scenario = self.scenarios[0]
+        if base_scenario.get("applied functions"):
+            raise ValueError(
+                "Singleton streaming requires a fresh, not-yet-updated scenario."
+            )
+        transient_keys = {
+            "_factorization_identities",
+            "_inventory_checkpoint",
+            "_inventory_export_handoff",
+            "_inventory_store",
+            "_validation_report",
+            "database",
+            "database filepath",
+            "database metadata filepath",
+        }
+        expanded_scenarios = []
+        for sector in sectors:
+            scenario = base_scenario.copy()
+            for key in transient_keys:
+                scenario.pop(key, None)
+            scenario["_factorization_instance"] = sector
+            scenario["applied functions"] = []
+            expanded_scenarios.append(scenario)
+        self.scenarios = expanded_scenarios
+
+        self.update(
+            persist=False,
+            _sectors_by_scenario=[(sector,) for sector in sectors],
+            _sparse_consumer=consumer,
+        )
 
     def update_and_write(
         self,

@@ -16,6 +16,7 @@ from .properties import (
     CarbonOriginResolver,
     activity_key,
     energy_per_unit,
+    sorted_components,
     summarize_components,
 )
 
@@ -126,8 +127,8 @@ class FuelMarketsMixin:
         for dataset in created:
             if dataset.get("location") != "World" or PROPERTIES_KEY in dataset:
                 continue
-            totals = {
-                key: 0.0
+            total_terms = {
+                key: []
                 for key in (
                     "energy MJ per unit",
                     "fossil CO2 kg per unit",
@@ -140,8 +141,8 @@ class FuelMarketsMixin:
                 if exchange["type"] != "technosphere":
                     continue
                 properties = index[activity_key(exchange)][PROPERTIES_KEY]
-                for key in totals:
-                    totals[key] += exchange["amount"] * properties[key]
+                for key, terms in total_terms.items():
+                    terms.append(exchange["amount"] * properties[key])
                 components.append(
                     {
                         **{
@@ -151,6 +152,9 @@ class FuelMarketsMixin:
                         "energy_MJ_per_unit": properties["energy MJ per unit"],
                     }
                 )
+            totals = {
+                key: math.fsum(sorted(terms)) for key, terms in total_terms.items()
+            }
             if not math.isclose(totals["energy MJ per unit"], reference, rel_tol=1e-10):
                 raise ValueError(
                     f"World fuel energy does not close for {activity_key(dataset)}"
@@ -159,7 +163,7 @@ class FuelMarketsMixin:
                 "reference unit": kwargs["unit"],
                 "reference energy MJ per unit": reference,
                 **totals,
-                "components": components,
+                "components": sorted_components(components),
                 "carbon convention": "Production-weighted regional full-oxidation properties",
             }
 

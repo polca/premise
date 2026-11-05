@@ -241,6 +241,14 @@ class ProvenanceCollector:
             )
         return payload
 
+    def release(self, scenario_identity: Iterable[Any]) -> None:
+        """Release provenance already delivered to a streaming consumer."""
+
+        identity = tuple(scenario_identity)
+        with self._lock:
+            self._events.pop(identity, None)
+            self._restored_payloads.pop(identity, None)
+
     def restore(
         self, scenario_identity: Iterable[Any], payload: Mapping[str, Any] | None
     ) -> None:

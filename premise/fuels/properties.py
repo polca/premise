@@ -11,6 +11,29 @@ PROPERTIES_KEY = "premise fuel properties"
 CNG_ENERGY_MJ_PER_KG = 46.5
 
 
+def sorted_components(components):
+    """Return fuel component rows in a process-independent semantic order."""
+
+    return sorted(
+        components,
+        key=lambda component: tuple(
+            str(component.get(field, ""))
+            for field in (
+                "name",
+                "product",
+                "location",
+                "unit",
+                "technology",
+                "amount",
+                "energy_MJ_per_unit",
+                "CO2_kg_per_MJ",
+                "non_fossil_share",
+                "carbon source",
+            )
+        ),
+    )
+
+
 def annotate_cng_properties(database):
     """Carry gas carbon origins through the unchanged compression recipe.
 
@@ -27,15 +50,15 @@ def annotate_cng_properties(database):
         if key in completed or key in seen:
             return
         components = []
-        carbon = {
-            name: 0.0
+        carbon_terms = {
+            name: []
             for name in (
                 "fossil CO2 kg per unit",
                 "non-fossil CO2 kg per unit",
                 "unresolved CO2 kg per unit",
             )
         }
-        input_energy = 0.0
+        input_energy_terms = []
         compression = False
         for exchange in dataset["exchanges"]:
             if exchange.get("type") != "technosphere" or exchange["amount"] <= 0:
@@ -56,9 +79,11 @@ def annotate_cng_properties(database):
             if provider is None or PROPERTIES_KEY not in provider:
                 return  # Optional legacy supply: do not invent an origin.
             properties = provider[PROPERTIES_KEY]
-            input_energy += exchange["amount"] * properties["energy MJ per unit"]
-            for name in carbon:
-                carbon[name] += exchange["amount"] * properties[name]
+            input_energy_terms.append(
+                exchange["amount"] * properties["energy MJ per unit"]
+            )
+            for name, terms in carbon_terms.items():
+                terms.append(exchange["amount"] * properties[name])
             components.append(
                 {
                     **{
@@ -70,7 +95,11 @@ def annotate_cng_properties(database):
             )
         if not components:
             return
-        total = sum(carbon.values())
+        carbon = {
+            name: math.fsum(sorted(terms)) for name, terms in carbon_terms.items()
+        }
+        input_energy = math.fsum(sorted(input_energy_terms))
+        total = math.fsum(sorted(carbon.values()))
         if total <= 0:
             return
         if compression:
@@ -86,7 +115,7 @@ def annotate_cng_properties(database):
             "reference energy MJ per unit": CNG_ENERGY_MJ_PER_KG,
             "energy MJ per unit": CNG_ENERGY_MJ_PER_KG,
             **carbon,
-            "components": components,
+            "components": sorted_components(components),
             "carbon convention": "Full oxidation; gas-supply carbon origins preserved through compression",
             "energy source": "ecoinvent vehicle-grade natural gas market comment: 46.5 MJ/kg",
         }
@@ -245,7 +274,10 @@ class CarbonOriginResolver:
 
 def summarize_components(components, reference_energy, unit):
     """Aggregate physical supply energy and oxidation carbon, retaining unknowns."""
-    energy = fossil = non_fossil = unresolved = 0.0
+    energy_terms = []
+    fossil_terms = []
+    non_fossil_terms = []
+    unresolved_terms = []
     for component in components:
         amount = component["amount"]
         if not math.isfinite(amount):
@@ -267,26 +299,26 @@ def summarize_components(components, reference_energy, unit):
         delivered = abs(amount)
         supplied_energy = delivered * component["energy_MJ_per_unit"]
         co2 = supplied_energy * component["CO2_kg_per_MJ"]
-        energy += supplied_energy
+        energy_terms.append(supplied_energy)
         share = component["non_fossil_share"]
         if share is None:
-            unresolved += co2
+            unresolved_terms.append(co2)
         else:
             if not math.isfinite(share) or not 0 <= share <= 1:
                 raise ValueError(
                     "Fuel carbon-origin fraction must be between zero and one"
                 )
-            non_fossil += co2 * share
-            fossil += co2 * (1 - share)
+            non_fossil_terms.append(co2 * share)
+            fossil_terms.append(co2 * (1 - share))
     return {
         "reference unit": unit,
         "reference energy MJ per unit": reference_energy,
-        "energy MJ per unit": energy,
-        "fossil CO2 kg per unit": fossil,
-        "non-fossil CO2 kg per unit": non_fossil,
-        "unresolved CO2 kg per unit": unresolved,
+        "energy MJ per unit": math.fsum(sorted(energy_terms)),
+        "fossil CO2 kg per unit": math.fsum(sorted(fossil_terms)),
+        "non-fossil CO2 kg per unit": math.fsum(sorted(non_fossil_terms)),
+        "unresolved CO2 kg per unit": math.fsum(sorted(unresolved_terms)),
         "carbon convention": "Full oxidation; separate carbon pollutants and upstream capture credits unchanged",
-        "components": components,
+        "components": sorted_components(components),
     }
 
 

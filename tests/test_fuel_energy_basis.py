@@ -329,6 +329,30 @@ def test_mixed_capture_carbon_and_unknown_component_are_not_lost():
         summarize_components([component], 47.5, "kilogram")
 
 
+def test_fuel_component_summary_is_order_invariant():
+    components = [
+        {
+            "name": name,
+            "product": "fuel",
+            "location": "EUR",
+            "unit": "kilogram",
+            "amount": amount,
+            "energy_MJ_per_unit": energy,
+            "CO2_kg_per_MJ": 0.06,
+            "non_fossil_share": share,
+        }
+        for name, amount, energy, share in (
+            ("large", 1.0, 47.5, 0.25),
+            ("small", 1e-12, 12.0, 0.75),
+            ("medium", 0.25, 36.0, None),
+        )
+    ]
+
+    assert summarize_components(components, 47.5, "kilogram") == summarize_components(
+        list(reversed(components)), 47.5, "kilogram"
+    )
+
+
 def test_explicit_energy_units_and_delivered_cng_basis():
     properties = get_fuel_properties()
     assert energy_per_unit("natural gas", "cubic meter", properties) == 36

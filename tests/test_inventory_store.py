@@ -1422,6 +1422,72 @@ def test_new_database_promotes_compact_emissions_to_store_native_path(
     assert "production volume" not in obj.get_inventory_store().exchange(1)
 
 
+def test_factorized_singletons_stream_isolated_sparse_views(inventory, monkeypatch):
+    obj = object.__new__(NewDatabase)
+    obj._inventory_api_active = True
+    obj._source_inventory_store = CompactInventoryStore(inventory)
+    iam_data = object()
+    obj.scenarios = [
+        {
+            "model": "image",
+            "pathway": "SSP2-Base",
+            "year": 2050,
+            "iam data": iam_data,
+        }
+    ]
+    obj.version = "3.12"
+    obj.system_model = "cutoff"
+    obj.use_absolute_efficiency = False
+    obj.gains_scenario = "CLE"
+    obj.database_cache_filepath = None
+    obj.inventories_cache_filepath = None
+    obj.additional_inventories = None
+    obj.factorization_mode = True
+    obj._factorization_registries = {}
+
+    def update_location(location):
+        def update(scenario, version, system_model):
+            assert (version, system_model) == ("3.12", "cutoff")
+            database = get_scenario_inventory(scenario)
+            database[0]["location"] = location
+            replace_scenario_inventory(scenario, database)
+            return scenario
+
+        return update
+
+    monkeypatch.setattr(new_database_module, "_update_biomass", update_location("DE"))
+    monkeypatch.setattr(new_database_module, "_update_steel", update_location("FR"))
+
+    consumed = []
+
+    def consume(position, sector, exported):
+        assert obj.scenarios[position]["iam data"] is iam_data
+        activities = tuple(exported.iter_activities())
+        consumed.append((position, sector, activities[0].payload["location"]))
+
+    obj.update_factorized_singletons(("biomass", "steel"), consume)
+
+    assert consumed == [(0, "biomass", "DE"), (1, "steel", "FR")]
+    assert all("_inventory_store" not in scenario for scenario in obj.scenarios)
+    assert obj._factorization_registries == {}
+    assert all(
+        "_factorization_identities" not in scenario for scenario in obj.scenarios
+    )
+    assert obj._source_inventory_store.activity(0)["location"] == "CH"
+
+
+def test_factorized_singletons_require_one_initialized_scenario():
+    obj = object.__new__(NewDatabase)
+    obj.factorization_mode = True
+    obj.scenarios = [
+        {"model": "image", "pathway": "SSP2-Base", "year": 2050},
+        {"model": "image", "pathway": "SSP2-Base", "year": 2050},
+    ]
+
+    with pytest.raises(ValueError, match="exactly one scenario"):
+        obj.update_factorized_singletons(("biomass", "steel"), lambda *args: None)
+
+
 def test_seeded_randomized_compact_mutations_remain_self_consistent(inventory):
     rng = random.Random(42)
     rng_values = [rng.random() for _ in range(40)]
