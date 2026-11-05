@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 25
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 26
 FACTORIZATION_SECTOR_PRIORITY = {
     sector: priority
     for priority, sector in enumerate(
@@ -42,6 +42,25 @@ FACTORIZATION_SECTOR_PRIORITY = {
         )
     )
 }
+FACTORIZATION_SECTOR_MIGRATION = tuple(
+    {
+        "sector": sector,
+        "mode": (
+            "native-sector-patch-v1"
+            if sector == "emissions"
+            else "immutable-singleton-atomic-diff-v1"
+        ),
+        "patch_contract": (
+            "premise.declarative.SectorPatch"
+            if sector == "emissions"
+            else "db_assembler.declarative.AtomicExchangePatch"
+        ),
+        "immutable_reference": True,
+        "selection_independent": True,
+    }
+    for sector in FACTORIZATION_SECTOR_PRIORITY
+    if sector != "external"
+)
 FACTORIZATION_EXCHANGE_LINEAGE_FIELD = "_premise factorization exchange lineages"
 FACTORIZATION_PROVIDER_ROUTING_FIELD = "_premise factorization provider routing"
 _NAMESPACE = uuid.UUID("f32c09b4-893b-5e8f-a6f8-c5bb6ad44dc9")
@@ -610,6 +629,7 @@ class FactorizationIdentityRegistry:
         if not include_exchanges:
             return {
                 "schema_version": self.schema_version,
+                "sector_migration": FACTORIZATION_SECTOR_MIGRATION,
                 "identities": identities,
                 "provider_identities": {},
                 "exchange_identities": {},
@@ -722,6 +742,7 @@ class FactorizationIdentityRegistry:
                     exchange_lineages[str(stable_consumer)] = lineage_links
         return {
             "schema_version": self.schema_version,
+            "sector_migration": FACTORIZATION_SECTOR_MIGRATION,
             "identities": identities,
             "provider_identities": provider_identities,
             "exchange_identities": exchange_identities,
@@ -758,6 +779,7 @@ class FactorizationIdentityRegistry:
         result.update(
             {
                 "schema_version": self.schema_version,
+                "sector_migration": FACTORIZATION_SECTOR_MIGRATION,
                 "identities": identities,
                 "activity_origins": activity_origins,
                 "missing_count": int(result.get("missing_count", 0)),
@@ -851,6 +873,7 @@ __all__ = [
     "FACTORIZATION_EXCHANGE_LINEAGE_FIELD",
     "FACTORIZATION_IDENTITY_SCHEMA_VERSION",
     "FACTORIZATION_PROVIDER_ROUTING_FIELD",
+    "FACTORIZATION_SECTOR_MIGRATION",
     "FACTORIZATION_SECTOR_PRIORITY",
     "FactorizationIdentityRegistry",
     "activity_fingerprint",

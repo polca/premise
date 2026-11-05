@@ -5,11 +5,37 @@ from premise import NewDatabase
 from premise.core.transformation import BaseTransformation
 from premise.factorization import (
     FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
+    FACTORIZATION_IDENTITY_SCHEMA_VERSION,
+    FACTORIZATION_SECTOR_MIGRATION,
     FactorizationIdentityRegistry,
     current_factorization_activity_identity,
     exchange_identity_key,
     register_factorization_shared_operation,
 )
+
+
+def test_factorization_migration_registry_covers_all_sector_updates_truthfully():
+    by_sector = {item["sector"]: item for item in FACTORIZATION_SECTOR_MIGRATION}
+
+    assert FACTORIZATION_IDENTITY_SCHEMA_VERSION == 26
+    assert len(by_sector) == 19
+    assert "external" not in by_sector
+    assert by_sector["emissions"]["mode"] == "native-sector-patch-v1"
+    assert by_sector["emissions"]["patch_contract"] == (
+        "premise.declarative.SectorPatch"
+    )
+    assert {
+        item["mode"] for sector, item in by_sector.items() if sector != "emissions"
+    } == {"immutable-singleton-atomic-diff-v1"}
+    assert all(
+        item["immutable_reference"] and item["selection_independent"]
+        for item in by_sector.values()
+    )
+
+    payload = FactorizationIdentityRegistry().payload_for([])
+    assert payload["sector_migration"] == FACTORIZATION_SECTOR_MIGRATION
+
+
 from premise.inventory.inventory_store import (
     IndexedInventoryList,
     create_inventory_store,

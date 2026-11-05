@@ -41,6 +41,14 @@ composed inventory matches the canonical sequential output, and the runtime and
 memory gates remain satisfied. The production format must not contain
 prerequisite-gated pair corrections.
 
+The factorization sidecar publishes a versioned ``sector_migration`` registry
+for the 19 sector updates (the ``external`` hook is deliberately excluded).
+It distinguishes the native emissions ``SectorPatch`` planner from sectors
+currently represented by immutable-singleton ``AtomicExchangePatch`` diffs.
+This is capability metadata, not a certification claim: a sector remains
+uncertified until its singleton, interaction, graph, matrix, LCIA and
+performance gates pass.
+
 Validation strategy
 -------------------
 
