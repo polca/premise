@@ -2225,11 +2225,12 @@ class BaseTransformation:
                         exc.get("comment"),
                     )
                 ]
-            entries, amount = self.find_new_exchange_entries(
+            entries, amount, resolution_source = self.find_new_exchange_entries(
                 act,
                 exc,
                 alt_names,
                 amount=amount,
+                include_resolution_source=True,
             )
             if factorization_session_active():
                 route = relink_provider_route_operation(
@@ -2241,6 +2242,7 @@ class BaseTransformation:
                         str(exc["unit"]),
                     ),
                     providers=entries,
+                    resolution_source=resolution_source,
                 )
                 register_factorization_shared_operation(
                     route.to_dict(),
@@ -2414,19 +2416,33 @@ class BaseTransformation:
         # Second search with modified names
         return search_for_new_exchanges(names_to_look_for)
 
-    def find_new_exchange_entries(self, act, exc, alt_names, amount=None):
+    def find_new_exchange_entries(
+        self,
+        act,
+        exc,
+        alt_names,
+        amount=None,
+        *,
+        include_resolution_source=False,
+    ):
         entries = None
+        resolution_source = None
 
         if self.is_exchange_in_cache(exc, act["location"]):
             entries = self.get_exchange_from_cache(exc, act["location"])
+            if entries:
+                resolution_source = "cache"
 
         if not entries:
             entries = self.find_alternative_locations(act, exc, alt_names)
+            if entries:
+                resolution_source = "geographic"
 
         if not entries:
             entries = [
                 (exc["name"], exc["product"], exc["location"], exc["unit"]) + (1.0,)
             ]
+            resolution_source = "source-fallback"
 
         if amount is None:
             amount = sum(
@@ -2448,7 +2464,8 @@ class BaseTransformation:
                 )
             )
 
-        return entries, amount
+        result = entries, amount, resolution_source
+        return result if include_resolution_source else result[:2]
 
     def create_new_exchanges(
         self, entries, amount, comment=None, requested_provider=None

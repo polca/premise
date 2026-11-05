@@ -192,6 +192,7 @@ def relink_provider_route_operation(
     consumer_location: str,
     request: tuple[str, str, str, str],
     providers: Iterable[tuple[str, str, str, str, float]],
+    resolution_source: str,
 ) -> SharedOperation:
     """Declare one route actually selected by a global relinking traversal."""
 
@@ -208,11 +209,15 @@ def relink_provider_route_operation(
         raise ValueError("Relink provider routes require finite provider shares")
     if not math.isclose(sum(provider[4] for provider in entries), 1.0):
         raise ValueError("Relink provider-route shares must sum to one")
+    resolution_source = str(resolution_source)
+    if resolution_source not in {"cache", "geographic", "source-fallback"}:
+        raise ValueError(f"Unknown relink resolution source {resolution_source!r}")
     return SharedOperation.from_payload(
         operator=RELINK_PROVIDER_ROUTE,
         target="technosphere",
         payload={
             "consumer_location": str(consumer_location),
+            "resolution_source": resolution_source,
             "request": {
                 "name": request[0],
                 "product": request[1],

@@ -179,6 +179,7 @@ def test_relinking_declares_market_kind_canonicalization():
             )
         ],
         2.0,
+        "geographic",
     )
     registry = FactorizationIdentityRegistry()
 
@@ -202,6 +203,7 @@ def test_relinking_declares_market_kind_canonicalization():
             "operator": "relink-provider-route",
             "payload": {
                 "consumer_location": "GLO",
+                "resolution_source": "geographic",
                 "providers": [
                     {
                         "location": "GLO",

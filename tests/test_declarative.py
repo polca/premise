@@ -245,10 +245,12 @@ def test_relink_provider_route_operation_is_canonical_and_validated():
                 0.6,
             ),
         ),
+        resolution_source="cache",
     )
 
     assert operation.operator == "relink-provider-route"
     assert operation.payload["consumer_location"] == "CAZ"
+    assert operation.payload["resolution_source"] == "cache"
     assert [provider["location"] for provider in operation.payload["providers"]] == [
         "CA",
         "Canada without Quebec",
@@ -259,6 +261,7 @@ def test_relink_provider_route_operation_is_canonical_and_validated():
             consumer_location="CAZ",
             request=("market for fuel", "fuel", "RER", "kilogram"),
             providers=(("market for fuel", "fuel", "EUR", "kilogram", 0.5),),
+            resolution_source="geographic",
         )
 
 
