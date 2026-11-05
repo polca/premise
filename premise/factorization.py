@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 26
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 27
 FACTORIZATION_SECTOR_PRIORITY = {
     sector: priority
     for priority, sector in enumerate(

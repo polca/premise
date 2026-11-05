@@ -167,23 +167,18 @@ def test_cng_regionalization_is_idempotent(fuels):
 
 
 @pytest.mark.parametrize("fuels", [2050], indirect=True)
-def test_cng_regionalization_declares_provider_kind_capability(fuels):
+def test_cng_regionalization_does_not_declare_selection_gated_operations(fuels):
     registry = FactorizationIdentityRegistry()
     registry.register_baseline(fuels.database)
 
     with registry.session("fuels"):
         fuels.regionalize_vehicle_grade_gas()
 
-    operations = [
-        operation
+    operators = {
+        operation["operator"]
         for operation in registry.payload_for(fuels.database)["shared_operations"]
-        if operation["operator"] == "enable-provider-kind-policy"
-    ]
-    assert len(operations) == 2 * len(REGIONS)
-    assert {operation["payload"]["product"] for operation in operations} == {
-        "natural gas, high pressure"
     }
-    assert {operation["payload"]["unit"] for operation in operations} == {"cubic meter"}
+    assert "enable-provider-kind-policy" not in operators
 
 
 @pytest.mark.parametrize("fuels", [2020, 2050], indirect=True)

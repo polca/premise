@@ -17,7 +17,7 @@ from premise.factorization import (
 def test_factorization_migration_registry_covers_all_sector_updates_truthfully():
     by_sector = {item["sector"]: item for item in FACTORIZATION_SECTOR_MIGRATION}
 
-    assert FACTORIZATION_IDENTITY_SCHEMA_VERSION == 26
+    assert FACTORIZATION_IDENTITY_SCHEMA_VERSION == 27
     assert len(by_sector) == 19
     assert "external" not in by_sector
     assert by_sector["emissions"]["mode"] == "native-sector-patch-v1"

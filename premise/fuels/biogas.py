@@ -3,7 +3,6 @@ from collections import defaultdict
 from ..core.transformation import ws
 from ..factorization import (
     FACTORIZATION_EXCHANGE_LINEAGE_FIELD,
-    current_factorization_activity_identity,
     current_factorization_exchange_lineages,
     register_factorization_shared_operation,
 )
@@ -112,21 +111,6 @@ class BiogasMixin:
 
             mapping = {"vehicle-grade natural gas": activities}
             self.process_and_add_activities(mapping=mapping)
-            for dataset in mapping["vehicle-grade natural gas"]:
-                if not dataset.get("regionalized", False):
-                    continue
-                identity = current_factorization_activity_identity(dataset)
-                if identity is not None:
-                    register_factorization_shared_operation(
-                        {
-                            "operator": "enable-provider-kind-policy",
-                            "target": identity,
-                            "payload": {
-                                "product": "natural gas, high pressure",
-                                "unit": "cubic meter",
-                            },
-                        }
-                    )
 
             # Original geographic activities only forward the same product.
             # Use one kg from their IAM replacement, including World. The
