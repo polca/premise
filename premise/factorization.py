@@ -508,6 +508,7 @@ class FactorizationIdentityRegistry:
         }
         if operation.get("operator") in {
             "cached-provider-route",
+            "relink-provider-route",
             "source-recipe-provider-route",
         }:
             operation["composition_priority"] = FACTORIZATION_SECTOR_PRIORITY.get(

@@ -527,6 +527,28 @@ def test_source_recipe_route_declares_sector_priority():
     ]
 
 
+def test_relink_provider_route_declares_sector_priority():
+    registry = FactorizationIdentityRegistry()
+    with registry.session("final energy"):
+        registry.register_shared_operation(
+            {
+                "operator": "relink-provider-route",
+                "target": "technosphere",
+                "payload": {},
+            }
+        )
+
+    assert registry.payload_for([])["shared_operations"] == [
+        {
+            "composition_priority": 17,
+            "operator": "relink-provider-route",
+            "payload": {},
+            "sector": "final energy",
+            "target": "technosphere",
+        }
+    ]
+
+
 def test_factorization_session_declares_cached_provider_route():
     transformation = SimpleNamespace(cache={}, model="remind")
     request = {

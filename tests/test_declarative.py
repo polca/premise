@@ -9,6 +9,7 @@ from premise.core.declarative import (
     canonical_provider_kind_operation,
     normalized_provider_vector_operation,
     relink_dataset_scope_operation,
+    relink_provider_route_operation,
     unavailable_provider_operation,
 )
 from premise.declarative import (
@@ -217,6 +218,48 @@ def test_relink_dataset_scope_operation_is_canonical():
         "exclude_name_substrings": ["legacy heat"],
         "alternative_names": ["market", "market group"],
     }
+
+
+def test_relink_provider_route_operation_is_canonical_and_validated():
+    operation = relink_provider_route_operation(
+        consumer_location="CAZ",
+        request=(
+            "market group for electricity, low voltage",
+            "electricity, low voltage",
+            "Canada without Quebec",
+            "kilowatt hour",
+        ),
+        providers=(
+            (
+                "market group for electricity, low voltage",
+                "electricity, low voltage",
+                "Canada without Quebec",
+                "kilowatt hour",
+                0.4,
+            ),
+            (
+                "market group for electricity, low voltage",
+                "electricity, low voltage",
+                "CA",
+                "kilowatt hour",
+                0.6,
+            ),
+        ),
+    )
+
+    assert operation.operator == "relink-provider-route"
+    assert operation.payload["consumer_location"] == "CAZ"
+    assert [provider["location"] for provider in operation.payload["providers"]] == [
+        "CA",
+        "Canada without Quebec",
+    ]
+
+    with pytest.raises(ValueError, match="shares must sum to one"):
+        relink_provider_route_operation(
+            consumer_location="CAZ",
+            request=("market for fuel", "fuel", "RER", "kilogram"),
+            providers=(("market for fuel", "fuel", "EUR", "kilogram", 0.5),),
+        )
 
 
 def test_final_energy_provider_kind_policies_are_selection_independent():

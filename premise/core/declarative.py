@@ -13,6 +13,7 @@ NORMALIZE_PROVIDER_VECTOR = "normalize-provider-vector"
 CANONICALIZE_PROVIDER_KIND = "canonicalize-provider-kind"
 CACHED_PROVIDER_ROUTE = "cached-provider-route"
 RELINK_DATASET_SCOPE = "relink-dataset-scope"
+RELINK_PROVIDER_ROUTE = "relink-provider-route"
 
 
 def unavailable_provider_operation(
@@ -186,6 +187,52 @@ def cached_provider_route_operation(
     )
 
 
+def relink_provider_route_operation(
+    *,
+    consumer_location: str,
+    request: tuple[str, str, str, str],
+    providers: Iterable[tuple[str, str, str, str, float]],
+) -> SharedOperation:
+    """Declare one route actually selected by a global relinking traversal."""
+
+    request = tuple(map(str, request))
+    entries = tuple(
+        sorted((*map(str, provider[:4]), float(provider[4])) for provider in providers)
+    )
+    if not consumer_location or len(request) != 4 or not all(request):
+        raise ValueError("Relink provider routes require a complete request")
+    if not entries or any(
+        not all(provider[:4]) or not math.isfinite(provider[4]) or provider[4] < 0.0
+        for provider in entries
+    ):
+        raise ValueError("Relink provider routes require finite provider shares")
+    if not math.isclose(sum(provider[4] for provider in entries), 1.0):
+        raise ValueError("Relink provider-route shares must sum to one")
+    return SharedOperation.from_payload(
+        operator=RELINK_PROVIDER_ROUTE,
+        target="technosphere",
+        payload={
+            "consumer_location": str(consumer_location),
+            "request": {
+                "name": request[0],
+                "product": request[1],
+                "location": request[2],
+                "unit": request[3],
+            },
+            "providers": [
+                {
+                    "name": provider[0],
+                    "product": provider[1],
+                    "location": provider[2],
+                    "unit": provider[3],
+                    "share": provider[4],
+                }
+                for provider in entries
+            ],
+        },
+    )
+
+
 def relink_dataset_scope_operation(
     *,
     excludes_datasets: Iterable[str] = (),
@@ -218,11 +265,13 @@ __all__ = [
     "CANONICALIZE_PROVIDER_KIND",
     "NORMALIZE_PROVIDER_VECTOR",
     "RELINK_DATASET_SCOPE",
+    "RELINK_PROVIDER_ROUTE",
     "RELINK_UNAVAILABLE_PROVIDERS",
     "authoritative_column_operations",
     "cached_provider_route_operation",
     "canonical_provider_kind_operation",
     "normalized_provider_vector_operation",
     "relink_dataset_scope_operation",
+    "relink_provider_route_operation",
     "unavailable_provider_operation",
 ]

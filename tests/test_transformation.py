@@ -198,6 +198,30 @@ def test_relinking_declares_market_kind_canonicalization():
 
     assert registry.payload_for([])["shared_operations"] == [
         {
+            "composition_priority": 17,
+            "operator": "relink-provider-route",
+            "payload": {
+                "consumer_location": "GLO",
+                "providers": [
+                    {
+                        "location": "GLO",
+                        "name": "market group for natural gas, high pressure",
+                        "product": "natural gas, high pressure",
+                        "share": 1.0,
+                        "unit": "cubic meter",
+                    }
+                ],
+                "request": {
+                    "location": "GLO",
+                    "name": "market for natural gas, high pressure",
+                    "product": "natural gas, high pressure",
+                    "unit": "cubic meter",
+                },
+            },
+            "sector": "final energy",
+            "target": "technosphere",
+        },
+        {
             "operator": "canonicalize-provider-kind",
             "payload": {
                 "product": "natural gas, high pressure",
@@ -210,7 +234,7 @@ def test_relinking_declares_market_kind_canonicalization():
             },
             "sector": "final energy",
             "target": "technosphere",
-        }
+        },
     ]
 
 

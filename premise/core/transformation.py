@@ -52,6 +52,7 @@ from .declarative import (
     cached_provider_route_operation,
     canonical_provider_kind_operation,
     relink_dataset_scope_operation,
+    relink_provider_route_operation,
 )
 from .logger import create_logger
 from .utils import get_fuel_properties, rescale_exchange
@@ -2230,6 +2231,28 @@ class BaseTransformation:
                 alt_names,
                 amount=amount,
             )
+            if factorization_session_active():
+                route = relink_provider_route_operation(
+                    consumer_location=str(act["location"]),
+                    request=(
+                        str(exc["name"]),
+                        str(exc["product"]),
+                        str(exc["location"]),
+                        str(exc["unit"]),
+                    ),
+                    providers=entries,
+                )
+                register_factorization_shared_operation(
+                    route.to_dict(),
+                    declaration_identity=(
+                        route.operator,
+                        str(act["location"]),
+                        str(exc["name"]),
+                        str(exc["product"]),
+                        str(exc["location"]),
+                        str(exc["unit"]),
+                    ),
+                )
             operation = canonical_provider_kind_operation(
                 source_name=str(exc["name"]),
                 target_names=(entry[0] for entry in entries),
