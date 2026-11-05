@@ -1,5 +1,6 @@
 import itertools
 import json
+from types import SimpleNamespace
 
 import pytest
 
@@ -26,7 +27,11 @@ from premise.declarative import (
     SharedOperation,
     compose_patches,
 )
-from premise.emissions.declarative import EmissionsPatchPlanner
+from premise.emissions.declarative import (
+    EmissionsPatchPlanner,
+    gains_emission_policy_operation,
+    vehicle_emissions_refresh_policy_operation,
+)
 from premise.energy.final_energy import _declare_provider_kind_policies
 from premise.factorization import FactorizationIdentityRegistry
 from premise.transport.declarative import vehicle_emission_operations
@@ -408,6 +413,39 @@ def test_emissions_patch_declares_vehicle_refresh_from_immutable_reference():
     assert patch.shared_operations == vehicle_emission_operations(reference.activities)
     assert patch.shared_operations[0].operator == "vehicle-emissions-from-source"
     assert patch.shared_operations[0].target == "wrapper"
+
+
+def test_gains_policy_declares_rules_and_only_effective_factors():
+    updater = SimpleNamespace(
+        _gains_factor_values=__import__("numpy").asarray(
+            [[[[0.4, 1.0]]], [[[float("nan"), 0.8]]]]
+        ).reshape(2, 1, 2),
+        _gains_region_index={"EUR": 0, "World": 1},
+        _gains_pollutant_index={"NOx": 0},
+        _gains_sector_index={"Power": 0, "Industry": 1},
+        ei_pollutants={"Nitrogen oxides": "NOx"},
+        ecoinvent_to_iam_loc={"RER": "EUR"},
+    )
+
+    operation = gains_emission_policy_operation(updater)
+
+    assert operation.operator == "apply-gains-emission-policy"
+    assert operation.target == "biosphere"
+    assert operation.payload["pollutants"] == {"Nitrogen oxides": "NOx"}
+    assert operation.payload["location_mapping"] == {"RER": "EUR"}
+    assert operation.payload["gains_regions"] == ["EUR", "World"]
+    assert operation.payload["factors"] == [
+        ["EUR", "NOx", "Power", 0.4],
+        ["World", "NOx", "Industry", 0.8],
+    ]
+    assert "End_Use_Transport_LDT_LLF" in {
+        sector for sector, _ in operation.payload["activity_rules"]
+    }
+
+    refresh = vehicle_emissions_refresh_policy_operation()
+    assert refresh.operator == "refresh-vehicle-energy-emissions"
+    assert refresh.target == "biosphere"
+    assert refresh.payload == {}
 
 
 def test_vehicle_emission_operation_declares_source_without_sector_context():

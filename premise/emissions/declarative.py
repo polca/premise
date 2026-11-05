@@ -14,9 +14,13 @@ from ..declarative import (
     MatrixCoordinate,
     MetadataProposal,
     SectorPatch,
+    SharedOperation,
 )
 from ..inventory.activity_maps import GAINS_MAPPING, get_mapping
 from ..transport.declarative import vehicle_emission_operations
+
+GAINS_EMISSION_POLICY_OPERATOR = "apply-gains-emission-policy"
+VEHICLE_EMISSIONS_REFRESH_POLICY_OPERATOR = "refresh-vehicle-energy-emissions"
 
 
 def _activity_field(activity, field: str) -> str:
@@ -59,6 +63,57 @@ def compile_activity_sector_mapping(reference: LatentReference) -> dict[str, str
             if selected and not excluded:
                 reverse[activity.name] = sector
     return reverse
+
+
+def gains_emission_policy_operation(updater: Any) -> SharedOperation:
+    """Declare the complete GAINS policy for a selection-independent latent set.
+
+    A singleton emissions run cannot enumerate activities that another sector
+    may create.  It can, however, declare the immutable matching rules and IAM
+    factors which apply to every activity in the latent inventory.  Consumers
+    evaluate this policy once after ordinary singleton factors are composed.
+    """
+
+    if not hasattr(updater, "_gains_factor_values"):
+        updater._compile_gains_factor_lookup()
+    activity_rules = get_mapping(filepath=GAINS_MAPPING, var="ecoinvent_aliases")
+    factors = []
+    for region, region_position in updater._gains_region_index.items():
+        for pollutant, pollutant_position in updater._gains_pollutant_index.items():
+            for sector, sector_position in updater._gains_sector_index.items():
+                factor = float(
+                    updater._gains_factor_values[
+                        region_position,
+                        pollutant_position,
+                        sector_position,
+                    ]
+                )
+                if math.isfinite(factor) and 0.0 < factor < 1.0:
+                    factors.append([str(region), str(pollutant), str(sector), factor])
+    return SharedOperation.from_payload(
+        operator=GAINS_EMISSION_POLICY_OPERATOR,
+        target="biosphere",
+        payload={
+            "activity_rules": [
+                [str(sector), specification]
+                for sector, specification in activity_rules.items()
+            ],
+            "pollutants": dict(updater.ei_pollutants),
+            "location_mapping": dict(updater.ecoinvent_to_iam_loc),
+            "gains_regions": sorted(map(str, updater._gains_region_index)),
+            "factors": factors,
+        },
+    )
+
+
+def vehicle_emissions_refresh_policy_operation() -> SharedOperation:
+    """Request one post-composition refresh of every latent vehicle wrapper."""
+
+    return SharedOperation.from_payload(
+        operator=VEHICLE_EMISSIONS_REFRESH_POLICY_OPERATOR,
+        target="biosphere",
+        payload={},
+    )
 
 
 @dataclass(frozen=True, slots=True)
@@ -187,4 +242,11 @@ class EmissionsPatchPlanner:
         )
 
 
-__all__ = ["EmissionsPatchPlanner", "compile_activity_sector_mapping"]
+__all__ = [
+    "GAINS_EMISSION_POLICY_OPERATOR",
+    "VEHICLE_EMISSIONS_REFRESH_POLICY_OPERATOR",
+    "EmissionsPatchPlanner",
+    "compile_activity_sector_mapping",
+    "gains_emission_policy_operation",
+    "vehicle_emissions_refresh_policy_operation",
+]

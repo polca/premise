@@ -14,25 +14,26 @@ import xarray as xr
 import yaml
 from numpy import ndarray
 
-from ..inventory.activity_maps import GAINS_MAPPING, get_mapping
 from ..core.filesystem_constants import DATA_DIR
-from ..iam.geomap import Geomap
 from ..core.logger import create_logger
-from ..reporting.provenance import record_change_event
-from ..inventory.inventory_store import (
-    CompactInventoryStore,
-    LegacyInventoryStore,
-    get_scenario_inventory,
-    replace_scenario_inventory,
-)
-from ..inventory.inventory_copy import clone_inventory_dataset
-from ..core.utils import rescale_exchange
 from ..core.transformation import (
     BaseTransformation,
     IAMDataCollection,
     InventorySet,
     List,
 )
+from ..core.utils import rescale_exchange
+from ..factorization import register_factorization_shared_operation
+from ..iam.geomap import Geomap
+from ..inventory.activity_maps import GAINS_MAPPING, get_mapping
+from ..inventory.inventory_copy import clone_inventory_dataset
+from ..inventory.inventory_store import (
+    CompactInventoryStore,
+    LegacyInventoryStore,
+    get_scenario_inventory,
+    replace_scenario_inventory,
+)
+from ..reporting.provenance import record_change_event
 
 logger = create_logger("emissions")
 
@@ -49,6 +50,11 @@ def fetch_mapping(filepath: str) -> dict:
 
 def _update_emissions(scenario, version, system_model, gains_scenario):
     from ..transport.vehicle_energy_use import refresh_vehicle_energy_emissions
+    from .declarative import vehicle_emissions_refresh_policy_operation
+
+    register_factorization_shared_operation(
+        vehicle_emissions_refresh_policy_operation().to_dict()
+    )
 
     if scenario["iam data"].gains_data_IAM is None:
         print("No pollutant emissions scenario data available -- skipping")
@@ -65,6 +71,11 @@ def _update_emissions(scenario, version, system_model, gains_scenario):
             version=version,
             system_model=system_model,
             gains_scenario=gains_scenario,
+        )
+        from .declarative import gains_emission_policy_operation
+
+        register_factorization_shared_operation(
+            gains_emission_policy_operation(emissions).to_dict()
         )
         if isinstance(store, CompactInventoryStore):
             affected_activity_keys = emissions.update_emissions_in_store(store)
@@ -88,6 +99,11 @@ def _update_emissions(scenario, version, system_model, gains_scenario):
         version=version,
         system_model=system_model,
         gains_scenario=gains_scenario,
+    )
+    from .declarative import gains_emission_policy_operation
+
+    register_factorization_shared_operation(
+        gains_emission_policy_operation(emissions).to_dict()
     )
 
     emissions.update_emissions_in_database()
