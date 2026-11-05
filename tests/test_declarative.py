@@ -417,9 +417,9 @@ def test_emissions_patch_declares_vehicle_refresh_from_immutable_reference():
 
 def test_gains_policy_declares_rules_and_only_effective_factors():
     updater = SimpleNamespace(
-        _gains_factor_values=__import__("numpy").asarray(
-            [[[[0.4, 1.0]]], [[[float("nan"), 0.8]]]]
-        ).reshape(2, 1, 2),
+        _gains_factor_values=__import__("numpy")
+        .asarray([[[[0.4, 1.0]]], [[[float("nan"), 0.8]]]])
+        .reshape(2, 1, 2),
         _gains_region_index={"EUR": 0, "World": 1},
         _gains_pollutant_index={"NOx": 0},
         _gains_sector_index={"Power": 0, "Industry": 1},
