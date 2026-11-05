@@ -506,7 +506,10 @@ class FactorizationIdentityRegistry:
             "sector": self._active_sector,
             **{str(key): _plain(value) for key, value in payload.items()},
         }
-        if operation.get("operator") == "cached-provider-route":
+        if operation.get("operator") in {
+            "cached-provider-route",
+            "source-recipe-provider-route",
+        }:
             operation["composition_priority"] = FACTORIZATION_SECTOR_PRIORITY.get(
                 self._active_sector, len(FACTORIZATION_SECTOR_PRIORITY)
             )
