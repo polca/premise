@@ -40,7 +40,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--year", type=int, default=2050)
     parser.add_argument("--sector", action="append", dest="sectors")
     parser.add_argument("--repeats", type=int, default=3)
-    parser.add_argument("--max-runtime-ratio", type=float, default=1.2)
+    parser.add_argument("--max-runtime-ratio", type=float, default=1.1)
+    parser.add_argument(
+        "--baseline",
+        type=Path,
+        help="Pre-refactor JSON report for the exact same scenario and sectors",
+    )
+    parser.add_argument("--max-standard-baseline-ratio", type=float, default=1.05)
+    parser.add_argument("--max-declarative-baseline-ratio", type=float, default=1.1)
+    parser.add_argument(
+        "--absolute-max-declarative-baseline-ratio", type=float, default=1.2
+    )
+    parser.add_argument("--max-peak-rss-baseline-ratio", type=float, default=1.2)
     parser.add_argument("--output", type=Path)
     return parser.parse_args()
 
@@ -194,6 +205,82 @@ def build(args: argparse.Namespace, *, factorization_mode: bool) -> dict[str, An
     return result
 
 
+def compare_baseline(
+    *,
+    args: argparse.Namespace,
+    baseline: dict[str, Any],
+    standard_median: float,
+    factorized_median: float,
+    first_factorized_peak_rss: int | None,
+) -> dict[str, Any]:
+    """Evaluate current measurements against a scenario-matched baseline."""
+
+    expected_scenario = {
+        "project": args.project,
+        "source_database": args.source_db,
+        "model": args.model,
+        "pathway": args.pathway,
+        "year": args.year,
+        "sectors": args.sectors,
+        "inventory_backend": "compact",
+    }
+    observed_scenario = baseline.get("scenario", {})
+    mismatches = {
+        field: {
+            "expected": expected,
+            "observed": observed_scenario.get(field),
+        }
+        for field, expected in expected_scenario.items()
+        if observed_scenario.get(field) != expected
+    }
+    if mismatches:
+        raise ValueError(
+            "Baseline scenario does not match requested benchmark: "
+            + canonical_json(mismatches)
+        )
+
+    measurement = baseline.get("measurement", {})
+    baseline_standard = float(measurement["standard_median_seconds"])
+    baseline_peak_rss = measurement.get("first_standard_peak_rss_bytes")
+    standard_ratio = standard_median / baseline_standard
+    declarative_ratio = factorized_median / baseline_standard
+    peak_rss_ratio = (
+        first_factorized_peak_rss / int(baseline_peak_rss)
+        if first_factorized_peak_rss and baseline_peak_rss
+        else None
+    )
+    return {
+        "baseline_commit": baseline.get("baseline_commit"),
+        "baseline_standard_median_seconds": baseline_standard,
+        "current_standard_to_baseline_ratio": standard_ratio,
+        "current_standard_accepted": (
+            standard_ratio <= args.max_standard_baseline_ratio
+        ),
+        "declarative_to_baseline_standard_ratio": declarative_ratio,
+        "declarative_accepted": (
+            declarative_ratio <= args.max_declarative_baseline_ratio
+        ),
+        "declarative_absolute_failure": (
+            declarative_ratio > args.absolute_max_declarative_baseline_ratio
+        ),
+        "first_factorized_peak_rss_bytes": first_factorized_peak_rss,
+        "baseline_first_standard_peak_rss_bytes": baseline_peak_rss,
+        "peak_rss_to_baseline_ratio": peak_rss_ratio,
+        "peak_rss_accepted": (
+            peak_rss_ratio is not None
+            and peak_rss_ratio <= args.max_peak_rss_baseline_ratio
+        ),
+        "limits": {
+            "current_standard_ratio": args.max_standard_baseline_ratio,
+            "declarative_ratio": args.max_declarative_baseline_ratio,
+            "declarative_absolute_ratio": (
+                args.absolute_max_declarative_baseline_ratio
+            ),
+            "peak_rss_ratio": args.max_peak_rss_baseline_ratio,
+        },
+    }
+
+
 def main() -> int:
     args = parse_args()
     if args.repeats < 3:
@@ -213,6 +300,14 @@ def main() -> int:
     standard = [run["elapsed_seconds"] for run in runs if not run["factorization_mode"]]
     factorized = [run["elapsed_seconds"] for run in runs if run["factorization_mode"]]
     ratio = statistics.median(factorized) / statistics.median(standard)
+    first_factorized_peak_rss = next(
+        (
+            run["peak_rss_bytes"]
+            for run in runs
+            if run["factorization_mode"] and run.get("peak_rss_bytes")
+        ),
+        None,
+    )
     result = {
         "environment": {
             "platform": platform.platform(),
@@ -236,12 +331,36 @@ def main() -> int:
         "max_runtime_ratio": args.max_runtime_ratio,
         "runtime_accepted": ratio <= args.max_runtime_ratio,
     }
+    if args.baseline:
+        result["baseline_comparison"] = compare_baseline(
+            args=args,
+            baseline=json.loads(args.baseline.read_text(encoding="utf-8")),
+            standard_median=result["standard_median_seconds"],
+            factorized_median=result["factorized_median_seconds"],
+            first_factorized_peak_rss=first_factorized_peak_rss,
+        )
     payload = json.dumps(result, indent=2) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(payload, encoding="utf-8")
     print(payload, end="")
-    return 0 if result["graph_identical"] and result["runtime_accepted"] else 1
+    baseline_accepted = True
+    if comparison := result.get("baseline_comparison"):
+        baseline_accepted = all(
+            comparison[field]
+            for field in (
+                "current_standard_accepted",
+                "declarative_accepted",
+                "peak_rss_accepted",
+            )
+        )
+    return (
+        0
+        if result["graph_identical"]
+        and result["runtime_accepted"]
+        and baseline_accepted
+        else 1
+    )
 
 
 if __name__ == "__main__":
