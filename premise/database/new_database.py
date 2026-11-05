@@ -2940,9 +2940,7 @@ class NewDatabase:
                             scenario_definition, position
                         )
                 else:
-                    self._release_shared_geography_cache(
-                        scenario_definition, position
-                    )
+                    self._release_shared_geography_cache(scenario_definition, position)
                 # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update()
 
