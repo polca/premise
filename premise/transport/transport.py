@@ -593,4 +593,7 @@ class Transport(BaseTransformation):
     def write_log(self, dataset, status="created"):
         """Record a structured transport provenance event."""
 
-        record_change_event(self, dataset, status, sector="transport")
+        # The active NewDatabase update names the concrete owner (cars,
+        # trains, buses, etc.). A generic "transport" label makes singleton
+        # ownership impossible to assign back to the selected sector.
+        record_change_event(self, dataset, status)

@@ -19,9 +19,23 @@ from premise.fuels.carbon import (
 from premise.fuels.properties import PROPERTIES_KEY, activity_key
 from premise.reporting.provenance import ProvenanceCollector
 from premise.transport import Transport
+from premise.transport import transport as transport_module
 from premise.validation import CarValidation
 
 FLOWS = get_biosphere_code("3.12")
+
+
+def test_transport_log_inherits_the_active_sector(monkeypatch):
+    captured = {}
+
+    def record(*args, **kwargs):
+        captured.update(kwargs)
+
+    monkeypatch.setattr(transport_module, "record_change_event", record)
+
+    Transport.write_log(object(), {}, "created")
+
+    assert "sector" not in captured
 
 
 def emission(name, amount, **kwargs):
