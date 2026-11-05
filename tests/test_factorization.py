@@ -17,7 +17,7 @@ from premise.factorization import (
 def test_factorization_migration_registry_covers_all_sector_updates_truthfully():
     by_sector = {item["sector"]: item for item in FACTORIZATION_SECTOR_MIGRATION}
 
-    assert FACTORIZATION_IDENTITY_SCHEMA_VERSION == 28
+    assert FACTORIZATION_IDENTITY_SCHEMA_VERSION == 29
     assert len(by_sector) == 19
     assert "external" not in by_sector
     assert by_sector["emissions"]["mode"] == "native-sector-patch-v1"
@@ -435,6 +435,43 @@ def test_derived_identity_is_sector_independent_and_uses_source_lineage():
 
     assert final_identity == fuels_identity
     assert other_identity != final_identity
+
+
+def test_derived_registration_upgrades_a_provisional_created_identity():
+    source = activity("source-code")
+    target = activity("target-code")
+    target["location"] = "EUR"
+
+    provisional_registry = FactorizationIdentityRegistry()
+    provisional_registry.register_baseline([source])
+    with provisional_registry.session("two_wheelers"):
+        provisional = provisional_registry.register_created(target)
+        upgraded = provisional_registry.register_derived(
+            target,
+            source=source,
+            operation="regionalized-proxy",
+            qualifier="EUR",
+        )
+
+    direct_registry = FactorizationIdentityRegistry()
+    direct_registry.register_baseline([source])
+    direct_target = copy.deepcopy(target)
+    with direct_registry.session("two_wheelers"):
+        direct = direct_registry.register_derived(
+            direct_target,
+            source=source,
+            operation="regionalized-proxy",
+            qualifier="EUR",
+        )
+
+    assert upgraded != provisional
+    assert upgraded == direct
+    payload = provisional_registry.payload_for([target])
+    assert payload["identities"]["target-code"] == upgraded
+    assert payload["activity_origins"][upgraded]["kind"] == "derived"
+    assert payload["activity_origins"][upgraded]["source"] == (
+        provisional_registry.identity_for(source)
+    )
 
 
 def test_factorization_payload_declares_created_and_derived_activity_origins():

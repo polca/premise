@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
-FACTORIZATION_IDENTITY_SCHEMA_VERSION = 28
+FACTORIZATION_IDENTITY_SCHEMA_VERSION = 29
 FACTORIZATION_SECTOR_PRIORITY = {
     sector: priority
     for priority, sector in enumerate(
@@ -412,12 +412,15 @@ class FactorizationIdentityRegistry:
         """
 
         existing = self._by_object.get(id(dataset))
-        if existing is not None:
-            return existing
         code = dataset.get("code")
-        if code not in (None, ""):
+        if existing is None and code not in (None, ""):
             existing = self._by_code.get(str(code))
-            if existing is not None:
+        if existing is not None:
+            existing_origin = self._activity_origins.get(existing)
+            if not (
+                isinstance(existing_origin, Mapping)
+                and existing_origin.get("kind") == "created"
+            ):
                 self._by_object[id(dataset)] = existing
                 return existing
 
@@ -450,6 +453,11 @@ class FactorizationIdentityRegistry:
         }
         if code not in (None, ""):
             self._by_code[str(code)] = identity
+            if existing is not None:
+                self._created_identity_codes.get(existing, set()).discard(str(code))
+        storage_id = getattr(dataset, "activity_id", None)
+        if storage_id is not None:
+            self._by_storage_id[int(storage_id)] = identity
 
         source_code = source.get("code")
         source_consumer = (
