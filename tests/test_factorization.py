@@ -83,6 +83,34 @@ def test_factorization_registry_collects_invariant_shared_operations():
     ]
 
 
+def test_relink_datasets_declares_global_traversal_scope_in_factorization_mode():
+    transformation = SimpleNamespace(
+        database=[],
+        _get_provider_semantic_index=lambda: set(),
+    )
+    registry = FactorizationIdentityRegistry()
+
+    with registry.session("final energy"):
+        BaseTransformation.relink_datasets(
+            transformation,
+            excludes_datasets=["legacy heat"],
+            alt_names=["market group"],
+        )
+
+    assert registry.payload_for([])["shared_operations"] == [
+        {
+            "operator": "relink-dataset-scope",
+            "target": "technosphere",
+            "sector": "final energy",
+            "payload": {
+                "scope": "all-datasets",
+                "exclude_name_substrings": ["legacy heat"],
+                "alternative_names": ["market group"],
+            },
+        }
+    ]
+
+
 def test_baseline_identity_uses_source_key_and_does_not_mutate_payload():
     first = activity("source-code")
     second = activity("source-code")

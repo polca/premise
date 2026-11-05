@@ -51,6 +51,7 @@ from ..reporting.provenance import record_change_event
 from .declarative import (
     cached_provider_route_operation,
     canonical_provider_kind_operation,
+    relink_dataset_scope_operation,
 )
 from .logger import create_logger
 from .utils import get_fuel_properties, rescale_exchange
@@ -2016,6 +2017,20 @@ class BaseTransformation:
         # Simplify default arguments
         alt_names = alt_names or []
         excludes_datasets = excludes_datasets or []
+
+        if factorization_session_active():
+            scope = relink_dataset_scope_operation(
+                excludes_datasets=excludes_datasets,
+                alternative_names=alt_names,
+            )
+            register_factorization_shared_operation(
+                scope.to_dict(),
+                declaration_identity=(
+                    "relink-dataset-scope",
+                    tuple(scope.payload["exclude_name_substrings"]),
+                    tuple(scope.payload["alternative_names"]),
+                ),
+            )
 
         provider_semantics = self._get_provider_semantic_index()
         for act in ws.get_many(

@@ -12,6 +12,7 @@ AUTHORITATIVE_TECHNOSPHERE_COLUMN = "authoritative-technosphere-column"
 NORMALIZE_PROVIDER_VECTOR = "normalize-provider-vector"
 CANONICALIZE_PROVIDER_KIND = "canonicalize-provider-kind"
 CACHED_PROVIDER_ROUTE = "cached-provider-route"
+RELINK_DATASET_SCOPE = "relink-dataset-scope"
 
 
 def unavailable_provider_operation(
@@ -185,15 +186,43 @@ def cached_provider_route_operation(
     )
 
 
+def relink_dataset_scope_operation(
+    *,
+    excludes_datasets: Iterable[str] = (),
+    alternative_names: Iterable[str] = (),
+) -> SharedOperation:
+    """Declare the selection-independent traversal scope of ``relink_datasets``.
+
+    Cached provider routes describe outcomes observed during one singleton
+    traversal, but not which potential activities another sector would have
+    traversed. This capability declaration lets a later latent-universe planner
+    apply the same generic relinking policy without inspecting selected sectors.
+    """
+
+    exclusions = tuple(sorted({str(value) for value in excludes_datasets if value}))
+    alternatives = tuple(sorted({str(value) for value in alternative_names if value}))
+    return SharedOperation.from_payload(
+        operator=RELINK_DATASET_SCOPE,
+        target="technosphere",
+        payload={
+            "scope": "all-datasets",
+            "exclude_name_substrings": list(exclusions),
+            "alternative_names": list(alternatives),
+        },
+    )
+
+
 __all__ = [
     "AUTHORITATIVE_TECHNOSPHERE_COLUMN",
     "CACHED_PROVIDER_ROUTE",
     "CANONICALIZE_PROVIDER_KIND",
     "NORMALIZE_PROVIDER_VECTOR",
+    "RELINK_DATASET_SCOPE",
     "RELINK_UNAVAILABLE_PROVIDERS",
     "authoritative_column_operations",
     "cached_provider_route_operation",
     "canonical_provider_kind_operation",
     "normalized_provider_vector_operation",
+    "relink_dataset_scope_operation",
     "unavailable_provider_operation",
 ]

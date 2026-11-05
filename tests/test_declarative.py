@@ -8,6 +8,7 @@ from premise.core.declarative import (
     cached_provider_route_operation,
     canonical_provider_kind_operation,
     normalized_provider_vector_operation,
+    relink_dataset_scope_operation,
     unavailable_provider_operation,
 )
 from premise.declarative import (
@@ -201,6 +202,21 @@ def test_cached_provider_route_operation_is_canonical_and_validated():
             request=("market", "electricity", "CA", "kilowatt hour"),
             providers=(("market", "electricity", "CA", "kilowatt hour", 0.5),),
         )
+
+
+def test_relink_dataset_scope_operation_is_canonical():
+    operation = relink_dataset_scope_operation(
+        excludes_datasets=("legacy heat", "legacy heat"),
+        alternative_names=("market group", "market"),
+    )
+
+    assert operation.operator == "relink-dataset-scope"
+    assert operation.target == "technosphere"
+    assert operation.payload == {
+        "scope": "all-datasets",
+        "exclude_name_substrings": ["legacy heat"],
+        "alternative_names": ["market", "market group"],
+    }
 
 
 def test_final_energy_provider_kind_policies_are_selection_independent():
