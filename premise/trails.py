@@ -610,6 +610,27 @@ class TrailsDataPackage:
         self._add_classifications_file()
         self._build_datapackage(name, contributors)
 
+    @staticmethod
+    def _load_temporal_classifications(path: Path) -> Dict[Tuple[str, str], dict]:
+        """Return unambiguous ISIC/CPC pairs recorded by the temporal mapping."""
+        candidates = {}
+        with open(path, "r", encoding="utf-8-sig", newline="") as stream:
+            for row in csv.DictReader(stream):
+                name = (row.get("name") or "").strip()
+                product = (row.get("reference product") or "").strip()
+                isic = (row.get("ISIC rev.4 ecoinvent") or "").strip()
+                cpc = (row.get("CPC") or "").strip()
+                if not name or not product or not isic or not cpc:
+                    continue
+                candidates.setdefault((name, product), set()).add((isic, cpc))
+
+        return {
+            key: {"ISIC rev.4 ecoinvent": isic, "CPC": cpc}
+            for key, values in candidates.items()
+            if len(values) == 1
+            for isic, cpc in values
+        }
+
     def _add_classifications_file(self):
         """
         Export activity classifications to a CSV file in the datapackage.
@@ -659,6 +680,15 @@ class TrailsDataPackage:
             for pat in patterns:
                 s = re.sub(pat, "", s)
             return " ".join(s.split())
+
+        # TRAILS' temporal table carries reviewed classifications for activities
+        # that can be absent from the generic import mapping, including renamed
+        # supplemental inventories. Keep the generic mapping authoritative when
+        # both sources define the same identity.
+        for key, classification in self._load_temporal_classifications(
+            FILEPATH_TEMPORAL_PARAMETERS
+        ).items():
+            self.classifications.setdefault(key, classification)
 
         # Build lookup indices from existing classifications
         by_name = {}
@@ -775,9 +805,17 @@ class TrailsDataPackage:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
 
-            for scenario in self.datapackage.scenarios:
-                db = scenario.get("database") or []
-                for ds in db:
+            get_store = getattr(self.datapackage, "get_inventory_store", None)
+            for scenario_index, scenario in enumerate(self.datapackage.scenarios):
+                if get_store is not None:
+                    store = get_store(scenario_index)
+                    activities = (
+                        record.to_dict() for record in store.iter_activities()
+                    )
+                else:
+                    activities = iter(scenario.get("database") or [])
+
+                for ds in activities:
                     name = ds["name"]
                     ref = ds["reference product"]
 

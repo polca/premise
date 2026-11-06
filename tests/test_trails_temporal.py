@@ -50,6 +50,34 @@ HYDROGEN_HEAT_DAC_ACTIVITIES = [
     ),
 ]
 
+V26_RENAMED_DATASET_LIFETIMES = {
+    (
+        "battery auxiliaries supply and end-of-life treatment, lithium-oxygen",
+        "battery auxiliaries supply and end-of-life treatment, lithium-oxygen",
+    ): 15,
+    (
+        "market for battery cell, lithium-oxygen, including end-of-life treatment",
+        "battery cell, Li-ion, Li-O2, including end-of-life treatment",
+    ): 15,
+    (
+        "battery pack component production and end-of-life treatment, "
+        "lithium-oxygen, without cells and controls",
+        "battery pack component provision, Li-ion, Li-O2, without cells and controls",
+    ): 15,
+    (
+        "market for used redox-flow battery, vanadium",
+        "used redox-flow battery, vanadium",
+    ): 1,
+    (
+        "electric installation production, utility scale, open ground",
+        "electric installation, utility scale, open ground",
+    ): 30,
+    (
+        "electricity production, nuclear, Evolutionary Power Reactor (EPR)",
+        "electricity, high voltage",
+    ): 30,
+}
+
 
 def test_hydrogen_heat_dac_activities_have_twenty_year_lifetimes():
     obj = TrailsDataPackage.__new__(TrailsDataPackage)
@@ -59,6 +87,26 @@ def test_hydrogen_heat_dac_activities_have_twenty_year_lifetimes():
 
     for name in HYDROGEN_HEAT_DAC_ACTIVITIES:
         assert dataset_lifetimes[(name, "carbon dioxide, captured")] == 20
+
+
+def test_v26_renamed_datasets_retain_temporal_lifetimes():
+    obj = TrailsDataPackage.__new__(TrailsDataPackage)
+    *_, dataset_lifetimes = obj._load_temporal_specs_from_csv(
+        trails.FILEPATH_TEMPORAL_PARAMETERS
+    )
+
+    for identity, lifetime in V26_RENAMED_DATASET_LIFETIMES.items():
+        assert dataset_lifetimes[identity] == lifetime
+
+
+def test_v26_renamed_datasets_have_temporal_classification_mappings():
+    classifications = TrailsDataPackage._load_temporal_classifications(
+        trails.FILEPATH_TEMPORAL_PARAMETERS
+    )
+
+    for identity in V26_RENAMED_DATASET_LIFETIMES:
+        assert classifications[identity]["ISIC rev.4 ecoinvent"]
+        assert classifications[identity]["CPC"]
 
 
 @pytest.mark.parametrize(
@@ -472,6 +520,63 @@ def test_temporal_profiles_survive_inventory_store_and_matrix_export(
     assert a_rows[1]["temporal_weights"] == "[0.4, 0.6]"
     assert b_rows[0]["temporal_distribution"] == "6"
     assert b_rows[0]["temporal_offsets"]
+
+
+@pytest.mark.parametrize("store_class", [CompactInventoryStore, LegacyInventoryStore])
+def test_classification_export_reads_inventory_store(
+    store_class, monkeypatch, tmp_path
+):
+    dataset = {
+        "name": "renamed asset production",
+        "reference product": "renamed asset",
+        "unit": "unit",
+        "location": "GLO",
+        "classifications": [
+            ("ISIC rev.4 ecoinvent", "3320:Installation of industrial machinery"),
+            ("CPC", "87360: Installation services of electrical machinery"),
+        ],
+        "exchanges": [
+            {
+                "name": "renamed asset production",
+                "product": "renamed asset",
+                "unit": "unit",
+                "location": "GLO",
+                "type": "production",
+                "amount": 1.0,
+            }
+        ],
+    }
+    scenario = {"_inventory_store": store_class([dataset])}
+    database = NewDatabase.__new__(NewDatabase)
+    database._inventory_api_active = True
+    database.scenarios = [scenario]
+
+    obj = TrailsDataPackage.__new__(TrailsDataPackage)
+    obj.datapackage = database
+    obj.classifications = {}
+    monkeypatch.chdir(tmp_path)
+
+    obj._add_classifications_file()
+
+    with (tmp_path / "trails_temp" / "classifications" / "classifications.csv").open(
+        newline="", encoding="utf-8"
+    ) as stream:
+        rows = list(csv.DictReader(stream))
+
+    assert rows == [
+        {
+            "name": "renamed asset production",
+            "reference product": "renamed asset",
+            "classification_system": "ISIC rev.4 ecoinvent",
+            "classification_code": "3320:Installation of industrial machinery",
+        },
+        {
+            "name": "renamed asset production",
+            "reference product": "renamed asset",
+            "classification_system": "CPC",
+            "classification_code": "87360: Installation services of electrical machinery",
+        },
+    ]
 
 
 def test_load_temporal_specs_reads_long_term_biosphere_selectors(tmp_path):
