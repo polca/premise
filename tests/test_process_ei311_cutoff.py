@@ -1,4 +1,5 @@
 import gc
+import math
 import os
 
 import bw2calc
@@ -84,7 +85,7 @@ def test_brightway():
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
-    print(lca.score)
+    assert math.isfinite(lca.score)
 
     try:
         # uses BW2
@@ -97,4 +98,3 @@ def test_brightway():
 
     results = [lca.score for _ in zip(range(10), mclca)]
     assert all(isinstance(result, float) for result in results)
-    print(results)

@@ -86,6 +86,7 @@ def validate(ds):
 )
 def test_floor_and_validation(fuel, unit):
     ds = car(fuel=fuel, unit=unit)
+    ds["comment"] = "Source inventory comment."
     before = deepcopy(ds)
     event = apply_floor(ds)
     assert fuel_balance(ds)[0] == pytest.approx(0.852)
@@ -93,6 +94,7 @@ def test_floor_and_validation(fuel, unit):
     assert validate(ds) == []
     for index in (0, 2, 4, 5):
         assert ds["exchanges"][index] == before["exchanges"][index]
+    assert ds["comment"] == before["comment"]
     once = deepcopy(ds)
     assert apply_floor(ds) is None
     assert ds == once

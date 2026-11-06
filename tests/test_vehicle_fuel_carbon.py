@@ -7,7 +7,6 @@ import pytest
 import xarray as xr
 
 from premise.fuels.carbon import (
-    VEHICLE_CO2_KEY,
     reclassify_fuel_co2,
     replace_vehicle_fuel_co2,
     update_vehicle_fuel_co2,
@@ -73,6 +72,9 @@ def vehicle(fuel, kind="car", location="RER", production=1):
         if kind == "car"
         else "transport, freight, lorry"
     )
+    if kind == "train":
+        name = "transport, freight train, diesel-electric"
+        product = "transport, freight train"
     return {
         "name": name,
         "reference product": product,
@@ -180,7 +182,10 @@ def test_phev_mixed_fuels_reference_production_and_non_co2_are_preserved():
     )
     update_vehicle_fuel_co2([fossil, bio, ds], "3.12")
     assert amounts(ds) == pytest.approx((0.6, 0.165))
-    assert ds[VEHICLE_CO2_KEY]["production amount"] == 2
+    balance = vehicle_fuel_carbon(
+        ds, {activity_key(provider): provider for provider in (fossil, bio)}
+    )
+    assert balance["production amount"] == 2
     for exchange in untouched:
         assert exchange in ds["exchanges"]
 
@@ -191,7 +196,7 @@ def test_fossil_lpg_fallback_records_actual_geography():
     ds = vehicle(fuel)
     update_vehicle_fuel_co2([fuel, ds], "3.12")
     assert amounts(ds) == pytest.approx((0.1 * 45.5 * 0.0631, 0))
-    source = ds[VEHICLE_CO2_KEY]["suppliers"][0]
+    source = vehicle_fuel_carbon(ds, {activity_key(fuel): fuel})["suppliers"][0]
     assert source["location"] == "RER" and "fossil LPG fallback" in source["source"]
 
 
@@ -202,19 +207,18 @@ def test_unknown_origin_is_diagnostic_and_leaves_emissions_untouched():
     before = deepcopy(ds["exchanges"])
     update_vehicle_fuel_co2([fuel, ds], "3.12")
     assert ds["exchanges"] == before
-    assert ds[VEHICLE_CO2_KEY]["status"] == "unresolved"
+    balance = vehicle_fuel_carbon(ds, {activity_key(fuel): fuel})
+    assert balance["status"] == "unresolved"
 
 
-def test_forwarders_have_no_direct_co2_or_stale_vehicle_record():
+def test_forwarders_do_not_receive_direct_co2():
     ds = vehicle(supplier())
     ds["exchanges"] = ds["exchanges"][:1] + [
         dict(ds["exchanges"][0], type="technosphere", location="EUR")
     ]
-    ds[VEHICLE_CO2_KEY] = {"status": "resolved", "fossil CO2 kg": 0.3}
     before = deepcopy(ds["exchanges"])
     update_vehicle_fuel_co2([ds], "3.12")
     assert ds["exchanges"] == before
-    assert VEHICLE_CO2_KEY not in ds
 
 
 def test_bio_only_source_and_uncertainty_are_handled_atomically():
@@ -244,7 +248,7 @@ def test_bio_only_source_and_uncertainty_are_handled_atomically():
     )
 
 
-def test_validator_detects_wrong_split_even_with_correct_total_and_saved_metadata():
+def test_validator_detects_wrong_split_even_with_correct_total():
     fuel = supplier()
     ds = vehicle(fuel)
     database = [fuel, ds]
@@ -263,12 +267,12 @@ def test_validator_detects_wrong_split_even_with_correct_total_and_saved_metadat
     assert all(i[1] == "vehicle fuel carbon split incorrect" for i in issues)
 
 
-@pytest.mark.parametrize("kind", ["car", "truck"])
+@pytest.mark.parametrize("kind", ["car", "truck", "train"])
 @pytest.mark.parametrize("year,factor", [(2020, 1), (2050, 0.5)])
 def test_transport_entrypoint_uses_final_suppliers_and_efficiency(
     monkeypatch, kind, year, factor
 ):
-    import premise.transport as module
+    import premise.transport.transport as module
 
     regions = ["EUR", "USA", "World"]
     name = (
@@ -288,6 +292,7 @@ def test_transport_entrypoint_uses_final_suppliers_and_efficiency(
         regions=regions,
         passenger_car_efficiencies=efficiencies,
         road_freight_efficiencies=efficiencies,
+        rail_freight_efficiencies=efficiencies,
         passenger_car_fleet=None,
         road_freight_fleet=None,
         bus_fleet=None,
@@ -331,7 +336,69 @@ def test_transport_entrypoint_uses_final_suppliers_and_efficiency(
         assert amounts(ds) == pytest.approx(
             (0.3 * factor * (1 - share), 0.3 * factor * share)
         )
-        assert ds[VEHICLE_CO2_KEY]["suppliers"][0]["location"] == region
+        providers = {
+            activity_key(provider): provider for provider in transport.database
+        }
+        balance = vehicle_fuel_carbon(ds, providers)
+        assert balance["suppliers"][0]["location"] == region
     before = deepcopy(transport.database)
     module._update_vehicles(scenario, kind, "3.12", "cutoff")
     assert transport.database == before
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "transport, freight train, diesel-electric",
+        "transport, freight train, electric",
+        "transport, freight train, fuel cell, hydrogen",
+        "diesel, burned in passenger train",
+    ],
+)
+@pytest.mark.parametrize("share", [0, 0.4, 1])
+@pytest.mark.parametrize("compact", [False, True])
+def test_rail_reclassifies_inherited_world_split_without_changing_exhaust(
+    name, share, compact
+):
+    world = supplier("World", 0.25, 3.15, name="market for diesel")
+    local = supplier("JPN", share, 3.2, name="market for diesel")
+    ds = vehicle(world, kind="train")
+    ds["name"] = name
+    ds["exchanges"][2]["amount"] = 0.02
+    reclassify_fuel_co2(ds, 0.3, 0.25, FLOWS, "inherited diesel classification")
+    ds["exchanges"].append(emission("Carbon dioxide, fossil", -0.001))
+    ds["location"] = "JPN"
+    ds["exchanges"][1]["location"] = "JPN"
+    if compact:
+        ds["exchanges"] = [compact_exchange_payload(e) for e in ds["exchanges"]]
+    unaffected = [
+        dict(e)
+        for e in ds["exchanges"]
+        if e["type"] != "biosphere" or e["name"] == "Nitrogen oxides" or e["amount"] < 0
+    ]
+    update_vehicle_fuel_co2([world, local, ds], "3.12", "train")
+    assert amounts(ds) == pytest.approx((0.02 * (1 - share), 0.02 * share))
+    assert [
+        dict(e)
+        for e in ds["exchanges"]
+        if e["type"] != "biosphere" or e["name"] == "Nitrogen oxides" or e["amount"] < 0
+    ] == unaffected
+    once = deepcopy(ds)
+    update_vehicle_fuel_co2([world, local, ds], "3.12", "train")
+    assert ds == once
+
+
+def test_rail_unknown_supplier_and_missing_exhaust_remain_unmodified():
+    fuel = supplier(name="market for diesel")
+    ds = vehicle(fuel, kind="train")
+    fuel.pop(PROPERTIES_KEY)
+    before = deepcopy(ds)
+    update_vehicle_fuel_co2([fuel, ds], "3.12", "train")
+    assert ds == before
+    fuel[PROPERTIES_KEY] = supplier()[PROPERTIES_KEY]
+    ds["exchanges"] = [
+        e for e in ds["exchanges"] if e.get("name") != "Carbon dioxide, fossil"
+    ]
+    before = deepcopy(ds)
+    update_vehicle_fuel_co2([fuel, ds], "3.12", "train")
+    assert ds == before

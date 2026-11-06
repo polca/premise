@@ -16,8 +16,6 @@ def inventory_io(monkeypatch, tmp_path):
     ):
         monkeypatch.setattr(inventories, name, lambda *args: {})
 
-    monkeypatch.setattr(inventories, "TEMP_CSV_FILE", tmp_path / "temp.csv")
-    monkeypatch.setattr(inventories, "TEMP_EXCEL_FILE", tmp_path / "temp.xlsx")
     calls = []
 
     def head(url):
@@ -41,12 +39,16 @@ def inventory_io(monkeypatch, tmp_path):
     monkeypatch.setattr(
         inventories,
         "ExcelImporter",
-        lambda path: SimpleNamespace(data=[], path=path, format="xlsx"),
+        lambda path: SimpleNamespace(
+            data=[], path=path, content=path.read_text(), format="xlsx"
+        ),
     )
     monkeypatch.setattr(
         inventories,
         "CSVImporter",
-        lambda path: SimpleNamespace(data=[], path=path, format="csv"),
+        lambda path: SimpleNamespace(
+            data=[], path=path, content=path.read_text(), format="csv"
+        ),
     )
     return calls
 
@@ -87,7 +89,8 @@ def test_remote_inventory_preserves_url_on_both_path_flavours(
     assert importer.import_db.format == file_format
     assert importer.import_db.path.suffix == f".{file_format}"
     expected = "downloaded workbook" if file_format == "xlsx" else "Database,example\n"
-    assert importer.import_db.path.read_text() == expected
+    assert importer.import_db.content == expected
+    assert not importer.import_db.path.exists()
 
 
 @pytest.mark.parametrize("path_type", [str, Path])
@@ -125,3 +128,26 @@ def test_remote_inventory_missing_links_report_its_filename(inventory_io, capsys
     importer.add_biosphere_links()
     assert importer.import_db.data[0]["exchanges"] == []
     assert "in inventory.xlsx. Flow ignored." in capsys.readouterr().out
+
+
+def test_remote_inventories_have_independent_staging(inventory_io):
+    first = import_inventory("https://example.org/first.xlsx")
+    second = import_inventory("https://example.org/second.xlsx")
+    assert first.import_db.path.parent != second.import_db.path.parent
+    assert first.import_db.content == second.import_db.content == "downloaded workbook"
+    assert not first.import_db.path.parent.exists()
+    assert not second.import_db.path.parent.exists()
+
+
+def test_failed_remote_import_removes_its_download(inventory_io, monkeypatch):
+    paths = []
+
+    def broken_import(path):
+        assert path.read_text() == "downloaded workbook"
+        paths.append(path)
+        raise ValueError("invalid workbook")
+
+    monkeypatch.setattr(inventories, "ExcelImporter", broken_import)
+    with pytest.raises(ValueError, match="invalid workbook"):
+        import_inventory("https://example.org/broken.xlsx")
+    assert len(paths) == 1 and not paths[0].parent.exists()

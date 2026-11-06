@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "qualification": "Existing independent diagnostic limits are retained; they are broad screening intervals, not measured fuel grades. They do not modify inventories.",
+  "contracts": [
+    {
+      "name": "premise.iridium_content",
+      "indicator": "metals.Iridium",
+      "name_pattern": "iridium production, economic allocation, proxy",
+      "product_pattern": "iridium",
+      "minimum": 1.0,
+      "maximum": 1.0,
+      "source": "Premise product-content attribution convention; docs/methodology/metals.rst. One kg attributed iridium per kg supplied; recovery losses remain unspecified."
+    }
+  ],
+  "fuel_content": {
+    "kerosene": {
+      "carbon_fraction_bounds": [
+        0.82,
+        0.9
+      ],
+      "diagnostic_lhv_MJ_per_kg": 43
+    },
+    "diesel": {
+      "carbon_fraction_bounds": [
+        0.82,
+        0.9
+      ],
+      "diagnostic_lhv_MJ_per_kg": 43
+    },
+    "petrol": {
+      "carbon_fraction_bounds": [
+        0.8,
+        0.9
+      ],
+      "diagnostic_lhv_MJ_per_kg": 43
+    },
+    "fuel oil": {
+      "carbon_fraction_bounds": [
+        0.78,
+        0.92
+      ],
+      "diagnostic_lhv_MJ_per_kg": 41
+    },
+    "natural gas": {
+      "carbon_fraction_bounds": [
+        0.65,
+        0.82
+      ],
+      "diagnostic_lhv_MJ_per_kg": 48
+    },
+    "coal": {
+      "carbon_fraction_bounds": [
+        0.1,
+        0.98
+      ],
+      "diagnostic_lhv_MJ_per_kg": 25
+    },
+    "ethanol": {
+      "carbon_fraction_bounds": [
+        0.5,
+        0.54
+      ],
+      "diagnostic_lhv_MJ_per_kg": 27
+    },
+    "methanol": {
+      "carbon_fraction_bounds": [
+        0.36,
+        0.39
+      ],
+      "diagnostic_lhv_MJ_per_kg": 20
+    },
+    "biomass": {
+      "carbon_fraction_bounds": [
+        0.35,
+        0.6
+      ],
+      "diagnostic_lhv_MJ_per_kg": 18
+    },
+    "lpg": {
+      "carbon_fraction_bounds": [
+        0.78,
+        0.85
+      ],
+      "diagnostic_lhv_MJ_per_kg": 46
+    }
+  },
+  "source": "Carbon fractions for ethanol/methanol/methane follow molecular composition; other intervals are intentionally broad inherited plausibility screens. Heating values are diagnostic conversions, not a replacement for supplier-specific fuel properties."
+}

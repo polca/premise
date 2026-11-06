@@ -1,0 +1,1 @@
+"""Premise energy functionality."""

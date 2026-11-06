@@ -65,7 +65,7 @@ Rail and shipping
 -------------------
 
 The ``trains`` update consumes ``rail_freight_fleet`` data and ``ships`` consumes
-``sea_freight_fleet`` in ``premise/transport.py``. When fleet data are missing,
+``sea_freight_fleet`` in ``premise/transport/transport.py``. When fleet data are missing,
 the update marks that absence rather than treating it as a measured zero fleet.
 The implementation can still process available vehicle inventories; regional
 fleet-average creation depends on the available data and mapping.

@@ -4,11 +4,10 @@ from collections import defaultdict
 from copy import deepcopy
 import math
 
-from ..utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange
+from ..core.utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange
 from .properties import PROPERTIES_KEY, activity_key
 
 _TRANSFER_KEY = FUEL_CO2_TRANSFER_KEY
-VEHICLE_CO2_KEY = "premise vehicle fuel CO2"
 _VEHICLE_FUEL_KEY = "vehicle operating fuel"
 
 
@@ -155,10 +154,15 @@ def reclassify_fuel_co2(dataset, fuel_co2, non_fossil_share, biosphere_flows, fu
 
 
 def is_vehicle_fuel_consumer(dataset, vehicle_type=None):
-    """Select direct car/truck services, excluding manufacture and fleet markets."""
+    """Select operating services and rail combustion wrappers, excluding markets."""
     prefixes = {
         "car": "transport, passenger car,",
         "truck": "transport, freight, lorry,",
+        "train": (
+            "transport, freight train,",
+            "transport, passenger train,",
+            "diesel, burned in passenger train",
+        ),
     }
     return any(
         dataset.get("name", "").startswith(prefix)
@@ -296,15 +300,6 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
         ):
             raise ValueError("Vehicle CO2 amounts must be finite")
     target_fossil, target_bio = balance["fossil CO2 kg"], balance["non-fossil CO2 kg"]
-    actual = {
-        name: sum(e["amount"] for e in selected if e["name"] == name)
-        for name in ("Carbon dioxide, fossil", "Carbon dioxide, non-fossil")
-    }
-    if dataset.get(VEHICLE_CO2_KEY) == balance and all(
-        math.isclose(actual[name], target, rel_tol=1e-12, abs_tol=1e-15)
-        for name, target in zip(actual, (target_fossil, target_bio))
-    ):
-        return
     working = {
         "name": dataset["name"],
         "exchanges": [deepcopy(dict(e)) for e in selected],
@@ -373,12 +368,15 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
         next(replacements) if _positive_air_co2(e) else e for e in dataset["exchanges"]
     ]
     dataset["exchanges"].extend(working["exchanges"][len(selected) :])
-    dataset[VEHICLE_CO2_KEY] = balance
 
 
 def update_vehicle_fuel_co2(database, version, vehicle_type=None):
-    """Refresh road-vehicle CO2 from the currently linked suppliers and amounts."""
-    from ..inventory_imports import get_biosphere_code
+    """Refresh CO2 from final linked fuels after regionalization and scaling.
+
+    Rail keeps its recorded exhaust total and only refreshes carbon origin.
+    Cars and trucks retain their existing full-oxidation accounting.
+    """
+    from ..inventory.inventory_imports import get_biosphere_code
 
     providers = {activity_key(ds): ds for ds in database}
     flows = get_biosphere_code(version)
@@ -386,10 +384,25 @@ def update_vehicle_fuel_co2(database, version, vehicle_type=None):
         if not is_vehicle_fuel_consumer(dataset, vehicle_type):
             continue
         balance = vehicle_fuel_carbon(dataset, providers)
-        if balance is None:
-            # A regionalized original can have become a forwarding activity.
-            dataset.pop(VEHICLE_CO2_KEY, None)
-        elif balance["status"] == "unresolved":
-            dataset[VEHICLE_CO2_KEY] = balance
-        else:
+        if balance is not None and balance["status"] == "resolved":
+            if is_vehicle_fuel_consumer(dataset, "train"):
+                potential = balance["fossil CO2 kg"] + balance["non-fossil CO2 kg"]
+                if potential <= 0:
+                    continue
+                total = sum(
+                    exchange["amount"]
+                    for exchange in dataset["exchanges"]
+                    if _positive_air_co2(exchange)
+                )
+                if total == 0:
+                    continue
+                fraction = balance["non-fossil CO2 kg"] / potential
+                balance = dict(
+                    balance,
+                    **{
+                        "fossil CO2 kg": total * (1 - fraction),
+                        "non-fossil CO2 kg": total * fraction,
+                        "convention": "Recorded rail exhaust total; carbon origin from final linked fuel purchases",
+                    },
+                )
             replace_vehicle_fuel_co2(dataset, balance, flows)

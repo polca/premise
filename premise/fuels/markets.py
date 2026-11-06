@@ -3,15 +3,14 @@ import copy
 import numpy as np
 import math
 
-from ..activity_maps import InventorySet, get_mapping
+from ..inventory.activity_maps import InventorySet, get_mapping
 from .utils import (
     fetch_mapping,
-    update_co2_emissions,
     update_dataset,
     calculate_fuel_properties,
 )
-from ..transformation import ws, get_shares_from_production_volume
-from ..utils import get_fuel_properties
+from ..core.transformation import ws, get_shares_from_production_volume
+from ..core.utils import get_fuel_properties
 from .properties import (
     PROPERTIES_KEY,
     CarbonOriginResolver,
@@ -23,6 +22,30 @@ from .properties import (
 
 class FuelMarketsMixin:
 
+    @staticmethod
+    def _prefer_non_recursive_market_suppliers(mapping, name, reference_product, unit):
+        """Drop source markets that would relink to the market being created.
+
+        Some ecoinvent fuel mappings contain both direct production datasets and
+        a market with the same semantic key as the prospective regional market.
+        Keeping that source market creates a regional -> World -> regional cycle
+        once the original market is emptied and relinked.  Retain it only when a
+        technology has no non-recursive provider to use instead.
+        """
+        filtered = {}
+        for technology, suppliers in mapping.items():
+            non_recursive = [
+                supplier
+                for supplier in suppliers
+                if not (
+                    supplier.get("name") == name
+                    and supplier.get("reference product") == reference_product
+                    and supplier.get("unit") == unit
+                )
+            ]
+            filtered[technology] = non_recursive or suppliers
+        return filtered
+
     def process_and_add_fuel_markets(self, reference_fuel, **kwargs):
         """Convert IAM energy shares to supplier quantities per reference MJ.
 
@@ -30,6 +53,12 @@ class FuelMarketsMixin:
         legacy market auxiliaries per reference output and record their separate
         boundary. Carbon properties describe full oxidation, not tailpipe flows.
         """
+        kwargs["mapping"] = self._prefer_non_recursive_market_suppliers(
+            kwargs["mapping"],
+            kwargs["name"],
+            kwargs["reference_product"],
+            kwargs["unit"],
+        )
         specifications = get_fuel_properties()
         reference = energy_per_unit(reference_fuel, kwargs["unit"], specifications)
         factors = {}
@@ -79,11 +108,6 @@ class FuelMarketsMixin:
                     f"Fuel energy does not close for {activity_key(dataset)}"
                 )
             dataset[PROPERTIES_KEY] = properties
-            dataset["comment"] += (
-                f" One reference {kwargs['unit']} supplies {reference:g} MJ lower-heating-value fuel energy. "
-                "IAM shares are energy shares; physical supplier quantities can sum to more or less than one. "
-                "Ancillary processing energy is additional. Carbon origin is recorded separately from capture credits."
-            )
             if callback:
                 callback(dataset)
 

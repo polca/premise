@@ -1,7 +1,7 @@
 from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from collections import defaultdict
 
-from ..transformation import ws
+from ..core.transformation import ws
 from .config import (
     LIQUID_FUEL_SOURCES,
     REGION_BIODIESEL_FEEDSTOCK_MAP,
@@ -370,8 +370,9 @@ class SyntheticFuelsMixin:
                     ],
                     co2_intensity=3.15,
                     fossil_variables=[
-                        "kerosene, from petroleum",
+                        "kerosene",
                         "kerosene, synthetic, from natural gas, energy allocation",
+                        "kerosene, synthetic, from natural gas, energy allocation, with CCS",
                         "kerosene, synthetic, from coal, energy allocation",
                         "kerosene, synthetic, from coal, energy allocation, with CCS",
                     ],

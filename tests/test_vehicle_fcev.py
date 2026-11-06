@@ -2,24 +2,32 @@
 
 import csv
 import json
+from pathlib import Path
 
 import pytest
 from bw2io import ExcelImporter
 
 from premise.filesystem_constants import INVENTORY_DIR
+from battery_mass_support import activate_static_vehicle_batteries
+
+PARAMETERS_DIR = Path(__file__).parent / "data" / "vehicle_inventory_parameters"
 
 
 @pytest.mark.parametrize("family,count", [("pass_cars", 8), ("trucks", 7)])
 def test_fcev_power_pack_and_purchased_capacity(family, count):
-    datasets = {
-        d["name"]: d
-        for d in ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
-    }
-    with (INVENTORY_DIR / f"lci-{family}.parameters.csv").open() as stream:
+    imported = ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
+    activate_static_vehicle_batteries(
+        imported, {"pass_cars": "car", "trucks": "truck"}[family]
+    )
+    datasets = {d["name"]: d for d in imported}
+    with (PARAMETERS_DIR / f"lci-{family}.parameters.csv").open() as stream:
         rows = [r for r in csv.DictReader(stream) if r["powertrain"] == "FCEV"]
     assert len(rows) == count
     for row in rows:
-        number = lambda field: float(row[field])
+
+        def number(field):
+            return float(row[field])
+
         assert number("battery power") > 0
         required_dc = (
             number("power") / number("electric motor efficiency")
@@ -53,7 +61,11 @@ def test_fcev_power_pack_and_purchased_capacity(family, count):
         (battery,) = [
             e
             for e in production["exchanges"]
-            if e["name"] == "market for battery capacity (MIX scenario)"
+            if e["name"]
+            == {
+                "pass_cars": "market for electricity storage capacity, battery, high power, fuel cell passenger car",
+                "trucks": "market for electricity storage capacity, battery, high power, fuel cell truck",
+            }[family]
         ]
         assert battery["amount"] == pytest.approx(
             number("electric energy stored")

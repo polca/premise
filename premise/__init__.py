@@ -1,5 +1,8 @@
 import os
 from importlib import import_module
+from ._compat import MODULE_ALIASES, install as _install_module_aliases
+
+_install_module_aliases()
 
 if os.name == "nt":
     # openpyxl auto-enables lxml when installed. lxml 6.x can hard-crash
@@ -21,18 +24,45 @@ __all__ = (
     "ValidationPhaseResult",
     "ValidationReport",
     "ValidationRuleResult",
+    "AuditConfig",
+    "AuditReport",
+    "AuditFinding",
+    "PhysicalContract",
+    "BudgetTerm",
+    "ExchangeBudget",
+    "AuditCase",
+    "audit_campaign",
+    "audit_database",
+    "audit_brightway_database",
+    "compare_audits",
     "clear_cache",
     "clear_inventory_cache",
     "get_regions_definition",
 )
-__version__ = (2, 5, 4)
+__version__ = (2, 6, 0)
 
 
 _EXPORT_MODULES = {
-    "NewDatabase": "new_database",
-    "ChangeReportArtifacts": "change_report",
-    "IncrementalDatabase": "incremental",
-    "PathwaysDataPackage": "pathways",
+    **dict.fromkeys(
+        (
+            "AuditConfig",
+            "AuditReport",
+            "AuditFinding",
+            "PhysicalContract",
+            "audit_database",
+            "audit_brightway_database",
+            "compare_audits",
+            "BudgetTerm",
+            "ExchangeBudget",
+            "AuditCase",
+            "audit_campaign",
+        ),
+        "audit",
+    ),
+    "NewDatabase": "database.new_database",
+    "ChangeReportArtifacts": "reporting.change_report",
+    "IncrementalDatabase": "database.incremental",
+    "PathwaysDataPackage": "iam.pathways",
     "TrailsDataPackage": "trails",
     **dict.fromkeys(
         (
@@ -41,7 +71,7 @@ _EXPORT_MODULES = {
             "InventoryStoreBuilder",
             "LegacyInventoryStore",
         ),
-        "inventory_store",
+        "inventory.inventory_store",
     ),
     **dict.fromkeys(
         (
@@ -51,10 +81,10 @@ _EXPORT_MODULES = {
             "ValidationReport",
             "ValidationRuleResult",
         ),
-        "validation_framework",
+        "validation.validation_framework",
     ),
     **dict.fromkeys(
-        ("clear_cache", "clear_inventory_cache", "get_regions_definition"), "utils"
+        ("clear_cache", "clear_inventory_cache", "get_regions_definition"), "core.utils"
     ),
 }
 
@@ -67,8 +97,8 @@ def __getattr__(name):
     """
     if name in _EXPORT_MODULES:
         value = getattr(import_module(f".{_EXPORT_MODULES[name]}", __name__), name)
-    elif name == "scenario_downloader":
-        value = import_module(".scenario_downloader", __name__)
+    elif "premise." + name in MODULE_ALIASES:
+        value = import_module(MODULE_ALIASES["premise." + name])
     else:
         raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
     globals()[name] = value
@@ -76,4 +106,8 @@ def __getattr__(name):
 
 
 def __dir__():
-    return sorted(set(globals()) | set(__all__) | {"scenario_downloader"})
+    return sorted(
+        set(globals())
+        | set(__all__)
+        | {name.removeprefix("premise.") for name in MODULE_ALIASES}
+    )

@@ -92,7 +92,7 @@ Brightpath prerequisite fixes are committed: flow identity (`530603b`), lognorma
 conversion (`eab8893`), and opt-in local method mapping (`b614533`). The mapping
 reads licensed method data locally; it does not bundle the package.
 
-Premise now has a JSON-LD adapter in `premise/olca_export.py`. The default
+Premise now has a JSON-LD adapter in `premise/export/olca_export.py`. The default
 `write_db_to_olca` route requires Python 3.12+, ecoinvent 3.12, and an explicit
 `method_package`; `format="simapro"` retains the previous route. The adapter
 checks provider closure and ambiguity, namespaces process and product IDs by
@@ -175,13 +175,11 @@ electricity market group with `ei - IPCC 2013`. The four climate indicators agre
 with a Brightway LCI characterized using the same package factors and exported
 coverage within 5.01e-8 relative difference (comparison tolerance 1e-7).
 An independent SciPy solve of the serialized matrices agrees with openLCA within
-1.49e-10 relative difference. GWP100 is 0.189578476882 kg CO2-eq in openLCA and
-0.189578486090 in Brightway. Excluded definitions contributed zero for this
-particular demand and method; this does not imply zero impact in other cases.
+1.49e-10 relative difference. Numerical LCIA outputs are retained locally.
 This is a deterministic climate comparison, not a Monte Carlo or all-method
 validation. Results are not asserted to be bit-identical.
 
-Diagnostic scripts are `dev/validate_olca_ei38.py` and
-`dev/compare_olca_ei38.py`. Local artifacts, including `lcia-comparison.json`, are
+Diagnostic scripts are the local export-validation command used for that investigation and
+the local comparison command used for that investigation. Local artifacts, including `lcia-comparison.json`, are
 under `export/olca/ei38/`; licensed inventory and method data are not committed.
 All 61 focused Premise tests and 953 Brightpath tests pass.

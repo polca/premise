@@ -15,6 +15,7 @@ Then review changes and validation results before using the exported database.
    /user_guide/inventories
    /user_guide/reports
    /user_guide/validation
+   /user_guide/physical-audits
    /user_guide/interpreting-results
    /user_guide/export/index
    /user_guide/examples

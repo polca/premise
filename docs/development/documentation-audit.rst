@@ -24,11 +24,11 @@ Confirmed and corrected
 * Python requires 3.10 or newer in ``pyproject.toml``; the former 3.9 statement
   has been corrected. Brightway extras are documented using their declared
   dependency constraints.
-* Public database creation is implemented in ``premise/new_database.py``.
+* Public database creation is implemented in ``premise/database/new_database.py``.
   The obsolete ``premise.ecoinvent_modification.NewDatabase`` autodoc target
   has been replaced. The build imports the real package.
 * Inventory inspection, transactions and copying inventories into dictionaries were checked
-  against ``premise/inventory_store.py`` and the public NewDatabase methods.
+  against ``premise/inventory/inventory_store.py`` and the public NewDatabase methods.
 * The sector update order and accepted method names were checked against
   ``NewDatabase.update``. Single-sector calls do not imply a full scenario
   supply-chain update.

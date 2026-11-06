@@ -37,7 +37,7 @@ values. Consumer carbon dioxide handling uses the linked fuel composition;
 the detailed examples below illustrate those separate operations.
 
 Reference energy and carbon properties
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fuel markets normalize eligible IAM energy shares before converting them into
 supplier quantities. For energy share ``s`` and supplier heating value ``H``,
@@ -55,6 +55,12 @@ a 50/50 energy mix of petrol and ethanol purchases 0.5 kg petrol plus
 must not be adjusted a second time using the physical mixture's average LHV.
 Market electricity, transport and infrastructure remain additional burdens.
 World properties follow the production-weighted regional markets.
+
+When an ecoinvent mapping offers both a direct fuel producer and a source market
+with the same product and name as the prospective regional market, Premise uses
+the direct producer. Retaining the source market would make relinking connect the
+regional market to the new World market, while the World market already purchases
+regional outputs, creating a recursive supply loop.
 
 Synthetic-fuel carbon origin is traced through carbon-bearing inputs. Direct
 air capture is atmospheric carbon, represented as non-fossil combustion CO2;
@@ -108,12 +114,12 @@ its template's regional split. The positive exhaust CO2 pool follows the
 full-oxidation convention; separate CO, CH4 and NMVOC emissions and negative
 capture credits remain unchanged. This is not an elemental carbon closure.
 
-The ``premise vehicle fuel CO2`` record identifies the actual suppliers, their
-quantities and factors, the reference production and the resulting emissions.
-Unknown carbon origin remains an explicit diagnostic. LPG without a scenario
-route uses the documented fossil fallback, 45.5 MJ/kg and 0.0631 kg CO2/MJ,
-and records its actual supplier geography. Forwarding activities and vehicles
-without direct combustion fuel do not receive a direct exhaust pool.
+Supplier identities and quantities remain on the vehicle's technosphere
+exchanges, while oxidation factors remain on the linked suppliers' fuel
+properties; no duplicate vehicle-level balance is stored. Unknown carbon origin
+remains an explicit diagnostic. LPG without a scenario route uses the documented
+fossil fallback, 45.5 MJ/kg and 0.0631 kg CO2/MJ. Forwarding activities and
+vehicles without direct combustion fuel do not receive a direct exhaust pool.
 
 The existing reclassification helper handles the fossil/non-fossil transfer.
 Stored transfer amounts scale with their exchanges, so a later update cannot
@@ -206,7 +212,7 @@ Consequential fuel markets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Consequential markets use marginal production mixes calculated in
-``premise/marginal_mixes.py``. Technologies registered as constrained suppliers,
+``premise/iam/marginal_mixes.py``. Technologies registered as constrained suppliers,
 including pathways dependent on residual or waste feedstocks, are set to zero before
 the remaining marginal shares are normalized.
 

@@ -3,7 +3,7 @@ sectors:
 - id: pv
   title: Photovoltaics
   page: methodology/electricity/photovoltaics
-  implementation: premise/photovoltaic.py
+  implementation: premise/electricity/photovoltaic.py
   data_years: 2022–2025 factory observations for the 2026 report; other inputs vary
   boundary: Single-Si TOPCon/PERC, multi-Si and CdTe; manufacturing through electricity
     and end of life; country extensions use inherited yield assumptions.
@@ -23,7 +23,7 @@ sectors:
 - id: electricity
   title: Other electricity generation and storage
   page: methodology/electricity/generation
-  implementation: premise/electricity.py
+  implementation: premise/electricity/electricity.py
   data_years: Sources include 2013 CCS, 2016 geothermal and 2019 plant corrections;
     underlying observations vary
   boundary: Generation per kWh; CCS adds capture/storage; storage service differs
@@ -47,13 +47,13 @@ sectors:
 - id: heat
   title: Heat and end-use heating
   page: methodology/heat
-  implementation: premise/heat.py
+  implementation: premise/energy/heat.py
   data_years: Ecoinvent source years vary; IAM years and reporting conventions are
     model dependent
   boundary: Delivered heat, with secondary supply, buildings and industry kept separate;
     final-energy conversion is not a new measured boiler or heat-pump inventory.
-  applicability: Model-specific layer coverage; final energy only regionalizes heating
-    activities.
+  applicability: Model-specific layer coverage; the heating part of final energy
+    regionalizes mapped heating activities.
   source: https://doi.org/10.1016/j.buildenv.2025.113931
   candidate: https://doi.org/10.1016/j.buildenv.2025.113931
   reviewed_on: '2026-09-07'
@@ -70,7 +70,7 @@ sectors:
 - id: biomass
   title: Biomass
   page: methodology/biomass
-  implementation: premise/biomass.py
+  implementation: premise/energy/biomass.py
   data_years: Inherited forestry/residue inventories; reference years vary and are
     not all recorded
   boundary: Biomass fuel supply; residue treatment excludes some forestry burdens
@@ -181,7 +181,7 @@ sectors:
 - id: batteries
   title: Mobile and stationary batteries
   page: methodology/batteries
-  implementation: premise/battery.py
+  implementation: premise/batteries/battery.py
   data_years: Lithium-ion sources include 2019/2021; emerging chemistries include
     2023/2024 studies
   boundary: Battery mass/capacity manufacture is separate from lifetime electricity
@@ -205,7 +205,7 @@ sectors:
 - id: transport
   title: Transport
   page: methodology/transport/overview
-  implementation: premise/transport.py
+  implementation: premise/transport/transport.py
   data_years: Vehicle source generations vary; several inventories originate around
     2020–2021
   boundary: Passenger-km and tonne-km, vehicle manufacture, use and end of life; occupancy/payload
@@ -229,7 +229,7 @@ sectors:
 - id: steel
   title: Steel
   page: methodology/steel
-  implementation: premise/steel.py
+  implementation: premise/materials/steel.py
   data_years: Harpprecht et al. 2025; some CCS support assumptions originate in 2013
   boundary: Primary and secondary steel routes, hydrogen/electrification and host-process
     CCS; slag and co-product boundaries matter.
@@ -250,7 +250,7 @@ sectors:
 - id: cement
   title: Cement
   page: methodology/cement
-  implementation: premise/cement.py
+  implementation: premise/materials/cement.py
   data_years: Müller et al. 2024; older BREF/CCS sources remain
   boundary: Clinker versus cement, calcination versus fuel CO2, capture modules versus
     host kiln.
@@ -272,7 +272,7 @@ sectors:
 - id: metals
   title: Metals
   page: methodology/metals
-  implementation: premise/metals.py
+  implementation: premise/materials/metals.py
   data_years: Mixed production inventories; mineral statistics include a 2023 edition
   boundary: Material intensity and regional mining/refining markets; ore, concentrate
     and refined-metal units differ.
@@ -294,7 +294,7 @@ sectors:
 - id: mining
   title: Mining and tailings
   page: methodology/mining
-  implementation: premise/mining.py
+  implementation: premise/materials/mining.py
   data_years: Studies span 2008–2023; regional uptake assumptions are mixed estimates
   boundary: Tailings treatment, reprocessing and recovered materials; leaching prevention
     and substitution are modelling assumptions.
@@ -314,7 +314,7 @@ sectors:
 - id: cdr
   title: Carbon capture and removal
   page: methodology/cdr
-  implementation: premise/carbon_dioxide_removal.py
+  implementation: premise/emissions/carbon_dioxide_removal.py
   data_years: Qiu et al. 2022 plus route-specific sources
   boundary: Captured CO2, stored CO2 and net removal are distinct; energy supply and
     permanence determine net outcomes.
@@ -336,7 +336,7 @@ sectors:
 - id: emissions
   title: Air emissions
   page: methodology/emissions
-  implementation: premise/emissions.py
+  implementation: premise/emissions/emissions.py
   data_years: 2020 normalization; the bundled GAINS release still needs to be identified
   boundary: Selected non-CO2 biosphere flows scaled using activity/region factors.
   applicability: CLE/MFR options; Premise application is reduction-only.
@@ -356,7 +356,7 @@ sectors:
 - id: consequential
   title: Consequential modelling
   page: methodology/system-models
-  implementation: premise/marginal_mixes.py
+  implementation: premise/iam/marginal_mixes.py
   data_years: Maes et al. 2023; scenario trajectories are release specific
   boundary: Marginal suppliers from production trends and constraints; market boundaries
     differ from attributional averages.

@@ -66,57 +66,37 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
-What's new in 2.5.3
+What's new in 2.6.0
 -------------------
 
-**Brightpath now powers Premise's openLCA and SimaPro exports.** Version 2.5.3
-produces native **openLCA JSON-LD packages** containing processes, flows, units,
-and provider links, replacing the previous openLCA-compatible SimaPro CSV route.
-For **SimaPro**, Brightpath produces more accurate CSVs with corrected flow
-mappings, units, classifications, waste-treatment conventions, and metadata
-that respect SimaPro Desktop's import requirements. Export reports identify
-biosphere coverage gaps; SimaPro reports also document classification fallbacks.
+**Version 2.6.0 adds physical inventory auditing and EN15804 support, and
+corrects fuel-carbon, resource and manufacturing accounting.**
 
-This release also:
+- Audit thousands of activities using physical CO2, water, land and 65 RELICS
+  resource indicators, supplier tracing and explicit scientific contracts.
+  Use the read-only Python API or `python -m premise.audit`; keep generated
+  results local.
+- Select `system_model="EN15804"` through the existing `NewDatabase` argument
+  with the matching ecoinvent source database.
+- Preserve fossil CO2 from conventional kerosene and refresh rail CO2 origin
+  from final regional fuel suppliers. Restore iridium resource attribution
+  and apply reviewed battery, hydrogen, transport and other inventory references.
+- Import bundled source profiles through shared preparation, with explicit
+  scientific checks and target-specific supplier choices. Python modules are
+  grouped by topic; supported public imports and cached class paths remain
+  compatible.
 
-- restores IAM-region coverage in electricity-market comments;
-- preserves emitted-carbon balances when blending fuels in inventories with
-  carbon capture and applies GAINS reductions across all pollutant compartments;
-- corrects Swiss hydropower water balances and biosphere-flow migrations;
-- preserves custom-scenario mappings, isolates provider efficiency changes,
-  and supports explicit absolute-efficiency bounds; and
-- fixes scenario-array ZIP export on Windows and cleans up failed exports.
+**Regenerate scenario databases and exports to apply these changes.** Updating
+Premise does not modify saved databases. Reviewed inventories retain the source
+qualifications and unresolved coverage documented in the methodology.
 
-**Upgrading requires Python 3.12 or newer.** Brightpath 1.0.0a4 or newer (below
-2.0) is installed as a dependency. openLCA export supports ecoinvent 3.8 and
-3.12 and requires a matching local LCIA method package. Export calls no longer
-accept the legacy `backend` or `format` selectors. Custom datapackages that
-relied on implicit absolute-efficiency limits must declare explicit `bounds`.
+**Modern Brightway supports Python 3.12–3.15.** Legacy Brightway requires
+Python 3.12 and NumPy 1.x. Brightpath handles openLCA and SimaPro
+exports; openLCA requires a matching local method package. The read-only inventory
+store API introduced in 2.5 remains the supported integration interface.
 
-It builds on the main changes introduced in 2.5.0:
-
-- immutable inventory inspection and atomic mutations through
-  `NewDatabase.get_inventory_store()`;
-- compact, checkpoint-backed scenario storage and faster Brightway export;
-- validation certificates for scenario updates and every supported exporter;
-- structured Excel summaries plus exhaustive Parquet change records; and
-- 12 self-contained example notebooks organized as a learning path.
-
-The mutable `NewDatabase.database` attribute is no longer available after
-initialization. Most users do not need to replace it. Integrations that inspect
-inventories should use the store, while code that strictly requires a
-`list[dict]` can materialize one explicitly:
-
-```python
-store = ndb.get_inventory_store()  # read-only view
-activities = store.find({"location": "CH"})
-
-# Use only at integration boundaries; this duplicates the inventory in memory.
-database = ndb.materialize_inventory()
-```
-
-See the [2.5 migration and release guide](https://premise.readthedocs.io/en/latest/release_2_5.html)
-and the [full 2.5.3 changelog](CHANGELOG.md#253---2026-10-07) for details.
+See the [2.6 release and migration guide](https://premise.readthedocs.io/en/latest/development/releases-2-6.html)
+and the [full 2.6.0 changelog](CHANGELOG.md#260---2026-11-02) for details.
 
 
 Documentation
@@ -131,7 +111,7 @@ by modifying the inventory database ecoinvent 3 to reflect projected energy poli
 
 Requirements
 ------------
-* **Python 3.12 or newer**
+* **Python 3.12 or newer** with modern Brightway; Python 3.12 for legacy Brightway.
 * License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
 * Scenarios available through Premise can be consulted [here](https://premisedash-6f5a0259c487.herokuapp.com/).
 * If you want to use the results in the Brightway 2 framework, you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
@@ -170,16 +150,17 @@ This means that ``premise`` will output databases that are compatible with Brigh
 >    pip install "premise[bw2]"
 
 
-A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud. 
+Development Conda packages support modern Brightway on Python 3.12–3.14.
+Use flexible channel priority in a separate environment:
 
-Similarly, you should specify that you want to use Brightway 2.5 (with `activity-browser>=3.x.x`-compatibility):
+    conda create -n premise python=3.14
+    conda activate premise
+    conda config --env --set channel_priority flexible
+    conda install -c conda-forge -c cmutel -c romainsacchi premise-bw25
 
-    conda install -c conda-forge premise-bw25
-
-Or rather use Brightway2 (with `activity-browser<3.0.0`-compatibility):
-
-    conda install -c conda-forge premise-bw2
+Use pip for Python 3.15 or legacy Brightway on Python 3.12. The legacy
+`premise-bw2` Conda variant is no longer generated because its calculator has
+no Python 3.12 Conda build.
 
 
 How to use it?

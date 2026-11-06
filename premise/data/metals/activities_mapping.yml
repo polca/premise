@@ -8,11 +8,12 @@ ICEV:
       - electric
 EV:
   ecoinvent_aliases:
+    # Road-vehicle motor intensities do not apply to rail traction or other motors.
     # EN15804 scrap co-products can share the equipment activity name and unit.
     fltr:
       name:
         - electric motor production, vehicle
-        - electric motor production
+        - electric motor production, for electric scooter
       reference product: electric motor
 ### At this point, we assume that DDPM are used for offshore and Gearbox onshore.
 Wind-DDPM:
@@ -99,26 +100,10 @@ Wind-Gearbox:
 #LCo
 PEMFC:
   ecoinvent_aliases:
+    # Capacity-based intensities apply to the configured stack, not its materials.
     fltr:
-      - fuel cell production, polymer electrolyte membrane
-      - fuel cell
-      - PEM
-    mask:
-      - solid oxide
-      - Balance of Plant
-      - maintenance
-      - market
-      - hydrogen
-      - natural gas
-      - electrolyzer
-      - assembly
-      - polymer
-      - biomethane
-      - treatment
-      - truck
-      - passenger car
-      - lorry
-      - bus
+      name: fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+      reference product: fuel cell stack, 1 kWe, proton exchange membrane (PEM)
 ### How to parametrize the different shares???
 SOFC - Y:
   ecoinvent_aliases:
@@ -162,43 +147,35 @@ PEMEL:
       - treatment
 AEL:
   ecoinvent_aliases:
+    # Stack intensities do not describe motor drives or balance-of-plant equipment.
     fltr:
-      - electrolyzer production
-      - AEC
-      - stack polymer electrolyte
-    mask:
-      - Balance of Plant
-      - PEM
-      - hydrogen production
-      - SOEC
-      - market
-      - fuel cell
-      - treatment
+      name: electrolyzer production, 1MWe, AEC, Stack
+      reference product: electrolyzer, 1MWe, AEC, Stack
 HTEL - Yttrium:
 #HTEL:
   ecoinvent_aliases:
+    # Stack intensities do not describe motor drives or ceramic/glass components.
     fltr:
-      - electrolyzer production
-      - SOEC
-      - stack solid oxide
-    mask:
-      - Balance of Plant
-      - PEM
-      - AEC
-      - market
-      - hydrogen production
-      - fuel cell
-      - treatment
+      name: electrolyzer production, 1MWe, SOEC, Stack
+      reference product: electrolyzer, 1MWe, SOEC, Stack
 ### PAFC fuel cells are not found in Ecoinvent
 c-Si:
   ecoinvent_aliases:
+    # Require a silicon-cell output, excluding substrate preparation and co-products.
     fltr:
-      - photovoltaic cell production
-      - multi-Si wafer
-      - ribbon-Si
-      - single-Si wafer
-      - photovoltaic cell, multi-Si, at plant
-      - photovoltaic cell, single-Si, at plant
+      name:
+        - photovoltaic cell production
+        - multi-Si wafer
+        - ribbon-Si
+        - single-Si wafer
+        - photovoltaic cell, multi-Si, at plant
+        - photovoltaic cell, single-Si, at plant
+      reference product:
+        - photovoltaic cell, multi-Si
+        - photovoltaic cell, single-Si
+        - photovoltaic cell, ribbon-Si
+        - photovoltaic cell, multicrystalline silicon
+        - photovoltaic cell, single-crystalline silicon
     mask:
       - multi-Si wafer production
       - single-Si wafer production

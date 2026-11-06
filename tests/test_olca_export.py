@@ -6,7 +6,6 @@ import uuid
 import zipfile
 from copy import deepcopy
 from pathlib import Path
-from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -121,9 +120,14 @@ def entities(path, folder):
         ]
 
 
-def test_closed_scenario_signs_mapping_and_nonmutation(scenario, mapping, tmp_path):
+@pytest.mark.parametrize("system_model", ["cutoff", "EN15804"])
+def test_closed_scenario_signs_mapping_and_nonmutation(
+    scenario, mapping, tmp_path, system_model
+):
     original = deepcopy(scenario)
-    path = olca_export.export_scenario(scenario, tmp_path, "3.12", "cutoff", mapping)
+    path = olca_export.export_scenario(
+        scenario, tmp_path, "3.12", system_model, mapping
+    )
     processes = {p["name"]: p for p in entities(path, "processes")}
     supplier = processes["supplier"]
     exchange = processes["consumer"]["exchanges"][1]
@@ -136,7 +140,9 @@ def test_closed_scenario_signs_mapping_and_nonmutation(scenario, mapping, tmp_pa
     assert all(str(uuid.UUID(p["@id"])) == p["@id"] for p in processes.values())
     assert path.with_suffix(".biosphere-coverage.json").exists()
     assert scenario == original
-    again = olca_export.export_scenario(scenario, tmp_path, "3.12", "cutoff", mapping)
+    again = olca_export.export_scenario(
+        scenario, tmp_path, "3.12", system_model, mapping
+    )
     assert {p["name"]: p for p in entities(again, "processes")} == processes
 
 

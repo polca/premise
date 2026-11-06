@@ -78,7 +78,7 @@ and updates key metadata such as production volume.
 Efficiency adjustment
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The adjustment in ``premise/steel.py`` calculates the inverse mapped efficiency
+The adjustment in ``premise/materials/steel.py`` calculates the inverse mapped efficiency
 change, applies the route-specific energy bounds, and scales technosphere
 exchanges matching its configured fuel-name filters plus direct fossil CO2.
 The source route structure is retained. The filters also include electricity;
@@ -120,6 +120,39 @@ Consequential steel markets exclude the ``steel - secondary`` supplier
 category before selecting the remaining suppliers. Market construction is
 limited to matching steel families; rolled, chromium and designated residue
 or grain-related market names are excluded.
+
+Steel-grade alias masks
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Specialty-grade exclusions are defined in the existing
+``steel - secondary -> ecoinvent_aliases -> mask`` entries of
+``iam_variables_mapping/steel.yaml``, using the same mapping mechanism as
+the primary BF/BOF route's ``ecoinvent_aliases.mask``. There is no separate
+generic-market configuration field or Python grade-classification filter.
+
+The ``name`` and ``reference product`` masks exclude bearing, case-hardening,
+high-strength low-alloy/HSLA, weathering and other explicitly named specialty
+grades. Hyphenated variants are listed where needed. As with other mapping
+files, the standard loader applies literal substring masks to their specified
+fields; any matching mask excludes the activity. Existing hot-rolled,
+chromium and heat exclusions remain. Do not use a blanket ``carbon`` or
+``alloy`` mask: ordinary carbon and structural steels and the existing generic
+low-alloyed electric-steel proxy remain eligible.
+
+This list applies to every source version. It contains no dataset identifiers,
+version conditions or preferred producer list. The secondary mapping supplied
+to market construction therefore excludes the specialty recipes that were
+previously admitted by the broad electric-steel prefix. The existing market
+builder retains IAM route quantities, supplier weighting and consequential
+policy. An active route without eligible suppliers raises its existing
+missing-supplier error, rather than transferring its share to another route.
+
+Excluded specialty activities are not deleted. They pass through the existing
+``other`` steel regionalization path, outside the generic IAM route's energy
+efficiency adjustment. This change does not establish an application-specific
+ordinary-grade distribution or demonstrate zero physical niobium demand.
+Restart Python and rebuild scenarios to apply the masks; saved inventories,
+indicators and dashboards are unchanged.
 
 Steel markets
 ~~~~~~~~~~~~~~~

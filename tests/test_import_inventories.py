@@ -1,4 +1,5 @@
 # content of test_activity_maps.py
+from copy import deepcopy
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -9,10 +10,13 @@ from premise.inventory_imports import (
     BaseInventoryImport,
     DefaultInventory,
     apply_migration_step,
+    check_for_datasets_compliance_with_consequential_database,
+    get_biosphere_code,
     get_classification_entry,
     get_classifications,
-    get_biosphere_code,
+    get_consequential_blacklist,
     get_correspondence_bio_flows,
+    migrate_import_db,
 )
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -24,6 +28,212 @@ FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
+
+
+@pytest.mark.parametrize("ambiguous", [False, True])
+def test_removed_case_alias_keeps_consumers_linked_to_unique_native_provider(ambiguous):
+    from bw2io import ExcelImporter
+
+    obj = object.__new__(DefaultInventory)
+    obj.path = INVENTORY_DIR / "lci-batteries-NMC955-LTO.xlsx"
+    obj.import_db = ExcelImporter(obj.path)
+    alias = "market for battery cell, li-ion, limn2o4"
+    (duplicate,) = [d for d in obj.import_db.data if d["name"] == alias]
+    native = {
+        **deepcopy(duplicate),
+        "name": "market for battery cell, Li-ion, LiMn2O4",
+    }
+    obj.database = [native, deepcopy(native)] if ambiguous else [native]
+    original_native = deepcopy(obj.database)
+    obj.db_names = [
+        (native["name"].lower(), native["reference product"].lower(), "GLO")
+    ]
+    consumers = [
+        e
+        for d in obj.import_db.data
+        for e in d["exchanges"]
+        if e["type"] == "technosphere" and e["name"] == alias
+    ]
+    assert len(consumers) == 2
+    before = deepcopy(consumers)
+    obj.check_for_already_existing_datasets()
+    assert not any(d["name"] == alias for d in obj.import_db.data)
+    for exchange, original in zip(consumers, before, strict=True):
+        assert exchange == {
+            **original,
+            **(
+                {}
+                if ambiguous
+                else {
+                    "name": native["name"],
+                    "product": native["reference product"],
+                }
+            ),
+        }
+    assert obj.database == original_native
+
+
+@pytest.mark.parametrize("version", ["3.8", "3.9.1", "3.10", "3.11", "3.12"])
+def test_consequential_assb_hdpe_uses_native_market_without_changing_amount(version):
+    from bw2io import ExcelImporter
+
+    importer = ExcelImporter(INVENTORY_DIR / "lci-batteries-ASSB.xlsx")
+    migrate_import_db(importer, "3.10", version)
+    selected = [
+        e
+        for ds in importer.data
+        for e in ds["exchanges"]
+        if e["type"] == "technosphere"
+        and e.get("reference product") == "polyethylene, high density, granulate"
+        and ", recycled to generic market" in e["name"]
+    ]
+    assert len(selected) == 1
+    before = deepcopy(selected[0])
+    check_for_datasets_compliance_with_consequential_database(
+        importer.data, get_consequential_blacklist(), version
+    )
+    assert selected[0] == {
+        **before,
+        "name": "market for polyethylene, high density, granulate",
+        "reference product": "polyethylene, high density, granulate",
+        "product": "polyethylene, high density, granulate",
+        "location": "RER" if version == "3.12" else "GLO",
+    }
+
+
+@pytest.mark.parametrize("version", ["3.8", "3.9.1", "3.12"])
+@pytest.mark.parametrize("system_model", ["cutoff", "consequential"])
+@pytest.mark.parametrize(
+    "filename,source_version,source_name,target_name,target_product,target_location",
+    [
+        (
+            "lci-batteries-ASSB.xlsx",
+            "3.10",
+            "market for lithium iron phosphate",
+            "Lithium iron phosphate [LiFePO4]",
+            "Lithium iron phosphate [LiFePO4]",
+            "JP",
+        ),
+        (
+            "lci-iridium-economic-proxy.xlsx",
+            "3.12",
+            "market for sodium ethyl xanthate",
+            "market for chemical, organic",
+            "chemical, organic",
+            "GLO",
+        ),
+    ],
+)
+def test_reviewed_chemical_proxies_are_confined_to_38_and_preserve_quantities(
+    version,
+    system_model,
+    filename,
+    source_version,
+    source_name,
+    target_name,
+    target_product,
+    target_location,
+):
+    from bw2io import ExcelImporter
+
+    obj = object.__new__(DefaultInventory)
+    obj.path = INVENTORY_DIR / filename
+    obj.version_out = version
+    obj.system_model = system_model
+    obj.import_db = ExcelImporter(obj.path)
+    migrate_import_db(obj.import_db, source_version, version)
+    (selected,) = [
+        e
+        for ds in obj.import_db.data
+        for e in ds["exchanges"]
+        if e["name"] == source_name
+    ]
+    before = deepcopy(selected)
+    obj.adapt_reviewed_38_chemical_proxies()
+    if version != "3.8":
+        assert selected == before
+        return
+    assert selected == {
+        **before,
+        "name": target_name,
+        "reference product": target_product,
+        "product": target_product,
+        "location": target_location,
+        "comment": selected["comment"],
+    }
+    assert "original kg quantity retained" in selected["comment"]
+    once = deepcopy(selected)
+    obj.adapt_reviewed_38_chemical_proxies()
+    assert selected == once
+    if filename == "lci-batteries-ASSB.xlsx":
+        # The replacement is a recipe already selected for 3.8 imports.
+        legacy = ExcelImporter(INVENTORY_DIR / "lci-batteries-NMC111-811-NCA-LFP.xlsx")
+        assert any(
+            (d["name"], d["reference product"], d["location"], d["unit"])
+            == (target_name, target_product, target_location, "kilogram")
+            for d in legacy.data
+        )
+
+
+@pytest.fixture(
+    scope="module",
+    params=[
+        "lci-two_wheelers.xlsx",
+        "lci-trucks.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+    ],
+)
+def vehicle_metal_scrap_handoffs(request):
+    from bw2io import ExcelImporter
+
+    products = {
+        "aluminium scrap, new",
+        "aluminium scrap, post-consumer",
+        "copper scrap, sorted, pressed",
+    }
+    data = ExcelImporter(INVENTORY_DIR / request.param).data
+    exchanges = [
+        e
+        for ds in data
+        for e in ds["exchanges"]
+        if e["type"] == "technosphere" and e.get("reference product") in products
+    ]
+    assert exchanges, request.param
+    assert all(e["amount"] < 0 for e in exchanges)
+    assert all(
+        e["name"] == f'{e["reference product"]}, Recycled Content cut-off'
+        for e in exchanges
+    )
+    return exchanges
+
+
+@pytest.mark.parametrize("version", ["3.8", "3.9.1", "3.10", "3.11", "3.12"])
+def test_consequential_vehicle_scrap_preserves_signed_quantities_and_uncertainty(
+    vehicle_metal_scrap_handoffs, version
+):
+    original = deepcopy(vehicle_metal_scrap_handoffs)
+    # Read the actual workbook exchanges so every existing uncertainty field
+    # and any repeated material output is checked, rather than a synthetic row.
+    consumer = {
+        "name": "vehicle equipment",
+        "reference product": "vehicle equipment",
+        "unit": "kilogram",
+        "exchanges": deepcopy(original),
+    }
+    (mapped,) = check_for_datasets_compliance_with_consequential_database(
+        [consumer], get_consequential_blacklist(), version
+    )
+    assert len(mapped["exchanges"]) == len(original)
+    for before, after in zip(original, mapped["exchanges"]):
+        product = before["reference product"]
+        assert after == {
+            **before,
+            "name": f"market for {product}",
+            "product": product,
+            "reference product": product,
+            "location": "RoW" if product == "aluminium scrap, new" else "GLO",
+        }
+    assert vehicle_metal_scrap_handoffs == original
 
 
 @pytest.mark.parametrize(
@@ -376,7 +586,7 @@ def test_load_carma():
     db, version = get_db()
     carma = DefaultInventory(
         db,
-        version_in="3.5",
+        version_in="3.6",
         version_out="3.8",
         path=FILEPATH_CARMA_INVENTORIES,
         system_model="cutoff",

@@ -59,12 +59,13 @@ Import and supply contracts
 ---------------------------
 
 ``lci-trucks.xlsx`` contains 52 services, 42 vehicle-production activities and
-33 qualified supporting components and is imported as ecoinvent 3.12.
-``lci-truck-legacy-components.xlsx`` retains 26 old shared component suppliers
-for other inventories and keeps its ecoinvent 3.7 migration. The qualified
-lorry frame receives the same explicit per-kilogram metal conversion as the
-original frame. This avoids changing other vehicle recipes through shared
-component names.
+33 supporting components and is imported as ecoinvent 3.12. Refreshed
+replacements for established shared components use their canonical,
+unqualified identities, so bus, final-energy and ship inventories link to the
+new recipes directly. The two catenary suppliers not generated with the truck
+refresh, ``Electrical equipment`` and ``Transformers``, are owned by
+``lci-buses.xlsx``. The lorry frame keeps its explicit per-kilogram metal
+conversion.
 
 The ten gasoline/LPG variants retain documented diesel/diesel-hybrid and CNG
 proxies. Conversions preserve modelled fuel energy, using 42.6 MJ/kg gasoline
@@ -73,51 +74,16 @@ LPG omits generic-air CNG leakage. Manufacture and non-CO2 combustion emissions
 remain proxy assumptions. Regional scenario markets determine fuel blends and
 electricity; hydrogen compression electricity is retained.
 
-``lci-trucks.parameters.csv`` records all service specifications.
-``lci-trucks.noise.csv`` retains 1,248 custom noise exchanges omitted from the
-Premise import. ``lci-trucks.provenance.json`` records source and workbook hashes.
+The parameter snapshot under ``tests/data/vehicle_inventory_parameters`` records
+all service specifications used by regression tests.
+The 1,248 custom noise exchanges are omitted from the Premise import.
+Source and generation metadata remain in the vehicle activities and their
+specification fields; the excluded noise export is retained locally.
 
 Controlled comparison
 ---------------------
 
-The full REMIND SSP2-NPi 2020 comparison uses ecoinvent 3.12 cutoff and the
-same updated passenger cars in both databases. All 52 RER truck catalogue
-services and the 20 EUR services are compared across 16 EF 3.1 headline
-categories: 1,152 score pairs, per tonne-kilometre, without weighting.
-RER forwarding activities are resolved before contribution analysis.
-
-The EUR 40 t BEV climate result changes from 0.071151 to 0.093807 kg CO2-eq/tkm
-(+31.8%). Its payload falls from 13.8 to 10.3 t; multiplying each score by its
-own payload gives a 1.6% decrease per vehicle-kilometre. For the 18 t BEV the
-tkm result doubles, while the vkm result falls 13.5%, with payload falling
-from 7.4 to 3.2 t. These are unit diagnostics, not common-payload simulations.
-
-The largest ozone-depletion changes trace mainly to newly included refrigerant
-supply and increased fuel demand per tkm. The old 18 t LPG fuel purchase implies
-4.65 MJ/vkm despite a comment reporting 9.289 MJ/vkm; the corrected proxy uses
-9.03 MJ/vkm. Its large climate increase partly corrects that old inconsistency
-and the old fossil/biogenic carbon split. It is not simply a technology trend.
-
-The build has zero validation errors and 401 warnings, the baseline warning
-count. All 3,429 non-production template exchanges link; all 38 selectors,
-42 production battery quantities and 205 EUR non-CO2 checks pass. The affected
-metals suite passes 81 tests. No existing non-truck activity recipes change;
-33 qualified supporting activities are added. Upstream LCIA results can still
-change because freight transport is used throughout the database.
-
-Independent SuperLU solves reproduce the scores within 9.92e-8 relative
-difference, with maximum demand residual 3.11e-15. The original solver's
-conditioning warning remains documented. Proxy emission factors and PHEV
-replacement aggregation are not independently validated by these checks.
-
-The reproducible scripts and detailed report are in the sibling
-``carculator_utils`` checkout, under ``dev/`` and
-``results/premise_trucks_regional_20261013/``. The persistent comparison project
-is ``premise-cars-2020-ef31-20261012``. The new database is
-``premise-remind-SSP2-NPi-2020-trucks-new-20261013-regional``; the baseline
-``premise-remind-SSP2-NPi-2020-cars-new-20261013-coldstart18-r2`` is retained.
-The installation receipt contains saved-database score checks and installed
-file hashes.
+Numerical LCIA outputs and comparison tables are retained locally and are not distributed.
 
 Delivered CNG reference correction
 ----------------------------------

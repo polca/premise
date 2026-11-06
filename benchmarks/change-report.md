@@ -16,7 +16,7 @@ python benchmarks/profile_change_report.py --fixture export/report-inputs \
   --output export/report-new --profile
 ```
 
-Before editing the reporting code, preserve `premise/change_report.py` outside
+Before editing the reporting code, preserve `premise/reporting/change_report.py` outside
 the package. Use that file as the baseline implementation:
 
 ```sh

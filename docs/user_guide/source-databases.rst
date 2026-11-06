@@ -48,6 +48,54 @@ indicate the database name in `source_db` and its version in `source_version`:
 
     ``source_db`` must match the **name of the database in your Brightway project** (it is not a fixed string).
 
+EN15804 source databases
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use ``system_model="EN15804"`` when the source database is the ecoinvent
+EN15804 system model, for example::
+
+    ndb = NewDatabase(
+        scenarios=[{"model": "remind", "pathway": "SSP2-NPi", "year": 2050}],
+        source_db="ecoinvent-3.12-EN15804",
+        source_version="3.12",
+        system_model="EN15804",
+        key=os.environ["PREMISE_KEY"],
+        biosphere_name=os.environ["PREMISE_BIOSPHERE"],
+    )
+
+EN15804 uses attributional IAM market shares and retains secondary-material
+technologies. Its supplemental inventories use the attributional source
+selection, with explicit native EN15804 scrap suppliers checked before linking.
+New aluminium scrap uses the RoW market as a geographic proxy; its positive
+reference output credits the existing negative scrap handoff. Post-consumer
+aluminium and iron use negative-output treatment markets. Copper scrap uses
+the native burden-free provider. Signed quantities and uncertainty are retained.
+These adaptations do not add a separate recovery credit or certify an EPD.
+
+EN15804 caches and exported metadata retain their system-model identity.
+Brightway, matrix, datapackage and openLCA exports retain this identity.
+SimaPro export requires a Brightpath version with EN15804 naming support;
+versions supporting only cut-off and consequential naming raise an error
+before scenario preparation or file publication.
+
+The native supplier contracts are verified against ecoinvent 3.12 EN15804.
+An absent, ambiguous or incompatible native scrap supplier raises an error.
+
+Supplemental inventory proxies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For consequential imports, the ASSB recycled HDPE purchase uses the native
+marginal HDPE market at the same mass: GLO through 3.11, and RER in 3.12 to
+retain European supply. Cut-off and EN15804 retain the recycled supplier.
+
+Two chemical proxies apply only to ecoinvent 3.8, where the native markets
+are unavailable. The polymer ASSB uses the bundled Japanese lithium iron
+phosphate synthesis recipe. The iridium inventory uses the GLO organic
+chemical market as a manufacturing-burden proxy for sodium ethyl xanthate.
+Both retain the original kg quantities. The latter is a weaker proxy and
+does not establish chemical or environmental equivalence. Imported exchange
+comments identify these substitutions; later versions use the native markets.
+
 Note that a cache of the database will be created the first time and
 stored in the configured user data directory. Compatible subsequent builds
 can reuse it; source and inventory fingerprints determine cache validity.

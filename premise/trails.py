@@ -1,6 +1,6 @@
 """
-This module contains the PathwaysDataPackage class, which is
-used to create a data package for scenario analysis.
+This module contains the TrailsDataPackage class, which adds temporal
+distributions to scenario data packages.
 """
 
 import json
@@ -22,22 +22,22 @@ from datapackage import Package
 import bw2data
 
 from . import __version__
-from .data_collection import get_delimiter
-from .new_database import (
+from .iam.data_collection import get_delimiter
+from .database.new_database import (
     IAM_OUTPUT_DIR,
     NewDatabase,
     check_filepath,
     check_model_name,
     check_pathway_name,
 )
-from .inventory_imports import get_classifications
-from .scenario_downloader import (
+from .inventory.inventory_imports import get_classifications
+from .iam.scenario_downloader import (
     download_csv,
     get_scenario_file_stems,
     get_scenario_url,
 )
-from .filesystem_constants import DATA_DIR
-from .utils import load_database, dump_database
+from .core.filesystem_constants import DATA_DIR
+from .core.utils import load_database, dump_database
 
 FILEPATH_TEMPORAL_PARAMETERS = DATA_DIR / "trails" / "temporal_distributions.csv"
 

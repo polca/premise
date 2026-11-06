@@ -18,6 +18,32 @@ def test_simapro_units():
     assert simapro_units["cubic meter-year"] == "m3y"
 
 
+@pytest.mark.parametrize(
+    "system_model,expected",
+    [("cutoff", "cut-off"), ("consequential", "consequential"), ("EN15804", "EN15804")],
+)
+def test_datapackage_records_actual_system_model(
+    tmp_path, monkeypatch, system_model, expected
+):
+    import json
+    from zipfile import ZipFile
+
+    import premise.export.export as module
+
+    monkeypatch.setattr(module, "DIR_DATAPACKAGE", tmp_path / "packages")
+    module.build_datapackage(
+        df=pd.DataFrame({"value": [1]}),
+        inventories=dummy_db,
+        list_scenarios=["original", "remind - SSP2-Test - 2050"],
+        ei_version="3.12",
+        name="profile-test",
+        system_model=system_model,
+    )
+    with ZipFile(tmp_path / "packages/profile-test.zip") as archive:
+        descriptor = json.loads(archive.read("datapackage.json"))
+    assert descriptor["dependencies"][0]["system model"] == expected
+
+
 def test_simapro_compartments():
     simapro_compartments = get_simapro_compartments()
     assert simapro_compartments["in water"] == "in water"
@@ -158,7 +184,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
 
             return DummyNormalizer()
 
-    monkeypatch.setattr("premise.export.BaseDatasetValidator", DummyValidator)
+    monkeypatch.setattr("premise.export.export.BaseDatasetValidator", DummyValidator)
 
     scenario = {
         "model": "image",
@@ -469,3 +495,56 @@ def test_generate_superstructure_db_aggregates_duplicate_key_pairs(
     self_loop_row = exported.loc[exported["to activity name"] == "consumer 2"].iloc[0]
     assert self_loop_row["flow type"] == "production"
     assert self_loop_row["scenario a"] == pytest.approx(0.6)
+
+
+@pytest.mark.parametrize("fail", [False, True])
+def test_datapackage_owns_staging_and_excludes_unrelated_csv(
+    tmp_path, monkeypatch, fail
+):
+    from pathlib import Path
+    from tempfile import TemporaryDirectory
+    from zipfile import ZipFile
+
+    import premise.export.export as module
+
+    staging_paths = []
+
+    def staging_directory(**kwargs):
+        directory = TemporaryDirectory(dir=tmp_path, **kwargs)
+        staging = Path(directory.name)
+        (staging / "leftover.csv").write_text("private,previous run\n")
+        staging_paths.append(staging)
+        return directory
+
+    monkeypatch.setattr(module, "TemporaryDirectory", staging_directory)
+    monkeypatch.setattr(module, "DIR_DATAPACKAGE", tmp_path / "packages")
+    if fail:
+
+        def broken_write(**kwargs):
+            raise RuntimeError("inventory export failed")
+
+        monkeypatch.setattr(module, "write_formatted_data", broken_write)
+
+    def build():
+        module.build_datapackage(
+            pd.DataFrame({"value": [1]}),
+            dummy_db,
+            ["original", "remind - SSP2-Test - 2050"],
+            "3.12",
+            "owned-staging",
+        )
+
+    if fail:
+        with pytest.raises(RuntimeError, match="inventory export failed"):
+            build()
+        assert not (tmp_path / "packages/owned-staging.zip").exists()
+    else:
+        build()
+        build()
+        assert len(set(staging_paths)) == 2
+        with ZipFile(tmp_path / "packages/owned-staging.zip") as archive:
+            csvs = {
+                Path(name).name for name in archive.namelist() if name.endswith(".csv")
+            }
+        assert csvs == {"scenario_data.csv", "inventories.csv"}
+    assert staging_paths and all(not path.exists() for path in staging_paths)

@@ -481,12 +481,47 @@ steel - secondary:
   ecoinvent_aliases:
     fltr:
       - steel production, electric
+    # Exclude specialty grades using the standard mapping masks in all versions.
+    # Keep ordinary carbon/structural and generic low-alloyed electric steel.
     mask:
       name:
         - hot rolled
         - chromium
+        - bearing
+        - case hardening
+        - case-hardening
+        - case hardened
+        - case-hardened
+        - high strength low alloy
+        - high-strength low-alloy
+        - hsla
+        - HSLA
+        - weathering
+        - stainless
+        - tool
+        - spring
+        - electrical
+        - silicon
+        - maraging
       reference product:
         - heat
+        - chromium
+        - bearing
+        - case hardening
+        - case-hardening
+        - case hardened
+        - case-hardened
+        - high strength low alloy
+        - high-strength low-alloy
+        - hsla
+        - HSLA
+        - weathering
+        - stainless
+        - tool
+        - spring
+        - electrical
+        - silicon
+        - maraging
 
 #sponge iron - DRI w/o CCS:
 #  iam_aliases:

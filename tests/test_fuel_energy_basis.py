@@ -1,6 +1,7 @@
 """Independent delivered-energy and carbon-origin regression expectations."""
 
 from copy import deepcopy
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -18,6 +19,8 @@ from premise.fuels.properties import (
 from premise.transformation import BaseTransformation
 from premise.utils import get_fuel_properties
 from premise.validation import FuelsValidation
+
+PARAMETERS_DIR = Path(__file__).parent / "data" / "vehicle_inventory_parameters"
 
 
 def activity(name, product="fuel", unit="kilogram", inputs=(), **metadata):
@@ -81,7 +84,7 @@ def build_market(
         version="3.12",
         system_model=system_model,
     )
-    fuels.write_log = lambda *args: None
+    fuels.write_log = lambda *args, **kwargs: None
     fuels.extract_market_ancillary_exchanges = lambda **kwargs: {"GLO": list(ancillary)}
     volumes = xr.DataArray(
         [[[10 * share]] for share in shares],
@@ -159,6 +162,55 @@ def test_blacklist_renormalizes_energy_before_quantity_conversion():
     assert supplied_energy(market) == pytest.approx(36)
     inputs = [e for e in market["exchanges"] if e["type"] == "technosphere"]
     assert len(inputs) == 1 and inputs[0]["amount"] == 1
+
+
+def test_fuel_market_prefers_direct_supplier_over_recursive_source_market():
+    technology = "liquefied petroleum gas"
+    recursive = activity("market for liquefied petroleum gas", technology)
+    direct = activity("liquefied petroleum gas production", technology)
+    mapping = {technology: [recursive, direct]}
+    fuels = object.__new__(Fuels)
+    BaseTransformation.__init__(
+        fuels,
+        database=[recursive, direct],
+        iam_data=SimpleNamespace(regions=["EUR", "World"]),
+        model="remind",
+        pathway="SSP2-NPi",
+        year=2050,
+        version="3.12",
+        system_model="cutoff",
+    )
+    fuels.write_log = lambda *args, **kwargs: None
+    volumes = xr.DataArray(
+        [[[1.0]]],
+        dims=("variables", "region", "year"),
+        coords={"variables": [technology], "region": ["EUR"], "year": [2050]},
+    )
+
+    fuels.process_and_add_fuel_markets(
+        reference_fuel=technology,
+        name=recursive["name"],
+        reference_product=technology,
+        unit="kilogram",
+        mapping=mapping,
+        production_volumes=volumes,
+        system_model="cutoff",
+    )
+
+    regional = next(
+        dataset
+        for dataset in fuels.database
+        if dataset.get("regionalized") and dataset["location"] == "EUR"
+    )
+    suppliers = [
+        exchange
+        for exchange in regional["exchanges"]
+        if exchange["type"] == "technosphere"
+    ]
+    assert [(exchange["name"], exchange["amount"]) for exchange in suppliers] == [
+        (direct["name"], pytest.approx(1.0))
+    ]
+    assert supplied_energy(regional) == pytest.approx(45.5)
 
 
 def test_process_energy_is_additional_and_carbon_is_carbon_weighted():
@@ -299,7 +351,7 @@ def test_explicit_energy_units_and_delivered_cng_basis():
 
 
 def test_consequential_validator_compares_energy_shares(monkeypatch):
-    import premise.validation as validation
+    import premise.validation.validation as validation
 
     markets = build_market(
         ["gasoline", "bioethanol, from sugar"], [0.2, 0.8], "gasoline"
@@ -334,11 +386,10 @@ def test_consequential_validator_compares_energy_shares(monkeypatch):
 @pytest.mark.parametrize("stem,count", [("lci-pass_cars", 8), ("lci-trucks", 7)])
 def test_installed_cng_vehicle_purchase_preserves_recorded_model_energy(stem, count):
     import csv
-    from pathlib import Path
     import openpyxl
 
     root = Path(__file__).resolve().parents[1] / "premise/data/additional_inventories"
-    with (root / f"{stem}.parameters.csv").open() as stream:
+    with (PARAMETERS_DIR / f"{stem}.parameters.csv").open() as stream:
         parameters = {row["name"]: row for row in csv.DictReader(stream)}
     workbook = openpyxl.load_workbook(
         root / f"{stem}.xlsx", read_only=True, data_only=True

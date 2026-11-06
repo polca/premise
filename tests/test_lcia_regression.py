@@ -138,6 +138,40 @@ def test_assert_lcia_regression_scores_reports_all_divergences(monkeypatch):
         lcia_regression.assert_lcia_regression_scores("test-case", ["test-database"])
 
     message = str(error.value)
+    assert "expected" not in message
+    assert "got" not in message
     assert "2 LCIA regression score(s) changed" in message
     assert "test-case/test-database/activity-a" in message
     assert "test-case/test-database/activity-b" in message
+
+
+@pytest.mark.parametrize(
+    "case_key, indicator",
+    [
+        ("ecoinvent-3.12-cutoff", "global warming potential (GWP100)"),
+        ("ecoinvent-3.8-consequential", "GWP 100a"),
+    ],
+)
+def test_missing_private_references_do_not_skip_lcia_smoke(
+    monkeypatch, tmp_path, case_key, indicator
+):
+    monkeypatch.setattr(lcia_regression, "REFERENCE_SCORES", tmp_path / "private.yaml")
+    method = (case_key.rsplit("-", 1)[0], "IPCC 2013", "climate change", indicator)
+    monkeypatch.setattr(lcia_regression.bw2data, "methods", [method])
+    assert lcia_regression._load_reference_scores() is None
+    with pytest.warns(
+        UserWarning, match="numeric regression comparisons were not performed"
+    ):
+        lcia_regression.assert_lcia_regression_scores(case_key, ["test1"])
+    assert lcia_regression.get_lcia_regression_method(case_key) == method
+
+
+def test_missing_private_references_cannot_select_wrong_source_method(
+    monkeypatch, tmp_path
+):
+    monkeypatch.setattr(lcia_regression, "REFERENCE_SCORES", tmp_path / "private.yaml")
+    monkeypatch.setattr(
+        lcia_regression.bw2data, "methods", [("ecoinvent-3.11",) + IPCC_2013]
+    )
+    with pytest.raises(AssertionError, match="another ecoinvent prefix"):
+        lcia_regression.get_lcia_regression_method("ecoinvent-3.12-cutoff")

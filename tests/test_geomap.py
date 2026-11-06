@@ -8,6 +8,15 @@ from premise.geomap import (
 )
 
 
+def test_country_conversion_preserves_namibia_iso_code():
+    from country_converter import convert
+
+    # "NA" is a country code, not a missing CSV value. Exercise the dependency's
+    # parser because pandas upgrades can otherwise break every country lookup.
+    assert convert("NA", src="ISO2", to="name_short") == "Namibia"
+    assert convert("Namibia", to="ISO2") == "NA"
+
+
 class TestGeomap(unittest.TestCase):
     def setUp(self):
         # This is a setup function that runs before each test.

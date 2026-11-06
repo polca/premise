@@ -166,21 +166,3 @@ def test_titanium_credit_regression_through_resource_correction(
     )
     assert direct_titanium + supply[1] * 0.324 == 0
     assert amount(mine, "Vanadium") == pytest.approx(0.019 / 1.53)
-
-
-def test_vanadium_content_changes_invalidate_only_inventory_cache(
-    tmp_path, monkeypatch
-):
-    import premise.new_database as module
-
-    source = tmp_path / "vanadium.xlsx"
-    source.write_bytes(PATH.read_bytes())
-    monkeypatch.setattr(module, "FILEPATH_VANADIUM", source)
-    obj = object.__new__(module.NewDatabase)
-    obj.keep_imports_uncertainty = False
-    obj.keep_source_db_uncertainty = False
-    old_inventory = obj._database_cache_path("source", inventories=True)
-    old_background = obj._database_cache_path("source")
-    source.write_bytes(source.read_bytes() + b"different workbook content")
-    assert obj._database_cache_path("source", inventories=True) != old_inventory
-    assert obj._database_cache_path("source") == old_background

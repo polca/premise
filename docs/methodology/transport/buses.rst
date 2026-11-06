@@ -52,6 +52,15 @@ change to technosphere inputs selected by the technology's fuel-name filters.
 If the efficiency array or mapped variable is missing, that energy adjustment
 is unchanged. Regional markets are built only when fleet data are available.
 
+The ten battery-electric variants resize nominal battery capacity in proportion
+to operating electricity per vehicle-kilometre, preserving their 2020 range,
+passenger occupancy and replacement policy. Overnight, opportunity-charging
+and battery-equipped trolleybus variants retain their original MIX or LTO
+capacity suppliers. Density and chemistry changes are applied in those capacity
+markets. The bus metadata supports capacity sizing only; physical pack mass,
+curb mass and road wear are not inferred from rounded vehicle comments. See
+:doc:`/methodology/battery-mobile` for the accounting rule and an example.
+
 
 Markets and downstream links
 ------------------------------

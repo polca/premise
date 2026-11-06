@@ -21,9 +21,13 @@ NMC111:
       minimum: 0.180
       maximum: 0.220
 
-NMC523:
+NMC532:
   ecoinvent_aliases:
     name:
+     - market for battery, Li-ion, NMC532
+     - market for battery capacity, Li-ion, NMC532
+     - market for battery capacity, Li-ion, NMC532, stationary
+     # Retain the historical aliases for inventories using the old spelling.
      - market for battery, Li-ion, NMC523
      - market for battery capacity, Li-ion, NMC523
      - market for battery capacity, Li-ion, NMC523, stationary
@@ -159,6 +163,7 @@ LMO:
   ecoinvent_aliases:
     name:
       - market for battery cell, Li-ion, LiMn2O4
+      - market for battery cell, li-ion, limn2o4
       - market for battery, Li-ion, LiMn2O4, rechargeable, prismatic
       - market for battery capacity, Li-ion, LiMn2O4
 
@@ -230,16 +235,17 @@ VRFB:
      - market for battery, redox-flow, Vanadium
      - market for battery capacity, redox-flow, Vanadium, stationary
   target:
-      # current value from https://doi.org/10.1021/acs.est.8b02073; http://dx.doi.org/10.1016/j.apenergy.2014.09.081
+      # Fixed whole-system reference, not a cell-learning trajectory.
+      # Paired V charge at 1.25 V / 319950 kg installed system; see
+      # vanadium_reference_design.json and stationary battery documentation.
       2020:
-        mean: 0.0194
-        minimum: 0.010
-        maximum: 0.030
-      #  future value doubles, from https://doi.org/10.1039/C7CP07456E
+        mean: 0.01676709411659144
+        minimum: 0.01676709411659144
+        maximum: 0.01676709411659144
       2050:
-        mean: 0.040
-        minimum: 0.020
-        maximum: 0.060
+        mean: 0.01676709411659144
+        minimum: 0.01676709411659144
+        maximum: 0.01676709411659144
 
 ORFB:
   ecoinvent_aliases:
@@ -289,3 +295,45 @@ LEAD-ACID:
         mean: 0.035
         minimum: 0.030
         maximum: 0.040
+
+# Published baseline reference design; no assumed annual density improvement.
+ASSB-polymer:
+  ecoinvent_aliases:
+    name: market for battery capacity, all-solid-state battery, polymer
+  target:
+    2020:
+      mean: 0.1708073285047623
+      minimum: 0.1708073285047623
+      maximum: 0.1708073285047623
+    2050:
+      mean: 0.1708073285047623
+      minimum: 0.1708073285047623
+      maximum: 0.1708073285047623
+
+# Published baseline reference design; no assumed annual density improvement.
+ASSB-oxidic:
+  ecoinvent_aliases:
+    name: market for battery capacity, all-solid-state battery, oxidic
+  target:
+    2020:
+      mean: 0.3161617539697314
+      minimum: 0.3161617539697314
+      maximum: 0.3161617539697314
+    2050:
+      mean: 0.3161617539697314
+      minimum: 0.3161617539697314
+      maximum: 0.3161617539697314
+
+# Published baseline reference design; no assumed annual density improvement.
+ASSB-sulfidic:
+  ecoinvent_aliases:
+    name: market for battery capacity, all-solid-state battery, sulfidic
+  target:
+    2020:
+      mean: 0.3166231748883239
+      minimum: 0.3166231748883239
+      maximum: 0.3166231748883239
+    2050:
+      mean: 0.3166231748883239
+      minimum: 0.3166231748883239
+      maximum: 0.3166231748883239

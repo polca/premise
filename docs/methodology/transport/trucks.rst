@@ -109,7 +109,7 @@ projection. Do not substitute pooled electricity or liquid-fuel demand for
 individual technologies without accounting for hybrid contributions.
 
 The original REMIND preprocessing must retain ``Energy intensity`` variables
-in addition to ``Efficiency``. ``scripts/restore_vehicle_intensities.py`` can
+in addition to ``Efficiency``. ``tests/support/restore_vehicle_intensities.py`` can
 append the mapped rows to an encrypted scenario from its matching original.
 It verifies model/pathway and existing transport values, preserves the existing
 plaintext bytes, and writes a new encrypted file plus hashes for review.
@@ -312,7 +312,13 @@ Process context and source inventories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The refreshed truck catalogue contains 52 RER services, 42 manufacturing recipes
-and 33 supporting components. Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
+and 20 supporting components. Shared fuel-cell, membrane, lightweighting and
+carbon-fibre components reuse the existing canonical inventories instead of
+model-suffixed copies. Their original quantities, uncertainty and background
+declarations are retained, with normal import migrations adapting them to the
+selected background. Model-specific provenance remains in the development
+audit manifest and consumer comments.
+Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
 60 tonnes. Native powertrains include diesel, compressed gas, diesel hybrid,
 plug-in diesel hybrid, battery electric and fuel-cell electric. Ten gasoline/LPG
 variants use explicit energy-preserving manufacture/combustion proxies.
@@ -325,12 +331,12 @@ no EURO class. Transport is expressed per tonne-kilometre, using modelled cargo
 rather than gross vehicle mass.
 
 The current catalogue is in
-`lci-trucks.xlsx <https://github.com/polca/premise/blob/trals/premise/data/additional_inventories/lci-trucks.xlsx>`_
-and its ``lci-trucks.parameters.csv`` companion. Exact names are preserved from
+`lci-trucks.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx>`_
+and its generated parameter snapshot is retained with the test data. Exact names are preserved from
 the selected service catalogue. Only mapped technologies are regionalized;
 unmatched 32 t/60 t services do not acquire fleet data simply because templates
-exist. The separate legacy-component workbook preserves 26 compatibility
-recipes for other vehicle families.
+exist. Compatibility recipes remain with their canonical suppliers; there is
+no separate legacy-component workbook.
 
 HEVs now have coupled high-power buffer sizing. FCEV trucks use the approved
 AKASOL reference with charging/discharge checks; 3.5/7.5 t motors use documented
@@ -344,3 +350,52 @@ with the physical manufacturing-mass mismatch recorded explicitly. Corrected
 .. include:: lpg-fallback.inc
 
 .. include:: vehicle-provenance.inc
+
+150 kW charger-cabinet finishing boundary
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The qualified 150 kW cabinet reference purchases **593.6378316624472 kg**
+of generic steel-working service per cabinet, reduced from
+**742.6821116624471 kg**. The **149.04428 kg** ferritic shell is excluded
+under the same melt/finish ownership convention used for the 200 kW shell.
+This assigns service ownership without establishing duplicate physical steel
+stock or complete actual finishing coverage.
+
+All material purchases, native embedded stock and uncertainty, remaining
+ordinary-steel service, other services, assembly, parent purchases and
+retirement remain unchanged. No native inventory is modified or recovery
+credit added. Original technosphere and biosphere declarations both remain
+**3.12**. The pinned reference is
+``tests/data/inventory_contracts.json``.
+
+Ferritic-steel nominal argon outlet
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The grade 430 charger-enclosure steel reference releases
+**0.02138737625378074 kg argon to generic air per kg finished steel**, equal
+to its unchanged liquid-argon purchase. This is an explicit complete-venting
+assumption; actual factory emissions and gas retention remain unmeasured.
+It reuses the existing ecoinvent 3.12 biosphere flow rather than defining a
+new flow.
+
+Existing CO2 and nitrogen outlets, material and energy purchases, uncertainty
+and downstream steel quantities remain unchanged. The correction establishes
+neither complete emissions coverage nor an LCIA improvement and adds no
+heat-recovery credit. Both original source declarations remain **3.12**.
+The pinned reference is ``tests/data/inventory_contracts.json``.
+
+Charging-display coating geometry
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 7-inch charging display uses a qualified **0.013832 m2** active area and
+**200 nm** indium tin oxide film. This purchases
+**2.7663999999999995e-9 m3** of native sputtering service per display. At
+**7140 kg/m3**, retained film mass is **1.9752095999999996e-5 kg**, subtracted
+once from the glass allowance to leave **0.26197404852393796 kg glass**.
+
+The geometry remains a cross-revision engineering proxy. Native sputtering
+target losses are counted once, with no separate indium purchase or foreground
+target-loss multiplier. The documented **1.65 kg** hardware reference, other
+component purchases, assembly, uncertainty and downstream doses remain
+unchanged. Both original source declarations remain **3.12**. The pinned
+reference is ``tests/data/inventory_contracts.json``.

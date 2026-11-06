@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "policies": {
+    "canadian_cement_refractory": {
+      "versions": [
+        "3.11",
+        "3.12"
+      ],
+      "cache_revision": 1,
+      "anchor": "plant",
+      "unique_anchor": false,
+      "datasets": {
+        "plant": {
+          "identity": [
+            "integrated cement plant construction",
+            "integrated cement plant",
+            "CA",
+            "unit"
+          ],
+          "output": 1,
+          "allow_output_formula": true,
+          "activity_ids": [
+            null,
+            "",
+            "085620b0-f171-5666-8400-a7bcb0aacd6f"
+          ]
+        }
+      },
+      "links": [],
+      "edits": [
+        {
+          "dataset": "plant",
+          "identity": [
+            "market for refractory, basic, packed",
+            "refractory, basic, packed",
+            "GLO",
+            "kilogram"
+          ],
+          "amount": 1492307607.08133,
+          "factor": 0.07692307692307693
+        }
+      ],
+      "note": "Premise CA cement refractory normalization v1: divided this input from {amount:.15g} kg by 13 to represent one average plant. The native rate is 0.00130904176059766 kg refractory/kg clinker; 11.4 million tonnes/year is output from 13 plants, over 100 years. See ecoinvent v3.11 change report, section 10.1.1 (page 134). Other machinery and clinker/cement allocation are unchanged.",
+      "reference": "ecoinvent v3.11 change report, section 10.1.1, p134; docs/methodology/cement.rst"
+    },
+    "passenger_car_engine_aluminium": {
+      "versions": [
+        "3.10",
+        "3.11",
+        "3.12"
+      ],
+      "cache_revision": 1,
+      "anchor": "production",
+      "unique_anchor": true,
+      "datasets": {
+        "production": {
+          "identity": [
+            "internal combustion engine production, passenger car",
+            "internal combustion engine, passenger car",
+            "GLO",
+            "kilogram"
+          ],
+          "output": 1,
+          "allow_output_formula": false,
+          "activity_ids": [
+            null,
+            "",
+            "8f58b3aa-a2d2-5bb6-a286-965d91f95bd7"
+          ]
+        },
+        "treatment": {
+          "identity": [
+            "treatment of used internal combustion engine, passenger car, shredding",
+            "used internal combustion engine, passenger car",
+            "GLO",
+            "kilogram"
+          ],
+          "output": -1,
+          "allow_output_formula": false
+        },
+        "market": {
+          "identity": [
+            "market for used internal combustion engine, passenger car",
+            "used internal combustion engine, passenger car",
+            "GLO",
+            "kilogram"
+          ],
+          "output": -1,
+          "allow_output_formula": false
+        }
+      },
+      "links": [
+        {
+          "dataset": "production",
+          "identity": [
+            "market for used internal combustion engine, passenger car",
+            "used internal combustion engine, passenger car",
+            "GLO",
+            "kilogram"
+          ],
+          "amount": -1
+        },
+        {
+          "dataset": "market",
+          "identity": [
+            "treatment of used internal combustion engine, passenger car, shredding",
+            "used internal combustion engine, passenger car",
+            "GLO",
+            "kilogram"
+          ],
+          "amount": -1
+        }
+      ],
+      "edits": [
+        {
+          "dataset": "production",
+          "identity": [
+            "market for aluminium, cast alloy",
+            "aluminium, cast alloy",
+            "GLO",
+            "kilogram"
+          ],
+          "amount": 0.6184363636363636,
+          "factor": 0.36382077967895576
+        },
+        {
+          "dataset": "production",
+          "identity": [
+            "aluminium scrap, new, Recycled Content cut-off",
+            "aluminium scrap, new",
+            "GLO",
+            "kilogram"
+          ],
+          "amount": -0.12368727272727274,
+          "factor": 0.36382077967895576
+        },
+        {
+          "dataset": "treatment",
+          "identity": [
+            "aluminium scrap, post-consumer, Recycled Content cut-off",
+            "aluminium scrap, post-consumer",
+            "GLO",
+            "kilogram"
+          ],
+          "amount": -0.408771,
+          "factor": 0.36382077967895576
+        }
+      ],
+      "note": "Premise passenger-car ICE aluminium correction v1: source gross aluminium is 61.875 kg, with 12.375 kg manufacturing scrap and 49.5 kg retained per nominal 275 kg drivetrain (Notter et al. 2010, supporting Table S2, https://doi.org/10.1021/es903729a; Althaus and Gauch 2010, Table 80). Replace the native 170.07 kg gross input and scale its manufacturing and post-consumer scrap by 61.875/170.07 together. Post-consumer recovery retains the native 82.62188% of retained aluminium as an unvalidated treatment proxy. Other treatment flows/emissions and nominal masses are unchanged; the remaining steel, fluid/reference-mass and treatment mass gaps are unresolved. No balancing residue or new recovery rate is inferred.",
+      "reference": "https://doi.org/10.1021/es903729a, supporting Table S2; Althaus and Gauch 2010 Table 80; docs/methodology/transport/passenger-cars.rst",
+      "qualification": "Native post-consumer recovery is retained as an unvalidated treatment proxy. Signed source-output and supplier-chain guards retain the original system-model scope."
+    }
+  }
+}

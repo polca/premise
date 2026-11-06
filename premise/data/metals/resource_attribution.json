@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "reference": "docs/methodology/metals.rst#how-resource-amounts-are-set",
+    "implementation_origin": "b6032888 (2026-05-03); later source-specific boundaries retain their reviewed definitions",
+    "qualification": "Existing numerical values and global applicability are retained. Chain-derived content factors are attribution conventions, not independently verified concentrate assays. Their original database-version derivations require separate scientific review."
+  },
+  "applicability": {
+    "ecoinvent_versions": null,
+    "system_models": null
+  },
+  "content_factors": [
+    {
+      "product": "beryllium hydroxide",
+      "element": "beryllium",
+      "kg_per_kg": 0.20945869667541112,
+      "basis": "stoichiometric Be content in Be(OH)2"
+    },
+    {
+      "product": "stibnite concentrate",
+      "element": "antimony",
+      "kg_per_kg": 0.5018074771857521,
+      "basis": "documented 70 wt% Sb2S3 concentrate; stoichiometric Sb content"
+    },
+    {
+      "product": "chromite ore concentrate",
+      "element": "chromium",
+      "kg_per_kg": 0.2655735274241075,
+      "basis": "recoverable Cr content represented by the chromium production chain"
+    },
+    {
+      "product": "manganese concentrate",
+      "element": "manganese",
+      "kg_per_kg": 0.26295358364884125,
+      "basis": "recoverable Mn content represented by the manganese production chain"
+    },
+    {
+      "product": "molybdenite",
+      "element": "molybdenum",
+      "kg_per_kg": 0.54545591456969,
+      "basis": "recoverable Mo content represented by the molybdenum production chain"
+    },
+    {
+      "product": "gold, unrefined",
+      "element": "gold",
+      "kg_per_kg": 0.8373709757567793,
+      "basis": "recoverable Au content represented by the gold production chain"
+    },
+    {
+      "product": "tin concentrate",
+      "element": "tin",
+      "kg_per_kg": 0.48379101906039534,
+      "basis": "recoverable Sn content represented by the tin production chain"
+    },
+    {
+      "product": "titania slag, 94% titanium dioxide",
+      "element": "titanium",
+      "kg_per_kg": 0.5649204569153916,
+      "basis": "94% TiO2 Ti content adjusted to the titanium production chain"
+    },
+    {
+      "product": "rutile, 95% titanium dioxide",
+      "element": "titanium",
+      "kg_per_kg": 0.5709302490102361,
+      "basis": "95% TiO2 Ti content adjusted to the titanium production chain"
+    },
+    {
+      "product": "ilmenite, 54% titanium dioxide",
+      "element": "titanium",
+      "kg_per_kg": 0.324528773121608,
+      "basis": "54% TiO2 Ti content adjusted to the titanium production chain"
+    },
+    {
+      "product": "zinc concentrate",
+      "element": "zinc",
+      "kg_per_kg": 0.6377594812446097,
+      "basis": "recoverable Zn content represented by the zinc production chain"
+    },
+    {
+      "product": "lead concentrate",
+      "element": "lead",
+      "kg_per_kg": 0.5672349920486017,
+      "basis": "recoverable Pb content represented by the lead production chain"
+    }
+  ],
+  "calculation_parameters": {
+    "ATOMIC_MASSES": {
+      "Be": 9.0121831,
+      "H": 1.00794,
+      "O": 15.999,
+      "Ti": 47.867,
+      "Sb": 121.76,
+      "S": 32.06
+    },
+    "TITANIUM_DIOXIDE_TITANIUM_FRACTION": 0.5993489012708947,
+    "TITANIUM_CHAIN_CONTENT_ADJUSTMENT": 1.002720132146914
+  },
+  "carrier_products": [
+    "copper, anode",
+    "copper-cobalt ore",
+    "lead concentrate",
+    "lithium brine, 6.7 % Li",
+    "platinum group metal concentrate",
+    "sodium chloride, brine solution",
+    "sodium chloride, powder",
+    "zinc concentrate"
+  ],
+  "carrier_datasets": [
+    [
+      "cobalt hydroxide, via hydrometallurigcal ore procesing, mass allocation",
+      "cobalt hydroxide"
+    ],
+    [
+      "cobalt sulfate production, from copper mining, mass allocation",
+      "cobalt sulfate"
+    ],
+    [
+      "copper-cobalt mining, artisanal",
+      "copper-cobalt ore"
+    ],
+    [
+      "copper-cobalt mining, industrial, mass allocation",
+      "copper-cobalt ore"
+    ]
+  ],
+  "primary_feeds": [
+    {
+      "identity": [
+        "primary zinc production from concentrate",
+        "zinc"
+      ],
+      "product": "zinc concentrate"
+    }
+  ],
+  "boundaries": {
+    "LITHIUM_CARBONATE_FRACTION": 0.1878518839324383,
+    "LITHIUM_CARBONATE_FEEDS": {
+      "lithium carbonate production, from concentrated brine": "lithium brine, 6.7 % Li",
+      "lithium carbonate production, from spodumene": "spodumene"
+    },
+    "SODIUM_ARSENIDE_FRACTION": 0.5206833338401479,
+    "SILICON_PRIMARY_NAMES": [
+      "silicon production, metallurgical grade",
+      "silicon production, metallurgical grade, photovoltaic supply chain"
+    ],
+    "RARE_EARTH_ATOMIC_MASSES": {
+      "Cerium": 140.116,
+      "Dysprosium": 162.5,
+      "Erbium": 167.259,
+      "Europium": 151.964,
+      "Gadolinium": 157.25,
+      "Holmium": 164.93033,
+      "Lanthanum": 138.90547,
+      "Lutetium": 174.9668,
+      "Neodymium": 144.242,
+      "Praseodymium": 140.90766,
+      "Samarium": 150.36,
+      "Terbium": 158.92535,
+      "Thulium": 168.93422,
+      "Ytterbium": 173.045,
+      "Yttrium": 88.90584
+    },
+    "RARE_EARTH_CARBONATE": "rare earth carbonate concentrate",
+    "RARE_EARTH_CARRIER_NAME": "rare earth element mine operation and beneficiation, ion adsorption clays",
+    "RARE_EARTH_OXIDE_NAME": "rare earth oxides production, from rare earth carbonate concentrate",
+    "lithium_product": "lithium carbonate",
+    "lithium_carrier": "lithium brine, 6.7 % Li",
+    "lithium_primary_operation": "lithium brine inspissation",
+    "arsenic_identity": [
+      "sodium arsenide production from Imperial smelting furnace",
+      "sodium arsenide"
+    ],
+    "arsenic_primary_product": "zinc",
+    "silicon_product": "silicon, metallurgical grade",
+    "silicon_primary_product": "silica sand",
+    "primary_coproduct_source": "primary zinc production from concentrate",
+    "primary_coproduct_feed": "zinc concentrate",
+    "primary_coproduct_elements": {
+      "copper, cathode": "Copper",
+      "silver": "Silver"
+    },
+    "rare_earth_oxide_atoms": {
+      "Cerium": [
+        1,
+        2
+      ],
+      "Praseodymium": [
+        6,
+        11
+      ],
+      "Terbium": [
+        4,
+        7
+      ]
+    },
+    "rare_earth_default_oxide_atoms": [
+      2,
+      3
+    ],
+    "oxygen_atomic_mass": 15.999
+  },
+  "provider_aliases": [
+    {
+      "versions": [
+        "3.11",
+        "3.12"
+      ],
+      "source": [
+        "market for gallium, semiconductor-grade",
+        "gallium, semiconductor-grade"
+      ],
+      "target": [
+        "market for gallium, high-grade",
+        "gallium, high-grade"
+      ],
+      "source_reference": "utils/import/migrations/cutoff/ecoinvent-3.10-cutoff-ecoinvent-3.11-cutoff.json"
+    }
+  ]
+}

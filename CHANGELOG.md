@@ -2,7 +2,464 @@
 
 All notable changes to this project are documented in this file.
 
-## [2.5.4] - Unreleased
+## [2.6.0] - 2026-11-02
+
+This release adds physical inventory auditing and EN15804 support, corrects
+fuel-carbon and resource attribution, and incorporates reviewed inventory
+references. Regenerate scenario databases and exports to apply the corrections;
+upgrading does not alter saved databases.
+
+### Added
+
+- Gate package publication on unit tests for both supported Brightway stacks.
+  Run modern backend checks in the modern environment and explicitly scope
+  modern CSV-reader integration to compatible bw2io versions.
+- Add reusable read-only physical inventory audits for premise inventory stores
+  and written Brightway databases, with stratified/random/risk sampling,
+  physical CO2, water, land and 65 RELICS indicators, independent carbon-origin
+  tracing, sourced quantity/ledger contracts and matched campaigns. Export
+  scores, coverage, evidence and searchable reports. Include analytical and
+  fault-injection pytest checks for carbon misclassification, missing resources,
+  unit/sign errors and supplier boundaries.
+- Support `system_model="EN15804"` through the existing `NewDatabase` argument.
+  Preserve the system-model label during import, transformation and export,
+  use native EN15804 scrap suppliers with their reference-output signs, and
+  apply the existing attributional behavior where appropriate.
+
+### Changed
+
+- Group Python modules into topic packages, including transport, inventory,
+  materials, electricity and reporting. Preserve public entry points and legacy
+  module imports for existing callers and cached class paths.
+- Apply bundled inventory profiles through shared import preparation. Keep
+  supplier choices, explicit recipe guards and version/system-model boundaries
+  in data; remove component-specific patch modules and constructor selectors.
+- Replace historical workbook replay and audit receipts with complete scientific
+  contracts checked against current inventories. Retain canonical vehicle
+  quantities, formulas, uncertainty and embedded generation provenance.
+- Remove completed investigation scripts, duplicated audit sidecars and remaining
+  generated numerical results. Keep reusable auditing, scientific references and
+  reference builders; exclude private results from package distributions.
+
+- Consolidate native source corrections and companion-workbook selection in
+  declarative import data. Externalize metal attribution, compression assumptions
+  and independent audit references with their existing scope and qualifications;
+  preserve numerical values. Share photovoltaic lifetime and logging setup, and
+  retire unused mapping and comparison-writer code.
+
+### Fixed
+
+- Support Python 3.12 through 3.15 with modern Brightway, NumPy 2 and current
+  SciPy, pandas, xarray and PyArrow. Restrict old numerical-library caps to the
+  legacy Brightway extra. Remove unused mandatory dependencies
+  on `unfold` and `premise_gwp`; these companion tools are installed separately.
+  Test each supported Python version in CI, with licensed builds on 3.12 and 3.15.
+  Preserve double precision when rescaling cached float32 exchanges under NumPy 2;
+  retain compatible pandas and DeepDiff versions for country parsing and Python 3.15.
+  Retain PyArrow below 26 on Python 3.12 and in Conda variants for NumPy 1.x
+  compatibility, while allowing PyArrow 26 in newer Python pip environments.
+  Use flexible Conda channel priority to select compatible pyecospold metadata
+  and check numerical-library and exporter imports in every installation job.
+  Conda supports Python 3.12–3.14 pending upstream datapackage/cchardet recipe
+  updates; Python 3.15 is supported through pip.
+  Verify installed Conda artifacts outside the checkout with declared requirement
+  checks, exporter imports, a synthetic Brightway LCA and Conda's native dependency
+  checker. Require Brotli 1.2 for the archive reader.
+  Retire the unsupported legacy Conda variant; legacy Brightway remains tested
+  through pip on Python 3.12. Avoid mixing a modern calculator with legacy data.
+- Stabilize physical-audit solves across mixed reference-unit scales using
+  power-of-two equilibration and residual refinement. Keep strict numerical
+  checks and record refinement metadata; document native solver precision
+  differences. Batch sampled indicator columns to reduce repeated sparse scans.
+- Include lignocellulosic biomass in independent carbon-origin tracing so
+  biomass IGCC screening accounts for the main feed alongside fossil utilities.
+- Keep licensed LCIA smoke calculations running when private numerical
+  references are unavailable. Report omitted regression comparisons explicitly,
+  retain version-specific method selection and require finite LCIA results.
+- Require Brightpath 1.0.0a14 or newer for SimaPro normal uncertainty export
+  using twice the standard deviation. Check actual writer/read-back preservation
+  of waste signs and water-unit conversions; replace obsolete variance-based
+  test expectations.
+- Isolate datapackage staging and remote inventory downloads per call. Include
+  only the current scenario and inventory CSVs in datapackages, and clean up
+  temporary files after successful or failed operations.
+- Refresh rail combustion CO2 origin after regional fuel linking and efficiency
+  updates. Use the final supplier's carbon composition while preserving the
+  recorded exhaust total, including auxiliary diesel and passenger-train
+  combustion wrappers.
+- Link recipes explicitly named `market-average hydrogen` to Premise's regional
+  IAM hydrogen markets before copying them into scenario regions. Handle native
+  liquid, gaseous and medium-pressure merchant market identities while retaining
+  hydrogen quantities, uncertainty and existing process-energy inputs. Document
+  the adopted 30-bar pipeline-delivery boundary; rebuild scenarios to apply.
+- Add 1 kg of in-ground iridium per kg supplied by the economic-allocation
+  iridium proxy. This restores missing resource attribution without applying the
+  economic allocation factor to the metal content or assuming recovery losses.
+  Verify biosphere linking across ecoinvent 3.8–3.12; GWP is unchanged by this
+  resource-flow addition.
+- Resolve supplementary-inventory supplier gaps using native version aliases,
+  consequential HDPE markets and the reviewed ecoinvent 3.8 chemical proxies.
+  Keep source quantities and document the geographical and proxy assumptions.
+- Align reviewed battery, transport, hydrogen, fuel, carbon-capture and power
+  inventories with their documented manufacturing and reference-unit boundaries.
+  Package target-specific native profiles, provider-selection helpers and source
+  fixtures, and invalidate affected import caches. Preserve cached battery-mass
+  precision and match truck compression metadata to its 350-bar storage boundary.
+- Preserve fossil combustion CO2 for conventional kerosene and natural-gas
+  synthetic kerosene with CCS. Use the configured `kerosene` IAM variable
+  instead of the absent `kerosene, from petroleum` label, and include the
+  missing natural-gas/CCS pathway in the fossil list. This prevents aviation
+  CO2 from being incorrectly reclassified as non-fossil, which understated
+  impacts in methods such as EF 3.1 climate change. Fuel quantities and total
+  emitted CO2 are unchanged. Rebuild affected scenario databases to apply.
+- Preserve anhydrous-LiOH equivalents when custom NCA and NMC811 oxides
+  purchase battery-grade lithium hydroxide monohydrate: 0.438071575 and
+  0.431062430 kg/kg oxide respectively. Release the added water of
+  crystallisation through the existing water-to-air flow. Document the
+  inherited, unresolved reaction-water/oxygen discrepancy separately;
+  retain source doses, yields, precursor and energy boundaries. Native
+  anhydrous suppliers, metal factors and saved results are unchanged.
+- Replace the SOEC stack's obsolete mixed Sm/Eu/Gd yttrium proxy with a
+  matched, stoichiometric YSZ/YDC pure-oxide reference in the source workbook
+  and runtime coefficients. Preserve the existing stack capacity scaling;
+  document composition assumptions, source-access limits and remaining
+  whole-stack gaps. Retain the 2050 Y target by proportionally reducing Y,
+  Zr and Ce together, an explicit prospective assumption; provide fixed-recipe
+  and linear-capacity CSV sensitivity exports. Guard the three ceramic rules
+  against partial application and retain existing hydrogen lifetime allocation.
+  Saved scenarios/results are unchanged; restart Python and rebuild to apply.
+- Exclude specialty steel grades using the existing `ecoinvent_aliases.mask`
+  name and reference-product entries for the secondary steel route in
+  `steel.yaml`. Keep the standard mapping loader and market-selection code;
+  remove the separate generic-market field and custom Python filter. Retain
+  ordinary carbon/structural and generic low-alloyed electric steel across
+  versions, with existing IAM route quantities and consequential policy.
+  Specialty production remains available through other-steel regionalization.
+  Saved scenarios/results are unchanged; restart Python and rebuild to apply.
+- Include a separate nominal Pt hardware-coating calculation in the matched
+  PEM Pt total: 0.124184 kg/MW for anode PTLs plus 0.157692 kg/MW for bipolar
+  plates. The user-selected reference uses 100 nm on both nominal flat faces,
+  with NREL footprint data and NIST Pt density; plate-coating thickness/face counts
+  are explicit assumptions, not measured complete-stack data. Replace the
+  previous direct Pt amount once, retaining prospective electrode reductions
+  and existing lifetime allocation. Provide one-face, thin-film, active-area
+  and omitted-coating diagnostic exports; document process/geometry gaps and
+  retain prior coefficients. Record the design description in exchanges.
+  Saved scenarios/results are unchanged; restart Python and rebuild to apply.
+
+- Restore prospective reductions for the matched PEM catalyst design instead
+  of holding its 2022 baseline constant. Apply NREL 87625's paired low-loading
+  case (0.4 mg Ir/cm², 0.1 mg Pt/cm²) in assumed 2050, with linear loading
+  reductions after an explicit 2022 knot. Keep the operating point at
+  2 A/cm² and 1.9 V: 2050 intensities are 0.105263 kg Ir/MW and 0.026316 kg
+  Pt/MW. The source does not date achievement or demonstrate unchanged
+  durability; document the calendar and retained-lifetime assumptions. Keep
+  a constant-loading sensitivity, with a separate CSV export option, and
+  preserve complete-design guards. Saved scenario results are unchanged.
+
+- Replace independently combined PEM catalyst observations with the matched
+  NREL 87625 baseline: 0.526316 kg Ir and 0.263158 kg Pt per nominal MW of
+  stack DC capacity, with zero Ru for this pure-Ir design. Use this baseline
+  through 2022 and the matched prospective loading trajectory described above
+  thereafter, with a constant-loading sensitivity available separately.
+  Guard the complete catalyst group before changing inputs; preserve source
+  recipes if required suppliers or supported intensities are unavailable.
+  Package primary-source inputs, historical observations, citation mismatch,
+  limitations and an offline CSV updater. This covers active-electrode catalyst;
+  hardware coatings follow the separate reference described above. Other
+  materials, processing and full system performance retain documented gaps.
+  Lifetime allocation and saved results are unchanged; rebuild scenarios to
+  apply it.
+
+- Apply the configured PEM-electrolyzer iridium trajectory when its requested
+  metal market is absent, using an explicit fallback to the existing refinery
+  input. Require the same product, kilogram unit, unique supplier/geography
+  and one-kg reference output. Preserve ambiguous or incompatible recipes with
+  diagnostics; keep a valid configured market preferred. Record the actual
+  supplier and selection in provenance and direct-metal comparisons. Source
+  intensities, stack lifetime, supply mixes and other metal rules are unchanged;
+  the trajectory is enabled, not independently validated as a catalyst design.
+  Rebuild scenarios to apply it; saved results are unchanged.
+- Reconstruct vanadium redox-flow electrolyte on a documented 1.6 M V,
+  4.2 M sulfate reference instead of mixing one litre of the original,
+  excessive-V2O5 recipe with one kilogram of output. Include electrochemical
+  preparation electricity, oxygen release, acid-carried water and freight
+  proportional to corrected feed mass. Derive nominal capacity from both
+  reservoirs' paired vanadium charge at an explicit 1.25 V reference potential;
+  hold the resulting design fixed instead of halving unchanged equipment by
+  2050. Align installed mass, lifetime stack replacement, VRFB-specific disposal
+  and the standalone electricity service. Package sources, assumptions and an
+  offline updater; invalidate import caches. This is a transparent reference
+  model with remaining performance and process-coverage gaps, not a validated
+  commercial design. Rebuild scenarios to apply it; saved results are unchanged.
+- Restore the recognized native passenger-car combustion drivetrain's aluminium
+  input to its published historical source in ecoinvent 3.10–3.12 cutoff.
+  Correct manufacturing scrap and proportional post-consumer aluminium together,
+  preserving the inherited recovery fraction as a treatment proxy. Guard the
+  complete native production/waste-market/treatment chain, preserve relative
+  uncertainty and provenance, and invalidate affected source caches/checkpoints.
+  This removes excess aluminium; it does not resolve the separate ferrous-scrap,
+  fluid/reference-mass or complete treatment-mass discrepancies. Rebuild scenarios
+  to apply it; saved databases and results are unchanged.
+- Replace the whole-combustion-engine material proxy in all 17 BEV/FCEV car
+  production inventories with separate electric gearbox/cooling and provisional
+  common auxiliary-battery inputs. Preserve nominal combined component mass,
+  separate electric modules, traction batteries, fuel cells and driving specs.
+  Update both passenger-car final-energy wrappers; exclude the labelled common
+  auxiliary battery from their energy-specific boundary. The full vehicles
+  retain the prior direct lead burden as an explicitly historical proxy.
+  Add sourced component manufacturing/scrap/treatment inventories, an offline
+  update script, import ordering and cache invalidation. Existing ICE/hybrid
+  inventories and saved scenario results are unchanged.
+- Preserve mobile all-solid-state battery (ASSB) chemistry shares instead of
+  assigning polymer, oxide and sulfide batteries to sodium-ion. Add distinct,
+  documented reference-design inventories and capacity markets: LFP/PEO-LiTFSI,
+  NMC811/LLZO and NMC811/LiGPS/LiPS. Reconstruct their per-kWh materials from
+  published sources, normalize the sulfide cathode/yield basis and restore
+  original area-based nickel-plating units. Include explicit pack-hardware
+  and treatment proxies; hold baseline designs fixed without an assumed
+  density trajectory. Package source provenance and an offline workbook
+  generator. Check positive chemistry coverage before changing any shares
+  or masses so unsupported chemistries cannot be silently substituted or
+  discarded by normalization. Rebuild scenarios; saved results are unchanged.
+- Normalize the recognized Canadian integrated cement plant's refractory input
+  to one plant for ecoinvent 3.11 and 3.12. Its original numerator used the
+  lifetime output of all 13 surveyed plants, overstating refractory intensity
+  in the national-average clinker route by a factor of 13. Guard the exact
+  source identity and coefficient, preserve relative input uncertainty, and
+  record the correction in source comments. Revise affected source-cache keys
+  so existing lists and compact checkpoints cannot bypass the correction.
+  Other plant inputs and clinker/cement allocations are retained. Rebuild
+  scenarios to apply this source normalization.
+- Propagate triangular battery-mass uncertainty through the inverse of cell
+  energy density: positive lower mass bounds follow maximum density and
+  upper mass bounds follow minimum density. Preserve the reversed ordering
+  for signed disposal bounds and support positive magnitude bounds with a
+  negative sign flag. Manufacturing and equal-mass disposal now retain
+  mirrored ranges over time; deterministic amounts and modes are unchanged.
+- Match both NMC955 capacity markets to the manufactured pack's 72.591% cell
+  mass fraction, replacing the generic 71% assumption. At the unchanged 2020
+  mean cell density, buy 4.05171 kg pack/kWh instead of 4.14250 kg. Recalculate
+  manufacturing and equal-mass end-of-life uncertainty bounds from the same
+  cell fraction, preserving formulas and cached values. Rebuild scenarios to
+  apply this allocation correction; cell-density and lifetime assumptions
+  require separate validation.
+- Give NMC955 cells a dedicated dry silicon-graphite anode mixture instead of
+  buying a complete anode that already contains collector foil. Keep 0.2 kg
+  dry paste and 0.12 kg separate copper foil per nominal kilogram of cell.
+  Implement the documented 9% graphite substitution as 85.54% graphite,
+  8.46% silicon and 6% additives/binders in dry paste. Retain documented
+  mixing/drying energy, solvent and infrastructure through an explicit source
+  proxy. See the batteries documentation for the source basis and remaining
+  capacity, lifetime and whole-cell mass limitations. Rebuild scenario databases
+  to apply this correction.
+- Normalize the NMC955 battery market to purchase 1 kg of complete battery
+  production per kilogram sold, replacing the erroneous 0.72591 kg purchase.
+  The 0.72591 kg cell fraction is already included inside pack manufacture;
+  applying it again at market level understated manufacturing inputs. Preserve
+  that internal cell fraction and market freight. Rebuild scenario databases
+  to apply this correction; cell chemistry and performance require separate
+  validation.
+
+### Tests
+
+- Replace workbook hashes and recipe fingerprints with explicit scientific
+  quantities, source contracts and canonical export comparisons.
+- Refresh ten individually reviewed LCIA regression references while retaining
+  the existing 3% tolerance. Document the historical rebuilds and the effects of
+  sulfate and road-transport corrections.
+- Add regression coverage for regional hydrogen links, EN15804 behavior, native
+  inventory selection and iridium resource attribution.
+
+### Documentation
+
+- Document reviewed battery, PEM, GaAs PV and transport assumptions, including
+  sensitivity results, changed inventory boundaries and unresolved coverage.
+  Distinguish resource-attribution corrections from changes in physical recovery
+  or manufacturing performance.
+
+## [2.5.5] - 2026-10-15
+
+This release refreshes passenger-car and truck inventories, corrects vehicle
+energy and battery accounting, and makes metals transformations more
+conservative where source coverage is incomplete. Regenerate scenario databases
+and exports to apply these changes; upgrading does not change saved databases.
+
+### Changed
+
+- Refresh the 2020 passenger-car catalogue and regional-delivery truck
+  inventories using current carculator models, with documented powertrain,
+  driving-cycle and component proxies. Runtime scenario generation uses the
+  packaged inventories and requires no carculator installation.
+- Rebuild final-energy transport activities from their corresponding vehicle
+  services and manufacturing inventories. Normalize electricity and fuel use
+  to one MJ using final scenario energy demand, propagate battery sizing and
+  refresh direct emissions after the emissions update.
+- Consolidate shared vehicle components across car, truck, bus, shipping and
+  final-energy inventories. Use the refreshed EV chargers without stationary
+  storage buffers. Keep provenance and noise audit sidecars under `dev/` and
+  parameter snapshots under `tests/data/`, outside runtime package data.
+- Remove 28 redundant model-suffixed car/truck component definitions and reuse
+  15 existing canonical suppliers. Relink surviving car, truck, final-energy
+  and rail inputs without changing their amounts. Preserve canonical recipe
+  uncertainty and model-specific provenance in consumer comments and the audit
+  manifest. Rebuild scenario databases to apply this source-inventory cleanup.
+
+### Fixed
+
+- Apply market `efficiency` filters in external scenarios the same way as
+  production pathways: plain flow names under `includes` no longer raise an
+  AttributeError, and `excludes` is now applied instead of ignored.
+- Keep the efficiency `excludes` of every variable in an external
+  scenario. Only the last variable's excludes were kept, so flows the
+  other variables excluded were scaled anyway. Results change for configs
+  where two variables exclude the same flow type.
+- Avoid recursive regional-to-World fuel-market links by preferring direct
+  fuel-production suppliers when a mapped source market has the same product
+  identity as the prospective market.
+- Preserve vehicle battery-sizing and exchange-role metadata through source
+  caches and compact checkpoints. Include vehicle, final-energy and
+  battery-capacity workbooks in supplementary-inventory cache keys so changed
+  specifications invalidate cached imports.
+- Refresh 2020 passenger-car PHEVs with paired capacity/mass calibration and
+  one physical battery across both driving modes. Preserve the calibrated
+  density offset when applying future chemistry-density improvements, using
+  the existing constant-range arithmetic. Sources, explicit mass/size proxies
+  and the MIX-market physical-mass boundary are recorded in dataset metadata.
+- Refresh hybrid car/truck hot exhaust with the shared model's corrected
+  petrol/diesel deterioration lookup. Preserve cold starts, fuel demand and
+  PHEV driving shares. Document combustion-engine ageing as a hybrid proxy;
+  the retained high truck NOx coefficients remain scientifically unverified.
+- Refresh all eight FCEV cars with the approved power-scaled Mirai pack and all
+  seven FCEV trucks with paired AKASOL pack ratings, including truck charging and
+  discharge constraints. Small FCEV truck motors use 57/129 kW proxies. Preserve
+  net electrical allocation, complete physical mass, nominal capacity-market
+  purchases, original names and documented manufacturing-proxy limitations.
+- Add finite high-power HEV truck storage and corrected PHEV capacity/replacement
+  purchases. Keep manufacture and disposal within the battery-capacity markets.
+- Preserve BEV/PHEV baseline range with simple future capacity/mass arithmetic
+  and chemistry-density trends. Lighter BEV truck batteries increase payload at
+  fixed utilization, consistently reducing kilometre-based burdens per tonne-km.
+  Corrected FCEV hardware and hydrogen tanks retain their 2020 design.
+- Resize the ten battery-electric bus variants with operating electricity use
+  to preserve their 2020 range, occupancy and replacement policy. Retain MIX/LTO
+  capacity suppliers; apply density and chemistry changes in capacity markets.
+- Apply the configured density trajectory to NMC532 capacity markets, including
+  manufacture and end of life. Retain NMC523 aliases for older inventories.
+- Restore optional mapped vehicle energy-intensity signals and use the approved
+  REMIND Large Car/SUV efficiency-only fallback without copying SUV fleet volumes.
+  Keep documented fossil LPG supply where no IAM pathway exists.
+- Preserve vehicle/model/component sources, baseline specifications and final
+  regional fuel/battery metadata through import and export. Declare the material
+  conversion for regenerated truck frames. Bus and two-wheeler vehicle designs
+  retain their previous inventories, with shared component links consolidated
+  and electric-bus battery-sizing metadata added separately.
+- Include petrol alongside electricity in every gasoline plug-in hybrid car's
+  operating-fuel mapping, and recognize petrol in the gasoline hybrid mapping.
+  IAM efficiency improvements now affect both PHEV energy inputs; final fuel
+  carbon accounting follows the corrected purchases. Rebuild scenarios to apply.
+- Couple explicitly identified vehicle hydrogen tank-compression electricity
+  to final hydrogen demand, preserving other electricity uses. Align refreshed
+  car/truck preparation with the pipeline inventory's documented 30-bar
+  delivery and 700-bar tanks (2.45062 kWh/kg H2). Preserve the role through
+  Excel import and regional relinking, and validate the final energy balance.
+- Refresh car/truck fossil and non-fossil CO2 from the final linked fuel
+  suppliers after regionalization and efficiency adjustment, using the fuel
+  module's shared reclassification routine. Scale stored CO2 transfers with
+  their exchanges and validate each carbon fraction independently. Rebuild
+  scenarios to apply this correction; existing saved databases are unchanged.
+- Preserve reference energy when creating petrol, diesel, gas and other fuel
+  blends; normalize IAM energy shares before supplier-unit conversions. Record
+  supplier carbon origin and oxidation potential, including DAC and mixed
+  captured-carbon sources, and validate energy rather than summed fuel mass.
+- Use the documented 46.5 MJ/kg delivered-CNG value in refreshed car/truck
+  purchases and vehicle accounting. Preserve compression recipes and disclose
+  the difference between upstream gas energy and delivered fuel energy.
+
+- Regionalize vehicle-grade natural-gas compression before its market, so CNG
+  consumers reach regional gas and electricity suppliers. Preserve compression
+  quantities and losses, and make original geographic forwarding activities
+  supply one kilogram per kilogram. Rebuild scenarios to apply the correction.
+- Replace automatic car/truck pollutant clamping with read-only plausibility
+  diagnostics. Preserve cold-start, evaporative and speciated emissions and
+  their uncertainty metadata; retain IAM efficiency adjustments.
+- Match transport air pollutants by explicit species aliases and EURO classes
+  by complete labels. Keep methane separate from NMVOC, THC separate from PAH,
+  and PM2.5 separate from coarse particles; resolve EURO-VI and EURO-6ab correctly.
+- Report unavailable emission boundaries and fuel references explicitly, retain
+  errors for invalid masses/units, and tolerate roundoff at diagnostic thresholds.
+  Regenerate exported databases to receive these changes.
+- Preserve source metal inputs when component scope or temporal support is
+  unverified, including rules based on mixed vehicle/motor observations or
+  unverified shared-magnet conversions. Record per-series source-year ranges
+  and explicit gap decisions.
+  Unsupported years no longer imply an endpoint-held material forecast.
+- Preserve consequential marginal markets and substitution resource flows
+  instead of applying average-share and economic-allocation corrections. In
+  the ecoinvent 3.12 IMAGE SSP2-M 2050 metals audit, this restores copper
+  extraction from 3.00488 to 0.90723 kg Cu/kg cathode, matching the source model.
+- Preserve metal markets with unsupported years or incomplete transport
+  coverage before creating proxies. Report missing origins and their fraction
+  of primary supply, and distinguish observed zero distances from missing data.
+- Restore cobalt and primary zinc extraction attribution in attributional
+  databases after upstream checks encountered electricity or process-input
+  loops. Match material inputs by
+  product and kilogram unit, and plan zinc concentrate attribution boundaries
+  across regional producers. Keep missing links and unsupported cycles
+  unresolved, and preserve secondary-supply safeguards.
+- Check metal-intensity units and use kg metal/kg motor for EVs. Distinguish
+  missing intensities from zero and record every material-rule outcome. Reject
+  overlapping writes; preserve the shared ICEV engine until its conflicting
+  vehicle-specific component assumptions can be represented separately.
+- Retain small metal producer shares and all freight modes, sum routes by
+  country, and apply the primary transport fraction once. Preserve source
+  markets explicitly when a supplier route is unavailable; validate the shares
+  actually applied and resolve serialized selectors consistently.
+  Select air freight in tonne-kilometres instead of aircraft manufacture in units.
+- Exclude recycling from virgin-resource additions, preserve non-metal resource
+  flows, and check upstream resource supply through markets. Reset uncertainty
+  on intentional zeros and rescale positive corrected resource distributions.
+  Preserve primary extraction when a mine consumes trace metal reagents.
+- Preserve metals diagnostics and applied-share mappings through compact
+  inventory serialization. Add paired RELICS resource-use and climate audits.
+
+- Constrain PyArrow to versions below 26 across pip, Brightway extras and conda.
+  PyArrow 26 requires NumPy 2 and prevented test collection with premise's
+  NumPy 1.x dependency. Check the numerical runtime imports explicitly in CI.
+- Include documentation build inputs and checking scripts in the source
+  distribution, and exclude locally downloaded IAM scenario files from release
+  archives. Restore Sphinx logging after loading the lazy build API so autodoc
+  imports cannot silently disable build warnings.
+
+- Correct the HDPE-lined 700-bar hydrogen tank inventory in `lci-trucks.xlsx`
+  to one kg of dry assembly using the published material sum. Convert
+  manufacturing electricity from MJ to kWh and retain processing services
+  separately from material mass. Document the source inconsistencies and verify
+  the quantities after Excel import on both supported Brightway stacks.
+- Restore the aluminium-lined 700-bar hydrogen tank supplier in
+  `lci-rail-freight.xlsx`, preserving corrected dry-mass and manufacturing-energy
+  quantities. Verify that bundled hydrogen-tank consumers, including fuel-cell
+  locomotives and final-energy passenger-train activities, resolve uniquely.
+- Require a fresh ecoinvent 3.12 cut-off build, Brightway export and LCIA
+  regression checks in CI before dependent publication jobs can run. Missing
+  credentials fail this gate on pushes and same-repository pull requests;
+  external fork pull requests retain the unlicensed test suite.
+
+### Documentation
+
+- Close the vehicle campaign and replace superseded inventory/cycle descriptions
+  with the final 2020 catalogue, retained proxy limitations and verification
+  scope. Update model sources and paired battery references. Incremental EF 3.1
+  results are retained; no complete original-legacy-versus-final comparison is
+  claimed. Rebuild saved databases to receive the inventory corrections.
+- Document conservative metals defaults and remaining requirements for future
+  mining and recycling scenarios. Add reproducible paired RELICS results for
+  95 available markets and 65 indicators, six validated build configurations,
+  and evidence tracing the motor-component and consequential copper issues.
+- Update the README and release guide for 2.5.5, including constant-range bus
+  sizing, final-energy normalization and the NMC532 density correction.
+
+## [2.5.4] - 2026-10-07
 
 ### Fixed
 

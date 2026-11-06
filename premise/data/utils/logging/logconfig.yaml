@@ -149,7 +149,7 @@ handlers:
     mode: a
 
 loggers:
-  premise.cache_cleanup:
+  premise.core.cache_cleanup:
     level: INFO
     handlers: []
     propagate: True

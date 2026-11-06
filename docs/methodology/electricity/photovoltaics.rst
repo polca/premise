@@ -306,7 +306,7 @@ datasets to update their efficiency accordingly.
 To do so, the required panel area (in m2) per kW of capacity is
 adjusted down when the projected efficiency exceeds the current efficiency.
 Existing higher efficiencies are preserved. Dataset names
-are matched against technology aliases in ``premise/electricity.py``. Datasets containing ``perovskite-on-silicon tandem`` are mapped
+are matched against technology aliases in ``premise/electricity/electricity.py``. Datasets containing ``perovskite-on-silicon tandem`` are mapped
 to the dedicated ``perovskite-Si tandem`` trajectory when it is available in
 the CSV; when that trajectory is absent they fall back to the generic
 ``perovskite`` trajectory.
@@ -436,6 +436,77 @@ They are available in the following locations:
 .. note::
 
     These two technologies are not included in the current country-specific production mix datasets, as IAM scenarios do not specify sub-technology mixes.
+
+GaAs substrate reuse and recurring processing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The transfer-route reference amortizes manufacture of the complete original
+GaAs substrate over 100 uses: each square metre processed purchases 0.01 m²
+of substrate manufacture. Lithography, gold deposition, growth and epitaxial
+lift-off/polishing are charged for every processed m². The previous installation
+instead purchased 0.01 m² of the entire processing chain, dividing recurring
+operations by 100 as well. Intermediate scores before and after this boundary
+correction therefore do not describe the same supplied processing service.
+
+Pallas et al. (2020), sections 2.7–2.10, assume 100 reuses prospectively and
+reports 5–10 achieved at that time. Retaining 100 uses is a future technology
+reference, not demonstrated commercial durability or an attrition model.
+The baseline retains polishing after each lift-off. Polishing every ten cycles
+and 90% gold recovery are separate optimization cases and are not silently
+included in this reference.
+
+Substrate-reuse sensitivity was assessed with unchanged recurring process coefficients and background feedback. Numerical LCIA outputs are retained locally.
+
+GaAs fresh-wafer material balance and supporting references
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The published supplementary S6 recipe declares one kg of GaAs from 0.236 kg
+gallium and 0.516 kg arsenic. That declared feed does not close the Ga/As mass
+balance; the original author's batch interpretation remains unverified. The
+active balanced engineering reference uses the GaAs stoichiometric retained
+fractions 0.482029764 kg Ga and 0.517970236 kg As per kg product. At the selected
+95% overall material retention it purchases 0.507399752 kg Ga and 0.545231827 kg
+As, assigning 0.052631579 kg process loss to a hazardous-disposal proxy.
+This is a distinct engineering reference, not a verbatim reproduction of S6.
+Separate upstream refining and downstream crystal-growth/sawing losses remain.
+
+Boule-retention sensitivity holds substrate reuse and other inputs fixed. Hazardous underground disposal is a fate proxy; actual Ga/As volatilization, recovery and treatment remain unresolved. Numerical LCIA outputs are retained locally.
+
+The remaining supporting references are retained with their documented limits:
+
+* The crucible is pyrolytic boron nitride (BN). The source labelled it pBN but
+  linked boron carbide (B4C). The current CVD engineering reference retains
+  0.01 kg crucible per kg boule in both active growth stages and keeps each
+  associated disposal purchase once. Its 50% precursor deposition utilization,
+  95% finished-solid retention and 250 kWh/kg electricity are engineering
+  assumptions. High-salinity scrubber treatment, fugitive emissions and
+  semiconductor-grade precursor finishing remain qualified gaps.
+* Gallium refining retains the source 1.4285714 kg feed and electricity per kg
+  7N gallium, explicitly collecting the 0.4285714 kg reject without a recovery
+  credit. This does not establish actual industrial reject fate.
+* The arsenic proxy converts the source's 1.4705882 kg elemental-As feed to
+  1.529944367 kg arsine using its As content. The conversion records As reject
+  and liberated hydrogen separately. Original utilities/purge allowances are
+  retained; the actual refining route, purge fates and treatment are unvalidated.
+* Module assembly adds a cell-free assembly reference once, including glass,
+  encapsulation, frame, interconnections and processing. The existing 1 m² Si
+  cell, mounting and inverter purchases remain separate. The transfer of a
+  conventional module assembly to 1 m² active tandem cell per nominal module
+  m² is an explicit geometry proxy; packing, optical fill factor and nano-layer
+  end-of-life are unresolved. The 0.28 kWp output and electricity denominator
+  are unchanged.
+
+Utility-PV transformer pressboard units
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The 2.5 MW transformer reference in ``lci-PV-2026.xlsx`` specifies 36.96 kg
+pressboard but purchases a hard-fibreboard proxy whose unit is m³. The current
+0.03696 m³ purchase uses an explicit density of 1,000 kg/m³, correcting the
+former 36.96 m³ purchase. The documented density sensitivity of 800–1,040 kg/m³
+corresponds to 0.0462–0.0355385 m³. The original 71.07 kg cellulose disposal
+(36.96 kg pressboard plus 34.11 kg kraft paper) is retained. This unit correction
+leaves transformer quantity, other materials, operating performance and the PV
+electricity denominator unchanged; the fibreboard grade remains a proxy.
 
 .. raw:: html
 

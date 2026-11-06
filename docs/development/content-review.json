@@ -13,8 +13,8 @@
   },
   {
     "page": "getting_started/installation.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Documented modern pip Python 3.12–3.15, modern Conda 3.12–3.14, legacy pip Python 3.12, retired unsupported legacy Conda, numerical ABI constraints and flexible Conda channels.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -85,8 +85,8 @@
   },
   {
     "page": "user_guide/updates.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Corrected final-energy scope; update order retained.",
+    "review_date": "2026-10-15",
+    "disposition": "Updated final-energy scope to include marked transport energy-use reconstruction.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -109,14 +109,14 @@
   },
   {
     "page": "user_guide/export/index.rst",
-    "review_date": "2026-09-28",
-    "disposition": "Explained Brightpath's role, optional Python 3.12+ setup, output formats, and removal of legacy export routes against the implemented exporters.",
+    "review_date": "2026-11-02",
+    "disposition": "Updated the minimum Brightpath version to the tested normal-uncertainty implementation.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
     "page": "user_guide/export/datapackage.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Clarified independent datapackage export and separate unfold installation with environment requirements.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -127,8 +127,8 @@
   },
   {
     "page": "user_guide/export/simapro.rst",
-    "review_date": "2026-10-07",
-    "disposition": "Updated native import evidence for the complete REMIND SSP1-PkBudg1000 2050 ecoinvent 3.12 cut-off scenario; SimaPro LCIA equivalence remains unverified.",
+    "review_date": "2026-11-02",
+    "disposition": "Documented native normal 2*SD wire convention, minimum Brightpath version and checked the real writer/read-back tests.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -163,8 +163,8 @@
   },
   {
     "page": "methodology/metals.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-11-02",
+    "disposition": "Qualified inherited chain-derived content factors and their version provenance limits; documented resource-attribution data location without changing factors.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -199,8 +199,8 @@
   },
   {
     "page": "methodology/final-energy.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-15",
+    "disposition": "Documented current marked vehicle energy-use normalization, equipment boundary and emissions refresh; updated the process diagram.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -223,8 +223,8 @@
   },
   {
     "page": "methodology/battery-mobile.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-15",
+    "disposition": "Reviewed constant-range bus capacity accounting and NMC532 aliases against the installed workbooks and density configuration.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -271,8 +271,8 @@
   },
   {
     "page": "methodology/transport/passenger-cars.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-11-02",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -289,8 +289,8 @@
   },
   {
     "page": "methodology/transport/buses.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-15",
+    "disposition": "Documented capacity-only constant-range sizing for all ten electric bus variants against vehicle_battery and packaged metadata.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -427,8 +427,8 @@
   },
   {
     "page": "reference/api.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Added the retained direct-metal-input comparison under the public audit package.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -445,8 +445,8 @@
   },
   {
     "page": "development/documentation.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -469,8 +469,8 @@
   },
   {
     "page": "development/releases-2-5.rst",
-    "review_date": "2026-10-07",
-    "disposition": "Added the 2.5.3 migration requirements for Python, Brightpath exports, local openLCA method packages, and explicit external efficiency bounds; explained scenario regeneration.",
+    "review_date": "2026-10-15",
+    "disposition": "Updated 2.5.5 upgrade guidance and verified 2.5.4 contents against the published PyPI source archive and release tag.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -493,8 +493,8 @@
   },
   {
     "page": "development/architecture.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-11-02",
+    "disposition": "Documented declarative native source normalization, companion selection, scientific policy data and temporary-file ownership; values and applicability are preserved.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -526,5 +526,47 @@
     "review_date": "2026-09-07",
     "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
     "review_level": "Implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "development/passenger-car-refresh-2026.rst",
+    "review_date": "2026-11-02",
+    "disposition": "Retained as the implementation and validation record for the October 2026 passenger-car inventory refresh, including its comparison boundary, artifacts and stated limitations. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
+    "review_level": "Documentation and implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "development/regional-truck-refresh-2026.rst",
+    "review_date": "2026-11-02",
+    "disposition": "Retained as the implementation and validation record for the October 2026 regional-truck inventory refresh, including its proxy assumptions, comparison boundary and stated limitations. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
+    "review_level": "Documentation and implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "methodology/transport/campaign-closeout.rst",
+    "review_date": "2026-10-15",
+    "disposition": "Distinguished the original campaign from subsequent shared-component integration and bus sizing included in 2.5.5.",
+    "review_level": "Documentation and implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "user_guide/physical-audits.rst",
+    "review_date": "2026-11-02",
+    "disposition": "Documented binary-exact numerical equilibration, residual refinement, preserved tolerances, solver precision limits and optional UMFPACK; licensed cohort checks retain physical findings for review.",
+    "review_level": "Documentation and implementation consistency; not independent scientific validation"
+  },
+  {
+    "page": "development/physical-inventory-probing-plan.rst",
+    "review_date": "2026-11-01",
+    "disposition": "Retained the physical-probing implementation plan and identified the implemented automated core, pending human review and additional stress-case execution.",
+    "review_level": "Implementation scope screening; not a completed scientific assessment"
+  },
+  {
+    "page": "methodology/fuels/pipeline-coating.rst",
+    "review_date": "2026-11-02",
+    "disposition": "Connected the existing pipeline-coating reference to the fuel navigation and checked implementation paths after topic regrouping; existing scientific assumptions are retained. Updated inventory-profile and current-contract paths after removing campaign-specific scaffolding; retained scientific assumptions.",
+    "review_level": "Documentation and navigation consistency; not independent inventory validation"
+  },
+  {
+    "page": "development/releases-2-6.rst",
+    "review_date": "2026-11-02",
+    "disposition": "Updated Python compatibility, separate companion installation and retirement of the unsupported legacy Conda variant while retaining tested legacy pip support.",
+    "review_level": "Release and implementation consistency; not independent scientific validation"
   }
 ]

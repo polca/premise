@@ -1,5 +1,5 @@
 Exporting to SimaPro
-===================
+======================
 
 ``write_db_to_simapro`` uses `Brightpath
 <https://github.com/romainsacchi/brightpath>`_ to write one SimaPro CSV per
@@ -7,7 +7,7 @@ scenario. Install Brightpath in the same Python 3.12+ environment as Premise,
 as described in :doc:`index`.
 
 Write and import a scenario
---------------------------
+-----------------------------
 
 After creating and updating ``ndb`` (see :doc:`/getting_started/first-scenario`):
 
@@ -46,7 +46,11 @@ an existing CSV. Premise's automatic reports still run after a successful export
 
 The writer preserves non-unit reference quantities and numeric precision. Waste
 treatment exchanges use SimaPro's sign convention, including the corresponding
-uncertainty transformation. Water emissions are converted from cubic metres to
+uncertainty transformation. Normal uncertainty is serialized as ``2 * SD``;
+lognormal uncertainty retains squared geometric SD. Brightpath 1.0.0a14 or
+newer is required for this convention. See the `SimaPro uncertainty guidance
+<https://support.simapro.com/en/articles/505093-how-can-i-determine-the-uncertainty-value-of-my-data-set>`_.
+Water emissions are converted from cubic metres to
 kilograms with their uncertainty parameters. Electricity and heat inputs have
 their own CSV section. Parameters, source comments, geography, process identifiers,
 and scenario provenance accompany the inventory.

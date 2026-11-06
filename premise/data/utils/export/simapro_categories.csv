@@ -329,6 +329,7 @@ anionic resin production,anionic resin,material,Chemicals\Others\Transformation
 anode factory construction,anode factory,material,Metals\Extraction\Transformation\Infrastructure
 "anode paste, LFP","anode paste, LFP",material,Electronics\Battery\Transformation
 "anode paste, lto","anode paste, lto",material,Electronics\Battery\Transformation
+"anode paste production, silicon-graphite, for li-ion battery, nmc955","anode paste, silicon-graphite, for li-ion battery, nmc955",material,Electronics\Battery\Transformation
 "anode production, for metal electrolysis","anode, for metal electrolysis",material,Metals\Extraction\Transformation
 "anode production, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",material,Electronics\Battery\Transformation
 "anode production, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",material,Others\Obsolete
@@ -17435,3 +17436,26 @@ zucchini production,zucchini,material,Agricultural\Plant production\Vegetables\T
 "zucchini production, conventional, plain region",zucchini,material,Agricultural\Plant production\Fruits\Transformation
 "zucchini production, organic, plain region","zucchini, organic",material,Agricultural\Plant production\Fruits\Transformation
 "treatment of effluent from nitrogen trifluoride production, wastewater treatment, class 3",effluent from nitrogen trifluoride production,waste treatment,Wastewater treatment\Transformation
+"polyethylene oxide production, proxy, for assb","polyethylene oxide, for assb",material,Electronics\Battery\Transformation
+"polymer electrolyte production, peo-litfsi, for assb","polymer electrolyte, peo-litfsi, for assb",material,Electronics\Battery\Transformation
+"oxide electrolyte production, llzo, for assb","oxide electrolyte, llzo, for assb",material,Electronics\Battery\Transformation
+"battery cell production, assb, polymer","battery cell, assb, polymer",material,Electronics\Battery\Transformation
+"battery cell production, assb, oxidic","battery cell, assb, oxidic",material,Electronics\Battery\Transformation
+"battery cell production, assb, sulfidic","battery cell, assb, sulfidic",material,Electronics\Battery\Transformation
+"battery production, assb, polymer","battery, assb, polymer",material,Electronics\Battery\Transformation
+"market for battery capacity, assb, polymer",electricity storage capacity,material,Electronics\Battery\Transformation
+"battery production, assb, oxidic","battery, assb, oxidic",material,Electronics\Battery\Transformation
+"market for battery capacity, assb, oxidic",electricity storage capacity,material,Electronics\Battery\Transformation
+"battery production, assb, sulfidic","battery, assb, sulfidic",material,Electronics\Battery\Transformation
+"market for battery capacity, assb, sulfidic",electricity storage capacity,material,Electronics\Battery\Transformation
+"market for battery, assb, polymer","battery, assb, polymer",material,Electronics\Battery\Transformation
+"market for battery, assb, oxidic","battery, assb, oxidic",material,Electronics\Battery\Transformation
+"market for battery, assb, sulfidic","battery, assb, sulfidic",material,Electronics\Battery\Transformation
+"mechanical powertrain production, electric passenger car","mechanical powertrain, electric passenger car",material,Transport\Road\Transformation
+"market for mechanical powertrain, electric passenger car","mechanical powertrain, electric passenger car",material,Transport\Road\Transformation
+"treatment of used mechanical powertrain, electric passenger car","used mechanical powertrain, electric passenger car",waste treatment,Transport\Road\Transformation
+"market for used mechanical powertrain, electric passenger car","used mechanical powertrain, electric passenger car",waste treatment,Transport\Road\Transformation
+"auxiliary battery production, passenger car, historical proxy","auxiliary battery, passenger car, historical proxy",material,Transport\Road\Transformation
+"market for auxiliary battery, passenger car, historical proxy","auxiliary battery, passenger car, historical proxy",material,Transport\Road\Transformation
+"vanadium electrolyte conditioning, reference design","vanadium electrolyte conditioning, reference design",processing,Electronics\Battery\Transformation
+"market for used redox-flow battery, vanadium, reference design","used redox-flow battery, vanadium, reference design",waste treatment,Electronics\Battery\Market

@@ -1,7 +1,7 @@
 import json
+import pickle
 import sys
 import types
-import pickle
 from pathlib import Path
 
 import pytest
@@ -169,7 +169,10 @@ def test_validation_iam_fingerprint_tracks_source_content(tmp_path):
     assert obj._validation_iam_fingerprint(scenario) != first
 
 
-def test_ecospold_constructor_does_not_check_biosphere_database(monkeypatch):
+@pytest.mark.parametrize("system_model", ["cutoff", "EN15804"])
+def test_ecospold_constructor_does_not_check_biosphere_database(
+    monkeypatch, system_model
+):
     def fail_if_called(_):
         raise AssertionError("constructor should not validate biosphere presence")
 
@@ -220,10 +223,12 @@ def test_ecospold_constructor_does_not_check_biosphere_database(monkeypatch):
         source_type="ecospold",
         source_file_path=".",
         biosphere_name="missing-biosphere",
+        system_model=system_model,
         quiet=True,
     )
 
     assert obj.biosphere_name == "missing-biosphere"
+    assert obj.system_model == system_model
 
 
 def test_constructor_clears_importer_state_after_inventory_cache_miss(monkeypatch):

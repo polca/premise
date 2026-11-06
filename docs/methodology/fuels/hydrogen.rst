@@ -35,6 +35,172 @@ available. Use ``ndb.update("fuels")`` after upstream energy updates.
 Transformation
 ----------------
 
+PTFE gaskets in alkaline electrolysers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For ecoinvent 3.12, the additional AEC stack uses the same qualified PTFE
+gasket reference as CLIC. Per kilogram of finished gasket, this reference
+purchases **1/0.95 kg of native PTFE resin**, **3 MJ heat** and **0.2 kWh
+electricity**. The 95% forming/cutting retention and utility quantities are
+engineering assumptions, not factory measurements. The native emulsion-route
+resin is a production-burden proxy, not a verified granular moulding grade.
+The foreground represents forming, sintering and cutting; resin polymerisation
+remains in the external supplier, so the legacy monomer purchase and local
+polymerisation allowances are not added again.
+
+The AEC stack still purchases **144.2 kg** of finished gaskets. Manufacturing
+rejects use the existing qualified generic waste-plastic outlet once, and
+finished-gasket retirement remains in the original stack treatment. This
+does not certify fluoropolymer disposal or PFAS abatement.
+
+The native-resin provider is imported separately from
+``lci-ptfe-gasket-native-312.xlsx``, with source technosphere and biosphere
+versions both 3.12. Before preparing the additional electrolysis workbook for
+that target, Premise removes its legacy gasket producer from the extracted
+source and relinks only the reviewed AEC purchase. The electrolysis workbook
+keeps its original 3.9 source declaration. Targets 3.8–3.11 continue to use
+the original monomer-based reference; no native-resin backport or broad
+background-version change is implied. The source workbooks, native datasets
+and published CLIC versions are not rewritten by this import selection.
+
+The foreground compilation is CC BY 4.0 with compiler attribution and source
+qualifications recorded in the workbook. Its pinned scientific reference is
+``tests/data/inventory_contracts.json``. Referenced
+publications and native supplier inventories retain their separate terms.
+
+Shared PFSA membrane reference
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The additional PEM electrolyser and flow-battery inventories share
+``perfluorosulfonic acid membrane production, ew1100, engineering reference``.
+It is supplied by ``lci-pfsa-ew1100.xlsx``, imported before its buyers with
+source technosphere and biosphere versions both 3.9. The two former
+application-specific producers had identical supplier identities, quantities,
+uncertainties and formulas; consolidation preserves all 12 external exchanges
+and their quantities. The original electrolysis and VRFB workbooks retain
+their 3.9 source declarations. Normal import migration targets the selected
+output version.
+
+The PEM electrolyser stack still purchases **16 kg** membrane. The VRFB
+``nafion membrane production`` wrapper still purchases **1 kg** of finished
+membrane per kg wrapper output and retains its factory and freight inputs
+once. The VRFB and hybrid-flow stacks still purchase **150 kg** and
+**0.132 kg** of that wrapper, respectively. The separate fuel-cell membrane
+recipe is not part of this consolidation.
+
+This is a shared dry, unreinforced acid-form EW1100 engineering reference,
+not proof of commercial-grade equivalence across applications. Existing
+conversion, retention, process-water, energy and effluent assumptions remain
+qualified; unmodelled purification, reinforcement, hydration, PFAS releases
+and fluoride-specific abatement are not zero burdens. The shared reference
+retains its approved CC BY-NC 4.0 foreground terms, compiler attribution and
+source citations. Referenced publications and background inventories retain
+their separate terms. The pinned scientific reference is
+``tests/data/inventory_contracts.json``.
+
+AEC diaphragm manufacturing rejects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The zirconia–polysulfone diaphragm keeps its original formulation, utilities,
+5% coating-reject assumption and **121.8 kg** stack purchase. The nominal
+0.040912611614569605 kg coating reject per kg finished diaphragm is routed by
+its assumed composition: **0.03477571987238416 kg zirconia** to the existing
+inert-disposal proxy and **0.00613689174218544 kg polysulfone** to the
+mixed-plastic market in DE. Both purchases follow the native negative waste
+reference convention. Their exact supplier identities exist in the original
+ecoinvent 3.9 catalogue, so source technosphere and biosphere versions stay 3.9.
+
+This aligns the waste split with CLIC while preserving total reject mass,
+the other eight exchanges and finished-diaphragm retirement. The routing is
+a composition-based engineering treatment proxy; actual separation of mixed
+coating rejects, disposal and hazardous classification are unverified. The
+pinned scientific reference and catalogue receipts are in
+``tests/data/inventory_contracts.json``.
+
+SOEC glass-seal manufacturing rejects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The barium alumino-borosilicate seal reference uses the RoW hazardous-waste
+underground-deposit market for its manufacturing rejects, aligned with CLIC.
+The exact supplier exists in the original ecoinvent 3.9 catalogue; source
+technosphere and biosphere declarations remain 3.9. The 95% retention and
+**0.05263157894736836 kg reject per kg finished glass** are unchanged. The
+SOEC stack inventory still purchases **25.6 kg** finished glass, corresponding
+to **1.3473684210526302 kg** manufacturing reject. All four precursor amounts,
+153.6 MJ heat and 25.6 kWh electricity remain unchanged on that stack basis.
+
+Containment is a qualified treatment proxy. Actual disposal, hazardous
+classification, leaching and impacts are unverified; inert disposal remains
+a documented alternative at the same mass. Finished-seal retirement and
+unquantified volatile losses are separate. The pinned reference is
+``tests/data/inventory_contracts.json``.
+
+Lanthanum-reject fate in SOEC interconnect supply
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The oxide-electrolysis lanthanum helper retains its 95% yield, precursor
+budget, graphite, reaction CO2 and **10 kWh electricity plus 3 MJ heat per kg
+La**. Its nominal **0.05263157894736836 kg La-equivalent loss per kg output**
+has no supported treatment destination. The former inert-disposal purchase
+is removed to align with CLIC; the loss and its treatment impacts remain
+explicitly unassigned. This does not represent zero physical loss or an
+environmental improvement.
+
+The Crofer-type alloy still purchases **0.001 kg La per kg alloy**. The
+SOEC stack reference retains **8,976.1 kg alloy** and the same native
+sheet-working purchase, including its existing stock makeup and uncertainty.
+The unassigned nominal La-equivalent loss is **0.4724263157894732 kg** on
+that reference. Both source declarations stay 3.9. The pinned reference is
+``tests/data/inventory_contracts.json``.
+
+SiC wafer full-crystal material accounting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The physical-vapour-transport wafer helper counts the historical reference's
+full **100 mm crystal**, including its unusable regions. Forty-seven wafers
+at **0.35 mm** thickness retain 16.45 mm of crystal, giving a mass retention
+of **0.1645**. Per kg finished physical wafer, the reference therefore buys
+**6.079027355623101 kg SiC** and sends **5.079027355623101 kg rejects** to
+the existing qualified mineral-waste proxy once. The previous 66 mm usable
+section omitted material lost outside that section. No recovery credit is
+added; actual waste classification and destination remain unverified.
+
+Substrate electricity stays **19,932.858629976276 kWh/kg physical wafer**.
+The material correction does not rescale the separately derived electricity
+reference or change downstream wafer, die, module or PCS coefficients.
+This historical geometry is a reference scenario, not measured modern-factory
+yield. Purification, charge losses, process gases, direct emissions and
+industrial qualification remain unresolved. Technosphere and biosphere
+source declarations both stay 3.9. The pinned reference is
+``tests/data/inventory_contracts.json``.
+
+Transformer-core supply for ecoinvent 3.12
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The dedicated 1.1 MVA electrolysis transformer retains **947.32 kg core
+steel**. When building with ecoinvent 3.12, it purchases the native RER
+market for grain-oriented electrical steel, **0.23 mm finished coil**.
+This replaces the six reviewed core inputs together: unalloyed steel,
+metallurgical silicon, hot rolling, sheet rolling, annealing electricity
+and furnace heat. All other transformer inputs and retirement quantities
+remain unchanged. Native nominal silicon is **3.2%**, replacing the legacy
+3% engineering-alloy assumption. RER procurement and grade/gauge suitability
+remain qualified proxies; core cutting, stacking, insulation and
+electrical-design coverage remain unverified.
+
+The unchanged electrolysis workbook retains its original technosphere and
+biosphere source declarations at **3.9**. The default importer selects the
+native core after normal migration and before linking, only for the
+**3.12 target family**. Other targets retain the legacy recipe. An absent or
+ambiguous native supplier, or a changed scientific recipe, fails validation
+before replacement. Native background activities are never modified.
+Imported-inventory caches for 3.12 are invalidated; native source caches and
+older-target cache keys remain unchanged. The pinned authoring reference is
+``tests/data/inventory_contracts.json``.
+
+Hydrogen efficiency
+~~~~~~~~~~~~~~~~~~~~
+
 For a mapped IAM efficiency signal, the selected feedstock exchanges are
 multiplied by the inverse efficiency change. Selection uses the configured
 name substring and unit; other inputs are not automatically scaled.
@@ -61,13 +227,14 @@ overpressure are outside this calculation.
 
 The activity-level ``hydrogen tank compression`` metadata identify the fuel,
 electricity product, pressures, model and specific electricity requirement.
-This contract survives exchange aggregation and geographic relinking, which
-can discard individual exchange comments. During transport efficiency
-adjustment, identified compression is excluded from generic electricity
-scaling, then calculated once from final hydrogen consumption. Other uses
-merged into the same electricity product retain their original remainder.
-``premise hydrogen compression balance`` records the resulting amounts;
-validation checks them against the current fuel and electricity exchanges.
+The corresponding electricity exchanges carry a ``Hydrogen tank compression``
+comment. Exchange comments are retained during geographic relinking and form
+part of the aggregation identity, so compression and other electricity uses
+remain separate and self-describing even when they use the same supplier.
+During transport efficiency adjustment, that electricity product is excluded
+from generic scaling and the commented compression exchange is calculated once
+from final hydrogen consumption. Validation reads the exchange directly rather
+than relying on a duplicate activity-level balance record.
 
 Legacy inventories without this explicit role do not acquire an inferred
 compression burden. The upstream pipeline recipe is unchanged. Both the
@@ -155,6 +322,17 @@ of market output. This does not mean all truck, ship and pipeline variants
 listed in the inventory catalogue are deployed in every scenario.
 Relinking connects the resulting suppliers to consuming activities.
 
+Recipes explicitly named ``market-average hydrogen`` adopt this scenario
+supply. During hydrogen-market creation, ``_regionalize_hydrogen_activities`` maps
+their native liquid, generic gaseous, or medium-pressure merchant hydrogen
+market identities to the generated low-pressure market before the recipes
+are copied into IAM regions. Geographic relinking
+then resolves the regional provider. Hydrogen quantities, uncertainty and
+existing process-energy inputs are retained; the source workbooks are unchanged.
+This is an explicit choice of the documented 30-bar pipeline-delivery boundary,
+not physical equivalence between native delivery routes. Other hydrogen
+consumers and technology-specific production purchases are unaffected.
+
 Assumptions and limitations
 -----------------------------
 
@@ -162,6 +340,25 @@ Compare hydrogen at the same pressure, state and delivery boundary.
 External electrolysis assumptions are distinct from IAM projections. When
 checking energy floors, inspect actual exchanges as well as logged totals;
 the exchange behavior described below applies.
+
+PEM balance-of-plant treatment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The imported ``treatment of electrolyzer balance of plant, 1MWe, PEM`` has a
+negative one-unit reference output. Consequently, demanding minus one unit
+represents treatment of one used system. Interpret the reference-output sign before describing a treatment burden or credit. Numerical LCIA outputs are retained locally.
+
+The current boundary includes a matched power-conversion/drive treatment kit.
+It replaces displaced bulk-material retirement rather than adding a second
+whole converter, and follows the documented equipment and replacement counts.
+Packaging is treated with manufacture, not again as installed WEEE. The
+separate 32 kg industrial-electronics plastic route accounts for the nominal
+100 kg control assembly's housing; its duplicate mixed-plastic entry is zero.
+The 764.6 kg direct polymer retirement remains separate. Drive ratings,
+electronic partitioning, lifetime and actual WEEE fate retain the explicitly
+documented engineering assumptions; mass/sign consistency does not validate
+a complete industrial disposal route. Operating hydrogen electricity demand
+is unchanged by these equipment-boundary corrections.
 
 Implementation limitation: energy floors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -447,3 +644,41 @@ Detailed supply-chain names
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/hydrogen-variants.inc
+
+
+Vehicle hydrogen tank inventories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The HDPE-lined 700-bar tank activity in ``lci-trucks.xlsx`` produces one kg of
+dry tank assembly, including tank balance of plant and excluding stored
+hydrogen. Its quantities come from `Evangelisti et al. (2017)
+<https://doi.org/10.1016/j.jclepro.2016.11.159>`_ and its
+`supplementary inventory tables
+<https://ars.els-cdn.com/content/image/1-s2.0-S0959652616320212-mmc1.docx>`_.
+The supplement was checked on 10 October 2026 (SHA256
+``ca9470c504f61ef58e2e5cc3cad8c06d6cecf17073074ac2ce19dca3678ac49d``).
+
+The paper's main text, scenario labels and supplementary output masses are
+inconsistent. The retained recipe is the table containing HDPE. Its corrected
+denominator is the sum of the listed materials, **87.71 kg**, rather than the
+legacy 119 kg denominator. Material proportions therefore sum to one kg per kg
+of dry assembly. The difference from the nominal output is approximately stored
+hydrogen, but the paper does not state that boundary unambiguously. Dry-mass
+normalization is an explicit modelling choice; no unidentified missing material
+is added.
+
+Manufacturing electricity is published as 12.87 **MJ per assembly**. Dividing
+by 3.6 MJ/kWh and 87.71 kg gives 0.0407593 kWh/kg. Previously this MJ value had
+been treated as kWh. Steel working is a processing service and does not add
+material mass.
+
+Dataset metadata and its comment record the source, formulas and boundary.
+Existing supplier proxies, including AlLi for aluminium, are retained; this
+correction does not establish current vehicle composition, sizing or
+manufacturing yields.
+
+``tests/test_hydrogen_tank_inventories.py`` checks material closure and energy
+units after Brightway Excel import and its preparation strategies, without
+writing a database, plus quantity preservation through migrations to ecoinvent
+3.9--3.12. Existing generated databases must be rebuilt before their tank
+inventories change.

@@ -1,8 +1,8 @@
 """Exercise the real Brightpath writer and Premise's export lifecycle."""
 
-from copy import deepcopy
 import csv
 import json
+from copy import deepcopy
 
 import pytest
 
@@ -83,6 +83,23 @@ def rows(path):
         return list(csv.reader(stream, delimiter=";"))
 
 
+def test_unsupported_en15804_profile_fails_before_publishing(
+    brightpath, scenario, tmp_path, monkeypatch
+):
+    from brightpath.profiles import simapro
+
+    def unsupported(**kwargs):
+        raise ValueError("Unsupported EN15804 naming profile")
+
+    monkeypatch.setattr(simapro, "format_simapro_technosphere_name", unsupported)
+    original = deepcopy(scenario)
+    destination = tmp_path / "new directory"
+    with pytest.raises(RuntimeError, match="EN15804 SimaPro"):
+        simapro_export.export_scenario(scenario, destination, "3.12", "EN15804")
+    assert scenario == original
+    assert not destination.exists()
+
+
 @pytest.mark.parametrize(
     "compartment,label", [("unspecified", ""), ("surface water", "river")]
 )
@@ -101,12 +118,13 @@ def test_real_writer_preserves_quantities_uncertainty_metadata_and_source(
         for i, row in enumerate(written)
         if row == ["Waste to treatment"] and written[i + 1]
     ]
-    assert waste_rows[0][2:6] == ["0.123456789", "Normal", "0.0001", "0"]
+    # SimaPro normal uncertainty stores 2*SD, rather than variance.
+    assert waste_rows[0][2:6] == ["0.123456789", "Normal", "0.02", "0"]
     water = next(row for row in written if row and row[0] == "Water" and len(row) == 9)
     assert water[1] == label
     assert water[2] == "kg"
     assert float(water[3]) == pytest.approx(1.23456789)
-    assert float(water[5]) == pytest.approx(0.01)
+    assert float(water[5]) == pytest.approx(0.2)
     text = path.read_text(encoding="latin-1")
     assert "Brightpath" in text and "SSP2-Test" in text
     assert "Second paragraph." in text and "efficiency" in text
@@ -205,7 +223,7 @@ def test_supported_biosphere_and_final_waste_flows_reach_writer(
     assert {row[0] for row in final_waste} == {flows[3][0], flows[4][0]}
     for row in final_waste:
         assert row[2:5] == ["kg", "0.25", "Normal"]
-        assert float(row[5]) == pytest.approx(0.01)
+        assert float(row[5]) == pytest.approx(0.2)
     report = json.loads(path.with_suffix(".export-report.json").read_text())
     assert report["excluded_exchanges"] == []
 
@@ -457,3 +475,59 @@ def test_public_export_keeps_certification_and_reporting(
         "cleanup",
     ]
     assert len(result) == 1 and result[0].is_file()
+
+
+def test_simapro_rejects_legacy_normal_uncertainty_writer(monkeypatch):
+    monkeypatch.setattr(simapro_export, "version", lambda name: "1.0.0a9")
+    with pytest.raises(ImportError, match=r"2\*SD"):
+        simapro_export.check_brightpath()
+
+
+def test_normal_uncertainty_survives_real_writer_and_reader(
+    brightpath, scenario, tmp_path
+):
+    import inspect
+
+    from bw2io import SimaProCSVImporter
+    from brightpath.formats.simapro_csv import load_simapro_csv
+    from brightpath.models import BackgroundProfile
+    from brightpath.core import BiosphereProfile
+    from brightpath.background.catalogs import BiosphereCatalog, InMemoryCatalogProvider
+
+    if "extractor" not in inspect.signature(SimaProCSVImporter).parameters:
+        pytest.skip(
+            "Brightpath's CSV reader requires modern bw2io; legacy CSV writing "
+            "is checked by the writer tests."
+        )
+
+    path = simapro_export.export_scenario(scenario, tmp_path, "3.12", "cutoff")
+    catalog = InMemoryCatalogProvider(
+        biosphere=[
+            BiosphereCatalog(
+                profile=BiosphereProfile("ecoinvent", "3.12"),
+                identities=frozenset(
+                    {("Water", ("air", "unspecified"), "cubic meter")}
+                ),
+            )
+        ]
+    )
+    document = load_simapro_csv(
+        path,
+        background_profile=BackgroundProfile("ecoinvent", "3.12", "cutoff"),
+        catalog_provider=catalog,
+    )
+    consumer = next(d for d in document.data if d["reference product"] == "material")
+    waste = next(e for e in consumer["exchanges"] if e.get("type") == "technosphere")
+    assert waste["amount"] == pytest.approx(-0.123456789)
+    assert waste["uncertainty type"] == 3
+    assert waste["scale"] == pytest.approx(0.01)
+    water = next(
+        e
+        for e in consumer["exchanges"]
+        if e.get("type") == "biosphere" and e.get("name") == "Water"
+    )
+    # Reading restores the native water unit and its standard deviation.
+    assert water["unit"] == "cubic meter"
+    assert water["amount"] == pytest.approx(0.00123456789)
+    assert water["uncertainty type"] == 3
+    assert water["scale"] == pytest.approx(0.0001)

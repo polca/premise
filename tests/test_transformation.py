@@ -85,6 +85,34 @@ def test_summarize_exchanges_uses_compact_payloads():
     assert bool(getattr(summarized[0], "_premise_compact_exchange", False)) is True
 
 
+def test_summarize_exchanges_keeps_documented_uses_separate():
+    transformation = object.__new__(BaseTransformation)
+    base = {
+        "name": "market for electricity, low voltage",
+        "product": "electricity, low voltage",
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "amount": 1.0,
+    }
+
+    summarized = transformation.summarize_exchanges(
+        [
+            {**base, "comment": "Hydrogen tank compression"},
+            {**base, "amount": 2.0, "comment": "Auxiliary electricity"},
+            {**base, "amount": 3.0},
+        ]
+    )
+
+    assert len(summarized) == 3
+    assert {
+        (exchange.get("comment"), exchange["amount"]) for exchange in summarized
+    } == {
+        (None, 3.0),
+        ("Auxiliary electricity", 2.0),
+        ("Hydrogen tank compression", 1.0),
+    }
+
+
 def make_market_transformation(monkeypatch, technology_shares):
     transformation = object.__new__(BaseTransformation)
     transformation.regions = ["WEU"]
@@ -344,6 +372,44 @@ def test_relink_prepass_preserves_order_totals_and_uncertainty(monkeypatch):
         "scale": 0.2,
     }
     assert sum(exchange["amount"] for exchange in result["exchanges"]) == 6.2
+
+
+def test_relink_technosphere_exchanges_preserves_exchange_roles(monkeypatch):
+    transformation = object.__new__(BaseTransformation)
+    base = {
+        "name": "market for electricity, low voltage",
+        "product": "electricity, low voltage",
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+    }
+    dataset = {
+        "name": "hydrogen vehicle",
+        "location": "CH",
+        "exchanges": [
+            {**base, "amount": 0.02, "comment": "Hydrogen tank compression"},
+            {**base, "amount": 0.01, "comment": "Auxiliary electricity"},
+        ],
+    }
+
+    monkeypatch.setattr(
+        transformation,
+        "find_candidates",
+        lambda dataset, *, technosphere_exchanges, **kwargs: [
+            transformation_module._relinked_exchange(exchange, "GLO")
+            for exchange in technosphere_exchanges
+        ],
+    )
+
+    result = transformation.relink_technosphere_exchanges(dataset)
+
+    assert len(result["exchanges"]) == 2
+    assert {
+        (exchange["comment"], exchange["amount"]) for exchange in result["exchanges"]
+    } == {
+        ("Hydrogen tank compression", 0.02),
+        ("Auxiliary electricity", 0.01),
+    }
 
 
 def test_provider_groups_preserve_order_and_invalidate_after_index_mutation():
@@ -968,6 +1034,65 @@ def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
     }
     assert suppliers["treatment of used vegetable cooking oil"] == pytest.approx(-0.8)
     assert suppliers["diesel production, petroleum refinery"] == pytest.approx(0.2)
+
+
+@pytest.mark.parametrize("output,expected", [(-1, -0.8), (1, 0.8)])
+def test_en15804_fuel_market_uses_native_reference_output_sign(
+    monkeypatch, output, expected
+):
+    transformation, volumes = make_market_transformation(
+        monkeypatch, {"waste biodiesel": 0.8, "fossil diesel": 0.2}
+    )
+    waste = make_supplier(
+        "treatment of used vegetable cooking oil", product="used vegetable cooking oil"
+    )
+    waste["exchanges"] = [{"type": "production", "amount": output}]
+    transformation.process_and_add_markets(
+        name="market for diesel",
+        reference_product="diesel",
+        unit="kilogram",
+        mapping={
+            "waste biodiesel": [waste],
+            "fossil diesel": [make_supplier("diesel production, petroleum refinery")],
+        },
+        production_volumes=volumes,
+        system_model="EN15804",
+        flip_treatment_supplier_sign=True,
+    )
+    market = next(d for d in transformation.database if d["location"] == "WEU")
+    values = {
+        e["name"]: e["amount"]
+        for e in market["exchanges"]
+        if e["type"] == "technosphere"
+    }
+    assert values == {
+        "treatment of used vegetable cooking oil": pytest.approx(expected),
+        "diesel production, petroleum refinery": pytest.approx(0.2),
+    }
+
+
+def test_en15804_market_obeys_attributional_exclusions(monkeypatch):
+    transformation, volumes = make_market_transformation(
+        monkeypatch, {"available": 0.25, "excluded": 0.75}
+    )
+    transformation.process_and_add_markets(
+        name="market for test product",
+        reference_product="test product",
+        unit="kilogram",
+        mapping={
+            "available": [make_supplier("supplier")],
+            "excluded": [make_supplier("excluded supplier")],
+        },
+        production_volumes=volumes,
+        system_model="EN15804",
+        blacklist={"cutoff": ["excluded"]},
+    )
+    market = next(d for d in transformation.database if d["location"] == "WEU")
+    assert [
+        (e["name"], e["amount"])
+        for e in market["exchanges"]
+        if e["type"] == "technosphere"
+    ] == [("supplier", 1)]
 
 
 def test_market_conversion_factors_can_be_region_specific(monkeypatch):

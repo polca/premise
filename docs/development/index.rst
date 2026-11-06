@@ -7,6 +7,7 @@ implementation details. Dated measurements and audit notes follow.
 .. toctree::
    :maxdepth: 2
 
+   /development/releases-2-6
    /development/releases-2-5
    /development/contributing
    /development/documentation
@@ -15,6 +16,7 @@ implementation details. Dated measurements and audit notes follow.
    /development/architecture
    /development/internals
    /development/validation-internals
+   /development/physical-inventory-probing-plan
    /development/supplier-selection
    /development/performance-history
    /development/consequential-validation-history

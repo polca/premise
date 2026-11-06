@@ -29,10 +29,7 @@ Files
   There are 219 country/territory observations. Their sum is 1,610,739 GWh;
   the published world total is 1,610,740 GWh (independent rounding).
   Flags e/o/u are retained as printed; a blank flag is not an imputed value.
-* pv_2026_gwp100_reference.csv: 45 calculated ecoinvent 3.12 cut-off regression
-  benchmarks, in kg CO2-eq/kWh. These are not characterized results published
-  in the report. Method: ecoinvent-3.12 / IPCC 2021 / climate change: total
-  (excl. biogenic CO2) / global warming potential (GWP100).
+* Numerical LCIA regression benchmarks are retained locally and are not distributed.
 
 Country extension
 -----------------
@@ -113,7 +110,7 @@ missing conversions stop the material update plan before it is applied.
 
 Reproduction and validation
 ---------------------------
-Run `python scripts/build_pv_2026.py` from the repository root to rebuild the
+Run `python tests/support/build_pv_2026.py` from the repository root to rebuild the
 country adapters and CIGS supplement from the versioned inputs. The reviewed
 core is the numerical source; this script adds integration metadata and the
 REF-to-GLO geographic adaptation. All exported exchange amounts are numeric;

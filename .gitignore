@@ -2,7 +2,7 @@
 .idea/
 *.egg-info/
 logs/
-dev/
+/dev/
 *.egg/
 build/
 dist/
@@ -68,3 +68,23 @@ tests/*.env
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Local analyses and licensed result values #
+/results/
+/scripts/
+/script/
+/tests/data/lcia_regression_scores.yaml
+/docs/examples/pv-comparison-summary.json
+/docs/examples/pv-comparison-metadata.json
+/docs/development/lcia-regression-reference-review.md
+/premise/data/solar/pv_2026_gwp100_reference.csv
+/premise/data/metals/ecoinvent_factors.csv
+
+# Completed private audit reports (keep any restored local copies private).
+/benchmarks/vanadium-inventory-correction.md
+/benchmarks/vanadium-inventory-exchanges.json
+/benchmarks/vanadium-inventory-validation.json
+/tests/data/inventory_review/
+/tests/data/reviewed-source-predecessors-20261028/
+/tests/data/delegated-source-history-20261027.json
+/tests/data/reviewed-source-successors-20261028.json

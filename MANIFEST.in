@@ -2,7 +2,40 @@ include CHANGELOG.md
 include CITATION.cff
 include LICENSE
 include README.md
-recursive-include docs *.csv *.inc *.md *.png *.rst *.svg
+include docs/Makefile docs/make.bat
+recursive-include docs *.csv *.inc *.md *.png *.rst *.svg *.py *.css *.html *.ico *.json *.yaml *.txt
+include docs/_tools/check_documentation*.py
+include docs/_tools/generate_documentation_reference.py
+include docs/_tools/generate_methodology_diagrams.py
+prune docs/_build
 prune docs/.ipynb_checkpoints
 prune docs/_templates/.ipynb_checkpoints
+prune premise/data/iam_output_files
 global-exclude .DS_Store *.py[cod]
+
+recursive-include tests/support *.py
+recursive-include tests/data *.json *.yaml *.yml *.csv *.md
+
+# Keep private licensed outputs out of source distributions too.
+prune results
+prune scripts
+exclude tests/data/lcia_regression_scores.yaml
+exclude docs/development/lcia-regression-reference-review.md
+exclude docs/examples/pv-comparison-summary.json
+exclude docs/examples/pv-comparison-metadata.json
+exclude premise/data/solar/pv_2026_gwp100_reference.csv
+exclude premise/data/metals/ecoinvent_factors.csv
+
+# Minimal benchmark helpers exercised by the unit tests.
+include benchmarks/compare_build_outputs.py
+include benchmarks/compare_update_workflows.py
+include benchmarks/check_validation_warnings.py
+include benchmarks/check_validation_performance.py
+
+# Exclude local copies of retired investigations and workbook snapshots.
+prune dev
+prune tests/data/inventory_review
+prune tests/data/reviewed-source-predecessors-20261028
+exclude benchmarks/vanadium-inventory-correction.md
+exclude benchmarks/vanadium-inventory-exchanges.json
+exclude benchmarks/vanadium-inventory-validation.json

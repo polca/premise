@@ -1,4 +1,5 @@
 import gc
+import math
 import os
 import shutil
 from copy import deepcopy
@@ -9,7 +10,7 @@ import bw2io
 import pytest
 from dotenv import load_dotenv
 
-import premise.export as export_module
+import premise.export.export as export_module
 from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
 from lcia_regression import assert_lcia_regression_scores, get_lcia_regression_method
@@ -120,7 +121,7 @@ def test_brightway(updated_ei312_cutoff):
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
-    print(lca.score)
+    assert math.isfinite(lca.score)
 
     try:
         # uses BW2
@@ -133,7 +134,6 @@ def test_brightway(updated_ei312_cutoff):
 
     results = [lca.score for _ in zip(range(10), mclca)]
     assert all(isinstance(result, float) for result in results)
-    print(results)
 
 
 @pytest.mark.slow
@@ -180,11 +180,6 @@ def test_datapackage_export(updated_ei312_cutoff, tmp_path, monkeypatch):
         "DIR_DATAPACKAGE",
         tmp_path / "export" / "datapackage",
     )
-    monkeypatch.setattr(
-        export_module,
-        "DIR_DATAPACKAGE_TEMP",
-        tmp_path / "export" / "temp",
-    )
 
     ndb.write_datapackage(name="datapackage")
 
@@ -218,4 +213,4 @@ def test_superstructure_export(updated_ei312_cutoff, tmp_path, monkeypatch):
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
-    print(lca.score)
+    assert math.isfinite(lca.score)

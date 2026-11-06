@@ -1,0 +1,2559 @@
+{
+  "profiles": [
+    {
+      "id": "pipeline-coatings",
+      "source": "lci-hydrogen-distribution.xlsx",
+      "phase": "raw",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "require_suppliers": [
+        {
+          "identity": [
+            "aluminium-zinc-silicon coating production, hot-dip, on distribution pipe",
+            "aluminium-zinc-silicon coating, on distribution pipe",
+            "RER",
+            "kilogram"
+          ],
+          "vector": [
+            [
+              "production",
+              "aluminium-zinc-silicon coating production, hot-dip, on distribution pipe",
+              "aluminium-zinc-silicon coating, on distribution pipe",
+              "RER",
+              "kilogram",
+              [],
+              1
+            ],
+            [
+              "technosphere",
+              "market for aluminium, primary, ingot",
+              "aluminium, primary, ingot",
+              "IAI Area, Western and Central Europe",
+              "kilogram",
+              [],
+              0.5789473684210527
+            ],
+            [
+              "technosphere",
+              "market for zinc",
+              "zinc",
+              "GLO",
+              "kilogram",
+              [],
+              0.45684210526315794
+            ],
+            [
+              "technosphere",
+              "market for silicon, metallurgical grade",
+              "silicon, metallurgical grade",
+              "GLO",
+              "kilogram",
+              [],
+              0.016842105263157894
+            ],
+            [
+              "technosphere",
+              "market for hazardous waste, for underground deposit",
+              "hazardous waste, for underground deposit",
+              "RER",
+              "kilogram",
+              [],
+              -0.0687727343580801
+            ],
+            [
+              "biosphere",
+              "Oxygen",
+              null,
+              null,
+              "kilogram",
+              [
+                "natural resource",
+                "in air"
+              ],
+              0.01614964817528078
+            ],
+            [
+              "biosphere",
+              "Particulate Matter, < 2.5 um",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              8.492764569125563e-06
+            ],
+            [
+              "biosphere",
+              "Aluminium III",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              2.8947368421052612e-06
+            ],
+            [
+              "biosphere",
+              "Zinc II",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              2.284210526315794e-06
+            ],
+            [
+              "technosphere",
+              "market group for electricity, medium voltage",
+              "electricity, medium voltage",
+              "RER",
+              "kilowatt hour",
+              [],
+              5.626427894280469
+            ],
+            [
+              "technosphere",
+              "market group for natural gas, high pressure",
+              "natural gas, high pressure",
+              "Europe without Switzerland",
+              "cubic meter",
+              [],
+              2.1716626792560922
+            ],
+            [
+              "biosphere",
+              "Carbon dioxide, fossil",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              4.174403890591183
+            ],
+            [
+              "biosphere",
+              "Carbon monoxide, fossil",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.0029220827234138283
+            ],
+            [
+              "biosphere",
+              "Nitrogen oxides",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.0017393349544129928
+            ],
+            [
+              "biosphere",
+              "Dinitrogen monoxide",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              2.226348741648631e-05
+            ],
+            [
+              "biosphere",
+              "Methane, fossil",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              8.000940790299766e-05
+            ],
+            [
+              "biosphere",
+              "Sulfur dioxide",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              2.087201945295591e-05
+            ],
+            [
+              "biosphere",
+              "NMVOC, non-methane volatile organic compounds",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.00019132684498542925
+            ],
+            [
+              "biosphere",
+              "Particulate Matter, < 2.5 um",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.0002643789130707749
+            ],
+            [
+              "biosphere",
+              "Lead II",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              1.739334954412993e-08
+            ],
+            [
+              "technosphere",
+              "market for sodium hydroxide, without water, in 50% solution state",
+              "sodium hydroxide, without water, in 50% solution state",
+              "RER",
+              "kilogram",
+              [],
+              0.008349383699042878
+            ],
+            [
+              "technosphere",
+              "market for trisodium phosphate",
+              "trisodium phosphate",
+              "GLO",
+              "kilogram",
+              [],
+              0.0015655094435705393
+            ],
+            [
+              "technosphere",
+              "market for ethoxylated alcohol (AE7)",
+              "ethoxylated alcohol (AE7)",
+              "RER",
+              "kilogram",
+              [],
+              0.0005218364811901798
+            ],
+            [
+              "technosphere",
+              "market group for tap water",
+              "tap water",
+              "RER",
+              "kilogram",
+              [],
+              9.22906954720919
+            ],
+            [
+              "technosphere",
+              "market for wastewater, average",
+              "wastewater, average",
+              "Europe without Switzerland",
+              "cubic meter",
+              [],
+              -0.008775547984362822
+            ],
+            [
+              "technosphere",
+              "market for hydrogen, gaseous, low pressure",
+              "hydrogen, gaseous, low pressure",
+              "RER",
+              "kilogram",
+              [],
+              0.003776358946607901
+            ],
+            [
+              "technosphere",
+              "market for nitrogen, liquid",
+              "nitrogen, liquid",
+              "RER",
+              "kilogram",
+              [],
+              0.9970754313665543
+            ],
+            [
+              "biosphere",
+              "Nitrogen",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.9970754313665543
+            ],
+            [
+              "biosphere",
+              "Water",
+              null,
+              null,
+              "cubic meter",
+              [
+                "air"
+              ],
+              0.0004956190683600273
+            ]
+          ]
+        },
+        {
+          "identity": [
+            "aluminium-zinc-silicon coating production, hot-dip, on transmission pipe",
+            "aluminium-zinc-silicon coating, on transmission pipe",
+            "RER",
+            "kilogram"
+          ],
+          "vector": [
+            [
+              "production",
+              "aluminium-zinc-silicon coating production, hot-dip, on transmission pipe",
+              "aluminium-zinc-silicon coating, on transmission pipe",
+              "RER",
+              "kilogram",
+              [],
+              1
+            ],
+            [
+              "technosphere",
+              "market for aluminium, primary, ingot",
+              "aluminium, primary, ingot",
+              "IAI Area, Western and Central Europe",
+              "kilogram",
+              [],
+              0.5789473684210527
+            ],
+            [
+              "technosphere",
+              "market for zinc",
+              "zinc",
+              "GLO",
+              "kilogram",
+              [],
+              0.45684210526315794
+            ],
+            [
+              "technosphere",
+              "market for silicon, metallurgical grade",
+              "silicon, metallurgical grade",
+              "GLO",
+              "kilogram",
+              [],
+              0.016842105263157894
+            ],
+            [
+              "technosphere",
+              "market for hazardous waste, for underground deposit",
+              "hazardous waste, for underground deposit",
+              "RER",
+              "kilogram",
+              [],
+              -0.0687727343580801
+            ],
+            [
+              "biosphere",
+              "Oxygen",
+              null,
+              null,
+              "kilogram",
+              [
+                "natural resource",
+                "in air"
+              ],
+              0.01614964817528078
+            ],
+            [
+              "biosphere",
+              "Particulate Matter, < 2.5 um",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              8.492764569125563e-06
+            ],
+            [
+              "biosphere",
+              "Aluminium III",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              2.8947368421052612e-06
+            ],
+            [
+              "biosphere",
+              "Zinc II",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              2.284210526315794e-06
+            ],
+            [
+              "technosphere",
+              "market group for electricity, medium voltage",
+              "electricity, medium voltage",
+              "RER",
+              "kilowatt hour",
+              [],
+              60.48395423192798
+            ],
+            [
+              "technosphere",
+              "market group for natural gas, high pressure",
+              "natural gas, high pressure",
+              "Europe without Switzerland",
+              "cubic meter",
+              [],
+              23.345317591794938
+            ],
+            [
+              "biosphere",
+              "Carbon dioxide, fossil",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              44.874733775716145
+            ],
+            [
+              "biosphere",
+              "Carbon monoxide, fossil",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.0314123136430013
+            ],
+            [
+              "biosphere",
+              "Nitrogen oxides",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.018697805739881727
+            ],
+            [
+              "biosphere",
+              "Dinitrogen monoxide",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.00023933191347048612
+            ],
+            [
+              "biosphere",
+              "Methane, fossil",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.0008600990640345593
+            ],
+            [
+              "biosphere",
+              "Sulfur dioxide",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.00022437366887858068
+            ],
+            [
+              "biosphere",
+              "NMVOC, non-methane volatile organic compounds",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.00205675863138699
+            ],
+            [
+              "biosphere",
+              "Particulate Matter, < 2.5 um",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.0028420664724620225
+            ],
+            [
+              "biosphere",
+              "Lead II",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              1.8697805739881727e-07
+            ],
+            [
+              "technosphere",
+              "market for sodium hydroxide, without water, in 50% solution state",
+              "sodium hydroxide, without water, in 50% solution state",
+              "RER",
+              "kilogram",
+              [],
+              0.008349383699042878
+            ],
+            [
+              "technosphere",
+              "market for trisodium phosphate",
+              "trisodium phosphate",
+              "GLO",
+              "kilogram",
+              [],
+              0.0015655094435705393
+            ],
+            [
+              "technosphere",
+              "market for ethoxylated alcohol (AE7)",
+              "ethoxylated alcohol (AE7)",
+              "RER",
+              "kilogram",
+              [],
+              0.0005218364811901798
+            ],
+            [
+              "technosphere",
+              "market group for tap water",
+              "tap water",
+              "RER",
+              "kilogram",
+              [],
+              99.29366502692899
+            ],
+            [
+              "technosphere",
+              "market for wastewater, average",
+              "wastewater, average",
+              "Europe without Switzerland",
+              "cubic meter",
+              [],
+              -0.09433691369009663
+            ],
+            [
+              "technosphere",
+              "market for hydrogen, gaseous, low pressure",
+              "hydrogen, gaseous, low pressure",
+              "RER",
+              "kilogram",
+              [],
+              0.04059576093068797
+            ],
+            [
+              "technosphere",
+              "market for nitrogen, liquid",
+              "nitrogen, liquid",
+              "RER",
+              "kilogram",
+              [],
+              10.718535079399048
+            ],
+            [
+              "biosphere",
+              "Nitrogen",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              10.718535079399048
+            ],
+            [
+              "biosphere",
+              "Water",
+              null,
+              null,
+              "cubic meter",
+              [
+                "air"
+              ],
+              0.005327892156519364
+            ]
+          ]
+        }
+      ],
+      "remove": [
+        {
+          "identity": [
+            "aluminium-zinc coating alloy production, for galvanizing",
+            "aluminium-zinc coating alloy, for galvanizing",
+            "GLO",
+            "kilogram"
+          ],
+          "vector": [
+            [
+              "production",
+              "aluminium-zinc coating alloy production, for galvanizing",
+              "aluminium-zinc coating alloy, for galvanizing",
+              "GLO",
+              "kilogram",
+              [],
+              1
+            ],
+            [
+              "technosphere",
+              "market for aluminium, wrought alloy",
+              "aluminium, wrought alloy",
+              "GLO",
+              "kilogram",
+              [],
+              0.5789473684210527
+            ],
+            [
+              "technosphere",
+              "market for zinc",
+              "zinc",
+              "GLO",
+              "kilogram",
+              [],
+              0.45684210526315794
+            ],
+            [
+              "technosphere",
+              "market for silicon, metallurgical grade",
+              "silicon, metallurgical grade",
+              "GLO",
+              "kilogram",
+              [],
+              0.016842105263157894
+            ],
+            [
+              "technosphere",
+              "market for electric arc furnace dust",
+              "electric arc furnace dust",
+              "RER",
+              "kilogram",
+              [],
+              -0.0147
+            ],
+            [
+              "technosphere",
+              "treatment of waste mineral oil, hazardous waste incineration",
+              "waste mineral oil",
+              "Europe without Switzerland",
+              "kilogram",
+              [],
+              -0.00016
+            ],
+            [
+              "technosphere",
+              "market for sludge from steel rolling",
+              "sludge from steel rolling",
+              "GLO",
+              "kilogram",
+              [],
+              -9.06e-05
+            ],
+            [
+              "technosphere",
+              "market for water, deionised",
+              "water, deionised",
+              "Europe without Switzerland",
+              "kilogram",
+              [],
+              0.2
+            ],
+            [
+              "technosphere",
+              "market for chemicals, inorganic",
+              "chemical, inorganic",
+              "GLO",
+              "kilogram",
+              [],
+              0.0015
+            ],
+            [
+              "technosphere",
+              "market for aluminium sulfate, powder",
+              "aluminium sulfate, powder",
+              "RER",
+              "kilogram",
+              [],
+              9.06e-07
+            ],
+            [
+              "technosphere",
+              "market for ammonia, anhydrous, liquid",
+              "ammonia, anhydrous, liquid",
+              "RER",
+              "kilogram",
+              [],
+              3.06e-05
+            ],
+            [
+              "technosphere",
+              "heat production, light fuel oil, at boiler 100kW, non-modulating",
+              "heat, central or small-scale, other than natural gas",
+              "Europe without Switzerland",
+              "megajoule",
+              [],
+              0.768
+            ],
+            [
+              "technosphere",
+              "market for heat, from steam, in chemical industry",
+              "heat, from steam, in chemical industry",
+              "RER",
+              "megajoule",
+              [],
+              0.0201
+            ],
+            [
+              "technosphere",
+              "market for hydrochloric acid, without water, in 30% solution state",
+              "hydrochloric acid, without water, in 30% solution state",
+              "RER",
+              "kilogram",
+              [],
+              0.0222
+            ],
+            [
+              "technosphere",
+              "market for heat, central or small-scale, natural gas",
+              "heat, central or small-scale, natural gas",
+              "Europe without Switzerland",
+              "megajoule",
+              [],
+              0.768
+            ],
+            [
+              "technosphere",
+              "market for rolling mill",
+              "rolling mill",
+              "GLO",
+              "unit",
+              [],
+              1.63e-13
+            ],
+            [
+              "technosphere",
+              "market for soda ash, light, crystalline, heptahydrate",
+              "soda ash, light, crystalline, heptahydrate",
+              "GLO",
+              "kilogram",
+              [],
+              1
+            ],
+            [
+              "technosphere",
+              "market for sodium hydroxide, without water, in 50% solution state",
+              "sodium hydroxide, without water, in 50% solution state",
+              "GLO",
+              "kilogram",
+              [],
+              0.00038
+            ],
+            [
+              "technosphere",
+              "market for transport, freight, lorry, unspecified",
+              "transport, freight, lorry, unspecified",
+              "RER",
+              "ton kilometer",
+              [],
+              0.008039999999999999
+            ],
+            [
+              "technosphere",
+              "market group for electricity, low voltage",
+              "electricity, low voltage",
+              "RER",
+              "kilowatt hour",
+              [],
+              0.02033333333333333
+            ],
+            [
+              "technosphere",
+              "market for hazardous waste, for incineration",
+              "hazardous waste, for incineration",
+              "RoW",
+              "kilogram",
+              [],
+              -0.052602178947368364
+            ],
+            [
+              "technosphere",
+              "market group for electricity, medium voltage",
+              "electricity, medium voltage",
+              "GLO",
+              "kilowatt hour",
+              [],
+              1
+            ],
+            [
+              "biosphere",
+              "Ammonia",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              4.36e-05
+            ],
+            [
+              "biosphere",
+              "Arsenic ion",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              1.9000000000000002e-10
+            ],
+            [
+              "biosphere",
+              "BOD5, Biological Oxygen Demand",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              1.32e-05
+            ],
+            [
+              "biosphere",
+              "Cadmium II",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              1.31e-09
+            ],
+            [
+              "biosphere",
+              "COD, Chemical Oxygen Demand",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              0.000132
+            ],
+            [
+              "biosphere",
+              "Chloride",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              1.88e-06
+            ],
+            [
+              "biosphere",
+              "Chromium VI",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              7.6e-09
+            ],
+            [
+              "biosphere",
+              "Particulate Matter, > 10 um",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.000157
+            ],
+            [
+              "biosphere",
+              "Particulate Matter, > 2.5 um and < 10um",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              0.00762
+            ],
+            [
+              "biosphere",
+              "Hydrocarbons, unspecified",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              1.1900000000000001e-07
+            ],
+            [
+              "biosphere",
+              "Hydrochloric acid",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              1.83e-05
+            ],
+            [
+              "biosphere",
+              "Iron ion",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              1.4e-06
+            ],
+            [
+              "biosphere",
+              "Iron, ion",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              5.649999999999999e-06
+            ],
+            [
+              "biosphere",
+              "Lead II",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              3.4000000000000003e-09
+            ],
+            [
+              "biosphere",
+              "Lead II",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              1.51e-09
+            ],
+            [
+              "biosphere",
+              "Nickel, ion",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              9.999999999999999e-10
+            ],
+            [
+              "biosphere",
+              "Oils, unspecified",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              1.0399999999999999e-07
+            ],
+            [
+              "biosphere",
+              "Phosphorus",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              9.000000000000001e-08
+            ],
+            [
+              "biosphere",
+              "Suspended solids, unspecified",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              2.24e-07
+            ],
+            [
+              "biosphere",
+              "TOC, Total Organic Carbon",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              2.97e-07
+            ],
+            [
+              "biosphere",
+              "Zinc II",
+              null,
+              null,
+              "kilogram",
+              [
+                "air"
+              ],
+              2.75e-05
+            ],
+            [
+              "biosphere",
+              "Zinc II",
+              null,
+              null,
+              "kilogram",
+              [
+                "water",
+                "ground-"
+              ],
+              1.9e-06
+            ]
+          ]
+        }
+      ],
+      "relink": [
+        {
+          "buyer": [
+            "hydrogen distribution pipeline construction",
+            "pipeline, for hydrogen distribution",
+            "RER",
+            "kilometer"
+          ],
+          "quantity": 75.25328256144047,
+          "supplier": [
+            "aluminium-zinc coating alloy production, for galvanizing",
+            "aluminium-zinc coating alloy, for galvanizing",
+            "GLO",
+            "kilogram"
+          ],
+          "replacement": [
+            "aluminium-zinc-silicon coating production, hot-dip, on distribution pipe",
+            "aluminium-zinc-silicon coating, on distribution pipe",
+            "RER",
+            "kilogram"
+          ]
+        },
+        {
+          "buyer": [
+            "hydrogen transmission pipeline construction",
+            "pipeline, for hydrogen transmission",
+            "RER",
+            "kilometer"
+          ],
+          "quantity": 876.7114153394484,
+          "supplier": [
+            "aluminium-zinc coating alloy production, for galvanizing",
+            "aluminium-zinc coating alloy, for galvanizing",
+            "GLO",
+            "kilogram"
+          ],
+          "replacement": [
+            "aluminium-zinc-silicon coating production, hot-dip, on transmission pipe",
+            "aluminium-zinc-silicon coating, on transmission pipe",
+            "RER",
+            "kilogram"
+          ]
+        }
+      ],
+      "strip_links": [
+        "input",
+        "output",
+        "database",
+        "code"
+      ],
+      "documentation": "docs/methodology/fuels/pipeline-coating.rst",
+      "external_only": [
+        "aluminium-zinc-silicon coating production, hot-dip, on distribution pipe",
+        "aluminium-zinc-silicon coating production, hot-dip, on transmission pipe"
+      ]
+    },
+    {
+      "id": "ptfe-gasket",
+      "source": "lci-hydrogen-electrolysis.xlsx",
+      "phase": "raw",
+      "minimum_version": "3.12",
+      "remove": [
+        {
+          "identity": [
+            "polytetrafluoroethylene gasket production, polymerization and forming",
+            "PTFE gasket, polymerization and forming",
+            "GLO",
+            "kilogram"
+          ],
+          "vector": [
+            [
+              "production",
+              "polytetrafluoroethylene gasket production, polymerization and forming",
+              "PTFE gasket, polymerization and forming",
+              "GLO",
+              "kilogram",
+              [],
+              1
+            ],
+            [
+              "technosphere",
+              "market for tetrafluoroethylene",
+              "tetrafluoroethylene",
+              "GLO",
+              "kilogram",
+              [],
+              1.0526315789473684
+            ],
+            [
+              "technosphere",
+              "market for heat, district or industrial, natural gas",
+              "heat, district or industrial, natural gas",
+              "RoW",
+              "megajoule",
+              [],
+              10.5
+            ],
+            [
+              "technosphere",
+              "market group for electricity, medium voltage",
+              "electricity, medium voltage",
+              "GLO",
+              "kilowatt hour",
+              [],
+              0.7
+            ],
+            [
+              "technosphere",
+              "market for waste plastic, mixture",
+              "waste plastic, mixture",
+              "RoW",
+              "kilogram",
+              [],
+              -0.05263157894736836
+            ]
+          ]
+        }
+      ],
+      "relink": [
+        {
+          "buyer": [
+            "electrolyzer production, 1MWe, AEC, Stack",
+            "electrolyzer, 1MWe, AEC, Stack",
+            "RER",
+            "unit"
+          ],
+          "quantity": 144.2,
+          "supplier": [
+            "polytetrafluoroethylene gasket production, polymerization and forming",
+            "PTFE gasket, polymerization and forming",
+            "GLO",
+            "kilogram"
+          ],
+          "replacement": [
+            "polytetrafluoroethylene gasket production, forming, resin supply proxy",
+            "PTFE gasket, unfilled, engineering reference",
+            "GLO",
+            "kilogram"
+          ]
+        }
+      ],
+      "strip_links": [
+        "input",
+        "output",
+        "database",
+        "code"
+      ],
+      "documentation": "docs/methodology/fuels/hydrogen.rst",
+      "external_only": [
+        "polytetrafluoroethylene gasket production, forming, resin supply proxy"
+      ]
+    },
+    {
+      "id": "fkm-gasket",
+      "source": "lci-batteries-vanadium-redox-flow.xlsx",
+      "phase": "raw",
+      "minimum_version": "3.12",
+      "remove": [
+        {
+          "identity": [
+            "gasket production, FKM, for VRFB system",
+            "gasket, FKM",
+            "RER",
+            "kilogram"
+          ],
+          "science": {
+            "name": "gasket production, FKM, for VRFB system",
+            "reference product": "gasket, FKM",
+            "location": "RER",
+            "unit": "kilogram",
+            "production amount": 1,
+            "exchanges": [
+              {
+                "name": "gasket production, FKM, for VRFB system",
+                "amount": 1,
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "production",
+                "reference product": "gasket, FKM"
+              },
+              {
+                "name": "fluoroelastomer gasket compound production, fkm, fe5540 type",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "fluoroelastomer gasket compound, FKM, FE5540 type"
+              },
+              {
+                "name": "market for transport, freight train",
+                "amount": 0.2,
+                "location": "Europe without Switzerland",
+                "unit": "ton kilometer",
+                "type": "technosphere",
+                "reference product": "transport, freight train"
+              },
+              {
+                "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+                "amount": 0.1,
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere",
+                "reference product": "transport, freight, lorry 16-32 metric ton, EURO5"
+              }
+            ]
+          }
+        },
+        {
+          "identity": [
+            "vinylidene fluoride production, chlorination and fluorination",
+            "vinylidene fluoride, chlorination and fluorination",
+            "GLO",
+            "kilogram"
+          ],
+          "science": {
+            "name": "vinylidene fluoride production, chlorination and fluorination",
+            "reference product": "vinylidene fluoride, chlorination and fluorination",
+            "location": "GLO",
+            "unit": "kilogram",
+            "production amount": 1,
+            "exchanges": [
+              {
+                "name": "vinylidene fluoride production, chlorination and fluorination",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "production",
+                "reference product": "vinylidene fluoride, chlorination and fluorination",
+                "product": "vinylidene fluoride, chlorination and fluorination"
+              },
+              {
+                "name": "market for vinyl chloride",
+                "amount": 1.0273360213347598,
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "vinyl chloride",
+                "product": "vinyl chloride"
+              },
+              {
+                "name": "market for chlorine, liquid",
+                "amount": 1.165484573614863,
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "chlorine, liquid",
+                "product": "chlorine, liquid"
+              },
+              {
+                "name": "market for hydrogen fluoride",
+                "amount": 0.6577476519039802,
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "hydrogen fluoride",
+                "product": "hydrogen fluoride"
+              },
+              {
+                "name": "market for sodium hydroxide, without water, in 50% solution state",
+                "amount": 1.9724520842146482,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "sodium hydroxide, without water, in 50% solution state",
+                "product": "sodium hydroxide, without water, in 50% solution state"
+              },
+              {
+                "name": "market for tap water",
+                "amount": 18.02754791578535,
+                "location": "RoW",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "tap water",
+                "product": "tap water"
+              },
+              {
+                "name": "market for aluminium chloride",
+                "amount": 0.001,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "aluminium chloride",
+                "product": "aluminium chloride"
+              },
+              {
+                "name": "market for hazardous waste, for incineration",
+                "amount": -0.053631578947368364,
+                "location": "RoW",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "hazardous waste, for incineration",
+                "product": "hazardous waste, for incineration"
+              },
+              {
+                "name": "market for wastewater, average",
+                "amount": -0.021609444320109895,
+                "location": "RoW",
+                "unit": "cubic meter",
+                "type": "technosphere",
+                "reference product": "wastewater, average",
+                "product": "wastewater, average"
+              },
+              {
+                "name": "market group for electricity, medium voltage",
+                "amount": 2,
+                "location": "GLO",
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "reference product": "electricity, medium voltage",
+                "product": "electricity, medium voltage"
+              },
+              {
+                "name": "market for heat, district or industrial, natural gas",
+                "amount": 10,
+                "location": "RoW",
+                "unit": "megajoule",
+                "type": "technosphere",
+                "reference product": "heat, district or industrial, natural gas",
+                "product": "heat, district or industrial, natural gas"
+              }
+            ]
+          }
+        },
+        {
+          "identity": [
+            "hexafluoropropylene production, tetrafluoroethylene pyrolysis",
+            "hexafluoropropylene, tetrafluoroethylene pyrolysis",
+            "GLO",
+            "kilogram"
+          ],
+          "science": {
+            "name": "hexafluoropropylene production, tetrafluoroethylene pyrolysis",
+            "reference product": "hexafluoropropylene, tetrafluoroethylene pyrolysis",
+            "location": "GLO",
+            "unit": "kilogram",
+            "production amount": 1,
+            "exchanges": [
+              {
+                "name": "hexafluoropropylene production, tetrafluoroethylene pyrolysis",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "production",
+                "reference product": "hexafluoropropylene, tetrafluoroethylene pyrolysis",
+                "product": "hexafluoropropylene, tetrafluoroethylene pyrolysis"
+              },
+              {
+                "name": "market for tetrafluoroethylene",
+                "amount": 1.0526315789473684,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "tetrafluoroethylene",
+                "product": "tetrafluoroethylene"
+              },
+              {
+                "name": "market for hazardous waste, for incineration",
+                "amount": -0.05263157894736836,
+                "location": "RoW",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "hazardous waste, for incineration",
+                "product": "hazardous waste, for incineration"
+              },
+              {
+                "name": "market group for electricity, medium voltage",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "reference product": "electricity, medium voltage",
+                "product": "electricity, medium voltage"
+              },
+              {
+                "name": "market for heat, district or industrial, natural gas",
+                "amount": 6,
+                "location": "RoW",
+                "unit": "megajoule",
+                "type": "technosphere",
+                "reference product": "heat, district or industrial, natural gas",
+                "product": "heat, district or industrial, natural gas"
+              }
+            ]
+          }
+        },
+        {
+          "identity": [
+            "fluoroelastomer production, fkm terpolymer, 75/16/9 molar composition",
+            "fluoroelastomer, FKM terpolymer, 75/16/9 molar composition",
+            "GLO",
+            "kilogram"
+          ],
+          "science": {
+            "name": "fluoroelastomer production, fkm terpolymer, 75/16/9 molar composition",
+            "reference product": "fluoroelastomer, FKM terpolymer, 75/16/9 molar composition",
+            "location": "GLO",
+            "unit": "kilogram",
+            "production amount": 1,
+            "exchanges": [
+              {
+                "name": "fluoroelastomer production, fkm terpolymer, 75/16/9 molar composition",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "production",
+                "reference product": "fluoroelastomer, FKM terpolymer, 75/16/9 molar composition",
+                "product": "fluoroelastomer, FKM terpolymer, 75/16/9 molar composition"
+              },
+              {
+                "name": "vinylidene fluoride production, chlorination and fluorination",
+                "amount": 0.6238801715493228,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "vinylidene fluoride, chlorination and fluorination",
+                "product": "vinylidene fluoride, chlorination and fluorination"
+              },
+              {
+                "name": "hexafluoropropylene production, tetrafluoroethylene pyrolysis",
+                "amount": 0.3118192053803968,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "hexafluoropropylene, tetrafluoroethylene pyrolysis",
+                "product": "hexafluoropropylene, tetrafluoroethylene pyrolysis"
+              },
+              {
+                "name": "market for tetrafluoroethylene",
+                "amount": 0.11693220201764878,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "tetrafluoroethylene",
+                "product": "tetrafluoroethylene"
+              },
+              {
+                "name": "market for hazardous waste, for incineration",
+                "amount": -0.05263157894736836,
+                "location": "RoW",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "hazardous waste, for incineration",
+                "product": "hazardous waste, for incineration"
+              },
+              {
+                "name": "market for water, deionised",
+                "amount": 10,
+                "location": "RoW",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "water, deionised",
+                "product": "water, deionised"
+              },
+              {
+                "name": "market for wastewater, average",
+                "amount": -0.01,
+                "location": "RoW",
+                "unit": "cubic meter",
+                "type": "technosphere",
+                "reference product": "wastewater, average",
+                "product": "wastewater, average"
+              },
+              {
+                "name": "market group for electricity, medium voltage",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "reference product": "electricity, medium voltage",
+                "product": "electricity, medium voltage"
+              },
+              {
+                "name": "market for heat, district or industrial, natural gas",
+                "amount": 6,
+                "location": "RoW",
+                "unit": "megajoule",
+                "type": "technosphere",
+                "reference product": "heat, district or industrial, natural gas",
+                "product": "heat, district or industrial, natural gas"
+              }
+            ]
+          }
+        },
+        {
+          "identity": [
+            "fluoroelastomer gasket compound production, fkm, fe5540 type",
+            "fluoroelastomer gasket compound, FKM, FE5540 type",
+            "GLO",
+            "kilogram"
+          ],
+          "science": {
+            "name": "fluoroelastomer gasket compound production, fkm, fe5540 type",
+            "reference product": "fluoroelastomer gasket compound, FKM, FE5540 type",
+            "location": "GLO",
+            "unit": "kilogram",
+            "production amount": 1,
+            "exchanges": [
+              {
+                "name": "fluoroelastomer gasket compound production, fkm, fe5540 type",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "production",
+                "reference product": "fluoroelastomer gasket compound, FKM, FE5540 type",
+                "product": "fluoroelastomer gasket compound, FKM, FE5540 type"
+              },
+              {
+                "name": "fluoroelastomer production, fkm terpolymer, 75/16/9 molar composition",
+                "amount": 0.7122302158273381,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "fluoroelastomer, FKM terpolymer, 75/16/9 molar composition",
+                "product": "fluoroelastomer, FKM terpolymer, 75/16/9 molar composition"
+              },
+              {
+                "name": "market for chemical, organic",
+                "amount": 0.007194244604316547,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "chemical, organic",
+                "product": "chemical, organic"
+              },
+              {
+                "name": "market for carbon black",
+                "amount": 0.2158273381294964,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "carbon black",
+                "product": "carbon black"
+              },
+              {
+                "name": "market for lime, hydrated, loose weight",
+                "amount": 0.04316546762589928,
+                "location": "RoW",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "lime, hydrated, loose weight",
+                "product": "lime, hydrated, loose weight"
+              },
+              {
+                "name": "market for magnesium oxide",
+                "amount": 0.02158273381294964,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "reference product": "magnesium oxide",
+                "product": "magnesium oxide"
+              },
+              {
+                "name": "market group for electricity, medium voltage",
+                "amount": 1,
+                "location": "GLO",
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "reference product": "electricity, medium voltage",
+                "product": "electricity, medium voltage"
+              },
+              {
+                "name": "market for heat, district or industrial, natural gas",
+                "amount": 6,
+                "location": "RoW",
+                "unit": "megajoule",
+                "type": "technosphere",
+                "reference product": "heat, district or industrial, natural gas",
+                "product": "heat, district or industrial, natural gas"
+              }
+            ]
+          }
+        }
+      ],
+      "private_helpers": [
+        "vinylidene fluoride production, chlorination and fluorination",
+        "hexafluoropropylene production, tetrafluoroethylene pyrolysis",
+        "fluoroelastomer production, fkm terpolymer, 75/16/9 molar composition",
+        "fluoroelastomer gasket compound production, fkm, fe5540 type"
+      ],
+      "private_products": [
+        "vinylidene fluoride, chlorination and fluorination",
+        "hexafluoropropylene, tetrafluoroethylene pyrolysis",
+        "fluoroelastomer, FKM terpolymer, 75/16/9 molar composition",
+        "fluoroelastomer gasket compound, FKM, FE5540 type"
+      ],
+      "documentation": "docs/methodology/battery-stationary.rst"
+    },
+    {
+      "id": "transformer-core",
+      "source": "lci-hydrogen-electrolysis.xlsx",
+      "phase": "migrated",
+      "release": [
+        3,
+        12
+      ],
+      "require_suppliers": [
+        {
+          "identity": [
+            "market for grain oriented electrical steel, 0.23 mm coil",
+            "grain oriented electrical steel, 0.23 mm coil",
+            "RER",
+            "kilogram"
+          ]
+        }
+      ],
+      "replace_inputs": {
+        "identity": [
+          "transformer production, electrolysis, 1.1 mva",
+          "transformer, electrolysis, 1.1 MVA",
+          "GLO",
+          "unit"
+        ],
+        "legacy": {
+          "name": "transformer production, electrolysis, 1.1 mva",
+          "reference product": "transformer, electrolysis, 1.1 MVA",
+          "location": "GLO",
+          "unit": "unit",
+          "production amount": 1,
+          "exchanges": [
+            {
+              "name": "transformer production, electrolysis, 1.1 mva",
+              "amount": 1,
+              "location": "GLO",
+              "unit": "unit",
+              "type": "production",
+              "reference product": "transformer, electrolysis, 1.1 MVA",
+              "product": "transformer, electrolysis, 1.1 MVA"
+            },
+            {
+              "name": "market for steel, unalloyed",
+              "amount": 918.9004000000001,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "steel, unalloyed",
+              "product": "steel, unalloyed"
+            },
+            {
+              "name": "market for silicon, metallurgical grade",
+              "amount": 28.419600000000006,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "silicon, metallurgical grade",
+              "product": "silicon, metallurgical grade"
+            },
+            {
+              "name": "market for hot rolling, steel",
+              "amount": 947.3200000000002,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "hot rolling, steel",
+              "product": "hot rolling, steel"
+            },
+            {
+              "name": "sheet rolling, steel",
+              "amount": 1894.6400000000003,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "sheet rolling, steel",
+              "product": "sheet rolling, steel"
+            },
+            {
+              "name": "market group for electricity, medium voltage",
+              "amount": 1042.0520000000001,
+              "location": "GLO",
+              "unit": "kilowatt hour",
+              "type": "technosphere",
+              "reference product": "electricity, medium voltage",
+              "product": "electricity, medium voltage"
+            },
+            {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "amount": 4357.6720000000005,
+              "location": "Europe without Switzerland",
+              "unit": "megajoule",
+              "type": "technosphere",
+              "reference product": "heat, district or industrial, natural gas",
+              "product": "heat, district or industrial, natural gas"
+            },
+            {
+              "name": "market for lubricating oil",
+              "amount": 466.40000000000003,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "lubricating oil",
+              "product": "lubricating oil"
+            },
+            {
+              "name": "market for aluminium, wrought alloy",
+              "amount": 271.92,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "aluminium, wrought alloy",
+              "product": "aluminium, wrought alloy"
+            },
+            {
+              "name": "sheet rolling, aluminium",
+              "amount": 271.92,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "sheet rolling, aluminium",
+              "product": "sheet rolling, aluminium"
+            },
+            {
+              "name": "metal working, average for aluminium product manufacturing",
+              "amount": 271.92,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "metal working, average for aluminium product manufacturing",
+              "product": "metal working, average for aluminium product manufacturing"
+            },
+            {
+              "name": "market for steel, low-alloyed",
+              "amount": 763.1888000000001,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "steel, low-alloyed",
+              "product": "steel, low-alloyed"
+            },
+            {
+              "name": "market for kraft paper",
+              "amount": 15.008400000000002,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "kraft paper",
+              "product": "kraft paper"
+            },
+            {
+              "name": "market for fibreboard, hard",
+              "amount": 0.016262400000000003,
+              "location": "RER",
+              "unit": "cubic meter",
+              "type": "technosphere",
+              "reference product": "fibreboard, hard",
+              "product": "fibreboard, hard"
+            },
+            {
+              "name": "market for epoxy resin, liquid",
+              "amount": 6.6000000000000005,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "epoxy resin, liquid",
+              "product": "epoxy resin, liquid"
+            },
+            {
+              "name": "market for copper, cathode",
+              "amount": 0.9240000000000002,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "copper, cathode",
+              "product": "copper, cathode"
+            },
+            {
+              "name": "market for steel, chromium steel 18/8",
+              "amount": 1.1,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "steel, chromium steel 18/8",
+              "product": "steel, chromium steel 18/8"
+            },
+            {
+              "name": "market for synthetic rubber",
+              "amount": 0.08800000000000002,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "synthetic rubber",
+              "product": "synthetic rubber"
+            },
+            {
+              "name": "market for alkyd paint, white, without water, in 60% solution state",
+              "amount": 5.9884,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "alkyd paint, white, without water, in 60% solution state",
+              "product": "alkyd paint, white, without water, in 60% solution state"
+            }
+          ]
+        },
+        "selected": {
+          "name": "transformer production, electrolysis, 1.1 mva",
+          "reference product": "transformer, electrolysis, 1.1 MVA",
+          "location": "GLO",
+          "unit": "unit",
+          "production amount": 1,
+          "exchanges": [
+            {
+              "name": "transformer production, electrolysis, 1.1 mva",
+              "amount": 1,
+              "location": "GLO",
+              "unit": "unit",
+              "type": "production",
+              "reference product": "transformer, electrolysis, 1.1 MVA",
+              "product": "transformer, electrolysis, 1.1 MVA"
+            },
+            {
+              "name": "market for grain oriented electrical steel, 0.23 mm coil",
+              "reference product": "grain oriented electrical steel, 0.23 mm coil",
+              "product": "grain oriented electrical steel, 0.23 mm coil",
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "amount": 947.32
+            },
+            {
+              "name": "market for lubricating oil",
+              "amount": 466.40000000000003,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "lubricating oil",
+              "product": "lubricating oil"
+            },
+            {
+              "name": "market for aluminium, wrought alloy",
+              "amount": 271.92,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "aluminium, wrought alloy",
+              "product": "aluminium, wrought alloy"
+            },
+            {
+              "name": "sheet rolling, aluminium",
+              "amount": 271.92,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "sheet rolling, aluminium",
+              "product": "sheet rolling, aluminium"
+            },
+            {
+              "name": "metal working, average for aluminium product manufacturing",
+              "amount": 271.92,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "metal working, average for aluminium product manufacturing",
+              "product": "metal working, average for aluminium product manufacturing"
+            },
+            {
+              "name": "market for steel, low-alloyed",
+              "amount": 763.1888000000001,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "steel, low-alloyed",
+              "product": "steel, low-alloyed"
+            },
+            {
+              "name": "market for kraft paper",
+              "amount": 15.008400000000002,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "kraft paper",
+              "product": "kraft paper"
+            },
+            {
+              "name": "market for fibreboard, hard",
+              "amount": 0.016262400000000003,
+              "location": "RER",
+              "unit": "cubic meter",
+              "type": "technosphere",
+              "reference product": "fibreboard, hard",
+              "product": "fibreboard, hard"
+            },
+            {
+              "name": "market for epoxy resin, liquid",
+              "amount": 6.6000000000000005,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "epoxy resin, liquid",
+              "product": "epoxy resin, liquid"
+            },
+            {
+              "name": "market for copper, cathode",
+              "amount": 0.9240000000000002,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "copper, cathode",
+              "product": "copper, cathode"
+            },
+            {
+              "name": "market for steel, chromium steel 18/8",
+              "amount": 1.1,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "steel, chromium steel 18/8",
+              "product": "steel, chromium steel 18/8"
+            },
+            {
+              "name": "market for synthetic rubber",
+              "amount": 0.08800000000000002,
+              "location": "GLO",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "synthetic rubber",
+              "product": "synthetic rubber"
+            },
+            {
+              "name": "market for alkyd paint, white, without water, in 60% solution state",
+              "amount": 5.9884,
+              "location": "RER",
+              "unit": "kilogram",
+              "type": "technosphere",
+              "reference product": "alkyd paint, white, without water, in 60% solution state",
+              "product": "alkyd paint, white, without water, in 60% solution state"
+            }
+          ]
+        },
+        "remove_names": [
+          "heat production, natural gas, at industrial furnace >100kW",
+          "market for hot rolling, steel",
+          "market for silicon, metallurgical grade",
+          "market for steel, unalloyed",
+          "market group for electricity, medium voltage",
+          "sheet rolling, steel"
+        ],
+        "exchange": {
+          "name": "market for grain oriented electrical steel, 0.23 mm coil",
+          "reference product": "grain oriented electrical steel, 0.23 mm coil",
+          "product": "grain oriented electrical steel, 0.23 mm coil",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 947.32,
+          "comment": "Qualified native RER 0.23 mm GOES coil, nominal 3.2% Si; replaces the six reviewed core-feed/rolling/annealing inputs together. Core cutting, stacking and actual grade suitability remain unverified."
+        },
+        "comment": "APPROVED NATIVE TRANSFORMER-CORE SUPPLY FOR TARGET 3.12, 2026-10-27. Purchase 947.32 kg native RER grain-oriented electrical steel, 0.23 mm finished coil. Replace the six reviewed core alloying, rolling and annealing inputs together; retain all other transformer inputs, core mass, quantities and retirement references. Native nominal silicon is 3.2%, replacing the legacy 3% engineering alloy assumption. Regional procurement and grade/gauge suitability remain explicit proxies. Core cutting, stacking, insulation and electrical-design coverage remain unverified. The source workbook remains 3.9; this selection applies after migration only for 3.12 targets. Earlier core-production notes below are superseded on this route.\n\n"
+      },
+      "documentation": "docs/methodology/fuels/hydrogen.rst"
+    },
+    {
+      "id": "nmc532-cell",
+      "source": "lci-batteries-NMC955-LTO.xlsx",
+      "phase": "raw",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "require_suppliers": [
+        {
+          "identity": [
+            "battery cell production, Li-ion, NMC532",
+            "battery cell, Li-ion, NMC532",
+            "GLO",
+            "kilogram"
+          ],
+          "vector": [
+            [
+              "production",
+              "battery cell production, Li-ion, NMC532",
+              "battery cell, Li-ion, NMC532",
+              "GLO",
+              "kilogram",
+              [],
+              1
+            ],
+            [
+              "technosphere",
+              "battery cell production, Li-ion, NMC532",
+              "battery cell, Li-ion, NMC532",
+              "CN",
+              "kilogram",
+              [],
+              1
+            ]
+          ],
+          "deterministic": true
+        }
+      ],
+      "remove": [
+        {
+          "identity": [
+            "battery cell production, lithium-ion, nmc532, prismatic",
+            "battery cell, Li-ion, NMC532, prismatic",
+            "GLO",
+            "kilogram"
+          ],
+          "unit_output": true
+        }
+      ],
+      "relink": [
+        {
+          "buyer": [
+            "battery pack production, lithium-ion, nmc532, without electronics",
+            "battery pack, Li-ion, NMC532, without electronics",
+            "GLO",
+            "kilogram"
+          ],
+          "positive": true,
+          "supplier": [
+            "battery cell production, lithium-ion, nmc532, prismatic",
+            "battery cell, Li-ion, NMC532, prismatic",
+            "GLO",
+            "kilogram"
+          ],
+          "replacement": [
+            "battery cell production, Li-ion, NMC532",
+            "battery cell, Li-ion, NMC532",
+            "GLO",
+            "kilogram"
+          ]
+        },
+        {
+          "buyer": [
+            "market for battery cell, lithium-ion, nmc532, including end-of-life treatment",
+            "battery cell, Li-ion, NMC532, including end-of-life treatment",
+            "GLO",
+            "kilogram"
+          ],
+          "quantity": 1,
+          "supplier": [
+            "battery cell production, lithium-ion, nmc532, prismatic",
+            "battery cell, Li-ion, NMC532, prismatic",
+            "GLO",
+            "kilogram"
+          ],
+          "replacement": [
+            "battery cell production, Li-ion, NMC532",
+            "battery cell, Li-ion, NMC532",
+            "GLO",
+            "kilogram"
+          ],
+          "required_exchanges": [
+            {
+              "identity": [
+                "market for used Li-ion battery",
+                "used Li-ion battery",
+                "GLO",
+                "kilogram"
+              ],
+              "type": "technosphere",
+              "amount": -1
+            }
+          ]
+        }
+      ],
+      "strip_links": [
+        "input"
+      ],
+      "add_product": true,
+      "documentation": "docs/methodology/battery-mobile.rst"
+    },
+    {
+      "id": "nmc955-references",
+      "phase": "projection",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "requires": [
+        {
+          "source": "lci-batteries-NMC955-LTO.xlsx",
+          "identities": [
+            [
+              "battery cell production, Li-ion, NMC955",
+              "battery cell, Li-ion, NMC955",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "cathode, NMC955, for Li-ion battery",
+              "cathode, NMC955, for Li-ion battery",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "NMC955 oxide",
+              "NMC955 oxide",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "NMC955 hydroxide",
+              "NMC955 hydroxide",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "anode paste production, silicon-graphite, for lithium-ion battery, nmc955",
+              "anode paste, silicon-graphite, for Li-ion battery, NMC955",
+              "CN",
+              "kilogram"
+            ],
+            [
+              "battery pack component production and end-of-life treatment, lithium-ion, nmc955, without cells and controls",
+              "battery pack component provision, Li-ion, NMC955, without cells and controls",
+              "GLO",
+              "kilowatt hour"
+            ]
+          ]
+        },
+        {
+          "source": "lci-battery-capacity.xlsx",
+          "identities": [
+            [
+              "market for battery capacity, Li-ion, NMC955",
+              "electricity storage capacity",
+              "GLO",
+              "kilowatt hour"
+            ],
+            [
+              "market for battery capacity, Li-ion, NMC955, stationary",
+              "electricity storage capacity",
+              "GLO",
+              "kilowatt hour"
+            ]
+          ]
+        },
+        {
+          "source": "lci-batteries-NMC955-modern-312.xlsx",
+          "identities": [
+            [
+              "battery cell production, Li-ion, NMC955",
+              "battery cell, Li-ion, NMC955",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "cathode, NMC955, for Li-ion battery",
+              "cathode, NMC955, for Li-ion battery",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "NMC955 oxide",
+              "NMC955 oxide",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "NMC955 hydroxide",
+              "NMC955 hydroxide",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "anode paste production, silicon-graphite, for lithium-ion battery, nmc955",
+              "anode paste, silicon-graphite, for Li-ion battery, NMC955",
+              "CN",
+              "kilogram"
+            ]
+          ],
+          "complete": true
+        },
+        {
+          "source": "lci-batteries-NMC955-fixed-reference-38.xlsx",
+          "identities": [
+            [
+              "battery pack component production and end-of-life treatment, lithium-ion, nmc955, without cells and controls",
+              "battery pack component provision, Li-ion, NMC955, without cells and controls",
+              "GLO",
+              "kilowatt hour"
+            ]
+          ],
+          "complete": true
+        },
+        {
+          "source": "lci-batteries-NMC955-capacity-reference-310.xlsx",
+          "identities": [
+            [
+              "market for battery capacity, Li-ion, NMC955",
+              "electricity storage capacity",
+              "GLO",
+              "kilowatt hour"
+            ],
+            [
+              "market for battery capacity, Li-ion, NMC955, stationary",
+              "electricity storage capacity",
+              "GLO",
+              "kilowatt hour"
+            ]
+          ],
+          "complete": true
+        }
+      ],
+      "omit": [
+        {
+          "source": "lci-batteries-NMC955-LTO.xlsx",
+          "identities": [
+            [
+              "battery cell production, Li-ion, NMC955",
+              "battery cell, Li-ion, NMC955",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "cathode, NMC955, for Li-ion battery",
+              "cathode, NMC955, for Li-ion battery",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "NMC955 oxide",
+              "NMC955 oxide",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "NMC955 hydroxide",
+              "NMC955 hydroxide",
+              "GLO",
+              "kilogram"
+            ],
+            [
+              "anode paste production, silicon-graphite, for lithium-ion battery, nmc955",
+              "anode paste, silicon-graphite, for Li-ion battery, NMC955",
+              "CN",
+              "kilogram"
+            ],
+            [
+              "battery pack component production and end-of-life treatment, lithium-ion, nmc955, without cells and controls",
+              "battery pack component provision, Li-ion, NMC955, without cells and controls",
+              "GLO",
+              "kilowatt hour"
+            ]
+          ]
+        },
+        {
+          "source": "lci-battery-capacity.xlsx",
+          "identities": [
+            [
+              "market for battery capacity, Li-ion, NMC955",
+              "electricity storage capacity",
+              "GLO",
+              "kilowatt hour"
+            ],
+            [
+              "market for battery capacity, Li-ion, NMC955, stationary",
+              "electricity storage capacity",
+              "GLO",
+              "kilowatt hour"
+            ]
+          ]
+        }
+      ],
+      "documentation": "docs/methodology/battery-mobile.rst"
+    },
+    {
+      "id": "chemical-proxy-lci-batteries-ASSB",
+      "source": "lci-batteries-ASSB.xlsx",
+      "phase": "aliases",
+      "equivalent_version": "3.8",
+      "exchange_aliases": [
+        {
+          "source": [
+            "market for lithium iron phosphate",
+            "lithium iron phosphate",
+            "RoW",
+            "kilogram"
+          ],
+          "target": [
+            "Lithium iron phosphate [LiFePO4]",
+            "Lithium iron phosphate [LiFePO4]",
+            "JP",
+            "kilogram"
+          ],
+          "comment": "ecoinvent 3.8 proxy: bundled Japanese LFP synthesis replaces the unavailable native LFP market; original kg quantity retained."
+        }
+      ]
+    },
+    {
+      "id": "chemical-proxy-lci-iridium-economic-proxy",
+      "source": "lci-iridium-economic-proxy.xlsx",
+      "phase": "aliases",
+      "equivalent_version": "3.8",
+      "exchange_aliases": [
+        {
+          "source": [
+            "market for sodium ethyl xanthate",
+            "sodium ethyl xanthate",
+            "GLO",
+            "kilogram"
+          ],
+          "target": [
+            "market for chemical, organic",
+            "chemical, organic",
+            "GLO",
+            "kilogram"
+          ],
+          "comment": "ecoinvent 3.8 proxy: generic organic chemical manufacturing burden replaces the unavailable sodium ethyl xanthate market; original kg quantity retained. This weaker proxy does not establish chemical or environmental equivalence."
+        }
+      ]
+    }
+  ],
+  "source_selection": [
+    {
+      "source": "FILEPATH_HYDROGEN_DISTRI_INVENTORIES",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_PIPELINE_COATING_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_CC_INVENTORIES",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_BIOMETHANE_CAPTURE_MDEA_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_NUCLEAR_EPR",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_EPR_M5_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_BATTERIES_NMC955_LTO",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_NMC532_NATIVE_312",
+          "3.12"
+        ],
+        [
+          "FILEPATH_NMC955_MODERN_312",
+          "3.12"
+        ],
+        [
+          "FILEPATH_NMC955_FIXED_REFERENCE_38",
+          "3.8"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_BATTERIES_NMC_NCA_LFP",
+      "minimum_version": "3.9",
+      "replacement": [
+        [
+          "FILEPATH_LFP_REFERENCE",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_PFSA_EW1100",
+      "minimum_version": "3.12",
+      "before": [
+        [
+          "FILEPATH_FKM_GASKET_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_HYDROGEN_INVENTORIES",
+      "minimum_version": "3.12",
+      "before": [
+        [
+          "FILEPATH_PTFE_GASKET_NATIVE_312",
+          "3.12"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_PHOTOVOLTAICS",
+      "replacement": [
+        [
+          "FILEPATH_PHOTOVOLTAICS_2026",
+          "3.12"
+        ],
+        [
+          "FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY",
+          "3.12"
+        ],
+        [
+          "FILEPATH_PHOTOVOLTAICS_CIGS",
+          "3.7"
+        ]
+      ]
+    },
+    {
+      "source": "FILEPATH_OIL_GAS_INVENTORIES",
+      "versions": [
+        "3.9",
+        "3.9.1",
+        "3.10",
+        "3.10.1",
+        "3.11",
+        "3.12"
+      ],
+      "omit": true
+    },
+    {
+      "source": "FILEPATH_BATTERIES_NMC622_532",
+      "versions": [
+        "3.11",
+        "3.12"
+      ],
+      "omit": true
+    },
+    {
+      "source": "FILEPATH_GRAPHITE",
+      "versions": [
+        "3.11",
+        "3.12"
+      ],
+      "omit": true
+    },
+    {
+      "source": "FILEPATH_BATTERY_CAPACITY",
+      "versions": [
+        "3.12"
+      ],
+      "system_models": [
+        "cutoff",
+        "EN15804"
+      ],
+      "before": [
+        [
+          "FILEPATH_NMC955_CAPACITY_REFERENCE_310",
+          "3.10"
+        ]
+      ]
+    }
+  ]
+}

@@ -18,5 +18,5 @@ adding an IAM or technology:
 The source files most relevant to this workflow are:
 
 * ``premise/iam_variables_mapping/heat.yaml`` for IAM and inventory mappings;
-* ``premise/heat_data.py`` for expression evaluation and layer availability;
-* ``premise/heat.py`` for conversion, market creation, and relinking.
+* ``premise/energy/heat_data.py`` for expression evaluation and layer availability;
+* ``premise/energy/heat.py`` for conversion, market creation, and relinking.

@@ -24,7 +24,10 @@ copyright = (
 author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "2.5.4"
+from premise import __version__
+
+release = ".".join(map(str, __version__))
+version = ".".join(map(str, __version__[:2]))
 
 # -- General configuration ---------------------------------------------------
 
@@ -84,7 +87,10 @@ def setup(app):
     bw_dir = Path(app.outdir).parent / ".brightway-docs"
     bw_dir.mkdir(parents=True, exist_ok=True)
     os.environ.setdefault("BRIGHTWAY2_DIR", str(bw_dir))
-    import premise  # noqa: F401
+    # The package exports are lazy: importing premise alone no longer loads
+    # the logger configuration. Load the build API before restoring Sphinx's
+    # handlers so later autodoc imports cannot disable warnings.
+    from premise import NewDatabase  # noqa: F401
     from sphinx.util import logging as sphinx_logging
 
     for name, logger in logging.Logger.manager.loggerDict.items():

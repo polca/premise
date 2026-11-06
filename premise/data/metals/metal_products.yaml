@@ -382,6 +382,7 @@ rules:
   ecoinvent_form: beryllium
   intensity_form: beryllium
 - id: ev-boron-permanent-magnet-production-for-electric-motor-boric-oxide
+  preserve_reason: The 53/1.98 motor-to-magnet conversion belongs to one reference motor. The shared permanent-magnet supplier also serves other motors with different magnet fractions. Preserve it until component-specific suppliers are available.
   enabled: true
   technology: EV
   target:
@@ -548,6 +549,7 @@ rules:
   intensity_form: cerium
   comment: CeO2
 - id: ev-cerium-cerium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -602,7 +604,13 @@ rules:
   application: set_direct_amount
   ecoinvent_form: cerium oxide
   intensity_form: cerium
-  comment: CeO2  // This exchange is already present
+  design_group: soec-ysz-ydc-ceramics-v1
+  comment: >-
+    Matched YSZ/YDC pure-oxide recipe; 8 mol% Y2O3 in YSZ and
+    Ce0.8Y0.2O1.9 in YDC. Retain the existing 2050 Y target by
+    proportionally reducing all ceramic oxides, an explicit prospective
+    assumption rather than a demonstrated future stack. Capacity scaling
+    and composition limits are documented in soec_ceramic_reference.json.
 - id: wind-ddpm-chromium-steel-chromium-steel-18-8
   enabled: true
   technology: Wind-DDPM
@@ -975,6 +983,7 @@ rules:
   intensity_form: dysprosium
   comment: Dy2O3
 - id: ev-dysprosium-dysprosium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -1045,6 +1054,7 @@ rules:
   intensity_form: erbium
   comment: Er2O3
 - id: ev-erbium-erbium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -1073,6 +1083,7 @@ rules:
   intensity_form: europium
   comment: Eu2O3
 - id: ev-europium-europium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -1101,6 +1112,7 @@ rules:
   intensity_form: gadolinium
   comment: Gd2O3
 - id: ev-gadolinium-gadolinium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -1333,6 +1345,7 @@ rules:
   ecoinvent_form: indium
   intensity_form: indium
 - id: ev-indium-indium
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -1413,6 +1426,7 @@ rules:
   intensity_form: indium
 - id: pemel-iridium-iridium
   enabled: true
+  design_group: pemel-nrel-87625-catalysts-and-coatings-v3
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -1420,6 +1434,10 @@ rules:
   provider:
     name: market for iridium
     reference_product: iridium
+  existing_provider_fallback:
+    name: iridium production, economic allocation, proxy
+    reference_product: iridium
+  comment: If the configured market is absent, retain one already linked kilogram iridium economic-allocation proxy supplier and its geography. Check exact identity and one-kg reference output; do not select another producer or infer a market mix. Apply only with the matched NREL 87625 catalyst group; see pem_catalyst_reference.json for the loading trajectory and limitations.
   exchange_amount_factor: 1.0
   application: set_direct_amount
   ecoinvent_form: iridium
@@ -1439,6 +1457,7 @@ rules:
   intensity_form: lanthanum
   comment: La2O3
 - id: ev-lanthanum-lanthanum-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -1588,6 +1607,7 @@ rules:
   intensity_form: lithium
   comment: Li2CO3
 - id: ev-lithium-lithium-carbonate-battery-grade
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -2176,6 +2196,7 @@ rules:
   intensity_form: neodymium
   comment: Nd2O3
 - id: ev-neodymium-permanent-magnet-production-for-electric-motor-neodymium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -2574,6 +2595,7 @@ rules:
   ecoinvent_form: ferroniobium, 66% Nb
   intensity_form: ferroniobium
 - id: ev-niobium-ferroniobium-66-nb
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -2697,6 +2719,7 @@ rules:
   intensity_form: palladium
   comment: diesel
 - id: ev-palladium-palladium
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -2844,6 +2867,7 @@ rules:
   intensity_form: platinum
   comment: This exchange is already present
 - id: ev-platinum-platinum
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -2900,6 +2924,7 @@ rules:
   comment: This exchange is already present
 - id: pemel-platinum-platinum
   enabled: true
+  design_group: pemel-nrel-87625-catalysts-and-coatings-v3
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -2911,7 +2936,7 @@ rules:
   application: set_direct_amount
   ecoinvent_form: platinum
   intensity_form: platinum
-  comment: This exchange is already present
+  comment: Matched Pt total comprises cathode catalyst plus separate PTL and bipolar-plate coatings. Default coating case assumes 100 nm on both nominal faces using documented footprint proxies; catalyst loadings decline separately. See pem_catalyst_reference.json for component calculation, sensitivities and remaining coverage gaps.
 - id: ael-platinum-platinum
   enabled: true
   technology: AEL
@@ -2969,6 +2994,7 @@ rules:
   intensity_form: praseodymium
   comment: Pr2O3
 - id: ev-praseodymium-praseodymium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -3051,6 +3077,7 @@ rules:
   ecoinvent_form: rhodium
   intensity_form: rhodium
 - id: ev-rhodium-rhodium
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -3078,6 +3105,7 @@ rules:
   intensity_form: ruthenium
 - id: pemel-ruthenium-ruthenium
   enabled: true
+  design_group: pemel-nrel-87625-catalysts-and-coatings-v3
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -3089,6 +3117,7 @@ rules:
   application: set_direct_amount
   ecoinvent_form: ruthenium
   intensity_form: ruthenium
+  comment: Explicit zero for the selected pure-Ir anode and Pt cathode reference. Do not mix the independent Xu Ru-Ir experimental loading into this design.
 - id: icev-samarium-samarium-oxide
   enabled: true
   technology: ICEV
@@ -3104,6 +3133,7 @@ rules:
   intensity_form: samarium
   comment: Sm2O3
 - id: ev-samarium-samarium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -3131,6 +3161,7 @@ rules:
   intensity_form: scandium
   comment: Sc2O3
 - id: ev-scandium-scandium-oxide
+  preserve_reason: The EV value comes from a vehicle-level rare-earth assessment (Alonso 2012); a motor-specific component boundary has not been established. Preserve the source inventory pending a component-level review.
   enabled: true
   technology: EV
   target:
@@ -3386,6 +3417,7 @@ rules:
   ecoinvent_form: tantalum powder, capacitor-grade
   intensity_form: tantalum
 - id: ev-tantalum-tantalum-powder-capacitor-grade
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -3426,6 +3458,7 @@ rules:
   intensity_form: terbium
   comment: TbO2
 - id: ev-terbium-terbium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -3753,6 +3786,7 @@ rules:
   intensity_form: ytterbium
   comment: Yb2O3
 - id: ev-ytterbium-ytterbium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -3781,6 +3815,7 @@ rules:
   intensity_form: yttrium
   comment: Y2O3
 - id: ev-yttrium-yttrium-oxide
+  preserve_reason: The EV source summary includes whole-vehicle material totals from Cullbrand and Magnusson (2012), Table 8, divided by a 53 kg motor mass. These are not component-specific motor intensities. Preserve the source inventory until the observations are separated by component; see docs/methodology/metals.rst.
   enabled: true
   technology: EV
   target:
@@ -3854,10 +3889,17 @@ rules:
   provider:
     name: market for yttrium oxide
     reference_product: yttrium oxide
-  exchange_amount_factor: 1.2699311632510744
+  exchange_amount_factor: 1.269931649034529
   application: set_direct_amount
   ecoinvent_form: yttrium oxide
   intensity_form: yttrium
+  design_group: soec-ysz-ydc-ceramics-v1
+  comment: >-
+    Matched YSZ/YDC pure-oxide recipe; 8 mol% Y2O3 in YSZ and
+    Ce0.8Y0.2O1.9 in YDC. Retain the existing 2050 Y target by
+    proportionally reducing all ceramic oxides, an explicit prospective
+    assumption rather than a demonstrated future stack. Capacity scaling
+    and composition limits are documented in soec_ceramic_reference.json.
 - id: wind-ddee-zinc-zinc
   enabled: true
   technology: Wind-DDEE
@@ -4022,7 +4064,13 @@ rules:
   application: set_direct_amount
   ecoinvent_form: zirconium oxide
   intensity_form: zirconium
-  comment: This exchange is already present
+  design_group: soec-ysz-ydc-ceramics-v1
+  comment: >-
+    Matched YSZ/YDC pure-oxide recipe; 8 mol% Y2O3 in YSZ and
+    Ce0.8Y0.2O1.9 in YDC. Retain the existing 2050 Y target by
+    proportionally reducing all ceramic oxides, an explicit prospective
+    assumption rather than a demonstrated future stack. Capacity scaling
+    and composition limits are documented in soec_ceramic_reference.json.
 - id: nuclear-zirconium-zirconium-oxide
   enabled: true
   technology: Nuclear
@@ -4246,3 +4294,16 @@ activity_policies:
   - '*'
   action: preserve_source
   reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+
+- id: preserve-shared-icev-engine
+  technology: ICEV
+  activity:
+    name: internal combustion engine production, passenger car
+    reference_product: internal combustion engine, passenger car
+  locations: ['*']
+  action: preserve_source
+  reason: >-
+    The two Pt/Pd factors are inverse engine inputs of petrol (1/0.260129659643436)
+    and diesel (1/0.3051750380517504) vehicles. Both vehicles use the same engine
+    provider. A single global overwrite cannot satisfy both mass bases; preserve
+    the source engine until separate vehicle-specific component inventories exist.

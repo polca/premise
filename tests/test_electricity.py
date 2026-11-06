@@ -9,7 +9,7 @@ import pytest
 import xarray as xr
 
 from premise.data_collection import IAMDataCollection
-import premise.electricity as electricity_module
+import premise.electricity.electricity as electricity_module
 from premise.electricity import Electricity, _CoalPowerPlantData
 from premise.filesystem_constants import DATA_DIR
 

@@ -1,5 +1,5 @@
 {% set name = "premise" %}
-{% set version = environ.get('VERSION', "2.5.4") %}
+{% set version = environ.get('VERSION', "2.6.0") %}
 
 
 package:
@@ -10,55 +10,6 @@ source:
   path: ..
 
 outputs:
-  - name: premise-bw2
-    build:
-      noarch: python
-      script: python -m pip install "$SRC_DIR" --no-deps --no-build-isolation -vv
-    requirements:
-      host:
-        - pip
-        - python >=3.12
-        - setuptools
-        - wheel
-      run:
-        - bw2data <4.0.0
-        - python >=3.12
-        - bottleneck
-        - brightpath >=1.0.0a4,<2
-        - bw2io
-        - ecoinvent_interface
-        - constructive_geometries>=1.0.0
-        - cryptography
-        - datapackage
-        - numpy <2.0.0
-        - openpyxl >=3.1.0,<3.2.0
-        - lxml <6.0.0
-        - pandas <3.0.0
-        - platformdirs
-        - portalocker >=2.8
-        - premise_gwp
-        - prettytable
-        - pyarrow <26
-        - pycountry
-        - pyYaml
-        - requests
-        - schema
-        - scipy<1.14.0
-        - sparse>=0.14.0
-        - wurst>=0.4
-        - xarray<=2024.2.0
-        - tqdm
-        - unfold
-    test:
-      requires:
-        - python >=3.12
-      imports:
-        - premise
-        - brightpath
-      commands:
-        - python -c "import premise; print(premise.__version__)"
-        - python -c "from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping"
-
   - name: premise-bw25
     build:
       noarch: python
@@ -66,42 +17,43 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.12
+        - python >=3.12,<3.15
         - setuptools
         - wheel
       run:
-        - bw2data >=4.0.0
+        - bw2data >=4.5
+        - bw2calc >=2.4
         - bw_processing >=1.0
-        - python >=3.12
+        - python >=3.12,<3.15
         - bottleneck
-        - brightpath >=1.0.0a4,<2
-        - bw2io
+        - brotli-python >=1.2
+        - brightpath >=1.0.0a14,<2
+        - bw2io >=0.9.11
         - ecoinvent_interface
         - constructive_geometries>=1.0.0
         - cryptography
         - datapackage
-        - numpy <2.0.0
-        - openpyxl >=3.1.0,<3.2.0
-        - lxml <6.0.0
-        - pandas <3.0.0
+        - deepdiff >=8.6.2,<9
+        - numpy >=1.26,<3
+        - openpyxl >=3.1.5,<3.2.0
+        - lxml >=4.9.3,<7
+        - pandas >=2.2,<3.1
         - platformdirs
         - portalocker >=2.8
-        - premise_gwp
         - prettytable
-        - pyarrow <26
+        - pyarrow >=16,<26
         - pycountry
         - pyYaml
         - requests
         - schema
-        - scipy<1.14.0
+        - scipy >=1.13,<2
         - sparse>=0.14.0
         - wurst>=0.4
-        - xarray<=2024.2.0
+        - xarray >=2024.6
         - tqdm
-        - unfold
     test:
       requires:
-        - python >=3.12
+        - python >=3.12,<3.15
       imports:
         - premise
         - brightpath

@@ -3,7 +3,7 @@ import io
 import pandas as pd
 import pytest
 
-from scripts.restore_vehicle_intensities import append_intensity_rows
+from support.restore_vehicle_intensities import append_intensity_rows
 
 HEADER = "Model;Scenario;Region;Variable;Unit;2020;2050\n"
 SERVICE = "REMIND;SSP2;EUR;ES|Transport|Car|BEV;billion pkm/yr;0;10\n"

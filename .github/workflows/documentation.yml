@@ -5,11 +5,11 @@ on:
     paths:
       - "docs/**"
       - "premise/**"
-      - "scripts/check_documentation.py"
-      - "scripts/check_documentation_examples.py"
-      - "scripts/check_documentation_content.py"
-      - "scripts/generate_documentation_reference.py"
-      - "scripts/generate_methodology_diagrams.py"
+      - "docs/_tools/check_documentation.py"
+      - "docs/_tools/check_documentation_examples.py"
+      - "docs/_tools/check_documentation_content.py"
+      - "docs/_tools/generate_documentation_reference.py"
+      - "docs/_tools/generate_methodology_diagrams.py"
       - "pyproject.toml"
       - "requirements.txt"
       - "readthedocs.yml"
@@ -19,9 +19,9 @@ on:
     paths:
       - "docs/**"
       - "premise/**"
-      - "scripts/check_documentation*.py"
-      - "scripts/generate_documentation_reference.py"
-      - "scripts/generate_methodology_diagrams.py"
+      - "docs/_tools/check_documentation*.py"
+      - "docs/_tools/generate_documentation_reference.py"
+      - "docs/_tools/generate_methodology_diagrams.py"
       - "pyproject.toml"
       - "requirements.txt"
       - "readthedocs.yml"
@@ -50,15 +50,15 @@ jobs:
       - name: Build the real-theme site and API
         run: python -m sphinx -b html -W --keep-going docs docs/_build/html
       - name: Check source-derived documentation tables
-        run: python scripts/generate_documentation_reference.py --check
+        run: python docs/_tools/generate_documentation_reference.py --check
       - name: Check sector process diagrams
-        run: python scripts/generate_methodology_diagrams.py --check
+        run: python docs/_tools/generate_methodology_diagrams.py --check
       - name: Check content-review coverage and example classifications
-        run: python scripts/check_documentation_content.py
+        run: python docs/_tools/check_documentation_content.py
       - name: Check navigation, links, API output and example syntax
-        run: python scripts/check_documentation.py docs/_build/html
+        run: python docs/_tools/check_documentation.py docs/_build/html
       - name: Execute examples that do not require licensed data
-        run: python scripts/check_documentation_examples.py
+        run: python docs/_tools/check_documentation_examples.py
       - name: Report external link failures
         timeout-minutes: 5
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.check_external_links }}

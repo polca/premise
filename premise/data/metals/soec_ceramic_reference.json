@@ -1,0 +1,142 @@
+{
+  "design_id": "soec-ysz-ydc-ceramics-v1",
+  "scope": "YSZ electrolyte and YDC blocking-layer oxide purchases for the existing nominal 1 MWe SOEC stack; not a reconstruction or validation of the complete stack.",
+  "sources": [
+    {
+      "id": "gerloff-2021",
+      "doi": "10.1016/j.est.2021.102759",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2352152X21004874",
+      "location": "Section 2.2.3, section 2.1.4; supplement Figure 5",
+      "evidence": "Mixed Sm/Eu/Gd concentrate was an environmental-impact proxy for unavailable yttrium, not an actual rare-earth ingredient. SOEC stack scales from 1 kW to 1 MW using exponent 0.88. Figure 5 lists rounded 170.7 kg zirconium proxy + 14.8 kg yttrium proxy and 91.5 kg cerium proxy + 22.9 kg yttrium proxy. Concentrates are not chemical-purity assays.",
+      "supplement_url": "https://ars.els-cdn.com/content/image/1-s2.0-S2352152X21004874-mmc1.docx",
+      "supplement_sha256": "d1387fc64553d93a99afe24cac6f622cbe648c7cef7f32fc47ac7a9b5c2d34dd"
+    },
+    {
+      "id": "haefele-2016",
+      "doi": "10.1016/j.ijhydene.2016.05.069",
+      "supplement_url": "https://ars.els-cdn.com/content/image/1-s2.0-S036031991631535X-mmc1.pdf",
+      "supplement_sha256": "3091290548dba964c7cb9c7c805f6a318dbeecc2dac037202310fb7c12962962",
+      "evidence": "Original supplement Fig. S1 and Table S2 identify a YDC blocking layer and alternative air electrodes. Main-article numerical BOM was not directly accessible in this correction. 0.425 kg YSZ/kW and 0.262 kg YDC/kW are reconstructed from the Gerloff rounded table and the separately attributed Haefele elemental observations in the packaged SI_2_Material_requirements.xlsx. The chosen chemistry reproduces those elemental observations within 0.001 kg/MW before capacity scaling. Do not describe this as a newly measured or fully validated stack design."
+    },
+    {
+      "id": "ysz-primary-experiment",
+      "url": "https://www.researchgate.net/profile/San-Jiang/publication/284748771_Mechanism_and_Kinetics_of_Ni-Y_2_O_3_-ZrO_2_Hydrogen_Electrode_for_Water_Electrolysis_Reactions_in_Solid_Oxide_Electrolysis_Cells/links/565d493908aefe619b255317/Mechanism-and-Kinetics-of-Ni-Y-2-O-3-ZrO-2-Hydrogen-Electrode-for-Water-Electrolysis-Reactions-in-Solid-Oxide-Electrolysis-Cells.pdf",
+      "evidence": "Experimental section explicitly uses 8 mol% Y2O3-stabilized ZrO2; supports the chemical convention, not the complete Gerloff design."
+    },
+    {
+      "id": "ydc-primary-experiment",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0378775314021016",
+      "evidence": "Studies Ce0.8Y0.2-xCuxO2-delta including x=0. Supports 20% Y on cation sites as a physical YDC composition, not a measurement of this stack."
+    }
+  ],
+  "reference": {
+    "nominal_power_MW": 1.0,
+    "source_power_kW": 1.0,
+    "target_power_kW": 1000.0,
+    "stack_capacity_exponent": 0.88,
+    "YSZ_kg_per_source_kW": 0.425,
+    "YDC_kg_per_source_kW": 0.262,
+    "YSZ_Y2O3_oxide_mole_fraction": 0.08,
+    "YDC_Y_cation_fraction": 0.2,
+    "atomic_masses_g_mol": {
+      "Y": 88.90584,
+      "Zr": 91.224,
+      "Ce": 140.116,
+      "O": 15.999
+    },
+    "composition_status": "Explicit reference compositions: 8 mol% Y2O3 among binary oxides for YSZ; Ce0.8Y0.2O1.9 for YDC. Consistent with attributed source coefficients, but not independently verified for a manufacturer-specific whole stack.",
+    "capacity_status": "Retains Gerloff capacity exponent for continuity with the existing foreground inventory. This is an empirical scaling assumption, not proof that active ceramic mass scales sublinearly. A linear-capacity sensitivity is provided.",
+    "purchase_yield": 1.0,
+    "purchase_yield_status": "Assume 100% incorporation at oxide-purchase boundary; rejects, deposition losses and recycling are not quantified."
+  },
+  "projection": {
+    "baseline_year": 2020,
+    "endpoint_year": 2050,
+    "yttrium_kg_MW_2050": 6.016672460842715,
+    "status": "User-selected assumption: retain the existing 2050 contained-Y central target and proportionally reduce the complete YSZ/YDC package. Preserve constant composition and component ratio; interpolate all three elements together. The target is not a documented complete future stack or demonstrated performance.",
+    "historical_endpoint_status": "Previous workbook took 0.47 kg Y/MW as a literature minimum and current minimum 11.56334492168543 as future maximum; central target was their mean. These cross-study limits are not measurement uncertainty for one matched design.",
+    "sensitivities": [
+      "fixed-baseline",
+      "linear-capacity"
+    ],
+    "bound_policy": "Deterministic reference coefficients: mean=median=min=max. Future uncertainty is represented by explicit scenarios, not independent element sampling."
+  },
+  "application": {
+    "technology": "HTEL - Yttrium",
+    "activity": "electrolyzer production, 1MWe, SOEC, Stack",
+    "intensity_unit": "kg/MW",
+    "years": [
+      2020,
+      2050
+    ],
+    "conversion_MW_per_unit": 1.0,
+    "elements": {
+      "Yttrium": {
+        "symbol": "Y",
+        "product": "yttrium oxide"
+      },
+      "Zirconium": {
+        "symbol": "Zr",
+        "product": "zirconium oxide"
+      },
+      "Cerium": {
+        "symbol": "Ce",
+        "product": "cerium oxide"
+      }
+    }
+  },
+  "historical_runtime_rows": [
+    {
+      "metal": "Cerium",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "183.23997806968148",
+      "median": "183.23997806968148",
+      "min": "183.23997806968148",
+      "max": "183.23997806968148",
+      "origin_var": "HTEL - Yttrium"
+    },
+    {
+      "metal": "Yttrium",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "50.87560451555527",
+      "median": "65.99709858427829",
+      "min": "11.56334492168543",
+      "max": "75.06637004070207",
+      "origin_var": "HTEL - Yttrium"
+    },
+    {
+      "metal": "Zirconium",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "242.98723000302766",
+      "median": "271.39064718594386",
+      "min": "68.22288767871892",
+      "max": "389.3481551444202",
+      "origin_var": "HTEL - Yttrium"
+    },
+    {
+      "metal": "Yttrium",
+      "unit": "kg/MW",
+      "year": "2050.0",
+      "mean": "6.016672460842715",
+      "median": "6.016672460842715",
+      "min": "0.47",
+      "max": "11.56334492168543",
+      "origin_var": "HTEL - Yttrium"
+    }
+  ],
+  "historical_attributed_haefele_kg_MW": {
+    "Yttrium": 75.06637004070207,
+    "Zirconium": 271.39064718594386,
+    "Cerium": 183.23997806968148
+  },
+  "limitations": [
+    "Complete SOEC stack remains unvalidated: alternative air-electrode mixtures, Ni/YSZ support, uncertain La/Sr quantities, glass-sealant silicone proxy, steel, manufacturing and lifetime are separate issues.",
+    "Existing hydrogen-production lifetime/replacement allocation is retained. No additional lifetime multiplier on kg/stack.",
+    "No change to primary/secondary shares or supplier production shares.",
+    "Direct purchased oxides are not the full upstream metal footprint. Proxy overlap was functional, not direct double-counting of measured yttrium.",
+    "Scenario caches and saved results require rebuilding; restart Python to clear cached metal coefficients."
+  ]
+}

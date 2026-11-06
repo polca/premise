@@ -1,0 +1,449 @@
+- name: Aluminium
+  environmental flow:
+    - name: Aluminium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Antimony
+  environmental flow:
+    - name: Antimony
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+    - name: Stibnite
+      categories: natural resource::in ground
+      amount: 0.716836171
+      unit: kilogram
+- name: Arsenic
+  environmental flow:
+    - name: Arsenic
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Barium
+  environmental flow:
+    - name: Barium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Beryllium
+  environmental flow:
+    - name: Beryllium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Boron
+  environmental flow:
+    - name: Boron
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+    - name: Borax
+      categories: natural resource::in ground
+      amount: 0.113391195
+      unit: kilogram
+- name: Cadmium
+  environmental flow:
+    - name: Cadmium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Cerium
+  environmental flow:
+    - name: Cerium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Chromium
+  environmental flow:
+    - name: Chromium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Cobalt
+  environmental flow:
+    - name: Cobalt
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Copper
+  environmental flow:
+    - name: Copper
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+    - name: Cu,
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Dolomite
+  environmental flow:
+    - name: Dolomite
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Dysprosium
+  environmental flow:
+    - name: Dysprosium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Erbium
+  environmental flow:
+    - name: Erbium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Europium
+  environmental flow:
+    - name: Europium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Gadolinium
+  environmental flow:
+    - name: Gadolinium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Gallium
+  environmental flow:
+    - name: Gallium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Germanium
+  environmental flow:
+    - name: Germanium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Gold
+  environmental flow:
+    - name: Gold
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Graphite
+  environmental flow:
+    - name: Graphite
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Hafnium
+  environmental flow:
+    - name: Hafnium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Holmium
+  environmental flow:
+    - name: Holmium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Indium
+  environmental flow:
+    - name: Indium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Iridium
+  environmental flow:
+    - name: Iridium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Iron
+  environmental flow:
+    - name: Iron
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Lanthanum
+  environmental flow:
+    - name: Lanthanum
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Lead
+  environmental flow:
+    - name: Lead
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Lithium
+  environmental flow:
+    - name: Lithium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Magnesium
+  environmental flow:
+    - name: Magnesium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Manganese
+  environmental flow:
+    - name: Manganese
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Mercury
+  environmental flow:
+    - name: Mercury
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Molybdenum
+  environmental flow:
+    - name: Molybdenum
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Neodymium
+  environmental flow:
+    - name: Neodymium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Nickel
+  environmental flow:
+    - name: Nickel
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+    - name: Ni,
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Niobium
+  environmental flow:
+    - name: Niobium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Palladium
+  environmental flow:
+    - name: Palladium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Phosphorus
+  environmental flow:
+    - name: Phosphorus
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Platinum
+  environmental flow:
+    - name: Platinum
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+    - name: Pt,
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Potassium
+  environmental flow:
+    - name: Potassium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Praseodymium
+  environmental flow:
+    - name: Praseodymium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Rhenium
+  environmental flow:
+    - name: Rhenium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Rhodium
+  environmental flow:
+    - name: Rhodium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+    - name: Rh,
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Rubidium
+  environmental flow:
+    - name: Rubidium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Ruthenium
+  environmental flow:
+    - name: Ruthenium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Samarium
+  environmental flow:
+    - name: Samarium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Scandium
+  environmental flow:
+    - name: Scandium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Selenium
+  environmental flow:
+    - name: Selenium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Silicon
+  environmental flow:
+    - name: Silicon
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Silver
+  environmental flow:
+    - name: Silver
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Sodium
+  environmental flow:
+    - name: Sodium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Spodumene
+  environmental flow:
+    - name: Spodumene
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Strontium
+  environmental flow:
+    - name: Strontium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Sulfur
+  environmental flow:
+    - name: Sulfur
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+    - name: Sodium sulfate
+      categories: natural resource::in ground
+      amount: 0.225
+      unit: kilogram
+- name: Tantalum
+  environmental flow:
+    - name: Tantalum
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Tellurium
+  environmental flow:
+    - name: Tellurium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Terbium
+  environmental flow:
+    - name: Terbium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Thulium
+  environmental flow:
+    - name: Thulium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Tin
+  environmental flow:
+    - name: Tin
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Titanium
+  environmental flow:
+    - name: Titanium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Tungsten
+  environmental flow:
+    - name: Tungsten
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Vanadium
+  environmental flow:
+    - name: Vanadium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Ytterbium
+  environmental flow:
+    - name: Ytterbium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Yttrium
+  environmental flow:
+    - name: Yttrium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+- name: Zinc
+  environmental flow:
+    - name: Zinc
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram
+
+- name: Zirconium
+  environmental flow:
+    - name: Zirconium
+      categories: natural resource::in ground
+      amount: 1.0
+      unit: kilogram

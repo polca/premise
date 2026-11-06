@@ -5,6 +5,7 @@ from copy import deepcopy
 from types import SimpleNamespace
 
 import pytest
+from battery_mass_support import activate_static_vehicle_batteries
 
 from premise.inventory_store import compact_exchange_payload
 from premise.transport import Transport
@@ -403,7 +404,13 @@ def test_regional_clone_and_idempotent_mass_updates(spec, compact, production):
     assert target["location"] == service["exchanges"][1]["location"] == "EUR"
     assert target["exchanges"][1]["location"] == "GLO"
     assert target["exchanges"][1]["amount"] == pytest.approx(84)
+    assert "67.2 kWh nominal" in target["exchanges"][1]["comment"]
     assert target["exchanges"][2]["amount"] == 25
+    assert target["comment"] == (
+        "Production location denotes regional design; original component supplier "
+        "geographies are retained."
+    )
+    assert "comment" not in service
     assert service["exchanges"][1]["amount"] == production / 200000
     assert service["exchanges"][2]["amount"] == 0.21 * 0.8 * production
     assert service["exchanges"][6]["amount"] == 1e-6
@@ -468,6 +475,9 @@ def test_installed_metadata_survives_excel_import_and_matches_purchases(
     from premise.filesystem_constants import INVENTORY_DIR
 
     datasets = ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
+    activate_static_vehicle_batteries(
+        datasets, {"pass_cars": "car", "trucks": "truck"}[family]
+    )
     services = [
         d for d in datasets if d["name"].startswith("transport,") and SPEC_KEY in d
     ]
