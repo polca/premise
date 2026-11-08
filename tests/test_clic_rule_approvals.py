@@ -23,7 +23,7 @@ def material_case(label="fan"):
     return next(row for row in rows if row["label"] == label)
 
 
-def graph(*sources):
+def graph(*sources, version="3.9"):
     record = native(
         1,
         1,
@@ -33,7 +33,7 @@ def graph(*sources):
             for source in sources
         ],
     )
-    record.update(background_version="3.9", biosphere_version="3.9")
+    record.update(background_version=version, biosphere_version=version)
     return catalog(record).resolve(["dataset-1"])
 
 
@@ -249,3 +249,46 @@ def test_existing_helper_recipe_drift_does_not_inherit_approval(monkeypatch):
         approved_compatibility_rule_scopes(
             resolve_inventory_target("2026", family="uvek")
         )
+
+
+@pytest.mark.parametrize("version", ["3.6", "3.9"])
+def test_existing_road_approval_uses_complete_heavy_fleet_with_warnings(
+    tmp_path, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-d6b9d771677aa51e"
+    )
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(graph(rule["source"], version=version), version="2026", family="uvek")
+    exchange = result.activities[0]["exchanges"][1]
+    assert exchange["name"] == "Transport, freight, lorry, fleet average"
+    assert exchange["location"] == "RER"
+    assert exchange["unit"] == "ton kilometer" and exchange["amount"] == -2
+    assert any(
+        d["code"] == "migration.technosphere_information_loss"
+        for d in result.diagnostics
+    )
+
+
+def test_older_road_approval_does_not_extend_to_an_uninspected_release():
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == "bp-d6b9d771677aa51e")
+    assert compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", "3.12", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    ) not in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )

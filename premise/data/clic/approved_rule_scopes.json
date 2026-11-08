@@ -642,6 +642,384 @@
           "fingerprint": "c63304aa93b43b5d23b4a18eb3a1041f3927e25a32b9257e84529e8074f11488"
         }
       ]
+    },
+    {
+      "rule_id": "bp-a51d49493f310338",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_older_regional_road_review.json",
+      "review_sha256": "257c9bf484d006beacd91eba6b877f420d3b89a1dc04ea03c24be237cbabc6a4",
+      "authorization": "Exact source all-size heavy-road service uses the independently inspected complete RER heavy-lorry fleet per signed tonne-kilometre under standing same-function geographic screening approval. Retain vehicle, fuel/energy, maintenance, infrastructure and emissions. Regional fleet class, EURO, loading, fuel intensity and vintage differ; no payload, capacity or lifetime normalization, new vehicle inventory, treatment omission or inverse is inferred. Preserve every signed source coefficient, caller uncertainty/formulas/ownership and separate physical emissions. Existing individually approved custom heavy-road choices, rail services and historical consequential provenance remain unchanged. Only enumerated actual cut-off profiles are approved.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b48dbe752ab585dea78fc26114a8ba64bd77db12f3ceeb5b2ca9d1e8e9b45974"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "56ec3bc0a623f50bbc6b76ea8da907c9f82fea1c3d1c00ef429d569fc477d0b3"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c104c3c7f26e3f320fb8f86e204ffd0ea0646b54031e131b66d90cf548c48add"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "32aa0b695ee12a021790750046692aa733d4d2c526d90cff95d4a85441a748cc"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "937ab9d9813b230e10580a933a3b9b38ba9e6c16892789a72c572b44490630fa"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "03b322946817b121d749f11efbe2bfa98e02138a7fa39bbe70bc0d2dda829c15"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "69ace35f0fb96427d4511483bb5ee849eb4c1bfa8d5216af1488f59bdd4a7473"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d6b9d771677aa51e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_older_regional_road_review.json",
+      "review_sha256": "257c9bf484d006beacd91eba6b877f420d3b89a1dc04ea03c24be237cbabc6a4",
+      "authorization": "Exact source all-size heavy-road service uses the independently inspected complete RER heavy-lorry fleet per signed tonne-kilometre under standing same-function geographic screening approval. Retain vehicle, fuel/energy, maintenance, infrastructure and emissions. Regional fleet class, EURO, loading, fuel intensity and vintage differ; no payload, capacity or lifetime normalization, new vehicle inventory, treatment omission or inverse is inferred. Preserve every signed source coefficient, caller uncertainty/formulas/ownership and separate physical emissions. Existing individually approved custom heavy-road choices, rail services and historical consequential provenance remain unchanged. Only enumerated actual cut-off profiles are approved.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b2937dc493b7647dd46125e13d332d4cf46618ab12cb85c642c3750908da13ac"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d087810fd0557e64a885247e29ae950417813597360e9ecc307cd1a7af12b784"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4598e88ba829864e1f3a107d16728ca02bb9ee847af529745a059fdc9fcffb1f"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8c06cd5d35bd4cc55a935569ce999695a004ea81bcdba256acc2fee25bb242a8"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "953c3a2e1d7fde8443a402d1b98ce23b26770a410e92c94510a0f199a850e326"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cc98ff84f79491e751651f6a4247a2c7c0b56c0f9338bc4f5d0a35ce2da0fef6"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "338c0387529ad919ba5888ccf29d971fd429d114d771e65c203ba9d6791555ba"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1af2418d10ae3176",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_older_regional_road_review.json",
+      "review_sha256": "257c9bf484d006beacd91eba6b877f420d3b89a1dc04ea03c24be237cbabc6a4",
+      "authorization": "Exact source all-size heavy-road service uses the independently inspected complete RER heavy-lorry fleet per signed tonne-kilometre under standing same-function geographic screening approval. Retain vehicle, fuel/energy, maintenance, infrastructure and emissions. Regional fleet class, EURO, loading, fuel intensity and vintage differ; no payload, capacity or lifetime normalization, new vehicle inventory, treatment omission or inverse is inferred. Preserve every signed source coefficient, caller uncertainty/formulas/ownership and separate physical emissions. Existing individually approved custom heavy-road choices, rail services and historical consequential provenance remain unchanged. Only enumerated actual cut-off profiles are approved.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0064cc1e5e541654bffaca1313d3c1edb965d295179dd850c33a108b788014d1"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "631a41e865d3f2362c967710b69c742fbc05dec68e35b06b309c25420fa7c466"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a2e1e697397e89e12cfa8affd055034f751a044ac8c2584d697107cdbe4e07f2"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2dba1cb8fdaf6ed32246bb2c5c11c0605576ebf088d310dfc7e281291f027ca8"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "82015863fbe73bdfe8b9532bfb6d61be06876457e2ba725d91ed11f4fbe70805"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8114f2a418b0a946666dc9da27d6bf97d22d0321b9d5f90a78e1173675e96a93"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b3d7aca4c9a157188a51f24a0c6b20e412be7b7605cc41c45820d1af2cd29b10"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6b4f9e5ca470ac92",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_older_regional_road_review.json",
+      "review_sha256": "257c9bf484d006beacd91eba6b877f420d3b89a1dc04ea03c24be237cbabc6a4",
+      "authorization": "Exact source all-size heavy-road service uses the independently inspected complete RER heavy-lorry fleet per signed tonne-kilometre under standing same-function geographic screening approval. Retain vehicle, fuel/energy, maintenance, infrastructure and emissions. Regional fleet class, EURO, loading, fuel intensity and vintage differ; no payload, capacity or lifetime normalization, new vehicle inventory, treatment omission or inverse is inferred. Preserve every signed source coefficient, caller uncertainty/formulas/ownership and separate physical emissions. Existing individually approved custom heavy-road choices, rail services and historical consequential provenance remain unchanged. Only enumerated actual cut-off profiles are approved.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8cdac09d6528db402fcdb04507150bde8131dceb9a2348a1814c156005702758"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6476ad419171aa244bb7dc84e67f608a473fbc788bc209816e21caaca63ebc17"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c7edc2d898bbdee7cc2d0c72c555804be4be8b89847ba65566b9ce20a3fbd583"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a98030380e852e986496fcda3c26c385912a3ded7232f1063e76d0333fc951ea"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "55f0eb04447669eeda3405fcb8d41fc2db5b0276a6ebb1ae34c2bb06ac1d4169"
+        }
+      ]
     }
   ]
 }

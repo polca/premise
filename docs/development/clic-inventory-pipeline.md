@@ -225,6 +225,12 @@ or a generic heuristic label alone cannot enter this ledger. This registers the
 prior complete-market decision, preserving producer shares, packing and delivery freight without
 requesting the same modelling approval again.
 
+It also pins the prior complete heavy-lorry screening review for four older
+regional road-service identities across 26 inspected cut-off profiles. Signed
+tonne-kilometres select the complete RER fleet, with geographic, fleet, loading
+and vintage limitations retained in diagnostics. Later uninspected releases
+cannot inherit that approval.
+
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by
 the upstream mapping workflow. Import provenance must retain that manifest and
