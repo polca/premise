@@ -484,6 +484,17 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-6a97c5362cbe7587", "3.9"),
         ("bp-7740a48a01851669", "3.6"),
         ("bp-7740a48a01851669", "3.9"),
+        ("bp-129394609f0fae8e", "3.6"),
+        ("bp-7bb87cea8e133871", "3.12"),
+        ("bp-b7b01a65bd699382", "3.12"),
+        ("bp-49570b4c4014afaf", "3.9"),
+        ("bp-476511d499d06401", "3.6"),
+        ("bp-7ca3587cbfe4ce9b", "3.6"),
+        ("bp-7ca3587cbfe4ce9b", "3.9"),
+        ("bp-714b90acb435b476", "3.9"),
+        ("bp-8bbb01130472bd02", "3.9"),
+        ("bp-d57552347b187336", "3.12"),
+        ("bp-fef3bd133ce6cadc", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -1035,6 +1046,40 @@ def test_inspected_paint_market_reuses_water_based_producer_scaling(tmp_path, am
             d["code"] == "clic.compatibility_proxy_limitations"
             and d["details"]["rule_id"] == rule["id"]
             and "+1/0.60" in d["message"]
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
+def test_zinc_coating_keeps_steel_separate_and_does_not_repeat_area_normalization(
+    tmp_path,
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    steel = rules["bp-7ca3587cbfe4ce9b"]
+    coating = rules["bp-fef3bd133ce6cadc"]
+    resolved = graph(steel["source"], coating["source"], version="3.9")
+    resolved.activities[0]["exchanges"][1]["amount"] = 2
+    resolved.activities[0]["exchanges"][2]["amount"] = 0.125
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 3
+        stock, service = activity["exchanges"][1:]
+        assert stock["name"] == "Reinforcing steel, at plant"
+        assert stock["amount"] == 2 and stock["unit"] == "kilogram"
+        assert service["name"] == "Zinc coating, pieces"
+        assert service["amount"] == 0.125 and service["unit"] == "square meter"
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == coating["id"]
+            and "60 m2/t" in d["message"]
+            and "exclude the steel substrate" in d["message"]
             for d in result.diagnostics
         )
     assert resolved.activities == before

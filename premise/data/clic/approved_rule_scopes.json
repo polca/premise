@@ -11797,6 +11797,1116 @@
           "fingerprint": "1a94e9f09de29b9b2ee189bcdd8e4d84d53a527064053a1b31ab6d2edaa45fbe"
         }
       ]
+    },
+    {
+      "rule_id": "bp-129394609f0fae8e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-129394609f0fae8e",
+        "source": {
+          "location": "IAI Area, EU27 & EFTA",
+          "name": "aluminium, ingot, primary, import from Rest of Europe",
+          "reference product": "aluminium, primary, ingot",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, primary, at plant",
+          "reference product": "Aluminium, primary, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "6009f848e9555afdc1b0b411694a6fe6b19e0071773764dbe57e2d5a9b375170",
+            "inventory_sha256": "2853a6ddb5730b8a61b82dfe4cce09b139aba5b03c0fe590270c50a1c1396dff",
+            "activity_comment_sha256": "e6168199fe6f2320b1dbefddba5d3cc068292f31475b716622ea90038af1aaac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "IAI Area, Russia & RER w/o EU27 & EFTA",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "9db414f9e136a9693902cc0f13a55a8d2a7083be9adba76038bb01cb83680340",
+                "inventory_sha256": "48bc4b4b4dac8f9d85a979bc7a23dbe53c82aa3579eaac60eda12f5dd816d827",
+                "comment_sha256": "215776e2fc4a04ac7c493a86f62155af76aba169bc7621b7717b2a69d50c1ba3"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "9c2da65149859c157127c43de436593efcfa8f345ad68d300fa29877a2ab4946",
+            "inventory_sha256": "53207f3ef6cc5a7c4c65c6f26ea8812a744a465065a953a9c25904a9613140a8",
+            "activity_comment_sha256": "918daccfae252775aad5a2355c2a37752ccf39670aa218c9d8d2fe7c3448b572",
+            "direct_technosphere_coordinates": 17,
+            "active_biosphere_exchanges": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "4873821f600ec055865f4f21e9bd76d0f774fa3ea1af041667b9420c62527f8a",
+            "inventory_sha256": "8b8bd682c15d8099c8e2969477a5675e13c8eb9aeefd1ed3263b30c5c209160e",
+            "activity_comment_sha256": "540fca24440abafdee4a28f3d3fd849608530bc4ee340cc6d6034ea929e04cbd",
+            "direct_technosphere_coordinates": 17,
+            "active_biosphere_exchanges": 8
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same primary aluminium ingot per kg. The source border-handover activity buys one kg of primary ingot; its producer inventory includes liquid primary aluminium. The complete native product includes upstream liquid aluminium plus casting and casting infrastructure, so it is not a molten-metal-only proxy. Native casting loss/yield, alloy representation and energy differ and are not adjusted. Rest-of-Europe import origin and electricity mix are approximated by European native supply; source trade shares and logistics are not reconstructed. Preserve signed kg with no new casting, yield multiplier, re-export assumption or recycling credit."
+      },
+      "limitations": [
+        "Same primary aluminium ingot per kg. The source border-handover activity buys one kg of primary ingot; its producer inventory includes liquid primary aluminium. The complete native product includes upstream liquid aluminium plus casting and casting infrastructure, so it is not a molten-metal-only proxy. Native casting loss/yield, alloy representation and energy differ and are not adjusted. Rest-of-Europe import origin and electricity mix are approximated by European native supply; source trade shares and logistics are not reconstructed. Preserve signed kg with no new casting, yield multiplier, re-export assumption or recycling credit.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a40bd7fcb0c27154d763804344dc55fd8e7f7382d155fefec381de2a493544b6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7bb87cea8e133871",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-7bb87cea8e133871",
+        "source": {
+          "location": "RoW",
+          "name": "market for aluminium, primary, ingot",
+          "reference product": "aluminium, primary, ingot",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, primary, at plant",
+          "reference product": "Aluminium, primary, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "76c6ef1af5c0d760876d5e7fc4398ecc038ca8c58f054aaa512f7f00b5098b58",
+            "inventory_sha256": "a506e2551b4cb6c82450a31973d100113d501c8d9aae76a5122ec2d0b46ce76d",
+            "activity_comment_sha256": "4917d47249301fb2c8baf2d19a3b155eaa9c2827f21c59b8b7d79ad3adbe71ac",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "2ba51b2ccac39639e3d475f11a220355cf347b62fa8f52b7d3feb071e7dee50f",
+                "inventory_sha256": "b703eab5c4b6fd3d5926fb5b35499c83b570a7ede41716fb2b3c4a957aa6ca35",
+                "comment_sha256": "16591b66f7ddcb5f1b71dd28fcfb4b694cd68ff4ef8c7ea14a705b2bff7a9d01"
+              },
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "IAI Area, Gulf Cooperation Council",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "c282a0cc3c388b2369b90f937570dabd19d7239fbdb355545eeb6a1421c558f2",
+                "inventory_sha256": "0b1fca01a634f29057c7226b38a1062f9e32d50d564382438cb469f645f39f4c",
+                "comment_sha256": "2fea4e986080a03142f2791f9cf0487cde18692715170714306eee63841c2d8f"
+              },
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "CN",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "84f6fe905ab71fdc6f34b38f923a86f33aa0dc8c9b6eac51ef8016dc3dce6b99",
+                "inventory_sha256": "846ca208c43e82456e8fdf795d0c3368bb289e0652854c0687717dda6913b8ee",
+                "comment_sha256": "e7d75e0055a5fb51c026a0cedc0f61baf4db718fea7ef6673ec1b759965e8306"
+              },
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "CA",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "bfd4dcd7cd4ffd84bfd10050e137e8f4f130d1e332c4119576d6546e955de3bc",
+                "inventory_sha256": "763ac46fe25766d43ea2ec2e5ccf0e41b74f4dedfa6a89d806a2cd48624bc6c6",
+                "comment_sha256": "a74e78b88efceaca00f0cf0be948b42113cac8afc78b7dd9e42216cacefccd66"
+              },
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "UN-OCEANIA",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "b7b73f67759f2b9783de85f6d99ecb9f7b8b1b2d475305ab5cf85f37f2c1b4a5",
+                "inventory_sha256": "d0f0b9ff532b5accdb4c9ce5cb71d7b018b0c71dabe0a7a6354c7aa4587c270f",
+                "comment_sha256": "e8fc057581cf1e331363f17e0a26699e59f2d61c1717821f5440070d3581034b"
+              },
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "IAI Area, Asia, without China and GCC",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "f857997c8cf76ad1aca569cf8a49ec87fb0068e1c473103096c7f5cc99199d53",
+                "inventory_sha256": "5dd571bb56566c820b0e8a81bdba47b89d5b0bf57a924f75b4984aeebf51259b",
+                "comment_sha256": "b10c5c5f6ff699b7d5313db690e5c407a9989d76ef02fffca454967145e1397c"
+              },
+              {
+                "identity": {
+                  "name": "aluminium production, primary, ingot",
+                  "reference product": "aluminium, primary, ingot",
+                  "location": "IAI Area, Western and Central Europe",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "98589810d27ef15aaecd830dc14bd160590e2f3eec54eb65d525c1e10bd337bd",
+                "inventory_sha256": "14644c01dd9068e07eaa2267baab20e394d1075d58ef0896357e639b2cef5e62",
+                "comment_sha256": "670f363d43da39cb172cd7d76d7a4c8650418881177183cd8a7c46d8a49c2070"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "9c2da65149859c157127c43de436593efcfa8f345ad68d300fa29877a2ab4946",
+            "inventory_sha256": "53207f3ef6cc5a7c4c65c6f26ea8812a744a465065a953a9c25904a9613140a8",
+            "activity_comment_sha256": "918daccfae252775aad5a2355c2a37752ccf39670aa218c9d8d2fe7c3448b572",
+            "direct_technosphere_coordinates": 17,
+            "active_biosphere_exchanges": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "4873821f600ec055865f4f21e9bd76d0f774fa3ea1af041667b9420c62527f8a",
+            "inventory_sha256": "8b8bd682c15d8099c8e2969477a5675e13c8eb9aeefd1ed3263b30c5c209160e",
+            "activity_comment_sha256": "540fca24440abafdee4a28f3d3fd849608530bc4ee340cc6d6034ea929e04cbd",
+            "direct_technosphere_coordinates": 17,
+            "active_biosphere_exchanges": 8
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same primary aluminium ingot per kg, represented by the complete native European product with liquid-aluminium supply and casting infrastructure. Source RoW/IAI-country market shares, electricity origins, casting losses, alloy representation, freight and vintage differ. Preserve complete native production once; add no second casting process, liquid-metal demand, market reconstruction, yield multiplier or recycling credit."
+      },
+      "limitations": [
+        "Same primary aluminium ingot per kg, represented by the complete native European product with liquid-aluminium supply and casting infrastructure. Source RoW/IAI-country market shares, electricity origins, casting losses, alloy representation, freight and vintage differ. Preserve complete native production once; add no second casting process, liquid-metal demand, market reconstruction, yield multiplier or recycling credit.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1a49c639f9fdb06371b37061773e4f79625dd04323c2e96ed5317ec56bbf4e64"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d57552347b187336",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-d57552347b187336",
+        "source": {
+          "location": "GLO",
+          "name": "market for antimony",
+          "reference product": "antimony",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CN",
+          "name": "Antimony, at refinery",
+          "reference product": "Antimony, at refinery",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b3a048020cdcbe23c7531116020e42e3b23fbdb62c9fec9079f7ece1b76e2f82",
+            "inventory_sha256": "a2314e5be4858473d81e8985bae078b9708ca9ff452bd1f1b84a7b4a3812e224",
+            "activity_comment_sha256": "fdb4a4df3b477fb60c68f638c76745989a68acb1fda957ce3325af7e9b27c7e3",
+            "product_information_sha256": "efa66e2ff04865e78db7e9152d21208bea347b41ed2958e956e34161212c7c3b",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "antimony production",
+                  "reference product": "antimony",
+                  "location": "CN",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "8767cf21f7d2e9265f3bd2d06bf515cc4c294d02013206462c23e53663553cf8",
+                "inventory_sha256": "02e63965341e26fb4e65150fe88a6d6d1df636cfd7164e4086ac5ca14b028b6f",
+                "comment_sha256": "1f3aa217b0a53734c70de8a871265fa3de51f25f8c31cadcf7082d28404e2608"
+              },
+              {
+                "identity": {
+                  "name": "antimony production",
+                  "reference product": "antimony",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "9e11f075a983b6c1471e72abb6a87b1429074d1a7e9d58f3f4b65f5b5aa491cb",
+                "inventory_sha256": "8d57a66c3e8e5ba4f75da9aad4918801a78cd94f9787da94e511627ebdd12211",
+                "comment_sha256": "c5fe1d366c9840ec04340b8289596bcbc8a9bb8b484a965960859dfba8d1dfed"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d4601a33c983a2d45c42fa09f48c263b3c78164d53562791b5e5ff2323c4fd7e",
+            "inventory_sha256": "2c10f909a89cdf713b48d9c96670210089963efdd7e1eefabea7b3694960088a",
+            "activity_comment_sha256": "599bd3af5d9abb7800f851a2d9ccee253c789784045c1a2340c40068c07244ab",
+            "direct_technosphere_coordinates": 13,
+            "active_biosphere_exchanges": 20
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "c67d2ee1e02d17572b3f710a4fb1a87ac7bf456e5711d733a5d9cb2e863d4847",
+            "inventory_sha256": "eb7b8a552d2df9e950b93515325fde08dc8fbc2ad6e5d88fcd75d91a595c0df1",
+            "activity_comment_sha256": "fc3f1cec3e18f55f1143c6b3c0a8d7048ec9e8778850e1c4f2b07f8abc131dba",
+            "direct_technosphere_coordinates": 13,
+            "active_biosphere_exchanges": 20
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same metallic antimony product per kg from concentrated stibnite, not antimony oxide or flame-retardant service. Source and native document the historical Chinese blast-furnace/rotary-kiln/electrowinning model approximated from lead smelting. Retain the complete native refinery inventory and wastes once, with its lead-smelting approximation, weak data, geography, vintage and delivery limitations. Do not apply ore concentration or purity multipliers, add another refinery, or claim semiconductor-grade purity. The source producer warns against using this approximation for oxide flame retardants or systems dominated by antimony; retain that screening limitation."
+      },
+      "limitations": [
+        "Same metallic antimony product per kg from concentrated stibnite, not antimony oxide or flame-retardant service. Source and native document the historical Chinese blast-furnace/rotary-kiln/electrowinning model approximated from lead smelting. Retain the complete native refinery inventory and wastes once, with its lead-smelting approximation, weak data, geography, vintage and delivery limitations. Do not apply ore concentration or purity multipliers, add another refinery, or claim semiconductor-grade purity. The source producer warns against using this approximation for oxide flame retardants or systems dominated by antimony; retain that screening limitation.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "849c5735e10980890c8339c7d4a0a90d7cc12a21fee3188d4c16d43468eda815"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b7b01a65bd699382",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-b7b01a65bd699382",
+        "source": {
+          "location": "RER",
+          "name": "market for fibreboard, hard",
+          "reference product": "fibreboard, hard",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Fibreboard, hard, at plant",
+          "reference product": "Fibreboard, hard, at plant",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ebc51725c253c7e13b9178964b999a346cd79b65007bc28ce13f4286abdedb4e",
+            "inventory_sha256": "fc4ae1e2a3b9758b517ed0c9897bb02fd80afb34967019abb4b8622129fc7cda",
+            "activity_comment_sha256": "c73f22818a48162fd2d851d0d51dbc83b6f813f08286a62d5a1479bb1a416d3a",
+            "product_information_sha256": "fc4dc99cd99262519965e210db0e322862e9b4fef6011dc684c6726c047195d5",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "fibreboard production, hard",
+                  "reference product": "fibreboard, hard",
+                  "location": "RER",
+                  "unit": "cubic meter"
+                },
+                "metadata_sha256": "b9658a883c7ef4086555891c86a1cbbd1f4882cdd0c7d1731894cadaba305dbb",
+                "inventory_sha256": "982e7c859ad4eef8fd736a67829604c26a8b60499bccc5aa8a5fa26b3e6d580b",
+                "comment_sha256": "dccbaf1d326b0ba33b48f2ff9e82a88ccff05ab8d36ad87d641baf881c0699a5"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "11494a5c3921e88eff094628b86a35c1b2ee1763cb8b1f1e9fb720cbf13af483",
+            "inventory_sha256": "672d66b77eafd6297a1d88d3fcfdca0be452fef60e0b4300ade80cccda62b0a9",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "direct_technosphere_coordinates": 33,
+            "active_biosphere_exchanges": 44
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "d8e6fae41425f65b104bda4bad0af3a236021ee0b2db3d446d81bfd329bc4e62",
+            "inventory_sha256": "c86a8dcc8220ed82ad3b48caeec7bf6ea58416a7533d55ba018c9757f818ff95",
+            "activity_comment_sha256": "ca2295ae3239deb13330415f67d64051aa607409316dd74effa26713fa3e5af0",
+            "direct_technosphere_coordinates": 33,
+            "active_biosphere_exchanges": 44
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same hard fibreboard product per cubic metre, not per kg and not medium-density fibreboard. Source wet-process production and the complete native board inventory include wood inputs, process water, energy, binders/additives, infrastructure and effluent treatment. Native parent documentation leaves manufacturing parameters unspecified; its inputs and hard-fibreboard wastewater service support the product boundary but do not prove identical pressing, moisture, density or board properties. Retain the native product once per signed m3, including original wood/recycled-fibre mix and biogenic flows. Do not apply the source 956 kg/m3 density as a conversion or rescale by dry mass; geography, wood origin, moisture, technology, allocation, vintage and delivery differences remain warnings."
+      },
+      "limitations": [
+        "Same hard fibreboard product per cubic metre, not per kg and not medium-density fibreboard. Source wet-process production and the complete native board inventory include wood inputs, process water, energy, binders/additives, infrastructure and effluent treatment. Native parent documentation leaves manufacturing parameters unspecified; its inputs and hard-fibreboard wastewater service support the product boundary but do not prove identical pressing, moisture, density or board properties. Retain the native product once per signed m3, including original wood/recycled-fibre mix and biogenic flows. Do not apply the source 956 kg/m3 density as a conversion or rescale by dry mass; geography, wood origin, moisture, technology, allocation, vintage and delivery differences remain warnings.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "834e6672f15fd28448eb6d6821b3c791bfe169f2ea9ccb841e7e98c3229437fd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-49570b4c4014afaf",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-49570b4c4014afaf",
+        "source": {
+          "location": "RER",
+          "name": "market for flat glass, coated",
+          "reference product": "flat glass, coated",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Flat glass, coated, at plant",
+          "reference product": "Flat glass, coated, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "d957afe568f1e2b89a2c043caee3551fb4ae862c48613ee544e779b5e40024c0",
+            "inventory_sha256": "3cd3842bebe230d2bc1213a44c28af4f1786ab43e3d1f5fdb6d9d7932fc9690a",
+            "activity_comment_sha256": "f0c21bac8c6761fb20429901c4c83659b4f2b8db70fa58274e75f8ac00e3113e",
+            "product_information_sha256": "2de58667edde9155e16ab0db9afaf630c00ffaefedc05ce577baea7cbfbb42e3",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "flat glass production, coated",
+                  "reference product": "flat glass, coated",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "efe5e6edb832e46f2b83704ae296875c1717b2188f4be2a17843e2b717659a6d",
+                "inventory_sha256": "13f43fae0dee096ee889370a89bb158c17d6ed7e3001f2e79515d0b4d8f54a05",
+                "comment_sha256": "21c5facb25bd8fb92ce9c7a005d5363dc65f20c2f1c1a35bde467968be0276e7"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "805152061e0fe3744bbd7a747a4d7e3c2afb2e5b1bf6eb4d34dab460b62aad26",
+            "inventory_sha256": "09f1749bc2574a43ab01b7e133e0f512ebd3b2ed7d7120ad5a72f4ac665972aa",
+            "activity_comment_sha256": "75ec828401464789b0b3484e6b5d8d6a0254fcd29ff1f91cbbc48b7c7365614f",
+            "direct_technosphere_coordinates": 28,
+            "active_biosphere_exchanges": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "f3bae54e7bdf86c2831cbbc75cbfeaa67043845a49b6d0c7039872d46313557b",
+            "inventory_sha256": "1a4c583bf87ee5513617b9c5c604bb0699d55eff426a13dbf213972d2af17bc6",
+            "activity_comment_sha256": "90c62a6abcb52fdfb4fe972d9f901278d0cb739f2feac4e8c65739bf3d762a7f",
+            "direct_technosphere_coordinates": 28,
+            "active_biosphere_exchanges": 3
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same complete coated flat glass per kg, using cathodic sputtering on float glass. Both inventories include the uncoated glass substrate; add no second sheet or coating service. The native historical inventory approximates missing silver/bismuth coating targets with nickel/chromium. Retain that documented internal approximation and its substrate loss, packaging and energy once, with an explicit composition/technology/data-quality warning. Do not substitute coating metals, infer a purity or surface-area factor, or repair the native inventory. Source delivery, geography, vintage and emission coverage differ."
+      },
+      "limitations": [
+        "Same complete coated flat glass per kg, using cathodic sputtering on float glass. Both inventories include the uncoated glass substrate; add no second sheet or coating service. The native historical inventory approximates missing silver/bismuth coating targets with nickel/chromium. Retain that documented internal approximation and its substrate loss, packaging and energy once, with an explicit composition/technology/data-quality warning. Do not substitute coating metals, infer a purity or surface-area factor, or repair the native inventory. Source delivery, geography, vintage and emission coverage differ.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "571ad0c1a41c9ed8df4e2542b75adf93a6deec34c3bbd90e370ac6416292300a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-476511d499d06401",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-476511d499d06401",
+        "source": {
+          "location": "RER",
+          "name": "market for lignite",
+          "reference product": "lignite",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Lignite, at mine",
+          "reference product": "Lignite, at mine",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "377b962894b33d60075525e4a3eb208e7dcc25af1070ce614ec77afdf455d102",
+            "inventory_sha256": "1803e760720743fede520ee5b1b3101e1d9ce708ab51e0d935399d62aa69bfc6",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "lignite mine operation",
+                  "reference product": "lignite",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "55e53d65964985a87a18ad28a55e0771b2994ddb60ca78665508394f0d256568",
+                "inventory_sha256": "db964dd6439ccead9f93cf8d56d50f43a19fdc63c8ac6f9add2a00edf7e80130",
+                "comment_sha256": "4fe90498217756b1cc58441561585048f8723acbbe579cd6fe3e1ed6a9271dca"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "807077cded324a3faa017f383c07a800854c105d209677332beff72a7bc225f8",
+            "inventory_sha256": "1ef8b94eae16d87695f5921fc452bdf0af9214b7ac0bfd056d9be5b878786e88",
+            "activity_comment_sha256": "dba8d3c6bfa1db9c2918d475393d4bb30cae0dba7aa6300b6a5f00d77b53708d",
+            "direct_technosphere_coordinates": 4,
+            "active_biosphere_exchanges": 15
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "9ce0fb82911637de27639fa80c74973a4065c4143c8085cfd8c0ff9c31987cb1",
+            "inventory_sha256": "99d0814a46024ad8e5a2a1f4e5db6eddce17a2d19a5c6029c0d4f15e987cb86d",
+            "activity_comment_sha256": "f485ec912e21a7bb71c12d441202688e37a162d103026768133b673a6ee15e90",
+            "direct_technosphere_coordinates": 4,
+            "active_biosphere_exchanges": 15
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same mined lignite product per kg of pit coal, not briquettes, heat or electricity. Source pit-coal output has a 9.9 MJ/kg description; native fuel heating value and moisture equivalence are not established. Preserve the original mass coordinate with no dry-mass, moisture or heating-value conversion. Retain the complete native European mine, spoil disposal, land/recultivation, pumping and utility inventory; no second mining/restoration burden is added. Native methane was updated in 2022, while other historical estimates, omitted mine heat and limited water/particle coverage remain limitations. Mine geography, fuel quality, vintage, delivery and LCIA results differ."
+      },
+      "limitations": [
+        "Same mined lignite product per kg of pit coal, not briquettes, heat or electricity. Source pit-coal output has a 9.9 MJ/kg description; native fuel heating value and moisture equivalence are not established. Preserve the original mass coordinate with no dry-mass, moisture or heating-value conversion. Retain the complete native European mine, spoil disposal, land/recultivation, pumping and utility inventory; no second mining/restoration burden is added. Native methane was updated in 2022, while other historical estimates, omitted mine heat and limited water/particle coverage remain limitations. Mine geography, fuel quality, vintage, delivery and LCIA results differ.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c7f1ffcc2513b964ef888bfa83a77ba88a4164f60e0062049b2988f0ebb1901c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-7ca3587cbfe4ce9b",
+        "source": {
+          "location": "GLO",
+          "name": "market for reinforcing steel",
+          "reference product": "reinforcing steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Reinforcing steel, at plant",
+          "reference product": "Reinforcing steel, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b9e9ccd34380ac27419bc428c7559185f7ea5c1853a10143a604c63ef92b0bdd",
+            "inventory_sha256": "c61649b1ba6fc8cd993ece245bac75244c940a0753c2b4ec6604ff7442f43218",
+            "activity_comment_sha256": "94e701237b5edc076c875c6350ca660eb68069371356fc03215d8168bfb8c0b8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "reinforcing steel production",
+                  "reference product": "reinforcing steel",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "48dcf02347c484d4b0b394a52d1b27391f40bf1c191d9123f0e5d5c7c30a3bd1",
+                "inventory_sha256": "6c868808682e99801c3dbbc34d3f92a73950f85a20bd9891cc96a8c46f6bd0ea",
+                "comment_sha256": "aa2ed3fd7d6f6579bb87594317075da5ebb0950b68b29e77d1dc74e85510350e"
+              },
+              {
+                "identity": {
+                  "name": "reinforcing steel production",
+                  "reference product": "reinforcing steel",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "220a35e7c5fbe103f2c3790d8d9449c016044b44e3408e477e116e4f95f9be55",
+                "inventory_sha256": "222d83ba0fa9adaef533fe1c9de1aae9a8a54a610afea3f25da7c76313b7c0f0",
+                "comment_sha256": "aa2ed3fd7d6f6579bb87594317075da5ebb0950b68b29e77d1dc74e85510350e"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3efc3c1299755c7aa0f26f9475002386221e51edf8907657906f3ebfae1fe41e",
+            "inventory_sha256": "4caa8b5c1d112bbd57dcc45c72e0c894c5bfdd250dcb8df4ed39a5b4716af0e7",
+            "activity_comment_sha256": "b5690714d51e9363298b74038f5265ec5f6126b287ac65ccc909e2cf03dba457",
+            "product_information_sha256": "5d7139f71ff5d549ca4b0fddeb3caac7c853df1aceabf8cff9e322a24b402d6d",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "reinforcing steel production",
+                  "reference product": "reinforcing steel",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "75dec0aeabd90d876dcf23b0c082fa5e343153cd5bca5139eb9a421a572f68a2",
+                "inventory_sha256": "6472537dc36b97a177f26eebd49e2f7b10c26b8ec286d39d83bb2f15f32b6c48",
+                "comment_sha256": "50d576b3d8f6e4f789776f853919da4a3cb222c61cb58581956034e82efb55e6"
+              },
+              {
+                "identity": {
+                  "name": "reinforcing steel production",
+                  "reference product": "reinforcing steel",
+                  "location": "AT",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "9340cdc27b2a07b91bac2b695e61c05dc306d4eb94bfc0f4dd11371f40aab0df",
+                "inventory_sha256": "3849c847d4210fcb5f0080e860c71d18f23594f55a213a3a20f914de40ed20b7",
+                "comment_sha256": "523b43b5aaf267f9a4682e12e3b3bc09180005a63b157133f71d0210ff966a2a"
+              },
+              {
+                "identity": {
+                  "name": "reinforcing steel production",
+                  "reference product": "reinforcing steel",
+                  "location": "Europe without Austria",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "85aa8cf483fdf408afe9c546f25e8ea54e27427e652d3cc88c8b606bfc30a4c6",
+                "inventory_sha256": "20b90c158f1d6f667c76227ab5c7625019b1bd4963b7e7d11d5009b97f6cabb8",
+                "comment_sha256": "38171e978f3b80039fdd7c3e967704cc7abb45bcddcc95afe975de6d2e98a412"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "59db1034d28606a907cf5b95c2f50c29ebd81daf0c95ebed91fb2eccd4696c97",
+            "inventory_sha256": "48e0394f251bd7f722f881e3511912981122746ef854c92e53c25c610677b5fc",
+            "activity_comment_sha256": "c7cd49ce27cc7069fe1c6ee21754414c337c2f6027ebb45fda09b5b74dbec196",
+            "direct_technosphere_coordinates": 2,
+            "active_biosphere_exchanges": 0
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "a85856cb7524c2f36bb83b2d9b4d5ce5ec68ae2656bc12e5df46d01b77693ae4",
+            "inventory_sha256": "1839d0e5e4f0fceb8f20f864b08c38a63878e4de565c24a5e278a2a72d5bc1ea",
+            "activity_comment_sha256": "bb90ef7cda01c42d59c452b78236dfc934c40e1db3ce7d01403470f65cfa631f",
+            "direct_technosphere_coordinates": 2,
+            "active_biosphere_exchanges": 0
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same finished reinforcing-steel product per kg, including hot rolling in both native furnace routes. Retain the complete native European 30% converter/70% electric-arc mix once; the electric and converter suppliers each already include one kg of hot rolling plus their steel stock. No second rolling service, rebar diameter/length conversion or repeated furnace-share allocation is added. Source global/country suppliers, scrap mix, steel grades and mechanical properties, allocation, electricity, vintage and delivery differ; the native proxy does not establish a specific B500/B550 grade equivalence."
+      },
+      "limitations": [
+        "Same finished reinforcing-steel product per kg, including hot rolling in both native furnace routes. Retain the complete native European 30% converter/70% electric-arc mix once; the electric and converter suppliers each already include one kg of hot rolling plus their steel stock. No second rolling service, rebar diameter/length conversion or repeated furnace-share allocation is added. Source global/country suppliers, scrap mix, steel grades and mechanical properties, allocation, electricity, vintage and delivery differ; the native proxy does not establish a specific B500/B550 grade equivalence.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4b0a4652f55ceffdfc90d3bfc0e55d4736d27c88eb8a4d4266b2f78ab6f1ad89"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3fcf1797d1b31d0a2fc758cc686822288b52ab3f957380b4e21292a1932bc49c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-714b90acb435b476",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-714b90acb435b476",
+        "source": {
+          "location": "CH",
+          "name": "market for sand",
+          "reference product": "sand",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Sand, at mine",
+          "reference product": "Sand, at mine",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5393a6a536e6847475bb08820684f2a5d47bbc5ede01b475e953d461fd84178f",
+            "inventory_sha256": "df074f375e8869b6a8c677acd61fc6ecf51836402a01081194c6db27cffd7ac0",
+            "activity_comment_sha256": "4ccf4b35079c39eee5f0909af7ef0d7a7df571db745b33e6de940af4b5329df4",
+            "product_information_sha256": "5ad1694c47abc7aff1da82f4af8e18ebca2b5029e04d15c032196fd652baf71b",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "gravel and sand quarry operation",
+                  "reference product": "sand",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "66a84aa3ed201f07a6b0a631740fe577fad9e7d7b04b8dcbfa93d2659389e650",
+                "inventory_sha256": "1854f4961789b2e5f0a09885ce301068de46603035566efcc35247ad5cddc746",
+                "comment_sha256": "82025d9c21f6100523b59ac2355749bbac3d1b71b34da9891eb8962a2d0da70d"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "48c5f452b29f5d7fe763948c877463541385c9a6f10c4230f10ecd0c6c9e4429",
+            "inventory_sha256": "dd8151bb714e44875ebcdab45a35e055463c28a74ba1d9c7759c044572983699",
+            "activity_comment_sha256": "f3bd935ade99140a230cd53a6f7e6f01e60ed59f51aa911318e289e2923b4b03",
+            "direct_technosphere_coordinates": 17,
+            "active_biosphere_exchanges": 9
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "c2e457d074cedb9df935459b9e78ebf999aa96d8d1a3d929e7657c58ebb5359d",
+            "inventory_sha256": "ce4b712b43f7e3a4527a5bd7f4ac5baf766795fd70bb10b738c50b2ff49a8350",
+            "activity_comment_sha256": "ec4c1ea2d3b404dd1719710488de851e67bf55243a7f59d475bee64137062af7",
+            "direct_technosphere_coordinates": 17,
+            "active_biosphere_exchanges": 9
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same Swiss quarried sand product per kg from joint sand/round-gravel production, not silica sand, crushed gravel or a separate excavation service. Source and native describe the same 35% sand/65% round-gravel production mix. Retain the complete native allocated product, internal logistics, machinery, water, land and recultivation once without applying the coproduct percentages again. Native exclusions of administration, dust and wastewater remain explicit; source market delivery, resource/land labels, vintage and emissions can differ. Add no gravel credit, extra quarrying or mass-volume conversion."
+      },
+      "limitations": [
+        "Same Swiss quarried sand product per kg from joint sand/round-gravel production, not silica sand, crushed gravel or a separate excavation service. Source and native describe the same 35% sand/65% round-gravel production mix. Retain the complete native allocated product, internal logistics, machinery, water, land and recultivation once without applying the coproduct percentages again. Native exclusions of administration, dust and wastewater remain explicit; source market delivery, resource/land labels, vintage and emissions can differ. Add no gravel credit, extra quarrying or mass-volume conversion.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6ed48e63829186a441c7c852cd5f55239f25218f77504865845a68555a8d5ffa"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8bbb01130472bd02",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-8bbb01130472bd02",
+        "source": {
+          "location": "GLO",
+          "name": "market for zeolite, powder",
+          "reference product": "zeolite, powder",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Zeolite, powder, at plant",
+          "reference product": "Zeolite, powder, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "499e90638df760a2c3c497830491fd9d4d0611c9a4f5768196b652ed01955c81",
+            "inventory_sha256": "887611238a6bcb46f6452cfe1542c6b48a666e4f31630c53c619e79c96cc6466",
+            "activity_comment_sha256": "464d6d27b70a81fdd1c28c6ed07578e4a73cf55590ea332970df23dbd4439cc0",
+            "product_information_sha256": "3f761fa4933d001198983b21ac169a838de0f911977576266088e1265bdc9861",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "zeolite production, powder",
+                  "reference product": "zeolite, powder",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "4a46bc22332e31d73e77612925291c912c4fa7a159226a52b09c4ffc17890fdd",
+                "inventory_sha256": "a2c92180de1096b8b2ca5049e11b74a5bbcf3402199f42a9d6896caa36e3a135",
+                "comment_sha256": "e7c05484b0651dc533111436f39be24f7cfaa3fe924d512b180cf856e49ef744"
+              },
+              {
+                "identity": {
+                  "name": "zeolite production, powder",
+                  "reference product": "zeolite, powder",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "6dd8bfdbb679ebda8ee9af9347630834d9ad5e04d4688867253e1cdf9143077a",
+                "inventory_sha256": "608c216420c7d145c46420d4d6e3ef4b4298b4cf01817ca4b82a9454c430d299",
+                "comment_sha256": "e7c05484b0651dc533111436f39be24f7cfaa3fe924d512b180cf856e49ef744"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "a5216a6122e4c1073be4fc620e43e4dc319b587e66d0f7671c2e1ee1be811d86",
+            "inventory_sha256": "5e20ce35fbe355d5b91403e4776cec28c5d89ea11dcdf234deedf8e8f82a199b",
+            "activity_comment_sha256": "f8d222b2d6e20558d27ba26ae409cc6cdaaa5a232ce8823bc0178129688fe70d",
+            "direct_technosphere_coordinates": 0,
+            "active_biosphere_exchanges": 1281
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "605deda7444a86be54a249f28c979c132c5064af373ebd192dccad33b3c2c6fb",
+            "inventory_sha256": "ed33784f7fa319177c5d2b7632eeea49868d747d6aab55977d4229569641d5c0",
+            "activity_comment_sha256": "8c63ebdebfdc4e14fef21764cbe09ab17b03ca969b19c9e3a15c608ae9b66c1a",
+            "direct_technosphere_coordinates": 0,
+            "active_biosphere_exchanges": 1301
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same powder zeolite product per kg, not a 50% slurry or an additional drying service. Source producer and native describe the historical hydrogel process based on five European producers. Both are aggregated biosphere inventories with active resource/emission flows despite no direct technosphere inputs. Retain each complete selected native aggregate once, without inventing precursor/energy inputs or treating it as empty allocation stock. Native biosphere coverage/exclusions, global-to-European supply, vintage, emissions and source market delivery differ; no specific zeolite-grade or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Same powder zeolite product per kg, not a 50% slurry or an additional drying service. Source producer and native describe the historical hydrogel process based on five European producers. Both are aggregated biosphere inventories with active resource/emission flows despite no direct technosphere inputs. Retain each complete selected native aggregate once, without inventing precursor/energy inputs or treating it as empty allocation stock. Native biosphere coverage/exclusions, global-to-European supply, vintage, emissions and source market delivery differ; no specific zeolite-grade or LCIA equivalence is established.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "be8bcdf217b4e53ed0275c8c7245605022fd1445be9dcb828817356db5331f6b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fef3bd133ce6cadc",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_stock_finish_review.json",
+      "review_sha256": "c53e0f5d3d90bdf5228e54d1851587bb53f601ff1fe217759a3c8a1a6e27b6c4",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking finished-product/service boundaries, positive reference quantities, complete producer inventories and native upstream casting/rolling. No new helper, grade substitution, internal inventory repair, allocation/technology reconstruction or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-fef3bd133ce6cadc",
+        "source": {
+          "location": "GLO",
+          "name": "market for zinc coat, pieces",
+          "reference product": "zinc coat, pieces",
+          "unit": "square meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Zinc coating, pieces",
+          "reference product": "Zinc coating, pieces",
+          "unit": "square meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "bd8e89c4a23c0ddd02878437d028bb8501e73822b8da301881ab6705ce02274e",
+            "inventory_sha256": "213e09d6d12249c930d47f536029d975df141519b90083dcc53a633de6f78503",
+            "activity_comment_sha256": "c1e76e9f3c8fa47210f45fbf9bf359a1b475b15a9da21ba6a3f5660b8c96af52",
+            "product_information_sha256": "adf8a1addd1450c86534d7071c677c28a9553907628cbba62a30de4c11184562",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "zinc coating, pieces",
+                  "reference product": "zinc coat, pieces",
+                  "location": "RER",
+                  "unit": "square meter"
+                },
+                "metadata_sha256": "9a7415cd9c4e694f22804a99e9fd4a3d2dfe90e5d1006dfbcd4f83ff46269e00",
+                "inventory_sha256": "8a0ffcaf4ff3163825ba4a71f32dae6224c8ed756f7ec45a647df1d57b215060",
+                "comment_sha256": "54a62ebfaf35e9f2dc3c9e8ae9d627dd3d1361b0ba77d94b32668d9d4a0c83bf"
+              },
+              {
+                "identity": {
+                  "name": "zinc coating, pieces",
+                  "reference product": "zinc coat, pieces",
+                  "location": "RoW",
+                  "unit": "square meter"
+                },
+                "metadata_sha256": "fef9f95bd22176ada6cab12ecc53d077ba211aaaacbb423b9ffc1aa95c7a8d26",
+                "inventory_sha256": "acc0d8526e201de173a95bda49ee6fe9cdbcd9f2ed4d07541ce3192fb8703b91",
+                "comment_sha256": "54a62ebfaf35e9f2dc3c9e8ae9d627dd3d1361b0ba77d94b32668d9d4a0c83bf"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "square meter",
+            "metadata_sha256": "dc42ce12188da2dbb88a8a64e8f0cd78e952659cb6e075a77e420aada10b9a9a",
+            "inventory_sha256": "9c16d582db2af4df6d34378c138d441b8f7fbedbc6486b8f01ae0f01423a8ddd",
+            "activity_comment_sha256": "5c280614dbe086e2b034ab09db36bcd0949054b9ccff1b647a44dace3a511e91",
+            "direct_technosphere_coordinates": 18,
+            "active_biosphere_exchanges": 26
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "square meter",
+            "metadata_sha256": "888a7d286d4884602c5839fd209ac4c06cb364dfb541a0f1533806443eff45f3",
+            "inventory_sha256": "506c884bf9cae509970fc936802997c2f7b837b0a73b8c6e47e9d21bba6879fa",
+            "activity_comment_sha256": "bad0b28c197cd03381d79c87345dd6a26a36a45ec92f13b1c37c2145317b79ff",
+            "direct_technosphere_coordinates": 18,
+            "active_biosphere_exchanges": 27
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same batch hot-dip zinc-coating service for already-shaped steel pieces per square metre. Both exclude the steel substrate and document 65 micrometres for two-sided coating or 130 micrometres for one side, and the original 60 m2/t normalization. Retain separately listed caller steel and complete native zinc, chemicals, energy and finishing once. Do not apply coating thickness, 60 m2/t, density or a kg-to-area conversion again, and add no full steel substrate. The original warning that area-normalized energy underestimates heavy pieces and overestimates light pieces remains explicit. Supplier geography, vintage, delivery and allocation differ."
+      },
+      "limitations": [
+        "Same batch hot-dip zinc-coating service for already-shaped steel pieces per square metre. Both exclude the steel substrate and document 65 micrometres for two-sided coating or 130 micrometres for one side, and the original 60 m2/t normalization. Retain separately listed caller steel and complete native zinc, chemicals, energy and finishing once. Do not apply coating thickness, 60 m2/t, density or a kg-to-area conversion again, and add no full steel substrate. The original warning that area-normalized energy underestimates heavy pieces and overestimates light pieces remains explicit. Supplier geography, vintage, delivery and allocation differ.",
+        "Preserve signed source coordinates with factor +1: kg material, m3 hardboard or m2 coating as declared. Preserve uncertainty, formulas, caller ownership and separately listed water, transport, substrate materials and emissions. No density, moisture, calorific value, thickness, yield or allocation multiplier is inferred.",
+        "Use complete native products or services once with their original internal approximations, allocation, logistics and historical data limitations. Source market shares and delivery are not reconstructed. Geography, technology, grade representativeness, fuel quality, vintage and emission coverage differ. Native biosphere exclusions remain explicit; no inventory or LCIA equality is established.",
+        "Native direct technosphere coordinates match between2025/2026 within relative tolerance1e-12; no coefficient is changed. Only enumerated cut-off profiles are admitted. Dense/light soda, non-metallurgical alumina, generic unrolled stainless steel and the current single-route silver match are excluded; no independent reverse or cross-system-model route is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cd63509c962e43f2fb6db75f57b9c506a810ba5545946ced2fba460e3cc98894"
+        }
+      ]
     }
   ]
 }

@@ -389,6 +389,21 @@ These correspondences do not repair native chemical inventories or claim LCIA
 equality. All six suppliers have finite baseline LCIs with unchanged scientific
 source contents.
 
+`uvek_pilot_stock_finish_review.json` adds ten correspondences across eleven
+profiles for primary aluminium, hard fibreboard, coated flat glass, mined
+lignite, reinforcing steel, Swiss sand, powder zeolite, metallic antimony and
+batch zinc coating. Actual producer and native inventories establish product
+and service boundaries: casting, rolling and glass substrate remain inside
+the complete native products, while zinc coating retains separately listed
+caller steel. Hardboard stays in cubic metres and coating in square metres;
+no density, thickness, moisture, heating-value, yield or repeated allocation
+factor is applied. Native hardboard manufacturing parameters remain unspecified,
+zeolite is an active aggregated biosphere inventory, and historical data,
+internal coating-metal approximations, mine coverage, geography and delivery
+differences remain explicit limitations. Nine native suppliers have finite
+baseline LCIs with unchanged scientific-content hashes. These are exact pilot
+cut-off decisions, not a general grade or inverse-route approval.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
