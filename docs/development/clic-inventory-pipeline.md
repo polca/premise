@@ -231,6 +231,17 @@ tonne-kilometres select the complete RER fleet, with geographic, fleet, loading
 and vintage limitations retained in diagnostics. Later uninspected releases
 cannot inherit that approval.
 
+Four CH waste services in the pilot's ecoinvent 3.6 cut-off cohort also reuse the
+standing same-material/function/unit disposal approval: drilling-waste
+landfarming and residual-material landfill, and hazardous-waste incineration
+for average hazardous waste and used mineral oil. Inspection confirms the wet
+composition and treatment route in native 2026, the named wet-waste definitions
+in 2025, negative one-kg source references and positive one-kg target services.
+The ledger records the inspection hashes. The factor is exactly −1, with no
+moisture, dry-mass or heating-value adjustment and no new recovery-credit model.
+This establishes functional correspondence rather than inventory or LCIA
+equality, and covers only those four inspected source profiles.
+
 Native role definitions can set `use_legacy_templates: false` when their complete
 suppliers already exist in the destination. The UVEK PV roles use this declaration:
 the ecoinvent PV workbook generation and installation branches do not supply the

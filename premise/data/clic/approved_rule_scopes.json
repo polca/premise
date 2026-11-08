@@ -1020,6 +1020,254 @@
           "fingerprint": "55f0eb04447669eeda3405fcb8d41fc2db5b0276a6ebb1ae34c2bb06ac1d4169"
         }
       ]
+    },
+    {
+      "rule_id": "bp-74209bb3aff5ad90",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied to the four exact CH pilot services after checking wet composition, treatment route and reference coordinates. No new material, treatment route, mass basis or recovery model is substituted.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of drilling waste, landfarming",
+          "reference product": "drilling waste",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, drilling waste, 71.5% water, to landfarming",
+          "reference product": "Disposal, drilling waste, 71.5% water, to landfarming",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "651cb0a288f05079f027f2c330d124e1f54f7cc84c16279c631ab247873faa92",
+        "native_metadata_sha256": {
+          "2025": "3c37d50eafa2e8e7fc8c53f9b6a2ee0c5a244d9dfe6e505e1db6bdadb4815a9b",
+          "2026": "06863dccd04136f3e3e5e9c5d89e2cb76a5c042958fee0afc67ea23a2c50397a"
+        },
+        "source_reference_amounts": [
+          -1.0
+        ],
+        "native_reference_amounts": {
+          "2025": [
+            1
+          ],
+          "2026": [
+            1.0
+          ]
+        },
+        "source_water_ppm": "714700",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "native_2025_definition": "Same named wet-waste class, disposal route and wet-kg reference; full composition absent from local2025 comment.",
+        "boundary": "Whole native treatment service for the same waste and route; no dry-mass, moisture, heating-value or recovery-credit adjustment. This is functional correspondence, not inventory or LCIA equality."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "15452ff563e3def7f0619c4b8eaece8f75ec221c66e72f1532349d64193632ca"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a5ed3251310b7e55",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied to the four exact CH pilot services after checking wet composition, treatment route and reference coordinates. No new material, treatment route, mass basis or recovery model is substituted.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of drilling waste, residual material landfill",
+          "reference product": "drilling waste",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, drilling waste, 71.5% water, to residual material landfill",
+          "reference product": "Disposal, drilling waste, 71.5% water, to residual material landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "5069f633301b5f922d8a1474cfa02291ea08d46922804f5dc21a6c0409c0bd09",
+        "native_metadata_sha256": {
+          "2025": "7f8bf5cc9b4c6d75f7111e6a8b6b14686867f8d5066d6cb8cf4c0497bd644987",
+          "2026": "2079736504eb92763d67cb10af3825956503af1e7cc3a2f966dc727929e41eb7"
+        },
+        "source_reference_amounts": [
+          -1.0
+        ],
+        "native_reference_amounts": {
+          "2025": [
+            1
+          ],
+          "2026": [
+            1.0
+          ]
+        },
+        "source_water_ppm": "714700",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "native_2025_definition": "Same named wet-waste class, disposal route and wet-kg reference; full composition absent from local2025 comment.",
+        "boundary": "Whole native treatment service for the same waste and route; no dry-mass, moisture, heating-value or recovery-credit adjustment. This is functional correspondence, not inventory or LCIA equality."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "75ca544857df29c73a0b4e1d2a09fa45ccff7814ac6ac9ba11ec946f738c83b9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-89a9e0030212f423",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied to the four exact CH pilot services after checking wet composition, treatment route and reference coordinates. No new material, treatment route, mass basis or recovery model is substituted.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of hazardous waste, hazardous waste incineration",
+          "reference product": "hazardous waste, for incineration",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+          "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "46209a85f1fd8f36f55fa69da00a63346783cc4da28eecd3796c200ccad5561e",
+        "native_metadata_sha256": {
+          "2025": "c1ac950e93ef5993de72f0eeaad38d9747bae9190d4cda43ede02522ac623bf2",
+          "2026": "4d023f8dfce471b011305a89ce6876adacbb5573e38371dbeac7788a13a318d3"
+        },
+        "source_reference_amounts": [
+          -1.0
+        ],
+        "native_reference_amounts": {
+          "2025": [
+            1
+          ],
+          "2026": [
+            1.0
+          ]
+        },
+        "source_water_ppm": "250000",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "native_2025_definition": "Same named wet-waste class, disposal route and wet-kg reference; full composition absent from local2025 comment.",
+        "boundary": "Whole native treatment service for the same waste and route; no dry-mass, moisture, heating-value or recovery-credit adjustment. This is functional correspondence, not inventory or LCIA equality."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6064a93045f8c1f2e91256cec14c92a8069fb172b86f9bf55f5f8398b4fecc3a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0227e3e438bfcee6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied to the four exact CH pilot services after checking wet composition, treatment route and reference coordinates. No new material, treatment route, mass basis or recovery model is substituted.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste mineral oil, hazardous waste incineration",
+          "reference product": "waste mineral oil",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "55b4657d93abad0663e32b15f009f918e218a4b6b17714d5e032faab9d0893c1",
+        "native_metadata_sha256": {
+          "2025": "01dd4a524b3cd0a5e326e2e02ac1308701221e245ec1059e50dae67b872c438a",
+          "2026": "f49ba86d0941f878f23c4a139d2f4965785737702928953071af344f22e5e5a0"
+        },
+        "source_reference_amounts": [
+          -1.0
+        ],
+        "native_reference_amounts": {
+          "2025": [
+            1
+          ],
+          "2026": [
+            1.0
+          ]
+        },
+        "source_water_ppm": "100000",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "native_2025_definition": "Same named wet-waste class, disposal route and wet-kg reference; full composition absent from local2025 comment.",
+        "boundary": "Whole native treatment service for the same waste and route; no dry-mass, moisture, heating-value or recovery-credit adjustment. This is functional correspondence, not inventory or LCIA equality."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "938b907763de8ff87c9c99c27d0bf3b82604d5ab8f49734f6afa7b62117fa956"
+        }
+      ]
     }
   ]
 }

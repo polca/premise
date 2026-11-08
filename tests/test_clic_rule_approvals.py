@@ -3,6 +3,7 @@
 import copy
 import gzip
 import json
+import math
 from pathlib import Path
 
 import pytest
@@ -291,4 +292,54 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
         TechnosphereProfile("uvek", "2025", "cutoff"),
     ) not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
+    )
+
+
+@pytest.mark.parametrize(
+    "rule_id",
+    [
+        "bp-74209bb3aff5ad90",
+        "bp-a5ed3251310b7e55",
+        "bp-89a9e0030212f423",
+        "bp-0227e3e438bfcee6",
+    ],
+)
+@pytest.mark.parametrize("amount", [-2, 2])
+def test_inspected_wet_waste_reference_preserves_treatment_and_credit_signs(
+    tmp_path, rule_id, amount
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version="3.6")
+    source = resolved.activities[0]["exchanges"][1]
+    source.update(
+        amount=amount,
+        **{
+            "uncertainty type": 2,
+            "loc": math.log(abs(amount)),
+            "scale": 0.2,
+            "negative": amount < 0,
+            "formula": "signed_waste",
+        },
+    )
+    before = copy.deepcopy(resolved.activities)
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(resolved, version="2026", family="uvek")
+    target = result.activities[0]["exchanges"][1]
+    assert target["amount"] == -amount
+    assert target["unit"] == "kilogram"
+    assert all(target[k] == v for k, v in rule["target"].items())
+    assert target["negative"] is (amount > 0)
+    assert target["loc"] == source["loc"] and target["scale"] == source["scale"]
+    assert target["formula"] == "(signed_waste) * (-1.0)"
+    assert resolved.activities == before
+    assert any(
+        d["code"] == "migration.approved_correspondence"
+        and d["details"]["rule_id"] == rule_id
+        for d in result.diagnostics
     )
