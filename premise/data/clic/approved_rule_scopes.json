@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "operations": [
+    {
+      "rule_id": "bp-555e0c3ac464c43f",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_packed_wool_market",
+      "review_path": "export/uvek_packed_wool_review.json",
+      "review_sha256": "b820ae61e19e3358912b13a89f614943aca5ff8eaf1b7c18cb372eb25502ff5d",
+      "authorization": "Standing independently inspected same material/function/mass and geographic producer-proxy approval,plus faithful complete market composition. This is a rock/stone-wool factory correspondence,not a glass-to-rock thermal-performance substitution.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ca91c2fa231921cd65a3e65fdaf213098a401949b46820e21d82d2f64c08e3a8"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10.1"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3b070d68542d55d7cba143f766f08fda095af7417ed7b073558816e20d789bd3"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.11"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6c705e1a241f237188bb11f96575887e24a2b34262e223b50ce29bceec392160"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7d2833b1dfe6d8771fa07db316faa2a9be8feffd30853e7a8ba374b3de23d914"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e68ef1fce1a4b78acf41b1a68ca2a9d2112c4b810f48156b6252aeb3834c3975"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a7c799a421a335b8839b75d0d4a60205990018e1b5d2af75e902f009ee0061a8"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1691fdad210be84fe3119953dd777ecb0612360b7288b45637bf57dff9ee38fe"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "af402e99405240aa4a32e0b1ba2c07872e7eacc6be22796488d5a4686ff4ea96"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9.1"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c63304aa93b43b5d23b4a18eb3a1041f3927e25a32b9257e84529e8074f11488"
+        }
+      ]
+    }
+  ]
+}

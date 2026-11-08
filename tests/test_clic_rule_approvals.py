@@ -147,3 +147,51 @@ def test_unreviewed_supplier_fails_with_audit_and_no_cached_target(tmp_path):
         and i["details"]["rule_id"] == unreviewed["id"]
         for i in issues
     )
+
+
+def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-555e0c3ac464c43f"
+    )
+    resolved = graph(rule["source"])
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(resolved, version="2026", family="uvek")
+    root = next(r for r in result.activities if r["name"] == "synthetic foreground")
+    edge = root["exchanges"][1]
+    assert edge["amount"] == -2 and edge["unit"] == "kilogram"
+    supplier = next(r for r in result.activities if r["code"] == edge["input"][1])
+    assert supplier["code"] in result.manifest["generated_helpers"]
+    assert len([e for e in supplier["exchanges"] if e["type"] == "technosphere"]) > 2
+    assert any(
+        d["code"] == "migration.approved_correspondence" for d in result.diagnostics
+    )
+    assert not any(
+        d["code"] == "migration.heuristic_mapping" for d in result.diagnostics
+    )
+
+
+def test_existing_helper_recipe_drift_does_not_inherit_approval(monkeypatch):
+    import brightpath.migrations.resources as resources
+
+    original = resources.load_uvek_technosphere_resource()
+    rule = next(r for r in original["replace"] if r["id"] == "bp-555e0c3ac464c43f")
+    profile = next(
+        p
+        for p in rule["reference_flow_sign_review"]["profiles"]
+        if p["source_profile"]["version"] == "3.6"
+    )
+    recipe_id = profile["target"]["recipe_ref"]
+    recipe = copy.deepcopy(original["recipes"][recipe_id])
+    recipe["inputs"][0]["amount"] *= 2
+    changed = {**original, "recipes": {**original["recipes"], recipe_id: recipe}}
+    monkeypatch.setattr(resources, "load_uvek_technosphere_resource", lambda: changed)
+    with pytest.raises(ClicInventoryError, match="helper recipe"):
+        approved_compatibility_rule_scopes(
+            resolve_inventory_target("2026", family="uvek")
+        )

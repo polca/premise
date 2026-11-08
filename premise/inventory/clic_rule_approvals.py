@@ -1,6 +1,8 @@
 """Compile exact rule scopes from the reviewed Brightpath pilot ledger."""
 
 import json
+import hashlib
+from pathlib import Path
 
 from .clic_archive import ClicInventoryError
 
@@ -67,4 +69,37 @@ def approved_compatibility_rule_scopes(target):
                     resource, "replace", rule, source, bridge
                 )
             )
+    # This ledger pins an existing standing review, including each profile's
+    # complete helper closure. It is separate from the pilot material decisions.
+    ledger = json.loads(
+        (
+            Path(__file__).resolve().parents[1] / "data/clic/approved_rule_scopes.json"
+        ).read_text(encoding="utf-8")
+    )
+    if ledger.get("schema_version") != 1:
+        raise ClicInventoryError("Unsupported CLIC compatibility-approval ledger.")
+    for decision in ledger["operations"]:
+        review_bytes = (DATA_DIR / decision["review_path"]).read_bytes()
+        rule = indexed[decision["rule_id"]]
+        if (
+            hashlib.sha256(review_bytes).hexdigest() != decision["review_sha256"]
+            or rule.get("mapping_method") != decision["mapping_method"]
+        ):
+            raise ClicInventoryError(
+                "Recorded compatibility approval has a changed packaged review or method."
+            )
+        for scope in decision["scopes"]:
+            source = TechnosphereProfile(**scope["source"])
+            if TechnosphereProfile(**scope["target"]) != bridge:
+                raise ClicInventoryError(
+                    "Recorded compatibility approval targets a different route edge."
+                )
+            fingerprint = compatibility_rule_fingerprint(
+                resource, decision["operation"], rule, source, bridge
+            )
+            if fingerprint != scope["fingerprint"]:
+                raise ClicInventoryError(
+                    "Recorded compatibility approval no longer matches its packaged rule or helper recipe."
+                )
+            scopes.add(fingerprint)
     return tuple(sorted(scopes))
