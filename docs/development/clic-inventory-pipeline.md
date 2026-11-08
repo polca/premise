@@ -428,6 +428,22 @@ no native allocation is applied twice. Only the exact inspected cut-off source
 profile is registered. Cache reuse retains these limits and baseline LCI is
 finite with unchanged source scientific contents.
 
+`uvek_pilot_generic_chemical_equipment_review.json` adds eleven
+correspondences across thirteen profiles. The inspected chiller includes its
+cooler and piping, the combined-cycle plant is construction per equipment unit,
+the three-conductor cable stays per metre, and the hall retains its 30/70
+wood/steel average. Generic chemical inventories retain their existing proxy
+averages without inventing a physical formulation or identified chemical grade;
+organophosphorus active-ingredient manufacturing and the broad silicone-product
+average retain their declared boundaries. Control-unit electronics excludes
+final assembly in both source and native inventories, while EPDM already
+includes extrusion and vulcanization. Match reference quantities, preserve
+signed demands/uncertainty/formulas and add no extra manufacturing, operation,
+weight, capacity, lifetime, concentration or allocation factor. Source delivery,
+market shares, background updates, historical data limitations and native
+biosphere exclusions remain warnings. Ten native suppliers have finite
+baseline LCIs with unchanged scientific-content hashes.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

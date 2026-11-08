@@ -13236,6 +13236,1193 @@
           "fingerprint": "3e03db9c2dc5729d891e92f8982c404bf4eb9485cd904fedb0ff1d28ad9e15b5"
         }
       ]
+    },
+    {
+      "rule_id": "bp-7cf08aa845443b7b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-7cf08aa845443b7b",
+        "source": {
+          "location": "GLO",
+          "name": "market for absorption chiller, 100kW",
+          "reference product": "absorption chiller, 100kW",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Absorption chiller 100kW",
+          "reference product": "Absorption chiller 100kW",
+          "unit": "unit"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "630b852f99ffeb0793312ad72060b35a1d7da7f6894a53ef4571bc333ccc9fb6",
+            "inventory_sha256": "5d1bd8725b2ca6bb88facf99b77854d1737ad76975a90f58338049b76f6cae8c",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "absorption chiller production, 100kW",
+                  "reference product": "absorption chiller, 100kW",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "metadata_sha256": "f4175d05087b3173c160d06586601138d0213de5f48c1f3875fbd575d0e9d965",
+                "inventory_sha256": "b06aaa2359b3c8fb678e519c94568e2a705cfea7a0c36891bfb7a14eabdf91cb",
+                "comment_sha256": "f5a0ebf93f8a7e0a511eca3dcd503f10347152aba4a346481fcd174439a2e353"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "3239737afda7694b94162c272c77651fb325f0a7f37cfc8e8fd353dd6989cd99",
+            "inventory_sha256": "e7bdb1fd77a0bb1930832de866d239628cd983db303d0e905f1b6e7cee8e2846",
+            "activity_comment_sha256": "63e3545b05ebce8dc6861a5d827790a468e9418e50204abc7abfce267febc896",
+            "direct_technosphere_coordinates": 31
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "922b6eea5ccf31022548e3a239130a2491721d9fef0a91fc85d4445ae51136e3",
+            "inventory_sha256": "7aefa967faef71598989d8ad3ab5cdf311bc3fff3214a056983b6780f92a986b",
+            "activity_comment_sha256": "b0c1ba5fe8f627205864d1ae41fe30b0056094f6f23c52fcd7c247e613e12fce",
+            "direct_technosphere_coordinates": 31
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same complete100kW single-stage water/ammonia absorption chiller with250kW hybrid air cooler and40m piping, per equipment unit. Source and native have the same documented component boundary and estimated manufacture/planning/engineering/raw-material transport. Retain the native20-year equipment inventory once; no additional cooler, pipe or chiller is added. Do not rescale the unit by capacity, coefficient of performance or operating lifetime, and do not insert operating heat/electricity, water or refrigerant emissions. Source RoW/global supply is approximated by native central-European manufacture; construction data, background supply and vintage differ."
+      },
+      "limitations": [
+        "Same complete100kW single-stage water/ammonia absorption chiller with250kW hybrid air cooler and40m piping, per equipment unit. Source and native have the same documented component boundary and estimated manufacture/planning/engineering/raw-material transport. Retain the native20-year equipment inventory once; no additional cooler, pipe or chiller is added. Do not rescale the unit by capacity, coefficient of performance or operating lifetime, and do not insert operating heat/electricity, water or refrigerant emissions. Source RoW/global supply is approximated by native central-European manufacture; construction data, background supply and vintage differ.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9d1e158d4d1e9eb448775512c73099d12f32dda12bf7a04089868649461e3c0f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-01903a2b3725bd56",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-01903a2b3725bd56",
+        "source": {
+          "location": "GLO",
+          "name": "market for building, hall",
+          "reference product": "building, hall",
+          "unit": "square meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Building, hall",
+          "reference product": "Building, hall",
+          "unit": "square meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c2cfebe0babf5c6ebb2960b36edebe25af080693656bc933cadb2d004b9d8d35",
+            "inventory_sha256": "69e867f4616aa40ab738f9fd62b56af8d947481d44d7d54501237a3e7f93dab0",
+            "activity_comment_sha256": "d3abc9931e65d8499eb41493dd85c10d59223e4c6b657a127e9f88c5ef398f9f",
+            "product_information_sha256": "85169caca89088c2fe646b9174ff35e62560fa06b73446ca326790571f508c0d",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "building construction, hall",
+                  "reference product": "building, hall",
+                  "location": "CH",
+                  "unit": "square meter"
+                },
+                "metadata_sha256": "47a70351cc461e31e04622c5c0895fabd68874902c4d114a136e38e2aa87a37f",
+                "inventory_sha256": "a0a0d0a02d35c95d45a0a62d6ad144456a83f46bef5a67a951dbed7a04067bb0",
+                "comment_sha256": "ba72d139ab2cd026d4e87a24b462cd811119f7bed886b8c3394827b14c492ad2"
+              },
+              {
+                "identity": {
+                  "name": "building construction, hall",
+                  "reference product": "building, hall",
+                  "location": "RoW",
+                  "unit": "square meter"
+                },
+                "metadata_sha256": "4a12caaca95e62c852a236e0c5b07263cced552d76ac812469fcf6649082e954",
+                "inventory_sha256": "428fe826b7850657ff60ce5294597206a9c0138ff9d0f2125f324a9324137170",
+                "comment_sha256": "ba72d139ab2cd026d4e87a24b462cd811119f7bed886b8c3394827b14c492ad2"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "square meter",
+            "metadata_sha256": "20789e8b69a0a8452d197e869dd8b9486e380ad97dce6331a8191355c0a83ada",
+            "inventory_sha256": "01732855aa89412bc30b74b1d235adee510625523013de3fe9d72fce4cce6126",
+            "activity_comment_sha256": "b5e504c96555ef56a4ec67cdd5988e8b480e265563dd73b1f612cc9252c29972",
+            "direct_technosphere_coordinates": 2
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "square meter",
+            "metadata_sha256": "f3818aee685c48ed433509631423cf02521d6a97c2cfee5c5876633430b39efb",
+            "inventory_sha256": "f0c67072e1aeb84a055d7511c877dc710ef93cd22de6ee67c4bf5c90dad75a1b",
+            "activity_comment_sha256": "018411652b9542db7e45ebaff9b756a4b6e2a59f8a1b2ef073a31568678b387f",
+            "direct_technosphere_coordinates": 2
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same generic hall-construction inventory per square metre, combining30% wood and70% steel halls. Both source and native document that same estimated Swiss share. Retain each complete native building route once through the existing average, without repeating the shares or adding another building/material inventory. This is floor area, not equipment count or annual occupation. Source global market suppliers and native Swiss geography, construction practices, allocation, vintage and delivery differ. Preserve the original warning that the generic hall should not be used when it dominates the environmental inventory; no specific building performance or lifetime equivalence is established."
+      },
+      "limitations": [
+        "Same generic hall-construction inventory per square metre, combining30% wood and70% steel halls. Both source and native document that same estimated Swiss share. Retain each complete native building route once through the existing average, without repeating the shares or adding another building/material inventory. This is floor area, not equipment count or annual occupation. Source global market suppliers and native Swiss geography, construction practices, allocation, vintage and delivery differ. Preserve the original warning that the generic hall should not be used when it dominates the environmental inventory; no specific building performance or lifetime equivalence is established.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3e02e3c078e209a7339ac8a35493fba1559c6ec1d117227b0bfe70a3834c055e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-382c78d4731734d5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-382c78d4731734d5",
+        "source": {
+          "location": "GLO",
+          "name": "market for cable, three-conductor cable",
+          "reference product": "cable, three-conductor cable",
+          "unit": "meter"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Cable, three-conductor cable, at plant",
+          "reference product": "Cable, three-conductor cable, at plant",
+          "unit": "meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ab0276cf7e39b2279d2d2658c34618d9ab7fdee3ca1f8e4b52f65e4503c4e97a",
+            "inventory_sha256": "4ca6560c04418e5c27c0099404c5c1a039af24bacc3611776ba48324bb236488",
+            "activity_comment_sha256": "858dde680765040b71b325043ac4723163f8f59511f77a595548937f7a5c1a9f",
+            "product_information_sha256": "7c9403a447e5dcf7a1f94650d268615943756468a306e9d902064e1fd003ba89",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "cable production, three-conductor cable",
+                  "reference product": "cable, three-conductor cable",
+                  "location": "GLO",
+                  "unit": "meter"
+                },
+                "metadata_sha256": "828181ce618a239c219af7797d31588a4d5072e5a09145207c86d7eee85d9649",
+                "inventory_sha256": "0775e1d51a12d365a838c700f8b513ade448b55f31ce1e18086bac163e9fc956",
+                "comment_sha256": "c79debea025654ae03611b6b6aa472a212b301cc1d183218e420b7c0fbc06f44"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "meter",
+            "metadata_sha256": "724f1674acd0a1a64d4587c7792e87df0fa82807ddd70e1f011b6c82b2ecb4c9",
+            "inventory_sha256": "bf59c85b15dc6a356d1062d145e5fee61eb280ec3ff40604cfa39fea53208f8c",
+            "activity_comment_sha256": "9d0f962e4e35a91ac7e240a91a037684bcad50040c7e7e193c19e5cf254beefc",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "meter",
+            "metadata_sha256": "971918d274170d10c7ffe953b6fcebee27f5d1291d560181629a68d2c242f335",
+            "inventory_sha256": "cc69b2ed8e7f3339335552213f3eb1d8c3e5f8d86e86dab554aa4c508efb35d7",
+            "activity_comment_sha256": "7da0d49cdd7cc6b9678730054ced07d252fdf1e1a0b3cb680a379925e4d96a88",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same complete1kV three-conductor low-voltage cable, typeGKN with copper wire sheath, per metre. Both describe1.04kg/m; that example meter-weight does not change the metre reference or authorize a mass conversion. Retain native copper, insulation, extrusion and infrastructure once, including2023 material/energy regionalization updates. Add no second copper/insulation or extrusion process. Original manufacturing/infrastructure estimates and excluded direct air/water emissions and waste remain explicit data limitations. Source market delivery, background mix, vintage and product representativeness differ."
+      },
+      "limitations": [
+        "Same complete1kV three-conductor low-voltage cable, typeGKN with copper wire sheath, per metre. Both describe1.04kg/m; that example meter-weight does not change the metre reference or authorize a mass conversion. Retain native copper, insulation, extrusion and infrastructure once, including2023 material/energy regionalization updates. Add no second copper/insulation or extrusion process. Original manufacturing/infrastructure estimates and excluded direct air/water emissions and waste remain explicit data limitations. Source market delivery, background mix, vintage and product representativeness differ.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "99e0dfd0686c328c54ccce228d6d9073df7616bba2839b1666e47a0d714280a3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1d21220403ae07ee",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-1d21220403ae07ee",
+        "source": {
+          "location": "GLO",
+          "name": "market for chemical, inorganic",
+          "reference product": "chemical, inorganic",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Chemicals inorganic, at plant",
+          "reference product": "Chemicals inorganic, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4cef4fa303aa15d5fc1d1e59a29ea371cdfe071bcc787548170d861f890aa906",
+            "inventory_sha256": "0004ff935602bea0353aec53bcdef3e1ee86dd729a4a3dc370e5e81d92388ee4",
+            "activity_comment_sha256": "35e2fc7def3afd31ed89c528ad384e17e4056bbb8a69fa089d5a6f57c3630474",
+            "product_information_sha256": "bc3af7f8c9a3504681870fca7c58bae81fc9d8b47059979f216d0318d2841b3e",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "chemical production, inorganic",
+                  "reference product": "chemical, inorganic",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "ef11ff6c66099bcfe4fe543c86cc58b2f353b473a42dcf3772b4df95affce8b1",
+                "inventory_sha256": "04658ebc374037927ad61aef1b3428cd807f9e30c8ffc3869db63ee7cca8a6c6",
+                "comment_sha256": "6950ce0b76fe88981f7df92b3da74b780e559367e17860a620fb5727df487f1e"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "44ff515992b033456c41d0835db3695e8d2f87dbf9a9a2c15d920df0fdd1823d",
+            "inventory_sha256": "41fc1997b287260e46ef25fcc7a99946879c88dcdba2a5b86232bc430290c0c0",
+            "activity_comment_sha256": "c731d0f9efc4ce2288cd918e9db796b9f97993ce30eb839fb3fc3bf09231ad36",
+            "direct_technosphere_coordinates": 20
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "723636d51aba73e383044d629f6e513e7a16cc75e2543170a3c8a6affd2cd3dc",
+            "inventory_sha256": "e04bf65ec4b02590d6848742a678a5b70895b9487f346bfad46711d21f6b63d3",
+            "activity_comment_sha256": "3255f67802ffb552c591748690c75db6cae5933e69f5bfe10ee8f66d4d7fb8d2",
+            "direct_technosphere_coordinates": 20
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same generic inorganic-chemical proxy inventory per kg: the documented unweighted average of20 historical top100 chemicals. Preserve this newer source label independently of the3.6 plural alias. The native average does not identify a particular reagent, purity or physical formulation. Retain the existing20-product inventory once without a new physical mixture, concentration/stoichiometric correction or empty stock. Source market delivery, background, geography, allocation, vintage and emissions differ; identified chemicals are outside this correspondence."
+      },
+      "limitations": [
+        "Same generic inorganic-chemical proxy inventory per kg: the documented unweighted average of20 historical top100 chemicals. Preserve this newer source label independently of the3.6 plural alias. The native average does not identify a particular reagent, purity or physical formulation. Retain the existing20-product inventory once without a new physical mixture, concentration/stoichiometric correction or empty stock. Source market delivery, background, geography, allocation, vintage and emissions differ; identified chemicals are outside this correspondence.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "db664fc3c670bf6b82629a81bd73f1cc418da754697e56fda408ce244c73f8e3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-65d60275b4f9e27a",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-65d60275b4f9e27a",
+        "source": {
+          "location": "GLO",
+          "name": "market for chemical, organic",
+          "reference product": "chemical, organic",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Chemicals organic, at plant",
+          "reference product": "Chemicals organic, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "7917fbbf7dd514b7502676d8e5464bca715583dc11059b51562ffc2e272d1c94",
+            "inventory_sha256": "72f3deeaca2f432d7d7e44a723444915de507bacc66343121fd7fabc28ba6773",
+            "activity_comment_sha256": "58f4d12ffdff96ec3c06c3def020af230d7bda01eb0592ae8eedd2865462e86b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "synthetic fuel production, from coal, high temperature Fisher-Tropsch operations",
+                  "reference product": "chemical, organic",
+                  "location": "ZA",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "a04bf62046dbde3980742e65f6c5b1e24b0544c0d9847ed17ed8a392cff31e58",
+                "inventory_sha256": "1f16a628dfc867596524f5476caa25026d09f78e9da0348da8326b48c64ef18d",
+                "comment_sha256": "575c0cf7895014ea59f14b261512ad9e8c86ba328fa2b3a414a76e9a3f27baf0"
+              },
+              {
+                "identity": {
+                  "name": "chemical production, organic",
+                  "reference product": "chemical, organic",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "5b60e6d99dca75308f786aa11f5cf4f930227b66b93796f563cdf3e3d8df0bc9",
+                "inventory_sha256": "7bd390f586c59d306494524412e06309a9c3f89f8297e09ea76e451038757bdc",
+                "comment_sha256": "f5efa7601302af7a47f9c450f63c35fd214f2f2833b6acee2dbc3ff43e7b3820"
+              },
+              {
+                "identity": {
+                  "name": "fraction 1 from naphtha separation to generic market for chemical, organic",
+                  "reference product": "chemical, organic",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "cf4dcd54c2581a2ac43e955a6352eaf1493fb9638c7a9619f83369ed46252391",
+                "inventory_sha256": "32394b509d5ccad5eb038cafdafbb69288322254f3b290691cd728d9e6726ebb",
+                "comment_sha256": "44694117c17be26fec3bb23b8ca18011546a9f9c425dc7c030788b51984a86f2"
+              },
+              {
+                "identity": {
+                  "name": "fraction 7 from naphtha separation to generic market for chemical, organic",
+                  "reference product": "chemical, organic",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "a0e58cd5c1891d42446cd76357deecd59e728c298fcc70600217ea013eaa4009",
+                "inventory_sha256": "26b1a6b05ba63a95c603ad9dfdbe051c60e6a68d933aa31c3747e2215a1f2877",
+                "comment_sha256": "fe152b2f4f62478b3b3a64106eced6620b0d6a227cd24197f763e19beae1b63e"
+              },
+              {
+                "identity": {
+                  "name": "fraction 8 from naphtha separation to generic market for chemical, organic",
+                  "reference product": "chemical, organic",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "ccac5eb27010c6e7b89c21b49cc913775ba187273d9fded51ec0e67f8f5d3cdb",
+                "inventory_sha256": "3727ef9f6cdd58d575146d9cd82d401ad17322bc5ea2894d8d98f36da8e83e03",
+                "comment_sha256": "d1da9819d78ee6bc350ad452505d0dd4556477ba4e1598e406b31fed965e0392"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "e0e36713012886e3a1338d755ad2bea01be49421200243407196fe6a35570877",
+            "inventory_sha256": "9892205b2aa79ef1cf5955e4500430db23495de6792a199434fc29b942646bfc",
+            "activity_comment_sha256": "9b122be2fca1b19221dfb63c15939b9ea79b1427dad862da233d2f027bb38b2e",
+            "direct_technosphere_coordinates": 20
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "0e4a453c3787d2ee3de0e276f12e75cc78de1c87470e167dde90eae600dc9983",
+            "inventory_sha256": "628637914a1b426ea47140575ed7712a0ded819a86f4ea87d8c0a56c99737415",
+            "activity_comment_sha256": "cec577d261a6df55094c2d4b5053ccbf0045e2463e0308eb1dd99d7f0618e686",
+            "direct_technosphere_coordinates": 20
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same unspecified organic-chemical product coordinate per kg, using the complete native generic unweighted average of20 historical top100 organic chemicals. Source market also includes Fischer-Tropsch and naphtha-separation coproduct supplies; their shares, fuel origin, allocation and delivery are not reconstructed. The native generic average is a screening inventory, not a newly defined physical formulation or evidence of a particular chemical identity/purity. Preserve its complete existing supplier inventory once with no inferred reaction, concentration conversion, extra precursor, fuel combustion or coproduct credit. Geography, allocation, vintage and emissions differ, with unquantified score effects."
+      },
+      "limitations": [
+        "Same unspecified organic-chemical product coordinate per kg, using the complete native generic unweighted average of20 historical top100 organic chemicals. Source market also includes Fischer-Tropsch and naphtha-separation coproduct supplies; their shares, fuel origin, allocation and delivery are not reconstructed. The native generic average is a screening inventory, not a newly defined physical formulation or evidence of a particular chemical identity/purity. Preserve its complete existing supplier inventory once with no inferred reaction, concentration conversion, extra precursor, fuel combustion or coproduct credit. Geography, allocation, vintage and emissions differ, with unquantified score effects.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c6a0b762d7daca3417851b71fbbab7409eafbce5c0aeed9c3154ccfdf75921d1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-036ac993c46b613c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-036ac993c46b613c",
+        "source": {
+          "location": "GLO",
+          "name": "market for chemicals, inorganic",
+          "reference product": "chemical, inorganic",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Chemicals inorganic, at plant",
+          "reference product": "Chemicals inorganic, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "9702a5580f453fb1762ac0c500fa4281d9af4cca6f2d145896a645e6e214d2f6",
+            "inventory_sha256": "448ac2806c40b1381c128296618eedf46ac103bba8fb00efeeaae5bbd6c4fb99",
+            "activity_comment_sha256": "58f4d12ffdff96ec3c06c3def020af230d7bda01eb0592ae8eedd2865462e86b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "chemical production, inorganic",
+                  "reference product": "chemical, inorganic",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "f39c2a8e73f7a8262801c04dce92068bd32df3f093a3f06e1096e683aa048d6c",
+                "inventory_sha256": "2425e8d7aefe315f98173e40b5f5fb1e217bffaac0d947a032004c878e7e4a8c",
+                "comment_sha256": "6950ce0b76fe88981f7df92b3da74b780e559367e17860a620fb5727df487f1e"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "44ff515992b033456c41d0835db3695e8d2f87dbf9a9a2c15d920df0fdd1823d",
+            "inventory_sha256": "41fc1997b287260e46ef25fcc7a99946879c88dcdba2a5b86232bc430290c0c0",
+            "activity_comment_sha256": "c731d0f9efc4ce2288cd918e9db796b9f97993ce30eb839fb3fc3bf09231ad36",
+            "direct_technosphere_coordinates": 20
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "723636d51aba73e383044d629f6e513e7a16cc75e2543170a3c8a6affd2cd3dc",
+            "inventory_sha256": "e04bf65ec4b02590d6848742a678a5b70895b9487f346bfad46711d21f6b63d3",
+            "activity_comment_sha256": "3255f67802ffb552c591748690c75db6cae5933e69f5bfe10ee8f66d4d7fb8d2",
+            "direct_technosphere_coordinates": 20
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same generic inorganic-chemical proxy inventory per kg: the documented unweighted average of20 historical top100 chemicals. This source is already unspecified; the native average does not identify a particular reagent, purity or physical formulation. Retain its existing20-product inventory once without inventing a physical mixture, applying concentration/stoichiometric corrections or replacing it by an empty stock. Generic source-market delivery and native background, geography, allocation, vintage and emissions differ. This does not authorize replacing an identified chemical with the generic average."
+      },
+      "limitations": [
+        "Same generic inorganic-chemical proxy inventory per kg: the documented unweighted average of20 historical top100 chemicals. This source is already unspecified; the native average does not identify a particular reagent, purity or physical formulation. Retain its existing20-product inventory once without inventing a physical mixture, applying concentration/stoichiometric corrections or replacing it by an empty stock. Generic source-market delivery and native background, geography, allocation, vintage and emissions differ. This does not authorize replacing an identified chemical with the generic average.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e652ac94c4a195d59a0043edf9c90a20a937490b58de37995a3c310b04d7eced"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c712c8a159d0bec5",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-c712c8a159d0bec5",
+        "source": {
+          "location": "GLO",
+          "name": "market for electronics, for control units",
+          "reference product": "electronics, for control units",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electronics for control units",
+          "reference product": "Electronics for control units",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3bf01ed63685414c52eea94ef184e8e8187fd14ff5d6f7372220cc82b4bb2d35",
+            "inventory_sha256": "6d3ff3241f378667fd83cf269e74512e07bede1eef72993b0d3aaf3982310ed7",
+            "activity_comment_sha256": "7c0a5f50ceabf4a60d081277e5fb1e5e25180959808adb4ed0723846b3fe8e66",
+            "product_information_sha256": "537e6b603ebbbcf30d5b08065706db5612ee4471a6789513284a9f3d8967b469",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "electronics production, for control units",
+                  "reference product": "electronics, for control units",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "419b84c52465592b0b85bfe009082b0f2c3f46dcf7a545ddabbca65164a91ff8",
+                "inventory_sha256": "4687a049645522bc40c4bad928442836c0981fddead983e9772d9ddbbda0ecc3",
+                "comment_sha256": "06a3adb8c74894b05fbdc3f8cfcf9ac6d6863dcab71f8c79f79dc9ddfde15bdf"
+              },
+              {
+                "identity": {
+                  "name": "electronics production, for control units",
+                  "reference product": "electronics, for control units",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "8a80b81ad1ab187c946daa5d364831974774675b5e7f09f6a43cf7cddbd6834f",
+                "inventory_sha256": "de898257fc6fe27be604de670eae3c19ed8af9354471c3b78124c7be512ab62e",
+                "comment_sha256": "06a3adb8c74894b05fbdc3f8cfcf9ac6d6863dcab71f8c79f79dc9ddfde15bdf"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "5454a5e01e904b197320b7697f746f47ad6668b674afdf33690291d9adb37a60",
+            "inventory_sha256": "fe1fb76827092872b107b005c2a7c493f6703688b6bf99a6beebd6376d5db79e",
+            "activity_comment_sha256": "a9f19d84461901a0a4d2d200b44b01042072307afdce7c545d49778efaadc6c9",
+            "direct_technosphere_coordinates": 11
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "cf79d37c31bc5aaf3c948239d93a736fbc3e8b02fdca193ee7c9cb7c5501079d",
+            "inventory_sha256": "c6ebee23e39c4a9c160cd07584c20de1d2255883cb728a8f11a14b79595182e9",
+            "activity_comment_sha256": "384c8e6bd74d89607246037b44a8ac9b3773b53d3fbbae71f2d5fa52a6fd1a35",
+            "direct_technosphere_coordinates": 11
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same industrial control-unit component inventory per kg: housing, plastics, mounted printed wiring boards and cables. Both source and native explicitly exclude final assembly/manufacturing effort from those components into the control unit. Retain this same incomplete component-bundle boundary; do not describe it as a fully manufactured finished controller or add an invented assembly process. Native2023 background ICT updates remain included. No separate housing, board or cable is added. Composition, device performance, geography, vintage, source delivery and emission coverage remain screening limitations."
+      },
+      "limitations": [
+        "Same industrial control-unit component inventory per kg: housing, plastics, mounted printed wiring boards and cables. Both source and native explicitly exclude final assembly/manufacturing effort from those components into the control unit. Retain this same incomplete component-bundle boundary; do not describe it as a fully manufactured finished controller or add an invented assembly process. Native2023 background ICT updates remain included. No separate housing, board or cable is added. Composition, device performance, geography, vintage, source delivery and emission coverage remain screening limitations.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2c3431b0bbc914fd4d834ba4e5b1edd65b4bca109a5a591e7da4f8dce877039f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5497e694c10240a5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-5497e694c10240a5",
+        "source": {
+          "location": "GLO",
+          "name": "market for gas power plant, combined cycle, 400MW electrical",
+          "reference product": "gas power plant, combined cycle, 400MW electrical",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Gas combined cycle power plant, 400MWe",
+          "reference product": "Gas combined cycle power plant, 400MWe",
+          "unit": "unit"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4c7c005d8a2d768bdc38f7e5479df056cda14f60794913f4b08b866f62b39e66",
+            "inventory_sha256": "f660f031bf4b2247ba760da8e55302bdae3c653883d4aed707c3af4337db76fe",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "gas power plant construction, combined cycle, 400MW electrical",
+                  "reference product": "gas power plant, combined cycle, 400MW electrical",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "metadata_sha256": "1876010539f966895395797a5af280b84663fe6f5cc111602eba246a359cf58f",
+                "inventory_sha256": "96d40067215d6c7f3c9d89ec6e90166595cdff5972d3947ffc1b23c5f170de2f",
+                "comment_sha256": "5ff1e70548a3db800f4b1c3b4cfa5895c804f204b8ed641d36be530ceaafbb29"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "8c67f32f765104d92d579b6a2865cb397cf19e35f67229c4a6da5dd8d5e2524e",
+            "inventory_sha256": "400f6924bc580c94c3f74418e0ffd4e77c87ba066da858cbbb1edb83dd3988f2",
+            "activity_comment_sha256": "3466560206ee671a7f92ae2f3b906b1317b1e5cd6111f8803c28c42a597e59ea",
+            "direct_technosphere_coordinates": 14
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "c495d4c41778334dcaf8acdf33336673777bc1458264dc77b5524f346549316c",
+            "inventory_sha256": "a531fdb7865ea90bfe430409f55a0a7ae5c71d28d20b3eb2fdbb19c61c1ceed8",
+            "activity_comment_sha256": "3252eac14494c3fd5a787b8270bacdc0ec94078788a61e83b513f34eb577c53b",
+            "direct_technosphere_coordinates": 14
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same complete400MWe-class combined-cycle gas power-plant construction per plant unit, not electricity generation or a standalone10MW turbine. Both document the same historical construction technology and180000-hour operating-lifetime assumption; native reference description specifies265MWe gas and140MWe steam turbines. Preserve the complete native plant once with no405/400 capacity normalization, lifetime rescaling, second turbine/steam system, operating fuel input or extra generation emissions. Transport is already implicit in construction energy. Source global/RoW labeling and native European data, materials, background supply and vintage differ."
+      },
+      "limitations": [
+        "Same complete400MWe-class combined-cycle gas power-plant construction per plant unit, not electricity generation or a standalone10MW turbine. Both document the same historical construction technology and180000-hour operating-lifetime assumption; native reference description specifies265MWe gas and140MWe steam turbines. Preserve the complete native plant once with no405/400 capacity normalization, lifetime rescaling, second turbine/steam system, operating fuel input or extra generation emissions. Transport is already implicit in construction energy. Source global/RoW labeling and native European data, materials, background supply and vintage differ.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e06b6a37cd423e1fc43c17a20e363986b3a3888fd0983cd44254448123478f02"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-01b951ae68a063a7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-01b951ae68a063a7",
+        "source": {
+          "location": "GLO",
+          "name": "market for organophosphorus-compound, unspecified",
+          "reference product": "organophosphorus-compound, unspecified",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Organophosphorus-compounds, at regional storehouse",
+          "reference product": "Organophosphorus-compounds, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b858ebf18d32d7da057e19a009b4b343dd57fd7bac0b34cb23d827dd454fde3a",
+            "inventory_sha256": "a3fcbdcebeba1905bf9169e2aa01fad8889dd17aebdf6e8f265809fa8e4cfff6",
+            "activity_comment_sha256": "229443a37af355be5762e03832f8ef546ebc7cfb6fa73bf889ec5f6c4f7b08ad",
+            "product_information_sha256": "cf972ad87a7ee4bd4f393c203ffafa0096257f13b3cd4de8ac3807d200f2f118",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "organophosphorus-compound production, unspecified",
+                  "reference product": "organophosphorus-compound, unspecified",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "5f4c24caa54622a2d2be7df0e64ed5101ba412af5f617c1072e596bbc4b9e4fc",
+                "inventory_sha256": "671d419778235ef1506b63073d61a30b2a98bf1bfbd70e6bf15ac12f710d1915",
+                "comment_sha256": "5972dcc1edd6dd375bf261606895d32168b45f1027d3b3bf802a34711cfbfac1"
+              },
+              {
+                "identity": {
+                  "name": "organophosphorus-compound production, unspecified",
+                  "reference product": "organophosphorus-compound, unspecified",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "452824d7d9d0d9a5d01ab46ef4a92105ccb530cc7070ac61d2b9c9655d6383f1",
+                "inventory_sha256": "56c224630bb675c1f6f6b5c36dcdef3084d52844c0105f9bf33c103733559428",
+                "comment_sha256": "6566afc4bd1a2db04c91b7cb6a4a6568de254abcb4a3077589da035447b624a9"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "267986ed6d1956c2997570d14f558ddd9cc0d9f10d9fd3731f9a6ecb349a45b4",
+            "inventory_sha256": "fa63c4be16b798ca86692f5c5316660774ce6023c7c36c0a230b2d9eb2a369fd",
+            "activity_comment_sha256": "6b208a7a43dc7088c039ae33180da1814c8394587cf4dda539ad8f2dd3f451e3",
+            "direct_technosphere_coordinates": 27
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "bc8cf9eccdb9e3beefd08ff7ef50d102b102048bd9f0451673d18b94101ffbca",
+            "inventory_sha256": "e4c046cb58fd03596b48890ad06944e7c4c86d20774456b4053c9c6344c3c620",
+            "activity_comment_sha256": "3b5f57ae8fdd9ebe9be57481a5cd38271f2d4dadb8ab83a3337bc174277a35f0",
+            "direct_technosphere_coordinates": 27
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same generic organophosphorus pesticide active-ingredient production per kg, not an identified pesticide, formulated spray or pesticide application. Source and native characteristic reactant quantities match the historical arithmetic-average production boundary; the source RER description specifies no emulsifiers/additives. Retain the complete native manufacturing/energy/infrastructure/emissions inventory once without a formulation, purity or dilution multiplier, added field emissions or new pesticide-use credit. Source market/regional shares, allocation, geography, vintage, modeled emissions and delivery differ. No specific active ingredient efficacy, toxicity result or formulation equivalence is established."
+      },
+      "limitations": [
+        "Same generic organophosphorus pesticide active-ingredient production per kg, not an identified pesticide, formulated spray or pesticide application. Source and native characteristic reactant quantities match the historical arithmetic-average production boundary; the source RER description specifies no emulsifiers/additives. Retain the complete native manufacturing/energy/infrastructure/emissions inventory once without a formulation, purity or dilution multiplier, added field emissions or new pesticide-use credit. Source market/regional shares, allocation, geography, vintage, modeled emissions and delivery differ. No specific active ingredient efficacy, toxicity result or formulation equivalence is established.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b03bc4a65c3293dc99c2b933dc94fd0c61ba48af3180e4c20eaf5fb2bf7b8365"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-29a5a345f9b595ed",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-29a5a345f9b595ed",
+        "source": {
+          "location": "RER",
+          "name": "market for silicone product",
+          "reference product": "silicone product",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Silicone product, at plant",
+          "reference product": "Silicone product, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "9f61de6ad73c279658007fdd181973060fe288412cc56bd702e75d6ca875eb0f",
+            "inventory_sha256": "fe3521da320a154e989e2e36ed339cf7906fd6f1cd0be0d061b0472fb1373adf",
+            "activity_comment_sha256": "344ecba6ff22efc04e80823c7a1ff79ceca7770a153ae58213c2e4a5639cb1b1",
+            "product_information_sha256": "f5385844244c6629f49df160a0f8850e572007986f0c48f85990c2049980a162",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "silicone product production",
+                  "reference product": "silicone product",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "51c9b77a044119e64880fa5a5b7134cfbd963defd69338cccb9514925c4c5aea",
+                "inventory_sha256": "1d4624839c4c9a752bf23ca0125086186e1b8c70104b899ed12138e539aee7d2",
+                "comment_sha256": "14ef72c5b0701574634a3d9f391dc3c09316fbce74ea07d364d65490b8e1d9e7"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ceb8308b5f9716d5ff72ec16616cab1f9c7b4ce976200993d86f5b6b46093f5d",
+            "inventory_sha256": "1d8bab6abf53af597c405c59cfa68cb0d93297a39913a8b327ae2145c40dba69",
+            "activity_comment_sha256": "e9a52a6cc0012fa6cf89b001d1c736c7d0eac9c471a25aa6883c12f056c6be22",
+            "product_information_sha256": "f5385844244c6629f49df160a0f8850e572007986f0c48f85990c2049980a162",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "silicone product production",
+                  "reference product": "silicone product",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "ea3fa1da7e99e27d1a2b26962cac401e2ceb26dab69df70d4248cfef3922375e",
+                "inventory_sha256": "114a504c3c0d971baa26f85a83ab7be50e113b8e0ddb138dc32005eefddf4210",
+                "comment_sha256": "d29e46f4e0119c16a09397c7b9af667f0763b5e542d71b91827bf20beb75fcdd"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "e2e7077d5a8a06d679a5df19ef30cae4df7e72dcc9d270a475ab7028900bbb4a",
+            "inventory_sha256": "2010687a59e7705278cabbbb9370552306f5a83f7ee6b052f08763c0e02cf5e2",
+            "activity_comment_sha256": "a6cb147b50a9979dc166852d99bda5c17a49b386db58337942fed946833df8ec",
+            "direct_technosphere_coordinates": 31
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "131e685fdaed68fe01c7c2c82e3fa1d7ff1a10008233d844bab5d965c4469d13",
+            "inventory_sha256": "7a54b6e45ed305e743901beebe477307da83baaa5aece28790f680d8e361653a",
+            "activity_comment_sha256": "e00ef68eaa969a99b9e52bb7686b3fec9c89527467e923c2cfc339e9cb8a5a18",
+            "direct_technosphere_coordinates": 31
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same generic silicone-product production inventory per kg, defined in both datasets as a weighted average of about2000 products from two integrated chemical facilities. This is not an identified purePDMS, silicon-metal, hyperpure-silicon or finished-sealant grade. Retain the existing gate-to-gate production proxy and its upstream supplies once, with no new recipe, polymer-content/purity factor or extra product manufacture. The broad product-average representativeness, technology and feedstock assumptions, source market delivery, allocation, vintage and emission coverage remain limitations."
+      },
+      "limitations": [
+        "Same generic silicone-product production inventory per kg, defined in both datasets as a weighted average of about2000 products from two integrated chemical facilities. This is not an identified purePDMS, silicon-metal, hyperpure-silicon or finished-sealant grade. Retain the existing gate-to-gate production proxy and its upstream supplies once, with no new recipe, polymer-content/purity factor or extra product manufacture. The broad product-average representativeness, technology and feedstock assumptions, source market delivery, allocation, vintage and emission coverage remain limitations.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6552ca4c6e1814a018ddd8c05f2e7baf821f15e171436afa054e0f648026111c"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "165cf1e810c0e50adcddb6000ac252b20a2d852e69aa63a5704109c3568fcb19"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-82cb48b8f46820d5",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-82cb48b8f46820d5",
+        "source": {
+          "location": "GLO",
+          "name": "market for synthetic rubber",
+          "reference product": "synthetic rubber",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Synthetic rubber, at plant",
+          "reference product": "Synthetic rubber, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c6dd20fa0543ccda70ae411fde95e1d583749e7760d1a125dc4a3269a3f30a16",
+            "inventory_sha256": "ba656cdc0ccff4e68972e0043cf128ffc80e423f23233618c9d7a20a64cbfd36",
+            "activity_comment_sha256": "98a5aa3313ed596a06a601a2f54fd830a2ef9cf5e793c63f889181a88195d4f4",
+            "product_information_sha256": "3c79b31014bc037c3e11d07202e520f8f42e8b0805a4647c1c97401211127da4",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "synthetic rubber production",
+                  "reference product": "synthetic rubber",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "b3d40a99f7d9e676c23c2e9e8311c1513ea924f952018a19936b4240b27819eb",
+                "inventory_sha256": "6c7eb597574a92d06227a77d6c3eeb00a3388812f92b2174283453cae7faaa6e",
+                "comment_sha256": "a9fb754dc2abaa783095f9708bb7384d761c89063dd313b32f3c1c7870687211"
+              },
+              {
+                "identity": {
+                  "name": "synthetic rubber production",
+                  "reference product": "synthetic rubber",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "0ded5b4ff7a2f0b4aaf18354a6e575b596a32e7ce255715b6c3d5df549e0df57",
+                "inventory_sha256": "15814bd2f80ec5a2b059b38933c2b1cf742b693d5aac12545676398918c7fbaa",
+                "comment_sha256": "a9fb754dc2abaa783095f9708bb7384d761c89063dd313b32f3c1c7870687211"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "bbf509122922d5327618108d1321fbb44bcd76828eb4ab652acb6acd5a4b5938",
+            "inventory_sha256": "445dac5f7e9539c6298cad6858d093664b463ef6c2839dff5d2e90c15b037a51",
+            "activity_comment_sha256": "9980490c6ce6fd631feb1ffeafdeaa0608f825f87ead3cffac05b71432a9e358",
+            "product_information_sha256": "3c79b31014bc037c3e11d07202e520f8f42e8b0805a4647c1c97401211127da4",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "synthetic rubber production",
+                  "reference product": "synthetic rubber",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "0d1d439b317bb50a1290948d519ffa7f65e0ace594fe574f1b0a9ad52644e7ff",
+                "inventory_sha256": "203276d8042266a3ac7b57758e139323959ce8709403da101e5d2b8c08a8b219",
+                "comment_sha256": "7f4ba3a5ef6b27d8ed9d26db782f6fea730215072d82ccb141d1bda2f1278780"
+              },
+              {
+                "identity": {
+                  "name": "synthetic rubber production",
+                  "reference product": "synthetic rubber",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "9e4adf2b560cde1d89b283346cb90d227edf77ee10cb7521c99b2f816559de20",
+                "inventory_sha256": "194c22e743ec45ec0ee264dfbbe7168c9ea029f09fe4a311e615a5118554fc0b",
+                "comment_sha256": "7f4ba3a5ef6b27d8ed9d26db782f6fea730215072d82ccb141d1bda2f1278780"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "ae76eea69161ad83cc929028de959480fa937d27c3e39fee973af14e19c1ef0c",
+            "inventory_sha256": "7cc5dc217ac350deed326b3f952ee9a0a09958381af102230e7b1abc869c0558",
+            "activity_comment_sha256": "02b065c48552821ba747079cfcfd8e490627149e2454dc3e63b2e9c4252bf414",
+            "direct_technosphere_coordinates": 13
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "e7ec1464619ca1cbef2bb3e81712a21ff645a6cef99bfbcc35d7b14dc05d5b18",
+            "inventory_sha256": "1ef1b665ff1af3c29ab57ffd290131dd1367d723d90ecdaa621f4406f60135bf",
+            "activity_comment_sha256": "b782838a20e1bcdd3b5acdb9751a861ffeae9f3c28cc830390035e3dd4d0caf3",
+            "direct_technosphere_coordinates": 13
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same formulated EPDM elastomer/profile inventory per kg, already including internal mixing, extrusion and salt vulcanization. Both source and native use the same characteristic PE/PP surrogate-polymer, carbon-black and extrusion coordinates. The legacy synthetic-rubber name does not mean an unfilled unvulcanized polymer here. Retain the complete native inventory once, with its surrogate feedstocks/fillers and processing; add no second carbon black, extrusion or vulcanization process, and apply no polymer/filler/yield correction. Source market shares, grade representativeness, background supply, geography, vintage and emissions differ; this does not establish a general rubber-grade equivalence."
+      },
+      "limitations": [
+        "Same formulated EPDM elastomer/profile inventory per kg, already including internal mixing, extrusion and salt vulcanization. Both source and native use the same characteristic PE/PP surrogate-polymer, carbon-black and extrusion coordinates. The legacy synthetic-rubber name does not mean an unfilled unvulcanized polymer here. Retain the complete native inventory once, with its surrogate feedstocks/fillers and processing; add no second carbon black, extrusion or vulcanization process, and apply no polymer/filler/yield correction. Source market shares, grade representativeness, background supply, geography, vintage and emissions differ; this does not establish a general rubber-grade equivalence.",
+        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
+        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
+        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "18a7962c38e5550fe3347151d2ef419cbff0591693ecc510a4e375b93716168d"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "04634b7ddc86f65e86e2c2f11cb3d1ecaa682f3f7185255fe5c1ba4afb1eb6b6"
+        }
+      ]
     }
   ]
 }

@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 47 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 43 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 47 |
+| 3.6 | 27 | 43 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 2 |
-| 3.9 | 17 | 49 |
-| 3.12 | 8 | 23 |
+| 3.9 | 17 | 43 |
+| 3.12 | 8 | 20 |
 
-These are 122 exact-profile cases involving 110 distinct rules, after reusing
+These are 109 exact-profile cases involving 99 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -254,10 +254,20 @@ as waste treatments; no waste-reference sign reversal applies to their silver
 product. Native historical shares, purity, allocation, geography and delivery
 differences remain warnings. Original 223 approval fingerprints are unchanged;
 the corrected supplier has a finite baseline LCI and unchanged source hashes.
+Eleven further equipment, component and generic-chemical correspondences
+cover thirteen profiles. Matching references retain per-unit chiller/400MWe-plant
+construction, per-metre cable, the original hall mix, generic chemical averages,
+organophosphorus active ingredients and silicone-product average. Control-unit
+electronics retains the same component bundle with final assembly excluded;
+EPDM already includes extrusion and vulcanization. No new mixture, omitted
+assembly reconstruction, device-weight, lifetime, capacity or concentration
+conversion is added. Ten distinct native suppliers have finite baseline LCIs
+and unchanged source scientific-content hashes. Generic averages and historical
+component data retain their explicit representativeness limitations.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 225 exact-profile fingerprints, with review evidence and
+ledger contains 238 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
