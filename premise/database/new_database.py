@@ -1701,8 +1701,16 @@ class NewDatabase:
         )
         from ..inventory.clic_requirements import bind_activity_roles
 
-        bindings = bind_activity_roles(records, sources)
+        bindings = bind_activity_roles(records, sources, **target_kwargs)
         provider.manifest["role_binding_fingerprint"] = content_hash(bindings)
+        if family != "ecoinvent":
+            provider.manifest["role_binding_limitations"] = {
+                role: messages
+                for record in records
+                for role, messages in record.get("clic provenance", {})
+                .get("role_binding_limitations", {})
+                .items()
+            }
         retained, workbooks, diagnostics = import_retained_inventories(
             plan,
             [*base, *records],
@@ -1804,6 +1812,15 @@ class NewDatabase:
             "adapter": provider.manifest["adapter_fingerprint"],
             "hybrid_plan": plan.fingerprint,
             "role_bindings": provider.manifest["role_binding_fingerprint"],
+            **(
+                {
+                    "role_binding_limitations": provider.manifest[
+                        "role_binding_limitations"
+                    ]
+                }
+                if family != "ecoinvent"
+                else {}
+            ),
             "retained_workbooks": workbooks,
             "user_inventories": user_sources,
         }

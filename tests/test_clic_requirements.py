@@ -7,6 +7,94 @@ import xarray as xr
 from premise.inventory.activity_maps import InventorySet
 from premise.inventory import clic_requirements
 
+CSP_SLUG = "electricity-production-at-110-mw-concentrating-solar-power-plant-with-thermal-energy-storage"
+
+
+def test_uvek_csp_root_is_selected_only_for_positive_iam_role():
+    def scenario(amount):
+        return {
+            "model": "remind",
+            "iam data": SimpleNamespace(
+                electricity_mix=xr.DataArray(
+                    [amount], dims="variables", coords={"variables": ["Solar CSP"]}
+                )
+            ),
+        }
+
+    # No matching legacy workbook is required for this approved family override.
+    assert CSP_SLUG in clic_requirements.required_roots(
+        ["electricity"], [scenario(1)], source_files=[], family="uvek"
+    )
+    assert CSP_SLUG not in clic_requirements.required_roots(
+        ["electricity"], [scenario(0)], source_files=[], family="uvek"
+    )
+    assert CSP_SLUG not in clic_requirements.required_roots(
+        ["electricity"], [scenario(1)], source_files=[]
+    )
+
+
+def test_family_override_replaces_legacy_binding_and_preserves_default(monkeypatch):
+    overrides = clic_requirements.family_role_overrides("uvek")
+    data = {
+        "sector_mappings": {"electricity": ["electricity.yaml"]},
+        "hybrid_sources": {
+            "nodes": [
+                {
+                    "file": "old.xlsx",
+                    "clic_slug": "legacy",
+                    "identity": ["old", "old", "GLO", "kilowatt hour"],
+                }
+            ],
+            "roles": {"electricity.yaml": {"Solar CSP": [0]}},
+        },
+    }
+    monkeypatch.setattr(clic_requirements, "registry", lambda: data)
+    monkeypatch.setattr(
+        clic_requirements,
+        "family_role_overrides",
+        lambda family: overrides if family == "uvek" else {},
+    )
+    old = {"unit": "kilowatt hour", "clic provenance": {"slug": "legacy"}}
+    new = {
+        "unit": "kilowatt hour",
+        "exchanges": [{"type": "production", "amount": 1, "unit": "kilowatt hour"}],
+        "clic provenance": {"slug": CSP_SLUG},
+    }
+    sources = [("old.xlsx", "3.12")]
+    clic_requirements.bind_activity_roles([old, new], sources)
+    assert old["clic provenance"]["role_bindings"] == ["electricity.yaml:Solar CSP"]
+    assert new["clic provenance"]["role_bindings"] == []
+    bindings = clic_requirements.bind_activity_roles([old, new], sources, family="uvek")
+    assert old["clic provenance"]["role_bindings"] == []
+    assert bindings["electricity.yaml"]["Solar CSP"] == (CSP_SLUG,)
+    provenance = new["clic provenance"]
+    assert (
+        "nine hours"
+        in provenance["role_binding_limitations"]["electricity.yaml:Solar CSP"][0]
+    )
+    clic_requirements.bind_activity_roles([new], sources)
+    assert "role_binding_limitations" not in provenance
+
+
+def test_uvek_role_rejects_changed_csp_production_reference():
+    import pytest
+    from premise.inventory.clic_archive import ClicInventoryError
+
+    for references in (
+        [],
+        [{"type": "production", "amount": -1}],
+        [{"type": "production", "amount": 2}],
+        [{"type": "production", "amount": 1, "unit": "megajoule"}],
+        [{"type": "production", "amount": 1}] * 2,
+    ):
+        activity = {
+            "unit": "kilowatt hour",
+            "exchanges": references,
+            "clic provenance": {"slug": CSP_SLUG},
+        }
+        with pytest.raises(ClicInventoryError, match="production reference changed"):
+            clic_requirements.bind_activity_roles([activity], [], family="uvek")
+
 
 def test_role_binding_rejects_unreviewed_reference_unit_change(monkeypatch):
     import pytest

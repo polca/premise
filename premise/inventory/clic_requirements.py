@@ -116,7 +116,27 @@ def active_role_bindings(source_files):
     }
 
 
-def bind_activity_roles(activities, source_files):
+def family_role_overrides(family):
+    """Return explicit reviewed CLIC choices scoped to the background family."""
+    if family == "ecoinvent":
+        return {}
+    if family != "uvek":
+        raise ValueError(f"Unsupported CLIC role family {family!r}.")
+    from ..core.filesystem_constants import VARIABLES_DIR
+    from .activity_maps import get_mapping
+
+    files = {name for names in registry()["sector_mappings"].values() for name in names}
+    return {
+        f"{filename}:{role}": definition
+        for filename in sorted(files)
+        for role, definition in get_mapping(
+            VARIABLES_DIR / filename, "uvek_aliases"
+        ).items()
+        if definition.get("clic_family_override")
+    }
+
+
+def bind_activity_roles(activities, source_files, *, family="ecoinvent"):
     """Assign target-specific roles and reject unreviewed reference-unit changes."""
     data = registry()["hybrid_sources"]
     active = {Path(path).name for path, _ in source_files}
@@ -129,6 +149,13 @@ def bind_activity_roles(activities, source_files):
                     expected.setdefault(node["clic_slug"], {}).setdefault(
                         f"{filename}:{role}", set()
                     ).add(node["identity"][3])
+    overrides = family_role_overrides(family)
+    for roles in expected.values():
+        for role in overrides:
+            roles.pop(role, None)
+    for role, definition in overrides.items():
+        for slug in definition["clic_slugs"]:
+            expected.setdefault(slug, {})[role] = {definition["clic_unit"]}
     for activity in activities:
         provenance = activity["clic provenance"]
         roles = expected.get(provenance.get("slug"), {})
@@ -139,11 +166,39 @@ def bind_activity_roles(activities, source_files):
                     f"expected {sorted(units)!r}, got {activity['unit']!r}; "
                     "a reviewed role conversion is required."
                 )
+            if role in overrides:
+                references = [
+                    e
+                    for e in activity.get("exchanges", ())
+                    if e.get("type") == "production"
+                ]
+                if (
+                    len(references) != 1
+                    or references[0].get("amount")
+                    != overrides[role]["clic_reference_amount"]
+                    or references[0].get("unit", activity["unit"])
+                    != overrides[role]["clic_unit"]
+                ):
+                    raise ClicInventoryError(
+                        f"CLIC production reference changed for reviewed {family} role {role!r}."
+                    )
         provenance["role_bindings"] = sorted(roles)
-    return active_role_bindings(source_files)
+        provenance.pop("role_binding_limitations", None)
+        limitations = {
+            role: list(overrides[role]["clic_limitations"])
+            for role in roles
+            if role in overrides
+        }
+        if limitations:
+            provenance["role_binding_limitations"] = limitations
+    bindings = active_role_bindings(source_files)
+    for role, definition in overrides.items():
+        filename, name = role.split(":", 1)
+        bindings.setdefault(filename, {})[name] = tuple(definition["clic_slugs"])
+    return bindings
 
 
-def required_roots(sectors, scenarios=(), *, source_files=None):
+def required_roots(sectors, scenarios=(), *, source_files=None, family="ecoinvent"):
     """Union required sector roles across scenarios without reading inventories.
 
     Role presence in IAM production/market arrays determines applicability.
@@ -153,6 +208,8 @@ def required_roots(sectors, scenarios=(), *, source_files=None):
     from ..core.filesystem_constants import VARIABLES_DIR
     from .activity_maps import get_mapping
 
+    if family not in {"ecoinvent", "uvek"}:
+        raise ValueError(f"Unsupported CLIC role family {family!r}.")
     data = registry()
     bindings = active_role_bindings(source_files) if source_files is not None else None
     active_files = (
@@ -179,9 +236,12 @@ def required_roots(sectors, scenarios=(), *, source_files=None):
             for scenario in scenarios:
                 model = scenario.get("model")
                 definitions = get_mapping(
-                    VARIABLES_DIR / filename, "ecoinvent_aliases", model=model
+                    VARIABLES_DIR / filename, f"{family}_aliases", model=model
                 )
                 for role in applicable_roles(sector, definitions, scenario):
+                    if definitions[role].get("clic_family_override"):
+                        roots.update(definitions[role]["clic_slugs"])
+                        continue
                     roots.update(
                         role_slugs(filename, role)
                         if bindings is None

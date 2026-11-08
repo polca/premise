@@ -164,6 +164,18 @@ source ingestion, retained workbooks and transformations have separate
 integration checks. Technology-specific `uvek_aliases` and, where needed,
 UVEK fuel aliases will share IAM roles with the existing `ecoinvent_aliases`.
 
+An explicitly reviewed `uvek_aliases.clic_slugs` declaration can replace the
+shared CLIC choice for that family alone. It must declare `clic_unit`, a positive
+`clic_reference_amount`, and nonempty `clic_limitations`. Positive IAM roles add
+these roots during automatic planning; explicit recipes still lock their roots.
+Binding checks the prepared production reference and carries the limitations
+into the manifest, native supplier provenance and electricity warnings.
+The pilot's approved CSP proxy is the complete CLIC 110 MW tower plant with
+nine hours of thermal storage, per 1 kWh. Its Spain-based design and CH record
+label, storage configuration, capacity factor, scale, geography and vintage
+remain explicit limitations. No separate storage burden is added. This choice
+does not change ecoinvent role bindings or approve upstream heuristic mappings.
+
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by
 the upstream mapping workflow. Import provenance must retain that manifest and

@@ -169,6 +169,32 @@ def test_clic_only_role_binds_renamed_inventory_without_native_alias():
     assert role in inv.missing_aliases["electricity.yaml:uvek_aliases"]
 
 
+def test_csp_complete_proxy_is_bound_only_to_the_approved_family_role():
+    slug = "electricity-production-at-110-mw-concentrating-solar-power-plant-with-thermal-energy-storage"
+    published = native(
+        "Complete renamed CSP inventory",
+        **{
+            "clic provenance": {
+                "slug": slug,
+                "role_bindings": ["electricity.yaml:Solar CSP"],
+            }
+        },
+    )
+    assert InventorySet(
+        [published], family="uvek", model="remind"
+    ).generate_powerplant_map()["Solar CSP"] == [published]
+    assert (
+        InventorySet(
+            [published], family="ecoinvent", model="remind"
+        ).generate_powerplant_map()["Solar CSP"]
+        == []
+    )
+    definition = get_mapping(POWERPLANT_TECHS, "uvek_aliases")["Solar CSP"]
+    assert definition["clic_reference_amount"] == 1
+    assert definition["clic_unit"] == "kilowatt hour"
+    assert "nine hours" in definition["clic_limitations"][0]
+
+
 def test_undeclared_family_alias_keeps_role_but_has_no_native_fallback(tmp_path):
     path = tmp_path / "mapping.yaml"
     path.write_text(

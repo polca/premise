@@ -112,7 +112,13 @@ def plan_hybrid_inventories(
     nodes = graph["nodes"]
     active = {Path(path).name: (Path(path), version) for path, version in sources}
     requested = set(
-        explicit_roots or required_roots(sectors, scenarios, source_files=sources)
+        explicit_roots
+        or required_roots(
+            sectors,
+            scenarios,
+            source_files=sources,
+            **({"family": family} if family != "ecoinvent" else {}),
+        )
     )
     pending = list(extra_nodes)
     scenarios = list(scenarios) or [{}]

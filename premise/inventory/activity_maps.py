@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
+import math
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Union
@@ -111,11 +112,47 @@ def get_mapping(
                     from .clic_requirements import role_slugs
 
                     slugs = role_slugs(Path(filepath).name, key)
+                    family_override = var == "uvek_aliases" and "clic_slugs" in entry
+                    if family_override:
+                        from .clic_archive import ClicInventoryError
+
+                        declared = entry["clic_slugs"]
+                        limitations = entry.get("clic_limitations")
+                        reference = entry.get("clic_reference_amount")
+                        if (
+                            not isinstance(declared, list)
+                            or not declared
+                            or any(
+                                not isinstance(slug, str) or not slug
+                                for slug in declared
+                            )
+                            or not isinstance(entry.get("clic_unit"), str)
+                            or not entry["clic_unit"]
+                            or isinstance(reference, bool)
+                            or not isinstance(reference, (int, float))
+                            or not math.isfinite(reference)
+                            or reference <= 0
+                            or not isinstance(limitations, list)
+                            or not limitations
+                            or any(
+                                not isinstance(message, str) or not message
+                                for message in limitations
+                            )
+                        ):
+                            raise ClicInventoryError(
+                                f"Incomplete reviewed UVEK CLIC role declaration for {key!r}."
+                            )
+                        slugs = tuple(sorted(set(declared)))
                     if slugs or var == "uvek_aliases":
                         entry = {
                             **entry,
                             "clic_slugs": slugs,
                             "clic_role_key": f"{Path(filepath).name}:{key}",
+                            **(
+                                {"clic_family_override": True}
+                                if family_override
+                                else {}
+                            ),
                         }
                 mapping[key] = entry
 

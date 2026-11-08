@@ -1492,7 +1492,13 @@ Oil ST:
     witch: Secondary Energy|Electricity|Oil|w/o CCS|1
   max_efficiency: 0.5
 Solar CSP:
-  uvek_aliases: {}
+  uvek_aliases:
+    clic_slugs:
+    - electricity-production-at-110-mw-concentrating-solar-power-plant-with-thermal-energy-storage
+    clic_unit: kilowatt hour
+    clic_reference_amount: 1
+    clic_limitations:
+    - "Approved UVEK electricity-pilot CSP screening proxy: the complete CLIC 110 MW tower plant with nine hours of thermal storage represents the IAM CSP role. Preserve its 1 kWh reference and full plant/storage inventory; add no separate storage burden. The design is Spain-based while the published record has a CH location label. Storage configuration, capacity factor, scale, geography and vintage can differ from the regional IAM fleet."
   ecoinvent_aliases:
     fltr:
     - electricity production, solar thermal parabolic trough, 50 MW

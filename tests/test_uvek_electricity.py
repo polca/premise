@@ -737,3 +737,40 @@ def test_public_update_reports_approved_geographic_proxy(native):
     assert native.busbar["uvek electricity provenance"]["supplier weights"][
         "Solar PV Residential"
     ]["unique native supplier"] == identity(native.pv)
+
+
+def test_clic_csp_proxy_preserves_full_inventory_and_reports_approved_limitations(
+    native,
+):
+    technology = "Solar CSP"
+    limitation = (
+        "Approved tower CSP with nine hours of storage; Spain design, CH record label."
+    )
+    generator = activity("Complete tower plant with storage")
+    generator["clic provenance"] = {
+        "slug": "reviewed-csp",
+        "role_bindings": [f"electricity.yaml:{technology}"],
+        "role_binding_limitations": {f"electricity.yaml:{technology}": [limitation]},
+    }
+    generator["exchanges"].append(exchange(native.wind1, 0.0123))
+    native.database.append(generator)
+    native.mapping[technology] = [generator]
+    native.iam.electricity_mix = xr.DataArray(
+        [[[1.0]]],
+        dims=("region", "variables", "year"),
+        coords={"region": ["R1"], "variables": [technology], "year": [2050]},
+    )
+    before = copy.deepcopy([generator, native.grids])
+    transform = UVEKElectricity(**native.kwargs)
+    plans = transform.plan_mixes()
+    transform.update_native_mixes(plans)
+    assert [generator, native.grids] == before
+    assert len(plans[0][1]) == 1
+    assert plans[0][1][0]["input"] == (generator["database"], generator["code"])
+    assert plans[0][1][0]["amount"] == 1
+    assert limitation in transform.supplier_proxy_limitations
+    assert plans[0][-1][technology]["CLIC role proxy"] == "reviewed-csp"
+    assert any(
+        limitation in issue.message
+        for issue in transform.validate_native_mixes(plans).warnings
+    )

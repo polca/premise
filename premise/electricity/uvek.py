@@ -457,6 +457,19 @@ class UVEKElectricity(Electricity):
                     d for d in imported if location is None or d["location"] == location
                 ]
                 if len(matches) == 1:
+                    limitations = (
+                        matches[0]
+                        .get("clic provenance", {})
+                        .get("role_binding_limitations", {})
+                        .get(f"electricity.yaml:{technology}", ())
+                    )
+                    if limitations:
+                        self.supplier_proxy_decisions[
+                            (identity(dataset), technology)
+                        ] = {
+                            "limitation": " ".join(limitations),
+                            "CLIC role proxy": matches[0]["clic provenance"]["slug"],
+                        }
                     return [(matches[0], 1.0)], "unique reviewed CLIC role supplier"
                 if matches:
                     break
