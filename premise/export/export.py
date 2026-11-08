@@ -1352,6 +1352,11 @@ class Export:
         self.db = scenario["database"]
         self.model = scenario["model"]
         self.scenario = scenario["pathway"]
+        self.inventory_definition = {
+            key: scenario[key]
+            for key in ("model", "pathway", "year", "clic inventories", "clic recipe")
+            if key in scenario
+        }
         self.year = scenario["year"]
         self.filepath = filepath
         self.version = version
@@ -1503,6 +1508,13 @@ class Export:
 
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)
+
+        if self.inventory_definition.get("clic inventories"):
+            from ..reporting.clic import write_inventory_sidecars
+
+            write_inventory_sidecars(
+                self.filepath / "inventory", [self.inventory_definition]
+            )
 
         # Export A matrix
         rows = self.create_A_matrix_coordinates()

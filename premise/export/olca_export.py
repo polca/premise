@@ -277,4 +277,8 @@ def export_scenario(scenario, filepath, version, system_model, method_mapping):
         # A failed render never publishes a partial ZIP or changes an old export.
         coverage.replace(destination.with_suffix(".biosphere-coverage.json"))
         staged.replace(destination)
+    if scenario.get("clic inventories"):
+        from ..reporting.clic import write_inventory_sidecars
+
+        write_inventory_sidecars(destination, [scenario])
     return destination

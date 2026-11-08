@@ -153,6 +153,10 @@ def prepare_fast_exchange_payload(
         else:
             compact_exchange["input"] = input_override
 
+    reference = compact_exchange.get("input")
+    if isinstance(reference, list) and len(reference) == 2:
+        compact_exchange["input"] = tuple(reference)
+
     return normalize_no_uncertainty_exchange(compact_exchange)
 
 
