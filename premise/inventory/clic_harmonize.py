@@ -10,6 +10,7 @@ import json
 import os
 import tempfile
 import time
+import warnings
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
@@ -171,7 +172,15 @@ class ClicHarmonizer:
         groups, contexts = defaultdict(list), {}
         rows = {row["activity_code"]: row for row in resolved.versions}
         native_by_code = {a["code"]: a for a in resolved.activities}
-        for activity in resolved.activities:
+        from .clic_omissions import prepare_approved_omissions
+
+        prepared, omissions = prepare_approved_omissions(
+            resolved.activities, resolved.versions, target
+        )
+        omissions_by_code = defaultdict(list)
+        for omission in omissions:
+            omissions_by_code[omission["details"]["activity_code"]].append(omission)
+        for activity in prepared:
             background = rows[activity["code"]]["background"]
             key = content_hash(background)
             groups[key].append(activity)
@@ -180,6 +189,11 @@ class ClicHarmonizer:
         activities, summaries, diagnostics = {}, [], list(resolved.diagnostics)
         target_catalogs = _catalog_fingerprint(provider, target_context)
         for key, records in groups.items():
+            cohort_omissions = [
+                omission
+                for activity in records
+                for omission in omissions_by_code[activity["code"]]
+            ]
             source = contexts[key]
             source_context = _context(source)
             own_codes = {a["code"] for a in records}
@@ -209,6 +223,11 @@ class ClicHarmonizer:
                 "policy": policy_metadata,
                 "source_catalogs": _catalog_fingerprint(provider, source_context),
                 "target_catalogs": target_catalogs,
+                **(
+                    {"approved_clic_omissions": cohort_omissions}
+                    if cohort_omissions
+                    else {}
+                ),
             }
             fingerprint = content_hash(signature)
             metadata_path = self.cache_dir / f"{fingerprint}.json"
@@ -254,7 +273,12 @@ class ClicHarmonizer:
                     except Exception as error:
                         report = getattr(error, "report", None)
                         if report is not None:
-                            _gzip_write(audit_path, json.loads(report.to_json()))
+                            failed_audit = json.loads(report.to_json())
+                            if cohort_omissions:
+                                failed_audit["approved_clic_omissions"] = copy.deepcopy(
+                                    cohort_omissions
+                                )
+                            _gzip_write(audit_path, failed_audit)
                         raise ClicInventoryError(
                             f"CLIC background migration from {source!r} to {target!r} failed: {error}. "
                             f"Diagnostic: {audit_path}"
@@ -263,6 +287,10 @@ class ClicHarmonizer:
                     report_data = (
                         json.loads(report.to_json()) if report is not None else {}
                     )
+                    if cohort_omissions:
+                        report_data["approved_clic_omissions"] = copy.deepcopy(
+                            cohort_omissions
+                        )
                     _gzip_write(audit_path, report_data)
                     unexpected_losses = (
                         [
@@ -284,7 +312,7 @@ class ClicHarmonizer:
                         issue
                         for stage in report_data.get("stages", ())
                         for issue in stage.get("issues", ())
-                    ]
+                    ] + copy.deepcopy(cohort_omissions)
                     metadata = {
                         "fingerprint": fingerprint,
                         "source": source,
@@ -321,6 +349,10 @@ class ClicHarmonizer:
                 activity["database"] = "__clic__"
                 if activity["code"] in rows:
                     activity["clic provenance"] = copy.deepcopy(rows[activity["code"]])
+                    if omissions_by_code[activity["code"]]:
+                        activity["clic provenance"]["approved_omissions"] = (
+                            copy.deepcopy(omissions_by_code[activity["code"]])
+                        )
                 else:
                     activity["clic provenance"] = {
                         "role": "generated helper",
@@ -366,7 +398,14 @@ class ClicHarmonizer:
             "generated_helpers": sorted(
                 code for code in activities if code not in rows
             ),
+            **(
+                {"approved_clic_omissions": copy.deepcopy(omissions)}
+                if omissions
+                else {}
+            ),
         }
+        for omission in omissions:
+            warnings.warn(omission["message"], UserWarning, stacklevel=2)
         return HarmonizedClicInventory(
             list(activities.values()), manifest, resolved.lockfile(), diagnostics
         )

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "id": "uvek-2026-csp-used-nitrate-reuse-credit",
+      "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
+      "version_id": 1840,
+      "semantic_version": "1.0.0",
+      "sha256": "d58bb0758488c10ef8425b6e657074aa874cfc6443ceafb88792e38e1f5f2efd",
+      "source": {
+        "technosphere": {"family": "ecoinvent", "version": "3.9", "system_model": "cutoff"},
+        "biosphere": {"family": "ecoinvent", "version": "3.9"}
+      },
+      "target": {
+        "technosphere": {"family": "uvek", "version": "2026", "system_model": "cutoff"},
+        "biosphere": {"family": "ecoinvent", "version": "3.10"}
+      },
+      "exchange": {
+        "amount": -23000000,
+        "location": "GLO",
+        "name": "market for used nitrate salts, for solar power application",
+        "reference product": "used nitrate salts, for solar power application",
+        "type": "technosphere",
+        "unit": "kilogram"
+      },
+      "message": "Approved scoped UVEK 2026 CSP omission: the pinned 110 MW plant decommissioning inventory's -23,000,000 kg used-nitrate-salt reuse credit is omitted. Its ecoinvent 3.9 market supplies a reusable product carrying allocated storage-construction burdens; no equivalent UVEK supplier is established. Printer toner is an incorrect match. The foregone reuse credit and its score effect are unquantified. Plant, virgin salt production, storage construction and other decommissioning exchanges are retained; no replacement credit or zero-burden supplier is added."
+    }
+  ]
+}

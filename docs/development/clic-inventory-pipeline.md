@@ -189,6 +189,21 @@ serves another IAM role, avoiding role-order-dependent changes to shared plants.
 Geothermal electricity still requires a separately verified generator; native
 geothermal heat inventories cannot satisfy that electricity role.
 
+The approved omissions ledger at `premise/data/clic/approved_omissions.json`
+currently covers one exchange in the pinned CLIC CSP decommissioning record
+(version 1.0.0, ID 1840): its negative 23,000,000 kg used-nitrate-salt reuse
+credit, for the exact UVEK 2026 / ecoinvent 3.10 biosphere target. Its ecoinvent
+market carries allocated storage-construction burdens and has no verified
+native counterpart; the heuristic printer-toner match is invalid. Omitting this
+credit leaves its score effect unquantified. Virgin salt production, plant and
+storage construction, and other decommissioning exchanges are retained.
+The record hash, source context and complete original exchange must match the
+approval. Changed quantities, formulas, uncertainty, duplicate matches or
+foreground ownership fail for review. Other owners and target contexts retain
+their exchanges. The original signed exchange and pin remain in the cohort
+audit, manifest and activity provenance; the warning is repeated on cache reuse.
+This ledger does not authorize other omissions or relax Brightpath's policy.
+
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by
 the upstream mapping workflow. Import provenance must retain that manifest and
