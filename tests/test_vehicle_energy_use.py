@@ -6,6 +6,31 @@ import pytest
 from premise import vehicle_energy_use as ve
 
 
+def test_clic_vehicle_source_uses_reviewed_alias_and_preserves_geographic_priority():
+    current = {
+        "name": "new vehicle name [CLIC source]",
+        "reference product": "transport",
+        "location": "RER",
+        "unit": "passenger kilometer",
+        "exchanges": [],
+        "clic provenance": {
+            "name": "new vehicle name",
+            "legacy_identities": [
+                ["legacy Medium vehicle", "transport", "GLO", "passenger kilometer"]
+            ],
+        },
+    }
+    lookup = ve.VehicleLookup([current])
+    assert ve.select_source(lookup, "legacy medium vehicle", "CAZ") is current
+    assert ve.select_source([current], "legacy medium vehicle", "CAZ") is current
+    with pytest.raises(ValueError, match="Ambiguous vehicle source"):
+        ve.select_source(
+            ve.VehicleLookup([current, deepcopy(current)]),
+            "legacy medium vehicle",
+            "CAZ",
+        )
+
+
 def exc(name, amount, unit, product=None, kind="technosphere"):
     return dict(
         name=name,

@@ -178,6 +178,16 @@ class Battery(BaseTransformation):
             (market_datasets_stationary, datasets_mapping_stationary, "stationary"),
             (market_datasets_mobile, datasets_mapping_mobile, "mobile"),
         )
+        from ..inventory.activity_maps import expand_inventory_name_mapping
+
+        updates = tuple(
+            (
+                expand_inventory_name_mapping(self.database, markets),
+                expand_inventory_name_mapping(self.database, suppliers),
+                market_type,
+            )
+            for markets, suppliers, market_type in updates
+        )
         # Check every applicable market before changing shares or pack masses.
         for update in updates:
             self._adjust_shares(*update, validate_only=True)
@@ -293,7 +303,11 @@ class Battery(BaseTransformation):
         We leave the density unchanged after 2050.
         """
 
-        energy_density = load_cell_energy_density()
+        from ..inventory.activity_maps import expand_inventory_name_mapping
+
+        energy_density = expand_inventory_name_mapping(
+            self.database, load_cell_energy_density()
+        )
 
         for ds in ws.get_many(
             self.database,
@@ -346,18 +360,25 @@ class Battery(BaseTransformation):
                     None,
                 )
 
-                ds.setdefault("log parameters", {})["battery input"] = [
-                    e["name"]
-                    for e in ws.technosphere(
-                        ds, ws.contains("name", "market for battery")
+                # Current CLIC capacity converters buy pack manufacture
+                # directly and keep controls per unit. Density changes the kg
+                # boundary (including end of life), leaving unit-based controls.
+                mass_inputs = [
+                    e
+                    for e in ws.technosphere(ds)
+                    if e.get("unit") == "kilogram" and e["amount"] > 0
+                ]
+                if not mass_inputs:
+                    raise ValueError(
+                        f"Battery density target {ds['name']!r} has no positive mass input; "
+                        "its capacity conversion requires review."
                     )
-                ][0]
+                ds.setdefault("log parameters", {})["battery input"] = ", ".join(
+                    e["name"] for e in mass_inputs
+                )
 
                 ds.setdefault("log parameters", {})["old battery mass"] = sum(
-                    e["amount"]
-                    for e in ws.technosphere(
-                        ds, ws.contains("name", "market for battery")
-                    )
+                    e["amount"] for e in mass_inputs
                 )
 
                 for exc in ws.technosphere(ds, ws.equals("unit", "kilogram")):
@@ -380,10 +401,7 @@ class Battery(BaseTransformation):
                         )
 
                 ds["log parameters"]["new battery mass"] = sum(
-                    e["amount"]
-                    for e in ws.technosphere(
-                        ds, ws.contains("name", "market for battery")
-                    )
+                    e["amount"] for e in mass_inputs
                 )
 
                 self.write_log(ds, status="modified")

@@ -1757,6 +1757,61 @@ class BatteryValidation(BaseDatasetValidator):
                     issue_type="major",
                 )
 
+    def _check_pack_capacity(self, dataset, exchanges, energy_density):
+        """Validate public CLIC converters with pack kg, waste kg and controls/unit."""
+        roles = {"pack": [], "waste": [], "controls": []}
+        unexpected = []
+        for exchange in exchanges:
+            product = self._battery_product(exchange)
+            if product.startswith(("battery pack,", "battery,")):
+                role, unit, positive = "pack", "kilogram", True
+            elif product == "used li-ion battery":
+                role, unit, positive = "waste", "kilogram", False
+            elif product.startswith(
+                (
+                    "battery monitoring and central control system,",
+                    "battery control and cooling system,",
+                )
+            ):
+                role, unit, positive = "controls", "unit", True
+            else:
+                unexpected.append(exchange["name"])
+                continue
+            if (
+                exchange.get("unit") != unit
+                or (exchange["amount"] > 0) != positive
+                or exchange["amount"] == 0
+            ):
+                unexpected.append(exchange["name"])
+            roles[role].append(exchange)
+        missing = [role for role, rows in roles.items() if not rows]
+        pack = sum(row["amount"] for row in roles["pack"])
+        waste = -sum(row["amount"] for row in roles["waste"])
+        if unexpected or missing or not np.isclose(pack, waste, rtol=0.0, atol=1e-8):
+            self.log_issue(
+                dataset,
+                "Invalid separated battery pack capacity",
+                f"Expected positive pack kg, equal negative waste kg, and positive controls in units; "
+                f"missing={missing}, invalid={unexpected}, pack={pack}, waste={waste}.",
+                issue_type="major",
+            )
+            return
+        target = energy_density.get(dataset["name"])
+        baseline = dataset.get("log parameters", {}).get("old battery mass")
+        if target is not None and baseline is not None:
+            years = sorted(target)
+            density = np.interp(
+                self.year, years, [target[year]["mean"] for year in years]
+            )
+            expected = baseline * target[2020]["mean"] / density
+            if not np.isclose(pack, expected, rtol=1e-3, atol=1e-8):
+                self.log_issue(
+                    dataset,
+                    "Incorrect battery pack mass",
+                    f"Manufactured pack mass is {pack}; relative density learning requires {expected}.",
+                    issue_type="major",
+                )
+
     def _check_legacy_capacity(self, dataset, exchanges):
         # Retain the older manufactured-pack / equal-mass waste contract.
         # Only kg belong in this mass balance; operation energy is not mass.
@@ -1781,8 +1836,11 @@ class BatteryValidation(BaseDatasetValidator):
     def check_battery_capacity(self):
         # Import locally: battery transforms import this validation class.
         from ..batteries.battery import load_cell_energy_density
+        from ..inventory.activity_maps import expand_inventory_name_mapping
 
-        energy_density = load_cell_energy_density()
+        energy_density = expand_inventory_name_mapping(
+            self.database, load_cell_energy_density()
+        )
         for ds in ws.get_many(
             self.database,
             ws.contains("name", "market for battery capacity"),
@@ -1821,7 +1879,14 @@ class BatteryValidation(BaseDatasetValidator):
                 if product.startswith("electricity storage capacity")
                 and exc.get("unit") == "kilowatt hour"
             ]
-            if modular:
+            separated_pack = any(
+                product.startswith("battery pack,") for product in products
+            ) or (
+                modular and any(product.startswith("battery,") for product in products)
+            )
+            if separated_pack:
+                self._check_pack_capacity(ds, exchanges, energy_density)
+            elif modular:
                 self._check_modular_capacity(ds, exchanges, energy_density)
             elif capacity:
                 if len(capacity) != len(exchanges):

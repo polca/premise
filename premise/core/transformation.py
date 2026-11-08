@@ -1580,6 +1580,13 @@ class BaseTransformation:
             if id(activities) in shared_mapping_value_ids:
                 mapping[technology] = list(activities)
 
+        production_roles_by_dataset = defaultdict(set)
+        for technology, activities in mapping.items():
+            for dataset in activities:
+                production_roles_by_dataset[
+                    (dataset["name"], dataset["reference product"])
+                ].add(technology)
+
         def dataset_identity(dataset):
             return (
                 dataset.get("name"),
@@ -1674,8 +1681,19 @@ class BaseTransformation:
 
                 prod_vol = None
                 if production_volumes is not None:
-                    if technology in production_volumes.coords["variables"].values:
-                        prod_vol = production_volumes.sel(variables=technology)
+                    # One physical template can serve several IAM roles (for
+                    # example, a burner accepts several methane origins). It
+                    # is regionalized once, so its production must cover all
+                    # those roles rather than whichever mapping key came first.
+                    production_roles = sorted(
+                        production_roles_by_dataset[
+                            (activities[0]["name"], activities[0]["reference product"])
+                        ].intersection(production_volumes.coords["variables"].values)
+                    )
+                    if production_roles:
+                        prod_vol = production_volumes.sel(
+                            variables=production_roles
+                        ).sum(dim="variables")
 
                 datasets_to_regionalize = [
                     ds for ds in activities if not ds.get("regionalized", False)
