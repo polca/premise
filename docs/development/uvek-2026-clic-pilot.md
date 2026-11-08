@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 41 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 38 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 41 |
+| 3.6 | 27 | 38 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 2 |
-| 3.9 | 17 | 42 |
+| 3.9 | 17 | 39 |
 | 3.12 | 8 | 20 |
 
-These are 106 exact-profile cases involving 96 distinct rules, after reusing
+These are 100 exact-profile cases involving 90 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -274,10 +274,23 @@ kg converts with factor -1 to positive-reference native treatment-service kg,
 preserving both burdens and credits. Three native suppliers have finite baseline
 LCIs with unchanged scientific-content hashes. Geographic labels, historical
 models and native emission coverage remain explicit limitations.
+Six traced construction-waste collection/sorting services cover six more
+profiles: bulk iron and reinforcement sorting, and collection for final disposal
+of concrete, wall emulsion paint, mineral wool and paint on metal. Operating
+coordinates and final named waste/landfill functions were inspected. Complete
+native freight and updated construction-landfill/leachate models remain included;
+legacy source endpoints omit direct leachate as negligible. Moisture, model
+horizon and emission differences remain explicit screening limits, without a
+moisture correction or reconstructed source emissions. Six native suppliers have
+finite baseline LCIs and unchanged source scientific-content hashes. A separate
+[concrete-sorting proposal](uvek-concrete-sorting-fate-proposal.md) remains pending:
+its source residue goes to zero-allocated clinker co-processing, whereas the
+native sorting service landfills it. PE/PP collection with global mixed waste
+fates also remains unresolved; neither fate change inherits this approval.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 241 exact-profile fingerprints, with review evidence and
+ledger contains 247 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

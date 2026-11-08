@@ -14657,6 +14657,766 @@
           "fingerprint": "e7e069922d0fb6b767c74b227e484bbd511adfa9247c0cd408d959a3d4176dbb"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4d389c0e2269e7e9",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_traced_building_waste_review.json",
+      "review_sha256": "a4908eb1fe73fd8a0a5180720a3e8fa3df869f46bf94eff479043882aa631cf7",
+      "authorization": "Standing independently inspected matching-material/function/unit waste-service and geographic supply-proxy approvals, reused for the enumerated collection/sorting services after checking unit reference signs, material/stage definitions, operating demands and actual downstream routes. Preserve complete existing native service inventories and their explicit technology/vintage/emission-model differences. No new disposal fate, recovered-product credit, helper, reconstructed allocation or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-4d389c0e2269e7e9",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+          "reference product": "waste bulk iron, excluding reinforcement",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+          "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "a98cfe5ac2a6009a2295efd9b88f2c6613287e4a609817a5e9f89f73f5e7e42e",
+        "source_inventory_sha256": "b888421a4dba8149cd294b2659ce014047265471e0ecab92e67cc89346057b26",
+        "source_activity_comment_sha256": "4e31326c37ac20fac6bb2ffce5c33d47ffef3f4c04dc72963c7fbd7e3e23883c",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "121f5c2011aa24a291842756422ba80ee199d809c42e002a32edbac076d13a09",
+            "inventory_sha256": "3b708df070beb11945db7eea8eaf2a21dfe48d3c75b40be2eca7b674b4a30843",
+            "activity_comment_sha256": "75d8e2601dd0bc05d7b44d9ddc83c4fb18bba6c6e0e837c8f9c5d5a3846e150f",
+            "direct_technosphere_coordinates": 4,
+            "included_freight_coordinates": 1
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "0ed711b17af9c04c46023f003b5df5649546c75d0e69869fa9948f61a59cf0a3",
+            "inventory_sha256": "16342cece4d3bc8f7ec5e3478342d0b9363b234430522b88c88e1953eb2d74a2",
+            "activity_comment_sha256": "a8e4dfe9220e1859a9318fefa0c48425f93fa37e6e6f1884f8f9b5bd35651e4a",
+            "direct_technosphere_coordinates": 4,
+            "included_freight_coordinates": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matched_operating_products": {
+          "2025": [
+            "electricity, low voltage",
+            "excavation, hydraulic digger",
+            "sorting facility, for construction waste"
+          ],
+          "2026": [
+            "electricity, low voltage",
+            "excavation, hydraulic digger",
+            "sorting facility, for construction waste"
+          ]
+        },
+        "source_route_endpoints": [
+          {
+            "identity": {
+              "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+              "reference product": "waste bulk iron, excluding reinforcement",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "activity_units_per_parent": 1,
+            "metadata_sha256": "a98cfe5ac2a6009a2295efd9b88f2c6613287e4a609817a5e9f89f73f5e7e42e",
+            "inventory_sha256": "b888421a4dba8149cd294b2659ce014047265471e0ecab92e67cc89346057b26",
+            "active_direct_biosphere_exchanges": 0
+          }
+        ],
+        "native_route_endpoints": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+                "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1,
+              "metadata_sha256": "121f5c2011aa24a291842756422ba80ee199d809c42e002a32edbac076d13a09",
+              "inventory_sha256": "3b708df070beb11945db7eea8eaf2a21dfe48d3c75b40be2eca7b674b4a30843",
+              "active_direct_biosphere_exchanges": 1
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+                "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1,
+              "metadata_sha256": "0ed711b17af9c04c46023f003b5df5649546c75d0e69869fa9948f61a59cf0a3",
+              "inventory_sha256": "16342cece4d3bc8f7ec5e3478342d0b9363b234430522b88c88e1953eb2d74a2",
+              "active_direct_biosphere_exchanges": 1
+            }
+          ]
+        },
+        "boundary": "Same bulk-iron sorting service excluding reinforcement, per kg of steel waste with the documented7900kg/m3 density. Electricity, hydraulic-digger demand and sorting-facility reference match after aggregating source suppliers. This is a handling/sorting stage with no recovered-metal output or avoided-primary-material credit. Retain complete native sorting and its internal freight once, preserving separately listed caller steel/transport. Source Europe-without-Switzerland geography is approximated by the native Swiss service; background, vintage and emission coverage differ. Apply no waste-density or metal-recovery multiplier."
+      },
+      "limitations": [
+        "Same bulk-iron sorting service excluding reinforcement, per kg of steel waste with the documented7900kg/m3 density. Electricity, hydraulic-digger demand and sorting-facility reference match after aggregating source suppliers. This is a handling/sorting stage with no recovered-metal output or avoided-primary-material credit. Retain complete native sorting and its internal freight once, preserving separately listed caller steel/transport. Source Europe-without-Switzerland geography is approximated by the native Swiss service; background, vintage and emission coverage differ. Apply no waste-density or metal-recovery multiplier.",
+        "Preserve signed waste kg with factor -1 because source waste production is -1kg and native service production is +1kg. Preserve burdens/credits, lognormal uncertainty, symbolic formulas, caller ownership and separately listed transport/materials/emissions. Apply no absolute-value, density, moisture, yield or recovery factor.",
+        "Use complete native collection/sorting services, including existing internal freight and final disposal where documented, once. Native freight can be absent as a direct source exchange; do not add a second freight burden. No recovered product, virgin-material credit, reconstructed source emissions or additional landfill process is invented.",
+        "Collection endpoints retain the same named waste and inert/construction-landfill function, but their native model includes explicit long-term leachate, infrastructure and operational updates while legacy source endpoints omit direct leachate. Native composition/moisture, model horizon, geography, background, vintage and biosphere coverage differ. Retain these as screening limitations, including native imported exclusions; no inventory/LCIA equality is established.",
+        "Only enumerated cut-off source profiles are registered. Concrete sorting that routes residue to clinker and PE/PP collection with global mixed treatment fates are excluded from this decision; do not redirect those routes to landfill or all-incineration without separate resolution. Independent inverse and cross-system-model routes remain unsupported."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "86cdfc0c7a67f54292e2672a3ea7f4498d474355e00247fa74150597487ebdce"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-87f7a46df5981dc9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_traced_building_waste_review.json",
+      "review_sha256": "a4908eb1fe73fd8a0a5180720a3e8fa3df869f46bf94eff479043882aa631cf7",
+      "authorization": "Standing independently inspected matching-material/function/unit waste-service and geographic supply-proxy approvals, reused for the enumerated collection/sorting services after checking unit reference signs, material/stage definitions, operating demands and actual downstream routes. Preserve complete existing native service inventories and their explicit technology/vintage/emission-model differences. No new disposal fate, recovered-product credit, helper, reconstructed allocation or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-87f7a46df5981dc9",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste concrete, not reinforced, collection for final disposal",
+          "reference product": "waste concrete, not reinforced",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, concrete, not reinforced, to final disposal",
+          "reference product": "Disposal, building, concrete, not reinforced, to final disposal",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "834edb719a6b027a0cd50716161d1d4ce9bea7784d6a187be322486d14d03e0e",
+        "source_inventory_sha256": "c5750157c5f286bd21f501d180d86c27537e09b443182fe89e9720ed948bab2b",
+        "source_activity_comment_sha256": "9e539e1d90f3a1013eae3d49632392eff7cd6cc6eb2fc2c5e509e8b058f38433",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "ec68723b7b30f60511134a8dea38f242b45fb31b84a8af2006f23c1695a48cc0",
+            "inventory_sha256": "d01de2369fc997a53fcf99a70eeff32d9ecc3ce3a1d446ce51619b233a717b18",
+            "activity_comment_sha256": "6f8f4ac2aaae7c4a4b0ff592cdbf01131606eac5dd1db2a738bd36405db54765",
+            "direct_technosphere_coordinates": 3,
+            "included_freight_coordinates": 1
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "fd9350e62ffe6d3e36d53ab65d457c44724526043d4a2aa341665c488315eb7a",
+            "inventory_sha256": "ea6cf11baf911e5f1ebe2c0cdb2fee794152ebd9b880d05f8e548fdeec360586",
+            "activity_comment_sha256": "63b0422b940ced951b6af181365f0e02268386bffd2bcf84a5ebc161ddc1764d",
+            "direct_technosphere_coordinates": 3,
+            "included_freight_coordinates": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matched_operating_products": {
+          "2025": [
+            "diesel, burned in building machine"
+          ],
+          "2026": [
+            "diesel, burned in building machine"
+          ]
+        },
+        "source_route_endpoints": [
+          {
+            "identity": {
+              "name": "treatment of inert waste, inert material landfill",
+              "reference product": "inert waste, for final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "activity_units_per_parent": 1.0,
+            "metadata_sha256": "18492aff6113e253d2e0c35f73ac1b5dfde7dc50f7530548908300afa8e31944",
+            "inventory_sha256": "c80e2e25defe7847ad7cb8962fa9b7c3061cf93693766b2e6709cbc2ce2678af",
+            "active_direct_biosphere_exchanges": 0
+          }
+        ],
+        "native_route_endpoints": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+                "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "223a7020554d60b470e5434abf40d26b5d14092ba4722401f84bf99c6d0551fb",
+              "inventory_sha256": "c644fae1aef8d6d2c4f56d8ed37d63059d1003fa01c456a6f64c235986b3ad1a",
+              "active_direct_biosphere_exchanges": 61
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+                "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "9597264f957c20cc9cd6d1859bd8faa9bfc376f38efa5d381506fd9df8946917",
+              "inventory_sha256": "3f586d2e279ea02570263f7fa2935f2f14c1ff0deb711812b4f460b69cdbd714",
+              "active_direct_biosphere_exchanges": 63
+            }
+          ]
+        },
+        "boundary": "Same non-reinforced concrete collection/dismantling for final disposal, per kg, including the matching diesel demand and one-kg inert-landfill endpoint. Source routing was traced through its waste market to inert-material landfill, not clinker recovery. Retain the complete native collection/landfill inventory and freight once. The source terminal is a legacy process-burden/infrastructure inventory that excludes direct leachate as negligible; native construction-waste landfill models explicit long-term leachate. Source terminal moisture property is0.5%, while the native generic inert-waste endpoint states5%; this is a screening-composition difference, not a dry/wet unit conversion. Preserve signed waste kg with no density/moisture factor, source-emission reconstruction or additional disposal process. Technology, modeled emissions, geography and vintage differ."
+      },
+      "limitations": [
+        "Same non-reinforced concrete collection/dismantling for final disposal, per kg, including the matching diesel demand and one-kg inert-landfill endpoint. Source routing was traced through its waste market to inert-material landfill, not clinker recovery. Retain the complete native collection/landfill inventory and freight once. The source terminal is a legacy process-burden/infrastructure inventory that excludes direct leachate as negligible; native construction-waste landfill models explicit long-term leachate. Source terminal moisture property is0.5%, while the native generic inert-waste endpoint states5%; this is a screening-composition difference, not a dry/wet unit conversion. Preserve signed waste kg with no density/moisture factor, source-emission reconstruction or additional disposal process. Technology, modeled emissions, geography and vintage differ.",
+        "Preserve signed waste kg with factor -1 because source waste production is -1kg and native service production is +1kg. Preserve burdens/credits, lognormal uncertainty, symbolic formulas, caller ownership and separately listed transport/materials/emissions. Apply no absolute-value, density, moisture, yield or recovery factor.",
+        "Use complete native collection/sorting services, including existing internal freight and final disposal where documented, once. Native freight can be absent as a direct source exchange; do not add a second freight burden. No recovered product, virgin-material credit, reconstructed source emissions or additional landfill process is invented.",
+        "Collection endpoints retain the same named waste and inert/construction-landfill function, but their native model includes explicit long-term leachate, infrastructure and operational updates while legacy source endpoints omit direct leachate. Native composition/moisture, model horizon, geography, background, vintage and biosphere coverage differ. Retain these as screening limitations, including native imported exclusions; no inventory/LCIA equality is established.",
+        "Only enumerated cut-off source profiles are registered. Concrete sorting that routes residue to clinker and PE/PP collection with global mixed treatment fates are excluded from this decision; do not redirect those routes to landfill or all-incineration without separate resolution. Independent inverse and cross-system-model routes remain unsupported."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6dd07235aa0d5a4faae9e4fd66afa2f3a3de5d48b850073acfaa25f7116428d7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6c847c1ca1076c30",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_traced_building_waste_review.json",
+      "review_sha256": "a4908eb1fe73fd8a0a5180720a3e8fa3df869f46bf94eff479043882aa631cf7",
+      "authorization": "Standing independently inspected matching-material/function/unit waste-service and geographic supply-proxy approvals, reused for the enumerated collection/sorting services after checking unit reference signs, material/stage definitions, operating demands and actual downstream routes. Preserve complete existing native service inventories and their explicit technology/vintage/emission-model differences. No new disposal fate, recovered-product credit, helper, reconstructed allocation or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-6c847c1ca1076c30",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste emulsion paint on wall, collection for final disposal",
+          "reference product": "waste emulsion paint, on wall",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "xx Disposal, building, emulsion paint on walls, to final disposal",
+          "reference product": "xx Disposal, building, emulsion paint on walls, to final disposal",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "54c3d3d22608e9315fffb32f1e5e225ce4b1372f4a331fe928ee5a3d5673f849",
+        "source_inventory_sha256": "442ba2f0a6e514bf495d46a2dc89c8cf98b8abf04e7ae4131b8aa325b934b737",
+        "source_activity_comment_sha256": "b4a5b0f572c943647f9ddbaff279caaec782136d61d252e7cf5c842cafcb4ecd",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "3dfcd16c92abcc09a6ede7f2bd5a22daf9cf61ce02ade36613f96433604ac62b",
+            "inventory_sha256": "2a0a42bbc550d033719188fa1d719f36e4d9ad949c903022084985801d4499cf",
+            "activity_comment_sha256": "dee25088b9618cf57e34ce5b9ae2c4954473fc620d5400fb821afdf81c075885",
+            "direct_technosphere_coordinates": 2,
+            "included_freight_coordinates": 1
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "3f231a41bf0561776f7137abbd803f820e058c0fc228292afed5f8d2cca0163f",
+            "inventory_sha256": "13c34bfdae749ff8935747cde18ff894f4d3764724d195c4401957a21c8a279d",
+            "activity_comment_sha256": "0c5416f35f38326914515bc751f82100652daa65b7bbbac4ee804d10c23d9b69",
+            "direct_technosphere_coordinates": 2,
+            "included_freight_coordinates": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matched_operating_products": {
+          "2025": [],
+          "2026": []
+        },
+        "source_route_endpoints": [
+          {
+            "identity": {
+              "name": "treatment of waste emulsion paint, inert material landfill",
+              "reference product": "waste emulsion paint",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "activity_units_per_parent": 1.0,
+            "metadata_sha256": "b14c038ea66f29d0060f71a5de7200b075afeefc49dde5ead9b49d9566a0197a",
+            "inventory_sha256": "b21fbc09bc552434da5c6bff91aca5420ee8d7118607e60a37cf4e434a948c90",
+            "active_direct_biosphere_exchanges": 0
+          }
+        ],
+        "native_route_endpoints": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Disposal, emulsion paint, 0% water, to construction waste landfill",
+                "reference product": "Disposal, emulsion paint, 0% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "71a5c88367e306fd0fa934dcf134309765a70ccf8b54dc73634efdf901ba2a42",
+              "inventory_sha256": "1c5c6ed47bb34018a9d1e87853c11d7e3e698c05b0d8b83fc5a2ece4bfe960e8",
+              "active_direct_biosphere_exchanges": 38
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Disposal, emulsion paint, 0% water, to construction waste landfill",
+                "reference product": "Disposal, emulsion paint, 0% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "796dbda33d770c164c4fde5a3bb400e86b42ff689e5b6fcd100a6dd512e61f4f",
+              "inventory_sha256": "64f2aee5820326fde1c9be2df6f6bde473d837ee1946b550dd65f71870516c9a",
+              "active_direct_biosphere_exchanges": 39
+            }
+          ]
+        },
+        "boundary": "Same emulsion-paint-on-wall collection for final disposal per kg of paint, not wall substrate or wet unused paint. Source direct endpoint is emulsion-paint inert landfill; native endpoint is the corresponding dry emulsion-paint construction-waste landfill. Preserve the complete native collection/freight/landfill service once and retain the native xx prefix as a record label. The native endpoint models long-term leachate where the legacy source excludes direct leachate as negligible. No wall material, density factor, separate paint production, inferred moisture conversion or additional landfill emissions are added. Native waste-specific composition/emission model, background, vintage and delivery differ."
+      },
+      "limitations": [
+        "Same emulsion-paint-on-wall collection for final disposal per kg of paint, not wall substrate or wet unused paint. Source direct endpoint is emulsion-paint inert landfill; native endpoint is the corresponding dry emulsion-paint construction-waste landfill. Preserve the complete native collection/freight/landfill service once and retain the native xx prefix as a record label. The native endpoint models long-term leachate where the legacy source excludes direct leachate as negligible. No wall material, density factor, separate paint production, inferred moisture conversion or additional landfill emissions are added. Native waste-specific composition/emission model, background, vintage and delivery differ.",
+        "Preserve signed waste kg with factor -1 because source waste production is -1kg and native service production is +1kg. Preserve burdens/credits, lognormal uncertainty, symbolic formulas, caller ownership and separately listed transport/materials/emissions. Apply no absolute-value, density, moisture, yield or recovery factor.",
+        "Use complete native collection/sorting services, including existing internal freight and final disposal where documented, once. Native freight can be absent as a direct source exchange; do not add a second freight burden. No recovered product, virgin-material credit, reconstructed source emissions or additional landfill process is invented.",
+        "Collection endpoints retain the same named waste and inert/construction-landfill function, but their native model includes explicit long-term leachate, infrastructure and operational updates while legacy source endpoints omit direct leachate. Native composition/moisture, model horizon, geography, background, vintage and biosphere coverage differ. Retain these as screening limitations, including native imported exclusions; no inventory/LCIA equality is established.",
+        "Only enumerated cut-off source profiles are registered. Concrete sorting that routes residue to clinker and PE/PP collection with global mixed treatment fates are excluded from this decision; do not redirect those routes to landfill or all-incineration without separate resolution. Independent inverse and cross-system-model routes remain unsupported."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f0e55e70d235bb316d372d8487ed4d3b54b579a4aef45c84d318f7157c662a12"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d60ada0a6741edb5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_traced_building_waste_review.json",
+      "review_sha256": "a4908eb1fe73fd8a0a5180720a3e8fa3df869f46bf94eff479043882aa631cf7",
+      "authorization": "Standing independently inspected matching-material/function/unit waste-service and geographic supply-proxy approvals, reused for the enumerated collection/sorting services after checking unit reference signs, material/stage definitions, operating demands and actual downstream routes. Preserve complete existing native service inventories and their explicit technology/vintage/emission-model differences. No new disposal fate, recovered-product credit, helper, reconstructed allocation or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-d60ada0a6741edb5",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste mineral wool, collection for final disposal",
+          "reference product": "waste mineral wool",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, mineral wool, to final disposal",
+          "reference product": "Disposal, building, mineral wool, to final disposal",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "9bf4f90880d7d1e2d68460b20bf96109f1730bc5cc535e96fddc939332fb639a",
+        "source_inventory_sha256": "d4b4b05cb4ae44d59e7510a3f425f99e298955902f8e60a9535bc5e77f064cf9",
+        "source_activity_comment_sha256": "3aa57d0c628141f1eddaae4533b510bba50c9e4fe5672c79c58159cc3cfe8f82",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "988df6aa8bdc5f13ad689642d53a2751ab7c6ecb2b4ff796162f2a7df0f30b36",
+            "inventory_sha256": "4772d1bb86271e923d0c8d11c4a0382fbb3439438de43ea5c4c14643d1c24732",
+            "activity_comment_sha256": "ffa14014413c704404fe91369a7c55a7fe60004cf70238c6b9a21cfd244b72a2",
+            "direct_technosphere_coordinates": 2,
+            "included_freight_coordinates": 1
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "c97b170de07f42931542acac88f38da11579d34a46898ff76af420e3eca92254",
+            "inventory_sha256": "df68d644ac79cc9f74d7862252661bf4f8132c97a68ce7bb80c13484cfc5593c",
+            "activity_comment_sha256": "756a836325de45944fd09e500a3d48c1dfe56eb85307d8383fd4f2e331c497cd",
+            "direct_technosphere_coordinates": 2,
+            "included_freight_coordinates": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matched_operating_products": {
+          "2025": [],
+          "2026": []
+        },
+        "source_route_endpoints": [
+          {
+            "identity": {
+              "name": "treatment of waste mineral wool, inert material landfill",
+              "reference product": "waste mineral wool, for final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "activity_units_per_parent": 1.0,
+            "metadata_sha256": "00601c6430e0756125832ced651cdc3380d6768892e0821277ea5ba7e09ee156",
+            "inventory_sha256": "cf57466c5b1bcb37c5cbe20e636b7b3d5292b0419c3f02ac8ca6265136f9afdd",
+            "active_direct_biosphere_exchanges": 0
+          }
+        ],
+        "native_route_endpoints": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+                "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "1144fbd914155a744a6e81782cbcf600f5586faad319b1f1430024e8515b3e46",
+              "inventory_sha256": "d83703be58c6a8877bac3f7255acb5c1954918e8c12ddaac79298d5e0dc27089",
+              "active_direct_biosphere_exchanges": 53
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+                "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "409d44fe0bee8ec4ba6fc30a80628870ac77a2132630bf0521605795be9275a6",
+              "inventory_sha256": "56a8bd4d58da2ab34baae9e9c5618fe8bc6b5881e9523b01124eb32dc7d3ef1a",
+              "active_direct_biosphere_exchanges": 55
+            }
+          ]
+        },
+        "boundary": "Same mineral-wool collection for final disposal per kg, with a traced one-kg mineral-wool inert-landfill endpoint in source and native. Retain the complete native collection, freight and mineral-wool landfill service once; this is not a bare landfill or mineral-wool recycling credit. Native endpoint moisture naming is rounded0% and its updated construction-waste landfill models long-term leachate; the source legacy endpoint omits direct leachate as negligible. Preserve the original mass coordinate without a density/moisture factor, extra wool production, duplicate disposal or source-emission reconstruction. Native composition, background, model horizon, vintage and delivery remain screening limitations."
+      },
+      "limitations": [
+        "Same mineral-wool collection for final disposal per kg, with a traced one-kg mineral-wool inert-landfill endpoint in source and native. Retain the complete native collection, freight and mineral-wool landfill service once; this is not a bare landfill or mineral-wool recycling credit. Native endpoint moisture naming is rounded0% and its updated construction-waste landfill models long-term leachate; the source legacy endpoint omits direct leachate as negligible. Preserve the original mass coordinate without a density/moisture factor, extra wool production, duplicate disposal or source-emission reconstruction. Native composition, background, model horizon, vintage and delivery remain screening limitations.",
+        "Preserve signed waste kg with factor -1 because source waste production is -1kg and native service production is +1kg. Preserve burdens/credits, lognormal uncertainty, symbolic formulas, caller ownership and separately listed transport/materials/emissions. Apply no absolute-value, density, moisture, yield or recovery factor.",
+        "Use complete native collection/sorting services, including existing internal freight and final disposal where documented, once. Native freight can be absent as a direct source exchange; do not add a second freight burden. No recovered product, virgin-material credit, reconstructed source emissions or additional landfill process is invented.",
+        "Collection endpoints retain the same named waste and inert/construction-landfill function, but their native model includes explicit long-term leachate, infrastructure and operational updates while legacy source endpoints omit direct leachate. Native composition/moisture, model horizon, geography, background, vintage and biosphere coverage differ. Retain these as screening limitations, including native imported exclusions; no inventory/LCIA equality is established.",
+        "Only enumerated cut-off source profiles are registered. Concrete sorting that routes residue to clinker and PE/PP collection with global mixed treatment fates are excluded from this decision; do not redirect those routes to landfill or all-incineration without separate resolution. Independent inverse and cross-system-model routes remain unsupported."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6da9b844bf8b78cf5e897a9166dacf2131937cb3fa63364331c01906a4992f2e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cc3516074957a931",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_traced_building_waste_review.json",
+      "review_sha256": "a4908eb1fe73fd8a0a5180720a3e8fa3df869f46bf94eff479043882aa631cf7",
+      "authorization": "Standing independently inspected matching-material/function/unit waste-service and geographic supply-proxy approvals, reused for the enumerated collection/sorting services after checking unit reference signs, material/stage definitions, operating demands and actual downstream routes. Preserve complete existing native service inventories and their explicit technology/vintage/emission-model differences. No new disposal fate, recovered-product credit, helper, reconstructed allocation or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-cc3516074957a931",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste paint on metal, collection for final disposal",
+          "reference product": "waste paint on metal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, paint on metal, to final disposal",
+          "reference product": "Disposal, building, paint on metal, to final disposal",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "652ebb69eccbc306f2bd8064bc531c568dc50b7fcc516bd1284236a93f8179d9",
+        "source_inventory_sha256": "0faf7d04fa10b3e9031f2d390e18f5789dfa340b39dad648ad54f1e843239c63",
+        "source_activity_comment_sha256": "7d318c09585821fc2b2bf66d780512bd013a0c05943f51c13215b0edc4567ed6",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "0973582c1a7779e5c01f6ca3ea7029b97234f59e2dd8a69b5cffc75714a312ea",
+            "inventory_sha256": "6836028f9361efade5bd8e71f6c35bbe7106f5611ac418a3aade1abade44a01e",
+            "activity_comment_sha256": "1874736dd863d4a489ed7f50946875045a544d7dbf692b5e8a9199157e1c7e8e",
+            "direct_technosphere_coordinates": 2,
+            "included_freight_coordinates": 1
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "7b76d25ac8dffe647360a36ae14aef223fed938aa3d3639b05a25a26fbf65e80",
+            "inventory_sha256": "7d60e3bc45d9ff95fcd4c1171cd2d1b118dd0fdf5129589a73d88ec69bc47661",
+            "activity_comment_sha256": "7ff77998b698333c675763a08a773c28043a0993d6d1b49d866b10d7f9fae06a",
+            "direct_technosphere_coordinates": 2,
+            "included_freight_coordinates": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matched_operating_products": {
+          "2025": [],
+          "2026": []
+        },
+        "source_route_endpoints": [
+          {
+            "identity": {
+              "name": "treatment of waste paint, inert material landfill",
+              "reference product": "waste paint",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "activity_units_per_parent": 1.0,
+            "metadata_sha256": "44ad07dbaeab92c9a9b36d67dbefa0ad6a64372ad3375f0811c661c861f99528",
+            "inventory_sha256": "2256e3895dcd28fac2bc5394e3ebb49e26b9d792adf4c9c56a03ccd0cf2703fa",
+            "active_direct_biosphere_exchanges": 0
+          }
+        ],
+        "native_route_endpoints": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Disposal, paint remains, 0% water, to construction waste landfill",
+                "reference product": "Disposal, paint remains, 0% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "5a766ef71336a84e207d8f87cd528cb3d3c87434ca56abc980f1790a71ce56b0",
+              "inventory_sha256": "03ee4efbfa92d048b83d547d50b3d546e5f38deb4ade4b2ed6a66f9c708d55cb",
+              "active_direct_biosphere_exchanges": 40
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Disposal, paint remains, 0% water, to construction waste landfill",
+                "reference product": "Disposal, paint remains, 0% water, to construction waste landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1.0,
+              "metadata_sha256": "8a64dbfd18ee07a38410827c6c789a7ac17615ebe55536ac02dfc633510f60b5",
+              "inventory_sha256": "eef9305406432fa2d7a66de0f359228e6213482293e5710292765f0b67ee5e92",
+              "active_direct_biosphere_exchanges": 41
+            }
+          ]
+        },
+        "boundary": "Same paint-on-metal collection for final disposal per kg of dry paint, excluding the metal substrate. The source direct endpoint is paint inert landfill and the native endpoint is paint-remains construction-waste landfill. Retain complete native collection/freight/landfill once, preserving separately listed caller metal and transport. Native long-term leachate modeling replaces the source legacy omission of direct leachate as negligible; it is not an emission-equivalence claim. Add no metal, paint production, disposal process, moisture/density factor or reconstructed source emissions. Native waste-specific composition, model horizon, background, vintage and delivery differ."
+      },
+      "limitations": [
+        "Same paint-on-metal collection for final disposal per kg of dry paint, excluding the metal substrate. The source direct endpoint is paint inert landfill and the native endpoint is paint-remains construction-waste landfill. Retain complete native collection/freight/landfill once, preserving separately listed caller metal and transport. Native long-term leachate modeling replaces the source legacy omission of direct leachate as negligible; it is not an emission-equivalence claim. Add no metal, paint production, disposal process, moisture/density factor or reconstructed source emissions. Native waste-specific composition, model horizon, background, vintage and delivery differ.",
+        "Preserve signed waste kg with factor -1 because source waste production is -1kg and native service production is +1kg. Preserve burdens/credits, lognormal uncertainty, symbolic formulas, caller ownership and separately listed transport/materials/emissions. Apply no absolute-value, density, moisture, yield or recovery factor.",
+        "Use complete native collection/sorting services, including existing internal freight and final disposal where documented, once. Native freight can be absent as a direct source exchange; do not add a second freight burden. No recovered product, virgin-material credit, reconstructed source emissions or additional landfill process is invented.",
+        "Collection endpoints retain the same named waste and inert/construction-landfill function, but their native model includes explicit long-term leachate, infrastructure and operational updates while legacy source endpoints omit direct leachate. Native composition/moisture, model horizon, geography, background, vintage and biosphere coverage differ. Retain these as screening limitations, including native imported exclusions; no inventory/LCIA equality is established.",
+        "Only enumerated cut-off source profiles are registered. Concrete sorting that routes residue to clinker and PE/PP collection with global mixed treatment fates are excluded from this decision; do not redirect those routes to landfill or all-incineration without separate resolution. Independent inverse and cross-system-model routes remain unsupported."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e6a846c7189d74d2d74fba56bf49998f90bf1d63f596a38e85fa7a7bc0c9ede0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e4747a1d81615ef4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_traced_building_waste_review.json",
+      "review_sha256": "a4908eb1fe73fd8a0a5180720a3e8fa3df869f46bf94eff479043882aa631cf7",
+      "authorization": "Standing independently inspected matching-material/function/unit waste-service and geographic supply-proxy approvals, reused for the enumerated collection/sorting services after checking unit reference signs, material/stage definitions, operating demands and actual downstream routes. Preserve complete existing native service inventories and their explicit technology/vintage/emission-model differences. No new disposal fate, recovered-product credit, helper, reconstructed allocation or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-e4747a1d81615ef4",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of waste reinforcement steel, sorting plant",
+          "reference product": "waste reinforcement steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, reinforcement steel, to sorting plant",
+          "reference product": "Disposal, building, reinforcement steel, to sorting plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "099aab45aa8322a8db03d70953a92c281aeffde0504b72b9fb03584e44681cc6",
+        "source_inventory_sha256": "b47bc508e2d3f64739bb85b93f436075dfbd40929f0b18b5e13f829fc772ad35",
+        "source_activity_comment_sha256": "b0fa4c3ff21a64f85aac3ee5b84225b590a48ab863ebde88c18d401884719ce3",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "3df11f4a1bbf87347927ee23bcf4d747bc2142368e5e890849ee459be7eba793",
+            "inventory_sha256": "03a7833c29eb801bacd7a8ae115c430889ded7902aa910a7bb5b65e2d86e4d99",
+            "activity_comment_sha256": "127180d8525664d339dce137979b5430f7f8b23ccd613c3f15591c94075b78ec",
+            "direct_technosphere_coordinates": 5,
+            "included_freight_coordinates": 1
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "9ef1e832f7a696219a3cb0de5d14eb2e90953a96f51d59e555e91f651e850cf9",
+            "inventory_sha256": "7805ef7c0a2ea35e651ff6ba7658ea48721800736bb9fb8f68e96d1e61e411b9",
+            "activity_comment_sha256": "28d212e7be6015fc2afc16b64a38bf2b9a738f4dc0db696215879ebe5fa62958",
+            "direct_technosphere_coordinates": 5,
+            "included_freight_coordinates": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matched_operating_products": {
+          "2025": [
+            "electricity, low voltage",
+            "excavation, hydraulic digger",
+            "sorting facility, for construction waste",
+            "diesel, burned in building machine"
+          ],
+          "2026": [
+            "electricity, low voltage",
+            "excavation, hydraulic digger",
+            "sorting facility, for construction waste",
+            "diesel, burned in building machine"
+          ]
+        },
+        "source_route_endpoints": [
+          {
+            "identity": {
+              "name": "treatment of waste reinforcement steel, sorting plant",
+              "reference product": "waste reinforcement steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "activity_units_per_parent": 1,
+            "metadata_sha256": "099aab45aa8322a8db03d70953a92c281aeffde0504b72b9fb03584e44681cc6",
+            "inventory_sha256": "b47bc508e2d3f64739bb85b93f436075dfbd40929f0b18b5e13f829fc772ad35",
+            "active_direct_biosphere_exchanges": 0
+          }
+        ],
+        "native_route_endpoints": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Disposal, building, reinforcement steel, to sorting plant",
+                "reference product": "Disposal, building, reinforcement steel, to sorting plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1,
+              "metadata_sha256": "3df11f4a1bbf87347927ee23bcf4d747bc2142368e5e890849ee459be7eba793",
+              "inventory_sha256": "03a7833c29eb801bacd7a8ae115c430889ded7902aa910a7bb5b65e2d86e4d99",
+              "active_direct_biosphere_exchanges": 1
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Disposal, building, reinforcement steel, to sorting plant",
+                "reference product": "Disposal, building, reinforcement steel, to sorting plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "activity_units_per_parent": 1,
+              "metadata_sha256": "9ef1e832f7a696219a3cb0de5d14eb2e90953a96f51d59e555e91f651e850cf9",
+              "inventory_sha256": "7805ef7c0a2ea35e651ff6ba7658ea48721800736bb9fb8f68e96d1e61e411b9",
+              "active_direct_biosphere_exchanges": 1
+            }
+          ]
+        },
+        "boundary": "Same reinforcement-steel dismantling and sorting service per kg, with matching diesel, summed electricity, hydraulic-digger and sorting-facility coordinates. Retain the complete native handling inventory and its internal freight once. No recovered steel output or virgin-steel credit is supplied by this stage; neither is invented. Source RoW labeling retains its historical Swiss-technology description while the target is Swiss. Background, geography, vintage and emissions differ. Apply no density/yield conversion or extra dismantling, sorting or transport process."
+      },
+      "limitations": [
+        "Same reinforcement-steel dismantling and sorting service per kg, with matching diesel, summed electricity, hydraulic-digger and sorting-facility coordinates. Retain the complete native handling inventory and its internal freight once. No recovered steel output or virgin-steel credit is supplied by this stage; neither is invented. Source RoW labeling retains its historical Swiss-technology description while the target is Swiss. Background, geography, vintage and emissions differ. Apply no density/yield conversion or extra dismantling, sorting or transport process.",
+        "Preserve signed waste kg with factor -1 because source waste production is -1kg and native service production is +1kg. Preserve burdens/credits, lognormal uncertainty, symbolic formulas, caller ownership and separately listed transport/materials/emissions. Apply no absolute-value, density, moisture, yield or recovery factor.",
+        "Use complete native collection/sorting services, including existing internal freight and final disposal where documented, once. Native freight can be absent as a direct source exchange; do not add a second freight burden. No recovered product, virgin-material credit, reconstructed source emissions or additional landfill process is invented.",
+        "Collection endpoints retain the same named waste and inert/construction-landfill function, but their native model includes explicit long-term leachate, infrastructure and operational updates while legacy source endpoints omit direct leachate. Native composition/moisture, model horizon, geography, background, vintage and biosphere coverage differ. Retain these as screening limitations, including native imported exclusions; no inventory/LCIA equality is established.",
+        "Only enumerated cut-off source profiles are registered. Concrete sorting that routes residue to clinker and PE/PP collection with global mixed treatment fates are excluded from this decision; do not redirect those routes to landfill or all-incineration without separate resolution. Independent inverse and cross-system-model routes remain unsupported."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dbaa20f224a36a0f4d27bd78ac36e7f8ad52cc49588214ff9263c66d5f8b35e6"
+        }
+      ]
     }
   ]
 }

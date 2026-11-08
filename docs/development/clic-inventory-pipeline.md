@@ -459,6 +459,22 @@ new ash, cement, recovery or carbon-origin adjustments. Native geographic labels
 historical transfer models and biosphere exclusions remain warnings. Three
 native suppliers have finite baseline LCIs and unchanged source contents.
 
+`uvek_pilot_traced_building_waste_review.json` adds six independently
+inspected construction-waste collection/sorting correspondences. Bulk-iron and
+reinforcement sorting preserve matched operating demands without recovered
+metal credits. Concrete, wall emulsion paint, mineral wool and metal-paint
+collection retain their complete native landfill/freight chains once. Actual
+source waste-market routes were traced to the same named inert-landfill
+functions, rather than inferred from collection labels. Native landfill models
+include explicit long-term leachate and operational updates where legacy source
+endpoints omit direct leachate; moisture, model horizon, geography and emission
+coverage remain screening limitations, not claims of inventory equality.
+Preserve signed kg with factor -1, uncertainty/formulas and separate caller
+materials/transport. No duplicate freight, disposal, density/moisture factor or
+source-emission reconstruction is added. Concrete sorting routed to clinker
+and PE/PP collection with global mixed fates are explicitly excluded. Six native
+suppliers have finite baseline LCIs with unchanged source scientific contents.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

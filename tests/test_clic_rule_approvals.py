@@ -335,9 +335,17 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
             "bp-7393e642acca8e35",
             "bp-b73d5db62046c9cf",
             "bp-8c3b3ceb3e9c8bef",
+            "bp-87f7a46df5981dc9",
+            "bp-6c847c1ca1076c30",
+            "bp-d60ada0a6741edb5",
         ]
     ]
-    + [("bp-9ac96dd0500cd5a9", "3.9")],
+    + [
+        ("bp-9ac96dd0500cd5a9", "3.9"),
+        ("bp-4d389c0e2269e7e9", "3.9"),
+        ("bp-e4747a1d81615ef4", "3.9"),
+        ("bp-cc3516074957a931", "3.9"),
+    ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
 def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
@@ -1149,5 +1157,27 @@ def test_approved_dense_soda_proxy_keeps_missing_densification_warning_in_cache(
         )
         assert warning["details"]["review_path"].endswith(
             "uvek_pilot_dense_soda_review.json"
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [("bp-e6c831a29eb4d1fa", "3.6"), ("bp-ccc007a13f79d195", "3.9")],
+)
+def test_unreviewed_waste_fate_changes_still_refuse_migration(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
         )
     assert resolved.activities == before
