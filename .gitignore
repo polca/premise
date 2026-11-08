@@ -26,6 +26,10 @@ missing_classifications.csv
 # ignore .env file in tests
 tests/*.env
 
+# Local credentials and generated analysis artifacts
+/.env
+/outputs/
+
 *.pyc
 
 *.xml
