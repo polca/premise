@@ -18000,6 +18000,86 @@
           "fingerprint": "71c4eaad249268c83750a32688b28f2f6a96fc0d3db72b211be3d392574ebd18"
         }
       ]
+    },
+    {
+      "rule_id": "bp-07968f74bde91ad7",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_generator_fuel_review.json",
+      "review_sha256": "acbf38949d74bc6472f20ea8127343768499950090e078ba3f0498d558610cee",
+      "authorization": "Explicit user approval: Approve fuel-normalized proxy. The presented decision preserves audited diesel draw with factor+2.8538813(rounded display;full ratio in linked proposal),while retaining source-reference ambiguity,native10MWversussource18.5kWinfrastructure,operating/allocation differences andunquantifiedscore effects. No assumed electrical efficiency,extra generator orheat credit.",
+      "inspection": {
+        "rule_id": "bp-07968f74bde91ad7",
+        "source": {
+          "location": "GLO",
+          "name": "diesel, burned in diesel-electric generating set, 18.5kW",
+          "reference product": "diesel, burned in diesel-electric generating set, 18.5kW",
+          "unit": "megajoule"
+        },
+        "previous_target": {
+          "location": "GLO",
+          "name": "Diesel, burned in diesel-electric generating set",
+          "reference product": "Diesel, burned in diesel-electric generating set",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Diesel, burned in diesel-electric generating set",
+          "reference product": "Diesel, burned in diesel-electric generating set",
+          "unit": "megajoule"
+        },
+        "previous_conversion_factor": 1,
+        "conversion_factor": 2.853881278538814,
+        "source_diesel_kg_per_reference": 0.0666666666666667,
+        "native_diesel_kg_per_reference": 0.02336,
+        "source_reference_unit": "megajoule",
+        "native_reference_unit": "megajoule",
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ee968d5abcc0f277eba94378689986d29ed0cbe92a3b2622587693da95a7f04a",
+            "inventory_sha256": "109e5b072a556716e0c47aff2791fe7bb7af299c78ab0da5efe07a2149e9c9c2"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "diesel_kg_per_reference": 0.02336,
+            "metadata_sha256": "9cce9647c27f6284c68adc7608bd38754198aeb2f7cc6fb9d3c7f1acdacac810",
+            "inventory_sha256": "1d9f9cd43f94f9273b5983b7a624a5bc4600d9ade439bcfc9b36d385a95551f1"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "diesel_kg_per_reference": 0.02336,
+            "metadata_sha256": "1a815d8d562522dfa33e5d7e05f937f4df5fc4b87306e99371528900ce045df5",
+            "inventory_sha256": "c9f4e6d70eb043a4f76ea42e8f09aeb94c165776de35d9be014064153f986bf3"
+          }
+        },
+        "limitations": "Explicitly approved fuel-demand-based screening proxy. Preserve the audited source diesel draw using factor+2.853881278538814 nativeMJ per source labelledMJ:source0.0666666666666667kg diesel/reference divided by native0.02336kg/MJ. Source labels and copied parameter do not establish an electrical-output reference; no electrical efficiency is inferred. Preserve signed caller demand,uncertainty,formulas,foreground ownership and separately listed emissions. Native10MWgenerator infrastructure represents source18.5kWreefergenerator as a scale/application proxy;retain native lifetime/load,infrastructure,operating emissions,lubrication,allocation,geography and vintage with warnings. Add no separate capacity factor,extra generator,heat credit or reconstructed source emissions. Site transport absent from native is not reconstructed. Inventory/LCIA equivalence is not established;score effects are unquantified. Only the exact inspected ecoinvent3.6cutoff profile is approved;other profiles,inverse andcross-system-model routes remain unresolved."
+      },
+      "limitations": [
+        "Explicitly approved fuel-demand-based screening proxy. Preserve the audited source diesel draw using factor+2.853881278538814 nativeMJ per source labelledMJ:source0.0666666666666667kg diesel/reference divided by native0.02336kg/MJ. Source labels and copied parameter do not establish an electrical-output reference; no electrical efficiency is inferred. Preserve signed caller demand,uncertainty,formulas,foreground ownership and separately listed emissions. Native10MWgenerator infrastructure represents source18.5kWreefergenerator as a scale/application proxy;retain native lifetime/load,infrastructure,operating emissions,lubrication,allocation,geography and vintage with warnings. Add no separate capacity factor,extra generator,heat credit or reconstructed source emissions. Site transport absent from native is not reconstructed. Inventory/LCIA equivalence is not established;score effects are unquantified. Only the exact inspected ecoinvent3.6cutoff profile is approved;other profiles,inverse andcross-system-model routes remain unresolved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5c526b1525b92334ce4be8a0e386e5860070e9ae6d1cd9d4a2c7e8262554eab5"
+        }
+      ]
     }
   ]
 }

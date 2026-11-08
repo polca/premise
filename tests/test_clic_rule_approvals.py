@@ -805,6 +805,7 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-194bdbdd9a8f228f",
         "bp-7dd6b6497336da23",
         "bp-eb6086f7739eb966",
+        "bp-07968f74bde91ad7",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1104,14 +1105,11 @@ def test_useful_heat_proxy_keeps_caller_mj_without_repeating_burner_factor(
 @pytest.mark.parametrize(
     "rule_id,version",
     [
-        ("bp-07968f74bde91ad7", "3.6"),
         ("bp-6cada1fa986bcf8b", "3.9"),
         ("bp-7fe8308839f735bb", "3.6"),
     ],
 )
-def test_unresolved_generator_and_gas_bases_still_refuse_migration(
-    tmp_path, rule_id, version
-):
+def test_unresolved_gas_volume_bases_still_refuse_migration(tmp_path, rule_id, version):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
@@ -1123,6 +1121,79 @@ def test_unresolved_generator_and_gas_bases_still_refuse_migration(
     with pytest.raises(ClicInventoryError, match="independent review"):
         ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
             resolved, family="uvek", version="2026"
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize("amount", [-2, 2])
+def test_approved_generator_factor_preserves_fuel_draw_and_separate_emissions(
+    tmp_path, amount
+):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_pilot_generator_fuel_review.json").read_text()
+    )
+    (decision,) = review["rules"]
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == decision["rule_id"]
+    )
+    resolved = graph(rule["source"], version="3.6")
+    source = resolved.activities[0]["exchanges"][1]
+    source.update(
+        amount=amount,
+        **{
+            "uncertainty type": 2,
+            "loc": math.log(abs(amount)),
+            "scale": 0.2,
+            "negative": amount < 0,
+            "formula": "generator_service",
+        },
+    )
+    resolved.activities[0]["exchanges"].append(
+        {
+            "name": "Carbon dioxide, fossil",
+            "categories": ("air", "non-urban air or from high stacks"),
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.037,
+            "uncertainty type": 0,
+            "formula": "separate_stack_emissions",
+        }
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    factor = decision["conversion_factor"]
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 3
+        generator, emissions = activity["exchanges"][1:]
+        assert generator["amount"] == pytest.approx(amount * factor)
+        assert generator["unit"] == "megajoule"
+        assert generator["loc"] == pytest.approx(source["loc"] + math.log(factor))
+        assert generator["scale"] == source["scale"]
+        assert generator["negative"] is (amount < 0)
+        assert generator["formula"] == f"(generator_service) * ({factor})"
+        assert generator["amount"] * decision[
+            "native_diesel_kg_per_reference"
+        ] == pytest.approx(amount * decision["source_diesel_kg_per_reference"])
+        assert emissions["amount"] == 0.037
+        assert emissions["formula"] == "separate_stack_emissions"
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
+        )
+        assert all(
+            term in warning["message"]
+            for term in ("18.5kW", "10MW", "electrical-output", "unquantified")
         )
     assert resolved.activities == before
 

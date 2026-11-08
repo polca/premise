@@ -545,6 +545,17 @@ limitations. Thirty-one focused checks pass, including unresolved generator
 and gas-volume refusals at this checkpoint. Five native supplier LCIs are finite
 with unchanged scientific hashes. No raw migration rule changes in this group.
 
+`uvek_pilot_generator_fuel_review.json` implements the explicit small-generator
+fuel-reference choice. Only the inspected 3.6 case uses factor
++2.853881278538814, preserving direct diesel demand while retaining source
+reference ambiguity and native 10 MW versus source 18.5 kW scale/application
+differences as warnings. Signed quantities, lognormal uncertainty, formulas,
+separate emissions and cache warnings pass seven focused checks. All 270 earlier
+approval fingerprints remain unchanged. Relevant Brightpath checks pass (186),
+the full generator replay is byte-identical and the normalized native LCI is
+finite with unchanged source hashes. Uninspected profiles and direct gas-volume
+conversions remain closed; no electrical efficiency or recovery model is inferred.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

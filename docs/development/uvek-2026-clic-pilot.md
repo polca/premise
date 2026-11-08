@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 30 |
+| 3.6 | 27 | 29 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 1 |
 | 3.9 | 17 | 31 |
 | 3.12 | 8 | 15 |
 
-These are 77 exact-profile cases involving 68 distinct rules, after reusing
+These are 76 exact-profile cases involving 67 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -345,10 +345,19 @@ allocation and residue-management differences remain warnings. Thirty-one
 focused checks pass and five native supplier LCIs are finite with unchanged
 scientific hashes. Generator reference ambiguity and direct gas-volume
 conventions remain excluded at this checkpoint.
+The separately approved [small-generator fuel proxy](uvek-small-diesel-generator-proposal.md)
+adds factor +2.853881278538814 for the inspected 3.6 case, preserving its audited
+direct diesel draw without asserting an electrical-output basis. Native
+10 MW/source 18.5 kW scale and reference ambiguities remain warnings. Seven
+focused checks pass and all 270 earlier approval fingerprints are unchanged.
+Relevant Brightpath checks pass (186), the generator replay is byte-identical,
+and the normalized native supplier LCI is finite with unchanged scientific
+hashes. Direct gas-volume cases remain refused. The current module contains
+518 cases; no new full 518-case correspondence run is claimed.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 270 exact-profile fingerprints, with review evidence and
+ledger contains 271 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
