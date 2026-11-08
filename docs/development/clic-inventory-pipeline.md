@@ -65,8 +65,11 @@ manifest and audit locations; workbook metadata references those audits by cohor
 fingerprint and SHA256, without embedding cache paths. Generated helpers already
 present in the destination are reused only when their complete content matches,
 excluding provenance. Conflicting codes fail before records are appended.
-Heuristic mapping remains a production
-error, including the currently packaged ecoinvent 3.12-to-UVEK biosphere route.
+Heuristic technosphere mapping remains a production error. The canonical
+ecoinvent biosphere bridge now checks publisher identities, units and receiving
+contexts for the declared source release rather than requiring consent for an
+obsolete heuristic label. Unresolved physical flows still fail; this does not
+authorize heuristic supplier mappings.
 This preparation support does not certify the UVEK electricity scenario.
 
 ## Resolution and distribution
