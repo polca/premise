@@ -250,6 +250,18 @@ moisture, dry-mass or heating-value adjustment and no new recovery-credit model.
 This establishes functional correspondence rather than inventory or LCIA
 equality, and covers only those four inspected source profiles.
 
+The same standing disposal approval covers 21 additional inspected CH 3.6
+services for municipal or hazardous incineration, sanitary landfill and wood-ash
+landfarming. All 42 documented wet-composition coordinates match native 2026,
+with the same treatment route and opposite one-kg reference signs. Native 2025
+has the same named waste classes and coordinates but shorter composition
+comments. The pinned inspection metadata and warnings retain that limitation,
+native technology, energy recovery, allocation and emissions boundaries, and
+the upstream biosphere exclusions. No water-content adjustment is inferred from
+rounded or legacy percentages in dataset names. The two generic inert-waste
+landfill mappings and the steel/glass inert-landfill mappings remain excluded:
+their composition or treatment equivalence was not established.
+
 Four direct RER processing services also have inspected matching per-kg
 coordinates: seamless steel-pipe drawing in source 3.6, and average steel,
 aluminium and copper product manufacturing in source 3.12. The native pipe

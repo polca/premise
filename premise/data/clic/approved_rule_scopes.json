@@ -1392,6 +1392,1245 @@
         "Use the complete native processing service, including its internal processing multipliers and material-loss inputs; add no extra base material, loss factor or recovery credit.",
         "Matching per-kg processing coordinates do not establish equal background inventories or LCIA results."
       ]
+    },
+    {
+      "rule_id": "bp-4764655d2d8cd10b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of lead in car shredder residue, municipal incineration",
+          "reference product": "lead in car shredder residue",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, lead in car shredder residue, 0% water, to municipal incineration",
+          "reference product": "Disposal, lead in car shredder residue, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "bd643c8a5873160f8b62a5c6b0412c998192c63acad31eb67ae6d245200aa435",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "8d600261fe9a845077604a9134092e8683ec5b2e2e292b993b7f84b12e45c1de",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "9bfd0c8d79904eb7d335adcfef113c2ab741de1e79261188a7e945e84c88ce71",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "42cfbe4571da80d5ce7112c65bc6a4cc44cf44b382fad617e0bf2840df0f10c5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-44fac4cd9c9b9108",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of municipal solid waste, incineration",
+          "reference product": "municipal solid waste",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+          "reference product": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "57db642cbccca1325fa44afc03ed5ebdbdfbba36ae9475ff728fed274a6e991d",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "9a0833691b7e4ad3344900349497dfc4dfc69697a6cdeaef1cb0c5500499cdac",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "b4cd4117672bbc0e7b1bc3bb81a26464e113b62c5ee2aa4beb07903fdc6b3304",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e9b8148a5e01ea6de02cb9197ee38520c383acced56f9bdedd1ebb7e8263555b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f21a6d77f5c0d093",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of residue from cooling tower, sanitary landfill",
+          "reference product": "residue from cooling tower",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, residue from cooling tower, 30% water, to sanitary landfill",
+          "reference product": "Disposal, residue from cooling tower, 30% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "6c8b4fcbd0fafb8552a0829a7af21f91548a4e8ec6d6f7cb0ff0b10f557f526a",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "c6f68d06576f6f4cce16c68091bd5ee770f813cea3743fc563d034b0b4f5fae9",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "78bda00890fbf54a73e326c7095bbe64d3f8c77c24f46622d71c982059dcd379",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9dc9bdaa83239aa0fc73946c77be0f889934077845c2eea2ef7215b83f0c72ae"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-90806fced8456f16",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of scrap aluminium, municipal incineration",
+          "reference product": "scrap aluminium",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, aluminium, 0% water, to municipal incineration",
+          "reference product": "Disposal, aluminium, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "d59f34653d7b4712063b5f058bef15b905f995012a0aed0795a4d293aab7ebb5",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "8f16b464a9bee44b3f15d0e5ccd76919e81c2d6948169c0e677ccc2d836884ce",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "468f575df8457d630fc4bf8b834caa8a4ee0bcccba72b0794540b87eb844804b",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "02b73402745216bee58a06bb479acd923e15b42f18e96fe171be720c7af7e0c2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-19cb447154bde8c5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of scrap copper, municipal incineration",
+          "reference product": "scrap copper",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, copper, 0% water, to municipal incineration",
+          "reference product": "Disposal, copper, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "8601a39dfd2ffb0d5503a4ff1af193d2a5dca1d1d7b398fcb301d637703b4b9c",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "f91b1723e82a0184068c563a3c2b26fabae1f80ed3726f6492e45189897ca1f4",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "8309414d789f7006f601b562783f20e03e94c136db1506ce9f9b31042d4c398c",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ed7634cb59628032c23266c324d9d3363f5375504dbca11bfb6021ff7f41350e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1be0fde93275f330",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of spent solvent mixture, hazardous waste incineration",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+          "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "3cc5eef4a4929f984002b9acdde3fea3b954cf6566668533d69ea0479d086355",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "026522d6e7b7cb553fa93b51ae80a9c871aa8611cc1e812469d73f8cd1f62f79",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "acba5083e28b0f3fafee87d29f6cbb35591da3becb06cc35f0795c650c3053c9",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "hazardous waste incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1e0b03923ed87f3516f6ab68be5aa57177d8f181215d4b92d66ee02871b97ae1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-45e5a117313cb104",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste aluminium, sanitary landfill",
+          "reference product": "waste aluminium",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, aluminium, 0% water, to sanitary landfill",
+          "reference product": "Disposal, aluminium, 0% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "c5b275cbfc1ff285bb5369a0126aa43a41c2de66d2d49f824f05703d33c2f044",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "e689fab901bcd559490369ff4160eb2b7a293f2c593843c0fa0114cac1659a0c",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "888e9791c5ad7e30dfccd83cd70b5f068613748165e5692055d95f55e62b3ac3",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "78fd6e883439ab387ae8df04492be24c7a5aef5c6f989e34be78abaf1eff70c7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-369049fd465b0d65",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste emulsion paint, municipal incineration",
+          "reference product": "waste emulsion paint",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, emulsion paint, 0% water, to municipal incineration",
+          "reference product": "Disposal, emulsion paint, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "af3831edccc6549c5cee1b0c15b80130c6636b4f3de0c8741d1afbf510b93dc4",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "253d43fc3fe203950c72e3a5f658d0b7c20266364434b42034a9dc3c520004b0",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "e1f5610b2cff39cb2fbf9c5cec9fcb31c16df03068d939c11b2539834f9eff7a",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d77bd65392ca2f17f769c11f772a0d4f8161ace595286018c022da81868bca0a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b8b81a3c16e46627",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste plastic, mixture, municipal incineration",
+          "reference product": "waste plastic, mixture",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+          "reference product": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "4cbc051c3d6d3352f6a04c2b7a5fd3d5d8264982db10f594394ab8ef13f501c5",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "9136b4675045dc8779fed3d49e1f6a557224acaa8c07f5d8f8eac5847dc364cd",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "7851a4c82dbfc28fa17e3f20053e291ca9fe288ab5db337cc536a6f29ba44a65",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "380f2f11b698792067370e9b7b2fc9bd7f1a620db6fd83d8584e4d9368aa3bc7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4a4052a90a846364",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polyethylene, sanitary landfill",
+          "reference product": "waste polyethylene",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, polyethylene, 0.4% water, to sanitary landfill",
+          "reference product": "Disposal, polyethylene, 0.4% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "af29d716525d91818b435603a0590284e6da3faf4373c4d5b20a37e93532ab2e",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "8e1b5fec27d63c16a718bad6286ba6de28fc68f6560cf1d78250371ac59de1e0",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "667267ddb0822c6bd45f459c7eb8d076ebf95b41558d9b3375443554a372348c",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "814876a8f628d177ba6493657f185bc2aa6d05b2c44265c78b6caea186a1504d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b617041a5d9cf1f3",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polypropylene, sanitary landfill",
+          "reference product": "waste polypropylene",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "xx Disposal, polypropylene, 15.9% water, to sanitary landfill",
+          "reference product": "xx Disposal, polypropylene, 15.9% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "1ce01c705c50188ceb050342e81ccbde77bed7c542ac1dae3d97a458bec6576b",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "771fa44941d693e2579f1a3c82afc7c810973548a6c0cbc135ad4c3dbba8a6aa",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "413fd0b86413ee3290f6d6e57f3ff1a5f70e0106c5483f28b0e29b873564e970",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2e83f4ce564c9e97cb78cc1278b365550413143710c8844100412d9da5c2d107"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-30e27d637bf8fed7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polystyrene, sanitary landfill",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene, 0.2% water, to sanitary landfill",
+          "reference product": "Disposal, polystyrene, 0.2% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "4459c2ad3782ebe51bc144d071d226a8eb037b7f3a642d66f607e900efd5d763",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "6b4ef4ea63777fe381f88ebbfaf5a4f98445eb55072223064261a307bcdf8cda",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "31540d495d307d4fb7fda98eef3bc17c79f15ae8c3ffb08c5e9f51776a9e8fa2",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dab47e23ec250a929e4e49dc360022b78756241024bc0c9c07f5371d52f7eda6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-faa8d193360beec8",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polyvinylchloride, municipal incineration",
+          "reference product": "waste polyvinylchloride",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, polyvinylchloride, 0.2% water, to municipal incineration",
+          "reference product": "Disposal, polyvinylchloride, 0.2% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "9ed0726093f4adc378a7165571022f1d35d827480cea35e31e958238b0921db1",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "c5e38492423d2cc1dd72e687bde024257e1b005bb42bb50b2234d6afd5aff9dc",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "0d1ba30d2968dece9970c6e843d5f73fe16e2b8ed74151d53f277892286addd0",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "efa464bc8ded5a762fdfecb11aa99b4741ffe061eabbb022c5920fef9c303282"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8532ff8d4ef700a9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polyvinylchloride, sanitary landfill",
+          "reference product": "waste polyvinylchloride",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, polyvinylchloride, 0.2% water, to sanitary landfill",
+          "reference product": "Disposal, polyvinylchloride, 0.2% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "133711e33f9bb052621c1b636e0f96ecdda2f9512c6c0910d3f3019aad628eee",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "354ba1a3666ac4ba8141787f7faf86c0c4cd2ed0540d6b2a4fd38ef0899a55e8",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "e17772c219d7ec9b7eb348a1fa5e913ec4745b98bc35890879fc9b416a7498ff",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "01310f4d421f42d3be9e3a28fd1242243606451f4261806f54fb906b2474f81d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-71990e8bf71d4f67",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste textile, soiled, municipal incineration",
+          "reference product": "waste textile, soiled",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, textiles, soiled, 25% water, to municipal incineration",
+          "reference product": "Disposal, textiles, soiled, 25% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "fa1fc956f0888f8588103d2fb6cc932aa6c21b6f8dca3cbc5e528a405d9d725f",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "26486fae3fa9b42315cf34645a3d0a7bc93302855c5a327fa83458ff0d85fadf",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "2329d4e031ae7a2f602e988ff2d90cdc8acc00508c61489923990a414028c6cb",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "85aaacd7ca6938c165154fd7c121d191d117f91441ba2836c3c406cbe447090d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-71560f8ef7f77d14",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste wood, untreated, municipal incineration",
+          "reference product": "waste wood, untreated",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, wood untreated, 20% water, to municipal incineration",
+          "reference product": "Disposal, wood untreated, 20% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "eec94fa6cd11d8e4ecc3ff2ad4ac1b3f07b2fd3f60f1439b7ab3b43c1994f96e",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "22b3349571f29ee2e5917c18060594352dc801ed80930f161d7819d0a5283017",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "d961706f2474f4a4a286d0ac806b94dd9f982485a42f15ca144539a7e4887c76",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6dfc574e505a1eeb72219613c04e6de1ac7a98ca07656f417cc14f278113a072"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f7129a04e584ba78",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste wood, untreated, sanitary landfill",
+          "reference product": "waste wood, untreated",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, wood untreated, 20% water, to sanitary landfill",
+          "reference product": "Disposal, wood untreated, 20% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "cdcfbd3d90a05927d46b0d32d4aa2913d19c4cb9f39799439e5ec4a07651447d",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "a528415e793a3bd905c4cd2a36865a5d24fc50f5a25b54aebbcdb48eec785435",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "62d89bfd9ba75411f3db77781f0ec2872d2a7f1108219086c8cf57dcaea36641",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4720d5b11c864bf57c64bd15b4a157aeca266556f8fb816a059d760a01d5b487"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-263e52a8ecb636b1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of wood ash mixture, pure, landfarming",
+          "reference product": "wood ash mixture, pure",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, wood ash mixture, pure, 0% water, to landfarming",
+          "reference product": "Disposal, wood ash mixture, pure, 0% water, to landfarming",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "5530a02463a58aeacca2f95d491c9d244f2de8ce77dd964654938ae8cd8a2e17",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "e8fcb3ebb487cbdcdd2f0d1bee83c68e4174b40a560e7d1467a0a3ad10eb5797",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "eb063a2972461e9bc977a1bf3b7b2758be66c8e612ef41a5ab0680ddccadc0d4",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "landfarming",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1c8a6e80f47f1f35e9fa0709f64a5e7e1a063b5fc5a41f8a0dc9261d200eb1b7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-62bb723c9eabee6f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of wood ash mixture, pure, municipal incineration",
+          "reference product": "wood ash mixture, pure",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, wood ash mixture, pure, 0% water, to municipal incineration",
+          "reference product": "Disposal, wood ash mixture, pure, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "c789d53548fa5198de5061aa5aff65e6bd45b0d4e22f2c8fbc44f7735dc71291",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "6bc5edaccc4fd8868c2f950cb351a4ceeea1b75378367cae34fc9ce8b908d784",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "aef9a6c615e9d85ac90c6df454f44f722d811c27dab865a90c6d4eb01ffc6100",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "26628f29297fabe00f97931566d9c0877daf843a8a5517049ee432d06c8c28e8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-798954a60c5e190c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of wood ash mixture, pure, sanitary landfill",
+          "reference product": "wood ash mixture, pure",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, wood ash mixture, pure, 0% water, to sanitary landfill",
+          "reference product": "Disposal, wood ash mixture, pure, 0% water, to sanitary landfill",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "2fc2254040b6ab44281c1d1b2c1e604d0699a9f5e85c2c7b529928d397570ed1",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "433b27f923ebb04b99b6e02bcdfa93b26c880bd76107df2a79df665b60efa5a3",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "335ae5a2a40a3d16f97f29b804bdb2bfcbf226300e4a17b7759bbf7c81bf3a3c",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "sanitary landfill",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e9e37fb9d98c16efada4781490c4e47af3b312672c3d940c483452e8010426ec"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b65045228b50f40f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_dedicated_disposal_review.json",
+      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
+        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of zinc in car shredder residue, municipal incineration",
+          "reference product": "zinc in car shredder residue",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, zinc in car shredder residue, 0% water, to municipal incineration",
+          "reference product": "Disposal, zinc in car shredder residue, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_metadata_sha256": "567f27f5f3a6a78113fc707ec800423781d9690bad73d0a366d222188c191351",
+        "source_reference_amount": -1,
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "b3b75594d90f1fcb45c8f76af8a261d004c9de61dbf0f225bcbe6955d51c6374",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "de67e3b6d66c20a718cc4a99006dd2eac8f706210b5c9f21f3973710ec21a513",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "compared_composition_coordinates": 42,
+        "treatment_route": "municipal incineration",
+        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f909caf75a2f628ec248a1475a515f330e4561b2e20e9b21bae98074c22cc022"
+        }
+      ]
     }
   ]
 }

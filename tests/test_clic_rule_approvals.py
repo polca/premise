@@ -302,6 +302,27 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
         "bp-a5ed3251310b7e55",
         "bp-89a9e0030212f423",
         "bp-0227e3e438bfcee6",
+        "bp-4764655d2d8cd10b",
+        "bp-44fac4cd9c9b9108",
+        "bp-f21a6d77f5c0d093",
+        "bp-90806fced8456f16",
+        "bp-19cb447154bde8c5",
+        "bp-1be0fde93275f330",
+        "bp-45e5a117313cb104",
+        "bp-369049fd465b0d65",
+        "bp-b8b81a3c16e46627",
+        "bp-4a4052a90a846364",
+        "bp-b617041a5d9cf1f3",
+        "bp-30e27d637bf8fed7",
+        "bp-faa8d193360beec8",
+        "bp-8532ff8d4ef700a9",
+        "bp-71990e8bf71d4f67",
+        "bp-71560f8ef7f77d14",
+        "bp-f7129a04e584ba78",
+        "bp-263e52a8ecb636b1",
+        "bp-62bb723c9eabee6f",
+        "bp-798954a60c5e190c",
+        "bp-b65045228b50f40f",
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -340,6 +361,11 @@ def test_inspected_wet_waste_reference_preserves_treatment_and_credit_signs(
     assert resolved.activities == before
     assert any(
         d["code"] == "migration.approved_correspondence"
+        and d["details"]["rule_id"] == rule_id
+        for d in result.diagnostics
+    )
+    assert any(
+        d["code"] == "clic.compatibility_proxy_limitations"
         and d["details"]["rule_id"] == rule_id
         for d in result.diagnostics
     )
@@ -461,3 +487,31 @@ def test_refused_transaction_retains_review_limitations_without_target(tmp_path)
     issues = [i for s in audit["stages"] for i in s["issues"]]
     assert any(i["code"] == "clic.compatibility_proxy_limitations" for i in issues)
     assert any(i["code"] == "migration.unapproved_correspondence" for i in issues)
+
+
+@pytest.mark.parametrize(
+    "rule_id",
+    [
+        "bp-3aedb5762ff23e68",  # No matching source composition documented.
+        "bp-8cde42cb022d74ed",  # Different waste composition and landfill class.
+        "bp-1b20be09e53aaa84",  # Source omits composition and landfill emissions.
+        "bp-bcbf9e1008a58e4b",  # Source omits composition and landfill emissions.
+    ],
+)
+def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == rule_id)
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", "3.6", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    assert fingerprint not in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
