@@ -262,6 +262,20 @@ rounded or legacy percentages in dataset names. The two generic inert-waste
 landfill mappings and the steel/glass inert-landfill mappings remain excluded:
 their composition or treatment equivalence was not established.
 
+Four inspected 3.6 Swiss construction-waste handling services also reuse the
+standing matching-function approval: bulk-iron sorting, reinforcement-steel
+dismantling/sorting, and concrete/mineral-wool dismantling for recycling.
+The positive native kg reference replaces the negative source kg reference
+with factor −1. Material definitions and all source operating coordinates
+match the native counterparts; the complete native sorting services retain
+their additional freight and waste heat. The recycling records cover only
+dismantling/handling, with no invented recovered-product credit or extra
+processing. Native `xx` prefixes remain part of their actual source names.
+Inspection metadata is pinned in `uvek_pilot_building_handling_review.json`.
+This does not admit the mineral-wool landfill → dismantling/final-disposal
+mapping or the polypropylene → polyethylene-incineration wrapper; those have
+different physical boundaries.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

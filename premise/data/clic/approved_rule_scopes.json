@@ -4962,6 +4962,282 @@
           "fingerprint": "7b4b1470e16573ab8f20a3c363dc547e3b5fbb764e2addbaff8907ee760bec42"
         }
       ]
+    },
+    {
+      "rule_id": "bp-6ac94483d465e40b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_building_handling_review.json",
+      "review_sha256": "53a4fff5f5ca7e2aa76f78eb84c6bd4f4de21290085f015cdf54441d4c9f8d07",
+      "authorization": "Standing matching-material/function/unit waste-service approval, applied only to inspected Swiss construction-waste handling and recycling-stage services with matching material descriptions, operating coordinates and opposite unit reference signs. No new disposal endpoint, recovered-product credit or reconstructed recovery model is introduced.",
+      "limitations": [
+        "Retain each complete native handling inventory per signed kg, using the inspected reference-sign factor of -1. No density, moisture, calorific-value or recovery-yield adjustment is applied.",
+        "Native sorting services retain their included freight and waste heat; these are absent as direct exchanges in the inspected source services. No second transport or waste-heat burden is added. Native upstream supplies, technology, vintage and biosphere exclusions remain distinct; matching operating coordinates do not establish inventory or LCIA equality.",
+        "The recycling-stage inventories cover the published dismantling and handling boundary only. They do not supply a recovered-product output or avoided-primary-material credit; neither is invented. Native xx name prefixes are retained as source labels, not treated as missing records."
+      ],
+      "inspection": {
+        "rule_id": "bp-6ac94483d465e40b",
+        "service": "Bulk iron sorting, excluding reinforcement",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+          "reference product": "waste bulk iron, excluding reinforcement",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+          "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "966bdc4a18c31b456fdbd491005aaead0cb0f479c6b73ff2efd668d067cd9c5b",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "121f5c2011aa24a291842756422ba80ee199d809c42e002a32edbac076d13a09",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 3,
+            "extra_native_exchange_names": [
+              "Heat, waste",
+              "Transport, freight, lorry, 16t-32t gross weight, fleet average"
+            ]
+          },
+          "2026": {
+            "metadata_sha256": "0ed711b17af9c04c46023f003b5df5649546c75d0e69869fa9948f61a59cf0a3",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 3,
+            "extra_native_exchange_names": [
+              "Heat, waste",
+              "Transport, freight, lorry, 16t-32t gross weight, fleet average"
+            ]
+          }
+        },
+        "conversion_factor": -1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "232e646180294127ae6cc574794a934ddaa9f93a26c87ffcdcc807c149899aee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ee23a489d49b64ab",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_building_handling_review.json",
+      "review_sha256": "53a4fff5f5ca7e2aa76f78eb84c6bd4f4de21290085f015cdf54441d4c9f8d07",
+      "authorization": "Standing matching-material/function/unit waste-service approval, applied only to inspected Swiss construction-waste handling and recycling-stage services with matching material descriptions, operating coordinates and opposite unit reference signs. No new disposal endpoint, recovered-product credit or reconstructed recovery model is introduced.",
+      "limitations": [
+        "Retain each complete native handling inventory per signed kg, using the inspected reference-sign factor of -1. No density, moisture, calorific-value or recovery-yield adjustment is applied.",
+        "Native sorting services retain their included freight and waste heat; these are absent as direct exchanges in the inspected source services. No second transport or waste-heat burden is added. Native upstream supplies, technology, vintage and biosphere exclusions remain distinct; matching operating coordinates do not establish inventory or LCIA equality.",
+        "The recycling-stage inventories cover the published dismantling and handling boundary only. They do not supply a recovered-product output or avoided-primary-material credit; neither is invented. Native xx name prefixes are retained as source labels, not treated as missing records."
+      ],
+      "inspection": {
+        "rule_id": "bp-ee23a489d49b64ab",
+        "service": "Concrete dismantling for recycling, not reinforced",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste concrete, not reinforced, recycling",
+          "reference product": "waste concrete, not reinforced",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "xx Disposal, building, concrete, not reinforced, to recycling",
+          "reference product": "xx Disposal, building, concrete, not reinforced, to recycling",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "c283eb37a895db0cd7254fcc3ff8ca095f8be17d73d0a199f4bb207ff692a6df",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "10ac3e9a6dee1296bc90bde0f705e5d305b395557b24c3eb7d82ff6eff3a18a0",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 4,
+            "extra_native_exchange_names": []
+          },
+          "2026": {
+            "metadata_sha256": "3f647bc8e1fe08379d485b7ff3951d481aa290083603306b5f2a75ff26f5cb50",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 4,
+            "extra_native_exchange_names": []
+          }
+        },
+        "conversion_factor": -1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "05d0700a9b151b62e80dcaa0024ba8b4ce84cd4a273473d457f4786b67aaa1e6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-34d216163d085df9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_building_handling_review.json",
+      "review_sha256": "53a4fff5f5ca7e2aa76f78eb84c6bd4f4de21290085f015cdf54441d4c9f8d07",
+      "authorization": "Standing matching-material/function/unit waste-service approval, applied only to inspected Swiss construction-waste handling and recycling-stage services with matching material descriptions, operating coordinates and opposite unit reference signs. No new disposal endpoint, recovered-product credit or reconstructed recovery model is introduced.",
+      "limitations": [
+        "Retain each complete native handling inventory per signed kg, using the inspected reference-sign factor of -1. No density, moisture, calorific-value or recovery-yield adjustment is applied.",
+        "Native sorting services retain their included freight and waste heat; these are absent as direct exchanges in the inspected source services. No second transport or waste-heat burden is added. Native upstream supplies, technology, vintage and biosphere exclusions remain distinct; matching operating coordinates do not establish inventory or LCIA equality.",
+        "The recycling-stage inventories cover the published dismantling and handling boundary only. They do not supply a recovered-product output or avoided-primary-material credit; neither is invented. Native xx name prefixes are retained as source labels, not treated as missing records."
+      ],
+      "inspection": {
+        "rule_id": "bp-34d216163d085df9",
+        "service": "Mineral-wool dismantling for recycling",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste mineral wool, recycling",
+          "reference product": "waste mineral wool",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "xx Disposal, building, mineral wool, to recycling",
+          "reference product": "xx Disposal, building, mineral wool, to recycling",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "4faee6a019c6224cf87789e7c8e093a5ce288d38439824b71c9bbd3a2c23e790",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "af32073a1aa025874c9ac27b9bac922db1f4077d07ba81da09b73cd81be76d54",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 3,
+            "extra_native_exchange_names": []
+          },
+          "2026": {
+            "metadata_sha256": "65c51c57ce06cdb07fc612736b5f7ac2c060ba2064519c4c500f2b33c5a8068c",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 3,
+            "extra_native_exchange_names": []
+          }
+        },
+        "conversion_factor": -1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b60fa318da8a91b6012be02f979e5a9ad5109a8ef195dbca43a8f39c9a97f091"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1824e49db175bc6e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_building_handling_review.json",
+      "review_sha256": "53a4fff5f5ca7e2aa76f78eb84c6bd4f4de21290085f015cdf54441d4c9f8d07",
+      "authorization": "Standing matching-material/function/unit waste-service approval, applied only to inspected Swiss construction-waste handling and recycling-stage services with matching material descriptions, operating coordinates and opposite unit reference signs. No new disposal endpoint, recovered-product credit or reconstructed recovery model is introduced.",
+      "limitations": [
+        "Retain each complete native handling inventory per signed kg, using the inspected reference-sign factor of -1. No density, moisture, calorific-value or recovery-yield adjustment is applied.",
+        "Native sorting services retain their included freight and waste heat; these are absent as direct exchanges in the inspected source services. No second transport or waste-heat burden is added. Native upstream supplies, technology, vintage and biosphere exclusions remain distinct; matching operating coordinates do not establish inventory or LCIA equality.",
+        "The recycling-stage inventories cover the published dismantling and handling boundary only. They do not supply a recovered-product output or avoided-primary-material credit; neither is invented. Native xx name prefixes are retained as source labels, not treated as missing records."
+      ],
+      "inspection": {
+        "rule_id": "bp-1824e49db175bc6e",
+        "service": "Reinforcement-steel dismantling and sorting",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste reinforcement steel, sorting plant",
+          "reference product": "waste reinforcement steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, reinforcement steel, to sorting plant",
+          "reference product": "Disposal, building, reinforcement steel, to sorting plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "529ce64f1eb19789812aee52021b626e1fec409f9288caa281d18d3359b3a428",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "3df11f4a1bbf87347927ee23bcf4d747bc2142368e5e890849ee459be7eba793",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 4,
+            "extra_native_exchange_names": [
+              "Heat, waste",
+              "Transport, freight, lorry, 16t-32t gross weight, fleet average"
+            ]
+          },
+          "2026": {
+            "metadata_sha256": "9ef1e832f7a696219a3cb0de5d14eb2e90953a96f51d59e555e91f651e850cf9",
+            "reference_amount": 1,
+            "matching_source_operating_coordinates": 4,
+            "extra_native_exchange_names": [
+              "Heat, waste",
+              "Transport, freight, lorry, 16t-32t gross weight, fleet average"
+            ]
+          }
+        },
+        "conversion_factor": -1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f97ba829f323b7404b40f22d1e42015529acdd5737be6da35fdc128a10836059"
+        }
+      ]
     }
   ]
 }

@@ -323,10 +323,14 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
         "bp-62bb723c9eabee6f",
         "bp-798954a60c5e190c",
         "bp-b65045228b50f40f",
+        "bp-6ac94483d465e40b",
+        "bp-ee23a489d49b64ab",
+        "bp-34d216163d085df9",
+        "bp-1824e49db175bc6e",
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
-def test_inspected_wet_waste_reference_preserves_treatment_and_credit_signs(
+def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
     tmp_path, rule_id, amount
 ):
     from brightpath.background import PackageCatalogProvider
@@ -617,6 +621,8 @@ def test_prior_helper_approval_returns_complete_owned_graph(
     "rule_id",
     [
         "bp-9c3675cc3a3f003c",  # Different cement strength-class coverage.
+        "bp-b39070e2c2728597",  # Landfill must not acquire dismantling/transport.
+        "bp-fa607ec8232396e4",  # PP must not inherit the PE treatment wrapper.
     ],
 )
 def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
