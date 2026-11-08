@@ -169,28 +169,31 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 89 unapproved matching rules in its first ecoinvent 3.6 source
-cohort, down from 126 after inspected processing, production and matching
-wet-waste services were registered. The actual 55-record native selection spans five source
+identifies 85 unapproved matching rules in its first ecoinvent 3.6 source
+cohort, down from 126 after inspected processing, production, waste and utility
+services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
 foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 89 |
-| 3.7 | 2 | 2 |
+| 3.6 | 27 | 85 |
+| 3.7 | 2 | 1 |
 | 3.8 | 1 | 4 |
-| 3.9 | 17 | 83 |
-| 3.12 | 8 | 46 |
+| 3.9 | 17 | 78 |
+| 3.12 | 8 | 44 |
 
-These are 224 exact-profile cases involving 198 distinct rules, after reusing
+These are 212 exact-profile cases involving 188 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles.
 They describe the current review frontier, not separate approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 123 exact-profile fingerprints, with review evidence and
+ledger contains 135 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
-New equipment and same-function supply proposals remain pending.
+The separately approved SCR screening proxy retains the source's signed kg of
+NOx retained and separate stack emissions, with the 85%/about-80% performance
+difference in warnings. Equipment and other same-function supply proposals
+remain pending.
 
 The private diagnostic also lacks a verified geothermal electricity
 generator, leaving 162 allocation gaps across 81 native countries and two mix

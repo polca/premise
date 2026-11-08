@@ -4076,6 +4076,755 @@
           "fingerprint": "dc464f1624a65437754f7034bcd257f8635299672771ff5c3b07711ff5b41a66"
         }
       ]
+    },
+    {
+      "rule_id": "bp-8ec82825a525039d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Routine exact unit-wrapper and same-function/unit/geography service validation within the authorized electricity pilot. No new treatment route or removal-efficiency proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-8ec82825a525039d",
+        "source": {
+          "location": "RER",
+          "name": "market for SOx retained, in hard coal flue gas desulfurisation",
+          "reference product": "SOx retained, in hard coal flue gas desulfurisation",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "SOx retained, in hard coal flue gas desulphurisation",
+          "reference product": "SOx retained, in hard coal flue gas desulphurisation",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0c247a5aa0e8b7a856b37da45627ce2b5511323c4130f3245836fe744b0344b8",
+            "inventory_sha256": "ca2c6424810915fdec905adfdb0bf821fb0af80de04c8fcd19cc5c670cf7b9ee",
+            "sole_producer": {
+              "name": "desulfurisation of hard coal flue gas",
+              "reference product": "SOx retained, in hard coal flue gas desulfurisation",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "sole_producer_inventory_sha256": "305741db3b373f17c93cbbf27e191193e9a8a601d1a17310dc582f14ab85f1ea",
+            "market_has_only_one_fixed_unit_supplier": true
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "6acc616d960b468647480168c4bc88a1ac3750531b347737facf7b4911d6f668"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "0c5ffe9cf3e34f53fb3e3e244adbab64244aebece69c3cac52d5fa1e7c84bf33"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Routine exact unit-wrapper and same-function/unit/geography service validation within the authorized electricity pilot. No new treatment route or removal-efficiency proxy is introduced.",
+        "boundary": "The source market has exactly one deterministic positive unit share of its local wet-scrubber producer, with no freight, direct biosphere exchange or other active input. Both source and native service are per kg of retained SOx, with a documented 90% desulfurisation rate and the same burden allocation excluding gypsum as a coproduct. Flatten the unit wrapper only; add no removal-efficiency, oxide-to-sulfur or gypsum-credit factor and preserve separately listed plant emissions."
+      },
+      "limitations": [
+        "The source market has exactly one deterministic positive unit share of its local wet-scrubber producer, with no freight, direct biosphere exchange or other active input. Both source and native service are per kg of retained SOx, with a documented 90% desulfurisation rate and the same burden allocation excluding gypsum as a coproduct. Flatten the unit wrapper only; add no removal-efficiency, oxide-to-sulfur or gypsum-credit factor and preserve separately listed plant emissions."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9777a52977da87bf308d8f8c3dda75046626a8331df6a383acf5bbf23830561f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-67f651b7065701f4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-67f651b7065701f4",
+        "source": {
+          "location": "CH",
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "8cc07c0bef73dd94665c49a688167f17a96acdcac45aac5bfca49a543aa84b23",
+            "inventory_sha256": "1e70d3c5b01602e0c84fc5cfafca65d75d1335785828433de61edb92f81a7c46"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "96cfaeaca0a79a57472f5ce192b512b53ee844d3c1000a5f8cbde38267d0ad06"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "1985e779d08d74e42f3d92aa867c2c549bdfd2127be43aa8907815fddbae3ed9"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4001da9430e4ba816cdb2be0d7ce6b2c717d86cd43378702976a2271595b2e0e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6af8519b6eae52db",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-6af8519b6eae52db",
+        "source": {
+          "location": "ZA",
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "ZA",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "79cd3446451f51b412e3fa07de10353013601d5cdb6e2dc7a7a57ea982561779",
+            "inventory_sha256": "57f69c6978ad9daf7d4e5b1b7fc0623ac1b07c319bbfc58e38a8c50641e50d92"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "9c479f199797b38d9e57541fd191c8f5577ab9c380495bd3f7d08e0119df9923"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "698b047c77ab6fc9c0f1b72ffe58844179cc48811d0fea326f9c50de9acef1b9"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8f0f6ae77b0d8f38683f11f4de7939e00eea86416e33aa9c23a64d4a34c0a6c8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3f19534eb7d97f64",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-3f19534eb7d97f64",
+        "source": {
+          "location": "ENTSO-E",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "ENTSO-E",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "04c0e1f074b4a170b94c3810726a24c2f0303714112ac80547bc5ed5f7e25426",
+            "inventory_sha256": "c691b801c785c8db9816b0dc2c9a098c07ce986c81395faef44e1433744ece58"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "85244ed9a1f747332e9e0e3333ff662ef9f352b60555332d262d808048248dbe"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "7e4bd3b41951a5ff9d0ae7ef874acbde8cab761b159b9e477adf9f78fb05c349"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b46053859b64cf6896cdd06a316784fb01b5d8cf3a418e1881b85d3376372371"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-657f6ad4eabd8846",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-657f6ad4eabd8846",
+        "source": {
+          "location": "GLO",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ea77ac880bf2922a6ea75ea10259be5313ec4be9bc41ca88d0106fdeb230333a",
+            "inventory_sha256": "e2267688d78913c68c81b2d8930b198f323405ca922a76c8f92c8beed7e79dd9"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "22aa54b95ee2f20e8ed37f878f5edf528bbb126865e5d880d1816c1fe2119ad5"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "fddc263c0bd43e758d69050be28e641bc07cf7d0b9ada07e0d25dfc837a2c41e"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "edc7a9edc2e2ed97ced0fb1f0eb6a52596fd25a30a34831c4e2fb864e738edbe"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f5891204a3feaf32",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-f5891204a3feaf32",
+        "source": {
+          "location": "RER",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.7",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "16852d1a30a9c14c3dab0e9ac7280c3858fb955d483cead7db405b54edda6504",
+            "inventory_sha256": "4a4f2287781e489e3004f35c86d021556eb95f0fb4ac580024ed12e0b82fe865"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e1d4f5d1a7a938738e6cf8b2224091aa21773b1dcfdd509f04a8e0b2f9174bec",
+            "inventory_sha256": "3ed2bdc668416e98c815c439508df5055fa8efb3de71a95355e7067a411ed6c1"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "fdb68aea771258bd961a9ab22971908096acd391378886a1f6eead5612d741e3"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "71c40c317115b22b01d441f1983b54847fc1355686150c0a0b0730bd25daed4c"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "417947cfcb5153d4cb6f0f54d012ba85ed746926d94472282f3984717775ec4c"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ac8ef5eb04ba2961e160deb7645a768b969c9cf39885a413692ca0ca80f70e3f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-202b754502368791",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-202b754502368791",
+        "source": {
+          "location": "ENTSO-E",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "ENTSO-E",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "dacdb2151dd41310454acda6a15658aab38d29e76641d3f7452db66552a8c540",
+            "inventory_sha256": "cf4a6528d237d648cd9e5ccac1e89d167ed492bd2497baa36c1783eb8ec04973"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "ea91e6b55b0a521d0571ce22b804c87c2750529657190d4f410b16b47b0ca5a6"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "fe33dae130b92034f16ce4911c1096f6602b6bbcf468b819d97a3d89a5f2ef2d"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "131278d82f5e0d5ebcf52d0fc2e9bdbf92709123a8b5a0ffee2d89c4e72a00b6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-61babdae6914f05a",
+        "source": {
+          "location": "GLO",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b0756f96e88366d344df82ac51c99598f3d1dcc6c0d03025f82b0c0caf613541",
+            "inventory_sha256": "19c0c173824a13ca4dfac966a9a4d225b17f962b477341cb47a08aa89685e827"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "aeae9b15815b66b5b27e7995ebd1ec2e947ddb33d1224f7157e80a5f8aed2de2",
+            "inventory_sha256": "6e16c0fefa65e8f3e90d7e078e070baf555ef6153b746485b8152304a6f4b524"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "857616342fe196acecdff387a38366b355d49f3a5be4b858238a4e5b78a2adef"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "ec2ab7fab8cb73a978a5905bfd6ff0e21da53724265e6ee49cd14e2dd70fbf88"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "45e13c25a1cc2a17780fffe613e44c8764ac69b4da95f40066d3fd01a149393a"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b8164f1c53e7605adbae2087dfb5fb90c8adcdb8b3482c5732a4e3cde61c953c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-49b843b95c0c6223",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+      "inspection": {
+        "rule_id": "bp-49b843b95c0c6223",
+        "source": {
+          "location": "RER",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b65f9f4dbd641bca3c7187ec89027f799fdbcd87c692fd47b3d9dd375fb76f49",
+            "inventory_sha256": "f9adc10fcbc3be08da79d7f5403421906630ab4cc9186039f0ef7e042e6d95b9"
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "baced23efc71bd00a51a0b240d88644a0fdf7cf23ee92be99cb4d50b152fc4b2"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "f5d92ae8774bbeda310141ef31830951e229649afb3551392cdd6f89db658293"
+          }
+        },
+        "conversion_factor": 1,
+        "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      },
+      "limitations": [
+        "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8527d4d8420e038ccb70e9e9c8d107a8cd9c9a416171837ac64cb950262851d4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-deb7a57e4b2bc6e7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_utility_reference_review.json",
+      "review_sha256": "fcdad0ea27ab18ac8c8ab37adce21f395d425e22195ca3c30603c1b0b6837cbb",
+      "authorization": "User explicitly approved the complete native SCR retained-mass proxy with warnings for the three inspected pilot exchanges. Approval is limited to the exact ecoinvent 3.6 cut-off source and UVEK 2026/ecoinvent3.10-biosphere target; no other profiles or control technologies are inferred.",
+      "inspection": {
+        "rule_id": "bp-deb7a57e4b2bc6e7",
+        "source": {
+          "location": "GLO",
+          "name": "market for NOx retained, by selective catalytic reduction",
+          "reference product": "NOx retained, by selective catalytic reduction",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "NOx retained, in SCR",
+          "reference product": "NOx retained, in SCR",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "273bc385225a2e2981041c2a526c4f83c304534f53e5a39beeafe2ac43186724",
+            "inventory_sha256": "93439b5201f91fd5e5ea3c701e6f015ea297d25965945d9d25ffc8eca91c958a",
+            "sole_producer": {
+              "name": "selective catalytic reduction of nitrogen oxides",
+              "reference product": "NOx retained, by selective catalytic reduction",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "sole_producer_inventory_sha256": "e2bd51a2a4a7d77251e70f425f86a9117f75e01920a90326e2f59d3f83ac77d2",
+            "market_has_only_one_fixed_unit_supplier": true
+          }
+        ],
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "93106308eaab4084a885821f851c3b80d17e1dda65b7e75d38cf012a225c5101"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "c1006a438b08ffa20e3aacc3f168d6921a877eb64caf8a383a8eaea0337b9035"
+          }
+        },
+        "conversion_factor": 1,
+        "source_retention_efficiency": 0.85,
+        "native_retention_efficiency": 0.8,
+        "native_efficiency_qualifier": "about",
+        "authorization": "User explicitly approved the complete native SCR retained-mass proxy with warnings for the three inspected pilot exchanges. Approval is limited to the exact ecoinvent 3.6 cut-off source and UVEK 2026/ecoinvent3.10-biosphere target; no other profiles or control technologies are inferred.",
+        "boundary": "The source SCR service states 85% NOx removal; native UVEK states about 80%. Both reference one kg of NOx retained. Use the complete native reagent, catalyst, transport and disposal inventory per retained kg, preserving signed caller quantities, uncertainty/formulas and separately listed plant emissions. Apply no efficiency-ratio rescaling and add no avoided-NOx credit. Performance, reagent/catalyst, vintage and allocation differences remain screening limitations; the score effect is unquantified.",
+        "user_approval": {
+          "decision": "Approve with warnings",
+          "affected_pilot_exchange_matches": 3
+        }
+      },
+      "limitations": [
+        "The source SCR service states 85% NOx removal; native UVEK states about 80%. Both reference one kg of NOx retained. Use the complete native reagent, catalyst, transport and disposal inventory per retained kg, preserving signed caller quantities, uncertainty/formulas and separately listed plant emissions. Apply no efficiency-ratio rescaling and add no avoided-NOx credit. Performance, reagent/catalyst, vintage and allocation differences remain screening limitations; the score effect is unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "78a43711134ec0c9d53dc26e9226300c4f7b90ab7840210880e4bad54a1f078e"
+        }
+      ]
     }
   ]
 }

@@ -396,6 +396,18 @@ def test_inspected_wet_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-7b718a88076307fe", "3.6"),
         ("bp-e91d186584958663", "3.6"),
         ("bp-cf3ed0dd40541ac8", "3.6"),
+        ("bp-8ec82825a525039d", "3.6"),
+        ("bp-67f651b7065701f4", "3.9"),
+        ("bp-6af8519b6eae52db", "3.12"),
+        ("bp-3f19534eb7d97f64", "3.6"),
+        ("bp-657f6ad4eabd8846", "3.9"),
+        ("bp-f5891204a3feaf32", "3.7"),
+        ("bp-f5891204a3feaf32", "3.9"),
+        ("bp-202b754502368791", "3.6"),
+        ("bp-61babdae6914f05a", "3.12"),
+        ("bp-61babdae6914f05a", "3.9"),
+        ("bp-49b843b95c0c6223", "3.9"),
+        ("bp-deb7a57e4b2bc6e7", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -607,7 +619,7 @@ def test_prior_helper_approval_returns_complete_owned_graph(
         "bp-ff3e7e592e354217",  # Refinery combustion boundary needs review.
     ],
 )
-def test_unreviewed_production_boundaries_do_not_inherit_direct_approval(rule_id):
+def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
     from brightpath import TechnosphereProfile
     from brightpath.background.rule_approvals import compatibility_rule_fingerprint
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -622,5 +634,60 @@ def test_unreviewed_production_boundaries_do_not_inherit_direct_approval(rule_id
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
     assert fingerprint not in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+
+
+def test_approved_scr_proxy_preserves_stack_emissions_and_cache_warnings(tmp_path):
+    from brightpath import TechnosphereProfile
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == "bp-deb7a57e4b2bc6e7")
+    resolved = graph(rule["source"], version="3.6")
+    resolved.activities[0]["exchanges"][1]["amount"] = 2
+    resolved.activities[0]["exchanges"].append(
+        {
+            "name": "Nitrogen oxides",
+            "categories": ("air", "non-urban air or from high stacks"),
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.037,
+            "uncertainty type": 0,
+            "formula": "source_stack_emissions",
+        }
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        assert result.activities[0]["exchanges"][1]["amount"] == 2
+        emissions = [
+            e for e in result.activities[0]["exchanges"] if e["type"] == "biosphere"
+        ]
+        assert len(emissions) == 1
+        assert emissions[0]["name"] == "Nitrogen oxides"
+        assert emissions[0]["amount"] == 0.037
+        assert emissions[0]["formula"] == "source_stack_emissions"
+        warning = next(
+            i
+            for i in result.diagnostics
+            if i["code"] == "clic.compatibility_proxy_limitations"
+            and i["details"]["rule_id"] == rule["id"]
+        )
+        assert "85%" in warning["message"] and "80%" in warning["message"]
+        assert "unquantified" in warning["message"]
+    assert resolved.activities == before
+    unreviewed = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", "3.9", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    assert unreviewed not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )

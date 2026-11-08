@@ -297,6 +297,24 @@ rescaled by density, plant lifetime, coproduct share or the excavation label
 `proj. 500`. Cement strength-class coverage, salt-production representativeness
 and refinery combustion boundaries remain separate unresolved decisions.
 
+The pilot also reuses its approved native electricity topology for eight
+inspected grid correspondences across ten source profiles, preserving the same
+declared territory, voltage and delivered-kWh coordinate. Native losses,
+infrastructure, import/trade inventories and direct emissions remain part of
+the complete grid service. Warnings retain differences in historical weights,
+regional membership, grid assumptions and vintage. Different territories and
+voltage levels cannot inherit these approvals. A ninth correspondence flattens
+the 3.6 RER SOx-retention market: it has exactly one fixed unit share of its
+local scrubber, with matching per-kg retained-pollutant and 90% removal bases.
+No efficiency rescaling or gypsum credit is introduced. Evidence is pinned in
+`uvek_pilot_utility_reference_review.json`. The separately approved NOx SCR proxy
+uses the complete native service per kg of NOx retained, despite its documented
+removal-rate difference (85% source versus about 80% native). Its warnings retain
+that difference, reagent/catalyst, vintage and allocation limitations and the
+unquantified score effect. The factor stays +1; no efficiency ratio or avoided-NOx
+credit is added, and separately listed plant emissions are preserved. This
+approval covers only the three inspected ecoinvent 3.6 cut-off pilot exchanges.
+
 Native role definitions can set `use_legacy_templates: false` when their complete
 suppliers already exist in the destination. The UVEK PV roles use this declaration:
 the ecoinvent PV workbook generation and installation branches do not supply the
