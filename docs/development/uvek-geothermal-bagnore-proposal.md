@@ -154,6 +154,11 @@ UVEK database. All other entries below are existing complete native suppliers.
 - Native bundle revision: `794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6`.
 - Candidate inventory SHA-256: `06e77b5921fa2ae34638cdbbb976b415609f411ec56b9e14e46e0729f3585d86`.
 
+The candidate inventory hash uses the decoded records serialized with Python's
+`json.dumps(records, sort_keys=True)`, encoded as UTF-8, as in both review and
+LCI manifests. The indented JSON file has a separate byte-level SHA-256:
+`72940f1aa0d2f4261ef63d6a56eadf575e423eb0feb390a322fd3e453fcf6d4b`.
+
 The full private candidate and row-by-row review manifest are
 `/private/tmp/premise-uvek-2026/geothermal_bagnore_uvek2026_candidate.json`
 and `geothermal_bagnore_uvek2026_candidate_review.json` in the same directory.
