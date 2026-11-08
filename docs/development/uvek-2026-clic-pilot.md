@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 79 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 75 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,20 +177,21 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 79 |
+| 3.6 | 27 | 75 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 4 |
 | 3.9 | 17 | 78 |
 | 3.12 | 8 | 44 |
 
-These are 206 exact-profile cases involving 182 distinct rules, after reusing
+These are 202 exact-profile cases involving 178 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
-and four matching Swiss construction-waste handling services.
+four matching Swiss construction-waste handling services, and four dedicated
+incinerators whose full wet compositions and heating values match the source.
 They describe the current review frontier, not separate approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 141 exact-profile fingerprints, with review evidence and
+ledger contains 145 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

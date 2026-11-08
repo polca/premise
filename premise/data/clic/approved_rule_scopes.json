@@ -5238,6 +5238,286 @@
           "fingerprint": "f97ba829f323b7404b40f22d1e42015529acdd5737be6da35fdc128a10836059"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e51642145510fc9c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_incinerator_endpoint_review.json",
+      "review_sha256": "1c79c2adb0d30e5223040d6a4edd3f963f998b787451b18784fe8cde39739d4a",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied only to the four enumerated Swiss ecoinvent 3.6 cut-off municipal-incineration services after matching all 42 wet-composition coordinates and both heating values and opposite one-kg reference signs. Select the dedicated complete incinerator rather than a building-waste wrapper; no new disposal technology, material, moisture basis or recovery model is introduced.",
+      "inspection": {
+        "rule_id": "bp-e51642145510fc9c",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste glass, municipal incineration",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass as construction waste, to municipal waste incineration",
+          "reference product": "Disposal, flat glass as construction waste, to municipal waste incineration",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, glass, 0% water, to municipal incineration",
+          "reference product": "Disposal, glass, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "dd6b4a0a97ed62c09fd68f566d9cb4d4d50a77639a6e64aee920a2a2053d4488",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "d15de48b55a008b47733610bb376c3653b2c3a82008ae299680a484d9e625329",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "e17b90ef75012e82ccd1c42a5f70c168907bdb2104f78d291da89fb91b4587b1",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "matching_composition_coordinates": 44,
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Dedicated municipal-incineration services replace the prior construction-waste transport wrappers. In particular, polypropylene uses its own 15.9%-water service instead of a wrapper feeding polyethylene incineration. No wrapper freight is inserted; separately listed caller transport remains unchanged.",
+        "Preserve signed wet kg with factor -1 and no moisture, dry-mass, heating-value or recovery-yield scaling. All 42 wet-composition coordinates and both heating values match native UVEK 2026. The glass supplier retains its legacy 0%-water name although its documented H2O matches the source; names do not override the inspected composition.",
+        "The native 2025 bridge has matching named material, incineration function and positive kg reference, but shorter composition comments. Complete native technology, energy recovery, allocation, emissions and upstream biosphere exclusions remain unchanged; no inventory or LCIA equality or additional source-specific recovery credit is inferred.",
+        "Only the enumerated 3.6 cut-off profiles are reviewed. Other releases and patch profiles remain unreviewed, and no reverse or cross-system-model correspondence is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2f49ad2e74ca70da52796cac1c1fac83cdd450a6f5ce7ce8fb9b244630faaa5c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-76fc3358de421a01",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_incinerator_endpoint_review.json",
+      "review_sha256": "1c79c2adb0d30e5223040d6a4edd3f963f998b787451b18784fe8cde39739d4a",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied only to the four enumerated Swiss ecoinvent 3.6 cut-off municipal-incineration services after matching all 42 wet-composition coordinates and both heating values and opposite one-kg reference signs. Select the dedicated complete incinerator rather than a building-waste wrapper; no new disposal technology, material, moisture basis or recovery model is introduced.",
+      "inspection": {
+        "rule_id": "bp-76fc3358de421a01",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polyethylene, municipal incineration",
+          "reference product": "waste polyethylene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+          "reference product": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+          "reference product": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "d4e56662f56cf10119e70a43bebcda7eedde59942a88d59ac370debe445c215f",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "7908e6acae7d1e0e73f21691d3e6d4d663c2e4171112f1d26d3bcca5105c148e",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "880dfec641a2ba23ecc66fb526907fb17339cac1f5605607b945d64c5201e583",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "matching_composition_coordinates": 44,
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Dedicated municipal-incineration services replace the prior construction-waste transport wrappers. In particular, polypropylene uses its own 15.9%-water service instead of a wrapper feeding polyethylene incineration. No wrapper freight is inserted; separately listed caller transport remains unchanged.",
+        "Preserve signed wet kg with factor -1 and no moisture, dry-mass, heating-value or recovery-yield scaling. All 42 wet-composition coordinates and both heating values match native UVEK 2026. The glass supplier retains its legacy 0%-water name although its documented H2O matches the source; names do not override the inspected composition.",
+        "The native 2025 bridge has matching named material, incineration function and positive kg reference, but shorter composition comments. Complete native technology, energy recovery, allocation, emissions and upstream biosphere exclusions remain unchanged; no inventory or LCIA equality or additional source-specific recovery credit is inferred.",
+        "Only the enumerated 3.6 cut-off profiles are reviewed. Other releases and patch profiles remain unreviewed, and no reverse or cross-system-model correspondence is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ec3a5efa70bcb79a206e8eb3e476f878582789b68b1bce6e82ad6378bebd5600"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fa607ec8232396e4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_incinerator_endpoint_review.json",
+      "review_sha256": "1c79c2adb0d30e5223040d6a4edd3f963f998b787451b18784fe8cde39739d4a",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied only to the four enumerated Swiss ecoinvent 3.6 cut-off municipal-incineration services after matching all 42 wet-composition coordinates and both heating values and opposite one-kg reference signs. Select the dedicated complete incinerator rather than a building-waste wrapper; no new disposal technology, material, moisture basis or recovery model is introduced.",
+      "inspection": {
+        "rule_id": "bp-fa607ec8232396e4",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polypropylene, municipal incineration",
+          "reference product": "waste polypropylene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+          "reference product": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+          "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "b8e834e905d352052091f29d89727ec1430d2171496e36f51131abb19bd7994e",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "ffdbcde649327c02accaad0ca1dc4f46f4b3bd69eaa294e522a396f94dc99350",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "8e1e63e46b3c39af959238571b96ed3f9346a211537421e6e19425e5d0314e4a",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "matching_composition_coordinates": 44,
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Dedicated municipal-incineration services replace the prior construction-waste transport wrappers. In particular, polypropylene uses its own 15.9%-water service instead of a wrapper feeding polyethylene incineration. No wrapper freight is inserted; separately listed caller transport remains unchanged.",
+        "Preserve signed wet kg with factor -1 and no moisture, dry-mass, heating-value or recovery-yield scaling. All 42 wet-composition coordinates and both heating values match native UVEK 2026. The glass supplier retains its legacy 0%-water name although its documented H2O matches the source; names do not override the inspected composition.",
+        "The native 2025 bridge has matching named material, incineration function and positive kg reference, but shorter composition comments. Complete native technology, energy recovery, allocation, emissions and upstream biosphere exclusions remain unchanged; no inventory or LCIA equality or additional source-specific recovery credit is inferred.",
+        "Only the enumerated 3.6 cut-off profiles are reviewed. Other releases and patch profiles remain unreviewed, and no reverse or cross-system-model correspondence is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "280679eddbf2de2252b7587cae10159453434c1af6597598af79560b63f2a2c6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7393e642acca8e35",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_incinerator_endpoint_review.json",
+      "review_sha256": "1c79c2adb0d30e5223040d6a4edd3f963f998b787451b18784fe8cde39739d4a",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied only to the four enumerated Swiss ecoinvent 3.6 cut-off municipal-incineration services after matching all 42 wet-composition coordinates and both heating values and opposite one-kg reference signs. Select the dedicated complete incinerator rather than a building-waste wrapper; no new disposal technology, material, moisture basis or recovery model is introduced.",
+      "inspection": {
+        "rule_id": "bp-7393e642acca8e35",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste polystyrene, municipal incineration",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics as building waste, to municipal waste incineration",
+          "reference product": "Disposal, polystyrene plastics as building waste, to municipal waste incineration",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene, 0.2% water, to municipal incineration",
+          "reference product": "Disposal, polystyrene, 0.2% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "a65d0a84733dd02406f1cb702f5ca1cc9b0dd3953af6f25621fd679588daa803",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "39fa53a30250a105187c6d89395cee8599d062f53a77a881676f20e25dd07558",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "0abd6d9f67f2945aa251b80eec970037acac3eb55ae2a1c37c08a88fb0bc3103",
+            "reference_amount": 1
+          }
+        },
+        "native_2026_wet_composition_matches_source": true,
+        "matching_composition_coordinates": 44,
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Dedicated municipal-incineration services replace the prior construction-waste transport wrappers. In particular, polypropylene uses its own 15.9%-water service instead of a wrapper feeding polyethylene incineration. No wrapper freight is inserted; separately listed caller transport remains unchanged.",
+        "Preserve signed wet kg with factor -1 and no moisture, dry-mass, heating-value or recovery-yield scaling. All 42 wet-composition coordinates and both heating values match native UVEK 2026. The glass supplier retains its legacy 0%-water name although its documented H2O matches the source; names do not override the inspected composition.",
+        "The native 2025 bridge has matching named material, incineration function and positive kg reference, but shorter composition comments. Complete native technology, energy recovery, allocation, emissions and upstream biosphere exclusions remain unchanged; no inventory or LCIA equality or additional source-specific recovery credit is inferred.",
+        "Only the enumerated 3.6 cut-off profiles are reviewed. Other releases and patch profiles remain unreviewed, and no reverse or cross-system-model correspondence is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6f8903ad681517dc88d174346d3e30811eebda527a26eabfb9d652662d3124f3"
+        }
+      ]
     }
   ]
 }

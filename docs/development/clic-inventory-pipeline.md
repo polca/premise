@@ -273,8 +273,20 @@ dismantling/handling, with no invented recovered-product credit or extra
 processing. Native `xx` prefixes remain part of their actual source names.
 Inspection metadata is pinned in `uvek_pilot_building_handling_review.json`.
 This does not admit the mineral-wool landfill → dismantling/final-disposal
-mapping or the polypropylene → polyethylene-incineration wrapper; those have
-different physical boundaries.
+mapping, which has a different physical boundary.
+
+Four further 3.6 Swiss municipal-incineration links use dedicated glass, PE, PP
+and PS services, replacing construction-waste transport wrappers. The former
+PP wrapper actually supplied PE incineration. All 42 wet-composition entries
+and both heating values match the dedicated native 2026 endpoints; the shorter
+2025 comments retain a documentation limitation. The legacy glass name says
+0% water, but its detailed composition matches the source and controls this
+review. Signed wet-kg quantities use factor −1 without moisture scaling.
+Caller transport remains unchanged and wrapper freight is not inserted.
+The exact 3.6 profiles, evidence and limitations are pinned in
+`uvek_pilot_incinerator_endpoint_review.json`; other source profiles remain
+unreviewed. The original heuristic policy gate and independent reverse rules
+remain intact.
 
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,

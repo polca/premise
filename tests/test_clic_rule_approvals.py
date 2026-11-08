@@ -327,6 +327,10 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
         "bp-ee23a489d49b64ab",
         "bp-34d216163d085df9",
         "bp-1824e49db175bc6e",
+        "bp-e51642145510fc9c",
+        "bp-76fc3358de421a01",
+        "bp-fa607ec8232396e4",
+        "bp-7393e642acca8e35",
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -622,7 +626,7 @@ def test_prior_helper_approval_returns_complete_owned_graph(
     [
         "bp-9c3675cc3a3f003c",  # Different cement strength-class coverage.
         "bp-b39070e2c2728597",  # Landfill must not acquire dismantling/transport.
-        "bp-fa607ec8232396e4",  # PP must not inherit the PE treatment wrapper.
+        "bp-bcbf9e1008a58e4b",  # Glass landfill is not the reviewed incinerator.
     ],
 )
 def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
@@ -709,3 +713,37 @@ def test_reviewed_service_preserves_separate_emissions_and_cache_warnings(
     assert unreviewed not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
+
+
+def test_dedicated_incinerator_preserves_separate_caller_transport(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    incinerator = rules["bp-fa607ec8232396e4"]
+    freight = rules["bp-d6b9d771677aa51e"]
+    resolved = graph(incinerator["source"], freight["source"], version="3.6")
+    resolved.activities[0]["exchanges"][2]["amount"] = 3.25
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 3
+        waste, road = activity["exchanges"][1:]
+        assert (
+            waste["name"]
+            == "Disposal, polypropylene, 15.9% water, to municipal incineration"
+        )
+        assert waste["amount"] == 2
+        assert road["name"] == "Transport, freight, lorry, fleet average"
+        assert road["amount"] == 3.25 and road["unit"] == "ton kilometer"
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == incinerator["id"]
+        )
+        assert "No wrapper freight is inserted" in warning["message"]
+    assert resolved.activities == before
