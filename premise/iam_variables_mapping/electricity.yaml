@@ -1516,6 +1516,17 @@ Solar CSP autonomous:
 Solar PV Centralized:
   # Native installations by scale; photovoltaic production mixes are aggregates.
   uvek_aliases:
+    # This native country process contains a complete PV generation inventory,
+    # including installations and direct flows, not just kWh supplier shares.
+    # REMIND reports total PV; IAMs separating scales keep distinct providers.
+    model_native_aliases:
+      remind: &uvek_total_pv_inventory
+        exact: true
+        fltr:
+          name: Electricity, production mix photovoltaic, at plant
+          reference product: Electricity, production mix photovoltaic, at plant
+          unit: kilowatt hour
+      remind-eu: *uvek_total_pv_inventory
     exact: true
     fltr:
       name:

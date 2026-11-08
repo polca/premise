@@ -381,7 +381,32 @@ class InventorySet:
         :rtype: ActivityMapping
         """
         filters = self._get_aliases(filepath=POWERPLANT_TECHS, model=self.model)
-        return self.generate_sets_from_filters(filters)
+        result = self.generate_sets_from_filters(filters)
+        if self.family != "uvek" or self.model is None:
+            return result
+        for technology, definition in filters.items():
+            additional = definition.get("model_native_aliases", {}).get(self.model)
+            if additional is None:
+                continue
+            if (
+                not isinstance(additional, dict)
+                or not additional.get("fltr")
+                or set(additional) - {"fltr", "mask", "exact"}
+            ):
+                raise ValueError(
+                    f"Invalid model-specific native UVEK aliases for {technology!r}."
+                )
+            seen = {id(activity) for activity in result[technology]}
+            # These filters express the IAM variable's native coverage. They
+            # cannot establish or borrow another CLIC foreground's role.
+            matches = self.generate_sets_from_filters({technology: additional})[
+                technology
+            ]
+            for activity in matches:
+                if id(activity) not in seen:
+                    result[technology].append(activity)
+                    seen.add(id(activity))
+        return result
 
     def generate_cdr_map(self, model: Optional[str] = None) -> ActivityMapping:
         """Return mapping of carbon dioxide removal technologies to activities.

@@ -53,6 +53,45 @@ def test_default_ecoinvent_does_not_select_native_uvek():
     ]
 
 
+@pytest.mark.parametrize("model", ["remind", "remind-eu"])
+def test_aggregate_iam_pv_role_includes_complete_native_pv_inventory(model):
+    small = native("Electricity, PV, at 3kWp slanted-roof, single-Si, panel, mounted")
+    large = native("Electricity, PV, at 3.5 MWp open ground, multi-Si")
+    complete = native("Electricity, production mix photovoltaic, at plant")
+    cli = native(
+        complete["name"],
+        **{"clic provenance": {"slug": "unreviewed", "role_bindings": []}},
+    )
+    mapping = InventorySet(
+        [small, large, complete, cli], family="uvek", model=model
+    ).generate_powerplant_map()
+    assert mapping["Solar PV Centralized"] == [large, complete]
+    assert "Solar PV Residential" not in mapping
+    # Cached YAML definitions are immutable across model-specific lookups.
+    separate = InventorySet(
+        [small, large, complete], family="uvek", model="image"
+    ).generate_powerplant_map()
+    assert separate["Solar PV Centralized"] == [large]
+    assert separate["Solar PV Residential"] == [small]
+
+
+def test_native_role_inclusion_does_not_borrow_another_clic_role():
+    role = "Solar PV Residential"
+    source = native(
+        "Published residential PV",
+        **{
+            "clic provenance": {
+                "slug": role_slugs("electricity.yaml", role)[0],
+                "role_bindings": [f"electricity.yaml:{role}"],
+            }
+        },
+    )
+    result = InventorySet(
+        [source], family="uvek", model="remind"
+    ).generate_powerplant_map()
+    assert result["Solar PV Centralized"] == []
+
+
 @pytest.mark.parametrize("model", [None, "image", "remind", "message", "tiam-ucl"])
 def test_families_share_iam_roles_and_efficiency_metadata(model):
     ecoinvent = InventorySet([], model=model)

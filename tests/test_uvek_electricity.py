@@ -544,3 +544,32 @@ def test_diagnostic_plan_collects_all_missing_roles_and_mixes_without_changes(na
         identity(d) for rows in native.mapping.values() for d in rows
     }
     assert native.database == before
+
+
+def test_complete_pv_inventory_is_a_generation_leaf_with_direct_flows(native):
+    complete = activity("Electricity, production mix photovoltaic, at plant")
+    complete["exchanges"].extend(
+        [
+            exchange(native.consumer, 0.0002),
+            {
+                "type": "biosphere",
+                "name": "Heat, waste",
+                "unit": "megajoule",
+                "categories": ("air",),
+                "amount": 0.8,
+            },
+        ]
+    )
+    native.database.append(complete)
+    native.mapping["Solar PV Residential"] = [complete]
+    native.busbar["exchanges"][-1] = exchange(complete, 0.5)
+    before = copy.deepcopy(complete)
+    transform = UVEKElectricity(**native.kwargs)
+    assert transform.source_weights[identity(native.busbar)][identity(complete)] == 0.5
+    plans = transform.plan_mixes()
+    transform.update_native_mixes(plans)
+    assert complete == before
+    assert any(
+        e.get("input") == (complete["database"], complete["code"])
+        for e in native.busbar["exchanges"]
+    )

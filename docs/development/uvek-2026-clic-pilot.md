@@ -78,8 +78,14 @@ The native alias layer uses `InventorySet(family="uvek")`, `uvek_aliases` and
 alias definitions were checked against both the installed source and the
 packaged UVEK 2026 catalog. Matching includes exact names, reference products
 and units. Shared IAM roles remain unchanged; CLIC generation requires both a
-reviewed slug and an explicit role binding. Grid and PV aggregate nodes are
-excluded from native generator roles. Missing aliases are reported and never
+reviewed slug and an explicit role binding. Grid and pure-kWh PV aggregate nodes
+are excluded from native generator roles. For REMIND's total-PV variable,
+`model_native_aliases` also selects the complete country-level
+`Electricity, production mix photovoltaic, at plant` inventory. It contains
+installation inputs and direct biosphere flows per kWh, so it is a generation
+provider rather than a pure supplier-share carrier. IAMs separating residential
+and commercial PV retain their distinct native roles. These model-specific
+filters never establish another CLIC foreground's role. Missing aliases are reported and never
 inherit ecoinvent filters. This does not establish sector support by itself:
 several non-pilot IAM technologies and native nuclear fuel specifications still
 lack reviewed definitions.
