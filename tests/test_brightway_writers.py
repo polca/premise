@@ -19,6 +19,22 @@ def modern_backend():
 
 
 @pytest.mark.parametrize("writer", [brightway2_module, brightway25_module])
+@pytest.mark.parametrize("override", [False, True])
+def test_fast_payload_restores_json_reference_pairs_without_mutating_source(
+    writer, override
+):
+    exchange = {"type": "biosphere", "amount": 1, "input": ["biosphere3", "flow"]}
+    original = deepcopy(exchange)
+    kwargs = {"input_override": ["other-biosphere", "other-flow"]} if override else {}
+    payload = writer._prepare_fast_exchange_payload(exchange, **kwargs)
+    assert payload["input"] == (
+        ("other-biosphere", "other-flow") if override else ("biosphere3", "flow")
+    )
+    assert {payload["input"]: payload["amount"]}
+    assert exchange == original
+
+
+@pytest.mark.parametrize("writer", [brightway2_module, brightway25_module])
 @pytest.mark.parametrize("fast", [False, True])
 @pytest.mark.parametrize(
     "parameters, expected",

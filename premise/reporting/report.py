@@ -772,4 +772,8 @@ def generate_summary_report(
 
             scenario_list.add(key)
 
+    from .clic import write_inventory_sheet, write_inventory_sidecars
+
+    write_inventory_sheet(workbook, scenarios, workbook_path=filename)
+    write_inventory_sidecars(filename, scenarios)
     workbook.save(filename)

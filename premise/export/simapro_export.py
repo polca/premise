@@ -281,6 +281,12 @@ def export_scenario(scenario, filepath, version, system_model):
         report["brightpath_version"] = brightpath_version
         report["issues"] = [asdict(issue) for issue in result.issues]
         report["issue_counts"] = dict(Counter(issue.code for issue in result.issues))
+        if scenario.get("clic inventories"):
+            from ..reporting.clic import write_inventory_sidecars
+
+            manifest, recipes = write_inventory_sidecars(destination, [scenario])
+            report["inventory_manifest"] = manifest.name
+            report["inventory_recipes"] = [path.name for path in recipes]
         staged_report = staged.with_suffix(".export-report.json")
         staged_report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         staged_report.replace(report_path)

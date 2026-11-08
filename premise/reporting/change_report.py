@@ -13,11 +13,12 @@ import json
 import math
 import os
 import threading
+from numbers import Number
 import uuid
 from collections import Counter, defaultdict, deque
 from collections.abc import Mapping
 from copy import copy
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date, datetime, timezone
 from functools import lru_cache
 from pathlib import Path
@@ -87,6 +88,8 @@ class ChangeReportArtifacts:
     scenario_identities: tuple[tuple[Any, ...], ...]
     source_fingerprint: str
     validation_certificate_keys: tuple[str, ...]
+    inventory_manifest_path: Path | None = None
+    inventory_recipe_paths: tuple[Path, ...] = ()
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "workbook_path", Path(self.workbook_path))
@@ -99,6 +102,15 @@ class ChangeReportArtifacts:
         )
         object.__setattr__(
             self, "validation_certificate_keys", tuple(self.validation_certificate_keys)
+        )
+        if self.inventory_manifest_path is not None:
+            object.__setattr__(
+                self, "inventory_manifest_path", Path(self.inventory_manifest_path)
+            )
+        object.__setattr__(
+            self,
+            "inventory_recipe_paths",
+            tuple(Path(path) for path in self.inventory_recipe_paths),
         )
 
 
@@ -1603,7 +1615,20 @@ class _ParquetSink:
                         values.extend([part.base.get(field.name)] * len(part))
                 else:
                     values.extend(row.get(field.name) for row in part)
-            arrays.append(pa.array(values, type=field.type))
+            if pa.types.is_string(field.type):
+                # Native metadata can use numeric identifiers in descriptive
+                # fields. Render those as text; numeric change columns and the
+                # exact JSON audit values retain their original quantities.
+                values = [
+                    str(value) if isinstance(value, Number) else value
+                    for value in values
+                ]
+            try:
+                arrays.append(pa.array(values, type=field.type))
+            except (pa.ArrowTypeError, pa.ArrowInvalid) as error:
+                raise ValueError(
+                    f"Invalid change-report values for {field.name!r} ({field.type}): {error}"
+                ) from error
         table = pa.Table.from_arrays(arrays, schema=DETAIL_SCHEMA)
         self.writer.write_table(table, row_group_size=DETAIL_BATCH_SIZE)
         self.parts.clear()
@@ -2077,6 +2102,10 @@ def _write_overview(
                 ),
             ]
         )
+    if artifacts.inventory_manifest_path is not None:
+        rows.append(("CLIC inventory manifest", artifacts.inventory_manifest_path.name))
+        for position, path in enumerate(artifacts.inventory_recipe_paths, 1):
+            rows.append((f"CLIC inventory recipe {position}", path.name))
     worksheet.append(["Field", "Value"])
     for row in rows:
         worksheet.append(row)
@@ -2364,6 +2393,9 @@ def _write_workbook(
     workbook.properties.subject = f"Report schema {REPORT_SCHEMA_VERSION}"
     workbook.properties.creator = "premise"
     workbook.calculation.fullCalcOnLoad = False
+    from .clic import write_inventory_sheet
+
+    write_inventory_sheet(workbook, scenarios, workbook_path=workbook_path)
     workbook.save(workbook_path)
 
 
@@ -2441,6 +2473,16 @@ def generate_structured_change_report(
                 if key is not None
             ),
         )
+        from .clic import write_inventory_sidecars
+
+        inventory_manifest, inventory_recipes = write_inventory_sidecars(
+            workbook_path, scenarios
+        )
+        artifacts = replace(
+            artifacts,
+            inventory_manifest_path=inventory_manifest,
+            inventory_recipe_paths=inventory_recipes,
+        )
         _write_workbook(
             workbook_path=workbook_path,
             details_path=details_path,
@@ -2497,6 +2539,16 @@ def generate_validation_diagnostic_workbook(
             )
             if key is not None
         ),
+    )
+    from .clic import write_inventory_sidecars
+
+    inventory_manifest, inventory_recipes = write_inventory_sidecars(
+        workbook_path, scenarios
+    )
+    artifacts = replace(
+        artifacts,
+        inventory_manifest_path=inventory_manifest,
+        inventory_recipe_paths=inventory_recipes,
     )
     _write_workbook(
         workbook_path=workbook_path,

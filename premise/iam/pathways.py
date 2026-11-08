@@ -39,6 +39,9 @@ class PathwaysDataPackage:
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
         generate_reports: bool = True,
+        inventory_source: str = "workbooks",
+        inventory_recipe=None,
+        clic_options=None,
     ):
         self.years = years
         self.scenarios = []
@@ -66,6 +69,9 @@ class PathwaysDataPackage:
             use_absolute_efficiency=use_absolute_efficiency,
             biosphere_name=biosphere_name,
             generate_reports=generate_reports,
+            inventory_source=inventory_source,
+            inventory_recipe=inventory_recipe,
+            clic_options=clic_options,
         )
 
         self.scenario_names = []
@@ -390,6 +396,16 @@ class PathwaysDataPackage:
         )
         package.descriptor["premise version"] = str(__version__)
         package.descriptor["scenarios"] = self.scenario_names
+        if any(
+            scenario.get("clic inventories") for scenario in self.datapackage.scenarios
+        ):
+            from ..core.utils import database_metadata
+
+            package.descriptor["inventory provenance"] = database_metadata(
+                self.datapackage.scenarios,
+                version=self.source_version,
+                system_model=self.datapackage.system_model,
+            )
         package.descriptor["keywords"] = [
             "ecoinvent",
             "scenario",
