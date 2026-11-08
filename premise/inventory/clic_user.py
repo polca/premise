@@ -8,8 +8,14 @@ from collections import defaultdict
 from pathlib import Path
 
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
-from .clic_hybrid import _key
+from .clic_hybrid import (
+    _key,
+    _prepare_family_records,
+    _workbook_background,
+    _workbook_migration_metadata,
+)
 from .clic_requirements import registry
+from .clic_target import resolve_inventory_target
 
 
 def _references(edge):
@@ -27,12 +33,43 @@ def _references(edge):
 class ClicUserInventories:
     """Freeze supplied files once, then prepare owned copies after CLIC selection."""
 
-    def __init__(self, specifications, database, *, version, system_model, pins=None):
+    def __init__(
+        self,
+        specifications,
+        database,
+        *,
+        version,
+        system_model,
+        pins=None,
+        family="ecoinvent",
+        biosphere_name="biosphere3",
+        catalog_provider=None,
+        migration_policy="pragmatic",
+        allow_documented_proxies=None,
+        cache_dir=None,
+        use_cache=True,
+        keep_uncertainty=True,
+    ):
         from .inventory_imports import AdditionalInventory
 
         self.sources = []
         self.required_nodes = set()
+        self.diagnostics = []
         self.version, self.system_model = version, system_model
+        target = resolve_inventory_target(
+            version, family=family, system_model=system_model
+        )
+        self.family = target.technosphere.family
+        self.preparation_options = dict(
+            family=self.family,
+            biosphere_name=biosphere_name,
+            catalog_provider=catalog_provider,
+            migration_policy=migration_policy,
+            allow_documented_proxies=allow_documented_proxies,
+            cache_dir=cache_dir,
+            use_cache=use_cache,
+            keep_uncertainty=keep_uncertainty,
+        )
         for position, specification in enumerate(specifications or (), 1):
             path = Path(specification["filepath"])
             label = f"{position}-{path.name}"
@@ -41,17 +78,24 @@ class ClicUserInventories:
                 raise ClicInventoryError(
                     f"User inventory differs from the locked recipe: {label}."
                 )
-            importer = AdditionalInventory(
-                database=database,
-                version_in=specification["ecoinvent version"],
-                version_out=version,
-                path=path,
-                system_model=system_model,
-            )
+            if self.family == "ecoinvent":
+                importer = AdditionalInventory(
+                    database=database,
+                    version_in=specification["ecoinvent version"],
+                    version_out=version,
+                    path=path,
+                    system_model=system_model,
+                ).import_db
+            else:
+                # Parsing is independent of the destination. In particular,
+                # BaseInventoryImport cannot interpret UVEK 2026 as ecoinvent.
+                parser = object.__new__(AdditionalInventory)
+                parser.path = path
+                importer = parser._read_inventory(path)
             self.sources.append(
                 (
                     specification,
-                    importer.import_db,
+                    copy.deepcopy(importer),
                     {
                         "file": path.name,
                         "recipe_key": label,
@@ -84,7 +128,10 @@ class ClicUserInventories:
         inventories = []
         for specification, importer, _ in self.sources:
             owned = copy.deepcopy(importer)
-            migrate_import_db(owned, specification["ecoinvent version"], self.version)
+            if self.family == "ecoinvent":
+                migrate_import_db(
+                    owned, specification["ecoinvent version"], self.version
+                )
             inventories.extend(owned.data)
         local = {_key(activity_identity(activity)) for activity in inventories}
         roots = set()
@@ -144,7 +191,7 @@ class ClicUserInventories:
                 *row.get("legacy_identities", ()),
             ]:
                 aliases[_key(identity)][activity["code"]] = activity
-        records, metadata = [], []
+        records, metadata, batches = [], [], []
         for specification, importer, source in self.sources:
             local = {_key(activity_identity(activity)) for activity in importer.data}
 
@@ -204,6 +251,15 @@ class ClicUserInventories:
                                         "reference product"
                                     ]
 
+            if self.family != "ecoinvent":
+                owned = copy.deepcopy(importer.data)
+                rebind(owned)
+                batches.append(
+                    (owned, _workbook_background(specification["ecoinvent version"]))
+                )
+                metadata.append({**source, "activity_count": len(owned)})
+                continue
+
             prepared = AdditionalInventory(
                 database=database,
                 version_in=specification["ecoinvent version"],
@@ -218,7 +274,27 @@ class ClicUserInventories:
                 raise ClicInventoryError(
                     f"User inventory {source['file']} has unlinked exchanges."
                 )
+            if self.preparation_options["biosphere_name"] != "biosphere3":
+                for activity in result:
+                    for edge in activity["exchanges"]:
+                        if edge["type"] == "biosphere" and edge.get("input"):
+                            edge["input"] = (
+                                self.preparation_options["biosphere_name"],
+                                edge["input"][1],
+                            )
             records.extend(result)
             database.extend(result)
             metadata.append({**source, "activity_count": len(result)})
+        if batches:
+            records, diagnostics = _prepare_family_records(
+                batches,
+                database,
+                version=self.version,
+                system_model=self.system_model,
+                **self.preparation_options,
+            )
+            self.diagnostics = diagnostics
+            for row in metadata:
+                row.update(_workbook_migration_metadata(diagnostics))
+            database.extend(records)
         return records, metadata

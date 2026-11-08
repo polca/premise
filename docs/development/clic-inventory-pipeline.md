@@ -42,6 +42,33 @@ appear in conversion audits and provenance. Use `migration_policy="strict"` to
 restore the previous gate; `allow_documented_proxies` can be set explicitly in
 either mode and otherwise follows the mode's default.
 
+Retained and user workbook preparation accepts `family="uvek"`, `version="2026"`
+and the destination `biosphere_name`. This destination means UVEK 2026 cut-off
+technosphere with ecoinvent 3.10 biosphere; workbook source versions remain
+ecoinvent declarations. `plan_hybrid_inventories` uses the reviewed ecoinvent
+3.12 role ledger through `source_version="3.12"`, recorded as `source_context`,
+independently of those destination axes. It does not interpret 2026 as an
+ecoinvent version. Retained workbook hashes and selected record identities must
+still match the reviewed ledger, including after source-profile preparation.
+An older native workbook requiring a migrated 3.12 source profile fails until
+that intermediate preparation is supported; the profile is never applied to
+unmigrated supplier identities.
+
+These workbook graphs use the CLIC harmonizer and adapter with the provider's
+`catalog_provider`, `migration_policy` and `allow_documented_proxies` settings.
+Purchases of retained or public foregrounds remain foreground links during
+migration. The adapter checks every resulting purchase against the actual
+destination and resolves biosphere UUIDs from its exact catalog. Owned records
+retain formulas, signs, uncertainty and workbook provenance; conversion audits
+and policy decisions accompany them. Workbook diagnostics expose the harmonized
+manifest and audit locations; workbook metadata references those audits by cohort
+fingerprint and SHA256, without embedding cache paths. Generated helpers already
+present in the destination are reused only when their complete content matches,
+excluding provenance. Conflicting codes fail before records are appended.
+Heuristic mapping remains a production
+error, including the currently packaged ecoinvent 3.12-to-UVEK biosphere route.
+This preparation support does not certify the UVEK electricity scenario.
+
 ## Resolution and distribution
 
 1. Discover the latest version of the daily Zenodo archive, initially record

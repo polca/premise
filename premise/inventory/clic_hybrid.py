@@ -8,6 +8,7 @@ user's background database, under the existing premise preparation rules.
 from __future__ import annotations
 
 import hashlib
+import copy
 import gzip
 import json
 import math
@@ -15,11 +16,13 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
+from types import SimpleNamespace
 
 import portalocker
 
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
 from .clic_requirements import registry, required_roots, applicable_roles
+from .clic_target import resolve_inventory_target
 
 
 def _key(identity):
@@ -66,6 +69,7 @@ class HybridInventoryPlan:
     sources: tuple
     guard_files: frozenset[str]
     fingerprint: str
+    source_context: dict | None = None
 
 
 def plan_hybrid_inventories(
@@ -75,6 +79,8 @@ def plan_hybrid_inventories(
     *,
     version=None,
     system_model=None,
+    family="ecoinvent",
+    source_version=None,
     explicit_roots=(),
     extra_nodes=(),
 ):
@@ -82,6 +88,24 @@ def plan_hybrid_inventories(
     from ..core.filesystem_constants import VARIABLES_DIR
     from .activity_maps import get_mapping
     from .profiles import companion_projection_required, profiles
+
+    source_context = None
+    if str(family).strip().casefold() != "ecoinvent":
+        resolve_inventory_target(version, family=family, system_model=system_model)
+        # The reviewed role ledger describes ecoinvent templates. Its selection
+        # baseline is independent of the destination's two background axes.
+        version = source_version or "3.12"
+        if version != "3.12":
+            raise ClicInventoryError(
+                "UVEK workbook selection requires the reviewed ecoinvent 3.12 source-role baseline."
+            )
+        source_context = {
+            "family": "ecoinvent",
+            "version": version,
+            "system_model": "cutoff",
+        }
+    elif source_version is not None:
+        version = source_version
 
     specification = registry()
     graph = specification["hybrid_sources"]
@@ -273,6 +297,7 @@ def plan_hybrid_inventories(
             "selected_nodes": sorted(selected),
             "clic_roots": sorted(requested),
             "files": {name: graph["files"][name]["sha256"] for name in sorted(names)},
+            "source_context": source_context,
         }
     )
     return HybridInventoryPlan(
@@ -281,6 +306,7 @@ def plan_hybrid_inventories(
         selected_sources,
         frozenset(guards),
         fingerprint,
+        source_context,
     )
 
 
@@ -291,6 +317,11 @@ def import_retained_inventories(
     *,
     version,
     system_model,
+    family="ecoinvent",
+    biosphere_name="biosphere3",
+    catalog_provider=None,
+    migration_policy="pragmatic",
+    allow_documented_proxies=None,
     keep_uncertainty=True,
     workbook_pins=None,
     cache_dir=None,
@@ -300,6 +331,18 @@ def import_retained_inventories(
     """Reuse only preparation certified for the same source graph and CLIC inputs."""
     from .clic_download import _write_json
     from .clic_harmonize import _gzip_write
+
+    target = resolve_inventory_target(version, family=family, system_model=system_model)
+    family = target.technosphere.family
+    family_options = dict(
+        family=family,
+        biosphere_name=biosphere_name,
+        catalog_provider=catalog_provider,
+        migration_policy=migration_policy,
+        allow_documented_proxies=allow_documented_proxies,
+        cache_dir=cache_dir,
+        use_cache=use_cache,
+    )
 
     graph = registry()["hybrid_sources"]
     hashes = {
@@ -316,7 +359,14 @@ def import_retained_inventories(
             raise ClicInventoryError(
                 f"Retained workbook checksum differs from registry or recipe: {name}."
             )
-    if cache_dir is None or cache_signature is None or not use_cache:
+    # Brightpath's cohort cache includes catalog, resource and policy digests.
+    # Do not bypass those checks through the legacy prepared-record cache.
+    if (
+        family != "ecoinvent"
+        or cache_dir is None
+        or cache_signature is None
+        or not use_cache
+    ):
         return _import_retained_inventories(
             plan,
             database,
@@ -325,6 +375,7 @@ def import_retained_inventories(
             system_model=system_model,
             keep_uncertainty=keep_uncertainty,
             workbook_pins=workbook_pins,
+            **family_options,
         )
     directory = Path(cache_dir)
     directory.mkdir(parents=True, exist_ok=True)
@@ -335,6 +386,8 @@ def import_retained_inventories(
             "workbooks": hashes,
             "version": version,
             "system_model": system_model,
+            "family": family,
+            "biosphere_name": biosphere_name,
             "uncertainty": keep_uncertainty,
             "signature": cache_signature,
         }
@@ -368,6 +421,7 @@ def import_retained_inventories(
             system_model=system_model,
             keep_uncertainty=keep_uncertainty,
             workbook_pins=workbook_pins,
+            **family_options,
         )
         digest = _gzip_write(
             payload_path,
@@ -384,6 +438,13 @@ def _import_retained_inventories(
     *,
     version,
     system_model,
+    family="ecoinvent",
+    biosphere_name="biosphere3",
+    catalog_provider=None,
+    migration_policy="pragmatic",
+    allow_documented_proxies=None,
+    cache_dir=None,
+    use_cache=True,
     keep_uncertainty=True,
     workbook_pins=None,
 ):
@@ -437,6 +498,7 @@ def _import_retained_inventories(
                 "source_version": source_version,
                 "role": "licensed inventory and/or source-profile guard",
                 "target_version": str(version),
+                "target_family": family,
             }
         )
     with ThreadPoolExecutor(max_workers=min(4, len(plan.sources) or 1)) as executor:
@@ -448,10 +510,15 @@ def _import_retained_inventories(
             index = expected_nodes[path.name].get(_key(activity_identity(activity)))
             if index is not None:
                 activity["_premise_hybrid_id"] = index
+    profile_version = (
+        (plan.source_context or {}).get("version", "3.12")
+        if family != "ecoinvent"
+        else version
+    )
     select_companion_profiles(
         plan.sources,
         importers,
-        version,
+        profile_version,
         system_model,
         active_sources={path.name for path, _ in plan.sources},
         retained_identities={
@@ -459,7 +526,7 @@ def _import_retained_inventories(
             for filename, indices in expected_nodes.items()
         },
     )
-    result, diagnostics = [], []
+    result, diagnostics, batches = [], [], []
     for (path, source_version), importer, provenance in zip(
         plan.sources, importers, metadata
     ):
@@ -527,6 +594,40 @@ def _import_retained_inventories(
                                 }
                             )
 
+        if family != "ecoinvent":
+            from .profiles import apply_inventory_profiles, profiles
+
+            if source_version != profile_version and profiles(
+                profile_version, "cutoff", "migrated", path
+            ):
+                raise ClicInventoryError(
+                    f"Retained workbook {path.name} requires migrated ecoinvent {profile_version} source-profile preparation before UVEK conversion."
+                )
+
+            for phase in ("raw", "migrated"):
+                apply_inventory_profiles(
+                    importer,
+                    path,
+                    profile_version,
+                    "cutoff",
+                    database,
+                    phase=phase,
+                    other_importers=importers,
+                )
+            records = [
+                copy.deepcopy(record)
+                for record in importer.data
+                if record.get("_premise_hybrid_id") in plan.selected_nodes
+            ]
+            found = {record["_premise_hybrid_id"] for record in records}
+            if found != set(expected_nodes[path.name].values()):
+                raise ClicInventoryError(
+                    f"Retained workbook {path.name} lost selected records during source preparation."
+                )
+            rebind(records)
+            batches.append((records, _workbook_background(source_version)))
+            continue
+
         inventory = DefaultInventory(
             database=database,
             version_in=source_version,
@@ -550,6 +651,10 @@ def _import_retained_inventories(
             )
         for activity in records:
             activity.pop("_premise_hybrid_id", None)
+            if biosphere_name != "biosphere3":
+                for edge in activity["exchanges"]:
+                    if edge["type"] == "biosphere" and edge.get("input"):
+                        edge["input"] = (biosphere_name, edge["input"][1])
             if not keep_uncertainty:
                 # The legacy cleaner represents unused distribution parameters
                 # as NaN. Omit those optional fields in the portable cache.
@@ -560,4 +665,280 @@ def _import_retained_inventories(
                             edge.pop(field)
         result.extend(records)
         database.extend(records)
+    if batches:
+        result, migration_diagnostics = _prepare_family_records(
+            batches,
+            database,
+            version=version,
+            family=family,
+            system_model=system_model,
+            biosphere_name=biosphere_name,
+            keep_uncertainty=keep_uncertainty,
+            catalog_provider=catalog_provider,
+            migration_policy=migration_policy,
+            allow_documented_proxies=allow_documented_proxies,
+            cache_dir=cache_dir,
+            use_cache=use_cache,
+        )
+        diagnostics.extend(migration_diagnostics)
+        for row in metadata:
+            row.update(_workbook_migration_metadata(migration_diagnostics))
+        database.extend(result)
     return result, metadata, diagnostics
+
+
+def _workbook_background(version):
+    """Bundled and additional workbooks declare ecoinvent cut-off source data."""
+    from .inventory_imports import normalize_version
+
+    version = normalize_version(str(version))
+    return {
+        "technosphere": {
+            "family": "ecoinvent",
+            "version": version,
+            "system_model": "cutoff",
+        },
+        "biosphere": {"family": "ecoinvent", "version": version},
+    }
+
+
+def _workbook_migration_metadata(diagnostics):
+    """Expose portable audit references without embedding local cache paths."""
+    for item in diagnostics:
+        if item.get("code") == "clic.workbook_harmonized":
+            manifest = copy.deepcopy(item["manifest"])
+            manifest["cohorts"] = [
+                {key: cohort[key] for key in ("fingerprint", "audit_sha256")}
+                for cohort in manifest["cohorts"]
+            ]
+            return {
+                "migration_manifest": manifest,
+                "migration_cohorts": copy.deepcopy(manifest["cohorts"]),
+            }
+    return {}
+
+
+def _prepare_family_records(
+    batches,
+    database,
+    *,
+    version,
+    family,
+    system_model,
+    biosphere_name,
+    keep_uncertainty=True,
+    catalog_provider=None,
+    migration_policy="pragmatic",
+    allow_documented_proxies=None,
+    cache_dir=None,
+    use_cache=True,
+):
+    """Migrate owned workbook graphs with the CLIC policy and destination gates.
+
+    Already prepared foreground purchases are explicit boundary anchors, not
+    background suppliers to be migrated again. Production-only anchors let the
+    harmonizer validate cross-cohort foreground references without copying or
+    converting the destination's inventories.
+    """
+    from dataclasses import asdict
+    from .clic_adapter import prepare_clic_for_premise
+    from .clic_harmonize import ClicHarmonizer
+    from ..core.filesystem_constants import DIR_CACHED_FILES
+
+    target = resolve_inventory_target(version, family=family, system_model=system_model)
+    records, rows, originals = [], [], {}
+    by_identity, qualified = defaultdict(list), {}
+    for batch, background in batches:
+        for raw in batch:
+            activity = copy.deepcopy(raw)
+            provenance = activity["inventory provenance"]
+            code = content_hash([provenance["provider"], provenance["record_id"]])
+            if code in originals:
+                raise ClicInventoryError("Duplicate owned workbook record identity.")
+            originals[code] = copy.deepcopy(provenance)
+            if activity.get("database") and activity.get("code"):
+                qualified[(activity["database"], activity["code"])] = code
+            activity.update(database="__clic__", code=code)
+            by_identity[_key(activity_identity(activity))].append(code)
+            records.append(activity)
+            rows.append({"activity_code": code, "background": background})
+    destination = {}
+    for activity in database:
+        if not activity.get("database") or not activity.get("code"):
+            continue
+        key = (activity["database"], activity["code"])
+        if key in destination:
+            raise ClicInventoryError(f"Duplicate destination activity code: {key!r}.")
+        destination[key] = activity
+    foreground_destinations = defaultdict(list)
+    for supplier in destination.values():
+        if managed_inventory_key(supplier):
+            foreground_destinations[_key(activity_identity(supplier))].append(supplier)
+    anchors = {}
+    for activity in records:
+        for edge in activity["exchanges"]:
+            if edge["type"] == "production":
+                edge["input"] = ("__clic__", activity["code"])
+            elif edge["type"] == "technosphere":
+                reference = edge.get("input")
+                reference = (
+                    tuple(reference) if isinstance(reference, (tuple, list)) else None
+                )
+                choices = by_identity.get(_key(activity_identity(edge)), ())
+                external = foreground_destinations.get(
+                    _key(activity_identity(edge)), ()
+                )
+                code = qualified.get(reference)
+                if code is None and len(choices) == 1:
+                    code = choices[0]
+                if code is not None:
+                    edge["input"] = ("__clic__", code)
+                elif len(choices) > 1:
+                    raise ClicInventoryError(
+                        f"Ambiguous owned workbook purchase: {activity_identity(edge)!r}."
+                    )
+                elif (
+                    reference in destination
+                    and managed_inventory_key(destination[reference])
+                ) or external:
+                    if reference in destination and managed_inventory_key(
+                        destination[reference]
+                    ):
+                        supplier = destination[reference]
+                    elif len(external) == 1:
+                        supplier = external[0]
+                    else:
+                        raise ClicInventoryError(
+                            f"Ambiguous destination foreground purchase: {activity_identity(edge)!r}."
+                        )
+                    reference = (supplier["database"], supplier["code"])
+                    code = content_hash(["workbook boundary", reference])
+                    anchors[code] = supplier
+                    edge.update(
+                        name=supplier["name"],
+                        product=supplier["reference product"],
+                        location=supplier["location"],
+                    )
+                    edge["reference product"] = supplier["reference product"]
+                    edge["input"] = ("__clic__", code)
+                else:
+                    # Source-project UUIDs must never masquerade as target links.
+                    edge.pop("input", None)
+    for code, supplier in anchors.items():
+        anchor = {
+            key: copy.deepcopy(supplier[key])
+            for key in ("name", "reference product", "location", "unit")
+        }
+        anchor.update(
+            database="__clic__",
+            code=code,
+            exchanges=[
+                {
+                    "type": "production",
+                    "amount": 1,
+                    "input": ("__clic__", code),
+                    **{
+                        key: anchor[key]
+                        for key in ("name", "reference product", "location", "unit")
+                    },
+                }
+            ],
+        )
+        records.append(anchor)
+        rows.append({"activity_code": code, "background": asdict(target)})
+    resolved = SimpleNamespace(
+        activities=records,
+        versions=rows,
+        archive={"source": "owned workbooks"},
+        fingerprint=content_hash(records),
+        diagnostics=[],
+        lockfile=lambda: {},
+    )
+    harmonized = ClicHarmonizer(
+        Path(cache_dir or DIR_CACHED_FILES / "clic") / "workbook-harmonized",
+        catalog_provider=catalog_provider,
+        migration_policy=migration_policy,
+        allow_documented_proxies=allow_documented_proxies,
+    ).harmonize(
+        resolved,
+        version=version,
+        family=family,
+        system_model=system_model,
+        use_cache=use_cache,
+    )
+    harmonized.activities = [
+        a for a in harmonized.activities if a["code"] not in anchors
+    ]
+    if not set(originals).issubset({a["code"] for a in harmonized.activities}):
+        raise ClicInventoryError(
+            "Background migration dropped selected workbook records."
+        )
+    for activity in harmonized.activities:
+        for edge in activity["exchanges"]:
+            reference = edge.get("input")
+            if (
+                isinstance(reference, (tuple, list))
+                and reference[0] == "__clic__"
+                and reference[1] in anchors
+            ):
+                supplier = anchors[reference[1]]
+                edge["input"] = (supplier["database"], supplier["code"])
+    prepared, diagnostics = prepare_clic_for_premise(
+        harmonized,
+        database,
+        version=version,
+        family=family,
+        system_model=system_model,
+        biosphere_name=biosphere_name,
+        keep_uncertainty=keep_uncertainty,
+        catalog_provider=catalog_provider,
+    )
+    unique = []
+    for activity in prepared:
+        key = (activity["database"], activity["code"])
+        if key in destination:
+            if activity.get("clic provenance", {}).get("role") != "generated helper":
+                raise ClicInventoryError(
+                    f"Workbook activity code already exists in destination: {key!r}."
+                )
+
+            def scientific_hash(record):
+                return content_hash(
+                    {
+                        field: value
+                        for field, value in record.items()
+                        if field not in {"clic provenance", "inventory provenance"}
+                    }
+                )
+
+            digest = scientific_hash(activity)
+            if digest != scientific_hash(destination[key]):
+                raise ClicInventoryError(
+                    f"Conflicting generated workbook helper at destination code {key!r}."
+                )
+            diagnostics.append(
+                {
+                    "code": "clic.workbook_helper_reused",
+                    "database": key[0],
+                    "activity_code": key[1],
+                    "scientific_sha256": digest,
+                }
+            )
+            continue
+        if activity["code"] in originals:
+            activity.pop("clic provenance", None)
+            activity.pop("_premise_hybrid_id", None)
+            activity["inventory provenance"] = {
+                **originals[activity["code"]],
+                "target": harmonized.manifest["target"],
+                "migration_policy": harmonized.manifest["policy"],
+                "migration_cohorts": harmonized.manifest["cohorts"],
+            }
+        unique.append(activity)
+    diagnostics.append(
+        {
+            "code": "clic.workbook_harmonized",
+            "manifest": copy.deepcopy(harmonized.manifest),
+        }
+    )
+    return unique, harmonized.diagnostics + diagnostics
