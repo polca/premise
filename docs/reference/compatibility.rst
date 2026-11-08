@@ -3,14 +3,20 @@ Supported configurations
 
 *premise* currently works with the following ecoinvent database versions:
 
-* **v.3.5, cut-off**
-* **v.3.6, cut-off**
 * **v.3.7 and v.3.7.1, cut-off**
 * **v.3.8, cut-off and consequential**
 * **v.3.9 and v.3.9.1, cut-off and consequential**
 * **v.3.10 and v.3.10.1, cut-off and consequential**
 * **v.3.11, cut-off and consequential**
 * **v.3.12, cut-off and consequential**
+
+The minimum background database version is **3.7**. Older inventory workbooks
+and external datapackages can still be imported and migrated to a supported
+background; their native source versions do not set the target version.
+
+The CLIC provider remains in development. Accepted version arguments describe
+the intended target range; unresolved background mappings can still prevent a
+CLIC build. See the CLIC pipeline development notes for current conversion checks.
 
 Compatibility boundaries
 --------------------------

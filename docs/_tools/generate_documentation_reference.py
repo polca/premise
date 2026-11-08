@@ -31,7 +31,7 @@ def inventory_selection(tree, version, system_model):
     method = next(
         n
         for n in cls.body
-        if isinstance(n, ast.FunctionDef) and n.name == "__import_inventories"
+        if isinstance(n, ast.FunctionDef) and n.name == "_default_inventory_sources"
     )
     statements = method.body
     start = next(
@@ -40,14 +40,7 @@ def inventory_selection(tree, version, system_model):
         if isinstance(n, ast.Assign)
         and any(isinstance(t, ast.Name) and t.id == "filepaths" for t in n.targets)
     )
-    end = next(
-        i
-        for i, n in enumerate(statements)
-        if isinstance(n, ast.Assign)
-        and any(
-            isinstance(t, ast.Name) and t.id == "preloaded_importers" for t in n.targets
-        )
-    )
+    end = next(i for i, n in enumerate(statements) if isinstance(n, ast.Return))
     import sys
 
     sys.path.insert(0, str(ROOT))
