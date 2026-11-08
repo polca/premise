@@ -49,6 +49,33 @@ def _load_mapping_file(filepath: Path) -> Dict[str, dict]:
         return yaml.load(stream, Loader=_YAML_FULL_LOADER)
 
 
+def expand_inventory_name_mapping(database, mapping):
+    """Bind procedural name roles to reviewed CLIC identities after renaming.
+
+    Legacy aliases come from the shipped identity ledger; they never infer a
+    chemistry or physical boundary from substrings in an arbitrary dataset name.
+    """
+    result = dict(mapping)
+    for activity in database:
+        provenance = activity.get("clic provenance")
+        if not provenance:
+            continue
+        names = {provenance.get("name")}
+        names.update(
+            identity[0] for identity in provenance.get("legacy_identities", ())
+        )
+        values = [
+            mapping[name] for name in sorted(name for name in names if name in mapping)
+        ]
+        if values and any(value != values[0] for value in values[1:]):
+            raise ValueError(
+                f"Conflicting procedural roles for CLIC dataset {provenance.get('slug')!r}."
+            )
+        if values:
+            result[activity["name"]] = values[0]
+    return result
+
+
 @lru_cache(maxsize=64)
 def get_mapping(
     filepath: Path, var: str, model: Optional[str] = None
@@ -71,7 +98,22 @@ def get_mapping(
     for key, val in techs.items():
         if var in val:
             if model is None or model in val.get("iam_aliases", {}):
-                mapping[key] = val[var]
+                entry = val[var]
+                if (
+                    var == "ecoinvent_aliases"
+                    and isinstance(entry, dict)
+                    and Path(filepath).parent.resolve() == VARIABLES_DIR.resolve()
+                ):
+                    from .clic_requirements import role_slugs
+
+                    slugs = role_slugs(Path(filepath).name, key)
+                    if slugs:
+                        entry = {
+                            **entry,
+                            "clic_slugs": slugs,
+                            "clic_role_key": f"{Path(filepath).name}:{key}",
+                        }
+                mapping[key] = entry
 
     return mapping
 
@@ -582,6 +624,46 @@ class InventorySet:
             tech: act_fltr(subset, fltr.get("fltr"), fltr.get("mask"))
             for tech, fltr in filtr.items()
         }
+
+        # Published slugs provide stable role identity when CLIC revises a
+        # dataset's name/product or when colliding source identities need a
+        # namespace. Native providers retain the existing filter semantics.
+        clic_roles = defaultdict(list)
+        for technology, definition in filtr.items():
+            for slug in definition.get("clic_slugs", ()):
+                clic_roles[slug].append(technology)
+        if clic_roles:
+
+            def eligible(activity, technology):
+                provenance = activity.get("clic provenance", {})
+                bindings = provenance.get("role_bindings")
+                key = filtr[technology].get("clic_role_key")
+                return bindings is None or key is None or key in bindings
+
+            for technology, definition in filtr.items():
+                if definition.get("clic_slugs"):
+                    allowed = set(definition["clic_slugs"])
+                    techs[technology] = [
+                        activity
+                        for activity in techs[technology]
+                        if not activity.get("clic provenance")
+                        or (
+                            activity["clic provenance"].get("slug") in allowed
+                            and eligible(activity, technology)
+                        )
+                    ]
+            present = {
+                technology: {id(item) for item in values}
+                for technology, values in techs.items()
+            }
+            for activity in database:
+                slug = activity.get("clic provenance", {}).get("slug")
+                for technology in clic_roles.get(slug, ()):
+                    if id(activity) not in present[technology] and eligible(
+                        activity, technology
+                    ):
+                        techs[technology].append(activity)
+                        present[technology].add(id(activity))
 
         mapping = techs
 

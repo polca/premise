@@ -341,7 +341,29 @@ def apply_inventory_profiles(
         importer.data = result
 
 
-def select_companion_profiles(filepaths, importers, version, system_model):
+def companion_projection_required(profile, retained_identities=None):
+    """Only project companions when an imported record would be omitted.
+
+    The workbook pipeline imports the complete source and validates every role.
+    CLIC has already replaced public records before retained records are prepared.
+    Companions that affect none of those records need no workbook extraction.
+    """
+    return retained_identities is None or any(
+        tuple(key) in retained_identities.get(operation["source"], ())
+        for operation in profile.get("omit", ())
+        for key in operation["identities"]
+    )
+
+
+def select_companion_profiles(
+    filepaths,
+    importers,
+    version,
+    system_model,
+    *,
+    active_sources=None,
+    retained_identities=None,
+):
     """Validate companion roles together before omitting superseded definitions."""
     selected_profiles = profiles(version, system_model, "projection")
     if not selected_profiles:
@@ -350,6 +372,13 @@ def select_companion_profiles(filepaths, importers, version, system_model):
     for (path, _), importer in zip(filepaths, importers, strict=True):
         sources.setdefault(Path(path).name, []).append(importer)
     for profile in selected_profiles:
+        if not companion_projection_required(profile, retained_identities):
+            continue
+        if active_sources is not None and not any(
+            requirement["source"] in active_sources
+            for requirement in profile["requires"]
+        ):
+            continue
         selected = {}
         for requirement in profile["requires"]:
             matches = sources.get(requirement["source"], ())

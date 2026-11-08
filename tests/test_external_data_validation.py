@@ -13,6 +13,22 @@ from premise.external_data_validation import check_inventories
 from premise.pathways import PathwaysDataPackage
 
 
+@pytest.mark.parametrize("version", ["3.5", "3.6"])
+def test_historical_datapackage_source_versions_can_migrate_to_newer_backgrounds(
+    version,
+):
+    from datapackage import Package
+    from premise.external_data_validation import check_datapackage
+
+    package = Package(
+        {
+            "ecoinvent": {"version": version},
+            "resources": [{"name": "inventory", "data": [{"name": "fixture"}]}],
+        }
+    )
+    check_datapackage(package)
+
+
 def scenario_data(variables, unit="kilogram"):
     values = np.arange(1, len(variables) * 2 + 1, dtype=float).reshape(
         1, len(variables), 2

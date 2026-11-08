@@ -344,6 +344,45 @@ def test_unselected_companions_do_not_access_source_data():
     select_companion_profiles([("unused", "3.8")], [], "3.12", None)
 
 
+def test_replaced_public_records_do_not_require_unused_companion_workbooks():
+    class Unreadable:
+        @property
+        def data(self):
+            raise AssertionError("Unselected companion records must not be read")
+
+    select_companion_profiles(
+        [("lci-battery-capacity.xlsx", "3.12")],
+        [Unreadable()],
+        "3.12",
+        "cutoff",
+        retained_identities={
+            "lci-battery-capacity.xlsx": {
+                ("unrelated", "capacity", "GLO", "kilowatt hour")
+            }
+        },
+    )
+
+
+def test_retained_records_still_require_complete_companion_validation():
+    with pytest.raises(ValueError, match="one source per companion role"):
+        select_companion_profiles(
+            [("lci-battery-capacity.xlsx", "3.12")],
+            [source("lci-battery-capacity.xlsx")],
+            "3.12",
+            "cutoff",
+            retained_identities={
+                "lci-battery-capacity.xlsx": {
+                    (
+                        "market for battery capacity, Li-ion, NMC955",
+                        "electricity storage capacity",
+                        "GLO",
+                        "kilowatt hour",
+                    )
+                }
+            },
+        )
+
+
 @pytest.mark.parametrize("opt_in", [False, True])
 def test_default_preparation_keeps_profile_phases_around_migration(monkeypatch, opt_in):
     from pathlib import Path

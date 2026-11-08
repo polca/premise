@@ -9,6 +9,7 @@ import os
 import pickle
 import sys
 import uuid
+from copy import deepcopy
 from collections.abc import MutableMapping
 from datetime import datetime
 from functools import lru_cache
@@ -267,6 +268,12 @@ def scenario_metadata(
             ext["scenario"] for ext in external_scenarios if "scenario" in ext
         ]
 
+    if scenario.get("clic inventories") is not None:
+        # Preserve exact inventory versions in every database-based exporter,
+        # including superstructure and scenario-array metadata.
+        metadata["inventory_manifest"] = deepcopy(scenario["clic inventories"])
+        metadata["inventory_recipe"] = deepcopy(scenario.get("clic recipe"))
+
     return metadata
 
 
@@ -333,6 +340,22 @@ def load_constants() -> Dict[str, Any]:
         constants = yaml.safe_load(stream)
 
     return constants
+
+
+def check_ecoinvent_target_version(version, *, supported_versions=None) -> str:
+    """Validate background targets while keeping historical inventory sources usable."""
+    version = str(version)
+    supported = (
+        load_constants()["SUPPORTED_EI_VERSIONS"]
+        if supported_versions is None
+        else supported_versions
+    )
+    if version not in supported:
+        raise ValueError(
+            f"Unsupported ecoinvent background version {version!r}. "
+            f"The minimum supported version is 3.7; supported versions are {supported}."
+        )
+    return {"3.7.1": "3.7", "3.9.1": "3.9"}.get(version, version)
 
 
 @lru_cache
@@ -1160,6 +1183,8 @@ def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
 
 
 _CACHE_TRIMMED_DATASET_FIELDS = {
+    "inventory provenance",
+    "clic provenance",
     "pv capacity kwp",
     "pv technology",
     "vehicle battery sizing",
@@ -1176,6 +1201,8 @@ _CACHE_TRIMMED_DATASET_FIELDS = {
 }
 
 _CACHE_METADATA_EXCLUDED_FIELDS = {
+    "inventory provenance",
+    "clic provenance",
     "pv capacity kwp",
     "pv technology",
     "vehicle battery sizing",
@@ -1193,6 +1220,8 @@ _CACHE_METADATA_EXCLUDED_FIELDS = {
 }
 
 _SCENARIO_TRIMMED_DATASET_FIELDS = {
+    "inventory provenance",
+    "clic provenance",
     "pv capacity kwp",
     "pv technology",
     "database",
@@ -1226,6 +1255,8 @@ _SCENARIO_TRIMMED_EXCHANGE_FIELDS = {
 }
 
 _SCENARIO_METADATA_EXCLUDED_FIELDS = {
+    "inventory provenance",
+    "clic provenance",
     "pv capacity kwp",
     "pv technology",
     "name",

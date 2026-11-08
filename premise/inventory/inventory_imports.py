@@ -1241,7 +1241,9 @@ class BaseInventoryImport:
         """
 
         self.prepare_inventory()
-        return self.import_db
+        return (
+            self.import_db.data if hasattr(self.import_db, "data") else self.import_db
+        )
 
     def search_missing_exchanges(self, label: str, value: str) -> List[dict]:
         """
@@ -1955,6 +1957,8 @@ class DefaultInventory(BaseInventoryImport):
         keep_uncertainty_data,
         preloaded_importer=None,
         source_inventories=None,
+        record_filter=None,
+        before_linking=None,
     ):
         super().__init__(
             database,
@@ -1967,6 +1971,8 @@ class DefaultInventory(BaseInventoryImport):
         )
         # Only the bundled-source orchestration opts into profile selection.
         self.source_inventories = source_inventories
+        self.record_filter = record_filter
+        self.before_linking = before_linking
 
     def load_inventory(self) -> bw2io.ExcelImporter:
         return ExcelImporter(self.path)
@@ -1994,6 +2000,12 @@ class DefaultInventory(BaseInventoryImport):
                 phase="migrated",
                 other_importers=self.source_inventories,
             )
+        if getattr(self, "record_filter", None) is not None:
+            self.import_db.data = [
+                record for record in self.import_db.data if self.record_filter(record)
+            ]
+        if getattr(self, "before_linking", None) is not None:
+            self.before_linking(self.import_db.data)
         self.adapt_reviewed_38_chemical_proxies()
         self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
@@ -2109,8 +2121,25 @@ class AdditionalInventory(BaseInventoryImport):
     Import additional inventories, if any.
     """
 
-    def __init__(self, database, version_in, version_out, path, system_model):
-        super().__init__(database, version_in, version_out, path, system_model)
+    def __init__(
+        self,
+        database,
+        version_in,
+        version_out,
+        path,
+        system_model,
+        preloaded_importer=None,
+        before_linking=None,
+    ):
+        super().__init__(
+            database,
+            version_in,
+            version_out,
+            path,
+            system_model,
+            preloaded_importer=preloaded_importer,
+        )
+        self.before_linking = before_linking
 
     def download_file(self, url, local_path) -> None:
         try:
@@ -2178,6 +2207,8 @@ class AdditionalInventory(BaseInventoryImport):
         if self.system_model == "EN15804":
             adapt_en15804_scrap_exchanges(self.import_db.data, self.database)
 
+        if getattr(self, "before_linking", None) is not None:
+            self.before_linking(self.import_db.data)
         self.import_db.data = remove_categories(self.import_db.data)
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
@@ -2189,6 +2220,8 @@ class AdditionalInventory(BaseInventoryImport):
         self.import_db.data = check_for_duplicate_datasets(self.import_db.data)
         # check numbers format
         self.import_db.data = check_amount_format(self.import_db.data)
+        if getattr(self, "before_linking", None) is not None:
+            self.before_linking(self.import_db.data)
 
         if self.list_unlinked:
             self.display_unlinked_exchanges()
