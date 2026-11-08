@@ -547,6 +547,12 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-194bdbdd9a8f228f", "3.6"),
         ("bp-7dd6b6497336da23", "3.12"),
         ("bp-eb6086f7739eb966", "3.12"),
+        ("bp-c6f0c708990e4109", "3.6"),
+        ("bp-90d9ae3ee389f465", "3.6"),
+        ("bp-90d9ae3ee389f465", "3.9"),
+        ("bp-4438f1d4119c16e4", "3.6"),
+        ("bp-c291034cfcb83f1c", "3.6"),
+        ("bp-8e58bbf6b2e31687", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -806,6 +812,11 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-7dd6b6497336da23",
         "bp-eb6086f7739eb966",
         "bp-07968f74bde91ad7",
+        "bp-c6f0c708990e4109",
+        "bp-90d9ae3ee389f465",
+        "bp-4438f1d4119c16e4",
+        "bp-c291034cfcb83f1c",
+        "bp-8e58bbf6b2e31687",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1026,6 +1037,9 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
     "rule_id,version,warning_term",
     [
         ("bp-c58e827fcace3923", "3.6", "kg-to-MJ conversion"),
+        ("bp-4438f1d4119c16e4", "3.6", "80000h"),
+        ("bp-c291034cfcb83f1c", "3.6", "16000m3"),
+        ("bp-8e58bbf6b2e31687", "3.6", "40W"),
         ("bp-6ce52de989145df6", "3.12", "without wood-density"),
         (
             "bp-8a37fb9191501441",
@@ -1110,6 +1124,33 @@ def test_useful_heat_proxy_keeps_caller_mj_without_repeating_burner_factor(
     ],
 )
 def test_unresolved_gas_volume_bases_still_refuse_migration(tmp_path, rule_id, version):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-ac05197a0852076a", "3.6"),
+        ("bp-4f69327dbf9d3e42", "3.6"),
+        ("bp-4f69327dbf9d3e42", "3.9"),
+        ("bp-4f69327dbf9d3e42", "3.12"),
+    ],
+)
+def test_legacy_rolling_and_additive_boundaries_remain_unapproved(
+    tmp_path, rule_id, version
+):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 

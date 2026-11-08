@@ -18080,6 +18080,533 @@
           "fingerprint": "5c526b1525b92334ce4be8a0e386e5860070e9ae6d1cd9d4a2c7e8262554eab5"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c6f0c708990e4109",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
+      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
+      "inspection": {
+        "rule_id": "bp-c6f0c708990e4109",
+        "source": {
+          "location": "RER",
+          "name": "barite production",
+          "reference product": "barite",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Barite, at plant",
+          "reference product": "Barite, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "2a96da931a873d7ac68f655ca900149d1b1f9324acdff73d548b9302e9d8635a",
+            "inventory_sha256": "f9ad32fc496e1767fc1d0c2a66778974a076265c8a76b278427f387a6612f5f4",
+            "activity_comment_sha256": "20dda87c0bd916b0cd785cbd5c37ac2c6ef1d0503f793f536ffded9b6c540634",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": []
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "0d97478d7f3c0a4dc5925be86edf7a7ba1f06ed493cb30c09229ec58e9d33669",
+            "inventory_sha256": "4ac83ede0155a567ff569938d59f628f537d6a5e6957ba92e55c64d41d668478",
+            "activity_comment_sha256": "9b7772b115937b6f91b785db638b2b9b1f332ec41d53a47250e94e61778a93b6",
+            "direct_technosphere_coordinates": 4
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "675421ea17a1d4289ef27aeac12b3271e5d87520393b587992b8bc72f3eec7fe",
+            "inventory_sha256": "074c2ff79ad3a7fb63a47ec337920572f2b152b3237246e219078dc216abbd6f",
+            "activity_comment_sha256": "a601bc449a94b4342a185b78480495387b27f81abeb142b9ba03411bd82d67c4",
+            "direct_technosphere_coordinates": 4
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same natural barite/barium-sulfate commodity per kg, including extraction and processing to the first marketable mineral product. Source beneficiation and native resource-extraction/processing boundaries include infrastructure, energy, water and estimated particle emissions. This is not barium metal, a soluble barium salt or an invented precipitated/ultrapure grade. Retain the complete native barite supply once, with rough mining estimates, US literature extrapolation to Europe, commercial-grade/purity, geography, vintage and emission-coverage limits. Preserve signed kg without an active-BaSO4 purity, ore-yield or density factor, extra beneficiation or new mining inventory."
+      },
+      "limitations": [
+        "Same natural barite/barium-sulfate commodity per kg, including extraction and processing to the first marketable mineral product. Source beneficiation and native resource-extraction/processing boundaries include infrastructure, energy, water and estimated particle emissions. This is not barium metal, a soluble barium salt or an invented precipitated/ultrapure grade. Retain the complete native barite supply once, with rough mining estimates, US literature extrapolation to Europe, commercial-grade/purity, geography, vintage and emission-coverage limits. Preserve signed kg without an active-BaSO4 purity, ore-yield or density factor, extra beneficiation or new mining inventory.",
+        "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
+        "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
+        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "eea79f1f9ba7f548de089fdc937d1852a2161d4fcf5aea8d9ffb8c5da20400cb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-90d9ae3ee389f465",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
+      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
+      "inspection": {
+        "rule_id": "bp-90d9ae3ee389f465",
+        "source": {
+          "location": "GLO",
+          "name": "market for cast iron",
+          "reference product": "cast iron",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Cast iron, at plant",
+          "reference product": "Cast iron, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "6db261a8bcfae7fbadd247a4d1437353d48a6c99fbc81d9ccad8808d76a1d8ab",
+            "inventory_sha256": "1d96bc8693da3e1cfafd9487fe831e87e4cb5fbfee87c652dcd04f932004c59f",
+            "activity_comment_sha256": "94e701237b5edc076c875c6350ca660eb68069371356fc03215d8168bfb8c0b8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "cast iron production",
+                  "reference product": "cast iron",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "251d91a41809541de012997db830f35003ac44de1a158299b24bb274789b914c",
+                "inventory_sha256": "569fefa6a3ba8ec0dc520c793ce277e716cb86f5890696fe916b7b170f80f191",
+                "comment_sha256": "d00b0f777562b68d9851dd4f3aa25ec79fb64f6c3794455081c3fd520253bad6"
+              },
+              {
+                "identity": {
+                  "name": "cast iron production",
+                  "reference product": "cast iron",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "8a17c4585ebb63b276ab40f7bb002bb516baee23efe6e4f456868ce5e05acf41",
+                "inventory_sha256": "0314a4c7732655a9430ae7dba59f466845353b32d9b1923a534a514e49f1cdb0",
+                "comment_sha256": "c297793eb31079a138daa67fe3e0a6b89eeb29f2e6a90467b3eeb22e53b219d7"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "957c4d31865840aedc441e07e19aac27adcf5b80d283b894fe7325998de7273a",
+            "inventory_sha256": "97bd798574553ba21ac379f601411d2396ad6452855f6ae4a0b2c3a1abeb04dc",
+            "activity_comment_sha256": "eb93a2cbf50e63927d80ff80039993ed6327750228455fb6ae0f580062a58f7c",
+            "product_information_sha256": "64bbef8d9e59c6053479bf7b370d1236c7fc8145509579e726b3d3e14d455401",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "cast iron production",
+                  "reference product": "cast iron",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "1198a6d754eb6f3869b49f99d4e576b5d3c0f03be3e30ab471def671518db095",
+                "inventory_sha256": "a62b0168e7e50d808fab4a97aeb48d90b619548e6020c207dc8391811ed6dc85",
+                "comment_sha256": "d00b0f777562b68d9851dd4f3aa25ec79fb64f6c3794455081c3fd520253bad6"
+              },
+              {
+                "identity": {
+                  "name": "cast iron production",
+                  "reference product": "cast iron",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "71805cd081c01dcc71a9ec8e8ab8bd446c6964d38c34dc5dc1105ebceccaa0c8",
+                "inventory_sha256": "7bcbe117dcac8387a758006f513c8ed3f2b22dedf5764a8b99e3d41873d02379",
+                "comment_sha256": "d00b0f777562b68d9851dd4f3aa25ec79fb64f6c3794455081c3fd520253bad6"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d48bd3e753653d98b125dae31e468bda81dd780f8b24d4511f3fec0b7227c399",
+            "inventory_sha256": "f1d060833f612e1fbe33d41277eece7c901f10d16bcf6dbab82690b5e81364fa",
+            "activity_comment_sha256": "bbaebfd7ebcaad101ed5ac67a2c9fe02124c7fb210a671d80405df75df720153",
+            "direct_technosphere_coordinates": 15
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "dc0b5adbab190aab059ec9b617e7bc1b634828d1e3560ddeb26b5b08b01b4b62",
+            "inventory_sha256": "7ad525c70adccad69422aeb17fd14f99937b73f57c9bf5ac71dbbe629117fe30",
+            "activity_comment_sha256": "347e67f030bf3615404d2bac9a1baffe7f384d03d2f581ce8b4227295810acbd",
+            "direct_technosphere_coordinates": 15
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same cast-iron supply per kg, with source and native assuming35%scrap/65%pigiron, electric-arc melting/refining and casting. This is not pig iron alone or an uncast steel stock. Retain complete native metal, foundry energy, internal freight and casting once; add no separate kg of metal, casting stage or recovered-scrap credit. Source global producer shares are approximated by native European supply. No particular grey/white iron grade, supplier allocation, metal-loss or score equivalence is established; background, geography, delivery and vintage differ."
+      },
+      "limitations": [
+        "Same cast-iron supply per kg, with source and native assuming35%scrap/65%pigiron, electric-arc melting/refining and casting. This is not pig iron alone or an uncast steel stock. Retain complete native metal, foundry energy, internal freight and casting once; add no separate kg of metal, casting stage or recovered-scrap credit. Source global producer shares are approximated by native European supply. No particular grey/white iron grade, supplier allocation, metal-loss or score equivalence is established; background, geography, delivery and vintage differ.",
+        "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
+        "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
+        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7f92730c92427e0fb16aa6d068e9c62a8165adbcc059d0f528a26aea0b379eb1"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "35bd65647e89b22f148e90820bba1adb72d5a078f3d49ec459c1832a2979fcc5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4438f1d4119c16e4",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
+      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
+      "inspection": {
+        "rule_id": "bp-4438f1d4119c16e4",
+        "source": {
+          "location": "GLO",
+          "name": "market for gas turbine, 10MW electrical",
+          "reference product": "gas turbine, 10MW electrical",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Gas turbine, 10MWe, at production plant",
+          "reference product": "Gas turbine, 10MWe, at production plant",
+          "unit": "unit"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a08801dccb0e70a0ffbd7d511860d5cfe265d2bf8297869d640b24e354e4d574",
+            "inventory_sha256": "8012ff2d252afa772b1988bca4bd4acee8b1de8cabfe23de7b0b8a754978cda7",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "gas turbine construction, 10MW electrical",
+                  "reference product": "gas turbine, 10MW electrical",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "1ee8bfaddda6be6f801be5a748f3b17d426fb9d00d74aab4937d4ed77b16eb94",
+                "inventory_sha256": "c361db12c1538e20215be12be0adc35d06ab42ec4ce0a1d9cbbc63e9e4b7d193",
+                "comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "7f6dec96fd2b93374e8a354429cbc92021443199623e22f1aed5742d48d2d71d",
+            "inventory_sha256": "52a1b3439030b7d620763527565f8a43e5996434c45dad8d75331d1abe5b804b",
+            "activity_comment_sha256": "78f6b93fe35c1576b0008e95b67aa2042cc650745c8397c3ed8d5519c47755f6",
+            "direct_technosphere_coordinates": 8
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "af64732458c295260a702f235902a8a3213ec8438466412b87d71ffa55f2b21b",
+            "inventory_sha256": "7216b98b0a8c365bffee3c6334fe21ac81a1601cdac7b5eefce9e76c6aa8338b",
+            "activity_comment_sha256": "cd8061e82d918298e4a60ad24d7494972dd12007cf554ca9cbbb0d4459f6b595",
+            "direct_technosphere_coordinates": 8
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same construction of one nominal10MWe gas turbine, including principal materials and construction energy with transport implicitly represented in that energy estimate. Both describe average European plant conditions and80000h assumed operating life. This is a manufactured turbine unit, not an operating electricity/heat service or a complete combined-cycle plant. Preserve one unit without an MW,efficiency,operating-hour or lifetime factor, added generator/heat-recovery block or operational fuel. Retain the complete native construction inventory and its original estimates; source market delivery/background and geography/vintage differ."
+      },
+      "limitations": [
+        "Same construction of one nominal10MWe gas turbine, including principal materials and construction energy with transport implicitly represented in that energy estimate. Both describe average European plant conditions and80000h assumed operating life. This is a manufactured turbine unit, not an operating electricity/heat service or a complete combined-cycle plant. Preserve one unit without an MW,efficiency,operating-hour or lifetime factor, added generator/heat-recovery block or operational fuel. Retain the complete native construction inventory and its original estimates; source market delivery/background and geography/vintage differ.",
+        "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
+        "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
+        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "da9ffc23aa02b5f46a3f9e254ce954bb6549eb46f1c64bd5fabce5602557e977"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c291034cfcb83f1c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
+      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
+      "inspection": {
+        "rule_id": "bp-c291034cfcb83f1c",
+        "source": {
+          "location": "GLO",
+          "name": "market for liquid storage tank, chemicals, organics",
+          "reference product": "liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Liquid storage tank, chemicals, organics",
+          "reference product": "Liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "8ee0a1325d6a8e6f40612a063bd7c0979781c328b6891257b57910cad998acdf",
+            "inventory_sha256": "d2574dfbbf7ba5e5e402accb99135ffb8d0321b07d900f124a5f530dcf0710e6",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "liquid storage tank production, chemicals, organics",
+                  "reference product": "liquid storage tank, chemicals, organics",
+                  "location": "CH",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "86e3724b9e119cc689d0ab82daf9dccb9af5374b54cd30cad888e4ff133dc97f",
+                "inventory_sha256": "52ead54546010dd6c5911b12995e6a6487e0bf6ebed8e4daaa6c6109db72de5a",
+                "comment_sha256": "a0405130aca2e5dcdc6ab05eb51ca8778928472cf9a00c1c26c3e3f719d5b80f"
+              },
+              {
+                "identity": {
+                  "name": "liquid storage tank production, chemicals, organics",
+                  "reference product": "liquid storage tank, chemicals, organics",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "8669da5965fee9361896a1ecfa96578cf682c318387b73c28ac1408c9a60cdcb",
+                "inventory_sha256": "b331782ec0ec67981c37d1f218a983fc7c7653d54851d086e30a36b880e17d57",
+                "comment_sha256": "a0405130aca2e5dcdc6ab05eb51ca8778928472cf9a00c1c26c3e3f719d5b80f"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "be4472ba08051a2ebcb6b3da219618edd9e37303a8f64b66fa92b8a647afd20b",
+            "inventory_sha256": "d7b69f5056dd46c477a9e6add3467f823e0f0ffcc2e367fe8544b4d54e3658fe",
+            "activity_comment_sha256": "1ca76cbf0e36cfe71d4b82a3f851a2977f3e5c26819622b251232758ea537261",
+            "direct_technosphere_coordinates": 12
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "4ba2dd5d2df744148b00cfa7c285348e0e338d4ce50c67255b9458a91cdee351",
+            "inventory_sha256": "e6c053efd1758971dd12e8446ffdd3f84ba2dfb7ac9409d827a664949c138402",
+            "activity_comment_sha256": "e11c3a58e9ad006e0caab3bdf27f85d7dacdf872e1f60e5d99b791095e90821d",
+            "direct_technosphere_coordinates": 12
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same organic-chemical liquid-storage infrastructure module:four tanks of4000m3 each,total16000m3,with50year assumed life. One source/native unit is that complete module. Both include construction materials,delivery,dismantling/disposal and land use,while construction energy is excluded and disposal assumes no contamination. Preserve one module with no factor4,capacity/volume/lifetime factor or added stored chemicals/construction energy. Retain native building-disposal approximations,high technological uncertainty,market/geography/background and vintage limits."
+      },
+      "limitations": [
+        "Same organic-chemical liquid-storage infrastructure module:four tanks of4000m3 each,total16000m3,with50year assumed life. One source/native unit is that complete module. Both include construction materials,delivery,dismantling/disposal and land use,while construction energy is excluded and disposal assumes no contamination. Preserve one module with no factor4,capacity/volume/lifetime factor or added stored chemicals/construction energy. Retain native building-disposal approximations,high technological uncertainty,market/geography/background and vintage limits.",
+        "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
+        "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
+        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cb84491130e0ebce7ff8fef8b2b66a0bfe49d4d4d7e773ad59a4e1bce1d3c52e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8e58bbf6b2e31687",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
+      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
+      "inspection": {
+        "rule_id": "bp-8e58bbf6b2e31687",
+        "source": {
+          "location": "GLO",
+          "name": "market for pump, 40W",
+          "reference product": "pump, 40W",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Pump 40W, at plant",
+          "reference product": "Pump 40W, at plant",
+          "unit": "unit"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "2f80b8a5673cab053de993c678f4a383d3ee3aeaaad0ca003267a588db32e1d3",
+            "inventory_sha256": "c09ad0f94c99edfff773a3724fe44535ee6067c86b803b8e2728e00022301b8b",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "pump production, 40W",
+                  "reference product": "pump, 40W",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "dd81e46dd2c0889122db6fe7b0866744607a13ec46d9dc0c00b0b588f4026b42",
+                "inventory_sha256": "4fd499d6e49d61be9b77b751acae3ab6bbb5894e4ca3126c9fb9696c29e944fd",
+                "comment_sha256": "0c940b5e7af8c7d2e20b53a2e8f78315c2ebfb797a8d940a0ee7c4c186713bf0"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "86a6a3a85ba33de759f8d9b0edb8046353567e5f816d5d076c357852dc712ff6",
+            "inventory_sha256": "68d77d0e8f2811165c93346fb1b9ae1d659da2360048a5a3e54f4c08818a6e26",
+            "activity_comment_sha256": "b91a28ee706c435c2448a1d0ea581a6bbc317b3d2d6726f4d79035d45547ac68",
+            "direct_technosphere_coordinates": 11
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "d2afbe02b23508e576bebe4218ce65a5a8a0dbed59a4c4150bc3606ea985bf2a",
+            "inventory_sha256": "8bb0022989290745123323600b0a613be0a244ab5ff5d784f2e5cf7969e8ad52",
+            "activity_comment_sha256": "fc35cc93b256db6aa7baebd8308d6833a8c977075175e8c8e2dea3455be3936e",
+            "direct_technosphere_coordinates": 11
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same40WGrundfosUP15-35x20water-circulation pump for one-family solar heat-collector systems. Both describe production/disposal including materials while excluding production energy and factory infrastructure;this is not pump operation or a larger process pump. Preserve one pump unit without a W/kW,flow-rate,capacity or lifetime factor,extra pump/electricity demand or factory reconstruction. Retain the native directly-weighed-component model,common omissions and geography/vintage/market limits."
+      },
+      "limitations": [
+        "Same40WGrundfosUP15-35x20water-circulation pump for one-family solar heat-collector systems. Both describe production/disposal including materials while excluding production energy and factory infrastructure;this is not pump operation or a larger process pump. Preserve one pump unit without a W/kW,flow-rate,capacity or lifetime factor,extra pump/electricity demand or factory reconstruction. Retain the native directly-weighed-component model,common omissions and geography/vintage/market limits.",
+        "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
+        "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
+        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "759ca45164985801ee929e4614e8bb3635a8469152895f1e2ceb7d830c364579"
+        }
+      ]
     }
   ]
 }

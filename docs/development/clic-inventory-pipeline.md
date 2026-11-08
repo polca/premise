@@ -556,6 +556,18 @@ the full generator replay is byte-identical and the normalized native LCI is
 finite with unchanged source hashes. Uninspected profiles and direct gas-volume
 conversions remain closed; no electrical efficiency or recovery model is inferred.
 
+`uvek_pilot_matching_legacy_supplier_review.json` covers five independently
+verified whole-function matches across six profiles: natural barite, cast iron
+with the same 35/65 scrap/pig-iron EAF and casting basis, one 10 MWe turbine,
+the identical four-tank/16000 m3 storage module, and the same Grundfos 40 W pump.
+Manufacturing, disposal and common omission boundaries match their definitions;
+signed kg/module units retain factor +1 without capacity or lifetime scaling.
+Standing whole-material/function/unit approval applies to these specifications.
+The converter-steel target's hot rolling/mix and lubricating-oil additive
+formulation remain separate unresolved boundaries. Thirty focused checks pass,
+including those refusals; five native supplier LCIs are finite with unchanged
+scientific hashes. All 271 earlier approval fingerprints are unchanged.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
