@@ -262,6 +262,16 @@ rounded or legacy percentages in dataset names. The two generic inert-waste
 landfill mappings and the steel/glass inert-landfill mappings remain excluded:
 their composition or treatment equivalence was not established.
 
+Six existing reviewed helper decisions are also pinned for their exact pilot
+profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
+and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
+used-cable treatment. Their existing profile-specific recipes and complete
+dependency graphs remain unchanged. The cable helper retains the approved
+Swiss FAE screening limitation; the heat helper retains source make-up water
+and direct water releases once. Approved cut-off stocks, freight and signed
+recovery quantities retain their existing boundaries. Other source profiles
+and unresolved component decisions cannot inherit these registrations.
+
 Four direct RER processing services also have inspected matching per-kg
 coordinates: seamless steel-pipe drawing in source 3.6, and average steel,
 aluminium and copper product manufacturing in source 3.12. The native pipe

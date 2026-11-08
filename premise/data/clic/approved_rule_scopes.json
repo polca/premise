@@ -2631,6 +2631,299 @@
           "fingerprint": "f909caf75a2f628ec248a1475a515f330e4561b2e20e9b21bae98074c22cc022"
         }
       ]
+    },
+    {
+      "rule_id": "bp-0f79ee18ac90436d",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_market_composition_review.json",
+      "review_sha256": "0e49ba8d9f3358a075bc3de8b697cace5621ddb6b4b2cb952a4d7866e6ee962e",
+      "authorization": "Existing explicitly approved exact-profile helper and component-proxy decisions, reused without a new assembly, boundary, allocation or component substitution. Only the inspected actual-pilot cut-off profiles are registered; other and pending profiles remain blocked.",
+      "limitations": [
+        "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up older regional road correction retains every signed source coefficient: complete RER heavy-lorry fleet for original all-sizes road markets. Geographic fleet, vintage and inventory differences remain screening limitations; no inverse is inferred."
+      ],
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for scrap aluminium",
+          "reference product": "scrap aluminium",
+          "unit": "kilogram"
+        },
+        "review_authorization": "Standing approval for helpers assembled from independently inspected existing component correspondences. Each approved exact source-market profile contains only active technosphere inputs, has a unit-magnitude reference, and has no direct biosphere or unsupported exchange types. No missing component, omission or empty allocation is concealed. Component proxy limitations are inherited; no additional scientific equivalence is inferred. Production-only cut-off stock dependencies require an explicitly approved direct supplier, exact source profile and review fingerprint. Every other observed counterpart is enumerated as pending and remains blocked; partial approvals never resolve a whole identity.",
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_inventory_sha256": "e5f0a0ad8b9dcf0056aeea15b4c50d0bc0e360d5b8519d40e9b97e093c5a2f3e",
+            "target": {
+              "recipe_ref": "older-regional-road-market-composition-656d68b818c890b5fb6c"
+            }
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ec922c697d08f34f8d7a494dbc975987d74bfedcd86cef86e513e77b9713b278"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4b1d84179efa58e8",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_market_composition_review.json",
+      "review_sha256": "0e49ba8d9f3358a075bc3de8b697cace5621ddb6b4b2cb952a4d7866e6ee962e",
+      "authorization": "Existing explicitly approved exact-profile helper and component-proxy decisions, reused without a new assembly, boundary, allocation or component substitution. Only the inspected actual-pilot cut-off profiles are registered; other and pending profiles remain blocked.",
+      "limitations": [
+        "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up whole-freight review: in the enumerated cut-off profiles, preserve every signed freight coefficient while selecting complete same-mode and matching vehicle-class supplies. Light-commercial freight uses the inspected CH 3.5t light-duty fleet; generic heavy-diesel freight uses the complete RER multi-class/multi-duty diesel fleet; generic rail and inland barge use complete RER services. Vehicle manufacture, maintenance, end-of-life and road/track infrastructure are already included. Country, fuel, payload, vintage, EURO class and duty mixtures differ, including petrol/diesel versus the mixed CH light-duty fleet and global steam/diesel/electric rail versus RER rail. No payload or distance scaling, extra vehicle/infrastructure, arbitrary individual steam substitution, physical omission, recovered-material/energy policy change or inferred inverse is introduced. All other components, genuine credits, source quantities and source inventories remain unchanged. Historical consequential recipe bodies and coefficients are retained solely as provenance, not executable routes. Evidence: brightpath/data/export/uvek_whole_freight_review.json."
+      ],
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for waste electric and electronic equipment",
+          "reference product": "waste electric and electronic equipment",
+          "unit": "kilogram"
+        },
+        "review_authorization": "Standing approval for helpers assembled from independently inspected existing component correspondences. Each approved exact source-market profile contains only active technosphere inputs, has a unit-magnitude reference, and has no direct biosphere or unsupported exchange types. No missing component, omission or empty allocation is concealed. Component proxy limitations are inherited; no additional scientific equivalence is inferred. Production-only cut-off stock dependencies require an explicitly approved direct supplier, exact source profile and review fingerprint. Every other observed counterpart is enumerated as pending and remains blocked; partial approvals never resolve a whole identity.",
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_inventory_sha256": "b81f9e8c19546042a86e5f78a7e2fff31fc722ea9b398c7e4ca1b2a6d3e38f24",
+            "target": {
+              "recipe_ref": "whole-freight-market-composition-5c66e71f3d897b750544"
+            }
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "29be015b38b17465eb9eaca5d5258fcdb0af8bc396495e3df68e08df46bf1f6d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-815270d3fcbfb53b",
+      "operation": "replace",
+      "mapping_method": "reviewed_cable_treatment_composition",
+      "review_path": "export/uvek_cable_rail_review.json",
+      "review_sha256": "adf7032f88911e11dde19f3684d776f1d1d2b8c4950e158b177c21dd2c62d880",
+      "authorization": "Existing explicitly approved exact-profile helper and component-proxy decisions, reused without a new assembly, boundary, allocation or component substitution. Only the inspected actual-pilot cut-off profiles are registered; other and pending profiles remain blocked.",
+      "limitations": [
+        "Inspected source-faithful cable/wire-plastic composition. Preserve every fixed signed source quantity through complete treatment/freight/electricity/facility services. Manual-facility hall and road dimensions match; do not rescale capacity/lifetime. The exact native wire-plastic3.55%-water service replaces building deconstruction/conduit sorting and empty copper-stock mistakes. Swiss FAE uses the user-approved whole-incinerator screening proxy with explicit ash treatment, recovered-metal, emissions and allocation limitations and no added recovery credit. Geographic, fleet/vintage and source/target inventory approximations remain. Preserve caller uncertainty/formulas/foreground ownership/separate emissions; source internal uncertainty/formulas are not reconstructed. No consequential conversion or inferred reverse."
+      ],
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "treatment of used cable",
+          "reference product": "used cable",
+          "unit": "kilogram"
+        },
+        "review_authorization": {
+          "decision": "Approve scoped proxy with warnings",
+          "proposal_sha256": "39c8ab22477bac03f4f59eb2a151f01c25ce4e7282459c74a4fb69bf5dee5a0d",
+          "scope": "Only nine exact inspected Swiss FAE wire-plastic suppliers associated with these cable-treatment profiles; no extension to PET, polypropylene, aluminium or unrelated materials.",
+          "limitations": "Native full3.55%-water wire-plastic incineration lacks Swiss FAE ash extraction/metal recovery; warn about ash treatment, recovery, emissions and allocation differences, with no added recovery credit."
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_inventory_sha256": "301354a92e1d38680d8b2419bb9d739237ca1d45ad71fd45b749f9dc8b96b0ca",
+            "target": {
+              "recipe_ref": "cable-treatment-composition-17100f2a096f7fe19672"
+            }
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dc768ad18e189e8fd35c8dfe08a298c9d37ba72dde8006e95aa1ea36fa061450"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f7197c47047750a",
+      "operation": "replace",
+      "mapping_method": "reviewed_chemical_heat_with_retained_water",
+      "review_path": "export/uvek_chemical_heat_review.json",
+      "review_sha256": "3c2b46a01a45020f2c5c02c3496610b7a9319fcd7327994f8c0aab98c961a6af",
+      "authorization": "Existing explicitly approved exact-profile helper and component-proxy decisions, reused without a new assembly, boundary, allocation or component substitution. Only the inspected actual-pilot cut-off profiles are registered; other and pending profiles remain blocked.",
+      "limitations": [
+        "Reviewed chemical-plant heat service per MJ, with retained source make-up water and physical water releases. The native original XML explicitly defines one MJ of heat for chemical-process steam and excludes its water input because steam is often used in closed systems. Use that complete positive-reference MJ heat service once, then retain every inspected source tap-water coefficient and both direct water releases separately. Do not use the kg-based fresh-steam process, the old rounded 0.36 kg/MJ factor, or 1 MJ per kg. The two exact markets have only one local unit share of the inspected energy producer; flatten that unit share without adding a second heat service. The target approximates the source regional fuel and electricity mix, combustion efficiencies, technology, vintage, allocation and infrastructure; their LCIA equivalence is not established. Water uses complete native water supply as a geography/vintage proxy, preserving each source provider share separately without normalization. Do not add the original source fuel/electricity inputs to the complete native heat service or count water twice. Canonical water identity, receiving compartment, unit and signed amount remain exact; unsupported native physical water definitions must remain unresolved, never omitted. Factor +1 preserves caller signed MJ, supported uncertainty, formulas, metadata, foreground suppliers and separately listed emissions. Internal source uncertainty/formulas are not reconstructed. Only the 36 enumerated cut-off source profiles are reviewed. Physical kg-steam, allocated chemical co-product steam, individual steam transport, consequential inventories and missing profiles cannot inherit this review. The reverse native heat service has a different water boundary and remains unsupported until separately reviewed; no inverse or water cancellation is inferred."
+      ],
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for heat, from steam, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "unit": "megajoule"
+        },
+        "review_authorization": "Standing independently inspected matching whole-function/unit and geographic service proxies plus faithful complete-source helpers. No new chemical, fuel or physical-water omission is approved.",
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_inventory_sha256": "117e389929d2bd19157bc4ee835d02bea2dfa75092dd6588445b0c193f46c590",
+            "target": {
+              "recipe_ref": "chemical-heat-water-1ced12d9ab9a80752fd2"
+            }
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "63b06da8f257e5623e1866e6a380d72eeb42c2b9a8bc93c630b9811ea5f2e914"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a4fb957edae493e5",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_market_composition_review.json",
+      "review_sha256": "0e49ba8d9f3358a075bc3de8b697cace5621ddb6b4b2cb952a4d7866e6ee962e",
+      "authorization": "Existing explicitly approved exact-profile helper and component-proxy decisions, reused without a new assembly, boundary, allocation or component substitution. Only the inspected actual-pilot cut-off profiles are registered; other and pending profiles remain blocked.",
+      "limitations": [
+        "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up older regional road correction retains every signed source coefficient: complete RER heavy-lorry fleet for original all-sizes road markets. Geographic fleet, vintage and inventory differences remain screening limitations; no inverse is inferred. Reviewed source-function boundary repairs are applied only to source-witnessed child suppliers. All other inventory inputs, freight choices and emissions are retained; see brightpath/data/export/uvek_cable_rail_review.json."
+      ],
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "market for scrap aluminium",
+          "reference product": "scrap aluminium",
+          "unit": "kilogram"
+        },
+        "review_authorization": "Standing approval for helpers assembled from independently inspected existing component correspondences. Each approved exact source-market profile contains only active technosphere inputs, has a unit-magnitude reference, and has no direct biosphere or unsupported exchange types. No missing component, omission or empty allocation is concealed. Component proxy limitations are inherited; no additional scientific equivalence is inferred. Production-only cut-off stock dependencies require an explicitly approved direct supplier, exact source profile and review fingerprint. Every other observed counterpart is enumerated as pending and remains blocked; partial approvals never resolve a whole identity.",
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_inventory_sha256": "8e5cf4ca1f3cba0ef5a6685cf91db5735844c5aa3810bcda5d2b38f90e15bea6",
+            "target": {
+              "recipe_ref": "cable-rail-parent-3e916436-22747623c2b8e2513e27"
+            }
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "341e34dad577e180b0657cf973aca936b46ded551f496a60dd2a8cf7cc04dfa7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f538bbeedc48b671",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_market_composition_review.json",
+      "review_sha256": "0e49ba8d9f3358a075bc3de8b697cace5621ddb6b4b2cb952a4d7866e6ee962e",
+      "authorization": "Existing explicitly approved exact-profile helper and component-proxy decisions, reused without a new assembly, boundary, allocation or component substitution. Only the inspected actual-pilot cut-off profiles are registered; other and pending profiles remain blocked.",
+      "limitations": [
+        "Reviewed exact-profile inventory assembly with explicitly approved cut-off allocation supplies: retain every original processing, supply, freight and signed recovery coefficient. Independently inspected positive-reference Recycled Content cut-off stocks have production only and retain that allocation boundary as separate foreground suppliers. Negative stock inputs remain product credits with the source allocation burden; negative inputs to negative treatment references remain treatment demand and use their own sign factors. No actual recycling/treatment stage, uncharacterized inventory, unknown supplier or negative-reference empty service is assigned zero. Other resolved component correspondences retain their technology, geography, composition and allocation approximations; scientific and LCIA equivalence is not established. Internal background uncertainty/formulas are not reconstructed. Preserve caller signed quantities, uncertainty/formulas, foreground suppliers, production and separate emissions/credits. Export and score the entire returned helper hierarchy. Only the enumerated verified profiles are approved; explicitly pending counterpart profiles remain blocked and no reverse is inferred."
+      ],
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for used vegetable cooking oil",
+          "reference product": "used vegetable cooking oil",
+          "unit": "kilogram"
+        },
+        "review_authorization": "Standing approval for helpers assembled from independently inspected existing component correspondences. Each approved exact source-market profile contains only active technosphere inputs, has a unit-magnitude reference, and has no direct biosphere or unsupported exchange types. No missing component, omission or empty allocation is concealed. Component proxy limitations are inherited; no additional scientific equivalence is inferred. Production-only cut-off stock dependencies require an explicitly approved direct supplier, exact source profile and review fingerprint. Every other observed counterpart is enumerated as pending and remains blocked; partial approvals never resolve a whole identity.",
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_inventory_sha256": "2b9cd2bfe958425d2cd8e05e1cf7b31a8ad095fecd76ae546a0f26bd77f26282",
+            "target": {
+              "recipe_ref": "market-composition-fd90f6631a1bceeb181f"
+            }
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "90ae8f9792ccc4ab799bf755849ab8e1eb0ca29384b58337b77592651c827a7d"
+        }
+      ]
     }
   ]
 }

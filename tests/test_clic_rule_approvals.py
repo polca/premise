@@ -515,3 +515,67 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
     assert fingerprint not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
+
+
+@pytest.mark.parametrize(
+    "rule_id,version,factor",
+    [
+        ("bp-9f7197c47047750a", "3.8", 1),
+        ("bp-a4fb957edae493e5", "3.9", -1),
+        ("bp-0f79ee18ac90436d", "3.9", -1),
+        ("bp-f538bbeedc48b671", "3.8", 1),
+        ("bp-4b1d84179efa58e8", "3.9", -1),
+        ("bp-815270d3fcbfb53b", "3.9", -1),
+    ],
+)
+@pytest.mark.parametrize("amount", [-2, 2])
+def test_prior_helper_approval_returns_complete_owned_graph(
+    tmp_path, rule_id, version, factor, amount
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    source = resolved.activities[0]["exchanges"][1]
+    source.update(
+        amount=amount,
+        **{
+            "uncertainty type": 2,
+            "loc": math.log(abs(amount)),
+            "scale": 0.2,
+            "negative": amount < 0,
+            "formula": "service_demand",
+        },
+    )
+    before = copy.deepcopy(resolved.activities)
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(resolved, family="uvek", version="2026")
+    owned = {a["code"]: a for a in result.activities}
+    foreground = owned[resolved.activities[0]["code"]]
+    demand = foreground["exchanges"][1]
+    assert demand["amount"] == amount * factor
+    assert demand["unit"] == source["unit"]
+    assert demand["loc"] == source["loc"] and demand["scale"] == source["scale"]
+    assert demand["negative"] is (amount * factor < 0)
+    if factor == 1:
+        assert demand["formula"] == "service_demand"
+    else:
+        assert demand["formula"] == "(service_demand) * (-1.0)"
+    assert len(owned) > 1
+    assert demand["input"][0] == "__clic__"
+    assert demand["input"][1] in owned
+    for activity in result.activities:
+        for exchange in activity["exchanges"]:
+            reference = exchange.get("input", ())
+            if reference and reference[0] == "__clic__":
+                assert reference[1] in owned
+    assert resolved.activities == before
+    assert any(
+        i["code"] == "clic.compatibility_proxy_limitations"
+        and i["details"]["rule_id"] == rule_id
+        for i in result.diagnostics
+    )
