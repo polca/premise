@@ -367,6 +367,15 @@ acrylic dispersion's unresolved binder basis and the incorrect solvent-paint
 match. Native supplier LCI checks prove finite baseline inventories and unchanged
 source contents; they do not certify a prospective scenario.
 
+`uvek_pilot_paint_market_review.json` extends the previously approved
+water-based alkyd producer and +1/0.60 active-to-mixture factor to its inspected
+ecoinvent 3.12 generic market. This market buys only that producer, at one kg
+per kg, and original source/native reference evidence hashes match. Correct the
+solvent-paint target, preserve signs and scale uncertainty/formulas together;
+retain source market delivery and inventory differences in warnings. The authoring
+generator replays the correction with an exact 3.12 gate. Other releases and
+source identities remain unapproved.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

@@ -964,7 +964,7 @@ def test_active_chemical_basis_preserves_separate_water_and_cached_warning(tmp_p
         ("bp-c7c88174c5f11ce8", "3.6"),
         ("bp-c7c88174c5f11ce8", "3.9"),
         ("bp-0ad47155a89ab7bb", "3.9"),
-        ("bp-a51655f7a16cfaa3", "3.12"),
+        ("bp-a51655f7a16cfaa3", "3.11"),
     ],
 )
 def test_unresolved_chemical_bases_do_not_inherit_active_product_approval(
@@ -986,3 +986,47 @@ def test_unresolved_chemical_bases_do_not_inherit_active_product_approval(
     assert fingerprint not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
+
+
+@pytest.mark.parametrize("amount", [-2, 2])
+def test_inspected_paint_market_reuses_water_based_producer_scaling(tmp_path, amount):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-a51655f7a16cfaa3"
+    )
+    resolved = graph(rule["source"], version="3.12")
+    exchange = resolved.activities[0]["exchanges"][1]
+    exchange.update(
+        amount=amount,
+        **{
+            "uncertainty type": 2,
+            "loc": math.log(abs(amount)),
+            "scale": 0.2,
+            "negative": amount < 0,
+            "formula": "dry_paint_demand",
+        },
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["name"] == "Alkyd paint, white, 60% in H2O, at plant"
+        assert edge["amount"] == pytest.approx(amount / 0.60)
+        assert edge["loc"] == pytest.approx(math.log(abs(amount)) + math.log(1 / 0.60))
+        assert edge["scale"] == 0.2 and edge["negative"] is (amount < 0)
+        assert (
+            "dry_paint_demand" in edge["formula"] and str(1 / 0.60) in edge["formula"]
+        )
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
+            and "+1/0.60" in d["message"]
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before

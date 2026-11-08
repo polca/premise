@@ -11015,6 +11015,106 @@
           "fingerprint": "a3041d04c682bbdb74e355a6e2cfae0805fdc1b24772a9857394ee2bb1eb1777"
         }
       ]
+    },
+    {
+      "rule_id": "bp-a51655f7a16cfaa3",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_paint_market_review.json",
+      "review_sha256": "330d61db91b138f75ef8a7fd2af3ab459df2fffc0c602c248cc16fe9bd31893d",
+      "authorization": "Reuse the user-approved water-based alkyd-paint correction and +1/0.60 wet/dry-basis scaling, together with standing independently inspected same-product market-to-producer supply-proxy authorization. The exact 3.12 market purchases only the previously inspected water-based producer at one kg per kg. Its producer reference metadata and comment, and both native reference metadata and comments, match the existing approved evidence hashes. No different paint grade, solvent substitution, new helper or new conversion basis is introduced.",
+      "inspection": {
+        "label": "paint_market",
+        "rule_id": "bp-a51655f7a16cfaa3",
+        "source": {
+          "location": "RER",
+          "name": "market for alkyd paint, white, without water, in 60% solution state",
+          "reference product": "alkyd paint, white, without water, in 60% solution state",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Alkyd paint, white, 60% in solvent, at plant",
+          "reference product": "Alkyd paint, white, 60% in solvent, at plant",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Alkyd paint, white, 60% in H2O, at plant",
+          "reference product": "Alkyd paint, white, 60% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.6666666666666667,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.12"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1c07c69b8411abdb3a1b0aaa80b00b4b595b297fd62e5a88605fadefc04bb3ba",
+            "inventory_sha256": "bb1d59c4e6ab4223535a5911921e18502fee58e2493f58ced3683af3e2345ae2",
+            "activity_comment_sha256": "a6d3b775c642cdd1eccc5f0029ef343fd81ac67ecc812971a74f9737d0dab844",
+            "product_information_sha256": "40d2219ad660aa752ca9bcc7b4f964897dd181551be5b1293fcacc4e8b985fc6"
+          }
+        ],
+        "native_references": [
+          {
+            "activity_comment_sha256": "486ff32c1e4aa374ace5c758fcb9dd6aae6bd50e60c7e229090fddc85f2e9829",
+            "family": "uvek",
+            "production_metadata_sha256": "30354bdce3763c528a65d06971a8d94f5cc7d204824420badfd5cb888429747c",
+            "reference_amount": 1,
+            "system_model": "cutoff",
+            "unit": "kilogram",
+            "version": "2025",
+            "inventory_sha256": "48240a7bac9ae181580c4b344bfc0d2df301b9db2911f356c921ed3f60c911b7"
+          },
+          {
+            "activity_comment_sha256": "0917123a1355945ea86b2fd63c4ba47c247656362ede3ee27bf90dafc4823928",
+            "family": "uvek",
+            "production_metadata_sha256": "8b10f7dd5cefc6adb2426a0d598991e22d71adc8a0f6b077561b78884f61f23a",
+            "reference_amount": 1,
+            "system_model": "cutoff",
+            "unit": "kilogram",
+            "version": "2026",
+            "inventory_sha256": "ac871313d7c12d1df8b96c1379e457d4dfa60c8d079bb1ee5860d1002c8922cc"
+          }
+        ],
+        "inspected_upstream_producer": {
+          "identity": {
+            "location": "RER",
+            "name": "alkyd paint production, white, water-based, product in 60% solution state",
+            "reference product": "alkyd paint, white, without water, in 60% solution state",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "fece3c5aec1dcfd04f8758739cffdf388a806fb86f4dddc2b5426d52348a28a2",
+          "inventory_sha256": "800d906cbc3662c86ef68923b7d42b306b883b0b3ab690f88139e4b420595285",
+          "production_metadata_sha256": "c5bd0c5329a92c06648537647b7057a63d1e772de0391a8fc55875c9084d6f9f",
+          "activity_comment_sha256": "9d694dfd51fe25a9269a236d1b249f2a836cbcb3d7d68f6bd71dc39e56e77e8f",
+          "market_supplier_amount": 1,
+          "previous_approval_reference_hashes_match": true
+        },
+        "limitations": "Paint source reference is 1 kg without water, verified by dry/wet mass properties and the material-input basis. Target reference is 1 kg of a 60% paint mixture; use +1/0.60 kg target per signed source kg. Scale amount, uncertainty and symbolic formula together; preserve separate water and emissions, with no extra solvent substitution. Correct material identity and kg reference only; inventory composition, allocation, energy, emissions and LCIA equivalence are not established. Markets use a complete at-plant producer screening proxy: source market delivery and supplier mix are not reconstructed. Source and target retain their declared geography but database vintage and production boundaries differ. This exact 3.12 generic market buys one kg of the already inspected water-based producer; its abbreviated name does not authorize a solvent-based paint. Preserve separately listed caller water and transport; native internal logistics remain included, but the source market delivery legs and any source-market LCIA difference are not reconstructed."
+      },
+      "limitations": [
+        "Paint source reference is 1 kg without water, verified by dry/wet mass properties and the material-input basis. Target reference is 1 kg of a 60% paint mixture; use +1/0.60 kg target per signed source kg. Scale amount, uncertainty and symbolic formula together; preserve separate water and emissions, with no extra solvent substitution. Correct material identity and kg reference only; inventory composition, allocation, energy, emissions and LCIA equivalence are not established. Markets use a complete at-plant producer screening proxy: source market delivery and supplier mix are not reconstructed. Source and target retain their declared geography but database vintage and production boundaries differ. This exact 3.12 generic market buys one kg of the already inspected water-based producer; its abbreviated name does not authorize a solvent-based paint. Preserve separately listed caller water and transport; native internal logistics remain included, but the source market delivery legs and any source-market LCIA difference are not reconstructed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "17754ed9c4f832c86d24e24dca446956086dae07061d43f582d51cadf2eb8eb2"
+        }
+      ]
     }
   ]
 }
