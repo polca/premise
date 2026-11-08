@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 36 |
+| 3.6 | 27 | 34 |
 | 3.7 | 2 | 0 |
-| 3.8 | 1 | 2 |
-| 3.9 | 17 | 33 |
-| 3.12 | 8 | 19 |
+| 3.8 | 1 | 1 |
+| 3.9 | 17 | 31 |
+| 3.12 | 8 | 18 |
 
-These are 90 exact-profile cases involving 81 distinct rules, after reusing
+These are 84 exact-profile cases involving 75 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -318,11 +318,21 @@ freight is not reconstructed; delivery, auxiliary heat/fuel-input and background
 differences remain warnings. Thirty-one focused checks pass, including refusals
 for mixed-fate plastic/oil and Swiss copper with fly-ash extraction. Three unique
 native supplier LCIs are finite with unchanged scientific hashes. No new full
-453-case correspondence run is claimed after the preceding focused additions.
+453-case correspondence run is claimed after those focused additions.
+Six further complete material/service correspondences cover charcoal, platinum,
+raw softwood board dried to u=10%, hydraulic excavation, whole rail freight
+and petroleum-tanker freight. Signed kg, m3 and net cargo tonne-km retain factor
++1. Complete material/drying, machinery and vehicle/port/track boundaries were
+inspected, without duplicate processes or density, moisture, heating-value,
+capacity or lifetime factors. Fleet size, historical supply allocation,
+machinery year and sparse native wood documentation remain explicit limits.
+Twenty-eight focused checks pass and six native supplier LCIs are finite with
+unchanged scientific hashes. The current correspondence module has 480 cases;
+no fresh full 480-case run is claimed.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 257 exact-profile fingerprints, with review evidence and
+ledger contains 263 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

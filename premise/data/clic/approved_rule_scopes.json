@@ -16639,6 +16639,624 @@
           "fingerprint": "81ca06b3944b0ce5cc73b5ae750c058666b92e9aa36c3e8f62aa6f2b2bbbaf85"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c58e827fcace3923",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_matching_supply_service_review.json",
+      "review_sha256": "04f1af8a8c7791ec3aa17d9da593c46a9b6aced3252de0aff58f05b9518e6403",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-service proxy approvals,including same-mode whole-freight precedents,applied only to the enumerated actual pilot profiles after checking positive references,producer definitions and complete native material/service boundaries. No new grade,unit conversion,helper,recovery model,individual traction substitution or empty inventory is introduced.",
+      "inspection": {
+        "rule_id": "bp-c58e827fcace3923",
+        "source": {
+          "location": "GLO",
+          "name": "market for charcoal",
+          "reference product": "charcoal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Charcoal, at plant",
+          "reference product": "Charcoal, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e86b07783c321a7c242a841dbfacf82d485e21277bcb932a51f62d4be262c942",
+            "inventory_sha256": "f9d61c5cc1a7300acd191a395019037df69f40b59aa75274cfcd40d5a129e9d1",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "charcoal production",
+                  "reference product": "charcoal",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "1d52efd05b48c87a2f7c7a6ff34fafc87589c1efc40a661f7332db4b6c07ff8c",
+                "inventory_sha256": "f2d75e7b38dfde6857397d6c8029b54405d66262d9989c572f12697b51023b19",
+                "comment_sha256": "b0bdc7a3d757f054348ea3791cd5ef585115dd11c7c496aa53b519ded76d6d3a"
+              }
+            ]
+          }
+        ],
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "f10df8224effb996ad2426da6e9fd128ddf52ef61aea512cbd31b8e20401b8b1",
+            "inventory_sha256": "fdad962fa3d2bad698bc122826647e44d71b487c0f2f7d972484ae6eb5ebf7e0",
+            "activity_comment_sha256": "833af8e1420dd51c9e084ebb5e78b9e7e0f8c0ee7e6bdff1d809ca5bcc2ecad8",
+            "direct_technosphere_coordinates": 4
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "bc07f277bf0039bff20c307efd7f8eef6e07cf0ba91e61b2110ebba4049006c6",
+            "inventory_sha256": "01b836c2d5e47ac26974e3599a10af4d4dcfcc340ce565a96e763955f5f5d097",
+            "activity_comment_sha256": "34eeb08813437666be0edde851fc21a25f1c7392d01e48ce56286e97478fd02f",
+            "direct_technosphere_coordinates": 4
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same wood-derived charcoal product per kg, produced by small-scale kiln pyrolysis without waste-gas/effluent treatment. Source and native assume 80% carbon; native30MJ/kg heating value lies within the source29-33MJ/kg description. This is neither activated-carbon manufacture nor the final combustion of the charcoal, despite a legacy native synonym. Retain complete native wood supply, pyrolysis emissions, process heat/electricity and internal freight. Source global plantation hardwood is approximated by native European beech supply; market delivery, forestry, allocation and vintage differ. Add no terminal combustion, coproduct credit, yield factor or kg-to-MJ conversion."
+      },
+      "limitations": [
+        "Same wood-derived charcoal product per kg, produced by small-scale kiln pyrolysis without waste-gas/effluent treatment. Source and native assume 80% carbon; native30MJ/kg heating value lies within the source29-33MJ/kg description. This is neither activated-carbon manufacture nor the final combustion of the charcoal, despite a legacy native synonym. Retain complete native wood supply, pyrolysis emissions, process heat/electricity and internal freight. Source global plantation hardwood is approximated by native European beech supply; market delivery, forestry, allocation and vintage differ. Add no terminal combustion, coproduct credit, yield factor or kg-to-MJ conversion.",
+        "Preserve the original signed kg,m3 or net cargo tonne-km demand with factor +1,including uncertainty,formulas and caller ownership. Use the complete native material/service once within its documented boundary. Do not apply density,moisture,energy,capacity,lifetime,payload or gross/net infrastructure allocation factors.",
+        "Source market supply shares,delivery freight,regional backgrounds and native process vintage/technology/allocation differ. Preserve native internal logistics and separately listed caller materials/transport/emissions without reconstruction,double counting,empty stocks or new recovery credits. These are screening proxies;quantitative inventory,water-stress and LCIA equivalence are not established and score effects are unquantified.",
+        "Native2025/2026 direct technosphere vectors match within1e-12relative tolerance. Sparse/short native descriptions and imported biosphere exclusions remain explicit limitations. Only enumerated cut-off source profiles are registered;no other version,independent inverse or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0bf917f04ccd32fdb22b3403035a095668df23886655a51f20871625e95d6502"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1979ee200d36825e",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_matching_supply_service_review.json",
+      "review_sha256": "04f1af8a8c7791ec3aa17d9da593c46a9b6aced3252de0aff58f05b9518e6403",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-service proxy approvals,including same-mode whole-freight precedents,applied only to the enumerated actual pilot profiles after checking positive references,producer definitions and complete native material/service boundaries. No new grade,unit conversion,helper,recovery model,individual traction substitution or empty inventory is introduced.",
+      "inspection": {
+        "rule_id": "bp-1979ee200d36825e",
+        "source": {
+          "location": "GLO",
+          "name": "market for platinum",
+          "reference product": "platinum",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Platinum, at regional storage",
+          "reference product": "Platinum, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "7e5783b52883ea326a2adee89195df8aa66925a0164871124657cbe199f50a5f",
+            "inventory_sha256": "5aff08f457637b64b4405f0386e48472b3efb1cfa97f279f8b5c163ff05ebb0a",
+            "activity_comment_sha256": "4511c30eabcd4f66d2d506ea19f054d959635792a598a4a6770c2b67d0d846f9",
+            "product_information_sha256": "f6fb6287a58b672f7cacf95aa1f9611f7ac32b3d9c7161d49521bff90ceae7b7",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "platinum group metal mine operation, ore with high palladium content",
+                  "reference product": "platinum",
+                  "location": "RU",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "4a38c1f0a3349311741ef6b791f14cc4262bcd6a58e9c0340370b2f510579d85",
+                "inventory_sha256": "ad01d83303a13ec991564b0a4361a343789e323357e5c21776d19819bc5b5a7e",
+                "comment_sha256": "21a229e06bd4e16d380e4c6251a740b6e81daaf9d52b61a8bc11ba8ec912ff10"
+              },
+              {
+                "identity": {
+                  "name": "treatment of automobile catalyst",
+                  "reference product": "platinum",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "f2ade8fbd24d9bd573b28eb6d37452489d70d4fa2556cf075cd731b74b988e30",
+                "inventory_sha256": "5fef41e7c3b6b86915164b08aaa8a36e7df8b7d8f76e6735dfec06c0aaa4517f",
+                "comment_sha256": "ba1163eaf5661deda5e25f9336768df7dd5debf63fed476b32f45e0bd7c725a6"
+              },
+              {
+                "identity": {
+                  "name": "platinum group metal, extraction and refinery operations",
+                  "reference product": "platinum",
+                  "location": "ZA",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "0b0adf7e3553c661843946ff58597a3dd8097b823b628206cd60bcebd7287046",
+                "inventory_sha256": "7d5fa47bdeac174a9a616bb2efc67b41c6efc30b4185aaf304d714c41a8bdc00",
+                "comment_sha256": "fddc4b7e33066cd8ccd1c61177909605d0f6c85a0f6402cf64d422744bf2ddd7"
+              },
+              {
+                "identity": {
+                  "name": "treatment of automobile catalyst",
+                  "reference product": "platinum",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "3a0dd86e9dfdaf903ce96db08b021f4adc2e3bc1acbfeb280544a0b7ae37f45b",
+                "inventory_sha256": "1be27ff4f48a778fcb48f9a1c89c4f5b6f0054d10e92484a7be0085727e3b192",
+                "comment_sha256": "54067362122882e69790255b56d6e07a7ddf3c2b95b9e9d4eb69f2ed93854531"
+              }
+            ]
+          }
+        ],
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "86fd7fb90a9835942d9ff8c04b33ad6114bd83f356efe797a26787789081240a",
+            "inventory_sha256": "e2225a78a578f4328b6bca6c3357bbaf55b318db9685e74f9ba3609fa031064b",
+            "activity_comment_sha256": "a9a86646eadcc987e6d92d8855e7225283a6caedb4861f9973e69a82be5da938",
+            "direct_technosphere_coordinates": 4
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1f241477a5392d17fac72a9fa005c17d832dee9fe2785d6be78af2808f965146",
+            "inventory_sha256": "0dfde4a000c6994b847d8e1fce04662539a8740aaacc72a45d5f689833baf663",
+            "activity_comment_sha256": "4b415f33376e70494f249157d39ccd3edd8a8dd0d36ef954d07bac186a8b58cc",
+            "direct_technosphere_coordinates": 4
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same elemental platinum stock per kg, including allocated primary and recovered secondary metal. The source supplies mine/refinery and automobile-catalyst-recovery products; treatment-named providers have positive platinum references. Use the complete native European consumer mix of primary ZA/RU and secondary European platinum once. Source global geography, recovery shares, allocation, transport and native2002 market vintage differ. Preserve the positive product coordinate without a waste-reference sign reversal, empty recovered-metal stock, new recovery credit or reconstruction/renormalization of the supply mix."
+      },
+      "limitations": [
+        "Same elemental platinum stock per kg, including allocated primary and recovered secondary metal. The source supplies mine/refinery and automobile-catalyst-recovery products; treatment-named providers have positive platinum references. Use the complete native European consumer mix of primary ZA/RU and secondary European platinum once. Source global geography, recovery shares, allocation, transport and native2002 market vintage differ. Preserve the positive product coordinate without a waste-reference sign reversal, empty recovered-metal stock, new recovery credit or reconstruction/renormalization of the supply mix.",
+        "Preserve the original signed kg,m3 or net cargo tonne-km demand with factor +1,including uncertainty,formulas and caller ownership. Use the complete native material/service once within its documented boundary. Do not apply density,moisture,energy,capacity,lifetime,payload or gross/net infrastructure allocation factors.",
+        "Source market supply shares,delivery freight,regional backgrounds and native process vintage/technology/allocation differ. Preserve native internal logistics and separately listed caller materials/transport/emissions without reconstruction,double counting,empty stocks or new recovery credits. These are screening proxies;quantitative inventory,water-stress and LCIA equivalence are not established and score effects are unquantified.",
+        "Native2025/2026 direct technosphere vectors match within1e-12relative tolerance. Sparse/short native descriptions and imported biosphere exclusions remain explicit limitations. Only enumerated cut-off source profiles are registered;no other version,independent inverse or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "83a7f7bfddd35535a69096e7f603b80fd0ba509a5f11642435a927674265c1ae"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6ce52de989145df6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_matching_supply_service_review.json",
+      "review_sha256": "04f1af8a8c7791ec3aa17d9da593c46a9b6aced3252de0aff58f05b9518e6403",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-service proxy approvals,including same-mode whole-freight precedents,applied only to the enumerated actual pilot profiles after checking positive references,producer definitions and complete native material/service boundaries. No new grade,unit conversion,helper,recovery model,individual traction substitution or empty inventory is introduced.",
+      "inspection": {
+        "rule_id": "bp-6ce52de989145df6",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for sawnwood, board, softwood, raw, dried (u=10%)",
+          "reference product": "sawnwood, board, softwood, raw, dried (u=10%)",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sawnwood, board, softwood, raw, dried (u=10%), at sawmill",
+          "reference product": "Sawnwood, board, softwood, raw, dried (u=10%), at sawmill",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c5b9ff040326c3a320fbb39083a62912ae7e5e4571a0f747a2be498508948bd1",
+            "inventory_sha256": "b1b7155a94604dea4e97b2d12648fda9ccc17886465df0bd7ff01f3062422b8b",
+            "activity_comment_sha256": "f69d552b012c3200f1ec0376eb82e26fa9bdafb894a49170d95f92532b870e04",
+            "product_information_sha256": "36c9377617d922119e1c13814c444ed7dfb1d63966085e6f472ceaeb0e5e0ce1",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "board, softwood, raw, kiln drying to u=10%",
+                  "reference product": "sawnwood, board, softwood, raw, dried (u=10%)",
+                  "location": "Europe without Switzerland",
+                  "unit": "cubic meter"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "5dd40e333cf609db9ed564686becceba15f70cc6220b627e885ddacc423b00f0",
+                "inventory_sha256": "9abdd04cb854ef6b3aa2ca2ff0dff3da8062d7108544197e8fb491f5b272936b",
+                "comment_sha256": "4762503e0422a2aaaf3fdf43192004605ee6c8b0ce1bf97dfbb9a60206ac7d5f"
+              }
+            ]
+          }
+        ],
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "2fb053686aa06431c9569e0d31fa0cddc5abf6b1db60fd3fbbdedeffc7dfd831",
+            "inventory_sha256": "3a85743ceeb1d6621e46f738f93cd1706efd7a602b2d2b5b9f6e4c88be664374",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "direct_technosphere_coordinates": 6
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "09b7053898bf0fc01ddc0c38de97694c70f65a4182c9a0d52855d458d6bc06e9",
+            "inventory_sha256": "9db6d68d650de458938b109aa4aa7547a51d81e954688b412852150d2c988a11",
+            "activity_comment_sha256": "b80de83148deff1db145f1237f3477db563ea58b22977a255fd701c9201d9781",
+            "direct_technosphere_coordinates": 6
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same raw softwood board kiln-dried to declared u=10%, per solid cubic metre. The source producer supplies the wood as well as drying; the native inventory likewise includes raw sawn softwood, wood-chip heat/furnace, drying infrastructure, electricity and ash disposal. This is a complete material, not a drying-only service. Preserve signed m3 without wood-density, moisture, shrinkage or kg conversion, extra raw wood, or duplicate drying/heat. Native2026 descriptive fields are sparse, so the declared product specification, positive reference and actual dependency boundary were checked; detailed native operating conditions are not inferred. Source market delivery, allocation, background, geography and vintage differ."
+      },
+      "limitations": [
+        "Same raw softwood board kiln-dried to declared u=10%, per solid cubic metre. The source producer supplies the wood as well as drying; the native inventory likewise includes raw sawn softwood, wood-chip heat/furnace, drying infrastructure, electricity and ash disposal. This is a complete material, not a drying-only service. Preserve signed m3 without wood-density, moisture, shrinkage or kg conversion, extra raw wood, or duplicate drying/heat. Native2026 descriptive fields are sparse, so the declared product specification, positive reference and actual dependency boundary were checked; detailed native operating conditions are not inferred. Source market delivery, allocation, background, geography and vintage differ.",
+        "Preserve the original signed kg,m3 or net cargo tonne-km demand with factor +1,including uncertainty,formulas and caller ownership. Use the complete native material/service once within its documented boundary. Do not apply density,moisture,energy,capacity,lifetime,payload or gross/net infrastructure allocation factors.",
+        "Source market supply shares,delivery freight,regional backgrounds and native process vintage/technology/allocation differ. Preserve native internal logistics and separately listed caller materials/transport/emissions without reconstruction,double counting,empty stocks or new recovery credits. These are screening proxies;quantitative inventory,water-stress and LCIA equivalence are not established and score effects are unquantified.",
+        "Native2025/2026 direct technosphere vectors match within1e-12relative tolerance. Sparse/short native descriptions and imported biosphere exclusions remain explicit limitations. Only enumerated cut-off source profiles are registered;no other version,independent inverse or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7cb45e0cd0c4ba96ede7876eeca2f50e24c9cb20d78903d5af4b1b4ab5c8088c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8a37fb9191501441",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_matching_supply_service_review.json",
+      "review_sha256": "04f1af8a8c7791ec3aa17d9da593c46a9b6aced3252de0aff58f05b9518e6403",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-service proxy approvals,including same-mode whole-freight precedents,applied only to the enumerated actual pilot profiles after checking positive references,producer definitions and complete native material/service boundaries. No new grade,unit conversion,helper,recovery model,individual traction substitution or empty inventory is introduced.",
+      "inspection": {
+        "rule_id": "bp-8a37fb9191501441",
+        "source": {
+          "location": "GLO",
+          "name": "market for excavation, hydraulic digger",
+          "reference product": "excavation, hydraulic digger",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Excavation, hydraulic digger, average",
+          "reference product": "Excavation, hydraulic digger, average",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "bbebc66fb672b1aa360c4ac6f7613d3741b7e2ef352494018985849e753b7b47",
+            "inventory_sha256": "76111ff19a7ef27e837facc71cdf9afaf49bc36627db7b003531e60a39f37bb6",
+            "activity_comment_sha256": "2b76043a1f21ce7dea9b710597ab57d0f8a956437412f265a6001f7ea39371fb",
+            "product_information_sha256": "4022cb2c86815e523ddfe60a610a4f593c249a5168310174300828332f5e08f9",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "excavation, hydraulic digger",
+                  "reference product": "excavation, hydraulic digger",
+                  "location": "RoW",
+                  "unit": "cubic meter"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "f1fe755f1684257d11b5389978f98f7c14947a5b41ff5f287f214f34aba308bd",
+                "inventory_sha256": "b7a70f21dab86ef78e0fabf062971297e07f9fdf15e5a5bb5ab109fa324fe8df",
+                "comment_sha256": "1b8f9a9be4c393bc0356b2b4f67319f65fdd174b01ebdd4bc39ceea0b615a067"
+              },
+              {
+                "identity": {
+                  "name": "excavation, hydraulic digger",
+                  "reference product": "excavation, hydraulic digger",
+                  "location": "RER",
+                  "unit": "cubic meter"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "3902e394cb25b17402e227454f96d8fbccdcb84abcfacdef7daa5df6d087af62",
+                "inventory_sha256": "10b5957b3e78b3f0e1584f866e2cc7e4febeccda9ddeb9a714314f9afdccf2ed",
+                "comment_sha256": "1b8f9a9be4c393bc0356b2b4f67319f65fdd174b01ebdd4bc39ceea0b615a067"
+              }
+            ]
+          }
+        ],
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "c31dbcd05bac9519a11f0d377536d3b3457fc8d9eacdb62ac8fa3a7c65aa7cdb",
+            "inventory_sha256": "808162caf471df3eaf47f353b366c4ba5d67d4ce311323ba629e5db131a6454b",
+            "activity_comment_sha256": "e37844b3ac97e0da135702b2c886ec1e070e3c7e6d4bf357b137272e59afd780",
+            "direct_technosphere_coordinates": 4
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "ee5e0fd555219c0ab274ac30d0cd1d438a02db8dee51e01c97a261340086dd30",
+            "inventory_sha256": "ddd0338b91f6cdf7a2a781ae18463f30e03edfbfb7a4bdb87ab46d368d52e21a",
+            "activity_comment_sha256": "2e9affb8a9b5f9bd1282d4c4bcb9c481ad44799a43a8f11b2781d615f9cb1dbc",
+            "direct_technosphere_coordinates": 4
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same hydraulic-digger excavation service per m3 of material handled, including machine infrastructure, diesel, lubricating oil, used-oil disposal and operating emissions. The material excavated remains a separate caller responsibility. Source year2000 Swiss-derived generic technology is approximated by the complete native2015 average machinery model, with its particle-filter/fleet assumptions. Retain separately listed caller material/transport; add no bulk soil, machine or diesel twice. Native100m3/h capacity and10000h life are internal model assumptions, not conversion factors for the m3 service. Technology, geography, emissions and vintage remain warnings."
+      },
+      "limitations": [
+        "Same hydraulic-digger excavation service per m3 of material handled, including machine infrastructure, diesel, lubricating oil, used-oil disposal and operating emissions. The material excavated remains a separate caller responsibility. Source year2000 Swiss-derived generic technology is approximated by the complete native2015 average machinery model, with its particle-filter/fleet assumptions. Retain separately listed caller material/transport; add no bulk soil, machine or diesel twice. Native100m3/h capacity and10000h life are internal model assumptions, not conversion factors for the m3 service. Technology, geography, emissions and vintage remain warnings.",
+        "Preserve the original signed kg,m3 or net cargo tonne-km demand with factor +1,including uncertainty,formulas and caller ownership. Use the complete native material/service once within its documented boundary. Do not apply density,moisture,energy,capacity,lifetime,payload or gross/net infrastructure allocation factors.",
+        "Source market supply shares,delivery freight,regional backgrounds and native process vintage/technology/allocation differ. Preserve native internal logistics and separately listed caller materials/transport/emissions without reconstruction,double counting,empty stocks or new recovery credits. These are screening proxies;quantitative inventory,water-stress and LCIA equivalence are not established and score effects are unquantified.",
+        "Native2025/2026 direct technosphere vectors match within1e-12relative tolerance. Sparse/short native descriptions and imported biosphere exclusions remain explicit limitations. Only enumerated cut-off source profiles are registered;no other version,independent inverse or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cf76ccd6541f2772afeea3867a29cbdb8eb61798d4f7edae1ccb9c014c5f3293"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a3a951644bd5ed9c",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_pilot_matching_supply_service_review.json",
+      "review_sha256": "04f1af8a8c7791ec3aa17d9da593c46a9b6aced3252de0aff58f05b9518e6403",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-service proxy approvals,including same-mode whole-freight precedents,applied only to the enumerated actual pilot profiles after checking positive references,producer definitions and complete native material/service boundaries. No new grade,unit conversion,helper,recovery model,individual traction substitution or empty inventory is introduced.",
+      "inspection": {
+        "rule_id": "bp-a3a951644bd5ed9c",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "8375f0472c10819cf91f5721d7b89392db165cae98be01de7998ccfea29568ce",
+            "inventory_sha256": "cb455a2f6d85c4c92c8d60f75e9c612f91506cb9f5a7dbf0580fe0d74a896d0d",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "transport, freight train, diesel",
+                  "reference product": "transport, freight train",
+                  "location": "Europe without Switzerland",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "cfd7214bcc47abc460743971f4b1e92bc551f8642709394a14e87a60249e9ec9",
+                "inventory_sha256": "8f721c3fcb15000d487c26ff43ae0d156fc487032bd1824460e0d9b0c92639c4",
+                "comment_sha256": "d77eaabb109193fb002c394a26a8f5782b0a6d46088a50dfc09c0717992e67e2"
+              },
+              {
+                "identity": {
+                  "name": "transport, freight train, electricity",
+                  "reference product": "transport, freight train",
+                  "location": "Europe without Switzerland",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "6a9f4334e1e97f7f6b1db10ee9d53b06acbdcca69bda603f304670fbca806e0f",
+                "inventory_sha256": "30547c6ba5560749998b99b0a9e60d81eaf121d6d873c9cfa091b1a80e6d895c",
+                "comment_sha256": "6d92fa2878ad45ec8f130bc36e51a6ab21df99115118e4524b89b89ed8033e41"
+              }
+            ]
+          }
+        ],
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "ton kilometer",
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+            "activity_comment_sha256": "1df979a6bc0882b7d94bc3904a8832568a6c5463344665f169125ea352d9d7a5",
+            "direct_technosphere_coordinates": 10
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "ton kilometer",
+            "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+            "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+            "activity_comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3",
+            "direct_technosphere_coordinates": 10
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same complete average rail-freight service per net cargo tonne-km, retaining electric/diesel operation, shunting, locomotive/wagon life cycles and track infrastructure/maintenance. Source European diesel/electric shares are approximated by the complete native historical European average, not by replacing an individual diesel/steam service with electricity. Native country coverage and infrastructure allocation differ. Keep the complete service and caller distance/payload once, without applying track gross-tonne-km allocation a second time, scaling by train capacity, adding rolling stock, or reconstructing the source modal split."
+      },
+      "limitations": [
+        "Same complete average rail-freight service per net cargo tonne-km, retaining electric/diesel operation, shunting, locomotive/wagon life cycles and track infrastructure/maintenance. Source European diesel/electric shares are approximated by the complete native historical European average, not by replacing an individual diesel/steam service with electricity. Native country coverage and infrastructure allocation differ. Keep the complete service and caller distance/payload once, without applying track gross-tonne-km allocation a second time, scaling by train capacity, adding rolling stock, or reconstructing the source modal split.",
+        "Preserve the original signed kg,m3 or net cargo tonne-km demand with factor +1,including uncertainty,formulas and caller ownership. Use the complete native material/service once within its documented boundary. Do not apply density,moisture,energy,capacity,lifetime,payload or gross/net infrastructure allocation factors.",
+        "Source market supply shares,delivery freight,regional backgrounds and native process vintage/technology/allocation differ. Preserve native internal logistics and separately listed caller materials/transport/emissions without reconstruction,double counting,empty stocks or new recovery credits. These are screening proxies;quantitative inventory,water-stress and LCIA equivalence are not established and score effects are unquantified.",
+        "Native2025/2026 direct technosphere vectors match within1e-12relative tolerance. Sparse/short native descriptions and imported biosphere exclusions remain explicit limitations. Only enumerated cut-off source profiles are registered;no other version,independent inverse or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "59c51e571d2081dc98138b5641f8142133a5d3ad221e2559f401d7b90430c1e5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2d474e1cc4ae1395",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_pilot_matching_supply_service_review.json",
+      "review_sha256": "04f1af8a8c7791ec3aa17d9da593c46a9b6aced3252de0aff58f05b9518e6403",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-service proxy approvals,including same-mode whole-freight precedents,applied only to the enumerated actual pilot profiles after checking positive references,producer definitions and complete native material/service boundaries. No new grade,unit conversion,helper,recovery model,individual traction substitution or empty inventory is introduced.",
+      "inspection": {
+        "rule_id": "bp-2d474e1cc4ae1395",
+        "source": {
+          "location": "GLO",
+          "name": "market for transport, freight, sea, tanker for petroleum",
+          "reference product": "transport, freight, sea, tanker for petroleum",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "OCE",
+          "name": "Transport, transoceanic tanker",
+          "reference product": "Transport, transoceanic tanker",
+          "unit": "ton kilometer"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a70a8a5d254de0ba1a2c485ce6d93a358f9acd3750221c724374623d980b3cd8",
+            "inventory_sha256": "c4854a3cf59f76c80187e28fab3d3cbbb45371a07069fb70fe8dc843169d1442",
+            "activity_comment_sha256": "1e8514e97779d117f5e6fd801a4c7a7d0f4ace0e3d8a1f40f98588acaff86bdc",
+            "product_information_sha256": "47578d2282f7b0e03eea78c92ccfcbc9919270aea699ca2da4cb64f6c103daf9",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "transport, freight, sea, tanker for petroleum",
+                  "reference product": "transport, freight, sea, tanker for petroleum",
+                  "location": "GLO",
+                  "unit": "ton kilometer"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "4e60e1c50f247390047abcd6b30c596b58789e1f5b1edb8a001432a14b55877c",
+                "inventory_sha256": "a33054f25c4aae363eaca021f4fca49af5de923ac3cf39e48ffbfdda29e7e79f",
+                "comment_sha256": "512adc8256251d453a2c02252669930400b08c0ec127daeb0b56e1d785a122da"
+              }
+            ]
+          }
+        ],
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "ton kilometer",
+            "metadata_sha256": "bb2fd7fe76b121b886cbd07858b897174e24a6d26b86b254917bb0eeb5560b63",
+            "inventory_sha256": "f129033d588891897c1bc4ec7693902d19a10ad1be96fe94036ac081b779cd97",
+            "activity_comment_sha256": "97917be2652eeae214fffc18dae490a2c2fdd6d873234f53f9e1b3adb00b35f9",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "ton kilometer",
+            "metadata_sha256": "a37b0531d4b0281f756e52199d7973315d711e2df27add5a7a7cec20c7b389f5",
+            "inventory_sha256": "6b64c54314465377e33678ffb907571c1255724c95cf9f5fead1542fcc6bee33",
+            "activity_comment_sha256": "b992c51497ebaa7b7a4e61462754ccefda03c4774c99a659536779ac4cc9f924",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same complete sea freight for liquid petroleum cargo per net cargo tonne-km, including tanker/port infrastructure, operation, maintenance, fuel/emissions and bilge disposal. Source product documentation states36000t capacity while its operating factors describe a global fleet; the native historical inventory uses150000dwt and its own port/ship life-cycle allocations. Retain the complete same-mode tanker service as a screening proxy, with explicit fleet/capacity/load/return-trip, geography, fuel/emission and vintage differences. Apply no capacity ratio, vessel-mass/lifetime factor or tonne-to-kg conversion. Add no petroleum cargo production, second port/ship or reconstructed fuel/emission correction."
+      },
+      "limitations": [
+        "Same complete sea freight for liquid petroleum cargo per net cargo tonne-km, including tanker/port infrastructure, operation, maintenance, fuel/emissions and bilge disposal. Source product documentation states36000t capacity while its operating factors describe a global fleet; the native historical inventory uses150000dwt and its own port/ship life-cycle allocations. Retain the complete same-mode tanker service as a screening proxy, with explicit fleet/capacity/load/return-trip, geography, fuel/emission and vintage differences. Apply no capacity ratio, vessel-mass/lifetime factor or tonne-to-kg conversion. Add no petroleum cargo production, second port/ship or reconstructed fuel/emission correction.",
+        "Preserve the original signed kg,m3 or net cargo tonne-km demand with factor +1,including uncertainty,formulas and caller ownership. Use the complete native material/service once within its documented boundary. Do not apply density,moisture,energy,capacity,lifetime,payload or gross/net infrastructure allocation factors.",
+        "Source market supply shares,delivery freight,regional backgrounds and native process vintage/technology/allocation differ. Preserve native internal logistics and separately listed caller materials/transport/emissions without reconstruction,double counting,empty stocks or new recovery credits. These are screening proxies;quantitative inventory,water-stress and LCIA equivalence are not established and score effects are unquantified.",
+        "Native2025/2026 direct technosphere vectors match within1e-12relative tolerance. Sparse/short native descriptions and imported biosphere exclusions remain explicit limitations. Only enumerated cut-off source profiles are registered;no other version,independent inverse or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3c767ee25fad41761db2a3f6b4ff7f5be679a0987607f100a2fb5d521778ac28"
+        }
+      ]
     }
   ]
 }

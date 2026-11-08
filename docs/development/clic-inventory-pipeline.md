@@ -511,6 +511,19 @@ pass, and all three unique native supplier LCIs are finite with unchanged
 scientific hashes. Mixed-fate markets and Swiss copper with fly-ash extraction
 remain refused; this approval introduces no extra recovery credit or helper.
 
+`uvek_pilot_matching_supply_service_review.json` adds six complete native
+material/service proxies for exact source profiles: wood-derived charcoal,
+elemental platinum, raw softwood board dried to u=10%, hydraulic excavation,
+whole rail freight and petroleum-tanker freight. Source and native references
+are positive kg, m3 or net cargo tonne-km; preserve signed demand with factor +1.
+Wood includes material and drying, excavation excludes the excavated material,
+and freight includes its vehicle/port/track life cycle. Add no duplicate process,
+carbon/recovery credit or density, heating-value, capacity or lifetime factor.
+The source tanker description and native 150000dwt model differ; native
+historical fleet, machinery year, allocation and sparse wood documentation
+remain explicit screening limits. Twenty-eight focused checks pass, and six
+native suppliers have finite LCIs with unchanged source scientific hashes.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

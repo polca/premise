@@ -534,6 +534,12 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-18e8ed0207bbd5f8", "3.9"),
         ("bp-182cd513cb8969f1", "3.9"),
         ("bp-b5f627281d517e19", "3.12"),
+        ("bp-c58e827fcace3923", "3.6"),
+        ("bp-1979ee200d36825e", "3.9"),
+        ("bp-6ce52de989145df6", "3.12"),
+        ("bp-8a37fb9191501441", "3.9"),
+        ("bp-a3a951644bd5ed9c", "3.6"),
+        ("bp-2d474e1cc4ae1395", "3.8"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -779,6 +785,12 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-00d0820dc5481d5d",
         "bp-cccd7819bb6cea4b",
         "bp-4a8d844635b7637e",
+        "bp-c58e827fcace3923",
+        "bp-1979ee200d36825e",
+        "bp-6ce52de989145df6",
+        "bp-8a37fb9191501441",
+        "bp-a3a951644bd5ed9c",
+        "bp-2d474e1cc4ae1395",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -987,6 +999,48 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
         )
         assert "Do not multiply the delivered-kg demand" in warning["message"]
         assert "Regionalized water-stress" in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version,warning_term",
+    [
+        ("bp-c58e827fcace3923", "3.6", "kg-to-MJ conversion"),
+        ("bp-6ce52de989145df6", "3.12", "without wood-density"),
+        (
+            "bp-8a37fb9191501441",
+            "3.9",
+            "internal model assumptions, not conversion factors",
+        ),
+    ],
+)
+def test_complete_supply_service_keeps_demand_and_cached_basis_warning(
+    tmp_path, rule_id, version, warning_term
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    resolved.activities[0]["exchanges"][1]["amount"] = 2.5
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 2
+        edge = activity["exchanges"][1]
+        assert edge["amount"] == 2.5 and edge["unit"] == rule["source"]["unit"]
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+        )
+        assert warning_term in warning["message"]
     assert resolved.activities == before
 
 
