@@ -1081,6 +1081,10 @@
           },
           "fingerprint": "15452ff563e3def7f0619c4b8eaece8f75ec221c66e72f1532349d64193632ca"
         }
+      ],
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, allocation and emissions; matching waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no new recovery credit."
       ]
     },
     {
@@ -1143,6 +1147,10 @@
           },
           "fingerprint": "75ca544857df29c73a0b4e1d2a09fa45ccff7814ac6ac9ba11ec946f738c83b9"
         }
+      ],
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, allocation and emissions; matching waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no new recovery credit."
       ]
     },
     {
@@ -1205,6 +1213,10 @@
           },
           "fingerprint": "6064a93045f8c1f2e91256cec14c92a8069fb172b86f9bf55f5f8398b4fecc3a"
         }
+      ],
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, allocation and emissions; matching waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no new recovery credit."
       ]
     },
     {
@@ -1267,6 +1279,10 @@
           },
           "fingerprint": "938b907763de8ff87c9c99c27d0bf3b82604d5ab8f49734f6afa7b62117fa956"
         }
+      ],
+      "limitations": [
+        "The complete native UVEK treatment inventory retains its own technology, vintage, allocation and emissions; matching waste composition and treatment function do not establish equal LCIA results.",
+        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no new recovery credit."
       ]
     },
     {
@@ -1290,6 +1306,10 @@
           },
           "fingerprint": "656f8d55d4748fec00a9365094fe07096f1f3dd9d999a3c56198dce2e9d5c0dd"
         }
+      ],
+      "limitations": [
+        "Use the complete native processing service, including its internal processing multipliers and material-loss inputs; add no extra base material, loss factor or recovery credit.",
+        "Matching per-kg processing coordinates do not establish equal background inventories or LCIA results."
       ]
     },
     {
@@ -1313,6 +1333,10 @@
           },
           "fingerprint": "27bf637a42cc1b0bf2b507bf262f8d68cc5c758c915612a990639aec2acb6ad0"
         }
+      ],
+      "limitations": [
+        "Use the complete native processing service, including its internal processing multipliers and material-loss inputs; add no extra base material, loss factor or recovery credit.",
+        "Matching per-kg processing coordinates do not establish equal background inventories or LCIA results."
       ]
     },
     {
@@ -1336,6 +1360,10 @@
           },
           "fingerprint": "441c51d09188a6c2693ff7bccb81d6d587f4d8a5f9ee19601e9cb87449152928"
         }
+      ],
+      "limitations": [
+        "Use the complete native processing service, including its internal processing multipliers and material-loss inputs; add no extra base material, loss factor or recovery credit.",
+        "Matching per-kg processing coordinates do not establish equal background inventories or LCIA results."
       ]
     },
     {
@@ -1359,6 +1387,10 @@
           },
           "fingerprint": "8c95c94a38b33ac19893f309aab41070c777167b3adf3b52198766c303c7da7b"
         }
+      ],
+      "limitations": [
+        "Use the complete native processing service, including its internal processing multipliers and material-loss inputs; add no extra base material, loss factor or recovery credit.",
+        "Matching per-kg processing coordinates do not establish equal background inventories or LCIA results."
       ]
     }
   ]

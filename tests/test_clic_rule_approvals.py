@@ -386,3 +386,78 @@ def test_direct_processing_reference_keeps_the_foreground_quantity(
     for key in ("amount", "unit", "loc", "scale", "negative", "formula"):
         assert target[key] == source[key]
     assert resolved.activities == before
+
+
+def test_review_limitations_survive_cache_and_invalidate_stale_warning(
+    tmp_path, monkeypatch
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+    from premise.inventory import clic_rule_approvals as approvals
+
+    rule_id = "bp-0227e3e438bfcee6"
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version="3.6")
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        warnings = [
+            i
+            for i in result.diagnostics
+            if i["code"] == "clic.compatibility_proxy_limitations"
+        ]
+        assert len(warnings) == 1
+        warning = warnings[0]
+        assert warning["severity"] == "warning"
+        assert warning["details"]["rule_id"] == rule_id
+        assert "wet-kg" in warning["message"]
+        audit = json.loads(
+            gzip.decompress(
+                Path(result.manifest["cohorts"][0]["audit_file"]).read_bytes()
+            )
+        )
+        assert audit["premise_compatibility_reviews"] == [warning["details"]]
+        assert not any(
+            r["rule_id"] != rule_id for r in audit["premise_compatibility_reviews"]
+        )
+    fingerprint = result.manifest["cohorts"][0]["fingerprint"]
+    ledger = approvals._approval_ledger()
+    next(d for d in ledger["operations"] if d["rule_id"] == rule_id)[
+        "limitations"
+    ].append("Additional reviewed delivery-boundary limitation.")
+    monkeypatch.setattr(approvals, "_approval_ledger", lambda: copy.deepcopy(ledger))
+    result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+    assert result.manifest["cohorts"][0]["cache_hit"] is False
+    assert result.manifest["cohorts"][0]["fingerprint"] != fingerprint
+    assert any(
+        "delivery-boundary limitation" in i["message"] for i in result.diagnostics
+    )
+
+
+def test_refused_transaction_retains_review_limitations_without_target(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    indexed = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    reviewed = indexed["bp-0227e3e438bfcee6"]
+    unreviewed = indexed["bp-4438f1d4119c16e4"]
+    resolved = graph(reviewed["source"], unreviewed["source"], version="3.6")
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
+        )
+    assert resolved.activities == before
+    assert not list(tmp_path.glob("*.inventory.json.gz"))
+    audit = json.loads(
+        gzip.decompress(next(tmp_path.glob("*.audit.json.gz")).read_bytes())
+    )
+    assert [r["rule_id"] for r in audit["premise_compatibility_reviews"]] == [
+        reviewed["id"]
+    ]
+    issues = [i for s in audit["stages"] for i in s["issues"]]
+    assert any(i["code"] == "clic.compatibility_proxy_limitations" for i in issues)
+    assert any(i["code"] == "migration.unapproved_correspondence" for i in issues)

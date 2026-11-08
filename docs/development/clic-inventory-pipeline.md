@@ -216,6 +216,14 @@ cohort cache keys and manifest policy provenance. This needs the current
 Brightpath implementation with scoped compatibility approvals; existing
 ecoinvent preparation and default Brightpath strict policy retain their behavior.
 
+Matched approved correspondences retain their review path, SHA-256,
+authorization and declared limitations in the cohort audit and portable
+diagnostics. Limitations produce warnings on both initial preparation and cache
+reuse. The review metadata also enters cache identity, so editing a warning
+cannot reuse an older silent result. Refused transactions retain the reviewed
+preflight findings alongside the unresolved-rule errors, without writing a
+converted inventory or claiming that the conversion succeeded.
+
 The ledger also reuses the existing standing review for the complete packed
 stone-wool market. All approvals pin the review-file hash and complete
 rule/helper fingerprints, including profile-specific recipe overrides. A

@@ -1,10 +1,91 @@
 """Validate pinned approvals for the exact UVEK electricity pilot target."""
 
+import copy
 import hashlib
 import json
 from pathlib import Path
 
 from .clic_archive import ClicInventoryError
+
+
+def _approval_ledger():
+    ledger = json.loads(
+        (
+            Path(__file__).resolve().parents[1] / "data/clic/approved_rule_scopes.json"
+        ).read_text(encoding="utf-8")
+    )
+    if ledger.get("schema_version") != 1:
+        raise ClicInventoryError("Unsupported CLIC compatibility-approval ledger.")
+    return ledger
+
+
+def compatibility_approval_metadata(approved_scopes):
+    """Describe validated scopes for cache identity and portable provenance."""
+    approved = set(approved_scopes)
+    reviews = []
+    if not approved:
+        return reviews
+    for decision in _approval_ledger()["operations"]:
+        for scope in decision["scopes"]:
+            if scope["fingerprint"] in approved:
+                reviews.append(
+                    {
+                        "fingerprint": scope["fingerprint"],
+                        **{
+                            key: copy.deepcopy(decision[key])
+                            for key in (
+                                "rule_id",
+                                "review_path",
+                                "review_sha256",
+                                "authorization",
+                            )
+                        },
+                        "limitations": list(decision.get("limitations", ())),
+                        **(
+                            {"inspection": copy.deepcopy(decision["inspection"])}
+                            if "inspection" in decision
+                            else {}
+                        ),
+                    }
+                )
+    return sorted(reviews, key=lambda review: review["fingerprint"])
+
+
+def annotate_compatibility_reviews(report, approval_metadata):
+    """Retain review evidence and limitations for matched approved rules.
+
+    A failed migration can contain preflight approvals alongside refusals. These
+    findings describe the correspondence review, not a completed conversion.
+    """
+    indexed = {review["fingerprint"]: review for review in approval_metadata}
+    matched = {}
+    for stage in report.get("stages", ()):
+        warnings = []
+        for issue in stage.get("issues", ()):
+            if issue["code"] != "migration.approved_correspondence":
+                continue
+            review = indexed.get(issue.get("details", {}).get("fingerprint"))
+            if review is None:
+                continue
+            issue["details"]["premise_review"] = copy.deepcopy(review)
+            matched[review["fingerprint"]] = copy.deepcopy(review)
+            if review["limitations"]:
+                warnings.append(
+                    {
+                        "code": "clic.compatibility_proxy_limitations",
+                        "severity": "warning",
+                        "stage": stage["stage"],
+                        "path": issue.get("path", ""),
+                        "message": " ".join(review["limitations"]),
+                        "details": copy.deepcopy(review),
+                        "suggested_fix": "",
+                    }
+                )
+        stage.setdefault("issues", []).extend(warnings)
+    if matched:
+        report["premise_compatibility_reviews"] = [
+            matched[key] for key in sorted(matched)
+        ]
 
 
 def approved_compatibility_rule_scopes(target):
@@ -36,13 +117,7 @@ def approved_compatibility_rule_scopes(target):
     scopes = set()
     # Pinned in Premise: new or changed Brightpath decisions cannot implicitly
     # broaden this pilot's independently reviewed approval set.
-    ledger = json.loads(
-        (
-            Path(__file__).resolve().parents[1] / "data/clic/approved_rule_scopes.json"
-        ).read_text(encoding="utf-8")
-    )
-    if ledger.get("schema_version") != 1:
-        raise ClicInventoryError("Unsupported CLIC compatibility-approval ledger.")
+    ledger = _approval_ledger()
     for decision in ledger["operations"]:
         try:
             review_bytes = (DATA_DIR / decision["review_path"]).read_bytes()

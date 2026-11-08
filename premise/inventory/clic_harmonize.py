@@ -19,7 +19,11 @@ import portalocker
 
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
 from .clic_download import _write_json
-from .clic_rule_approvals import approved_compatibility_rule_scopes
+from .clic_rule_approvals import (
+    annotate_compatibility_reviews,
+    approved_compatibility_rule_scopes,
+    compatibility_approval_metadata,
+)
 from .clic_target import resolve_inventory_target
 
 CLIC_HARMONIZATION_SCHEMA = 3
@@ -167,6 +171,7 @@ class ClicHarmonizer:
                 approved_compatibility_rules=approved_scopes,
                 on_ambiguous_rule=PolicyAction.ERROR,
             )
+        approval_metadata = compatibility_approval_metadata(approved_scopes)
         policy_metadata = {
             "mode": self.migration_policy,
             "allow_inferred_reverse": self.migration_policy == "pragmatic",
@@ -183,6 +188,11 @@ class ClicHarmonizer:
             **(
                 {"approved_compatibility_rules": list(approved_scopes)}
                 if approved_scopes
+                else {}
+            ),
+            **(
+                {"compatibility_approval_reviews": approval_metadata}
+                if approval_metadata
                 else {}
             ),
         }
@@ -291,6 +301,9 @@ class ClicHarmonizer:
                         report = getattr(error, "report", None)
                         if report is not None:
                             failed_audit = json.loads(report.to_json())
+                            annotate_compatibility_reviews(
+                                failed_audit, approval_metadata
+                            )
                             if cohort_omissions:
                                 failed_audit["approved_clic_omissions"] = copy.deepcopy(
                                     cohort_omissions
@@ -304,6 +317,7 @@ class ClicHarmonizer:
                     report_data = (
                         json.loads(report.to_json()) if report is not None else {}
                     )
+                    annotate_compatibility_reviews(report_data, approval_metadata)
                     if cohort_omissions:
                         report_data["approved_clic_omissions"] = copy.deepcopy(
                             cohort_omissions
