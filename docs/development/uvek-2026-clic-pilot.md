@@ -178,12 +178,12 @@ foreign foreground anchors retained, gives:
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
 | 3.6 | 27 | 36 |
-| 3.7 | 2 | 1 |
+| 3.7 | 2 | 0 |
 | 3.8 | 1 | 2 |
-| 3.9 | 17 | 39 |
-| 3.12 | 8 | 20 |
+| 3.9 | 17 | 37 |
+| 3.12 | 8 | 19 |
 
-These are 98 exact-profile cases involving 88 distinct rules, after reusing
+These are 94 exact-profile cases involving 85 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -294,14 +294,24 @@ landfill. Neither mapping adds collection freight or dismantling; native landfil
 operations, infrastructure, internal logistics and long-term leachate remain
 included once, with explicit screening limitations. Both native supplier LCIs
 are finite and source scientific hashes are unchanged.
-At this checkpoint, all 411 public correspondence regression cases and 180
-Brightpath material/endpoint/resource checks pass. The authoring generator
+At the bare-landfill checkpoint, all 411 public correspondence regression cases
+and 180 Brightpath material/endpoint/resource checks pass. The authoring generator
 reproduces the resource byte for byte, and packaged review/resource/manifest
 bytes match the source. These checks do not certify a prospective scenario.
+Three delivered tap-water markets cover four further profiles, using the
+complete native Swiss supply as a geographic screening proxy per kg delivered
+at the user. Native treatment, abstraction, pumping, storage and network remain
+included once; source distribution losses are not multiplied into the target
+demand. Water sources, treatment shares, losses, vintage and regional water-stress
+differences remain explicit limitations. The native supplier LCI is finite with
+unchanged scientific hashes, and eighteen focused checks pass after the earlier
+full 411-case run. The actual two-record ecoinvent 3.7 cohort now harmonizes with
+verified cache payload/audit hashes; the diagnostic records the later 3.6
+refusal separately rather than attributing its unresolved rules to 3.7.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 249 exact-profile fingerprints, with review evidence and
+ledger contains 253 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

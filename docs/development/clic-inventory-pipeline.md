@@ -485,6 +485,18 @@ Preserve signed kg using factor -1, formulas, uncertainty and separate caller
 transport. Both native supplier LCIs are finite and source scientific hashes
 remain unchanged. Other source versions and changed disposal fates stay closed.
 
+`uvek_pilot_tap_water_review.json` adds three delivered-water markets covering
+four inspected source profiles. Both source and native references are kg at
+the user. Retain factor +1 and the complete native Swiss treatment, pumping,
+storage and distribution inventory; do not multiply source distribution losses
+into its own water balance or add network/treatment inputs twice. Treatment
+shares, water-resource geography, losses, infrastructure, vintage and regional
+water-stress differences remain warnings. The native supplier LCI is finite
+with unchanged source scientific hashes. Eighteen focused checks cover signed
+quantities, uncertainty/formulas, version gates and cached loss warnings. The
+actual two-record ecoinvent 3.7 source cohort now harmonizes, with cache/audit
+hashes verified; other cohorts still refuse unresolved correspondences.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

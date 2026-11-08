@@ -526,6 +526,10 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-29a5a345f9b595ed", "3.12"),
         ("bp-82cb48b8f46820d5", "3.9"),
         ("bp-82cb48b8f46820d5", "3.12"),
+        ("bp-18e8ed0207bbd5f8", "3.7"),
+        ("bp-18e8ed0207bbd5f8", "3.9"),
+        ("bp-182cd513cb8969f1", "3.9"),
+        ("bp-b5f627281d517e19", "3.12"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -764,6 +768,9 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-e1f8de5b5a35b0d1",
         "bp-3aedb5762ff23e68",
         "bp-b39070e2c2728597",
+        "bp-18e8ed0207bbd5f8",
+        "bp-182cd513cb8969f1",
+        "bp-b5f627281d517e19",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -905,6 +912,46 @@ def test_waste_endpoint_preserves_separate_caller_transport(
             and d["details"]["rule_id"] == endpoint["id"]
         )
         assert warning_term in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-18e8ed0207bbd5f8", "3.9"),
+        ("bp-182cd513cb8969f1", "3.9"),
+        ("bp-b5f627281d517e19", "3.12"),
+    ],
+)
+def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    resolved.activities[0]["exchanges"][1]["amount"] = 2.5
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 2
+        water = activity["exchanges"][1]
+        assert water["name"] == "Tap water, at user"
+        assert water["amount"] == 2.5 and water["unit"] == "kilogram"
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+        )
+        assert "Do not multiply the delivered-kg demand" in warning["message"]
+        assert "Regionalized water-stress" in warning["message"]
     assert resolved.activities == before
 
 
