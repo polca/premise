@@ -76,6 +76,44 @@ def test_modular_capacity_does_not_sum_incommensurate_units():
     assert obj.database == before
 
 
+def pack_converter():
+    return market(
+        [
+            exchange("battery pack, Li-ion, LFP, without electronics", 5, "kilogram"),
+            exchange("used Li-ion battery", -5, "kilogram"),
+            exchange(
+                "battery monitoring and central control system, Li-ion, LFP",
+                0.02,
+                "unit",
+            ),
+        ]
+    )
+
+
+def test_separated_pack_converter_preserves_mass_and_controls_boundaries():
+    data = pack_converter()
+    assert validator([data]).run_battery_checks().valid
+
+
+@pytest.mark.parametrize("role", [0, 1, 2])
+def test_separated_pack_converter_rejects_missing_or_wrong_unit_components(role):
+    data = pack_converter()
+    del data["exchanges"][role]
+    with pytest.raises(PremiseValidationError):
+        validator([data]).run_battery_checks()
+    data = pack_converter()
+    data["exchanges"][role]["unit"] = "megajoule"
+    with pytest.raises(PremiseValidationError):
+        validator([data]).run_battery_checks()
+
+
+def test_separated_pack_converter_rejects_unbalanced_end_of_life():
+    data = pack_converter()
+    data["exchanges"][1]["amount"] = -4
+    with pytest.raises(PremiseValidationError):
+        validator([data]).run_battery_checks()
+
+
 @pytest.mark.parametrize("role", [0, 1, 2])
 def test_modular_capacity_rejects_missing_components(role):
     ds = modular()

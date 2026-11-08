@@ -885,6 +885,41 @@ def test_biomass_fuel_map_includes_green_wood_chips():
     assert fuel_dataset in fuel_map["Biomass IGCC CCS"]
 
 
+@pytest.mark.parametrize("order", [("A", "B"), ("B", "A")])
+def test_shared_template_production_covers_all_iam_roles(monkeypatch, order):
+    transformation, _ = make_market_transformation(monkeypatch, {"A": 0.4, "B": 0.6})
+    volumes = xr.DataArray(
+        [[2.0], [3.0]],
+        dims=("variables", "region"),
+        coords={"variables": ["A", "B"], "region": ["WEU"]},
+    )
+    transformation.get_technology_and_regional_production_shares = lambda **kwargs: (
+        volumes,
+        {},
+        {"WEU": 1.0},
+    )
+    shared = {**make_supplier("shared template"), "location": "RER"}
+    single = {**make_supplier("single-role template"), "location": "RER"}
+    transformation.database = [shared, single]
+    transformation.geo = SimpleNamespace(ecoinvent_to_iam_location=lambda loc: "WEU")
+    transformation.empty_original_datasets = lambda **kwargs: None
+    captured = {}
+
+    def proxies(datasets, production_volumes, regions):
+        (source,) = datasets
+        name = source["name"]
+        assert name not in captured
+        captured[name] = production_volumes.sel(region="WEU").item()
+        return {"WEU": {**source, "location": "WEU", "regionalized": True}}
+
+    transformation.fetch_proxies = proxies
+    mapping = {"A": [shared, single], "B": [shared]}
+    transformation.process_and_add_activities(
+        mapping={key: mapping[key] for key in order}, production_volumes=volumes
+    )
+    assert captured == {"shared template": 5.0, "single-role template": 2.0}
+
+
 def test_process_and_add_activities_indexes_proxies_before_emptying(monkeypatch):
     original = {
         "name": "clinker production, test",

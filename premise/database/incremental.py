@@ -103,6 +103,14 @@ class IncrementalDatabase(NewDatabase):
         if sectors is None:
             sectors = SECTORS
 
+        self.prepare_inventories(
+            [
+                item
+                for updates in sectors.values()
+                for item in ([updates] if isinstance(updates, str) else updates)
+            ]
+        )
+
         new_scenarios = []
 
         updates_to_apply = []
@@ -127,6 +135,9 @@ class IncrementalDatabase(NewDatabase):
             scenario_id = None
             for s, scenario in enumerate(self.scenarios):
                 runtime_scenario = scenario.copy()
+                if getattr(self, "_clic_manifest", None) is not None:
+                    runtime_scenario["clic inventories"] = self._clic_manifest
+                    runtime_scenario["clic recipe"] = self._clic_lockfile
                 current_scenario_id = (
                     f"{scenario['model']} - "
                     f"{scenario['pathway'].split('...')[0]} - {scenario['year']}"

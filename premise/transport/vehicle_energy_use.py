@@ -15,14 +15,28 @@ SOURCE_KEY = "energy use source"
 COMMON_AUXILIARY_BATTERY = "auxiliary battery, passenger car, historical proxy"
 
 
+def source_names(dataset):
+    """Current labels and reviewed legacy aliases identify the same CLIC source."""
+    names = {dataset["name"]}
+    provenance = dataset.get("clic provenance", {})
+    if provenance.get("name"):
+        names.add(provenance["name"])
+    names.update(identity[0] for identity in provenance.get("legacy_identities", ()))
+    return names
+
+
 class VehicleLookup:
     """One index per scenario; never scan the full inventory per component."""
 
     def __init__(self, database):
         self.by_name = {}
+        self.by_folded_name = {}
         self.by_identity = {}
         for ds in database:
-            self.by_name.setdefault(ds["name"], []).append(ds)
+            for name in source_names(ds):
+                self.by_name.setdefault(name, []).append(ds)
+            for name in {name.casefold() for name in source_names(ds)}:
+                self.by_folded_name.setdefault(name, []).append(ds)
             self.by_identity.setdefault(identity(ds), []).append(ds)
 
 
@@ -239,9 +253,13 @@ def resolve(database, exchange):
 
 def select_source(database, name, location, region=None):
     candidates = (
-        database.by_name.get(name, [])
+        database.by_name.get(name) or database.by_folded_name.get(name.casefold(), [])
         if isinstance(database, VehicleLookup)
-        else [d for d in database if d["name"] == name]
+        else [
+            d
+            for d in database
+            if name.casefold() in {n.casefold() for n in source_names(d)}
+        ]
     )
     # Country-specific forwarding datasets are followed below. NEU is supplied
     # explicitly for Switzerland by the calling scenario adapter.

@@ -16,6 +16,22 @@ from premise.filesystem_constants import DATA_DIR
 LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"
 
 
+@pytest.mark.parametrize("year,expected", [(2020, 30), (2030, 50), (2040, 70)])
+@pytest.mark.parametrize("variables", [["solar", "wind"], ["wind", "solar"]])
+def test_market_production_sums_all_selected_technologies(year, expected, variables):
+    data = xr.DataArray(
+        [[[10, 30], [20, 40]]],
+        dims=("region", "variables", "year"),
+        coords={"region": ["R1"], "variables": ["solar", "wind"], "year": [2020, 2040]},
+    )
+    assert (
+        electricity_module.select_or_interpolate(
+            data, year, region="R1", variables=variables
+        )
+        == expected
+    )
+
+
 def test_supplier_pruning_never_drops_an_entire_technology():
     first = {"name": "first"}
     second = {"name": "second"}

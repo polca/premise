@@ -378,12 +378,18 @@ def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]
 
 def select_or_interpolate(data, year, **kwargs):
     """
-    Select IAM data at `year` if available, otherwise interpolate.
-    kwargs are passed to .sel()
+    Sum selected production technologies at `year`, interpolating if needed.
+
+    Market production covers every selected technology. Selecting the first
+    array element instead makes production depend on IAM variable ordering.
     """
     if year in data.coords["year"].values:
-        return data.sel(year=year, **kwargs).values.item(0)
-    return data.sel(**kwargs).interp(year=year).values.item(0)
+        selected = data.sel(year=year, **kwargs)
+    else:
+        selected = data.sel(**kwargs).interp(year=year)
+    if "variables" in selected.dims:
+        selected = selected.sortby("variables").sum(dim="variables")
+    return selected.values.item()
 
 
 def compute_time_weighted_mix(mix, region, year, period):

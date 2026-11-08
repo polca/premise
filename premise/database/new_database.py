@@ -110,6 +110,7 @@ from ..core.transformation import _SCENARIO_GIS_CACHE_KEY, _SCENARIO_ROW_CACHE_K
 from ..transport.transport import _update_vehicles
 from ..core.utils import (
     CACHE_SCHEMA_VERSION,
+    check_ecoinvent_target_version,
     cache_ref_exists,
     cache_ref_fingerprint,
     clear_existing_cache,
@@ -491,10 +492,13 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 f"Cannot find the inventory file: {inventory['filepath']}."
             )
 
-        if inventory["ecoinvent version"] not in config["SUPPORTED_EI_VERSIONS"]:
+        if (
+            inventory["ecoinvent version"]
+            not in config["SUPPORTED_INVENTORY_SOURCE_VERSIONS"]
+        ):
             raise ValueError(
-                "A lot of trouble will be avoided if the additional "
-                f"inventories to import are ecoinvent 3.6, 3.7, 3-8 or 3.9-compliant, not {inventory['ecoinvent version']}."
+                f"Unsupported inventory source version {inventory['ecoinvent version']!r}. "
+                f"Supported source versions are {config['SUPPORTED_INVENTORY_SOURCE_VERSIONS']}."
             )
 
     return inventories_list
@@ -506,20 +510,9 @@ def check_db_version(version: [str, float]) -> str:
     :param version:
     :return: str
     """
-    version = str(version)
-    if version not in config["SUPPORTED_EI_VERSIONS"]:
-        raise ValueError(
-            f"Only {config['SUPPORTED_EI_VERSIONS']} are currently supported, not {version}."
-        )
-
-    # convert "3.7.1" to "3.7"
-    if version == "3.7.1":
-        version = "3.7"
-
-    if version == "3.9.1":
-        version = "3.9"
-
-    return version
+    return check_ecoinvent_target_version(
+        version, supported_versions=config["SUPPORTED_EI_VERSIONS"]
+    )
 
 
 def check_scenarios(scenario: dict, key: bytes) -> dict:
@@ -707,6 +700,9 @@ class NewDatabase:
         generate_reports: bool = True,
         inventory_backend: Literal["compact", "legacy"] = "legacy",
         cleanup_expired_caches: bool = True,
+        inventory_source: Literal["workbooks", "clic"] = "workbooks",
+        inventory_recipe=None,
+        clic_options=None,
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -738,10 +734,37 @@ class NewDatabase:
         :param cleanup_expired_caches: Remove managed scenario checkpoints unused
             for more than 24 hours at startup, only when no other NewDatabase
             instance is alive. Unmarked legacy caches are never expired.
+        :param inventory_source: ``"clic"`` lazily selects required CLIC inventories
+            when sectors are updated; ``"workbooks"`` uses the legacy bundled provider.
+        :param inventory_recipe: Optional JSON/YAML CLIC version recipe or lockfile.
+        :param clic_options: CLIC archive, cache, freshness, and migration options.
         """
         self._inventory_api_active = False
         self.sector_update_methods = None
         self.source = source_db
+        if inventory_source not in {"workbooks", "clic"}:
+            raise ValueError("inventory_source must be 'workbooks' or 'clic'.")
+        if inventory_source != "clic" and (
+            inventory_recipe is not None or clic_options is not None
+        ):
+            raise ValueError(
+                "inventory_recipe and clic_options require inventory_source='clic'."
+            )
+        self.inventory_source = inventory_source
+        self._clic_provider = None
+        self._clic_manifest = None
+        self._clic_lockfile = None
+        self._clic_records = []
+        self._clic_loaded_sectors = set()
+        self._clic_semantic_fingerprint = None
+        self._clic_source_store_fingerprint = None
+        self._clic_use_cache = use_cached_inventories
+        if inventory_source == "clic":
+            from ..inventory.clic import ClicInventoryProvider
+
+            self._clic_provider = ClicInventoryProvider(
+                recipe=inventory_recipe, options=clic_options
+            )
         self.version = check_db_version(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
@@ -842,6 +865,7 @@ class NewDatabase:
         compact_cache_hit = None
         compact_cache_eligible = (
             self.inventory_backend == "compact"
+            and self.inventory_source == "workbooks"
             and use_cached_database
             and use_cached_inventories
             and self.additional_inventories is None
@@ -881,7 +905,11 @@ class NewDatabase:
                 self._database = self.__clean_database()
 
             print("- Extracting inventories")
-            if use_cached_inventories:
+            if self.inventory_source == "clic":
+                # Sector requirements are known at update(), before any scenario
+                # fork or baseline certification. Never eagerly import a catalog.
+                self._database_is_complete = True
+            elif use_cached_inventories:
                 data = self.__find_cached_inventories(source_db)
                 for scenario in self.scenarios:
                     scenario["inventories metadata cache filepath"] = (
@@ -902,7 +930,7 @@ class NewDatabase:
                 imported_inventory_data = True
                 self._database_is_complete = True
 
-        if self.additional_inventories:
+        if self.additional_inventories and self.inventory_source == "workbooks":
             print("- Importing additional inventories")
             data = self.__import_additional_inventories(self.additional_inventories)
             self._database.extend(data)
@@ -1014,6 +1042,14 @@ class NewDatabase:
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
+        if inventories and getattr(self, "inventory_source", "workbooks") == "clic":
+            fingerprint = (
+                getattr(self, "_clic_semantic_fingerprint", None) or "unresolved"
+            )
+            return DIR_CACHED_DB / (
+                f"cached_{''.join(map(str, __version__))}_v{CACHE_SCHEMA_VERSION}_"
+                f"{self._cache_database_name(db_name)}_{uncertainty_label}_inventories_clic_{fingerprint}.pickle"
+            )
         if inventories:
             # Vehicle specifications, wrappers and battery inventories must
             # move together, including chemistry-specific capacity suppliers.
@@ -1315,18 +1351,9 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path, self.version
         ).prepare_datasets(self.keep_source_db_uncertainty)
 
-    def __import_inventories(self, collect_data: bool = True) -> List[dict]:
-        """
-        This method will trigger the import of a number of pickled inventories
-        and merge them into the database dictionary.
-        """
+    def _default_inventory_sources(self):
+        """Resolve target-specific bundled source roles without reading workbooks."""
 
-        print("Importing default inventories...\n")
-
-        # with HiddenPrints():
-        # Manual import
-        # file path and original ecoinvent version
-        data, unlinked = [], []
         filepaths = [
             (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
             (FILEPATH_CARMA_INVENTORIES, "3.6"),
@@ -1447,6 +1474,22 @@ class NewDatabase:
             filepaths, self.version, getattr(self, "system_model", None), source_catalog
         )
 
+        return selected_filepaths
+
+    def __import_inventories(self, collect_data: bool = True) -> List[dict]:
+        """
+        This method will trigger the import of a number of pickled inventories
+        and merge them into the database dictionary.
+        """
+
+        print("Importing default inventories...\n")
+
+        # with HiddenPrints():
+        # Manual import
+        # file path and original ecoinvent version
+        data, unlinked = [], []
+        selected_filepaths = self._default_inventory_sources()
+
         # Excel extraction is independent and read-only. All migrations,
         # linking, duplicate checks, and merges below remain sequential in the
         # original workbook order.
@@ -1482,6 +1525,173 @@ class NewDatabase:
 
         return data
 
+    def prepare_inventories(self, sectors=None) -> None:
+        """Prepare the CLIC roots needed by these sectors, before scenario updates.
+
+        Explicit lockfile roots override automatic sector discovery. Calling
+        this method is optional: :meth:`update` invokes it with its actual scope.
+        """
+        if getattr(self, "inventory_source", "workbooks") != "clic":
+            return
+        from ..inventory.clic_archive import content_hash
+        from ..inventory.clic_requirements import registry
+        from ..inventory.clic_hybrid import (
+            plan_hybrid_inventories,
+            import_retained_inventories,
+            managed_inventory_key,
+            source_store_signature,
+        )
+        from ..inventory.inventory_copy import clone_inventory_dataset
+
+        if sectors is None:
+            sectors = list(registry()["sector_mappings"]) + list(
+                registry().get("support", {})
+            )
+        if isinstance(sectors, str):
+            sectors = [sectors]
+        wanted = self._clic_loaded_sectors | set(sectors)
+        if wanted == self._clic_loaded_sectors:
+            return
+        provider = self._clic_provider
+        if not hasattr(self, "_clic_base_source_fingerprint"):
+            self._clic_base_source_fingerprint = source_store_signature(
+                self._source_inventory_store
+            )
+        sources = self._default_inventory_sources()
+        previous = {managed_inventory_key(activity) for activity in self._clic_records}
+        base = [
+            activity
+            for activity in self._load_original_database()
+            if managed_inventory_key(activity) is None
+            or managed_inventory_key(activity) not in previous
+        ]
+        from ..inventory.clic_user import ClicUserInventories
+
+        if not hasattr(self, "_clic_user_inputs"):
+            self._clic_user_inputs = ClicUserInventories(
+                self.additional_inventories,
+                base,
+                version=self.version,
+                system_model=self.system_model,
+                pins=provider.recipe.user_inventories,
+            )
+        user_roots = set()
+        if self._clic_user_inputs.sources:
+            user_roots = self._clic_user_inputs.required_roots(
+                provider.get_archive(), provider.recipe, base, source_files=sources
+            )
+        plan = plan_hybrid_inventories(
+            sorted(wanted),
+            self.scenarios,
+            sources,
+            version=self.version,
+            system_model=self.system_model,
+            explicit_roots=provider.recipe.roots,
+            extra_nodes=self._clic_user_inputs.required_nodes,
+        )
+        roots = set(plan.clic_roots) | user_roots
+        records = provider.prepare(
+            sorted(roots),
+            base,
+            version=self.version,
+            system_model=self.system_model,
+            biosphere_name=self.biosphere_name,
+            keep_uncertainty=self.keep_imports_uncertainty,
+            use_cache=self._clic_use_cache,
+        )
+        from ..inventory.clic_requirements import bind_activity_roles
+
+        bindings = bind_activity_roles(records, sources)
+        provider.manifest["role_binding_fingerprint"] = content_hash(bindings)
+        retained, workbooks, diagnostics = import_retained_inventories(
+            plan,
+            [*base, *records],
+            records,
+            version=self.version,
+            system_model=self.system_model,
+            keep_uncertainty=self.keep_imports_uncertainty,
+            workbook_pins=provider.recipe.workbooks,
+            cache_dir=provider.cache_dir / "retained",
+            use_cache=self._clic_use_cache,
+            cache_signature={
+                "source": self._clic_base_source_fingerprint,
+                "clic_resolution": provider.manifest["resolution_fingerprint"],
+                "adapter": provider.manifest["adapter_fingerprint"],
+                "policy": provider.manifest["policy"],
+                "engine": provider.manifest["brightpath_version"],
+                "resources": provider.manifest["migration_resource_fingerprint"],
+            },
+        )
+        records.extend(retained)
+        provider.manifest["retained_workbooks"] = workbooks
+        provider.manifest["hybrid_plan_fingerprint"] = plan.fingerprint
+        provider.manifest["retained_activity_count"] = len(retained)
+        provider.manifest["requested_sectors"] = sorted(wanted)
+        provider.manifest["source_database"] = {
+            "name": self.source,
+            "version": self.version,
+            "system_model": self.system_model,
+            "fingerprint": self._clic_base_source_fingerprint,
+        }
+        provider.manifest["user_inventory_roots"] = sorted(user_roots)
+        provider.manifest["retained_inventory_diagnostics"] = diagnostics
+        provider.diagnostics.extend(diagnostics)
+        provider.lockfile["workbooks"] = {
+            row["file"]: row["sha256"] for row in workbooks
+        }
+        additional, user_sources = self._clic_user_inputs.prepare(
+            [*base, *records], records
+        )
+        records.extend(additional)
+        provider.manifest["user_inventories"] = user_sources
+        provider.lockfile["user_inventories"] = {
+            row["recipe_key"]: row["sha256"] for row in user_sources
+        }
+        self._clear_inventory_importer_state()
+        semantic = {
+            "resolution": provider.manifest["resolution_fingerprint"],
+            "target": provider.manifest["target"],
+            "policy": provider.manifest["policy"],
+            "engine": provider.manifest["brightpath_version"],
+            "resources": provider.manifest["migration_resource_fingerprint"],
+            "biosphere": self.biosphere_name,
+            "uncertainty": self.keep_imports_uncertainty,
+            "adapter": provider.manifest["adapter_fingerprint"],
+            "hybrid_plan": plan.fingerprint,
+            "role_bindings": provider.manifest["role_binding_fingerprint"],
+            "retained_workbooks": workbooks,
+            "user_inventories": user_sources,
+        }
+        self._clic_semantic_fingerprint = content_hash(semantic)
+        self._clic_manifest = provider.manifest
+        self._clic_lockfile = provider.lockfile
+        _normalize_inventory_before_certification(records)
+        self._clic_records = clone_inventory_dataset(records)
+        if self._clic_use_cache and self.database_cache_filepath is not None:
+            path = self._database_cache_path(self.source, inventories=True)
+            _, metadata = create_cache(clone_inventory_dataset(records), path)
+            self.inventories_cache_filepath = resolve_cache_ref(path)
+            self.inventories_metadata_cache_filepath = metadata
+        self._source_inventory_store = create_inventory_store(
+            [*base, *records],
+            backend=self.inventory_backend,
+            scenario_identity="source",
+            take_ownership=True,
+            compute_fingerprints=True,
+        )
+        self._clic_source_store_fingerprint = source_store_signature(
+            self._source_inventory_store
+        )
+        self._compact_source_checkpoint = None
+        self._validation_source_baseline_snapshot = None
+        self._clic_loaded_sectors = wanted
+
+    def write_inventory_recipe(self, path) -> Path:
+        """Export exact root and upstream CLIC versions for build reproduction."""
+        if self._clic_provider is None:
+            raise ValueError("A CLIC recipe is available only for CLIC-backed builds.")
+        return self._clic_provider.write_recipe(path)
+
     @staticmethod
     def _clear_inventory_importer_state() -> None:
         """Release importer instances retained by method-level caches after import."""
@@ -1510,9 +1720,16 @@ class NewDatabase:
 
         if self._can_reload_original_database():
             database = self._load_pickled_database(self.database_cache_filepath)
-            database.extend(
-                self._load_pickled_database(self.inventories_cache_filepath)
-            )
+            if getattr(self, "inventory_source", "workbooks") == "clic":
+                # Converted records retain behavior-bearing contracts (battery
+                # boundaries, compression, etc.) beyond the legacy hot cache.
+                from ..inventory.inventory_copy import clone_inventory_dataset
+
+                database.extend(clone_inventory_dataset(self._clic_records))
+            else:
+                database.extend(
+                    self._load_pickled_database(self.inventories_cache_filepath)
+                )
             return database
 
         if self._database is None:
@@ -1555,6 +1772,9 @@ class NewDatabase:
         )
         if isinstance(payload, dict):
             scenario["_provenance"] = payload
+            for field in ("clic inventories", "clic recipe"):
+                if field in payload:
+                    scenario[field] = payload[field]
             self._get_provenance_collector().restore(identity, payload)
 
     def _ensure_scenario_store(
@@ -1672,6 +1892,17 @@ class NewDatabase:
     def _validation_source_fingerprint(self) -> str:
         """Fingerprint source/cache identity without materialising the graph."""
 
+        if getattr(self, "_clic_source_store_fingerprint", None):
+            return hashlib.sha256(
+                json.dumps(
+                    {
+                        "source": self._clic_source_store_fingerprint,
+                        "clic": self._clic_semantic_fingerprint,
+                    },
+                    sort_keys=True,
+                ).encode()
+            ).hexdigest()
+
         checkpoint = getattr(self, "_compact_source_checkpoint", None)
         if checkpoint is not None:
             manifest_path = Path(checkpoint) / "manifest.json"
@@ -1682,7 +1913,12 @@ class NewDatabase:
                     manifest = {}
                 fingerprint = manifest.get("source_fingerprint")
                 if fingerprint:
-                    return str(fingerprint)
+                    clic = getattr(self, "_clic_semantic_fingerprint", None)
+                    return (
+                        hashlib.sha256(f"{fingerprint}:{clic}".encode()).hexdigest()
+                        if clic
+                        else str(fingerprint)
+                    )
 
         payload = {
             "source": getattr(self, "source", None),
@@ -1691,6 +1927,8 @@ class NewDatabase:
             "database_cache": str(getattr(self, "database_cache_filepath", None)),
             "inventories_cache": str(getattr(self, "inventories_cache_filepath", None)),
         }
+        if getattr(self, "_clic_semantic_fingerprint", None):
+            payload["clic_inventory"] = self._clic_semantic_fingerprint
         return hashlib.sha256(
             json.dumps(payload, sort_keys=True).encode("utf-8")
         ).hexdigest()
@@ -2304,6 +2542,9 @@ class NewDatabase:
             return scenario
 
         runtime_scenario = scenario.copy()
+        if getattr(self, "_clic_manifest", None) is not None:
+            runtime_scenario["clic inventories"] = self._clic_manifest
+            runtime_scenario["clic recipe"] = self._clic_lockfile
         runtime_scenario.pop("_inventory_store", None)
         runtime_scenario.pop("_inventory_export_handoff", None)
         runtime_scenario.pop("_inventory_checkpoint", None)
@@ -2325,6 +2566,16 @@ class NewDatabase:
             runtime_scenario["mapping"] = _hydrate_scenario_mapping(
                 runtime_scenario["mapping"],
                 dict(zip(activity_ids, working_copy)),
+            )
+        if getattr(self, "_clic_records", None):
+            from ..inventory.inventory_copy import clone_inventory_dataset
+            from ..inventory.clic_hybrid import managed_inventory_key
+
+            present = {managed_inventory_key(activity) for activity in working_copy}
+            working_copy.extend(
+                clone_inventory_dataset(activity)
+                for activity in self._clic_records
+                if managed_inventory_key(activity) not in present
             )
         # A reloadable source store only inflates the high-water mark after its
         # graph has been transferred to a scenario. The next scenario can take
@@ -2363,6 +2614,12 @@ class NewDatabase:
         provenance_payload = self._get_provenance_collector().payload_for(
             self._scenario_identity(runtime_scenario)
         )
+        if runtime_scenario.get("clic inventories") is not None:
+            provenance_payload = {
+                **provenance_payload,
+                "clic inventories": runtime_scenario["clic inventories"],
+                "clic recipe": runtime_scenario.get("clic recipe"),
+            }
         runtime_scenario["_provenance"] = provenance_payload
         underlying = getattr(store, "_store", store)
         underlying._provenance_payload = provenance_payload
@@ -2422,7 +2679,7 @@ class NewDatabase:
         gc.collect()
 
     def __import_additional_inventories(
-        self, data_package: [datapackage.DataPackage, list]
+        self, data_package: [datapackage.DataPackage, list], *, database=None
     ) -> List[dict]:
         """
         This method will trigger the import of a number of inventories
@@ -2435,24 +2692,25 @@ class NewDatabase:
         print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
+        if database is None:
+            database = self._database
 
         if isinstance(data_package, list):
             # this is a list of file paths
             for file_path in data_package:
                 additional = AdditionalInventory(
-                    database=self._database,
+                    database=database,
                     version_in=file_path["ecoinvent version"],
                     version_out=self.version,
                     path=file_path["filepath"],
                     system_model=self.system_model,
                 )
-                additional.prepare_inventory()
                 data.extend(additional.merge_inventory())
 
         elif isinstance(data_package, datapackage.DataPackage):
             if data_package.get_resource("inventories"):
                 additional = AdditionalInventory(
-                    database=self._database,
+                    database=database,
                     version_in=data_package.descriptor["ecoinvent"]["version"],
                     version_out=self.version,
                     path=data_package.get_resource("inventories").source,
@@ -2570,6 +2828,8 @@ class NewDatabase:
         ]
         if unknown_sectors:
             raise ValueError(f"Unknown resource name(s): {unknown_sectors}")
+
+        self.prepare_inventories(sectors)
 
         with (
             self._reuse_update_source(),

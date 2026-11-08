@@ -53,6 +53,28 @@ class DummyIAMDataCollection:
         return {}
 
 
+@pytest.mark.parametrize("version", ["3.5", "3.6", "3.6.1", 3.6])
+def test_background_versions_before_37_are_rejected(version):
+    with pytest.raises(ValueError, match="minimum supported version is 3.7"):
+        new_database_module.check_db_version(version)
+
+
+@pytest.mark.parametrize(
+    "version,expected",
+    [("3.7", "3.7"), ("3.7.1", "3.7"), ("3.9.1", "3.9"), ("3.12", "3.12")],
+)
+def test_supported_target_aliases_are_preserved(version, expected):
+    assert new_database_module.check_db_version(version) == expected
+
+
+@pytest.mark.parametrize("version", ["3.5", "3.6"])
+def test_older_inventory_sources_remain_usable_for_supported_targets(tmp_path, version):
+    path = tmp_path / "inventory.xlsx"
+    path.touch()
+    inventories = [{"filepath": path, "ecoinvent version": version}]
+    assert new_database_module.check_additional_inventories(inventories) == inventories
+
+
 @pytest.mark.parametrize(
     "pathway",
     [
