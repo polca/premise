@@ -104,8 +104,9 @@ activities. Production `update("electricity")` still refuses the packaged
 unapproved Brightpath correspondences, now individually rather than through a
 blanket resource refusal. The approval ledger pins the complete rule, shared
 reviews and transitive helper recipes for each inspected source profile. It
-admits the six approved material corrections and the existing packed stone-wool
-and older regional heavy-road reviews. Changed evidence, rule bodies or helper
+admits the six approved material corrections, the existing packed stone-wool
+and older regional heavy-road reviews, and four inspected wet-waste reference
+correspondences under the standing same-function disposal approval. Changed evidence, rule bodies or helper
 recipes require review; reference-sign evidence alone cannot approve a
 functional correspondence. This covers the ecoinvent source cohorts used by
 the CLIC graph and any required retained workbook records. A private,
@@ -168,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The latest strict public
-probe identifies 130 unapproved matching rules in its first ecoinvent 3.6 source
+probe identifies 126 unapproved matching rules in its first ecoinvent 3.6 source
 cohort; this is neither the total remaining mapping count nor a count of separate
 approval questions. New equipment and same-function supply proposals remain
 pending. The private diagnostic also lacks a verified geothermal electricity
