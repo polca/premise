@@ -84,8 +84,39 @@ inherit ecoinvent filters. This does not establish sector support by itself:
 several non-pilot IAM technologies and native nuclear fuel specifications still
 lack reviewed definitions.
 
-`NewDatabase` integration, retained workbook conversion and electricity
-transformations remain under validation. A comparison with the packaged
+The public constructor accepts `source_family="uvek"`, `source_version="2026"`,
+`inventory_source="clic"` and the installed canonical `biosphere_name`. It
+validates these axes independently, preserves bundle provenance and distinguishes
+source-template selection (the reviewed ecoinvent 3.12 ledger) from conversion's
+actual destination. Source caches include family, biosphere and source revision;
+retained/user cohorts retain their policy and portable audit references. Other
+sectors are refused before inventory preparation or scenario mutation. Existing
+ecoinvent defaults and calls remain unchanged.
+
+A real encrypted REMIND SSP2-NPi 2050 constructor run loaded all 11,947 source
+activities. Production `update("electricity")` still refuses the packaged
+heuristic Brightpath routes. This includes the ecoinvent source cohorts used by
+the CLIC graph and the 250 selected retained PV workbook records. A private,
+explicitly unapproved diagnostic reached native electricity supplier selection
+after preparing those graphs; its output was not exported or certified.
+
+The approved native pilot preserves country voltage grids, losses,
+infrastructure and direct emissions, with IAM generation supplied at busbar
+including residential PV. Source mix coefficients provide within-technology
+supplier weights. Signed contributions are aggregated by exact supplier before
+positive net weights are selected; excluded negative net weighting evidence
+must remain in warnings and provenance. The source import carriers are not
+edited. In the installed source, nine negative Greek-partner entries in the
+Bosnian import mix leave no negative net supplier weights after aggregation.
+The source documentation does not explain why those entries are negative.
+
+This native pilot does not apply ecoinvent-specific baseline coal/hydropower
+corrections, synthetic voltage grids, regional plant cloning or industrial-market
+rewriting. Native nuclear efficiency changes require reviewed fuel-energy
+specifications; their absence is reported. These limitations must remain visible
+in scenario warnings and provenance.
+
+Electricity transformations remain under validation. A comparison with the packaged
 Brightpath UVEK catalog finds 45 destination identity differences; these need
 source-based investigation before resolving affected purchases. No automatic
 geographic substitution is approved by this comparison.

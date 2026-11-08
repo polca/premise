@@ -261,6 +261,10 @@ def scenario_metadata(
     background = scenario.get("background context")
     if background and background.get("family") != "ecoinvent":
         metadata["background"] = deepcopy(background)
+        if scenario.get("background provenance"):
+            metadata["background_provenance"] = deepcopy(
+                scenario["background provenance"]
+            )
     elif version is not None:
         metadata["ecoinvent_version"] = str(version)
 

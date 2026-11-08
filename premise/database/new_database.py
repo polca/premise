@@ -4,6 +4,7 @@ as well as export it back.
 
 """
 
+import copy
 import gc
 import hashlib
 import inspect
@@ -703,6 +704,7 @@ class NewDatabase:
         inventory_source: Literal["workbooks", "clic"] = "workbooks",
         inventory_recipe=None,
         clic_options=None,
+        source_family: Literal["ecoinvent", "uvek"] = "ecoinvent",
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -738,6 +740,8 @@ class NewDatabase:
             when sectors are updated; ``"workbooks"`` uses the legacy bundled provider.
         :param inventory_recipe: Optional JSON/YAML CLIC version recipe or lockfile.
         :param clic_options: CLIC archive, cache, freshness, and migration options.
+        :param source_family: Background publisher. UVEK requires release 2026,
+            cut-off, CLIC inventories and the ecoinvent 3.10 biosphere.
         """
         self._inventory_api_active = False
         self.sector_update_methods = None
@@ -765,7 +769,20 @@ class NewDatabase:
             self._clic_provider = ClicInventoryProvider(
                 recipe=inventory_recipe, options=clic_options
             )
-        self.version = check_db_version(source_version)
+        from .background import resolve_source_background
+
+        self.background = resolve_source_background(
+            source_version, family=source_family, system_model=system_model
+        )
+        self.source_family = self.background.family
+        self.biosphere_version = self.background.biosphere_version
+        self.version = self.background.version
+        if self.source_family == "uvek":
+            if inventory_source != "clic" or source_type != "brightway":
+                raise ValueError(
+                    "The UVEK 2026 pilot requires inventory_source='clic' and "
+                    "source_type='brightway'."
+                )
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
         self.system_model_args = system_args
@@ -773,6 +790,21 @@ class NewDatabase:
         self.keep_imports_uncertainty = keep_imports_uncertainty
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
         self.biosphere_name = biosphere_name
+        self._background_provenance = {}
+        if self.source_family == "uvek":
+            metadata = bw2data.databases.get(self.source, {})
+            self._background_provenance = {
+                key: copy.deepcopy(metadata[key])
+                for key in (
+                    "source_repository",
+                    "source_commit",
+                    "source_bundle_manifest_sha256",
+                    "source_biosphere_exclusions",
+                    "source_missing_audit_files",
+                    "restored_manifest_display_aliases",
+                )
+                if key in metadata
+            }
         self.generate_reports = generate_reports
         self.build_id = uuid.uuid4().hex
         self._provenance_collector = ProvenanceCollector(self.build_id)
@@ -818,6 +850,12 @@ class NewDatabase:
             self.source_file_path = None
 
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
+        if self.source_family != "ecoinvent":
+            for scenario in self.scenarios:
+                scenario["background context"] = self.background.to_dict()
+                scenario["background provenance"] = copy.deepcopy(
+                    self._background_provenance
+                )
 
         # print some info
         if not quiet:
@@ -1042,6 +1080,20 @@ class NewDatabase:
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
+        if getattr(self, "source_family", "ecoinvent") == "uvek" and not inventories:
+            context = self.background.to_dict()
+            context["biosphere_database"] = self.biosphere_name
+            context["provenance"] = getattr(self, "_background_provenance", {})
+            context["source_modified"] = str(
+                bw2data.databases.get(self.source, {}).get("modified", "")
+            )
+            fingerprint = hashlib.sha256(
+                json.dumps(context, sort_keys=True).encode()
+            ).hexdigest()[:16]
+            return DIR_CACHED_DB / (
+                f"cached_{''.join(map(str, __version__))}_v{CACHE_SCHEMA_VERSION}_"
+                f"{self._cache_database_name(db_name)}_{uncertainty_label}_uvek_{fingerprint}.pickle"
+            )
         if inventories and getattr(self, "inventory_source", "workbooks") == "clic":
             fingerprint = (
                 getattr(self, "_clic_semantic_fingerprint", None) or "unresolved"
@@ -1347,12 +1399,28 @@ class NewDatabase:
         (adds missing locations, reference products, etc.).
         :return:
         """
+        if getattr(self, "source_family", "ecoinvent") == "uvek":
+            from .background import extract_uvek_source
+
+            return extract_uvek_source(
+                self.source,
+                self.biosphere_name,
+                keep_uncertainty=self.keep_source_db_uncertainty,
+            )
         return DatabaseCleaner(
             self.source, self.source_type, self.source_file_path, self.version
         ).prepare_datasets(self.keep_source_db_uncertainty)
 
     def _default_inventory_sources(self):
         """Resolve target-specific bundled source roles without reading workbooks."""
+
+        # These are source-template roles. The reviewed electricity pilot uses
+        # the 3.12 source ledger, independently of its UVEK destination context.
+        source_version = (
+            "3.12"
+            if getattr(self, "source_family", "ecoinvent") == "uvek"
+            else self.version
+        )
 
         filepaths = [
             (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
@@ -1459,7 +1527,7 @@ class NewDatabase:
             (FILEPATH_SHIPS, "3.10"),
             (FILEPATH_STEEL, "3.9"),
         ]
-        if Version(self.version) >= Version("3.11"):
+        if Version(source_version) >= Version("3.11"):
             # These two re/afforestation datasets use suppliers first available
             # in ecoinvent 3.11. Their workbook contains 3.12 identifiers so
             # that premise can migrate them backwards when building with 3.11.
@@ -1471,7 +1539,10 @@ class NewDatabase:
             if name.startswith("FILEPATH_")
         }
         selected_filepaths = inventory_profiles.select_source_files(
-            filepaths, self.version, getattr(self, "system_model", None), source_catalog
+            filepaths,
+            source_version,
+            getattr(self, "system_model", None),
+            source_catalog,
         )
 
         return selected_filepaths
@@ -1533,6 +1604,11 @@ class NewDatabase:
         """
         if getattr(self, "inventory_source", "workbooks") != "clic":
             return
+        family = getattr(self, "source_family", "ecoinvent")
+        if family == "uvek":
+            from .background import validate_uvek_scope
+
+            sectors = validate_uvek_scope(sectors)
         from ..inventory.clic_archive import content_hash
         from ..inventory.clic_requirements import registry
         from ..inventory.clic_hybrid import (
@@ -1553,6 +1629,18 @@ class NewDatabase:
         if wanted == self._clic_loaded_sectors:
             return
         provider = self._clic_provider
+        target_kwargs = {"family": family} if family != "ecoinvent" else {}
+        migration_kwargs = (
+            {
+                **target_kwargs,
+                "biosphere_name": self.biosphere_name,
+                "catalog_provider": provider.catalog_provider,
+                "migration_policy": provider.options.migration_policy,
+                "allow_documented_proxies": provider.options.allow_documented_proxies,
+            }
+            if target_kwargs
+            else {}
+        )
         if not hasattr(self, "_clic_base_source_fingerprint"):
             self._clic_base_source_fingerprint = source_store_signature(
                 self._source_inventory_store
@@ -1574,6 +1662,16 @@ class NewDatabase:
                 version=self.version,
                 system_model=self.system_model,
                 pins=provider.recipe.user_inventories,
+                **migration_kwargs,
+                **(
+                    {
+                        "cache_dir": provider.cache_dir / "user-inventories",
+                        "use_cache": self._clic_use_cache,
+                        "keep_uncertainty": self.keep_imports_uncertainty,
+                    }
+                    if target_kwargs
+                    else {}
+                ),
             )
         user_roots = set()
         if self._clic_user_inputs.sources:
@@ -1588,6 +1686,7 @@ class NewDatabase:
             system_model=self.system_model,
             explicit_roots=provider.recipe.roots,
             extra_nodes=self._clic_user_inputs.required_nodes,
+            **({"family": family, "source_version": "3.12"} if target_kwargs else {}),
         )
         roots = set(plan.clic_roots) | user_roots
         records = provider.prepare(
@@ -1598,6 +1697,7 @@ class NewDatabase:
             biosphere_name=self.biosphere_name,
             keep_uncertainty=self.keep_imports_uncertainty,
             use_cache=self._clic_use_cache,
+            **target_kwargs,
         )
         from ..inventory.clic_requirements import bind_activity_roles
 
@@ -1621,10 +1721,13 @@ class NewDatabase:
                 "engine": provider.manifest["brightpath_version"],
                 "resources": provider.manifest["migration_resource_fingerprint"],
             },
+            **migration_kwargs,
         )
         records.extend(retained)
         provider.manifest["retained_workbooks"] = workbooks
         provider.manifest["hybrid_plan_fingerprint"] = plan.fingerprint
+        if family != "ecoinvent":
+            provider.manifest["inventory_source_context"] = plan.source_context
         provider.manifest["retained_activity_count"] = len(retained)
         provider.manifest["requested_sectors"] = sorted(wanted)
         provider.manifest["source_database"] = {
@@ -1633,7 +1736,15 @@ class NewDatabase:
             "system_model": self.system_model,
             "fingerprint": self._clic_base_source_fingerprint,
         }
+        if family != "ecoinvent":
+            provider.manifest["source_database"][
+                "background"
+            ] = self.background.to_dict()
         provider.manifest["user_inventory_roots"] = sorted(user_roots)
+        if family != "ecoinvent":
+            provider.manifest["source_database"]["provenance"] = copy.deepcopy(
+                self._background_provenance
+            )
         provider.manifest["retained_inventory_diagnostics"] = diagnostics
         provider.diagnostics.extend(diagnostics)
         provider.lockfile["workbooks"] = {
@@ -1644,6 +1755,40 @@ class NewDatabase:
         )
         records.extend(additional)
         provider.manifest["user_inventories"] = user_sources
+        if family != "ecoinvent":
+            user_diagnostics = getattr(self._clic_user_inputs, "diagnostics", [])
+            provider.manifest["user_inventory_diagnostics"] = user_diagnostics
+            provider.diagnostics.extend(user_diagnostics)
+            workbook_cohorts = {}
+            for field in (
+                "retained_inventory_diagnostics",
+                "user_inventory_diagnostics",
+            ):
+                owned = copy.deepcopy(provider.manifest.get(field, []))
+                for diagnostic in owned:
+                    if diagnostic.get("code") != "clic.workbook_harmonized":
+                        continue
+                    manifest = diagnostic["manifest"]
+                    references = []
+                    for cohort in manifest.get("cohorts", ()):
+                        fingerprint = cohort["fingerprint"]
+                        previous = workbook_cohorts.get(fingerprint)
+                        if (
+                            previous
+                            and previous["audit_sha256"] != cohort["audit_sha256"]
+                        ):
+                            raise ValueError(
+                                "Conflicting workbook migration audit hashes."
+                            )
+                        workbook_cohorts[fingerprint] = cohort
+                        references.append(
+                            {k: cohort[k] for k in ("fingerprint", "audit_sha256")}
+                        )
+                    manifest["cohorts"] = references
+                provider.manifest[field] = owned
+            provider.manifest["workbook_migration_cohorts"] = list(
+                workbook_cohorts.values()
+            )
         provider.lockfile["user_inventories"] = {
             row["recipe_key"]: row["sha256"] for row in user_sources
         }
@@ -2734,6 +2879,10 @@ class NewDatabase:
         :param persist: checkpoint the scenario store after the update. Set to
             ``False`` to retain it in memory for immediate inspection or export.
         """
+        if getattr(self, "source_family", "ecoinvent") == "uvek":
+            from .background import validate_uvek_scope
+
+            sectors = validate_uvek_scope(sectors)
         self.sector_update_methods = {
             "biomass": {
                 "func": _update_biomass,
@@ -2807,6 +2956,11 @@ class NewDatabase:
                 "args": (self.version, self.system_model, self.gains_scenario),
             },
         }
+        if getattr(self, "source_family", "ecoinvent") == "uvek":
+            self.sector_update_methods["electricity"]["args"] += (
+                self.source_family,
+                self.biosphere_version,
+            )
 
         if isinstance(sectors, str):
             description = f"Processing scenarios for sector '{sectors}'"

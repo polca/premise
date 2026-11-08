@@ -140,3 +140,25 @@ def test_database_exports_preserve_owned_version_metadata(tmp_path):
     definition["clic inventories"]["datasets"][0]["semantic_version"] = "2.0.0"
     assert metadata["inventory_manifest"]["datasets"][0]["semantic_version"] == "1.2.0"
     json.dumps(metadata)
+
+
+def test_workbook_conversion_audits_are_portable_and_integrity_checked(tmp_path):
+    import copy
+    import pytest
+
+    definition = scenario(tmp_path)
+    cohort = copy.deepcopy(definition["clic inventories"]["cohorts"][0])
+    cohort["fingerprint"] = "workbook-cohort"
+    definition["clic inventories"]["workbook_migration_cohorts"] = [cohort]
+    before = copy.deepcopy(definition)
+    path, _ = write_inventory_sidecars(tmp_path / "report.xlsx", [definition])
+    saved = json.loads(path.read_text())["scenarios"][0]["inventory"]
+    row = saved["workbook_migration_cohorts"][0]
+    assert row["audit_file"] == "report.migration-workbook-cohort.json.gz"
+    assert (tmp_path / row["audit_file"]).is_file()
+    assert definition == before
+    definition["clic inventories"]["workbook_migration_cohorts"][0][
+        "audit_sha256"
+    ] = "bad"
+    with pytest.raises(ValueError, match="audit checksum mismatch"):
+        write_inventory_sidecars(tmp_path / "report.xlsx", [definition])

@@ -38,7 +38,10 @@ def inventory_selection(tree, version, system_model):
         i
         for i, n in enumerate(statements)
         if isinstance(n, ast.Assign)
-        and any(isinstance(t, ast.Name) and t.id == "filepaths" for t in n.targets)
+        and any(
+            isinstance(t, ast.Name) and t.id in {"source_version", "filepaths"}
+            for t in n.targets
+        )
     )
     end = next(i for i, n in enumerate(statements) if isinstance(n, ast.Return))
     import sys

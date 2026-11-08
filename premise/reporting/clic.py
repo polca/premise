@@ -32,28 +32,29 @@ def write_inventory_sidecars(workbook_path, scenarios):
     manifests, recipes = [], []
     for position, identity, definition in _definitions(scenarios):
         manifest = copy.deepcopy(definition["clic inventories"])
-        for cohort in manifest.get("cohorts", ()):
-            source = Path(cohort["audit_file"])
-            destination = path.with_name(
-                f"{path.stem}.migration-{cohort['fingerprint']}.json.gz"
-            )
-            if source.exists():
-                payload = source.read_bytes()
-                if hashlib.sha256(payload).hexdigest() != cohort["audit_sha256"]:
-                    raise ValueError(
-                        f"CLIC migration audit checksum mismatch: {source}"
-                    )
-                if (
-                    not destination.exists()
-                    or hashlib.sha256(destination.read_bytes()).hexdigest()
-                    != cohort["audit_sha256"]
-                ):
-                    temporary = destination.with_suffix(destination.suffix + ".tmp")
-                    temporary.write_bytes(payload)
-                    temporary.replace(destination)
-                cohort["audit_file"] = destination.name
-            else:
-                cohort["audit_available"] = False
+        for group in ("cohorts", "workbook_migration_cohorts"):
+            for cohort in manifest.get(group, ()):
+                source = Path(cohort["audit_file"])
+                destination = path.with_name(
+                    f"{path.stem}.migration-{cohort['fingerprint']}.json.gz"
+                )
+                if source.exists():
+                    payload = source.read_bytes()
+                    if hashlib.sha256(payload).hexdigest() != cohort["audit_sha256"]:
+                        raise ValueError(
+                            f"CLIC migration audit checksum mismatch: {source}"
+                        )
+                    if (
+                        not destination.exists()
+                        or hashlib.sha256(destination.read_bytes()).hexdigest()
+                        != cohort["audit_sha256"]
+                    ):
+                        temporary = destination.with_suffix(destination.suffix + ".tmp")
+                        temporary.write_bytes(payload)
+                        temporary.replace(destination)
+                    cohort["audit_file"] = destination.name
+                else:
+                    cohort["audit_available"] = False
         recipe = definition.get("clic recipe")
         recipe_path = None
         if recipe is not None:
