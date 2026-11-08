@@ -354,7 +354,7 @@ def test_user_uvek_discovers_public_root_without_legacy_migration(
     assert metadata[0]["activity_count"] == 1
 
 
-def test_retained_source_still_requires_approved_migration_route(
+def test_retained_source_without_scoped_proxy_consent_keeps_resource_guard(
     retained, catalogs, tmp_path
 ):
     plan, _, public = retained
@@ -370,8 +370,33 @@ def test_retained_source_still_requires_approved_migration_route(
             system_model="cutoff",
             catalog_provider=catalogs,
             cache_dir=tmp_path,
+            allow_documented_proxies=False,
         )
     assert database == before
+
+
+def test_retained_foreground_links_do_not_need_background_rule_approval(
+    retained, catalogs, tmp_path
+):
+    plan, raw, public = retained
+    before = deepcopy(raw)
+    records, _, diagnostics = hybrid.import_retained_inventories(
+        plan,
+        [public],
+        [public],
+        version="2026",
+        family="uvek",
+        system_model="cutoff",
+        catalog_provider=catalogs,
+        cache_dir=tmp_path,
+    )
+    assert len(records) == 2
+    root = next(r for r in records if r["name"] == "root")
+    assert [e["amount"] for e in root["exchanges"]] == [1, -3.5, -3.5, 0.7]
+    assert raw == before
+    assert not any(
+        d["code"] == "migration.unapproved_correspondence" for d in diagnostics
+    )
 
 
 def test_user_purchase_of_retained_workbook_is_a_foreground_boundary(

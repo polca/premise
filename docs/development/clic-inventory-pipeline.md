@@ -204,6 +204,18 @@ their exchanges. The original signed exchange and pin remain in the cohort
 audit, manifest and activity provenance; the warning is repeated on cache reuse.
 This ledger does not authorize other omissions or relax Brightpath's policy.
 
+For the exact UVEK pilot target, preparation with documented proxies enabled
+compiles rule-scope fingerprints from Brightpath's packaged pilot material
+ledger. Only its inspected source profiles and matching executable rules are
+included. This admits the six reviewed material corrections without granting
+global heuristic consent. Every matching external compatibility operation must
+have its own approval; unreviewed matches fail transactionally with rule-level
+diagnostics. Source/target validation, reference coordinates, losses and
+foreground ownership remain independent guards. Approval fingerprints enter
+cohort cache keys and manifest policy provenance. This needs the current
+Brightpath implementation with scoped compatibility approvals; existing
+ecoinvent preparation and default Brightpath strict policy retain their behavior.
+
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by
 the upstream mapping workflow. Import provenance must retain that manifest and

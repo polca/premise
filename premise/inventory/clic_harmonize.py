@@ -19,6 +19,7 @@ import portalocker
 
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
 from .clic_download import _write_json
+from .clic_rule_approvals import approved_compatibility_rule_scopes
 from .clic_target import resolve_inventory_target
 
 CLIC_HARMONIZATION_SCHEMA = 3
@@ -155,12 +156,23 @@ class ClicHarmonizer:
                 allowed_losses.add("migration.technosphere_information_loss")
         if allowed_losses:
             policy = replace(policy, on_information_loss=PolicyAction.WARN)
+        approved_scopes = (
+            approved_compatibility_rule_scopes(target_context)
+            if self.allow_documented_proxies
+            else ()
+        )
+        if approved_scopes:
+            policy = replace(
+                policy,
+                approved_compatibility_rules=approved_scopes,
+                on_ambiguous_rule=PolicyAction.ERROR,
+            )
         policy_metadata = {
             "mode": self.migration_policy,
             "allow_inferred_reverse": self.migration_policy == "pragmatic",
             "overlapping_rule_policy": (
                 "last packaged rule"
-                if self.migration_policy == "pragmatic"
+                if policy.on_ambiguous_rule is PolicyAction.WARN
                 else "error"
             ),
             "permitted_information_losses": sorted(allowed_losses),
@@ -168,6 +180,11 @@ class ClicHarmonizer:
             "validate_source": True,
             "validate_target": True,
             "minimum_coverage": 1.0,
+            **(
+                {"approved_compatibility_rules": list(approved_scopes)}
+                if approved_scopes
+                else {}
+            ),
         }
         groups, contexts = defaultdict(list), {}
         rows = {row["activity_code"]: row for row in resolved.versions}
