@@ -416,6 +416,18 @@ limitations. The generator replays the correction with an exact 3.12 gate;
 prior scope fingerprints remain unchanged. Native baseline LCI is finite and
 source scientific contents are unchanged.
 
+`uvek_pilot_dense_soda_review.json` records the user's explicit approval of
+native light soda as a screening proxy for the inspected 3.9 dense-soda market.
+Preserve signed active-chemical kg with factor +1 and no density correction or
+invented densification inventory. Warnings retain the native exclusion of
+densification, physical-form difference, allocation, geography, delivery,
+vintage and unquantified impact-score effect. Native 2025 has shorter comments
+but the same direct technosphere vector as the explicit 2026 light-soda process.
+The source Hou-process coproduct and native Solvay allocation remain different;
+no native allocation is applied twice. Only the exact inspected cut-off source
+profile is registered. Cache reuse retains these limits and baseline LCI is
+finite with unchanged source scientific contents.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

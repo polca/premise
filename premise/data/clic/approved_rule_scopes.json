@@ -13148,6 +13148,94 @@
           "fingerprint": "225f93a9a122dcbc83353ffe09996476357f5a5abe844bef1a5b13be790d56c6"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e1e1fd1c04f327da",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_dense_soda_review.json",
+      "review_sha256": "e53d6ad3bc0916e01eed55a5454a2b67423a26fefd368efb28ac6abeaeb1d509",
+      "authorization": "User explicitly approved the complete native light-soda screening proxy for the inspected ecoinvent3.9 cut-off dense-soda input in the PFSA-membrane dependency, at1kg per signed sourcekg, with missing densification, allocation, geography, delivery, vintage and unquantified-score warnings. Approval does not add a density multiplier, reconstructed densification inventory or other-grade/profile permission.",
+      "inspection": {
+        "rule_id": "bp-e1e1fd1c04f327da",
+        "source": {
+          "location": "GLO",
+          "name": "market for soda ash, dense",
+          "reference product": "soda ash, dense",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Soda, powder, at plant",
+          "reference product": "Soda, powder, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "d9f86e15ccae28ef8f8fd932c50218b7bec2a6c653902eaee92c32e0fa468068",
+        "source_inventory_sha256": "50705a02dd0dc9993257b48857db435eda7079d2873cb6fc718898156a38ddeb",
+        "source_activity_comment_sha256": "6e65f4279f709dd64081fa4f2b8722b236a08f89e488674f89f50f630c737528",
+        "source_product_information_sha256": "304590a142815df0c80651640671a81dd500c61b6a1a6ee00eb4a23b881ed563",
+        "inspected_source_producer": {
+          "identity": {
+            "name": "modified Solvay process, Hou's process",
+            "reference product": "soda ash, dense",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "metadata_sha256": "b857717801f9fded2615304f1dfd52b7db8dde52428e125ddc51a09d84f00b38",
+          "inventory_sha256": "971fdc40a0cae69da07e2d9050e1bd4c8a57ea3f9e6744a629e0db72caadea4d"
+        },
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "2bc567e12b71bfaf2a80630f16787333bfcc8261d5cd81d41a1a5eb21817f473",
+            "inventory_sha256": "65e65564999ff101d2849978d7777f9490b482f74da48d152e42289ac146f228",
+            "activity_comment_sha256": "b236463e93b6ea0dc7b761292fa3836cae7ae4be9ba151c08f2f477f3c4edcc0",
+            "light_soda_boundary_evidence": "Shorter native description; direct technosphere vector matches2026",
+            "densification_included": false,
+            "direct_technosphere_coordinates": 8
+          },
+          "2026": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "e8b5c61009db57d40ff861873dfc0e9b6023597ada47ad3ae6c49e5df626f392",
+            "inventory_sha256": "533e398b6d071cf2870c7434172c05487b1c1a07f3777d25be0ac018ab67e948",
+            "activity_comment_sha256": "07f8bb13c2ca1a49baeb384cf4f92340b8a5b7d5c8e86f1cc894dc5c939a27df",
+            "light_soda_boundary_evidence": "Explicit native description",
+            "densification_included": false,
+            "direct_technosphere_coordinates": 8
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true
+      },
+      "limitations": [
+        "User-approved screening proxy: complete native light soda substitutes dense soda ash at factor +1 per signed kg of active Na2CO3. UVEK explicitly excludes densification, so the processing burden for making dense soda is missing and its impact-score effect is unquantified. Chemical identity does not establish physical-form or inventory equivalence.",
+        "Retain the complete native European Solvay inventory and its already embedded 33% soda/67% calcium-chloride economic allocation once. Source Hou-process coproduct allocation and global supply differ. Native geography, technology, vintage and source-market delivery are screening limitations; no source market reconstruction or extra coproduct credit is applied.",
+        "Preserve signed kg, uncertainty, formulas, caller ownership, separately listed water, materials, freight and emissions. Apply no density, solution-concentration, yield or repeated allocation multiplier; add no invented densification process or energy. Only the inspected ecoinvent3.9 cut-off PFSA-membrane dependency is registered for the exact UVEK2026cutoff/ecoinvent3.10biosphere pilot. Other profiles, grades, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3e03db9c2dc5729d891e92f8982c404bf4eb9485cd904fedb0ff1d28ad9e15b5"
+        }
+      ]
     }
   ]
 }

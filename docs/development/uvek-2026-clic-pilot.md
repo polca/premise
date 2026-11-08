@@ -180,10 +180,10 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 47 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 2 |
-| 3.9 | 17 | 50 |
+| 3.9 | 17 | 49 |
 | 3.12 | 8 | 23 |
 
-These are 123 exact-profile cases involving 111 distinct rules, after reusing
+These are 122 exact-profile cases involving 110 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -240,8 +240,12 @@ cubic metre with no density correction. Aggregated powder zeolite retains its
 active biosphere inventory. Mined lignite, Swiss sand and metallic antimony
 retain their historical data and geography limitations. Nine distinct native
 suppliers have finite baseline LCIs and unchanged scientific-content hashes.
-A [dense-soda proposal](uvek-dense-soda-proposal.md) remains pending; the native
-light-soda process explicitly excludes densification.
+The user approved the scoped [light-soda screening proxy](uvek-dense-soda-proposal.md)
+for the 3.9 dense-soda dependency at factor +1. Missing densification, physical
+form, allocation and supply differences remain explicit warnings, including
+the unquantified impact-score effect. No density multiplier or invented
+densification inventory is added. The native supplier has a finite baseline
+LCI and unchanged source hashes; warnings persist through cache reuse.
 The inspected 3.12 silver market now uses the complete native regional stock,
 replacing its narrower lead-derived-only match. Native lead, copper, gold-silver
 and recovered-scrap supplies and internal freight remain included once. All
@@ -253,7 +257,7 @@ the corrected supplier has a finite baseline LCI and unchanged source hashes.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 224 exact-profile fingerprints, with review evidence and
+ledger contains 225 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

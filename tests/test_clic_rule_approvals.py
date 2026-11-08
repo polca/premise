@@ -496,6 +496,7 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-d57552347b187336", "3.12"),
         ("bp-fef3bd133ce6cadc", "3.9"),
         ("bp-e1f8de5b5a35b0d1", "3.12"),
+        ("bp-e1e1fd1c04f327da", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -987,6 +988,7 @@ def test_active_chemical_basis_preserves_separate_water_and_cached_warning(tmp_p
         ("bp-c7c88174c5f11ce8", "3.9"),
         ("bp-0ad47155a89ab7bb", "3.9"),
         ("bp-a51655f7a16cfaa3", "3.11"),
+        ("bp-e1e1fd1c04f327da", "3.12"),
     ],
 )
 def test_unresolved_chemical_bases_do_not_inherit_active_product_approval(
@@ -1084,5 +1086,49 @@ def test_zinc_coating_keeps_steel_separate_and_does_not_repeat_area_normalizatio
             and "60 m2/t" in d["message"]
             and "exclude the steel substrate" in d["message"]
             for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
+def test_approved_dense_soda_proxy_keeps_missing_densification_warning_in_cache(
+    tmp_path,
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-e1e1fd1c04f327da"
+    )
+    resolved = graph(rule["source"], version="3.9")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 2
+        edge = activity["exchanges"][1]
+        assert edge["name"] == "Soda, powder, at plant"
+        assert edge["unit"] == "kilogram" and edge["amount"] == -2
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
+        )
+        assert all(
+            text in warning["message"]
+            for text in (
+                "light soda",
+                "densification",
+                "unquantified",
+                "33%",
+                "density",
+            )
+        )
+        assert warning["details"]["review_path"].endswith(
+            "uvek_pilot_dense_soda_review.json"
         )
     assert resolved.activities == before
