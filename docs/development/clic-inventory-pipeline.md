@@ -110,6 +110,22 @@ an explicit `clic slug` exchange field. User files stay local; manifests and
 lockfiles record their hashes under `user_inventories`. Replaying a lockfile
 requires the same files as `additional_inventories`.
 
+## UVEK destination integration
+
+The explicit inventory target resolver separates background family, release and
+biosphere. The UVEK destination under development is **UVEK 2026 technosphere
+with ecoinvent 3.10 biosphere**, using cut-off only. Its release must not be
+interpreted as an ecoinvent version or select the legacy biosphere fallback.
+Existing ecoinvent targets and their EN15804 bridge retain their current meaning.
+Resolving this context alone does not establish `NewDatabase` sector support;
+source ingestion, retained workbooks, linking and transformations have separate
+integration checks.
+
+The public Brightcon `ecospold2-biosphere310` bundle provides the initial
+destination database for these checks. Its manifest records exclusions made by
+the upstream mapping workflow. Import provenance must retain that manifest and
+the upstream exclusions; they are not new omissions approved by premise.
+
 ## Cache boundaries
 
 - Archive caches are keyed by content SHA256. Freshness discovery still runs
