@@ -1,6 +1,18 @@
 # constants used in premise
 ---
 SUPPORTED_EI_VERSIONS:
+  - "3.7"
+  - "3.7.1"
+  - "3.8"
+  - "3.9"
+  - "3.9.1"
+  - "3.10"
+  - "3.10.1"
+  - "3.11"
+  - "3.12"
+
+# Native inventory and datapackage sources can be older than the target database.
+SUPPORTED_INVENTORY_SOURCE_VERSIONS:
   - "3.5"
   - "3.6"
   - "3.7"

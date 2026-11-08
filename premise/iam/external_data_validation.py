@@ -775,8 +775,8 @@ def check_datapackage(datapackage: datapackage.Package):
 
     assert (
         datapackage.descriptor["ecoinvent"]["version"]
-        in config["SUPPORTED_EI_VERSIONS"]
-    ), f"The ecoinvent version in the datapackage is not supported. Must be one of {config['SUPPORTED_EI_VERSIONS']}."
+        in config["SUPPORTED_INVENTORY_SOURCE_VERSIONS"]
+    ), f"The ecoinvent source version in the datapackage is not supported. Must be one of {config['SUPPORTED_INVENTORY_SOURCE_VERSIONS']}."
 
     if (
         sum(
