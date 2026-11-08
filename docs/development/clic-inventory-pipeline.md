@@ -282,6 +282,21 @@ processing demand. The evidence is pinned separately in Brightpath's
 `uvek_pilot_processing_reference_review.json`. This admits no global rolling
 market or different manufacturing technology.
 
+Eighteen direct production, construction and processing counterparts are also
+inspected for matching function, unit, geography and positive unit references.
+These include activated bentonite, ceramic tiles delivered to Switzerland,
+10 MW diesel-generator combustion per MJ fuel, hydraulic excavation, float
+glass, the 400 MW combined-cycle plant, allocated quarry sand, three distinct
+6400 kWth wood-cogenerator construction components, outdoor plywood, LDPE/PP/HIPS,
+aluminium sheet rolling and three specified steel routes. Evidence is pinned in
+Brightpath's `uvek_pilot_direct_production_review.json`. Runtime review warnings
+retain each boundary, including the complete granulate supply,
+plant/component rather than operation coordinates, absence of another base-metal
+input in rolling, and the plywood documentation conflict. No factory demand is
+rescaled by density, plant lifetime, coproduct share or the excavation label
+`proj. 500`. Cement strength-class coverage, salt-production representativeness
+and refinery combustion boundaries remain separate unresolved decisions.
+
 Native role definitions can set `use_legacy_templates: false` when their complete
 suppliers already exist in the destination. The UVEK PV roles use this declaration:
 the ecoinvent PV workbook generation and installation branches do not supply the

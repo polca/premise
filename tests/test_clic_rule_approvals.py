@@ -378,10 +378,28 @@ def test_inspected_wet_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-8a6394dd395bb22d", "3.12"),
         ("bp-64033d1871a0085f", "3.12"),
         ("bp-8b6f1fcdfadf34af", "3.12"),
+        ("bp-5c3aff1455ed47f3", "3.6"),
+        ("bp-e151524e59c9a873", "3.6"),
+        ("bp-189511c4a470ca1b", "3.12"),
+        ("bp-7107efa3d84d4a67", "3.6"),
+        ("bp-1804a6da97afa32c", "3.6"),
+        ("bp-8048c2b73279c472", "3.9"),
+        ("bp-a06513ceb8310f53", "3.6"),
+        ("bp-d39c48f8295cfba2", "3.6"),
+        ("bp-fa7ab6947d6de491", "3.6"),
+        ("bp-9f2331704b45610e", "3.6"),
+        ("bp-83df3d1c3262d314", "3.6"),
+        ("bp-66069e6b556917d1", "3.6"),
+        ("bp-4460a6ac3f5e4c5c", "3.6"),
+        ("bp-3b1b2eaa1788c5c2", "3.6"),
+        ("bp-15c42019546101f4", "3.12"),
+        ("bp-7b718a88076307fe", "3.6"),
+        ("bp-e91d186584958663", "3.6"),
+        ("bp-cf3ed0dd40541ac8", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
-def test_direct_processing_reference_keeps_the_foreground_quantity(
+def test_direct_reference_keeps_the_foreground_quantity(
     tmp_path, rule_id, version, amount
 ):
     from brightpath.background import PackageCatalogProvider
@@ -578,4 +596,31 @@ def test_prior_helper_approval_returns_complete_owned_graph(
         i["code"] == "clic.compatibility_proxy_limitations"
         and i["details"]["rule_id"] == rule_id
         for i in result.diagnostics
+    )
+
+
+@pytest.mark.parametrize(
+    "rule_id",
+    [
+        "bp-9c3675cc3a3f003c",  # Different cement strength-class coverage.
+        "bp-7128907317fe7019",  # Salt-production representativeness needs review.
+        "bp-ff3e7e592e354217",  # Refinery combustion boundary needs review.
+    ],
+)
+def test_unreviewed_production_boundaries_do_not_inherit_direct_approval(rule_id):
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == rule_id)
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", "3.6", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    assert fingerprint not in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
     )

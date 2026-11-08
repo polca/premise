@@ -2924,6 +2924,1158 @@
           "fingerprint": "90ae8f9792ccc4ab799bf755849ab8e1eb0ca29384b58337b77592651c827a7d"
         }
       ]
+    },
+    {
+      "rule_id": "bp-5c3aff1455ed47f3",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-5c3aff1455ed47f3",
+        "source": {
+          "location": "DE",
+          "name": "activated bentonite production",
+          "reference product": "activated bentonite",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "DE",
+          "name": "Bentonite, at processing",
+          "reference product": "Bentonite, at processing",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "9e2ce05ca6de2187d6e31da149265f4e8c5f50aaf0c52a560dbed34acb122194",
+        "source_reference_sha256": "184c03210d31612ff5226a2cb19c6d6ceeba44db8aa924f1a9a522cfe08531da",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "fa7301617455abc7939171ef5f3924fd53ce235a215e5b1dee14e62d5ad17957"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "af4fdd0b15e52a124fb4788d26ac559ca6fee177808d0af9c2ae7589b971d60e"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same activated-bentonite output blend: 38% alkaline activated, 61% acid activated and 1% catalytic converter product. Keep the complete native per-kg mix; add no activation step."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same activated-bentonite output blend: 38% alkaline activated, 61% acid activated and 1% catalytic converter product. Keep the complete native per-kg mix; add no activation step."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "04fae9f683840d4d5bd366a1b86c7336b0047ba0da7e273aff63cc218e5f4409"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e151524e59c9a873",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-e151524e59c9a873",
+        "source": {
+          "location": "CH",
+          "name": "ceramic tile production",
+          "reference product": "ceramic tile",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Ceramic tiles, at regional storage",
+          "reference product": "Ceramic tiles, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "7408923756f56f688f544c66cd1157af33a5d59d611fc4321dd652b27448a7a9",
+        "source_reference_sha256": "f8ff737a89e23a0fa37fedb76efc3e7c5ff428264d6cd44b69f8c0cb04fd423c",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "ac63f781570a5667da5f126fc6f9cc0f88ef48e694d14f3d2684a87de551a664"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "b434f225256c9933ed39a77b392d641af822dbed92dc47dc613d54b504a0b57d"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same oxidic ceramic-tile production and delivery from Italy to Swiss regional storage. Both source and target include that delivery despite the shorter source name; add no second delivery leg."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same oxidic ceramic-tile production and delivery from Italy to Swiss regional storage. Both source and target include that delivery despite the shorter source name; add no second delivery leg."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9a271514eaad8608df1e63ba94b44ed40c22a246b36964c19229045343c9945b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-189511c4a470ca1b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-189511c4a470ca1b",
+        "source": {
+          "location": "GLO",
+          "name": "diesel, burned in diesel-electric generating set, 10MW",
+          "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Diesel, burned in diesel-electric generating set",
+          "reference product": "Diesel, burned in diesel-electric generating set",
+          "unit": "megajoule"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "b3021d94e80385c19325ad5653fbe292e4cac37a62996bf862df2ae9792cf5ef",
+        "source_reference_sha256": "de31360a5137d2e3a702e53f475dc10196772c3b3c16dadf8fb61833eda355af",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "9cce9647c27f6284c68adc7608bd38754198aeb2f7cc6fb9d3c7f1acdacac810"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "1a815d8d562522dfa33e5d7e05f937f4df5fc4b87306e99371528900ce045df5"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same crude-oil-exploration diesel-generator combustion service per MJ of diesel, including fuel, emissions and infrastructure. It is not net electricity per kWh; site delivery remains outside the documented service."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same crude-oil-exploration diesel-generator combustion service per MJ of diesel, including fuel, emissions and infrastructure. It is not net electricity per kWh; site delivery remains outside the documented service."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0cb86d6fb4bb762901876a409f6e9b29ac05f98435aa89394e9ea6ba6c6ef710"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7107efa3d84d4a67",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-7107efa3d84d4a67",
+        "source": {
+          "location": "RER",
+          "name": "excavation, hydraulic digger",
+          "reference product": "excavation, hydraulic digger",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Excavation, hydraulic digger (proj. 500)",
+          "reference product": "Excavation, hydraulic digger (proj. 500)",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "29ff13b0f712b3c6de0dc5a63f952334ee015278b150afc3709705bd0de01d18",
+        "source_reference_sha256": "5a4cd9439761eb782f14afd87ceb333aa5326c55f0bf6beb0f261e7acb353667",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "44e01a28048f0c89d9bd2b660612a27950bd0cedf8e004ab36ea7da94e8a1f5e"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "afc9e679c1696b7a47f51cdc1c5f884629d2ba1963484e38c7594937910b068f"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same hydraulic-digger excavation service per cubic metre, including machine, lubricant, fuel and inventoried air emissions. The target name proj. 500 introduces no quantity multiplier. Retain the source warning against using this generic process where excavation dominates the result."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same hydraulic-digger excavation service per cubic metre, including machine, lubricant, fuel and inventoried air emissions. The target name proj. 500 introduces no quantity multiplier. Retain the source warning against using this generic process where excavation dominates the result."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e606f59bdf54ea0739bd75a25af913711fb86eb6f7c6a595f5005b9acebf24a2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1804a6da97afa32c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-1804a6da97afa32c",
+        "source": {
+          "location": "RER",
+          "name": "flat glass production, uncoated",
+          "reference product": "flat glass, uncoated",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Flat glass, uncoated, at plant",
+          "reference product": "Flat glass, uncoated, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "f8860ef109860d761df517ca3531bacf2d5e71d97cde4406336e5245b98b8d09",
+        "source_reference_sha256": "0438eb20229d8088c03024fdd3bdffc0b70345008e9476728d92a2d132a4d670",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "367f8fcea07c6eb06ba7ada41b1e3932d1d09fb57449bb39ab87e1d3ce9cca1a"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "8d2b05ee1b288b0035a0212bbda06afa9473a6246c35a3f6a928e7e5e3c0ba46"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same uncoated float-glass production, including raw materials, cullet, float bath, annealing, cutting, internal transport and infrastructure. Packaging and administration are outside both documented boundaries; add no new glass processing."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same uncoated float-glass production, including raw materials, cullet, float bath, annealing, cutting, internal transport and infrastructure. Packaging and administration are outside both documented boundaries; add no new glass processing."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "eabf78af235b1986c389d41f243edc089b6f7a42c31f6bacc714c6b143c26d4a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8048c2b73279c472",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-8048c2b73279c472",
+        "source": {
+          "location": "RER",
+          "name": "gas power plant construction, combined cycle, 400MW electrical",
+          "reference product": "gas power plant, combined cycle, 400MW electrical",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Gas combined cycle power plant, 400MWe",
+          "reference product": "Gas combined cycle power plant, 400MWe",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "6b82f322b2871655103667ff4ce572ab3187ae5696c2fea3f6dbd9d251050838",
+        "source_reference_sha256": "4a368f4d0638ee4fcb513cf5ecab69e9ea7e5006e1a1a070ba5ea80051af52b1",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "8c67f32f765104d92d579b6a2865cb397cf19e35f67229c4a6da5dd8d5e2524e"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "c495d4c41778334dcaf8acdf33336673777bc1458264dc77b5524f346549316c"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same 400 MWe-class combined-cycle plant construction: 265 MWe gas turbine plus 140 MWe steam turbine, with materials and construction energy and a documented 180000-hour life. The caller already demands plant units; add no capacity, operating-hour or lifetime normalization."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same 400 MWe-class combined-cycle plant construction: 265 MWe gas turbine plus 140 MWe steam turbine, with materials and construction energy and a documented 180000-hour life. The caller already demands plant units; add no capacity, operating-hour or lifetime normalization."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "28a3ab36dbf10e0c70244350fbedf39a73e2116acaf1cccb36da900169f80b84"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a06513ceb8310f53",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-a06513ceb8310f53",
+        "source": {
+          "location": "CH",
+          "name": "gravel and sand quarry operation",
+          "reference product": "sand",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Sand, at mine",
+          "reference product": "Sand, at mine",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "5d552d687ca413d45b945d2234ee9b407f554e638e7d6722b82b3aa916544f91",
+        "source_reference_sha256": "50c86568a0cffee210f78e5296b2752b8b5dee713d3dbc311363824090e49784",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "48c5f452b29f5d7fe763948c877463541385c9a6f10c4230f10ecd0c6c9e4429"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "c2e457d074cedb9df935459b9e78ebf999aa96d8d1a3d929e7657c58ebb5359d"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same allocated sand output from the Swiss gravel/sand quarry, whose parent mix is 35% sand and 65% gravel. The positive one-kg sand reference is already product-normalized; apply no 0.35 factor and add no gravel output."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same allocated sand output from the Swiss gravel/sand quarry, whose parent mix is 35% sand and 65% gravel. The positive one-kg sand reference is already product-normalized; apply no 0.35 factor and add no gravel output."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0f2fcca42fc940ec5187018499395aedf7b800a4f080e4b9da813565cd54d35c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d39c48f8295cfba2",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-d39c48f8295cfba2",
+        "source": {
+          "location": "CH",
+          "name": "heat and power co-generation unit construction, 6400kW thermal, building",
+          "reference product": "heat and power co-generation unit, 6400kW thermal, building",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Cogen unit 6400kWth, wood burning, building",
+          "reference product": "Cogen unit 6400kWth, wood burning, building",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "bfc3b3c253480ab78ff85b1b1e87a2bc30abea45fe530dbb232a7d4af49a36d7",
+        "source_reference_sha256": "a3e04e31b4e14e4a67295be435c4d7186a98b88dea1677ca1c4b8b6e899e3da1",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "9b2aa6bc597b324dcd124a841c980f4e2e2b10abb5bebeeda683e666a5a8cdc3"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "e81213b20646e19e475cf9af0b55fe1887ae28f39fae8b8ca030c1665f162eaa"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same building component for the Swiss 6400 kWth wood cogeneration unit, including its construction, transport, land and disposal boundary. Keep this component separate from common and electricity-only components; add no operation or lifetime normalization."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same building component for the Swiss 6400 kWth wood cogeneration unit, including its construction, transport, land and disposal boundary. Keep this component separate from common and electricity-only components; add no operation or lifetime normalization."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1b7f39b0fde47cfde99fd81c2fed31f99eebfb7e2efb025bf8da7e429d56215a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fa7ab6947d6de491",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-fa7ab6947d6de491",
+        "source": {
+          "location": "CH",
+          "name": "heat and power co-generation unit construction, 6400kW thermal, common components for heat+electricity",
+          "reference product": "heat and power co-generation unit, 6400kW thermal, common components for heat+electricity",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Cogen unit 6400kWth, wood burning, common components for heat+electricity",
+          "reference product": "Cogen unit 6400kWth, wood burning, common components for heat+electricity",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "0ae7495a4cdb986f2248a72e54ec476ecadfe107f8779aba40b405542fe7c58f",
+        "source_reference_sha256": "e091c1a021f59e038b033585bc5fbaea0e3f1b4207716c1bf9eda5d36eb65f45",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "9bb6d741d8ebea2da1648b14d265f58a33e2efa706f0c47dc521323914c7552d"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "b3a3a80062e2d76da84900b9988a10441eb2bdb4821bcbf858841845f787629c"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same common heat/electricity components for the Swiss 6400 kWth wood cogeneration unit, including fabrication, transport, energy and disposal. Keep the building and electricity-only components separate; add no operating energy, heat credit or lifetime normalization."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same common heat/electricity components for the Swiss 6400 kWth wood cogeneration unit, including fabrication, transport, energy and disposal. Keep the building and electricity-only components separate; add no operating energy, heat credit or lifetime normalization."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5f37f425c95419d06d4bc9a5b33be5f3038ac50248a68651c3c2328ac6eb672c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f2331704b45610e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-9f2331704b45610e",
+        "source": {
+          "location": "CH",
+          "name": "heat and power co-generation unit construction, 6400kW thermal, components for electricity only",
+          "reference product": "heat and power co-generation unit, 6400kW thermal, components for electricity only",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Cogen unit 6400kWth, wood burning, components for electricity only",
+          "reference product": "Cogen unit 6400kWth, wood burning, components for electricity only",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "86278e7e3751a10d5ec471c16566bfcb90403122fb49c60bb6d833426b6e17c4",
+        "source_reference_sha256": "cd62f48ff87c7f0b26e086543d7c919f6bdd13c62a01d1073aac9555c56ad217",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "d43047b377ab34fb8b2d1117fe9f7d6323de150ffdf957fcfa09fe3234d3afa4"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "metadata_sha256": "0e903230fada3893ba50f5895cbbb33984ce5265f45ade0298ce41c2135534e8"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same electricity-only generator/control-cabinet component of the Swiss 6400 kWth wood cogeneration unit. Keep building/common components separate and retain the caller plant-unit demand; add no full cogenerator or operating inventory."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same electricity-only generator/control-cabinet component of the Swiss 6400 kWth wood cogeneration unit. Keep building/common components separate and retain the caller plant-unit demand; add no full cogenerator or operating inventory."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "580ec119edd0ec5f3a30190368a5ff01e71e061bcd53eaeb12c5c82d2386a978"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-83df3d1c3262d314",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-83df3d1c3262d314",
+        "source": {
+          "location": "RER",
+          "name": "plywood production, for outdoor use",
+          "reference product": "plywood, for outdoor use",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Plywood, outdoor use, at plant",
+          "reference product": "Plywood, outdoor use, at plant",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "dd8326f4bccfe916b828d0b028733ffd0093b0ea5283c2444cac451e8efdb99f",
+        "source_reference_sha256": "508154bb3d9967862adeed057c70976cf42433e4d60bf1545bbbc062dc004475",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "5acfb51145160ccc316128a3c56e3968450665fedab85d71cd8f6dd0e5697556"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "dd9308c5d8b55e3b56161cb68fcef65797ebb380df68c23143dec2e9ae21549b"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same outdoor plywood product per cubic metre, with the same outdoor co-product/economic-allocation description, Swiss-1996 representative technology and melamine-formaldehyde resin input. One source included-activities sentence says indoor, contradicting its typed outdoor reference, main description and co-product identity; preserve that documentation conflict rather than reinterpret the product. Add no density conversion or infrastructure."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same outdoor plywood product per cubic metre, with the same outdoor co-product/economic-allocation description, Swiss-1996 representative technology and melamine-formaldehyde resin input. One source included-activities sentence says indoor, contradicting its typed outdoor reference, main description and co-product identity; preserve that documentation conflict rather than reinterpret the product. Add no density conversion or infrastructure."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "04fba57bfdd0320fb821340b031bb52cf412992d6e6f0d799b43535fb0755a60"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-66069e6b556917d1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-66069e6b556917d1",
+        "source": {
+          "location": "RER",
+          "name": "polyethylene production, low density, granulate",
+          "reference product": "polyethylene, low density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, LDPE, granulate, at plant",
+          "reference product": "Polyethylene, LDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "ed9345adeda61d064867ebe881072cb10693b2156233ee1ea17aacee63f18956",
+        "source_reference_sha256": "d95b1c905f6d64eeb1b06d8634226757711bdec40ad325f1537c897259607508",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "0f344e80de496a2c54d96d2c9334075384c335b949df81a4e645c13237e9496b"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "6309d5fe89f8e46b140904333dc32847c24947d001c913fb76de821c051d3b4b"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same LDPE granulate output and European 2011 PlasticsEurope production coverage. The native full supply inventory includes its 2023 methane update and upstream feedstock/energy, which differ from the source inventory representation; retain the complete native inventory once and add no monomer or energy inputs."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same LDPE granulate output and European 2011 PlasticsEurope production coverage. The native full supply inventory includes its 2023 methane update and upstream feedstock/energy, which differ from the source inventory representation; retain the complete native inventory once and add no monomer or energy inputs."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "80d4512e752d4ad7530d78aa15bb3df49e248395cbe322b43d0e1255b4450499"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4460a6ac3f5e4c5c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-4460a6ac3f5e4c5c",
+        "source": {
+          "location": "RER",
+          "name": "polypropylene production, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polypropylene, granulate, at plant",
+          "reference product": "Polypropylene, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "a100d26f6450140ee7c3a9ed3c29fde0685ea91ffc684bd61ac547779fd98ade",
+        "source_reference_sha256": "dbeae209f547da67596046a2395d7b49653d590f9044f40c3b0eb2cc3ccc58f8",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "b5d9262bb3281712d6c5a5c39040aad32a13f4fd4e68fc0855a017fb624d8d4c"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "9a3eb74ee8d4240173d85b01107302ab9008ab565f273d20b731a04e00ee8687"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same polypropylene granulate output and European 2011 PlasticsEurope production coverage. The native full supply inventory includes its 2023 methane update and upstream feedstock/energy; retain it once and add no monomer or energy inputs."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same polypropylene granulate output and European 2011 PlasticsEurope production coverage. The native full supply inventory includes its 2023 methane update and upstream feedstock/energy; retain it once and add no monomer or energy inputs."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "102a1f0320753cd5a0fce3fb6e35b1cba914aba09af798ef14cba4bcbf13ee32"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3b1b2eaa1788c5c2",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-3b1b2eaa1788c5c2",
+        "source": {
+          "location": "RER",
+          "name": "polystyrene production, high impact",
+          "reference product": "polystyrene, high impact",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polystyrene, high impact, HIPS, at plant",
+          "reference product": "Polystyrene, high impact, HIPS, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "c55848cdf3238d458e396b3f5be8e3381c64b3e538ee698b6ee8a7ab4d24885f",
+        "source_reference_sha256": "69ee396894e267c2c8ca12f2bb7088fbede7d88558ba9932a369e100d063d361",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "0a78c6c556e77611bde173b13847dee18f61675eb35f07bf53bc60b987b5d4f7"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3eeed123e111532cc883ded58ae66171c6d7cab1bd4d8ef9ee80c43d4b3eacaa"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same high-impact polystyrene product and complete PlasticsEurope supply boundary through factory delivery, retaining its stated source-data exclusions. Use HIPS, not general-purpose polystyrene, and add no polymerization or upstream inputs."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same high-impact polystyrene product and complete PlasticsEurope supply boundary through factory delivery, retaining its stated source-data exclusions. Use HIPS, not general-purpose polystyrene, and add no polymerization or upstream inputs."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5e7969f650b590e8844dcdfde43936137727a227e97b32d56e247a3f2c0bf5b4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-15c42019546101f4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-15c42019546101f4",
+        "source": {
+          "location": "RER",
+          "name": "sheet rolling, aluminium",
+          "reference product": "sheet rolling, aluminium",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sheet rolling, aluminium",
+          "reference product": "Sheet rolling, aluminium",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "97fbaf07b10f81c15fd5e126cd915ea3649da36e3fbf0c268f6c560823521229",
+        "source_reference_sha256": "ff9b5b8decfc7d46ebeec8b24ee654712544cc6c1c9b9cebaa1058c7b65cb2ee",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d878a1e71aea1ca8483d35a89528ee366142955419e917cd176c61b9e92f527e"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1c5069361054fe49a626cab77667652652ea61ac3ce34260b3021c8c1b8d059d"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same aluminium sheet-rolling service, covering hot/cold rolling from 500-700 mm ingots to 0.2-6 mm sheet. Base metal is excluded and native scrap-loss material is already included; add neither another kg of base aluminium nor another loss factor."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same aluminium sheet-rolling service, covering hot/cold rolling from 500-700 mm ingots to 0.2-6 mm sheet. Base metal is excluded and native scrap-loss material is already included; add neither another kg of base aluminium nor another loss factor."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0fde5ed968fe85bb8936cc9eaaf58845d8a068dc50d78b827e677ee7ecaf0e04"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7b718a88076307fe",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-7b718a88076307fe",
+        "source": {
+          "location": "RER",
+          "name": "steel production, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chromium steel 18/8, at plant",
+          "reference product": "Chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "40fe156973a89e3cc4db4668fbefb7646769d5b05a123fee9b22bfc3dee3bc4e",
+        "source_reference_sha256": "71d544302407c77bb22433f7ab472b1a68c8156a063381e51fcd82207584fa32",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "11c6f799714d601ae7d7a305b361c69715d761fcc386d8423d116ecb8272977b"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "5190617acd8067ee760df978d84bd1fc8c69d61d6a4198adf76b43a6d99020d9"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same chromium-steel 18/8 production mix including hot rolling, although hot rolled is absent from the native short name. Keep the complete native mix and add no second rolling service."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same chromium-steel 18/8 production mix including hot rolling, although hot rolled is absent from the native short name. Keep the complete native mix and add no second rolling service."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e9e3825200d814ec7a327ab3b9074533e60c8dc5dc34d6f24a90a069a4bccf9f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e91d186584958663",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-e91d186584958663",
+        "source": {
+          "location": "RER",
+          "name": "steel production, converter, unalloyed",
+          "reference product": "steel, unalloyed",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, converter, unalloyed, at plant",
+          "reference product": "Steel, converter, unalloyed, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "c705814b0b37fed10690bd2e4059e86f2a0b78d4a0344c93b991fbd0046175aa",
+        "source_reference_sha256": "0abb6a86853ad1f169cd0a65e108047c53c5eeaa2e38326a5bbf3ee770b486dd",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "ee39157ce606ff575300abca97fc2fa0c79af0917c80e81003fa5e05df0095fd"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "bafda7b1d554e0166e6c9163cbac28d335b76e7224ed0acaf2abb4b33fa3b826"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same primary unalloyed converter-steel production and casting, with scrap used for cooling. Do not replace it with low-alloyed, electric or reinforcing steel, or introduce a recycled-content split."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same primary unalloyed converter-steel production and casting, with scrap used for cooling. Do not replace it with low-alloyed, electric or reinforcing steel, or introduce a recycled-content split."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "af3383c08f157e22b217b2b399377bd0523f978c59e6b47b9300abea9e1e58f6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cf3ed0dd40541ac8",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_direct_production_review.json",
+      "review_sha256": "0a2a5889956987d61f857f569ca74a96c74aaa4e0049c30e8ae8cab4e6a05d01",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized ecoinvent-to-UVEK electricity pilot. No new material grade, production route, plant design, physical model or geographic proxy is introduced.",
+      "inspection": {
+        "rule_id": "bp-cf3ed0dd40541ac8",
+        "source": {
+          "location": "RER",
+          "name": "steel production, electric, chromium steel 18/8",
+          "reference product": "steel, chromium steel 18/8",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, electric, chromium steel 18/8, at plant",
+          "reference product": "Steel, electric, chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "12e00c299358dbc1b986bbf488756ad492410f473b9a0e45b35863168c378add",
+        "source_reference_sha256": "dce4d842f0ccc98c8c381b8f8e8e7b640d1435f5a43d8c4fa1b962b2260312ae",
+        "target_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "5eca2f758625b1e6a6359665960a155ab2c649bde9fa833c7c0dd84853d41b3c"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "f9cc7fa20cf43e4d7daac459652e4b1b4f6da095907b67191a04314269a54e92"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary": "Same secondary electric-furnace chromium-steel 18/8 production and casting, using scrap as iron-bearing feed. Keep this production route and add no primary-steel supply or recovery credit."
+      },
+      "limitations": [
+        "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
+        "Same secondary electric-furnace chromium-steel 18/8 production and casting, using scrap as iron-bearing feed. Keep this production route and add no primary-steel supply or recovery credit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dc464f1624a65437754f7034bcd257f8635299672771ff5c3b07711ff5b41a66"
+        }
+      ]
     }
   ]
 }

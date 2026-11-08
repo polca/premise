@@ -169,25 +169,26 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 104 unapproved matching rules in its first ecoinvent 3.6 source
-cohort, down from 126 after the pipe-drawing and 21 matching wet-waste services
-were registered. The actual 55-record native selection spans five source
+identifies 89 unapproved matching rules in its first ecoinvent 3.6 source
+cohort, down from 126 after inspected processing, production and matching
+wet-waste services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
 foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 104 |
+| 3.6 | 27 | 89 |
 | 3.7 | 2 | 2 |
 | 3.8 | 1 | 4 |
-| 3.9 | 17 | 84 |
-| 3.12 | 8 | 48 |
+| 3.9 | 17 | 83 |
+| 3.12 | 8 | 46 |
 
-These are 242 exact-profile cases involving 216 distinct rules, after reusing
-six existing reviewed helper decisions for the pilot's inspected profiles.
+These are 224 exact-profile cases involving 198 distinct rules, after reusing
+six existing reviewed helper decisions and inspecting direct production
+counterparts for the pilot's exact source profiles.
 They describe the current review frontier, not separate approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 105 exact-profile fingerprints, with review evidence and
+ledger contains 123 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 New equipment and same-function supply proposals remain pending.
 
