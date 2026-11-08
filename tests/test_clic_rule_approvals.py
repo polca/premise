@@ -540,6 +540,7 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-8a37fb9191501441", "3.9"),
         ("bp-a3a951644bd5ed9c", "3.6"),
         ("bp-2d474e1cc4ae1395", "3.8"),
+        ("bp-7b9f2134fcb65b6d", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -791,6 +792,7 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-8a37fb9191501441",
         "bp-a3a951644bd5ed9c",
         "bp-2d474e1cc4ae1395",
+        "bp-7b9f2134fcb65b6d",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -819,6 +821,11 @@ def test_existing_material_review_does_not_broaden_pilot_source_profiles(
     "rule_id,flow_name,warning_terms",
     [
         ("bp-deb7a57e4b2bc6e7", "Nitrogen oxides", ("85%", "80%", "unquantified")),
+        (
+            "bp-7b9f2134fcb65b6d",
+            "Sulfur dioxide",
+            ("4.1 kg", "0.0024 m3", "unquantified"),
+        ),
         (
             "bp-ff3e7e592e354217",
             "Carbon dioxide, fossil",

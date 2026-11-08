@@ -17257,6 +17257,79 @@
           "fingerprint": "3c767ee25fad41761db2a3f6b4ff7f5be679a0987607f100a2fb5d521778ac28"
         }
       ]
+    },
+    {
+      "rule_id": "bp-7b9f2134fcb65b6d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_lignite_scrubber_review.json",
+      "review_sha256": "6126650d42d5f6d60de5c25a999c4fdc1abf7d4cc7410059e409267afc200ac7",
+      "authorization": "Explicit user approval: Approve native proxy with warnings. The presented decision specified matching90%removal perkgSOxretained,source4.1kggypsumlandfilling and0.0024m3wastewatertreatment versusnativeburden-freegypsum/ash-wettingwater, factor+1, separatecalleremissions preserved and no recoverycredit.",
+      "inspection": {
+        "rule_id": "bp-7b9f2134fcb65b6d",
+        "source": {
+          "location": "GLO",
+          "name": "desulfurisation of lignite flue gas",
+          "reference product": "SOx retained, in lignite flue gas desulfurisation",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "SOx retained, in lignite flue gas desulphurisation",
+          "reference product": "SOx retained, in lignite flue gas desulphurisation",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "8c0b784c8ca27c55d4dbd030e9e3c36469888758ecd85c3f0328af574d343bf2",
+        "source_inventory_sha256": "a8311caa33d6cc30a657755e3a3cfb2ce25acf6a2684738f7d1e086390bcf6a2",
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "40bb897d9faea8438a53cf1e0f193945b8559042ec84a063c5308c5215c9bbd5",
+            "inventory_sha256": "e2cd99af12787a39349272e93491b33203e64e0ee7efe77b1a314d12643555a4",
+            "activity_comment_sha256": "98a692559348de31bbba16b6250881c6f6b21e5883472d15334b78c6c857fd10"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "d31b1b0e031e220c9945a273386fd76934459cddc12303627ddee5c362d7a90d",
+            "inventory_sha256": "1608c9df3cc25c873e9e3f5f3b8267c0580156ba0f3e540daeb4dc46b5b42d5f",
+            "activity_comment_sha256": "007e34f4a0618d7c149699fa811777398ddf439c6bf0f7ca16448d7b60471889"
+          }
+        },
+        "conversion_factor": 1,
+        "removal_efficiency_percent": 90,
+        "source_gypsum_landfilled_kg": 4.100000000000003,
+        "source_wastewater_treated_m3": 0.002400000000000002,
+        "boundary": "Complete native wet-scrubber service per kg retained; explicitly approved residue/allocation difference. Preserve separately listed caller emissions/materials, with no added recovery/avoided-emission credit or source residue reconstruction."
+      },
+      "limitations": [
+        "Complete native wet-scrubber service per kg retained; explicitly approved residue/allocation difference. Preserve separately listed caller emissions/materials, with no added recovery/avoided-emission credit or source residue reconstruction.",
+        "Explicitly approved whole-service screening proxy per signed kg SOx retained, factor +1. Source and native describe 90% removal; do not multiply by removal efficiency, apply a sulfur/SO2 mass conversion, or add an avoided-SOx emission. Preserve caller quantities, uncertainty, formulas, ownership and separate stack emissions.",
+        "The source service treats 4.1 kg of gypsum per kg retained, about 2.87 kg in inert-material landfill and 1.23 kg in sanitary landfill. Native gypsum is described as burden free and has no explicit disposal exchange. Those source disposal burdens are not represented by the complete native proxy; native gypsum yield is not declared and no 4.1 kg native yield or recovery credit is inferred.",
+        "The source also treats 0.0024 m3 of wastewater per kg retained. Native documentation instead assigns water to wetting power-plant ash, with no separate wastewater treatment exchange. Retain that native boundary without a reconstructed gypsum/wastewater inventory; separately listed caller flows remain unchanged.",
+        "Actual source milled-lime suppliers use crushed limestone, consistent with the native reagent; do not infer quicklime from the legacy lime name. Native internal freight, background, allocation, geography, vintage, sparse documentation and imported biosphere exclusions remain limitations. Score effects of the residue and allocation differences are unquantified.",
+        "Approval covers only the inspected ecoinvent 3.6 cut-off profile for the exact UVEK 2026 pilot. No other release, inverse correspondence or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "24ae814c186ca7acd44e9e0842b042ce20bc62aa1d469db143673e4a41338324"
+        }
+      ]
     }
   ]
 }

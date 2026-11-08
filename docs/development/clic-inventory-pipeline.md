@@ -524,6 +524,15 @@ historical fleet, machinery year, allocation and sparse wood documentation
 remain explicit screening limits. Twenty-eight focused checks pass, and six
 native suppliers have finite LCIs with unchanged source scientific hashes.
 
+`uvek_pilot_lignite_scrubber_review.json` implements the explicit approval for
+the ecoinvent 3.6 lignite scrubber at factor +1 per signed kg SOx retained.
+The complete native 90%-removal service does not represent source landfilling
+of 4.1 kg gypsum or treatment of 0.0024 m3 wastewater per kg retained. Those
+residue/allocation differences and unquantified score effects remain warnings;
+separate caller stack emissions remain unchanged, with no recovery or avoided-SOx
+credit. Six focused checks and the native supplier LCI pass, with unchanged
+scientific hashes. Approval does not extend to other source profiles.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
