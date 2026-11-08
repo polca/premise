@@ -112,6 +112,29 @@ def get_mapping(
                     from .clic_requirements import role_slugs
 
                     slugs = role_slugs(Path(filepath).name, key)
+                    if var == "uvek_aliases" and (
+                        "native_limitations" in entry
+                        or "native_reference_amount" in entry
+                    ):
+                        limitations = entry.get("native_limitations")
+                        reference = entry.get("native_reference_amount")
+                        if (
+                            not isinstance(limitations, list)
+                            or not limitations
+                            or any(
+                                not isinstance(message, str) or not message
+                                for message in limitations
+                            )
+                            or isinstance(reference, bool)
+                            or not isinstance(reference, (int, float))
+                            or not math.isfinite(reference)
+                            or reference <= 0
+                        ):
+                            from .clic_archive import ClicInventoryError
+
+                            raise ClicInventoryError(
+                                f"Incomplete reviewed UVEK native role declaration for {key!r}."
+                            )
                     family_override = var == "uvek_aliases" and "clic_slugs" in entry
                     if family_override:
                         from .clic_archive import ClicInventoryError

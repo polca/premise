@@ -774,3 +774,56 @@ def test_clic_csp_proxy_preserves_full_inventory_and_reports_approved_limitation
         limitation in issue.message
         for issue in transform.validate_native_mixes(plans).warnings
     )
+
+
+@pytest.mark.parametrize("role", ["Biomass CHP", "Coal CHP", "Gas ST"])
+def test_complete_native_proxy_is_preserved_with_warning_and_iam_share(native, role):
+    generator = activity(f"Synthetic complete {role}")
+    generator["exchanges"].append(exchange(native.wind1, 0.123))
+    native.database.append(generator)
+    native.mapping[role] = [generator]
+    native.busbar["exchanges"] = [native.busbar["exchanges"][0], exchange(generator, 1)]
+    native.iam.electricity_mix = xr.DataArray(
+        [[[1.0]]],
+        dims=("region", "variables", "year"),
+        coords={"region": ["R1"], "variables": [role], "year": [2050]},
+    )
+    # A coal generator is shared with another IAM role; neither can rescale it.
+    native.mapping["Coal PC"] = [generator]
+    native.iam.electricity_technology_efficiencies = xr.DataArray(
+        [[[0.1], [0.9]]],
+        dims=("region", "variables", "year"),
+        coords={"region": ["R1"], "variables": [role, "Coal PC"], "year": [2050]},
+    )
+    before = copy.deepcopy([generator, native.grids])
+    transform = UVEKElectricity(**native.kwargs)
+    plans = transform.plan_mixes()
+    with pytest.warns(UserWarning, match="source inventories retained"):
+        transform.update_electricity_efficiency()
+    transform.update_native_mixes(plans)
+    assert [generator, native.grids] == before
+    assert plans[0][1][0]["amount"] == 1
+    assert plans[0][-1][role]["native role proxy limitations"]
+    assert len(transform.efficiency_limitations) == 1
+    assert (
+        "IAM efficiency rescaling is not applied" in transform.efficiency_limitations[0]
+    )
+    assert any(
+        "screening proxy" in issue.message
+        for issue in transform.validate_native_mixes(plans).warnings
+    )
+
+
+def test_native_complete_proxy_refuses_changed_reference_before_mix_mutation(native):
+    native.mapping["Gas ST"] = [native.wind1]
+    native.iam.electricity_mix = xr.DataArray(
+        [[[1.0]]],
+        dims=("region", "variables", "year"),
+        coords={"region": ["R1"], "variables": ["Gas ST"], "year": [2050]},
+    )
+    native.wind1["exchanges"][0]["amount"] = -1
+    before = copy.deepcopy(native.database)
+    transform = UVEKElectricity(**native.kwargs)
+    with pytest.raises(ValueError, match="proxy production reference changed"):
+        transform.plan_mixes()
+    assert native.database == before

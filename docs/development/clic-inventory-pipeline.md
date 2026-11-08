@@ -176,6 +176,19 @@ label, storage configuration, capacity factor, scale, geography and vintage
 remain explicit limitations. No separate storage burden is added. This choice
 does not change ecoinvent role bindings or approve upstream heuristic mappings.
 
+Three native complete-inventory screening proxies are also approved for this
+pilot: the Swiss wood-fired ORC 1400 kWth cogenerator allocated by exergy for
+Biomass CHP; the native hard-coal/lignite electricity fleet (documented with
+exergy allocation for cogeneration) for Coal CHP; and the native regional
+gas-power-plant fleet for Gas ST. Exact electricity aliases declare a positive
+`native_reference_amount` and nonempty `native_limitations`. Their scale, cycle,
+allocation, geography and vintage limitations accompany each supplier decision.
+The allocated inventories are retained, with no additional heat credit and no
+IAM efficiency rescaling. This protection also applies when a native supplier
+serves another IAM role, avoiding role-order-dependent changes to shared plants.
+Geothermal electricity still requires a separately verified generator; native
+geothermal heat inventories cannot satisfy that electricity role.
+
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by
 the upstream mapping workflow. Import provenance must retain that manifest and

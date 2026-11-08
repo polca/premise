@@ -109,11 +109,36 @@ def test_families_share_iam_roles_and_efficiency_metadata(model):
 
 
 def test_missing_uvek_native_mapping_is_explicit_and_never_uses_eci_name():
-    eci_name = "electricity production, natural gas, subcritical, steam cycle"
+    eci_name = "electricity production, deep geothermal"
     inv = InventorySet([native(eci_name)], family="uvek")
 
-    assert inv.generate_powerplant_map()["Gas ST"] == []
-    assert "Gas ST" in inv.missing_aliases["electricity.yaml:uvek_aliases"]
+    assert inv.generate_powerplant_map()["Geothermal"] == []
+    assert "Geothermal" in inv.missing_aliases["electricity.yaml:uvek_aliases"]
+
+
+@pytest.mark.parametrize(
+    "role,name",
+    [
+        ("Biomass CHP", "Electricity, at cogen ORC 1400kWth, wood, allocation exergy"),
+        ("Coal CHP", "Electricity, hard coal, at power plant"),
+        ("Coal CHP", "Electricity, lignite, at power plant"),
+        ("Gas ST", "Electricity, natural gas, at power plant"),
+    ],
+)
+def test_approved_native_proxies_match_exact_electricity_boundary(role, name):
+    generator = native(name)
+    alternatives = [
+        native(name, "megajoule"),
+        native(name, **{"reference product": "heat"}),
+        native(name + ", unreviewed variant"),
+    ]
+    mapping = InventorySet(
+        [generator, *alternatives], family="uvek", model="remind"
+    ).generate_powerplant_map()
+    assert mapping[role] == [generator]
+    definition = get_mapping(POWERPLANT_TECHS, "uvek_aliases")[role]
+    assert definition["native_reference_amount"] == 1
+    assert definition["native_limitations"]
 
 
 def test_uvek_clic_binding_requires_reviewed_slug_and_explicit_role_tag():

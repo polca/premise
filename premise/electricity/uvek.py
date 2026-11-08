@@ -17,6 +17,7 @@ from collections import defaultdict
 import numpy as np
 
 from ..core.utils import get_efficiency_solar_photovoltaics, rescale_exchanges
+from ..inventory.activity_maps import POWERPLANT_TECHS, get_mapping
 from ..inventory.inventory_store import (
     get_scenario_inventory,
     replace_scenario_inventory,
@@ -215,6 +216,18 @@ class UVEKElectricity(Electricity):
         self.source_weights = self._source_supplier_weights()
         self.efficiency_limitations = []
         self.supplier_proxy_decisions = {}
+        self.native_proxy_roles = {
+            role: definition
+            for role, definition in get_mapping(
+                POWERPLANT_TECHS, "uvek_aliases", model=self.model
+            ).items()
+            if definition.get("native_limitations")
+        }
+        self.preserved_proxy_suppliers = defaultdict(list)
+        for role in self.native_proxy_roles:
+            for supplier in self.powerplant_map.get(role, ()):
+                if not supplier.get("clic provenance"):
+                    self.preserved_proxy_suppliers[identity(supplier)].append(role)
 
     @property
     def supplier_proxy_limitations(self):
@@ -526,6 +539,44 @@ class UVEKElectricity(Electricity):
                         }
                     )
                     continue
+                native_proxy = self.native_proxy_roles.get(technology)
+                native_suppliers = [
+                    supplier
+                    for supplier, _ in suppliers
+                    if not supplier.get("clic provenance")
+                ]
+                if native_proxy and native_suppliers:
+                    for supplier in native_suppliers:
+                        references = [
+                            e
+                            for e in supplier["exchanges"]
+                            if e["type"] == "production"
+                        ]
+                        if (
+                            len(references) != 1
+                            or references[0].get("amount")
+                            != native_proxy["native_reference_amount"]
+                            or references[0].get("unit", supplier["unit"])
+                            != "kilowatt hour"
+                        ):
+                            raise ValueError(
+                                f"Native UVEK proxy production reference changed: {identity(supplier)!r}."
+                            )
+                    decision = self.supplier_proxy_decisions.setdefault(
+                        (identity(dataset), technology), {}
+                    )
+                    decision["native role proxy limitations"] = list(
+                        native_proxy["native_limitations"]
+                    )
+                    decision["limitation"] = " ".join(
+                        filter(
+                            None,
+                            [
+                                decision.get("limitation"),
+                                *native_proxy["native_limitations"],
+                            ],
+                        )
+                    )
                 source = self.source_weights.get(identity(dataset), {})
                 evidence[technology] = {
                     "basis": basis,
@@ -621,9 +672,29 @@ class UVEKElectricity(Electricity):
         data = self.iam_data.electricity_technology_efficiencies
         fuel_roles = self.mapping.generate_powerplant_fuels_map()
         technologies = set(map(str, data.coords["variables"].values))
+        retained_proxies = set()
         for technology in sorted(technologies.intersection(self.powerplant_map)):
             allowed = {identity(d) for d in fuel_roles.get(technology, ())}
             for dataset in self.powerplant_map[technology]:
+                proxy_roles = self.preserved_proxy_suppliers.get(identity(dataset))
+                if proxy_roles:
+                    if identity(dataset) not in retained_proxies:
+                        message = (
+                            f"UVEK {', '.join(proxy_roles)} complete native screening proxy {identity(dataset)!r} "
+                            "retains its allocated source inventory; IAM efficiency rescaling is not applied, "
+                            "including when the same supplier serves another electricity role."
+                        )
+                        self.efficiency_limitations.append(message)
+                        record_change_event(
+                            self,
+                            dataset,
+                            "unchanged",
+                            sector="electricity",
+                            reason_code="electricity.uvek.efficiency_unavailable",
+                            explanation=message,
+                        )
+                        retained_proxies.add(identity(dataset))
+                    continue
                 if "new efficiency" in dataset.get("log parameters", {}):
                     continue
                 fuels = [

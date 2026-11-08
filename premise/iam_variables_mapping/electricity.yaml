@@ -28,7 +28,15 @@ Biogas CHP:
     tiam-ucl: Secondary Energy|Electricity|Biogas|w/o CCS
   max_efficiency: 0.6
 Biomass CHP:
-  uvek_aliases: {}
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Electricity, at cogen ORC 1400kWth, wood, allocation exergy
+      reference product: Electricity, at cogen ORC 1400kWth, wood, allocation exergy
+      unit: kilowatt hour
+    native_reference_amount: 1
+    native_limitations:
+    - "Approved UVEK electricity-pilot Biomass CHP screening proxy: the complete Swiss wood-fired ORC 1400 kWth cogenerator, allocated by exergy, represents the IAM biomass CHP role per 1 kWh. Scale, cycle, allocation, geography and vintage may differ from the regional IAM fleet. Retain its allocated inventory and add no separate heat credit; no IAM efficiency rescaling is applied to this complete proxy."
   uvek_fuel_aliases:
     exact: true
     fltr:
@@ -363,7 +371,19 @@ Coal CF 80-20:
     tiam-ucl: Secondary Energy|Electricity|Co-firing coal:biomass 80:20|w/o CCS
   max_efficiency: 0.5
 Coal CHP:
-  uvek_aliases: {}
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, hard coal, at power plant
+      - Electricity, lignite, at power plant
+      reference product:
+      - Electricity, hard coal, at power plant
+      - Electricity, lignite, at power plant
+      unit: kilowatt hour
+    native_reference_amount: 1
+    native_limitations:
+    - "Approved UVEK electricity-pilot Coal CHP screening proxy: native hard-coal and lignite electricity processes, documented as adjusted for cogeneration using exergy allocation, represent the IAM coal CHP role per 1 kWh. These historical fleet inventories do not identify dedicated IAM CHP plants; technology, fuel split, allocation, geography and vintage may differ. Retain their allocated inventories and the approved country/global source-weight rule; add no separate heat credit. Native suppliers shared with other coal roles retain their source inventories without IAM efficiency rescaling."
   uvek_fuel_aliases:
     exact: true
     fltr:
@@ -1117,7 +1137,15 @@ Gas OC:
     witch: Secondary Energy|Electricity|Gas|w/o CCS|1
   max_efficiency: 0.5
 Gas ST:
-  uvek_aliases: {}
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Electricity, natural gas, at power plant
+      reference product: Electricity, natural gas, at power plant
+      unit: kilowatt hour
+    native_reference_amount: 1
+    native_limitations:
+    - "Approved UVEK electricity-pilot Gas ST screening proxy: complete native regional gas-power-plant inventories represent the IAM steam-cycle role per 1 kWh. Their average installed fleet does not identify a dedicated steam cycle; cycle, efficiency, geography and vintage can differ. Retain each source inventory without IAM efficiency rescaling and add no separate heat credit."
   uvek_fuel_aliases:
     exact: true
     fltr:
