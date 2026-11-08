@@ -101,10 +101,24 @@ ecoinvent defaults and calls remain unchanged.
 
 A real encrypted REMIND SSP2-NPi 2050 constructor run loaded all 11,947 source
 activities. Production `update("electricity")` still refuses the packaged
-heuristic Brightpath routes. This includes the ecoinvent source cohorts used by
+unapproved Brightpath correspondences, now individually rather than through a
+blanket resource refusal. The approval ledger pins the complete rule, shared
+reviews and transitive helper recipes for each inspected source profile. It
+admits the six approved material corrections and the existing packed stone-wool
+and older regional heavy-road reviews. Changed evidence, rule bodies or helper
+recipes require review; reference-sign evidence alone cannot approve a
+functional correspondence. This covers the ecoinvent source cohorts used by
 the CLIC graph and the 250 selected retained PV workbook records. A private,
 explicitly unapproved diagnostic reached native electricity supplier selection
 after preparing those graphs; its output was not exported or certified.
+
+The current pinned electricity recipe contains 18 roots and 159 CLIC records,
+including the approved complete 110 MW tower-CSP inventory with nine hours of
+thermal storage. The exact unsupported used-nitrate-salt reuse credit is omitted
+only from its pinned decommissioning record, with its original signed exchange,
+source hash and unquantified score effect retained in the audit. Plant, virgin
+salt and storage inputs remain. That omission does not approve the other salt
+correspondences or any further omissions.
 
 The approved native pilot preserves country voltage grids, losses,
 infrastructure and direct emissions, with IAM generation supplied at busbar
@@ -137,7 +151,23 @@ rewriting. Native nuclear efficiency changes require reviewed fuel-energy
 specifications; their absence is reported. These limitations must remain visible
 in scenario warnings and provenance.
 
-Electricity transformations remain under validation. A comparison with the packaged
-Brightpath UVEK catalog finds 45 destination identity differences; these need
-source-based investigation before resolving affected purchases. No automatic
-geographic substitution is approved by this comparison.
+Complete native biomass CHP, coal CHP and gas steam-turbine screening proxies
+retain their approved allocation, fleet and geographic limitations. No separate
+heat credit or additional storage inventory is added. Their complete allocated
+inventories are protected from role-dependent efficiency rescaling.
+
+Electricity transformations remain under validation. The latest strict public
+probe identifies 130 unapproved matching rules in its first ecoinvent 3.6 source
+cohort; this is neither the total remaining mapping count nor a count of separate
+approval questions. New equipment and same-function supply proposals remain
+pending. The private diagnostic also lacks a verified geothermal electricity
+generator, leaving 162 allocation gaps across 81 native countries and two mix
+types. Published geothermal candidates are being assessed separately; no
+unreviewed reconstruction is installed and no IAM geothermal share is removed.
+
+The 45 differences between the installed destination and the packaged catalog
+were traced to 30 European location labels, 14 US electricity-region prefixes
+and one Finnish gas-electricity name. The inspected pilot purchases linked in
+the diagnostic without rewriting source geography. These findings authorize no
+global location substitution. Certification, report generation, transformed
+Brightway export and a finite prospective LCI remain completion gates.
