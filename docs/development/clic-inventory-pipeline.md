@@ -288,6 +288,18 @@ The exact 3.6 profiles, evidence and limitations are pinned in
 unreviewed. The original heuristic policy gate and independent reverse rules
 remain intact.
 
+Two existing material decisions are registered for their actual pilot profiles:
+bulk cathode copper in source 3.9/3.12 and hot-rolled 18/8 stainless steel in
+source 3.9. Original source inventory and description hashes and the native
+2025 inventory hashes exactly match `uvek_copper_cathode_review.json` and
+`uvek_stainless_stock_review.json`. Native 2026 retains the positive kg
+references and all 13 copper/three stainless direct technosphere coordinates.
+The complete storage/production mixes, copper scrap allocation and stainless
+hot rolling remain included once. Existing geography, grade, vintage and
+allocation warnings remain explicit. These registrations add no other source
+profiles or inverse correspondences, and retain the imported native biosphere
+exclusions.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

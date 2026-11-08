@@ -5518,6 +5518,161 @@
           "fingerprint": "6f8903ad681517dc88d174346d3e30811eebda527a26eabfb9d652662d3124f3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-eb04730488ad462a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_copper_cathode_review.json",
+      "review_sha256": "f2ceeec1d45dd3d2f9e53947d27f0e471cceeec6ddf4d7bbee1bf60bf484acbd",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function, mass-unit and geographic supply proxies. Not an empty-stock or chemical-substitution approval.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for copper, cathode",
+          "reference product": "copper, cathode",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Copper, at regional storage",
+          "reference product": "Copper, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "3f756ad6543d6b64db19b9dad748ffb8193397e6645b8e54bde273e4ad543090",
+            "metadata_sha256": "d5e74cf1c9942ee79914c5fee2828a09213d4e13e84789a79c45d1f5cc1e6b1d"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "d975fe76648f33d9ff210ab5e9920ecff9fa8750d31fee519a3d1f4971dfe6d8",
+            "metadata_sha256": "04370149325a5078fa3d150f04f2522ea2511e2ee988d9036c14726028933ad4"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "b8dc2538619b2e8d6c2bb4bd0e702b5a18813cade31335ecd5bdfd6729ce3806",
+            "inventory_sha256": "eafb13c7e3440f34635bd611daf28d6b8bb28e6eb6fde633439fd2c99d4ccd51",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "d4e8f918d4e3ce87cce0f5e754493246394fd8fc345f663b90ba20ed609a39c1",
+            "inventory_sha256": "3c10ec9d116795754cbad75f35715615e837997380166e98bc35b5ee8ca48df8",
+            "reference_amount": 1
+          }
+        },
+        "native_technosphere_coordinates_unchanged_across_releases": 13
+      },
+      "limitations": [
+        "Reviewed cut-off copper supply proxy: preserve one kg of bulk cathode copper using the complete UVEK Copper, at regional storage process. The former Cathode target supplies a lithium-ion battery electrode containing NMC material and aluminium, not bulk copper metal. Both reviewed copper suppliers have positive one-kg product references. Apply factor +1 to preserve signed caller mass, uncertainty, formulas, foreground suppliers and separate emissions. The global source market is approximated by UVEK's European storage supply based on German 1994 primary/secondary copper and import/logistics data. Retain the complete target, including concentrate production, separately modelled refining, scrap allocation and transport; do not add extra transport or copper production. This is a screening commodity proxy: grade/purity, supplier mix, vintage, recycling allocation, manufacturing, freight and LCIA equivalence are not established. The native secondary-copper documentation calls for a more detailed analysis when secondary copper materially affects results. No purity, yield or concentrate-mass normalization is inferred. This is a nonempty metal supply, not an allocation-only stock, treatment service, recovery credit or battery component. Only the nine inspected cut-off profiles are reviewed. Consequential conversion remains unsupported. The separately authored UVEK-to-ecoinvent 3.12 cut-off copper-supply proxy is retained unchanged; no inverse is inferred from this forward decision.",
+        "Native UVEK 2026 has matching positive kg references and unchanged direct technosphere supplier identities and quantities relative to the independently reviewed 2025 target. The imported native biosphere exclusions remain in force. This does not establish LCIA equality or authorize other source profiles."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0e6de729964fe2c2afe788ca9f83ff44c2d1a7e9778db497304855b0c64f19a1"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5e93e9552f602fd10ac804bc9e582ffe994e7a0d46636d8f744ace5548bffb74"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-263c185cdbca7a8c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_stainless_stock_review.json",
+      "review_sha256": "de19396e8bbc05b27a68d251fc80588e970da82bf85624fd9309e89882294e9a",
+      "authorization": "Standing independently inspected matching-material, function, unit and geographic-proxy approvals. No new omission, helper or inverse.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chromium steel 18/8, at plant",
+          "reference product": "Chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "55aa246e23e1ac364486d4f634bdc1014a011d83d9aeb8473996030f21d53745",
+            "metadata_sha256": "68a9fc6ebb027123f97ab817a5991f8485bf42cb490993ec188630b9beec77f1"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "11c6f799714d601ae7d7a305b361c69715d761fcc386d8423d116ecb8272977b",
+            "inventory_sha256": "65ff1698deb6608843bd5f9228d54d8435bb0ddc09c0d44a86a8f367cdbb1ecc",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "5190617acd8067ee760df978d84bd1fc8c69d61d6a4198adf76b43a6d99020d9",
+            "inventory_sha256": "1447c9e1f5099708007c1e1f2a63ec2161058f3ef75666aec92c74fe7e71b061",
+            "reference_amount": 1
+          }
+        },
+        "native_technosphere_coordinates_unchanged_across_releases": 3
+      },
+      "limitations": [
+        "Reviewed cut-off hot-rolled 18/8 stainless material proxy. Source markets supply the inspected hot-rolled RER/RoW producers; each producer uses one kg of 18/8 stock and one kg of hot-rolling service. UVEK's RER material includes 0.63 kg converter stock, 0.37 kg electric stock and one kg of Hot rolling, steel per kg product. This is the full hot-rolled material, not the former Sheet rolling, chromium steel cold-rolling service, whose 0.0516 kg stock input covers rolling losses. Preserve incoming signed kg with factor +1; no separate rolling input is added. The RER average stock replaces source GLO/RoW supply, freight, production and technology mixes; geographic, vintage and background differences remain, and equal LCIA scores are not established. Preserve caller uncertainty, formulas, foreground suppliers and separate emissions. No treatment, recovery credit, omission, allocation reconstruction or inverse is inferred. Cross-system-model conversion remains unsupported; the existing reverse material rule is checked independently.",
+        "Native UVEK 2026 has matching positive kg references and unchanged direct technosphere supplier identities and quantities relative to the independently reviewed 2025 target. The imported native biosphere exclusions remain in force. This does not establish LCIA equality or authorize other source profiles."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5a04dac3fe435cd6e8908383ce51b8ec51669cf9046bd9751cce34df718d53f9"
+        }
+      ]
     }
   ]
 }

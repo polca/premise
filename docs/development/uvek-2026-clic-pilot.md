@@ -180,18 +180,20 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 75 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 4 |
-| 3.9 | 17 | 78 |
-| 3.12 | 8 | 44 |
+| 3.9 | 17 | 76 |
+| 3.12 | 8 | 43 |
 
-These are 202 exact-profile cases involving 178 distinct rules, after reusing
+These are 199 exact-profile cases involving 176 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
 four matching Swiss construction-waste handling services, and four dedicated
 incinerators whose full wet compositions and heating values match the source.
+Existing bulk-cathode copper and hot-rolled stainless decisions also cover
+three actual source profiles, with original source hashes independently matched.
 They describe the current review frontier, not separate approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 145 exact-profile fingerprints, with review evidence and
+ledger contains 148 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

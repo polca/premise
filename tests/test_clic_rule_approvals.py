@@ -418,6 +418,9 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-deb7a57e4b2bc6e7", "3.6"),
         ("bp-7128907317fe7019", "3.6"),
         ("bp-ff3e7e592e354217", "3.6"),
+        ("bp-eb04730488ad462a", "3.9"),
+        ("bp-eb04730488ad462a", "3.12"),
+        ("bp-263c185cdbca7a8c", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -641,6 +644,29 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "replace",
         rule,
         TechnosphereProfile("ecoinvent", "3.6", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    assert fingerprint not in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+
+
+@pytest.mark.parametrize("rule_id", ["bp-eb04730488ad462a", "bp-263c185cdbca7a8c"])
+@pytest.mark.parametrize("version", ["3.10", "3.9.1"])
+def test_existing_material_review_does_not_broaden_pilot_source_profiles(
+    rule_id, version
+):
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == rule_id)
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", version, "cutoff"),
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
     assert fingerprint not in approved_compatibility_rule_scopes(
