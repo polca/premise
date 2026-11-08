@@ -17330,6 +17330,676 @@
           "fingerprint": "24ae814c186ca7acd44e9e0842b042ce20bc62aa1d469db143673e4a41338324"
         }
       ]
+    },
+    {
+      "rule_id": "bp-08f33c5236eee787",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_fuel_heat_service_review.json",
+      "review_sha256": "7909cd50c3efd951a17148190f0ff56aad4f221d9f9cbae25156abb629dc44fb",
+      "authorization": "Standing independently inspected matching complete material/function/unit and geographic supply-service proxy approvals,reused for the enumerated fuel-combustion,industrial useful-heat andcoal-stock profiles after checking actual positive references,source formulas andnative layered service boundaries. No new fuel grade,reference conversion,helper,efficiency reconstruction,recovery model or physical omission is introduced. The separately explicit lignite-scrubber approval is not extended here.",
+      "inspection": {
+        "rule_id": "bp-08f33c5236eee787",
+        "source": {
+          "location": "GLO",
+          "name": "diesel, burned in building machine",
+          "reference product": "diesel, burned in building machine",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Diesel, burned in building machine, average",
+          "reference product": "Diesel, burned in building machine, average",
+          "unit": "megajoule"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "52fca776305dfc3fdf98d3266a998f9cbb8f34795ff33abf3e10dd6cc62546f0",
+            "inventory_sha256": "4379de8572bf33779b958a2ea5ca309ad2a90caae80359b6157c832dcc4467e6",
+            "activity_comment_sha256": "fd9ff0079593c86ddc7dd63d575a1f90c5559d1afc8d0fc3ca4e3df7e548cb91",
+            "product_information_sha256": "bbfb3ef0677cb59ea4c246eec840c6ddaeaaa7c330282e69d077b8e785fe657a",
+            "market_producers": []
+          }
+        ],
+        "basis": {
+          "reference_kind": "MJ diesel fuel combusted",
+          "source_diesel_kg_per_reference": 0.0234
+        },
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "826a0435bf9c58e50e80baff78445b6374ad49e888879d2e5bcdb705656bb98f",
+            "inventory_sha256": "b03c72599facdb7b0fcdcaac0b14c61a29f4fd193e88fa938b7fb9d777a458bc",
+            "activity_comment_sha256": "6dce45ec51e0b05e009749cf8560903164ab6a384bd7cc323730e00df523e6a7",
+            "direct_technosphere_coordinates": 4,
+            "diesel_kg_per_reference": 0.023364
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "620c902ac6ac9f1829c43b08d977bd10b19eec5dde73ac3319761759c650803d",
+            "inventory_sha256": "9517aeb77a8c9ba8708525a1240bd3b0c29c953732a48f40c5e3ffad2669408b",
+            "activity_comment_sha256": "5673ec8db501d57c6857c08a2b3954b2efd8187198e7e9f55630a64c4abe04f6",
+            "direct_technosphere_coordinates": 4,
+            "diesel_kg_per_reference": 0.023364
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same generic building-machine diesel combustion per MJ of fuel, including fuel supply, machine infrastructure, lubricating oil, operating emissions and used-oil disposal. Source definition explicitly states fuel combustion, with0.0234kg diesel/MJ; native0.023364kg/MJ agrees with its42.8MJ/kg basis within rounding. This is not MJ of mechanical/electric output and excludes hydraulic diggers, pumps and generators in the native definition. Retain the complete native2015 Swiss fleet/machine model, particle-filter assumptions and internal oil-disposal boundary once. Source geography, machine life, infrastructure and emission/waste-management models differ. Do not add separate diesel, machine or oil disposal, or apply engine efficiency to caller MJ."
+      },
+      "limitations": [
+        "Same generic building-machine diesel combustion per MJ of fuel, including fuel supply, machine infrastructure, lubricating oil, operating emissions and used-oil disposal. Source definition explicitly states fuel combustion, with0.0234kg diesel/MJ; native0.023364kg/MJ agrees with its42.8MJ/kg basis within rounding. This is not MJ of mechanical/electric output and excludes hydraulic diggers, pumps and generators in the native definition. Retain the complete native2015 Swiss fleet/machine model, particle-filter assumptions and internal oil-disposal boundary once. Source geography, machine life, infrastructure and emission/waste-management models differ. Do not add separate diesel, machine or oil disposal, or apply engine efficiency to caller MJ.",
+        "Preserve signed reference demand atfactor+1,including uncertainty,formulas and caller ownership. Distinguish MJfuel combusted,MJusefulheat andkgcoal; matching unit labels alone are insufficient. For heat services the native burner multiplier is internal; do not multiply caller heat demand.",
+        "Retain the complete native service or storage supply once. Do not add fuel,furnace,machine,ash/oil treatment or logistics twice,or apply LHV,density,temperature,capacity,lifetime or efficiency factors to the caller reference. Source/native fuel properties,allocation,operating conditions,emissions,internal residue routes,geography and vintage remain screening limitations; score effects are unquantified.",
+        "Only enumerated exactcutoff profiles are registered. Native2025/2026directtechnospherevectors match;shorter native descriptions and importedbiosphereexclusions remain explicit. This decision excludes the18.5kWgenerator fuel-basis mismatch,directSm3/Nm3gasmarkets,districtheat/CHP market boundaries and other sourceprofiles/inverse/systemmodels."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "56f5b2df0f3b6d0e2d277e978f0122df95961c13a9228c1411f9a44fb7f931fd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-155787c4bf1ee018",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_fuel_heat_service_review.json",
+      "review_sha256": "7909cd50c3efd951a17148190f0ff56aad4f221d9f9cbae25156abb629dc44fb",
+      "authorization": "Standing independently inspected matching complete material/function/unit and geographic supply-service proxy approvals,reused for the enumerated fuel-combustion,industrial useful-heat andcoal-stock profiles after checking actual positive references,source formulas andnative layered service boundaries. No new fuel grade,reference conversion,helper,efficiency reconstruction,recovery model or physical omission is introduced. The separately explicit lignite-scrubber approval is not extended here.",
+      "inspection": {
+        "rule_id": "bp-155787c4bf1ee018",
+        "source": {
+          "location": "GLO",
+          "name": "market for diesel, burned in building machine",
+          "reference product": "diesel, burned in building machine",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Diesel, burned in building machine, average",
+          "reference product": "Diesel, burned in building machine, average",
+          "unit": "megajoule"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "bffee886dc16e8853392f5cf2570fb20e7c3e734d1bd9b4e9fb49314b5f8d277",
+            "inventory_sha256": "7fa739c48a27b4e11c640990052c6c06ccb38bcd18fe31755efe1d97494a5010",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "market_producers": [
+              {
+                "identity": {
+                  "name": "diesel, burned in building machine",
+                  "reference product": "diesel, burned in building machine",
+                  "location": "GLO",
+                  "unit": "megajoule"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "49df41b188567f22208ea69c3e0ccccb5e4501f3caa5ea6364dfb576cf0156c6"
+              }
+            ]
+          }
+        ],
+        "basis": {
+          "reference_kind": "MJ diesel fuel combusted",
+          "source_diesel_kg_per_reference": 0.0234
+        },
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "826a0435bf9c58e50e80baff78445b6374ad49e888879d2e5bcdb705656bb98f",
+            "inventory_sha256": "b03c72599facdb7b0fcdcaac0b14c61a29f4fd193e88fa938b7fb9d777a458bc",
+            "activity_comment_sha256": "6dce45ec51e0b05e009749cf8560903164ab6a384bd7cc323730e00df523e6a7",
+            "direct_technosphere_coordinates": 4,
+            "diesel_kg_per_reference": 0.023364
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "620c902ac6ac9f1829c43b08d977bd10b19eec5dde73ac3319761759c650803d",
+            "inventory_sha256": "9517aeb77a8c9ba8708525a1240bd3b0c29c953732a48f40c5e3ffad2669408b",
+            "activity_comment_sha256": "5673ec8db501d57c6857c08a2b3954b2efd8187198e7e9f55630a64c4abe04f6",
+            "direct_technosphere_coordinates": 4,
+            "diesel_kg_per_reference": 0.023364
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same building-machine diesel fuel-combustion service as the inspected source3.6producer behind this market. The market supplies one MJ of that positive-reference service without a new service conversion. Actual producer diesel input is0.0234kg/MJ, compared with native0.023364kg/MJ. Retain the complete native Swiss2015 fuel/machine/lubrication/emission/disposal inventory once, with geographic, technology, infrastructure, background and internal waste-management warnings. Preserve caller MJ atfactor+1 with no engine-efficiency, mass/fuel-energy factor or separately added diesel/machine."
+      },
+      "limitations": [
+        "Same building-machine diesel fuel-combustion service as the inspected source3.6producer behind this market. The market supplies one MJ of that positive-reference service without a new service conversion. Actual producer diesel input is0.0234kg/MJ, compared with native0.023364kg/MJ. Retain the complete native Swiss2015 fuel/machine/lubrication/emission/disposal inventory once, with geographic, technology, infrastructure, background and internal waste-management warnings. Preserve caller MJ atfactor+1 with no engine-efficiency, mass/fuel-energy factor or separately added diesel/machine.",
+        "Preserve signed reference demand atfactor+1,including uncertainty,formulas and caller ownership. Distinguish MJfuel combusted,MJusefulheat andkgcoal; matching unit labels alone are insufficient. For heat services the native burner multiplier is internal; do not multiply caller heat demand.",
+        "Retain the complete native service or storage supply once. Do not add fuel,furnace,machine,ash/oil treatment or logistics twice,or apply LHV,density,temperature,capacity,lifetime or efficiency factors to the caller reference. Source/native fuel properties,allocation,operating conditions,emissions,internal residue routes,geography and vintage remain screening limitations; score effects are unquantified.",
+        "Only enumerated exactcutoff profiles are registered. Native2025/2026directtechnospherevectors match;shorter native descriptions and importedbiosphereexclusions remain explicit. This decision excludes the18.5kWgenerator fuel-basis mismatch,directSm3/Nm3gasmarkets,districtheat/CHP market boundaries and other sourceprofiles/inverse/systemmodels."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "101e3a415134511cc692ec6bf9ef7fb71014ba5678d3523614ce09cef5cdb9a2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-793f007705cc43d3",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_fuel_heat_service_review.json",
+      "review_sha256": "7909cd50c3efd951a17148190f0ff56aad4f221d9f9cbae25156abb629dc44fb",
+      "authorization": "Standing independently inspected matching complete material/function/unit and geographic supply-service proxy approvals,reused for the enumerated fuel-combustion,industrial useful-heat andcoal-stock profiles after checking actual positive references,source formulas andnative layered service boundaries. No new fuel grade,reference conversion,helper,efficiency reconstruction,recovery model or physical omission is introduced. The separately explicit lignite-scrubber approval is not extended here.",
+      "inspection": {
+        "rule_id": "bp-793f007705cc43d3",
+        "source": {
+          "location": "Europe, without Russia and Turkey",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "WEU",
+          "name": "Hard coal, at regional storage",
+          "reference product": "Hard coal, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ab7bd054b0f18e03aac69b141a16cbd4aa58427cfdfb8ebb5c8be11d49fb7466",
+            "inventory_sha256": "efa9b98d311bc15863539fe5ec6250c3a454850fc0e9b86be1ceda716e196043",
+            "activity_comment_sha256": "4377fed1104e228c33442727f67ce7298aae22fef61ef934b0332d3eba24e42c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "market_producers": [
+              {
+                "identity": {
+                  "name": "market for hard coal",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "efa9b98d311bc15863539fe5ec6250c3a454850fc0e9b86be1ceda716e196043"
+              },
+              {
+                "identity": {
+                  "name": "hard coal mine operation and hard coal preparation",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "7f943530c9bb12621f84f3c56c923f9de84a96842d2251745f1eb2bbe60babf2"
+              },
+              {
+                "identity": {
+                  "name": "hard coal, import from AU",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "5b7a9aa469604474867b22350d2d6657e6ce024655f34d0e8782b248da9d382b"
+              },
+              {
+                "identity": {
+                  "name": "hard coal, import from ID",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "db9dfa76038df4c7393bd0110a03334b834fd4061821a8ab63ff207f9e7319b3"
+              },
+              {
+                "identity": {
+                  "name": "hard coal, import from RLA",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "44c3c8d365b5102d5b6c569a55aa67870367ac5789a67401b80caf73f5bd678e"
+              },
+              {
+                "identity": {
+                  "name": "hard coal, import from RNA",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "78f0adb6cebaddd7f37c3482484261b2b88e68f0ebdcca76f480a2616f884d88"
+              },
+              {
+                "identity": {
+                  "name": "hard coal, import from RU",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "4ffb2a24549a57df6e5aeb6a70fd6381cc7adc2e4984f26c510b0affa385ef1c"
+              },
+              {
+                "identity": {
+                  "name": "hard coal, import from ZA",
+                  "reference product": "hard coal",
+                  "location": "Europe, without Russia and Turkey",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "inventory_sha256": "00fed5898ae6097a54cff0746917b088f61826b424113775f61c3b7fe989fe23"
+              }
+            ]
+          }
+        ],
+        "basis": {
+          "reference_kind": "kg hard coal at regional storage",
+          "source_producers_positive_kg_references": 8
+        },
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "dc9010d50b2ea191037f1fb03fa1c4f6e46540c7fc9abf3cbd6e5aa92af4fc8b",
+            "inventory_sha256": "f3d85658ebdac66f94ebc5d9b82ee104d6812bd63d150cc52b7b12a1272874b7",
+            "activity_comment_sha256": "dd17993424f08708f78e1b7db7033f9d8d8cd8b7e6ad6ea913197ea92f0fce60",
+            "direct_technosphere_coordinates": 3,
+            "upstream_stock": {
+              "identity": {
+                "name": "Hard coal, at regional storage",
+                "reference product": "Hard coal, at regional storage",
+                "location": "EEU",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "50566deda514a6b0835e1ce3745ca7c9c385410b0fc5dff37bd0bb1d331224b2",
+              "reference_amount": 1
+            }
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "35bb1a2564aef93c0ab61fd8aaecffe030009794936db1d74f454b3f2c327e5a",
+            "inventory_sha256": "7da03913b10e67c8e356eb17e1e5a853c54917ca812a0fdd153ab9e30229566e",
+            "activity_comment_sha256": "df0b0a04549790d4223897e90a26c68dceceb8036b6c610983c784ec588b0ae3",
+            "direct_technosphere_coordinates": 3,
+            "upstream_stock": {
+              "identity": {
+                "name": "Hard coal, at regional storage",
+                "reference product": "Hard coal, at regional storage",
+                "location": "EEU",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "694024530248ceea7a76f12aab2a8ce8ff9f8798d8c9cc360b5ae854cf2a83ac",
+              "reference_amount": 1
+            }
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same generic hard-coal stock per kg, not heat, combustion or lignite. Source regional market includes domestic/imported coal, transport, storage losses, dust and leaching. Retain the complete native WEU regional-storage chain and its upstream EEU stock, electricity, transport and mining supply, without an empty stock or an extra coal/transport input. Source import shares, coal rank/moisture/ash/heating values, regional delivery, allocation and vintage are not reconstructed. No particular grade or LCIA equivalence is established. Preserve signed kg without a heating-value, drying, density, yield or combustion multiplier."
+      },
+      "limitations": [
+        "Same generic hard-coal stock per kg, not heat, combustion or lignite. Source regional market includes domestic/imported coal, transport, storage losses, dust and leaching. Retain the complete native WEU regional-storage chain and its upstream EEU stock, electricity, transport and mining supply, without an empty stock or an extra coal/transport input. Source import shares, coal rank/moisture/ash/heating values, regional delivery, allocation and vintage are not reconstructed. No particular grade or LCIA equivalence is established. Preserve signed kg without a heating-value, drying, density, yield or combustion multiplier.",
+        "Preserve signed reference demand atfactor+1,including uncertainty,formulas and caller ownership. Distinguish MJfuel combusted,MJusefulheat andkgcoal; matching unit labels alone are insufficient. For heat services the native burner multiplier is internal; do not multiply caller heat demand.",
+        "Retain the complete native service or storage supply once. Do not add fuel,furnace,machine,ash/oil treatment or logistics twice,or apply LHV,density,temperature,capacity,lifetime or efficiency factors to the caller reference. Source/native fuel properties,allocation,operating conditions,emissions,internal residue routes,geography and vintage remain screening limitations; score effects are unquantified.",
+        "Only enumerated exactcutoff profiles are registered. Native2025/2026directtechnospherevectors match;shorter native descriptions and importedbiosphereexclusions remain explicit. This decision excludes the18.5kWgenerator fuel-basis mismatch,directSm3/Nm3gasmarkets,districtheat/CHP market boundaries and other sourceprofiles/inverse/systemmodels."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8306b22f18f736b576bbe1216b4cd8674d70d28eaa0e71fd72f4ebad747db8db"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-194bdbdd9a8f228f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_fuel_heat_service_review.json",
+      "review_sha256": "7909cd50c3efd951a17148190f0ff56aad4f221d9f9cbae25156abb629dc44fb",
+      "authorization": "Standing independently inspected matching complete material/function/unit and geographic supply-service proxy approvals,reused for the enumerated fuel-combustion,industrial useful-heat andcoal-stock profiles after checking actual positive references,source formulas andnative layered service boundaries. No new fuel grade,reference conversion,helper,efficiency reconstruction,recovery model or physical omission is introduced. The separately explicit lignite-scrubber approval is not extended here.",
+      "inspection": {
+        "rule_id": "bp-194bdbdd9a8f228f",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "heat production, heavy fuel oil, at industrial furnace 1MW",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+          "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+          "unit": "megajoule"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3b9af1817fe32b4c44b1cb92f6ee41a8c99751dccaa71259da7817661776aa69",
+            "inventory_sha256": "597107de7ed1e8d6fd41e4f96d105a36cdef56fde611aa29daa01def17042fd1",
+            "activity_comment_sha256": "19bcaa0104df422bbeadf3daa21e27ce6e7006767395f6ce052af108014f3fe6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "market_producers": []
+          }
+        ],
+        "basis": {
+          "reference_kind": "MJ useful industrial heat",
+          "source_reference_formula": "0.95 * scaling_factor",
+          "source_scaling_factor": 1.05263157894737,
+          "source_already_scaled_to_useful_heat": true
+        },
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "5e2bf71e00c2051981acb8db1dc11ae4e3836eb62e5c005bf9a4ad1393b27b8c",
+            "inventory_sha256": "fd5b9a4160acb039f2b17a052f761b5f6f5e99377a3cfddf1b71c8176774831c",
+            "activity_comment_sha256": "d8bac47bd64ea12cf1149d60b13435f9b09e7bfad163c4728892fbfe9e66cdc5",
+            "direct_technosphere_coordinates": 1,
+            "internal_burner_multiplier": 1.0512,
+            "burner_identity": {
+              "name": "Heavy fuel oil, burned in industrial furnace 1MW, non-modulating",
+              "reference product": "Heavy fuel oil, burned in industrial furnace 1MW, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "burner_inventory_sha256": "fdcecdf1cacfaf443828569e5f99b29d63c31a982d139824924f8f3df0d4ddd9"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "dae4f9a0e5361d990045ce6ab1a1403f0867bf755634d33365736b30b11af4be",
+            "inventory_sha256": "c11ca0b8c890531f2c33b8a60ae26f49a5aea2d8aa154a2251abf50d2f89ce2a",
+            "activity_comment_sha256": "ac8a7f7abb955d981fe148a3cb4790c6d671150a00450657125b5b6a938aeb6e",
+            "direct_technosphere_coordinates": 1,
+            "internal_burner_multiplier": 1.0512,
+            "burner_identity": {
+              "name": "Heavy fuel oil, burned in industrial furnace 1MW, non-modulating",
+              "reference product": "Heavy fuel oil, burned in industrial furnace 1MW, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "burner_inventory_sha256": "41ce8f2ff328d14906df096d7c72d5f6b3c58c550aee627ef4cba298765c1fd7"
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same industrial heavy-fuel-oil furnace heat per MJ useful heat at1MW. Despite legacy fuel-input wording, the actual source reference formula is0.95*scaling_factor withscaling_factor=1/0.95; source fuel and infrastructure coefficients are already scaled to one MJ heat. Native useful-heat wrapper applies its own1.0512MJ burner input internally. Preserve caller useful-heat MJ atfactor+1; do not apply either efficiency or burner factor again. Keep the complete native non-modulating burner, fuel, furnace and emissions once. Source/native fuel properties, estimated efficiency, operating temperatures, geography and vintage differ; no exact heat-quality or emission equivalence is claimed."
+      },
+      "limitations": [
+        "Same industrial heavy-fuel-oil furnace heat per MJ useful heat at1MW. Despite legacy fuel-input wording, the actual source reference formula is0.95*scaling_factor withscaling_factor=1/0.95; source fuel and infrastructure coefficients are already scaled to one MJ heat. Native useful-heat wrapper applies its own1.0512MJ burner input internally. Preserve caller useful-heat MJ atfactor+1; do not apply either efficiency or burner factor again. Keep the complete native non-modulating burner, fuel, furnace and emissions once. Source/native fuel properties, estimated efficiency, operating temperatures, geography and vintage differ; no exact heat-quality or emission equivalence is claimed.",
+        "Preserve signed reference demand atfactor+1,including uncertainty,formulas and caller ownership. Distinguish MJfuel combusted,MJusefulheat andkgcoal; matching unit labels alone are insufficient. For heat services the native burner multiplier is internal; do not multiply caller heat demand.",
+        "Retain the complete native service or storage supply once. Do not add fuel,furnace,machine,ash/oil treatment or logistics twice,or apply LHV,density,temperature,capacity,lifetime or efficiency factors to the caller reference. Source/native fuel properties,allocation,operating conditions,emissions,internal residue routes,geography and vintage remain screening limitations; score effects are unquantified.",
+        "Only enumerated exactcutoff profiles are registered. Native2025/2026directtechnospherevectors match;shorter native descriptions and importedbiosphereexclusions remain explicit. This decision excludes the18.5kWgenerator fuel-basis mismatch,directSm3/Nm3gasmarkets,districtheat/CHP market boundaries and other sourceprofiles/inverse/systemmodels."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "237f12541a0dcc96eca84230e80db67e102caaeba2372d32eed467828ce7ab93"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7dd6b6497336da23",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_fuel_heat_service_review.json",
+      "review_sha256": "7909cd50c3efd951a17148190f0ff56aad4f221d9f9cbae25156abb629dc44fb",
+      "authorization": "Standing independently inspected matching complete material/function/unit and geographic supply-service proxy approvals,reused for the enumerated fuel-combustion,industrial useful-heat andcoal-stock profiles after checking actual positive references,source formulas andnative layered service boundaries. No new fuel grade,reference conversion,helper,efficiency reconstruction,recovery model or physical omission is introduced. The separately explicit lignite-scrubber approval is not extended here.",
+      "inspection": {
+        "rule_id": "bp-7dd6b6497336da23",
+        "source": {
+          "location": "RoW",
+          "name": "heat production, natural gas, at industrial furnace >100kW",
+          "reference product": "heat, district or industrial, natural gas",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Heat, natural gas, at industrial furnace 1MW",
+          "reference product": "Heat, natural gas, at industrial furnace 1MW",
+          "unit": "megajoule"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "77a3b5e2e4516ca80f2adb003b3fff820d81f8362482d053f27217164b27b209",
+            "inventory_sha256": "c6723ce22d05b0df2ac61b3399ca760c6d7ebd00087f0319823b291c561a9007",
+            "activity_comment_sha256": "0dad3d15200188da1703ef3ffcfc449df54918403a003e635abc7eeef3a9d132",
+            "product_information_sha256": "918cd375020761234dc80365c0f133b383b7af9b3bb4832f513485c1bd3b48c8",
+            "market_producers": []
+          }
+        ],
+        "basis": {
+          "reference_kind": "MJ useful industrial heat"
+        },
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "ecc0e6d7b597513548e48b939c38cb33430f8a120188d66af4d6ee1950a0ce52",
+            "inventory_sha256": "5ccd8c8ebfd7965c28c9f08d631ff76a8a7f690b8601ea01b53881204f9a9634",
+            "activity_comment_sha256": "9d0cceaec87dd3858247fcb8006c7549aa7389ef5cc6601634a5c27b13e0e245",
+            "direct_technosphere_coordinates": 1,
+            "internal_burner_multiplier": 1.0526,
+            "burner_identity": {
+              "name": "Natural gas, burned in industrial furnace 1MWth",
+              "reference product": "Natural gas, burned in industrial furnace 1MWth",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "burner_inventory_sha256": "1e40b730a2c3774c92a1ebd7958e8d302ead67fc20409adfc9cd5d542fcf61b5"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "b19ea07c94e8e8164375677fa858046e3483f23cf700fde9588dfe8687375196",
+            "inventory_sha256": "829a47a25e671a9c8b118e0af959c60493d89daea0f0f1691dc000acf9a50f21",
+            "activity_comment_sha256": "7a844551e1a3f0778c2fd8296dd12e28927987f6dda3e0d6b5b0f0f05294723f",
+            "direct_technosphere_coordinates": 1,
+            "internal_burner_multiplier": 1.0526,
+            "burner_identity": {
+              "name": "Natural gas, burned in industrial furnace 1MWth",
+              "reference product": "Natural gas, burned in industrial furnace 1MWth",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "burner_inventory_sha256": "3e0acdff82b779d4804262b010902e2c2addfe0e1dfb18f27f22c84cd731a6aa"
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same standalone natural-gas industrial-furnace heat per MJ useful heat. The native1MWfurnace represents a plant within the source>100kWclass and supplies one MJ heat with its own1.0526MJburner input internally. Both include fuel, furnace, electricity and operating emissions, and the native producer excludes heat-distribution infrastructure. Preserve caller MJ atfactor+1 without a second efficiency, capacity or fuel-volume conversion. Source gas geography/properties/reference conventions, operating temperatures, allocation and vintage can differ; use the complete native heat service rather than claiming equality of internal gas volumes. This does not approve direct Sm3->Nm3 gas-market mappings."
+      },
+      "limitations": [
+        "Same standalone natural-gas industrial-furnace heat per MJ useful heat. The native1MWfurnace represents a plant within the source>100kWclass and supplies one MJ heat with its own1.0526MJburner input internally. Both include fuel, furnace, electricity and operating emissions, and the native producer excludes heat-distribution infrastructure. Preserve caller MJ atfactor+1 without a second efficiency, capacity or fuel-volume conversion. Source gas geography/properties/reference conventions, operating temperatures, allocation and vintage can differ; use the complete native heat service rather than claiming equality of internal gas volumes. This does not approve direct Sm3->Nm3 gas-market mappings.",
+        "Preserve signed reference demand atfactor+1,including uncertainty,formulas and caller ownership. Distinguish MJfuel combusted,MJusefulheat andkgcoal; matching unit labels alone are insufficient. For heat services the native burner multiplier is internal; do not multiply caller heat demand.",
+        "Retain the complete native service or storage supply once. Do not add fuel,furnace,machine,ash/oil treatment or logistics twice,or apply LHV,density,temperature,capacity,lifetime or efficiency factors to the caller reference. Source/native fuel properties,allocation,operating conditions,emissions,internal residue routes,geography and vintage remain screening limitations; score effects are unquantified.",
+        "Only enumerated exactcutoff profiles are registered. Native2025/2026directtechnospherevectors match;shorter native descriptions and importedbiosphereexclusions remain explicit. This decision excludes the18.5kWgenerator fuel-basis mismatch,directSm3/Nm3gasmarkets,districtheat/CHP market boundaries and other sourceprofiles/inverse/systemmodels."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e8846c0b3f06c44ce90a4ce6ca34eb3773e59b07727d111c18b01f14132aeadc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-eb6086f7739eb966",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_fuel_heat_service_review.json",
+      "review_sha256": "7909cd50c3efd951a17148190f0ff56aad4f221d9f9cbae25156abb629dc44fb",
+      "authorization": "Standing independently inspected matching complete material/function/unit and geographic supply-service proxy approvals,reused for the enumerated fuel-combustion,industrial useful-heat andcoal-stock profiles after checking actual positive references,source formulas andnative layered service boundaries. No new fuel grade,reference conversion,helper,efficiency reconstruction,recovery model or physical omission is introduced. The separately explicit lignite-scrubber approval is not extended here.",
+      "inspection": {
+        "rule_id": "bp-eb6086f7739eb966",
+        "source": {
+          "location": "RoW",
+          "name": "heat production, at hard coal industrial furnace 1-10MW",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Heat, at hard coal industrial furnace 1-10MW",
+          "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+          "unit": "megajoule"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "33ae062681711fff3462e098814fd3cb2e56e09625f92e3426e0a17aa6e34d3d",
+            "inventory_sha256": "dd1e30e372e39a67d81a36d2d643b7c45c996ca5cc8c2ff40ead34c243b25794",
+            "activity_comment_sha256": "a79bd105f5283a02e8863db5b7e63356ee2b47f0999d087aaf7cb5004458798e",
+            "product_information_sha256": "4466c21ba5edf975f97afc57000ebea5a6d04f489358bc4562ca8ca8aecbaac2",
+            "market_producers": []
+          }
+        ],
+        "basis": {
+          "reference_kind": "MJ useful industrial heat"
+        },
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "d8db1224b5f36e600225fd04eeedd1b778576673f834725d4178481dd56c2106",
+            "inventory_sha256": "544365e152664a02f1b68dccbd5c3b3c9651aa0a3d5b6f5760f49a58e13e9686",
+            "activity_comment_sha256": "24bdca0f6a2aae0aa4ece9b50bd00a472acc7b0358ccb1513c9fed131509e956",
+            "direct_technosphere_coordinates": 1,
+            "internal_burner_multiplier": 1.25,
+            "burner_identity": {
+              "name": "Hard coal, burned in industrial furnace 1-10MW",
+              "reference product": "Hard coal, burned in industrial furnace 1-10MW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "burner_inventory_sha256": "ee9e6fd3ef92d1406b0cdcd1dc74005c0b7fdcd66164e6bc003ba78213334654",
+            "weighted_coal_ash_and_furnace_coordinates_match_source": true
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "megajoule",
+            "metadata_sha256": "656de523beae8e05a7401c758a0b8d49b1453a9e84e036d4447b53fb3d4b60b3",
+            "inventory_sha256": "c7e76d2f9c3104f175e2f0f3795ce9c9777654586bb175b2785a0f4c3baeb3d7",
+            "activity_comment_sha256": "966bee7d3b22287477275e8680026cfd8dd86f33acc68b33e6c8faa331592930",
+            "direct_technosphere_coordinates": 1,
+            "internal_burner_multiplier": 1.25,
+            "burner_identity": {
+              "name": "Hard coal, burned in industrial furnace 1-10MW",
+              "reference product": "Hard coal, burned in industrial furnace 1-10MW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "burner_inventory_sha256": "d01a8043538a1bcad5ecee9ad902b83211f1ab057e9167ec38ebe8e26a206dff",
+            "weighted_coal_ash_and_furnace_coordinates_match_source": true
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same industrial hard-coal stoker-boiler heat per MJ useful heat for the1-10MWclass. Native wrapper applies1.25MJcombustion per MJheat (80%netefficiency). Actual weighted native coal mass, ash disposal and furnace reference equal the source quantities after aggregating regional suppliers. Retain the complete native heat/burner/coal/ash infrastructure once, with source/native historical German technology and published missing boiler-water-emission data. Preserve caller heat MJ atfactor+1 without another1.25multiplier, coal-LHV conversion, extra furnace or ash treatment. Source geography, background supply, coal properties and biosphere coverage differ."
+      },
+      "limitations": [
+        "Same industrial hard-coal stoker-boiler heat per MJ useful heat for the1-10MWclass. Native wrapper applies1.25MJcombustion per MJheat (80%netefficiency). Actual weighted native coal mass, ash disposal and furnace reference equal the source quantities after aggregating regional suppliers. Retain the complete native heat/burner/coal/ash infrastructure once, with source/native historical German technology and published missing boiler-water-emission data. Preserve caller heat MJ atfactor+1 without another1.25multiplier, coal-LHV conversion, extra furnace or ash treatment. Source geography, background supply, coal properties and biosphere coverage differ.",
+        "Preserve signed reference demand atfactor+1,including uncertainty,formulas and caller ownership. Distinguish MJfuel combusted,MJusefulheat andkgcoal; matching unit labels alone are insufficient. For heat services the native burner multiplier is internal; do not multiply caller heat demand.",
+        "Retain the complete native service or storage supply once. Do not add fuel,furnace,machine,ash/oil treatment or logistics twice,or apply LHV,density,temperature,capacity,lifetime or efficiency factors to the caller reference. Source/native fuel properties,allocation,operating conditions,emissions,internal residue routes,geography and vintage remain screening limitations; score effects are unquantified.",
+        "Only enumerated exactcutoff profiles are registered. Native2025/2026directtechnospherevectors match;shorter native descriptions and importedbiosphereexclusions remain explicit. This decision excludes the18.5kWgenerator fuel-basis mismatch,directSm3/Nm3gasmarkets,districtheat/CHP market boundaries and other sourceprofiles/inverse/systemmodels."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "71c4eaad249268c83750a32688b28f2f6a96fc0d3db72b211be3d392574ebd18"
+        }
+      ]
     }
   ]
 }

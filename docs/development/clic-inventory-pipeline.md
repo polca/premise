@@ -533,6 +533,18 @@ separate caller stack emissions remain unchanged, with no recovery or avoided-SO
 credit. Six focused checks and the native supplier LCI pass, with unchanged
 scientific hashes. Approval does not extend to other source profiles.
 
+`uvek_pilot_fuel_heat_service_review.json` adds two building-machine diesel
+cases, hard-coal stock and three industrial-furnace heat producers. Diesel
+references are MJ of fuel combusted; heat references are MJ of useful heat.
+The heavy-fuel-oil source already scales its reference by `0.95 * (1/0.95)`.
+Native heat wrappers retain their own burner multipliers internally, so caller
+heat demand remains at factor +1. Coal stock keeps kg without an LHV factor.
+Complete native machinery, fuel supply, furnace and residue treatment remain
+included once, with explicit technology, operating-condition and background
+limitations. Thirty-one focused checks pass, including unresolved generator
+and gas-volume refusals at this checkpoint. Five native supplier LCIs are finite
+with unchanged scientific hashes. No raw migration rule changes in this group.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

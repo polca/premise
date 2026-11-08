@@ -541,6 +541,12 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-a3a951644bd5ed9c", "3.6"),
         ("bp-2d474e1cc4ae1395", "3.8"),
         ("bp-7b9f2134fcb65b6d", "3.6"),
+        ("bp-08f33c5236eee787", "3.12"),
+        ("bp-155787c4bf1ee018", "3.6"),
+        ("bp-793f007705cc43d3", "3.6"),
+        ("bp-194bdbdd9a8f228f", "3.6"),
+        ("bp-7dd6b6497336da23", "3.12"),
+        ("bp-eb6086f7739eb966", "3.12"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -793,6 +799,12 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-a3a951644bd5ed9c",
         "bp-2d474e1cc4ae1395",
         "bp-7b9f2134fcb65b6d",
+        "bp-08f33c5236eee787",
+        "bp-155787c4bf1ee018",
+        "bp-793f007705cc43d3",
+        "bp-194bdbdd9a8f228f",
+        "bp-7dd6b6497336da23",
+        "bp-eb6086f7739eb966",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1048,6 +1060,70 @@ def test_complete_supply_service_keeps_demand_and_cached_basis_warning(
             and d["details"]["rule_id"] == rule_id
         )
         assert warning_term in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-194bdbdd9a8f228f", "3.6"),
+        ("bp-7dd6b6497336da23", "3.12"),
+        ("bp-eb6086f7739eb966", "3.12"),
+    ],
+)
+def test_useful_heat_proxy_keeps_caller_mj_without_repeating_burner_factor(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    resolved.activities[0]["exchanges"][1]["amount"] = 2.5
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 2
+        heat = activity["exchanges"][1]
+        assert heat["amount"] == 2.5 and heat["unit"] == "megajoule"
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+        )
+        assert "native burner multiplier is internal" in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-07968f74bde91ad7", "3.6"),
+        ("bp-6cada1fa986bcf8b", "3.9"),
+        ("bp-7fe8308839f735bb", "3.6"),
+    ],
+)
+def test_unresolved_generator_and_gas_bases_still_refuse_migration(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
+        )
     assert resolved.activities == before
 
 
