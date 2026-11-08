@@ -5673,6 +5673,907 @@
           "fingerprint": "5a04dac3fe435cd6e8908383ce51b8ec51669cf9046bd9751cce34df718d53f9"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e1c5c137f358792d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-e1c5c137f358792d",
+        "source": {
+          "location": "GLO",
+          "name": "market for acrylonitrile-butadiene-styrene copolymer",
+          "reference product": "acrylonitrile-butadiene-styrene copolymer",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+          "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "592b238c697ebbf0e1688bafb88c4cf8e5247df0cc5bc3a7e2ea4ec1cc5576d5",
+        "source_inventory_sha256": "f448985c8bb2e1f9d81f1e246539aa6debfe77f3bca32a8258dc644774d85a3d",
+        "source_activity_comment_sha256": "5a92c9f5bd0f9ff4beec247cb1d00e9c89c517ffcd76e33e78d875ef46a149d4",
+        "source_product_information_sha256": "be6eba1da1d572a754c0ff17da84d62376de5bbb4d6d253a3e9277a323f51114",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "acrylonitrile-butadiene-styrene copolymer production",
+              "reference product": "acrylonitrile-butadiene-styrene copolymer",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "1056edbff7cf02de88021b098ceba7ae81f358c6b192fb830d9061a474db1d0c"
+          },
+          {
+            "identity": {
+              "name": "acrylonitrile-butadiene-styrene copolymer production",
+              "reference product": "acrylonitrile-butadiene-styrene copolymer",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "1056edbff7cf02de88021b098ceba7ae81f358c6b192fb830d9061a474db1d0c"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "08a2f3cf7ee2dd6a8a94dc61790161b2f4c5d3f38015cb1898b8b65fa1942110",
+            "inventory_sha256": "568f28b1cc79248f76eaf9aaed13302e524740ec230ae32579bf97a1083d4f46",
+            "activity_comment_sha256": "87653195700ad8c8570bb6f21332d2ad4d6ae24c1a42b9fccc62cfb1f506bd58",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "f8d1fe4d0fa5d65ae274421796df7bbe33c0a42ea6bcd28dcb00ae135890a266",
+            "inventory_sha256": "a208c2610d35b021bfa2b8251704865a80e028828af9b18a4a40cf38565001e0",
+            "activity_comment_sha256": "c492a3c25ca65fd05aced89d523d02775ac5ad43360fd086c9c7c97503af8059",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 8,
+        "conversion_factor": 1,
+        "boundary": "Same virgin ABS polymer, with source and native documentation describing emulsion polymerization of its three monomers. Retain the complete native material supply per kg; no moulding or additional granulate is added."
+      },
+      "limitations": [
+        "Same virgin ABS polymer, with source and native documentation describing emulsion polymerization of its three monomers. Retain the complete native material supply per kg; no moulding or additional granulate is added.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c08e0640d8e089a330f73750f3f4c9bb8c63aef18fe10ef5feae0a94db1a3c98"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6c86005a2117819c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-6c86005a2117819c",
+        "source": {
+          "location": "RER",
+          "name": "market for dimethyl sulfate",
+          "reference product": "dimethyl sulfate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Dimethyl sulphate, at plant",
+          "reference product": "Dimethyl sulphate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "288490f7c9c385a383bf77cb51698c840dae5a5eea05a01f70c68d4eb5751a40",
+        "source_inventory_sha256": "70e35e40d88ad1a849d38fb572958084558b7d7976ef743b630512194c833af1",
+        "source_activity_comment_sha256": "fa0f49362841a7feb4e5dd67f7c7d4ebfebd49d7d8740221db2ff77e5b30a975",
+        "source_product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "dimethyl sulfate production",
+              "reference product": "dimethyl sulfate",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "24f2c76b5829087238804a34cf67066d1ca0e5b47cdbc1f0acf772990f1a024d"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "5f815cbcca9949da2eb3bd894c875a3c5b99667778ddf506c4f08a6aa7bb2666",
+            "inventory_sha256": "a1d39ad177ec7d282ffeaa4f880fbcf315822f9b50eee8c74ba69c36fe5a320a",
+            "activity_comment_sha256": "9c57a90d7eedd86e3e9e800e83b510278a613c429117076d06a7a4525d6e89c0",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "def210cc348ee452dd395133a0ec925afb983a8079525ffdb793db30a14b53f0",
+            "inventory_sha256": "50f667888014380578ac7d66fabb251fb39d2834453256b9678d9c86dd89bb4e",
+            "activity_comment_sha256": "2eb270913138a040efa198a63fa565fcd9c26c4e04910b3ac18074aecdd814a4",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 7,
+        "conversion_factor": 1,
+        "boundary": "Same liquid dimethyl sulphate, CAS 77-78-1. Source producer and native descriptions specify the same dimethyl-ether/sulphur-trioxide route and 95% process yield. That yield is internal to production, not a solution concentration: no 1/0.95 correction is applied. Preserve the native documented weak process/emission estimates and omitted solid wastes."
+      },
+      "limitations": [
+        "Same liquid dimethyl sulphate, CAS 77-78-1. Source producer and native descriptions specify the same dimethyl-ether/sulphur-trioxide route and 95% process yield. That yield is internal to production, not a solution concentration: no 1/0.95 correction is applied. Preserve the native documented weak process/emission estimates and omitted solid wastes.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a56be0177926e4cd9f5ce59e2aebdbf3503c208a89e3a383e151a17310a15667"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d8aa748d3c6d8667",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-d8aa748d3c6d8667",
+        "source": {
+          "location": "GLO",
+          "name": "market for ethylene glycol",
+          "reference product": "ethylene glycol",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Ethylene glycol, at plant",
+          "reference product": "Ethylene glycol, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "aa81435f9fefe303e41b33334a27b17a55bd2d7a7b1c9542822675ba7ea73bf2",
+        "source_inventory_sha256": "37b8e6a1a1a39a1459a97819b1e8c20564b3c3daee3f8cbd56ec560d3fb9dae5",
+        "source_activity_comment_sha256": "478b332684c4992b3bc4ca61a310e8ce2c9751d2cb9560d816b2a55e16861d02",
+        "source_product_information_sha256": "857b9e524491c6804e84675d60d6459e19f6a44fe08b77c21d85c5fedbfd812a",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "ethylene glycol production",
+              "reference product": "ethylene glycol",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "476eb33c197ff692d83c8640fd7af5e2877a4a83b2f2b6aec30b8210bdd7a201"
+          },
+          {
+            "identity": {
+              "name": "ethylene glycol production",
+              "reference product": "ethylene glycol",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "4eba189087070786c37d3154bfd6e32bf37f9d7aa6b8e7428ad3f8996b1f2312"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "a6a6402a32fe83763b1d93fde73347705c0e3a3060d4a3eb401551f3db6d249e",
+            "inventory_sha256": "1e5b6f631b97d37afdd034de2b0c44cb456df87527737eed64b948791c7a7239",
+            "activity_comment_sha256": "183d449eb636e420f4c53f236c879b6eb9df2b64c28b5d2e76d69b753ee0cd89",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "b0714920f34ddf27bc66943883ff9e2cbbdd027c022281aa3944a16031ecd2b6",
+            "inventory_sha256": "3c940d41647e765e966142f64e19d60a0018abf0700877017228e0d72e3151d4",
+            "activity_comment_sha256": "248d67a4cac33eb5714c4965574c022474ee72ddd313e0171e33a39d84de633d",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 8,
+        "conversion_factor": 1,
+        "boundary": "Same neat monoethylene glycol material from ethylene oxide and water, not an antifreeze/water mixture. Source and native dry/wet product references are per kg of glycol; retain the complete native integrated production allocation and documented 2023 methane update, with no coproduct-ratio or water-content correction."
+      },
+      "limitations": [
+        "Same neat monoethylene glycol material from ethylene oxide and water, not an antifreeze/water mixture. Source and native dry/wet product references are per kg of glycol; retain the complete native integrated production allocation and documented 2023 methane update, with no coproduct-ratio or water-content correction.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1a4406fc6363d3a1fd7d457d3e683b83998ad87fcbf86d4387ad8a8a2a3cb310"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-365d3df4ba55618f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-365d3df4ba55618f",
+        "source": {
+          "location": "GLO",
+          "name": "market for extrusion, plastic pipes",
+          "reference product": "extrusion, plastic pipes",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Extrusion, plastic pipes",
+          "reference product": "Extrusion, plastic pipes",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "0944b146ebeab91d80209dfeb5cdafa6902674b0b65ac3caa455e05a3cf56cee",
+        "source_inventory_sha256": "f12ff2728180079a92995fc13f7d2de5a801c41f97ee61d630691633589e9929",
+        "source_activity_comment_sha256": "cede8b06cd7b3c5ee7565d01a4219139464ea56bc17490d05c54ae705ed1f11c",
+        "source_product_information_sha256": "9f8653ed5d2d31decfc47abf4c0b7ea5edf6b583060e1aa53e9fbaf964ad9324",
+        "source_neat_dry_kg_basis": false,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "extrusion, plastic pipes",
+              "reference product": "extrusion, plastic pipes",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "66337830cb175d80da4892a910b41ab78a12de414022cd377767832bc252034f"
+          },
+          {
+            "identity": {
+              "name": "extrusion, plastic pipes",
+              "reference product": "extrusion, plastic pipes",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "bedcbe3231ff4bf7dc0f56e365efd86d78e0e45339eda5f14bf05d13264ef3bd"
+          },
+          {
+            "identity": {
+              "name": "extrusion, plastic pipes",
+              "reference product": "extrusion, plastic pipes",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "bedcbe3231ff4bf7dc0f56e365efd86d78e0e45339eda5f14bf05d13264ef3bd"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "1db80897bb3947d9d7068bb5f68dadd32b232357f901649a84707777d38bcee2",
+            "inventory_sha256": "11182ba88ab3c482a4b8813806f3936e4db13448f57e99bed1adf4c1107cc21f",
+            "activity_comment_sha256": "b75383aa199a1c8036ebc21ba6f6a1da749ad0634f5734b67adcd07d60cfc843",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "db1f93da3b144b6291277c8fd96f12f0c2249e0fc00c08c8212d90ffffc004ad",
+            "inventory_sha256": "e245f1bb86c4fb53f40a160385eddcbe1dc2e82a3bcc791b2d59c7bea9309416",
+            "activity_comment_sha256": "dbac478c86e251c6a8f9f7ac1bf53ef38069da694d0379675fee56ea442370a3",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 13,
+        "conversion_factor": 1,
+        "boundary": "Same plastic-pipe extrusion service: one kg of process corresponds to 0.996 kg of extruded pipe in both source producer and native documentation. Bulk converted polymer is excluded from the service. Retain separately listed caller polymer and the native small loss/auxiliary inputs; add no full kg of plastic and apply no 1/0.996 output-yield correction."
+      },
+      "limitations": [
+        "Same plastic-pipe extrusion service: one kg of process corresponds to 0.996 kg of extruded pipe in both source producer and native documentation. Bulk converted polymer is excluded from the service. Retain separately listed caller polymer and the native small loss/auxiliary inputs; add no full kg of plastic and apply no 1/0.996 output-yield correction.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cd1ad3bbafd74b20c0ddcfd385f79eb2c3b6374c08644a9bb90fe49a0bdd9299"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b80976e787fd9cd2",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-b80976e787fd9cd2",
+        "source": {
+          "location": "GLO",
+          "name": "market for injection moulding",
+          "reference product": "injection moulding",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Injection moulding",
+          "reference product": "Injection moulding",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "0a0bd7393585d0a665081b15b511ecdc013b6350e01695c464e4bf3211fb93b4",
+        "source_inventory_sha256": "0e4fed26be384bdb8f6ee28b88544eddc747a1d7683fd79bc24fa0e73d8a7042",
+        "source_activity_comment_sha256": "c141a8b613e5df8e1186abbda9cf9ae6f4d903003ba34320ee96048624517063",
+        "source_product_information_sha256": "5ced7882e792f0182047307d94b444982576117e01c3d550e3519cb1f2358d9c",
+        "source_neat_dry_kg_basis": false,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "injection moulding",
+              "reference product": "injection moulding",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "66798c75cf34d1f2e72549d9b7f865c3cb0a976e0b548555e35e4cb80816633a"
+          },
+          {
+            "identity": {
+              "name": "injection moulding",
+              "reference product": "injection moulding",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "04b158f6f0979842004e7899badc715f04e8686ff15bd7a91919722ffdb15d2d"
+          },
+          {
+            "identity": {
+              "name": "injection moulding",
+              "reference product": "injection moulding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "04b158f6f0979842004e7899badc715f04e8686ff15bd7a91919722ffdb15d2d"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "e3b9274c37f0f0775f3a88d793be84910ab1e954c6703cc62d6d4a87af284cf0",
+            "inventory_sha256": "f09114a18d1501db8dbc9d87b512627b090ba7dfe59889afd85661de198f2f3e",
+            "activity_comment_sha256": "c259a915138da4ecab463d7d8c4a12ef86e03ba55cebe0a21f5ef17a93f82d17",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "f4b2c135f44c9f37de7acacdefd7138a08088247632cef07a9f86f194c1d6697",
+            "inventory_sha256": "201ec7839ed9fe0adac16731db08c9ccd4844032d6b286aed622dc00f0c1ffae",
+            "activity_comment_sha256": "c1692cc93c78898fb6fccd49d1182eca08b78cc98d3ca4e1fd0a85ba3a7d7062",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 17,
+        "conversion_factor": 1,
+        "boundary": "Same injection-moulding service: one kg of process corresponds to 0.994 kg of moulded plastic in both source producer and native documentation. Bulk converted polymer is excluded from the service. Retain separately listed caller polymer and native small loss/auxiliary inputs; add no full kg of plastic and apply no 1/0.994 output-yield correction."
+      },
+      "limitations": [
+        "Same injection-moulding service: one kg of process corresponds to 0.994 kg of moulded plastic in both source producer and native documentation. Bulk converted polymer is excluded from the service. Retain separately listed caller polymer and native small loss/auxiliary inputs; add no full kg of plastic and apply no 1/0.994 output-yield correction.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6b7cfaa36445bfdb227768ce5889f4d395f180fffb2c465b5ea516c669f94ee3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1d02d57e06e24b45",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-1d02d57e06e24b45",
+        "source": {
+          "location": "RER",
+          "name": "market for nylon 6",
+          "reference product": "nylon 6",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Nylon 6, at plant",
+          "reference product": "Nylon 6, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "e2c3ff681cc97811958b4a01f49077f447fc5bcb76bd88b39fe48726ff8d9954",
+        "source_inventory_sha256": "6c9108a1d24e9921411576ead4c71427edfc254120840929b96ac30b87c5c8f8",
+        "source_activity_comment_sha256": "2d85e262f3fd52c9dc33c70fd1e3c6137cc24990986b52aa89754962333c7c18",
+        "source_product_information_sha256": "77585b5ee1afabb70289bd8fa5fa2155c71840e732f86d39d87caf7aeb59115b",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "nylon 6 production",
+              "reference product": "nylon 6",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "2da8968d76d1477948e557ad9076f9b03be89730f4f68e96598922d9d48b7a07"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "5a149fc66e220b4708e20a4b71cf66e89dc4c53537670a15091bfd6d375625a3",
+            "inventory_sha256": "6bcd7488d2f2a4a553e4c65c81bbf81631306bbb6d327a25d237215f672b1e9d",
+            "activity_comment_sha256": "3005ad6d7a70a4645c11242e023820d227cc059a681adfa1b4e958b3a7b28009",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "481773ab4423e1f65e87895e368cd6c59698a446ade1a10d326c9ac023f417dc",
+            "inventory_sha256": "136028d26601c34bb7aa1fa8a7daa93723461405ce1a0591b6e38b52b07a7dc4",
+            "activity_comment_sha256": "d1a8e5f94e279320edc50cbb2b53fdda9dd7f9c4aee1b067f109938b13e1091c",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 8,
+        "conversion_factor": 1,
+        "boundary": "Same Nylon 6 polymer from caprolactam, not Nylon 66 or fabricated nylon parts. Retain the complete native polymer inventory per kg without adding a converting operation."
+      },
+      "limitations": [
+        "Same Nylon 6 polymer from caprolactam, not Nylon 66 or fabricated nylon parts. Retain the complete native polymer inventory per kg without adding a converting operation.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7e608699e53b3098d132fe95ffa32d09c861862038d98bdd186230bb6d6fd125"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bf1073514e708c92",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-bf1073514e708c92",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyethylene, low density, granulate",
+          "reference product": "polyethylene, low density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, LDPE, granulate, at plant",
+          "reference product": "Polyethylene, LDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "d987f1cde6d68445c28f7b4e69c9ed3fa5dff9804701dbadbee2ee399bb05db8",
+        "source_inventory_sha256": "bb9f32e78f0cc1cfd2e9833dbe18799219d6f3f42377ebd60cb5509b2ff70549",
+        "source_activity_comment_sha256": "6d57ed3d5aa81be60edc4aa68c59cbcbccf6e4eaab051b02d3fc55622a2f12e6",
+        "source_product_information_sha256": "11be035eaf264228c6bc0000abae74d78c558afdfd3862c1eaf8fd7a3810f37e",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "polyethylene production, low density, granulate",
+              "reference product": "polyethylene, low density, granulate",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "a4af013ddadaec9ccc37565891a5c9ca4d86a689b9bfae80539554b23b12f0cc"
+          },
+          {
+            "identity": {
+              "name": "polyethylene production, low density, granulate",
+              "reference product": "polyethylene, low density, granulate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "8b71d08ced0ef0e5ab8c2aab1bf30df97521b3804735ec84ee9080dd506e4d68"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "0f344e80de496a2c54d96d2c9334075384c335b949df81a4e645c13237e9496b",
+            "inventory_sha256": "ced92136881164ac0c028e70e0865a3b51100c264b3a24044dea665db05d5bd3",
+            "activity_comment_sha256": "cb33f720394bac7bda111725ce755f4f91204af3319318f2973f57af56a2e4ae",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "6309d5fe89f8e46b140904333dc32847c24947d001c913fb76de821c051d3b4b",
+            "inventory_sha256": "f82e8ec63e4bbf4dad041c0a832b876f3f54aa607b94210fc48b9cf94c922748",
+            "activity_comment_sha256": "94d2dac0b641ae709fdabb05397a1837cde73030b4116e7aa043bbcd16117d6c",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 16,
+        "conversion_factor": 1,
+        "boundary": "Same virgin low-density polyethylene granulate, not HDPE or fabricated film. Native upstream ethylene, energy, feedstock transport, waste treatment and the documented 2023 methane update remain included. No extrusion or extra polymer supply is added."
+      },
+      "limitations": [
+        "Same virgin low-density polyethylene granulate, not HDPE or fabricated film. Native upstream ethylene, energy, feedstock transport, waste treatment and the documented 2023 methane update remain included. No extrusion or extra polymer supply is added.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fc9d1d5a7f3c4605c6286f08e812ed615fb2a53dd1562c891b46fa1555c57344"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-02c0322dff7270a9",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-02c0322dff7270a9",
+        "source": {
+          "location": "GLO",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polypropylene, granulate, at plant",
+          "reference product": "Polypropylene, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "02319139c7bb4ea02af5905ff15473d0e705c0fc95054e8734f1f5b235484d3a",
+        "source_inventory_sha256": "3b65f64c0cadb928ddbd0d3024ad63971b4311cf499a112b5adf9dc14207ebaa",
+        "source_activity_comment_sha256": "9999707756050423f555c3f0ccdf09a0e7681bef6646d95d5257dd4333931d63",
+        "source_product_information_sha256": "88f66cb8f0fc7e85ae1e38259dd1189a460840a3d8c9b0bfbc75a17458988280",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "polypropylene production, granulate",
+              "reference product": "polypropylene, granulate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "42b1be23e6ffb1557cbcbec14ec615a474da58060aaf2ae3d0674317be4d6223"
+          },
+          {
+            "identity": {
+              "name": "polypropylene production, granulate",
+              "reference product": "polypropylene, granulate",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "0f15019505dd8df4a358e45af3171a7881f33711d8f0d689689fb6deccc721c3"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "b5d9262bb3281712d6c5a5c39040aad32a13f4fd4e68fc0855a017fb624d8d4c",
+            "inventory_sha256": "cc3b191801fca4661abae819d71a47b91df7117e6cd5433f66514f400712cd2a",
+            "activity_comment_sha256": "a08967029dc8b7025a6e57456ce758062c3654103ee6fb024c9af441818dd9e4",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "9a3eb74ee8d4240173d85b01107302ab9008ab565f273d20b731a04e00ee8687",
+            "inventory_sha256": "140ccf0cddfb247198a94e69eeb635c3d817fae06e861da251b650e6f75f946b",
+            "activity_comment_sha256": "b412bc8b6d716cf8cbcd576b1bd00fce94bab8072e3f38142da697e73447151f",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 17,
+        "conversion_factor": 1,
+        "boundary": "Same virgin polypropylene granulate. Native upstream propylene, energy, feedstock transport, waste treatment and the documented 2023 methane update remain included. No finished plastic product or separate polymerization burden is added."
+      },
+      "limitations": [
+        "Same virgin polypropylene granulate. Native upstream propylene, energy, feedstock transport, waste treatment and the documented 2023 methane update remain included. No finished plastic product or separate polymerization burden is added.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d7a274a41b562cc34df059476173b743121010c9420bc1aa82d8d02d647ab0f1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-46961b2d2543df96",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-46961b2d2543df96",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyvinylfluoride",
+          "reference product": "polyvinylfluoride",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "US",
+          "name": "Polyvinylfluoride, at plant",
+          "reference product": "Polyvinylfluoride, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "4ba05246d4d299d14a7b44629d95f58c5dad7bffa42bf5e24071ca3c5b0b4159",
+        "source_inventory_sha256": "d19b57e48f662e9aaed47a3ed19eaa51f2fbe6062ebf97deb45c314e710c8f50",
+        "source_activity_comment_sha256": "94e701237b5edc076c875c6350ca660eb68069371356fc03215d8168bfb8c0b8",
+        "source_product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [
+          {
+            "identity": {
+              "name": "polyvinylfluoride production",
+              "reference product": "polyvinylfluoride",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "c89bc37a8afdafaf64881e2c8e7ecaa909473d6bc515b4c44cd8e3a58d99d85f"
+          },
+          {
+            "identity": {
+              "name": "polyvinylfluoride production",
+              "reference product": "polyvinylfluoride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "comment_sha256": "c89bc37a8afdafaf64881e2c8e7ecaa909473d6bc515b4c44cd8e3a58d99d85f"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "63b8302d42fa4207021a9c98eeea6fe20d98b2612b29390e510ea7c555b82b77",
+            "inventory_sha256": "96b9e42dbac40c76ac4ee98c33c4a0352ad7499f7c44b143829d4aef0d49ee27",
+            "activity_comment_sha256": "5d697db48c7241b6dfba9839ba0a380c4c4a4f5171d6677a1238243d08548673",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "09af3dabc2d98b94b14e1496b60034c58feea103bacb07644c6f1bbef780e535",
+            "inventory_sha256": "fe70cf75bd7d404e3505959f5e914cb186282d49a0d42bc21a64ef9fb44d8a41",
+            "activity_comment_sha256": "f748b15067f1ee05e3f552259df716a4fad87ec8fb627e27d86349c37f27fa6e",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 5,
+        "conversion_factor": 1,
+        "boundary": "Same polyvinylfluoride, CAS 24981-14-4, native formula C2H3F. This is PVF material, not PVDF, a complete backsheet, film extrusion or lamination. Retain the complete cumulative native inventory, including its documented incomplete air/water emission coverage."
+      },
+      "limitations": [
+        "Same polyvinylfluoride, CAS 24981-14-4, native formula C2H3F. This is PVF material, not PVDF, a complete backsheet, film extrusion or lamination. Retain the complete cumulative native inventory, including its documented incomplete air/water emission coverage.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "25e91b3b5bb1a8f147b6dfd5935cc746ba11e0a361c43267431f65181162fd45"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-374adbf07a0ef554",
+      "operation": "replace",
+      "mapping_method": "product_checked",
+      "review_path": "export/uvek_pilot_polymer_service_review.json",
+      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+      "inspection": {
+        "rule_id": "bp-374adbf07a0ef554",
+        "source": {
+          "location": "RoW",
+          "name": "polycarbonate production",
+          "reference product": "polycarbonate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polycarbonate, at plant",
+          "reference product": "Polycarbonate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "f557b0f80c6c57f336d88892325c3a40823db17529df6a72df0c7706411a2820",
+        "source_inventory_sha256": "b633e98379b49e99f2c61d7e566a02b8924f8f391639ee3c95e6c862b8325d86",
+        "source_activity_comment_sha256": "11ed40ebea7693867cb99dd396d758a5cbcf67367429b45f8a4763fb6f3ed180",
+        "source_product_information_sha256": "117b88e36c45e1d8725b28f1c7eaccbb3f5de465131ae873e3b580885d127b3b",
+        "source_neat_dry_kg_basis": true,
+        "source_producers": [],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "43b016b65a9e9455c78cb460f2af5199ffa48c3d2e4a05e58c4cef0f258dbfb7",
+            "inventory_sha256": "04b947f7a3e70ac6432c4aa7d7ea3a932adcf0b23475f4b9535c6fd3eccb6732",
+            "activity_comment_sha256": "3005ad6d7a70a4645c11242e023820d227cc059a681adfa1b4e958b3a7b28009",
+            "reference_amount": 1
+          },
+          "2026": {
+            "metadata_sha256": "c7e9458b335970967b5cd11c33aea175b1b368ea8b6fdb2fa875760111c65aa5",
+            "inventory_sha256": "ce670b6d7ba06c6388004ff370ccd32c64c17d06b09b46a825cde9e59c291fd8",
+            "activity_comment_sha256": "6403c7eda636a211383f61ee89fc83b064bbcea04f1ae1b9d9d7ff4fd7e11860",
+            "reference_amount": 1
+          }
+        },
+        "native_direct_technosphere_coordinates_unchanged": 8,
+        "conversion_factor": 1,
+        "boundary": "Same bisphenol-A polycarbonate material. Source inputs contain bisphenol A and phosgene; native technology is interfacial polycondensation of the same precursors. The source stoichiometric process and native aggregated industry eco-profile differ. Retain complete native PC per kg, without adding monomers or forming burdens."
+      },
+      "limitations": [
+        "Same bisphenol-A polycarbonate material. Source inputs contain bisphenol A and phosgene; native technology is interfacial polycondensation of the same precursors. The source stoichiometric process and native aggregated industry eco-profile differ. Retain complete native PC per kg, without adding monomers or forming burdens.",
+        "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+        "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "650d36dd467ed47781c1b616566c47e40fd35081788a187189d88755b3979741"
+        }
+      ]
     }
   ]
 }

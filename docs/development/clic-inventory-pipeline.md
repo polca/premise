@@ -300,6 +300,23 @@ allocation warnings remain explicit. These registrations add no other source
 profiles or inverse correspondences, and retain the imported native biosphere
 exclusions.
 
+The standing whole-material/function and geographic-supply approval also covers
+ten inspected pilot services recorded in
+`uvek_pilot_polymer_service_review.json`: ABS, Nylon 6, PVF, PP/LDPE
+granulates, bisphenol-A polycarbonate, neat ethylene glycol, liquid dimethyl
+sulphate, plastic-pipe extrusion and injection moulding. All source and native
+references are positive kg, with factor +1 and no solution conversion. Native
+2025/2026 direct technosphere coordinates match. The forming services exclude
+bulk converted polymer; their stated 0.996/0.994 output yields do not change the
+process reference or justify another polymer input. Caller polymer, transport
+and direct emissions remain unchanged. Complete native inventories retain
+their data-quality limits, internal logistics, allocation and methane updates.
+Delivered-market mixes, freight and losses are not reconstructed from the
+native at-plant proxy, and geographic/vintage differences remain warnings.
+Epoxy, tetrafluoroethylene, methanol and recovered triethylene-glycol supply are
+outside this review; it also authorizes no pending equipment or geothermal
+decision.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

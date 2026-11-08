@@ -421,6 +421,16 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-eb04730488ad462a", "3.9"),
         ("bp-eb04730488ad462a", "3.12"),
         ("bp-263c185cdbca7a8c", "3.9"),
+        ("bp-e1c5c137f358792d", "3.12"),
+        ("bp-1d02d57e06e24b45", "3.12"),
+        ("bp-46961b2d2543df96", "3.6"),
+        ("bp-02c0322dff7270a9", "3.9"),
+        ("bp-bf1073514e708c92", "3.9"),
+        ("bp-374adbf07a0ef554", "3.12"),
+        ("bp-6c86005a2117819c", "3.6"),
+        ("bp-d8aa748d3c6d8667", "3.9"),
+        ("bp-365d3df4ba55618f", "3.9"),
+        ("bp-b80976e787fd9cd2", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -630,6 +640,8 @@ def test_prior_helper_approval_returns_complete_owned_graph(
         "bp-9c3675cc3a3f003c",  # Different cement strength-class coverage.
         "bp-b39070e2c2728597",  # Landfill must not acquire dismantling/transport.
         "bp-bcbf9e1008a58e4b",  # Glass landfill is not the reviewed incinerator.
+        "bp-18d0fd79bfe6791b",  # TFE has conflicting PTFE CAS/synonym metadata.
+        "bp-08f2432b62895931",  # Epoxy resin grade is not verified by this group.
     ],
 )
 def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
@@ -772,4 +784,35 @@ def test_dedicated_incinerator_preserves_separate_caller_transport(tmp_path):
             and d["details"]["rule_id"] == incinerator["id"]
         )
         assert "No wrapper freight is inserted" in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize("rule_id", ["bp-365d3df4ba55618f", "bp-b80976e787fd9cd2"])
+def test_forming_service_keeps_the_separate_caller_polymer(tmp_path, rule_id):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    forming = rules[rule_id]
+    polymer = rules["bp-02c0322dff7270a9"]
+    resolved = graph(forming["source"], polymer["source"], version="3.9")
+    for exchange in resolved.activities[0]["exchanges"][1:]:
+        exchange["amount"] = 2
+    before = copy.deepcopy(resolved.activities)
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(resolved, version="2026", family="uvek")
+    (activity,) = result.activities
+    assert len(activity["exchanges"]) == 3
+    service, material = activity["exchanges"][1:]
+    assert all(service[k] == v for k, v in forming["target"].items())
+    assert material["name"] == "Polypropylene, granulate, at plant"
+    assert service["amount"] == material["amount"] == 2
+    warning = next(
+        d
+        for d in result.diagnostics
+        if d["code"] == "clic.compatibility_proxy_limitations"
+        and d["details"]["rule_id"] == rule_id
+    )
+    assert "add no full kg of plastic" in warning["message"]
     assert resolved.activities == before
