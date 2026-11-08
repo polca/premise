@@ -404,6 +404,18 @@ differences remain explicit limitations. Nine native suppliers have finite
 baseline LCIs with unchanged scientific-content hashes. These are exact pilot
 cut-off decisions, not a general grade or inverse-route approval.
 
+`uvek_pilot_silver_market_review.json` corrects the inspected ecoinvent 3.12
+silver market from the single lead-derived supplier to UVEK's existing complete
+regional stock. Its four native supply routes sum to one; retain that mix and
+internal freight without a new blend, extra refining, repeated allocation or
+recovery credit. All twelve source producer inventories have positive silver
+references, including treatment-named allocated coproducts. Preserve signed
+product kg without a waste sign flip or invented purity factor. Historical
+shares, coproduct allocation, purity, geography and delivery remain explicit
+limitations. The generator replays the correction with an exact 3.12 gate;
+prior scope fingerprints remain unchanged. Native baseline LCI is finite and
+source scientific contents are unchanged.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

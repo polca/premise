@@ -12907,6 +12907,247 @@
           "fingerprint": "cd63509c962e43f2fb6db75f57b9c506a810ba5545946ced2fba460e3cc98894"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e1f8de5b5a35b0d1",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_silver_market_review.json",
+      "review_sha256": "55cb4c66b7ebd0ec8d62cd41e697f653cfe259ccc61eba414979e44d66a74a07",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy approvals, reused after inspecting all twelve actual source silver suppliers and the complete native regional stock in both releases. Correct the single-route match to the existing complete silver supply mix, as for the inspected copper/lead storage correspondences. No newly constructed blend, helper, grade conversion, allocation repair or recovery credit is introduced.",
+      "inspection": {
+        "label": "silver_market",
+        "rule_id": "bp-e1f8de5b5a35b0d1",
+        "source": {
+          "location": "GLO",
+          "name": "market for silver",
+          "reference product": "silver",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "GLO",
+          "name": "Silver, from lead production, at refinery",
+          "reference product": "Silver, from lead production, at refinery",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Silver, at regional storage",
+          "reference product": "Silver, at regional storage",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "fb23afa594488d51cfa59f2685e314b1bbc0d7dfe5bf42eee4b377eda50427d1",
+            "inventory_sha256": "0e88d3b4d73f3aca54c9511e8a76a16c9f412011a5ae64860f45c6c8dab957df",
+            "activity_comment_sha256": "6846beca02dd3e7b6c1943145c6547f1799087acf3e9794591aadb1511f1bd91",
+            "product_information_sha256": "b81f8cd5b6ee93d17f29eed85a69135d0dc79b15634293f210b5f22dcbb3dc17",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "gold-silver mine operation with refinery",
+                  "reference product": "silver",
+                  "location": "CA-QC",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "df89b41e47e8059ec6a1692f03e2882268184fccfe4176fb039298cca4478683",
+                "inventory_sha256": "bc84806946066f2715a5e060c086804ba5fa4d8643c35f2c37649c45e8f99e94",
+                "comment_sha256": "3a85215de97b4ad472b2d5c429f6fa4fe6763ec8a398d876499a4dae573cc0be"
+              },
+              {
+                "identity": {
+                  "name": "treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",
+                  "reference product": "silver",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "b323fb494213b0e917abd960e42c5ba56b1c136ad6a3192dc921b82ad06380bf",
+                "inventory_sha256": "00e0744b37a082f268718d4efd0473feecbc7b52f9fd10008a621615bc340fb9",
+                "comment_sha256": "1c9f8a0044b1ce88e447a2b12a835df4a9a0a35e3e9aa6d387b134103e85c13d"
+              },
+              {
+                "identity": {
+                  "name": "primary zinc production from concentrate",
+                  "reference product": "silver",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "acbdc3324f1e1ba339cd8d3d1614df1da17286621191bc818fbd5bea0b5825a1",
+                "inventory_sha256": "7f44922072811b38b14964996a83f6a468245dfbe660bad463bf0230422607a8",
+                "comment_sha256": "4abc4aa8f4d94b20e54d7145378fcbe747ea486d294f5ebf15e0a38dacc7fbd7"
+              },
+              {
+                "identity": {
+                  "name": "silver-gold mine operation with refinery",
+                  "reference product": "silver",
+                  "location": "CL",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "471546e8f2806a5de1509a47de277a4e42ed6a144090ff1a29ad207b298c3370",
+                "inventory_sha256": "10f9aaed7b7d99ada58d8fdb344eb3bbe5b64b09c2d0c9ea51d398afa8fcaa42",
+                "comment_sha256": "ebfd69d89bbd64dd41ad933602eb69b9f1b2b6ac99195f7083352f1dc2dd2044"
+              },
+              {
+                "identity": {
+                  "name": "treatment of waste x-ray film",
+                  "reference product": "silver",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "deb5f503ea0736e0d3247f749c023ce1111166a5fb9a68153a43fdc254061c08",
+                "inventory_sha256": "9c19af4d719ee772b39b3c432752f653860117d26c2ecb5238aad4457caf7375",
+                "comment_sha256": "3ce4fba624746e04fef3772cab686dff45673e5ed18ec1ff583bf2f5b9553576"
+              },
+              {
+                "identity": {
+                  "name": "gold mine operation and refining",
+                  "reference product": "silver",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "89837ae87e7198a9e3f312296acc4730b7efa99990ca14f8d29cb80e5fe8eb33",
+                "inventory_sha256": "5d25ae14a5d2fe4e7c65bdc1c7d7d91efb724cc34cc4954246a05610bd1b2d00",
+                "comment_sha256": "1841937285bb50b9e38b8df78ed89cb63d347048c21277dcb596be753a141209"
+              },
+              {
+                "identity": {
+                  "name": "silver-gold mine operation with refinery",
+                  "reference product": "silver",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "be2fd2a5a40ced0a0c9f242505fdf4cb7c64193308cf2ef582b2e8e35cc3f1d2",
+                "inventory_sha256": "8e97f237dbb8a18e8202f90e6312af6bc54e0b1594b2ed2fce47d0b917bc95ad",
+                "comment_sha256": "1dcb416d68b81726c0872ce84406c2c03a29e4cfa41c924329e6204943a288c6"
+              },
+              {
+                "identity": {
+                  "name": "treatment of precious metal from electronics scrap, in anode slime, precious metal extraction",
+                  "reference product": "silver",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "bb81ce7cdff42780310757795d80b24632d300bc34c38594a68d303beb38200f",
+                "inventory_sha256": "db099359963ea7f109a711d6f4d68b71cc966c0fca373515c160bffa51bc5c91",
+                "comment_sha256": "1c9f8a0044b1ce88e447a2b12a835df4a9a0a35e3e9aa6d387b134103e85c13d"
+              },
+              {
+                "identity": {
+                  "name": "gold-silver mine operation with refinery",
+                  "reference product": "silver",
+                  "location": "PG",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "0f1aa0d34cf463d832c30b4f9d95401387c9163f38b87517de4b0abf04dc874a",
+                "inventory_sha256": "716866ca4ab6799e050e38ae8ac9cc14619872de772b6f89eb312861264b7899",
+                "comment_sha256": "220564a22b45eced3a8cd0a027c95e1ed5e8ebcbf0ff1841cfd3f64854856b8c"
+              },
+              {
+                "identity": {
+                  "name": "treatment of crust from Parkes process for lead production",
+                  "reference product": "silver",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "91970427f74de991c3c15a32b9e3c7cbba990b71816ee4843122708bc358ec92",
+                "inventory_sha256": "38b6ab52a87c153a5494cf5dfe8d4bdec2874358ed9275b08287d55b3999724c",
+                "comment_sha256": "cc65cc0490da248980a532b7ad1d0804733298a66a5c4c1110cd512ff88f4250"
+              },
+              {
+                "identity": {
+                  "name": "gold-silver mine operation with refinery",
+                  "reference product": "silver",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "341def46fb2d8b02a275cc31d35176246ae710eb06e9254bd7293e120113e735",
+                "inventory_sha256": "ee8594d65e42f660c71cb12d292ff2d34725ba3f6af54ca1339813f42a5fc86c",
+                "comment_sha256": "6017d8e647363948648961a9d2f9bc72e9c913b0bdec6b6052ae7ecc12fae7ce"
+              },
+              {
+                "identity": {
+                  "name": "processing of anode slime from electrorefining of copper, anode",
+                  "reference product": "silver",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "65472f6f7af2f18bfbe1ca23b69d503944841d16113f5382225d4aabcfa380bb",
+                "inventory_sha256": "99bb52a61c07dd0881f228580ecf3b5bcb2c2dbd1900daa717665b801662ac37",
+                "comment_sha256": "7c38b20c898e2f7edac06de3de5350a54e8c006bcf36537c8104e78b123a250e"
+              }
+            ]
+          }
+        ],
+        "native_references": [
+          {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff",
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "acf862b76af00bb40eba12bb579535c25509e69b4d66d415d58fef4bc822fd73",
+            "activity_content_sha256": "2b89e8265a1ca3bb899b94f862e742a00ac0a8700b7ac997c9c751b3ed6941f3",
+            "production_metadata_sha256": "1d519f648e689c5677f9e0853d0ecb987116149978325b9c1a4ffb0f149e1795",
+            "activity_comment_sha256": "6e43b95b20f96b02ef33a8b4e1e05a25972df4141ff6a9883cdb82fb427205f3",
+            "complete_native_silver_supply_routes": 4,
+            "native_silver_mass_share_sum": 1.0,
+            "native_internal_freight_coordinates": 2
+          },
+          {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff",
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "b7e20f4531f71360e041e0e97b1006f39c2676abf69141f5af876732dec24b5f",
+            "activity_content_sha256": "5597059434e16c07eacde0015141cc86ac3479ef31ee43997c210ef13d7dbff6",
+            "production_metadata_sha256": "bf2c2fea9e37c7319fc49dc7fcb48c2e38bc5d74afd195cb4772a6a9d2710650",
+            "activity_comment_sha256": "f06d1f528533f59d9886373ae39dc8bad85a5bedf089219713741212c836b781",
+            "complete_native_silver_supply_routes": 4,
+            "native_silver_mass_share_sum": 1.0,
+            "native_internal_freight_coordinates": 2
+          }
+        ],
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Same refined silver material per signed kg, using the complete native regional storage supply mix instead of only its lead-derived supplier. Native supply includes lead, copper, combined gold-silver and secondary-scrap routes plus its internal freight. Preserve the existing four-route mix once; do not reconstruct source market shares, apply the native shares a second time, create a zero-burden silver stock or add extra refining/recovery credits. Treatment-named source providers supply allocated positive-reference silver products here, not waste services, so no waste sign flip is applied. Source global market and native historical2006 European supply have different route shares, coproduct allocation, recovery, geography, delivery and vintage. Source product information reports99.5% silver while native route documentation includes99.9%; preserve the declared product kg with no invented purity multiplier and no specific assay/grade or LCIA-equivalence claim. The native parent description partly refers to lead processing, but its actual complete supply vector establishes all four routes. Native biosphere exclusions and unquantified score differences remain explicit. Only the inspected ecoinvent3.12 cut-off market is admitted."
+      },
+      "limitations": [
+        "Same refined silver material per signed kg, using the complete native regional storage supply mix instead of only its lead-derived supplier. Native supply includes lead, copper, combined gold-silver and secondary-scrap routes plus its internal freight. Preserve the existing four-route mix once; do not reconstruct source market shares, apply the native shares a second time, create a zero-burden silver stock or add extra refining/recovery credits. Treatment-named source providers supply allocated positive-reference silver products here, not waste services, so no waste sign flip is applied. Source global market and native historical2006 European supply have different route shares, coproduct allocation, recovery, geography, delivery and vintage. Source product information reports99.5% silver while native route documentation includes99.9%; preserve the declared product kg with no invented purity multiplier and no specific assay/grade or LCIA-equivalence claim. The native parent description partly refers to lead processing, but its actual complete supply vector establishes all four routes. Native biosphere exclusions and unquantified score differences remain explicit. Only the inspected ecoinvent3.12 cut-off market is admitted."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "225f93a9a122dcbc83353ffe09996476357f5a5abe844bef1a5b13be790d56c6"
+        }
+      ]
     }
   ]
 }

@@ -495,6 +495,7 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-8bbb01130472bd02", "3.9"),
         ("bp-d57552347b187336", "3.12"),
         ("bp-fef3bd133ce6cadc", "3.9"),
+        ("bp-e1f8de5b5a35b0d1", "3.12"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -727,7 +728,9 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
     )
 
 
-@pytest.mark.parametrize("rule_id", ["bp-eb04730488ad462a", "bp-263c185cdbca7a8c"])
+@pytest.mark.parametrize(
+    "rule_id", ["bp-eb04730488ad462a", "bp-263c185cdbca7a8c", "bp-e1f8de5b5a35b0d1"]
+)
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
 def test_existing_material_review_does_not_broaden_pilot_source_profiles(
     rule_id, version

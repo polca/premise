@@ -181,9 +181,9 @@ foreign foreground anchors retained, gives:
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 2 |
 | 3.9 | 17 | 50 |
-| 3.12 | 8 | 24 |
+| 3.12 | 8 | 23 |
 
-These are 124 exact-profile cases involving 112 distinct rules, after reusing
+These are 123 exact-profile cases involving 111 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -242,10 +242,18 @@ retain their historical data and geography limitations. Nine distinct native
 suppliers have finite baseline LCIs and unchanged scientific-content hashes.
 A [dense-soda proposal](uvek-dense-soda-proposal.md) remains pending; the native
 light-soda process explicitly excludes densification.
+The inspected 3.12 silver market now uses the complete native regional stock,
+replacing its narrower lead-derived-only match. Native lead, copper, gold-silver
+and recovered-scrap supplies and internal freight remain included once. All
+twelve source providers supply positive-reference silver, including those named
+as waste treatments; no waste-reference sign reversal applies to their silver
+product. Native historical shares, purity, allocation, geography and delivery
+differences remain warnings. Original 223 approval fingerprints are unchanged;
+the corrected supplier has a finite baseline LCI and unchanged source hashes.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 223 exact-profile fingerprints, with review evidence and
+ledger contains 224 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
