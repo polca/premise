@@ -354,6 +354,19 @@ the original European primary/new-/old-scrap blends without renormalization,
 zero-burden stock assumptions or an additional forming step. Source-market,
 grade, allocation, vintage and shorter native 2025 documentation remain warnings.
 
+`uvek_pilot_active_chemical_review.json` adds five correspondences for seven
+actual source profiles. Calcium chloride, hydrochloric acid, sodium hydroxide
+and industrial phosphoric acid preserve active-product kg with factor +1.
+Native coproduct allocation and common-feed ratios, synthesis reactants and
+purification feed coordinates establish that the concentration labels do not
+require solution-mass scaling. Source-market shares, logistics, technology,
+allocation and geography remain explicit proxy limitations. Separate caller
+water, signed demands, uncertainty and formulas remain unchanged. The evidence
+excludes sodium hypochlorite's purchased-versus-captured chlorine discrepancy,
+acrylic dispersion's unresolved binder basis and the incorrect solvent-paint
+match. Native supplier LCI checks prove finite baseline inventories and unchanged
+source contents; they do not certify a prospective scenario.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

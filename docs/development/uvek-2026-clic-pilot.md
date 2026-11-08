@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 56 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 53 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 56 |
+| 3.6 | 27 | 53 |
 | 3.7 | 2 | 1 |
-| 3.8 | 1 | 4 |
-| 3.9 | 17 | 61 |
+| 3.8 | 1 | 2 |
+| 3.9 | 17 | 59 |
 | 3.12 | 8 | 29 |
 
-These are 151 exact-profile cases involving 134 distinct rules, after reusing
+These are 144 exact-profile cases involving 129 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -206,10 +206,22 @@ profiles. Their eight distinct native suppliers also have finite baseline LCIs
 and unchanged scientific-content hashes. Water country/resource geography,
 rolling/stock separation and the documented welding basis remain explicit in
 the review and warnings.
+Five active-chemical correspondences cover seven more profiles: calcium
+chloride, hydrochloric acid, sodium hydroxide and industrial phosphoric acid.
+Paired native coproduct inventories, allocation definitions, reactant quantities
+and purification feed coordinates establish an active-product kg basis. Solution
+percentages in names therefore do not introduce a concentration multiplier.
+The complete native supply mixes retain their geographic, delivery, allocation
+and vintage limitations. Four distinct native suppliers have finite baseline
+LCIs with unchanged source hashes. Sodium hypochlorite remains unresolved:
+its source producer buys chlorine despite a captured-emissions description,
+whereas the native captured-chlorine process has no purchased chlorine input.
+Acrylic dispersion and the separate incorrect solvent-paint match also remain
+outside this chemical approval.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 196 exact-profile fingerprints, with review evidence and
+ledger contains 203 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

@@ -469,6 +469,13 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-c5ad7d30b2b18c4c", "3.6"),
         ("bp-fac4a1f43671b603", "3.6"),
         ("bp-f15e4a6a029e8ddb", "3.6"),
+        ("bp-995a85c7009a9601", "3.6"),
+        ("bp-91b9cff76b3562bb", "3.6"),
+        ("bp-6f58476b963abe8c", "3.9"),
+        ("bp-1d075913a8c7a9b6", "3.6"),
+        ("bp-1d075913a8c7a9b6", "3.8"),
+        ("bp-1d075913a8c7a9b6", "3.9"),
+        ("bp-7ef361e0dafa8736", "3.8"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -914,3 +921,68 @@ def test_cold_rolling_keeps_separate_hot_rolled_stock_once(tmp_path):
         for d in result.diagnostics
     )
     assert resolved.activities == before
+
+
+def test_active_chemical_basis_preserves_separate_water_and_cached_warning(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    chemical = rules["bp-1d075913a8c7a9b6"]
+    water = next(
+        r
+        for r in rules.values()
+        if r["source"]["name"] == "market for water, decarbonised"
+        and r["source"]["location"] == "CH"
+    )
+    resolved = graph(chemical["source"], water["source"], version="3.6")
+    resolved.activities[0]["exchanges"][2]["amount"] = 3.25
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 3
+        caustic, separate_water = activity["exchanges"][1:]
+        assert caustic["amount"] == -2  # Active kg; the label's 50% is not a factor.
+        assert separate_water["amount"] == 3.25
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == chemical["id"]
+        )
+        assert "active NaOH" in warning["message"]
+        assert "without a 50% multiplier" in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-c7c88174c5f11ce8", "3.6"),
+        ("bp-c7c88174c5f11ce8", "3.9"),
+        ("bp-0ad47155a89ab7bb", "3.9"),
+        ("bp-a51655f7a16cfaa3", "3.12"),
+    ],
+)
+def test_unresolved_chemical_bases_do_not_inherit_active_product_approval(
+    rule_id, version
+):
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == rule_id)
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", version, "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    assert fingerprint not in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )

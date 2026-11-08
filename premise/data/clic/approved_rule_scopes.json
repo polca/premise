@@ -10166,6 +10166,855 @@
           "fingerprint": "f1fcdfaf5fa6ea20354fe0eca2d2d8e348637843d831fa57934f7cf155c4a77c"
         }
       ]
+    },
+    {
+      "rule_id": "bp-995a85c7009a9601",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_active_chemical_review.json",
+      "review_sha256": "6f1700632c391c5a311461775e95bd733ef21a48bbf7b0825ce6bc79f2b03592",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after verifying active chemical reference quantities. No new grade, solution conversion, reagent replacement, inventory repair, helper or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-995a85c7009a9601",
+        "source": {
+          "location": "RER",
+          "name": "market for calcium chloride",
+          "reference product": "calcium chloride",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Calcium chloride, CaCl2, at plant",
+          "reference product": "Calcium chloride, CaCl2, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "c3a70843bb81d3e33f209a1ce1c67a4ec1426cf76058cf0072f3b3f77941b500",
+            "inventory_sha256": "7fd13e85d4ae6deaa2aeced1a7ee47e9ade6861cc8387ef804f8b3fe6aac6f7e",
+            "activity_comment_sha256": "c268d29c81fe695e677a274ac8a08146c512ddf1b7cf7c400d31a6af8ef8270c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "epichlorohydrin production from allyl chloride",
+                  "reference product": "calcium chloride",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "45ee65f2086daa98df3003da035ceec98f2d4608225ca388ce6e83c8f4898701"
+              },
+              {
+                "identity": {
+                  "name": "soda production, solvay process",
+                  "reference product": "calcium chloride",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "1a24de0cc3acd04780e944f9c5fde77ce7d318b530cb658d0953fb99f6994905"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "eb78c0bc529d3abdc279188e468a2f33e93a02e130bed6f10b2ad0d608de1a8b",
+            "inventory_sha256": "ca6a42bd24c7f1ee7e182a553d553335b0930ffb664aa60d3eaef422283fbee8",
+            "activity_comment_sha256": "b236463e93b6ea0dc7b761292fa3836cae7ae4be9ba151c08f2f477f3c4edcc0",
+            "direct_technosphere_coordinates": 8
+          },
+          "2026": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "a7b19b0734cb0cea2948e97d403b85ef2790a2b0240b9014fe0e7a4cca6bae81",
+            "inventory_sha256": "1000bd21578880afa0f9ae51f0eee2cfad9c412deb45e04cc7de889a46165a03",
+            "activity_comment_sha256": "cbd176aff4e768c8d9cb3459d00045f0d419982a32241d77c80199a51b191a3c",
+            "direct_technosphere_coordinates": 8
+          }
+        },
+        "conversion_factor": 1,
+        "quantity_basis": "kg active chemical in both source and native target",
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same calcium chloride product per kg of active CaCl2. Native paired Solvay coproduct inventories, declared economic allocation and common salt inputs imply the dry-product stoichiometric output ratio, not a wet solution mass. Preserve the allocated native calcium chloride product once, without an allocation/yield or concentration multiplier. Source epichlorohydrin/Solvay supplier shares are not reconstructed. The parent soda-process description does not replace the positive CaCl2 product reference. Production mix, allocation, geography, drying, vintage and delivery differences remain screening limitations."
+      },
+      "limitations": [
+        "Same calcium chloride product per kg of active CaCl2. Native paired Solvay coproduct inventories, declared economic allocation and common salt inputs imply the dry-product stoichiometric output ratio, not a wet solution mass. Preserve the allocated native calcium chloride product once, without an allocation/yield or concentration multiplier. Source epichlorohydrin/Solvay supplier shares are not reconstructed. The parent soda-process description does not replace the positive CaCl2 product reference. Production mix, allocation, geography, drying, vintage and delivery differences remain screening limitations.",
+        "Preserve signed active-product kg with factor +1, including uncertainty, formulas, caller ownership, separate water, transport and emissions. Solution concentrations in names do not change the independently verified active reference quantities.",
+        "Use each complete selected native product inventory once. Source-market supply shares, allocation, freight, losses, geography and vintage are not reconstructed; technology and biosphere coverage differ. Native biosphere exclusions remain explicit; inventory and LCIA equivalence are not established.",
+        "Only enumerated cut-off source profiles are admitted. Sodium hypochlorite, acrylic dispersion, the wrong-solvent paint mapping, other chemical grades, independent inverse routes and cross-system-model routes remain outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6816ae3a4ac77c50ffd156a2fcf096ed5402529878c8dfd14b868839bf8a8ef8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-91b9cff76b3562bb",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_active_chemical_review.json",
+      "review_sha256": "6f1700632c391c5a311461775e95bd733ef21a48bbf7b0825ce6bc79f2b03592",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after verifying active chemical reference quantities. No new grade, solution conversion, reagent replacement, inventory repair, helper or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-91b9cff76b3562bb",
+        "source": {
+          "location": "RER",
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Hydrochloric acid, 30% in H2O, at plant",
+          "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "c0be87e687f24ffb675b2697dd1f7016c6bf1c6e46c2860f5dcfc203add9dd37",
+            "inventory_sha256": "a10afabbb88ca9003ccc511d296d3bdd85c79fa5b7f6aa55432082909ff63724",
+            "activity_comment_sha256": "9e6c45163b657c6d192330398d051783dc6cd1d1eab172d974fc5f8026c23d23",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "allyl chloride production, reaction of propylene and chlorine",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "e5cb4dcb1a5f8cf74e45b85c9354df06bf1484963b323e2dda33eb598d0d337d"
+              },
+              {
+                "identity": {
+                  "name": "hydrochloric acid production, from the reaction of hydrogen with chlorine",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "1850e4b023ae08710667bb71ec033a9ebaa439d25a282b3755be22d5896881c7"
+              },
+              {
+                "identity": {
+                  "name": "Mannheim process",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "d5a79f73f929f45472d987824e1c8c05bd9ea230646bedfc905deb0e6ee6774d"
+              },
+              {
+                "identity": {
+                  "name": "tetrafluoroethylene production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "b102343459a4ceb907bd1d471f9f98bcfec7181707bd44052e97e762fc4b23ee"
+              },
+              {
+                "identity": {
+                  "name": "benzene chlorination",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "511d98854f77ba3dd33985af509e9f21ac33affe50d7f3eee27a3cc34856e69d"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "107d7b144d4effb58e54c5a694dce49788b6de085b8f049229ac61fea7cbd51f",
+            "inventory_sha256": "5bf09c2abf0cc6f016914b03964ae13cdd1650de52d638921643ee684430f8d5",
+            "activity_comment_sha256": "6189b44f73e3305d59e8ede0c4b7788d648b69910e1037a67ed753e248db5d12",
+            "direct_technosphere_coordinates": 2
+          },
+          "2026": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "385f5b3fe45b2cc9d9595ad4b12d475986df6780af3ff6f905f5216351518a2d",
+            "inventory_sha256": "04e11f4d4e7a8ccacf71ab584b53af490c5d7592cd6870819b7291ce22cdb9f6",
+            "activity_comment_sha256": "1bc8d4d007d29c7819eccafc38e46bb8db7f6dd9dbfe94cced0f2635ea8199be",
+            "direct_technosphere_coordinates": 2
+          }
+        },
+        "conversion_factor": 1,
+        "quantity_basis": "kg active chemical in both source and native target",
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same hydrochloric acid demand per kg of active HCl, not per kg of 30% solution. Native hydrogen/chlorine synthesis reactant quantities support the active-product coordinate, and the complete native HCl mix retains its Mannheim/synthesis allocation and shares. Preserve signed active kg with no 30% multiplier or dilution service. Source market/coproduct supplier shares, allocation, utility supply, vintage and delivery are not reconstructed; inventory and impact equality are not established."
+      },
+      "limitations": [
+        "Same hydrochloric acid demand per kg of active HCl, not per kg of 30% solution. Native hydrogen/chlorine synthesis reactant quantities support the active-product coordinate, and the complete native HCl mix retains its Mannheim/synthesis allocation and shares. Preserve signed active kg with no 30% multiplier or dilution service. Source market/coproduct supplier shares, allocation, utility supply, vintage and delivery are not reconstructed; inventory and impact equality are not established.",
+        "Preserve signed active-product kg with factor +1, including uncertainty, formulas, caller ownership, separate water, transport and emissions. Solution concentrations in names do not change the independently verified active reference quantities.",
+        "Use each complete selected native product inventory once. Source-market supply shares, allocation, freight, losses, geography and vintage are not reconstructed; technology and biosphere coverage differ. Native biosphere exclusions remain explicit; inventory and LCIA equivalence are not established.",
+        "Only enumerated cut-off source profiles are admitted. Sodium hypochlorite, acrylic dispersion, the wrong-solvent paint mapping, other chemical grades, independent inverse routes and cross-system-model routes remain outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "891bc011ba4ef8127b471634ae8d797f12614a9c6e86b9f7d04aefb6ca69b27b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6f58476b963abe8c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_active_chemical_review.json",
+      "review_sha256": "6f1700632c391c5a311461775e95bd733ef21a48bbf7b0825ce6bc79f2b03592",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after verifying active chemical reference quantities. No new grade, solution conversion, reagent replacement, inventory repair, helper or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-6f58476b963abe8c",
+        "source": {
+          "location": "RoW",
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Hydrochloric acid, 30% in H2O, at plant",
+          "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "53da08fd102da8bdfaf64eb9a77c2f5860687370d8f9245bde6070c6a59ada0c",
+            "inventory_sha256": "638739914327358fcf8a12146081ea81ce36538c95641b78ebe1a8d18ba9374e",
+            "activity_comment_sha256": "e33646a8486323e7901219e7dd5062bc1bd3378b203d52f2be7ebd6cb96c2e1f",
+            "product_information_sha256": "2dcb518e67fb68cfb5a71e43ceca47156e4714fdeffe1611526019bf81885831",
+            "producers": [
+              {
+                "identity": {
+                  "name": "methylene diphenyl diisocyanate production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "839ee14fa8597450e5a925e9ec7ec11b5133ac5ec6b2d124403594dd72f526e0"
+              },
+              {
+                "identity": {
+                  "name": "titanium tetrachloride production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "CN",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "32b00ea241b34c4ddb5456decaefc0856de90d98ec26fa06765773ae60fccb64"
+              },
+              {
+                "identity": {
+                  "name": "titanium tetrachloride production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "83227cdf5f5f221e2882bb6f1a0a1d8f79a29222df48de3a55362c38969b63e9"
+              },
+              {
+                "identity": {
+                  "name": "hydrochloric acid production, from the reaction of hydrogen with chlorine",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "e236aeecc5c87b3049230ab1e692e6fd8b12017193b2c00aabc71a7e5785cbcf"
+              },
+              {
+                "identity": {
+                  "name": "hydrochloric acid production, from the reaction of hydrogen with chlorine",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "CA-QC",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "e236aeecc5c87b3049230ab1e692e6fd8b12017193b2c00aabc71a7e5785cbcf"
+              },
+              {
+                "identity": {
+                  "name": "tetrafluoroethylene production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "b075c401e9fd24ef96ccc11c0e5fff55429cd618c560757c54c3dbb9e97fe6e2"
+              },
+              {
+                "identity": {
+                  "name": "trichloroethylene production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "ec3caee4b6dc5d885bc9b23ab11f1ccfe84e0f8e507fdcce60ef1b5b89b8560f"
+              },
+              {
+                "identity": {
+                  "name": "Mannheim process",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "305af0ded12e0c7e72450857d90e9bf7a22be1a63152a466e98187131a6f7c6d"
+              },
+              {
+                "identity": {
+                  "name": "titanium tetrachloride production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "JP",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "e64ff0bcc58a8d8bdf9b58e9288ffb625a738a301be1ace2112798dd5f36e979"
+              },
+              {
+                "identity": {
+                  "name": "toluene diisocyanate production",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "a61690ed0abf4275ef981e7eb9075aae95efbac3716325c8c0f98dcfd8514bb3"
+              },
+              {
+                "identity": {
+                  "name": "benzene chlorination",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "3010938a52353253d14546e20a0cc88e77d3e119e014e91595ee5803ff04ed6a"
+              },
+              {
+                "identity": {
+                  "name": "allyl chloride production, reaction of propylene and chlorine",
+                  "reference product": "hydrochloric acid, without water, in 30% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "e5cb4dcb1a5f8cf74e45b85c9354df06bf1484963b323e2dda33eb598d0d337d"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "107d7b144d4effb58e54c5a694dce49788b6de085b8f049229ac61fea7cbd51f",
+            "inventory_sha256": "5bf09c2abf0cc6f016914b03964ae13cdd1650de52d638921643ee684430f8d5",
+            "activity_comment_sha256": "6189b44f73e3305d59e8ede0c4b7788d648b69910e1037a67ed753e248db5d12",
+            "direct_technosphere_coordinates": 2
+          },
+          "2026": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "385f5b3fe45b2cc9d9595ad4b12d475986df6780af3ff6f905f5216351518a2d",
+            "inventory_sha256": "04e11f4d4e7a8ccacf71ab584b53af490c5d7592cd6870819b7291ce22cdb9f6",
+            "activity_comment_sha256": "1bc8d4d007d29c7819eccafc38e46bb8db7f6dd9dbfe94cced0f2635ea8199be",
+            "direct_technosphere_coordinates": 2
+          }
+        },
+        "conversion_factor": 1,
+        "quantity_basis": "kg active chemical in both source and native target",
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same hydrochloric acid demand per kg of active HCl, not per kg of 30% solution. Native hydrogen/chlorine synthesis reactant quantities support the active-product coordinate, and the complete native HCl mix retains its Mannheim/synthesis allocation and shares. Preserve signed active kg with no 30% multiplier or dilution service. The source RoW market is approximated by native European supply. Source market/coproduct supplier shares, allocation, utility supply, vintage and delivery are not reconstructed; inventory and impact equality are not established."
+      },
+      "limitations": [
+        "Same hydrochloric acid demand per kg of active HCl, not per kg of 30% solution. Native hydrogen/chlorine synthesis reactant quantities support the active-product coordinate, and the complete native HCl mix retains its Mannheim/synthesis allocation and shares. Preserve signed active kg with no 30% multiplier or dilution service. The source RoW market is approximated by native European supply. Source market/coproduct supplier shares, allocation, utility supply, vintage and delivery are not reconstructed; inventory and impact equality are not established.",
+        "Preserve signed active-product kg with factor +1, including uncertainty, formulas, caller ownership, separate water, transport and emissions. Solution concentrations in names do not change the independently verified active reference quantities.",
+        "Use each complete selected native product inventory once. Source-market supply shares, allocation, freight, losses, geography and vintage are not reconstructed; technology and biosphere coverage differ. Native biosphere exclusions remain explicit; inventory and LCIA equivalence are not established.",
+        "Only enumerated cut-off source profiles are admitted. Sodium hypochlorite, acrylic dispersion, the wrong-solvent paint mapping, other chemical grades, independent inverse routes and cross-system-model routes remain outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "76a08d783cc2ab18fff4956ec538f46a9dfb981088b9c0e08d65769cd9a08e70"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ef361e0dafa8736",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_active_chemical_review.json",
+      "review_sha256": "6f1700632c391c5a311461775e95bd733ef21a48bbf7b0825ce6bc79f2b03592",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after verifying active chemical reference quantities. No new grade, solution conversion, reagent replacement, inventory repair, helper or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-7ef361e0dafa8736",
+        "source": {
+          "location": "GLO",
+          "name": "market for phosphoric acid, industrial grade, without water, in 85% solution state",
+          "reference product": "phosphoric acid, industrial grade, without water, in 85% solution state",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Phosphoric acid, industrial grade, 85% in H2O, at plant",
+          "reference product": "Phosphoric acid, industrial grade, 85% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "502651b416ac51edeed69a95b080d73f131c08a3d2ea6a4051fc0da49e6a21f8",
+            "inventory_sha256": "494fc07ea8aea79ce9893f1cb7daa8750849a1d7ce089c883dfaf38af95f0935",
+            "activity_comment_sha256": "f18753b99e69d25e7d68dfc00850a49efcbcdaefa74558a16b470ca2fbcc75ec",
+            "product_information_sha256": "aaf907bc66f7a28f89306af9be671575adbd645faa467c59d3ddb955885f9b5f",
+            "producers": [
+              {
+                "identity": {
+                  "name": "purification of wet-process phosphoric acid to industrial grade, product in 85% solution state",
+                  "reference product": "phosphoric acid, industrial grade, without water, in 85% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "ecd38340d6a3d1e3438428e98192c7979546eccff0928561751c794ea7c004ce"
+              },
+              {
+                "identity": {
+                  "name": "purification of wet-process phosphoric acid to industrial grade, product in 85% solution state",
+                  "reference product": "phosphoric acid, industrial grade, without water, in 85% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "b467f94f38892d8b3d20ffd83ae9ad3b56b36189780d4ffdb41b80b18210b1de"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "12f6a51d2fe7efd2723ca8800d67e9389b7acbe17aed41af8f2fca82d9bffc03",
+            "inventory_sha256": "d4438a7c734c33081ef1f0794cd999e28490e36b335fce511f4fb7a43e52ca86",
+            "activity_comment_sha256": "fda38b4dc50bbf8995c701e6f097a3400f782685c466114752f3ae38d4d59b24",
+            "direct_technosphere_coordinates": 14
+          },
+          "2026": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "b191a763836acbe0414ddfeaa0992a43b1a275ea56a7a490e87ea8604c05dbb4",
+            "inventory_sha256": "c8b856634da514eb3ee0205a29a624e7e6238eadaf987ffa206da2034c132fe2",
+            "activity_comment_sha256": "cfd62cd461aedebdb7b0dae4bbe77cfb886e3926f2a5882aeb9f69f254fa53d3",
+            "direct_technosphere_coordinates": 14
+          }
+        },
+        "conversion_factor": 1,
+        "quantity_basis": "kg active chemical in both source and native target",
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same industrial-grade wet-process phosphoric acid after solvent-extraction purification, per kg of active H3PO4, not per kg of 85% solution. Source and native industrial producers have the same active fertiliser-grade acid feed/yield and matching characteristic purification reagent quantities. Native fertiliser-grade feed inputs and documented 100%-acid infrastructure capacity independently support the active coordinate. Preserve complete native purification and upstream acid production once per signed active kg, without an 85% multiplier or extra purification. Source market/regional shares, phosphate-rock origins, allocation, utilities, delivery, vintage and biosphere coverage differ."
+      },
+      "limitations": [
+        "Same industrial-grade wet-process phosphoric acid after solvent-extraction purification, per kg of active H3PO4, not per kg of 85% solution. Source and native industrial producers have the same active fertiliser-grade acid feed/yield and matching characteristic purification reagent quantities. Native fertiliser-grade feed inputs and documented 100%-acid infrastructure capacity independently support the active coordinate. Preserve complete native purification and upstream acid production once per signed active kg, without an 85% multiplier or extra purification. Source market/regional shares, phosphate-rock origins, allocation, utilities, delivery, vintage and biosphere coverage differ.",
+        "Preserve signed active-product kg with factor +1, including uncertainty, formulas, caller ownership, separate water, transport and emissions. Solution concentrations in names do not change the independently verified active reference quantities.",
+        "Use each complete selected native product inventory once. Source-market supply shares, allocation, freight, losses, geography and vintage are not reconstructed; technology and biosphere coverage differ. Native biosphere exclusions remain explicit; inventory and LCIA equivalence are not established.",
+        "Only enumerated cut-off source profiles are admitted. Sodium hypochlorite, acrylic dispersion, the wrong-solvent paint mapping, other chemical grades, independent inverse routes and cross-system-model routes remain outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ef7d5b89cb819912524f8b440b9467c68787d838c3b2bce20cab6f766f65e6f6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1d075913a8c7a9b6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_active_chemical_review.json",
+      "review_sha256": "6f1700632c391c5a311461775e95bd733ef21a48bbf7b0825ce6bc79f2b03592",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after verifying active chemical reference quantities. No new grade, solution conversion, reagent replacement, inventory repair, helper or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-1d075913a8c7a9b6",
+        "source": {
+          "location": "GLO",
+          "name": "market for sodium hydroxide, without water, in 50% solution state",
+          "reference product": "sodium hydroxide, without water, in 50% solution state",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+          "reference product": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "fdbe67bf7d1e1f9841589c7e89606e37072ee8917c792edb4d382aa50cf30e68",
+            "inventory_sha256": "3ca94d0847b9d3b6415ab805bc782a5f9fcfc9e95022725d9d4facd3a4dcac58",
+            "activity_comment_sha256": "55877f101f05bc9c5b11ef029585c6975fff529371b0f8f04220010aba5ef35b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, diaphragm cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "d0877a2dcf367f27bf72c1aa7ce1f20e5e30b486011f0b6618d7e3c675867fea"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "CA-QC",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "ed9999cfa534bce01e7b41242d7b0b48b62250970a698c47f0e9d7a3828e2358"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "0035434febd69e605062ba7d261bfc1fed449ef49b583d5c94a72ee1077298e2"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, mercury cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "26c209369ecd71347b407cc01e239627cf5d2475ec2791e3723a611422b76a3e"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, diaphragm cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "ae9a325d15e89fb436957bb9a14b33bc37af6cf264d486b1d4fb327498f060f5"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "53ab7b1214d4742c1c71421fd496ff11e4c006a6c853113602d7131518a51dee"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, mercury cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "6e3596560b774befef24175c51adfb68b62d41d1700c57eb101c6a919c8e6588"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "d6366e856279897fa0f097bab3db65214ec0e31b7c8dfbe3d054b36bb1b0325a",
+            "inventory_sha256": "051b9f51edf9e46f5e48677fa80bad287d1c9d1c5365fc7da750b4966596e50f",
+            "activity_comment_sha256": "8d39cebd5f6e44088a7d428bf22fe18c2285db5dfbf713fc182ccddde9b61219",
+            "product_information_sha256": "9f55f64fca2da1fc7e0c753d86d845386a9d5633f8bbf443bae4434a4576d007",
+            "producers": [
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, diaphragm cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "771f2c803ddc1c47a4893768a87600f8fd83202a04d8ce28c3e0e0607feccde5"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "CA-QC",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "c7f6995c31ff2ea936586bbbb620027c5676720f641f8a625b92427fe850ab08"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "b83c7fecf792ed521b5d669ea95c1020eaaac52c15410db90b0126d74bc60cb6"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, mercury cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "26c209369ecd71347b407cc01e239627cf5d2475ec2791e3723a611422b76a3e"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, diaphragm cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "bd682b136d321df1c5f0ba0e4e227ca649822ce3aeb1bc3905a2e3f488beb13c"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "53ab7b1214d4742c1c71421fd496ff11e4c006a6c853113602d7131518a51dee"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, mercury cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "2b637ff8e6c1bc5a8ddc35229d933e441c2cb356d5b4a778a9cb0e5bbb264ac2"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "4e4c5da6393561e9ba00ba3f1a7b3ea57a5ee6058f777cd8f3b357af447b02a1",
+            "inventory_sha256": "9d9991610c42e99186f8af8d7375798774d8047622462fe263f14350b9f9cf86",
+            "activity_comment_sha256": "a4722b6bf7660aac2cfad1e95074f476b6022d64e9d586b21b25a7cc06dbf1f9",
+            "product_information_sha256": "8a4a14cddb2e15f7380b40250a2bc0be4c34b0e38fbe3fa0ea5d818c00146179",
+            "producers": [
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, diaphragm cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "5b74dc67c75fab2a1ce85f4736aa95f0a252bcc8c27aa51f3dbb71fb5242fbe2"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, mercury cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "17b4e5909ed5dc1a113d70b18458fcaae37ed4259eb4b328c426684b18c9b5ce"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "cc4bbeb96eaa6ff5015ec1da6713d3bae72394b38f4a07bc94e8dd4bb9e1ad27"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, diaphragm cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "91e3fab0991f0d1946bc1d4744abb7d27a3f776023e250b0a6974e82b95f594a"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, mercury cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "1bf127235c7a1bfa2bc96fddd48d8c3db90499c055cdc46d0ccd7cdb8b192b49"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "8b025f996b5a48ad087de6f2016705a87142335d9a6339d213a3c0dbe3b72db5"
+              },
+              {
+                "identity": {
+                  "name": "chlor-alkali electrolysis, membrane cell",
+                  "reference product": "sodium hydroxide, without water, in 50% solution state",
+                  "location": "CA-QC",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "3614eba060dd0fd2b92fb955b090a2997ca83166dfa6e75def4a074389506581"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "bf8dad4f561d1e62794bf7ed0de3b9e4d31dc5057614f647d542814d1d4dcf3a",
+            "inventory_sha256": "46896ae59c5943999fc79d63a91eacd62a6600bf0ffd45b6a52278bb21322703",
+            "activity_comment_sha256": "1b8007a00b9292a6318252abf0c53cb6b7c0691049c0297824fe3b422a1fab15",
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "active_product_mass_kg": 1,
+            "metadata_sha256": "4a5fdeff2ce0df526e0995feb5ba88bf18b43889fdc9fdfb8b6fda04f89d4fa8",
+            "inventory_sha256": "5460ae56fb3e20fa0096ef25da2971f9d5d3c42e924bfbf191b867d1032e0bf9",
+            "activity_comment_sha256": "9c0a40d6b3d24427ab256a2cc1617d7406ddf8a4c5946048921c05abaf307bf5",
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "conversion_factor": 1,
+        "quantity_basis": "kg active chemical in both source and native target",
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same caustic-soda demand per kg of active NaOH, not per kg of 50% solution. Native mass-allocation shares and paired chlorine/caustic common-feed ratios agree with the active chlor-alkali coproduct basis in all three cell technologies. Preserve the complete native European mercury/diaphragm/membrane mix once per signed active kg, without a 50% multiplier, extra dilution, second chlorine burden or coproduct credit. Source global technology/coproduct shares, geography, allocation, utilities, vintage and delivery differ and are not reconstructed."
+      },
+      "limitations": [
+        "Same caustic-soda demand per kg of active NaOH, not per kg of 50% solution. Native mass-allocation shares and paired chlorine/caustic common-feed ratios agree with the active chlor-alkali coproduct basis in all three cell technologies. Preserve the complete native European mercury/diaphragm/membrane mix once per signed active kg, without a 50% multiplier, extra dilution, second chlorine burden or coproduct credit. Source global technology/coproduct shares, geography, allocation, utilities, vintage and delivery differ and are not reconstructed.",
+        "Preserve signed active-product kg with factor +1, including uncertainty, formulas, caller ownership, separate water, transport and emissions. Solution concentrations in names do not change the independently verified active reference quantities.",
+        "Use each complete selected native product inventory once. Source-market supply shares, allocation, freight, losses, geography and vintage are not reconstructed; technology and biosphere coverage differ. Native biosphere exclusions remain explicit; inventory and LCIA equivalence are not established.",
+        "Only enumerated cut-off source profiles are admitted. Sodium hypochlorite, acrylic dispersion, the wrong-solvent paint mapping, other chemical grades, independent inverse routes and cross-system-model routes remain outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f2b66b24d64f43cde91fe84ed20822c73c3d2b030fa7ff98812a6de1acccb559"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dfba6f772d28ccd32bc86b53b9f36d7d9c2441a18c717872979f785dac8565fd"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a3041d04c682bbdb74e355a6e2cfae0805fdc1b24772a9857394ee2bb1eb1777"
+        }
+      ]
     }
   ]
 }
