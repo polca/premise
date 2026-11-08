@@ -108,17 +108,28 @@ admits the six approved material corrections and the existing packed stone-wool
 and older regional heavy-road reviews. Changed evidence, rule bodies or helper
 recipes require review; reference-sign evidence alone cannot approve a
 functional correspondence. This covers the ecoinvent source cohorts used by
-the CLIC graph and the 250 selected retained PV workbook records. A private,
+the CLIC graph and any required retained workbook records. A private,
 explicitly unapproved diagnostic reached native electricity supplier selection
 after preparing those graphs; its output was not exported or certified.
 
-The current pinned electricity recipe contains 18 roots and 159 CLIC records,
+The current native-family electricity recipe contains 9 roots and 55 CLIC records,
 including the approved complete 110 MW tower-CSP inventory with nine hours of
 thermal storage. The exact unsupported used-nitrate-salt reuse credit is omitted
 only from its pinned decommissioning record, with its original signed exchange,
 source hash and unquantified score effect retained in the audit. Plant, virgin
 salt and storage inputs remain. That omission does not approve the other salt
 correspondences or any further omissions.
+
+A graph audit found the earlier 250 retained PV workbook records and 104 CLIC
+PV-branch records were disconnected from the native background and selected
+generators. The UVEK PV aliases now declare `use_legacy_templates: false`; the
+planner uses family-specific definitions and retains explicitly requested roots
+and dependencies. The earlier 18-root recipe remains available. A private
+before/after diagnostic found identical provider selections and scientific
+hashes for all 12,013 reachable records after omitting those unused branches.
+That graph-preservation result does not approve the unresolved correspondences
+or prove a completed scenario. Native PV inventories without capacity/module
+metadata retain their documented source-inventory limitation.
 
 The approved native pilot preserves country voltage grids, losses,
 infrastructure and direct emissions, with IAM generation supplied at busbar

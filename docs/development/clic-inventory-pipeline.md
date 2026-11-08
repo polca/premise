@@ -231,6 +231,15 @@ tonne-kilometres select the complete RER fleet, with geographic, fleet, loading
 and vintage limitations retained in diagnostics. Later uninspected releases
 cannot inherit that approval.
 
+Native role definitions can set `use_legacy_templates: false` when their complete
+suppliers already exist in the destination. The UVEK PV roles use this declaration:
+the ecoinvent PV workbook generation and installation branches do not supply the
+native UVEK PV portfolios. Planning uses the selected family's aliases, so those
+unused branches are not imported. Explicit CLIC roots, user-required workbook
+nodes and their dependencies remain eligible. Ecoinvent retains its existing
+template selection. This declaration does not permit missing native suppliers;
+the electricity supplier/allocation gates still apply.
+
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by
 the upstream mapping workflow. Import provenance must retain that manifest and

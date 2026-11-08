@@ -21,7 +21,12 @@ from types import SimpleNamespace
 import portalocker
 
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
-from .clic_requirements import registry, required_roots, applicable_roles
+from .clic_requirements import (
+    registry,
+    required_roots,
+    applicable_roles,
+    legacy_templates_required,
+)
 from .clic_target import resolve_inventory_target
 
 
@@ -127,10 +132,15 @@ def plan_hybrid_inventories(
             for scenario in scenarios:
                 definitions = get_mapping(
                     VARIABLES_DIR / filename,
-                    "ecoinvent_aliases",
+                    f"{family}_aliases",
                     model=scenario.get("model"),
                 )
                 for role in applicable_roles(sector, definitions, scenario):
+                    if family != "ecoinvent" and (
+                        definitions[role].get("clic_family_override")
+                        or not legacy_templates_required(definitions[role])
+                    ):
+                        continue
                     pending.extend(graph["roles"].get(filename, {}).get(role, ()))
         if sector == "battery":
             pending.extend(

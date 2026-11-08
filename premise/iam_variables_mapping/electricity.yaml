@@ -1550,6 +1550,9 @@ Solar CSP autonomous:
 Solar PV Centralized:
   # Native installations by scale; photovoltaic production mixes are aggregates.
   uvek_aliases:
+    # Complete native generators already supply this role; the ECI workbook
+    # generation and installation branches do not supply those inventories.
+    use_legacy_templates: false
     # This native country process contains a complete PV generation inventory,
     # including installations and direct flows, not just kWh supplier shares.
     # REMIND reports total PV; IAMs separating scales keep distinct providers.
@@ -1610,6 +1613,7 @@ Solar PV Centralized:
 Solar PV Residential:
   # Native installations by scale; photovoltaic production mixes are aggregates.
   uvek_aliases:
+    use_legacy_templates: false
     exact: true
     fltr:
       name:

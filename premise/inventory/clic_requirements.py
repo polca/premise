@@ -94,6 +94,14 @@ def applicable_roles(sector, definitions, scenario):
     return tuple(role for role in definitions if role in applicable)
 
 
+def legacy_templates_required(definition):
+    """Honor an explicit native-family choice to use existing suppliers only."""
+    value = definition.get("use_legacy_templates", True)
+    if not isinstance(value, bool):
+        raise ClicInventoryError("use_legacy_templates must be a boolean.")
+    return value
+
+
 def active_role_bindings(source_files):
     """Honor premise's reviewed target-specific source replacement profiles."""
     data = registry().get("hybrid_sources", {})
@@ -241,6 +249,10 @@ def required_roots(sectors, scenarios=(), *, source_files=None, family="ecoinven
                 for role in applicable_roles(sector, definitions, scenario):
                     if definitions[role].get("clic_family_override"):
                         roots.update(definitions[role]["clic_slugs"])
+                        continue
+                    if family != "ecoinvent" and not legacy_templates_required(
+                        definitions[role]
+                    ):
                         continue
                     roots.update(
                         role_slugs(filename, role)

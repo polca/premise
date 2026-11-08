@@ -294,6 +294,56 @@ def test_plan_uses_reviewed_source_baseline_separate_from_target(retained, monke
     assert observed and set(observed) == {("3.12", "cutoff")}
 
 
+def test_native_pv_selection_avoids_disconnected_legacy_inventories():
+    import xarray as xr
+
+    data = hybrid.registry()
+    sources = [(Path(name), "3.12") for name in data["hybrid_sources"]["files"]]
+    scenarios = [
+        {
+            "model": "remind",
+            "year": 2050,
+            "iam data": SimpleNamespace(
+                electricity_mix=xr.DataArray(
+                    [1],
+                    dims="variables",
+                    coords={"variables": ["Solar PV Centralized"]},
+                )
+            ),
+        }
+    ]
+    native = hybrid.plan_hybrid_inventories(
+        ["electricity"],
+        scenarios,
+        sources,
+        version="2026",
+        family="uvek",
+        system_model="cutoff",
+    )
+    legacy = hybrid.plan_hybrid_inventories(
+        ["electricity"], scenarios, sources, version="3.12", system_model="cutoff"
+    )
+    assert native.clic_roots == () and native.selected_nodes == frozenset()
+    assert native.sources == ()
+    assert len(legacy.selected_nodes) == 250
+    assert any("photovoltaic-installation" in slug for slug in legacy.clic_roots)
+
+    # A user request or another retained consumer can still require a branch.
+    node = next(iter(legacy.selected_nodes))
+    explicit = hybrid.plan_hybrid_inventories(
+        ["electricity"],
+        scenarios,
+        sources,
+        version="2026",
+        family="uvek",
+        system_model="cutoff",
+        explicit_roots=("user-explicit-root",),
+        extra_nodes=(node,),
+    )
+    assert "user-explicit-root" in explicit.clic_roots
+    assert node in explicit.selected_nodes
+
+
 def test_user_uvek_discovers_public_root_without_legacy_migration(
     monkeypatch, tmp_path, catalogs, identity_migration
 ):
