@@ -294,8 +294,22 @@ retain each boundary, including the complete granulate supply,
 plant/component rather than operation coordinates, absence of another base-metal
 input in rolling, and the plywood documentation conflict. No factory demand is
 rescaled by density, plant lifetime, coproduct share or the excavation label
-`proj. 500`. Cement strength-class coverage, salt-production representativeness
-and refinery combustion boundaries remain separate unresolved decisions.
+`proj. 500`. Cement strength-class coverage remains a separate unresolved
+decision.
+
+Two further 3.6 counterparts have inspected output and upstream-service
+boundaries, pinned in `uvek_pilot_salt_refinery_reference_review.json`. Powder
+sodium chloride represents the same solution-mining, cleaning and drying
+process per kg; its source representativeness percentages do not define an
+explicit production-route blend to reconstruct. Native reagent forms and
+utility, wastewater and freight differences remain part of the complete
+native inventory. Swiss kerosene represents the same allocated product per kg.
+Both source and native inventories purchase upstream refinery-gas and heavy-fuel
+combustion services, rather than listing direct fossil CO2 in the refinery
+product itself. No extra furnace, combustion emissions or yield multiplier is
+added. Separately listed caller fuel-use emissions remain unchanged. Warnings
+retain differences in refinery vintage, coverage, fuel quantities and
+allocation; neither correspondence establishes inventory or LCIA equality.
 
 The pilot also reuses its approved native electricity topology for eight
 inspected grid correspondences across ten source profiles, preserving the same

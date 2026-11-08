@@ -4825,6 +4825,143 @@
           "fingerprint": "78a43711134ec0c9d53dc26e9226300c4f7b90ab7840210880e4bad54a1f078e"
         }
       ]
+    },
+    {
+      "rule_id": "bp-7128907317fe7019",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_salt_refinery_reference_review.json",
+      "review_sha256": "c626fcef4059882fb0305fa20a76d1ca1e4b40e4b1ce5a34e5f3a41414d9b225",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized pilot after inspecting the process and upstream service boundaries. No new product grade, production route, quantity basis or geographical substitution is introduced.",
+      "inspection": {
+        "rule_id": "bp-7128907317fe7019",
+        "source": {
+          "location": "RER",
+          "name": "sodium chloride production, powder",
+          "reference product": "sodium chloride, powder",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sodium chloride, powder, at plant",
+          "reference product": "Sodium chloride, powder, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "19a23a5804379f6ba9886c14c08242b44c3103910e5bc1db4c79589104fe6a60",
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "15a8d258f1b40f9b24e4f056256a51c6d325734260ed0e33c5d0cb950f19d022"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "96d2ccac1c8037375eff48290d90e119ba4db712962aed3a7c1edf0d6c9bda0b"
+          }
+        },
+        "conversion_factor": 1,
+        "inspection": {
+          "single_solution_mining_process": true,
+          "characteristic_coordinate_comparisons": 5,
+          "native_reagent_and_utility_differences_preserved": true
+        },
+        "boundary": "Same bulk powder NaCl product and solution-mining, cleaning and drying boundary. The source European41%/59%statement is representativeness metadata, not an explicit two-route production mix to reconstruct. The inspected electricity, heat, diesel, quicklime and total wastewater coordinates reproduce the characteristic native process demands. Native reagent forms, utilities, wastewater, disposal and freight differ; in particular, native soda powder differs from the source heptahydrate reagent. Retain the complete native process per signed kg of NaCl without adjusting its chemistry or inventing a production-route split; inventory and LCIA equality are not established."
+      },
+      "limitations": [
+        "Same bulk powder NaCl product and solution-mining, cleaning and drying boundary. The source European41%/59%statement is representativeness metadata, not an explicit two-route production mix to reconstruct. The inspected electricity, heat, diesel, quicklime and total wastewater coordinates reproduce the characteristic native process demands. Native reagent forms, utilities, wastewater, disposal and freight differ; in particular, native soda powder differs from the source heptahydrate reagent. Retain the complete native process per signed kg of NaCl without adjusting its chemistry or inventing a production-route split; inventory and LCIA equality are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5ba688c5f38fc2003bda530637981b5242daa57679be10c480521f45dd99e795"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ff3e7e592e354217",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_salt_refinery_reference_review.json",
+      "review_sha256": "c626fcef4059882fb0305fa20a76d1ca1e4b40e4b1ce5a34e5f3a41414d9b225",
+      "authorization": "Routine same-function, same-unit and same-geography counterpart validation within the authorized pilot after inspecting the process and upstream service boundaries. No new product grade, production route, quantity basis or geographical substitution is introduced.",
+      "inspection": {
+        "rule_id": "bp-ff3e7e592e354217",
+        "source": {
+          "location": "CH",
+          "name": "petroleum refinery operation",
+          "reference product": "kerosene",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Kerosene, at refinery",
+          "reference product": "Kerosene, at refinery",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "c4912cc41450170663a25e654d2ae77e04037cc7dce34566e32511eff63d81c3",
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "0216b976b4308949feee86f7e6f74575b4ba2bd2a06073e832b2fa82d69ef626"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "d0acb30291c0cb75d01325f1d375dd564a5a7b588e0be42f16db6150e10ae6e6"
+          }
+        },
+        "conversion_factor": 1,
+        "inspection": {
+          "source_inventory_sha256": "b364d7a999a71dda32d81cb7e947daa9235d7a0c4d52aa8791b1b10f26890b70",
+          "native_inventory_sha256": "fa20426b58777bab742c7b56aa8199aab24bd99619454e759bebeec8cdd1801a",
+          "upstream_combustion_services_present": {
+            "source": 2,
+            "native": 2
+          },
+          "direct_refinery_product_fossil_CO2_present": {
+            "source": false,
+            "native": false
+          }
+        },
+        "boundary": "Same allocated kerosene product per kg from the Swiss refinery. Both source and native products include fuel combustion through upstream refinery-gas/heavy-fuel furnace services, and neither has its own direct fossil-CO2 exchange. The source description excluding combustion refers to its direct process boundary, not an omitted upstream service. Add no furnace or combustion emissions, and preserve separately listed caller fuel-use emissions. Native source-year, refinery coverage, fuels, allocation and supplies differ. The parent1kg-crude description does not override the positive1kg kerosene product reference or justify a yield multiplier."
+      },
+      "limitations": [
+        "Same allocated kerosene product per kg from the Swiss refinery. Both source and native products include fuel combustion through upstream refinery-gas/heavy-fuel furnace services, and neither has its own direct fossil-CO2 exchange. The source description excluding combustion refers to its direct process boundary, not an omitted upstream service. Add no furnace or combustion emissions, and preserve separately listed caller fuel-use emissions. Native source-year, refinery coverage, fuels, allocation and supplies differ. The parent1kg-crude description does not override the positive1kg kerosene product reference or justify a yield multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7b4b1470e16573ab8f20a3c363dc547e3b5fbb764e2addbaff8907ee760bec42"
+        }
+      ]
     }
   ]
 }

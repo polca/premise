@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 85 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 83 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,18 +177,19 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 85 |
+| 3.6 | 27 | 83 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 4 |
 | 3.9 | 17 | 78 |
 | 3.12 | 8 | 44 |
 
-These are 212 exact-profile cases involving 188 distinct rules, after reusing
+These are 210 exact-profile cases involving 186 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
-counterparts for the pilot's exact source profiles.
+counterparts for the pilot's exact source profiles, including powder sodium
+chloride and Swiss kerosene with inspected upstream combustion boundaries.
 They describe the current review frontier, not separate approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 135 exact-profile fingerprints, with review evidence and
+ledger contains 137 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
@@ -197,8 +198,12 @@ remain pending.
 
 The private diagnostic also lacks a verified geothermal electricity
 generator, leaving 162 allocation gaps across 81 native countries and two mix
-types. Published geothermal candidates are being assessed separately; no
-unreviewed reconstruction is installed and no IAM geothermal share is removed.
+types. A concrete [Bagnore candidate](uvek-geothermal-bagnore-proposal.md) now
+covers 94 published rows, 43 background-product categories and two proposed
+unrolled-steel helpers. Its provisional combined LCI is finite, with unchanged
+source database hashes. The flash-plant proxy, allocation basis and waste
+endpoints await scientific approval. No unreviewed reconstruction is installed
+and no IAM geothermal share is removed.
 
 The 45 differences between the installed destination and the packaged catalog
 were traced to 30 European location labels, 14 US electricity-region prefixes

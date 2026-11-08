@@ -408,6 +408,8 @@ def test_inspected_wet_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-61babdae6914f05a", "3.9"),
         ("bp-49b843b95c0c6223", "3.9"),
         ("bp-deb7a57e4b2bc6e7", "3.6"),
+        ("bp-7128907317fe7019", "3.6"),
+        ("bp-ff3e7e592e354217", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -615,8 +617,6 @@ def test_prior_helper_approval_returns_complete_owned_graph(
     "rule_id",
     [
         "bp-9c3675cc3a3f003c",  # Different cement strength-class coverage.
-        "bp-7128907317fe7019",  # Salt-production representativeness needs review.
-        "bp-ff3e7e592e354217",  # Refinery combustion boundary needs review.
     ],
 )
 def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
@@ -638,19 +638,32 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
     )
 
 
-def test_approved_scr_proxy_preserves_stack_emissions_and_cache_warnings(tmp_path):
+@pytest.mark.parametrize(
+    "rule_id,flow_name,warning_terms",
+    [
+        ("bp-deb7a57e4b2bc6e7", "Nitrogen oxides", ("85%", "80%", "unquantified")),
+        (
+            "bp-ff3e7e592e354217",
+            "Carbon dioxide, fossil",
+            ("upstream", "preserve separately listed caller fuel-use emissions"),
+        ),
+    ],
+)
+def test_reviewed_service_preserves_separate_emissions_and_cache_warnings(
+    tmp_path, rule_id, flow_name, warning_terms
+):
     from brightpath import TechnosphereProfile
     from brightpath.background import PackageCatalogProvider
     from brightpath.background.rule_approvals import compatibility_rule_fingerprint
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
     resource = load_uvek_technosphere_resource()
-    rule = next(r for r in resource["replace"] if r["id"] == "bp-deb7a57e4b2bc6e7")
+    rule = next(r for r in resource["replace"] if r["id"] == rule_id)
     resolved = graph(rule["source"], version="3.6")
     resolved.activities[0]["exchanges"][1]["amount"] = 2
     resolved.activities[0]["exchanges"].append(
         {
-            "name": "Nitrogen oxides",
+            "name": flow_name,
             "categories": ("air", "non-urban air or from high stacks"),
             "unit": "kilogram",
             "type": "biosphere",
@@ -669,7 +682,7 @@ def test_approved_scr_proxy_preserves_stack_emissions_and_cache_warnings(tmp_pat
             e for e in result.activities[0]["exchanges"] if e["type"] == "biosphere"
         ]
         assert len(emissions) == 1
-        assert emissions[0]["name"] == "Nitrogen oxides"
+        assert emissions[0]["name"] == flow_name
         assert emissions[0]["amount"] == 0.037
         assert emissions[0]["formula"] == "source_stack_emissions"
         warning = next(
@@ -678,8 +691,7 @@ def test_approved_scr_proxy_preserves_stack_emissions_and_cache_warnings(tmp_pat
             if i["code"] == "clic.compatibility_proxy_limitations"
             and i["details"]["rule_id"] == rule["id"]
         )
-        assert "85%" in warning["message"] and "80%" in warning["message"]
-        assert "unquantified" in warning["message"]
+        assert all(term in warning["message"] for term in warning_terms)
     assert resolved.activities == before
     unreviewed = compatibility_rule_fingerprint(
         resource,
