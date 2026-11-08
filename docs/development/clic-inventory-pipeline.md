@@ -251,6 +251,11 @@ nodes and their dependencies remain eligible. Ecoinvent retains its existing
 template selection. This declaration does not permit missing native suppliers;
 the electricity supplier/allocation gates still apply.
 
+The [chemical quantity-basis review](uvek-chemical-quantity-bases.md) records
+why the native aqueous NaOH/HCl labels do not require extra concentration
+scaling, and why CaCl2 already carries its Solvay co-product normalization.
+These checks do not authorize the separate production and delivery proxies.
+
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by
 the upstream mapping workflow. Import provenance must retain that manifest and
