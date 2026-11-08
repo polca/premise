@@ -74,6 +74,25 @@ def test_database_metadata_shares_time_when_scenarios_agree():
     assert len(metadata["scenarios"]) == 2
 
 
+def test_uvek_metadata_keeps_publisher_and_biosphere_axes_separate():
+    from copy import deepcopy
+    from premise.database.background import resolve_source_background
+    from premise.utils import eidb_label
+
+    background = resolve_source_background("2026", family="uvek").to_dict()
+    scenario = {**SCENARIO, "background context": background}
+    before = deepcopy(scenario)
+    metadata = scenario_metadata(scenario, version="2026", system_model="cutoff")
+    assert metadata["background"] == background
+    assert "ecoinvent_version" not in metadata
+    assert eidb_label(scenario, "2026", "cutoff").startswith("uvek_cutoff_2026_")
+    combined = database_metadata([scenario, {**scenario, "year": 2030}], version="2026")
+    assert combined["background"] == background
+    assert "ecoinvent_version" not in combined
+    metadata["background"]["version"] = "changed"
+    assert scenario == before
+
+
 class DummyDatabases(dict):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

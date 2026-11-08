@@ -296,6 +296,10 @@ def biosphere_flows_dictionary(version):
     (name, category, sub-category, unit) -> code
     """
     version = normalize_version(str(version))
+    if version == "2026":
+        raise ValueError(
+            "UVEK 2026 is a technosphere release; supply its explicit biosphere version 3.10."
+        )
     if version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     elif version == "3.10":
@@ -1234,6 +1238,9 @@ def prepare_db_for_export(
     Prepare a database for export.
     """
 
+    # Export normalization uses the declared biosphere axis, independently of
+    # the technosphere publisher release recorded in scenario metadata.
+    version = scenario.get("background context", {}).get("biosphere_version", version)
     # ensuring that all geographically appropriate exchanges are present
     scenario = check_geographical_linking(scenario, original_database)
 
@@ -1270,6 +1277,7 @@ def prepare_db_for_fast_export(scenario, name, version, biosphere_name=None):
     formatting and validation steps required by the fast writer.
     """
 
+    version = scenario.get("background context", {}).get("biosphere_version", version)
     validator = BaseDatasetValidator(
         model=scenario["model"],
         scenario=scenario["pathway"],
@@ -1359,7 +1367,9 @@ class Export:
         }
         self.year = scenario["year"]
         self.filepath = filepath
-        self.version = version
+        self.version = scenario.get("background context", {}).get(
+            "biosphere_version", version
+        )
         self.bio_codes = self.rev_index(
             create_codes_index_of_biosphere_flows_matrix(self.version)
         )

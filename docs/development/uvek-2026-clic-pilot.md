@@ -64,6 +64,15 @@ uncertainty/formulas, cache replay and early cross-model refusals. The Brightcon
 bundle has been imported locally with all 11,947 activities and 417,072 retained
 exchanges, and a source electricity LCI is finite.
 
+The UVEK source extractor reads complete Brightway records and resolves Wurst
+labels from their actual linked suppliers. It checks the source's declared
+family, release, system model and biosphere, and rejects exchanges outside the
+selected databases. Ecoinvent cleanup strategies are not applied. Formulae,
+signed uncertainty and native metadata survive extraction on owned copies.
+Export normalization uses the explicit biosphere axis, and native database
+metadata, labels and report overviews distinguish UVEK 2026 from biosphere 3.10.
+Passing 2026 to an ecoinvent biosphere lookup now raises an explicit error.
+
 The native alias layer uses `InventorySet(family="uvek")`, `uvek_aliases` and
 `uvek_fuel_aliases` in the electricity and fuel YAML mappings. Its 53 nonempty
 alias definitions were checked against both the installed source and the

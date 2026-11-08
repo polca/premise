@@ -210,8 +210,10 @@ def eidb_label(
     :rtype: str
     """
 
+    family = scenario.get("background context", {}).get("family", "ecoinvent")
+    prefix = "ei" if family == "ecoinvent" else family
     name = (
-        f"ei_{system_model}_{version}_{scenario['model']}"
+        f"{prefix}_{system_model}_{version}_{scenario['model']}"
         f"_{scenario['pathway']}_{scenario['year']}"
     )
 
@@ -256,7 +258,10 @@ def scenario_metadata(
         "representative_time": datetime(year, 1, 1).isoformat(),
     }
 
-    if version is not None:
+    background = scenario.get("background context")
+    if background and background.get("family") != "ecoinvent":
+        metadata["background"] = deepcopy(background)
+    elif version is not None:
         metadata["ecoinvent_version"] = str(version)
 
     if system_model is not None:
@@ -316,7 +321,13 @@ def database_metadata(
         "scenarios": entries,
     }
 
-    if version is not None:
+    backgrounds = [scenario.get("background context") for scenario in scenarios]
+    if backgrounds and backgrounds[0] and all(b == backgrounds[0] for b in backgrounds):
+        if backgrounds[0].get("family") != "ecoinvent":
+            metadata["background"] = deepcopy(backgrounds[0])
+        elif version is not None:
+            metadata["ecoinvent_version"] = str(version)
+    elif version is not None and not any(backgrounds):
         metadata["ecoinvent_version"] = str(version)
 
     if system_model is not None:

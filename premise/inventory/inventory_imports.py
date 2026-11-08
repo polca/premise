@@ -158,6 +158,10 @@ def get_biosphere_code(version) -> dict:
 
     """
     version = normalize_version(str(version))
+    if version == "2026":
+        raise ValueError(
+            "UVEK 2026 is a technosphere release; supply its explicit biosphere version 3.10."
+        )
     if version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     elif version == "3.10":

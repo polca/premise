@@ -2048,13 +2048,28 @@ def _write_overview(
         for (_, sector, transformation), counts in summary.sector_counts.items()
         if sector == "unattributed" or transformation == "unattributed"
     )
+    background = next(
+        (
+            s.definition["background context"]
+            for s in scenarios
+            if s.definition and s.definition.get("background context")
+        ),
+        {},
+    )
     rows = [
         ("Report ID", artifacts.report_id),
         ("Status", artifacts.status),
         ("Generated (UTC)", datetime.now(timezone.utc).isoformat()),
         ("Source database", source_database),
         ("Source format", source_type),
-        ("Ecoinvent version", version),
+        (
+            (
+                "Background release"
+                if background.get("family") == "uvek"
+                else "Ecoinvent version"
+            ),
+            version,
+        ),
         ("System model", system_model),
         ("premise version", premise_version),
         ("Report schema", REPORT_SCHEMA_VERSION),
@@ -2077,6 +2092,14 @@ def _write_overview(
         ("Unattributed change objects", unattributed_count),
         ("Detailed audit", None if details_path is None else details_path.name),
     ]
+    if background.get("family") == "uvek":
+        rows.extend(
+            [
+                ("Background family", background["family"]),
+                ("Biosphere family", background["biosphere_family"]),
+                ("Biosphere version", background["biosphere_version"]),
+            ]
+        )
     for position, scenario in enumerate(scenarios, 1):
         label = _scenario_label(scenario.identity)
         rows.extend(
