@@ -5,6 +5,14 @@ Use a Python and Brightway combination described in
 :doc:`/getting_started/installation`. Your ecoinvent source database, its
 system model and the ``source_version`` setting must agree.
 
+The minimum background database version is **3.7**. Older inventory workbooks
+and external datapackages can still be imported and migrated to a supported
+background; their native source versions do not set the target version.
+
+The CLIC provider remains in development. Accepted version arguments describe
+the intended target range; unresolved background mappings can still prevent a
+CLIC build. See the CLIC pipeline development notes for current conversion checks.
+
 Compatibility boundaries
 --------------------------
 

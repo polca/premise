@@ -16,7 +16,7 @@
    * - Oil and natural-gas extraction
      - `natural gas, at production (DE) <https://clic.psi.ch/datasets/natural-gas-at-production-10/>`__; `crude oil, at production (MX) <https://clic.psi.ch/datasets/crude-oil-at-production/>`__
      - 3.7
-     - 3.5 cutoff; 3.6 cutoff; 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential
+     - 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential
    * - Legacy platinum-group metal supplies
      - —
      - 3.8
@@ -68,11 +68,11 @@
    * - NMC111, NMC811, NCA and LFP cells
      - `market for battery cell, Li-ion, NMC111 (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nmc111/>`__; `market for battery cell, Li-ion, NMC811 (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nmc811/>`__; `market for battery cell, Li-ion, NCA (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nca/>`__; `market for battery cell, Li-ion, LFP, curated supply (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-lfp/>`__
      - 3.8
-     - 3.5 cutoff; 3.6 cutoff; 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential
+     - 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential
    * - NMC622 and NMC532 batteries
      - `market for battery, Li-ion, NMC622 (GLO) <https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc622/>`__; `market for battery, Li-ion, NMC532 (GLO) <https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc532/>`__
      - 3.8
-     - 3.5 cutoff; 3.6 cutoff; 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential; 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential
+     - 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential; 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential
    * - NMC955 and LTO batteries
      - `market for battery, Li-ion, NMC955 (GLO) <https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc955/>`__; `market for battery, Li-ion, LTO (GLO) <https://clic.psi.ch/datasets/market-for-battery-li-ion-lto/>`__
      - 3.8
@@ -196,7 +196,7 @@
    * - Natural and synthetic graphite
      - `natural graphite production, coated (CN) <https://clic.psi.ch/datasets/natural-graphite-production-coated/>`__; `synthetic graphite production (CN) <https://clic.psi.ch/datasets/synthetic-graphite-production/>`__
      - 3.8
-     - 3.5 cutoff; 3.6 cutoff; 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential; 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential
+     - 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential; 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential
    * - High-temperature heat pumps
      - `heat production, water-water heat pump, industrial, 100kW (RER) <https://clic.psi.ch/datasets/heat-production-water-water-heat-pump-industrial-100kw/>`__; `steam heat production, water-water heat pump, industrial, 100kW (RER) <https://clic.psi.ch/datasets/steam-heat-production-water-water-heat-pump-industrial-100kw/>`__
      - 3.11
