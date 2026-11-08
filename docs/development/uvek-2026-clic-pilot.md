@@ -116,6 +116,21 @@ edited. In the installed source, nine negative Greek-partner entries in the
 Bosnian import mix leave no negative net supplier weights after aggregation.
 The source documentation does not explain why those entries are negative.
 
+Two additional supplier choices have explicit screening approval. If a country
+has no positive source weights for an IAM technology, use the existing UVEK
+global portfolio for that same technology, or its sole mapped native generator.
+Record the source portfolio or unique supplier and the geography limitation;
+never create equal shares for multiple unweighted suppliers. For IGCC and IGCC
+with CCS, the two reviewed CLIC hard-coal/lignite generators use the positive
+global coal-generation split, calculated from the installed source. That split
+is approximately 95.53% hard coal / 4.47% lignite in the pinned bundle. It is a
+historical proxy for an unavailable IAM fuel split, not a new IAM projection.
+Both complete generator inventories and their declared CCS chains remain intact.
+Missing templates, changed CLIC role bindings, unknown variants or an incomplete
+two-fuel basis are refused. These choices appear in warnings, validation and
+per-mix supplier provenance without changing IAM technology shares or grid
+quantities.
+
 This native pilot does not apply ecoinvent-specific baseline coal/hydropower
 corrections, synthetic voltage grids, regional plant cloning or industrial-market
 rewriting. Native nuclear efficiency changes require reviewed fuel-energy

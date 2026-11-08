@@ -246,6 +246,9 @@ def test_source_trade_loop_uses_native_quantities(native):
 
 def test_missing_source_weights_refuse_before_any_mix_changes(native):
     native.busbar["exchanges"] = native.busbar["exchanges"][:-1]
+    another = activity("Another native PV generator", "FR")
+    native.database.append(another)
+    native.mapping["Solar PV Residential"].append(another)
     before = copy.deepcopy(native.database)
     transform = UVEKElectricity(**native.kwargs)
     with pytest.raises(
@@ -529,6 +532,9 @@ def test_native_context_mismatch_is_rejected_before_mix_changes(native):
 
 def test_diagnostic_plan_collects_all_missing_roles_and_mixes_without_changes(native):
     native.busbar["exchanges"] = native.busbar["exchanges"][:1]
+    another = activity("Another native PV generator", "FR")
+    native.database.append(another)
+    native.mapping["Solar PV Residential"].append(another)
     before = copy.deepcopy(native.database)
     transform = UVEKElectricity(**native.kwargs)
     with pytest.raises(ValueError, match="4 unresolved supplier allocations") as caught:
@@ -573,3 +579,161 @@ def test_complete_pv_inventory_is_a_generation_leaf_with_direct_flows(native):
         e.get("input") == (complete["database"], complete["code"])
         for e in native.busbar["exchanges"]
     )
+
+
+def test_global_same_technology_portfolio_is_an_explicit_geographic_proxy(native):
+    global_mix = activity("Electricity mix", "GLO")
+    global_mix["exchanges"] += [
+        exchange(native.wind1, 0.3),
+        exchange(native.wind2, 0.1),
+        exchange(native.pv, 0.6),
+    ]
+    native.database.append(global_mix)
+    native.busbar["exchanges"] = native.busbar["exchanges"][:1] + [
+        exchange(native.pv, 1)
+    ]
+    before = copy.deepcopy(native.grids)
+    transform = UVEKElectricity(**native.kwargs)
+    plans = transform.plan_mixes()
+    target = next(plan for plan in plans if plan[0] is native.busbar)
+    assert [e["amount"] for e in target[1]] == pytest.approx([0.45, 0.15, 0.4])
+    assert "geographic proxy" in target[-1]["Wind Onshore"]["basis"]
+    assert target[-1]["Wind Onshore"]["source portfolio"][2] == "GLO"
+    transform.update_native_mixes(plans)
+    assert native.grids == before
+    assert any(
+        i.rule_id == "electricity.uvek.supplier_proxy"
+        for i in transform.validate_native_mixes(plans).warnings
+    )
+
+
+def test_sole_native_provider_has_recorded_proxy_without_invented_shares(native):
+    native.busbar["exchanges"] = native.busbar["exchanges"][:-1]
+    before = copy.deepcopy(native.pv)
+    transform = UVEKElectricity(**native.kwargs)
+    plans = transform.plan_mixes()
+    assert (
+        plans[0][-1]["Solar PV Residential"]["basis"]
+        == "unique mapped native generator (geographic proxy)"
+    )
+    assert plans[0][-1]["Solar PV Residential"]["unique native supplier"] == identity(
+        native.pv
+    )
+    assert native.pv == before
+    assert plans[0][1][-1]["amount"] == 0.4
+
+
+def igcc_fixture(native, technology):
+    from premise.electricity.uvek import IGCC_FUEL_SLUGS, NATIVE_COAL_FUELS
+
+    coal = [activity(name) for name in NATIVE_COAL_FUELS]
+    native.database.extend(coal)
+    native.mapping["Coal PC"] = coal
+    global_mix = activity("Electricity mix", "GLO")
+    imports = activity("Electricity imports", "GLO")
+    imports["exchanges"].append(exchange(coal[0], -0.1))
+    global_mix["exchanges"] += [
+        exchange(coal[0], 0.4),
+        exchange(coal[1], 0.1),
+        exchange(imports, 1),
+    ]
+    native.database.extend([global_mix, imports])
+    generators = []
+    for fuel, slug in IGCC_FUEL_SLUGS[technology].items():
+        generator = activity(f"Synthetic {technology} {fuel}", "RER")
+        generator["clic provenance"] = {
+            "slug": slug,
+            "role_bindings": [f"electricity.yaml:{technology}"],
+        }
+        generators.append(generator)
+    native.database.extend(generators)
+    native.mapping[technology] = generators
+    native.iam.electricity_mix = xr.DataArray(
+        [[[1.0]]],
+        dims=("region", "variables", "year"),
+        coords={"region": ["R1"], "variables": [technology], "year": [2050]},
+    )
+    return generators, imports
+
+
+@pytest.mark.parametrize("technology", ["Coal IGCC", "Coal IGCC CCS"])
+def test_igcc_uses_signed_global_coal_fuel_split_and_preserves_complete_templates(
+    native, technology
+):
+    generators, imports = igcc_fixture(native, technology)
+    before = copy.deepcopy([generators, imports, native.grids])
+    transform = UVEKElectricity(**native.kwargs)
+    plans = transform.plan_mixes()
+    assert [e["amount"] for e in plans[0][1]] == pytest.approx([0.75, 0.25])
+    assert plans[0][-1][technology]["baseline fuel shares"] == pytest.approx(
+        {"hard coal": 0.75, "lignite": 0.25}
+    )
+    transform.update_native_mixes(plans)
+    assert [generators, imports, native.grids] == before
+    assert (
+        native.busbar["uvek electricity provenance"]["supplier weights"][technology][
+            "source portfolio"
+        ][2]
+        == "GLO"
+    )
+    assert any("IGCC" in message for message in transform.supplier_proxy_limitations)
+
+
+@pytest.mark.parametrize(
+    "problem", ["extra", "missing", "wrong binding", "missing baseline fuel"]
+)
+def test_igcc_proxy_refuses_unapproved_variants_or_incomplete_basis(native, problem):
+    generators, _ = igcc_fixture(native, "Coal IGCC")
+    if problem == "extra":
+        other = copy.deepcopy(generators[0])
+        other.update(name="unreviewed IGCC", code="unreviewed")
+        other["clic provenance"]["slug"] = "different-capture-configuration"
+        native.database.append(other)
+        native.mapping["Coal IGCC"].append(other)
+    elif problem == "missing":
+        native.mapping["Coal IGCC"].pop()
+    elif problem == "wrong binding":
+        generators[0]["clic provenance"]["role_bindings"] = [
+            "electricity.yaml:Coal IGCC CCS"
+        ]
+    else:
+        global_mix = next(
+            d
+            for d in native.database
+            if d["name"] == "Electricity mix" and d["location"] == "GLO"
+        )
+        global_mix["exchanges"] = [
+            e for e in global_mix["exchanges"] if "lignite" not in e["name"]
+        ]
+    before = copy.deepcopy(native.database)
+    transform = UVEKElectricity(**native.kwargs)
+    with pytest.raises(ValueError, match="Coal IGCC"):
+        transform.plan_mixes()
+    assert native.database == before
+
+
+def test_public_update_reports_approved_geographic_proxy(native):
+    from premise.electricity.uvek import GEOGRAPHIC_SUPPLIER_LIMITATION
+
+    native.busbar["exchanges"] = native.busbar["exchanges"][:-1]
+    before = copy.deepcopy(native.pv)
+    scenario = {
+        "database": native.database,
+        "iam data": native.iam,
+        "model": "remind",
+        "pathway": "synthetic",
+        "year": 2050,
+    }
+    with pytest.warns(UserWarning) as warnings:
+        result = electricity_module._update_electricity(
+            scenario, "2026", "cutoff", False, "uvek", "3.10"
+        )
+    assert any("geographic screening proxy" in str(item.message) for item in warnings)
+    assert GEOGRAPHIC_SUPPLIER_LIMITATION in result["electricity limitations"]
+    assert native.pv == before
+    assert (
+        result["_validation_phase_results"][0]["phase_id"] == "sector:electricity:uvek"
+    )
+    assert native.busbar["uvek electricity provenance"]["supplier weights"][
+        "Solar PV Residential"
+    ]["unique native supplier"] == identity(native.pv)

@@ -53,6 +53,34 @@ SIGNED_WEIGHT_LIMITATION = (
     "exchanges remain unchanged; excluded negative net weighting coefficients "
     "are retained in diagnostics and provenance. No individual edge is clipped."
 )
+GEOGRAPHIC_SUPPLIER_LIMITATION = (
+    "Where a country has no positive historical weights for an IAM technology, "
+    "UVEK's global portfolio for that same technology or its sole mapped native "
+    "generator is used as an approved geographic screening proxy. Generator "
+    "geography, vintage and upstream energy supply can differ. IAM technology "
+    "shares and native grid quantities are unchanged."
+)
+IGCC_FUEL_LIMITATION = (
+    "IGCC hard-coal/lignite allocation uses the positive net coal-generation "
+    "weights in UVEK's baseline global electricity mix. This historical fuel "
+    "split approximates the unavailable IAM IGCC fuel split. The complete "
+    "reviewed CLIC generators, including any CCS chain, are retained."
+)
+GLOBAL_SOURCE_MIX = ("Electricity mix", "Electricity mix", "GLO", "kilowatt hour")
+NATIVE_COAL_FUELS = {
+    "Electricity, hard coal, at power plant": "hard coal",
+    "Electricity, lignite, at power plant": "lignite",
+}
+IGCC_FUEL_SLUGS = {
+    "Coal IGCC": {
+        "hard coal": "electricity-production-at-hard-coal-fired-igcc-power-plant",
+        "lignite": "electricity-production-at-lignite-fired-igcc-power-plant",
+    },
+    "Coal IGCC CCS": {
+        "hard coal": "electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
+        "lignite": "electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
+    },
+}
 
 
 class UVEKSourceWeightError(ValueError):
@@ -186,6 +214,11 @@ class UVEKElectricity(Electricity):
                     )
         self.source_weights = self._source_supplier_weights()
         self.efficiency_limitations = []
+        self.supplier_proxy_decisions = {}
+
+    @property
+    def supplier_proxy_limitations(self):
+        return sorted({d["limitation"] for d in self.supplier_proxy_decisions.values()})
 
     def get_network_losses(self):
         """Keep losses by native country; never apply ECI loss conventions."""
@@ -344,10 +377,80 @@ class UVEKElectricity(Electricity):
             return [
                 (d, weight / total) for d, weight in weighted
             ], "native positive source mix coefficients"
-        # New CLIC-only roles have no native coefficients. A unique role provider
-        # needs no invented geographic split. Never substitute native candidates
-        # with missing weights, or split multiple CLIC suppliers equally.
-        imported = [d for d in candidates.values() if d.get("clic provenance")]
+        global_source = self.source_weights.get(GLOBAL_SOURCE_MIX, {})
+        weighted = [
+            (d, global_source[key])
+            for key, d in candidates.items()
+            if global_source.get(key, 0) > 0
+        ]
+        if weighted:
+            total = sum(weight for _, weight in weighted)
+            self.supplier_proxy_decisions[(identity(dataset), technology)] = {
+                "limitation": GEOGRAPHIC_SUPPLIER_LIMITATION,
+                "source portfolio": GLOBAL_SOURCE_MIX,
+                "positive net coefficients": [
+                    {"supplier": identity(d), "coefficient": w} for d, w in weighted
+                ],
+            }
+            return [
+                (d, weight / total) for d, weight in weighted
+            ], "global native technology portfolio (geographic proxy)"
+        if len(candidates) == 1 and technology not in IGCC_FUEL_SLUGS:
+            supplier = next(iter(candidates.values()))
+            if not supplier.get("clic provenance"):
+                self.supplier_proxy_decisions[(identity(dataset), technology)] = {
+                    "limitation": GEOGRAPHIC_SUPPLIER_LIMITATION,
+                    "unique native supplier": identity(supplier),
+                }
+                return [
+                    (supplier, 1.0)
+                ], "unique mapped native generator (geographic proxy)"
+        if technology in IGCC_FUEL_SLUGS:
+            slugs = IGCC_FUEL_SLUGS[technology]
+            templates = {}
+            for fuel, slug in slugs.items():
+                matches = [
+                    d
+                    for d in candidates.values()
+                    if d.get("clic provenance", {}).get("slug") == slug
+                    and f"electricity.yaml:{technology}"
+                    in d["clic provenance"].get("role_bindings", ())
+                ]
+                if len(matches) == 1:
+                    templates[fuel] = matches[0]
+            # No unknown variant, duplicate version or non-reviewed CLIC role
+            # can inherit a fuel share from this exact two-template approval.
+            if len(templates) == len(slugs) == len(candidates):
+                fuels = defaultdict(float)
+                for key, weight in global_source.items():
+                    if (
+                        key[0] in NATIVE_COAL_FUELS
+                        and key[1] == key[0]
+                        and key[3] == "kilowatt hour"
+                        and weight > 0
+                    ):
+                        fuels[NATIVE_COAL_FUELS[key[0]]] += weight
+                total = sum(fuels.values())
+                if total > 0 and all(fuels.get(fuel, 0) > 0 for fuel in slugs):
+                    weights = {fuel: fuels.get(fuel, 0) / total for fuel in slugs}
+                    self.supplier_proxy_decisions[(identity(dataset), technology)] = {
+                        "limitation": IGCC_FUEL_LIMITATION,
+                        "source portfolio": GLOBAL_SOURCE_MIX,
+                        "positive net fuel coefficients": dict(fuels),
+                        "baseline fuel shares": weights,
+                    }
+                    return [
+                        (templates[fuel], weight)
+                        for fuel, weight in weights.items()
+                        if weight > 0
+                    ], "baseline global coal fuel split (IGCC proxy)"
+        # Other new CLIC-only roles can use a unique reviewed provider. The
+        # two-fuel IGCC approval cannot fall back to just one of its templates.
+        imported = (
+            [d for d in candidates.values() if d.get("clic provenance")]
+            if technology not in IGCC_FUEL_SLUGS
+            else []
+        )
         if imported and len(imported) == len(candidates):
             for location in (dataset["location"], region, None):
                 matches = [
@@ -368,6 +471,7 @@ class UVEKElectricity(Electricity):
     def plan_mixes(self):
         """Resolve all technologies before mutating any native activity."""
 
+        self.supplier_proxy_decisions = {}
         plans = []
         missing = []
         for dataset in self.native_mixes:
@@ -419,6 +523,11 @@ class UVEKElectricity(Electricity):
                         if identity(d) in source
                     ],
                 }
+                evidence[technology].update(
+                    self.supplier_proxy_decisions.get(
+                        (identity(dataset), technology), {}
+                    )
+                )
                 for supplier, weight in suppliers:
                     key = identity(supplier)
                     if key not in self.providers or supplier["unit"] != "kilowatt hour":
@@ -454,6 +563,10 @@ class UVEKElectricity(Electricity):
                         f"Incomplete UVEK electricity supplier allocation: {technology!r}."
                     )
             plans.append((dataset, exchanges, region, mix, evidence))
+        self.source_weight_diagnostics["supplier proxy decisions"] = [
+            {"mix": key[0], "technology": key[1], **value}
+            for key, value in self.supplier_proxy_decisions.items()
+        ]
         if missing:
             roles = sorted({item["technology"] for item in missing})
             countries = sorted({item["mix"][2] for item in missing})
@@ -742,6 +855,15 @@ class UVEKElectricity(Electricity):
             if signed_count
             else ()
         )
+        proxy_issues = tuple(
+            ValidationIssue(
+                "electricity.uvek.supplier_proxy",
+                "warning",
+                message,
+                checked_object_count=len(self.supplier_proxy_decisions),
+            )
+            for message in self.supplier_proxy_limitations
+        )
         return ValidationPhaseResult(
             phase_id="sector:electricity:uvek",
             kind="sector",
@@ -783,6 +905,13 @@ class UVEKElectricity(Electricity):
                     signed_count,
                     issues=signed_issues,
                 ),
+                ValidationRuleResult(
+                    "electricity.uvek.supplier_proxy",
+                    "warning",
+                    "applicable",
+                    len(self.supplier_proxy_decisions),
+                    issues=proxy_issues,
+                ),
             ),
         )
 
@@ -821,6 +950,8 @@ def update_uvek_electricity(
         return scenario
     plans = electricity.plan_mixes()
     warnings.warn(TOPOLOGY_LIMITATION, UserWarning, stacklevel=2)
+    for limitation in electricity.supplier_proxy_limitations:
+        warnings.warn(limitation, UserWarning, stacklevel=2)
     signed_edges = [
         e
         for e in electricity.source_weight_diagnostics["source exchange coefficients"]
@@ -846,5 +977,6 @@ def update_uvek_electricity(
         TOPOLOGY_LIMITATION,
         *([SIGNED_WEIGHT_LIMITATION] if signed_edges else []),
         *electricity.efficiency_limitations,
+        *electricity.supplier_proxy_limitations,
     ]
     return scenario
