@@ -431,6 +431,22 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-d8aa748d3c6d8667", "3.9"),
         ("bp-365d3df4ba55618f", "3.9"),
         ("bp-b80976e787fd9cd2", "3.9"),
+        ("bp-14d8fca280d9c0bb", "3.12"),
+        ("bp-99faa5629490252a", "3.12"),
+        ("bp-d9521ecfbb6552d6", "3.12"),
+        ("bp-c63a1747fd444679", "3.12"),
+        ("bp-3080b1f0605165b9", "3.6"),
+        ("bp-3080b1f0605165b9", "3.9"),
+        ("bp-0028acc612584b3f", "3.9"),
+        ("bp-0028acc612584b3f", "3.12"),
+        ("bp-3957e7cc9358ee62", "3.6"),
+        ("bp-3957e7cc9358ee62", "3.12"),
+        ("bp-412f090ea47af121", "3.12"),
+        ("bp-2db59faccae4349c", "3.12"),
+        ("bp-1f0fa3bbee140c45", "3.12"),
+        ("bp-cdf8909801f26981", "3.6"),
+        ("bp-cdf8909801f26981", "3.9"),
+        ("bp-3c4fc855bcc17210", "3.12"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -815,4 +831,35 @@ def test_forming_service_keeps_the_separate_caller_polymer(tmp_path, rule_id):
         and d["details"]["rule_id"] == rule_id
     )
     assert "add no full kg of plastic" in warning["message"]
+    assert resolved.activities == before
+
+
+def test_complete_electronic_components_keep_kg_without_extra_assembly(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    chosen = [
+        rules[r]
+        for r in ("bp-14d8fca280d9c0bb", "bp-99faa5629490252a", "bp-d9521ecfbb6552d6")
+    ]
+    amounts = (-2, 0.5, 1.25)
+    resolved = graph(*(r["source"] for r in chosen), version="3.12")
+    for exchange, amount in zip(resolved.activities[0]["exchanges"][1:], amounts):
+        exchange["amount"] = amount
+    before = copy.deepcopy(resolved.activities)
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(resolved, version="2026", family="uvek")
+    (activity,) = result.activities
+    assert len(activity["exchanges"]) == 4
+    for exchange, rule, amount in zip(activity["exchanges"][1:], chosen, amounts):
+        assert all(exchange[k] == v for k, v in rule["target"].items())
+        assert exchange["unit"] == "kilogram" and exchange["amount"] == amount
+    assert any(
+        d["code"] == "clic.compatibility_proxy_limitations"
+        and d["details"]["rule_id"] == chosen[0]["id"]
+        and "0.7 g example device" in d["message"]
+        for d in result.diagnostics
+    )
     assert resolved.activities == before

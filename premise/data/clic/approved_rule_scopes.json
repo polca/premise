@@ -6574,6 +6574,1526 @@
           "fingerprint": "650d36dd467ed47781c1b616566c47e40fd35081788a187189d88755b3979741"
         }
       ]
+    },
+    {
+      "rule_id": "bp-14d8fca280d9c0bb",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-14d8fca280d9c0bb",
+        "source": {
+          "location": "GLO",
+          "name": "market for capacitor, film type, for through-hole mounting",
+          "reference product": "capacitor, film type, for through-hole mounting",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Capacitor, film, through-hole mounting, at plant",
+          "reference product": "Capacitor, film, through-hole mounting, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0f8a55bf6227990344eb1dc8d46e9acc6b566f41513021f6329e171699156a6e",
+            "inventory_sha256": "a66be2129f9138969563a499e7752e86f1c3c79b2f01954358659afd3fa32ba7",
+            "activity_comment_sha256": "0eccd86797e879ff1ff31337d3bf72ffe2cae2613b061da6208545065a68e84e",
+            "product_information_sha256": "8ecadc0538cee415187521e83d5baaf659489b55fc15a87952d6752bee678229",
+            "producers": [
+              {
+                "identity": {
+                  "name": "capacitor production, film type, for through-hole mounting",
+                  "reference product": "capacitor, film type, for through-hole mounting",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "4d452a452124432d73154ceded38d8f29def1ec071991ab85b54596c4b4a69a8"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "e6d939414e0da441017ea3b9e20d3f71c4760f93d57c303229fc833a698ac0b9",
+            "inventory_sha256": "49fbcb82f70cd521766ccd04dfcd686accc2eb7e883c394d26482b57d20134c8",
+            "activity_comment_sha256": "923c9572578510c3926bc83e2b23700e7b32c1cbe773700d0ca2dbe13681c93f",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 0,
+            "direct_technosphere_coordinates": 15
+          },
+          "2026": {
+            "metadata_sha256": "1ce9722e5064201ebb360c8d54fe2e2a0776322ab6c14fc16ba51204e6c5ede6",
+            "inventory_sha256": "3f7754e381383b6cdaf094573d3ae1b2aaae1ea7d1423556acbc2e548030a577",
+            "activity_comment_sha256": "a0be935051c4c3932e5b5e993fd426e48f9c32c261e9dfa6c6b8f0e93e83d44d",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 0,
+            "direct_technosphere_coordinates": 15
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same complete film capacitor for through-hole mounting, referenced per kg. Both descriptions use a 0.7 g example device, which does not change the kg reference or justify a device-count conversion. Native 2023 production-effort updates and material/energy regionalization remain included, with component composition, electrical-performance representativeness and vintage limitations. Add no separate capacitor materials or assembly process.",
+        "inspected_upstream_producers": [
+          {
+            "source_version": "3.12",
+            "identity": {
+              "name": "capacitor production, film type, for through-hole mounting",
+              "reference product": "capacitor, film type, for through-hole mounting",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "b59efc86124879b910573633fce003c50381254c2b15a03a23a9e7675de62769",
+            "inventory_sha256": "cfdd441acc98058d2430cdcbc33c2e6b2e9806a380db38dba6828352933d891d"
+          }
+        ]
+      },
+      "limitations": [
+        "Same complete film capacitor for through-hole mounting, referenced per kg. Both descriptions use a 0.7 g example device, which does not change the kg reference or justify a device-count conversion. Native 2023 production-effort updates and material/energy regionalization remain included, with component composition, electrical-performance representativeness and vintage limitations. Add no separate capacitor materials or assembly process.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f4fdae76d3587fcd8e60f8169e404efcebf0cbb20e772e4218983badedb2fc7a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c63a1747fd444679",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-c63a1747fd444679",
+        "source": {
+          "location": "GLO",
+          "name": "market for carboxymethyl cellulose, powder",
+          "reference product": "carboxymethyl cellulose, powder",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Carboxymethyl cellulose, powder, at plant",
+          "reference product": "Carboxymethyl cellulose, powder, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "637e5f36cde792c23857947031b8f8214350c6d5bc8c43385ffea60325ca99a1",
+            "inventory_sha256": "ade0537faa2d3119b223c92c028af82ada093936e3b5c391f6af8f613d7e1c15",
+            "activity_comment_sha256": "cdc3e065a692a77c4551d66d15427acfbe58eb62e466a33838f6e2766703d4b9",
+            "product_information_sha256": "0c529b02e139cf922d99f761fc3d7da39e365f495a0dfc6c0230c72242e73e12",
+            "producers": [
+              {
+                "identity": {
+                  "name": "carboxymethyl cellulose production, powder",
+                  "reference product": "carboxymethyl cellulose, powder",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "3b4838be681b878ffbcf649653fb805a0462a6dcf4463d55c668415c6e7c03f9"
+              },
+              {
+                "identity": {
+                  "name": "carboxymethyl cellulose production, powder",
+                  "reference product": "carboxymethyl cellulose, powder",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "3b4838be681b878ffbcf649653fb805a0462a6dcf4463d55c668415c6e7c03f9"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "a764674b814d5df9e7ada17e23aea8c6c4572c8ded8dd879734272f4db6786ef",
+            "inventory_sha256": "795988aae0db86646c378c66c98281e3792a76a68d37d4f47b378aae2a87995a",
+            "activity_comment_sha256": "ca633bc392e038c28a63a23fa494e199ccc982f59eb622cf98d1e8cba0e6477d",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 1280,
+            "direct_technosphere_coordinates": 0
+          },
+          "2026": {
+            "metadata_sha256": "8c43a3e358ccaaf3e66d946339382c6a8f6b6763029715c03f0cb5bbe0257914",
+            "inventory_sha256": "4408a8bc87c8ae52420997d61730108e59852e78014d8a81bd7798a48ac9cd0c",
+            "activity_comment_sha256": "885a4c98deeae471bbfa57115f0b4986c57bc338bd5345e17af05fe08b41d257",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 1300,
+            "direct_technosphere_coordinates": 0
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same powder carboxymethyl cellulose, CAS 9000-11-7. Source producer and native documentation describe the same historical alkaline-cellulose process. The native supplier is an aggregated biosphere inventory, not a production-only allocation stock: it has active resource and emission flows despite no direct technosphere inputs. Retain that complete aggregated inventory per kg; add no precursor/energy reconstruction. Native 2025/2026 biosphere coverage differs and remains an explicit limitation.",
+        "inspected_upstream_producers": []
+      },
+      "limitations": [
+        "Same powder carboxymethyl cellulose, CAS 9000-11-7. Source producer and native documentation describe the same historical alkaline-cellulose process. The native supplier is an aggregated biosphere inventory, not a production-only allocation stock: it has active resource and emission flows despite no direct technosphere inputs. Retain that complete aggregated inventory per kg; add no precursor/energy reconstruction. Native 2025/2026 biosphere coverage differs and remains an explicit limitation.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e76ad7445d0db9dba06bcc45c9d5d69c0721d0371459c197d78eeca4244960c0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3080b1f0605165b9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-3080b1f0605165b9",
+        "source": {
+          "location": "RER",
+          "name": "market for chlorine, liquid",
+          "reference product": "chlorine, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chlorine, liquid, production mix, at plant",
+          "reference product": "Chlorine, liquid, production mix, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b2d738fd505d2c1f13bd117ef3b67a8756c77bd4015eaf2e3da5a633a4aed45b",
+            "inventory_sha256": "b0f53151afb195cbae8a8c7447a290f3f6ce2e9c358b6c5046a691394a4b3c7f",
+            "activity_comment_sha256": "ec6ff5ccbe8f1aae5c60bb42091e498bcda5b0b260a07f01e24695c9203adac9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "chlorine production, liquid",
+                  "reference product": "chlorine, liquid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "3e1e78e1737c8626c07f9468b91bf7cab5a4e30abdd9fda278ebefa3402c83d2"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "759dfaa8277335cd8f387c7d8dfa85ca96cf576edeb9b2494643544cfdb73d64",
+            "inventory_sha256": "97c13ae0ceb2c5ae05f906ae019e6151e8575b3a2723be1ad94f45022675c613",
+            "activity_comment_sha256": "af425560e0c1be87ebddc416c17a0cb017dd7384a44a336675f74102b205f55b",
+            "product_information_sha256": "b63d89614092cbe2de866ad349590408aa8db096d7e817ec29d7e1a382a9bccf",
+            "producers": [
+              {
+                "identity": {
+                  "name": "chlorine production, liquid",
+                  "reference product": "chlorine, liquid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "3e1e78e1737c8626c07f9468b91bf7cab5a4e30abdd9fda278ebefa3402c83d2"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "63a106c6808283b56bf6036bed81036a84d9d2a04c65427f4df67078085ad6d8",
+            "inventory_sha256": "ad9583a6d573b876ba711aad699c4f771fc659cb404a37dae9a818f134393b95",
+            "activity_comment_sha256": "b123799550574da6de4ca491240d37906875d3ea9f57d3da66a423e418fac940",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 1,
+            "direct_technosphere_coordinates": 4
+          },
+          "2026": {
+            "metadata_sha256": "5b2d6d675071e8b23f6c042aba1e558b11313e950e18c6e0f0502a3e63fc8404",
+            "inventory_sha256": "2d92c6e0e8695aa564ef84edb91af5172ddf88288bf240a21eb2c77114cf7f12",
+            "activity_comment_sha256": "d6a4ca2a993f69b5b4e6536d3d21f1d2e39ccd56502ad1e444c13030fd31694a",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 1,
+            "direct_technosphere_coordinates": 4
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same liquid chlorine product per kg. Each inspected source liquid producer buys one kg of gaseous chlorine plus liquefaction electricity; the complete native European electrolysis mix already includes liquefaction. Retain its mercury/diaphragm/membrane mix and allocation, adding no second gas-production or liquefaction burden and no caustic-soda coproduct credit. Technology shares, allocation and vintage differ.",
+        "inspected_upstream_producers": [
+          {
+            "source_version": "3.6",
+            "identity": {
+              "name": "chlorine production, liquid",
+              "reference product": "chlorine, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "dbb6135918c503c23fd4e24e45f6c95319d1e5278538c14d2dba30d58b9fb21e",
+            "inventory_sha256": "e5aeac329dd7e9974732bc13b33c7fb8290c7611e294d47ec0d4b1720e5ec12f"
+          },
+          {
+            "source_version": "3.9",
+            "identity": {
+              "name": "chlorine production, liquid",
+              "reference product": "chlorine, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a953fa1cf40bd1a4e3290f9d0243b7ab05624e3384136780b0b275fad73e6fb3",
+            "inventory_sha256": "7d37c24a371b5949673c183fe14e9efe14a4acb8c90470074030cf8bdd297fa2"
+          }
+        ]
+      },
+      "limitations": [
+        "Same liquid chlorine product per kg. Each inspected source liquid producer buys one kg of gaseous chlorine plus liquefaction electricity; the complete native European electrolysis mix already includes liquefaction. Retain its mercury/diaphragm/membrane mix and allocation, adding no second gas-production or liquefaction burden and no caustic-soda coproduct credit. Technology shares, allocation and vintage differ.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "415b28ed17d887b24d1fb8926baa02b8f07a8e7944fe30053ce5d6d2135dbd54"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a204d3ee2179fe7398db36341b102a518036b5aff928fc22b85512bc2ddfdb01"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0028acc612584b3f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-0028acc612584b3f",
+        "source": {
+          "location": "GLO",
+          "name": "market for glass fibre",
+          "reference product": "glass fibre",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Glass fibre, at plant",
+          "reference product": "Glass fibre, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "808d561147fe1006567346704976c9fc557dfafdb72dd16af3aa860b8ce2eaae",
+            "inventory_sha256": "84630ba3e5386517fb5bdbca53c54dbb04501455f65b56150f843761e733c6ce",
+            "activity_comment_sha256": "ead0c64a3bde4377d417c6150944e736f3fbe8c5921831e829d51415129669e7",
+            "product_information_sha256": "f8e1d3b000b0409900c6f95fd9f33a5729e625cdae7cb5fe88a51f0921719942",
+            "producers": [
+              {
+                "identity": {
+                  "name": "glass fibre production",
+                  "reference product": "glass fibre",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "9abbc8189441cffb85eecf3bd4aac6d0252c7bd26f07010ac4b2311dc381d790"
+              },
+              {
+                "identity": {
+                  "name": "glass fibre production",
+                  "reference product": "glass fibre",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "9abbc8189441cffb85eecf3bd4aac6d0252c7bd26f07010ac4b2311dc381d790"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "53941b5f6f7cdf344ab8f74a439188cd9c300b872ee2f7a233e57eaefc0cc836",
+            "inventory_sha256": "082000b01004146993835e7e1415993fc5897baf0415aede06abddf45db9cc3d",
+            "activity_comment_sha256": "2293ae4f465682f0a90616406c86ff129cfcb520eb688318f5cd43ac2ebf4d6d",
+            "product_information_sha256": "f8e1d3b000b0409900c6f95fd9f33a5729e625cdae7cb5fe88a51f0921719942",
+            "producers": [
+              {
+                "identity": {
+                  "name": "glass fibre production",
+                  "reference product": "glass fibre",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "24452205eecef5b1d151dc0e659b32460f2763b419e50079238fd2e846e83707"
+              },
+              {
+                "identity": {
+                  "name": "glass fibre production",
+                  "reference product": "glass fibre",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "24452205eecef5b1d151dc0e659b32460f2763b419e50079238fd2e846e83707"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "ebf3d11c99ba774851e56d90bca4950010d5f096130a76fb3b3fbb1c58dd7e76",
+            "inventory_sha256": "d2c87b46ee71f2dff942938e1b6100b300f1c5104d1f355a5be802b1e3e546ea",
+            "activity_comment_sha256": "cab922e6a2717b2a393e375e94f9c8cabb0b8826168389ff6d084606af7c2e8c",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 12,
+            "direct_technosphere_coordinates": 20
+          },
+          "2026": {
+            "metadata_sha256": "e378747cf57847219d9ef1ea1e6e6dd50e35734f453cf526ec83e8dfccb520cb",
+            "inventory_sha256": "d3e6dd1bb3321254a678e0bf010524b356b114392490ebca504b49c5edf1ffd8",
+            "activity_comment_sha256": "a0121454c964787e20ae9b94ff61f0c558226a22faec73664e937b7fbb5cfea9",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 13,
+            "direct_technosphere_coordinates": 20
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same generic glass-fibre material, based on the same documented survey of 26 furnaces at 12 European sites using recuperative or oxy-fuel furnaces. Retain complete native glass-fibre production per kg, including upstream supplies. No thermal-insulation glass wool, fabricated glass-fibre component or extra fibre-forming step is substituted. Delivery, ranges-to-mean estimates, technology mix and vintage remain limitations.",
+        "inspected_upstream_producers": []
+      },
+      "limitations": [
+        "Same generic glass-fibre material, based on the same documented survey of 26 furnaces at 12 European sites using recuperative or oxy-fuel furnaces. Retain complete native glass-fibre production per kg, including upstream supplies. No thermal-insulation glass wool, fabricated glass-fibre component or extra fibre-forming step is substituted. Delivery, ranges-to-mean estimates, technology mix and vintage remain limitations.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5302d690f48d16aeee3b623aa6a7dc7504c5991468a5512873b4c9a4966ac433"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a4c5bc9389c587b6a23d1cc1b539a62b676623f6f38031c4cca9551c1e50304a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3957e7cc9358ee62",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-3957e7cc9358ee62",
+        "source": {
+          "location": "GLO",
+          "name": "market for lead",
+          "reference product": "lead",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Lead, at regional storage",
+          "reference product": "Lead, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ceaf480f190a11e2428bcaa69ca863a8cf77ff112b5b4f518be3aece0c193f80",
+            "inventory_sha256": "abba474f1e3bf6ade6149e3413231828dfc9ff6e7772d9b4595e8d6a246400b1",
+            "activity_comment_sha256": "10c91137c19f40b2501b1c53e1488612c414c9b0ca396630206b7870a016bb65",
+            "product_information_sha256": "18869bc6458f294b44cd2e95a42a5f9cb86cae95fd2885b7da43f8f21ac4180e",
+            "producers": [
+              {
+                "identity": {
+                  "name": "treatment of electronics scrap, metals recovery in copper smelter",
+                  "reference product": "lead",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "429c5ce2579e28ad3b6f9dd5d1592339b857f5d0e03c5b66a5a1d9c21192a542"
+              },
+              {
+                "identity": {
+                  "name": "primary zinc production from concentrate",
+                  "reference product": "lead",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "4abc4aa8f4d94b20e54d7145378fcbe747ea486d294f5ebf15e0a38dacc7fbd7"
+              },
+              {
+                "identity": {
+                  "name": "treatment of scrap lead acid battery, remelting",
+                  "reference product": "lead",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "8e243abe4dcfe4e72335ed64b689b9b53903374b7f14f9290307bf4bd2e556e4"
+              },
+              {
+                "identity": {
+                  "name": "gold mine operation and refining",
+                  "reference product": "lead",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "1841937285bb50b9e38b8df78ed89cb63d347048c21277dcb596be753a141209"
+              },
+              {
+                "identity": {
+                  "name": "primary lead production from concentrate",
+                  "reference product": "lead",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "5022a879fe674fda1eebb0574b81f4bdb591b02eacdd5d8db7227924af98f2af"
+              },
+              {
+                "identity": {
+                  "name": "treatment of scrap lead acid battery, remelting",
+                  "reference product": "lead",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "991cc1ebe37d0104e3122f79efc9848d67defe5d4ad7e091ba1bb220e95442a3"
+              },
+              {
+                "identity": {
+                  "name": "treatment of electronics scrap, metals recovery in copper smelter",
+                  "reference product": "lead",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "429c5ce2579e28ad3b6f9dd5d1592339b857f5d0e03c5b66a5a1d9c21192a542"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4ef40e310cd594485ae76f5565203bc5fc695a15e6ba68c1971a60e5167dfca9",
+            "inventory_sha256": "94ed682bc3c7682e53ffbc99a7e72ea767b588875e1c5e7c2a0bee98145e134f",
+            "activity_comment_sha256": "94e701237b5edc076c875c6350ca660eb68069371356fc03215d8168bfb8c0b8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "primary lead production from concentrate",
+                  "reference product": "lead",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "938e17f31bf46083bf18ea7a804797a00e80890825cb30b5d950a7d6180d8755"
+              },
+              {
+                "identity": {
+                  "name": "treatment of scrap lead acid battery, remelting",
+                  "reference product": "lead",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "806d5825d639a8b6105a4ceb9a6709a5ce38edb316713d04784f0005d712d0f0"
+              },
+              {
+                "identity": {
+                  "name": "gold-silver-zinc-lead-copper mine operation and refining",
+                  "reference product": "lead",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "b88043990b5707e295983d0b372b6d1ea800ad4f672f5bb65143d4955be909d8"
+              },
+              {
+                "identity": {
+                  "name": "treatment of electronics scrap, metals recovery in copper smelter",
+                  "reference product": "lead",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "f0e2681964247475d6d9e2b2aaba027af0f27cb2dd2f206f8b236c9ab3290472"
+              },
+              {
+                "identity": {
+                  "name": "treatment of scrap lead acid battery, remelting",
+                  "reference product": "lead",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "79289d68b09968fa91992674bf5cec09e0b4423081cdacb2d61bc2c1a37b8d78"
+              },
+              {
+                "identity": {
+                  "name": "primary zinc production from concentrate",
+                  "reference product": "lead",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "713f67b3f7f6680c3f64726e5e15262a8b2af9cd2d756ddf33c609f32bd9aa39"
+              },
+              {
+                "identity": {
+                  "name": "treatment of electronics scrap, metals recovery in copper smelter",
+                  "reference product": "lead",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "f0e2681964247475d6d9e2b2aaba027af0f27cb2dd2f206f8b236c9ab3290472"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "d9e66422786ac390c418d86ef6a76dcfa5e974c2ec33ec6b633e35b76a6c13f2",
+            "inventory_sha256": "7c21a8597c6f50a9b9033c98d8d6407dee360a47a94eae2b11fcfd51e8e8115d",
+            "activity_comment_sha256": "efae4d368602cbec130b4937615fd765437f26080879fa05a32b23eb501bd02d",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 0,
+            "direct_technosphere_coordinates": 5
+          },
+          "2026": {
+            "metadata_sha256": "643b4c45dab00fbb7a22e49a984045dab4cfbd961a15aa8fa7110f00a32b0a2b",
+            "inventory_sha256": "d328da8787326a523cd1b503c6a14b9249f282c119ad59607a176f5f62a32e0a",
+            "activity_comment_sha256": "781c928c5ab34de39c3fd7b31b4c1525884ad36ec541c30592c3269ca9036685",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 0,
+            "direct_technosphere_coordinates": 5
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same bulk lead metal supply per kg, represented by the complete native European storage mix: 25% primary and 75% secondary production plus its logistics. The source global market has a different primary/secondary and coproduct supply composition. Preserve the full native mix once; do not apply its blend shares again, infer a zero-burden stock or add separate refining. Purity, recycling allocation, geography, freight and vintage differences remain screening limitations.",
+        "inspected_upstream_producers": []
+      },
+      "limitations": [
+        "Same bulk lead metal supply per kg, represented by the complete native European storage mix: 25% primary and 75% secondary production plus its logistics. The source global market has a different primary/secondary and coproduct supply composition. Preserve the full native mix once; do not apply its blend shares again, infer a zero-burden stock or add separate refining. Purity, recycling allocation, geography, freight and vintage differences remain screening limitations.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e0ad604e0c8a9788a3e7d6544926076b2a3d5578ccf4c421e458a2286e274e28"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "de3bec6357f3e16b4876dc4bd06804bf39c790fde8aea14a05293561ab4fe02a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-412f090ea47af121",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-412f090ea47af121",
+        "source": {
+          "location": "RER",
+          "name": "market for nitrogen, liquid",
+          "reference product": "nitrogen, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Nitrogen, liquid, at plant",
+          "reference product": "Nitrogen, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e6adadc92ea5528d5c834e7d01a2cb9e7940c25a4c4a32f4ccecc3de2d302b23",
+            "inventory_sha256": "f490083534567d2a8e4554630c78bde86772421df0d520ed2deed49538827222",
+            "activity_comment_sha256": "159db9f225f01a4f617cb3a3970921607c782fd27f704408c0a2f41ce05c4091",
+            "product_information_sha256": "df009a55d4cb51ee9fa807c12b0371b779553b23cbaff2748cc02ae24f4297c7",
+            "producers": [
+              {
+                "identity": {
+                  "name": "industrial gases production, cryogenic air separation",
+                  "reference product": "nitrogen, liquid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "f30706c8ace2791a0a6347d128a8de593c721b7b1b5ac2efd5639bd7a272552b"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "ffa0ab3c4ba098b36feee2fc6ea82cb1bfd20ef3950eb734312dbb01bd10e082",
+            "inventory_sha256": "81040a2f4b26a7c17ae5aa043d745afada9b2cef1e3c0f907923e89e0a5a8914",
+            "activity_comment_sha256": "5a6b64ae435daf2b533e11f5e8e4e551dc904080df8f6cc84b4146aa6e3fa8b2",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 3,
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "metadata_sha256": "3f867419e38b8eeffcf5ec787389807a2166fdc087abea445f5ef350776faf28",
+            "inventory_sha256": "74969c5cf801f7f306b85a8d434779cc34b356278cd42c7938fa43a954d54f35",
+            "activity_comment_sha256": "aafa56b6e6349bae1acfb9896ed9c2380c6bb33c93137f137ffd0177c00f29d3",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 3,
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same liquid nitrogen product from cryogenic air separation, per kg. Source and native definitions describe liquefied air-separation products. Retain complete native electricity, cooling water, waste heat, infrastructure and its heat-of-vaporization/specific-heat allocation among liquid nitrogen, oxygen and crude argon. Add no separate liquefaction process and apply no air-composition or gas-volume multiplier. Native/source allocation, plant conditions, logistics and vintage differ.",
+        "inspected_upstream_producers": [
+          {
+            "source_version": "3.12",
+            "identity": {
+              "name": "industrial gases production, cryogenic air separation",
+              "reference product": "nitrogen, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "c6c0670568ce04892057a27d13aa9b66e745d1926fae7cad3e0c4ea7f20b8f6e",
+            "inventory_sha256": "b16e8ea290e7504ebe75f935ee98f5994d2341d1f952bf683e8161a0fe64fceb"
+          }
+        ]
+      },
+      "limitations": [
+        "Same liquid nitrogen product from cryogenic air separation, per kg. Source and native definitions describe liquefied air-separation products. Retain complete native electricity, cooling water, waste heat, infrastructure and its heat-of-vaporization/specific-heat allocation among liquid nitrogen, oxygen and crude argon. Add no separate liquefaction process and apply no air-composition or gas-volume multiplier. Native/source allocation, plant conditions, logistics and vintage differ.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a2490235b6b3a2b0f8b270db1bc4eb1691722392695326d19064c6378da6d8b9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2db59faccae4349c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-2db59faccae4349c",
+        "source": {
+          "location": "RER",
+          "name": "market for oxygen, liquid",
+          "reference product": "oxygen, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Oxygen, liquid, at plant",
+          "reference product": "Oxygen, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "57336b2bf053622fc6568f86a0483f234e4b2ec628d00b47023167f4227e1316",
+            "inventory_sha256": "f70e4062f18beb3cf13db529a385cab0fda2f79e132724d3a443ae86c78bd5e8",
+            "activity_comment_sha256": "c763ce96526c18ea3026ed553b047af2bed8c552c280412883c24fc32f0b650b",
+            "product_information_sha256": "23faf25c2f91fe98a45fa3f65f6c7c8f2771834690df2426dc0b47185c0bd2ad",
+            "producers": [
+              {
+                "identity": {
+                  "name": "industrial gases production, cryogenic air separation",
+                  "reference product": "oxygen, liquid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "f30706c8ace2791a0a6347d128a8de593c721b7b1b5ac2efd5639bd7a272552b"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "2bc53ecc62784d682a25557f20b0971aea1342df500872f43d5f5d4877502955",
+            "inventory_sha256": "6b951360bd6264593d081d048c55622a28514dcada48e35ff283caeb119ab059",
+            "activity_comment_sha256": "5a6b64ae435daf2b533e11f5e8e4e551dc904080df8f6cc84b4146aa6e3fa8b2",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 3,
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "metadata_sha256": "4d614b91562ed9e8e9ec7f5ac88cfc06829640ad6f17e4607c464e2e8b5eb724",
+            "inventory_sha256": "badf59f1bbb93fdbfb096ddd4fe108c276fdbeb5860c71227c636707a71e853a",
+            "activity_comment_sha256": "345fb0a6b226364f7b92178e30f52ecc11f56f865094eb818b523259819d395a",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 3,
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same liquid oxygen product from cryogenic air separation, per kg. Retain complete native electricity, cooling water, waste heat, infrastructure and its heat-of-vaporization/specific-heat allocation among liquid nitrogen, oxygen and crude argon. Add no separate liquefaction process and apply no air-composition or gas-volume multiplier. Native/source allocation, plant conditions, logistics and vintage differ.",
+        "inspected_upstream_producers": [
+          {
+            "source_version": "3.12",
+            "identity": {
+              "name": "industrial gases production, cryogenic air separation",
+              "reference product": "oxygen, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "53fa5ca5976eedeae4fdb381828b07f26b05e56e0748d1222feb45f68e3ddec2",
+            "inventory_sha256": "19e55205dc49ef49056348512d661b117ee4cb237418cc14ba42efb1c9361e2f"
+          }
+        ]
+      },
+      "limitations": [
+        "Same liquid oxygen product from cryogenic air separation, per kg. Retain complete native electricity, cooling water, waste heat, infrastructure and its heat-of-vaporization/specific-heat allocation among liquid nitrogen, oxygen and crude argon. Add no separate liquefaction process and apply no air-composition or gas-volume multiplier. Native/source allocation, plant conditions, logistics and vintage differ.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ab7565ac76f39577f81857e7ffc22bd1222649baa9c9cd250b442ae75aa3796c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-99faa5629490252a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-99faa5629490252a",
+        "source": {
+          "location": "GLO",
+          "name": "market for printed wiring board, surface mounted, unspecified, Pb free",
+          "reference product": "printed wiring board, surface mounted, unspecified, Pb free",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Printed wiring board, surface mounted, unspec., Pb free, at plant",
+          "reference product": "Printed wiring board, surface mounted, unspec., Pb free, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0e5cc2662a43a3f29dde245d60df0444c86099aac3ba5ab296e7e525de058d60",
+            "inventory_sha256": "c24626763cce1ac1f23a90bc360ab31fa92c2c5ef0ed3e5302f304e6733ba78f",
+            "activity_comment_sha256": "7d323b978182d7c08d00aca0d3770b664b17c27d105fcf263bd802aa60cd5094",
+            "product_information_sha256": "07b309b8e1625c1d9a06ddd587a36efd110923ace30e9c9d3264b34d1888c502",
+            "producers": [
+              {
+                "identity": {
+                  "name": "printed wiring board production, surface mounted, unspecified, Pb free",
+                  "reference product": "printed wiring board, surface mounted, unspecified, Pb free",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "a8d167ffe4b084755809ef4d88ef059b6da1a49c726fada2c190d1bc44d94cf1"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "a8c152aa5f089f6c1368be6b471ac20d9b338229f50fb9f93380c4898a22fb87",
+            "inventory_sha256": "55a627559eebca72f6eb8057539fab1e1767e07f2bf51a8804ba64642323c450",
+            "activity_comment_sha256": "c4626777e1f51e1dce644bf954c7fd3bcf87cfaab18602ecbb67eb99356facc3",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 0,
+            "direct_technosphere_coordinates": 13
+          },
+          "2026": {
+            "metadata_sha256": "2f3b1e4ddf068964704fbfa29fb028aab3ad7663c750b5faa103e65fb68fac90",
+            "inventory_sha256": "1fe4046c63e1f33c454de9e3e071413131b3fc77a25374418f3edf69a2d4993d",
+            "activity_comment_sha256": "99eeca2aa19b29c83c074acf7d537098b77c5812fe51da0229f2d054f77a0c38",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 0,
+            "direct_technosphere_coordinates": 13
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same complete unspecified surface-mounted printed wiring board with Pb-free solder, including component inputs, mounting and mounting-failure waste. This is neither a bare board nor a single electronic component. Native 2023 energy and regionalized-supply updates remain included. Preserve signed kg; add no bare board, solder or second assembly inventory. Board composition and performance are representative averages, not a device-specific equivalence.",
+        "inspected_upstream_producers": [
+          {
+            "source_version": "3.12",
+            "identity": {
+              "name": "printed wiring board production, surface mounted, unspecified, Pb free",
+              "reference product": "printed wiring board, surface mounted, unspecified, Pb free",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "48c4c1adc051be2d87fb9d4ada095dbb992c5aa9b80b04735ea4e31ea07987bf",
+            "inventory_sha256": "8a9ed72916a1baeee82858174377ad736f781a3d62f5ee19de9edfce27817c1c"
+          }
+        ]
+      },
+      "limitations": [
+        "Same complete unspecified surface-mounted printed wiring board with Pb-free solder, including component inputs, mounting and mounting-failure waste. This is neither a bare board nor a single electronic component. Native 2023 energy and regionalized-supply updates remain included. Preserve signed kg; add no bare board, solder or second assembly inventory. Board composition and performance are representative averages, not a device-specific equivalence.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "006a0bc0f9b9d9c8fc6dcdbfa46fecc66457a3a246d51ee6dbddbf24c5be9578"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1f0fa3bbee140c45",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-1f0fa3bbee140c45",
+        "source": {
+          "location": "GLO",
+          "name": "market for silicon carbide",
+          "reference product": "silicon carbide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Silicon carbide, at plant",
+          "reference product": "Silicon carbide, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0c4d576290386a29bebb54c4a1e4d6625c2b52eed9e7fa412c762a1d82c43bdd",
+            "inventory_sha256": "63747087573c66194dee21c797a323440c0d5889479d712589f3eb19a13fa07d",
+            "activity_comment_sha256": "3b787e1d940e10a5753da8bafca445c0e00325ca6a98d97ad3105187b384f08c",
+            "product_information_sha256": "add3e2f5caba53537ec41d2883592decc197afc9248f3ca8e34ace529f8a40e7",
+            "producers": [
+              {
+                "identity": {
+                  "name": "silicon carbide production",
+                  "reference product": "silicon carbide",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "9f12980c579ae83c85a7877d2653b9981449b10730304d06522c35d4f457a401"
+              },
+              {
+                "identity": {
+                  "name": "treatment of spent sawing slurry from Si-wafer cutting",
+                  "reference product": "silicon carbide",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "747a2269a73fe1cae7ce80faf86749c1b3877c689007d06d721d99f48cd33a55"
+              },
+              {
+                "identity": {
+                  "name": "silicon carbide production",
+                  "reference product": "silicon carbide",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "c1e7b673e9b49e0cc84214de52aedb0d3058faa38ce9e2c0382187355ce04209"
+              },
+              {
+                "identity": {
+                  "name": "treatment of spent sawing slurry from Si-wafer cutting",
+                  "reference product": "silicon carbide",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "747a2269a73fe1cae7ce80faf86749c1b3877c689007d06d721d99f48cd33a55"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "838457319d3068c9ed6266807d046387e9bb31d5f39f715cf9ecee825f6f2cf3",
+            "inventory_sha256": "f01a162564b0b9d993206ef11678581a12561381a2ec50a0c7f591193129ef07",
+            "activity_comment_sha256": "89e9fe57e3df3f00a37a4629ccc67b07d183d0283d127478a5158a89aa91f693",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 7,
+            "direct_technosphere_coordinates": 9
+          },
+          "2026": {
+            "metadata_sha256": "e425fc61930454c479ddfc146a3ae608ede8d9133a8d124769da9b01a288f038",
+            "inventory_sha256": "4c24d280a977f941ded2ded7ad9a84cf902dc83e2f5e339e3bdaba7b732c3bc6",
+            "activity_comment_sha256": "28101e68d1bd56fcfd8b5e69d0eb025a6d23f2d8e6e1d09a3a3303098455d3e8",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 7,
+            "direct_technosphere_coordinates": 9
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same generic industrial/abrasive silicon carbide, CAS 409-21-2, not a fabricated semiconductor wafer or an electronic-grade crystal specification. Retain complete native production from silica sand per kg. The source market includes both production and recovered sawing-slurry supply, while this native producer is a primary-production screening proxy. Recovery shares, allocation, purity, geographic supply, delivery and vintage are not reconstructed; add no recovery credit or purity multiplier.",
+        "inspected_upstream_producers": []
+      },
+      "limitations": [
+        "Same generic industrial/abrasive silicon carbide, CAS 409-21-2, not a fabricated semiconductor wafer or an electronic-grade crystal specification. Retain complete native production from silica sand per kg. The source market includes both production and recovered sawing-slurry supply, while this native producer is a primary-production screening proxy. Recovery shares, allocation, purity, geographic supply, delivery and vintage are not reconstructed; add no recovery credit or purity multiplier.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8ddf53e1154fea473d34a0cece03f6be73bd3c92062ddd02b55299e86bca4529"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d9521ecfbb6552d6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-d9521ecfbb6552d6",
+        "source": {
+          "location": "GLO",
+          "name": "market for solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+          "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry, at plant",
+          "reference product": "Solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4b967c923533e91981b4abb6430c1d002a0636288a9f66311a76d353ee7ce48f",
+            "inventory_sha256": "ff0e447261d97b8c7668026806f80959cc494a55da378a5133a70dd7acb51e15",
+            "activity_comment_sha256": "b5beaff5bf6aecb6dcef01fd80e37eb2ee2ebc0bacab9907da68db7764ce17ca",
+            "product_information_sha256": "1139abe2f91808b61a50dfa237f9b7feacbec387ecd83ba671d4f98630aff695",
+            "producers": [
+              {
+                "identity": {
+                  "name": "solder production, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+                  "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "02918b464cb4c6ea9ec06c603886a563e01f3e51aedcf29cead8d33ca0dbec41"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "830336d72b18486486193f0d6aaae91f473622c3bd6180053fbbe8e07de9dabe",
+            "inventory_sha256": "9bd99ea3a9027e1a8a0252f9e6dd97a891f532727ae21f25bfb2ae6fe098631e",
+            "activity_comment_sha256": "162c62348accd40c3344fb92578d423460c9c5776c8a64952e04c2b08394467a",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 5,
+            "direct_technosphere_coordinates": 8
+          },
+          "2026": {
+            "metadata_sha256": "fa7a29fabe4f9832a54c365bd741b7a071921d4895bce73303e52226e6613259",
+            "inventory_sha256": "8b88977c0753695f935727f83d07f400fb714d81bd0e8139a5409c03f9d7dc8d",
+            "activity_comment_sha256": "d09980719fc353cba5281254f6235515d3f81f40ff47f8f7794cdd1657d9fc1b",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 5,
+            "direct_technosphere_coordinates": 8
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same SAC396 solder bar for electronics, named Sn95.5Ag3.9Cu0.6. Independently inspected source producer and both native targets contain the matching nominal tin/silver/copper shares. Retain complete melting, energy, infrastructure and internal transport once per kg. No constituent-metal or device-weight correction is applied; source-market delivery is not reconstructed.",
+        "inspected_upstream_producers": [
+          {
+            "source_version": "3.12",
+            "identity": {
+              "name": "solder production, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+              "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "0af1ac28237797e232d6801fdc0e6ba7002f6e4d654eac183ea6173c337a8b53",
+            "inventory_sha256": "8108ac220cacdea0f33ee9a2d18804636b253d36b259e2869a8f060ce29fda46"
+          }
+        ]
+      },
+      "limitations": [
+        "Same SAC396 solder bar for electronics, named Sn95.5Ag3.9Cu0.6. Independently inspected source producer and both native targets contain the matching nominal tin/silver/copper shares. Retain complete melting, energy, infrastructure and internal transport once per kg. No constituent-metal or device-weight correction is applied; source-market delivery is not reconstructed.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6d9b6ae22ff5ce1860008c7828908d6cba05a4e10b56537ef49348ca8304ecfa"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cdf8909801f26981",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-cdf8909801f26981",
+        "source": {
+          "location": "GLO",
+          "name": "market for stone wool",
+          "reference product": "stone wool",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Rock wool, at plant",
+          "reference product": "Rock wool, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "cf1bedeec5f32febeb279bbbf6e43927b3a2a915c2eec19cbdeb02db8d0385eb",
+            "inventory_sha256": "9bfdb02da2ee4820e73db221417a1b8b96a8f496642e25fc42d0ea2dc8fd097b",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "stone wool production",
+                  "reference product": "stone wool",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "874d73dee7941f6c2bf3ad764d3d79dd415ed7ee9005adf63331bd906e18b084"
+              },
+              {
+                "identity": {
+                  "name": "stone wool production",
+                  "reference product": "stone wool",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "4e5722d645fe125abb6608213b8dd719710ec222286926c52f8d5c378e87d799"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "47b2b106b290139c59a84b4656e4727370dda9b65c01f28e2ad0622136672dbe",
+            "inventory_sha256": "06d95ee20d39c9a6c2f082799540dd9a65ba547b3dca8334ee64d3a080e7daa5",
+            "activity_comment_sha256": "446eae1bcb4a9bcc398913eb10e970fa012fe29a15d8e528e7cffaee49f398ae",
+            "product_information_sha256": "18a9b985d34014087da2238d1dd890fdd71791e20737c47f29db8b09b4d5c0a8",
+            "producers": [
+              {
+                "identity": {
+                  "name": "stone wool production",
+                  "reference product": "stone wool",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "5988a86151cbb44cac627657ee40a9dfff76f968c2ceb3719e2d971a39b7f4f9"
+              },
+              {
+                "identity": {
+                  "name": "stone wool production",
+                  "reference product": "stone wool",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "874d73dee7941f6c2bf3ad764d3d79dd415ed7ee9005adf63331bd906e18b084"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "ed14f83cd42054d68dcc33cc77649cc51c57acc23a50fecd9441a85416536b82",
+            "inventory_sha256": "d1fae9a7e38b6877e9bce0b44ea22f88afc655dac20c467fa5d9408211a9ef71",
+            "activity_comment_sha256": "3d14c1828fa9461f82b49d673993b060231f70786c06b066850f682e65462351",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 20,
+            "direct_technosphere_coordinates": 31
+          },
+          "2026": {
+            "metadata_sha256": "d98548db597b2682800eb280db2baa5f654866214c670cf865de60f0bf6e393e",
+            "inventory_sha256": "a4d41ff18b15976d6b9fc05bf1f118b361f5f486ebd57ff7d958f3e2df5253fe",
+            "activity_comment_sha256": "68f9658e8eb70a6f28ac55964cf27d80b12f3852ec4b3956a600ea86f74187e2",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 21,
+            "direct_technosphere_coordinates": 31
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same unpacked stone/rock-wool intermediate, with matching source/native documentation explicitly excluding packing, administration and infrastructure assigned to the separate packed-product module. Preserve this original intermediate boundary per kg; do not silently replace it with finished packed insulation or invent missing burdens. Both publishers warn that the incomplete intermediate is intended for the packing module. Its use as a complete insulation product is not validated. No density or thermal-performance scaling is applied.",
+        "inspected_upstream_producers": []
+      },
+      "limitations": [
+        "Same unpacked stone/rock-wool intermediate, with matching source/native documentation explicitly excluding packing, administration and infrastructure assigned to the separate packed-product module. Preserve this original intermediate boundary per kg; do not silently replace it with finished packed insulation or invent missing burdens. Both publishers warn that the incomplete intermediate is intended for the packing module. Its use as a complete insulation product is not validated. No density or thermal-performance scaling is applied.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "85cd7711310d1e1fb95c57c7e2b0218373df76486770fdc1ae0d79e104fb3358"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "701acb64e3592c3e2328de2924effe10da62debf7c565ae2c4120fcb211a0fad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3c4fc855bcc17210",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_commodity_component_review.json",
+      "review_sha256": "c5c6f6d630127ff34ab0c6edaaa6f9a414459879e1f48a57c1e5e30c12f927e3",
+      "authorization": "Standing independently inspected whole-material/component/function, mass-unit and geographic supply-proxy authorizations, reused only for these enumerated actual pilot profiles after checking material identity, physical phase, assembly/intermediate boundary and positive unit references. No new helper, reconstructed supply mix, purity correction, solution conversion, separate assembly/liquefaction step or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-3c4fc855bcc17210",
+        "source": {
+          "location": "GLO",
+          "name": "market for tin",
+          "reference product": "tin",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Tin, at regional storage",
+          "reference product": "Tin, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4323d1f0a417047da0e49812c6e7743a0b986b65151592885d6edbf27cf2554e",
+            "inventory_sha256": "01a7249985caa62cc46c1397e37245bea4727869738c374358bf61af208046c3",
+            "activity_comment_sha256": "7610d41a264be556f3fca2471e61ad8c98bb90c49587dcdb1eeac9e8356c6a98",
+            "product_information_sha256": "516837515956191757dc80c8a40ed222b07e72e97fe7bdba8095fceb00bae6be",
+            "producers": [
+              {
+                "identity": {
+                  "name": "tin production",
+                  "reference product": "tin",
+                  "location": "PE",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "07d6326d86301a820f0784aaa52c21d0c1640c37b0f1ed299f5c0fa10d475b5d"
+              },
+              {
+                "identity": {
+                  "name": "tin production",
+                  "reference product": "tin",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "867f70672187ca0240d978223f58b7c238af881bffed75cf429535299182a1d0"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "1362c660008a4cb6039d108cef3695e624778169cec83b1d5f5f51480e8b5cae",
+            "inventory_sha256": "1d613787d5f10dfb7e7435f4008c7493cf2168c8e0c2f22a05f9b4657d642e0d",
+            "activity_comment_sha256": "5750ac58ba3a64482402fa21f888a0b7e0292d6da54afbcfe788d18888e2b616",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 14,
+            "direct_technosphere_coordinates": 13
+          },
+          "2026": {
+            "metadata_sha256": "c93bd976b3fc99eda0c8539178cd34ac92c82b96ff02f5ca1513504b7cdb1bf5",
+            "inventory_sha256": "af5fa4d0902e860390cffdfa489e30c92c2af48f9f9df30fe011fe2ba1829e0c",
+            "activity_comment_sha256": "3bc1334cc119f5c698d5956070984e7074dfbc4e39a3208824f27394dabe7976",
+            "reference_amount": 1,
+            "active_biosphere_exchanges": 14,
+            "direct_technosphere_coordinates": 13
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "conversion_factor": 1,
+        "boundary": "Same generic refined tin metal supply per kg. Retain complete native mining, beneficiation, smelting, refining and delivery to European regional storage. The target documentation describes poor-quality literature/theoretical estimates and an assumed average technology; the source includes a newer Peruvian smelter/refinery. Source purity and geographic/technology representativeness are not guaranteed by the proxy. Add no separate refining, source-specific transport reconstruction or purity/yield normalization.",
+        "inspected_upstream_producers": []
+      },
+      "limitations": [
+        "Same generic refined tin metal supply per kg. Retain complete native mining, beneficiation, smelting, refining and delivery to European regional storage. The target documentation describes poor-quality literature/theoretical estimates and an assumed average technology; the source includes a newer Peruvian smelter/refinery. Source purity and geographic/technology representativeness are not guaranteed by the proxy. Add no separate refining, source-specific transport reconstruction or purity/yield normalization.",
+        "Preserve signed source kg, caller uncertainty/formulas/ownership, separately listed transport and physical emissions with factor +1. Use each selected native inventory once within its documented product or intermediate boundary.",
+        "Complete source-market producer shares, delivery freight and losses are not reconstructed. Native internal logistics and allocation remain included. Source global/RoW supply is approximated by the target geography where applicable. Grade, technology mix, recovery allocation, vintage, data quality and emission coverage can differ; no inventory or LCIA equality is established.",
+        "Native 2025/2026 targets have matching positive kg references and direct technosphere identities/quantities within relative tolerance 1e-12; the tin difference is floating-point serialization only and no coefficient is rounded or changed. Native biosphere coverage and imported upstream exclusions remain explicit. The CMC target is aggregated, and the stone-wool target retains its incomplete unpacked-intermediate boundary. Only exact enumerated source profiles are registered; no uninspected profile, independent reverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6b0f58b0b7f8a8c2ca42ac05ab8d40f1470bf18ad0d2fb65409d3bbf41cf23de"
+        }
+      ]
     }
   ]
 }

@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 73 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 70 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 73 |
+| 3.6 | 27 | 70 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 4 |
-| 3.9 | 17 | 71 |
-| 3.12 | 8 | 40 |
+| 3.9 | 17 | 68 |
+| 3.12 | 8 | 30 |
 
-These are 189 exact-profile cases involving 166 distinct rules, after reusing
+These are 173 exact-profile cases involving 154 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -194,9 +194,16 @@ three actual source profiles, with original source hashes independently matched.
 Ten further complete polymer, chemical and forming services reuse the standing
 whole-function supply approval after checking their identities and reference
 bases; their source-market and native-inventory differences remain warnings.
-They describe the current review frontier, not separate approval questions or
+Twelve commodity/component correspondences cover sixteen further exact
+profiles, including complete electronics, liquid gases and chlorine, aggregated
+CMC and the same unpacked stone-wool intermediate. Their physical boundaries
+and source-market, allocation and data-quality differences remain explicit.
+Each of these twelve selected native suppliers has a nonempty finite baseline
+LCI. Before/after scientific-content hashes also match the previous native
+database baseline. These supplier checks do not certify the prospective scenario.
+The correspondence counts describe the current review frontier, not separate approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 158 exact-profile fingerprints, with review evidence and
+ledger contains 174 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

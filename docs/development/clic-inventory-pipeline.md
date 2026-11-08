@@ -317,6 +317,28 @@ Epoxy, tetrafluoroethylene, methanol and recovered triethylene-glycol supply are
 outside this review; it also authorizes no pending equipment or geothermal
 decision.
 
+Twelve further commodity/component correspondences are recorded in
+`uvek_pilot_commodity_component_review.json`, covering sixteen exact source
+profiles. They retain complete film capacitors, Pb-free surface-mounted boards
+and SAC396 solder per kg, without converting the capacitor's 0.7 g example
+device into the reference or adding a second assembly. Liquid chlorine retains
+upstream electrolysis and liquefaction once; liquid nitrogen/oxygen retain the
+native cryogenic separation and allocation without another liquefaction step.
+Glass fibre, lead, tin and generic industrial SiC retain their native production
+and supply inventories, with source-market, recycling, allocation, grade and
+data-quality differences in warnings.
+
+The CMC powder supplier has an aggregated biosphere inventory with more than
+1,000 active flows, rather than a production-only stock or empty helper. Its
+native biosphere coverage differences remain explicit. The unpacked stone-wool
+correspondence preserves the same intermediate-only boundary in source and
+target: packing, administration and infrastructure assigned to the packed
+module remain excluded, and use as complete finished insulation is not
+validated. No density scaling or silent substitution of packed wool is made.
+Direct native technosphere coordinates match across 2025/2026 within relative
+tolerance 1e-12; the tin difference is binary floating-point serialization.
+No native coefficient is rounded or rewritten.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
