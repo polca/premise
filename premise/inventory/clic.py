@@ -30,6 +30,7 @@ from .clic_download import (
     _write_json,
 )
 from .clic_harmonize import ClicHarmonizer, _gzip_write
+from .clic_target import resolve_inventory_target
 
 
 @dataclass(frozen=True)
@@ -178,6 +179,7 @@ class ClicInventoryProvider:
         database,
         *,
         version,
+        family="ecoinvent",
         system_model="cutoff",
         biosphere_name="biosphere3",
         keep_uncertainty=True,
@@ -185,9 +187,11 @@ class ClicInventoryProvider:
         biosphere_codes=None,
         classifications=None,
     ):
-        from ..core.utils import check_ecoinvent_target_version
-
-        version = check_ecoinvent_target_version(version)
+        target = resolve_inventory_target(
+            version, family=family, system_model=system_model
+        )
+        version = target.technosphere.version
+        family = target.technosphere.family
         resolved = self.resolve(roots, use_cache=use_cache)
         harmonized = ClicHarmonizer(
             self.cache_dir / "harmonized",
@@ -195,7 +199,11 @@ class ClicInventoryProvider:
             allow_documented_proxies=self.options.allow_documented_proxies,
             migration_policy=self.options.migration_policy,
         ).harmonize(
-            resolved, version=version, system_model=system_model, use_cache=use_cache
+            resolved,
+            version=version,
+            family=family,
+            system_model=system_model,
+            use_cache=use_cache,
         )
         # Names remain stable when more sectors are requested later in a build.
         identities = defaultdict(set)
@@ -219,12 +227,14 @@ class ClicInventoryProvider:
             harmonized,
             database,
             version=version,
+            family=family,
             system_model=system_model,
             biosphere_name=biosphere_name,
             keep_uncertainty=keep_uncertainty,
             biosphere_codes=biosphere_codes,
             classifications=classifications,
             namespace_identities=collisions,
+            catalog_provider=self.catalog_provider,
         )
         from .clic_requirements import registry
 

@@ -13,6 +13,7 @@ import math
 from collections import defaultdict
 
 from .clic_archive import ClicInventoryError, activity_identity
+from .clic_target import resolve_inventory_target
 
 
 def _folded(identity):
@@ -100,22 +101,40 @@ def prepare_clic_for_premise(
     database,
     *,
     version,
+    family="ecoinvent",
     biosphere_name="biosphere3",
     keep_uncertainty=True,
     system_model="cutoff",
     biosphere_codes=None,
     classifications=None,
     namespace_identities=(),
+    catalog_provider=None,
 ):
     """Return owned, fully linked foregrounds without changing the source graph."""
+    target = resolve_inventory_target(version, family=family, system_model=system_model)
     if biosphere_codes is None:
-        from .inventory_imports import get_biosphere_code
+        if target.technosphere.family == "ecoinvent":
+            from .inventory_imports import get_biosphere_code
 
-        biosphere_codes = get_biosphere_code(version)
+            biosphere_codes = get_biosphere_code(target.biosphere.version)
+        else:
+            from brightpath.background import catalog_provider_from_environment
+
+            provider = catalog_provider or catalog_provider_from_environment()
+            catalog = provider.load_biosphere(target.biosphere)
+            biosphere_codes = {
+                (name, tuple(categories), unit): code
+                for (name, categories, unit), code in catalog.references.items()
+            }
     if classifications is None:
-        from .inventory_imports import get_classifications
+        if target.technosphere.family == "ecoinvent":
+            from .inventory_imports import get_classifications
 
-        classifications = get_classifications()
+            classifications = get_classifications()
+        else:
+            # Retain published classifications without assigning ecoinvent
+            # classifications to a native UVEK supplier by label similarity.
+            classifications = {}
     from .inventory_imports import get_classification_entry
 
     records = copy.deepcopy(prepared.activities)
@@ -233,15 +252,17 @@ def prepare_clic_for_premise(
                     raise ClicInventoryError(
                         f"Missing biosphere compartment in {activity['name']!r}."
                     )
-                key = (
+                legacy_key = (
                     edge["name"],
                     categories[0],
                     categories[1] if len(categories) > 1 else "unspecified",
                     edge["unit"],
                 )
+                exact_key = (edge["name"], categories, edge["unit"])
+                key = exact_key if exact_key in biosphere_codes else legacy_key
                 if key not in biosphere_codes:
                     raise ClicInventoryError(
-                        f"Biosphere flow is absent from target {version}: {key!r}."
+                        f"Biosphere flow is absent from target {target.biosphere.label()}: {key!r}."
                     )
                 edge["categories"] = categories
                 edge["input"] = (biosphere_name, biosphere_codes[key])

@@ -117,9 +117,22 @@ biosphere. The UVEK destination under development is **UVEK 2026 technosphere
 with ecoinvent 3.10 biosphere**, using cut-off only. Its release must not be
 interpreted as an ecoinvent version or select the legacy biosphere fallback.
 Existing ecoinvent targets and their EN15804 bridge retain their current meaning.
-Resolving this context alone does not establish `NewDatabase` sector support;
-source ingestion, retained workbooks, linking and transformations have separate
-integration checks.
+`ClicInventoryProvider.prepare(..., family="uvek", version="2026")` converts
+and links a selected graph to this context. It obtains biosphere identifiers
+from the explicit ecoinvent 3.10 catalog, using the configured catalog provider.
+Existing ecoinvent preparation keeps its current flow lookup. Cache keys and
+manifests distinguish the two axes, and signed quantities, formulas and
+uncertainty remain attached to their original exchanges.
+
+When documented proxies are allowed, UVEK preparation also accepts Brightpath's
+reviewed forward-helper `migration.technosphere_information_loss` findings and
+retains them in audits. Omissions and biosphere losses retain separate gates;
+pragmatic policy does not grant blanket permission to discard exchanges.
+
+This preparation interface does not establish `NewDatabase` sector support;
+source ingestion, retained workbooks and transformations have separate
+integration checks. Technology-specific `uvek_aliases` and, where needed,
+UVEK fuel aliases will share IAM roles with the existing `ecoinvent_aliases`.
 
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial
 destination database for these checks. Its manifest records exclusions made by

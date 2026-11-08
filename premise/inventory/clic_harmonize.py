@@ -11,15 +11,16 @@ import os
 import tempfile
 import time
 from collections import Counter, defaultdict
-from dataclasses import dataclass, field, replace
+from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
 
 import portalocker
 
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
 from .clic_download import _write_json
+from .clic_target import resolve_inventory_target
 
-CLIC_HARMONIZATION_SCHEMA = 2
+CLIC_HARMONIZATION_SCHEMA = 3
 
 
 @dataclass
@@ -106,10 +107,18 @@ class ClicHarmonizer:
             else allow_documented_proxies
         )
 
-    def harmonize(self, resolved, *, version, system_model="cutoff", use_cache=True):
-        from ..core.utils import check_ecoinvent_target_version
-
-        version = check_ecoinvent_target_version(version)
+    def harmonize(
+        self,
+        resolved,
+        *,
+        version,
+        family="ecoinvent",
+        system_model="cutoff",
+        use_cache=True,
+    ):
+        target_context = resolve_inventory_target(
+            version, family=family, system_model=system_model
+        )
         from brightpath import BrightwayInventory, FormatProfile, InventoryContext
         from brightpath.background import (
             catalog_provider_from_environment,
@@ -117,19 +126,7 @@ class ClicHarmonizer:
         )
         from brightpath.core.policies import MigrationPolicy, PolicyAction
 
-        if system_model not in {"cutoff", "consequential", "EN15804"}:
-            raise ClicInventoryError(
-                f"Unsupported premise system model {system_model!r}."
-            )
-        target = {
-            "technosphere": {
-                "family": "ecoinvent",
-                "version": str(version),
-                "system_model": "cutoff" if system_model == "EN15804" else system_model,
-            },
-            "biosphere": {"family": "ecoinvent", "version": str(version)},
-        }
-        target_context = _context(target)
+        target = asdict(target_context)
         provider = self.catalog_provider or catalog_provider_from_environment()
         engine_version = importlib.metadata.version("brightpath")
         resources = migration_resource_fingerprint()
@@ -150,6 +147,11 @@ class ClicHarmonizer:
             )
         if self.allow_documented_proxies:
             allowed_losses.add("migration.documented_proxy")
+            if target_context.technosphere.family == "uvek":
+                # Forward reviewed UVEK helpers report their boundary differences
+                # under this code. Omissions and biosphere losses remain separate
+                # gates, even in pragmatic mode.
+                allowed_losses.add("migration.technosphere_information_loss")
         if allowed_losses:
             policy = replace(policy, on_information_loss=PolicyAction.WARN)
         policy_metadata = {
