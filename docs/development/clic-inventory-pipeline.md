@@ -563,10 +563,22 @@ the identical four-tank/16000 m3 storage module, and the same Grundfos 40 W pump
 Manufacturing, disposal and common omission boundaries match their definitions;
 signed kg/module units retain factor +1 without capacity or lifetime scaling.
 Standing whole-material/function/unit approval applies to these specifications.
-The converter-steel target's hot rolling/mix and lubricating-oil additive
-formulation remain separate unresolved boundaries. Thirty focused checks pass,
+This group excludes the converter-steel target's hot rolling/mix and lubricating-oil
+additive formulation. Thirty focused checks pass,
 including those refusals; five native supplier LCIs are finite with unchanged
 scientific hashes. All 271 earlier approval fingerprints are unchanged.
+
+`uvek_pilot_grid_converter_review.json` corrects two exact profiles to closer
+existing native suppliers: 3.6 converter low-alloyed steel retains steelmaking
+and casting without rolling, and 3.8 European medium-voltage electricity uses
+the complete ENTSO-E grid rather than Swiss-only supply. Signed kg/kWh keep
+factor +1. Grid losses, infrastructure and SF6 remain internal; native geography,
+trade, vintage and imported biosphere differences remain explicit warnings.
+Fourteen focused Premise and 192 relevant Brightpath checks pass; two native
+LCIs are finite with unchanged scientific hashes, and generator replay is
+byte-identical. All 277 earlier fingerprints remain unchanged. The actual 3.8
+cohort completes with its three existing approved helpers; 3.7 also completes,
+while the full electricity pilot remains refused on unresolved correspondences.
 
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,

@@ -553,6 +553,8 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-4438f1d4119c16e4", "3.6"),
         ("bp-c291034cfcb83f1c", "3.6"),
         ("bp-8e58bbf6b2e31687", "3.6"),
+        ("bp-4389bb6ee9ab35e9", "3.8"),
+        ("bp-ac05197a0852076a", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -817,6 +819,8 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-4438f1d4119c16e4",
         "bp-c291034cfcb83f1c",
         "bp-8e58bbf6b2e31687",
+        "bp-4389bb6ee9ab35e9",
+        "bp-ac05197a0852076a",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1040,6 +1044,8 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
         ("bp-4438f1d4119c16e4", "3.6", "80000h"),
         ("bp-c291034cfcb83f1c", "3.6", "16000m3"),
         ("bp-8e58bbf6b2e31687", "3.6", "40W"),
+        ("bp-4389bb6ee9ab35e9", "3.8", "no added loss factor"),
+        ("bp-ac05197a0852076a", "3.6", "Add no rolling"),
         ("bp-6ce52de989145df6", "3.12", "without wood-density"),
         (
             "bp-8a37fb9191501441",
@@ -1142,15 +1148,12 @@ def test_unresolved_gas_volume_bases_still_refuse_migration(tmp_path, rule_id, v
 @pytest.mark.parametrize(
     "rule_id,version",
     [
-        ("bp-ac05197a0852076a", "3.6"),
         ("bp-4f69327dbf9d3e42", "3.6"),
         ("bp-4f69327dbf9d3e42", "3.9"),
         ("bp-4f69327dbf9d3e42", "3.12"),
     ],
 )
-def test_legacy_rolling_and_additive_boundaries_remain_unapproved(
-    tmp_path, rule_id, version
-):
+def test_legacy_additive_boundary_remains_unapproved(tmp_path, rule_id, version):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 

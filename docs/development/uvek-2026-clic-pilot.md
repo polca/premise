@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 24 |
+| 3.6 | 27 | 23 |
 | 3.7 | 2 | 0 |
-| 3.8 | 1 | 1 |
+| 3.8 | 1 | 0 |
 | 3.9 | 17 | 30 |
 | 3.12 | 8 | 15 |
 
-These are 70 exact-profile cases involving 62 distinct rules, after reusing
+These are 68 exact-profile cases involving 60 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -358,14 +358,31 @@ Five legacy supplier matches add six inspected profiles: barite, cast iron,
 10 MWe turbine construction, the four-tank/16000 m3 storage module and the same
 40 W solar-circulation pump. Exact specifications and stage boundaries support
 the standing whole-function approval, with factor +1 per signed kg/module unit
-and no capacity/lifetime scaling. Native hot-rolled steel mix and omitted oil
-additive formulation remain unresolved. Thirty focused checks pass and five
+and no capacity/lifetime scaling. This group excludes the hot-rolled steel mix
+and omitted oil-additive formulation. Thirty focused checks pass and five
 native LCIs are finite with unchanged scientific hashes. Earlier 271 approval
 fingerprints remain unchanged; no raw rule changes occur in this group.
+Two closer existing suppliers replace incorrect targets: the 3.6 low-alloyed
+converter steel uses the native converter/casting process without hot rolling,
+and the 3.8 European medium-voltage market group uses the complete ENTSO-E grid
+supply. Signed kg/kWh retain factor +1. Native losses, infrastructure and SF6
+exchanges remain internal; country coverage, trade representation, delivery,
+vintage and imported biosphere differences remain warnings. Standing inspected
+same-function and geographic proxy approval applies; no helper is added by
+these corrections. Fourteen focused Premise checks and 192 relevant Brightpath
+checks pass, both native supplier LCIs are finite, all 277 earlier fingerprints
+and scientific source hashes are unchanged, and full generator replay is
+byte-identical. The actual 3.8 cohort now completes, yielding its one selected
+CLIC record plus three existing approved helpers; the 3.7 cohort also completes.
+Cache/audit hashes, exact source records, generated recipe provenance and full
+target-link coverage are checked. Three other source cohorts remain refused.
+The normal public constructor loads 11,947 activities; its electricity update
+still refuses the pending mislabeled heat-pump correspondence
+`bp-17d12aa909c440e8`. No prospective scenario or export is certified.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 277 exact-profile fingerprints, with review evidence and
+ledger contains 279 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

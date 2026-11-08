@@ -18607,6 +18607,170 @@
           "fingerprint": "759ca45164985801ee929e4614e8bb3635a8469152895f1e2ceb7d830c364579"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4389bb6ee9ab35e9",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_grid_converter_review.json",
+      "review_sha256": "143a88f8b6a9a4b0f89549c13cd73a54b8b1a260af31f505a09621144af38a2b",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function/unit and geographic supply proxies, including correction to a closer existing native supplier. Applied only to the enumerated source profiles after checking converter/casting and delivered medium-voltage boundaries. No helper, extra production stage, new grade, physical quantity basis, omission or recovery model is introduced.",
+      "inspection": {
+        "rule_id": "bp-4389bb6ee9ab35e9",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "location": "ENTSO-E",
+          "unit": "kilowatt hour"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "94ae1414d790941c66a5478d67d361373a97aedd90aaa8ab0c5b76b32f9b8447",
+            "inventory_sha256": "759052350b9dd72abe82583156432c1523850f2e83d3fa67e1a37ac12c7a4080",
+            "comment_sha256": "b235085ab66027d677e4cde1e2b63de009aaf512d2e6d52a050ac1c1cf723af3",
+            "product_information_sha256": "5e49b8e40b1f1d56d0d565246998394fd12d3368c82481820483bde6cbe51539"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "ea91e6b55b0a521d0571ce22b804c87c2750529657190d4f410b16b47b0ca5a6",
+            "inventory_sha256": "4e1be1b37dcf63b80ae89c60596add22028112dd8ced061f26bb3ff99b19c921",
+            "comment_sha256": "ff9e65abeed617cb90769f540734050526ade434c102aa21114d0db25692fc08",
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "metadata_sha256": "fe33dae130b92034f16ce4911c1096f6602b6bbcf468b819d97a3d89a5f2ef2d",
+            "inventory_sha256": "fc7715a7d30e10916c022b6b0a72199258d504589c268567a8259f62c77c3deb",
+            "comment_sha256": "1bb7adee771814ed75392dbfc178034e25eacd351f969249a805e42c420de2ea",
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Correct the Swiss-only target to the existing complete ENTSO-E medium-voltage grid supply. Preserve signed delivered kWh at factor +1. The source market group aggregates country medium-voltage markets with their upstream losses and infrastructure; the native grid supplies medium-voltage electricity through its existing high-voltage input, losses, network and SF6 supply/emission exchanges. Retain these once, with no added loss factor, grid or direct-busbar substitution. ENTSO-E is a geographic screening proxy for Europe without Switzerland, with different country coverage, Swiss inclusion, historical production/import/trade representation, voltage-loss/network assumptions, background and vintage. This mapping does not replace IAM technology shares or alter the native topology. Native 2026 documentation contains a copied production-busbar statement; the actual grid exchanges and 2025 transmission definition establish the selected delivered-grid boundary. Score differences are unquantified."
+      },
+      "limitations": [
+        "Correct the Swiss-only target to the existing complete ENTSO-E medium-voltage grid supply. Preserve signed delivered kWh at factor +1. The source market group aggregates country medium-voltage markets with their upstream losses and infrastructure; the native grid supplies medium-voltage electricity through its existing high-voltage input, losses, network and SF6 supply/emission exchanges. Retain these once, with no added loss factor, grid or direct-busbar substitution. ENTSO-E is a geographic screening proxy for Europe without Switzerland, with different country coverage, Swiss inclusion, historical production/import/trade representation, voltage-loss/network assumptions, background and vintage. This mapping does not replace IAM technology shares or alter the native topology. Native 2026 documentation contains a copied production-busbar statement; the actual grid exchanges and 2025 transmission definition establish the selected delivered-grid boundary. Score differences are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "54ac9d4a369cff7857a499efafc7f36f56a34b915eff98882ff4faeae5e7e625"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ac05197a0852076a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_grid_converter_review.json",
+      "review_sha256": "143a88f8b6a9a4b0f89549c13cd73a54b8b1a260af31f505a09621144af38a2b",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function/unit and geographic supply proxies, including correction to a closer existing native supplier. Applied only to the enumerated source profiles after checking converter/casting and delivered medium-voltage boundaries. No helper, extra production stage, new grade, physical quantity basis, omission or recovery model is introduced.",
+      "inspection": {
+        "rule_id": "bp-ac05197a0852076a",
+        "source": {
+          "location": "RER",
+          "name": "steel production, converter, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Steel, low-alloyed, at plant",
+          "reference product": "Steel, low-alloyed, at plant",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Steel, converter, low-alloyed, at plant",
+          "reference product": "Steel, converter, low-alloyed, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "7dcdb52034506b74dd879807f8cf5328b7658e20dc9738790727832a1b9d3142",
+            "inventory_sha256": "e7bed8e63d1e2b0abb59236ac0a891b898faafe66a16e6fa0d8b7a54564f23f9",
+            "comment_sha256": "0d72945f5740d98799c23cb8f08eecd4cc775647aeebc22cfe6eca63c438ad9f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "df4ab7ad9f93f856158e3788bbf7ffd76d7f406d22141edf477995d8bc33654a",
+            "inventory_sha256": "205865c9625635e1ee0dfc272023ac32e4cb2aa34f801768b50f2a26ec96720a",
+            "comment_sha256": "d814c4bb2b29cb336317eae241c1b466cdaa5041125a6166f3f4fdbeec6989e4",
+            "direct_technosphere_coordinates": 21
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "eb2315ffae89be6dcdd68f4a3ced78a3bd606cdb24055673356d989c410125f3",
+            "inventory_sha256": "c7d458710f2bfdea8ef56968e463d4398f2ab23200b4feefff4f6f0e7a4ba83b",
+            "comment_sha256": "bbf16696a20dc32e4c592992ba1eb21d7b51c48a16524b46c662e991f4756a91",
+            "direct_technosphere_coordinates": 21
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified."
+      },
+      "limitations": [
+        "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c05244302a48dfde5ab085f50b9e01d47a09163732be6ebe2157cbcedf41e1c7"
+        }
+      ]
     }
   ]
 }
