@@ -688,6 +688,8 @@ class BaseTransformation:
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ) -> None:
         self.mapping = None
         self.database: List[dict] = database
@@ -698,6 +700,8 @@ class BaseTransformation:
         self.scenario: str = pathway
         self.year: int = year
         self.version: str = version
+        self.family: str = family
+        self.biosphere_version: str = biosphere_version or version
         self.fuels_specs: dict = get_fuel_properties()
 
         self.system_model: str = system_model

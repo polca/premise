@@ -270,8 +270,24 @@ def _update_electricity(
     scenario,
     version,
     system_model,
-    use_absolute_efficiency,
+    use_absolute_efficiency=False,
+    family="ecoinvent",
+    biosphere_version=None,
 ):
+
+    if family == "uvek":
+        from .uvek import update_uvek_electricity
+
+        return update_uvek_electricity(
+            scenario,
+            version,
+            system_model,
+            use_absolute_efficiency,
+            family=family,
+            biosphere_version=biosphere_version,
+        )
+    if family != "ecoinvent":
+        raise ValueError(f"Unsupported electricity background family: {family!r}.")
 
     if scenario["iam data"].electricity_mix is None:
         print("No electricity scenario data available -- skipping")
@@ -288,6 +304,8 @@ def _update_electricity(
         use_absolute_efficiency=use_absolute_efficiency,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     electricity.create_missing_power_plant_datasets()
@@ -355,7 +373,9 @@ def _update_electricity(
     return scenario
 
 
-def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]:
+def create_fuel_map(
+    database, version, model, family="ecoinvent"
+) -> tuple[InventorySet, dict, dict]:
     """
     Create a mapping between ecoinvent fuel names and IAM fuel names.
     :param database: ecoinvent database
@@ -364,7 +384,9 @@ def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]
     :rtype: dict
     """
 
-    mapping = InventorySet(database=database, version=version, model=model)
+    mapping = InventorySet(
+        database=database, version=version, model=model, family=family
+    )
     fuel_map = mapping.generate_fuel_map()
     # reverse the fuel map to get a mapping from ecoinvent to premise
     fuel_map_reverse: Dict = {}
@@ -463,6 +485,8 @@ class Electricity(BaseTransformation):
         use_absolute_efficiency: bool = False,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ) -> None:
         super().__init__(
             database,
@@ -474,9 +498,11 @@ class Electricity(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.mapping, self.fuel_map, self.fuel_map_reverse = create_fuel_map(
-            self.database, self.version, self.model
+            self.database, self.version, self.model, family=self.family
         )
         self.powerplant_map = self.mapping.generate_powerplant_map()
         self.complete_consequential_powerplant_map()
@@ -492,20 +518,25 @@ class Electricity(BaseTransformation):
         }
 
         self.production_per_tech = self.get_production_per_tech_dict()
-        losses = get_losses_per_country(self.database)
-        self.network_loss = {
-            loc: get_production_weighted_losses(
-                losses, self.geo.iam_to_ecoinvent_location(loc)
-            )
-            for loc in self.regions
-        }
+        self.network_loss = self.get_network_losses()
         self.system_model = system_model
-        self.biosphere_dict = biosphere_flows_dictionary(self.version)
+        self.biosphere_dict = biosphere_flows_dictionary(self.biosphere_version)
         self.use_absolute_efficiency = use_absolute_efficiency
 
         self.powerplant_min_efficiency, self.powerplant_max_efficiency = (
             self.mapping.generate_powerplant_efficiency_bounds()
         )
+
+    def get_network_losses(self):
+        """Return production-weighted IAM grid losses for the ECI topology."""
+
+        losses = get_losses_per_country(self.database)
+        return {
+            loc: get_production_weighted_losses(
+                losses, self.geo.iam_to_ecoinvent_location(loc)
+            )
+            for loc in self.regions
+        }
 
     def complete_consequential_powerplant_map(self) -> None:
         """Add valid MSW electricity providers when allocation removes them.
@@ -2303,7 +2334,11 @@ class Electricity(BaseTransformation):
                     self.add_to_index(ds)
                 self.database.extend(new_datasets.values())
 
-        mapping = InventorySet(self.database, model=self.model)
+        mapping = InventorySet(
+            self.database,
+            model=self.model,
+            family=self.family,
+        )
         self.powerplant_map = mapping.generate_powerplant_map()
         self.complete_consequential_powerplant_map()
 
