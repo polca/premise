@@ -339,6 +339,21 @@ Direct native technosphere coordinates match across 2025/2026 within relative
 tolerance 1e-12; the tin difference is binary floating-point serialization.
 No native coefficient is rounded or rewritten.
 
+`uvek_pilot_water_metal_service_review.json` adds twenty inspected
+correspondences across twenty-two source profiles: thirteen 3.6 country markets
+for decarbonised water, four 3.9 metal sheet-rolling markets, the same documented
+MAG welding service per metre, and generic cast-/wrought-aluminium stock mixes.
+Water retains the complete Swiss cooling/scrubber-water treatment per kg;
+source supplier shares, country water-resource geography and regionalized
+water-stress results are not reconstructed. Neither deionised water nor a
+kg-to-volume correction is substituted. Rolling retains caller bulk metal
+separately from process-loss metal already inside the native service. Welding
+retains the same stated shielding-gas composition and wire use per metre, with
+no added wire/gas inventory or metre-to-kg conversion. Aluminium stock retains
+the original European primary/new-/old-scrap blends without renormalization,
+zero-burden stock assumptions or an additional forming step. Source-market,
+grade, allocation, vintage and shorter native 2025 documentation remain warnings.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

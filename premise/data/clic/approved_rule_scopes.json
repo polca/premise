@@ -8094,6 +8094,2078 @@
           "fingerprint": "6b0f58b0b7f8a8c2ca42ac05ab8d40f1470bf18ad0d2fb65409d3bbf41cf23de"
         }
       ]
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-edf1518533a281df",
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium, cast alloy",
+          "reference product": "aluminium, cast alloy",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, production mix, cast alloy, at plant",
+          "reference product": "Aluminium, production mix, cast alloy, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3420d019554d1a18b6892770ebe5575bda11ef889ad5e1e230ee3395c6b567ae",
+            "inventory_sha256": "2664c6140c61e0f7c75240f268fa1d49a4342ad6ef57b2de75345a84e78db3fa",
+            "activity_comment_sha256": "94e701237b5edc076c875c6350ca660eb68069371356fc03215d8168bfb8c0b8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at refiner",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "d03dc93790d4263a6fd968abb8565c5c5efbbcd9d360abb9f9f951faeb4c18cd"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "44b27b37733b3515a8c8101efd0237c998f36c7542ca1af62055119c40f0207f"
+              },
+              {
+                "identity": {
+                  "name": "aluminium ingot, primary, to aluminium, cast alloy market",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "1ceb3f05a128f9493600cd5ce50d78f48a629abb45bff12a84a24244c60172d8"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at refiner",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "c1ef49e3c80b5e6c35db811b16cc4059f4f399a83a89eae7572bb8209937b968"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3fa695f4c4252b940763a43c44aea776e839f3092a6ea84910895b39a08f4d3d",
+            "inventory_sha256": "3b0c61e475b63af1b30e47cac6d48c76dbb8c16b3c8dc1c39948bde8ecb96f4d",
+            "activity_comment_sha256": "91d8473907f5a30cb0589c9841605f8a94d3943ebd70db39d7da9935deccf755",
+            "product_information_sha256": "48780e41282ccfa3d091854ab89e40a8471a4dd0c8a6c3b9a3e91697769f076e",
+            "producers": [
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at refiner",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "325b4fd8c7ba0bf69d7686d1b2194a66ebd45cd8fc7781786d6e96201eeb7c27"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at refiner",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "99e613b1781464f9fe58e567046c2300635d4a9e8775e38b6356a85a695c1ff4"
+              },
+              {
+                "identity": {
+                  "name": "aluminium ingot, primary, to aluminium, cast alloy market",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "1ceb3f05a128f9493600cd5ce50d78f48a629abb45bff12a84a24244c60172d8"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner",
+                  "reference product": "aluminium, cast alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "44b27b37733b3515a8c8101efd0237c998f36c7542ca1af62055119c40f0207f"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d208ba666c7aebe1bfbf761c7fa2ed665d79092b063ba068399565f538950e91",
+            "inventory_sha256": "6924f77b3100fceda7d520434663ea33444f0351bcaf4f1f1c2a556e67431286",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "f860a0ac10459ee2ac16af73c4e444e19c9a7c843caa3486b018f9e2a6d19f5c",
+            "inventory_sha256": "1b645116a1214230eaf8caf105f1cf9dcfd178f5ec0667ad3b1c34780f8c3b44",
+            "activity_comment_sha256": "ed8c6ca1a7c236ad75dc277e6954b80527f0774242fb67cf2d00340b13e41c86",
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same generic aluminium cast-alloy stock, not a finished die-cast component. Use the complete native European 2013 primary/new-scrap/old-scrap production mix once per kg. Source global/refiner shares, alloys, recovery allocation, freight and vintage differ; no specific alloy-grade equivalence is established. Some source suppliers are named treatment activities but supply allocated aluminium product here. Preserve the positive material coordinate, with no negative waste-reference sign conversion, new zero-burden stock, blend renormalization, extra casting, refining or recovery credit."
+      },
+      "limitations": [
+        "Same generic aluminium cast-alloy stock, not a finished die-cast component. Use the complete native European 2013 primary/new-scrap/old-scrap production mix once per kg. Source global/refiner shares, alloys, recovery allocation, freight and vintage differ; no specific alloy-grade equivalence is established. Some source suppliers are named treatment activities but supply allocated aluminium product here. Preserve the positive material coordinate, with no negative waste-reference sign conversion, new zero-burden stock, blend renormalization, extra casting, refining or recovery credit.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a1e9d543acf770c712b485d176c7bb5d618476a1abe19b584fcc8d7bd2aaa1b6"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8ca1ab756d5f4f84243f9470703d5eb3b5a5079ef0376fc5a6334e13434aa398"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2bab3a3e3d0b3ad7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-2bab3a3e3d0b3ad7",
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium, wrought alloy",
+          "reference product": "aluminium, wrought alloy",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, production mix, wrought alloy, at plant",
+          "reference product": "Aluminium, production mix, wrought alloy, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "58a2ed78834c893c7a2b8477bd37c9b1e6e38eb71328b8987cfedf25d7b8e311",
+            "inventory_sha256": "ce7dca1ae2fa864eab7eb79011d15125ed7d9ad9ecf2d4b7ad14691b72ed85b0",
+            "activity_comment_sha256": "6bc451a2f643059a0cbe98618090b6d974b8a8241f5df2a117ef11c338f1d113",
+            "product_information_sha256": "176be779e5d234c1ac72de90e1b6714ed099801f6e06a9ec9b7974bc8c02cd79",
+            "producers": [
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "6486cb98d7aef75bef48bba20c051a2a411b809e7999e505d4f5fe39dda97da9"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "f8966ae035720d2b8d721e7420f7b33844dc55b117d418d1a906761f4c6aa75f"
+              },
+              {
+                "identity": {
+                  "name": "aluminium ingot, primary, to aluminium, wrought alloy market",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "a999437469e85176b9597e65efa97bd0bf2f644df58add55ba5d3069266e38ee"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "2c61b3b9a3f2cae520c96ee9ff981a1b9685fb94d5dfffa0a235fe99d86789e6"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "e4cb41dfb751043c000b5e51911f4fae8aa6a25863be58e60f04f2ac5c6b4824"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "93484854bbf993c1e2dfbc129abe59fa21023a204b243de82f0e6ae7f11c8b83",
+            "inventory_sha256": "a605e74f60831819f92b3c41a8008f4ff4b65615448a0a0a979ce0ee27c0e1aa",
+            "activity_comment_sha256": "6aca12cb15e2274a9a13a077857c813f639789cda8c343cdd5a568e24558b3f8",
+            "product_information_sha256": "176be779e5d234c1ac72de90e1b6714ed099801f6e06a9ec9b7974bc8c02cd79",
+            "producers": [
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "c6a181a17267f08deeefa9340a9cb393f1e4fd1797227e31e3493931b23acda8"
+              },
+              {
+                "identity": {
+                  "name": "aluminium ingot, primary, to aluminium, wrought alloy market",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "a999437469e85176b9597e65efa97bd0bf2f644df58add55ba5d3069266e38ee"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "cc9f4882b3e7df2721412d1b769c8eaf459c79aa214bb384a0d6e4634be63201"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "a72696f803abddd4649b5a58cfe44e172e88f637c6713fb3cbaa607cf328f332"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at remelter",
+                  "reference product": "aluminium, wrought alloy",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "bd2137853662314daaba828c1296231d369045d2eb6223f2ab8e772037a9327d"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "36ffc88d8b434b698c3462679d0341a82682c3eb263ffbffb1149b4e40b532ff",
+            "inventory_sha256": "a49772b4ef467c0cd38b5dad369137cb16f1669b2a3c2aa7b10b3c00c596fc4a",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "81eab970c65d34228488ac46e10550a19cd44f05ae486efec2aac51366deb93c",
+            "inventory_sha256": "95c1e83be571f0150ac1517d8c95c63adea6afefc41bd9e0aab73a317d135d31",
+            "activity_comment_sha256": "67f9dce44cf114fce747f4a66b549222353609df4e9620f02a75c5924c6026ce",
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same generic aluminium wrought-alloy stock, not a finished rolled/extruded component. Use the complete native European 2013 primary/new-scrap/old-scrap production mix once per kg. Source global/remelter shares, alloys, recovery allocation, freight and vintage differ; no specific alloy-grade equivalence is established. Preserve this positive product coordinate despite treatment-named source suppliers. Retain the original rounded native blend without renormalization or an additional rolling/extrusion process; add no zero-burden stock or recovery credit."
+      },
+      "limitations": [
+        "Same generic aluminium wrought-alloy stock, not a finished rolled/extruded component. Use the complete native European 2013 primary/new-scrap/old-scrap production mix once per kg. Source global/remelter shares, alloys, recovery allocation, freight and vintage differ; no specific alloy-grade equivalence is established. Preserve this positive product coordinate despite treatment-named source suppliers. Retain the original rounded native blend without renormalization or an additional rolling/extrusion process; add no zero-burden stock or recovery credit.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0cff1731c183b6bbc606bbfaa300c6831bbf86cc5d84f3661074f638fa8c0016"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "aa222e950a949d2c34ffa873bcbafd98509f763aea725193c81bc946d0401547"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8d83e6b7c6fd6e59",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-8d83e6b7c6fd6e59",
+        "source": {
+          "location": "GLO",
+          "name": "market for sheet rolling, aluminium",
+          "reference product": "sheet rolling, aluminium",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sheet rolling, aluminium",
+          "reference product": "Sheet rolling, aluminium",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "cd34c920788945d2ffd4a603708d6c898255373dffbe9c00d887af69f1b836eb",
+            "inventory_sha256": "7b376674a429843d8766b9c4f9492af0331acb8180ee0cc32f1961811768138e",
+            "activity_comment_sha256": "98a69a79ead41d298acb175a5a335334c963b8f9221808ac2b8e5795b5f3f931",
+            "product_information_sha256": "b8422286f1a723fe6daadb17e1f9d16a260de32577fee844ac68993efa8a58e0",
+            "producers": [
+              {
+                "identity": {
+                  "name": "sheet rolling, aluminium",
+                  "reference product": "sheet rolling, aluminium",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "af06b6bda9002e46e46f971e9403443b5e4a33c4521280a96a19abd065ad1e6c"
+              },
+              {
+                "identity": {
+                  "name": "sheet rolling, aluminium",
+                  "reference product": "sheet rolling, aluminium",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "af06b6bda9002e46e46f971e9403443b5e4a33c4521280a96a19abd065ad1e6c"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d878a1e71aea1ca8483d35a89528ee366142955419e917cd176c61b9e92f527e",
+            "inventory_sha256": "1e5f612a38389ca1c9f5cadc6af702793441a0277e2fcbc95be2f78eda8657ca",
+            "activity_comment_sha256": "fc9ac314b8b97eb76b441a7acdb76aa56d814f34406c3c1071871e6cb03683d2",
+            "direct_technosphere_coordinates": 16
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1c5069361054fe49a626cab77667652652ea61ac3ce34260b3021c8c1b8d059d",
+            "inventory_sha256": "86198799beade5b3d459711efac57df4fb06810013772376072b623e80d4a73f",
+            "activity_comment_sha256": "b31f2fb94759e24d9d0d3160fe4112faffe391d09b04deb9a68146e95c5aa456",
+            "direct_technosphere_coordinates": 16
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same aluminium sheet-rolling service, including its documented hot/cold semi-fabrication stages. Both source and native exclude the bulk aluminium being rolled but include metal losses. Retain separately listed caller metal and the complete native loss, energy, finishing, packaging and infrastructure inputs. Do not add a full kg of aluminium, infer density conversion or scale by the 500-700 mm starting-ingot/final-sheet dimensions."
+      },
+      "limitations": [
+        "Same aluminium sheet-rolling service, including its documented hot/cold semi-fabrication stages. Both source and native exclude the bulk aluminium being rolled but include metal losses. Retain separately listed caller metal and the complete native loss, energy, finishing, packaging and infrastructure inputs. Do not add a full kg of aluminium, infer density conversion or scale by the 500-700 mm starting-ingot/final-sheet dimensions.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6522acc0e5571125accc7510f570cc0fdc4bc2792bab5bd478017f059accdbac"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8afbd7be259066bf",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-8afbd7be259066bf",
+        "source": {
+          "location": "GLO",
+          "name": "market for sheet rolling, chromium steel",
+          "reference product": "sheet rolling, chromium steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sheet rolling, chromium steel",
+          "reference product": "Sheet rolling, chromium steel",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4b8b343dfb004336549532864348059ba102e7c3a2d3db5509022bd02f5dea40",
+            "inventory_sha256": "8e0d40f24c515bccb590276b8f4863236d83649266521732cd98f755c1b4bd59",
+            "activity_comment_sha256": "68eb8c36a974873646a573bdfdb7466a833602181548ae3744069204a18f696c",
+            "product_information_sha256": "607f3dd3fec867d326fbf87b17d24f3852006a0e1f061f6af80206ee07dd7ece",
+            "producers": [
+              {
+                "identity": {
+                  "name": "sheet rolling, chromium steel",
+                  "reference product": "sheet rolling, chromium steel",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "8cdd364e99ea8542ec44cb8419671779464f9210669dce1d3934134d5665e4b9"
+              },
+              {
+                "identity": {
+                  "name": "sheet rolling, chromium steel",
+                  "reference product": "sheet rolling, chromium steel",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "8cdd364e99ea8542ec44cb8419671779464f9210669dce1d3934134d5665e4b9"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "b9643df0a5cc5ffe3c72c06d4cdcb7332fb2817fca565bbd832c0ebd91405cae",
+            "inventory_sha256": "bba5a7e147e9ee62ee38a9f6ceba7f31019aa047da43235495f4f3cb98e6b37e",
+            "activity_comment_sha256": "54d745d2386c6f02cb0f83c94b17310639241edfd7517b67780f739eba56b39e",
+            "direct_technosphere_coordinates": 26
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "4543db45edb837ea1a661ceb75aab5dedc3358858cb402ec1760b732ba29078d",
+            "inventory_sha256": "8b66cadc9ccb5d0b82e2f7e42e6c67789d15a70f731695156888e23eef5f5128",
+            "activity_comment_sha256": "3207c108ae4fe44f4eed445ef54509ceb6051f137f85c426eeb182667098ea57",
+            "direct_technosphere_coordinates": 26
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same high-alloy/chromium-steel cold sheet-rolling service, including annealing, pickling, tempering, finishing and packaging. This is neither bulk stainless steel nor its initial hot rolling. Bulk caller metal remains separate; native small metal-loss and auxiliary inputs remain included. Add no full metal input or extra annealing/rolling process, and apply no thickness or density conversion."
+      },
+      "limitations": [
+        "Same high-alloy/chromium-steel cold sheet-rolling service, including annealing, pickling, tempering, finishing and packaging. This is neither bulk stainless steel nor its initial hot rolling. Bulk caller metal remains separate; native small metal-loss and auxiliary inputs remain included. Add no full metal input or extra annealing/rolling process, and apply no thickness or density conversion.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0d549df96439202d22e07bd0f3a140a8f8e8d6ced66ed86a49af40b16929adc4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-be4b125b435b18ca",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-be4b125b435b18ca",
+        "source": {
+          "location": "GLO",
+          "name": "market for sheet rolling, copper",
+          "reference product": "sheet rolling, copper",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sheet rolling, copper",
+          "reference product": "Sheet rolling, copper",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e3b7e85bdec26de25792d02285dad8ef2aab0cd78c96f5e73e024d10d5021575",
+            "inventory_sha256": "db2f9399726f84951905cf1b19ded91e091cd3db8946a293ebbf8adbd5d956c8",
+            "activity_comment_sha256": "822174850a94bec8f56abec72f69a7edff75eb23defc53d0c6dea6725d395249",
+            "product_information_sha256": "f996606ceff38e43d8f2654f6446b73adc1538f58b1fefd687c5024fe73af438",
+            "producers": [
+              {
+                "identity": {
+                  "name": "sheet rolling, copper",
+                  "reference product": "sheet rolling, copper",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "7c4c54feb0b586dd41f6a58184f994f6657166613f699a03d445d886a14abb7d"
+              },
+              {
+                "identity": {
+                  "name": "sheet rolling, copper",
+                  "reference product": "sheet rolling, copper",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "7c4c54feb0b586dd41f6a58184f994f6657166613f699a03d445d886a14abb7d"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "6fb05cfa5e9e68cbabd4dc238573214b35c53a24a38172b4b7c6d225c8dad957",
+            "inventory_sha256": "4e7b1d3a846f9d0e8dacbe213391a8df4cb0e188ef6cd96b82c247a9a5ed22ce",
+            "activity_comment_sha256": "6c08bc0b07b833986d5b82d6b3b206c20eb46992ac474b9a1526dbfd28cf0fbd",
+            "direct_technosphere_coordinates": 15
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d248f5fddcb8d0d69dc851254036e674744930f34a2febdfa5e46156d975f0a1",
+            "inventory_sha256": "ebc1edd7d4e6f246b9f44ac9427993195e14e4f0f263538a61c71732c3d46b05",
+            "activity_comment_sha256": "fb3629a5605fa53a88c9013cdbdf8408e831be17c5d32475a4e662bd9356c053",
+            "direct_technosphere_coordinates": 15
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same copper sheet-rolling service, including preheating, hot/cold rolling, annealing and finishing. Source and native exclude the bulk copper being rolled and include scrap-loss metal. Retain the caller copper and complete native service once. Do not apply another material-volume estimate, yield/density correction or full kg of copper; the native literature estimation already relates copper processing to aluminium processing."
+      },
+      "limitations": [
+        "Same copper sheet-rolling service, including preheating, hot/cold rolling, annealing and finishing. Source and native exclude the bulk copper being rolled and include scrap-loss metal. Retain the caller copper and complete native service once. Do not apply another material-volume estimate, yield/density correction or full kg of copper; the native literature estimation already relates copper processing to aluminium processing.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e2377f3cacf6d7a9176c6d05bb88f27724980307efd5151964a27b5c6e859823"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-834f96388a124aa3",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-834f96388a124aa3",
+        "source": {
+          "location": "GLO",
+          "name": "market for sheet rolling, steel",
+          "reference product": "sheet rolling, steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sheet rolling, steel",
+          "reference product": "Sheet rolling, steel",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "73c8b6c37677079f7996311e50ee8c716f7a8f1647e83935ed6878891ade2704",
+            "inventory_sha256": "9718ea728d36ea544eb8532b3bac22e11253cd35f312298afe10e004b59d0b68",
+            "activity_comment_sha256": "0302735a92f5bb64246380b46bf528e72b19779c39b69dcceb5da73cb9a9ab7c",
+            "product_information_sha256": "4fae7cd7694c49cf5036ec3b05a1fab242d04ed656d5cc071ca8ecbcf74c12c9",
+            "producers": [
+              {
+                "identity": {
+                  "name": "sheet rolling, steel",
+                  "reference product": "sheet rolling, steel",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "5b97852a42fd265876d802137335eb1e6e536e97047ca5b9951b3929a4490094"
+              },
+              {
+                "identity": {
+                  "name": "sheet rolling, steel",
+                  "reference product": "sheet rolling, steel",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "5b97852a42fd265876d802137335eb1e6e536e97047ca5b9951b3929a4490094"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "79ab2e53b044bd0b4aa821da2c1678682136853f92072c2542738c43fdaf57a6",
+            "inventory_sha256": "2c66daff9aed2e1b59ace0ab2c877e3a82da1aadee0c1ca734a032032d266954",
+            "activity_comment_sha256": "4af48dea26db639ea2db9d5fd35e320ff87adc16b2cf76e2fa3c32962d515e4d",
+            "direct_technosphere_coordinates": 24
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "65f93e61fa5a2635d70d89b8550581b742de2781da2417a44e8c17d8f3455fc3",
+            "inventory_sha256": "1c3afe2340d8c82a63484823d6b2871d1aedbc999f6b05f9cca66923b5e650bc",
+            "activity_comment_sha256": "1bdc7dd5cdd0532f5fb6d299c34330866f9a4b32e8f7f214c810ec985fdd69d9",
+            "direct_technosphere_coordinates": 24
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same un-/low-alloyed-steel cold sheet-rolling service, including pickling, annealing, tempering, finishing and packaging. Both exclude the bulk rolled metal. Preserve caller steel separately and retain native process-loss metal, maintenance and auxiliaries. Add no full kg of steel and do not confuse this with a rolled-stock material product or initial hot rolling."
+      },
+      "limitations": [
+        "Same un-/low-alloyed-steel cold sheet-rolling service, including pickling, annealing, tempering, finishing and packaging. Both exclude the bulk rolled metal. Preserve caller steel separately and retain native process-loss metal, maintenance and auxiliaries. Add no full kg of steel and do not confuse this with a rolled-stock material product or initial hot rolling.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cf469f2b41be1a73d8acc4daedd856ae1b84f7d073010dc67b38d39494c81ebc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7431264e8037a627",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-7431264e8037a627",
+        "source": {
+          "location": "BR",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "328e13af9c166f8fc28f1b2d6052b8494bf0ae429b185109a4fe219be948c4fb",
+            "inventory_sha256": "fe5a6abbd89304076bfb8a41ec43a9935dddfbea49e3a44d32bfaf40d727d340",
+            "activity_comment_sha256": "d3a33421fee1f3cb54e75dbb342b97ce831bfb9ede4f513766c2fb3f7a351ec8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "BR",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "6c32722cfe00ae26e2f496c9af59235585e2781ce0996b50bcb78f0a33b62e6b"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dc317d76a364c36ec91807bf0600119b2b1a14a0211dce4fdf50bb315ae8cbe9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-be3d5782d2d74037",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-be3d5782d2d74037",
+        "source": {
+          "location": "CA",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "43fd28fa2b324994a5f521d735b336e725de425f734b2bf52580abe50e46c1c7",
+            "inventory_sha256": "567e664bfa647b56f7a97d82e87af9f46646e1b041621fe6da5457c6f44f0126",
+            "activity_comment_sha256": "02e404a0cec6adb28f8cca602490cddda5559ed21b521114abc05e75756eb424",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "CA",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "00d4c8f628affe87a43d85a2c27d8d9bdbd1ec2205b9ff90e8210f07cb495653"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5725bb8afc793c2d2618709e6619bb18d4a2b34af9c12f08319bba25f67d88bb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9b6b68753c5e8cb5",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-9b6b68753c5e8cb5",
+        "source": {
+          "location": "CH",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "04486e5167b18d8b3eeb1edde0c1aa25d2f3aa914e9f83fca1e8611d5f731dbb",
+            "inventory_sha256": "f81cb0aa2a64f1b62725c30fca89a267e26aefdc9560464112860cf1851928ee",
+            "activity_comment_sha256": "9997733f5d94733fa6039785ca0427f2804a15b6f117e5f4d7b7fdafc17abfb6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "8c6a9a3e69bb5619237ae4087dad54e12f3026a3f93aaa68404405332314e797"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ebe6ac72c400d7484be876214bd04fa9fd5f45e1dacb39e0cece971ed602e691"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2c87af773f68847e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-2c87af773f68847e",
+        "source": {
+          "location": "CN",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1c3893f879ccc58e2f5846e4f7b97f0094f96d931dce51bb19468c4bbeac1521",
+            "inventory_sha256": "db73422a3a5b1662d0cad607c96f4ef17d111981420195b0382be6b505d20c97",
+            "activity_comment_sha256": "8078b576d92409c0cfd7daa67b5581bf0ef2d26cc1bb33234c7e427fc7e7d2ea",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "CN",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "0fa98a631eb378c92ea052f6d177b3bb895795e2f67700e5fe285f8d5e7d2524"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "06ba8e94c2c405f5506ffe792572c787187c530e121ba1182c4a6939e90d2e10"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b2ae35d1623aa77f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-b2ae35d1623aa77f",
+        "source": {
+          "location": "DE",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "28fbd6301b633ccd86704fd89f9464918a7730ca1730360da1bb7aa23ee16f65",
+            "inventory_sha256": "1900a057e1b6185abc99eb038cbf220657075c07b999515bc256afa3e6b4b0a5",
+            "activity_comment_sha256": "9d132c4030093bc05c236a28d99fd6d0fefa7cdc06f83e5b587e8ee830c7ffd3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "724da37908c72ad53fced4c9ed73b74f843c61ba47a1b41bee03124da21e014c"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "49ef4d005311a5014573f22e3a0e227db26b9891ed08663c69a1a3cb646bba38"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6983448ac196d4e1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-6983448ac196d4e1",
+        "source": {
+          "location": "ES",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5c09cd5911a6811fb81df2f9826fee11b3554333087b47e406b38025dc71095c",
+            "inventory_sha256": "e0df78655ac6002df9ff7b508c7f1a9864fd9d52f37805fab7a88b378fb56248",
+            "activity_comment_sha256": "b3d7000da47392dc6111037aac7307996857a08dc8ad9b57988aed43f6cc5b14",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "ES",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "1283f0c55415c1ab723140001be1d50081eaad073eecb9d3cc2293c047dbe55d"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "54a14e023d69bebf6a5206708bd4d12a50a9b12ec56ea00b9eeced3dc62f1660"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-295a2857acc1f338",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-295a2857acc1f338",
+        "source": {
+          "location": "FR",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "d6bb1e604ba9613778263343dd1456a82a98b61461221ee827387518e26524eb",
+            "inventory_sha256": "a63307b53d89f9d235ea717a870fa1702adeb4750edcdd5829bad799387edde2",
+            "activity_comment_sha256": "f1c9df01857c7ebaebff1ad1c5bf160fd756cebfa1f4ff63142dd0c76af1ad3b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "FR",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "be8fdfaa6432f727350dcbe626edae2fb9ecc1a8e3ae18d05f267648595ea65b"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "19aff4698ddd99b2f9e6971dbc6b1407c989e67f7db3d75b8151109b08b0b474"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c4181fc2830439b1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-c4181fc2830439b1",
+        "source": {
+          "location": "GB",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ca2bff148458737ea5010f5822c2e9c77495180b82f5fc1408e2cfc1e4095875",
+            "inventory_sha256": "aedeba5c364e8fb95d0d89e2b809c6f59e761a378b254445ac57ac2be0bf0c6c",
+            "activity_comment_sha256": "3c80c2de1f5f454b206dc63bc72403d981cd16cb8e277474a91eb05447e82499",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "GB",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "b91e6dcc234a1815cc55edb24a36a2907a2b6864e167ede0767178514182a114"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1c35a76e30b3863650fa97921b87abcc2d7995433eb764240ff545f516714b81"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a55991d52eed7e95",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-a55991d52eed7e95",
+        "source": {
+          "location": "IN",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "77cf67e84ccdcc2b23c31abc18d2ae11f699c87b4e5033126a45382a2be441df",
+            "inventory_sha256": "1d757fdcab96682231eb4403f3314dd0a799ff9a993cbccc585c9331b342873a",
+            "activity_comment_sha256": "14d90d73700c748ad2eb9c516e0ef2c82360712a2e62cbbef75f42a3e39c2091",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "IN",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "ea784eb05bbbb8d23a35a263e539b0c2fabfc86c9d8ff5d14e3376dd06ae7d78"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "acd89e49e118a9118e3cfca1824b00c390ded08e397ae37718888fc7a89bc63f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-735f825c980b81f7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-735f825c980b81f7",
+        "source": {
+          "location": "RU",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c9a9e3b98cb3f481a075c5fb9f48d528c064f94ad9ceb6483ee6b9798f923acb",
+            "inventory_sha256": "7f7a931aeb2a6fa839306c46a8183dd5f7f1f3e9588d77506fb43681075269ff",
+            "activity_comment_sha256": "81ad8d45a59356f665158251eea8897689e5c2c844998055aa45abece15d1650",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "RU",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "dfce19b67964d57192b7fb8cf399fe6107f955ed9c5c8c8d7f74525f725b4547"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "556d9d8260b26653abc8bf903ab3e97d25d722ff79afa221690cd95308f25038"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c5ad7d30b2b18c4c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-c5ad7d30b2b18c4c",
+        "source": {
+          "location": "RoW",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "aaf03baf1f283fa3c8958e04fb476ecbd4ac28ee287b88fb69c0e691294128c0",
+            "inventory_sha256": "61442d1bf6a52a40d340c0c40c06404884074b405bb3546fdf13c819221c36f0",
+            "activity_comment_sha256": "36ec8cbd8a556c82adb54285d0519343d2961f545a35bf52644e45d4837eb379",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "diethyl ether production",
+                  "reference product": "water, decarbonised",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "7840146a1914641b956ba8ec99a7b8718b3f584c5dccf46e7029c497b9415440"
+              },
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "80081efc67810d6284ef94f2cb7afd197c241f8ef8534d204a344135b24eec67"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f96b2df23d2f5a12f6eb09f52fd8a163a0a2483408c82745d84819e357b2df1e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fac4a1f43671b603",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-fac4a1f43671b603",
+        "source": {
+          "location": "US",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "37839d2a6f74923193612fd5d7c97401ad39f124294450eb17f30e8844ee5f1b",
+            "inventory_sha256": "1652c5ff6cd1368f6956bb5ae05bec41f21b945d6ae3e07c31969accfb151c5d",
+            "activity_comment_sha256": "343cd381140e88e8fc39e47c204a2e92c7bc4ff4236364ebfddbbbbd2b6fc628",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "US",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "9cf20cb511087a85d2243726fd80b197f70651076b8d607c663af8cbdeb43400"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "65cb1fa5f508356ddbe67807f1843421088ce83653493d8833788876046fb11e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f15e4a6a029e8ddb",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-f15e4a6a029e8ddb",
+        "source": {
+          "location": "ZA",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, decarbonised, at plant",
+          "reference product": "Water, decarbonised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "36fbbe59ac55da0ecd7952897df98102c74040c6731c9099a1e458228f9dc0a0",
+            "inventory_sha256": "eb1cdd2fb2371e6e873bc1a777fa0a97ab3555b2cd01f4a4bbdea5dde84deede",
+            "activity_comment_sha256": "4f36b631f525f5880a005925c213ee889a9e5eca5b9ab6dded2af57d30c77e2e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producers": [
+              {
+                "identity": {
+                  "name": "water production, decarbonised",
+                  "reference product": "water, decarbonised",
+                  "location": "ZA",
+                  "unit": "kilogram"
+                },
+                "comment_sha256": "a4d993900771a69b1afc42be9edf5d5fa601e8d59a7b60dfcb78315de85704d8"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "3b3c70d060d5d803a89532a81752c7abcb2fa515c3436f504023ff456dad5cf9",
+            "inventory_sha256": "fe8a783eee80996c8750defb54ba76ba2cd9be69a42d31ed30b60f98052a07a5",
+            "activity_comment_sha256": "1c0d605f1e9d1e8dad10703bec8c2ce32cd6df083f81b5de5728eeec0ecdd802",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "1b9823cb7678eec5540326b9d5b5acfb1304e0a9d1618fcc1f01db10d7e0cb11",
+            "inventory_sha256": "209106f204906b6ee94842d14a8227d04fe410d3c4602e91c717468f5ce7329b",
+            "activity_comment_sha256": "4cac0f4751dfcb47510638212849c3c392afa429d71119f83f76821349752873",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step."
+      },
+      "limitations": [
+        "Same decarbonised cooling/scrubber water product per kg, removing suspended matter and carbonate hardness. This is not deionised, ultrapure or drinking water. The source dedicated producers describe rough regional copies of Swiss power-plant treatment; the native Swiss process retains its chemicals, emissions, residual-waste disposal and wastewater treatment. Native 2025 comments are shorter; its unchanged direct technosphere vector and 2026 technology definition support the same process boundary. Source market shares, including allocated diethyl-ether coproduct water where present, are not reconstructed. Country-specific resource geography, water-supply conditions and regionalized water-stress results are not preserved by the Swiss proxy. Preserve signed kg with no kg-to-litre or kg-to-m3 correction, and add no coproduct credit or separate treatment step.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0d4e08613c5ae94b5661a9c7b4f0d4794ae5319a26c55c973a976f30a4813832"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aa2fb09531ebfe9d",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_water_metal_service_review.json",
+      "review_sha256": "d57f21d2777d5c87c9b3d010d6125ef69341b336f7afac272672cb9f0dcecda4",
+      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy authorizations, reused only for the exact enumerated pilot water, metal-processing and alloy-stock profiles after checking physical output, service/intermediate boundaries and positive unit references. No new water grade, welding technology, metal-forming stage, blend model, unit conversion, empty stock or recovery credit is introduced. Pending equipment and geothermal decisions remain pending.",
+      "inspection": {
+        "rule_id": "bp-aa2fb09531ebfe9d",
+        "source": {
+          "location": "GLO",
+          "name": "market for welding, arc, steel",
+          "reference product": "welding, arc, steel",
+          "unit": "meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Welding, arc, steel",
+          "reference product": "Welding, arc, steel",
+          "unit": "meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "10d7c6d7bfe15e645400901a838ceeb2e5c43385e3b428b6e83718ecc4d80604",
+            "inventory_sha256": "ae3c430805241ade1c2dbebbdb7c2868ab60d5631b3797ec8be5790c28b56651",
+            "activity_comment_sha256": "0204ae34db6ab913bf861b17062bb89ed882f25fbaba2d55d1d21d2e13abc954",
+            "product_information_sha256": "430f3f4c91795a5dbe19047470c17e6c0e4aa7e440a7dd6c4d08bf54607ec0ed",
+            "producers": [
+              {
+                "identity": {
+                  "name": "welding, arc, steel",
+                  "reference product": "welding, arc, steel",
+                  "location": "RoW",
+                  "unit": "meter"
+                },
+                "comment_sha256": "196e290c0cc4cb94d33aa006c4ee25445b58066c427bf7110bea15fcc5a2f5ea"
+              },
+              {
+                "identity": {
+                  "name": "welding, arc, steel",
+                  "reference product": "welding, arc, steel",
+                  "location": "RER",
+                  "unit": "meter"
+                },
+                "comment_sha256": "196e290c0cc4cb94d33aa006c4ee25445b58066c427bf7110bea15fcc5a2f5ea"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "meter",
+            "metadata_sha256": "8725318220996199da948fe82566225cf8bd63cafcb8af8e5e32d8bd07b042d0",
+            "inventory_sha256": "7f2387cc4fe65ecbd079fa864f5f916a8b68e8a0b954f8e7896294347c0073f3",
+            "activity_comment_sha256": "8c83233b7a4c8224b5a3bffdfb15a012f1a30fc2c81e9168eb7bfd3409f96dbd",
+            "direct_technosphere_coordinates": 8
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "meter",
+            "metadata_sha256": "c4e2cb798c8e349410be92b60c2a094a902d1607cd926c9ea9f738886ae72c1b",
+            "inventory_sha256": "bb9da630015c15caf875ca807505b239841de8be0cb31c3481e16e7d468a6879",
+            "activity_comment_sha256": "55d3eb85c7703db5092ccaa021147185744221efb10cedf2642e78851e52048d",
+            "direct_technosphere_coordinates": 8
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "comparison_relative_tolerance": 1e-12,
+        "boundary": "Same MAG arc welding of unalloyed steel per metre, with documented 83% Ar/13% CO2/4% O2 shielding gas and 0.0536 kg/m filler-wire use. Native 2025 has shorter comments but the same direct technosphere vector as 2026. Retain complete wire, gas, electricity and internal transport once; do not convert metres to kg or add a second wire/gas supply. Preserve the published warning that other arc-welding technologies can have very different emissions and this is not a general equivalent welding process."
+      },
+      "limitations": [
+        "Same MAG arc welding of unalloyed steel per metre, with documented 83% Ar/13% CO2/4% O2 shielding gas and 0.0536 kg/m filler-wire use. Native 2025 has shorter comments but the same direct technosphere vector as 2026. Retain complete wire, gas, electricity and internal transport once; do not convert metres to kg or add a second wire/gas supply. Preserve the published warning that other arc-welding technologies can have very different emissions and this is not a general equivalent welding process.",
+        "Preserve each signed source demand with factor +1, including its original kg or metre coordinate, uncertainty, formulas, foreground ownership, separately listed base metal, transport and direct emissions. Use the complete selected native inventory once within its documented boundary.",
+        "Source market supplier shares, allocation, delivery freight and losses are not reconstructed. Native internal logistics and supply mixes remain included. Where applicable source country/global/RoW supply is approximated by native Swiss/European supply; geography, water-resource location, technology mix, grade, allocation, vintage and emission coverage can differ. Regionalized water-stress and LCIA equivalence are not established.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is rounded or changed. Shorter 2025 process descriptions and the imported native biosphere exclusions remain explicit. Only enumerated exact cut-off profiles are registered; no other profile, inverse or cross-system-model mapping is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f1fcdfaf5fa6ea20354fe0eca2d2d8e348637843d831fa57934f7cf155c4a77c"
+        }
+      ]
     }
   ]
 }

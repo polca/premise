@@ -447,6 +447,28 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-cdf8909801f26981", "3.6"),
         ("bp-cdf8909801f26981", "3.9"),
         ("bp-3c4fc855bcc17210", "3.12"),
+        ("bp-edf1518533a281df", "3.6"),
+        ("bp-edf1518533a281df", "3.9"),
+        ("bp-2bab3a3e3d0b3ad7", "3.9"),
+        ("bp-2bab3a3e3d0b3ad7", "3.12"),
+        ("bp-8d83e6b7c6fd6e59", "3.9"),
+        ("bp-8afbd7be259066bf", "3.9"),
+        ("bp-be4b125b435b18ca", "3.9"),
+        ("bp-834f96388a124aa3", "3.9"),
+        ("bp-aa2fb09531ebfe9d", "3.9"),
+        ("bp-7431264e8037a627", "3.6"),
+        ("bp-be3d5782d2d74037", "3.6"),
+        ("bp-9b6b68753c5e8cb5", "3.6"),
+        ("bp-2c87af773f68847e", "3.6"),
+        ("bp-b2ae35d1623aa77f", "3.6"),
+        ("bp-6983448ac196d4e1", "3.6"),
+        ("bp-295a2857acc1f338", "3.6"),
+        ("bp-c4181fc2830439b1", "3.6"),
+        ("bp-a55991d52eed7e95", "3.6"),
+        ("bp-735f825c980b81f7", "3.6"),
+        ("bp-c5ad7d30b2b18c4c", "3.6"),
+        ("bp-fac4a1f43671b603", "3.6"),
+        ("bp-f15e4a6a029e8ddb", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -860,6 +882,35 @@ def test_complete_electronic_components_keep_kg_without_extra_assembly(tmp_path)
         d["code"] == "clic.compatibility_proxy_limitations"
         and d["details"]["rule_id"] == chosen[0]["id"]
         and "0.7 g example device" in d["message"]
+        for d in result.diagnostics
+    )
+    assert resolved.activities == before
+
+
+def test_cold_rolling_keeps_separate_hot_rolled_stock_once(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    stock = rules["bp-263c185cdbca7a8c"]
+    rolling = rules["bp-8afbd7be259066bf"]
+    resolved = graph(stock["source"], rolling["source"], version="3.9")
+    for exchange in resolved.activities[0]["exchanges"][1:]:
+        exchange["amount"] = 2
+    before = copy.deepcopy(resolved.activities)
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(resolved, version="2026", family="uvek")
+    (activity,) = result.activities
+    assert len(activity["exchanges"]) == 3
+    material, process = activity["exchanges"][1:]
+    assert material["name"] == "Chromium steel 18/8, at plant"
+    assert process["name"] == "Sheet rolling, chromium steel"
+    assert material["amount"] == process["amount"] == 2
+    assert any(
+        d["code"] == "clic.compatibility_proxy_limitations"
+        and d["details"]["rule_id"] == rolling["id"]
+        and "Bulk caller metal remains separate" in d["message"]
         for d in result.diagnostics
     )
     assert resolved.activities == before
