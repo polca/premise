@@ -16223,6 +16223,422 @@
           "fingerprint": "9f549009e3840372ec5bcfb1a707a701c41a818d98cf4f2cb768939a9c66a977"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ccaa5bfc3f126b6f",
+      "operation": "replace",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_pilot_single_fate_incineration_market_review.json",
+      "review_sha256": "f9a3dc87652177b0e43e8df7517811108ba828e8d44fd2a46a414995c2c3c9d7",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal-service and complete geographic supply-proxy approvals, applied only to four exact single-fate markets after tracing their sole treatment providers and checking actual wet composition, treatment technology, ash/energy quantities and recovery statements. Source-market delivery differences remain explicit. No new waste grade, disposal fate, helper, allocation reconstruction, omission of caller freight, unit conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-ccaa5bfc3f126b6f",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for scrap copper",
+          "reference product": "scrap copper",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, copper, 0% water, to municipal incineration",
+          "reference product": "Disposal, copper, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "000f61f4dd64a37efb0c23dd68a545002ce801e4bfd50c9f810520d0ab316eaa",
+        "source_inventory_sha256": "58d042cf0ebc38c418059644b091423da87e458bacc3fca0ebc082a5435ed589",
+        "source_activity_comment_sha256": "60604bfb228cbbdc2b9766db9593dabb31b651a43be295c3d3c556d2efd1f62b",
+        "source_producer": {
+          "name": "treatment of scrap copper, municipal incineration",
+          "reference product": "scrap copper",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "source_producer_reference_amount": -1,
+        "source_producer_metadata_sha256": "c5daeb032b66af40695776270abfab516aadbffe1dd7d4a10caa85df25217789",
+        "source_producer_inventory_sha256": "a844be04eb27f9443907c19e7efcf9dc48148fc296356c6972390596f0bbf1d9",
+        "source_producer_comment_sha256": "508121995390e303dc03a40839e48e338d8e76afb914be569e90d342d4d3c9a2",
+        "sole_treatment_activity_units_per_market": 1,
+        "source_market_freight_coordinates": 2,
+        "matching_wet_composition_coordinates": 42,
+        "matching_biogenic_carbon_fraction_percent": 60.4,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "f91b1723e82a0184068c563a3c2b26fabae1f80ed3726f6492e45189897ca1f4",
+            "inventory_sha256": "fc5174618c5a3acf5b54ab04c43f63f4bcfea29944dd74d8e8ba2915f1c0ed74",
+            "activity_comment_sha256": "ad2fc01fb2cdc4713ff3bfd0beef3cd191e85e9abf935f58124af4326aa252ef",
+            "direct_technosphere_coordinates": 5,
+            "matched_core_products": [
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "electricity, for reuse in municipal waste incineration only"
+            ]
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "8309414d789f7006f601b562783f20e03e94c136db1506ce9f9b31042d4c398c",
+            "inventory_sha256": "12d44ab1843ec48336487683b95db14e38080b794a03c78eecc04ce7bb50c188",
+            "activity_comment_sha256": "66ed0a2e4451ccf9c542f8f8ff23f6bf49803328c88f6d047168453b0ebddfd4",
+            "direct_technosphere_coordinates": 5,
+            "matched_core_products": [
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "electricity, for reuse in municipal waste incineration only"
+            ]
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matching_documented_energy_and_metal_recovery": true,
+        "matching_core_ash_energy_and_fossil_emission_coordinates": true,
+        "conversion_factor": -1,
+        "boundary": "Same bulky non-dust copper ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations."
+      },
+      "limitations": [
+        "Same bulky non-dust copper ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations.",
+        "Convert signed waste kg by factor -1 because source waste production is -1kg and native treatment-service production is +1kg. Preserve treatment burdens and credits, lognormal uncertainty, formulas and caller ownership. No absolute-value, density, moisture, heating-value or recovery multiplier is applied.",
+        "Use the complete native ordinary municipal-incineration service once, retaining its own ash stabilization, landfill/leachate treatment, allocation and internal logistics. Source markets have a single treatment fate, so no landfill, open-burning, clinker or fly-ash-extraction share is collapsed. Add no new heat, electricity or recovered-metal credit.",
+        "Source market collection/delivery freight is not reconstructed by the native incinerator. Native internal transport remains included, and separately listed caller freight is preserved. Market/producer delivery boundaries, country/RoW supply, background energy, infrastructure and vintage differ; quantitative inventory or LCIA equivalence is not established and score effects are unquantified.",
+        "Source auxiliary natural-gas heat purchases and native gas-combustion purchases share the inspected numerical MJ coordinates, but their useful-heat versus fuel-input/background boundaries can differ. Retain the complete native service without an efficiency rescaling or separate heat purchase.",
+        "Match actual documented wet-composition coordinates and carbon-origin parameters rather than names. Unknown composition entries remain unknown; rounded or inconsistent water labels are not repaired or used as conversion factors. The copper process retains the shared published 60.4% biogenic-carbon parameter without inferring a change from its name.",
+        "Native2025 comments are shorter but its positive references and direct technosphere vectors match native2026. Retain native biosphere exclusions. Only enumerated ecoinvent3.9cutoff profiles are approved for this pilot; other versions, changed fates, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a2fa89d609ac9814383f2ac19a58abfddff16358ee1040724b5d604d7f39ae21"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-00d0820dc5481d5d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_single_fate_incineration_market_review.json",
+      "review_sha256": "f9a3dc87652177b0e43e8df7517811108ba828e8d44fd2a46a414995c2c3c9d7",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal-service and complete geographic supply-proxy approvals, applied only to four exact single-fate markets after tracing their sole treatment providers and checking actual wet composition, treatment technology, ash/energy quantities and recovery statements. Source-market delivery differences remain explicit. No new waste grade, disposal fate, helper, allocation reconstruction, omission of caller freight, unit conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-00d0820dc5481d5d",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste plastic, industrial electronics",
+          "reference product": "waste plastic, industrial electronics",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+          "reference product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "437511a17cb53915f389f397ef2324e5cda79b0d4700b16ff8ecb271c4510d46",
+        "source_inventory_sha256": "08dadce69b6c787ec6baa23255273fc5204572442e8019bc778f2c6f2794a8df",
+        "source_activity_comment_sha256": "f9dd3e66736f233c39d99871b38f586377d03d86c9ba54cc798dbf3918a3d08b",
+        "source_producer": {
+          "name": "treatment of waste plastic, industrial electronics, municipal incineration",
+          "reference product": "waste plastic, industrial electronics",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_producer_reference_amount": -1,
+        "source_producer_metadata_sha256": "9dce865340210ddfef6b1c4dc311339c9d139a419910e42846f92d9cc9197cef",
+        "source_producer_inventory_sha256": "b8991150cde758a7fe4052c44da4ea5d20613dd05158cf16123a42da935f8b85",
+        "source_producer_comment_sha256": "d81c4461a3afdd6f73cd172a05150d3aa13d496c89dc64e94345e1df737391d8",
+        "sole_treatment_activity_units_per_market": 1,
+        "source_market_freight_coordinates": 9,
+        "matching_wet_composition_coordinates": 44,
+        "matching_biogenic_carbon_fraction_percent": 0.0,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "2af3a5da179ebf4e7061afda26332bdde52cc697b9ad9edd67192b3a6116b86f",
+            "inventory_sha256": "d981bafe0ef989d3e6f6d5d34aa3794caa27f674d14079a80171c4684e407577",
+            "activity_comment_sha256": "220cf0ad8a5f0b8ca9f967d9060e26461e11ef9de6cfe5cb7225a2f18c96f1c5",
+            "direct_technosphere_coordinates": 20,
+            "matched_core_products": [
+              "cement, unspecified",
+              "waste cement, hydrated",
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "heat, district or industrial, natural gas"
+            ]
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "034519fb665738f6ebd13c27026537705cef79e09484409e8a2c23a6fd420ea1",
+            "inventory_sha256": "d0e81d8cff5faf7f6d819b1fb828946a63386808821a3a4d4b4b142610abae94",
+            "activity_comment_sha256": "d244975d6561088fc4ac568d2a071280219c67a4664b204d8e077b5bd138e869",
+            "direct_technosphere_coordinates": 20,
+            "matched_core_products": [
+              "cement, unspecified",
+              "waste cement, hydrated",
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "heat, district or industrial, natural gas"
+            ]
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matching_documented_energy_and_metal_recovery": true,
+        "matching_core_ash_energy_and_fossil_emission_coordinates": true,
+        "conversion_factor": -1,
+        "boundary": "Same industrial-electronics plastic ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations."
+      },
+      "limitations": [
+        "Same industrial-electronics plastic ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations.",
+        "Convert signed waste kg by factor -1 because source waste production is -1kg and native treatment-service production is +1kg. Preserve treatment burdens and credits, lognormal uncertainty, formulas and caller ownership. No absolute-value, density, moisture, heating-value or recovery multiplier is applied.",
+        "Use the complete native ordinary municipal-incineration service once, retaining its own ash stabilization, landfill/leachate treatment, allocation and internal logistics. Source markets have a single treatment fate, so no landfill, open-burning, clinker or fly-ash-extraction share is collapsed. Add no new heat, electricity or recovered-metal credit.",
+        "Source market collection/delivery freight is not reconstructed by the native incinerator. Native internal transport remains included, and separately listed caller freight is preserved. Market/producer delivery boundaries, country/RoW supply, background energy, infrastructure and vintage differ; quantitative inventory or LCIA equivalence is not established and score effects are unquantified.",
+        "Source auxiliary natural-gas heat purchases and native gas-combustion purchases share the inspected numerical MJ coordinates, but their useful-heat versus fuel-input/background boundaries can differ. Retain the complete native service without an efficiency rescaling or separate heat purchase.",
+        "Match actual documented wet-composition coordinates and carbon-origin parameters rather than names. Unknown composition entries remain unknown; rounded or inconsistent water labels are not repaired or used as conversion factors. The copper process retains the shared published 60.4% biogenic-carbon parameter without inferring a change from its name.",
+        "Native2025 comments are shorter but its positive references and direct technosphere vectors match native2026. Retain native biosphere exclusions. Only enumerated ecoinvent3.9cutoff profiles are approved for this pilot; other versions, changed fates, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "efe8ae3c6433db0c87ac1625b725285429451989fcb5748f8d42b2483fbc0e69"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cccd7819bb6cea4b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_single_fate_incineration_market_review.json",
+      "review_sha256": "f9a3dc87652177b0e43e8df7517811108ba828e8d44fd2a46a414995c2c3c9d7",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal-service and complete geographic supply-proxy approvals, applied only to four exact single-fate markets after tracing their sole treatment providers and checking actual wet composition, treatment technology, ash/energy quantities and recovery statements. Source-market delivery differences remain explicit. No new waste grade, disposal fate, helper, allocation reconstruction, omission of caller freight, unit conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-cccd7819bb6cea4b",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for waste rubber, unspecified",
+          "reference product": "waste rubber, unspecified",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, rubber, unspecified, 0% water, to municipal incineration",
+          "reference product": "Disposal, rubber, unspecified, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "dd806f7d517cf22996f623534d302652aab892ab12ff7cb42a22ca0a0cf90559",
+        "source_inventory_sha256": "6acd3c1f2840bceae9decbeae72c8732f204ee50e5cdea3b9c97f8ef983c5628",
+        "source_activity_comment_sha256": "f447bebe0eb9a37e930367319d1cc9298159b183f0601324080d304036eb4f7e",
+        "source_producer": {
+          "name": "treatment of waste rubber, unspecified, municipal incineration",
+          "reference product": "waste rubber, unspecified",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "source_producer_reference_amount": -1,
+        "source_producer_metadata_sha256": "5581388fbb1f2096603a03f85e609e7a8ba20567ae03ed46e385dd1bb3bcc7b3",
+        "source_producer_inventory_sha256": "cb89f67e5060487cd28c6756db693fb7ae6c3b50a163b81610acd3db58a45933",
+        "source_producer_comment_sha256": "03c41fc2cdebc5cd7beb151440be88d2b1bd22059615e9a21db5d937ece8b191",
+        "sole_treatment_activity_units_per_market": 1,
+        "source_market_freight_coordinates": 2,
+        "matching_wet_composition_coordinates": 44,
+        "matching_biogenic_carbon_fraction_percent": 0.0,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "af6a02be3b679e2384db992cda712f2cfda81d24e80060f59b5b27bb1db83516",
+            "inventory_sha256": "0e1ea4aeaebcb659d9b7a88f219a7f4ae3379c586f8bd4f30dd3c92a5a211c3d",
+            "activity_comment_sha256": "41e171f218415c9cf6b5fd42236e16c83d4c762679d61c6a7c44d4a28e6dc363",
+            "direct_technosphere_coordinates": 20,
+            "matched_core_products": [
+              "cement, unspecified",
+              "waste cement, hydrated",
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "heat, district or industrial, natural gas"
+            ]
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "17fff14537efd9318f7d1f2d8a99c26cdfac1549986214858d736b7fc648fa13",
+            "inventory_sha256": "87c73e036905cbf44ac0421127b29cb27e974288f3c008ea03d1a4d436d6b937",
+            "activity_comment_sha256": "ba43517afe27989a8e1bcd8eae30a7c61b924bb5dbb701dbbadc10feb10c8baf",
+            "direct_technosphere_coordinates": 20,
+            "matched_core_products": [
+              "cement, unspecified",
+              "waste cement, hydrated",
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "heat, district or industrial, natural gas"
+            ]
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matching_documented_energy_and_metal_recovery": true,
+        "matching_core_ash_energy_and_fossil_emission_coordinates": true,
+        "conversion_factor": -1,
+        "boundary": "Same unspecified rubber ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations."
+      },
+      "limitations": [
+        "Same unspecified rubber ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations.",
+        "Convert signed waste kg by factor -1 because source waste production is -1kg and native treatment-service production is +1kg. Preserve treatment burdens and credits, lognormal uncertainty, formulas and caller ownership. No absolute-value, density, moisture, heating-value or recovery multiplier is applied.",
+        "Use the complete native ordinary municipal-incineration service once, retaining its own ash stabilization, landfill/leachate treatment, allocation and internal logistics. Source markets have a single treatment fate, so no landfill, open-burning, clinker or fly-ash-extraction share is collapsed. Add no new heat, electricity or recovered-metal credit.",
+        "Source market collection/delivery freight is not reconstructed by the native incinerator. Native internal transport remains included, and separately listed caller freight is preserved. Market/producer delivery boundaries, country/RoW supply, background energy, infrastructure and vintage differ; quantitative inventory or LCIA equivalence is not established and score effects are unquantified.",
+        "Source auxiliary natural-gas heat purchases and native gas-combustion purchases share the inspected numerical MJ coordinates, but their useful-heat versus fuel-input/background boundaries can differ. Retain the complete native service without an efficiency rescaling or separate heat purchase.",
+        "Match actual documented wet-composition coordinates and carbon-origin parameters rather than names. Unknown composition entries remain unknown; rounded or inconsistent water labels are not repaired or used as conversion factors. The copper process retains the shared published 60.4% biogenic-carbon parameter without inferring a change from its name.",
+        "Native2025 comments are shorter but its positive references and direct technosphere vectors match native2026. Retain native biosphere exclusions. Only enumerated ecoinvent3.9cutoff profiles are approved for this pilot; other versions, changed fates, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "42e39105f0196296657476c0966584a65dbf689561012d10737754fae328f39a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4a8d844635b7637e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_single_fate_incineration_market_review.json",
+      "review_sha256": "f9a3dc87652177b0e43e8df7517811108ba828e8d44fd2a46a414995c2c3c9d7",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal-service and complete geographic supply-proxy approvals, applied only to four exact single-fate markets after tracing their sole treatment providers and checking actual wet composition, treatment technology, ash/energy quantities and recovery statements. Source-market delivery differences remain explicit. No new waste grade, disposal fate, helper, allocation reconstruction, omission of caller freight, unit conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-4a8d844635b7637e",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste rubber, unspecified",
+          "reference product": "waste rubber, unspecified",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, rubber, unspecified, 0% water, to municipal incineration",
+          "reference product": "Disposal, rubber, unspecified, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "2240dbea35180427499828b19afb84523eace4f0802c24d9df03de3a9c95172d",
+        "source_inventory_sha256": "cac3be835cfe2e96ba412c5a9e4170f437d64ed625151726911f3b52f9f709da",
+        "source_activity_comment_sha256": "9f859a4ff3240e80662d538d35434058e232d97101e162e6245ce0fa06ced586",
+        "source_producer": {
+          "name": "treatment of waste rubber, unspecified, municipal incineration",
+          "reference product": "waste rubber, unspecified",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_producer_reference_amount": -1,
+        "source_producer_metadata_sha256": "eb9b143def2084682e8a0173baaae825b2055cb152da814c7dac0c73d0f439ab",
+        "source_producer_inventory_sha256": "9c91afd9914e00d9c3a2334df5ea3feb6892b56528820d620ecaed7d102de0b4",
+        "source_producer_comment_sha256": "c9705ab90567a1a9eb84563865f44c5f517eeec558195bd11652359b36a8cb4f",
+        "sole_treatment_activity_units_per_market": 1,
+        "source_market_freight_coordinates": 8,
+        "matching_wet_composition_coordinates": 44,
+        "matching_biogenic_carbon_fraction_percent": 0.0,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "af6a02be3b679e2384db992cda712f2cfda81d24e80060f59b5b27bb1db83516",
+            "inventory_sha256": "0e1ea4aeaebcb659d9b7a88f219a7f4ae3379c586f8bd4f30dd3c92a5a211c3d",
+            "activity_comment_sha256": "41e171f218415c9cf6b5fd42236e16c83d4c762679d61c6a7c44d4a28e6dc363",
+            "direct_technosphere_coordinates": 20,
+            "matched_core_products": [
+              "cement, unspecified",
+              "waste cement, hydrated",
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "heat, district or industrial, natural gas"
+            ]
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "17fff14537efd9318f7d1f2d8a99c26cdfac1549986214858d736b7fc648fa13",
+            "inventory_sha256": "87c73e036905cbf44ac0421127b29cb27e974288f3c008ea03d1a4d436d6b937",
+            "activity_comment_sha256": "ba43517afe27989a8e1bcd8eae30a7c61b924bb5dbb701dbbadc10feb10c8baf",
+            "direct_technosphere_coordinates": 20,
+            "matched_core_products": [
+              "cement, unspecified",
+              "waste cement, hydrated",
+              "process-specific burdens, slag landfill",
+              "slag landfill",
+              "heat, district or industrial, natural gas"
+            ]
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "matching_documented_energy_and_metal_recovery": true,
+        "matching_core_ash_energy_and_fossil_emission_coordinates": true,
+        "conversion_factor": -1,
+        "boundary": "Same unspecified rubber ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations."
+      },
+      "limitations": [
+        "Same unspecified rubber ordinary municipal-incineration function per kg. The actual source market sends one kg exclusively to its inspected matching incinerator; its collection freight is a market/producer-boundary difference. Waste composition, carbon-origin parameters, technology description, ash/cement/landfill coordinates, auxiliary-energy reference quantities, direct fossil carbon emissions and documented energy/metal recovery statements match. Retain the complete native service without extra collection transport, ash treatment or energy/metal credits. Preserve separately listed caller freight. Native internal logistics, auxiliary-energy/background suppliers, geography, allocation, vintage and emission coverage remain screening limitations.",
+        "Convert signed waste kg by factor -1 because source waste production is -1kg and native treatment-service production is +1kg. Preserve treatment burdens and credits, lognormal uncertainty, formulas and caller ownership. No absolute-value, density, moisture, heating-value or recovery multiplier is applied.",
+        "Use the complete native ordinary municipal-incineration service once, retaining its own ash stabilization, landfill/leachate treatment, allocation and internal logistics. Source markets have a single treatment fate, so no landfill, open-burning, clinker or fly-ash-extraction share is collapsed. Add no new heat, electricity or recovered-metal credit.",
+        "Source market collection/delivery freight is not reconstructed by the native incinerator. Native internal transport remains included, and separately listed caller freight is preserved. Market/producer delivery boundaries, country/RoW supply, background energy, infrastructure and vintage differ; quantitative inventory or LCIA equivalence is not established and score effects are unquantified.",
+        "Source auxiliary natural-gas heat purchases and native gas-combustion purchases share the inspected numerical MJ coordinates, but their useful-heat versus fuel-input/background boundaries can differ. Retain the complete native service without an efficiency rescaling or separate heat purchase.",
+        "Match actual documented wet-composition coordinates and carbon-origin parameters rather than names. Unknown composition entries remain unknown; rounded or inconsistent water labels are not repaired or used as conversion factors. The copper process retains the shared published 60.4% biogenic-carbon parameter without inferring a change from its name.",
+        "Native2025 comments are shorter but its positive references and direct technosphere vectors match native2026. Retain native biosphere exclusions. Only enumerated ecoinvent3.9cutoff profiles are approved for this pilot; other versions, changed fates, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "81ca06b3944b0ce5cc73b5ae750c058666b92e9aa36c3e8f62aa6f2b2bbbaf85"
+        }
+      ]
     }
   ]
 }

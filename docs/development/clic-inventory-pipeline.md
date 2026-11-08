@@ -497,6 +497,20 @@ quantities, uncertainty/formulas, version gates and cached loss warnings. The
 actual two-record ecoinvent 3.7 source cohort now harmonizes, with cache/audit
 hashes verified; other cohorts still refuse unresolved correspondences.
 
+`uvek_pilot_single_fate_incineration_market_review.json` adds four inspected
+ecoinvent 3.9 markets: European scrap copper, industrial-electronics plastic,
+and European/rest-of-world unspecified rubber. Each sends one kg exclusively
+to the matching ordinary incinerator. Actual wet composition, biogenic-carbon
+parameters, technology, ash/cement/landfill quantities, auxiliary-energy
+reference amounts and recovery statements match. Preserve signed kg with
+factor -1 and the complete native inventory once. Source-market collection
+freight is not reconstructed; native internal logistics and separate caller
+freight remain included. Delivery, heat/fuel-input boundaries and background
+differences remain explicit screening limitations. Thirty-one focused checks
+pass, and all three unique native supplier LCIs are finite with unchanged
+scientific hashes. Mixed-fate markets and Swiss copper with fly-ash extraction
+remain refused; this approval introduces no extra recovery credit or helper.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

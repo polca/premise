@@ -180,10 +180,10 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 36 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 2 |
-| 3.9 | 17 | 37 |
+| 3.9 | 17 | 33 |
 | 3.12 | 8 | 19 |
 
-These are 94 exact-profile cases involving 85 distinct rules, after reusing
+These are 90 exact-profile cases involving 81 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -308,10 +308,21 @@ unchanged scientific hashes, and eighteen focused checks pass after the earlier
 full 411-case run. The actual two-record ecoinvent 3.7 cohort now harmonizes with
 verified cache payload/audit hashes; the diagnostic records the later 3.6
 refusal separately rather than attributing its unresolved rules to 3.7.
+Four single-fate ecoinvent 3.9 waste markets add matching ordinary municipal
+incineration for European copper, industrial-electronics plastic and
+European/rest-of-world rubber. Composition, carbon-origin parameters, ash and
+energy quantities and documented recovery statements were checked against
+the actual sole source providers. Preserve signed kg with factor -1, the complete
+native allocation and separately listed caller freight. Source-market collection
+freight is not reconstructed; delivery, auxiliary heat/fuel-input and background
+differences remain warnings. Thirty-one focused checks pass, including refusals
+for mixed-fate plastic/oil and Swiss copper with fly-ash extraction. Three unique
+native supplier LCIs are finite with unchanged scientific hashes. No new full
+453-case correspondence run is claimed after the preceding focused additions.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 253 exact-profile fingerprints, with review evidence and
+ledger contains 257 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

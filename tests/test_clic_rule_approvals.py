@@ -347,6 +347,10 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
         ("bp-4d389c0e2269e7e9", "3.9"),
         ("bp-e4747a1d81615ef4", "3.9"),
         ("bp-cc3516074957a931", "3.9"),
+        ("bp-ccaa5bfc3f126b6f", "3.9"),
+        ("bp-00d0820dc5481d5d", "3.9"),
+        ("bp-cccd7819bb6cea4b", "3.9"),
+        ("bp-4a8d844635b7637e", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -771,6 +775,10 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-18e8ed0207bbd5f8",
         "bp-182cd513cb8969f1",
         "bp-b5f627281d517e19",
+        "bp-ccaa5bfc3f126b6f",
+        "bp-00d0820dc5481d5d",
+        "bp-cccd7819bb6cea4b",
+        "bp-4a8d844635b7637e",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -863,27 +871,54 @@ def test_reviewed_service_preserves_separate_emissions_and_cache_warnings(
 
 
 @pytest.mark.parametrize(
-    "rule_id,expected_name,warning_term",
+    "rule_id,version,expected_name,warning_term",
     [
         (
             "bp-fa607ec8232396e4",
+            "3.6",
             "Disposal, polypropylene, 15.9% water, to municipal incineration",
             "No wrapper freight is inserted",
         ),
         (
             "bp-b39070e2c2728597",
+            "3.6",
             "Disposal, mineral wool, 0% water, to construction waste landfill",
             "Do not add the wrapper collection freight",
         ),
         (
             "bp-3aedb5762ff23e68",
+            "3.6",
             "Disposal, inert waste, 5% water, to construction waste landfill",
             "without a collection/dismantling wrapper",
+        ),
+        (
+            "bp-ccaa5bfc3f126b6f",
+            "3.9",
+            "Disposal, copper, 0% water, to municipal incineration",
+            "market/producer-boundary difference",
+        ),
+        (
+            "bp-00d0820dc5481d5d",
+            "3.9",
+            "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+            "market/producer-boundary difference",
+        ),
+        (
+            "bp-cccd7819bb6cea4b",
+            "3.9",
+            "Disposal, rubber, unspecified, 0% water, to municipal incineration",
+            "market/producer-boundary difference",
+        ),
+        (
+            "bp-4a8d844635b7637e",
+            "3.9",
+            "Disposal, rubber, unspecified, 0% water, to municipal incineration",
+            "market/producer-boundary difference",
         ),
     ],
 )
 def test_waste_endpoint_preserves_separate_caller_transport(
-    tmp_path, rule_id, expected_name, warning_term
+    tmp_path, rule_id, version, expected_name, warning_term
 ):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -891,7 +926,7 @@ def test_waste_endpoint_preserves_separate_caller_transport(
     rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
     endpoint = rules[rule_id]
     freight = rules["bp-d6b9d771677aa51e"]
-    resolved = graph(endpoint["source"], freight["source"], version="3.6")
+    resolved = graph(endpoint["source"], freight["source"], version=version)
     resolved.activities[0]["exchanges"][2]["amount"] = 3.25
     before = copy.deepcopy(resolved.activities)
     harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
@@ -1236,7 +1271,15 @@ def test_approved_dense_soda_proxy_keeps_missing_densification_warning_in_cache(
 
 @pytest.mark.parametrize(
     "rule_id,version",
-    [("bp-e6c831a29eb4d1fa", "3.6"), ("bp-ccc007a13f79d195", "3.9")],
+    [
+        ("bp-e6c831a29eb4d1fa", "3.6"),
+        ("bp-ccc007a13f79d195", "3.9"),
+        ("bp-ef0d29b6fa71b9c8", "3.9"),
+        ("bp-dc3ac2fe6b0e61bf", "3.9"),
+        ("bp-e172491d6da0b115", "3.9"),
+        ("bp-b7606642f4256898", "3.9"),
+        ("bp-7df5d08d5bab9d33", "3.9"),
+    ],
 )
 def test_unreviewed_waste_fate_changes_still_refuse_migration(
     tmp_path, rule_id, version
