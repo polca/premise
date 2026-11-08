@@ -14423,6 +14423,240 @@
           "fingerprint": "04634b7ddc86f65e86e2c2f11cb3d1ecaa682f3f7185255fe5c1ba4afb1eb6b6"
         }
       ]
+    },
+    {
+      "rule_id": "bp-b73d5db62046c9cf",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_matching_wet_waste_review.json",
+      "review_sha256": "707e89fc151f685e2b9ca6f0cca7031236bc0f2b7d010ceed1ee7291c30249c2",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal and geographic-proxy approvals, applied only after matching the declared wet composition, biogenic-carbon fraction, treatment class, actual cement/residue/facility coordinates and opposite one-kg waste/service reference signs for the enumerated pilot cases. No new waste grade, stabilization process, recovery model, helper or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-b73d5db62046c9cf",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of average incineration residue, residual material landfill",
+          "reference product": "average incineration residue",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, average incineration residue, 0% water, to residual material landfill",
+          "reference product": "Disposal, average incineration residue, 0% water, to residual material landfill",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "b1a7055b8b463feae4a7ea96dc3c35aff2cccd3ba7f024b151044d5b52300a5b",
+        "source_inventory_sha256": "35a177b90eb3ed76af9c8ff88aada4085ab15b8d2f18e684ad8259900f905b08",
+        "source_activity_comment_sha256": "f124bab64de8eb32c63ad847367b717330a1688c0c020bc72b0b9c3c40ff8cc0",
+        "source_product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "74dbb851f909d3c2e9aafb257e6e9614e74a94ee11ddefcc8bceb17adb163f37",
+            "inventory_sha256": "9cdb42549fbeb30964a47e34eb540b57ff4ec3b4dacfbb36edc8917fb880f955",
+            "activity_comment_sha256": "343e9c7db42cb0c7c3d703d1e2aa04279d63776fbfe0f629804256ed0cae9ef6",
+            "direct_technosphere_coordinates": 6,
+            "composition_evidence": "Shorter description; matching native2026 direct technosphere vector"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "bcddd27ef5af752c936abeda4f8b55684d5e071ffd4ea5a607f09dc91e10c9a4",
+            "inventory_sha256": "e339648738073f4d5686855a42c852d5e403a49464311b1226f341ef3f93d860",
+            "activity_comment_sha256": "3fc4a56b12d57cc6d0ebe4acffb00bf5cff36d5da22fdf27788b49e31da645ed",
+            "direct_technosphere_coordinates": 6,
+            "composition_evidence": "Explicit composition and biogenic fraction"
+          }
+        },
+        "conversion_factor": -1,
+        "matching_wet_composition_coordinates": 42,
+        "matching_biogenic_carbon_fraction_percent": 61.1,
+        "cement_residue_and_landfill_reference_coordinates_match": true,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same average incineration-residue treatment in a residual-material landfill, per kg of waste with0% water. All42 published wet-composition coordinates and61.1% biogenic share of waste carbon match source/native2026. Actual source cement purchases sum to0.4kg per kg residue, matching native solidification despite the source comment calling it a user option. Source hydrated-cement disposal and process-specific landfill burdens each sum to1kg, with the same landfill-facility requirement. Retain complete native solidification, landfill and leachate inventory once, with no new cement input, reaction/yield correction or landfill reconstruction. Source RoW labeling is approximated by the native Swiss provider; allocation, geography, vintage and emission coverage differ."
+      },
+      "limitations": [
+        "Same average incineration-residue treatment in a residual-material landfill, per kg of waste with0% water. All42 published wet-composition coordinates and61.1% biogenic share of waste carbon match source/native2026. Actual source cement purchases sum to0.4kg per kg residue, matching native solidification despite the source comment calling it a user option. Source hydrated-cement disposal and process-specific landfill burdens each sum to1kg, with the same landfill-facility requirement. Retain complete native solidification, landfill and leachate inventory once, with no new cement input, reaction/yield correction or landfill reconstruction. Source RoW labeling is approximated by the native Swiss provider; allocation, geography, vintage and emission coverage differ.",
+        "Convert signed source waste kg to native treatment-service kg with factor -1 because source production is -1kg and native production is +1kg. Preserve burdens and credits in both directions, lognormal uncertainty magnitude/scale, symbolic formulas and caller ownership. Apply no absolute value, moisture, heating-value, density, yield or repeat-allocation multiplier.",
+        "Use the complete selected native treatment inventory once. Retain its solidification, ash/leachate model, recovery/allocation, historical transfer coefficients and data limitations. Separately listed caller freight, physical emissions and credits remain unchanged. Geographic labels, background supply, vintage and emission coverage differ; imported native biosphere exclusions remain explicit and no inventory/LCIA equality is established.",
+        "Native2025 descriptions are shorter but positive references and direct technosphere coordinates match2026 within relative tolerance1e-12. No coefficient or source carbon-origin parameter is repaired. Only enumerated cut-off source profiles are registered; other wastes, profiles, helpers, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8bc7de6a5f32eb65db4fac7ca00d677aa587d6a71117277178449566d4c4c912"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8c3b3ceb3e9c8bef",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_matching_wet_waste_review.json",
+      "review_sha256": "707e89fc151f685e2b9ca6f0cca7031236bc0f2b7d010ceed1ee7291c30249c2",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal and geographic-proxy approvals, applied only after matching the declared wet composition, biogenic-carbon fraction, treatment class, actual cement/residue/facility coordinates and opposite one-kg waste/service reference signs for the enumerated pilot cases. No new waste grade, stabilization process, recovery model, helper or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-8c3b3ceb3e9c8bef",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of hard coal ash, residual material landfill",
+          "reference product": "hard coal ash",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "AT",
+          "name": "Disposal, hard coal ash, 0% water, to residual material landfill",
+          "reference product": "Disposal, hard coal ash, 0% water, to residual material landfill",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "41cc292b94ad154edfc08a1b86c3b947b48807ae42322062dd0ff62b061ca7e5",
+        "source_inventory_sha256": "ec51a1424f93aef3f492aa4ce8bc5e0931a19b7a693390f5765975e48a993aac",
+        "source_activity_comment_sha256": "afd706486a239bc4b2a036d890c290b3ddbdb182f5dda2a67c4b7d2de9382c01",
+        "source_product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "e3014be79587e09649e8a589e82458681bcd88139730e1ced497e1bbbd947bdd",
+            "inventory_sha256": "31b5fb232a50fb1ba9c59372ea4a75a10d7a1a6c8c65d4643d682101e801cd1e",
+            "activity_comment_sha256": "c1be69bada406eec049c2fa3b00c59c2adac3d92f22721a5d3c58727f4e374ce",
+            "direct_technosphere_coordinates": 2,
+            "composition_evidence": "Shorter description; matching native2026 direct technosphere vector"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "ca5d9a7943b5bdc2015c04a6b99422a7ca12b03ca4002ffeb179504dd817e9ac",
+            "inventory_sha256": "a01277ce4c719933a580437693c2d371f0f6537370e707920d380636a54f34c7",
+            "activity_comment_sha256": "1051184e50c3187fa284d5bc384f5c65284e18e465fd541dd2abed28ff34e253",
+            "direct_technosphere_coordinates": 2,
+            "composition_evidence": "Explicit composition and biogenic fraction"
+          }
+        },
+        "conversion_factor": -1,
+        "matching_wet_composition_coordinates": 42,
+        "matching_biogenic_carbon_fraction_percent": 60.4,
+        "cement_residue_and_landfill_reference_coordinates_match": true,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same hard-coal-ash treatment in a residual-material landfill, per kg of waste with0% water. All42 published wet-composition coordinates and the published60.4% biogenic share of waste carbon match source/native2026; preserve that shared historical model parameter without inferring a carbon-origin correction from the activity name. Actual source process-specific landfill burdens sum to1kg with the same facility requirement, and neither source nor native adds cement solidification. Retain the complete native landfill/leachate inventory once, with no invented cement, fossil/biogenic repartitioning or extra recovery credit. Native provider is labelled AT although its description models Swiss technology; source RoW geography, allocation, vintage and emission coverage differ."
+      },
+      "limitations": [
+        "Same hard-coal-ash treatment in a residual-material landfill, per kg of waste with0% water. All42 published wet-composition coordinates and the published60.4% biogenic share of waste carbon match source/native2026; preserve that shared historical model parameter without inferring a carbon-origin correction from the activity name. Actual source process-specific landfill burdens sum to1kg with the same facility requirement, and neither source nor native adds cement solidification. Retain the complete native landfill/leachate inventory once, with no invented cement, fossil/biogenic repartitioning or extra recovery credit. Native provider is labelled AT although its description models Swiss technology; source RoW geography, allocation, vintage and emission coverage differ.",
+        "Convert signed source waste kg to native treatment-service kg with factor -1 because source production is -1kg and native production is +1kg. Preserve burdens and credits in both directions, lognormal uncertainty magnitude/scale, symbolic formulas and caller ownership. Apply no absolute value, moisture, heating-value, density, yield or repeat-allocation multiplier.",
+        "Use the complete selected native treatment inventory once. Retain its solidification, ash/leachate model, recovery/allocation, historical transfer coefficients and data limitations. Separately listed caller freight, physical emissions and credits remain unchanged. Geographic labels, background supply, vintage and emission coverage differ; imported native biosphere exclusions remain explicit and no inventory/LCIA equality is established.",
+        "Native2025 descriptions are shorter but positive references and direct technosphere coordinates match2026 within relative tolerance1e-12. No coefficient or source carbon-origin parameter is repaired. Only enumerated cut-off source profiles are registered; other wastes, profiles, helpers, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c3e23516bd87ac70c44c0ef3c3f56030a9a1f5099e40c942bfd7f87706773189"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9ac96dd0500cd5a9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_matching_wet_waste_review.json",
+      "review_sha256": "707e89fc151f685e2b9ca6f0cca7031236bc0f2b7d010ceed1ee7291c30249c2",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal and geographic-proxy approvals, applied only after matching the declared wet composition, biogenic-carbon fraction, treatment class, actual cement/residue/facility coordinates and opposite one-kg waste/service reference signs for the enumerated pilot cases. No new waste grade, stabilization process, recovery model, helper or unit conversion is introduced.",
+      "inspection": {
+        "rule_id": "bp-9ac96dd0500cd5a9",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of waste plastic, mixture, municipal incineration",
+          "reference product": "waste plastic, mixture",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+          "reference product": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "bb34703c328fdabffb43a60468be32ab81ece2a332f344c412400cc682b6a535",
+        "source_inventory_sha256": "cb417f5339bc5bfc47c875728ad7208c6e166bb603abd007d76b195e35a2f7d6",
+        "source_activity_comment_sha256": "5674fa4bcced023b7b10b3df1c94fae1ceeba0c04f3579ae402daf2748f0feab",
+        "source_product_information_sha256": "b6e42c417a80b187c4f5c3cf22005cc65d10428c885f03fedc29eb7db48b68b1",
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "9136b4675045dc8779fed3d49e1f6a557224acaa8c07f5d8f8eac5847dc364cd",
+            "inventory_sha256": "05c21ab1252647fa81dd7d690771c568ce10dbf0ed250b9d3846d6d4e22f83e3",
+            "activity_comment_sha256": "0650d45865ba42a724e47b7ed14b3a8b2332fe0a82cd452e73d39f49e57f8b50",
+            "direct_technosphere_coordinates": 20,
+            "composition_evidence": "Shorter description; matching native2026 direct technosphere vector"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "7851a4c82dbfc28fa17e3f20053e291ca9fe288ab5db337cc536a6f29ba44a65",
+            "inventory_sha256": "7c60a7e648f9dd6245d11a271b9478e8745be2b028045e2a2321787321756bd1",
+            "activity_comment_sha256": "064cafb8f19aa377c881caab5d003a02051b2caec59e9eef3010fc0d0f85705e",
+            "direct_technosphere_coordinates": 20,
+            "composition_evidence": "Explicit composition and biogenic fraction"
+          }
+        },
+        "conversion_factor": -1,
+        "matching_wet_composition_coordinates": 44,
+        "matching_biogenic_carbon_fraction_percent": 0.0,
+        "cement_residue_and_landfill_reference_coordinates_match": true,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same mixed-plastic municipal-incineration service per kg of15.3%-water waste. All42 wet-composition coordinates, both heating values and0% biogenic share of waste carbon match source/native2026. Both describe the same2010 Swiss grate-incinerator/flue-gas-control technology and no recovered metal scrap. Actual source cement purchases and hydrated-cement residue treatment match the native quantities; direct fossil CO2/methane coordinates also match. Retain complete native incineration, recovery/allocation and ash/leachate treatment once. Add no extra energy/metal credit, virgin plastic, transport wrapper, ash inventory or moisture/heating-value correction. Preserve separately listed caller freight/emissions; source RoW geography, background supply, allocation, vintage and native biosphere coverage differ."
+      },
+      "limitations": [
+        "Same mixed-plastic municipal-incineration service per kg of15.3%-water waste. All42 wet-composition coordinates, both heating values and0% biogenic share of waste carbon match source/native2026. Both describe the same2010 Swiss grate-incinerator/flue-gas-control technology and no recovered metal scrap. Actual source cement purchases and hydrated-cement residue treatment match the native quantities; direct fossil CO2/methane coordinates also match. Retain complete native incineration, recovery/allocation and ash/leachate treatment once. Add no extra energy/metal credit, virgin plastic, transport wrapper, ash inventory or moisture/heating-value correction. Preserve separately listed caller freight/emissions; source RoW geography, background supply, allocation, vintage and native biosphere coverage differ.",
+        "Convert signed source waste kg to native treatment-service kg with factor -1 because source production is -1kg and native production is +1kg. Preserve burdens and credits in both directions, lognormal uncertainty magnitude/scale, symbolic formulas and caller ownership. Apply no absolute value, moisture, heating-value, density, yield or repeat-allocation multiplier.",
+        "Use the complete selected native treatment inventory once. Retain its solidification, ash/leachate model, recovery/allocation, historical transfer coefficients and data limitations. Separately listed caller freight, physical emissions and credits remain unchanged. Geographic labels, background supply, vintage and emission coverage differ; imported native biosphere exclusions remain explicit and no inventory/LCIA equality is established.",
+        "Native2025 descriptions are shorter but positive references and direct technosphere coordinates match2026 within relative tolerance1e-12. No coefficient or source carbon-origin parameter is repaired. Only enumerated cut-off source profiles are registered; other wastes, profiles, helpers, independent inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e7e069922d0fb6b767c74b227e484bbd511adfa9247c0cd408d959a3d4176dbb"
+        }
+      ]
     }
   ]
 }

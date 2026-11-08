@@ -444,6 +444,21 @@ market shares, background updates, historical data limitations and native
 biosphere exclusions remain warnings. Ten native suppliers have finite
 baseline LCIs with unchanged scientific-content hashes.
 
+`uvek_pilot_matching_wet_waste_review.json` adds three direct treatment
+services: 3.6 average incineration residue and hard-coal ash in residual landfill,
+and 3.9 mixed-plastic municipal incineration. The landfill cases match all 42
+wet-composition coordinates and biogenic-carbon shares; mixed plastic also
+matches both heating values. Actual cement, hydrated-residue, landfill-facility
+and process-specific quantities match after aggregating regional source
+suppliers, and incinerator fossil CO2/methane coordinates match. The ash cement
+option is already enabled in the source, not an additional native treatment.
+Convert signed waste kg by factor -1 because source production is -1 kg and
+native service production is +1 kg. Preserve uncertainty/formulas, separately
+listed caller freight/emissions and the full native treatment once without
+new ash, cement, recovery or carbon-origin adjustments. Native geographic labels,
+historical transfer models and biosphere exclusions remain warnings. Three
+native suppliers have finite baseline LCIs and unchanged source contents.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 43 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 41 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 43 |
+| 3.6 | 27 | 41 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 2 |
-| 3.9 | 17 | 43 |
+| 3.9 | 17 | 42 |
 | 3.12 | 8 | 20 |
 
-These are 109 exact-profile cases involving 99 distinct rules, after reusing
+These are 106 exact-profile cases involving 96 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -264,10 +264,20 @@ assembly reconstruction, device-weight, lifetime, capacity or concentration
 conversion is added. Ten distinct native suppliers have finite baseline LCIs
 and unchanged source scientific-content hashes. Generic averages and historical
 component data retain their explicit representativeness limitations.
+Three more direct waste services cover average incineration residue and
+hard-coal ash in residual-material landfill, and mixed-plastic municipal
+incineration. All declared wet-composition coordinates and biogenic-carbon
+fractions match, together with actual cement, hydrated-residue and landfill
+reference quantities. The source ash solidification option is already enabled
+at the same cement quantity as native; no extra binder is added. Signed waste
+kg converts with factor -1 to positive-reference native treatment-service kg,
+preserving both burdens and credits. Three native suppliers have finite baseline
+LCIs with unchanged scientific-content hashes. Geographic labels, historical
+models and native emission coverage remain explicit limitations.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 238 exact-profile fingerprints, with review evidence and
+ledger contains 241 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

@@ -296,46 +296,52 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
 
 
 @pytest.mark.parametrize(
-    "rule_id",
+    "rule_id,version",
     [
-        "bp-74209bb3aff5ad90",
-        "bp-a5ed3251310b7e55",
-        "bp-89a9e0030212f423",
-        "bp-0227e3e438bfcee6",
-        "bp-4764655d2d8cd10b",
-        "bp-44fac4cd9c9b9108",
-        "bp-f21a6d77f5c0d093",
-        "bp-90806fced8456f16",
-        "bp-19cb447154bde8c5",
-        "bp-1be0fde93275f330",
-        "bp-45e5a117313cb104",
-        "bp-369049fd465b0d65",
-        "bp-b8b81a3c16e46627",
-        "bp-4a4052a90a846364",
-        "bp-b617041a5d9cf1f3",
-        "bp-30e27d637bf8fed7",
-        "bp-faa8d193360beec8",
-        "bp-8532ff8d4ef700a9",
-        "bp-71990e8bf71d4f67",
-        "bp-71560f8ef7f77d14",
-        "bp-f7129a04e584ba78",
-        "bp-263e52a8ecb636b1",
-        "bp-62bb723c9eabee6f",
-        "bp-798954a60c5e190c",
-        "bp-b65045228b50f40f",
-        "bp-6ac94483d465e40b",
-        "bp-ee23a489d49b64ab",
-        "bp-34d216163d085df9",
-        "bp-1824e49db175bc6e",
-        "bp-e51642145510fc9c",
-        "bp-76fc3358de421a01",
-        "bp-fa607ec8232396e4",
-        "bp-7393e642acca8e35",
-    ],
+        (rule_id, "3.6")
+        for rule_id in [
+            "bp-74209bb3aff5ad90",
+            "bp-a5ed3251310b7e55",
+            "bp-89a9e0030212f423",
+            "bp-0227e3e438bfcee6",
+            "bp-4764655d2d8cd10b",
+            "bp-44fac4cd9c9b9108",
+            "bp-f21a6d77f5c0d093",
+            "bp-90806fced8456f16",
+            "bp-19cb447154bde8c5",
+            "bp-1be0fde93275f330",
+            "bp-45e5a117313cb104",
+            "bp-369049fd465b0d65",
+            "bp-b8b81a3c16e46627",
+            "bp-4a4052a90a846364",
+            "bp-b617041a5d9cf1f3",
+            "bp-30e27d637bf8fed7",
+            "bp-faa8d193360beec8",
+            "bp-8532ff8d4ef700a9",
+            "bp-71990e8bf71d4f67",
+            "bp-71560f8ef7f77d14",
+            "bp-f7129a04e584ba78",
+            "bp-263e52a8ecb636b1",
+            "bp-62bb723c9eabee6f",
+            "bp-798954a60c5e190c",
+            "bp-b65045228b50f40f",
+            "bp-6ac94483d465e40b",
+            "bp-ee23a489d49b64ab",
+            "bp-34d216163d085df9",
+            "bp-1824e49db175bc6e",
+            "bp-e51642145510fc9c",
+            "bp-76fc3358de421a01",
+            "bp-fa607ec8232396e4",
+            "bp-7393e642acca8e35",
+            "bp-b73d5db62046c9cf",
+            "bp-8c3b3ceb3e9c8bef",
+        ]
+    ]
+    + [("bp-9ac96dd0500cd5a9", "3.9")],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
 def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
-    tmp_path, rule_id, amount
+    tmp_path, rule_id, version, amount
 ):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -343,7 +349,7 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
     rule = next(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
-    resolved = graph(rule["source"], version="3.6")
+    resolved = graph(rule["source"], version=version)
     source = resolved.activities[0]["exchanges"][1]
     source.update(
         amount=amount,
