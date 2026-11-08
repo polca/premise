@@ -143,6 +143,9 @@ the upstream exclusions; they are not new omissions approved by premise.
 
 - Archive caches are keyed by content SHA256. Freshness discovery still runs
   on each online build; `offline=True` explicitly accepts snapshot freshness.
+  Successful latest discovery also caches the immutable record ID for exact
+  offline lockfile replay. This ID can differ from the requested discovery
+  record; an exact lookup never silently substitutes another record.
 - Harmonized cohorts are keyed by their scientific records, external foreground
   dependencies, source/target catalog digests, Brightpath/resource versions and
   migration policy. An unrelated cohort remains reusable when another changes.

@@ -93,6 +93,46 @@ def test_public_archive_requests_suppress_shared_client_credentials(tmp_path, re
     )
 
 
+def test_latest_download_is_available_by_its_pinned_record_offline(tmp_path, remote):
+    # The requested discovery record need not be the immutable record returned.
+    response = remote.responses["https://zenodo.org/api/records/42/versions/latest"]
+    response["id"] = 43
+    response["metadata"]["doi"] = "10.5281/zenodo.43"
+    store = ClicArchiveStore(tmp_path / "cache", session=remote)
+    first = store.get(42)
+    remote.responses.clear()
+    count = len(remote.calls)
+    replay = store.get(43, latest=False, offline=True)
+    assert first.manifest["record_id"] == replay.manifest["record_id"] == 43
+    assert replay.path == first.path
+    assert len(remote.calls) == count
+    with pytest.raises(ClicArchiveError, match="offline"):
+        store.get(42, latest=False, offline=True)
+    replay.path.write_bytes(b"damaged")
+    with pytest.raises(ClicArchiveError, match="offline"):
+        store.get(43, latest=False, offline=True)
+
+
+@pytest.mark.parametrize("record_id", [None, "../escape", "not-a-record"])
+def test_invalid_response_record_cannot_name_an_exact_cache_file(
+    tmp_path, remote, record_id
+):
+    remote.responses["https://zenodo.org/api/records/42/versions/latest"][
+        "id"
+    ] = record_id
+    with pytest.raises(ClicArchiveError, match="invalid record ID"):
+        ClicArchiveStore(tmp_path / "cache", session=remote).get(42)
+    assert not list((tmp_path / "cache").glob("*.zip"))
+
+
+def test_exact_online_request_cannot_receive_another_record(tmp_path, remote):
+    response = remote.responses["https://zenodo.org/api/records/42/versions/latest"]
+    response["id"] = 43
+    remote.responses["https://zenodo.org/api/records/42"] = response
+    with pytest.raises(ClicArchiveError, match="different pinned record"):
+        ClicArchiveStore(tmp_path / "cache", session=remote).get(42, latest=False)
+
+
 def test_incomplete_or_corrupt_download_cannot_become_cached_snapshot(tmp_path, remote):
     remote.responses["https://zenodo.org/archive"] = b"truncated data"
     store = ClicArchiveStore(tmp_path / "cache", session=remote)

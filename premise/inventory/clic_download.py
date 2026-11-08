@@ -95,6 +95,10 @@ class ClicArchiveStore:
             )
             response.raise_for_status()
             record = response.json()
+            if not str(record.get("id", "")).isdigit():
+                raise ClicArchiveError("Zenodo returned an invalid record ID.")
+            if not latest and int(record["id"]) != int(record_id):
+                raise ClicArchiveError("Zenodo returned a different pinned record.")
             files = {item["key"]: item for item in record["files"]}
             try:
                 archive_file = files["inventory-archive.zip"]
@@ -160,6 +164,11 @@ class ClicArchiveStore:
                 finally:
                     temporary.unlink(missing_ok=True)
             archive = self._read_cached(saved)
+            # A latest discovery may resolve a concept/older record to another
+            # immutable record. Lockfiles pin that actual record, so make the
+            # verified payload available for exact offline replay as well.
+            exact_pointer = self.cache_dir / f"record-{saved['record_id']}-exact.json"
+            _write_json(exact_pointer, saved)
             _write_json(pointer, saved)
             return archive
 
