@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 38 |
+| 3.6 | 27 | 36 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 2 |
 | 3.9 | 17 | 39 |
 | 3.12 | 8 | 20 |
 
-These are 100 exact-profile cases involving 90 distinct rules, after reusing
+These are 98 exact-profile cases involving 88 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -287,10 +287,21 @@ finite baseline LCIs and unchanged source scientific-content hashes. A separate
 its source residue goes to zero-allocated clinker co-processing, whereas the
 native sorting service landfills it. PE/PP collection with global mixed waste
 fates also remains unresolved; neither fate change inherits this approval.
+Two standalone ecoinvent 3.6 landfills reuse the exact inert-waste and mineral-wool
+terminal pairs already inspected within those collection services. The
+mineral-wool mapping is corrected from a collection wrapper to the bare native
+landfill. Neither mapping adds collection freight or dismantling; native landfill
+operations, infrastructure, internal logistics and long-term leachate remain
+included once, with explicit screening limitations. Both native supplier LCIs
+are finite and source scientific hashes are unchanged.
+At this checkpoint, all 411 public correspondence regression cases and 180
+Brightpath material/endpoint/resource checks pass. The authoring generator
+reproduces the resource byte for byte, and packaged review/resource/manifest
+bytes match the source. These checks do not certify a prospective scenario.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 247 exact-profile fingerprints, with review evidence and
+ledger contains 249 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

@@ -338,6 +338,8 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
             "bp-87f7a46df5981dc9",
             "bp-6c847c1ca1076c30",
             "bp-d60ada0a6741edb5",
+            "bp-3aedb5762ff23e68",
+            "bp-b39070e2c2728597",
         ]
     ]
     + [
@@ -638,7 +640,6 @@ def test_refused_transaction_retains_review_limitations_without_target(tmp_path)
 @pytest.mark.parametrize(
     "rule_id",
     [
-        "bp-3aedb5762ff23e68",  # No matching source composition documented.
         "bp-8cde42cb022d74ed",  # Different waste composition and landfill class.
         "bp-1b20be09e53aaa84",  # Source omits composition and landfill emissions.
         "bp-bcbf9e1008a58e4b",  # Source omits composition and landfill emissions.
@@ -731,7 +732,6 @@ def test_prior_helper_approval_returns_complete_owned_graph(
     "rule_id",
     [
         "bp-9c3675cc3a3f003c",  # Different cement strength-class coverage.
-        "bp-b39070e2c2728597",  # Landfill must not acquire dismantling/transport.
         "bp-bcbf9e1008a58e4b",  # Glass landfill is not the reviewed incinerator.
         "bp-18d0fd79bfe6791b",  # TFE has conflicting PTFE CAS/synonym metadata.
         "bp-08f2432b62895931",  # Epoxy resin grade is not verified by this group.
@@ -757,7 +757,14 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
 
 
 @pytest.mark.parametrize(
-    "rule_id", ["bp-eb04730488ad462a", "bp-263c185cdbca7a8c", "bp-e1f8de5b5a35b0d1"]
+    "rule_id",
+    [
+        "bp-eb04730488ad462a",
+        "bp-263c185cdbca7a8c",
+        "bp-e1f8de5b5a35b0d1",
+        "bp-3aedb5762ff23e68",
+        "bp-b39070e2c2728597",
+    ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
 def test_existing_material_review_does_not_broaden_pilot_source_profiles(
@@ -848,14 +855,36 @@ def test_reviewed_service_preserves_separate_emissions_and_cache_warnings(
     )
 
 
-def test_dedicated_incinerator_preserves_separate_caller_transport(tmp_path):
+@pytest.mark.parametrize(
+    "rule_id,expected_name,warning_term",
+    [
+        (
+            "bp-fa607ec8232396e4",
+            "Disposal, polypropylene, 15.9% water, to municipal incineration",
+            "No wrapper freight is inserted",
+        ),
+        (
+            "bp-b39070e2c2728597",
+            "Disposal, mineral wool, 0% water, to construction waste landfill",
+            "Do not add the wrapper collection freight",
+        ),
+        (
+            "bp-3aedb5762ff23e68",
+            "Disposal, inert waste, 5% water, to construction waste landfill",
+            "without a collection/dismantling wrapper",
+        ),
+    ],
+)
+def test_waste_endpoint_preserves_separate_caller_transport(
+    tmp_path, rule_id, expected_name, warning_term
+):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
     rules = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
-    incinerator = rules["bp-fa607ec8232396e4"]
+    endpoint = rules[rule_id]
     freight = rules["bp-d6b9d771677aa51e"]
-    resolved = graph(incinerator["source"], freight["source"], version="3.6")
+    resolved = graph(endpoint["source"], freight["source"], version="3.6")
     resolved.activities[0]["exchanges"][2]["amount"] = 3.25
     before = copy.deepcopy(resolved.activities)
     harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
@@ -865,10 +894,7 @@ def test_dedicated_incinerator_preserves_separate_caller_transport(tmp_path):
         (activity,) = result.activities
         assert len(activity["exchanges"]) == 3
         waste, road = activity["exchanges"][1:]
-        assert (
-            waste["name"]
-            == "Disposal, polypropylene, 15.9% water, to municipal incineration"
-        )
+        assert waste["name"] == expected_name
         assert waste["amount"] == 2
         assert road["name"] == "Transport, freight, lorry, fleet average"
         assert road["amount"] == 3.25 and road["unit"] == "ton kilometer"
@@ -876,9 +902,9 @@ def test_dedicated_incinerator_preserves_separate_caller_transport(tmp_path):
             d
             for d in result.diagnostics
             if d["code"] == "clic.compatibility_proxy_limitations"
-            and d["details"]["rule_id"] == incinerator["id"]
+            and d["details"]["rule_id"] == endpoint["id"]
         )
-        assert "No wrapper freight is inserted" in warning["message"]
+        assert warning_term in warning["message"]
     assert resolved.activities == before
 
 

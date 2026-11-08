@@ -475,6 +475,16 @@ source-emission reconstruction is added. Concrete sorting routed to clinker
 and PE/PP collection with global mixed fates are explicitly excluded. Six native
 suppliers have finite baseline LCIs with unchanged source scientific contents.
 
+`uvek_pilot_bare_landfill_review.json` reuses two of those exact terminal
+source/native pairs for standalone ecoinvent 3.6 inert-waste and mineral-wool
+landfills. The mineral-wool correction removes an erroneous collection wrapper;
+neither standalone service acquires collection freight or dismantling. Keep the
+bare landfill's own operations, infrastructure and internal logistics once, with
+the same explicit long-term-leachate, composition and moisture limitations.
+Preserve signed kg using factor -1, formulas, uncertainty and separate caller
+transport. Both native supplier LCIs are finite and source scientific hashes
+remain unchanged. Other source versions and changed disposal fates stay closed.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

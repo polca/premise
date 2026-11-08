@@ -15417,6 +15417,196 @@
           "fingerprint": "dbaa20f224a36a0f4d27bd78ac36e7f8ad52cc49588214ff9263c66d5f8b35e6"
         }
       ]
+    },
+    {
+      "rule_id": "bp-3aedb5762ff23e68",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_bare_landfill_review.json",
+      "review_sha256": "b50c3f9def3a445f55d8e4f066cad2d68f6002b3f97b52c910a0812d1eb37fd8",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal-service approvals, reusing only the exact terminal source/native pairs already reviewed inside the enumerated collection services. The sole endpoint correction removes an erroneous collection wrapper from a bare mineral-wool landfill; it introduces no new material, treatment fate, helper, recovery model or unit conversion.",
+      "inspection": {
+        "rule_id": "bp-3aedb5762ff23e68",
+        "source": {
+          "location": "CH",
+          "name": "treatment of inert waste, inert material landfill",
+          "reference product": "inert waste, for final disposal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "correct_endpoint": false,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "18492aff6113e253d2e0c35f73ac1b5dfde7dc50f7530548908300afa8e31944",
+        "source_inventory_sha256": "c80e2e25defe7847ad7cb8962fa9b7c3061cf93693766b2e6709cbc2ce2678af",
+        "source_activity_comment_sha256": "0216e534167680b3a67e8b16ba0d7737bb6c868217d3b17c6aa370f7422e4255",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+              "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "223a7020554d60b470e5434abf40d26b5d14092ba4722401f84bf99c6d0551fb",
+            "inventory_sha256": "c644fae1aef8d6d2c4f56d8ed37d63059d1003fa01c456a6f64c235986b3ad1a",
+            "activity_comment_sha256": "68311d71437fb87ba239c50643d9422527d7d11cda13bb785b5a90e6fbab1a7b",
+            "direct_technosphere_coordinates": 18,
+            "active_direct_biosphere_exchanges": 61
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+              "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9597264f957c20cc9cd6d1859bd8faa9bfc376f38efa5d381506fd9df8946917",
+            "inventory_sha256": "3f586d2e279ea02570263f7fa2935f2f14c1ff0deb711812b4f460b69cdbd714",
+            "activity_comment_sha256": "319b4cda7af2c1b3ff3c96a343426a3a2383bd496f24480fb556e292124cbb95",
+            "direct_technosphere_coordinates": 18,
+            "active_direct_biosphere_exchanges": 63
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "prior_collection_rule_id": "bp-87f7a46df5981dc9",
+        "boundary": "Standalone inert-waste landfill per signed wet kg, without a collection/dismantling wrapper. This is exactly the terminal source/native pair already inspected inside the approved non-reinforced-concrete collection service. Source moisture property is 0.5%, while the native generic mineral-building-waste endpoint states 5%; retain this composition difference as a screening limitation, with no moisture or density conversion. The source legacy inert landfill excludes direct leachate as negligible; native construction-waste landfill includes long-term leachate and revised operating/infrastructure burdens. Keep the complete native landfill once, including its own internal logistics, and preserve separately listed caller collection, freight and materials. No equivalence of emissions or LCIA scores is claimed."
+      },
+      "limitations": [
+        "Standalone inert-waste landfill per signed wet kg, without a collection/dismantling wrapper. This is exactly the terminal source/native pair already inspected inside the approved non-reinforced-concrete collection service. Source moisture property is 0.5%, while the native generic mineral-building-waste endpoint states 5%; retain this composition difference as a screening limitation, with no moisture or density conversion. The source legacy inert landfill excludes direct leachate as negligible; native construction-waste landfill includes long-term leachate and revised operating/infrastructure burdens. Keep the complete native landfill once, including its own internal logistics, and preserve separately listed caller collection, freight and materials. No equivalence of emissions or LCIA scores is claimed.",
+        "Preserve signed kg using factor -1 for source waste production -1 kg and native treatment-service production +1 kg; preserve formulas, lognormal uncertainty and caller ownership. Do not use absolute values or apply moisture, density, yield or recovery multipliers.",
+        "These are bare landfill endpoints. Retain their complete native infrastructure, operations, internal logistics and long-term leachate model once. Do not add collection-wrapper freight, dismantling, recovered-product credits or separately reconstructed emissions. Preserve caller-listed collection, transport and materials.",
+        "The legacy source excludes direct leachate as negligible; the native construction-waste landfill models explicit short/long-term leachate up to 60000 years and different operating/infrastructure demands. Native composition, moisture naming, background, vintage and imported biosphere exclusions remain screening limitations; score effects are unquantified.",
+        "Approve only the enumerated ecoinvent 3.6 cut-off profiles for this UVEK 2026 pilot. Other source versions, reverse directions, cross-system-model routes and source waste-fate changes remain unreviewed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "13f1037ca9aeeab64dbfb658f901d627eef7184b8a3d68099e20f5621a13a8ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b39070e2c2728597",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_bare_landfill_review.json",
+      "review_sha256": "b50c3f9def3a445f55d8e4f066cad2d68f6002b3f97b52c910a0812d1eb37fd8",
+      "authorization": "Standing independently inspected matching-material/function/unit disposal-service approvals, reusing only the exact terminal source/native pairs already reviewed inside the enumerated collection services. The sole endpoint correction removes an erroneous collection wrapper from a bare mineral-wool landfill; it introduces no new material, treatment fate, helper, recovery model or unit conversion.",
+      "inspection": {
+        "rule_id": "bp-b39070e2c2728597",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste mineral wool, inert material landfill",
+          "reference product": "waste mineral wool, for final disposal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+          "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, mineral wool, to final disposal",
+          "reference product": "Disposal, building, mineral wool, to final disposal",
+          "unit": "kilogram"
+        },
+        "correct_endpoint": true,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "00601c6430e0756125832ced651cdc3380d6768892e0821277ea5ba7e09ee156",
+        "source_inventory_sha256": "cf57466c5b1bcb37c5cbe20e636b7b3d5292b0419c3f02ac8ca6265136f9afdd",
+        "source_activity_comment_sha256": "0216e534167680b3a67e8b16ba0d7737bb6c868217d3b17c6aa370f7422e4255",
+        "conversion_factor": -1,
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "1144fbd914155a744a6e81782cbcf600f5586faad319b1f1430024e8515b3e46",
+            "inventory_sha256": "d83703be58c6a8877bac3f7255acb5c1954918e8c12ddaac79298d5e0dc27089",
+            "activity_comment_sha256": "6f06ce04387d656f8a5629ce0c8a75fada9335fd7d193766ad17cb6bcae3f1ca",
+            "direct_technosphere_coordinates": 18,
+            "active_direct_biosphere_exchanges": 53
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "409d44fe0bee8ec4ba6fc30a80628870ac77a2132630bf0521605795be9275a6",
+            "inventory_sha256": "56a8bd4d58da2ab34baae9e9c5618fe8bc6b5881e9523b01124eb32dc7d3ef1a",
+            "activity_comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5",
+            "direct_technosphere_coordinates": 18,
+            "active_direct_biosphere_exchanges": 55
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "prior_collection_rule_id": "bp-d60ada0a6741edb5",
+        "boundary": "Standalone mineral-wool landfill per signed kg, using the exact bare source/native endpoint pair already inspected inside the approved mineral-wool collection service. Correct the previous collection-wrapper target to the native mineral-wool construction-waste landfill. Do not add the wrapper collection freight, dismantling or mineral-wool production. Retain the bare landfill own operating/infrastructure/internal-logistics inventory once, and preserve separately listed caller collection and freight. The native waste-specific composition has rounded 0% water naming and explicit long-term leachate modeling, while the legacy source omits direct leachate as negligible. Composition, model horizon, background, vintage and biosphere coverage remain screening limitations; no moisture factor, recovery credit or source-emission reconstruction is introduced."
+      },
+      "limitations": [
+        "Standalone mineral-wool landfill per signed kg, using the exact bare source/native endpoint pair already inspected inside the approved mineral-wool collection service. Correct the previous collection-wrapper target to the native mineral-wool construction-waste landfill. Do not add the wrapper collection freight, dismantling or mineral-wool production. Retain the bare landfill own operating/infrastructure/internal-logistics inventory once, and preserve separately listed caller collection and freight. The native waste-specific composition has rounded 0% water naming and explicit long-term leachate modeling, while the legacy source omits direct leachate as negligible. Composition, model horizon, background, vintage and biosphere coverage remain screening limitations; no moisture factor, recovery credit or source-emission reconstruction is introduced.",
+        "Preserve signed kg using factor -1 for source waste production -1 kg and native treatment-service production +1 kg; preserve formulas, lognormal uncertainty and caller ownership. Do not use absolute values or apply moisture, density, yield or recovery multipliers.",
+        "These are bare landfill endpoints. Retain their complete native infrastructure, operations, internal logistics and long-term leachate model once. Do not add collection-wrapper freight, dismantling, recovered-product credits or separately reconstructed emissions. Preserve caller-listed collection, transport and materials.",
+        "The legacy source excludes direct leachate as negligible; the native construction-waste landfill models explicit short/long-term leachate up to 60000 years and different operating/infrastructure demands. Native composition, moisture naming, background, vintage and imported biosphere exclusions remain screening limitations; score effects are unquantified.",
+        "Approve only the enumerated ecoinvent 3.6 cut-off profiles for this UVEK 2026 pilot. Other source versions, reverse directions, cross-system-model routes and source waste-fate changes remain unreviewed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "08cc7ce536fe07673f07429d1c1e184c86217bb314483e6367a6c9d9c215fe3a"
+        }
+      ]
     }
   ]
 }
