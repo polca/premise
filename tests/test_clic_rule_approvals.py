@@ -100,6 +100,60 @@ def test_ledger_drift_requires_review(monkeypatch, change):
         )
 
 
+@pytest.mark.parametrize(
+    "change", ["profile_override", "shared_review", "missing_rule"]
+)
+def test_material_approval_binds_the_complete_rule(monkeypatch, change):
+    import brightpath.migrations.resources as resources
+
+    original = resources.load_uvek_technosphere_resource()
+    decision = material_case()
+    resource = {
+        **original,
+        "replace": [
+            copy.deepcopy(r) if r["id"] == decision["rule_id"] else r
+            for r in original["replace"]
+        ],
+    }
+    rule = next(r for r in resource["replace"] if r["id"] == decision["rule_id"])
+    if change == "profile_override":
+        # Keep the default target and all reference-status checks unchanged.
+        rule["reference_flow_sign_review"]["profiles"][0]["target"] = {
+            **rule["target"],
+            "name": "unreviewed override",
+        }
+    elif change == "shared_review":
+        resource["reviews"] = {
+            **original["reviews"],
+            rule["review_ref"]: {"rationale": "a newly proposed boundary"},
+        }
+    else:
+        resource["replace"] = [
+            r for r in resource["replace"] if r["id"] != decision["rule_id"]
+        ]
+    monkeypatch.setattr(resources, "load_uvek_technosphere_resource", lambda: resource)
+    with pytest.raises(ClicInventoryError, match="approval"):
+        approved_compatibility_rule_scopes(
+            resolve_inventory_target("2026", family="uvek")
+        )
+
+
+def test_changed_packaged_decision_ledger_requires_review(monkeypatch):
+    original = Path.read_bytes
+
+    def changed(path):
+        raw = original(path)
+        if path.name == "uvek_pilot_material_review.json":
+            return raw + b"\n"
+        return raw
+
+    monkeypatch.setattr(Path, "read_bytes", changed)
+    with pytest.raises(ClicInventoryError, match="changed packaged review"):
+        approved_compatibility_rule_scopes(
+            resolve_inventory_target("2026", family="uvek")
+        )
+
+
 def test_public_harmonizer_and_cache_accept_only_the_reviewed_inventory(tmp_path):
     from brightpath.background import PackageCatalogProvider
 

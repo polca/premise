@@ -205,10 +205,10 @@ audit, manifest and activity provenance; the warning is repeated on cache reuse.
 This ledger does not authorize other omissions or relax Brightpath's policy.
 
 For the exact UVEK pilot target, preparation with documented proxies enabled
-compiles rule-scope fingerprints from Brightpath's packaged pilot material
-ledger. Only its inspected source profiles and matching executable rules are
-included. This admits the six reviewed material corrections without granting
-global heuristic consent. Every matching external compatibility operation must
+validates the approval fingerprints pinned in
+`premise/data/clic/approved_rule_scopes.json`. Only its inspected source profiles
+and matching executable rules are included. This admits the six reviewed
+material corrections without granting global heuristic consent. Every matching external compatibility operation must
 have its own approval; unreviewed matches fail transactionally with rule-level
 diagnostics. Source/target validation, reference coordinates, losses and
 foreground ownership remain independent guards. Approval fingerprints enter
@@ -216,13 +216,13 @@ cohort cache keys and manifest policy provenance. This needs the current
 Brightpath implementation with scoped compatibility approvals; existing
 ecoinvent preparation and default Brightpath strict policy retain their behavior.
 
-The separate `premise/data/clic/approved_rule_scopes.json` ledger reuses the
-existing standing review for the complete packed stone-wool market. Its nine
-exact inspected source profiles are pinned to the review-file hash and complete
+The ledger also reuses the existing standing review for the complete packed
+stone-wool market. All approvals pin the review-file hash and complete
 rule/helper fingerprints, including profile-specific recipe overrides. A
-changed review or recipe fails for review; sign evidence or a generic heuristic
-label alone cannot enter this ledger. This registers the prior complete-market
-decision, preserving producer shares, packing and delivery freight without
+changed review, direct correspondence or recipe fails for review; adding a new
+decision to Brightpath cannot implicitly approve it in Premise. Sign evidence
+or a generic heuristic label alone cannot enter this ledger. This registers the
+prior complete-market decision, preserving producer shares, packing and delivery freight without
 requesting the same modelling approval again.
 
 The public Brightcon `ecospold2-biosphere310` bundle provides the initial

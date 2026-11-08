@@ -2,6 +2,521 @@
   "schema_version": 1,
   "operations": [
     {
+      "rule_id": "bp-56229a990a6a39be",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_material_review.json",
+      "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+      "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "bed88d9451d72df41b25e1101e155ad6e61e8198eb3e471db63b575fe5c8ae38"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "977674390c68daab766a0cfa8d67190b05949432b32a4ca6315118b355e3b6be"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b232b1fd6d9b8d50bf8b13bba3f50a0d665bdc6559b8bb7f810b7d718ff32afe"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e3de2ccdb93005f87ec557892331856824fe85e7f3c2230238e815fb5a8146af"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "72022284110984ff89602c7c8ca353d893c791535ccab294f8e13752ae565099"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3f0c7b40c4645ba2",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_material_review.json",
+      "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+      "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "35e7e62bab577430ac2ea1b5185979c083a83e6c21286ba5f9f8788dbc64bde9"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "033956148747408072a2b3f1dbd46b6d4397f26ac14f28a5977aaa18e90d5657"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f83c02df03a601bbe6a7068faa4f3e44ed3aec5f4ed774f310f0051d24a6bc94"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dda5a9845d4ad2d94f836cef1ee04c6495358662d727eee665f5b497d9176ba8"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "58dc9bdf09e19a91bf0fa97cfd682949e935e3db3b212d3d1fdadf990b473acf"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "93dea8ae6895684f05b4386da637cf7af71356625b54d0f023daaacd7b792bc0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-106602aad5a13592",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_material_review.json",
+      "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+      "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5d6fbd2e966d6e4a87e8789d7d4c0af6aa5b7e0d0744a63faa9221ba04def092"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8fd7e2a391faf840e246f1af014307510d8f7023da96d18216d041d6e35d6a88"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "69c4369dc6434d36726a4a5f568153914517660981957e185588cb90d0f95749"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "30b43af6d16cd8b72b2b4dcf3e2528b4ecef4cfa23627173508c2ef16211c262"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c7c35d57a0b3ea2d094947f49d8d886b445bcf67a305a2150b4ec510699e2adc"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a1693f7d44496afe223be09bc260485e076293fc0ee3bd71dd03cca4ee22d8f3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-faac75627a6aa952",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_material_review.json",
+      "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+      "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b9783d4dfe234a51640b83ddfd14c6cef8bed0290d3b39788f296cb4e10b9553"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2faac868a6d58ff5980922b9f2802c0ce2a6bbe29fbc1986d2e3efcb3ea25d78"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "20a145a8ba75221c8a914f3664c319b14db20410c2223ba93365014bf10cd118"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0fbcc51c565f1ba10e08c407255780343b77a690af0022d02302a4641736d8a4"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1911f45039a95936d053c3406c73db03e49072dcc6842b8dd2e89db6d852ad73"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "56e44922f2a73faf15addc4c9f141910af710ddf3a63f91c020f3310394f037f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6616982eceb98971",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_material_review.json",
+      "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+      "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d87d459a754ad3f63c1e538f468f3958d2bdf7fcdb0eb3e697f51be0fe87295a"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5ac52c07071ceb62f02d369a5f21025661aa2695c32d1993bb3460d92bb35c94"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3479def18422f598716ca95bddffac74a748612ad1e2912be7fa1ae6cb963fa0"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0cfa4c0a234a59ac375f6c17eb72308f3307f2defafb03ebb01c07db5a406591"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "15b4ecbb18e9430f8dbfc7297a4957cfb20256cdcd2219a4484ecb64ff2f67e4"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "36dbc5cee9da203cc366b48d8544c98bad56c9430db22dac0462e19d7ec19032"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1386bf062baff22f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_material_review.json",
+      "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+      "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.10"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9e501d28cc1206bf60c9e4d078ecb4096cfb8e5ab71b87bd4054276d064c670b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "04b8090de07a1b8b81fcfd6a6c08d52b85a3cfd83a29957434c51a730ab35d78"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1ce36b5ceab297bc2a4403b0eadb9877f20de939789e10a8a9b0755ac7f4697a"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "30bf4b9973abd58e24c06315a8f41413f88033577109f561ebcd7c1010ef2693"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "96e950c9d505cd968c3362ddc729ffd3922514fcdd409c53b8a63f257b1ad741"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e6f6c4f0ce9af92ae1718588a5f743e93821f5912486f6d3ab1d4350da5bc88e"
+        }
+      ]
+    },
+    {
       "rule_id": "bp-555e0c3ac464c43f",
       "operation": "replace",
       "mapping_method": "reviewed_complete_packed_wool_market",
