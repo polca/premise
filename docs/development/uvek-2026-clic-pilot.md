@@ -64,8 +64,19 @@ uncertainty/formulas, cache replay and early cross-model refusals. The Brightcon
 bundle has been imported locally with all 11,947 activities and 417,072 retained
 exchanges, and a source electricity LCI is finite.
 
-`NewDatabase` integration, retained workbook conversion and electricity YAML
-aliases/transformations remain unfinished. A comparison with the packaged
+The native alias layer uses `InventorySet(family="uvek")`, `uvek_aliases` and
+`uvek_fuel_aliases` in the electricity and fuel YAML mappings. Its 53 nonempty
+alias definitions were checked against both the installed source and the
+packaged UVEK 2026 catalog. Matching includes exact names, reference products
+and units. Shared IAM roles remain unchanged; CLIC generation requires both a
+reviewed slug and an explicit role binding. Grid and PV aggregate nodes are
+excluded from native generator roles. Missing aliases are reported and never
+inherit ecoinvent filters. This does not establish sector support by itself:
+several non-pilot IAM technologies and native nuclear fuel specifications still
+lack reviewed definitions.
+
+`NewDatabase` integration, retained workbook conversion and electricity
+transformations remain under validation. A comparison with the packaged
 Brightpath UVEK catalog finds 45 destination identity differences; these need
 source-based investigation before resolving affected purchases. No automatic
 geographic substitution is approved by this comparison.

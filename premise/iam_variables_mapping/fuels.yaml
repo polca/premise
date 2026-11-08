@@ -1,3 +1,9 @@
+# UVEK 2026 electricity-pilot fuel identities, checked against the installed
+# biosphere310 database and Brightpath catalog; no inventory amounts are copied.
+# MJ combustion carriers retain their native unit and need no new heating value.
+# Nuclear assemblies have varying enrichment/MOX boundaries: empty aliases mark
+# the need for reviewed energy specifications rather than a generic LHV proxy.
+# Unlisted UVEK fuel roles have no native mapping and never use ecoinvent names.
 # calorific (wet basis)
 # CO2 emission factors (including biogenic share)
 # iam_aliases and eff_aliases for different IAMs
@@ -15,6 +21,20 @@ electricity:
     value: 3.6
   biogenic_share: 0
 hard coal:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   lhv:
     unit: megajoule
     value: 26.4
@@ -50,6 +70,18 @@ pulverised lignite:
       - ash
       - clinker
 lignite:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      reference product:
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   lhv:
     unit: megajoule
     value: 8.7
@@ -91,6 +123,14 @@ biomass:
       - clinker
       - factory
 wood pellet:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood pellet, measured as dry mass, at plant
+      reference product:
+      - Wood pellet, measured as dry mass, at plant
+      unit: kilogram
   lhv:
     unit: megajoule
     value: 16.2
@@ -107,6 +147,14 @@ wood pellet:
       - clinker
       - factory
 wood chips:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   lhv:
     unit: megajoule
     value: 16.2
@@ -118,6 +166,20 @@ wood chips:
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
 natural gas:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      reference product:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
   lhv reference unit: cubic meter
   lhv:
     unit: megajoule
@@ -177,6 +239,20 @@ propane:
   co2: 0.0611
   biogenic_share: 0
 heavy fuel oil:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      reference product:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   lhv:
     unit: megajoule
     value: 38.5
@@ -208,6 +284,16 @@ oil, crude, in ground:
   co2: 0.0739
   biogenic_share: 0
 light fuel oil:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Light fuel oil, at refinery
+      - Light fuel oil, at regional storage
+      reference product:
+      - Light fuel oil, at refinery
+      - Light fuel oil, at regional storage
+      unit: kilogram
   lhv:
     unit: megajoule
     value: 42.6
@@ -222,6 +308,14 @@ light fuel oil:
     - import
     - waste
 biogas:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Biogas, production mix, at storage
+      reference product:
+      - Biogas, production mix, at storage
+      unit: cubic meter
   lhv:
     unit: megajoule
     value: 22.73
@@ -314,6 +408,20 @@ liquid fossil fuels:
     message: Secondary Energy|Liquids|Oil
     witch: Secondary Energy|Liquids|Fossil|Oil
 diesel:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      reference product:
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      unit:
+      - kilogram
+      - megajoule
   lhv:
     unit: megajoule
     value: 43.0
@@ -1459,6 +1567,7 @@ uranium, enriched 3.8%:
     unit: megajoule
     value: 4199040
 nuclear fuel element, for boiling water reactor:
+  uvek_aliases: {}
   ecoinvent_aliases:
     fltr:
     - nuclear fuel element, for boiling water reactor
@@ -1467,6 +1576,7 @@ nuclear fuel element, for boiling water reactor:
     unit: megajoule
     value: 4147200
 nuclear fuel element, for pressure water reactor:
+  uvek_aliases: {}
   lhv:
     unit: megajoule
     value: 4579200

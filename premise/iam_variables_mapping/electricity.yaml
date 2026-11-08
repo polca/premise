@@ -1,4 +1,19 @@
+# UVEK 2026 cut-off identities checked against the installed biosphere310 database
+# and Brightpath catalog. Exact filters select native production, not grid mixes.
+# Empty aliases deliberately require reviewed CLIC slug + role bindings. No
+# ecoinvent names or unreviewed cycle, allocation, size, or enrichment proxies.
+# Combustion suppliers in MJ are explicit: UVEK separates fuel burning from
+# electricity production. Shared IAM aliases and efficiency bounds stay below.
 Biogas CHP:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Biogas, production mix, at storage
+      reference product:
+      - Biogas, production mix, at storage
+      unit: cubic meter
   ecoinvent_aliases:
     fltr:
       - heat and power co-generation, biogas, gas engine
@@ -13,6 +28,15 @@ Biogas CHP:
     tiam-ucl: Secondary Energy|Electricity|Biogas|w/o CCS
   max_efficiency: 0.6
 Biomass CHP:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, wood chips
@@ -41,6 +65,15 @@ Biomass CHP:
     witch: Secondary Energy|Electricity|Biomass|w/o CCS
   max_efficiency: 0.3
 Biomass CHP (existing):
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, existing, wood chips
@@ -72,6 +105,8 @@ Biomass CHP (existing):
     reference product: electricity, high voltage
 
 Biomass CHP CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, at co-generation wood-fired power plant, post, pipeline
@@ -85,6 +120,15 @@ Biomass CHP CCS:
     image: Secondary Energy|Electricity|Biomass|w/ CCS|2
 
 Biomass IGCC:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
     - electricity production, at biomass-fired IGCC power plant
@@ -113,6 +157,15 @@ Biomass IGCC:
   max_efficiency: 0.45
 
 Biomass IGCC CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
     - electricity production, at biomass-fired IGCC power plant, post, pipeline 200km,
@@ -141,6 +194,22 @@ Biomass IGCC CCS:
     witch: Secondary Energy|Electricity|Biomass|w/ CCS
   max_efficiency: 0.4
 Biomass MSW:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity from waste, at municipal waste incineration plant
+      reference product:
+      - Electricity from waste, at municipal waste incineration plant
+      unit: kilowatt hour
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
       name: treatment of municipal solid waste,
@@ -157,6 +226,15 @@ Biomass MSW:
     tiam-ucl: Secondary Energy|Electricity|MSW|w/o CCS
   max_efficiency: 0.4
 Biomass ST:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
     - electricity production, at wood burning power plant
@@ -180,6 +258,15 @@ Biomass ST:
     gcam: Secondary Energy|Electricity|Biomass ST
   max_efficiency: 0.3
 Biomass ST CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
     - electricity production, at wood burning power plant, post, pipeline 200km, storage
@@ -198,6 +285,23 @@ Biomass ST CCS:
     gcam: Secondary Energy|Electricity|Biomass ST CCS
   max_efficiency: 0.25
 Coal CF 50-50:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, at co-firing wood and coal power plant, 50-50
@@ -220,6 +324,23 @@ Coal CF 50-50:
     tiam-ucl: Secondary Energy|Electricity|Co-firing coal:biomass 50:50|w/o CCS
   max_efficiency: 0.5
 Coal CF 80-20:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, at co-firing wood and coal power plant, 80-20
@@ -242,6 +363,25 @@ Coal CF 80-20:
     tiam-ucl: Secondary Energy|Electricity|Co-firing coal:biomass 80:20|w/o CCS
   max_efficiency: 0.5
 Coal CHP:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, hard coal
@@ -270,6 +410,8 @@ Coal CHP:
     tiam-ucl: Secondary Energy|Electricity|CHP existing coal|w/o CCS
   max_efficiency: 0.45
 Coal CHP CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, at co-generation hard coal-fired power plant, post,
@@ -281,6 +423,25 @@ Coal CHP CCS:
     image: Efficiency|Electricity|Coal|w/ CCS|2
   max_efficiency: 0.4
 Coal IGCC:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, at hard coal-fired IGCC power plant
@@ -314,6 +475,25 @@ Coal IGCC:
     tiam-ucl: Secondary Energy|Electricity|Coal IGCC|w/o CCS
   max_efficiency: 0.55
 Coal IGCC CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, at hard coal-fired IGCC power plant, pre, pipeline 200km,
@@ -350,6 +530,34 @@ Coal IGCC CCS:
   max_efficiency: 0.45
 
 Coal PC:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, hard coal, at power plant
+      - Electricity, lignite, at power plant
+      reference product:
+      - Electricity, hard coal, at power plant
+      - Electricity, lignite, at power plant
+      unit: kilowatt hour
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal
@@ -389,6 +597,25 @@ Coal PC:
   max_efficiency: 0.4
 
 Coal PC CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      - Lignite, at mine
+      - Lignite, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, at hard coal-fired power plant, oxy, pipeline 200km,
@@ -421,6 +648,21 @@ Coal PC CCS:
     witch: Secondary Energy|Electricity|Coal|w/ CCS|1
   max_efficiency: 0.35
 Coal PCU:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal, subcritical
@@ -443,6 +685,21 @@ Coal PCU:
     new name: electricity production, hard coal, subcritical
     reference product: electricity, high voltage
 Coal SC:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal, supercritical
@@ -459,6 +716,21 @@ Coal SC:
   max_efficiency: 0.5
 
 Coal USC:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal, ultra-supercritical
@@ -478,6 +750,21 @@ Coal USC:
     new name: electricity production, hard coal, ultra-supercritical
     reference product: electricity, high voltage
 Coal USC CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      reference product:
+      - Hard coal, at mine
+      - Hard coal, at regional storage
+      - Hard coal, burned in power plant
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, at hard coal-fired power plant, ultra-super critical,
@@ -499,6 +786,34 @@ Coal USC CCS:
       critical, oxy, pipeline 200km, storage 1000m
     reference product: electricity, high voltage
 Foil ST:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, oil, at power plant
+      reference product:
+      - Electricity, oil, at power plant
+      unit: kilowatt hour
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      reference product:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, oil
@@ -517,6 +832,28 @@ Foil ST:
     message: Secondary Energy|Electricity|Oil|w/o CCS|3
   max_efficiency: 0.5
 Gas CC:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, natural gas, at combined cycle plant, best technology
+      reference product:
+      - Electricity, natural gas, at combined cycle plant, best technology
+      unit: kilowatt hour
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      reference product:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, natural gas, combined cycle power plant
@@ -551,6 +888,21 @@ Gas CC:
     tiam-ucl: Secondary Energy|Electricity|Gas CCGT|w/o CCS
   max_efficiency: 0.65
 Gas CC CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      reference product:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, at natural gas-fired combined cycle power plant, post,
@@ -588,6 +940,28 @@ Gas CC CCS:
     witch: Secondary Energy|Electricity|Gas|w/ CCS|1
   max_efficiency: 0.55
 Gas CHP:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, natural gas, at CHP power plant
+      reference product:
+      - Electricity, natural gas, at CHP power plant
+      unit: kilowatt hour
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      reference product:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, natural gas, combined cycle power plant, 400MW
@@ -622,6 +996,15 @@ Gas CHP:
     tiam-ucl: Secondary Energy|Electricity|Gas CHP|w/o CCS
   max_efficiency: 0.6
 Gas CHP CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, natural gas, at CHP power plant
+      reference product:
+      - Electricity, natural gas, at CHP power plant
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, at co-generation natural gas-fired power plant, post,
@@ -635,6 +1018,21 @@ Gas CHP CCS:
     image: Secondary Energy|Electricity|Gas|w/ CCS|2
 
 Gas GT:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      reference product:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, natural gas, gas turbine, conventional power plant
@@ -668,6 +1066,21 @@ Gas GT:
       plant
     reference product: electricity, high voltage
 Gas OC:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      reference product:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, natural gas, conventional power plant
@@ -704,6 +1117,21 @@ Gas OC:
     witch: Secondary Energy|Electricity|Gas|w/o CCS|1
   max_efficiency: 0.5
 Gas ST:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      reference product:
+      - Natural gas, high pressure, at consumer
+      - Natural gas, low pressure, at consumer
+      - Natural gas, burned in power plant or heat plant
+      - Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
   ecoinvent_aliases:
     fltr:
       - electricity production, natural gas, subcritical, steam cycle
@@ -741,6 +1169,7 @@ Gas ST:
     new name: electricity production, natural gas, subcritical, steam cycle
     reference product: electricity, high voltage
 Geothermal:
+  uvek_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, deep geothermal
@@ -752,6 +1181,24 @@ Geothermal:
     remind-eu: SE|Electricity|+|Geothermal
     tiam-ucl: Secondary Energy|Electricity|Geothermal
 Hydro:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, hydropower, at reservoir power plant
+      - Electricity, hydropower, at reservoir power plant, alpine region
+      - Electricity, hydropower, at reservoir power plant, non alpine regions
+      - Electricity, hydropower, at run-of-river power plant
+      - Electricity, hydropower, at run-of-river power plant with reservoir
+      - Electricity, hydropower, at run-of-river power plant without reservoir
+      reference product:
+      - Electricity, hydropower, at reservoir power plant
+      - Electricity, hydropower, at reservoir power plant, alpine region
+      - Electricity, hydropower, at reservoir power plant, non alpine regions
+      - Electricity, hydropower, at run-of-river power plant
+      - Electricity, hydropower, at run-of-river power plant with reservoir
+      - Electricity, hydropower, at run-of-river power plant without reservoir
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, hydro, reservoir
@@ -769,6 +1216,18 @@ Hydro:
     tiam-ucl: Secondary Energy|Electricity|Impoundment hydro
     witch: Secondary Energy|Electricity|Hydro|1
 Hydro, run-of-river:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, hydropower, at run-of-river power plant
+      - Electricity, hydropower, at run-of-river power plant with reservoir
+      - Electricity, hydropower, at run-of-river power plant without reservoir
+      reference product:
+      - Electricity, hydropower, at run-of-river power plant
+      - Electricity, hydropower, at run-of-river power plant with reservoir
+      - Electricity, hydropower, at run-of-river power plant without reservoir
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, hydro, run-of-river
@@ -779,6 +1238,17 @@ Hydro, run-of-river:
   iam_aliases:
     tiam-ucl: Secondary Energy|Electricity|ROR hydro
 Nuclear:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, nuclear, at power plant boiling water reactor
+      - Electricity, nuclear, at power plant pressure water reactor
+      reference product:
+      - Electricity, nuclear, at power plant boiling water reactor
+      - Electricity, nuclear, at power plant pressure water reactor
+      unit: kilowatt hour
+  uvek_fuel_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, nuclear
@@ -806,6 +1276,8 @@ Nuclear:
     tiam-ucl: Secondary Energy|Electricity|Nuclear
     witch: Secondary Energy|Electricity|Nuclear|1
 Nuclear_EPR:
+  uvek_aliases: {}
+  uvek_fuel_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, nuclear, Evolutionary Power Reactor (EPR)
@@ -816,6 +1288,8 @@ Nuclear_EPR:
     - market for nuclear fuel element, for boiling water reactor
     - market for uranium hexafluoride
 Nuclear_SMR:
+  uvek_aliases: {}
+  uvek_fuel_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, nuclear, Small Modular Reactor (SMR)
@@ -826,6 +1300,27 @@ Nuclear_SMR:
     - market for nuclear fuel element, for boiling water reactor
     - market for uranium hexafluoride
 Oil CC:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      reference product:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, oil
@@ -854,6 +1349,15 @@ Oil CC:
   max_efficiency: 0.5
 
 Oil CC CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, oil, at power plant
+      reference product:
+      - Electricity, oil, at power plant
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, at oil-fired power plant, combined cycle, oxy, pipeline 200km, storage 1000m
@@ -868,6 +1372,27 @@ Oil CC CCS:
     image: Secondary Energy|Electricity|Oil|w/ CCS|1
 
 Oil CHP:
+  uvek_aliases: {}
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      reference product:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, oil
@@ -888,6 +1413,8 @@ Oil CHP:
     tiam-ucl: Secondary Energy|Electricity|Oil CHP|w/o CCS
   max_efficiency: 0.5
 Oil CHP CCS:
+  uvek_aliases: {}
+  uvek_fuel_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, at co-generation oil-fired power plant, post, pipeline
@@ -905,6 +1432,34 @@ Oil CHP CCS:
     image: Secondary Energy|Electricity|Oil|w/ CCS|2
 
 Oil ST:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, oil, at power plant
+      reference product:
+      - Electricity, oil, at power plant
+      unit: kilowatt hour
+  uvek_fuel_aliases:
+    exact: true
+    fltr:
+      name:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      reference product:
+      - Heavy fuel oil, at refinery
+      - Heavy fuel oil, at regional storage
+      - Heavy fuel oil, burned in power plant
+      - Diesel, at refinery
+      - Diesel, at regional storage
+      - Diesel, burned in diesel-electric generating set
+      unit:
+      - kilogram
+      - megajoule
   ecoinvent_aliases:
     fltr:
     - electricity production, oil
@@ -937,6 +1492,7 @@ Oil ST:
     witch: Secondary Energy|Electricity|Oil|w/o CCS|1
   max_efficiency: 0.5
 Solar CSP:
+  uvek_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, solar thermal parabolic trough, 50 MW
@@ -950,6 +1506,7 @@ Solar CSP:
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar CSP centralised
     witch: Secondary Energy|Electricity|Solar|CSP
 Solar CSP autonomous:
+  uvek_aliases: {}
   ecoinvent_aliases:
     fltr:
       name: electricity production, at 110 MW concentrating solar power plant, with
@@ -957,6 +1514,43 @@ Solar CSP autonomous:
   iam_aliases:
     message: Secondary Energy|Electricity|Solar|CSP|2
 Solar PV Centralized:
+  # Native installations by scale; photovoltaic production mixes are aggregates.
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, PV, at 1.3 MWp slanted-roof, multi-Si, panel, mounted
+      - Electricity, PV, at 156 kWp flat-roof, multi-Si
+      - Electricity, PV, at 156 kWp flat-roof, single-Si
+      - Electricity, PV, at 280 kWp flat-roof, multi-Si
+      - Electricity, PV, at 280 kWp flat-roof, single-Si
+      - Electricity, PV, at 3.5 MWp open ground, multi-Si
+      - Electricity, PV, at 324 kWp flat-roof, multi-Si
+      - Electricity, PV, at 450 kWp flat-roof, single-Si
+      - Electricity, PV, at 560 kWp open ground, single-Si
+      - Electricity, PV, at 569 kWp open ground, multi-Si
+      - Electricity, PV, at 570 kWp open ground, multi-Si
+      - Electricity, PV, at 93 kWp slanted-roof, multi-Si, laminated, integrated
+      - Electricity, PV, at 93 kWp slanted-roof, multi-Si, panel, mounted
+      - Electricity, PV, at 93 kWp slanted-roof, single-Si, laminated, integrated
+      - Electricity, PV, at 93 kWp slanted-roof, single-Si, panel, mounted
+      reference product:
+      - Electricity, PV, at 1.3 MWp slanted-roof, multi-Si, panel, mounted
+      - Electricity, PV, at 156 kWp flat-roof, multi-Si
+      - Electricity, PV, at 156 kWp flat-roof, single-Si
+      - Electricity, PV, at 280 kWp flat-roof, multi-Si
+      - Electricity, PV, at 280 kWp flat-roof, single-Si
+      - Electricity, PV, at 3.5 MWp open ground, multi-Si
+      - Electricity, PV, at 324 kWp flat-roof, multi-Si
+      - Electricity, PV, at 450 kWp flat-roof, single-Si
+      - Electricity, PV, at 560 kWp open ground, single-Si
+      - Electricity, PV, at 569 kWp open ground, multi-Si
+      - Electricity, PV, at 570 kWp open ground, multi-Si
+      - Electricity, PV, at 93 kWp slanted-roof, multi-Si, laminated, integrated
+      - Electricity, PV, at 93 kWp slanted-roof, multi-Si, panel, mounted
+      - Electricity, PV, at 93 kWp slanted-roof, single-Si, laminated, integrated
+      - Electricity, PV, at 93 kWp slanted-roof, single-Si, panel, mounted
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, photovoltaic, commercial
@@ -969,6 +1563,49 @@ Solar PV Centralized:
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV centralised
     witch: Secondary Energy|Electricity|Solar|PV
 Solar PV Residential:
+  # Native installations by scale; photovoltaic production mixes are aggregates.
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, PV, at 3kWp facade installation, multi-Si, panel, mounted
+      - Electricity, PV, at 3kWp facade installation, single-Si, panel, mounted
+      - Electricity, PV, at 3kWp facade, multi-Si, laminated, integrated
+      - Electricity, PV, at 3kWp facade, single-Si, laminated, integrated
+      - Electricity, PV, at 3kWp flat roof installation, multi-Si
+      - Electricity, PV, at 3kWp flat roof installation, single-Si
+      - Electricity, PV, at 3kWp slanted-roof, CIS, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, CIS, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, CdTe, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, CdTe, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, a-Si, lam., integrated
+      - Electricity, PV, at 3kWp slanted-roof, a-Si, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, multi-Si, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, multi-Si, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, ribbon-Si, lam., integrated
+      - Electricity, PV, at 3kWp slanted-roof, ribbon-Si, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, single-Si, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, single-Si, panel, mounted
+      reference product:
+      - Electricity, PV, at 3kWp facade installation, multi-Si, panel, mounted
+      - Electricity, PV, at 3kWp facade installation, single-Si, panel, mounted
+      - Electricity, PV, at 3kWp facade, multi-Si, laminated, integrated
+      - Electricity, PV, at 3kWp facade, single-Si, laminated, integrated
+      - Electricity, PV, at 3kWp flat roof installation, multi-Si
+      - Electricity, PV, at 3kWp flat roof installation, single-Si
+      - Electricity, PV, at 3kWp slanted-roof, CIS, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, CIS, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, CdTe, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, CdTe, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, a-Si, lam., integrated
+      - Electricity, PV, at 3kWp slanted-roof, a-Si, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, multi-Si, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, multi-Si, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, ribbon-Si, lam., integrated
+      - Electricity, PV, at 3kWp slanted-roof, ribbon-Si, panel, mounted
+      - Electricity, PV, at 3kWp slanted-roof, single-Si, laminated, integrated
+      - Electricity, PV, at 3kWp slanted-roof, single-Si, panel, mounted
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, photovoltaic, residential
@@ -978,6 +1615,7 @@ Solar PV Residential:
     message: Secondary Energy|Electricity|Solar|PV|Residential
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV decentralised
 Storage, Battery:
+  uvek_aliases: {}
   ecoinvent_aliases:
     fltr:
       - electricity supply, from stationary battery (CONT scenario)
@@ -986,6 +1624,7 @@ Storage, Battery:
     message: Secondary Energy|Electricity|Storage
     tiam-ucl: Secondary Energy|Electricity|Storage
 Storage, Hydrogen:
+  uvek_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, from hydrogen-fired one gigawatt gas turbine, for grid balancing
@@ -993,12 +1632,25 @@ Storage, Hydrogen:
     remind: SE|Electricity|+|Hydrogen
     remind-eu: SE|Electricity|+|Hydrogen
 Wave:
+  uvek_aliases: {}
   ecoinvent_aliases:
     fltr:
     - electricity production, wave energy converter
   iam_aliases:
     tiam-ucl: Secondary Energy|Electricity|Tidal
 Wind Offshore:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, at 150MW wind farm, offshore, 5MW turbines
+      - Electricity, at 740MW wind farm, offshore, 10MW turbines
+      - Electricity, at 1005MW wind farm, offshore, 15MW turbines
+      reference product:
+      - Electricity, at 150MW wind farm, offshore, 5MW turbines
+      - Electricity, at 740MW wind farm, offshore, 10MW turbines
+      - Electricity, at 1005MW wind farm, offshore, 15MW turbines
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, wind, 1-3MW turbine, offshore
@@ -1015,6 +1667,20 @@ Wind Offshore:
     tiam-ucl: Secondary Energy|Electricity|Offshore wind centralised
     witch: Secondary Energy|Electricity|Wind|Offshore
 Wind Onshore:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Electricity, at 100MW wind farm, onshore, 2.3MW turbines
+      - Electricity, at 100MW wind farm, onshore, 4.5 MW turbines
+      - Electricity, at 100MW wind farm, onshore, 6.2MW turbines
+      - Electricity, at 200MW wind farm, onshore, 3.4MW turbines
+      reference product:
+      - Electricity, at 100MW wind farm, onshore, 2.3MW turbines
+      - Electricity, at 100MW wind farm, onshore, 4.5 MW turbines
+      - Electricity, at 100MW wind farm, onshore, 6.2MW turbines
+      - Electricity, at 200MW wind farm, onshore, 3.4MW turbines
+      unit: kilowatt hour
   ecoinvent_aliases:
     fltr:
     - electricity production, wind, <1MW turbine, onshore

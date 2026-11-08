@@ -1,4 +1,4 @@
-"""Mappings between Premise activities and their ecoinvent counterparts."""
+"""Mappings between Premise activities and explicit background families."""
 
 from __future__ import annotations
 
@@ -95,19 +95,23 @@ def get_mapping(
     techs = _load_mapping_file(filepath)
 
     mapping: Dict[str, dict] = {}
+    # Keep the shared role vocabulary even where a family has no native alias.
+    # These empty definitions may bind reviewed CLIC slugs, never ECI names.
+    is_uvek_alias = var in {"uvek_aliases", "uvek_fuel_aliases"}
+    shared_var = var.replace("uvek_", "ecoinvent_", 1)
     for key, val in techs.items():
-        if var in val:
+        if var in val or (is_uvek_alias and shared_var in val):
             if model is None or model in val.get("iam_aliases", {}):
-                entry = val[var]
+                entry = val.get(var, {})
                 if (
-                    var == "ecoinvent_aliases"
+                    var in {"ecoinvent_aliases", "uvek_aliases"}
                     and isinstance(entry, dict)
                     and Path(filepath).parent.resolve() == VARIABLES_DIR.resolve()
                 ):
                     from .clic_requirements import role_slugs
 
                     slugs = role_slugs(Path(filepath).name, key)
-                    if slugs:
+                    if slugs or var == "uvek_aliases":
                         entry = {
                             **entry,
                             "clic_slugs": slugs,
@@ -126,6 +130,7 @@ def act_fltr(
     database: List[dict],
     fltr: Optional[FilterType] = None,
     mask: Optional[FilterType] = None,
+    exact: bool = False,
 ) -> List[dict]:
     """Filter activities in ``database`` using inclusive and exclusive criteria.
 
@@ -135,6 +140,8 @@ def act_fltr(
     :type fltr: Optional[FilterType]
     :param mask: Filter values used to exclude activities.
     :type mask: Optional[FilterType]
+    :param exact: Match inclusive field values exactly instead of by substring.
+    :type exact: bool
     :return: List of activities matching the filter conditions.
     :rtype: List[dict]
     :raises AssertionError: If no filter values are provided.
@@ -153,11 +160,12 @@ def act_fltr(
     assert len(fltr) > 0, "Filter dict must not be empty."
 
     filters = []
+    match = ws.equals if exact else ws.contains
     for field, value in fltr.items():
         if isinstance(value, list):
-            filters.append(ws.either(*[ws.contains(field, item) for item in value]))
+            filters.append(ws.either(*[match(field, item) for item in value]))
         else:
-            filters.append(ws.contains(field, value))
+            filters.append(match(field, value))
 
     for field, value in mask.items():
         values = value if isinstance(value, list) else [value]
@@ -248,24 +256,37 @@ def mapping_to_dataframe(
 
 
 class InventorySet:
-    """Generate activity mappings between Premise sectors and ecoinvent datasets."""
+    """Generate sector mappings for an explicitly selected background family.
+
+    ``missing_aliases`` records roles lacking native family filters, keyed by
+    mapping filename and alias type. Such roles can still match reviewed CLIC
+    slugs; they never inherit another family's native names.
+    """
 
     def __init__(
         self,
         database: List[dict],
         version: Optional[str] = None,
         model: Optional[str] = None,
+        family: str = "ecoinvent",
     ) -> None:
         """Initialise the inventory set with the source database and metadata.
 
         :param database: Life cycle inventory database represented as a list of datasets.
         :type database: List[dict]
-        :param version: Version identifier of the ecoinvent database.
+        :param version: Version identifier of the selected background database.
         :type version: Optional[str]
         :param model: IAM model identifier used to select specific mappings.
         :type model: Optional[str]
+        :param family: Background mapping family, either "ecoinvent" or "uvek".
+        :type family: str
+        :raises ValueError: If the background family is unsupported.
         """
 
+        if family not in {"ecoinvent", "uvek"}:
+            raise ValueError(f"Unsupported inventory mapping family: {family!r}.")
+        self.family = family
+        self.missing_aliases: Dict[str, Tuple[str, ...]] = {}
         self.database = database
         self.version = version
         self.model = model
@@ -276,6 +297,22 @@ class InventorySet:
         self.powerplant_min_efficiency = get_mapping(
             filepath=POWERPLANT_TECHS, var="min_efficiency", model=self.model
         )
+
+    def _get_aliases(
+        self, filepath: Path, model: Optional[str] = None, *, fuels: bool = False
+    ) -> Dict[str, dict]:
+        """Select native aliases without changing shared IAM or CLIC roles."""
+        var = f"{self.family}_{'fuel_aliases' if fuels else 'aliases'}"
+        filters = get_mapping(filepath=filepath, var=var, model=model)
+        missing = tuple(key for key, entry in filters.items() if not entry.get("fltr"))
+        if missing:
+            self.missing_aliases[f"{Path(filepath).name}:{var}"] = missing
+            for role in missing:
+                logger.info(
+                    f"{self.model}|{role}|Missing {var} in {Path(filepath).name}; "
+                    "only explicit CLIC bindings can match.||"
+                )
+        return filters
 
     def generate_map(self, filters: Dict[str, dict]) -> ActivityMapping:
         """Generate an activity mapping using the provided filter definitions.
@@ -294,7 +331,7 @@ class InventorySet:
         :return: Mapping keyed by biomass technology name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(filepath=BIOMASS_TYPES, var="ecoinvent_aliases")
+        filters = self._get_aliases(filepath=BIOMASS_TYPES)
 
         lhv = get_mapping(filepath=BIOMASS_TYPES, var="lhv")
 
@@ -316,7 +353,7 @@ class InventorySet:
         :return: Mapping keyed by heat technology name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(filepath=HEAT_TECHS, var="ecoinvent_aliases", model=model)
+        filters = self._get_aliases(filepath=HEAT_TECHS, model=model)
         return self.generate_sets_from_filters(filters)
 
     def generate_activities_using_metals_map(self) -> ActivityMapping:
@@ -325,9 +362,7 @@ class InventorySet:
         :return: Mapping keyed by metal name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(
-            filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
-        )
+        filters = self._get_aliases(filepath=ACTIVITIES_METALS_MAPPING)
         return self.generate_sets_from_filters(filters)
 
     def generate_gains_mapping(self) -> ActivityMapping:
@@ -336,7 +371,7 @@ class InventorySet:
         :return: Mapping keyed by GAINS variable name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(filepath=GAINS_MAPPING, var="ecoinvent_aliases")
+        filters = self._get_aliases(filepath=GAINS_MAPPING)
         return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_map(self) -> ActivityMapping:
@@ -345,9 +380,7 @@ class InventorySet:
         :return: Mapping keyed by electricity production technology.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(
-            filepath=POWERPLANT_TECHS, var="ecoinvent_aliases", model=self.model
-        )
+        filters = self._get_aliases(filepath=POWERPLANT_TECHS, model=self.model)
         return self.generate_sets_from_filters(filters)
 
     def generate_cdr_map(self, model: Optional[str] = None) -> ActivityMapping:
@@ -358,7 +391,7 @@ class InventorySet:
         :return: Mapping keyed by carbon removal technology.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases", model=model)
+        filters = self._get_aliases(filepath=CDR_TECHS, model=model)
         return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_fuels_map(self) -> ActivityMapping:
@@ -367,7 +400,7 @@ class InventorySet:
         :return: Mapping keyed by fuel technology.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases")
+        filters = self._get_aliases(filepath=POWERPLANT_TECHS, fuels=True)
         return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_efficiency_bounds(
@@ -393,7 +426,7 @@ class InventorySet:
         :return: Mapping keyed by cement fuel category.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases")
+        filters = self._get_aliases(filepath=CEMENT_TECHS, fuels=True)
         return self.generate_sets_from_filters(filters)
 
     def generate_steel_map(self) -> ActivityMapping:
@@ -402,9 +435,7 @@ class InventorySet:
         :return: Mapping keyed by steel technology name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(
-            filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model
-        )
+        filters = self._get_aliases(filepath=STEEL_TECHS, model=self.model)
         return self.generate_sets_from_filters(filters)
 
     def generate_cement_map(self) -> ActivityMapping:
@@ -413,9 +444,7 @@ class InventorySet:
         :return: Mapping keyed by cement technology name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(
-            filepath=CEMENT_TECHS, var="ecoinvent_aliases", model=self.model
-        )
+        filters = self._get_aliases(filepath=CEMENT_TECHS, model=self.model)
         return self.generate_sets_from_filters(filters)
 
     def generate_fuel_map(self, model: Optional[str] = None) -> ActivityMapping:
@@ -426,9 +455,7 @@ class InventorySet:
         :return: Mapping keyed by fuel name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(
-            filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model
-        )
+        filters = self._get_aliases(filepath=FUELS_TECHS, model=model)
 
         lhv = get_mapping(filepath=FUELS_TECHS, var="lhv")
 
@@ -448,7 +475,7 @@ class InventorySet:
         :return: Mapping keyed by mining waste type.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(filepath=MINING_WASTE, var="ecoinvent_aliases")
+        filters = self._get_aliases(filepath=MINING_WASTE)
         return self.generate_sets_from_filters(filters)
 
     def generate_final_energy_map(self) -> ActivityMapping:
@@ -457,9 +484,7 @@ class InventorySet:
         :return: Mapping keyed by energy carrier name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(
-            filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model
-        )
+        filters = self._get_aliases(filepath=FINAL_ENERGY, model=self.model)
 
         lhv = get_mapping(filepath=FINAL_ENERGY, var="lhv")
 
@@ -485,31 +510,27 @@ class InventorySet:
         mapping: ActivityMapping = {}
         if transport_type == "car":
             mapping = self.generate_sets_from_filters(
-                get_mapping(
-                    filepath=PASSENGER_CARS, var="ecoinvent_aliases", model=self.model
-                )
+                self._get_aliases(filepath=PASSENGER_CARS, model=self.model)
             )
         elif transport_type == "two-wheeler":
             mapping = self.generate_sets_from_filters(
-                get_mapping(
-                    filepath=TWO_WHEELERS, var="ecoinvent_aliases", model=self.model
-                )
+                self._get_aliases(filepath=TWO_WHEELERS, model=self.model)
             )
         elif transport_type == "bus":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=BUSES, var="ecoinvent_aliases", model=self.model)
+                self._get_aliases(filepath=BUSES, model=self.model)
             )
         elif transport_type == "truck":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=TRUCKS, var="ecoinvent_aliases", model=self.model)
+                self._get_aliases(filepath=TRUCKS, model=self.model)
             )
         elif transport_type == "train":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=TRAINS, var="ecoinvent_aliases", model=self.model)
+                self._get_aliases(filepath=TRAINS, model=self.model)
             )
         elif transport_type == "ship":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=SHIPS, var="ecoinvent_aliases", model=self.model)
+                self._get_aliases(filepath=SHIPS, model=self.model)
             )
 
         # remove empty values
@@ -529,27 +550,27 @@ class InventorySet:
         mapping: ActivityMapping = {}
         if transport_type == "car":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=PASSENGER_CARS, var="ecoinvent_fuel_aliases")
+                self._get_aliases(filepath=PASSENGER_CARS, fuels=True)
             )
         elif transport_type == "two-wheeler":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=TWO_WHEELERS, var="ecoinvent_fuel_aliases")
+                self._get_aliases(filepath=TWO_WHEELERS, fuels=True)
             )
         elif transport_type == "bus":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=BUSES, var="ecoinvent_fuel_aliases")
+                self._get_aliases(filepath=BUSES, fuels=True)
             )
         elif transport_type == "truck":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=TRUCKS, var="ecoinvent_fuel_aliases")
+                self._get_aliases(filepath=TRUCKS, fuels=True)
             )
         elif transport_type == "train":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=TRAINS, var="ecoinvent_fuel_aliases")
+                self._get_aliases(filepath=TRAINS, fuels=True)
             )
         elif transport_type == "ship":
             mapping = self.generate_sets_from_filters(
-                get_mapping(filepath=SHIPS, var="ecoinvent_fuel_aliases")
+                self._get_aliases(filepath=SHIPS, fuels=True)
             )
 
         # remove empty values
@@ -563,9 +584,7 @@ class InventorySet:
         :return: Mapping keyed by material name.
         :rtype: ActivityMapping
         """
-        filters = get_mapping(
-            filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
-        )
+        filters = self._get_aliases(filepath=ACTIVITIES_METALS_MAPPING)
         return self.generate_sets_from_filters(filters)
 
     def generate_sets_from_filters(
@@ -621,9 +640,30 @@ class InventorySet:
             subset = database
 
         techs = {
-            tech: act_fltr(subset, fltr.get("fltr"), fltr.get("mask"))
+            tech: (
+                act_fltr(
+                    subset,
+                    fltr.get("fltr"),
+                    fltr.get("mask"),
+                    exact=fltr.get("exact", False),
+                )
+                if fltr.get("fltr")
+                else []
+            )
             for tech, fltr in filtr.items()
         }
+
+        if self.family == "uvek":
+            # Native UVEK identities cannot establish a CLIC scientific role.
+            # Published records enter only through the reviewed bindings below.
+            techs = {
+                technology: [
+                    activity
+                    for activity in activities
+                    if not activity.get("clic provenance")
+                ]
+                for technology, activities in techs.items()
+            }
 
         # Published slugs provide stable role identity when CLIC revises a
         # dataset's name/product or when colliding source identities need a
@@ -632,16 +672,18 @@ class InventorySet:
         for technology, definition in filtr.items():
             for slug in definition.get("clic_slugs", ()):
                 clic_roles[slug].append(technology)
-        if clic_roles:
+        if clic_roles or any("clic_role_key" in entry for entry in filtr.values()):
 
             def eligible(activity, technology):
                 provenance = activity.get("clic provenance", {})
                 bindings = provenance.get("role_bindings")
                 key = filtr[technology].get("clic_role_key")
+                if self.family == "uvek":
+                    return key is not None and bindings is not None and key in bindings
                 return bindings is None or key is None or key in bindings
 
             for technology, definition in filtr.items():
-                if definition.get("clic_slugs"):
+                if "clic_slugs" in definition:
                     allowed = set(definition["clic_slugs"])
                     techs[technology] = [
                         activity
@@ -672,7 +714,8 @@ class InventorySet:
         for key, val in mapping.items():
             if not val:
                 logger.info(
-                    f"{self.model}|{key}|No activities found for this technology.||"
+                    f"{self.model}|{key}|No activities found for this technology "
+                    f"(family={self.family}).||"
                 )
             # else:
             #    for v in val:

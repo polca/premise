@@ -58,6 +58,19 @@ def test_presence_of_dict():
     assert isinstance(maps.generate_powerplant_map(), dict)
 
 
+def test_inventory_family_defaults_to_ecoinvent_without_version_inference():
+    default = InventorySet(dummy_minimal_db, version="2026")
+    explicit = InventorySet(dummy_minimal_db, version="2026", family="ecoinvent")
+
+    assert default.family == "ecoinvent"
+    assert default.generate_powerplant_map() == explicit.generate_powerplant_map()
+
+
+def test_inventory_family_must_be_supported_explicitly():
+    with pytest.raises(ValueError, match="Unsupported inventory mapping family"):
+        InventorySet([], family="unknown")
+
+
 def test_mapping_file_is_parsed_once_across_variable_lookups(tmp_path, monkeypatch):
     mapping_file = tmp_path / "mapping.yaml"
     mapping_file.write_text(
