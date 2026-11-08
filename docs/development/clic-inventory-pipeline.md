@@ -376,6 +376,19 @@ retain source market delivery and inventory differences in warnings. The authori
 generator replays the correction with an exact 3.12 gate. Other releases and
 source identities remain unapproved.
 
+`uvek_pilot_bulk_chemical_ceramic_review.json` adds six complete products
+across eight exact profiles: liquid ammonia, carbon black, oxidic ceramic tiles,
+monoethanolamine, liquid sulfur trioxide and sulfuric acid. Actual producer
+inventories establish phase, product/function and positive kg references. Retain
+the native ammonia technology mix, allocated ethanolamine inventory, oleum-supply
+approximation and already embedded sulfuric-acid smelter-gas allocation without
+reapplying allocation, concentration or yield factors. Native feedstock and
+precursor differences, estimated/incomplete historical emissions, original
+omitted wastes and geographic/delivery differences remain screening warnings.
+These correspondences do not repair native chemical inventories or claim LCIA
+equality. All six suppliers have finite baseline LCIs with unchanged scientific
+source contents.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

@@ -11115,6 +11115,688 @@
           "fingerprint": "17754ed9c4f832c86d24e24dca446956086dae07061d43f582d51cadf2eb8eb2"
         }
       ]
+    },
+    {
+      "rule_id": "bp-6f1466d334d7b18c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_bulk_chemical_ceramic_review.json",
+      "review_sha256": "da951118603f6c67dc64d7226e6fd9365ebce1f3a6759cc8ba609b80d85feb2e",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking positive kg references, phase, constituent/product boundaries and complete upstream producer inventories. Preserve complete native allocation and inventory differences with warnings. No new helper, chemistry repair, mixture reconstruction, grade change, concentration conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-6f1466d334d7b18c",
+        "source": {
+          "location": "RER",
+          "name": "market for ammonia, liquid",
+          "reference product": "ammonia, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Ammonia, liquid, at regional storehouse",
+          "reference product": "Ammonia, liquid, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a510d43275fcaee9eca7f3e5d9e95aa7da52cfe5c21a71f5123388fed4124677",
+            "inventory_sha256": "fb35522c355e304c4c0fba13fc6c9425ede9dc8fcea8447b2710cde8f841b57d",
+            "activity_comment_sha256": "37a37499c6e9fdc8b89df25fca6ce6802e99f0d49c88d1f7f5225e3db3f7bc4c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "ammonia production, partial oxidation, liquid",
+                  "reference product": "ammonia, liquid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "8c49f8aa828f9359e1e6f2067cb4c666e1826bc53a056dcc9cc318c5002f96b1",
+                "inventory_sha256": "be7c8fd7f8f6fc876bbaefbe80192746537fbf125a0d0e3ba2d0ff651e0ce70a",
+                "comment_sha256": "b531802924e65f1c4805f0d2f018662553ab4ec8afd38424c29f767324bd5b32"
+              },
+              {
+                "identity": {
+                  "name": "ammonia production, steam reforming, liquid",
+                  "reference product": "ammonia, liquid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "3e018717c362f872b81c18f5ec572741b00056dd94da441fd99fb8358d5c9ba0",
+                "inventory_sha256": "d78d68eb5f2e906b080e0860a2f85bb9fa8473536dee081c8987d2d861cc45c3",
+                "comment_sha256": "9a8e7b1806f7b5530be4818a88efa10572f5d57ae97ca45437a63d186cbde08d"
+              },
+              {
+                "identity": {
+                  "name": "cocamide diethanolamine production",
+                  "reference product": "ammonia, liquid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "baaa8bec34e2c271d82beee5651656fb24d617f6a8d64047ad1babe90a5aaf5f",
+                "inventory_sha256": "dff406477c18cd87f383d17fe37b1f0f5d79a4c3ecbff1ef3bdc9af8652ff7f5",
+                "comment_sha256": "881d7d8e6ef1de42fec1dcca0e93b195e93f6a8fbfdcbbbd76d59f9f7c90a619"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "d2942a2a4d9d4668e0609bbccd422b0aeb0d0dfe5739479ea4c20e0f500aa19d",
+            "inventory_sha256": "fe9701ac984b524d76456eb20cfaec7988e60d7da657e54489722ddfaa1d0645",
+            "activity_comment_sha256": "20f46221a37b7c309a77c4029c9ff96a63cea4055544853a428c6faf45272393",
+            "direct_technosphere_coordinates": 4
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "b76a7b69224da0be67cf1744145daeb146bf2cfff626e8b07e1e40f4260b3e14",
+            "inventory_sha256": "e5240c022f5dcff23ad8671c77812695ce6ac94dc668908851ea68a25e35045e",
+            "activity_comment_sha256": "2801423ae61b28be5ca531b6fe4f337d7c63b0e0f66e63b02ca7081c099b8362",
+            "direct_technosphere_coordinates": 4
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same liquid ammonia product per kg, not an ammonia solution, gaseous ammonia service or hydrogen energy demand. Retain the complete native European storehouse mix with its 85% steam-reforming/15% heavy-oil partial-oxidation supply and internal logistics. Source technology and allocated coproduct shares, including cocamide-diethanolamine coproduct ammonia, are not reconstructed. No separate liquefaction, energy-content conversion, purity adjustment or additional ammonia production is added. Native geography, vintage, fuel supply, allocation and delivery differ."
+      },
+      "limitations": [
+        "Same liquid ammonia product per kg, not an ammonia solution, gaseous ammonia service or hydrogen energy demand. Retain the complete native European storehouse mix with its 85% steam-reforming/15% heavy-oil partial-oxidation supply and internal logistics. Source technology and allocated coproduct shares, including cocamide-diethanolamine coproduct ammonia, are not reconstructed. No separate liquefaction, energy-content conversion, purity adjustment or additional ammonia production is added. Native geography, vintage, fuel supply, allocation and delivery differ.",
+        "Preserve signed kg, uncertainty, formulas and caller ownership with factor +1. Keep separately listed caller water, transport, materials and emissions; use the complete native product once within its documented boundary.",
+        "Source-market shares, freight, losses and geography are not reconstructed. Native internal logistics, technology, allocation and original data limitations remain included. Particularly retain the native sulfuric-acid smelter-gas allocation, differing monoethanolamine precursor quantities and incomplete historical emissions instead of silently repairing them. Inventory and LCIA equivalence are not established; score effects are unquantified.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is changed. Upstream native biosphere exclusions remain explicit. Only enumerated cut-off profiles are admitted; no independent inverse, cross-system-model conversion, pending equipment choice or other material grade is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "51a553543b3dc98f2bcdba10a5252d7f9b9416e68402fea240e5b17fa73e5ee1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c8d707ac24ebb7e4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_bulk_chemical_ceramic_review.json",
+      "review_sha256": "da951118603f6c67dc64d7226e6fd9365ebce1f3a6759cc8ba609b80d85feb2e",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking positive kg references, phase, constituent/product boundaries and complete upstream producer inventories. Preserve complete native allocation and inventory differences with warnings. No new helper, chemistry repair, mixture reconstruction, grade change, concentration conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-c8d707ac24ebb7e4",
+        "source": {
+          "location": "GLO",
+          "name": "market for carbon black",
+          "reference product": "carbon black",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Carbon black, at plant",
+          "reference product": "Carbon black, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "50f9045a494d81d52090e6810d4a8a9ee1928de5ee3987c669aaf3bfc3256825",
+            "inventory_sha256": "efe55cf5745bfb0dce0f3d738af565efc2150c12e00d7fbe98c38d3840d82405",
+            "activity_comment_sha256": "1aa7cb497181519b2ce4b74506f3836338b54cc3d5f1d2d6b899aa47b2b4a1a2",
+            "product_information_sha256": "55d92d96c0fa058c0db8dec3677732bc6701c86baeec961c0a2622f35d637d26",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "carbon black production",
+                  "reference product": "carbon black",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "45a20208500719f34ae83051d53f054bec10f1508f322999733bb3ea247f0056",
+                "inventory_sha256": "eb99e977eff3490688ddf5a78d84c4e4370db4024d223a4432bebd8a4e26cde4",
+                "comment_sha256": "dcf32a0fb469344bbaa56d39d873db71f82c6d350901cd1cd8d9628e1e3304ea"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "82a1b604a0dbc4fa308a2357e665c4abdf7e1876f0044de552cb696a20c9a462",
+            "inventory_sha256": "919b566000945218e27c0c34db8399eaff182eefdf9b6f30f1212f43ca15f1a0",
+            "activity_comment_sha256": "f6eeb63d483e115e20787ff012a5216328b9b22ff7bfffceff03dd54a6726e2d",
+            "product_information_sha256": "55d92d96c0fa058c0db8dec3677732bc6701c86baeec961c0a2622f35d637d26",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "carbon black production",
+                  "reference product": "carbon black",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "24078c820eaffe9b9921e2469b1d8293aa46ead08ae2da85a164a92e3ee611f2",
+                "inventory_sha256": "82b1c8b7b023082ff3586c24e9279798f6745abfc5f3de9a0fcf558658feea71",
+                "comment_sha256": "58b8365d2a2c93dd0f80639b2eb3642cdf767ede59c24c8c824fe1ebf8ad0f0e"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "5e63149fdc1ca27190ee4269f18975a12a1dcff7bb47621d62dbc02a09529246",
+            "inventory_sha256": "daaa769228fd69f533492071959fec935d2e6dde79455c50b0c64f1dec2b0198",
+            "activity_comment_sha256": "9bb4fc0aec675e2c29b500f16387706d610b3d84e6d9153605761bf680b7219e",
+            "direct_technosphere_coordinates": 4
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "e66f7766d134cf04501be8c5d9b3a4853bca340213a86c05085f0a49ae871393",
+            "inventory_sha256": "8614a6d2e799b6f5fbbcccdcd7059ef8e1aae8d52d19f7ac9815cffb0f63af28",
+            "activity_comment_sha256": "358caab3c084595dad02e8381e2cee751cf0a93a01b6a561ef5bdfab362b36ec",
+            "direct_technosphere_coordinates": 4
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same solid carbon-black powder from furnace production, per kg. This is neither activated carbon nor graphite, and no specific pigment/rubber grade equivalence is inferred. Retain the complete historical native oil-furnace inventory once, including its original feedstock boundary, assumed yield and natural-gas heat. Do not rescale by yield or replace its crude-oil feed with a newly constructed refined-oil supply. Native weak/estimated production data, incomplete process emissions and omitted solid wastes remain explicit limitations. Source feedstock, allocation, energy, vintage, global geography and delivery differ; score effects are unquantified."
+      },
+      "limitations": [
+        "Same solid carbon-black powder from furnace production, per kg. This is neither activated carbon nor graphite, and no specific pigment/rubber grade equivalence is inferred. Retain the complete historical native oil-furnace inventory once, including its original feedstock boundary, assumed yield and natural-gas heat. Do not rescale by yield or replace its crude-oil feed with a newly constructed refined-oil supply. Native weak/estimated production data, incomplete process emissions and omitted solid wastes remain explicit limitations. Source feedstock, allocation, energy, vintage, global geography and delivery differ; score effects are unquantified.",
+        "Preserve signed kg, uncertainty, formulas and caller ownership with factor +1. Keep separately listed caller water, transport, materials and emissions; use the complete native product once within its documented boundary.",
+        "Source-market shares, freight, losses and geography are not reconstructed. Native internal logistics, technology, allocation and original data limitations remain included. Particularly retain the native sulfuric-acid smelter-gas allocation, differing monoethanolamine precursor quantities and incomplete historical emissions instead of silently repairing them. Inventory and LCIA equivalence are not established; score effects are unquantified.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is changed. Upstream native biosphere exclusions remain explicit. Only enumerated cut-off profiles are admitted; no independent inverse, cross-system-model conversion, pending equipment choice or other material grade is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "895a9878e4e2fd1d5ae3d50eca8164e92d8f02df5cf52f05c79fbbcb9dc4952b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f8be22cb3c190c224010adf0be738c2e8fc797ce702258a7f4ec997356bdb372"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-688374518770ccba",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_bulk_chemical_ceramic_review.json",
+      "review_sha256": "da951118603f6c67dc64d7226e6fd9365ebce1f3a6759cc8ba609b80d85feb2e",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking positive kg references, phase, constituent/product boundaries and complete upstream producer inventories. Preserve complete native allocation and inventory differences with warnings. No new helper, chemistry repair, mixture reconstruction, grade change, concentration conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-688374518770ccba",
+        "source": {
+          "location": "GLO",
+          "name": "market for ceramic tile",
+          "reference product": "ceramic tile",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Ceramic tiles, at regional storage",
+          "reference product": "Ceramic tiles, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0a12e219e0e4e8dc04d74de72c5e6dce4bb9388d51c1d21d99cd1fef373aaae0",
+            "inventory_sha256": "6792abfcafbd82bb766be6e9df39a1895b30366f8f0759cdd4252bf0d41ef651",
+            "activity_comment_sha256": "91f6042a89816aa6bc4445483e84b4abefa39db6038607519d2f51d2619a24c6",
+            "product_information_sha256": "abcc94b79d722b2de49b72de8a9b1ed110a3855b24ae62e929a428da048275bf",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "ceramic tile production",
+                  "reference product": "ceramic tile",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "f8fe432daf0201ece8803d0f1cdb2011d7b5613be8478804ad63f8feea77ac24",
+                "inventory_sha256": "d42f9f8c2b2e8a25ea7f29f0f282639dfbd1d4aba13e11c7babb0bc337977347",
+                "comment_sha256": "0f7489f6d1eb4bc656519fa4bb7179c215aececd1a57e99f14e5fff60e7a0ff5"
+              },
+              {
+                "identity": {
+                  "name": "ceramic tile production",
+                  "reference product": "ceramic tile",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "3ea329cca04a8275d76d1d8179c17d597453fad0ed0236de29e98f1264d3f3b9",
+                "inventory_sha256": "5c2efbb12ed5a24235215ec33cf69279e1fbf92db9135f6c13a28e38d299cab0",
+                "comment_sha256": "ca3f21fc5ba02e1f2e98785c08502fa113f1dadd8fb03cb7cb6eb1e7f4a83ee2"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "ac63f781570a5667da5f126fc6f9cc0f88ef48e694d14f3d2684a87de551a664",
+            "inventory_sha256": "af40351761270801d4bb77ba9b04f2f32736774f420e2cfdef8e1bd19e8422a3",
+            "activity_comment_sha256": "65743285907fd071b970f46b2ad0f9c369d9439404b0be8a327a496540cf0520",
+            "direct_technosphere_coordinates": 20
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "b434f225256c9933ed39a77b392d641af822dbed92dc47dc613d54b504a0b57d",
+            "inventory_sha256": "7e79f6dab4767c37bcac135d3d896b0e2714e89d1f2a89c3bcec1fb48eb99329",
+            "activity_comment_sha256": "e2c9cbc7de1c7c22dfae1679a50e6f7ce7ed8e5d069e7caf16f3e1b80c393a0f",
+            "direct_technosphere_coordinates": 20
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same complete oxidic ceramic tile, per kg, using the documented historical single-fired gas-kiln process. Both inventories include clay/feldspar and other material inputs; this is not an empty forming service. Native regional storage includes transport to Switzerland. Retain native raw materials, glaze-related inputs, kiln, infrastructure, emissions and logistics once, with no second clay/tile inventory or area/thickness/density conversion. A single Italian producer represents the native product; source market shares, product compositions, geography and delivery differ. No tile-specific technical performance or grade equivalence is established."
+      },
+      "limitations": [
+        "Same complete oxidic ceramic tile, per kg, using the documented historical single-fired gas-kiln process. Both inventories include clay/feldspar and other material inputs; this is not an empty forming service. Native regional storage includes transport to Switzerland. Retain native raw materials, glaze-related inputs, kiln, infrastructure, emissions and logistics once, with no second clay/tile inventory or area/thickness/density conversion. A single Italian producer represents the native product; source market shares, product compositions, geography and delivery differ. No tile-specific technical performance or grade equivalence is established.",
+        "Preserve signed kg, uncertainty, formulas and caller ownership with factor +1. Keep separately listed caller water, transport, materials and emissions; use the complete native product once within its documented boundary.",
+        "Source-market shares, freight, losses and geography are not reconstructed. Native internal logistics, technology, allocation and original data limitations remain included. Particularly retain the native sulfuric-acid smelter-gas allocation, differing monoethanolamine precursor quantities and incomplete historical emissions instead of silently repairing them. Inventory and LCIA equivalence are not established; score effects are unquantified.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is changed. Upstream native biosphere exclusions remain explicit. Only enumerated cut-off profiles are admitted; no independent inverse, cross-system-model conversion, pending equipment choice or other material grade is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9129442cfcd946db48ae2ed6ae505ae1b96497f3da840db554d05a31dd8b8a9f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a50439c1a11df652",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_bulk_chemical_ceramic_review.json",
+      "review_sha256": "da951118603f6c67dc64d7226e6fd9365ebce1f3a6759cc8ba609b80d85feb2e",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking positive kg references, phase, constituent/product boundaries and complete upstream producer inventories. Preserve complete native allocation and inventory differences with warnings. No new helper, chemistry repair, mixture reconstruction, grade change, concentration conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-a50439c1a11df652",
+        "source": {
+          "location": "GLO",
+          "name": "market for monoethanolamine",
+          "reference product": "monoethanolamine",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Monoethanolamine, at plant",
+          "reference product": "Monoethanolamine, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "81947fdcd564c6143a9335a5cd36e5d0c93bf475d3ff2b3896b315b5f9fb7764",
+            "inventory_sha256": "fe971b1127988cae8daffb2cad369890b8d0424c20a2c095cb6a5d499bf9e3b0",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "ethanolamine production",
+                  "reference product": "monoethanolamine",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "dd3863e341d9b488c422e5ea8a2e6b53b6af73db0da02662a090654ef81eefc6",
+                "inventory_sha256": "4c63a72efd863c3bc62feca9db824d0a8ff7766a444ae1cde6e675572553f481",
+                "comment_sha256": "aa71de91bdef3c70812f3fa8450b13f62cf4dce78b2e4cc24a3c404ae1fb0e8c"
+              },
+              {
+                "identity": {
+                  "name": "ethanolamine production",
+                  "reference product": "monoethanolamine",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "3ae6f32a6e87b0a35f1283e68847bea78dfced6bd26ca440427b0109a048ade6",
+                "inventory_sha256": "8a6516c285e865381a2c5e97d6483257ea0f6ab7b18c90f911cb5e17b16d799b",
+                "comment_sha256": "20b4fbf527be8f2e5b838a7dc67c50feb8a0a03fb3a26f7f2311e43b3dbd8433"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "566c6b4c71801b1a919a11e2780124e7d95191ee0c14fb08d04aa351c2323cda",
+            "inventory_sha256": "09cb45c9551b97993480916f11199f5b2b5ec631243754e437e757d6b0c6b0af",
+            "activity_comment_sha256": "4ad1547d63bbad341c5fb674fe0a9bf2d3766df92ba1aaabdde27aff61a98c3d",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "0cc6b60d7a34c93ef7414d0a10003e3532fd8e25bef42ef9dce6a9678d574d7e",
+            "inventory_sha256": "709aed0f8f288678908778449c0f19a0ce874d4475af50cdb8d9d4a4d2440015",
+            "activity_comment_sha256": "be8b87636bf946c9884c9869930e6376ac824f3d90e6495dd8ba6c06904583bd",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same monoethanolamine product per kg, not diethanolamine, triethanolamine or a diluted amine solution. Source and native document ethylene-oxide/ammonia production with estimated 95% process yield, but native allocated precursor quantities differ substantially from the newer source inventory. Retain the complete native mass-allocated ethanolamine inventory once; do not repair stoichiometry, rescale by yield, repeat the 40/40/20 allocation or add another coproduct burden/credit. Estimated/incomplete emissions and omitted solid wastes are native data limitations. Allocation, feed quantities, utilities, geography, vintage and source-market delivery differences remain explicit, with unquantified score effects."
+      },
+      "limitations": [
+        "Same monoethanolamine product per kg, not diethanolamine, triethanolamine or a diluted amine solution. Source and native document ethylene-oxide/ammonia production with estimated 95% process yield, but native allocated precursor quantities differ substantially from the newer source inventory. Retain the complete native mass-allocated ethanolamine inventory once; do not repair stoichiometry, rescale by yield, repeat the 40/40/20 allocation or add another coproduct burden/credit. Estimated/incomplete emissions and omitted solid wastes are native data limitations. Allocation, feed quantities, utilities, geography, vintage and source-market delivery differences remain explicit, with unquantified score effects.",
+        "Preserve signed kg, uncertainty, formulas and caller ownership with factor +1. Keep separately listed caller water, transport, materials and emissions; use the complete native product once within its documented boundary.",
+        "Source-market shares, freight, losses and geography are not reconstructed. Native internal logistics, technology, allocation and original data limitations remain included. Particularly retain the native sulfuric-acid smelter-gas allocation, differing monoethanolamine precursor quantities and incomplete historical emissions instead of silently repairing them. Inventory and LCIA equivalence are not established; score effects are unquantified.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is changed. Upstream native biosphere exclusions remain explicit. Only enumerated cut-off profiles are admitted; no independent inverse, cross-system-model conversion, pending equipment choice or other material grade is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9ee53bb43c3dea8caf14eeb76f2a5b00b8bd9712c30ab8528011e6f5eb7ccd4a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6a97c5362cbe7587",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_bulk_chemical_ceramic_review.json",
+      "review_sha256": "da951118603f6c67dc64d7226e6fd9365ebce1f3a6759cc8ba609b80d85feb2e",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking positive kg references, phase, constituent/product boundaries and complete upstream producer inventories. Preserve complete native allocation and inventory differences with warnings. No new helper, chemistry repair, mixture reconstruction, grade change, concentration conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-6a97c5362cbe7587",
+        "source": {
+          "location": "RER",
+          "name": "market for sulfur trioxide",
+          "reference product": "sulfur trioxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sulphur trioxide, at plant",
+          "reference product": "Sulphur trioxide, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3852e74cf7ea71aac8ced270d9cec639a6bf2a382292b66303c026124fe3f895",
+            "inventory_sha256": "d524029070a3f58c09fa37123656432677ca2292c6b2658aa44148334faf004e",
+            "activity_comment_sha256": "bc4812ca6ccc1b74c98aff0c8388859e9ba929ae312fd9884fa90cb385aa6e29",
+            "product_information_sha256": "cfd434b79874ceb2e4ae00fd633329e88674356df0d66f2c7b624422ba7fd0e5",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "sulfur trioxide production",
+                  "reference product": "sulfur trioxide",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "196464ca369acad33073838b8cc3a3fa0bec3dd41fdc31e466190e29ebe40b62",
+                "inventory_sha256": "ef1f2a4355629ba3f3c1594864c40f4b9d9e9c345646c7df0a3c84d40ae59289",
+                "comment_sha256": "98a107588c55ae5a0dc14d50337d2faae830b73910c899f0a5592ad73d1e77f4"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "7755a0fda02edef8a4a755a541e9f54a301c0f3032d5ba5672cf87fb31d20cea",
+            "inventory_sha256": "5a2bdccd2a0fb60d4bcf76ba648d1298b7a5a8199dfb667e16751e300bcfd8c3",
+            "activity_comment_sha256": "9fa25aaa59babb8f1042518ede28ed8325008e0369758acc39306159bee6705b",
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "ba2b0e6515a9e8c30d9204a0e2923bfb13ceee0d13620f9b04090ca7371e8d5c",
+            "inventory_sha256": "8cf14dcd705f1ccfd46011ebae305b1a6c088e5b557386c7de4761f8e0263f10",
+            "activity_comment_sha256": "dc8ee483ebbd2dc52cdd5616117e9ec12dd9c712527f4f4988cb7c1dfc09ee56",
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same liquid sulfur trioxide product per kg, made by distilling oleum. Source and native have the same characteristic sulfuric-acid precursor coordinate and the same documented historical approximation of oleum supply. Retain complete native acid input, energy, infrastructure and estimated emissions once. Do not replace the oleum approximation, rebalance chemistry, apply a density/solution/yield factor or add a second sulfuric-acid burden. Weak process data, incomplete emissions and omitted solid wastes remain limitations. Market delivery, geography, utilities and vintage differ."
+      },
+      "limitations": [
+        "Same liquid sulfur trioxide product per kg, made by distilling oleum. Source and native have the same characteristic sulfuric-acid precursor coordinate and the same documented historical approximation of oleum supply. Retain complete native acid input, energy, infrastructure and estimated emissions once. Do not replace the oleum approximation, rebalance chemistry, apply a density/solution/yield factor or add a second sulfuric-acid burden. Weak process data, incomplete emissions and omitted solid wastes remain limitations. Market delivery, geography, utilities and vintage differ.",
+        "Preserve signed kg, uncertainty, formulas and caller ownership with factor +1. Keep separately listed caller water, transport, materials and emissions; use the complete native product once within its documented boundary.",
+        "Source-market shares, freight, losses and geography are not reconstructed. Native internal logistics, technology, allocation and original data limitations remain included. Particularly retain the native sulfuric-acid smelter-gas allocation, differing monoethanolamine precursor quantities and incomplete historical emissions instead of silently repairing them. Inventory and LCIA equivalence are not established; score effects are unquantified.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is changed. Upstream native biosphere exclusions remain explicit. Only enumerated cut-off profiles are admitted; no independent inverse, cross-system-model conversion, pending equipment choice or other material grade is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "00a68d4edd64029115673a863c4d3f7fea8aace3b4415b18366e3445aa2afae2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7740a48a01851669",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_bulk_chemical_ceramic_review.json",
+      "review_sha256": "da951118603f6c67dc64d7226e6fd9365ebce1f3a6759cc8ba609b80d85feb2e",
+      "authorization": "Standing independently inspected same whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only for the enumerated actual pilot profiles after checking positive kg references, phase, constituent/product boundaries and complete upstream producer inventories. Preserve complete native allocation and inventory differences with warnings. No new helper, chemistry repair, mixture reconstruction, grade change, concentration conversion or recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-7740a48a01851669",
+        "source": {
+          "location": "RER",
+          "name": "market for sulfuric acid",
+          "reference product": "sulfuric acid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sulphuric acid, liquid, at plant",
+          "reference product": "Sulphuric acid, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "db173168a4403bb99ddd5e8d87dfb96b3fd1afc5a15f9946359845cb037cac96",
+            "inventory_sha256": "71917a85aa19bcbd8db96819f4a2ad2c8aba7d4affc0ee7be5db172319aac99e",
+            "activity_comment_sha256": "77060b018b5655e63bfce99957ce1157fd5c5a749f4b43ecebe0bb04d10980dd",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "sulfuric acid production",
+                  "reference product": "sulfuric acid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "2c14dd3049edbd40bed786cb19cff54ff7ccec604341697c43caa1a323b2eb38",
+                "inventory_sha256": "f512001d1db95ef81d6188b36c2d5e3efe7ec187426c19370e1a18957f6ac08b",
+                "comment_sha256": "131185a1bc5599b766b265328c22763acc712f8c9aa7d9bd5aa348b9db750e09"
+              },
+              {
+                "identity": {
+                  "name": "zinc sulfide production",
+                  "reference product": "sulfuric acid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "cf298f942c6651359243632edebd9b1223f0bc05dbcd4ac9ef773963f8795e7b",
+                "inventory_sha256": "b8a66fe64f3210daa9ab3b764f7de433a83461c780467168dd0e944abff8d371",
+                "comment_sha256": "6a90abda228175f04142a936fc83c1c5dff35c4c755d8255f1e8a95389c792de"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "019763c90a9d6899f62607f70d5daae8631dc48a9b554fdfaa46604f9281b794",
+            "inventory_sha256": "5795e5c2f54beba053206f630475be71087541b1fd86286893b02c6ac70106e6",
+            "activity_comment_sha256": "c83e0eb718f5f08f5c0e3b5bf2a3d9ae95f6e1a2cc05f0be3e638137863f909a",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "sulfuric acid production",
+                  "reference product": "sulfuric acid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "cd3c5e83597c63b2764cc92d109605685b03ba3d184d6096e7f910c43028e7f5",
+                "inventory_sha256": "bf3ef9ee9f7fd3022368cc241093ff7234a4847e1e3e2d1aa85fa2f848eb632c",
+                "comment_sha256": "3d5ba93e77433e90b4bcfbfdd2cf956cb7def5798e3617ddf5808bd6aaba7cb2"
+              },
+              {
+                "identity": {
+                  "name": "zinc sulfide production",
+                  "reference product": "sulfuric acid",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "063596374fd23264ac896b015584d1f49071200e3b84d6635a7e007fa81a3676",
+                "inventory_sha256": "c53b369f4746e7c8b654030ec9fa540e8b6295be1defba9e7ee69aaf529117c9",
+                "comment_sha256": "a769d3dee4f47dceedec95c21d6aa748850c077fe0d6effb95bc3dd0defb6326"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9",
+            "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+            "activity_comment_sha256": "8eddc9f27c968db22e773479d9aff0c16519e078451d568c26ae6f6e0d8a1c49",
+            "direct_technosphere_coordinates": 7
+          },
+          "2026": {
+            "reference_amount": 1,
+            "metadata_sha256": "98c6e769926ee710f5be91bc57667d32a23ed6351bc92642d7fd28c4cda7da21",
+            "inventory_sha256": "7437f74f1c8d49cd5f7ab6f07a44fda45fa0b12dc2106990b97719dfe66e9b50",
+            "activity_comment_sha256": "7d9fa8b7a92d1bd718946f0a4c8fabd4dfb02ce0b5ba994c0b91010782949de9",
+            "direct_technosphere_coordinates": 7
+          }
+        },
+        "conversion_factor": 1,
+        "native_direct_technosphere_coordinates_match": true,
+        "boundary": "Same sulfuric-acid product per kg of active H2SO4. Native documentation explicitly references 100% acid, so no solution-concentration factor is applied. Retain the complete native production mix with its historical 35% zero-attributed-burden smelter-gas assumption already embedded by scaling the remaining production inventory to 65%; do not apply that allocation a second time or create an additional smelter-gas credit. Source sulfur-burning/coproduct supplier shares, allocation, energy, geography, vintage, emissions and market delivery differ and are not reconstructed. The native allocation assumption is a screening limitation, not a claim of current market or LCIA equivalence."
+      },
+      "limitations": [
+        "Same sulfuric-acid product per kg of active H2SO4. Native documentation explicitly references 100% acid, so no solution-concentration factor is applied. Retain the complete native production mix with its historical 35% zero-attributed-burden smelter-gas assumption already embedded by scaling the remaining production inventory to 65%; do not apply that allocation a second time or create an additional smelter-gas credit. Source sulfur-burning/coproduct supplier shares, allocation, energy, geography, vintage, emissions and market delivery differ and are not reconstructed. The native allocation assumption is a screening limitation, not a claim of current market or LCIA equivalence.",
+        "Preserve signed kg, uncertainty, formulas and caller ownership with factor +1. Keep separately listed caller water, transport, materials and emissions; use the complete native product once within its documented boundary.",
+        "Source-market shares, freight, losses and geography are not reconstructed. Native internal logistics, technology, allocation and original data limitations remain included. Particularly retain the native sulfuric-acid smelter-gas allocation, differing monoethanolamine precursor quantities and incomplete historical emissions instead of silently repairing them. Inventory and LCIA equivalence are not established; score effects are unquantified.",
+        "Native 2025/2026 direct technosphere identities and quantities match within relative tolerance 1e-12; no coefficient is changed. Upstream native biosphere exclusions remain explicit. Only enumerated cut-off profiles are admitted; no independent inverse, cross-system-model conversion, pending equipment choice or other material grade is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7b52d3c90f1aceafb346a1386b025cc9b9e21e50ac96582c80fd15517d1333f3"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1a94e9f09de29b9b2ee189bcdd8e4d84d53a527064053a1b31ab6d2edaa45fbe"
+        }
+      ]
     }
   ]
 }

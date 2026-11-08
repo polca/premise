@@ -476,6 +476,14 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-1d075913a8c7a9b6", "3.8"),
         ("bp-1d075913a8c7a9b6", "3.9"),
         ("bp-7ef361e0dafa8736", "3.8"),
+        ("bp-6f1466d334d7b18c", "3.6"),
+        ("bp-c8d707ac24ebb7e4", "3.9"),
+        ("bp-c8d707ac24ebb7e4", "3.12"),
+        ("bp-688374518770ccba", "3.9"),
+        ("bp-a50439c1a11df652", "3.6"),
+        ("bp-6a97c5362cbe7587", "3.9"),
+        ("bp-7740a48a01851669", "3.6"),
+        ("bp-7740a48a01851669", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])

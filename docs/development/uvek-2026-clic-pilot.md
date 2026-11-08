@@ -169,7 +169,7 @@ heat credit or additional storage inventory is added. Their complete allocated
 inventories are protected from role-dependent efficiency rescaling.
 
 Electricity transformations remain under validation. The strict public probe
-identifies 53 unapproved matching rules in its first ecoinvent 3.6 source
+identifies 50 unapproved matching rules in its first ecoinvent 3.6 source
 cohort, down from 126 after inspected processing, production, waste and utility
 services were registered. The actual 55-record native selection spans five source
 cohorts. Running each cohort first under the same public policy, with all
@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 53 |
+| 3.6 | 27 | 50 |
 | 3.7 | 2 | 1 |
 | 3.8 | 1 | 2 |
-| 3.9 | 17 | 59 |
-| 3.12 | 8 | 28 |
+| 3.9 | 17 | 55 |
+| 3.12 | 8 | 27 |
 
-These are 143 exact-profile cases involving 128 distinct rules, after reusing
+These are 135 exact-profile cases involving 122 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -224,10 +224,18 @@ to this exact market, correcting its solvent-paint match. Source market delivery
 is not reconstructed. Signed quantities, lognormal uncertainty and formulas
 scale together, and limitations survive cache reuse. No other market or release
 inherits that correction.
+Six further complete bulk-chemical/ceramic products cover eight profiles:
+liquid ammonia, carbon black, oxidic ceramic tiles, monoethanolamine, liquid
+sulfur trioxide and sulfuric acid. Producer inventories and native product
+boundaries were inspected, including phase, allocated coproducts and active kg.
+They retain historical data limitations, the native sulfuric-acid smelter-gas
+allocation and differing monoethanolamine precursor quantities with warnings.
+No allocation/yield correction or internal chemistry repair is applied. All six
+native suppliers have finite baseline LCIs and unchanged scientific hashes.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 204 exact-profile fingerprints, with review evidence and
+ledger contains 212 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
