@@ -343,3 +343,46 @@ def test_inspected_wet_waste_reference_preserves_treatment_and_credit_signs(
         and d["details"]["rule_id"] == rule_id
         for d in result.diagnostics
     )
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-ab192df1c5f33d7e", "3.6"),
+        ("bp-8a6394dd395bb22d", "3.12"),
+        ("bp-64033d1871a0085f", "3.12"),
+        ("bp-8b6f1fcdfadf34af", "3.12"),
+    ],
+)
+@pytest.mark.parametrize("amount", [-2, 2])
+def test_direct_processing_reference_keeps_the_foreground_quantity(
+    tmp_path, rule_id, version, amount
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    source = resolved.activities[0]["exchanges"][1]
+    source.update(
+        amount=amount,
+        **{
+            "uncertainty type": 2,
+            "loc": math.log(abs(amount)),
+            "scale": 0.2,
+            "negative": amount < 0,
+            "formula": "processing_demand",
+        },
+    )
+    before = copy.deepcopy(resolved.activities)
+    result = ClicHarmonizer(
+        tmp_path, catalog_provider=PackageCatalogProvider()
+    ).harmonize(resolved, version="2026", family="uvek")
+    assert len(result.activities) == 1
+    target = result.activities[0]["exchanges"][1]
+    assert all(target[k] == v for k, v in rule["target"].items())
+    for key in ("amount", "unit", "loc", "scale", "negative", "formula"):
+        assert target[key] == source[key]
+    assert resolved.activities == before

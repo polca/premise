@@ -242,6 +242,16 @@ moisture, dry-mass or heating-value adjustment and no new recovery-credit model.
 This establishes functional correspondence rather than inventory or LCIA
 equality, and covers only those four inspected source profiles.
 
+Four direct RER processing services also have inspected matching per-kg
+coordinates: seamless steel-pipe drawing in source 3.6, and average steel,
+aluminium and copper product manufacturing in source 3.12. The native pipe
+service already contains its wire-drawing multiplier; the native average
+manufacturing services already contain their metal-loss inputs and factory
+operation. No extra multiplier or metal input is added to the caller's
+processing demand. The evidence is pinned separately in Brightpath's
+`uvek_pilot_processing_reference_review.json`. This admits no global rolling
+market or different manufacturing technology.
+
 Native role definitions can set `use_legacy_templates: false` when their complete
 suppliers already exist in the destination. The UVEK PV roles use this declaration:
 the ecoinvent PV workbook generation and installation branches do not supply the
