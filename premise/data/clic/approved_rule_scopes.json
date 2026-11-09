@@ -25234,6 +25234,1021 @@
           "fingerprint": "99a35b39b9b15d3363627827e3015a0d2d4b9d52734f678a3e356d8dd39edb47"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ccc007a13f79d195",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_pe_collection",
+      "review_path": "export/uvek_pilot_pe_collection_review.json",
+      "review_sha256": "532af5eb9fd81b6095e9dd39aa2d9032c4359c40fcbb77afa8ba14a13953fa81",
+      "authorization": "Standing independently inspected matching whole-waste/function/unit and geographic service proxies plus complete source-preserving uncontrolled-disposal helpers. All actual controlled PE compositions match44coordinates and all uncontrolled exchanges retain source quantities, signs, marginal uncertainty and exact canonical3.10definitions. Existing operating/freight source hashes match;no new primitive, polymer blend, disposal/recovery/allocation model, physical omission, FAE choice or inverse route is introduced. Only the enumerated exact3.9cutoff parent is admitted.",
+      "inspection": {
+        "rule_id": "bp-ccc007a13f79d195",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of waste polyethylene/polypropylene product, collection for final disposal",
+          "reference product": "waste polyethylene/polypropylene product",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, polyethylene/polypropylene products, to final disposal",
+          "reference product": "Disposal, building, polyethylene/polypropylene products, to final disposal",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.394164,
+          "conversion_factor": -1,
+          "id": "bp-ccc007a13f79d195",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-ccc007a13f79d195"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of waste polyethylene/polypropylene product, collection for final disposal",
+            "reference product": "waste polyethylene/polypropylene product",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, building, polyethylene/polypropylene products, to final disposal",
+            "reference product": "Disposal, building, polyethylene/polypropylene products, to final disposal",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "b029971a8a198df1dedeed4e5e80c6fc7b3b3d36e7a54b6c8c6f3c7efd00bacb",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "910bf0c705be8f0e242fb98799b3c238ad388256dad5039a9bfc4e9b19863490",
+        "source_inventory_sha256": "8a46512c8e390cecb79b671bac725cd30244c9becf2299b3e8806be69c9c26d6",
+        "original_factor": -1,
+        "previous_native_flow_type": "WASTE_FLOW",
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "8a46512c8e390cecb79b671bac725cd30244c9becf2299b3e8806be69c9c26d6",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 2,
+                "loc": 0.0,
+                "scale": 0.044721359549995794,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.044721359549995794,
+                "negative": false,
+                "recipe": "pilot-pe-country-group-842c444854655b67d1e6"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "AL",
+                  "kilogram"
+                ],
+                "binding_sha256": "9040109bbddefa68fd12031f70b9366e28c68de17748351b7b999e0429d5248f"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "AT",
+                  "kilogram"
+                ],
+                "binding_sha256": "c4175dc097151425acc4cdbb6f13da3e96e5b05b5f1754a084798cd6d1c18e76"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "BA",
+                  "kilogram"
+                ],
+                "binding_sha256": "89f9e4980282d2f12fd8b5ae65972194b868ac0b6888abbcb6cf44794a8b4c47"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "BE",
+                  "kilogram"
+                ],
+                "binding_sha256": "d3ec8707115f7cc56b3a54f66ee29f34068dfb65c1f7106960f1c50f8cd6a819"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "BG",
+                  "kilogram"
+                ],
+                "binding_sha256": "571a6bf9d03db761977dde40f84f176977f05adf4de1b019d306c46d3d0fed78"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "CZ",
+                  "kilogram"
+                ],
+                "binding_sha256": "2d41978faa4dc1a4c1f0dd2f5275b4553ce2407f113412a97f45f351beb923af"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "DE",
+                  "kilogram"
+                ],
+                "binding_sha256": "801e7a12521414dca7ae303f634cd5d8d3cd6b36c54df151a01c73a59f7a465d"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "DK",
+                  "kilogram"
+                ],
+                "binding_sha256": "f76efa4594e2e70db7a87df0108abe4f34161b700c9fabc08f517b9ff0888c12"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "EE",
+                  "kilogram"
+                ],
+                "binding_sha256": "1f5b88f3e2b9d67855eaa8e068ac4db0756870932566048ece5b3176044e4598"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "ES",
+                  "kilogram"
+                ],
+                "binding_sha256": "5a356f1c903338809b85dbf1c5cc093a743ad81b97842ae5174aba44807258b2"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "FI",
+                  "kilogram"
+                ],
+                "binding_sha256": "36997a3bbe622dd220ea7e1c71be7a5778c0b8d4e6ad2ca3e558d432d7b05e24"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "FR",
+                  "kilogram"
+                ],
+                "binding_sha256": "4d900014b58f6aa761eb9be74841097bb1b8c58d5cb2cabb39f3e0df24c19e05"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "GB",
+                  "kilogram"
+                ],
+                "binding_sha256": "141626ef9f0bc84ca9252d26724d671f4efff5933b83589fa5b27a7249e5cbab"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "GR",
+                  "kilogram"
+                ],
+                "binding_sha256": "11c98dc3e5552a6d8e9905bd4de53f991d19b167411b16fd8ed64728c8e07339"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "HR",
+                  "kilogram"
+                ],
+                "binding_sha256": "3756160528217391bc1edd59ea3d2006d5baf304e6e9f66389e64efaef5cda36"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "HU",
+                  "kilogram"
+                ],
+                "binding_sha256": "6ed28e72343e4b25715088eedadab999c7f740ed71cf5cd4887387f57685fb9c"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "IE",
+                  "kilogram"
+                ],
+                "binding_sha256": "62e0eff047ade0ca49f909e1081f2bd84f3c25074fe48d7395cf49617c7e4d48"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "IS",
+                  "kilogram"
+                ],
+                "binding_sha256": "746725fb0e8fade16a68d041d2c5eb3898f843b546c116c7de4f50154ecb73ce"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "IT",
+                  "kilogram"
+                ],
+                "binding_sha256": "ef954091c0de3129993d1f769daa93d4e51204bcd17444931cabdbfb322d4bed"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "LT",
+                  "kilogram"
+                ],
+                "binding_sha256": "94be00eef7ed21ffed5e6540e802efd19e1a310bbe548d43d71c3f31a6feca73"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "LU",
+                  "kilogram"
+                ],
+                "binding_sha256": "48d684ae0dfbe5912c0b682313440a072c0ac0a330d6d453847e89a59ef07838"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "LV",
+                  "kilogram"
+                ],
+                "binding_sha256": "0a611785a9a5752889c2bc787a53e765424704327fc4e24f4a7739aa1c51587a"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "ME",
+                  "kilogram"
+                ],
+                "binding_sha256": "2395e35883f1708d56620ccbc8782ca65716a8f8aeb18c4e2dff5f9c9033eb8d"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "MK",
+                  "kilogram"
+                ],
+                "binding_sha256": "2d6bca0e00a27a710facab8c62f8984e3eeaa4c8125003fc4decdb50721316a4"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "MT",
+                  "kilogram"
+                ],
+                "binding_sha256": "a0bebb92cf241ed06af1861883862f1adb204b76031e515ac3519a58370bb6d6"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "NL",
+                  "kilogram"
+                ],
+                "binding_sha256": "3e807c7d8f9d0f6932b004a497c3a4d08449bdc1965f57d850b87333a58d15ad"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "NO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e404836927ffaf00f205e612a71705c3c660abbe7017ad04dbd4babd5c0789bb"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "PL",
+                  "kilogram"
+                ],
+                "binding_sha256": "24517ac8d910e84bae87afab6315ccac985373d027053658569e18ff591a96b5"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "PT",
+                  "kilogram"
+                ],
+                "binding_sha256": "2ade84f1b0f05ef2abfccdb907bc458069c399fb45547cc549c92b7833444f6c"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "RO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d904e625414c3e99441874277b68c2e172e52f60e8072406582b6cfbb5dee98a"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "RS",
+                  "kilogram"
+                ],
+                "binding_sha256": "7df2fb2df3fa6b74a8a3b62b77d2ddf074de7ba8e717efc3d30c19ffb0dd0c3c"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "SE",
+                  "kilogram"
+                ],
+                "binding_sha256": "ee9806e80be5db8362c2e1b96dca092120356a6532ce1c5145851c2bc017f320"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "SI",
+                  "kilogram"
+                ],
+                "binding_sha256": "e876fee49efef6be72452f46e000a506e3fdcfe029a0fea286ac719511963d35"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "SK",
+                  "kilogram"
+                ],
+                "binding_sha256": "aab367d7e3b6c8599b870fb61076223d4c795dfcea3c0c448eefbec433f47a81"
+              },
+              {
+                "source": [
+                  "market for waste polyethylene",
+                  "waste polyethylene",
+                  "XK",
+                  "kilogram"
+                ],
+                "binding_sha256": "322f2ce1da3bf98806bbc465b176178f720f00196db27d351ada39a2c34fdbe5"
+              },
+              {
+                "source": [
+                  "market group for waste polyethylene",
+                  "waste polyethylene",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "f093d01895491862a81d8f2084124029ad6ce4936979d428db5d39256261cf1d"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, municipal incineration",
+                  "waste polyethylene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "7b576ccee434760629e776a1149f3efe436bdeffe846b4829893a4e4aa334982"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, open burning",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2c9bcf6f0ecdd7967a4528c25a753717d3d7c03588256e7f97f8b4831e096fd9"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, open dump, dry infiltration class (100mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8473e5a2777cf46ebeb9537a1de7038de24e5b5defd1cad0ff9ca747b6cd5ee7"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, open dump, moist infiltration class (300mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b3ac1263a23f9547f0c0d895ba75107ef082cf01fdf3fd5d8f5538f7879ff29"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, open dump, very wet infiltration class (1000mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "91791d46b15ff53e2fc31366ade4a810027bdccc76e6aacea3e7c81b6e72008e"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, open dump, wet infiltration class (500mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d2383853a39adaf360d9b97eacd78752f0d70c400f8b53cbe264edc3e9cf2f05"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, sanitary landfill",
+                  "waste polyethylene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "6f811aa71b46902fe8817ad0dcea0a5d4e86f6d8cc91b2fc77afe603dfbfd315"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "5c2534434f81717396c41ebd84bd582385598da45dd9d8d602ba7c4aaea90af4"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "310488d2890dcad4547a8d5159be902f17007c5e716b969d8c82e54b51716c68"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4b26fcb111fb9f943a75c4a9fe76a2ba4774dd9128b80e271f7e416658b2d0ef"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polyethylene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2fc46d061710577aebaf659168d75e87d89b9bc3c163f1de282a6abf751a5728"
+              }
+            ]
+          }
+        ],
+        "limitations": "Preserve the actual3.9Europe-without-Switzerland PE/PP final-collection route, which already delegates one kg to a polyethylene-waste market group. Retain that original PE proxy for mixed PE/PP; do not infer a PP share or introduce a new polymer-grade model. The group has35exact deterministic country weights, each with its actual incineration/sanitary/unsanitary/open-dump/open-burning shares. Flatten only those deterministic country weights into each original market exchange with supported signed uncertainty scaling; preserve individual freight entries and do not renormalize or collapse fates. All uncontrolled source suppliers retain complete signed biosphere inventories and, where present, their two existing reviewed operating services. All943source elementary exchanges are represented through9shared source-treatment helpers using exact publisherUUID/unit/fullreceiving-context ecoinvent3.10 definitions. CAS/name metadata changes remain warnings without chemical/speciation or compartment factors. Controlled incineration and sanitary-landfill shares use complete native polyethylene0.4%-water services; all44declared composition/heating-value coordinates match native2026, unknown entries stay unknown, and carbon is fossil. Native2025comments are shorter but full inventories and positive kg references are inspected; direct native2025/26technosphere vectors agree within1e-12. Complete controlled services retain their original energy, ash/landfill, allocation, emissions, vintage, geography and upstream biosphere exclusions, which differ from source3.9; impact-score effects remain unquantified and no LCIA equality is claimed. No source emissions or operating inventories are added to the complete native controlled services. Preserve original country collection tkm through the exact previously reviewed complete RER road fleet; native vehicle/EURO/loading/fuel/vintage differences remain warnings. The former whole-building-disposal endpoint adds its own0.01tkm and100%incineration; neither is substituted for the actual source group. Add no second transport, recovery credit, fuel, machinery, moisture/dry-mass/heating-value/density/lifetime multiplier or physical omission. Source parent/group/country and uncontrolled inventories contain no parameters or formulas. The original lognormal parent-to-group exchange remains on its own nested helper link without flattening or duplicating its uncertainty; caller formulas/uncertainty/ownership and separate emissions remain. Root negative waste reference-1 maps to positive treatment withfactor-1. Only this exact source3.9cutoff route is admitted; no CHFAE, other release, unsupported biosphere, inverse or cross-model route is authorized. Raw child hashes freeze drift and do not approve their unrelated heuristic endpoints.",
+        "source_country_markets": [
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "RO",
+              "unit": "kilogram"
+            },
+            "weight": 0.03603564146728493,
+            "source_metadata_sha256": "c35e61affea977e6e9cf4c7fe83f8176ecfd4aa9257b244e7e8187d15ac5aa00",
+            "source_inventory_sha256": "c16015b3b692cadf7c33fb92e6d27a170755c33ff462fe31869e881990698c0c",
+            "treatment_share_sum": 0.9999999999999993
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "LU",
+              "unit": "kilogram"
+            },
+            "weight": 0.0019270829947662528,
+            "source_metadata_sha256": "4b5ac4459aeb7fcde610d50fd880bcde38e6a062b441a94f9e36c3bf29025c1d",
+            "source_inventory_sha256": "0ade630621698b711d73561cdc4d041585ff6237748a15d6891970e6190d28b0",
+            "treatment_share_sum": 1.0
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "FI",
+              "unit": "kilogram"
+            },
+            "weight": 0.01540261093078845,
+            "source_metadata_sha256": "8d9ba38b947d8e45f4e84555174aea2d2b92845cfee1633b6e4c333f5ab4499b",
+            "source_inventory_sha256": "3eddae6511e075c90de4af1e6fc4b6b7aad37cba848650a787c07a8565401906",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "AT",
+              "unit": "kilogram"
+            },
+            "weight": 0.013462765132159039,
+            "source_metadata_sha256": "1c8e008b4f7b0d98d7325953f7ff2467fccaf99e41438ab65eb9c9dfc2323802",
+            "source_inventory_sha256": "072ca30f1bb28844d6ee8201e2c029f2a641abf379a4c93eb0935c321d3d7ac1",
+            "treatment_share_sum": 0.9999999999999997
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "FR",
+              "unit": "kilogram"
+            },
+            "weight": 0.08889698318104061,
+            "source_metadata_sha256": "8750227fe86475bf77ccd4e753082c2a0ac48d4cdd88a5991b8c5328badc84ae",
+            "source_inventory_sha256": "c861b53cf299290a414b163f8e36182481aad50d799e15bfc79c84bf1f0faba2",
+            "treatment_share_sum": 1.0000000000000004
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "GB",
+              "unit": "kilogram"
+            },
+            "weight": 0.07508985374130975,
+            "source_metadata_sha256": "4184342c92a76f5317588263e5e400f16e75d6d9c174c854ce54c301bc845b0d",
+            "source_inventory_sha256": "e8860767af4ceacee23f0c752d9404ae2c8bb01c6f20cc3cdff6baf8b7476809",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "LV",
+              "unit": "kilogram"
+            },
+            "weight": 0.003916183625859295,
+            "source_metadata_sha256": "589b190096d455a6e8b1fe993031f6e11e9127220d6772962b6189483725eacf",
+            "source_inventory_sha256": "14a35e193e1effa241580b2f555ef6b265284f7740257c0a58e641421838507f",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "BE",
+              "unit": "kilogram"
+            },
+            "weight": 0.005710729019542069,
+            "source_metadata_sha256": "60aeabc14abb02c1d6b3d175cc129a22e87734239ef341a358e87e3e8f974f14",
+            "source_inventory_sha256": "2b516432746d6186c6b671b37187350d60e5f26398f18216e3baa4683279aa1c",
+            "treatment_share_sum": 0.9999999999999999
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "BG",
+              "unit": "kilogram"
+            },
+            "weight": 0.015032017633294783,
+            "source_metadata_sha256": "c41078a93898401a20ca86b454e5fbf3239ec26e601be4ffe1524caec556e66b",
+            "source_inventory_sha256": "7420c59ba26f25fcda588037188870d639e21c1c3a356a95bddbfdbaa63eef93",
+            "treatment_share_sum": 1.0
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "EE",
+              "unit": "kilogram"
+            },
+            "weight": 0.0023264272255505546,
+            "source_metadata_sha256": "c70ec8624ee8215ee8127fd825da379730fceef31a31cfcae202f723f5096cb7",
+            "source_inventory_sha256": "78b693e3422025c990b85814b37d192eaae62ceb60f7b84eed6356045e3ede35",
+            "treatment_share_sum": 0.9999999999999997
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "RS",
+              "unit": "kilogram"
+            },
+            "weight": 0.022500202837569407,
+            "source_metadata_sha256": "0ee89f9b1b08bb296a97bcdc1a5c7632029a71a89dff6bf9dc79f11f3dc384fe",
+            "source_inventory_sha256": "ae7de643a2e57065115371f7552928e8a892846f784d9e6a9ba9af236209f7e3",
+            "treatment_share_sum": 1.0000000000000004
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "SI",
+              "unit": "kilogram"
+            },
+            "weight": 0.0028787849044226545,
+            "source_metadata_sha256": "58ebd32edd4f00a926eaac56f5a7535a65180714d9a4777f085b3aa3a0e155aa",
+            "source_inventory_sha256": "7cde03e22d701443f83379649a2e7212b4e7243539b9e4822bbeef4308c6b15a",
+            "treatment_share_sum": 0.9999999999999999
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "PT",
+              "unit": "kilogram"
+            },
+            "weight": 0.019170296857640254,
+            "source_metadata_sha256": "c889eb66af6148653ae5d4e10d3d75babeb1f0d5a792f3660723b57e760d12d9",
+            "source_inventory_sha256": "3c331f9a5b035f127e3e61bd352c3d94fb80fae3da33215ec67b9ce53e8ce8c0",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "CZ",
+              "unit": "kilogram"
+            },
+            "weight": 0.0020146332813455,
+            "source_metadata_sha256": "09755e7f4590489b571c46f31ed458ab5e386776e1292dbf007caf396b4709a0",
+            "source_inventory_sha256": "13d764e2f5f3b7d76374c9ddd30d35fead7fb3bc05de9cd4bb961035ed18b31a",
+            "treatment_share_sum": 1.0
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "PL",
+              "unit": "kilogram"
+            },
+            "weight": 0.01826823887874429,
+            "source_metadata_sha256": "5af72575ceae8e31b16f84a69d91e6d11ad3b690715621c547492436ce1b6bc0",
+            "source_inventory_sha256": "9983674200191b52b142d06c67723e62b15e1879c72a6c178cbf9cb2d1569f48",
+            "treatment_share_sum": 0.9999999999999998
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "MK",
+              "unit": "kilogram"
+            },
+            "weight": 0.008183683477709073,
+            "source_metadata_sha256": "6e1ea0f2b23e6b14df461c8d0c8517a4e999557cc66b75085ac642a5d4632a7b",
+            "source_inventory_sha256": "c301c801bc2a76c14b0e8afcdd4e908c7d21a6556883936190a672c6905512f7",
+            "treatment_share_sum": 0.9999999999999993
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "BA",
+              "unit": "kilogram"
+            },
+            "weight": 0.007361130097592478,
+            "source_metadata_sha256": "eb8e2cd796f7d1e03b976f48922d34f5032b8164da758a3a359c28aed9f0e3fb",
+            "source_inventory_sha256": "795172cd3b4753beb1e26daee636c185c8bfa9cbb42557bb3ec79e4af30e3790",
+            "treatment_share_sum": 0.9999999999999996
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "NL",
+              "unit": "kilogram"
+            },
+            "weight": 0.05384306993086718,
+            "source_metadata_sha256": "e7fb61b33c1e5f43c82f2a2b45dcc6707f5ce39353d6bf1dcfa4c1ffe69dac9b",
+            "source_inventory_sha256": "397bb8924d4d6d8de1dc2ca33405e72ebf162233341221ab4424dc4c3d8d870f",
+            "treatment_share_sum": 1.0000000000000004
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "DK",
+              "unit": "kilogram"
+            },
+            "weight": 0.022350624613368952,
+            "source_metadata_sha256": "f5759c8585d5fa03f6bff05850d16c782f6175b2cbf77bf3466ff4fd9ae38acb",
+            "source_inventory_sha256": "a4cceef8159591170e7eadf835d00f33d9d113e5bbff3aace09e58a01bc5d79d",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "IS",
+              "unit": "kilogram"
+            },
+            "weight": 0.000598948819074258,
+            "source_metadata_sha256": "548db500cbd62c1ae03d1c46986148105b61b09e8ac3824763f708b9d3a6a71a",
+            "source_inventory_sha256": "fb9c92712441e9ba9955bfdf53d9a4b40b1290d4163f3ae1a8b5afc938d4e4dd",
+            "treatment_share_sum": 0.9999999999999999
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "NO",
+              "unit": "kilogram"
+            },
+            "weight": 0.009360060337620334,
+            "source_metadata_sha256": "01f4e20b0246c030e7ff10947eb39d31e2663ad2d528b335e726c6fb5637d51a",
+            "source_inventory_sha256": "d67fb25d81fbd16e9923edda8b24c312284128be14cfc72b8056857bc81c0cf1",
+            "treatment_share_sum": 1.0000000000000004
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "AL",
+              "unit": "kilogram"
+            },
+            "weight": 0.0053917360312133065,
+            "source_metadata_sha256": "212986543b5bae9e67083888c17d834633e31e9944079ff552998496250ebaf5",
+            "source_inventory_sha256": "8817e3b254ce7978e399d61f79feefdb06e4059a5faa6f4ea72ffab9942dd140",
+            "treatment_share_sum": 1.0
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "LT",
+              "unit": "kilogram"
+            },
+            "weight": 0.0055372682746026485,
+            "source_metadata_sha256": "1a59fc9d409a8b17c5e5ec009512266962b2e78ce41df62ddc9247d021f9a7e9",
+            "source_inventory_sha256": "b81176a439e9824e66e71d15e39fa2e9a2cb782b7b153b3f820a05dd134c1cc8",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "ME",
+              "unit": "kilogram"
+            },
+            "weight": 0.0015212875642773218,
+            "source_metadata_sha256": "0cf3acd7711a28ba39a37c81e3982c2e11690952a31d19e845c85c956a73ac6a",
+            "source_inventory_sha256": "1d2b514d11fd70e4382b05f63c78e22f168ddab608bb399aebaf5f9755e40566",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "ES",
+              "unit": "kilogram"
+            },
+            "weight": 0.13374141484466762,
+            "source_metadata_sha256": "3e3f2d3a68def3501aa9315005fcfd58835380200c463d027ced6c4af3d333e8",
+            "source_inventory_sha256": "fa85f416b887c5208eb3c263b9ddd3c2b095764457e3fdbf646ea688f366cf87",
+            "treatment_share_sum": 0.9999999999999991
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "SK",
+              "unit": "kilogram"
+            },
+            "weight": 0.0033686655568602297,
+            "source_metadata_sha256": "7f1170ba99176056756fcd860738803bbbad6d75c5a231c12a310a5b5a6bd34d",
+            "source_inventory_sha256": "5c2b59e9d1f6646fc58a3fca8b4f3c00687924cf8a95b7d991944b8f68c6e698",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "HR",
+              "unit": "kilogram"
+            },
+            "weight": 0.013032542846521443,
+            "source_metadata_sha256": "03d383fb043b65a5b6ad225a0c2aec9b34fc46f24e707b2521e107b3c2b5e9d2",
+            "source_inventory_sha256": "06edbe0e06a5c264208fb63adda4ab21f0c5d8045e3a9e1eb61c4807dd96a60e",
+            "treatment_share_sum": 1.0000000000000002
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "XK",
+              "unit": "kilogram"
+            },
+            "weight": 0.002080328905790325,
+            "source_metadata_sha256": "d545fb2ad6309d39b5090b884555cd8bb23a98598c678b8ffe7db0c218d46e44",
+            "source_inventory_sha256": "42ce148581225433b137b6562892cf52ee903ad80626dcf9a78ac976a31aa421",
+            "treatment_share_sum": 0.9999999999999999
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "SE",
+              "unit": "kilogram"
+            },
+            "weight": 0.023167842850724304,
+            "source_metadata_sha256": "311586a1f8283cfc4ae02d84127acce9747948f90f7003def108c4ef6c9c322a",
+            "source_inventory_sha256": "9fa26b913bce63b376a6b5b5e6199e5a57dbce2e27ef026d51afb2d201efd055",
+            "treatment_share_sum": 0.9999999999999998
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "MT",
+              "unit": "kilogram"
+            },
+            "weight": 0.0020566335225357542,
+            "source_metadata_sha256": "9b1030520ac62be99d4ab6f6a813b6451d1d37d8747dc610e970cec6ae1290c2",
+            "source_inventory_sha256": "1b9f5d0e0ac14de0210f7e18a8fad624c669d28c34cc0b105996074e20523c23",
+            "treatment_share_sum": 1.0000000000000004
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "IT",
+              "unit": "kilogram"
+            },
+            "weight": 0.15845632332005136,
+            "source_metadata_sha256": "756c49203dd68d79ebaae22e1ffbae5ae73432888ce66ff839deacb1fbcf637b",
+            "source_inventory_sha256": "0916d230654cb063eb87029f96c45340eae011256b7630a74e08f610ec844552",
+            "treatment_share_sum": 0.9999999999999999
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "GR",
+              "unit": "kilogram"
+            },
+            "weight": 0.027969894648490843,
+            "source_metadata_sha256": "92164dbc062ca38625e36e0fb139a9aa82386ffad9ab3c513b0bcdc32459a664",
+            "source_inventory_sha256": "5c86188e195858852c5bf6cea174f09260b8b0e54751946b3f30988b9893dbf5",
+            "treatment_share_sum": 1.0000000000000004
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "weight": 0.170244083714134,
+            "source_metadata_sha256": "99586c0eabdc3197932c29c8d52210012b0f333a0045a883ceb45dd37aa6a7fb",
+            "source_inventory_sha256": "b5202aacf20d6c3ed0caa4c5e1b0c69f83045118bd846c323438c308dc623dbc",
+            "treatment_share_sum": 0.9999999999999999
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "IE",
+              "unit": "kilogram"
+            },
+            "weight": 0.015211898780550678,
+            "source_metadata_sha256": "d9cd5ea1d960e6aeb923e14011c8bc17ed0ea9698c4c6f9436b92b4acdf07d7a",
+            "source_inventory_sha256": "6e18d02448869751e72ab12432244e0a1228f5412feb2a96839c7df2d281e7fb",
+            "treatment_share_sum": 0.9999999999999996
+          },
+          {
+            "identity": {
+              "name": "market for waste polyethylene",
+              "reference product": "waste polyethylene",
+              "location": "HU",
+              "unit": "kilogram"
+            },
+            "weight": 0.013890110152030106,
+            "source_metadata_sha256": "8673a88c88c2f528cab07043cfbb3f2b471673ca6ab8d7473e0e8536dcce0f34",
+            "source_inventory_sha256": "7cecc9427c0e4f834185478a3de3a9394de44e781be8fe7d9159ca4596fde8c3",
+            "treatment_share_sum": 0.9999999999999999
+          }
+        ],
+        "source_fate_shares": {
+          "incineration": 0.5356444381313915,
+          "sanitary landfill": 0.2788696758791017,
+          "open dump": 0.04964346839649059,
+          "unsanitary landfill": 0.12117748070319079,
+          "open burning": 0.014664936889825446
+        },
+        "source_group_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market group for waste polyethylene",
+            "reference product": "waste polyethylene",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "3549e2f9876e93df0bfd77df67573593441a01637faf01a79d6068d4104c8ca8",
+          "inventory_sha256": "57e915d93011764bdde0e451f4465cdc19cb994249b7c6cf1c351e33af12fa09"
+        },
+        "source_group_recipe": "pilot-pe-country-group-842c444854655b67d1e6",
+        "source_group_exchange": {
+          "amount": -1.0,
+          "uncertainty type": 2,
+          "loc": 0.0,
+          "scale": 0.044721359549995794,
+          "pedigree": {
+            "reliability": 1,
+            "completeness": 1,
+            "temporal correlation": 1,
+            "geographical correlation": 5,
+            "further technological correlation": 1
+          },
+          "scale without pedigree": 0.044721359549995794
+        },
+        "unmapped_child_drift_notes": []
+      },
+      "limitations": [
+        "Preserve the actual3.9Europe-without-Switzerland PE/PP final-collection route, which already delegates one kg to a polyethylene-waste market group. Retain that original PE proxy for mixed PE/PP; do not infer a PP share or introduce a new polymer-grade model. The group has35exact deterministic country weights, each with its actual incineration/sanitary/unsanitary/open-dump/open-burning shares. Flatten only those deterministic country weights into each original market exchange with supported signed uncertainty scaling; preserve individual freight entries and do not renormalize or collapse fates. All uncontrolled source suppliers retain complete signed biosphere inventories and, where present, their two existing reviewed operating services. All943source elementary exchanges are represented through9shared source-treatment helpers using exact publisherUUID/unit/fullreceiving-context ecoinvent3.10 definitions. CAS/name metadata changes remain warnings without chemical/speciation or compartment factors. Controlled incineration and sanitary-landfill shares use complete native polyethylene0.4%-water services; all44declared composition/heating-value coordinates match native2026, unknown entries stay unknown, and carbon is fossil. Native2025comments are shorter but full inventories and positive kg references are inspected; direct native2025/26technosphere vectors agree within1e-12. Complete controlled services retain their original energy, ash/landfill, allocation, emissions, vintage, geography and upstream biosphere exclusions, which differ from source3.9; impact-score effects remain unquantified and no LCIA equality is claimed. No source emissions or operating inventories are added to the complete native controlled services. Preserve original country collection tkm through the exact previously reviewed complete RER road fleet; native vehicle/EURO/loading/fuel/vintage differences remain warnings. The former whole-building-disposal endpoint adds its own0.01tkm and100%incineration; neither is substituted for the actual source group. Add no second transport, recovery credit, fuel, machinery, moisture/dry-mass/heating-value/density/lifetime multiplier or physical omission. Source parent/group/country and uncontrolled inventories contain no parameters or formulas. The original lognormal parent-to-group exchange remains on its own nested helper link without flattening or duplicating its uncertainty; caller formulas/uncertainty/ownership and separate emissions remain. Root negative waste reference-1 maps to positive treatment withfactor-1. Only this exact source3.9cutoff route is admitted; no CHFAE, other release, unsupported biosphere, inverse or cross-model route is authorized. Raw child hashes freeze drift and do not approve their unrelated heuristic endpoints."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e32b64bd649e62d99f7a0476cb3b8d0288995c31641bd87ab1f744c57056ea5c"
+        }
+      ]
     }
   ]
 }

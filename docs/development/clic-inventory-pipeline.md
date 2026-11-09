@@ -777,10 +777,27 @@ cases, ten storage cases and twenty-one focused Premise cases pass. The actual
 migrated three-record graph gives finite LCI on unchanged native matrices;
 one residual-correction step resolves the independently ordered solves' initial
 rounding difference without changing coefficients. Full authoring replay is
-byte-identical. The current frontier is 36 rules / 41 exact-profile cases and
+byte-identical. That checkpoint's frontier was 36 rules / 41 exact-profile cases and
 307 fingerprints. Other TEG source releases, the paperboard approximation and
 other pending scientific decisions remain refused. Scenario certification and
 prospective export remain completion gates.
+
+`uvek_pilot_pe_collection_review.json` preserves the exact 3.9 European PE/PP
+collection route through its existing PE market proxy, 35 country weights and
+five original treatment fates. A separate helper retains the uncertain
+parent-to-group link; deterministic country weights scale only the original
+market exchanges, with individual freight entries and uncertainty preserved.
+Complete native controlled services match all 44 declared composition
+coordinates. Nine source helpers retain 943 uncontrolled-treatment elementary
+exchanges using exact canonical 3.10 flow identities, plus reviewed operating
+services. No physical release or treatment branch is omitted. Fourteen new
+Brightpath cases, ten storage cases and twenty-one focused Premise cases pass;
+the actual twelve-record migrated graph gives finite LCI on unchanged native
+matrices. Byte-identical generator replay and isolated installed-wheel migration
+also pass. All earlier fingerprints, recipes and reviews remain unchanged.
+The current frontier is 35 rules / 40 exact-profile cases, with 308 approved
+fingerprints. The full scenario, certification and prospective export remain
+unvalidated; pending scientific proposals are still refused.
 
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,

@@ -180,10 +180,10 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 10 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 21 |
+| 3.9 | 17 | 20 |
 | 3.12 | 8 | 10 |
 
-These are 41 exact-profile cases involving 36 distinct rules, after reusing
+These are 40 exact-profile cases involving 35 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -632,10 +632,32 @@ as do twenty-one focused Premise cases including cold/warm cache and refusal
 guards. These results do not establish impact-score equivalence or a completed
 prospective scenario.
 
+The exact 3.9 Europe-without-Switzerland PE/PP collection route now preserves
+its 35 country shares and all five treatment fates. The source's existing PE
+proxy remains explicit. A separate helper retains the original uncertain
+parent-to-market-group link, including lognormal parameters and pedigree.
+Country collection retains 0.0741339889974 tkm per kg across 35 individual
+entries, without adding the former building-disposal wrapper's extra transport.
+Complete native incineration and sanitary-landfill services match all 44 declared
+composition/heating-value coordinates; nine complete source helpers retain all
+943 uncontrolled-treatment elementary exchanges and their marginal uncertainty.
+Canonical flow bindings use the same publisher UUID, unit and receiving
+compartment in ecoinvent 3.10, with metadata differences warned.
+
+The actual twelve-record migrated graph has a finite LCI on unchanged native
+matrices. One residual-correction step reduces independently ordered supply
+solutions' relative difference from 3.74 × 10⁻⁹ to 5.14 × 10⁻¹⁶, without changing
+coefficients. Fourteen new Brightpath cases, ten storage cases and twenty-one
+focused Premise cases pass, including cold/warm cache replay. Full authoring
+replay is byte-identical, and installed-wheel migration retains the same graph.
+All 307 earlier fingerprints, 3,213 recipes and 694 reviews remain unchanged.
+This adds one exact-profile scope and eleven recipes; it does not establish
+LCIA equivalence or complete the prospective scenario.
+
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 307 exact-profile fingerprints, with review evidence and
+ledger contains 308 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
