@@ -660,6 +660,15 @@ All 307 earlier fingerprints, 3,213 recipes and 694 reviews remain unchanged.
 This adds one exact-profile scope and eleven recipes; it does not establish
 LCIA equivalence or complete the prospective scenario.
 
+An [inspection of the nitrate-salt supply](uvek-nitrate-supply-findings.md)
+also identifies allocated reused-salt burdens and technical-grade component
+dependencies behind one refused parent. The 14 inspected source records form
+an acyclic graph supported by the existing recipe format. They reference
+125 external suppliers; 21 have exact existing approval scopes. The rest need
+inspection or existing pending decisions, and may reuse standing reviews where
+their scope applies. No nitrate mapping is enabled. This expansion shows why
+the parent-rule count alone does not measure the remaining work.
+
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
