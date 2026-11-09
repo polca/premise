@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 16 |
+| 3.6 | 27 | 15 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
 | 3.9 | 17 | 28 |
-| 3.12 | 8 | 14 |
+| 3.12 | 8 | 13 |
 
-These are 58 exact-profile cases involving 51 distinct rules, after reusing
+These are 56 exact-profile cases involving 49 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -451,10 +451,24 @@ claimed. The source grain-oriented electrical-steel producer has no technosphere
 exchanges and 2,747 biosphere exchanges: its aggregated upstream inventory
 cannot be relinked to UVEK by a primitive replacement. The reinforcing-steel
 and generic-organic-chemical substitutions remain refused.
+Two generic alumina profiles, the positive 3.6 refiner co-product and the 3.12
+market, retain signed oxide kg at factor +1 using complete native aluminium
+oxide production. The native process's original EAA report confirms calcined
+Al2O3 as its output basis. Its Bayer extraction and calcination are included
+once; no hydroxide-feed multiplier or extra calcination is introduced.
+This supplies generic oxide stock without establishing application-grade,
+purity, phase or particle-size equivalence. Source co-product allocation,
+primary/recycled supply, delivery and vintage differences remain warnings.
+Thirteen focused checks pass, the shared native supplier LCI is finite with
+unchanged scientific hashes, and all 289 earlier fingerprints remain valid.
+No raw migration rule is changed. Wheel checks verify the packaged review,
+its authorization evidence and manifest. The module contains 622 cases;
+no full 622-case run is claimed. The 3.7/3.8 cohorts still complete, while
+the three other cohorts remain refused.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 289 exact-profile fingerprints, with review evidence and
+ledger contains 291 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

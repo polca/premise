@@ -633,6 +633,19 @@ all 287 earlier fingerprints remain valid and generator replay is byte-identical
 Xanthate and electrical-steel substitutions remain refused; the latter source
 contains an aggregated biosphere inventory without technosphere links.
 
+`uvek_pilot_generic_alumina_review.json` covers the exact 3.6 positive oxide
+co-product and 3.12 oxide-market profiles. Generic Al2O3 stock uses the complete
+native Bayer extraction/calcination process at factor +1 per signed kg, without
+adding a hydroxide-feed multiplier or a second calcination step. The original
+EAA report confirms the native calcined-oxide output basis. No specialized
+purity, phase, particle size or application-grade equivalence is asserted;
+allocation, supply, delivery and vintage differences remain warnings. Thirteen
+focused checks pass, the shared native LCI is finite with unchanged scientific
+hashes, all 289 earlier fingerprints remain valid and packaged review bytes
+and authorization hashes are verified. No raw rule changes. The current
+frontier is 49 distinct unresolved rules / 56 exact source-profile cases,
+with 291 approval fingerprints. The full prospective pilot remains refused.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

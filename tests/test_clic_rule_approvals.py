@@ -565,6 +565,8 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-4529f104ab14ba19", "3.12"),
         ("bp-07d1ab8592869587", "3.6"),
         ("bp-84737a1a1790ee76", "3.6"),
+        ("bp-2d7bd6f9508a4c17", "3.6"),
+        ("bp-b16c64b2ed0f8102", "3.12"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -840,6 +842,8 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-07d1ab8592869587",
         "bp-84737a1a1790ee76",
         "bp-9f820f97f9f3c080",
+        "bp-2d7bd6f9508a4c17",
+        "bp-b16c64b2ed0f8102",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1073,6 +1077,8 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
         ("bp-4529f104ab14ba19", "3.12", "Do not add hot rolling"),
         ("bp-07d1ab8592869587", "3.6", "net tkm"),
         ("bp-84737a1a1790ee76", "3.6", "secondary billets"),
+        ("bp-2d7bd6f9508a4c17", "3.6", "positive oxide reference"),
+        ("bp-b16c64b2ed0f8102", "3.12", "without a 1.53 hydroxide-feed multiplier"),
         ("bp-6ce52de989145df6", "3.12", "without wood-density"),
         (
             "bp-8a37fb9191501441",

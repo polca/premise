@@ -20438,6 +20438,281 @@
           "fingerprint": "816e2df81750a22ead65dff654272a241d7ced331f8d4ff53cd05e732abdd4ff"
         }
       ]
+    },
+    {
+      "rule_id": "bp-2d7bd6f9508a4c17",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_pilot_generic_alumina_review.json",
+      "review_sha256": "12f629101bbfb53c1d421335dd8f4f3a5fdf5a0f63e585a051e7d1546f70a257",
+      "authorization": "Standing independently inspected same generic compound/function/mass-unit and geographic supply-proxy approval. The actual source products and native CAS 1344-28-1/formula Al2O3 identify generic oxide stock; the original EAA report resolves the native extraction/calcination and output mass basis. Neither source specifies a quantified purity, phase or engineered-particle requirement that is being substituted. Do not extend this decision to aluminium metal, hydroxide feedstock, a particular abrasive/ceramic grade, new chemistry, omitted exchange, helper or recovery model. Only the enumerated exact cut-off profiles are admitted.",
+      "inspection": {
+        "rule_id": "bp-2d7bd6f9508a4c17",
+        "source": {
+          "location": "RER",
+          "name": "treatment of aluminium scrap, new, at refiner",
+          "reference product": "aluminium oxide, non-metallurgical",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium oxide, at plant",
+          "reference product": "Aluminium oxide, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "7c0d7ec4f0b5a59578fc8a718e08ee0349c81607b60a2f020af2330cc29a388c",
+            "inventory_sha256": "b8182ebdaa977a954cd43f009ef26018bc35fddc2ae5393a01b523601cfd80ab",
+            "activity_comment_sha256": "d03dc93790d4263a6fd968abb8565c5c5efbbcd9d360abb9f9f951faeb4c18cd",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": []
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d88cb51dece7ef6215b76c2b6cc2d29fe706ed5f4820893e4b4fcbfea7151209",
+            "inventory_sha256": "c517cb807d4e0b165327d132899d73ef082c74964039d3edc4f02a7d2392266f",
+            "comment_sha256": "2da13b26479470ba366c77e56b82bb91a346f736d2b2504624fdf2400cc71be8",
+            "direct_technosphere_coordinates": 17
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "6a30d4e79bcf1628b3f2b9f25ea16f9a6a70baa550071464d2d2659ea0773e21",
+            "inventory_sha256": "4389194cee37e885b653ef43a46ccba20e27bd10d547ca171a5a47c3a1b08c0b",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831",
+            "direct_technosphere_coordinates": 17
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Same generic aluminium-oxide product per signed kg, supplied as an allocated non-metallurgical oxide co-product of new-scrap refining. The source has a positive oxide reference despite its treatment activity name; it is not aluminium metal, hydroxide feedstock, an empty recovered stock or a negative-reference waste service. Use complete native Bayer-process Al2O3 supply as the existing same-compound screening proxy at factor +1. Do not apply an aluminium-metal content ratio, a hydroxide-to-oxide molecular factor, a scrap-yield factor, extra calcination or a recovered-material credit. The primary native supply does not reproduce the source co-product/refining route or its allocation. Source/native energy, salt-slag/dross data gaps, regional supply/background, delivery and vintage differ. No specific chemical-grade purity, crystalline phase, particle morphology or end-use performance is established; this approval is only generic Al2O3 stock, not an engineered abrasive or ceramic. Retain native burdens once and separate caller processing/emissions unchanged. Inventory and score effects are unquantified."
+      },
+      "limitations": [
+        "Same generic aluminium-oxide product per signed kg, supplied as an allocated non-metallurgical oxide co-product of new-scrap refining. The source has a positive oxide reference despite its treatment activity name; it is not aluminium metal, hydroxide feedstock, an empty recovered stock or a negative-reference waste service. Use complete native Bayer-process Al2O3 supply as the existing same-compound screening proxy at factor +1. Do not apply an aluminium-metal content ratio, a hydroxide-to-oxide molecular factor, a scrap-yield factor, extra calcination or a recovered-material credit. The primary native supply does not reproduce the source co-product/refining route or its allocation. Source/native energy, salt-slag/dross data gaps, regional supply/background, delivery and vintage differ. No specific chemical-grade purity, crystalline phase, particle morphology or end-use performance is established; this approval is only generic Al2O3 stock, not an engineered abrasive or ceramic. Retain native burdens once and separate caller processing/emissions unchanged. Inventory and score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6d7a564f39a2c8ae6ffb1238d52312af38daf373f2800068617c858ccfe490f2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b16c64b2ed0f8102",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_generic_alumina_review.json",
+      "review_sha256": "12f629101bbfb53c1d421335dd8f4f3a5fdf5a0f63e585a051e7d1546f70a257",
+      "authorization": "Standing independently inspected same generic compound/function/mass-unit and geographic supply-proxy approval. The actual source products and native CAS 1344-28-1/formula Al2O3 identify generic oxide stock; the original EAA report resolves the native extraction/calcination and output mass basis. Neither source specifies a quantified purity, phase or engineered-particle requirement that is being substituted. Do not extend this decision to aluminium metal, hydroxide feedstock, a particular abrasive/ceramic grade, new chemistry, omitted exchange, helper or recovery model. Only the enumerated exact cut-off profiles are admitted.",
+      "inspection": {
+        "rule_id": "bp-b16c64b2ed0f8102",
+        "source": {
+          "location": "RoW",
+          "name": "market for aluminium oxide, non-metallurgical",
+          "reference product": "aluminium oxide, non-metallurgical",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium oxide, at plant",
+          "reference product": "Aluminium oxide, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a459c65145aec1a6de7b884fae5a69aba4998531daaedae4f61390a9ebbf7b3b",
+            "inventory_sha256": "b93c995482cd032393e67819ec8cf109428aaf75d3d684de6f720bf32dfc87cb",
+            "activity_comment_sha256": "537d301d046a7184682eb4bb39a0dc2b8c72533db9758d283880dd9146f04fa6",
+            "product_information_sha256": "867027da42b42e138db6683888f1d789962ca60dbad7e38d7d338d3ee05fe8c0",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "aluminium oxide production",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "IAI Area, Asia, without China and GCC",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "c629f5387fbd5d2b413d0f5e2f91ff4e838921ff13610caf547a47681a07802a",
+                "inventory_sha256": "843905784b06708bed11bf4a50e878ae9d4661c232ea60e066279c574590ed67",
+                "comment_sha256": "e89a9af22e5d14c42387c4d0754b9affd1d6070a5b88941c59f5e37421ec8f98"
+              },
+              {
+                "identity": {
+                  "name": "aluminium oxide production",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "UN-OCEANIA",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "757f0274f852e5ab32fe9750ec5182ce82f87760704fb5f0462fa4684d06f897",
+                "inventory_sha256": "beead6f991043b66d2d1ab6a0d3cda395c6c90ef2754265c4526935839d026cd",
+                "comment_sha256": "e89a9af22e5d14c42387c4d0754b9affd1d6070a5b88941c59f5e37421ec8f98"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at refiner",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "92040f1d40223d0144860f206d27cb7f81a95a07fcc3e01af49f9147ecd615eb",
+                "inventory_sha256": "0635c55483c4d74eff28f6461b8562feb72978c1bd9865397004177a0e250fd5",
+                "comment_sha256": "5f8584763726f68a67d3d6123582544a8c53f2edd8779878f42b9714f0a73f6a"
+              },
+              {
+                "identity": {
+                  "name": "aluminium oxide production",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "RNA",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "dbf96dc6629b441a41241aef3c19b7e29acb61d6bf7190a60ff9c795278329cb",
+                "inventory_sha256": "47b701d79fc648e34b54a1dfe29b97550802c9fd908d6d75f582eefecb87749c",
+                "comment_sha256": "e89a9af22e5d14c42387c4d0754b9affd1d6070a5b88941c59f5e37421ec8f98"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "66596c96aa9e2228f57cd4c19ab4815039fe30f2bda99b4e2e3c1d35baf809b3",
+                "inventory_sha256": "8fd0fa7c6b336fff1eb62b26b88b254085723013a53460c82280c9ce70316c18",
+                "comment_sha256": "2b37c153a80820d58a95a27d07cacd7f853b0ddb6935a99f811366004bf687ee"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "d4569ba9ae13b140374d5afb03e69135ddd8651c353dfcc34e9eae976b0a33fd",
+                "inventory_sha256": "5ba47e083c3fa09e14fbfd0af125d004453bb1dba221fef2741dc9f91b79d45d",
+                "comment_sha256": "0ddf88d89682d8b5931a1868f8b29bedc70be4a3cb892217a35e977213971415"
+              },
+              {
+                "identity": {
+                  "name": "aluminium oxide production",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "CN",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "9c244d17512b6ccbd417b9731975de2e05a1b78704a1f5a94754156739012c92",
+                "inventory_sha256": "b2cabaaf9754681b375fae668ea22016581d6512d46416ee799e2067f18db0a9",
+                "comment_sha256": "e89a9af22e5d14c42387c4d0754b9affd1d6070a5b88941c59f5e37421ec8f98"
+              },
+              {
+                "identity": {
+                  "name": "treatment of aluminium scrap, new, at refiner",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "e629fd8fc9d70fc34f98f6e5ce7dff16064d6e6bae50223cbcffdded77761613",
+                "inventory_sha256": "e2c719a5e5bf721c45165c331ce7929345bb28d533791a3e31b15f3246d289bf",
+                "comment_sha256": "7f7d9742499c9abc10b2d001f2977a7e58adee7452076a57af86ebcfdc549be2"
+              },
+              {
+                "identity": {
+                  "name": "aluminium oxide production",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "IAI Area, Russia and Eastern Europe",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "60dbd7c42f0766d45add8ba904fdd015b66244eb117ab4724d991e28c670b1f8",
+                "inventory_sha256": "3e58c6541f62284383b6be6727e870accc5a929ed251d917eb66caaa2b24fd63",
+                "comment_sha256": "eb36cb62f8005261352650d89b97bd29a6cf029c45cfb96705369a512961fb7a"
+              },
+              {
+                "identity": {
+                  "name": "aluminium oxide production",
+                  "reference product": "aluminium oxide, non-metallurgical",
+                  "location": "IAI Area, South America",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "237629d6834a53ee849e662eb3c63f88002153dbe07a60f63b829f346af3ce5f",
+                "inventory_sha256": "0184b6e0937da2f3006b8059ebad6c050fc267afc6e8bf1601be5f7481eaef55",
+                "comment_sha256": "e89a9af22e5d14c42387c4d0754b9affd1d6070a5b88941c59f5e37421ec8f98"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d88cb51dece7ef6215b76c2b6cc2d29fe706ed5f4820893e4b4fcbfea7151209",
+            "inventory_sha256": "c517cb807d4e0b165327d132899d73ef082c74964039d3edc4f02a7d2392266f",
+            "comment_sha256": "2da13b26479470ba366c77e56b82bb91a346f736d2b2504624fdf2400cc71be8",
+            "direct_technosphere_coordinates": 17
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "6a30d4e79bcf1628b3f2b9f25ea16f9a6a70baa550071464d2d2659ea0773e21",
+            "inventory_sha256": "4389194cee37e885b653ef43a46ccba20e27bd10d547ca171a5a47c3a1b08c0b",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831",
+            "direct_technosphere_coordinates": 17
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Same generic non-metallurgical aluminium-oxide supply per signed kg. The actual 3.12 market has positive-reference primary calcination and recovered oxide co-product suppliers. Its calcination producers receive upstream aluminium hydroxide and supply Al2O3; native full Bayer supply includes extraction and calcination once. The EAA 2013 source report confirms a calcined-Al2O3 output basis, not a kg of wet hydroxide mixture. Preserve signed kg of oxide at factor +1 without a 1.53 hydroxide-feed multiplier, aluminium-metal/purity ratio, added precursor, second calcinator, market reconstruction or recovery credit. Native European 2010 primary data approximate the source regional 2019 primary/recovered supply, transport and allocation; exact route shares, energy, emissions, market delivery, geography and vintage differ. No specific chemical-grade purity, crystalline phase, particle form, application performance or LCIA equivalence is verified; the scope is generic Al2O3 stock. Retain complete native burdens once and separate caller processing/transport/emissions unchanged; score effects are unquantified."
+      },
+      "limitations": [
+        "Same generic non-metallurgical aluminium-oxide supply per signed kg. The actual 3.12 market has positive-reference primary calcination and recovered oxide co-product suppliers. Its calcination producers receive upstream aluminium hydroxide and supply Al2O3; native full Bayer supply includes extraction and calcination once. The EAA 2013 source report confirms a calcined-Al2O3 output basis, not a kg of wet hydroxide mixture. Preserve signed kg of oxide at factor +1 without a 1.53 hydroxide-feed multiplier, aluminium-metal/purity ratio, added precursor, second calcinator, market reconstruction or recovery credit. Native European 2010 primary data approximate the source regional 2019 primary/recovered supply, transport and allocation; exact route shares, energy, emissions, market delivery, geography and vintage differ. No specific chemical-grade purity, crystalline phase, particle form, application performance or LCIA equivalence is verified; the scope is generic Al2O3 stock. Retain complete native burdens once and separate caller processing/transport/emissions unchanged; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "39c5175743b24eb4c1519bc8dc33c4e8ec8668af90c4ee216fbdd962ad27e83c"
+        }
+      ]
     }
   ]
 }
