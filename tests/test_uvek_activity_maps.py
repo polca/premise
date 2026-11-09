@@ -109,11 +109,11 @@ def test_families_share_iam_roles_and_efficiency_metadata(model):
 
 
 def test_missing_uvek_native_mapping_is_explicit_and_never_uses_eci_name():
-    eci_name = "electricity production, deep geothermal"
+    eci_name = "electricity production, at biomass-fired IGCC power plant"
     inv = InventorySet([native(eci_name)], family="uvek")
 
-    assert inv.generate_powerplant_map()["Geothermal"] == []
-    assert "Geothermal" in inv.missing_aliases["electricity.yaml:uvek_aliases"]
+    assert inv.generate_powerplant_map()["Biomass IGCC"] == []
+    assert "Biomass IGCC" in inv.missing_aliases["electricity.yaml:uvek_aliases"]
 
 
 @pytest.mark.parametrize(
