@@ -1,9 +1,18 @@
 # Three sand markets: extraction and allocated-mining decisions
 
-Status: two scientific decisions pending. Private candidates for the required
-3.9 cut-off sand markets in BR, RoW and IN produce finite native-background LCI.
-No sand correspondence, helper or approval scope is enabled. Destination is
-UVEK 2026 cut-off with ecoinvent 3.10 biosphere.
+Status: both scientific decisions explicitly approved by the user and implemented
+for the three exact ecoinvent 3.9 cut-off sand markets (BR, RoW and IN).
+Destination is UVEK 2026 cut-off with ecoinvent 3.10 biosphere. Three market
+recipes and one allocated-mining helper retain all six producer entries and
+17 freight entries. The zinc helper represents allocated burdens, not physical
+zinc addition or a metal-recovery credit. Warnings disclose the approved
+extraction, allocation, moisture, geography and uncertainty differences.
+
+Packaged evidence: Brightpath `export/uvek_pilot_nitrate_sand_review.json`,
+SHA-256 `1044e1a46af4dc1e685a495a0f82409b8ab4fd4c449f9a22d0371f74e806a88e`.
+Three exact Premise scopes are registered; all 362 previous fingerprints remain
+unchanged (365 total). This component checkpoint does not establish full pilot
+scenario, certification, export or LCIA equivalence.
 
 ## Original supply and delivery
 
@@ -104,8 +113,14 @@ Fresh inspection reads 45 market/producer/freight/native candidate records.
 The proposed complete endpoints and all retained market inputs are bound by
 47 fresh records in `sand_screening_fresh_primary.private.json`. Three candidate
 LCI calculations are finite and nonzero with unchanged native scientific
-signatures. These are unapproved component checks, not public conversions,
-comparative LCIA, scenario certification or exports. No source entry is omitted.
+signatures. Those original candidate checks preceded approval. Subsequent checks exercise
+the actual public Brightpath conversions for all three markets and establish
+finite native-background LCI with unchanged source database signatures. The
+25 Premise regression cases verify caller preservation, cold/warm caches,
+portable warnings and refusal of uninspected releases. Installed-wheel
+conversions pass, and full generator replay is byte-identical. These checks
+do not establish comparative LCIA, scenario certification or exports. No source
+entry is omitted.
 
 Private artifacts: `sand_screening_candidates.private.json`, SHA-256
 `4354b9da053cf90c390074a135d1ffd450a80a49360a67a2dc6a0df81b06dee4`,

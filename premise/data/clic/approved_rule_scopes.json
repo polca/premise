@@ -45834,6 +45834,1503 @@
           "fingerprint": "c0e60c8a2053d18cbf70a5ce662da55d98e13e4a9eee0a208f129f287f149517"
         }
       ]
+    },
+    {
+      "rule_id": "bp-7c1a7985c9812410",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_sand",
+      "review_path": "export/uvek_pilot_nitrate_sand_review.json",
+      "review_sha256": "1044e1a46af4dc1e685a495a0f82409b8ab4fd4c449f9a22d0371f74e806a88e",
+      "authorization": "Explicit user replies: Approve extraction proxy with warnings; Approve allocated-mining proxy. Five ordinary extraction entries use complete native Swiss mine sand; RoW zinc-mining coproduct uses source allocation1/95 and59%Zn basis with native contained-Zn beneficiation. Retain all original shares and17freight entries, warn all stated differences and unquantified score effects; no omission, normalization or new recovery credit.",
+      "inspection": {
+        "rule_id": "bp-7c1a7985c9812410",
+        "source": {
+          "location": "BR",
+          "name": "market for sand",
+          "reference product": "sand",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Sand, at mine",
+          "reference product": "Sand, at mine",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.304444,
+          "id": "bp-7c1a7985c9812410",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "BR",
+            "name": "market for sand",
+            "reference product": "sand",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Sand, at mine",
+            "reference product": "Sand, at mine",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "cdefe6faaae55373584ce5b1c4d853df53c5e9de1d5ca521d8a49a37cc91c256",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "43b5f769bb58014c2c6b9b03c95c213d83a9f6822e9a98ed9e33942f6add1235",
+        "source_inventory_sha256": "07b61eecd5181f8369ead7565eeec389534d201746f752bc575cb570577d3995",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "07b61eecd5181f8369ead7565eeec389534d201746f752bc575cb570577d3995",
+            "inputs": [
+              {
+                "amount": 0.300026314800195,
+                "uncertainty type": 0,
+                "loc": 0.300026314800195,
+                "name": "Sand, at mine",
+                "reference product": "Sand, at mine",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.699973685199805,
+                "uncertainty type": 0,
+                "loc": 0.699973685199805,
+                "name": "Sand, at mine",
+                "reference product": "Sand, at mine",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.035407345,
+                "uncertainty type": 2,
+                "loc": -3.3408359944889194,
+                "scale": 0.8724677644474895,
+                "pedigree": {
+                  "reliability": 2,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 2
+                },
+                "scale without pedigree": 0.8754427451295717,
+                "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00762824,
+                "uncertainty type": 2,
+                "loc": -4.875898128707977,
+                "scale": 0.8724677644474895,
+                "pedigree": {
+                  "reliability": 2,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 2
+                },
+                "scale without pedigree": 0.8754427451295717,
+                "name": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00032589,
+                "uncertainty type": 2,
+                "loc": -8.028950656850505,
+                "scale": 0.8724677644474895,
+                "pedigree": {
+                  "reliability": 2,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 2
+                },
+                "scale without pedigree": 0.8754427451295717,
+                "name": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01699456,
+                "uncertainty type": 2,
+                "loc": -4.074861986136846,
+                "scale": 0.8724677644474895,
+                "pedigree": {
+                  "reliability": 2,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 2
+                },
+                "scale without pedigree": 0.8754427451295717,
+                "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "sand quarry operation, open pit mine",
+                  "sand",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "bd533a5ae6c57bdde82c233704d7a3c4ab715392dbb536c73f93c7044ebaaf04"
+              },
+              {
+                "source": [
+                  "sand quarry operation, extraction from river bed",
+                  "sand",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "11115a8ac409130f804933d1e6398e5f5769fec49bab9779be38e7fbd851b05e"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry 16-32 metric ton, EURO3",
+                  "transport, freight, lorry 16-32 metric ton, EURO3",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4ec3bb63129eef0670cddbc99674a2336f006fe30abb21717a57d12c54b0c050"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+                  "transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "b12d0e4ebb13befee9be9a1604808f6727bf5b02c82613fb8bd19f4fd9563a79"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry 7.5-16 metric ton, EURO3",
+                  "transport, freight, lorry 7.5-16 metric ton, EURO3",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "489adb360719d6c32853874b09205e25778ac337132b9fca98b15561246f9aa9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry >32 metric ton, EURO3",
+                  "transport, freight, lorry >32 metric ton, EURO3",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f709dec6e1cf94e44573259113bff2e288e8275ea5de76f7e8b8170ea97503fe"
+              }
+            ]
+          }
+        ],
+        "source_producer_entries": [
+          {
+            "source": {
+              "name": "sand quarry operation, open pit mine",
+              "reference product": "sand",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.300026314800195,
+              "uncertainty type": 0,
+              "loc": 0.300026314800195
+            },
+            "target": {
+              "name": "Sand, at mine",
+              "reference product": "Sand, at mine",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            },
+            "source_inventory_sha256": "3b45333cbe4cf5b00b6bbeef09d31f756c2a172e112f63873c0137647f8b6197"
+          },
+          {
+            "source": {
+              "name": "sand quarry operation, extraction from river bed",
+              "reference product": "sand",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.699973685199805,
+              "uncertainty type": 0,
+              "loc": 0.699973685199805
+            },
+            "target": {
+              "name": "Sand, at mine",
+              "reference product": "Sand, at mine",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            },
+            "source_inventory_sha256": "07b7e8f5b97b675034f809e00f40ba7c1c412144582d531d102ac0cc642188e8"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry 16-32 metric ton, EURO3",
+              "reference product": "transport, freight, lorry 16-32 metric ton, EURO3",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.035407345,
+              "uncertainty type": 2,
+              "loc": -3.3408359944889194,
+              "scale": 0.8724677644474895,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 2
+              },
+              "scale without pedigree": 0.8754427451295717
+            },
+            "source_inventory_sha256": "564ea445f10196cf03f852036a6b0b1d1af9151bc381de6cfee7352e514902a5",
+            "target": {
+              "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "mode": "class-specific road"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+              "reference product": "transport, freight, lorry 3.5-7.5 metric ton, EURO3",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.00762824,
+              "uncertainty type": 2,
+              "loc": -4.875898128707977,
+              "scale": 0.8724677644474895,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 2
+              },
+              "scale without pedigree": 0.8754427451295717
+            },
+            "source_inventory_sha256": "f510155a8902257f2e380c14541c531186cba9553319989fe00d6b5bbac493d7",
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t-7.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "mode": "class-specific road"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry 7.5-16 metric ton, EURO3",
+              "reference product": "transport, freight, lorry 7.5-16 metric ton, EURO3",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.00032589,
+              "uncertainty type": 2,
+              "loc": -8.028950656850505,
+              "scale": 0.8724677644474895,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 2
+              },
+              "scale without pedigree": 0.8754427451295717
+            },
+            "source_inventory_sha256": "fcb0713e3633b7d6165e130c7c7168c6f1a369e571b44ee489745c317c470924",
+            "target": {
+              "name": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 7.5t-16t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "mode": "class-specific road"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry >32 metric ton, EURO3",
+              "reference product": "transport, freight, lorry >32 metric ton, EURO3",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.01699456,
+              "uncertainty type": 2,
+              "loc": -4.074861986136846,
+              "scale": 0.8724677644474895,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 2
+              },
+              "scale without pedigree": 0.8754427451295717
+            },
+            "source_inventory_sha256": "1ea5d85da05f6062d63539def3bd070d73109679577cb05304b901fbc2650027",
+            "target": {
+              "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "mode": "class-specific road"
+          }
+        ],
+        "producer_shares_renormalized": false,
+        "source_market_entries_omitted": 0,
+        "active_source_internal_uncertainty_reproduced": false,
+        "limitations": "Explicit user approvals: Approve extraction proxy with warnings; Approve allocated-mining proxy. Use complete native Swiss Sand atmine as a screening proxy for five ordinary pit/quarry/river producer entries, retaining each original signed kg quantity, producer share and uncertainty. Native joint Swiss sand/gravel extraction differs from source hydraulic openpit, river dredging/slurry/washing, grading, moisture including BR5% water, allocation, geography, technologies, internal uncertainty and vintage. Do not introduce moisture, density, yield or price-update factors, recycled-resource-correction or regional-storage wrappers. The RoW source zinc-mine sand coproduct has264 nonproduction coordinates proportional to source zinc concentrate by1/95, including supported uncertainty; frozen prices .004/.38 confirm the ratio. Concentrate is59%Zn; native Swedish beneficiation references1kgcontainedZn. Retain its original9.19504300903769e-5kg share with an allocated burden helper consuming .59/95kg native contained-Zn beneficiation perkg source coproduct. This is an allocated-mining screening proxy, not physical zinc added to sand or avoided metal: no ordinary quarry input or recovery/refining credit. Warn ore, coproducts, economic allocation, tailings, resources, emissions, geography and internal uncertainty differences. Preserve all17 original freight entries separately at their original nettkm, quantities and supported uncertainty. Complete native same-mode rail, barge, sea and fleet services include their infrastructure once. Source BR EURO3 classes use inspected CH fleet classes; >32t becomes32-40t, with explicit fleet, emissions standard, geography and upper-class approximation warnings. RoW/IN generic and lightroad use complete matching service classes, not coal-only traction or vehicle operation only. No payload, distance or mass multiplier, normalization or omission. Retain complete native inventories and native internal uncertainty; source producer internal formulas and uncertainty are not reproduced. LCIA differences remain unquantified, including upstream biosphere exclusions. Preserve caller signed quantities, formula, uncertainty, ownership and separate emissions. Only three exact3.9cutoff sand markets are approved, not standalone production, other versions, reverse or cross-system-model conversion."
+      },
+      "limitations": [
+        "Explicit user approvals: Approve extraction proxy with warnings; Approve allocated-mining proxy. Use complete native Swiss Sand atmine as a screening proxy for five ordinary pit/quarry/river producer entries, retaining each original signed kg quantity, producer share and uncertainty. Native joint Swiss sand/gravel extraction differs from source hydraulic openpit, river dredging/slurry/washing, grading, moisture including BR5% water, allocation, geography, technologies, internal uncertainty and vintage. Do not introduce moisture, density, yield or price-update factors, recycled-resource-correction or regional-storage wrappers. The RoW source zinc-mine sand coproduct has264 nonproduction coordinates proportional to source zinc concentrate by1/95, including supported uncertainty; frozen prices .004/.38 confirm the ratio. Concentrate is59%Zn; native Swedish beneficiation references1kgcontainedZn. Retain its original9.19504300903769e-5kg share with an allocated burden helper consuming .59/95kg native contained-Zn beneficiation perkg source coproduct. This is an allocated-mining screening proxy, not physical zinc added to sand or avoided metal: no ordinary quarry input or recovery/refining credit. Warn ore, coproducts, economic allocation, tailings, resources, emissions, geography and internal uncertainty differences. Preserve all17 original freight entries separately at their original nettkm, quantities and supported uncertainty. Complete native same-mode rail, barge, sea and fleet services include their infrastructure once. Source BR EURO3 classes use inspected CH fleet classes; >32t becomes32-40t, with explicit fleet, emissions standard, geography and upper-class approximation warnings. RoW/IN generic and lightroad use complete matching service classes, not coal-only traction or vehicle operation only. No payload, distance or mass multiplier, normalization or omission. Retain complete native inventories and native internal uncertainty; source producer internal formulas and uncertainty are not reproduced. LCIA differences remain unquantified, including upstream biosphere exclusions. Preserve caller signed quantities, formula, uncertainty, ownership and separate emissions. Only three exact3.9cutoff sand markets are approved, not standalone production, other versions, reverse or cross-system-model conversion."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2aa9da23b78ed465324fad35ea9bb5c8190f81d6d619fcd16442b8d76ecde140"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3a72ce530c16c83b",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_sand",
+      "review_path": "export/uvek_pilot_nitrate_sand_review.json",
+      "review_sha256": "1044e1a46af4dc1e685a495a0f82409b8ab4fd4c449f9a22d0371f74e806a88e",
+      "authorization": "Explicit user replies: Approve extraction proxy with warnings; Approve allocated-mining proxy. Five ordinary extraction entries use complete native Swiss mine sand; RoW zinc-mining coproduct uses source allocation1/95 and59%Zn basis with native contained-Zn beneficiation. Retain all original shares and17freight entries, warn all stated differences and unquantified score effects; no omission, normalization or new recovery credit.",
+      "inspection": {
+        "rule_id": "bp-3a72ce530c16c83b",
+        "source": {
+          "location": "RoW",
+          "name": "market for sand",
+          "reference product": "sand",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Sand, at mine",
+          "reference product": "Sand, at mine",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.304444,
+          "id": "bp-3a72ce530c16c83b",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RoW",
+            "name": "market for sand",
+            "reference product": "sand",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Sand, at mine",
+            "reference product": "Sand, at mine",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "40c193fd3f865d8232b98f8bcf39d0bd7754b8a382416a616553bb5c28cbf0ce",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "14c8b5e3d5bd90b3611caedce0ac1898ccbeade92f0b4e59f1dfcc23c6d53ebd",
+        "source_inventory_sha256": "7587402bf41c075aa6ea875d73a7b2b48c4916ab19141ad434138c2d068d6000",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 3,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "7587402bf41c075aa6ea875d73a7b2b48c4916ab19141ad434138c2d068d6000",
+            "inputs": [
+              {
+                "amount": 0.292442375462464,
+                "uncertainty type": 0,
+                "loc": 0.292442375462464,
+                "name": "Sand, at mine",
+                "reference product": "Sand, at mine",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 9.19504300903769e-05,
+                "uncertainty type": 0,
+                "loc": 9.19504300903769e-05,
+                "recipe": "pilot-nitrate-sand-zinc-8af94577dfbe9eb39b8c"
+              },
+              {
+                "amount": 0.707465674107445,
+                "uncertainty type": 0,
+                "loc": 0.707465674107445,
+                "name": "Sand, at mine",
+                "reference product": "Sand, at mine",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0032132954292340343,
+                "uncertainty type": 2,
+                "loc": -5.740458254978889,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0002254324625047914,
+                "uncertainty type": 2,
+                "loc": -8.397489944968349,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.004433114299907091,
+                "uncertainty type": 2,
+                "loc": -5.418652939679052,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0035100110029881917,
+                "uncertainty type": 2,
+                "loc": -5.6521361067548055,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000718146805365891,
+                "uncertainty type": 2,
+                "loc": -7.238836545518128,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0021,
+                "uncertainty type": 2,
+                "loc": -6.16581793425276,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000848292977906623,
+                "uncertainty type": 2,
+                "loc": -7.072284489026856,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00010227573456991251,
+                "uncertainty type": 2,
+                "loc": -9.187838111872844,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 4.943128752346429e-05,
+                "uncertainty type": 2,
+                "loc": -9.914926983574878,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0006535146719772811,
+                "uncertainty type": 2,
+                "loc": -7.333145573771335,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.03164648532802272,
+                "uncertainty type": 2,
+                "loc": -3.453128184645997,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0727,
+                "uncertainty type": 2,
+                "loc": -2.6214138944426635,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "location": "OCE",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "sand quarry operation, extraction from river bed",
+                  "sand",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "626eb08f37b782dde5a4d9997015383707924bc9b11653b1bd39a3a82f61227c"
+              },
+              {
+                "source": [
+                  "zinc mine operation",
+                  "sand",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4cb814c269cd0548cacde548151526d4788c26e17beab66d57f149039a9bd868"
+              },
+              {
+                "source": [
+                  "gravel and sand quarry operation",
+                  "sand",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "bd16cd526f8af78a91e7978921f8b3ba7ff379716c44bb005d17be2f7b126bc8"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4109bea7a76d943d728d832fd5ca373ad9d81750f0624bf74911889eca74f783"
+              },
+              {
+                "source": [
+                  "market for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "35a6188a83aa121fc29afd8d1401ac0d5ea223c33d25dbb0a3c12e80b9925b83"
+              },
+              {
+                "source": [
+                  "market for transport, freight, light commercial vehicle",
+                  "transport, freight, light commercial vehicle",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d9d3e9ac5a682468de9b5003a6b00f5d5be8e97e41b0ebdc4eeafe8df23fb868"
+              },
+              {
+                "source": [
+                  "market for transport, freight, light commercial vehicle",
+                  "transport, freight, light commercial vehicle",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "bbef35960d0d56621d01f899aeb087e26e5cf57006518be14bca370c60b2be3d"
+              },
+              {
+                "source": [
+                  "market for transport, freight, light commercial vehicle",
+                  "transport, freight, light commercial vehicle",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "6ddd4770b53402d4f20f72858dccdc2cb688a9d85240be4cececbe366e749ebb"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, bulk carrier for dry goods",
+                  "transport, freight, sea, bulk carrier for dry goods",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "6ad82fb631359f6d045b79dfa4290d72273f0d05e132b37adc1340ed2391ce2b"
+              }
+            ]
+          }
+        ],
+        "source_producer_entries": [
+          {
+            "source": {
+              "name": "sand quarry operation, extraction from river bed",
+              "reference product": "sand",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.292442375462464,
+              "uncertainty type": 0,
+              "loc": 0.292442375462464
+            },
+            "target": {
+              "name": "Sand, at mine",
+              "reference product": "Sand, at mine",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            },
+            "source_inventory_sha256": "a80517f04a1aecdd12006c42a25efcee92ded4bb93e3a63c9d67d26fdcbf2a38"
+          },
+          {
+            "source": {
+              "name": "zinc mine operation",
+              "reference product": "sand",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 9.19504300903769e-05,
+              "uncertainty type": 0,
+              "loc": 9.19504300903769e-05
+            },
+            "target": {
+              "recipe": "candidate-sand-zinc-allocated"
+            },
+            "source_inventory_sha256": "e67eaa5d0d12daab02cffbbf152a7ff3ebfaaeb60dd605776b212c21f0c1b4d0"
+          },
+          {
+            "source": {
+              "name": "gravel and sand quarry operation",
+              "reference product": "sand",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.707465674107445,
+              "uncertainty type": 0,
+              "loc": 0.707465674107445
+            },
+            "target": {
+              "name": "Sand, at mine",
+              "reference product": "Sand, at mine",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            },
+            "source_inventory_sha256": "4e80af2ede4f710f7a7b2c41910c77e14ce14bc3a43fc582706ea744dfd6bca9"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0032132954292340343,
+              "uncertainty type": 2,
+              "loc": -5.740458254978889,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "rail"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0002254324625047914,
+              "uncertainty type": 2,
+              "loc": -8.397489944968349,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "67d3a561f43de59c8b3b483db80f4ca1f9abe9e603c42c1b3d7886f9f6f6a579",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "rail"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.004433114299907091,
+              "uncertainty type": 2,
+              "loc": -5.418652939679052,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "rail"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0035100110029881917,
+              "uncertainty type": 2,
+              "loc": -5.6521361067548055,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "rail"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.000718146805365891,
+              "uncertainty type": 2,
+              "loc": -7.238836545518128,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "2acd46cbcd5ff54e5a40b52f2b0788dfe8f3c21a0b9ac1b88873bba4ba4f3cea",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "rail"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0021,
+              "uncertainty type": 2,
+              "loc": -6.16581793425276,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "de9bc1051f0af2ac9c543e7949f96b53affee0bdea262b9e94d4db375d4aa277",
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "barge"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, light commercial vehicle",
+              "reference product": "transport, freight, light commercial vehicle",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.000848292977906623,
+              "uncertainty type": 2,
+              "loc": -7.072284489026856,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "f7c83c0ffd9aeb4296cbfd094b4572dbc7ab6b933de42c61f497c92ad91649e8",
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "mode": "light"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, light commercial vehicle",
+              "reference product": "transport, freight, light commercial vehicle",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.00010227573456991251,
+              "uncertainty type": 2,
+              "loc": -9.187838111872844,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "e54c4521e481d018776bdf0ccca7a8c678218ac3d1059bf2958e43ce74ace994",
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "mode": "light"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, light commercial vehicle",
+              "reference product": "transport, freight, light commercial vehicle",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 4.943128752346429e-05,
+              "uncertainty type": 2,
+              "loc": -9.914926983574878,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "312432b05bc62a36f885bb9bc0bf88bb0ea03f7bc5f903aaf97b2b068dc6fbe6",
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "mode": "light"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0006535146719772811,
+              "uncertainty type": 2,
+              "loc": -7.333145573771335,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "5d63ba039a6eb078230a4bd26fda48d2d3567f593d8136aa50bc51a30ff9d0bd",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "heavy"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.03164648532802272,
+              "uncertainty type": 2,
+              "loc": -3.453128184645997,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "heavy"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, sea, bulk carrier for dry goods",
+              "reference product": "transport, freight, sea, bulk carrier for dry goods",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0727,
+              "uncertainty type": 2,
+              "loc": -2.6214138944426635,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "source_inventory_sha256": "ce9d7c290539c9f552ef94da295dd39229cf8bfe8f10f3bbdcd8d99c6643b454",
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "mode": "bulk"
+          }
+        ],
+        "producer_shares_renormalized": false,
+        "source_market_entries_omitted": 0,
+        "active_source_internal_uncertainty_reproduced": false,
+        "limitations": "Explicit user approvals: Approve extraction proxy with warnings; Approve allocated-mining proxy. Use complete native Swiss Sand atmine as a screening proxy for five ordinary pit/quarry/river producer entries, retaining each original signed kg quantity, producer share and uncertainty. Native joint Swiss sand/gravel extraction differs from source hydraulic openpit, river dredging/slurry/washing, grading, moisture including BR5% water, allocation, geography, technologies, internal uncertainty and vintage. Do not introduce moisture, density, yield or price-update factors, recycled-resource-correction or regional-storage wrappers. The RoW source zinc-mine sand coproduct has264 nonproduction coordinates proportional to source zinc concentrate by1/95, including supported uncertainty; frozen prices .004/.38 confirm the ratio. Concentrate is59%Zn; native Swedish beneficiation references1kgcontainedZn. Retain its original9.19504300903769e-5kg share with an allocated burden helper consuming .59/95kg native contained-Zn beneficiation perkg source coproduct. This is an allocated-mining screening proxy, not physical zinc added to sand or avoided metal: no ordinary quarry input or recovery/refining credit. Warn ore, coproducts, economic allocation, tailings, resources, emissions, geography and internal uncertainty differences. Preserve all17 original freight entries separately at their original nettkm, quantities and supported uncertainty. Complete native same-mode rail, barge, sea and fleet services include their infrastructure once. Source BR EURO3 classes use inspected CH fleet classes; >32t becomes32-40t, with explicit fleet, emissions standard, geography and upper-class approximation warnings. RoW/IN generic and lightroad use complete matching service classes, not coal-only traction or vehicle operation only. No payload, distance or mass multiplier, normalization or omission. Retain complete native inventories and native internal uncertainty; source producer internal formulas and uncertainty are not reproduced. LCIA differences remain unquantified, including upstream biosphere exclusions. Preserve caller signed quantities, formula, uncertainty, ownership and separate emissions. Only three exact3.9cutoff sand markets are approved, not standalone production, other versions, reverse or cross-system-model conversion."
+      },
+      "limitations": [
+        "Explicit user approvals: Approve extraction proxy with warnings; Approve allocated-mining proxy. Use complete native Swiss Sand atmine as a screening proxy for five ordinary pit/quarry/river producer entries, retaining each original signed kg quantity, producer share and uncertainty. Native joint Swiss sand/gravel extraction differs from source hydraulic openpit, river dredging/slurry/washing, grading, moisture including BR5% water, allocation, geography, technologies, internal uncertainty and vintage. Do not introduce moisture, density, yield or price-update factors, recycled-resource-correction or regional-storage wrappers. The RoW source zinc-mine sand coproduct has264 nonproduction coordinates proportional to source zinc concentrate by1/95, including supported uncertainty; frozen prices .004/.38 confirm the ratio. Concentrate is59%Zn; native Swedish beneficiation references1kgcontainedZn. Retain its original9.19504300903769e-5kg share with an allocated burden helper consuming .59/95kg native contained-Zn beneficiation perkg source coproduct. This is an allocated-mining screening proxy, not physical zinc added to sand or avoided metal: no ordinary quarry input or recovery/refining credit. Warn ore, coproducts, economic allocation, tailings, resources, emissions, geography and internal uncertainty differences. Preserve all17 original freight entries separately at their original nettkm, quantities and supported uncertainty. Complete native same-mode rail, barge, sea and fleet services include their infrastructure once. Source BR EURO3 classes use inspected CH fleet classes; >32t becomes32-40t, with explicit fleet, emissions standard, geography and upper-class approximation warnings. RoW/IN generic and lightroad use complete matching service classes, not coal-only traction or vehicle operation only. No payload, distance or mass multiplier, normalization or omission. Retain complete native inventories and native internal uncertainty; source producer internal formulas and uncertainty are not reproduced. LCIA differences remain unquantified, including upstream biosphere exclusions. Preserve caller signed quantities, formula, uncertainty, ownership and separate emissions. Only three exact3.9cutoff sand markets are approved, not standalone production, other versions, reverse or cross-system-model conversion."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ef34dbcfb2797dfee8179eddff7beec8fde16560d007dac14e42d79b7efb2003"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ec10f36a2baad3e",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_sand",
+      "review_path": "export/uvek_pilot_nitrate_sand_review.json",
+      "review_sha256": "1044e1a46af4dc1e685a495a0f82409b8ab4fd4c449f9a22d0371f74e806a88e",
+      "authorization": "Explicit user replies: Approve extraction proxy with warnings; Approve allocated-mining proxy. Five ordinary extraction entries use complete native Swiss mine sand; RoW zinc-mining coproduct uses source allocation1/95 and59%Zn basis with native contained-Zn beneficiation. Retain all original shares and17freight entries, warn all stated differences and unquantified score effects; no omission, normalization or new recovery credit.",
+      "inspection": {
+        "rule_id": "bp-7ec10f36a2baad3e",
+        "source": {
+          "location": "IN",
+          "name": "market for sand",
+          "reference product": "sand",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Sand, at mine",
+          "reference product": "Sand, at mine",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.304444,
+          "id": "bp-7ec10f36a2baad3e",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "IN",
+            "name": "market for sand",
+            "reference product": "sand",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Sand, at mine",
+            "reference product": "Sand, at mine",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "399db3ea807063412145168cc0f3875886d53287af1b9a7f105bb13b127409bb",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "7723913b6021d86a6a50455bc69725e889d8ac94325c0136b7815c58e2190fdd",
+        "source_inventory_sha256": "fde5e2d07a82dcd26a2cdc423ab37d20ac57b896f8c14f8313e233242a737168",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "fde5e2d07a82dcd26a2cdc423ab37d20ac57b896f8c14f8313e233242a737168",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "name": "Sand, at mine",
+                "reference product": "Sand, at mine",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.2,
+                "uncertainty type": 2,
+                "loc": -1.6094379124341003,
+                "scale": 0.3579106033634656,
+                "pedigree": {
+                  "reliability": 4,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.3717526059088221,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "sand quarry operation, extraction from river bed",
+                  "sand",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "123612cdacdb436cf2f051e046ac4700cbdeb430d578308b45347a561e714011"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              }
+            ]
+          }
+        ],
+        "source_producer_entries": [
+          {
+            "source": {
+              "name": "sand quarry operation, extraction from river bed",
+              "reference product": "sand",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Sand, at mine",
+              "reference product": "Sand, at mine",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            },
+            "source_inventory_sha256": "166f9a9f705e9357fc4c441823610e3d98249deded0f53fc4734058c21bb497e"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.2,
+              "uncertainty type": 2,
+              "loc": -1.6094379124341003,
+              "scale": 0.3579106033634656,
+              "pedigree": {
+                "reliability": 4,
+                "completeness": 2,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.3717526059088221
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "mode": "heavy"
+          }
+        ],
+        "producer_shares_renormalized": false,
+        "source_market_entries_omitted": 0,
+        "active_source_internal_uncertainty_reproduced": false,
+        "limitations": "Explicit user approvals: Approve extraction proxy with warnings; Approve allocated-mining proxy. Use complete native Swiss Sand atmine as a screening proxy for five ordinary pit/quarry/river producer entries, retaining each original signed kg quantity, producer share and uncertainty. Native joint Swiss sand/gravel extraction differs from source hydraulic openpit, river dredging/slurry/washing, grading, moisture including BR5% water, allocation, geography, technologies, internal uncertainty and vintage. Do not introduce moisture, density, yield or price-update factors, recycled-resource-correction or regional-storage wrappers. The RoW source zinc-mine sand coproduct has264 nonproduction coordinates proportional to source zinc concentrate by1/95, including supported uncertainty; frozen prices .004/.38 confirm the ratio. Concentrate is59%Zn; native Swedish beneficiation references1kgcontainedZn. Retain its original9.19504300903769e-5kg share with an allocated burden helper consuming .59/95kg native contained-Zn beneficiation perkg source coproduct. This is an allocated-mining screening proxy, not physical zinc added to sand or avoided metal: no ordinary quarry input or recovery/refining credit. Warn ore, coproducts, economic allocation, tailings, resources, emissions, geography and internal uncertainty differences. Preserve all17 original freight entries separately at their original nettkm, quantities and supported uncertainty. Complete native same-mode rail, barge, sea and fleet services include their infrastructure once. Source BR EURO3 classes use inspected CH fleet classes; >32t becomes32-40t, with explicit fleet, emissions standard, geography and upper-class approximation warnings. RoW/IN generic and lightroad use complete matching service classes, not coal-only traction or vehicle operation only. No payload, distance or mass multiplier, normalization or omission. Retain complete native inventories and native internal uncertainty; source producer internal formulas and uncertainty are not reproduced. LCIA differences remain unquantified, including upstream biosphere exclusions. Preserve caller signed quantities, formula, uncertainty, ownership and separate emissions. Only three exact3.9cutoff sand markets are approved, not standalone production, other versions, reverse or cross-system-model conversion."
+      },
+      "limitations": [
+        "Explicit user approvals: Approve extraction proxy with warnings; Approve allocated-mining proxy. Use complete native Swiss Sand atmine as a screening proxy for five ordinary pit/quarry/river producer entries, retaining each original signed kg quantity, producer share and uncertainty. Native joint Swiss sand/gravel extraction differs from source hydraulic openpit, river dredging/slurry/washing, grading, moisture including BR5% water, allocation, geography, technologies, internal uncertainty and vintage. Do not introduce moisture, density, yield or price-update factors, recycled-resource-correction or regional-storage wrappers. The RoW source zinc-mine sand coproduct has264 nonproduction coordinates proportional to source zinc concentrate by1/95, including supported uncertainty; frozen prices .004/.38 confirm the ratio. Concentrate is59%Zn; native Swedish beneficiation references1kgcontainedZn. Retain its original9.19504300903769e-5kg share with an allocated burden helper consuming .59/95kg native contained-Zn beneficiation perkg source coproduct. This is an allocated-mining screening proxy, not physical zinc added to sand or avoided metal: no ordinary quarry input or recovery/refining credit. Warn ore, coproducts, economic allocation, tailings, resources, emissions, geography and internal uncertainty differences. Preserve all17 original freight entries separately at their original nettkm, quantities and supported uncertainty. Complete native same-mode rail, barge, sea and fleet services include their infrastructure once. Source BR EURO3 classes use inspected CH fleet classes; >32t becomes32-40t, with explicit fleet, emissions standard, geography and upper-class approximation warnings. RoW/IN generic and lightroad use complete matching service classes, not coal-only traction or vehicle operation only. No payload, distance or mass multiplier, normalization or omission. Retain complete native inventories and native internal uncertainty; source producer internal formulas and uncertainty are not reproduced. LCIA differences remain unquantified, including upstream biosphere exclusions. Preserve caller signed quantities, formula, uncertainty, ownership and separate emissions. Only three exact3.9cutoff sand markets are approved, not standalone production, other versions, reverse or cross-system-model conversion."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d2144a8e90fa4339d681730b66cc98fb7290a449c242498de10eb1bacddf7554"
+        }
+      ]
     }
   ]
 }
