@@ -1,7 +1,7 @@
 # Proposed dry white alkyd-paint proxy for the UVEK electricity pilot
 
-Status: private candidate checked; user approval pending. No migration rule,
-helper or approval scope is enabled. This proposal covers only the two required
+Status: implemented under the user instruction to auto-approve coming
+modelling decisions, with the documented warnings and exact-profile scopes. This proposal covers only the two required
 ecoinvent 3.9 cut-off solvent-free white alkyd-paint markets, RER and RoW,
 inside the nitrate-supply closure of the existing nine-root electricity pilot.
 The destination is UVEK 2026 cut-off with ecoinvent 3.10 biosphere. It does not
@@ -43,7 +43,7 @@ with 0.4882 source resin-reference units. Titanium dioxide is 0.506667 rather
 than 0.5051 kg. These small formulation differences remain explicit proxy
 limitations; no balancing coefficient is invented to force equality.
 
-## Limitations requiring approval
+## Accepted limitations
 
 This is a modified native-product screening proxy, not a reconstruction of
 all source production exchanges. Native electricity/heat, processing and
@@ -51,7 +51,7 @@ waste-management conventions, infrastructure intensity, raw-material logistics,
 allocation, geography and vintage remain. The source nitrogen purge includes
 0.019 kg of liquid-nitrogen supply and a matching direct nitrogen release;
 the native process has neither. This proposal retains the native process
-boundary for that purge, with an explicit difference/omission audit if approved.
+boundary for that purge, with an explicit internal-boundary difference audit.
 It does not silently treat the source pair as impact-free.
 
 The copied native paint retains its own processing emissions and waste inputs.
@@ -107,7 +107,48 @@ references and direct technosphere vectors match. Existing geography, fleet,
 fuel, loading, infrastructure and vintage warnings remain applicable.
 
 The original fourteen entries remain separate, with unchanged quantities and
-uncertainty. This inspection adds no standalone freight approval and does not
-resolve or relax the pending dry-paint scientific decision. Evidence:
+uncertainty. This inspection adds no standalone freight approval. The subsequent automatic
+approval authorizes the scoped paint refinement; it does not broaden these
+freight correspondences. Evidence:
 `dry_paint_delivery_primary.private.json`, `dry_paint_delivery_evidence.json`
 and `check_dry_paint_delivery_evidence.py`.
+
+## Implemented exact-profile checkpoint
+
+The two markets now use three copied production helpers and two market helpers.
+Every remaining native resin exchange is retained. Every remaining native paint
+exchange is scaled by 1/0.60 with supported uncertainty; processing solvent is
+appended separately with the original source uncertainty for its geography.
+The two identified native carrier coordinates are removed: the paint coordinate
+is absent from each paint variant, and the resin coordinate is absent from the
+single shared resin copy. No negative avoided-solvent exchange is introduced.
+The original 14 market freight entries remain separate and unscaled.
+
+Each exact scope carries an audit of the source producer's nitrogen purchase
+and direct release, including signed exchanges, source position and inventory
+hash. Both are absent from the native screening model, with unquantified score
+effects. This is a declared internal model difference, not deletion of an
+exchange from a caller-owned dataset or a claim of source-inventory equivalence.
+The copied-native carrier-removal evidence is retained in the same portable
+inspection. Native elementary flows bind two exact canonical UUID definitions.
+
+Fresh primary readback covers 59 full inventories, including 36 native
+release-specific component records. Packaged review:
+`export/uvek_pilot_nitrate_paint_review.json`, SHA-256
+`806d96c86ba3949faa0b9dad50c179566ca5f5dde547dab8bcd1663b13ebc5ba`.
+All 379 previous fingerprints, 3,322 recipes and 722 shared reviews remain
+unchanged. Two exact source scopes, five recipes and one review are added.
+Total exact scopes: 381.
+
+34 Brightpath and 17 Premise cases pass, including signed uncertainty,
+non-mutation, cold/warm cache warnings, source-version refusal, separate caller
+solvent ownership and sharing only the resin helper across the two paint
+variants. Semantic inspection verifies all remaining copied-native coefficients
+and scaled uncertainty directly, together with source processing solvent and
+market freight. Both actual migrated market graphs produce finite native LCI,
+with unchanged native technosphere/biosphere signatures. Full generator replay
+is byte-identical. Full scenario/certification/export remain unverified.
+
+Both installed-wheel market conversions pass. The wheel, installed stage,
+verified build copies and nine superseded harmonization files were removed;
+current audited cache entries and all lockfiles remain.
