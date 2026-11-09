@@ -1,7 +1,9 @@
 # Seven delivered-water markets: reconstruction or native screening proxy
 
-Status: a new scientific decision is pending. None of these seven water mappings, generated helpers
-or approval scopes is enabled by this proposal. The scope is only seven required
+Status: the user explicitly approved the screening option with warnings.
+The seven exact source mappings and approval scopes are implemented and
+verified.
+The scope is only seven required
 ecoinvent 3.9 cut-off water markets within the UVEK 2026 / ecoinvent 3.10 biosphere
 electricity pilot. Caller quantities, signs, formulas, uncertainty, ownership and
 separately listed water releases must remain unchanged under either approach.
@@ -106,7 +108,7 @@ Private evidence includes `water_delivery_closure_primary.private.json`,
 The native balance audit reads the original publisher XML and exact elementary
 flow compartments, including its kg-to-m³ water-return representation.
 
-Seven unapproved compositions are in
+The seven original candidate compositions are in
 `complete_native_water_proxy_candidates.private.json`, with fresh native
 witnesses in `complete_native_water_proxy_primary.private.json`.
 Numerical checks are separate from approval and public migration. They do not
@@ -122,3 +124,36 @@ All seven private candidates produce finite, nonzero native-background LCI.
 The native technosphere and biosphere signatures match the earlier baseline
 before and after calculation. Candidate SHA-256: `1f5cf8e9a5a812826cd9ee3a1c2f4f4dbb3b4f53c7f72c6b1a27d565018c34a5`.
 Readback: `complete_native_water_proxy_candidate_lci.json`.
+
+## Existing 3.12 mapping remains separate
+
+South Africa already had an approved ecoinvent 3.12 cut-off mapping to the
+complete Swiss utility. That default supplier and factor +1 remain in place;
+only the new exact 3.9 profile selects the European helper. The original 3.12
+review and authoring method are retained. One whole-rule fingerprint must be
+reissued because the parent now also declares a 3.9 profile; its 3.12 supplier,
+quantity basis and generated-inventory graph are unchanged. The other 371
+previous fingerprints remain unchanged; seven new exact scopes give 379 total.
+
+Packaged review: `export/uvek_pilot_nitrate_water_review.json`, SHA-256
+`a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b`.
+Registration receipt: `nitrate_water_scope_registration.json`; semantic review:
+`nitrate_water_staged_review.json`. Seven recipes are added; all previous 3,315
+recipes and 720 shared reviews remain unchanged. These water correspondences
+replace the source's internal model as explicitly approved; they do not claim
+to preserve or solve its uncertain cycles in the destination.
+
+The South African parent carries neutral shared review text that distinguishes
+3.9 from 3.12, while each exact Premise scope retains its own inspection and
+limitations. Two shared reviews are added in total (722), including that
+version distinction. Existing dataset/exchange values for 3.12 are checked
+against the previous rule, allowing only a provenance-comment difference.
+
+Verified implementation: 72 focused Brightpath tests and 60 Premise tests pass,
+including the existing delivered-water warning/cache regressions. All seven
+actual migrated graphs yield finite native LCI; native scientific signatures
+remain unchanged. Seven installed-wheel conversions pass and full generator
+replay is byte-identical. Build copies, installed stage, wheel and 18
+superseded cache files were removed, retaining the current five audited cache
+entries and all lockfiles. The full electricity scenario/certification/export
+has not yet completed.

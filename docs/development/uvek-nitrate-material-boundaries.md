@@ -68,7 +68,9 @@ The existing complete-native-generator size/application proxy remains with its
 limitations; neither a copied normalization nor a new efficiency, heat credit
 or separate generator is introduced.
 
-Seven water markets remain unapproved. Six national markets include distribution
+Seven water markets are now covered by the explicitly approved complete-native
+screening option in the linked proposal. Their original source boundaries still
+matter: six national markets include distribution
 losses, a network purchase and a direct water release. The source provider
 quantity exceeds the delivered reference; these are physical exchanges rather
 than rounding or negative-treatment conventions. The European group delegates
@@ -83,9 +85,10 @@ with regional electricity and water balances. Country labels alone do not prove
 source-equivalent treatment or accounting: the inspected Colombia-labelled
 process uses a Peruvian electricity supplier, for example. The original generic
 Swiss/European utility matches and these country-labelled alternatives remain
-candidates, not automatically admitted replacements. Source loss/return flows,
-network burden, delivery and embodied-water accounting must be resolved
-explicitly before selecting a correspondence. No additional embodied-water
+candidates, not admitted replacements. Source loss/return flows,
+network burden, delivery and embodied-water accounting must be disclosed
+explicitly when selecting a correspondence. The subsequent user approval below
+accepts the complete ordinary CH/RER screening model and its differences. No additional embodied-water
 exchange or geographic water-balance factor is inferred for caller datasets.
 
 A fresh internal-supply audit of the six national markets reads 31 complete
@@ -220,7 +223,9 @@ with the agreed limitations and three exact approval scopes.
 The [complete seven-market water audit and proposal](uvek-water-delivery-proposal.md)
 extends the earlier national audit to the European group: 48 source processes,
 67 internal links and eight self-links. Source-preserving reconstruction would
-need cycle support and review of 69 currently unscoped external suppliers. A
-separate whole-native delivered-water screening option is prepared for explicit
-scientific approval; it replaces source internal loss, treatment, network and
-water-accounting assumptions and is not enabled.
+need cycle support and review of 69 currently unscoped external suppliers. The
+user explicitly approved the whole-native delivered-water screening option. It
+replaces source internal loss, treatment, network, return-flow and uncertainty
+assumptions with complete native CH/RER utilities, with explicit geographic and
+water-accounting warnings. Caller quantities and separately listed emissions
+remain unchanged. See the linked implementation checkpoint.

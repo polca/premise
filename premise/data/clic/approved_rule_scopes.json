@@ -16220,7 +16220,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "9f549009e3840372ec5bcfb1a707a701c41a818d98cf4f2cb768939a9c66a977"
+          "fingerprint": "1dec7ba0ad039fade7fb79b34781e9fdf5e9f2b4dc19fd95be6e2e51d9bca9f0"
         }
       ]
     },
@@ -50080,6 +50080,1509 @@
             "system_model": "cutoff"
           },
           "fingerprint": "907c9fd9688b8be18a168274006c22084a4d17e4ec46bdf90d40bad18eb05f17"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7d638cba68e295b2",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_water",
+      "review_path": "export/uvek_pilot_nitrate_water_review.json",
+      "review_sha256": "a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b",
+      "authorization": "Explicit user reply: Approve screening proxies with warnings, for the seven required source3.9cutoff water markets. Replace whole internal source utility models with native CH/RERdeliveredwater; retain caller data and European CH/nonCHshares. Explicit geographic, water-accounting, internal uncertainty and unquantified-scorewarnings; no source-loss multiplier, extra source network/returns or invented water-balance correction.",
+      "inspection": {
+        "rule_id": "bp-7d638cba68e295b2",
+        "source": {
+          "location": "IN",
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.51,
+          "id": "bp-7d638cba68e295b2",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "IN",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "7213a2f3550c6e1ebbbac4dd8f3d9c885f6bb40a3ef264dc873db6b1da4ac044",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "86e695eea68eb580364f2d0c5b9d4e22ebf613093af30ee9f52c2b4e8f1ce6cc",
+        "source_inventory_sha256": "82c5928b43c08f2d2db71240e7ceb928861d07ffdd7ef0c5970485a445bfac45",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "82c5928b43c08f2d2db71240e7ceb928861d07ffdd7ef0c5970485a445bfac45",
+            "inputs": [
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 1
+              }
+            ],
+            "bindings": []
+          }
+        ],
+        "source_internal_supply_and_water_summary": {
+          "source": {
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "internal_records_required": 5,
+          "market_supply_multiplier": 1.750056258704864,
+          "max_equation_residual": 2.220446049250313e-16,
+          "water_elementary_flows_per_delivered_kg": [
+            {
+              "name": "Water",
+              "categories": [
+                "water",
+                "ground-"
+              ],
+              "unit": "cubic meter",
+              "sha256": "90f240c3646f32a94ae03deda977282567983272ab0023477dbb60d64991d452",
+              "amount": 0.0007500241108735139
+            },
+            {
+              "name": "Water, well, in ground",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "ea13b52de4a654f8588f9a384fdacecda8fc13362642db222f3f298434f5f8d2",
+              "amount": 0.00021350686356199337
+            },
+            {
+              "name": "Water, lake",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "a0c425e3d63c2f3eabef30d34f7a7b47148aa39e5e78d71eff961cb2269593c2",
+              "amount": 0.00012605953504407156
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "8903c73bbdb4a5634f703d3cc2d0eed250b92b0bf6d965b749188e337af1563c",
+              "amount": 0.001458440505558508
+            }
+          ],
+          "source_supply_operations": [
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "IN",
+                "unit": "kilogram"
+              },
+              "amount": 1.750056258704864
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water without treatment",
+                "reference product": "tap water",
+                "location": "IN",
+                "unit": "kilogram"
+              },
+              "amount": 0.12250393810934047
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with chemical treatment",
+                "reference product": "tap water",
+                "location": "IN",
+                "unit": "kilogram"
+              },
+              "amount": 0.09100292545265291
+            },
+            {
+              "identity": {
+                "name": "tap water production, direct filtration treatment",
+                "reference product": "tap water",
+                "location": "IN",
+                "unit": "kilogram"
+              },
+              "amount": 0.11025354429840642
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "IN",
+                "unit": "kilogram"
+              },
+              "amount": 1.426295850844464
+            }
+          ]
+        },
+        "source_internal_treatment_losses_network_and_emissions_reconstructed": false,
+        "caller_signed_quantity_and_uncertainty_retained": true,
+        "limitations": "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      },
+      "limitations": [
+        "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "63e9d885a0b60ec3203e3b0e8703cfce6d7d16d7566c8ce56406756263490b27"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fe711136ab4271bf",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_water",
+      "review_path": "export/uvek_pilot_nitrate_water_review.json",
+      "review_sha256": "a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b",
+      "authorization": "Explicit user reply: Approve screening proxies with warnings, for the seven required source3.9cutoff water markets. Replace whole internal source utility models with native CH/RERdeliveredwater; retain caller data and European CH/nonCHshares. Explicit geographic, water-accounting, internal uncertainty and unquantified-scorewarnings; no source-loss multiplier, extra source network/returns or invented water-balance correction.",
+      "inspection": {
+        "rule_id": "bp-fe711136ab4271bf",
+        "source": {
+          "location": "RER",
+          "name": "market group for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.535,
+          "id": "bp-fe711136ab4271bf",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "market group for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "279e82ab347a43cb159e2190d5c8911e85f13872b1dd82bcfd53fa91d6d664d4",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "86632837d42f004d89a790a48647de0f1cc70dac82f846b5665fd803865ae0b5",
+        "source_inventory_sha256": "cf5ca076f5d6ea77e6e3fd45cfc1b3b2b23e4c72e4284d1b3579ef3b5bed9da1",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "cf5ca076f5d6ea77e6e3fd45cfc1b3b2b23e4c72e4284d1b3579ef3b5bed9da1",
+            "inputs": [
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.002087020385985745,
+                "uncertainty type": 0,
+                "loc": 0.002087020385985745
+              },
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.9979129796140143,
+                "uncertainty type": 0,
+                "loc": 0.9979129796140143
+              }
+            ],
+            "bindings": []
+          }
+        ],
+        "source_internal_supply_and_water_summary": {
+          "source": {
+            "name": "market group for tap water",
+            "reference product": "tap water",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "internal_records_required": 17,
+          "market_supply_multiplier": 1.0,
+          "max_equation_residual": 1.1102230246251565e-16,
+          "water_elementary_flows_per_delivered_kg": [
+            {
+              "name": "Water",
+              "categories": [
+                "water",
+                "ground-"
+              ],
+              "unit": "cubic meter",
+              "sha256": "90f240c3646f32a94ae03deda977282567983272ab0023477dbb60d64991d452",
+              "amount": 0.00014767300888938914
+            },
+            {
+              "name": "Water, well, in ground",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "ea13b52de4a654f8588f9a384fdacecda8fc13362642db222f3f298434f5f8d2",
+              "amount": 0.00021151996639121376
+            },
+            {
+              "name": "Water, lake",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "a0c425e3d63c2f3eabef30d34f7a7b47148aa39e5e78d71eff961cb2269593c2",
+              "amount": 5.89233075108372e-05
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "8903c73bbdb4a5634f703d3cc2d0eed250b92b0bf6d965b749188e337af1563c",
+              "amount": 0.0008976458296150756
+            }
+          ],
+          "source_supply_operations": [
+            {
+              "identity": {
+                "name": "market group for tap water",
+                "reference product": "tap water",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "amount": 1.0
+            },
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 1.1452927049202546
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional with biological treatment",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.07709846895426926
+            },
+            {
+              "identity": {
+                "name": "tap water production, ultrafiltration treatment",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.029911386806050034
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with disinfection",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.0480561618906024
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with chemical treatment",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.048056161890602404
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.35848610140883347
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water without treatment",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.11444954344998728
+            },
+            {
+              "identity": {
+                "name": "tap water production, microstrainer treatment",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.028041925130671864
+            },
+            {
+              "identity": {
+                "name": "tap water production, direct filtration treatment",
+                "reference product": "tap water",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "amount": 0.4411929553892377
+            },
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "amount": 0.0023952479000541762
+            },
+            {
+              "identity": {
+                "name": "tap water production, direct filtration treatment",
+                "reference product": "tap water",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "amount": 0.0007640840801172823
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional with biological treatment",
+                "reference product": "tap water",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "amount": 0.0003365323299576118
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water without treatment",
+                "reference product": "tap water",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "amount": 0.0009101942020205871
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with chemical treatment",
+                "reference product": "tap water",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "amount": 2.3952479000541763e-05
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with disinfection",
+                "reference product": "tap water",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "amount": 2.395247900054176e-05
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "amount": 0.0003365323299576118
+            }
+          ]
+        },
+        "source_internal_treatment_losses_network_and_emissions_reconstructed": false,
+        "caller_signed_quantity_and_uncertainty_retained": true,
+        "limitations": "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      },
+      "limitations": [
+        "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "aa671f9ee7f484f2a8923277823c987c472c6fc484d4e0fb4a5b8ab286e5588f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b1c848d10c671d4e",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_water",
+      "review_path": "export/uvek_pilot_nitrate_water_review.json",
+      "review_sha256": "a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b",
+      "authorization": "Explicit user reply: Approve screening proxies with warnings, for the seven required source3.9cutoff water markets. Replace whole internal source utility models with native CH/RERdeliveredwater; retain caller data and European CH/nonCHshares. Explicit geographic, water-accounting, internal uncertainty and unquantified-scorewarnings; no source-loss multiplier, extra source network/returns or invented water-balance correction.",
+      "inspection": {
+        "rule_id": "bp-b1c848d10c671d4e",
+        "source": {
+          "location": "BR",
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.51,
+          "id": "bp-b1c848d10c671d4e",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "BR",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "7c727783540e5b841b383fb93bc091aa29f64bac6f3776613f2771b5258fb4b9",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "31386f39e389273296b6f8ddaf9637f2608e51be984cdfd017d32b5943b2496f",
+        "source_inventory_sha256": "445f954b09cd3d73e4e6fbc21d777b9c8eb7dbde2f9d31abc80918715e784857",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "445f954b09cd3d73e4e6fbc21d777b9c8eb7dbde2f9d31abc80918715e784857",
+            "inputs": [
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 1
+              }
+            ],
+            "bindings": []
+          }
+        ],
+        "source_internal_supply_and_water_summary": {
+          "source": {
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "location": "BR",
+            "unit": "kilogram"
+          },
+          "internal_records_required": 4,
+          "market_supply_multiplier": 2.4231880057504758,
+          "max_equation_residual": 1.1102230246251565e-16,
+          "water_elementary_flows_per_delivered_kg": [
+            {
+              "name": "Water",
+              "categories": [
+                "water",
+                "ground-"
+              ],
+              "unit": "cubic meter",
+              "sha256": "90f240c3646f32a94ae03deda977282567983272ab0023477dbb60d64991d452",
+              "amount": 0.0014231421621074215
+            },
+            {
+              "name": "Water, well, in ground",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "ea13b52de4a654f8588f9a384fdacecda8fc13362642db222f3f298434f5f8d2",
+              "amount": 2.4015738411798578e-05
+            },
+            {
+              "name": "Water, lake",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "a0c425e3d63c2f3eabef30d34f7a7b47148aa39e5e78d71eff961cb2269593c2",
+              "amount": 0.00019294161515440845
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "8903c73bbdb4a5634f703d3cc2d0eed250b92b0bf6d965b749188e337af1563c",
+              "amount": 0.0022802307648263917
+            }
+          ],
+          "source_supply_operations": [
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "amount": 2.4231880057504758
+            },
+            {
+              "identity": {
+                "name": "tap water production, direct filtration treatment",
+                "reference product": "tap water",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "amount": 0.21614164570618719
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "amount": 2.1830306216324895
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with disinfection",
+                "reference product": "tap water",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "amount": 0.024015738411798576
+            }
+          ]
+        },
+        "source_internal_treatment_losses_network_and_emissions_reconstructed": false,
+        "caller_signed_quantity_and_uncertainty_retained": true,
+        "limitations": "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      },
+      "limitations": [
+        "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1a301d713464efc876d1ebdeddc77fd5ddd27bd2a480a6e46a36aa0267cff002"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0b74355701cc3d04",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_water",
+      "review_path": "export/uvek_pilot_nitrate_water_review.json",
+      "review_sha256": "a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b",
+      "authorization": "Explicit user reply: Approve screening proxies with warnings, for the seven required source3.9cutoff water markets. Replace whole internal source utility models with native CH/RERdeliveredwater; retain caller data and European CH/nonCHshares. Explicit geographic, water-accounting, internal uncertainty and unquantified-scorewarnings; no source-loss multiplier, extra source network/returns or invented water-balance correction.",
+      "inspection": {
+        "rule_id": "bp-0b74355701cc3d04",
+        "source": {
+          "location": "CA-QC",
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.51,
+          "id": "bp-0b74355701cc3d04",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "CA-QC",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "d753b945b4e1f0b4997599c7ca1b3196cd84e8513a9d954038dcc72f4fcb84d5",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "ebe4172d82b2abf6234bc7d121fbf65b0682f1ef45f7e71c8413a31f117823c6",
+        "source_inventory_sha256": "4af09311ff57f5f7792081ca9f61fed7ea9aa371ebd93f8f43336138cc5197f2",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "4af09311ff57f5f7792081ca9f61fed7ea9aa371ebd93f8f43336138cc5197f2",
+            "inputs": [
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 1
+              }
+            ],
+            "bindings": []
+          }
+        ],
+        "source_internal_supply_and_water_summary": {
+          "source": {
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "internal_records_required": 10,
+          "market_supply_multiplier": 1.2361186370350479,
+          "max_equation_residual": 1.1102230246251565e-16,
+          "water_elementary_flows_per_delivered_kg": [
+            {
+              "name": "Water",
+              "categories": [
+                "water",
+                "ground-"
+              ],
+              "unit": "cubic meter",
+              "sha256": "90f240c3646f32a94ae03deda977282567983272ab0023477dbb60d64991d452",
+              "amount": 0.00023609865967369416
+            },
+            {
+              "name": "Water, well, in ground",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "ea13b52de4a654f8588f9a384fdacecda8fc13362642db222f3f298434f5f8d2",
+              "amount": 0.00014323213721338657
+            },
+            {
+              "name": "Water, lake",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "a0c425e3d63c2f3eabef30d34f7a7b47148aa39e5e78d71eff961cb2269593c2",
+              "amount": 0.00011615988044337399
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "8903c73bbdb4a5634f703d3cc2d0eed250b92b0bf6d965b749188e337af1563c",
+              "amount": 0.001002454415945773
+            }
+          ],
+          "source_supply_operations": [
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 1.2361186370350479
+            },
+            {
+              "identity": {
+                "name": "tap water production, microstrainer treatment",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.03160286521357889
+            },
+            {
+              "identity": {
+                "name": "tap water production, direct filtration treatment",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.5144652476629118
+            },
+            {
+              "identity": {
+                "name": "tap water production, ultrafiltration treatment",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.03435892904034442
+            },
+            {
+              "identity": {
+                "name": "tap water production, artificial recharged wells",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.011299861689738951
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with chemical treatment",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.11391730483964466
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with disinfection",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.0149599976811365
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.39319843928522547
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional with biological treatment",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.11483599278189983
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water without treatment",
+                "reference product": "tap water",
+                "location": "CA-QC",
+                "unit": "kilogram"
+              },
+              "amount": 0.007479998840568239
+            }
+          ]
+        },
+        "source_internal_treatment_losses_network_and_emissions_reconstructed": false,
+        "caller_signed_quantity_and_uncertainty_retained": true,
+        "limitations": "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      },
+      "limitations": [
+        "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d9fe06091bf29a86caf0d077698d4eb0754d67d2905875691ef7dc419bd85a52"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b7f9e34d30f50859",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_water",
+      "review_path": "export/uvek_pilot_nitrate_water_review.json",
+      "review_sha256": "a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b",
+      "authorization": "Explicit user reply: Approve screening proxies with warnings, for the seven required source3.9cutoff water markets. Replace whole internal source utility models with native CH/RERdeliveredwater; retain caller data and European CH/nonCHshares. Explicit geographic, water-accounting, internal uncertainty and unquantified-scorewarnings; no source-loss multiplier, extra source network/returns or invented water-balance correction.",
+      "inspection": {
+        "rule_id": "bp-b7f9e34d30f50859",
+        "source": {
+          "location": "CO",
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.51,
+          "id": "bp-b7f9e34d30f50859",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "CO",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "954cfb1e47cb4231c0528c881360d477aba4d3e52a4a5b141c953dcc351c52f6",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "e1910162b3d256af29d27bb32c9979efccdd519dec1287e3511963981ab3729e",
+        "source_inventory_sha256": "8f68cfd26d60a3eda86615fabd187b906141db34028a7d6fa79606d3509a65b0",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "8f68cfd26d60a3eda86615fabd187b906141db34028a7d6fa79606d3509a65b0",
+            "inputs": [
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 1
+              }
+            ],
+            "bindings": []
+          }
+        ],
+        "source_internal_supply_and_water_summary": {
+          "source": {
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "location": "CO",
+            "unit": "kilogram"
+          },
+          "internal_records_required": 6,
+          "market_supply_multiplier": 1.864714747387571,
+          "max_equation_residual": 1.1102230246251565e-16,
+          "water_elementary_flows_per_delivered_kg": [
+            {
+              "name": "Water",
+              "categories": [
+                "water",
+                "ground-"
+              ],
+              "unit": "cubic meter",
+              "sha256": "90f240c3646f32a94ae03deda977282567983272ab0023477dbb60d64991d452",
+              "amount": 0.0008646686650649617
+            },
+            {
+              "name": "Water, well, in ground",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "ea13b52de4a654f8588f9a384fdacecda8fc13362642db222f3f298434f5f8d2",
+              "amount": 6.340030141117743e-05
+            },
+            {
+              "name": "Water, lake",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "a0c425e3d63c2f3eabef30d34f7a7b47148aa39e5e78d71eff961cb2269593c2",
+              "amount": 0.00015780152397121372
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "8903c73bbdb4a5634f703d3cc2d0eed250b92b0bf6d965b749188e337af1563c",
+              "amount": 0.001704768140601955
+            }
+          ],
+          "source_supply_operations": [
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "CO",
+                "unit": "kilogram"
+              },
+              "amount": 1.864714747387571
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with disinfection",
+                "reference product": "tap water",
+                "location": "CO",
+                "unit": "kilogram"
+              },
+              "amount": 0.03170015070558871
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "CO",
+                "unit": "kilogram"
+              },
+              "amount": 1.603654682753311
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional with biological treatment",
+                "reference product": "tap water",
+                "location": "CO",
+                "unit": "kilogram"
+              },
+              "amount": 0.17901261574920682
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water without treatment",
+                "reference product": "tap water",
+                "location": "CO",
+                "unit": "kilogram"
+              },
+              "amount": 0.03170015070558871
+            },
+            {
+              "identity": {
+                "name": "tap water production, direct filtration treatment",
+                "reference product": "tap water",
+                "location": "CO",
+                "unit": "kilogram"
+              },
+              "amount": 0.018647147473875712
+            }
+          ]
+        },
+        "source_internal_treatment_losses_network_and_emissions_reconstructed": false,
+        "caller_signed_quantity_and_uncertainty_retained": true,
+        "limitations": "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      },
+      "limitations": [
+        "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b358ee3422f6c25f95a4c977dc44604e052c507c0af5089d39e5f546fc72c821"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-db195c1b804e5a53",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_water",
+      "review_path": "export/uvek_pilot_nitrate_water_review.json",
+      "review_sha256": "a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b",
+      "authorization": "Explicit user reply: Approve screening proxies with warnings, for the seven required source3.9cutoff water markets. Replace whole internal source utility models with native CH/RERdeliveredwater; retain caller data and European CH/nonCHshares. Explicit geographic, water-accounting, internal uncertainty and unquantified-scorewarnings; no source-loss multiplier, extra source network/returns or invented water-balance correction.",
+      "inspection": {
+        "rule_id": "bp-db195c1b804e5a53",
+        "source": {
+          "location": "PE",
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.51,
+          "id": "bp-db195c1b804e5a53",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "PE",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "5ab431ab7ed7c022703ff79d74e302baa624c2d7bc1669659fba6867b4b6fcea",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "3c83f8191d4c89b81b5e9159a8a2c5eed16625843c4e8793a97cb38c0d003a7e",
+        "source_inventory_sha256": "e7e38daec409582f5fb1c372512a7996b233a47041b4e937f6b77e8547d58818",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "e7e38daec409582f5fb1c372512a7996b233a47041b4e937f6b77e8547d58818",
+            "inputs": [
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 1
+              }
+            ],
+            "bindings": []
+          }
+        ],
+        "source_internal_supply_and_water_summary": {
+          "source": {
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "location": "PE",
+            "unit": "kilogram"
+          },
+          "internal_records_required": 3,
+          "market_supply_multiplier": 2.166757367130053,
+          "max_equation_residual": 2.220446049250313e-16,
+          "water_elementary_flows_per_delivered_kg": [
+            {
+              "name": "Water",
+              "categories": [
+                "water",
+                "ground-"
+              ],
+              "unit": "cubic meter",
+              "sha256": "90f240c3646f32a94ae03deda977282567983272ab0023477dbb60d64991d452",
+              "amount": 0.00116671550537772
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "8903c73bbdb4a5634f703d3cc2d0eed250b92b0bf6d965b749188e337af1563c",
+              "amount": 0.0022340213161322914
+            }
+          ],
+          "source_supply_operations": [
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "PE",
+                "unit": "kilogram"
+              },
+              "amount": 2.166757367130053
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "PE",
+                "unit": "kilogram"
+              },
+              "amount": 1.9934167777596488
+            },
+            {
+              "identity": {
+                "name": "tap water production, direct filtration treatment",
+                "reference product": "tap water",
+                "location": "PE",
+                "unit": "kilogram"
+              },
+              "amount": 0.17334058937040422
+            }
+          ]
+        },
+        "source_internal_treatment_losses_network_and_emissions_reconstructed": false,
+        "caller_signed_quantity_and_uncertainty_retained": true,
+        "limitations": "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      },
+      "limitations": [
+        "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9a315b521805315c1beb28d06d86cad0fcb8cd41e38ef9a13f1560ccd684d0d8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b5f627281d517e19",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_water_review.json",
+      "review_sha256": "a9db19e74455732385fcddaceae44a514807126ad5cf549e95253242fd5c8e8b",
+      "authorization": "Explicit user reply: Approve screening proxies with warnings, for the seven required source3.9cutoff water markets. Replace whole internal source utility models with native CH/RERdeliveredwater; retain caller data and European CH/nonCHshares. Explicit geographic, water-accounting, internal uncertainty and unquantified-scorewarnings; no source-loss multiplier, extra source network/returns or invented water-balance correction.",
+      "inspection": {
+        "rule_id": "bp-b5f627281d517e19",
+        "source": {
+          "location": "ZA",
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.51,
+          "id": "bp-b5f627281d517e19",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "ZA",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "e4dcbf993162c4c9f5d257ca6057359d084af2454961959ec16969b0fed267fc",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "9b82624f3e8df8d3ea5283623518c2f9948335c7ab47740e3c6c7ca54aa61775",
+        "source_inventory_sha256": "82ec604a1526cce2c875de3982a1c8402440a5b68cc8c10311a861390a89ef5e",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "82ec604a1526cce2c875de3982a1c8402440a5b68cc8c10311a861390a89ef5e",
+            "inputs": [
+              {
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 1
+              }
+            ],
+            "bindings": []
+          }
+        ],
+        "source_internal_supply_and_water_summary": {
+          "source": {
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "location": "ZA",
+            "unit": "kilogram"
+          },
+          "internal_records_required": 3,
+          "market_supply_multiplier": 2.285809302235361,
+          "max_equation_residual": 0.0,
+          "water_elementary_flows_per_delivered_kg": [
+            {
+              "name": "Water",
+              "categories": [
+                "water",
+                "ground-"
+              ],
+              "unit": "cubic meter",
+              "sha256": "90f240c3646f32a94ae03deda977282567983272ab0023477dbb60d64991d452",
+              "amount": 0.0012857677325073906
+            },
+            {
+              "name": "Water, well, in ground",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "ea13b52de4a654f8588f9a384fdacecda8fc13362642db222f3f298434f5f8d2",
+              "amount": 0.0003062984464995384
+            },
+            {
+              "name": "Water, lake",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "a0c425e3d63c2f3eabef30d34f7a7b47148aa39e5e78d71eff961cb2269593c2",
+              "amount": 0.00017495403772015998
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "sha256": "8903c73bbdb4a5634f703d3cc2d0eed250b92b0bf6d965b749188e337af1563c",
+              "amount": 0.0018691403391948999
+            }
+          ],
+          "source_supply_operations": [
+            {
+              "identity": {
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "location": "ZA",
+                "unit": "kilogram"
+              },
+              "amount": 2.285809302235361
+            },
+            {
+              "identity": {
+                "name": "tap water production, underground water with disinfection",
+                "reference product": "tap water",
+                "location": "ZA",
+                "unit": "kilogram"
+              },
+              "amount": 0.3062984464995384
+            },
+            {
+              "identity": {
+                "name": "tap water production, conventional treatment",
+                "reference product": "tap water",
+                "location": "ZA",
+                "unit": "kilogram"
+              },
+              "amount": 1.9795108557358227
+            }
+          ]
+        },
+        "source_internal_treatment_losses_network_and_emissions_reconstructed": false,
+        "caller_signed_quantity_and_uncertainty_retained": true,
+        "limitations": "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences.",
+        "preserved_profile": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "conversion_factor": 1,
+          "review": {
+            "status": "verified",
+            "source_sign": 1,
+            "target_sign": 1,
+            "reason": "Retain the already approved3.12cutoff South-African delivered-water mapping to nativeSwiss Tapwater atuser, at unchangedfactor+1 and without generatedhelpers. This is not the3.9RERscreening decision.",
+            "evidence": [
+              "brightpath/data/export/uvek_pilot_tap_water_review.json#f72288ed3e2ae5276327d8c662643bcc12d84cf9a68cd30ed60662cf8b53914c"
+            ]
+          }
+        },
+        "preserved_profile_witness": {
+          "version": "3.12",
+          "identity": {
+            "location": "ZA",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f72288ed3e2ae5276327d8c662643bcc12d84cf9a68cd30ed60662cf8b53914c",
+          "metadata_sha256": "7f514e4a8706bcda1b6b3aaeeea48f9760184c890413e6356833e563b93bba44"
+        },
+        "review_rationale": "Exact-profile delivered-water correspondence. The explicitly approved3.9cutoff South-African screening proxy uses complete nativeRER water; its original signedkg and calleruncertainty remain. The separately approved3.12cutoff correspondence retains complete nativeSwiss water atfactor+1, without generatedhelpers. Refer to each exact profile inspection for its own scientific boundary and limitations; no assumption or approval is transferred across source versions."
+      },
+      "limitations": [
+        "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b4689eb1233c7c5b06dcd7bde82b043b718c20f8d523fbbb373734c5fb183d6e"
         }
       ]
     }
