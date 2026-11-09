@@ -95650,6 +95650,1690 @@
           "fingerprint": "5efe4b2e406601dd73f39f202a70f91c17f7dd7f885cc51ec82c02543563c98e"
         }
       ]
+    },
+    {
+      "rule_id": "bp-32fc216e24665d6f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_steel_row_routes",
+      "review_path": "export/uvek_pilot_steel_row_routes_review.json",
+      "review_sha256": "e1fea366cded46937904231629a7d97e9651d0bd19d94e2b8a884156de3580ac",
+      "authorization": "User automaticapproval ofcomingpilotdecisions. Twoexact3.9cutoffRoWsteelroutesretainoriginalrecycling/sorting/collection/disposal/stocks/freight,usingmatching-functionnativeoperating/grids/incineration andexistingqualifieddismantling;explicittechnology/geography/uncertainty/scorewarnings. No normalization,physicalomission,newcreditorcross-modelroute.",
+      "inspection": {
+        "rule_id": "bp-32fc216e24665d6f",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste reinforcement steel",
+          "reference product": "waste reinforcement steel",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, reinforcement steel, to recycling",
+          "reference product": "Disposal, building, reinforcement steel, to recycling",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.31553,
+          "conversion_factor": -1,
+          "id": "bp-32fc216e24665d6f",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-32fc216e24665d6f"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for waste reinforcement steel",
+            "reference product": "waste reinforcement steel",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, building, reinforcement steel, to recycling",
+            "reference product": "Disposal, building, reinforcement steel, to recycling",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "63f9198b8d337e4dda39ab263f0e8fba5f87766ef7ad6bcede0fd234c3c244dd",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "05e24b7ca6deefd0ab50095a58e8874a55649bad96a8a767f182b3da0d4bf174",
+        "source_inventory_sha256": "3e90b28a20c6ca3ea294d20d063d29a2a7b8f28aa7955d73fb20be2c6c3e7508",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 12,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "3e90b28a20c6ca3ea294d20d063d29a2a7b8f28aa7955d73fb20be2c6c3e7508",
+            "inputs": [
+              {
+                "amount": 0.0007675684181920615,
+                "uncertainty type": 2,
+                "loc": -7.172282938251848,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0027704532824479535,
+                "uncertainty type": 2,
+                "loc": -5.888744332297526,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00019436435879336528,
+                "uncertainty type": 2,
+                "loc": -8.545776022286985,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0038221621180260434,
+                "uncertainty type": 2,
+                "loc": -5.566939016997688,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0030262768297576337,
+                "uncertainty type": 2,
+                "loc": -5.800422184073443,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000619174992782942,
+                "uncertainty type": 2,
+                "loc": -7.387122622836765,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0003461605163611663,
+                "uncertainty type": 2,
+                "loc": -7.96860797036524,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.016762842782120813,
+                "uncertainty type": 2,
+                "loc": -4.0885905812399015,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.002210996701518021,
+                "uncertainty type": 2,
+                "loc": -6.114311868958677,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.410028139373259,
+                "uncertainty type": 0,
+                "loc": 0.410028139373259,
+                "recipe": "pilot-steel-row-routes-c4c6d5d5e1bcf9b3a913"
+              },
+              {
+                "amount": 0.180070897546673,
+                "uncertainty type": 0,
+                "loc": 0.180070897546673,
+                "recipe": "pilot-steel-row-routes-16138f22a3cb2b6fdc97"
+              },
+              {
+                "amount": 0.409900963080068,
+                "uncertainty type": 0,
+                "loc": 0.409900963080068,
+                "recipe": "pilot-steel-row-routes-72c38ad16d7590baa6bb"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "iron scrap, sorted, pressed, Recycled Content cut-off",
+                  "iron scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ff479ed9fa2d2ffd1446c85c430d73ac9825a0b2142161638456794edd14b62e"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "AT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f9b7c2e54188ffa6b503f20d90ae9626845cdd13ad4386437de8d67e625666b5"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "BE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "6b0182f3fcdbf7011776f5133c1b41c8afa4888342ac7efb0d96bd36a8c22b51"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "BG",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "215dd6c061408c22495871658bbb65e6c166946e3a6076f718c13e2ae80d54fe"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CZ",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b0cfc9ed453cebae7572027e1b1b831b52727a4c7425932ce4eff2c4c1957b5b"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "DE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4dbfdf0bf6025043d4b8b1390aab6f47dfd53a8e04287c339a1002f7a4f19aa4"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "DK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "e1002ea0c4049c35eb4181901a70af35411733f90d16c5ee88b6dc75ae8c3a33"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "ES",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "deebe09e0a3a98c4f337dd048b82af853689af02bceae892500b2e2a9a3cb36b"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "FI",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "e0ef5a8c11954996d318937813d9a796f709dcf4b2701953195b2e7ea01856d2"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "FR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "0a5b4c339c28f951fc2e08e28e13dd8a1bc55c5c04bf9302d2ac6e8c43d94e5f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "GB",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "689884c7ae794e57fd306bc6a31a7956d13b7e031ee0a00e28462e47a5e8ba0c"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "HU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "5ef70c39f6b086ee84679aa0544e2bdbc5919bb2d11e7cad3a07a02af39ef980"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "IT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "5e4c838a6a29558fea0a6e2e9d1b942ca6078f1fba5460daf201cca78b8d7af0"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "JP",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f58188befff3758866ce9228a629e43fbadea683aa136ed9249c244569fd1fa4"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "KR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "cd4e74b96b02cd181739adf7e105a4f0b3f025d5dcb33cceb2ff13c227249f7d"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "LU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3427bf925293ed19c96839ca13d110427954f12b3d61eec3c3a2dba690e18bd5"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "NL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f16400e3ce88ae1825e965b1747f9405247750c883d19c24cf34400df71b734f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "NO",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d902deff61fca4c2ffc37d9be27a6ec1e65b249118a4f2498bdd25fc16ecee84"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "PL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f6fac17b495cf6c32d07f371abb774f0252e35d524455c0cf8703f083dccdd68"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "PT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "da6df445b463cb4edaffe2726d0acaefda198ad07e662b0c8e42567bd1b54cde"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "RoW",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "a7b6a0ef82d51a99d516a8347f32ba21166110d45b4749aef4ef376bc0b43738"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "SE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "2473c599d0af97f69ee57a061f47df41e3a3c85269df228c54dea2fd66edfc6f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "SK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4e67d83fcb8a0c7235a954d6130bea408983776f052ca73cf30172c44b438b7a"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "TR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "6632c106ad1f9cf77614a7d8282a67cdc3c11e69fdcae47f4e929659a328fbcf"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "TW",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "8d60ca2e980788f226aca618e25251e0937a441cd6b787bc1432cedb3e5ac935"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "AU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "c74292260ac434b7ba1c7e2aa811acffebde8fa6e66eaeddab0d72f9b2203398"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "NZ",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4573219b85bee16fe000748782c6be489b1b83347ff603bc7aba77a4b3a8b615"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d7909088b782b59bf0bfade8eb8646d652d41a255400e3123d4c04c122cbe004"
+              },
+              {
+                "source": [
+                  "market for excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "bc929c3e08eda739271b9025e632fd5beb4eebe1da8d032f34be2f3d89b70179"
+              },
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for municipal waste incineration facility",
+                  "municipal waste incineration facility",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "1a72c8282618c9713e4c50c785b82ab2797793d3dc3d78ed6e303060711d9517"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f7d9dcaecc27dce689ad42c41343a0b5ffc5c6a3edcc90a3e61495748aab30a9"
+              },
+              {
+                "source": [
+                  "market for scrap steel",
+                  "scrap steel",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "21c5a036dbfc346328e4192b52f04f8a47d7f7e5d3bf7706d755962a456862aa"
+              },
+              {
+                "source": [
+                  "market for scrap steel",
+                  "scrap steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "6613a45b84a5019018591ea08910fc9c97222eb0a70c27f2e844845799427fd9"
+              },
+              {
+                "source": [
+                  "market for slag landfill",
+                  "slag landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "47823879b2b451c2a610e71d0132da5c673f6209c679888c84cdb03960960eae"
+              },
+              {
+                "source": [
+                  "market for sorting facility, for construction waste",
+                  "sorting facility, for construction waste",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "91f4ad5cdddd57f17ffa938e31a6fbc12a690ae3c25b67fa244ef55c3fe94f60"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4109bea7a76d943d728d832fd5ca373ad9d81750f0624bf74911889eca74f783"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "Europe without Switzerland",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "c57c2d628dbf2e4018a5bb7ca5faa236dfd827c5ae6ecc6d28c0e847053145b8"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RAF",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "8dac2e63a83417e974399840ce13fb57763c032158d258327dbdf7fd2b914311"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RAS",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3cb148be7744f26604de8c530a5ea0859d72bc8cf98bc7f43441cdaac2a52051"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RLA",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "fcbf232182f0404bd863c48fbda4e73246d7537721a36c2ad9427cf6912f830b"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RNA",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "82ab565e2d2d223ead53d7ea5ad46bfa62ed53745d838faf6e323e5ff976ec20"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd35704554e96359a1fbfe5a0ca45b2e594e2de3328110efa4087d5862053299"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "5c8b30be8396c4a5af8a1db703b06ec59f8a8b4363870ad35c1c1e3035224b14"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "37eb78044cbed3d301607d06f1dff75ad4f5aa84b36ea3a593a63922ae424fdd"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration",
+                  "scrap steel",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "62de77e4518094766d7657507ed68cc18361ea061bf745a7cda263caea166d5d"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration",
+                  "scrap steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "65c3eb8c25e260c4296bd828b54126bf906d782379ebc09aa30fcb1ca3e6748d"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, recycling",
+                  "waste reinforcement steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "db8fa2d433cdd78a6b945619685142c2b1be58412948074d09ccbf9d29f14e3d"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, sorting plant",
+                  "waste reinforcement steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "a3ec2df54de789eeb645bc92f91125ea77d6679c3791d36c69abd0d07d559ba0"
+              }
+            ]
+          }
+        ],
+        "source_stage_witnesses": [
+          {
+            "identity": {
+              "name": "market for waste reinforcement steel",
+              "reference product": "waste reinforcement steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "05e24b7ca6deefd0ab50095a58e8874a55649bad96a8a767f182b3da0d4bf174",
+            "inventory_sha256": "3e90b28a20c6ca3ea294d20d063d29a2a7b8f28aa7955d73fb20be2c6c3e7508"
+          },
+          {
+            "identity": {
+              "name": "treatment of waste reinforcement steel, recycling",
+              "reference product": "waste reinforcement steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "d963bfd6f0b9465936a4419c509eaade6f586fdde802364a6e8160fdad2ab2f4",
+            "inventory_sha256": "d03b1ac48aed6531bf735b67fdd3760d701f4b2a2ef31bda8483f8745d8c9ef3"
+          },
+          {
+            "identity": {
+              "name": "treatment of waste reinforcement steel, sorting plant",
+              "reference product": "waste reinforcement steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "099aab45aa8322a8db03d70953a92c281aeffde0504b72b9fb03584e44681cc6",
+            "inventory_sha256": "b47bc508e2d3f64739bb85b93f436075dfbd40929f0b18b5e13f829fc772ad35"
+          },
+          {
+            "identity": {
+              "name": "treatment of waste reinforcement steel, collection for final disposal",
+              "reference product": "waste reinforcement steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a8b8b9847f43e3203a2746215e8610d595f133d2545cfbf083eb22db31227681",
+            "inventory_sha256": "ff582a20992ce85dda03da6893f6f407ba56e140f03094504e7a7bdf519f0b1b"
+          },
+          {
+            "identity": {
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8fd6014fcb91385b0cbb1b56348e55f6b389847a5046b5a646c137d7385b61da",
+            "inventory_sha256": "ac90e83d4e2ba637f5814653b1deed6124b461181894547dc2267b74194088ef"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration",
+              "reference product": "scrap steel",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8355efd9e535eaec67188c67b19467d26c7505273c24ea7a1c3510f369b3e06b",
+            "inventory_sha256": "c1e9a0168f0da48f338cc44532e0a8822829cb1e3cf407a690468b8428c6502e"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "635b9c201a721043c81e756e744eb5b37b0ad48be76a9f4f1e453c957d4a25a2",
+            "inventory_sha256": "cf8207776fd01e0e237c5399e15a1c0beeefd8d9efe816b75891344f10956184"
+          },
+          {
+            "identity": {
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6ded2fe4e138963fa4e8c30b95f5d9717476dcb6da82d08946294d288583781b",
+            "inventory_sha256": "00b4f67903d5b080cb53b79b4bb1a800d6b835486a4471e178a99578f186186a"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration",
+              "reference product": "scrap steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "e6c90b1a58e95d92dd21a181f25ac0b4168d8ce1ce7df79348a66d60fcb69a42",
+            "inventory_sha256": "c8120039d1d32f73d07122b46e4ac6f608f73aa64a491da58b24c3155cd377e6"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "dbf4263781d904aa5b12b7450b387a0f0469bbb1fd8ac257b56d94b032291b72",
+            "inventory_sha256": "e1a2c5d8e15eb380c20e9f097033a85479ef6df3a6dbdfe11b44876cc1653a20"
+          }
+        ],
+        "limitations": "User instructionauto-approvecomingdecisions withinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytwoenumerated3.9cutoffRoW reinforcementsteelmarket/finalcollectionrootsqualify. Preserveoriginalseparate recycling/sorting/finaldisposalshares andallnestedgeographic/treatmentshares,freightandoperatingcoefficients,signedmarginaluncertainty,zeros andsource stages withoutaggregation/renormalization. Marketroutesabout40.99%recycling,18.01%sorting,41.00%finalcollection; source recyclingisonlydismantling,notremelting. Reusecomplete nativeSwissreinforcement-steeldismantling peroriginalkg underexactpreviousreview:bothsource/nativehaveonly0.626MJbuildingmachinediesel; do notaddsourcefuelagain,scrap purchase orvirginsteelcredit. Othercollection/sortingstages preserveoriginal0.626MJdiesel,all8distinctLVgridquantities,hydraulicexcavation and1e-10sortingfacilitycount withcomplete nativecorrespondingservices. Sourceandnativesortingfacility200000t/year,50yearlife; noadditionalthroughput/lifetimefactor,whole-sorter haulage orwasteheat. RU/AU/NZ/RNA/RAF/RLA/RASsourcegridsuseexistingnativeLVgrids atsamegeography,EuropewithoutSwitzerlandusesRERwithexplicitCH-inclusionproxywarning. Nativevoltage/loss/import/infrastructuremodels,geography,fleet,fuel/energy,machine,internaluncertainty,allocation andvintage differ; keepnative signedinternalsanddonotaddextragridlosses/fuel/machinery. Finalcollectionretains0.75642965204236RoW/.24357034795763993nonCH-Europe scrapmarketweights;bothretain.993783409994508inert/.00621659000549189ordinaryincinerationshares andalloriginalfreight separately. Inertlandfillpreservesonlysourcegenericoperations/facility at original1kg/1.48e-9unit,usinginspectednativeequivalents; observednodirectwastespecificBIOisnotproofzeroactualleaching. Ordinaryincinerationusescomplete material-specificnativeSwisssteel0%water municipalincinerator peroriginalkg. All42documentedwetcompositioncoordinatesmatchnative2026; unknownsremainunknown,notwater/carbon/energyfactors orLCIAequivalence. Preserveeachoriginal-.47289kgpositive-referenceproduction-onlyRecycledContentcutoffironhandover withexact3.9profilebinding. No avoidedvirginsteelcredit,remelting,omittedtreatment,newzinc/electricity/heatcreditorzero-burdenunknownprovider. Nativeincineratorhasnonegativetechnosphereinputduplicatinghandover. Sourceincinerationinternalpurchases,51elementarytermsperprocess,reusedenergy,slag/residuemanagement andinternalfreight arereplacedbycomplete nativeincineration; do notaddthemagain. Emissions/energy/ash/recovery/allocation,technology/geography/vintage/internaluncertainty andnative2991biosphereexclusionsremaindifferences withunquantifiedscoreeffects. Sourceallmarket-leveloriginalrail/roadentriesretainedperoriginaltkm throughcompletegenericRERservices; sourcegeography/traction/fleet/fuel/load/vintage/internaluncertainty differ,nonativeCNcoal-only/USdiesel-only rail,noextra distance/load/vehiclefactor. Negativewaste-reference-1mapspositive1kgservicebyfactor-1; independentlynegatesourcewastesupplierdemandonce,retainnegativeinputtopositiverecoveredstock. Samefinalcollectionrecipeissharedbetweendirectrootandmarketdependency;nocopyofitsinternaluncertainty. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparatepurchases/emissions. No physicalomission,reverse,cross-system-model,otherrelease,standalonecomponent orfullscenario/certification/exportapproval."
+      },
+      "limitations": [
+        "User instructionauto-approvecomingdecisions withinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytwoenumerated3.9cutoffRoW reinforcementsteelmarket/finalcollectionrootsqualify. Preserveoriginalseparate recycling/sorting/finaldisposalshares andallnestedgeographic/treatmentshares,freightandoperatingcoefficients,signedmarginaluncertainty,zeros andsource stages withoutaggregation/renormalization. Marketroutesabout40.99%recycling,18.01%sorting,41.00%finalcollection; source recyclingisonlydismantling,notremelting. Reusecomplete nativeSwissreinforcement-steeldismantling peroriginalkg underexactpreviousreview:bothsource/nativehaveonly0.626MJbuildingmachinediesel; do notaddsourcefuelagain,scrap purchase orvirginsteelcredit. Othercollection/sortingstages preserveoriginal0.626MJdiesel,all8distinctLVgridquantities,hydraulicexcavation and1e-10sortingfacilitycount withcomplete nativecorrespondingservices. Sourceandnativesortingfacility200000t/year,50yearlife; noadditionalthroughput/lifetimefactor,whole-sorter haulage orwasteheat. RU/AU/NZ/RNA/RAF/RLA/RASsourcegridsuseexistingnativeLVgrids atsamegeography,EuropewithoutSwitzerlandusesRERwithexplicitCH-inclusionproxywarning. Nativevoltage/loss/import/infrastructuremodels,geography,fleet,fuel/energy,machine,internaluncertainty,allocation andvintage differ; keepnative signedinternalsanddonotaddextragridlosses/fuel/machinery. Finalcollectionretains0.75642965204236RoW/.24357034795763993nonCH-Europe scrapmarketweights;bothretain.993783409994508inert/.00621659000549189ordinaryincinerationshares andalloriginalfreight separately. Inertlandfillpreservesonlysourcegenericoperations/facility at original1kg/1.48e-9unit,usinginspectednativeequivalents; observednodirectwastespecificBIOisnotproofzeroactualleaching. Ordinaryincinerationusescomplete material-specificnativeSwisssteel0%water municipalincinerator peroriginalkg. All42documentedwetcompositioncoordinatesmatchnative2026; unknownsremainunknown,notwater/carbon/energyfactors orLCIAequivalence. Preserveeachoriginal-.47289kgpositive-referenceproduction-onlyRecycledContentcutoffironhandover withexact3.9profilebinding. No avoidedvirginsteelcredit,remelting,omittedtreatment,newzinc/electricity/heatcreditorzero-burdenunknownprovider. Nativeincineratorhasnonegativetechnosphereinputduplicatinghandover. Sourceincinerationinternalpurchases,51elementarytermsperprocess,reusedenergy,slag/residuemanagement andinternalfreight arereplacedbycomplete nativeincineration; do notaddthemagain. Emissions/energy/ash/recovery/allocation,technology/geography/vintage/internaluncertainty andnative2991biosphereexclusionsremaindifferences withunquantifiedscoreeffects. Sourceallmarket-leveloriginalrail/roadentriesretainedperoriginaltkm throughcompletegenericRERservices; sourcegeography/traction/fleet/fuel/load/vintage/internaluncertainty differ,nonativeCNcoal-only/USdiesel-only rail,noextra distance/load/vehiclefactor. Negativewaste-reference-1mapspositive1kgservicebyfactor-1; independentlynegatesourcewastesupplierdemandonce,retainnegativeinputtopositiverecoveredstock. Samefinalcollectionrecipeissharedbetweendirectrootandmarketdependency;nocopyofitsinternaluncertainty. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparatepurchases/emissions. No physicalomission,reverse,cross-system-model,otherrelease,standalonecomponent orfullscenario/certification/exportapproval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a424ef6a7009a64db0b0c327226f96734d59d5714f35d1db40332f91774f1004"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c276cc8b782b2c02",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_steel_row_routes",
+      "review_path": "export/uvek_pilot_steel_row_routes_review.json",
+      "review_sha256": "e1fea366cded46937904231629a7d97e9651d0bd19d94e2b8a884156de3580ac",
+      "authorization": "User automaticapproval ofcomingpilotdecisions. Twoexact3.9cutoffRoWsteelroutesretainoriginalrecycling/sorting/collection/disposal/stocks/freight,usingmatching-functionnativeoperating/grids/incineration andexistingqualifieddismantling;explicittechnology/geography/uncertainty/scorewarnings. No normalization,physicalomission,newcreditorcross-modelroute.",
+      "inspection": {
+        "rule_id": "bp-c276cc8b782b2c02",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of waste reinforcement steel, collection for final disposal",
+          "reference product": "waste reinforcement steel",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "xx Disposal, building, reinforcement steel, to final disposal",
+          "reference product": "xx Disposal, building, reinforcement steel, to final disposal",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.3881,
+          "conversion_factor": -1,
+          "id": "bp-c276cc8b782b2c02",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-c276cc8b782b2c02"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "treatment of waste reinforcement steel, collection for final disposal",
+            "reference product": "waste reinforcement steel",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "xx Disposal, building, reinforcement steel, to final disposal",
+            "reference product": "xx Disposal, building, reinforcement steel, to final disposal",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "5207f0fab4711c76774b02cdc596b85733815991560277a3a1a4e93c1bf0e5b6",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "a8b8b9847f43e3203a2746215e8610d595f133d2545cfbf083eb22db31227681",
+        "source_inventory_sha256": "ff582a20992ce85dda03da6893f6f407ba56e140f03094504e7a7bdf519f0b1b",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 9,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "ff582a20992ce85dda03da6893f6f407ba56e140f03094504e7a7bdf519f0b1b",
+            "inputs": [
+              {
+                "amount": 0.626,
+                "uncertainty type": 2,
+                "loc": -0.46840490788203853,
+                "scale": 0.2683281572999748,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.33763886032268264,
+                "name": "Diesel, burned in building machine, average",
+                "reference product": "Diesel, burned in building machine, average",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.75642965204236,
+                "uncertainty type": 2,
+                "loc": -0.2791457414294946,
+                "scale": 0.044721359549995794,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.044721359549995794,
+                "negative": false,
+                "recipe": "pilot-steel-row-routes-1c3ff5c4b12425825a63"
+              },
+              {
+                "amount": 0.24357034795763993,
+                "uncertainty type": 2,
+                "loc": -1.4123494748672234,
+                "scale": 0.044721359549995794,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.044721359549995794,
+                "negative": false,
+                "recipe": "pilot-steel-row-routes-1a22154b5e18aa7fe8d9"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "iron scrap, sorted, pressed, Recycled Content cut-off",
+                  "iron scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ff479ed9fa2d2ffd1446c85c430d73ac9825a0b2142161638456794edd14b62e"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "AT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f9b7c2e54188ffa6b503f20d90ae9626845cdd13ad4386437de8d67e625666b5"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "BE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "6b0182f3fcdbf7011776f5133c1b41c8afa4888342ac7efb0d96bd36a8c22b51"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "BG",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "215dd6c061408c22495871658bbb65e6c166946e3a6076f718c13e2ae80d54fe"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CZ",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b0cfc9ed453cebae7572027e1b1b831b52727a4c7425932ce4eff2c4c1957b5b"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "DE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4dbfdf0bf6025043d4b8b1390aab6f47dfd53a8e04287c339a1002f7a4f19aa4"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "DK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "e1002ea0c4049c35eb4181901a70af35411733f90d16c5ee88b6dc75ae8c3a33"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "ES",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "deebe09e0a3a98c4f337dd048b82af853689af02bceae892500b2e2a9a3cb36b"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "FI",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "e0ef5a8c11954996d318937813d9a796f709dcf4b2701953195b2e7ea01856d2"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "FR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "0a5b4c339c28f951fc2e08e28e13dd8a1bc55c5c04bf9302d2ac6e8c43d94e5f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "GB",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "689884c7ae794e57fd306bc6a31a7956d13b7e031ee0a00e28462e47a5e8ba0c"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "HU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "5ef70c39f6b086ee84679aa0544e2bdbc5919bb2d11e7cad3a07a02af39ef980"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "IT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "5e4c838a6a29558fea0a6e2e9d1b942ca6078f1fba5460daf201cca78b8d7af0"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "JP",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f58188befff3758866ce9228a629e43fbadea683aa136ed9249c244569fd1fa4"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "KR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "cd4e74b96b02cd181739adf7e105a4f0b3f025d5dcb33cceb2ff13c227249f7d"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "LU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3427bf925293ed19c96839ca13d110427954f12b3d61eec3c3a2dba690e18bd5"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "NL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f16400e3ce88ae1825e965b1747f9405247750c883d19c24cf34400df71b734f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "NO",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d902deff61fca4c2ffc37d9be27a6ec1e65b249118a4f2498bdd25fc16ecee84"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "PL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f6fac17b495cf6c32d07f371abb774f0252e35d524455c0cf8703f083dccdd68"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "PT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "da6df445b463cb4edaffe2726d0acaefda198ad07e662b0c8e42567bd1b54cde"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "RoW",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "a7b6a0ef82d51a99d516a8347f32ba21166110d45b4749aef4ef376bc0b43738"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "SE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "2473c599d0af97f69ee57a061f47df41e3a3c85269df228c54dea2fd66edfc6f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "SK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4e67d83fcb8a0c7235a954d6130bea408983776f052ca73cf30172c44b438b7a"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "TR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "6632c106ad1f9cf77614a7d8282a67cdc3c11e69fdcae47f4e929659a328fbcf"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "TW",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "8d60ca2e980788f226aca618e25251e0937a441cd6b787bc1432cedb3e5ac935"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "AU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "c74292260ac434b7ba1c7e2aa811acffebde8fa6e66eaeddab0d72f9b2203398"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "NZ",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4573219b85bee16fe000748782c6be489b1b83347ff603bc7aba77a4b3a8b615"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d7909088b782b59bf0bfade8eb8646d652d41a255400e3123d4c04c122cbe004"
+              },
+              {
+                "source": [
+                  "market for excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "bc929c3e08eda739271b9025e632fd5beb4eebe1da8d032f34be2f3d89b70179"
+              },
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for municipal waste incineration facility",
+                  "municipal waste incineration facility",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "1a72c8282618c9713e4c50c785b82ab2797793d3dc3d78ed6e303060711d9517"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f7d9dcaecc27dce689ad42c41343a0b5ffc5c6a3edcc90a3e61495748aab30a9"
+              },
+              {
+                "source": [
+                  "market for scrap steel",
+                  "scrap steel",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "21c5a036dbfc346328e4192b52f04f8a47d7f7e5d3bf7706d755962a456862aa"
+              },
+              {
+                "source": [
+                  "market for scrap steel",
+                  "scrap steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "6613a45b84a5019018591ea08910fc9c97222eb0a70c27f2e844845799427fd9"
+              },
+              {
+                "source": [
+                  "market for slag landfill",
+                  "slag landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "47823879b2b451c2a610e71d0132da5c673f6209c679888c84cdb03960960eae"
+              },
+              {
+                "source": [
+                  "market for sorting facility, for construction waste",
+                  "sorting facility, for construction waste",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "91f4ad5cdddd57f17ffa938e31a6fbc12a690ae3c25b67fa244ef55c3fe94f60"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4109bea7a76d943d728d832fd5ca373ad9d81750f0624bf74911889eca74f783"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "Europe without Switzerland",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "c57c2d628dbf2e4018a5bb7ca5faa236dfd827c5ae6ecc6d28c0e847053145b8"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RAF",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "8dac2e63a83417e974399840ce13fb57763c032158d258327dbdf7fd2b914311"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RAS",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3cb148be7744f26604de8c530a5ea0859d72bc8cf98bc7f43441cdaac2a52051"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RLA",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "fcbf232182f0404bd863c48fbda4e73246d7537721a36c2ad9427cf6912f830b"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RNA",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "82ab565e2d2d223ead53d7ea5ad46bfa62ed53745d838faf6e323e5ff976ec20"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd35704554e96359a1fbfe5a0ca45b2e594e2de3328110efa4087d5862053299"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "5c8b30be8396c4a5af8a1db703b06ec59f8a8b4363870ad35c1c1e3035224b14"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "37eb78044cbed3d301607d06f1dff75ad4f5aa84b36ea3a593a63922ae424fdd"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration",
+                  "scrap steel",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "62de77e4518094766d7657507ed68cc18361ea061bf745a7cda263caea166d5d"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration",
+                  "scrap steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "65c3eb8c25e260c4296bd828b54126bf906d782379ebc09aa30fcb1ca3e6748d"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, recycling",
+                  "waste reinforcement steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "db8fa2d433cdd78a6b945619685142c2b1be58412948074d09ccbf9d29f14e3d"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, sorting plant",
+                  "waste reinforcement steel",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "a3ec2df54de789eeb645bc92f91125ea77d6679c3791d36c69abd0d07d559ba0"
+              }
+            ]
+          }
+        ],
+        "source_stage_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste reinforcement steel, collection for final disposal",
+              "reference product": "waste reinforcement steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a8b8b9847f43e3203a2746215e8610d595f133d2545cfbf083eb22db31227681",
+            "inventory_sha256": "ff582a20992ce85dda03da6893f6f407ba56e140f03094504e7a7bdf519f0b1b"
+          },
+          {
+            "identity": {
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8fd6014fcb91385b0cbb1b56348e55f6b389847a5046b5a646c137d7385b61da",
+            "inventory_sha256": "ac90e83d4e2ba637f5814653b1deed6124b461181894547dc2267b74194088ef"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration",
+              "reference product": "scrap steel",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8355efd9e535eaec67188c67b19467d26c7505273c24ea7a1c3510f369b3e06b",
+            "inventory_sha256": "c1e9a0168f0da48f338cc44532e0a8822829cb1e3cf407a690468b8428c6502e"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "635b9c201a721043c81e756e744eb5b37b0ad48be76a9f4f1e453c957d4a25a2",
+            "inventory_sha256": "cf8207776fd01e0e237c5399e15a1c0beeefd8d9efe816b75891344f10956184"
+          },
+          {
+            "identity": {
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6ded2fe4e138963fa4e8c30b95f5d9717476dcb6da82d08946294d288583781b",
+            "inventory_sha256": "00b4f67903d5b080cb53b79b4bb1a800d6b835486a4471e178a99578f186186a"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration",
+              "reference product": "scrap steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "e6c90b1a58e95d92dd21a181f25ac0b4168d8ce1ce7df79348a66d60fcb69a42",
+            "inventory_sha256": "c8120039d1d32f73d07122b46e4ac6f608f73aa64a491da58b24c3155cd377e6"
+          },
+          {
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "dbf4263781d904aa5b12b7450b387a0f0469bbb1fd8ac257b56d94b032291b72",
+            "inventory_sha256": "e1a2c5d8e15eb380c20e9f097033a85479ef6df3a6dbdfe11b44876cc1653a20"
+          }
+        ],
+        "limitations": "User instructionauto-approvecomingdecisions withinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytwoenumerated3.9cutoffRoW reinforcementsteelmarket/finalcollectionrootsqualify. Preserveoriginalseparate recycling/sorting/finaldisposalshares andallnestedgeographic/treatmentshares,freightandoperatingcoefficients,signedmarginaluncertainty,zeros andsource stages withoutaggregation/renormalization. Marketroutesabout40.99%recycling,18.01%sorting,41.00%finalcollection; source recyclingisonlydismantling,notremelting. Reusecomplete nativeSwissreinforcement-steeldismantling peroriginalkg underexactpreviousreview:bothsource/nativehaveonly0.626MJbuildingmachinediesel; do notaddsourcefuelagain,scrap purchase orvirginsteelcredit. Othercollection/sortingstages preserveoriginal0.626MJdiesel,all8distinctLVgridquantities,hydraulicexcavation and1e-10sortingfacilitycount withcomplete nativecorrespondingservices. Sourceandnativesortingfacility200000t/year,50yearlife; noadditionalthroughput/lifetimefactor,whole-sorter haulage orwasteheat. RU/AU/NZ/RNA/RAF/RLA/RASsourcegridsuseexistingnativeLVgrids atsamegeography,EuropewithoutSwitzerlandusesRERwithexplicitCH-inclusionproxywarning. Nativevoltage/loss/import/infrastructuremodels,geography,fleet,fuel/energy,machine,internaluncertainty,allocation andvintage differ; keepnative signedinternalsanddonotaddextragridlosses/fuel/machinery. Finalcollectionretains0.75642965204236RoW/.24357034795763993nonCH-Europe scrapmarketweights;bothretain.993783409994508inert/.00621659000549189ordinaryincinerationshares andalloriginalfreight separately. Inertlandfillpreservesonlysourcegenericoperations/facility at original1kg/1.48e-9unit,usinginspectednativeequivalents; observednodirectwastespecificBIOisnotproofzeroactualleaching. Ordinaryincinerationusescomplete material-specificnativeSwisssteel0%water municipalincinerator peroriginalkg. All42documentedwetcompositioncoordinatesmatchnative2026; unknownsremainunknown,notwater/carbon/energyfactors orLCIAequivalence. Preserveeachoriginal-.47289kgpositive-referenceproduction-onlyRecycledContentcutoffironhandover withexact3.9profilebinding. No avoidedvirginsteelcredit,remelting,omittedtreatment,newzinc/electricity/heatcreditorzero-burdenunknownprovider. Nativeincineratorhasnonegativetechnosphereinputduplicatinghandover. Sourceincinerationinternalpurchases,51elementarytermsperprocess,reusedenergy,slag/residuemanagement andinternalfreight arereplacedbycomplete nativeincineration; do notaddthemagain. Emissions/energy/ash/recovery/allocation,technology/geography/vintage/internaluncertainty andnative2991biosphereexclusionsremaindifferences withunquantifiedscoreeffects. Sourceallmarket-leveloriginalrail/roadentriesretainedperoriginaltkm throughcompletegenericRERservices; sourcegeography/traction/fleet/fuel/load/vintage/internaluncertainty differ,nonativeCNcoal-only/USdiesel-only rail,noextra distance/load/vehiclefactor. Negativewaste-reference-1mapspositive1kgservicebyfactor-1; independentlynegatesourcewastesupplierdemandonce,retainnegativeinputtopositiverecoveredstock. Samefinalcollectionrecipeissharedbetweendirectrootandmarketdependency;nocopyofitsinternaluncertainty. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparatepurchases/emissions. No physicalomission,reverse,cross-system-model,otherrelease,standalonecomponent orfullscenario/certification/exportapproval."
+      },
+      "limitations": [
+        "User instructionauto-approvecomingdecisions withinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytwoenumerated3.9cutoffRoW reinforcementsteelmarket/finalcollectionrootsqualify. Preserveoriginalseparate recycling/sorting/finaldisposalshares andallnestedgeographic/treatmentshares,freightandoperatingcoefficients,signedmarginaluncertainty,zeros andsource stages withoutaggregation/renormalization. Marketroutesabout40.99%recycling,18.01%sorting,41.00%finalcollection; source recyclingisonlydismantling,notremelting. Reusecomplete nativeSwissreinforcement-steeldismantling peroriginalkg underexactpreviousreview:bothsource/nativehaveonly0.626MJbuildingmachinediesel; do notaddsourcefuelagain,scrap purchase orvirginsteelcredit. Othercollection/sortingstages preserveoriginal0.626MJdiesel,all8distinctLVgridquantities,hydraulicexcavation and1e-10sortingfacilitycount withcomplete nativecorrespondingservices. Sourceandnativesortingfacility200000t/year,50yearlife; noadditionalthroughput/lifetimefactor,whole-sorter haulage orwasteheat. RU/AU/NZ/RNA/RAF/RLA/RASsourcegridsuseexistingnativeLVgrids atsamegeography,EuropewithoutSwitzerlandusesRERwithexplicitCH-inclusionproxywarning. Nativevoltage/loss/import/infrastructuremodels,geography,fleet,fuel/energy,machine,internaluncertainty,allocation andvintage differ; keepnative signedinternalsanddonotaddextragridlosses/fuel/machinery. Finalcollectionretains0.75642965204236RoW/.24357034795763993nonCH-Europe scrapmarketweights;bothretain.993783409994508inert/.00621659000549189ordinaryincinerationshares andalloriginalfreight separately. Inertlandfillpreservesonlysourcegenericoperations/facility at original1kg/1.48e-9unit,usinginspectednativeequivalents; observednodirectwastespecificBIOisnotproofzeroactualleaching. Ordinaryincinerationusescomplete material-specificnativeSwisssteel0%water municipalincinerator peroriginalkg. All42documentedwetcompositioncoordinatesmatchnative2026; unknownsremainunknown,notwater/carbon/energyfactors orLCIAequivalence. Preserveeachoriginal-.47289kgpositive-referenceproduction-onlyRecycledContentcutoffironhandover withexact3.9profilebinding. No avoidedvirginsteelcredit,remelting,omittedtreatment,newzinc/electricity/heatcreditorzero-burdenunknownprovider. Nativeincineratorhasnonegativetechnosphereinputduplicatinghandover. Sourceincinerationinternalpurchases,51elementarytermsperprocess,reusedenergy,slag/residuemanagement andinternalfreight arereplacedbycomplete nativeincineration; do notaddthemagain. Emissions/energy/ash/recovery/allocation,technology/geography/vintage/internaluncertainty andnative2991biosphereexclusionsremaindifferences withunquantifiedscoreeffects. Sourceallmarket-leveloriginalrail/roadentriesretainedperoriginaltkm throughcompletegenericRERservices; sourcegeography/traction/fleet/fuel/load/vintage/internaluncertainty differ,nonativeCNcoal-only/USdiesel-only rail,noextra distance/load/vehiclefactor. Negativewaste-reference-1mapspositive1kgservicebyfactor-1; independentlynegatesourcewastesupplierdemandonce,retainnegativeinputtopositiverecoveredstock. Samefinalcollectionrecipeissharedbetweendirectrootandmarketdependency;nocopyofitsinternaluncertainty. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparatepurchases/emissions. No physicalomission,reverse,cross-system-model,otherrelease,standalonecomponent orfullscenario/certification/exportapproval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "478757c91f5b3a81056f8c7634a692a799cbf7b83626fcf1dcddc7a8316a002f"
+        }
+      ]
     }
   ]
 }

@@ -757,3 +757,15 @@ remain explicit screening limitations. See [boundaries and verification](uvek-wa
 This adds four scopes while preserving the previous 405 fingerprints. The
 required nitrate supplier set now has 121 of 125 suppliers scoped; broader pilot
 mapping, scenario, certification and export gates remain open.
+
+### RoW reinforcement-steel checkpoint
+
+Two exact 3.9 cut-off RoW steel routes now preserve their original recycling,
+sorting, final-collection, scrap-disposal and individual freight stages. The
+sorting inventory retains all eight low-voltage supply entries and its original
+facility/operating quantities. Recovered iron uses the verified positive-reference
+cut-off stock; direct and nested final collection share one helper. See
+[boundaries and verification](uvek-steel-row-routing-findings.md).
+The two scopes preserve all previous 409 fingerprints. The required nitrate
+supplier set now has 123 of 125 suppliers scoped; heat markets and broader pilot
+mapping/scenario/certification/export gates remain open.
