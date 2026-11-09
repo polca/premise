@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 15 |
+| 3.6 | 27 | 13 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
 | 3.9 | 17 | 28 |
 | 3.12 | 8 | 13 |
 
-These are 56 exact-profile cases involving 49 distinct rules, after reusing
+These are 54 exact-profile cases involving 47 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -465,10 +465,32 @@ No raw migration rule is changed. Wheel checks verify the packaged review,
 its authorization evidence and manifest. The module contains 622 cases;
 no full 622-case run is claimed. The 3.7/3.8 cohorts still complete, while
 the three other cohorts remain refused.
+Two bare Swiss landfill helpers cover the inspected 3.6 steel and glass waste
+services. They retain the source's generic operation and construction inputs
+using the complete native components already reviewed for concrete landfill.
+Source/native 2025 component inventories match the earlier review witnesses;
+native 2026 counterparts are nonempty and the facility capacity remains
+450,000 m3. No collection, density, capacity, moisture or lifetime factor is
+added. Opposite waste/service references retain factor -1. The source's missing
+leachate inventory remains an explicit data gap, without importing the old
+native endpoints' different waste compositions. Native heat, material, freight,
+allocation and vintage differences remain warnings. Both combined native
+inventories have finite baseline LCIs with unchanged scientific hashes.
+Sixteen focused Premise checks pass, including cached gap warnings, signed
+demands, complete helper ownership and refusals for the old direct endpoints.
+All 291 earlier approval fingerprints, 3,178 existing recipes and 686 shared
+reviews remain unchanged. Exactly two rules gain two recipes and one shared
+review; generator replay is byte-identical. Other source profiles remain
+unresolved, and the full prospective pilot remains refused.
+Across focused runs, 734 relevant Brightpath checks pass. The historical
+system-model guard now compares both sides after all reviewed pilot corrections,
+including the approved diesel factor, and still requires exact executable-rule
+and helper-coefficient preservation. The 631-case Premise correspondence module
+was exercised selectively; no full 631-case run is claimed.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 291 exact-profile fingerprints, with review evidence and
+ledger contains 293 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

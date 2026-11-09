@@ -682,8 +682,8 @@ def test_refused_transaction_retains_review_limitations_without_target(tmp_path)
     "rule_id",
     [
         "bp-8cde42cb022d74ed",  # Different waste composition and landfill class.
-        "bp-1b20be09e53aaa84",  # Source omits composition and landfill emissions.
-        "bp-bcbf9e1008a58e4b",  # Source omits composition and landfill emissions.
+        "bp-1b20be09e53aaa84",  # Direct composition-specific endpoint remains unapproved.
+        "bp-bcbf9e1008a58e4b",  # Only the generic operation/facility helper is approved.
     ],
 )
 def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
@@ -693,6 +693,18 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
 
     resource = load_uvek_technosphere_resource()
     rule = next(r for r in resource["replace"] if r["id"] == rule_id)
+    if rule["mapping_method"] == "reviewed_pilot_inert_landfill":
+        from brightpath import DATA_DIR
+
+        review = json.loads(
+            (DATA_DIR / "export/uvek_pilot_inert_landfill_review.json").read_text()
+        )
+        rule = next(
+            row["previous_rule"]
+            for row in review["records"]
+            if row["rule_id"] == rule_id
+        )
+        assert "recipe_ref" not in rule["target"]
     fingerprint = compatibility_rule_fingerprint(
         resource,
         "replace",
@@ -714,6 +726,8 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
         ("bp-f538bbeedc48b671", "3.8", 1),
         ("bp-4b1d84179efa58e8", "3.9", -1),
         ("bp-815270d3fcbfb53b", "3.9", -1),
+        ("bp-1b20be09e53aaa84", "3.6", -1),
+        ("bp-bcbf9e1008a58e4b", "3.6", -1),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -773,7 +787,6 @@ def test_prior_helper_approval_returns_complete_owned_graph(
     "rule_id",
     [
         "bp-9c3675cc3a3f003c",  # Different cement strength-class coverage.
-        "bp-bcbf9e1008a58e4b",  # Glass landfill is not the reviewed incinerator.
         "bp-18d0fd79bfe6791b",  # TFE has conflicting PTFE CAS/synonym metadata.
         "bp-08f2432b62895931",  # Epoxy resin grade is not verified by this group.
     ],
@@ -795,6 +808,53 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
     assert fingerprint not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
+
+
+@pytest.mark.parametrize("rule_id", ["bp-1b20be09e53aaa84", "bp-bcbf9e1008a58e4b"])
+def test_bare_inert_landfill_retains_source_boundary_and_cached_gap_warning(
+    tmp_path, rule_id
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version="3.6")
+    emission = {
+        "name": "Carbon dioxide, fossil",
+        "categories": ["air"],
+        "unit": "kilogram",
+        "type": "biosphere",
+        "amount": 7,
+    }
+    resolved.activities[0]["exchanges"].append(emission)
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for result in (
+        harmonizer.harmonize(resolved, family="uvek", version="2026"),
+        harmonizer.harmonize(resolved, family="uvek", version="2026"),
+    ):
+        foreground = next(
+            a for a in result.activities if a["code"] == resolved.activities[0]["code"]
+        )
+        edge = foreground["exchanges"][1]
+        assert edge["amount"] == 2
+        helper = next(a for a in result.activities if a["code"] == edge["input"][1])
+        tech = [e for e in helper["exchanges"] if e["type"] == "technosphere"]
+        assert {e["name"]: e["amount"] for e in tech} == {
+            "Process-specific burdens, inert material landfill": 1,
+            "xx Inert material landfill facility": 1.48e-9,
+        }
+        assert not any(e["type"] == "biosphere" for e in helper["exchanges"])
+        assert foreground["exchanges"][-1]["amount"] == 7
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+            and "retain that source-data gap" in json.dumps(d)
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
 
 
 @pytest.mark.parametrize(
@@ -844,6 +904,8 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-9f820f97f9f3c080",
         "bp-2d7bd6f9508a4c17",
         "bp-b16c64b2ed0f8102",
+        "bp-1b20be09e53aaa84",
+        "bp-bcbf9e1008a58e4b",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])

@@ -646,6 +646,26 @@ and authorization hashes are verified. No raw rule changes. The current
 frontier is 49 distinct unresolved rules / 56 exact source-profile cases,
 with 291 approval fingerprints. The full prospective pilot remains refused.
 
+`uvek_pilot_inert_landfill_review.json` adds two bare 3.6 Swiss steel/glass
+landfill helpers under the standing composed-helper approval. The generic
+operation/facility components retain the exact earlier concrete-review
+inventory witnesses and documented 450,000 m3 capacity. Source landfill
+operation and construction demands remain separate; no collection wrapper,
+moisture or lifetime scaling is added. Negative waste demands use factor -1
+against the positive helper service. The source's missing leachate inventory
+is warned as a data gap; the old composition-specific native endpoints remain
+unapproved. Complete native heat, material, freight and vintage differences
+remain warnings. Sixteen focused Premise checks pass, including cache reuse,
+sign/uncertainty/formula preservation and exact-version gates. Both combined
+native LCIs are finite with unchanged scientific hashes. All 291 earlier
+fingerprints remain valid and generator replay is byte-identical. The frontier
+is 47 distinct unresolved rules / 54 exact source-profile cases, with 293
+approval fingerprints. This does not certify the full prospective pilot.
+The related pilot, concrete-helper, system-model and resource-storage checks
+cover 734 Brightpath cases across focused runs. A stale historical comparison
+now applies the same complete reviewed pilot overlays as the authoring path,
+retaining exact rule and helper-coefficient comparisons after those corrections.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
