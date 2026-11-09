@@ -1744,6 +1744,109 @@
         }
       ],
       "status": "Source-faithful dry-active NaOCl production and market reconstruction, with native reactants, exact canonical reaction emissions and same-mode rail freight."
+    },
+    {
+      "review_path": "export/uvek_deferred_concrete_review.json",
+      "review_sha256": "c777ad7e2ca50d27ecc0cd89a471ad4881911aa02e33cd66982a6bb029369314",
+      "restored_decisions": [
+        {
+          "id": "uvek-2026-screening-e9ef258182b7597f7874",
+          "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
+          "version_id": 1840,
+          "semantic_version": "1.0.0",
+          "sha256": "d58bb0758488c10ef8425b6e657074aa874cfc6443ceafb88792e38e1f5f2efd",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.9"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -207020000,
+            "location": "CH",
+            "name": "market for waste concrete, not reinforced",
+            "reference product": "waste concrete, not reinforced",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 4,
+          "screening_only": true,
+          "deferred_rule_id": "bp-4335e9c5e2d93a7f",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, building, concrete, not reinforced, to final disposal",
+            "reference product": "Disposal, building, concrete, not reinforced, to final disposal",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-4335e9c5e2d93a7f: -207020000 kilogram of market for waste concrete, not reinforced in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        },
+        {
+          "id": "uvek-2026-screening-b81892ef79e851727f96",
+          "slug": "treatment-of-electrolyzer-balance-of-plant-1mwe-pem",
+          "version_id": 4858,
+          "semantic_version": "1.0.1",
+          "sha256": "c254e82b49460e5832753a01c0caeeced3e9d3d3ff127db35c555ac8df2cead2",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.9"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -5600,
+            "location": "Europe without Switzerland",
+            "name": "market for waste concrete, not reinforced",
+            "reference product": "waste concrete, not reinforced",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 7,
+          "screening_only": true,
+          "deferred_rule_id": "bp-b47c8547ff19ec86",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, building, concrete, not reinforced, to final disposal",
+            "reference product": "Disposal, building, concrete, not reinforced, to final disposal",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-b47c8547ff19ec86: -5600 kilogram of market for waste concrete, not reinforced in pinned treatment-of-electrolyzer-balance-of-plant-1mwe-pem (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        }
+      ],
+      "status": "Source-faithful concrete-waste sorting, nonempty recycling and collection, preserving inert waste fates, particulate emissions and freight."
     }
   ]
 }

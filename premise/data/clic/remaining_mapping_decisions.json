@@ -1997,7 +1997,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-e9ef258182b7597f7874",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-e9ef258182b7597f7874",
         "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
@@ -2046,10 +2046,531 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-4335e9c5e2d93a7f: -207020000 kilogram of market for waste concrete, not reinforced in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": -1,
+        "source_unit": "kilogram waste concrete",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram treatment service",
+        "caller_conversion_factor": -1
+      },
       "rejected_prior_candidate_reason": "Final disposal alone loses the original sorting and nonempty recycling branches.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_concrete_review.json",
+          "sha256": "c777ad7e2ca50d27ecc0cd89a471ad4881911aa02e33cd66982a6bb029369314",
+          "source_witness": {
+            "identity": {
+              "location": "CH",
+              "name": "market for waste concrete, not reinforced",
+              "reference product": "waste concrete, not reinforced",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "c6d8acdbca82d4fb8451e9daf1cb91677c29d050110c3953cc157eefa7f28e93",
+            "inventory_sha256": "a1d955dc65e090207a56faff572a85f73f8eb8e8ddb9c7024fb3ea93fcca5a96"
+          },
+          "source_witnesses": [
+            {
+              "identity": {
+                "location": "CH",
+                "name": "market for waste concrete, not reinforced",
+                "reference product": "waste concrete, not reinforced",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "c6d8acdbca82d4fb8451e9daf1cb91677c29d050110c3953cc157eefa7f28e93",
+              "inventory_sha256": "a1d955dc65e090207a56faff572a85f73f8eb8e8ddb9c7024fb3ea93fcca5a96"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, sorting plant",
+                "reference product": "waste concrete, not reinforced",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "e1322e1a1da3cc2c8d0fa88b380de59aff48cf191cae607bbe9ea42e2d6d11b4",
+              "inventory_sha256": "83d8e65a61a44be3a4aefbb9e18d4c35f5a36afa7c0d507806b5ff7edb793afb"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, recycling",
+                "reference product": "waste concrete, not reinforced",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "db1e7960cbb890ad0fc4b79dd6b7f84440dc67ce91e419db489db1619ad48d95",
+              "inventory_sha256": "9ae3e5e8133266b9b6077960a935fdbd55fce369bb9589dd6cfe3c491c32700e"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, collection for final disposal",
+                "reference product": "waste concrete, not reinforced",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "fc679ea659a2309f38b284b6c545df9de6b1a98fe1f92efa9fd8b1df48571281",
+              "inventory_sha256": "bb55419aa9e700f472934bbd476bf3485d8368377a7bd9bf90e4bae64d0ff195"
+            },
+            {
+              "identity": {
+                "name": "market for inert waste, for final disposal",
+                "reference product": "inert waste, for final disposal",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "23f72a10ba9df961027824caa0a4f51e80dde3a569ac28b55ed7707bdccceb27",
+              "inventory_sha256": "3aecf84acf2e7b754d38ec061662945ec2e96b64c85ed23283d191939e748648"
+            },
+            {
+              "identity": {
+                "location": "Europe without Switzerland",
+                "name": "market for waste concrete, not reinforced",
+                "reference product": "waste concrete, not reinforced",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "d18d1e048bc63c57baa83f15d6d1579cc962417d372b71e0f33890c6ff247c7a",
+              "inventory_sha256": "05e936b10346d62d17ebeaefdc0d25bfcca2b24ddf4826377a7d406764e7065b"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, collection for final disposal",
+                "reference product": "waste concrete, not reinforced",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "cb2621393b193463ec416268cf26375a2f650aad7190b9e186ce70810260bd5b",
+              "inventory_sha256": "2f49c1f26d37ea67b138203535d2776c4ec578cc749b8450f0ab4f1e389c4855"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, sorting plant",
+                "reference product": "waste concrete, not reinforced",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "5a4ae13613acec6cd3a1294cf1db051b76303066df8dd482cde6e48d1159ba8b",
+              "inventory_sha256": "8eccccf653d64b8615cd44bfd4f041aff98796b2e4c96307128985c3bf429a9a"
+            },
+            {
+              "identity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "222d688a0de79463eb564fe301188a53f232d7efbbc787bd67191860fe59031c",
+              "inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c"
+            },
+            {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "105bc3f5669be6eebf1c6fa7cb01783264fe4355e7f8dd8ee6ee85da9e192ce9",
+              "inventory_sha256": "a287e2276af976634b364f653d8bf71d4ca9f9adc7747753e5c1d2a379e47583"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, recycling",
+                "reference product": "waste concrete, not reinforced",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "141585024cab60cca592208c9ba1de05672b7362770cf49edafa5e3e974aa8e8",
+              "inventory_sha256": "1d1ccdea0584b849891b485e5b4e2889cc100b24c1a56fecd755012cefa23924"
+            }
+          ],
+          "biosphere_witnesses": [
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            }
+          ],
+          "allocated_empty_terminal_audits": {
+            "deferred-waste-market-bad1b3a323f58dd0d12d": [
+              {
+                "original_index": 1,
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens.",
+                "source_activity": {
+                  "location": "CH",
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "amount": -1.0,
+                  "loc": -1.0,
+                  "location": "CH",
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.9"
+                }
+              }
+            ],
+            "deferred-concrete-ccc89e73133fcd6a3b64": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c",
+                "original_index": 2,
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram",
+                  "amount": -0.5648257344156875,
+                  "uncertainty type": 0,
+                  "loc": -0.5648257344156875,
+                  "type": "technosphere"
+                },
+                "rationale": "Independently verified production-only allocated clinker terminal: zero nonproduction exchanges, source LCI contribution exactly zero. Retain signed source quantity in this audit. No invented landfill, fuel burden, recovery credit or renormalization; no claim that physical kiln treatment is burden-free."
+              }
+            ]
+          }
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_nonempty_concrete_treatment_reconstruction",
+        "recipe_id": "deferred-concrete-ddbb9dd0b4247c98a69e",
+        "limitations": "Autonomously reviewed exact3.9cut-off concrete-waste route reconstruction. Preserve original market treatment shares and all freight, with no renormalization. Reconstruct the nonempty source collection, sorting and recycling operations using complete native diesel burning, electricity, excavation and sorting infrastructure at original coefficients, plus exact canonical3.10 particulate emissions. Negative source treatment inputs become positive demand for generated positive-reference treatment services; parent caller factor -1 preserves signed waste demand. Recycling is not an empty allocated stock. Sorting retains its actual0.4kg generic inert-waste route, not an invented0.4kg landfill. Generic CH inert waste uses its reviewed zero-inventory allocated clinker handover and retained freight. Generic European inert waste retains its sanitary-landfill fraction, an independently verified production-only clinker handover and freight. Collection retains the source final-disposal market; source treatment and market freight are not conflated. Complete native sanitary/inert landfill services are screening proxies, retaining infrastructure/operation/emissions but differing in allocation, geography, technology and vintage. Source utility/factory/vehicle technologies, capacity/lifetime, internal uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. No added recovery credit, fuel credit or landfill for a verified empty kiln handover. Preserve caller signs/quantities/formulas/uncertainty; inspect only3.9cut-off with no inverse or cross-model qualification."
+      },
       "validation": [],
       "commits": []
     },
@@ -2216,7 +2737,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-b81892ef79e851727f96",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-b81892ef79e851727f96",
         "slug": "treatment-of-electrolyzer-balance-of-plant-1mwe-pem",
@@ -2265,10 +2786,531 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-b47c8547ff19ec86: -5600 kilogram of market for waste concrete, not reinforced in pinned treatment-of-electrolyzer-balance-of-plant-1mwe-pem (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": -1,
+        "source_unit": "kilogram waste concrete",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram treatment service",
+        "caller_conversion_factor": -1
+      },
       "rejected_prior_candidate_reason": "Final disposal alone loses the original sorting and nonempty recycling branches.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_concrete_review.json",
+          "sha256": "c777ad7e2ca50d27ecc0cd89a471ad4881911aa02e33cd66982a6bb029369314",
+          "source_witness": {
+            "identity": {
+              "location": "Europe without Switzerland",
+              "name": "market for waste concrete, not reinforced",
+              "reference product": "waste concrete, not reinforced",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "d18d1e048bc63c57baa83f15d6d1579cc962417d372b71e0f33890c6ff247c7a",
+            "inventory_sha256": "05e936b10346d62d17ebeaefdc0d25bfcca2b24ddf4826377a7d406764e7065b"
+          },
+          "source_witnesses": [
+            {
+              "identity": {
+                "location": "CH",
+                "name": "market for waste concrete, not reinforced",
+                "reference product": "waste concrete, not reinforced",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "c6d8acdbca82d4fb8451e9daf1cb91677c29d050110c3953cc157eefa7f28e93",
+              "inventory_sha256": "a1d955dc65e090207a56faff572a85f73f8eb8e8ddb9c7024fb3ea93fcca5a96"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, sorting plant",
+                "reference product": "waste concrete, not reinforced",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "e1322e1a1da3cc2c8d0fa88b380de59aff48cf191cae607bbe9ea42e2d6d11b4",
+              "inventory_sha256": "83d8e65a61a44be3a4aefbb9e18d4c35f5a36afa7c0d507806b5ff7edb793afb"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, recycling",
+                "reference product": "waste concrete, not reinforced",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "db1e7960cbb890ad0fc4b79dd6b7f84440dc67ce91e419db489db1619ad48d95",
+              "inventory_sha256": "9ae3e5e8133266b9b6077960a935fdbd55fce369bb9589dd6cfe3c491c32700e"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, collection for final disposal",
+                "reference product": "waste concrete, not reinforced",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "fc679ea659a2309f38b284b6c545df9de6b1a98fe1f92efa9fd8b1df48571281",
+              "inventory_sha256": "bb55419aa9e700f472934bbd476bf3485d8368377a7bd9bf90e4bae64d0ff195"
+            },
+            {
+              "identity": {
+                "name": "market for inert waste, for final disposal",
+                "reference product": "inert waste, for final disposal",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "23f72a10ba9df961027824caa0a4f51e80dde3a569ac28b55ed7707bdccceb27",
+              "inventory_sha256": "3aecf84acf2e7b754d38ec061662945ec2e96b64c85ed23283d191939e748648"
+            },
+            {
+              "identity": {
+                "location": "Europe without Switzerland",
+                "name": "market for waste concrete, not reinforced",
+                "reference product": "waste concrete, not reinforced",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "d18d1e048bc63c57baa83f15d6d1579cc962417d372b71e0f33890c6ff247c7a",
+              "inventory_sha256": "05e936b10346d62d17ebeaefdc0d25bfcca2b24ddf4826377a7d406764e7065b"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, collection for final disposal",
+                "reference product": "waste concrete, not reinforced",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "cb2621393b193463ec416268cf26375a2f650aad7190b9e186ce70810260bd5b",
+              "inventory_sha256": "2f49c1f26d37ea67b138203535d2776c4ec578cc749b8450f0ab4f1e389c4855"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, sorting plant",
+                "reference product": "waste concrete, not reinforced",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "5a4ae13613acec6cd3a1294cf1db051b76303066df8dd482cde6e48d1159ba8b",
+              "inventory_sha256": "8eccccf653d64b8615cd44bfd4f041aff98796b2e4c96307128985c3bf429a9a"
+            },
+            {
+              "identity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "222d688a0de79463eb564fe301188a53f232d7efbbc787bd67191860fe59031c",
+              "inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c"
+            },
+            {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "105bc3f5669be6eebf1c6fa7cb01783264fe4355e7f8dd8ee6ee85da9e192ce9",
+              "inventory_sha256": "a287e2276af976634b364f653d8bf71d4ca9f9adc7747753e5c1d2a379e47583"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste concrete, not reinforced, recycling",
+                "reference product": "waste concrete, not reinforced",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "141585024cab60cca592208c9ba1de05672b7362770cf49edafa5e3e974aa8e8",
+              "inventory_sha256": "1d1ccdea0584b849891b485e5b4e2889cc100b24c1a56fecd755012cefa23924"
+            }
+          ],
+          "biosphere_witnesses": [
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "230d8a0a-517c-43fe-8357-1818dd12997a",
+              "source_name": "Particulate Matter, < 2.5 um",
+              "target": {
+                "name": "Particulate Matter, < 2.5 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "0b410c1211f6cc029e0011a17adb4251450afe87b7759f8e05a424376e644d86",
+              "canonical_metadata_sha256": "bf1353036a896ef0c188b770fa25c9e2571e047ffe84bbede7bea36fb570eb8f"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1eb1b94c-e9d8-47ab-969b-9cca920157d8",
+              "source_name": "Particulate Matter, > 10 um",
+              "target": {
+                "name": "Particulate Matter, > 10 um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "03462b485d6fd686036364611b86a4ccce95986eb155113544c558fb0e602e8f",
+              "canonical_metadata_sha256": "36fa34191d43ce990d80fa836ef05fec6d98d3ddf76ee6e764eae55752ecf67d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "ccb169c3-8aae-4727-89bb-a7dd122946f3",
+              "source_name": "Particulate Matter, > 2.5 um and < 10um",
+              "target": {
+                "name": "Particulate Matter, > 2.5 um and < 10um",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b545cc3f6daca80658683bb775f62016b0185638ffce50017778e0ef42f02b8d",
+              "canonical_metadata_sha256": "f9d9a59f4a1dd1a520b950e1189da12ee047340aa702a5e7ad1a98a048a6253c"
+            }
+          ],
+          "allocated_empty_terminal_audits": {
+            "deferred-waste-market-bad1b3a323f58dd0d12d": [
+              {
+                "original_index": 1,
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens.",
+                "source_activity": {
+                  "location": "CH",
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "amount": -1.0,
+                  "loc": -1.0,
+                  "location": "CH",
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.9"
+                }
+              }
+            ],
+            "deferred-concrete-ccc89e73133fcd6a3b64": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c",
+                "original_index": 2,
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram",
+                  "amount": -0.5648257344156875,
+                  "uncertainty type": 0,
+                  "loc": -0.5648257344156875,
+                  "type": "technosphere"
+                },
+                "rationale": "Independently verified production-only allocated clinker terminal: zero nonproduction exchanges, source LCI contribution exactly zero. Retain signed source quantity in this audit. No invented landfill, fuel burden, recovery credit or renormalization; no claim that physical kiln treatment is burden-free."
+              }
+            ]
+          }
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_nonempty_concrete_treatment_reconstruction",
+        "recipe_id": "deferred-concrete-c77751f8b28a41973e3f",
+        "limitations": "Autonomously reviewed exact3.9cut-off concrete-waste route reconstruction. Preserve original market treatment shares and all freight, with no renormalization. Reconstruct the nonempty source collection, sorting and recycling operations using complete native diesel burning, electricity, excavation and sorting infrastructure at original coefficients, plus exact canonical3.10 particulate emissions. Negative source treatment inputs become positive demand for generated positive-reference treatment services; parent caller factor -1 preserves signed waste demand. Recycling is not an empty allocated stock. Sorting retains its actual0.4kg generic inert-waste route, not an invented0.4kg landfill. Generic CH inert waste uses its reviewed zero-inventory allocated clinker handover and retained freight. Generic European inert waste retains its sanitary-landfill fraction, an independently verified production-only clinker handover and freight. Collection retains the source final-disposal market; source treatment and market freight are not conflated. Complete native sanitary/inert landfill services are screening proxies, retaining infrastructure/operation/emissions but differing in allocation, geography, technology and vintage. Source utility/factory/vehicle technologies, capacity/lifetime, internal uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. No added recovery credit, fuel credit or landfill for a verified empty kiln handover. Preserve caller signs/quantities/formulas/uncertainty; inspect only3.9cut-off with no inverse or cross-model qualification."
+      },
       "validation": [],
       "commits": []
     },
