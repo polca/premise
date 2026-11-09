@@ -721,3 +721,15 @@ screening proxy under the user's standing automatic approval. See
 This adds one exact scope without changing the previous 395 fingerprints; the
 required nitrate dependency set now has 108 of 125 suppliers scoped. The full
 scenario, certification and export gates remain open.
+
+### Polymer routing checkpoint
+
+The exact 3.9 cut-off European polyethylene and polystyrene groups and Swiss
+rubber market now retain their routing and collection, reuse verified
+uncontrolled-treatment recipes, and use explicitly warned material-specific
+controlled-treatment proxies. Recovered hydroxide-sludge handovers retain their
+positive-reference, production-only cut-off stock bindings. See
+[the boundaries and verification](uvek-polymer-routing-findings.md).
+The required nitrate dependency set now has 111 of 125 suppliers scoped. The
+three new scopes preserve all previous 396 fingerprints; full scenario,
+certification and export gates remain open.
