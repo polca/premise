@@ -59,3 +59,22 @@ Private primary evidence: `nitrate_ps_full_evidence.private.json` and
 `nitrate_ps_documented_composition_preflight.json`. The production-property
 comparison and documented wet-composition comparison are deliberately distinct.
 No new migration rule, helper or approval has been enabled at this checkpoint.
+
+## Regional helper preparation
+
+A private derived-target draft now covers the seven regional markets outside
+the European group. Fresh read-only checks bind 37 required source/native
+inventories to the earlier inspection. Eleven shared source-treatment helpers
+retain 1,081 direct elementary exchanges, including signed/zero quantities and
+uncertainty. Their 212 distinct elementary definitions match the installed
+canonical 3.10 UUID, unit, complete compartment and flow role. Ten original
+operating inputs match the previously inspected complete diesel-combustion and
+skid-steer services. The seven market drafts retain all 30 original treatment
+terms and ten collection-freight entries, without aggregation or normalization.
+
+Ordinary incineration uses the specific reviewed native PS process. No FAE
+branch is included. These are preparation artifacts, not an enabled converter:
+packaged review/scopes, deterministic replay, regression tests, actual native
+LCI and installed-package verification are still required before admission.
+Private artifacts: `nitrate_ps_regional_helper_draft.json` and
+`nitrate_ps_regional_draft_primary.private.json`.
