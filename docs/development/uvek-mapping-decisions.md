@@ -413,3 +413,33 @@ requires review before normalization against the IAM's 18.5 MJ/kg convention.
 The tracker records private evidence hashes and remaining family, procedural
 mapping, consumer, validation and integration work. No biomass aliases, factors
 or sector gate have been changed or claimed operational.
+
+
+### Heat dependency: fossil refinery hydrogen market
+
+Standing autonomous approval covers a scoped complete fossil-hydrogen supply
+proxy after inspecting the actual ecoinvent 3.9 cut-off global market, all seven
+positive refinery-hydrogen producers and both native UVEK releases. The inherited
+electrolysis match is replaced by complete native Swiss natural-gas SMR hydrogen
+at 25 bar, factor +1 per signed kg. Refinery integration, allocation, crude versus
+natural-gas feedstock, geography, vintage and unverified pressure equivalence
+remain explicit limitations. The refinery mix is not reconstructed; no guessed
+compressor, density/yield multiplier, delivery leg or expansion credit is added.
+
+The packaged Brightpath review is
+`export/uvek_heat_hydrogen_market_review.json`; Premise pins its exact 3.9 cut-off
+compatibility scope for the UVEK 2026/biosphere 3.10 workflow. All 447 earlier
+fingerprints remain unchanged; the new count is 448. Source signs, normal
+uncertainty and original inventory ownership survive migration and cache replay.
+Uninspected, reverse and cross-system-model requests cannot borrow the approval.
+The ordinary biomass/electricity default still certifies, exports and passes
+installed-package readback with 55 original pins and nine roots unchanged.
+
+This corrects one heat dependency, not the full sector. Adding the three required
+CLIC heat roots resolves a 76-record foreground graph while retaining every one
+of the original 55 pins. Preparation then identifies 14 unapproved correspondences
+in its ecoinvent 3.9 cohort. Further cohorts may reveal additional work. One is
+wastewater treatment with source production -1 m³ and native +1 m³: the old +1
+mapping must not be approved; the sign-coordinate conversion requires its own
+review. The public heat gate stays closed while these and the layered update,
+consumer relinking and export are completed.

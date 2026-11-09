@@ -120054,6 +120054,83 @@
           "fingerprint": "c0110bf9d5b399d68b73e2a10a958c53b18b815d941c745d9d0cd221c8fe5957"
         }
       ]
+    },
+    {
+      "rule_id": "bp-abce5674d268a95a",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_fossil_hydrogen_proxy",
+      "review_path": "export/uvek_heat_hydrogen_market_review.json",
+      "review_sha256": "7952f80261da470630281a1b89e7dfc48f74058d2a0024242922c3529a97808a",
+      "authorization": "Standing user autonomous modelling approval. Review the actual fossil-hydrogen boundary; use the closest complete native fossil-H2 supply proxy with warnings, and reject the inherited electrolysis heuristic.",
+      "inspection": {
+        "source": {
+          "name": "market for hydrogen, gaseous",
+          "reference product": "hydrogen, gaseous",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "b464f857f14022f4d13aee04558e55fe1a5528f11b0d7eed22ad16e63bdd8422",
+        "source_metadata_sha256": "ba30da65f36201e2330d7193aec789f2dc007799f657ebee2d03f83784cd1bbf",
+        "target": {
+          "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+          "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "native_references": {
+          "2026": {
+            "identity": {
+              "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "6be0822dd70d2c24e17402b70caa17cd41b780565ea7d3bc4f63eff3ea051da6",
+            "inventory_sha256": "21bdee5b28a871e608c7b919fc219a3d73b401e4b5cf470af6dbfc2bbc50f2f6"
+          },
+          "2025": {
+            "identity": {
+              "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "8ab8ea758e78e3d6593d87258e96c4b8cfe6570641ac569280c8fe8fb626f43a",
+            "inventory_sha256": "d573f6d8933dfced3fe84b84c46c4ad330d28ed20d172cee9f44079605f18ca4"
+          }
+        },
+        "source_supplier_count": 7
+      },
+      "limitations": [
+        "Complete Swiss fossil steam-methane-reforming hydrogen is a screening proxy for the inspected global refinery-hydrogen market, factor+1kg per signed source kg. The source contains seven positive refinery-hydrogen suppliers summing to one kg and no freight/loss extras; do not replace it with electrolysis or infer a future IAM hydrogen mix.",
+        "Refinery integration, crude/natural-gas feedstock, coproduct allocation, purification, utilities, infrastructure, emissions and regional supply shares differ from dedicated native SMR. Retain the complete native inventory once; source refinery burdens are not reconstructed. Score effects are unquantified and no production/LCIA equivalence is claimed.",
+        "Native hydrogen leaves production at25bar; the source gaseous market has no verified matching delivery pressure. Preserve mass without a pressure/density/yield factor, invented compressor, delivery leg or expansion credit. Geography and vintage remain explicit proxies.",
+        "Approval is restricted to the inspected ecoinvent3.9cutoff source through the UVEK2025native bridge to UVEK2026/biosphere3.10. Uninspected releases, inverse and cross-system-model routes remain unsupported."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0e83dd28f1ceea4f24c1ca0fc37bad4a81782a75d49e7e0059b2b25a546e0e22"
+        }
+      ]
     }
   ]
 }

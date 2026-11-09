@@ -176,14 +176,39 @@ def test_public_harmonizer_and_cache_accept_only_the_reviewed_inventory(tmp_path
     assert resolved.activities == before
 
 
-def test_unreviewed_supplier_fails_with_audit_and_no_cached_target(tmp_path):
+def test_supplier_without_scope_fails_with_audit_and_no_cached_target(
+    tmp_path, monkeypatch
+):
     from brightpath.background import PackageCatalogProvider
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
     from brightpath.migrations.resources import load_uvek_technosphere_resource
+    import premise.inventory.clic_harmonize as harmonize
 
+    resource = load_uvek_technosphere_resource()
     unreviewed = next(
-        r
-        for r in load_uvek_technosphere_resource()["replace"]
-        if r["id"] == "bp-49e229b952f6983c"
+        r for r in resource["replace"] if r["id"] == "bp-49e229b952f6983c"
+    )
+    # This supplier now has a titanium review. Withhold its exact scope so this
+    # refusal contract remains independent of the growing real approval ledger.
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        unreviewed,
+        TechnosphereProfile("ecoinvent", "3.9", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    assert fingerprint in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+    monkeypatch.setattr(
+        harmonize,
+        "approved_compatibility_rule_scopes",
+        lambda target: tuple(
+            scope
+            for scope in approved_compatibility_rule_scopes(target)
+            if scope != fingerprint
+        ),
     )
     resolved = graph(material_case()["source"], unreviewed["source"])
     before = copy.deepcopy(resolved.activities)
@@ -202,6 +227,30 @@ def test_unreviewed_supplier_fails_with_audit_and_no_cached_target(tmp_path):
         and i["details"]["rule_id"] == unreviewed["id"]
         for i in issues
     )
+
+
+def test_heat_hydrogen_proxy_preserves_exact_scope_limits_and_cache(tmp_path):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_hydrogen_market_review.json").read_text()
+    )
+    resolved = graph(review["source"])
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        exchange = result.activities[0]["exchanges"][1]
+        assert exchange["amount"] == -2
+        assert all(exchange[k] == v for k, v in review["target"].items())
+        assert any(
+            item["code"] == "clic.compatibility_proxy_limitations"
+            and "Refinery integration" in item["message"]
+            for item in result.diagnostics
+        )
+    assert resolved.activities == before
 
 
 def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
