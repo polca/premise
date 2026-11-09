@@ -204,5 +204,38 @@
       "sha256": "6c3702653154f7f87b1639651443c21ef27e7e238b676964de6a03937a2e836c",
       "location": "private task workspace"
     }
-  ]
+  ],
+  "energy_basis_stage": {
+    "status": "nominal_energy_basis_implementation_and_native_witnesses_verified_not_public_rollout",
+    "implementation": "premise/energy/uvek_heat_basis.py",
+    "public_gate": "closed",
+    "tests": "46 new/reference-basis and existing heat regressions passed; Black and Ruff passed.",
+    "new_basis_tests": 20,
+    "real_native_cases": 4,
+    "source_inventories_unchanged": true,
+    "scope": "Pure read-only conversion evidence. Traverse explicit exact supplier routes; account for actual production quantities and preserve all process exchanges. Fuel/electricity frontiers require reviewed MJ per supplier unit, with no guessed LHV/density/moisture factor. Excluded conversion-boundary inputs are audited, not removed from LCI. Nominal factors do not propagate supplier uncertainty or prove physical suitability.",
+    "oil_boundary": "For the inspected native oil boiler, stop at its documented one-MJ fuel-input combustion service. Do not infer a kg-based LHV from the source label or replace it with a generic fuel value.",
+    "anomaly": {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating 50kW (proj. 388)",
+        "reference product": "Heat, natural gas, at boiler condensing modulating 50kW (proj. 388)",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "finding": "Native wrapper plus non-unit burner output implies a nominal delivered/fuel factor above1.2 (approximately1.21545) on this inspected boundary. Numerical reproduction is not scientific approval of that technology factor.",
+      "disposition": "Do not select this special-project record as a heat proxy or cap its factor. Inspect boundary consistency or choose a separately verified complete standard boiler. Original source remains unchanged."
+    },
+    "receipts": [
+      {
+        "name": "native_heat_basis_real.private.json",
+        "sha256": "6b9b8d6e9c5e7755889ef8958699e6c9694397cc2ea08868f24018f9b0d1c9f4",
+        "location": "private task workspace"
+      },
+      {
+        "name": "native_heat_basis_shared_tests.log",
+        "sha256": "f213990ea7c39923d609b50b19ee4b628b927cf36994f266c67b53c703ccc9fd",
+        "location": "private task workspace"
+      }
+    ]
+  }
 }

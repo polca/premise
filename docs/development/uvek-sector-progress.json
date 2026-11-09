@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "native_and_real_IAM_preflight_complete_not_operational",
+      "status": "energy_basis_implementation_in_progress_not_operational",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -825,9 +825,18 @@
           "finding": "Burner MJ and delivered-heat MJ have different physical meanings. Four native boiler references are not1; source-derived conversion factors and nested burner boundaries require explicit handling."
         }
       ],
-      "decisions": [],
+      "decisions": [
+        {
+          "decision": "Use explicit reviewed energy routes and actual production amounts for nominal heat/fuel conversion. Retain all source quantities and auxiliary inventories. Do not accept or clamp the special-project boiler anomaly above1.2.",
+          "review": "docs/development/uvek-heat-preflight.json#energy_basis_stage",
+          "authorization": "Standing autonomous approval; no new user prompt."
+        }
+      ],
       "implementation_commits": [],
-      "tests": [],
+      "tests": [
+        "46 reference-basis plus existing heat tests passed.",
+        "Four read-only native factor replays match independently evaluated source quantities; source graphs unchanged."
+      ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_heat",
@@ -868,7 +877,8 @@
         "positive_IAM_roles": 28,
         "IAM_layers": 3,
         "non_unit_production_candidates": 4,
-        "native_gate": "closed_pending_mapping_and_runtime_verification"
+        "native_gate": "closed_pending_mapping_and_runtime_verification",
+        "energy_basis_stage": "Explicit route evaluator verified against4nativecases;20newtests/46includingexistingheat. Conversion anomaly is flagged, not accepted."
       }
     },
     {
