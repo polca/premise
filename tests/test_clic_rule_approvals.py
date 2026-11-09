@@ -745,6 +745,7 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
         ("bp-9caeb1b3bd66b612", "3.12", 1),
         ("bp-1d429dc5bcb36b3e", "3.9", -1),
         ("bp-0930282b4ba7e381", "3.12", -1),
+        ("bp-22c3a52062d0cb16", "3.9", -1),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -1000,6 +1001,7 @@ def test_low_alloyed_cast_stock_keeps_source_routes_delivery_and_cached_warning(
         "bp-281c3f362d35e83f",
         "bp-1d429dc5bcb36b3e",
         "bp-0930282b4ba7e381",
+        "bp-22c3a52062d0cb16",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1857,15 +1859,20 @@ def test_other_wastewater_market_boundaries_remain_unapproved(tmp_path, rule_id)
     assert resolved.activities == before
 
 
-def test_old_composition_specific_zeolite_endpoint_remains_unapproved():
+@pytest.mark.parametrize(
+    "review_file,rule_id",
+    [
+        ("uvek_pilot_inert_composition_review.json", "bp-1d429dc5bcb36b3e"),
+        ("uvek_pilot_european_scrap_steel_review.json", "bp-22c3a52062d0cb16"),
+    ],
+)
+def test_old_flat_waste_endpoint_remains_unapproved(review_file, rule_id):
     from brightpath import DATA_DIR, TechnosphereProfile
     from brightpath.background.rule_approvals import compatibility_rule_fingerprint
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
-    review = json.loads(
-        (DATA_DIR / "export/uvek_pilot_inert_composition_review.json").read_text()
-    )
-    row = next(r for r in review["records"] if r["rule_id"] == "bp-1d429dc5bcb36b3e")
+    review = json.loads((DATA_DIR / "export" / review_file).read_text())
+    row = next(r for r in review["records"] if r["rule_id"] == rule_id)
     resource = load_uvek_technosphere_resource()
     fingerprint = compatibility_rule_fingerprint(
         resource,
@@ -1929,6 +1936,72 @@ def test_inert_compositions_keep_components_freight_and_cached_warnings(
         )
         assert "retain that source-data gap" in warning["message"]
         assert "unquantified score" in warning["message"]
+    assert resolved.activities == before
+
+
+def test_european_scrap_steel_preserves_mixed_fates_recovery_and_cache_warning(
+    tmp_path,
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule_id = "bp-22c3a52062d0cb16"
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version="3.9")
+    resolved.activities[0]["exchanges"][1]["amount"] = -2.5
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        assert len(result.activities) == 3
+        foreground = next(
+            a for a in result.activities if a["code"] == resolved.activities[0]["code"]
+        )
+        assert foreground["exchanges"][1]["amount"] == 2.5
+        helpers = [a for a in result.activities if a is not foreground]
+        stock = next(a for a in helpers if len(a["exchanges"]) == 1)
+        assert (
+            stock["exchanges"][0]["amount"] == 1
+            and stock["exchanges"][0]["type"] == "production"
+        )
+        parent = next(a for a in helpers if a is not stock)
+        inputs = [x for x in parent["exchanges"] if x["type"] == "technosphere"]
+        assert len(inputs) == 6
+        fields = ("name", "reference product", "location", "unit")
+        recovery = next(x for x in inputs if all(x[f] == stock[f] for f in fields))
+        assert recovery["amount"] == -0.47289 * 0.00621659000549189
+        assert recovery["negative"] is True
+        quantities = {x["name"]: x["amount"] for x in inputs if x is not recovery}
+        assert quantities == pytest.approx(
+            {
+                "Process-specific burdens, inert material landfill": 0.993783409994508,
+                "xx Inert material landfill facility": 1.48e-9 * 0.993783409994508,
+                "Disposal, steel, 0% water, to municipal incineration": 0.00621659000549189,
+                "Transport, freight, rail": 0.0112,
+                "Transport, freight, lorry, fleet average": 0.01932,
+            }
+        )
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+        )
+        assert all(
+            token in warning["message"]
+            for token in (
+                "source water/oxygen",
+                "manganese",
+                "unquantified",
+                "-0.47289",
+            )
+        )
+        assert not any(
+            d["code"] == "migration.recipe_input_omission" for d in result.diagnostics
+        )
     assert resolved.activities == before
 
 

@@ -728,6 +728,21 @@ checks pass. All 299 earlier fingerprints and existing recipes/reviews remain
 unchanged. The frontier is now 41 rules / 46 exact-profile cases, with 301 approved
 fingerprints. Full prospective scenario/certification/export remains unvalidated.
 
+`uvek_pilot_european_scrap_steel_review.json` retains the actual 3.9 European
+market's landfill/ordinary-incineration shares, original rail/road collection,
+and signed recovered-iron stock quantity. Complete native landfill components
+and the composition-matching ordinary steel incinerator supply the treatment
+branches; existing exact-profile allocated stock supplies recovery. Source
+uncertainty is preserved and scaled by deterministic shares. Native water/oxygen
+coverage, manganese definitions, geography and background remain warnings; no
+fly-ash-extraction or avoided-primary-steel model is added. Twenty-four relevant
+Brightpath cases across runs and eight focused Premise cases pass. The actual
+three-record migrated graph has finite LCI on native background matrices, exact
+native demands and negative recovered-stock supply; source hashes are unchanged.
+All 301 previous fingerprints and existing recipes/reviews remain unchanged.
+The frontier is now 40 rules / 45 exact-profile cases, with 302 fingerprints;
+the full prospective scenario/certification/export remains unvalidated.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

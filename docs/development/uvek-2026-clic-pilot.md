@@ -180,10 +180,10 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 11 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 24 |
+| 3.9 | 17 | 23 |
 | 3.12 | 8 | 11 |
 
-These are 46 exact-profile cases involving 41 distinct rules, after reusing
+These are 45 exact-profile cases involving 40 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -560,10 +560,33 @@ scientific hashes unchanged. Full authoring replay is byte-identical and wheel
 review/authority/manifest checks pass. The module contains 669 cases; no full
 669-case run or prospective scenario/export completion is claimed.
 
+The 3.9 European scrap-steel market now retains its original 99.3783% generic
+inert-landfill and 0.6217% ordinary-incineration shares, without renormalization.
+Generic landfill operation/infrastructure preserve source marginal uncertainty;
+rail 0.0112 tkm and road 0.01932 tkm keep their original quantities and uncertainty.
+The complete native ordinary steel incinerator matches 42 declared composition
+entries and the inspected electricity, slag, facility and internal freight amounts.
+Its older water/oxygen coverage, manganese definitions, geography and background
+remain explicit screening limitations. The original negative recovered-iron
+quantity is retained through the independently reviewed sorted/pressed cut-off
+stock, with exact source-profile and dependency hashes. Its positive production
+reference and production-only inventory preserve allocated handover; no
+avoided-primary-steel credit or empty waste treatment is introduced.
+Twenty-four relevant Brightpath checks pass across runs, including the corrected
+identity-based nested-helper checks; eight focused Premise checks pass. The actual
+three-record migrated graph solves against the native background matrices with
+finite supply/inventory and negative recovered-stock supply. Native demands match
+exactly; background supply differs by about 2.7e-11 in relative L2 norm after adding
+the foreground rows, with relative equation residual below 1e-12. Source hashes
+remain unchanged. This is a baseline numerical check, not a prospective scenario
+or LCIA-equivalence result. All 301 earlier approval fingerprints and existing
+recipes/reviews remain unchanged. The module contains 675 cases; no full module
+run is claimed.
+
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 301 exact-profile fingerprints, with review evidence and
+ledger contains 302 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
