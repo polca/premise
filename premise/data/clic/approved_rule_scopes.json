@@ -38305,6 +38305,1075 @@
           "fingerprint": "29084b2c17d8ae280040106dc67ea741a0de620b855efa28c5a22bff36841519"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c9b874c8b5ebebe0",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_wool_europe",
+      "review_path": "export/uvek_pilot_nitrate_wool_europe_review.json",
+      "review_sha256": "b189adfa584dd32ea96f226a6ef59e3c25715b15ecc502c0be7524162e222421",
+      "authorization": "User decision2026-11-09: Approve scoped proxies with warnings for AL,MD,MT,GI,XK,ME,BY inside the exact3.9cutoff Europeanwoolsorting electricity group. Preserve32samecountrygrids andall39signedentries/uncertainty; retain RERgrid onlyforsevenmissingcountries, no standalone orbroadergeographicfallback. Remaining complete source-preserving dust/treatment/operating/freight/finaldisposal boundaries reuse the independently inspected standing approvals and unchanged primitive witnesses from the Swiss/RoW review.",
+      "inspection": {
+        "rule_id": "bp-c9b874c8b5ebebe0",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for waste mineral wool",
+          "reference product": "waste mineral wool",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+          "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.301622,
+          "conversion_factor": -1,
+          "id": "bp-c9b874c8b5ebebe0",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-c9b874c8b5ebebe0"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for waste mineral wool",
+            "reference product": "waste mineral wool",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+            "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "8ea217bca73702df7e21c426f0c8ad9179972503ba63b2ba7105be084ff1fe61",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "8761fc56f337bb02f7d0b29d686784005e75314914660d82c6967c91ae2876cb",
+        "source_inventory_sha256": "dd56bfb2348e87c7cd06797836783bb55679bce1a7890e0abbf86abd41f46c79",
+        "source_fates": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste mineral wool, sorting plant",
+                "reference product": "waste mineral wool",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "77e13fb8d931812d70e4b466c41984e7b911147958da393eaf8dd51401ef03e2",
+              "inventory_sha256": "8dccd005aa9c3a2e498c07f27f027fb17253bdd7efbae424fe7ebecb14b7549d"
+            },
+            "original_coefficients": {
+              "amount": -0.298387096774194,
+              "uncertainty type": 0,
+              "loc": -0.298387096774194
+            },
+            "treatment_recipe": "pilot-wool-europe-treatment-7dd5bb2aaf2bfd1b9e0c",
+            "components": [
+              {
+                "source": {
+                  "version": "3.9",
+                  "identity": {
+                    "name": "market group for electricity, low voltage",
+                    "reference product": "electricity, low voltage",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilowatt hour"
+                  },
+                  "metadata_sha256": "840d26d9bf5e3f84c1236dc5c4179c181a45beb467743a87c49ddbf48ec8091d",
+                  "inventory_sha256": "30bfb46971b2f02df39dc6a60acaa3123a09473a5bfc8b4af48668df061e629d"
+                },
+                "target": {
+                  "recipe_ref": "pilot-wool-europe-country-grid-1636f2496d5e44335462"
+                },
+                "original_coefficients": {
+                  "amount": 0.0022,
+                  "uncertainty type": 2,
+                  "loc": -6.119297918617867,
+                  "scale": 0.10954451150103323,
+                  "pedigree": {
+                    "reliability": 1,
+                    "completeness": 1,
+                    "temporal correlation": 5,
+                    "geographical correlation": 5,
+                    "further technological correlation": 1
+                  },
+                  "scale without pedigree": 0.23237900077244503
+                }
+              },
+              {
+                "source": {
+                  "version": "3.9",
+                  "identity": {
+                    "name": "excavation, hydraulic digger",
+                    "reference product": "excavation, hydraulic digger",
+                    "location": "RER",
+                    "unit": "cubic meter"
+                  },
+                  "metadata_sha256": "3902e394cb25b17402e227454f96d8fbccdcb84abcfacdef7daa5df6d087af62",
+                  "inventory_sha256": "10b5957b3e78b3f0e1584f866e2cc7e4febeccda9ddeb9a714314f9afdccf2ed"
+                },
+                "target": {
+                  "name": "Excavation, hydraulic digger (proj. 500)",
+                  "reference product": "Excavation, hydraulic digger (proj. 500)",
+                  "location": "RER",
+                  "unit": "cubic meter"
+                },
+                "original_coefficients": {
+                  "amount": 0.0222,
+                  "uncertainty type": 2,
+                  "loc": -3.8076629901039034,
+                  "scale": 0.10954451150103323,
+                  "pedigree": {
+                    "reliability": 1,
+                    "completeness": 1,
+                    "temporal correlation": 5,
+                    "geographical correlation": 5,
+                    "further technological correlation": 1
+                  },
+                  "scale without pedigree": 0.23237900077244503
+                }
+              },
+              {
+                "source": {
+                  "version": "3.9",
+                  "identity": {
+                    "name": "market for sorting facility, for construction waste",
+                    "reference product": "sorting facility, for construction waste",
+                    "location": "GLO",
+                    "unit": "unit"
+                  },
+                  "metadata_sha256": "d9719faec5d3cbac0a9cdf643f8bf1bbb27fe6de3330c603b8f0c82d04c74d7c",
+                  "inventory_sha256": "8cfc41c183826af3ebbe04983bc44520ed6944d6e990e36a61bb860aa21f1de8"
+                },
+                "target": {
+                  "name": "Sorting plant for construction waste",
+                  "reference product": "Sorting plant for construction waste",
+                  "location": "CH",
+                  "unit": "unit"
+                },
+                "original_coefficients": {
+                  "amount": 1e-10,
+                  "uncertainty type": 2,
+                  "loc": -23.025850929940457,
+                  "scale": 0.044721359549995794,
+                  "pedigree": {
+                    "reliability": 1,
+                    "completeness": 1,
+                    "temporal correlation": 5,
+                    "geographical correlation": 5,
+                    "further technological correlation": 1
+                  },
+                  "scale without pedigree": 0.20976176963403032
+                }
+              },
+              {
+                "source": {
+                  "version": "3.9",
+                  "identity": {
+                    "name": "market for waste mineral wool, for final disposal",
+                    "reference product": "waste mineral wool, for final disposal",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "metadata_sha256": "10128cfa69c08bfef9358b4cef6079a6113d4687a5c519d379352fb0eba5a0a8",
+                  "inventory_sha256": "7bca713fad59bcd74627ae804353d30ecb4aa9c4d0c408ae1fcbdfa70a85dd73"
+                },
+                "target": {
+                  "recipe_ref": "pilot-nitrate-cleanfill-40a995ddeeec620d3fbc"
+                },
+                "original_coefficients": {
+                  "amount": -1.0,
+                  "uncertainty type": 2,
+                  "loc": 0.0,
+                  "scale": 0.044721359549995794,
+                  "pedigree": {
+                    "reliability": 1,
+                    "completeness": 1,
+                    "temporal correlation": 1,
+                    "geographical correlation": 5,
+                    "further technological correlation": 1
+                  },
+                  "scale without pedigree": 0.044721359549995794
+                }
+              }
+            ]
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste mineral wool, recycling",
+                "reference product": "waste mineral wool",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "21614fd1a89733c807e6905e795ae76a253158622c1fa6a93ffb2911108fd298",
+              "inventory_sha256": "3f9246d42f6389c8fdc4543b7bbac9207a720cd07d8283f1e90a37180b0b45aa"
+            },
+            "original_coefficients": {
+              "amount": -0.403225806451613,
+              "uncertainty type": 0,
+              "loc": -0.403225806451613
+            },
+            "treatment_recipe": "pilot-wool-europe-treatment-e017a1ef83f0e7fceb51",
+            "components": []
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste mineral wool, collection for final disposal",
+                "reference product": "waste mineral wool",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "16b365cf364098b824ebd3d10cfccee0032f2ca6cd60360e5d5645dc76a00c8b",
+              "inventory_sha256": "e660bf3c06dbe8c16dff2354831766d6b05aef4b6089fac64e82b79eaa8a1921"
+            },
+            "original_coefficients": {
+              "amount": -0.298387096774194,
+              "uncertainty type": 0,
+              "loc": -0.298387096774194
+            },
+            "treatment_recipe": "pilot-wool-europe-treatment-e9134f289b2804fb2db2",
+            "components": [
+              {
+                "source": {
+                  "version": "3.9",
+                  "identity": {
+                    "name": "market for waste mineral wool, for final disposal",
+                    "reference product": "waste mineral wool, for final disposal",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "metadata_sha256": "10128cfa69c08bfef9358b4cef6079a6113d4687a5c519d379352fb0eba5a0a8",
+                  "inventory_sha256": "7bca713fad59bcd74627ae804353d30ecb4aa9c4d0c408ae1fcbdfa70a85dd73"
+                },
+                "target": {
+                  "recipe_ref": "pilot-nitrate-cleanfill-40a995ddeeec620d3fbc"
+                },
+                "original_coefficients": {
+                  "amount": -1.0,
+                  "uncertainty type": 2,
+                  "loc": 0.0,
+                  "scale": 0.044721359549995794,
+                  "pedigree": {
+                    "reliability": 1,
+                    "completeness": 1,
+                    "temporal correlation": 1,
+                    "geographical correlation": 5,
+                    "further technological correlation": 1
+                  },
+                  "scale without pedigree": 0.044721359549995794
+                }
+              }
+            ]
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "Europe without Switzerland",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "623d6cefce8f922295eb3404f4de8e469e9e447dd01e78ced9e3ebb25a067f0b",
+              "inventory_sha256": "2acd46cbcd5ff54e5a40b52f2b0788dfe8f3c21a0b9ac1b88873bba4ba4f3cea"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0112,
+              "uncertainty type": 2,
+              "loc": -4.491841500681089,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            },
+            "authority": "uvek_pilot_nitrate_cleanfill_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight, lorry, unspecified",
+                "reference product": "transport, freight, lorry, unspecified",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+              "inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.01932,
+              "uncertainty type": 2,
+              "loc": -3.946614450197765,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            },
+            "authority": "uvek_pilot_nitrate_cleanfill_review.json"
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 8,
+        "expected_foreground_biosphere_exchanges": 9,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "dd56bfb2348e87c7cd06797836783bb55679bce1a7890e0abbf86abd41f46c79",
+            "inputs": [
+              {
+                "amount": 0.0112,
+                "uncertainty type": 2,
+                "loc": -4.491841500681089,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01932,
+                "uncertainty type": 2,
+                "loc": -3.946614450197765,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.298387096774194,
+                "uncertainty type": 0,
+                "loc": 0.298387096774194,
+                "recipe": "pilot-wool-europe-treatment-7dd5bb2aaf2bfd1b9e0c"
+              },
+              {
+                "amount": 0.403225806451613,
+                "uncertainty type": 0,
+                "loc": 0.403225806451613,
+                "recipe": "pilot-wool-europe-treatment-e017a1ef83f0e7fceb51"
+              },
+              {
+                "amount": 0.298387096774194,
+                "uncertainty type": 0,
+                "loc": 0.298387096774194,
+                "recipe": "pilot-wool-europe-treatment-e9134f289b2804fb2db2"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "RER",
+                  "cubic meter"
+                ],
+                "binding_sha256": "ffab4a9d160e85ff3bebd295777aaf87bdfac03500f5e0cc0214df4696710a7f"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "AL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b582d09468670914d52b9c13bf8c0cace193396cb25800f100d43d8029fee3f1"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "AT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b303d40a0bd5b4ccf569329645458b69f4e6d27361cc8812b8dcc12822a5b97d"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "BA",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d68fad6fc03c01a459a3aac1389c263af248aa8a56f1f359229fdbc38ae6a1e2"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "BE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "07cb9ee8c99e12c70b52a1bd4c6e918fd3c4cb5556c4b31887210d4a0b7f537e"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "BG",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "bc1c9f32aae06f045216ac5ed0007b50cab95b0b7e275000ecffe866a9ab8d82"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "BY",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "a3da0ffdf154ae1b4045aec9b65cff1fae5a84a70f1692cde00c0dcbcee58ef8"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "CZ",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d1eda168f461486706ce8c0d5b2c8ce1d0eb386c6ee88637def042a6e125aac3"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "DE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "bfd3202aba2fdd08e41c337ebb6ca1d6e6f5adee69f6d315b74432ad85dac4ca"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "DK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "54f8f9a892c484867b62701b59548cbb4429603220f5d6aeb09e3343f00dab38"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "EE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "259dd12bb7edc9fa0a85afa46e0d3a13a3c1aef04ad395dea22d8fbbee2b97eb"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "ES",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "95f5311c36132224f01b06dc9fc656c9ebaa73c64dc3a0fc20ec701c52cfe296"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "FI",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "664fe08aaaba0bc5bc26e8cc33654cb21f0471f6e566bd3af0f091896c81356c"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "FR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "857391ac9b04a7114f5bd84a66b908730977dcbabf465ab23d974d6eb90f9691"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "GB",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3830949ae85e88e355de3d16eb05054742f41bdd66f66428be2d96df107d8e33"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "GI",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d03bafabfabfb1ebe65c84a2869bda8787b8fa1a281a3ebc0623236255ce4ae3"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "GR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "65b6773578621be8ee71ecbc5cdb51b617736a9880445bac0b0baab80decc600"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "HR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "1a2530eed207a8672c7ec4c3f43a1ce3ee9b61d8583f6187e3ef4c0577dc450f"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "HU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "987373ac8f8783b04db89b450cd9e97c6cd67494e6350321fd5af22403335d2d"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "IE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "11682cebcd7dc0549227e12426392dae1a62749331314ead9c3c84da87e41f22"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "IS",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "a7bd59936a33e99b8f58f64902141ad4234f2d43ade7571c9e25a756d379ba6c"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "IT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "83081a9370caf04429becdd7ff9f31a07e68e7d9277b85cb274399829f785584"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "LT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "46383f454c3917476a63a8614dd647bc775ae04f1c5562b74a8d2754ef2185eb"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "LU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b48654e4bff16658487d97132f974eb9d2dd89ecfa806196dcdfb0920f1da94e"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "LV",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3324ea41af61ea545ff6291f67efd40371871115686567c58ac4809fb260dbaa"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "MD",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3d7c9098692045e067bf2eced06a07b61df31a00a7885dda32b6dbae8f508079"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "ME",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f7ffeba45ad88ba9d14dfba0be61b0bb2a27ed537b82ae609e76c60196d1c934"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "MK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "956ddfeacfd6f553c26b1043c3b18ea7c5ca461b3de992e743f3c3c7b9ad6b07"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "MT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b267d5f69af6a67654a004efeb3b690a9c0dfd8be3556466aee110846aa80b39"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "NL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "0fd202fd6cd47164403fa43c931448fdef4cda8c32e735f31b13f41f9bb90434"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "NO",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "810c26c77cb31b4fc7fc82a7961c89b6443b093170ff85f4b7795c5179716b90"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "PL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "544ba294247225002f3c1f18248a4a99f55dee0aec6189a7890dda7359262c78"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "PT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "6510ca20f173c1195faa567f19388cebf795ce348d95bcb11194354e46de29d4"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RO",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "22009c62252ff088047cfd780af7028855fda61012abbec5349394c7eef66f5f"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "RS",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b148093edc5312c1a4f6cad28f5ef992b4c916556e90a06a97f5f946384a3e6e"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "SE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b65c319756d7a0d00e04dcd1a77d900352fa100bf914cf1ac319fa6a2d4925d4"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "SI",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "355f8d06743b779fde830886630322729a7743c88fff3a684913510f2ecc3de2"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "SK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f2dba1b7818a8a5b56e77f1e2c2fb20ef76f7c8be6a391ed0f91af56bb644c16"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "UA",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "226cd1a1b41d78230e78f8210be0e13c8875b53853318de777a63c2ff35f262a"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "XK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3a0c114296b167ca335b45504bf8fe87559592f3a77b46e8f5d50545789518fb"
+              },
+              {
+                "source": [
+                  "market for sorting facility, for construction waste",
+                  "sorting facility, for construction waste",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "91f4ad5cdddd57f17ffa938e31a6fbc12a690ae3c25b67fa244ef55c3fe94f60"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4109bea7a76d943d728d832fd5ca373ad9d81750f0624bf74911889eca74f783"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "market for waste mineral wool, for final disposal",
+                  "waste mineral wool, for final disposal",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "439fd8ff6c7f1f4afffcedf02a9c3abbe32b4fff96b411bb531f796f50d46e05"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "Europe without Switzerland",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "c57c2d628dbf2e4018a5bb7ca5faa236dfd827c5ae6ecc6d28c0e847053145b8"
+              },
+              {
+                "source": [
+                  "sorting facility construction, for construction waste",
+                  "sorting facility, for construction waste",
+                  "RoW",
+                  "unit"
+                ],
+                "binding_sha256": "28644dd3aaa4802dc2c60f987c627ab53edf22d0ce0953f2f6e770ccb9deb4d1"
+              },
+              {
+                "source": [
+                  "treatment of waste mineral wool, collection for final disposal",
+                  "waste mineral wool",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "c8257d2682e61ef2bf6c0331723a1518945333fbdcb2c8e043e5bbf0c0abc2cf"
+              },
+              {
+                "source": [
+                  "treatment of waste mineral wool, recycling",
+                  "waste mineral wool",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "cee6724975bf4accbe1a092bcc942c7a62c84fa347b6404765ed4b1260524153"
+              },
+              {
+                "source": [
+                  "treatment of waste mineral wool, sorting plant",
+                  "waste mineral wool",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "1a545305fc11a06acba6156e3a19e2557925a4cac0240fa9d1069c207ed3223d"
+              }
+            ]
+          }
+        ],
+        "limitations": "The European mineral-wool market retains all three source treatment shares, two collection entries and its39-country sorting-electricity group. Retain every inspected ecoinvent3.9cutoff mineral-wool market/treatment exchange at its original signed quantity and supported uncertainty. Source waste reference-1kg maps to positive source-preserving treatment helpers with caller factor-1. Recycling contains three explicit particle-size dust emissions, not an empty handover; collection adds its original final-disposal link; sorting retains its original39-country delivered-electricity group,0.0222m3 hydraulic-digger service,1e-10sorting-plant units, final-disposal link and three dust emissions. Preserve all three particle-size fractions against freshly inspected canonical3.10 publisher UUID/unit/full compartment/emission role; no particle-size, mass, speciation or receiving-context factor. Use complete native delivered low-voltage grids for32matching source countries and the complete RER grid only for the seven user-approved absent countries, retaining voltage topology, losses, infrastructure, imports, generation and direct emissions once. Historical source/native grid membership, generation/trade, internal uncertainty and vintage differ; only the seven enumerated country-to-RER proxies are authorized inside this exact parent closure. Retain the original RER hydraulic-digger purchase through the complete native legacy RER service per original cubic metre. Its0.131kg diesel,0.0025kg lubricant and1e-6machine-unit basis matches the inspected source RER producer; the updated Swiss average instead has a different fuel demand and is not used here. The native proj.500 label implies no500-fold or efficiency multiplier. Retain complete machine manufacture, operation, maintenance, emissions and oil disposal once; source fuel geography/oil-treatment and native emission/uncertainty differences remain screened. Use the complete inspected native sorting facility per original unit: both source and native document200000t/year,50-year service and matching three land quantities. The facility land quantities match, but only two of the three publisher flow identities are equal: the native facility uses generic Transformation, from unknown (12264257-7f8b-4afe-b3cb-3ac28ca1661a) where source construction uses Transformation, from unspecified (29630a65-f38c-48a5-9744-c0121f586640), each15000m2 per plant in the same natural-resource/land compartment. This remains a complete-facility inventory difference with unquantified score effects, not an independent biosphere correspondence or a claim of equal land characterization.  Retain native infrastructure/replacement parts, administrative heat, oils, plastics, freight and end of life once; its material/heat/disposal mixes, uncertainty, geography, allocation and vintage differ from the whole source facility. This complete-facility proxy does not approve its isolated heat/material/waste inputs for other callers. Do not add a plant-capacity/lifetime factor, crusher operation or second maintenance/disposal inventory. Use only the newly reviewed generic final-disposal helper closure, not the broader demolition/collection wrapper or material-specific landfill proxy. Preserve every original market collection-freight term, without aggregation or normalization, through the reviewed complete Swiss rail mix or generic RER mixed-traction rail/heavy-road services. Native fleet/traction, fuel, loading, infrastructure, geography and vintage differences remain explicit limitations. Preserve the source as-received kg; no density, moisture, dry-mass, remelting, recovered-material credit, new treatment fate, physical omission or normalization. Preserve caller formulas/uncertainty/ownership and separately listed emissions and purchases. Source-data gaps, native upstream biosphere exclusions and unquantified score effects remain warnings, without inventory or LCIA equivalence. Only the enumerated European3.9cutoff closure qualifies for UVEK2026cutoff/ecoinvent3.10biosphere; raw component hashes do not admit standalone services, other versions, inverse or cross-model conversions. The user explicitly approved the seven missing-country RER proxies with warnings on2026-11-09; preserve all other country entries and every original coefficient without normalization. The country fallback applies only to AL,MD,MT,GI,XK,ME,BY, whose original shares sum to1.6162643620792647percent of this sorting electricity group. Retain every one of the39entries separately, even where seven target suppliers coincide. Country representation, region membership, generation/import mix, network, losses and score differences remain explicit geographic-proxy warnings. This does not establish a standalone source-country-to-RER correspondence.",
+        "approved_country_proxy_entries": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "AL",
+                "unit": "kilowatt hour"
+              },
+              "metadata_sha256": "7900ddbd3c422a801f9a7734b6e9da5284861703c6c2500f3a9714fc0f9f3b29",
+              "inventory_sha256": "9bef5f3f28974fe0af77030d2d5df889bf868662585b94d496c8ab8c5adfd18f"
+            },
+            "target": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "original_coefficients": {
+              "amount": 0.001381674907324414,
+              "uncertainty type": 0,
+              "loc": 0.001381674907324414
+            },
+            "approved_country_proxy": true,
+            "same_declared_territory_and_voltage": false
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "MD",
+                "unit": "kilowatt hour"
+              },
+              "metadata_sha256": "d984e0117038ad571343719b7e670e51ab7afcdc718fc064dba82c1c7c09b6e2",
+              "inventory_sha256": "b9ac851c6343e6603260eee13b520e7895561d3961b00a3c03bfae1cb3dbd5ed"
+            },
+            "target": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "original_coefficients": {
+              "amount": 0.0017922695436035892,
+              "uncertainty type": 0,
+              "loc": 0.0017922695436035892
+            },
+            "approved_country_proxy": true,
+            "same_declared_territory_and_voltage": false
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "MT",
+                "unit": "kilowatt hour"
+              },
+              "metadata_sha256": "28174c6b57e2abea060cc982612991f2b9f6a6844b0e0b689101b915ab281ee4",
+              "inventory_sha256": "24bbd0a865c78b50f41b3fa9620d238ea7c61f0fbfa1aedfa46cad561c8685ec"
+            },
+            "target": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "original_coefficients": {
+              "amount": 0.0008313608242306277,
+              "uncertainty type": 0,
+              "loc": 0.0008313608242306277
+            },
+            "approved_country_proxy": true,
+            "same_declared_territory_and_voltage": false
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "GI",
+                "unit": "kilowatt hour"
+              },
+              "metadata_sha256": "37d19a336519ca7732be11e5de4dcd2dbfe55f32bb917dcce76c97c6aee8030c",
+              "inventory_sha256": "a0907f53bea041ffa7bc168b5be2a9ad2b3ac3884e73c7180451467b8cfeb339"
+            },
+            "target": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "original_coefficients": {
+              "amount": 6.630335920858938e-05,
+              "uncertainty type": 0,
+              "loc": 6.630335920858938e-05
+            },
+            "approved_country_proxy": true,
+            "same_declared_territory_and_voltage": false
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "XK",
+                "unit": "kilowatt hour"
+              },
+              "metadata_sha256": "f2daa6f4ed13255607a6507c6820530f5a1f817a1d66213d2c9b955013ad8af2",
+              "inventory_sha256": "7b4f8d407655d919e44f47ed5a97208b7e45cb4c4d292c75b4d857d3b0136a7f"
+            },
+            "target": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "original_coefficients": {
+              "amount": 0.0013015738444319934,
+              "uncertainty type": 0,
+              "loc": 0.0013015738444319934
+            },
+            "approved_country_proxy": true,
+            "same_declared_territory_and_voltage": false
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "ME",
+                "unit": "kilowatt hour"
+              },
+              "metadata_sha256": "76c1516cb9d56de646fb8c0b5d44f4e7f6737949e8c4a4c572400006ccc88818",
+              "inventory_sha256": "85ba497ed449c34eef3a6551eada52bcd6bcde457537f4d77553763aceb840b3"
+            },
+            "target": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "original_coefficients": {
+              "amount": 0.0010295102726124155,
+              "uncertainty type": 0,
+              "loc": 0.0010295102726124155
+            },
+            "approved_country_proxy": true,
+            "same_declared_territory_and_voltage": false
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "BY",
+                "unit": "kilowatt hour"
+              },
+              "metadata_sha256": "619d196efb7d15e58e5d3616fe230bdfc868c006591845c030efdcf024e14b65",
+              "inventory_sha256": "a92e243832d64d5ec17bc06929b8d7387c099a16b320f41277c357e0f81664ef"
+            },
+            "target": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "original_coefficients": {
+              "amount": 0.009759950869381017,
+              "uncertainty type": 0,
+              "loc": 0.009759950869381017
+            },
+            "approved_country_proxy": true,
+            "same_declared_territory_and_voltage": false
+          }
+        ],
+        "same_country_entry_count": 32,
+        "country_grid_recipe": "pilot-wool-europe-country-grid-1636f2496d5e44335462",
+        "country_fallback_group_share": 0.016162643620792647
+      },
+      "limitations": [
+        "The European mineral-wool market retains all three source treatment shares, two collection entries and its39-country sorting-electricity group. Retain every inspected ecoinvent3.9cutoff mineral-wool market/treatment exchange at its original signed quantity and supported uncertainty. Source waste reference-1kg maps to positive source-preserving treatment helpers with caller factor-1. Recycling contains three explicit particle-size dust emissions, not an empty handover; collection adds its original final-disposal link; sorting retains its original39-country delivered-electricity group,0.0222m3 hydraulic-digger service,1e-10sorting-plant units, final-disposal link and three dust emissions. Preserve all three particle-size fractions against freshly inspected canonical3.10 publisher UUID/unit/full compartment/emission role; no particle-size, mass, speciation or receiving-context factor. Use complete native delivered low-voltage grids for32matching source countries and the complete RER grid only for the seven user-approved absent countries, retaining voltage topology, losses, infrastructure, imports, generation and direct emissions once. Historical source/native grid membership, generation/trade, internal uncertainty and vintage differ; only the seven enumerated country-to-RER proxies are authorized inside this exact parent closure. Retain the original RER hydraulic-digger purchase through the complete native legacy RER service per original cubic metre. Its0.131kg diesel,0.0025kg lubricant and1e-6machine-unit basis matches the inspected source RER producer; the updated Swiss average instead has a different fuel demand and is not used here. The native proj.500 label implies no500-fold or efficiency multiplier. Retain complete machine manufacture, operation, maintenance, emissions and oil disposal once; source fuel geography/oil-treatment and native emission/uncertainty differences remain screened. Use the complete inspected native sorting facility per original unit: both source and native document200000t/year,50-year service and matching three land quantities. The facility land quantities match, but only two of the three publisher flow identities are equal: the native facility uses generic Transformation, from unknown (12264257-7f8b-4afe-b3cb-3ac28ca1661a) where source construction uses Transformation, from unspecified (29630a65-f38c-48a5-9744-c0121f586640), each15000m2 per plant in the same natural-resource/land compartment. This remains a complete-facility inventory difference with unquantified score effects, not an independent biosphere correspondence or a claim of equal land characterization.  Retain native infrastructure/replacement parts, administrative heat, oils, plastics, freight and end of life once; its material/heat/disposal mixes, uncertainty, geography, allocation and vintage differ from the whole source facility. This complete-facility proxy does not approve its isolated heat/material/waste inputs for other callers. Do not add a plant-capacity/lifetime factor, crusher operation or second maintenance/disposal inventory. Use only the newly reviewed generic final-disposal helper closure, not the broader demolition/collection wrapper or material-specific landfill proxy. Preserve every original market collection-freight term, without aggregation or normalization, through the reviewed complete Swiss rail mix or generic RER mixed-traction rail/heavy-road services. Native fleet/traction, fuel, loading, infrastructure, geography and vintage differences remain explicit limitations. Preserve the source as-received kg; no density, moisture, dry-mass, remelting, recovered-material credit, new treatment fate, physical omission or normalization. Preserve caller formulas/uncertainty/ownership and separately listed emissions and purchases. Source-data gaps, native upstream biosphere exclusions and unquantified score effects remain warnings, without inventory or LCIA equivalence. Only the enumerated European3.9cutoff closure qualifies for UVEK2026cutoff/ecoinvent3.10biosphere; raw component hashes do not admit standalone services, other versions, inverse or cross-model conversions. The user explicitly approved the seven missing-country RER proxies with warnings on2026-11-09; preserve all other country entries and every original coefficient without normalization. The country fallback applies only to AL,MD,MT,GI,XK,ME,BY, whose original shares sum to1.6162643620792647percent of this sorting electricity group. Retain every one of the39entries separately, even where seven target suppliers coincide. Country representation, region membership, generation/import mix, network, losses and score differences remain explicit geographic-proxy warnings. This does not establish a standalone source-country-to-RER correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9babf1462e807d3a2508da196d8077aec16a6df6ca6bd365a0d8890e7710f5b9"
+        }
+      ]
     }
   ]
 }

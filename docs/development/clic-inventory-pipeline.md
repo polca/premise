@@ -1063,6 +1063,29 @@ leaving 61; the public frontier remains 35 rules / 40 cases. The separate
 seven-country European electricity proxy is now user-approved but still needs
 implementation. Full prospective certification/export remain outstanding.
 
+The separately user-approved European mineral-wool market is now scoped for
+exact source 3.9 cut-off. It preserves all three treatment shares, two freight
+entries, nine direct dust exchanges and the sorting service. The delivered-grid
+group retains 39 separate original signed inputs and uncertainty: 32 matching
+country grids plus seven explicitly approved RER proxies (1.6162643621% of the
+group). Individual proxy details remain portable; no isolated country mapping
+is enabled. Existing machinery, facility and final-disposal witnesses remain
+unchanged, including their declared internal-inventory and land-origin
+limitations. All 349 earlier fingerprints, 3,264 recipes and 712 shared reviews
+remain unchanged; one scope and five recipes bring totals to 350 scopes, 3,269
+recipes and 713 reviews.
+
+Forty-four focused Brightpath checks and 27 Premise checks pass, including the
+Swiss/RoW routes, exact-profile guards, all country coefficients, cached
+warnings and portable proxy details. Full generator replay is byte-identical.
+The complete eight-record graph gives finite native LCI with exact rational
+foreground balance, epsilon-bounded floating results and native supply
+agreement, without changing destination scientific contents. Installed-wheel
+conversion and evidence checks pass. Nitrate coverage is 65 of 125 suppliers,
+leaving 60 across 19 labels; the public frontier remains 35 rules / 40 cases.
+All three nitrate mineral-wool markets are scoped. Full prospective scenario
+certification and export remain incomplete.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

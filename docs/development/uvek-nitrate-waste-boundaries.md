@@ -104,9 +104,6 @@ physical exchanges, or the separately pending concrete-sorting allocation.
 
 Other findings remain work items, not admissions:
 
-- The European mineral-wool sorting branch awaits implementation of the approved
-  seven-country electricity proxies. Its source dust, operating services and
-  treatment weights remain required; the Swiss/RoW admissions do not extend that scope.
 - Regional glass, polyethylene and polystyrene markets combine open burning,
   open dumps, unsanitary landfills and, in some regions, controlled incineration.
   Their infiltration classes and fate weights cannot be replaced by a single
@@ -170,3 +167,16 @@ correspondence. No physical inventory coefficients changed when that warning
 was refined. Neither admission authorizes the European missing-country
 electricity fallback or the isolated machinery, facility, material, heat or
 waste links for other callers.
+
+The separately approved European mineral-wool market now preserves all three
+fates, both collection entries, sorting services and source dust. Its source
+low-voltage group retains 39 separate entries: 32 same-country grids and the
+seven approved RER geographic proxies. The latter represent 1.6162643621% of
+that sorting-electricity group, with individual source quantities and
+uncertainty retained. Warnings name AL, MD, MT, GI, XK, ME and BY and their
+country/region, generation/import, network, vintage and score limitations.
+This exact parent closure reuses the reviewed whole machinery/facility and
+final-disposal functions; it authorizes no broader country or isolated
+component correspondence. Earlier Swiss/RoW warning snapshots described that
+European choice as pending; this separately fingerprinted admission records
+the subsequent user approval and implementation.

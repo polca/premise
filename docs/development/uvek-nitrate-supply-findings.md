@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-64 already have exact current CLIC approval fingerprints for their source
+65 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 20 reference-product
+scientifically reviewed target. The other suppliers cover 19 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 61 automatically new scientific decisions. Coverage is
+decisions. They are not 60 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -249,3 +249,21 @@ mineral-wool branch still requires implementation of the separately approved
 country grids.
 The remaining 32 countries have native low-voltage grids; no fallback has been
 enabled by the Swiss/RoW review.
+
+The user-approved European mineral-wool route is now implemented separately.
+It retains all three source treatment shares, two collection entries, nine
+direct dust exchanges across the treatment helpers, and the original sorting
+quantities. Its electricity group keeps all 39 separate signed source entries
+and uncertainty: 32 native country grids and seven scoped RER proxies (AL, MD,
+MT, GI, XK, ME, BY), totaling 1.6162643621% of the sorting-electricity group.
+No shares are aggregated or normalized. Each proxy remains named in portable
+approval metadata and warnings; it grants no standalone country mapping.
+
+The previously inspected machinery, facility and generic final-disposal
+functions remain unchanged, including the warned generic land-origin UUID
+difference. The complete eight-record graph retains its source reference
+basis and gives finite native LCI on unchanged scientific database contents.
+All three mineral-wool markets encountered in this nitrate branch are now
+scoped. Exact nitrate coverage is 65 of 125 suppliers, leaving 60 across 19
+product labels. The full nitrate supply, scenario certification and export
+remain outstanding.

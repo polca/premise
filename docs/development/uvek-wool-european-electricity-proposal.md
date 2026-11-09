@@ -1,8 +1,8 @@
 # Approved: seven missing country grids inside European mineral-wool sorting
 
 The user approved this scoped choice with warnings on 2026-11-09. The
-correspondence remains disabled until implemented and verified. It applies only
-to the inspected ecoinvent 3.9 cut-off European mineral-wool market/sorting
+correspondence is implemented and verified for the exact scope below. It applies
+only to the inspected ecoinvent 3.9 cut-off European mineral-wool market/sorting
 closure for the UVEK 2026 cut-off / ecoinvent 3.10 biosphere electricity pilot.
 
 The source European low-voltage group purchases delivered electricity from 39
@@ -43,3 +43,9 @@ User decision: “Approve scoped proxies with warnings.” Approval covers only 
 seven listed entries inside the inspected European mineral-wool sorting route;
 the quantities, separate entries, other 32 countries and warnings above remain
 required. No broader country mapping is authorized.
+
+Implemented checkpoint: one exact European source-market scope, preserving all
+39 country entries and the complete wool-treatment/operating graph. Focused
+Brightpath/Premise tests, full resource replay, native LCI and installed-package
+checks pass. Other countries, source releases and independent country-to-RER
+conversions receive no approval from this decision.
