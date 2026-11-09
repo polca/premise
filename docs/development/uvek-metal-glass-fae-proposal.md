@@ -1,7 +1,8 @@
 # Steel, copper and glass routes using fly-ash extraction
 
-Status: pending explicit scientific approval. These five exact profiles remain
-refused by the public pilot; no mapping or approval scope has been installed.
+Status: implemented under the user instruction to auto-approve coming
+modelling decisions. All five exact profiles are registered and verified;
+the accepted FAE technology differences remain explicit warnings.
 
 The proposal uses existing UVEK ordinary, material-specific incinerators as
 screening proxies for the enumerated Swiss incineration-with-fly-ash-extraction
@@ -87,11 +88,11 @@ supply. Source scientific-content hashes remain unchanged. These checks do
 not establish impact-score equivalence, public migration, scenario
 certification or export.
 
-Approval would cover only these five exact cut-off profiles and the stated
+The implementation covers only these five exact cut-off profiles and the stated
 substitutions, with the full limitations retained in warnings and provenance.
 Other materials, FAE source profiles, recovered products, inverse routes and
 cross-system-model conversions remain outside this proposal. The existing user
-experience would remain unchanged.
+experience remains unchanged.
 
 Private evidence in the pilot work area:
 `pilot_fae_group_full_evidence.private.json`,
@@ -99,3 +100,43 @@ Private evidence in the pilot work area:
 `fae_auxiliary_primitives_full_evidence.private.json`,
 `pilot_fae_candidates_review.json` and
 `native_pilot_fae_candidates_lci_report.json`.
+
+## Implemented checkpoint
+
+Packaged review: Brightpath `export/uvek_pilot_fae_routes_review.json`, SHA-256
+`98fee8e678b40b6ea87f81c4276bc7b46d9f3367fa71e9ec5c2074299d4ea55a`.
+Fresh readback binds 73 complete source/native inventories. Seventeen new
+recipes retain the five routes; two existing stock recipes remain unchanged.
+Every stock dependency carries its exact positive cut-off source profile and
+profile-review hash. A bare empty dependency is rejected; no empty treatment
+is introduced. The same 3.9 scrap-steel market recipe is shared between direct
+demand and the reinforcement-steel route.
+
+All 390 previous fingerprints, 3,368 recipes and 724 shared reviews remain
+unchanged. Five exact root scopes and one shared review are added (395 total
+scopes). No standalone stock or other-version scope is added. The complete
+ordinary incineration model substitutes for FAE technology; it does not
+reconstruct extraction or invent recovered-zinc/energy credits.
+
+Independent semantic inspection verifies every candidate coefficient,
+uncertainty and native target, all 67 non-FAE source terms, the 34 glass
+emissions and both declared `WM_RP` bindings. Handovers retain −0.47289 kg of
+iron in each version-specific incinerator and −0.31 kg of copper. Only verified
+production-only stocks have negative foreground supply in physical treatment
+checks. Caller and source inventories remain unchanged.
+
+56 unique focused Brightpath cases pass: 26 passed initially and 30 signed
+cases passed after correcting a test-fixture field name; the production
+resource was unchanged by that correction. All 41 Premise cases pass, including
+cold/warm caches and portable warnings. Five actual migrated graphs yield
+finite native LCI, with native scientific hashes unchanged. Full generator
+replay is byte-identical. Full pilot scenario/certification/export remains
+unverified.
+
+Private receipts: `fae_routes_fresh_primary.private.json`,
+`fae_routes_staged_review.json`, `fae_routes_scope_registration.json`,
+`native_fae_routes_lci_report.json`, `fae_routes_generator_replay.json`.
+
+All five installed-wheel conversions pass. The inspected wheel, installed
+stage, verified build copies and nine superseded cache files were removed;
+the five current audited cache entries and all lockfiles remain.

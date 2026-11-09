@@ -64922,6 +64922,3701 @@
           "fingerprint": "560b1ebe026ee569ef4fc7d67c395cb2dbdbf8e5be57fe9004d88f3b9968bacd"
         }
       ]
+    },
+    {
+      "rule_id": "bp-180ae2ddfbb9b03a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_fae_routes",
+      "review_path": "export/uvek_pilot_fae_routes_review.json",
+      "review_sha256": "98fee8e678b40b6ea87f81c4276bc7b46d9f3367fa71e9ec5c2074299d4ea55a",
+      "authorization": "User instruction: auto-approve coming decisions. Applied to the documented five exact Swiss FAE steel/copper/glass routes, using complete material-specific ordinary incineration only for FAE portions, retaining source recovery handovers through verified production-only cutoff stocks and all other source stages/fates/collection. No new zinc/energy/virginmetal credit; explicit FAE technology/uncertainty/score limitations.",
+      "inspection": {
+        "rule_id": "bp-180ae2ddfbb9b03a",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste reinforcement steel, collection for final disposal",
+          "reference product": "waste reinforcement steel",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "xx Disposal, building, reinforcement steel, to final disposal",
+          "reference product": "xx Disposal, building, reinforcement steel, to final disposal",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.4681,
+          "conversion_factor": -1,
+          "id": "bp-180ae2ddfbb9b03a",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-180ae2ddfbb9b03a"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CH",
+            "name": "treatment of waste reinforcement steel, collection for final disposal",
+            "reference product": "waste reinforcement steel",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "xx Disposal, building, reinforcement steel, to final disposal",
+            "reference product": "xx Disposal, building, reinforcement steel, to final disposal",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "ef13fe5fd46e82a17bd194f00d656e501646477585a3a5d823f67ba08e74c967",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "a773f7af1eb894c5a157adc90db244530a491b9a5f9da6f97a3d278173cb98ed",
+        "source_inventory_sha256": "b2c8498d999fc18528b054f20932848788b48c78d2ed2c0f466381a6385b8223",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 6,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.6-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "b2c8498d999fc18528b054f20932848788b48c78d2ed2c0f466381a6385b8223",
+            "inputs": [
+              {
+                "amount": 0.626,
+                "uncertainty type": 2,
+                "loc": -0.46840490788203853,
+                "scale": 0.33166247903553997,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.2645751311064591,
+                "name": "Diesel, burned in building machine, average",
+                "reference product": "Diesel, burned in building machine, average",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.0,
+                "uncertainty type": 2,
+                "loc": 0.0,
+                "scale": 0.2,
+                "negative": false,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.0,
+                "recipe": "pilot-fae-routes-8357da15df658bddec72"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "f55c56191b553dd2465761918f83d5372180851062358ac1efd2b14502fcdca0"
+              },
+              {
+                "source": [
+                  "iron scrap, sorted, pressed, Recycled Content cut-off",
+                  "iron scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "71540da7e8a4cc7d2f6e4aeee6822a114b04a8785fa8c254357b7087a90d6739"
+              },
+              {
+                "source": [
+                  "market for ammonia, liquid",
+                  "ammonia, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "aebb530a40ff9aab04eb948df286faa7d57004dcc4c39f5a4da156b81d1eaed9"
+              },
+              {
+                "source": [
+                  "market for chromium oxide, flakes",
+                  "chromium oxide, flakes",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "bce209032cf6b80d69baa5c579fafcb0f4e7fde699db5e07fe352bae9199e5aa"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "995a6fe65af0bb1c8b84508d3415adffbffcda0676f12351492948501980ac96"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "6984dc7fbd0ff5f28f840159c72611f5623ce68deddfef9d44828475472c998f"
+              },
+              {
+                "source": [
+                  "market for heat, for reuse in municipal waste incineration only",
+                  "heat, for reuse in municipal waste incineration only",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "e3b8d8c43d6e4ac92b495da280979199fc6d9cf6d045986bce9125619d762e65"
+              },
+              {
+                "source": [
+                  "market for titanium dioxide",
+                  "titanium dioxide",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a5449f5b35e2f596cdb1c52c75443440bf98614787880495cb9684db35e3a29"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "e9a3f756da522cec59360070f3d3f29506819df42577c6e9ea4727eef0309042"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "b87e4f1b7c8aae9dcb233c4aa0f47aacf53e55cabf399cf8e3461d84493b86ed"
+              },
+              {
+                "source": [
+                  "municipal waste incineration facility construction",
+                  "municipal waste incineration facility",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "5baaf0091de2fcafe482c43a634081e67f97ebfcf233838f4f4ab584b7ee2f63"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "ab053e57694bbe3fd175e386df3f391246f10fa4a1b0fe0a0941d7896318fce9"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd5c33e6726aad94dedb8034c29af97c80634191a11b83efa3fd5d40fed00f4e"
+              },
+              {
+                "source": [
+                  "slag landfill construction",
+                  "slag landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "b1da19a9624abeedf7a92889d8fa9cc3615948b0aa4072cef7045499f7c8393f"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "b18ae145d6b67c7c5c61196db98cf45b2b0a3dc7cdc20632d1b8645286b84d59"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration with fly ash extraction",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "05fba3d747df6e76018151a4795110de01ff128c4ec96a112ff420a9f55f37ff"
+              }
+            ]
+          }
+        ],
+        "fae_source_treatments": [
+          {
+            "source": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "material": "steel",
+            "composition_coordinates": 42,
+            "source_metadata_sha256": "a3680089a2497c525078b8e6cc0e28f36a851eb6d5f07c05762a9eca8496db4f",
+            "source_inventory_sha256": "400e61373d226c81c5e810dbecf42487d4846735edb0733927f729a6a430f3b5"
+          }
+        ],
+        "source_stage_witnesses": [
+          {
+            "version": "3.6",
+            "identity": {
+              "location": "CH",
+              "name": "treatment of waste reinforcement steel, collection for final disposal",
+              "reference product": "waste reinforcement steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a773f7af1eb894c5a157adc90db244530a491b9a5f9da6f97a3d278173cb98ed",
+            "inventory_sha256": "b2c8498d999fc18528b054f20932848788b48c78d2ed2c0f466381a6385b8223"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "c85a8a63d144275d12ec9a45b9dec231079a7b78d63644d0d059ce06bc2b1c68",
+            "inventory_sha256": "c310ece7450f90e06b3764deeb6601cdcc6f9f458db1c6d30975b89c17071b45"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6023f3e4449f404dc461cf19a3629e852f7e067d84522ce26228068cbc8794e1",
+            "inventory_sha256": "4fa4d6232e38e8cb3a4724241a1ace1e7fafd85504b7ae74297fa56feb0c11fc"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a3680089a2497c525078b8e6cc0e28f36a851eb6d5f07c05762a9eca8496db4f",
+            "inventory_sha256": "400e61373d226c81c5e810dbecf42487d4846735edb0733927f729a6a430f3b5"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "4f9c6f263f74696286351c970a71ad91474b2aa8c34aa834a5064737ce3f073b",
+            "inventory_sha256": "a52018ec10c72003bc4dc94dd6ea1f129fb5ffb03b7d30490834e8b97fbae69d"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "4d6dcf8b1214101a7862a169776cbf86af7ee38bbe3505081842ed8a605f9851",
+            "inventory_sha256": "29e02540f754c6ab09a0d5d74b75543ff7e06b0f6418730c844ec66b6dff6af6"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "078c1f6f6a3b165e32613952099813a65f5c71fec0eacdf8f7600a5545d9d9fb",
+            "inventory_sha256": "f5dfacdcdda85033e0b70126b93b59fa60324dd5d58df4ead6315f0d71bc0161"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for diesel, burned in building machine",
+              "reference product": "diesel, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "bffee886dc16e8853392f5cf2570fb20e7c3e734d1bd9b4e9fb49314b5f8d277",
+            "inventory_sha256": "7fa739c48a27b4e11c640990052c6c06ccb38bcd18fe31755efe1d97494a5010"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "c0c094d3d33324ede364a54271013491dea72abf2d88103c6964b6cf21e226d3",
+            "inventory_sha256": "567cc5bb4d5dd8e8880ca2ecd73cab47a3b8e643170554438f2dd5f9ca713022"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "03ecbbb7f8822e406ad980c9338624f233f469f62bd42f63893d27b3dec3d1db",
+            "inventory_sha256": "cfbe4e4fcd3f6ba1ebc8cea51c5aa14d9c0e47f6865f46f28d6e995c27543a83"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for chromium oxide, flakes",
+              "reference product": "chromium oxide, flakes",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "c8507a96a7715f228c24486abccab9aed5bb3b5aac95735fef6381e1637a2c80",
+            "inventory_sha256": "d885ef82896f5a804707e849dfb70a07c1ca32dee54f5fdba2885d058a55c20f"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "7dcd9fc9de73523f5faec6a6153c80ccf94a14d6ff7f8ece3508450a6cec250f",
+            "inventory_sha256": "54fb3722c628bd81e3b182e288e0a402fe83728891af5d2950dc3decfa24fc93"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "f66f667201094c8a1e9fc8e599db509b447faae05bbf4b35c82933a64bd0a623",
+            "inventory_sha256": "b2589c2a6e087c4084bd3c24bb2534d57ca66a6944c66ab0dfb96b041f9ae1d8"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "slag landfill construction",
+              "reference product": "slag landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "d7e9913fcb3be062d2b085f7651670b710b3dbe239bebca5c6d3a9cf0ae6960f",
+            "inventory_sha256": "33b7f39628b1d68588f6500670810c33ab893eac10cb32e44f3756a2958876b0"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for titanium dioxide",
+              "reference product": "titanium dioxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "58bdc6e44c2ffa2d574618403409d3c616b1270b80f1e8192d3232429ecead10",
+            "inventory_sha256": "f34d5b69c5e925592713bffd0f9ea90f8800c23f21b1b3feae1179380ead2173"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "municipal waste incineration facility construction",
+              "reference product": "municipal waste incineration facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "8fe9cdf5be3ccb8d2e94313f42d3fd703b55a4e68921479651cb8c56e2ef0518",
+            "inventory_sha256": "f88bd23cf173f70ec23997930a675c5f2286c0660c4f9687d1e5f9d0e5dcb7e5"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for electricity, for reuse in municipal waste incineration only",
+              "reference product": "electricity, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "d1226f6e385ba25461b46ff1b03bbc58f23af0146a5751fd69fc46ecb0b58179",
+            "inventory_sha256": "ee64e9c444c8f3910aae444d9500fb02f6f60ac8d5893b05b3678700dcc2e644"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "market for ammonia, liquid",
+              "reference product": "ammonia, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a510d43275fcaee9eca7f3e5d9e95aa7da52cfe5c21a71f5123388fed4124677",
+            "inventory_sha256": "fb35522c355e304c4c0fba13fc6c9425ede9dc8fcea8447b2710cde8f841b57d"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "process-specific burdens, slag landfill",
+              "reference product": "process-specific burdens, slag landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "4cb48ceaf1469b87ccbce6a40d8bf90ce2507075ec380ba6c9a44ba39e5c7c63",
+            "inventory_sha256": "18acbb343b59afc3b3d94441ae4445abbe6befa28d8b61eb05dab09edb0d56e8"
+          }
+        ],
+        "reserved_reference_formula_bindings": [
+          {
+            "source_version": "3.6",
+            "source": {
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "original_formula": "0.0036*WM_RP",
+            "reference_property": "wet mass",
+            "reserved_symbol": "WM_RP",
+            "source_property_value": 1.0,
+            "source_property_unit": "kg",
+            "target_formula": "0.0036*(1.0)"
+          },
+          {
+            "source_version": "3.6",
+            "source": {
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "original_formula": "0.0258*WM_RP",
+            "reference_property": "wet mass",
+            "reserved_symbol": "WM_RP",
+            "source_property_value": 1.0,
+            "source_property_unit": "kg",
+            "target_formula": "0.0258*(1.0)"
+          }
+        ],
+        "recovered_stock_witnesses": [
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "4f9c6f263f74696286351c970a71ad91474b2aa8c34aa834a5064737ce3f073b",
+            "inventory_sha256": "a52018ec10c72003bc4dc94dd6ea1f129fb5ffb03b7d30490834e8b97fbae69d",
+            "authority": "uvek_pam_frontier_stock_review.json"
+          }
+        ],
+        "fae_technology_reconstructed": false,
+        "source_other_route_stages_retained": true,
+        "limitations": "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      },
+      "limitations": [
+        "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8c2bba4951911ae730223ecc3e358f897d6d944881080fc471e440daf0513922"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6ac3c055dea65676",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_fae_routes",
+      "review_path": "export/uvek_pilot_fae_routes_review.json",
+      "review_sha256": "98fee8e678b40b6ea87f81c4276bc7b46d9f3367fa71e9ec5c2074299d4ea55a",
+      "authorization": "User instruction: auto-approve coming decisions. Applied to the documented five exact Swiss FAE steel/copper/glass routes, using complete material-specific ordinary incineration only for FAE portions, retaining source recovery handovers through verified production-only cutoff stocks and all other source stages/fates/collection. No new zinc/energy/virginmetal credit; explicit FAE technology/uncertainty/score limitations.",
+      "inspection": {
+        "rule_id": "bp-6ac3c055dea65676",
+        "source": {
+          "location": "CH",
+          "name": "market for waste reinforcement steel",
+          "reference product": "waste reinforcement steel",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, reinforcement steel, to recycling",
+          "reference product": "Disposal, building, reinforcement steel, to recycling",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.39553,
+          "conversion_factor": -1,
+          "id": "bp-6ac3c055dea65676",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-6ac3c055dea65676"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CH",
+            "name": "market for waste reinforcement steel",
+            "reference product": "waste reinforcement steel",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, building, reinforcement steel, to recycling",
+            "reference product": "Disposal, building, reinforcement steel, to recycling",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "4e35451934af7c2d2d9ecb37298eb25816926a6ff34f73eb31e48fea3d60152b",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "5ace466403243a160d6c79eff161c587e13018eb6d3ad04b4353dcb90845f491",
+        "source_inventory_sha256": "c2ec668ba438353789fa932993c5233ba9010d4c5033ca6d302638e3ae13015e",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 9,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "c2ec668ba438353789fa932993c5233ba9010d4c5033ca6d302638e3ae13015e",
+            "inputs": [
+              {
+                "amount": 0.00356,
+                "uncertainty type": 2,
+                "loc": -5.637994734118198,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.02577,
+                "uncertainty type": 2,
+                "loc": -3.6585442543178632,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.1,
+                "uncertainty type": 0,
+                "loc": 0.1,
+                "recipe": "pilot-fae-routes-7ab5f90b79b948f435bd"
+              },
+              {
+                "amount": 0.62,
+                "uncertainty type": 0,
+                "loc": 0.62,
+                "recipe": "pilot-fae-routes-0ab59ec899574b05ee5b"
+              },
+              {
+                "amount": 0.28,
+                "uncertainty type": 0,
+                "loc": 0.28,
+                "recipe": "pilot-fae-routes-5f45a435464743ba01e0"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "copper scrap, sorted, pressed, Recycled Content cut-off",
+                  "copper scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e599ef94b43f0528dcf577e2fb1cdd85b4ced7319e2f48a9003e209a7dd1a45a"
+              },
+              {
+                "source": [
+                  "excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "RER",
+                  "cubic meter"
+                ],
+                "binding_sha256": "ffab4a9d160e85ff3bebd295777aaf87bdfac03500f5e0cc0214df4696710a7f"
+              },
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "f55c56191b553dd2465761918f83d5372180851062358ac1efd2b14502fcdca0"
+              },
+              {
+                "source": [
+                  "iron scrap, sorted, pressed, Recycled Content cut-off",
+                  "iron scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ff479ed9fa2d2ffd1446c85c430d73ac9825a0b2142161638456794edd14b62e"
+              },
+              {
+                "source": [
+                  "market for ammonia, anhydrous, liquid",
+                  "ammonia, anhydrous, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "96a7fb4f7052f04d989d05f0be7b8ca8e05abd38b0ba7a976f382575c0cda870"
+              },
+              {
+                "source": [
+                  "market for chromium oxide, flakes",
+                  "chromium oxide, flakes",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "bce209032cf6b80d69baa5c579fafcb0f4e7fde699db5e07fe352bae9199e5aa"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "995a6fe65af0bb1c8b84508d3415adffbffcda0676f12351492948501980ac96"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f14bd6c56fc77aa61150df311cd3355a624834b7929b52a07d3ab3e6ea4e809c"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "6984dc7fbd0ff5f28f840159c72611f5623ce68deddfef9d44828475472c998f"
+              },
+              {
+                "source": [
+                  "market for heat, for reuse in municipal waste incineration only",
+                  "heat, for reuse in municipal waste incineration only",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "e3b8d8c43d6e4ac92b495da280979199fc6d9cf6d045986bce9125619d762e65"
+              },
+              {
+                "source": [
+                  "market for titanium dioxide",
+                  "titanium dioxide",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a5449f5b35e2f596cdb1c52c75443440bf98614787880495cb9684db35e3a29"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "72bc50d6fed6f8305ed0be601760e2f797a3dfcfd83d74f650e9ef2143e2628f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "municipal waste incineration facility construction",
+                  "municipal waste incineration facility",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "5baaf0091de2fcafe482c43a634081e67f97ebfcf233838f4f4ab584b7ee2f63"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "ab053e57694bbe3fd175e386df3f391246f10fa4a1b0fe0a0941d7896318fce9"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd5c33e6726aad94dedb8034c29af97c80634191a11b83efa3fd5d40fed00f4e"
+              },
+              {
+                "source": [
+                  "slag landfill construction",
+                  "slag landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "b1da19a9624abeedf7a92889d8fa9cc3615948b0aa4072cef7045499f7c8393f"
+              },
+              {
+                "source": [
+                  "sorting facility construction, for construction waste",
+                  "sorting facility, for construction waste",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "ffab6cd453e3e1e205f9b1f114b208379e902f07a43a6bb140e6a851d262a348"
+              },
+              {
+                "source": [
+                  "treatment of scrap copper, municipal incineration with fly ash extraction",
+                  "scrap copper",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "3eec38395fcdd095681016f08cbe138b091e4cfff4886406b88eea76e36599e3"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "af62271c92c5e39b5aefd1fa658ada86136c75d6e5f5b3d5c40f482f8f9678de"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration with fly ash extraction",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "05fba3d747df6e76018151a4795110de01ff128c4ec96a112ff420a9f55f37ff"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration with fly ash extraction",
+                  "waste glass",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "a11fe5575594d7d7ede7d47157ce07f79f2fdc143e122e678073ab125ccfae18"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, recycling",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "e6d94696b7f9dc4205cd7a74801df4aa41654c7b7b9642a7f1cef6088ef69139"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, sorting plant",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "51efcb367be2e8400941bd7217a9496a12c75572214d58350d7988e606471697"
+              }
+            ]
+          }
+        ],
+        "fae_source_treatments": [
+          {
+            "source": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "material": "steel",
+            "composition_coordinates": 42,
+            "source_metadata_sha256": "8248a18b0a416253e20a7a132e7e35887d47be973d80156f05dbfe53c7fd882a",
+            "source_inventory_sha256": "9a7ffdbced1b88bce5b7f499d5edc2f76945b9daaa985d3e51e18a7a72553254"
+          }
+        ],
+        "source_stage_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste reinforcement steel",
+              "reference product": "waste reinforcement steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5ace466403243a160d6c79eff161c587e13018eb6d3ad04b4353dcb90845f491",
+            "inventory_sha256": "c2ec668ba438353789fa932993c5233ba9010d4c5033ca6d302638e3ae13015e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, collection for final disposal",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "7df4d366bac69c10cf8c774756b3fcc11120f6f92bfb4aaff6b4082178ea85b9",
+            "inventory_sha256": "024525be737a68f31d63ea34f41a136c01c2a2e9275b8c9e5958e8de73b19e0c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "fd51f0694b1290efea03c3aa627568a7aace5344ae31db48f1e78be6886adf9f",
+            "inventory_sha256": "6df7410c282e47f41583f7f98e50709669e28054207a5487d14d8f25db2401a4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8248a18b0a416253e20a7a132e7e35887d47be973d80156f05dbfe53c7fd882a",
+            "inventory_sha256": "9a7ffdbced1b88bce5b7f499d5edc2f76945b9daaa985d3e51e18a7a72553254"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5e75f2c126560f6bdd6e6bdc9fdfffbb47588cae7cca3e47fed823c771dc8244",
+            "inventory_sha256": "45ed4de96d9a9760214e2ce311e6ffc00fb30a27d3b6dd11c3f02c310daabecb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, recycling",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "011f51cea6af14e2b3d24bd7272739dd578ba6191878517ce85db9c22a017fc3",
+            "inventory_sha256": "52a9d6317ecff574eb5d3c8dce2b28665a34566862904fd7e46d6a9212f9e762"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, sorting plant",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6168a2f1a8db502097cd499f11e63fa66196525bcc30aa6a0daa4a220ed1af29",
+            "inventory_sha256": "48b7175d7261ec10776c4f44c8fa7e18d47bb94d42808f1c19cd4bdcf3f8c2d4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap copper",
+              "reference product": "scrap copper",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6d4781397218f9bc5dfdfc7954825303bcccda46df5f952e671b62908821f69c",
+            "inventory_sha256": "29204baf00c5e66389ab39bab0bd7f9f575b196bf5c362bca4ecd97fe6661dce"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap copper, municipal incineration with fly ash extraction",
+              "reference product": "scrap copper",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6dc5598f1d85c0cc80e869c51e74d52ef4a9bfb23500c1a0e95c869ec627a847",
+            "inventory_sha256": "a4c14080494a921d7b1371d6cd9d36dc49398e779da08f6ed3dbde07abf8b726"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste glass",
+              "reference product": "waste glass",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9cc08226cecb3af71cb209b0a7f0a8b39b3faaad3aea9b5136d8361a8f138346",
+            "inventory_sha256": "38fff2ea3db432810239b4db500961ff614fcfb466cae6f214b6f8f87c0949ef"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, municipal incineration with fly ash extraction",
+              "reference product": "waste glass",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "55c5317b33f0d85bad2de34bd2fca067936ceb1f6dfca470567ade05f6b75f8d",
+            "inventory_sha256": "a300a87480d580e8460215da77ab78e0755a66d69f0e8f08f50755472a011101"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "d7732358bfdb50dc7880029fc833f36a42e119a54a22639d49b98bcb9d4b5fb3",
+            "inventory_sha256": "403174c792bca692445b751266ddbba8b4c441992b6ebecee16188b8c6014092"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f4e3bb5484ab69eab944855035380f6b4a53259f56245c8aad3eb0567a5d3e4b",
+            "inventory_sha256": "03789fa037c2bb6c1f97ee4e188e4964232815eae4d814ba762751e298bd739e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "c419d8aeed8535c1134b2aa4554be4ede2e0f9afb3af144d15aee99301e4e05a",
+            "inventory_sha256": "091ca166a7c4f161d285e0b8413f8d8c57775213e94b6234b1d20823875fd5c1"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+            "inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for diesel, burned in building machine",
+              "reference product": "diesel, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "c376cde306bc081bd9d979d7fa7ee876a782554a026712f84d9329fdcae9ad93",
+            "inventory_sha256": "160b0e9bf8b766571f5a6c538adb390bb63b0883529f6755641fed885c04d4bf"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for ammonia, anhydrous, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f1167424e70ad9ca9b3f15370d01f514c51623e1502102ac3e005d2f2854be73",
+            "inventory_sha256": "38c491c339ef7e7ae8da13b2bac0be8d571540ebee8cb8b497620804959e6afe"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for chromium oxide, flakes",
+              "reference product": "chromium oxide, flakes",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9b1f33fccac2e8f1ec588d2a2b5a76f6b158c4d91c897334c7f07033b674f3b5",
+            "inventory_sha256": "74db024f721a64f07cb18b35df958c94068109053db526c3a48905b8b59e7fb9"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, for reuse in municipal waste incineration only",
+              "reference product": "electricity, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "81a98d643ed18ab8c630aa99b87f9f08113d6cae12653d926d14cdec5e7df511",
+            "inventory_sha256": "016048e50585bff1ff2b6edec9d2b1fa3143056d6927020141fd0626efe0ba21"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "406a59a6d06aa7242d502220c432118eefae14f5e023fe8954284b5865ad2138",
+            "inventory_sha256": "1ecf53aa68825c041f2b4ef08719c0dcd638943740f5722c83273f1c62624778"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "d9fd5cd3ecda7489ca1aba93dbf27b556e8547a31197a03acc3c1a7df49b23a9",
+            "inventory_sha256": "5a892d8ee92da478872e324c9c68af7efd62e499fee7e300852f116ba7391855"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "municipal waste incineration facility construction",
+              "reference product": "municipal waste incineration facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "a0b95cb7a52a421dc0c02f0cded0a24d321ac786fba1b8d55687462b6f4f23c1",
+            "inventory_sha256": "0e3a91516d1947379b1b98d96d01c9f592ef86a2be721c944c0c8cd439bc36e5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, slag landfill",
+              "reference product": "process-specific burdens, slag landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "4d78ca46be0f0871c8c9634d027cc1283c49cea153566e070a260cc869fda0b9",
+            "inventory_sha256": "2e714057233f5eb2d1b3d3c9965ace90e6f7885aa11fb0311d0f06f10a693fda"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "slag landfill construction",
+              "reference product": "slag landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "fec8637e8b949d3e01772fb5ab3503426bea667259aa4919859d3e8c46bb5f33",
+            "inventory_sha256": "822c2898e83cd57966bfd8bf73c82d0ae4996423518e73112117952bdce4bf12"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for titanium dioxide",
+              "reference product": "titanium dioxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8ef157890d8c8e02bfe67fea80cfbe2f3c93213d2aea8086e3424f44bf9f6b3a",
+            "inventory_sha256": "5a1e0d9afd3e9b5b6ebfbb3bb5cb8af513f2d569406ee514fda9f5fd21e3fbe5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "4536288c7784ba6f0e26a63f9413ea0b3cd2e35b5871fc950b4c9eabf7f8e3f3",
+            "inventory_sha256": "e16b900688ea6c9e45551a3f52cfbeb4f4d4093e9bf78b01c7e72edbee35b0ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6b8675ce7fd135bd3e851b188fa23ac00e61627ca1b2d310a6f9fe9c4ba50772",
+            "inventory_sha256": "387b19dde5d71193384e281b25d52cfc229e5c8d44afc62abcf18858cb6fb12c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "13ab5ab031338e221ab277bdf0123db118bd4d71f4f018dcf3930cbf54377522",
+            "inventory_sha256": "13f32cf9925b1ed4a0c2c03fd50d7301b074f97bac5c33bd3655b237f63be226"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "excavation, hydraulic digger",
+              "reference product": "excavation, hydraulic digger",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "3902e394cb25b17402e227454f96d8fbccdcb84abcfacdef7daa5df6d087af62",
+            "inventory_sha256": "10b5957b3e78b3f0e1584f866e2cc7e4febeccda9ddeb9a714314f9afdccf2ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "sorting facility construction, for construction waste",
+              "reference product": "sorting facility, for construction waste",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "206c4f49520cad1828eb346ae21a8c9ba590f6c974e705e83f985aeecdc7a2d1",
+            "inventory_sha256": "aa417564b40b3ed36df71e907a0f1e0c99734800962a55c15cfc36cb994ae84c"
+          }
+        ],
+        "reserved_reference_formula_bindings": [],
+        "recovered_stock_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07",
+            "authority": "uvek_pam_frontier_stock_review.json"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb",
+            "authority": "uvek_copper_stock_review.json"
+          }
+        ],
+        "fae_technology_reconstructed": false,
+        "source_other_route_stages_retained": true,
+        "limitations": "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      },
+      "limitations": [
+        "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "74ddf6053b4827fa273b4589cc8b5421f336181bf6bd924ab5ea56de42ecea3a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-93fac8cf40762835",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_fae_routes",
+      "review_path": "export/uvek_pilot_fae_routes_review.json",
+      "review_sha256": "98fee8e678b40b6ea87f81c4276bc7b46d9f3367fa71e9ec5c2074299d4ea55a",
+      "authorization": "User instruction: auto-approve coming decisions. Applied to the documented five exact Swiss FAE steel/copper/glass routes, using complete material-specific ordinary incineration only for FAE portions, retaining source recovery handovers through verified production-only cutoff stocks and all other source stages/fates/collection. No new zinc/energy/virginmetal credit; explicit FAE technology/uncertainty/score limitations.",
+      "inspection": {
+        "rule_id": "bp-93fac8cf40762835",
+        "source": {
+          "location": "CH",
+          "name": "market for scrap steel",
+          "reference product": "scrap steel",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, steel, 0% water, to construction waste landfill",
+          "reference product": "Disposal, steel, 0% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.6,
+          "conversion_factor": -1,
+          "id": "bp-93fac8cf40762835",
+          "mapping_method": "pairwise_review",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-93fac8cf40762835"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "review_ref": "r-79ab4583a027a05e",
+          "source": {
+            "location": "CH",
+            "name": "market for scrap steel",
+            "reference product": "scrap steel",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, steel, 0% water, to construction waste landfill",
+            "reference product": "Disposal, steel, 0% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "ce5e61d502cf9ad49460e35abcd95d16633f67be1365189b5ffaa29a853201bf",
+        "previous_review": {
+          "limitations": [
+            "Identity-level comparison only; inventory composition and LCIA equivalence are not verified."
+          ],
+          "rationale": "Branch supplies waste handling for the named material rather than an unrelated supplied product/material."
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "fd51f0694b1290efea03c3aa627568a7aace5344ae31db48f1e78be6886adf9f",
+        "source_inventory_sha256": "6df7410c282e47f41583f7f98e50709669e28054207a5487d14d8f25db2401a4",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "6df7410c282e47f41583f7f98e50709669e28054207a5487d14d8f25db2401a4",
+            "inputs": [
+              {
+                "amount": 0.230210220395764,
+                "uncertainty type": 0,
+                "loc": 0.230210220395764,
+                "recipe": "pilot-fae-routes-8331e2ca60a2462dd19f"
+              },
+              {
+                "amount": 0.769789779604236,
+                "uncertainty type": 0,
+                "loc": 0.769789779604236,
+                "recipe": "pilot-fae-routes-5c78a10effd1ce8717fb"
+              },
+              {
+                "amount": 0.0036,
+                "uncertainty type": 2,
+                "loc": -5.626821433520073,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0258,
+                "uncertainty type": 2,
+                "loc": -3.6573807870545654,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "copper scrap, sorted, pressed, Recycled Content cut-off",
+                  "copper scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e599ef94b43f0528dcf577e2fb1cdd85b4ced7319e2f48a9003e209a7dd1a45a"
+              },
+              {
+                "source": [
+                  "excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "RER",
+                  "cubic meter"
+                ],
+                "binding_sha256": "ffab4a9d160e85ff3bebd295777aaf87bdfac03500f5e0cc0214df4696710a7f"
+              },
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "f55c56191b553dd2465761918f83d5372180851062358ac1efd2b14502fcdca0"
+              },
+              {
+                "source": [
+                  "iron scrap, sorted, pressed, Recycled Content cut-off",
+                  "iron scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ff479ed9fa2d2ffd1446c85c430d73ac9825a0b2142161638456794edd14b62e"
+              },
+              {
+                "source": [
+                  "market for ammonia, anhydrous, liquid",
+                  "ammonia, anhydrous, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "96a7fb4f7052f04d989d05f0be7b8ca8e05abd38b0ba7a976f382575c0cda870"
+              },
+              {
+                "source": [
+                  "market for chromium oxide, flakes",
+                  "chromium oxide, flakes",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "bce209032cf6b80d69baa5c579fafcb0f4e7fde699db5e07fe352bae9199e5aa"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "995a6fe65af0bb1c8b84508d3415adffbffcda0676f12351492948501980ac96"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f14bd6c56fc77aa61150df311cd3355a624834b7929b52a07d3ab3e6ea4e809c"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "6984dc7fbd0ff5f28f840159c72611f5623ce68deddfef9d44828475472c998f"
+              },
+              {
+                "source": [
+                  "market for heat, for reuse in municipal waste incineration only",
+                  "heat, for reuse in municipal waste incineration only",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "e3b8d8c43d6e4ac92b495da280979199fc6d9cf6d045986bce9125619d762e65"
+              },
+              {
+                "source": [
+                  "market for titanium dioxide",
+                  "titanium dioxide",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a5449f5b35e2f596cdb1c52c75443440bf98614787880495cb9684db35e3a29"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "72bc50d6fed6f8305ed0be601760e2f797a3dfcfd83d74f650e9ef2143e2628f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "municipal waste incineration facility construction",
+                  "municipal waste incineration facility",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "5baaf0091de2fcafe482c43a634081e67f97ebfcf233838f4f4ab584b7ee2f63"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "ab053e57694bbe3fd175e386df3f391246f10fa4a1b0fe0a0941d7896318fce9"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd5c33e6726aad94dedb8034c29af97c80634191a11b83efa3fd5d40fed00f4e"
+              },
+              {
+                "source": [
+                  "slag landfill construction",
+                  "slag landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "b1da19a9624abeedf7a92889d8fa9cc3615948b0aa4072cef7045499f7c8393f"
+              },
+              {
+                "source": [
+                  "sorting facility construction, for construction waste",
+                  "sorting facility, for construction waste",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "ffab6cd453e3e1e205f9b1f114b208379e902f07a43a6bb140e6a851d262a348"
+              },
+              {
+                "source": [
+                  "treatment of scrap copper, municipal incineration with fly ash extraction",
+                  "scrap copper",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "3eec38395fcdd095681016f08cbe138b091e4cfff4886406b88eea76e36599e3"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "af62271c92c5e39b5aefd1fa658ada86136c75d6e5f5b3d5c40f482f8f9678de"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration with fly ash extraction",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "05fba3d747df6e76018151a4795110de01ff128c4ec96a112ff420a9f55f37ff"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration with fly ash extraction",
+                  "waste glass",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "a11fe5575594d7d7ede7d47157ce07f79f2fdc143e122e678073ab125ccfae18"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, recycling",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "e6d94696b7f9dc4205cd7a74801df4aa41654c7b7b9642a7f1cef6088ef69139"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, sorting plant",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "51efcb367be2e8400941bd7217a9496a12c75572214d58350d7988e606471697"
+              }
+            ]
+          }
+        ],
+        "fae_source_treatments": [
+          {
+            "source": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "material": "steel",
+            "composition_coordinates": 42,
+            "source_metadata_sha256": "8248a18b0a416253e20a7a132e7e35887d47be973d80156f05dbfe53c7fd882a",
+            "source_inventory_sha256": "9a7ffdbced1b88bce5b7f499d5edc2f76945b9daaa985d3e51e18a7a72553254"
+          }
+        ],
+        "source_stage_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste reinforcement steel",
+              "reference product": "waste reinforcement steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5ace466403243a160d6c79eff161c587e13018eb6d3ad04b4353dcb90845f491",
+            "inventory_sha256": "c2ec668ba438353789fa932993c5233ba9010d4c5033ca6d302638e3ae13015e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, collection for final disposal",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "7df4d366bac69c10cf8c774756b3fcc11120f6f92bfb4aaff6b4082178ea85b9",
+            "inventory_sha256": "024525be737a68f31d63ea34f41a136c01c2a2e9275b8c9e5958e8de73b19e0c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "fd51f0694b1290efea03c3aa627568a7aace5344ae31db48f1e78be6886adf9f",
+            "inventory_sha256": "6df7410c282e47f41583f7f98e50709669e28054207a5487d14d8f25db2401a4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8248a18b0a416253e20a7a132e7e35887d47be973d80156f05dbfe53c7fd882a",
+            "inventory_sha256": "9a7ffdbced1b88bce5b7f499d5edc2f76945b9daaa985d3e51e18a7a72553254"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5e75f2c126560f6bdd6e6bdc9fdfffbb47588cae7cca3e47fed823c771dc8244",
+            "inventory_sha256": "45ed4de96d9a9760214e2ce311e6ffc00fb30a27d3b6dd11c3f02c310daabecb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, recycling",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "011f51cea6af14e2b3d24bd7272739dd578ba6191878517ce85db9c22a017fc3",
+            "inventory_sha256": "52a9d6317ecff574eb5d3c8dce2b28665a34566862904fd7e46d6a9212f9e762"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, sorting plant",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6168a2f1a8db502097cd499f11e63fa66196525bcc30aa6a0daa4a220ed1af29",
+            "inventory_sha256": "48b7175d7261ec10776c4f44c8fa7e18d47bb94d42808f1c19cd4bdcf3f8c2d4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap copper",
+              "reference product": "scrap copper",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6d4781397218f9bc5dfdfc7954825303bcccda46df5f952e671b62908821f69c",
+            "inventory_sha256": "29204baf00c5e66389ab39bab0bd7f9f575b196bf5c362bca4ecd97fe6661dce"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap copper, municipal incineration with fly ash extraction",
+              "reference product": "scrap copper",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6dc5598f1d85c0cc80e869c51e74d52ef4a9bfb23500c1a0e95c869ec627a847",
+            "inventory_sha256": "a4c14080494a921d7b1371d6cd9d36dc49398e779da08f6ed3dbde07abf8b726"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste glass",
+              "reference product": "waste glass",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9cc08226cecb3af71cb209b0a7f0a8b39b3faaad3aea9b5136d8361a8f138346",
+            "inventory_sha256": "38fff2ea3db432810239b4db500961ff614fcfb466cae6f214b6f8f87c0949ef"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, municipal incineration with fly ash extraction",
+              "reference product": "waste glass",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "55c5317b33f0d85bad2de34bd2fca067936ceb1f6dfca470567ade05f6b75f8d",
+            "inventory_sha256": "a300a87480d580e8460215da77ab78e0755a66d69f0e8f08f50755472a011101"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "d7732358bfdb50dc7880029fc833f36a42e119a54a22639d49b98bcb9d4b5fb3",
+            "inventory_sha256": "403174c792bca692445b751266ddbba8b4c441992b6ebecee16188b8c6014092"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f4e3bb5484ab69eab944855035380f6b4a53259f56245c8aad3eb0567a5d3e4b",
+            "inventory_sha256": "03789fa037c2bb6c1f97ee4e188e4964232815eae4d814ba762751e298bd739e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "c419d8aeed8535c1134b2aa4554be4ede2e0f9afb3af144d15aee99301e4e05a",
+            "inventory_sha256": "091ca166a7c4f161d285e0b8413f8d8c57775213e94b6234b1d20823875fd5c1"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+            "inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for diesel, burned in building machine",
+              "reference product": "diesel, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "c376cde306bc081bd9d979d7fa7ee876a782554a026712f84d9329fdcae9ad93",
+            "inventory_sha256": "160b0e9bf8b766571f5a6c538adb390bb63b0883529f6755641fed885c04d4bf"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for ammonia, anhydrous, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f1167424e70ad9ca9b3f15370d01f514c51623e1502102ac3e005d2f2854be73",
+            "inventory_sha256": "38c491c339ef7e7ae8da13b2bac0be8d571540ebee8cb8b497620804959e6afe"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for chromium oxide, flakes",
+              "reference product": "chromium oxide, flakes",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9b1f33fccac2e8f1ec588d2a2b5a76f6b158c4d91c897334c7f07033b674f3b5",
+            "inventory_sha256": "74db024f721a64f07cb18b35df958c94068109053db526c3a48905b8b59e7fb9"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, for reuse in municipal waste incineration only",
+              "reference product": "electricity, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "81a98d643ed18ab8c630aa99b87f9f08113d6cae12653d926d14cdec5e7df511",
+            "inventory_sha256": "016048e50585bff1ff2b6edec9d2b1fa3143056d6927020141fd0626efe0ba21"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "406a59a6d06aa7242d502220c432118eefae14f5e023fe8954284b5865ad2138",
+            "inventory_sha256": "1ecf53aa68825c041f2b4ef08719c0dcd638943740f5722c83273f1c62624778"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "d9fd5cd3ecda7489ca1aba93dbf27b556e8547a31197a03acc3c1a7df49b23a9",
+            "inventory_sha256": "5a892d8ee92da478872e324c9c68af7efd62e499fee7e300852f116ba7391855"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "municipal waste incineration facility construction",
+              "reference product": "municipal waste incineration facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "a0b95cb7a52a421dc0c02f0cded0a24d321ac786fba1b8d55687462b6f4f23c1",
+            "inventory_sha256": "0e3a91516d1947379b1b98d96d01c9f592ef86a2be721c944c0c8cd439bc36e5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, slag landfill",
+              "reference product": "process-specific burdens, slag landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "4d78ca46be0f0871c8c9634d027cc1283c49cea153566e070a260cc869fda0b9",
+            "inventory_sha256": "2e714057233f5eb2d1b3d3c9965ace90e6f7885aa11fb0311d0f06f10a693fda"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "slag landfill construction",
+              "reference product": "slag landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "fec8637e8b949d3e01772fb5ab3503426bea667259aa4919859d3e8c46bb5f33",
+            "inventory_sha256": "822c2898e83cd57966bfd8bf73c82d0ae4996423518e73112117952bdce4bf12"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for titanium dioxide",
+              "reference product": "titanium dioxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8ef157890d8c8e02bfe67fea80cfbe2f3c93213d2aea8086e3424f44bf9f6b3a",
+            "inventory_sha256": "5a1e0d9afd3e9b5b6ebfbb3bb5cb8af513f2d569406ee514fda9f5fd21e3fbe5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "4536288c7784ba6f0e26a63f9413ea0b3cd2e35b5871fc950b4c9eabf7f8e3f3",
+            "inventory_sha256": "e16b900688ea6c9e45551a3f52cfbeb4f4d4093e9bf78b01c7e72edbee35b0ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6b8675ce7fd135bd3e851b188fa23ac00e61627ca1b2d310a6f9fe9c4ba50772",
+            "inventory_sha256": "387b19dde5d71193384e281b25d52cfc229e5c8d44afc62abcf18858cb6fb12c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "13ab5ab031338e221ab277bdf0123db118bd4d71f4f018dcf3930cbf54377522",
+            "inventory_sha256": "13f32cf9925b1ed4a0c2c03fd50d7301b074f97bac5c33bd3655b237f63be226"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "excavation, hydraulic digger",
+              "reference product": "excavation, hydraulic digger",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "3902e394cb25b17402e227454f96d8fbccdcb84abcfacdef7daa5df6d087af62",
+            "inventory_sha256": "10b5957b3e78b3f0e1584f866e2cc7e4febeccda9ddeb9a714314f9afdccf2ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "sorting facility construction, for construction waste",
+              "reference product": "sorting facility, for construction waste",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "206c4f49520cad1828eb346ae21a8c9ba590f6c974e705e83f985aeecdc7a2d1",
+            "inventory_sha256": "aa417564b40b3ed36df71e907a0f1e0c99734800962a55c15cfc36cb994ae84c"
+          }
+        ],
+        "reserved_reference_formula_bindings": [],
+        "recovered_stock_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07",
+            "authority": "uvek_pam_frontier_stock_review.json"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb",
+            "authority": "uvek_copper_stock_review.json"
+          }
+        ],
+        "fae_technology_reconstructed": false,
+        "source_other_route_stages_retained": true,
+        "limitations": "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      },
+      "limitations": [
+        "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b19bc646ce02426a83357dea1e1c60fa846e53d34cc9a3d9e386e6bdea9d86ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7df5d08d5bab9d33",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_fae_routes",
+      "review_path": "export/uvek_pilot_fae_routes_review.json",
+      "review_sha256": "98fee8e678b40b6ea87f81c4276bc7b46d9f3367fa71e9ec5c2074299d4ea55a",
+      "authorization": "User instruction: auto-approve coming decisions. Applied to the documented five exact Swiss FAE steel/copper/glass routes, using complete material-specific ordinary incineration only for FAE portions, retaining source recovery handovers through verified production-only cutoff stocks and all other source stages/fates/collection. No new zinc/energy/virginmetal credit; explicit FAE technology/uncertainty/score limitations.",
+      "inspection": {
+        "rule_id": "bp-7df5d08d5bab9d33",
+        "source": {
+          "location": "CH",
+          "name": "market for scrap copper",
+          "reference product": "scrap copper",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, copper, 0% water, to municipal incineration",
+          "reference product": "Disposal, copper, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.6,
+          "conversion_factor": -1,
+          "id": "bp-7df5d08d5bab9d33",
+          "mapping_method": "pairwise_review",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-7df5d08d5bab9d33"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "review_ref": "r-79ab4583a027a05e",
+          "source": {
+            "location": "CH",
+            "name": "market for scrap copper",
+            "reference product": "scrap copper",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, copper, 0% water, to municipal incineration",
+            "reference product": "Disposal, copper, 0% water, to municipal incineration",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "1171a6161115d20e48b7412904083ca8fda7c448655c038ec69eb7b1e59e158e",
+        "previous_review": {
+          "limitations": [
+            "Identity-level comparison only; inventory composition and LCIA equivalence are not verified."
+          ],
+          "rationale": "Branch supplies waste handling for the named material rather than an unrelated supplied product/material."
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "6d4781397218f9bc5dfdfc7954825303bcccda46df5f952e671b62908821f69c",
+        "source_inventory_sha256": "29204baf00c5e66389ab39bab0bd7f9f575b196bf5c362bca4ecd97fe6661dce",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 4,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "29204baf00c5e66389ab39bab0bd7f9f575b196bf5c362bca4ecd97fe6661dce",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "pilot-fae-routes-3bf405965f4bef761bcb"
+              },
+              {
+                "amount": 0.0036,
+                "uncertainty type": 2,
+                "loc": -5.626821433520073,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0258,
+                "uncertainty type": 2,
+                "loc": -3.6573807870545654,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "copper scrap, sorted, pressed, Recycled Content cut-off",
+                  "copper scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e599ef94b43f0528dcf577e2fb1cdd85b4ced7319e2f48a9003e209a7dd1a45a"
+              },
+              {
+                "source": [
+                  "excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "RER",
+                  "cubic meter"
+                ],
+                "binding_sha256": "ffab4a9d160e85ff3bebd295777aaf87bdfac03500f5e0cc0214df4696710a7f"
+              },
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "f55c56191b553dd2465761918f83d5372180851062358ac1efd2b14502fcdca0"
+              },
+              {
+                "source": [
+                  "iron scrap, sorted, pressed, Recycled Content cut-off",
+                  "iron scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ff479ed9fa2d2ffd1446c85c430d73ac9825a0b2142161638456794edd14b62e"
+              },
+              {
+                "source": [
+                  "market for ammonia, anhydrous, liquid",
+                  "ammonia, anhydrous, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "96a7fb4f7052f04d989d05f0be7b8ca8e05abd38b0ba7a976f382575c0cda870"
+              },
+              {
+                "source": [
+                  "market for chromium oxide, flakes",
+                  "chromium oxide, flakes",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "bce209032cf6b80d69baa5c579fafcb0f4e7fde699db5e07fe352bae9199e5aa"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "995a6fe65af0bb1c8b84508d3415adffbffcda0676f12351492948501980ac96"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f14bd6c56fc77aa61150df311cd3355a624834b7929b52a07d3ab3e6ea4e809c"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "6984dc7fbd0ff5f28f840159c72611f5623ce68deddfef9d44828475472c998f"
+              },
+              {
+                "source": [
+                  "market for heat, for reuse in municipal waste incineration only",
+                  "heat, for reuse in municipal waste incineration only",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "e3b8d8c43d6e4ac92b495da280979199fc6d9cf6d045986bce9125619d762e65"
+              },
+              {
+                "source": [
+                  "market for titanium dioxide",
+                  "titanium dioxide",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a5449f5b35e2f596cdb1c52c75443440bf98614787880495cb9684db35e3a29"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "72bc50d6fed6f8305ed0be601760e2f797a3dfcfd83d74f650e9ef2143e2628f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "municipal waste incineration facility construction",
+                  "municipal waste incineration facility",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "5baaf0091de2fcafe482c43a634081e67f97ebfcf233838f4f4ab584b7ee2f63"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "ab053e57694bbe3fd175e386df3f391246f10fa4a1b0fe0a0941d7896318fce9"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd5c33e6726aad94dedb8034c29af97c80634191a11b83efa3fd5d40fed00f4e"
+              },
+              {
+                "source": [
+                  "slag landfill construction",
+                  "slag landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "b1da19a9624abeedf7a92889d8fa9cc3615948b0aa4072cef7045499f7c8393f"
+              },
+              {
+                "source": [
+                  "sorting facility construction, for construction waste",
+                  "sorting facility, for construction waste",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "ffab6cd453e3e1e205f9b1f114b208379e902f07a43a6bb140e6a851d262a348"
+              },
+              {
+                "source": [
+                  "treatment of scrap copper, municipal incineration with fly ash extraction",
+                  "scrap copper",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "3eec38395fcdd095681016f08cbe138b091e4cfff4886406b88eea76e36599e3"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "af62271c92c5e39b5aefd1fa658ada86136c75d6e5f5b3d5c40f482f8f9678de"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration with fly ash extraction",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "05fba3d747df6e76018151a4795110de01ff128c4ec96a112ff420a9f55f37ff"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration with fly ash extraction",
+                  "waste glass",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "a11fe5575594d7d7ede7d47157ce07f79f2fdc143e122e678073ab125ccfae18"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, recycling",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "e6d94696b7f9dc4205cd7a74801df4aa41654c7b7b9642a7f1cef6088ef69139"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, sorting plant",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "51efcb367be2e8400941bd7217a9496a12c75572214d58350d7988e606471697"
+              }
+            ]
+          }
+        ],
+        "fae_source_treatments": [
+          {
+            "source": {
+              "name": "treatment of scrap copper, municipal incineration with fly ash extraction",
+              "reference product": "scrap copper",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "material": "copper",
+            "composition_coordinates": 42,
+            "source_metadata_sha256": "6dc5598f1d85c0cc80e869c51e74d52ef4a9bfb23500c1a0e95c869ec627a847",
+            "source_inventory_sha256": "a4c14080494a921d7b1371d6cd9d36dc49398e779da08f6ed3dbde07abf8b726"
+          }
+        ],
+        "source_stage_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste reinforcement steel",
+              "reference product": "waste reinforcement steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5ace466403243a160d6c79eff161c587e13018eb6d3ad04b4353dcb90845f491",
+            "inventory_sha256": "c2ec668ba438353789fa932993c5233ba9010d4c5033ca6d302638e3ae13015e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, collection for final disposal",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "7df4d366bac69c10cf8c774756b3fcc11120f6f92bfb4aaff6b4082178ea85b9",
+            "inventory_sha256": "024525be737a68f31d63ea34f41a136c01c2a2e9275b8c9e5958e8de73b19e0c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "fd51f0694b1290efea03c3aa627568a7aace5344ae31db48f1e78be6886adf9f",
+            "inventory_sha256": "6df7410c282e47f41583f7f98e50709669e28054207a5487d14d8f25db2401a4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8248a18b0a416253e20a7a132e7e35887d47be973d80156f05dbfe53c7fd882a",
+            "inventory_sha256": "9a7ffdbced1b88bce5b7f499d5edc2f76945b9daaa985d3e51e18a7a72553254"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5e75f2c126560f6bdd6e6bdc9fdfffbb47588cae7cca3e47fed823c771dc8244",
+            "inventory_sha256": "45ed4de96d9a9760214e2ce311e6ffc00fb30a27d3b6dd11c3f02c310daabecb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, recycling",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "011f51cea6af14e2b3d24bd7272739dd578ba6191878517ce85db9c22a017fc3",
+            "inventory_sha256": "52a9d6317ecff574eb5d3c8dce2b28665a34566862904fd7e46d6a9212f9e762"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, sorting plant",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6168a2f1a8db502097cd499f11e63fa66196525bcc30aa6a0daa4a220ed1af29",
+            "inventory_sha256": "48b7175d7261ec10776c4f44c8fa7e18d47bb94d42808f1c19cd4bdcf3f8c2d4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap copper",
+              "reference product": "scrap copper",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6d4781397218f9bc5dfdfc7954825303bcccda46df5f952e671b62908821f69c",
+            "inventory_sha256": "29204baf00c5e66389ab39bab0bd7f9f575b196bf5c362bca4ecd97fe6661dce"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap copper, municipal incineration with fly ash extraction",
+              "reference product": "scrap copper",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6dc5598f1d85c0cc80e869c51e74d52ef4a9bfb23500c1a0e95c869ec627a847",
+            "inventory_sha256": "a4c14080494a921d7b1371d6cd9d36dc49398e779da08f6ed3dbde07abf8b726"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste glass",
+              "reference product": "waste glass",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9cc08226cecb3af71cb209b0a7f0a8b39b3faaad3aea9b5136d8361a8f138346",
+            "inventory_sha256": "38fff2ea3db432810239b4db500961ff614fcfb466cae6f214b6f8f87c0949ef"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, municipal incineration with fly ash extraction",
+              "reference product": "waste glass",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "55c5317b33f0d85bad2de34bd2fca067936ceb1f6dfca470567ade05f6b75f8d",
+            "inventory_sha256": "a300a87480d580e8460215da77ab78e0755a66d69f0e8f08f50755472a011101"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "d7732358bfdb50dc7880029fc833f36a42e119a54a22639d49b98bcb9d4b5fb3",
+            "inventory_sha256": "403174c792bca692445b751266ddbba8b4c441992b6ebecee16188b8c6014092"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f4e3bb5484ab69eab944855035380f6b4a53259f56245c8aad3eb0567a5d3e4b",
+            "inventory_sha256": "03789fa037c2bb6c1f97ee4e188e4964232815eae4d814ba762751e298bd739e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "c419d8aeed8535c1134b2aa4554be4ede2e0f9afb3af144d15aee99301e4e05a",
+            "inventory_sha256": "091ca166a7c4f161d285e0b8413f8d8c57775213e94b6234b1d20823875fd5c1"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+            "inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for diesel, burned in building machine",
+              "reference product": "diesel, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "c376cde306bc081bd9d979d7fa7ee876a782554a026712f84d9329fdcae9ad93",
+            "inventory_sha256": "160b0e9bf8b766571f5a6c538adb390bb63b0883529f6755641fed885c04d4bf"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for ammonia, anhydrous, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f1167424e70ad9ca9b3f15370d01f514c51623e1502102ac3e005d2f2854be73",
+            "inventory_sha256": "38c491c339ef7e7ae8da13b2bac0be8d571540ebee8cb8b497620804959e6afe"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for chromium oxide, flakes",
+              "reference product": "chromium oxide, flakes",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9b1f33fccac2e8f1ec588d2a2b5a76f6b158c4d91c897334c7f07033b674f3b5",
+            "inventory_sha256": "74db024f721a64f07cb18b35df958c94068109053db526c3a48905b8b59e7fb9"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, for reuse in municipal waste incineration only",
+              "reference product": "electricity, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "81a98d643ed18ab8c630aa99b87f9f08113d6cae12653d926d14cdec5e7df511",
+            "inventory_sha256": "016048e50585bff1ff2b6edec9d2b1fa3143056d6927020141fd0626efe0ba21"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "406a59a6d06aa7242d502220c432118eefae14f5e023fe8954284b5865ad2138",
+            "inventory_sha256": "1ecf53aa68825c041f2b4ef08719c0dcd638943740f5722c83273f1c62624778"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "d9fd5cd3ecda7489ca1aba93dbf27b556e8547a31197a03acc3c1a7df49b23a9",
+            "inventory_sha256": "5a892d8ee92da478872e324c9c68af7efd62e499fee7e300852f116ba7391855"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "municipal waste incineration facility construction",
+              "reference product": "municipal waste incineration facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "a0b95cb7a52a421dc0c02f0cded0a24d321ac786fba1b8d55687462b6f4f23c1",
+            "inventory_sha256": "0e3a91516d1947379b1b98d96d01c9f592ef86a2be721c944c0c8cd439bc36e5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, slag landfill",
+              "reference product": "process-specific burdens, slag landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "4d78ca46be0f0871c8c9634d027cc1283c49cea153566e070a260cc869fda0b9",
+            "inventory_sha256": "2e714057233f5eb2d1b3d3c9965ace90e6f7885aa11fb0311d0f06f10a693fda"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "slag landfill construction",
+              "reference product": "slag landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "fec8637e8b949d3e01772fb5ab3503426bea667259aa4919859d3e8c46bb5f33",
+            "inventory_sha256": "822c2898e83cd57966bfd8bf73c82d0ae4996423518e73112117952bdce4bf12"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for titanium dioxide",
+              "reference product": "titanium dioxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8ef157890d8c8e02bfe67fea80cfbe2f3c93213d2aea8086e3424f44bf9f6b3a",
+            "inventory_sha256": "5a1e0d9afd3e9b5b6ebfbb3bb5cb8af513f2d569406ee514fda9f5fd21e3fbe5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "4536288c7784ba6f0e26a63f9413ea0b3cd2e35b5871fc950b4c9eabf7f8e3f3",
+            "inventory_sha256": "e16b900688ea6c9e45551a3f52cfbeb4f4d4093e9bf78b01c7e72edbee35b0ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6b8675ce7fd135bd3e851b188fa23ac00e61627ca1b2d310a6f9fe9c4ba50772",
+            "inventory_sha256": "387b19dde5d71193384e281b25d52cfc229e5c8d44afc62abcf18858cb6fb12c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "13ab5ab031338e221ab277bdf0123db118bd4d71f4f018dcf3930cbf54377522",
+            "inventory_sha256": "13f32cf9925b1ed4a0c2c03fd50d7301b074f97bac5c33bd3655b237f63be226"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "excavation, hydraulic digger",
+              "reference product": "excavation, hydraulic digger",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "3902e394cb25b17402e227454f96d8fbccdcb84abcfacdef7daa5df6d087af62",
+            "inventory_sha256": "10b5957b3e78b3f0e1584f866e2cc7e4febeccda9ddeb9a714314f9afdccf2ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "sorting facility construction, for construction waste",
+              "reference product": "sorting facility, for construction waste",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "206c4f49520cad1828eb346ae21a8c9ba590f6c974e705e83f985aeecdc7a2d1",
+            "inventory_sha256": "aa417564b40b3ed36df71e907a0f1e0c99734800962a55c15cfc36cb994ae84c"
+          }
+        ],
+        "reserved_reference_formula_bindings": [],
+        "recovered_stock_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07",
+            "authority": "uvek_pam_frontier_stock_review.json"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb",
+            "authority": "uvek_copper_stock_review.json"
+          }
+        ],
+        "fae_technology_reconstructed": false,
+        "source_other_route_stages_retained": true,
+        "limitations": "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      },
+      "limitations": [
+        "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dccb5ec6b7f180370d9572f3fb3aedc1541d67ad361d1d60054df8f7155a96ca"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-954bd1c433edd37a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_fae_routes",
+      "review_path": "export/uvek_pilot_fae_routes_review.json",
+      "review_sha256": "98fee8e678b40b6ea87f81c4276bc7b46d9f3367fa71e9ec5c2074299d4ea55a",
+      "authorization": "User instruction: auto-approve coming decisions. Applied to the documented five exact Swiss FAE steel/copper/glass routes, using complete material-specific ordinary incineration only for FAE portions, retaining source recovery handovers through verified production-only cutoff stocks and all other source stages/fates/collection. No new zinc/energy/virginmetal credit; explicit FAE technology/uncertainty/score limitations.",
+      "inspection": {
+        "rule_id": "bp-954bd1c433edd37a",
+        "source": {
+          "location": "CH",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.336604,
+          "conversion_factor": -1,
+          "id": "bp-954bd1c433edd37a",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-954bd1c433edd37a"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CH",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "a2a4093056e388e41cb0a12d89b4ef2ef2774ac3a8460f45c8fb11b01d58fd03",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "9cc08226cecb3af71cb209b0a7f0a8b39b3faaad3aea9b5136d8361a8f138346",
+        "source_inventory_sha256": "38fff2ea3db432810239b4db500961ff614fcfb466cae6f214b6f8f87c0949ef",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 34,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "38fff2ea3db432810239b4db500961ff614fcfb466cae6f214b6f8f87c0949ef",
+            "inputs": [
+              {
+                "amount": 0.0286744016945402,
+                "uncertainty type": 2,
+                "loc": -3.5517504812396488,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4626013402488151,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.98999922959431,
+                "uncertainty type": 0,
+                "loc": 0.98999922959431,
+                "recipe": "pilot-fae-routes-b88ef4cef0d7b50599d2"
+              },
+              {
+                "amount": 0.00947392918259486,
+                "uncertainty type": 0,
+                "loc": 0.00947392918259486,
+                "recipe": "pilot-fae-routes-ceaeabf0720bef45e600"
+              },
+              {
+                "amount": 0.000526841223095166,
+                "uncertainty type": 0,
+                "loc": 0.000526841223095166,
+                "recipe": "pilot-fae-routes-85e9c2e9974d4458ce04"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "copper scrap, sorted, pressed, Recycled Content cut-off",
+                  "copper scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e599ef94b43f0528dcf577e2fb1cdd85b4ced7319e2f48a9003e209a7dd1a45a"
+              },
+              {
+                "source": [
+                  "excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "RER",
+                  "cubic meter"
+                ],
+                "binding_sha256": "ffab4a9d160e85ff3bebd295777aaf87bdfac03500f5e0cc0214df4696710a7f"
+              },
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "f55c56191b553dd2465761918f83d5372180851062358ac1efd2b14502fcdca0"
+              },
+              {
+                "source": [
+                  "iron scrap, sorted, pressed, Recycled Content cut-off",
+                  "iron scrap, sorted, pressed",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ff479ed9fa2d2ffd1446c85c430d73ac9825a0b2142161638456794edd14b62e"
+              },
+              {
+                "source": [
+                  "market for ammonia, anhydrous, liquid",
+                  "ammonia, anhydrous, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "96a7fb4f7052f04d989d05f0be7b8ca8e05abd38b0ba7a976f382575c0cda870"
+              },
+              {
+                "source": [
+                  "market for chromium oxide, flakes",
+                  "chromium oxide, flakes",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "bce209032cf6b80d69baa5c579fafcb0f4e7fde699db5e07fe352bae9199e5aa"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "995a6fe65af0bb1c8b84508d3415adffbffcda0676f12351492948501980ac96"
+              },
+              {
+                "source": [
+                  "market for electricity, low voltage",
+                  "electricity, low voltage",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f14bd6c56fc77aa61150df311cd3355a624834b7929b52a07d3ab3e6ea4e809c"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "6984dc7fbd0ff5f28f840159c72611f5623ce68deddfef9d44828475472c998f"
+              },
+              {
+                "source": [
+                  "market for heat, for reuse in municipal waste incineration only",
+                  "heat, for reuse in municipal waste incineration only",
+                  "CH",
+                  "megajoule"
+                ],
+                "binding_sha256": "e3b8d8c43d6e4ac92b495da280979199fc6d9cf6d045986bce9125619d762e65"
+              },
+              {
+                "source": [
+                  "market for titanium dioxide",
+                  "titanium dioxide",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a5449f5b35e2f596cdb1c52c75443440bf98614787880495cb9684db35e3a29"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "72bc50d6fed6f8305ed0be601760e2f797a3dfcfd83d74f650e9ef2143e2628f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "municipal waste incineration facility construction",
+                  "municipal waste incineration facility",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "5baaf0091de2fcafe482c43a634081e67f97ebfcf233838f4f4ab584b7ee2f63"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "ab053e57694bbe3fd175e386df3f391246f10fa4a1b0fe0a0941d7896318fce9"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd5c33e6726aad94dedb8034c29af97c80634191a11b83efa3fd5d40fed00f4e"
+              },
+              {
+                "source": [
+                  "slag landfill construction",
+                  "slag landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "b1da19a9624abeedf7a92889d8fa9cc3615948b0aa4072cef7045499f7c8393f"
+              },
+              {
+                "source": [
+                  "sorting facility construction, for construction waste",
+                  "sorting facility, for construction waste",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "ffab6cd453e3e1e205f9b1f114b208379e902f07a43a6bb140e6a851d262a348"
+              },
+              {
+                "source": [
+                  "treatment of scrap copper, municipal incineration with fly ash extraction",
+                  "scrap copper",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "3eec38395fcdd095681016f08cbe138b091e4cfff4886406b88eea76e36599e3"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, inert material landfill",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "af62271c92c5e39b5aefd1fa658ada86136c75d6e5f5b3d5c40f482f8f9678de"
+              },
+              {
+                "source": [
+                  "treatment of scrap steel, municipal incineration with fly ash extraction",
+                  "scrap steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "05fba3d747df6e76018151a4795110de01ff128c4ec96a112ff420a9f55f37ff"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration with fly ash extraction",
+                  "waste glass",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "a11fe5575594d7d7ede7d47157ce07f79f2fdc143e122e678073ab125ccfae18"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, recycling",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "e6d94696b7f9dc4205cd7a74801df4aa41654c7b7b9642a7f1cef6088ef69139"
+              },
+              {
+                "source": [
+                  "treatment of waste reinforcement steel, sorting plant",
+                  "waste reinforcement steel",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "51efcb367be2e8400941bd7217a9496a12c75572214d58350d7988e606471697"
+              }
+            ]
+          }
+        ],
+        "fae_source_treatments": [
+          {
+            "source": {
+              "name": "treatment of waste glass, municipal incineration with fly ash extraction",
+              "reference product": "waste glass",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "material": "glass",
+            "composition_coordinates": 44,
+            "source_metadata_sha256": "55c5317b33f0d85bad2de34bd2fca067936ceb1f6dfca470567ade05f6b75f8d",
+            "source_inventory_sha256": "a300a87480d580e8460215da77ab78e0755a66d69f0e8f08f50755472a011101"
+          }
+        ],
+        "source_stage_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste reinforcement steel",
+              "reference product": "waste reinforcement steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5ace466403243a160d6c79eff161c587e13018eb6d3ad04b4353dcb90845f491",
+            "inventory_sha256": "c2ec668ba438353789fa932993c5233ba9010d4c5033ca6d302638e3ae13015e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, collection for final disposal",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "7df4d366bac69c10cf8c774756b3fcc11120f6f92bfb4aaff6b4082178ea85b9",
+            "inventory_sha256": "024525be737a68f31d63ea34f41a136c01c2a2e9275b8c9e5958e8de73b19e0c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap steel",
+              "reference product": "scrap steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "fd51f0694b1290efea03c3aa627568a7aace5344ae31db48f1e78be6886adf9f",
+            "inventory_sha256": "6df7410c282e47f41583f7f98e50709669e28054207a5487d14d8f25db2401a4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, municipal incineration with fly ash extraction",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8248a18b0a416253e20a7a132e7e35887d47be973d80156f05dbfe53c7fd882a",
+            "inventory_sha256": "9a7ffdbced1b88bce5b7f499d5edc2f76945b9daaa985d3e51e18a7a72553254"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap steel, inert material landfill",
+              "reference product": "scrap steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "5e75f2c126560f6bdd6e6bdc9fdfffbb47588cae7cca3e47fed823c771dc8244",
+            "inventory_sha256": "45ed4de96d9a9760214e2ce311e6ffc00fb30a27d3b6dd11c3f02c310daabecb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, recycling",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "011f51cea6af14e2b3d24bd7272739dd578ba6191878517ce85db9c22a017fc3",
+            "inventory_sha256": "52a9d6317ecff574eb5d3c8dce2b28665a34566862904fd7e46d6a9212f9e762"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste reinforcement steel, sorting plant",
+              "reference product": "waste reinforcement steel",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6168a2f1a8db502097cd499f11e63fa66196525bcc30aa6a0daa4a220ed1af29",
+            "inventory_sha256": "48b7175d7261ec10776c4f44c8fa7e18d47bb94d42808f1c19cd4bdcf3f8c2d4"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for scrap copper",
+              "reference product": "scrap copper",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6d4781397218f9bc5dfdfc7954825303bcccda46df5f952e671b62908821f69c",
+            "inventory_sha256": "29204baf00c5e66389ab39bab0bd7f9f575b196bf5c362bca4ecd97fe6661dce"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap copper, municipal incineration with fly ash extraction",
+              "reference product": "scrap copper",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6dc5598f1d85c0cc80e869c51e74d52ef4a9bfb23500c1a0e95c869ec627a847",
+            "inventory_sha256": "a4c14080494a921d7b1371d6cd9d36dc49398e779da08f6ed3dbde07abf8b726"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for waste glass",
+              "reference product": "waste glass",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9cc08226cecb3af71cb209b0a7f0a8b39b3faaad3aea9b5136d8361a8f138346",
+            "inventory_sha256": "38fff2ea3db432810239b4db500961ff614fcfb466cae6f214b6f8f87c0949ef"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, municipal incineration with fly ash extraction",
+              "reference product": "waste glass",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "55c5317b33f0d85bad2de34bd2fca067936ceb1f6dfca470567ade05f6b75f8d",
+            "inventory_sha256": "a300a87480d580e8460215da77ab78e0755a66d69f0e8f08f50755472a011101"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "d7732358bfdb50dc7880029fc833f36a42e119a54a22639d49b98bcb9d4b5fb3",
+            "inventory_sha256": "403174c792bca692445b751266ddbba8b4c441992b6ebecee16188b8c6014092"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f4e3bb5484ab69eab944855035380f6b4a53259f56245c8aad3eb0567a5d3e4b",
+            "inventory_sha256": "03789fa037c2bb6c1f97ee4e188e4964232815eae4d814ba762751e298bd739e"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "c419d8aeed8535c1134b2aa4554be4ede2e0f9afb3af144d15aee99301e4e05a",
+            "inventory_sha256": "091ca166a7c4f161d285e0b8413f8d8c57775213e94b6234b1d20823875fd5c1"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+            "inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for diesel, burned in building machine",
+              "reference product": "diesel, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "c376cde306bc081bd9d979d7fa7ee876a782554a026712f84d9329fdcae9ad93",
+            "inventory_sha256": "160b0e9bf8b766571f5a6c538adb390bb63b0883529f6755641fed885c04d4bf"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for ammonia, anhydrous, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f1167424e70ad9ca9b3f15370d01f514c51623e1502102ac3e005d2f2854be73",
+            "inventory_sha256": "38c491c339ef7e7ae8da13b2bac0be8d571540ebee8cb8b497620804959e6afe"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for chromium oxide, flakes",
+              "reference product": "chromium oxide, flakes",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9b1f33fccac2e8f1ec588d2a2b5a76f6b158c4d91c897334c7f07033b674f3b5",
+            "inventory_sha256": "74db024f721a64f07cb18b35df958c94068109053db526c3a48905b8b59e7fb9"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, for reuse in municipal waste incineration only",
+              "reference product": "electricity, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "81a98d643ed18ab8c630aa99b87f9f08113d6cae12653d926d14cdec5e7df511",
+            "inventory_sha256": "016048e50585bff1ff2b6edec9d2b1fa3143056d6927020141fd0626efe0ba21"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "406a59a6d06aa7242d502220c432118eefae14f5e023fe8954284b5865ad2138",
+            "inventory_sha256": "1ecf53aa68825c041f2b4ef08719c0dcd638943740f5722c83273f1c62624778"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "d9fd5cd3ecda7489ca1aba93dbf27b556e8547a31197a03acc3c1a7df49b23a9",
+            "inventory_sha256": "5a892d8ee92da478872e324c9c68af7efd62e499fee7e300852f116ba7391855"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "municipal waste incineration facility construction",
+              "reference product": "municipal waste incineration facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "a0b95cb7a52a421dc0c02f0cded0a24d321ac786fba1b8d55687462b6f4f23c1",
+            "inventory_sha256": "0e3a91516d1947379b1b98d96d01c9f592ef86a2be721c944c0c8cd439bc36e5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, slag landfill",
+              "reference product": "process-specific burdens, slag landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "4d78ca46be0f0871c8c9634d027cc1283c49cea153566e070a260cc869fda0b9",
+            "inventory_sha256": "2e714057233f5eb2d1b3d3c9965ace90e6f7885aa11fb0311d0f06f10a693fda"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "slag landfill construction",
+              "reference product": "slag landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "fec8637e8b949d3e01772fb5ab3503426bea667259aa4919859d3e8c46bb5f33",
+            "inventory_sha256": "822c2898e83cd57966bfd8bf73c82d0ae4996423518e73112117952bdce4bf12"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for titanium dioxide",
+              "reference product": "titanium dioxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8ef157890d8c8e02bfe67fea80cfbe2f3c93213d2aea8086e3424f44bf9f6b3a",
+            "inventory_sha256": "5a1e0d9afd3e9b5b6ebfbb3bb5cb8af513f2d569406ee514fda9f5fd21e3fbe5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "4536288c7784ba6f0e26a63f9413ea0b3cd2e35b5871fc950b4c9eabf7f8e3f3",
+            "inventory_sha256": "e16b900688ea6c9e45551a3f52cfbeb4f4d4093e9bf78b01c7e72edbee35b0ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6b8675ce7fd135bd3e851b188fa23ac00e61627ca1b2d310a6f9fe9c4ba50772",
+            "inventory_sha256": "387b19dde5d71193384e281b25d52cfc229e5c8d44afc62abcf18858cb6fb12c"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "13ab5ab031338e221ab277bdf0123db118bd4d71f4f018dcf3930cbf54377522",
+            "inventory_sha256": "13f32cf9925b1ed4a0c2c03fd50d7301b074f97bac5c33bd3655b237f63be226"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "excavation, hydraulic digger",
+              "reference product": "excavation, hydraulic digger",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "3902e394cb25b17402e227454f96d8fbccdcb84abcfacdef7daa5df6d087af62",
+            "inventory_sha256": "10b5957b3e78b3f0e1584f866e2cc7e4febeccda9ddeb9a714314f9afdccf2ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "sorting facility construction, for construction waste",
+              "reference product": "sorting facility, for construction waste",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "206c4f49520cad1828eb346ae21a8c9ba590f6c974e705e83f985aeecdc7a2d1",
+            "inventory_sha256": "aa417564b40b3ed36df71e907a0f1e0c99734800962a55c15cfc36cb994ae84c"
+          }
+        ],
+        "reserved_reference_formula_bindings": [],
+        "recovered_stock_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "iron scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "414515bef8b5cdd4a03a5ece2dafdf36004360d2504ca52688c1c4f125d0d48e",
+            "inventory_sha256": "dfde9743dc4377978bc6c3a92d98783ae8d42f938ccf53e823de7376ee002b07",
+            "authority": "uvek_pam_frontier_stock_review.json"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb",
+            "authority": "uvek_copper_stock_review.json"
+          }
+        ],
+        "fae_technology_reconstructed": false,
+        "source_other_route_stages_retained": true,
+        "limitations": "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      },
+      "limitations": [
+        "User instruction: auto-approve coming decisions in the existing UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only five exact sourceprofiles in this review qualify. Use complete native ordinary material-specific steel,copper,glass incinerators peroriginalkg for enumerated Swiss incineration-with-fly-ash-extraction portions. All42declared wet-composition/heating-value coordinates forsteel/copper and44forglass match inspected native2026; unknown entries remainunknown and compositionagreement is not technology/LCIAequivalence. Source FAE documents46.22%FLUWA in its technology mix; ordinary native ash/extraction/residuehandling,short/longtermemissions,auxiliary andinternalreuseenergy,recovery,allocation,geography andvintage differ, with all scoreeffects unquantified. Native glassname0%water does not override its documentedwetcomposition; no moisture/heating-value multiplier. Preserve original recovered iron -.47289kg and copper -.31kg exchanges perincineratedkg through exact verified positive1kg production-only RecycledContent cutoff stock helpers. Negative handover is intentional, not virginmetal credit, omitted treatment or an invented zinc/electricity/heat credit. Source stocks have only selflinkedproduction, no technosphere or biosphere; source FAE has no separaterecoveredzinc and selected nativeincinerators have no negative technosphereinputs duplicating handovers. Keep all other original source route shares, sign-adjusted supplier demand, marginaluncertainty, operations, facility,disposal and freight quantities separately without normalization. Source recycling/sorting retains original diesel, electricity, hydraulicexcavation andsorting facility count; source/nativefacility both200000t/year and50years, no newthroughput/lifetimefactor or whole-native-sorting extra haulage/wasteheat. Inertlandfill retains original genericoperation/facility andobservedabsence of direct wastespecificleachate; this is not zero physicalleaching. Glassopen dump/openburn preserves34original elementary exchanges andsigneduncertainty at matching publisherUUID/unit/fullcompartment/role in canonical3.10; label/CAS differences remainwarnings, no mass/speciationfactor. Source3.6scrapmarket has twofreightformulas containing WM_RP, explicitlydefined on its productionreference as wetmass1kg. Bind onlythatdeclaredsymbol to(1.0), preserveevaluatedquantity anduncertainty, and retainoriginalformula/property/binding audit; do not exportunboundparameters or altercallerformulas exceptrequiredreference-signscaling. Complete whole-service operating/freight proxies retain existinggeography,fleet,energy,infrastructure,allocation,uncertainty andvintage limitations; no duplicatefuel/machinery/transportburden. Callernegativeinput tosourcewaste reference-1 becomespositive demand for positive1kg treatmenthelper throughfactor-1. Negative input topositive recoveredstock remainsnegative, with zeroburdenonlywhere independentlyverified. Preserve callerownership,signedquantity,formulas,uncertainty,foregroundsuppliers and separateemissions/purchases. Native upstreambiosphereexclusions and all scoreeffects remainexplicit/unquantified. No standalone stage/stock/material,otherFAEprofile, otherrelease,reverse orcross-system-modelapproval or fullpilot scenario/certification/exportcompletion is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "704730fe5122dc5a58161db1031f628a5b4773502bffb3adcd8866a465e017ad"
+        }
+      ]
     }
   ]
 }
