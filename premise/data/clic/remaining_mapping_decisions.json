@@ -4103,7 +4103,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-68398736fed09315c29e",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-68398736fed09315c29e",
         "slug": "iridium-production-economic-allocation-proxy",
@@ -4693,8 +4693,50 @@
         "recipe_id": "deferred-xanthate-d1a861c5dea350e89267",
         "limitations": "Autonomously reviewed exact3.12cut-off sodium ethyl xanthate synthesis reconstruction, positive1kgpure/active product. Retain both source producer entries (.00409999999999999ZA and.9958999999999999RoW), every original market freight leg, source precursor and utility coefficients, supported uncertainty and four direct biosphere flows per producer. Use complete native CS2, fossil ethylene-hydration ethanol, active-reference NaOH, liquid nitrogen, deionised water, chemical plant, MV electricity, hazardous-waste incineration and unpolluted wastewater treatment. Do not use generic organic chemicals or biomass ethanol. Public Kunene thesis Table14 independently supports the CS2/ethanol/caustic chemistry and nominal reactant masses; source supplied dry-active reference and published liquid-plant study are not a proven phase/drying equivalence. Do not invent drying, phase or purity factors. Native ethanol stands in for the source coal/FT contribution as an explicit fossil-feedstock technology proxy; active-substance quantities remain1:1 without a guessed99.7%/50%multiplier. Missing-country MV grids use complete nativeGLO grids, retaining separate source coefficients, quantities, loss/network boundaries and uncertainty; other native countries/regions are retained. Preserve native chemical/waste/utility inventories in full. Signed waste inputs become positive demand using independently inspected negative source references. Native hazardous waste25%moisture, municipal-treatment size/boundary, mixed source supply/delivery versus at-plant suppliers, reactant technologies/allocation, factory capacity/lifetime, geography, vintage and internal uncertainty differ. Retain nitrogen emission and all three separate water-resource/return flows in exact canonical3.10 compartments by verified publisher UUID; no collapse into one net-water exchange. The source inventory includes generic waste treatment and water assumptions beyond the public liquid-plant description; retain them without asserting plant-measured equivalence. No new recovery credit, omitted source exchange, renormalization or arbitrary unit multiplier. Caller signs, active kg, formulas and supported uncertainty remain at factor+1.2991upstreambiosphere exclusions and unquantified score effects remain explicit. Other releases, inverse and cross-system-model conversions are not qualified."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath active quantities, signed caller metadata, reactant totals, water compartments, complete waste graph, no biomass substitution, exact-release refusal and atomic replay",
+          "passed_cases": 14
+        },
+        {
+          "check": "Premise cold/warm source preservation, canonical water/nitrogen and warnings; other releases refused",
+          "passed_cases": 6
+        },
+        {
+          "check": "Native LCI of actual13-record graph with8canonical direct flows and unchanged source matrices",
+          "receipt": "native_deferred_xanthate_lci_report.json",
+          "finite_cases": 1
+        },
+        {
+          "check": "Original active-kg caller amount and supported metadata exact before IAM; source graph unchanged",
+          "receipt": "deferred_xanthate_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-xanthate",
+          "activity_count": 12474,
+          "receipt": "deferred_xanthate_export_report.json"
+        },
+        {
+          "check": "All36restored callers plus all3newhelpers read back, retaining 13/60 producer inputs and6market inputs, exact supported coefficient uncertainty, separate canonical emissions, complete links and unchanged backgrounds",
+          "receipt": "deferred_xanthate_export_readback.json"
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_xanthate_generator_replay.json",
+          "sha256": "a59c3e71c940746e3da77a2b3fcd0c060329d98de3520ff71c435cb8b9743619"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "449fb5d"
+        },
+        {
+          "repository": "premise",
+          "commit": "ec3a2111"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-fc3ee282d0e21e35df15",
@@ -4905,8 +4947,8 @@
   ],
   "progress": {
     "starting_deferred_exchanges": 20,
-    "restored_in_this_goal": 13,
+    "restored_in_this_goal": 14,
     "final_unsupported_omissions": 0,
-    "pending_exchanges": 7
+    "pending_exchanges": 6
   }
 }
