@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-62 already have exact current CLIC approval fingerprints for their source
+64 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
 scientifically reviewed target. The other suppliers cover 20 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 63 automatically new scientific decisions. Coverage is
+decisions. They are not 61 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -218,3 +218,34 @@ is a documented source-data limitation. The five complete target graphs pass
 native LCI without changing destination scientific contents. This brings exact
 nitrate supplier coverage to 62 of 125, leaving 63. The full nitrate market and
 prospective pilot remain incomplete.
+
+The Swiss and RoW mineral-wool waste markets now preserve all source fates,
+collection and operating inventories. Recycling retains three explicit dust
+fractions; collection and sorting keep their own dust and the reviewed
+final-disposal closure. The Swiss market has one recycling fate and two collection
+entries; RoW has three fates and eight collection entries. The sorting service
+retains its six same-territory delivered low-voltage supplies, 0.0222 m³
+hydraulic-digger service and 10⁻¹⁰ sorting-plant units per kg. Three complete
+source/canonical elementary definitions match by publisher UUID, kg, full
+receiving compartment and emission role. All original source uncertainty and
+signed quantities are retained without fate normalization or new recovery
+credits.
+
+The global machinery market keeps both source supplier weights. The complete
+native legacy RER hydraulic-digger service matches the source nominal diesel,
+lubricant and machine quantities; its “proj. 500” label does not imply a
+quantity multiplier. The newer Swiss-average operator has different fuel
+consumption and is not used. The whole sorting facility retains the same
+200,000 t/year capacity and 50-year service basis, with warned internal heat,
+material, disposal, uncertainty and vintage differences. Its three land
+quantities match, but only two publisher identities match: source generic
+“Transformation, from unspecified” and native generic “Transformation, from
+unknown” are different UUIDs. That whole-facility inventory difference remains
+an explicit warning; no independent land-flow equivalence is approved.
+
+Coverage is now 64 of 125 nitrate suppliers, leaving 61. The European
+mineral-wool branch still requires implementation of the separately approved
+[electricity proxies](uvek-wool-european-electricity-proposal.md) for seven absent
+country grids.
+The remaining 32 countries have native low-voltage grids; no fallback has been
+enabled by the Swiss/RoW review.

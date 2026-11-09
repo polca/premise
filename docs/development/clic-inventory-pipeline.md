@@ -1036,6 +1036,33 @@ The nitrate supplier audit now scopes 62 of 125 suppliers, leaving 63; the
 public refusal frontier remains 35 rules / 40 cases. Full prospective scenario
 certification and export remain outstanding.
 
+The exact 3.9 Swiss/RoW mineral-wool markets now preserve all source treatment
+shares, operating inputs, dust and ten collection entries. Three full canonical
+elementary definitions match publisher UUID, kg, compartment and emission role.
+Sorting uses only the six matching declared-territory delivered grids; the
+source global machinery market retains both weights through the complete
+legacy RER service, whose fuel/lubricant/machine basis matches the source. The
+whole sorting facility retains its original unit/capacity/lifetime basis, with
+explicit internal-supply, generic land-origin UUID, uncertainty and vintage
+differences. Three land quantities match; two publisher identities match. No
+independent land-flow equivalence or extra recovery credit is inferred.
+
+All 347 prior approval fingerprints, 3,257 recipes and 710 shared reviews remain
+unchanged. Two scopes and seven recipes bring totals to 349 scopes, 3,264
+recipes and 712 reviews. After the land-warning refinement, 31 focused Brightpath
+checks and 17 Premise checks pass. Earlier related cleanfill regressions also
+passed, and all seven physical recipes are unchanged by that refinement. Full
+generator replay is byte-identical. Both complete target graphs give finite
+native LCI and agree with the independent native solve on unchanged scientific
+contents. Foreground balance is proved with exact rational coefficients, with
+floating solutions checked against that reference and an epsilon-scaled row
+bound; the diagnostic retains the full sparse product's bitwise result instead
+of treating a different summation order as an inventory change. Installed-wheel
+routes and evidence checks pass. Nitrate coverage is 64 of 125 suppliers,
+leaving 61; the public frontier remains 35 rules / 40 cases. The separate
+seven-country European electricity proxy is now user-approved but still needs
+implementation. Full prospective certification/export remain outstanding.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

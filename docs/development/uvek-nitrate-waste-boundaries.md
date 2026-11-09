@@ -104,9 +104,9 @@ physical exchanges, or the separately pending concrete-sorting allocation.
 
 Other findings remain work items, not admissions:
 
-- Mineral-wool recycling contains explicit dismantling dust emissions. It
-  cannot be treated as an empty cut-off handover. Sorting and collection branches
-  also retain their own operations and final-disposal links.
+- The European mineral-wool sorting branch awaits implementation of the approved
+  seven-country electricity proxies. Its source dust, operating services and
+  treatment weights remain required; the Swiss/RoW admissions do not extend that scope.
 - Regional glass, polyethylene and polystyrene markets combine open burning,
   open dumps, unsanitary landfills and, in some regions, controlled incineration.
   Their infiltration classes and fate weights cannot be replaced by a single
@@ -147,3 +147,26 @@ service matches the independently approved nitrate operating review. No
 source fuel is added again, and collection/sorting services receive no new
 approval. Native exclusions and upstream geography, allocation, technology
 and vintage remain limitations with unquantified score effects.
+
+Swiss and RoW mineral-wool waste markets now retain all original dust,
+recycling/sorting/collection fates, final-disposal links and ten collection
+entries. Source dust is mapped only by exact publisher UUID, kg, compartment
+and emission role to the installed canonical biosphere. All three size
+fractions and their uncertainty remain; no empty recycling handover or new
+material credit is inferred. Sorting keeps its six declared-country/region
+delivered grids and original machinery/facility quantities. The global digger
+market preserves both source weights through the inspected legacy complete
+native RER service, whose nominal fuel, lubricant and machine quantities match
+the source. No quantity is inferred from the “proj. 500” label.
+
+The complete sorting facility has the same declared 200,000 t/year and 50-year
+basis, with different internal supplies, administrative heat, waste treatment,
+uncertainty and vintage. All three source land quantities match the native
+ones; two publisher flow identities match. The generic source “from
+unspecified” origin differs from native “from unknown” in UUID, in the same
+natural-resource/land compartment. This is a warned whole-facility inventory
+difference with unquantified score effects, not an independent biosphere
+correspondence. No physical inventory coefficients changed when that warning
+was refined. Neither admission authorizes the European missing-country
+electricity fallback or the isolated machinery, facility, material, heat or
+waste links for other callers.

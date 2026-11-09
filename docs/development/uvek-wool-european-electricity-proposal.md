@@ -1,6 +1,7 @@
-# Pending: seven missing country grids inside European mineral-wool sorting
+# Approved: seven missing country grids inside European mineral-wool sorting
 
-This proposal is not an approval or an enabled correspondence. It applies only
+The user approved this scoped choice with warnings on 2026-11-09. The
+correspondence remains disabled until implemented and verified. It applies only
 to the inspected ecoinvent 3.9 cut-off European mineral-wool market/sorting
 closure for the UVEK 2026 cut-off / ecoinvent 3.10 biosphere electricity pilot.
 
@@ -37,3 +38,8 @@ this seven-country choice.
 
 Private full inventories: `nitrate_wool_operating_boundary_full_evidence.private.json`.
 Country quantities and proposed endpoints: `nitrate_wool_missing_country_preflight.json`.
+
+User decision: “Approve scoped proxies with warnings.” Approval covers only the
+seven listed entries inside the inspected European mineral-wool sorting route;
+the quantities, separate entries, other 32 countries and warnings above remain
+required. No broader country mapping is authorized.
