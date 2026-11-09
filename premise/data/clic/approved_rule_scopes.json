@@ -111917,6 +111917,420 @@
           "fingerprint": "3ffac3c0946dbc1e63550a38e4e6f2c0d8d11252af00ee490eb8ad2fe6f2a316"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c7c88174c5f11ce8",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_naocl",
+      "review_path": "export/uvek_deferred_naocl_review.json",
+      "review_sha256": "9685c2b24785f980e6b9e565fdacab6bb4bfdcc84e53dee95f7201825a86433e",
+      "authorization": "User activated autonomous resolution with standing auto-approval; retain actual source chemical production and freight using verified active-substance reference conventions, native common supplies and exact canonical emissions.",
+      "inspection": {
+        "rule_id": "bp-c7c88174c5f11ce8",
+        "source": {
+          "location": "RER",
+          "name": "market for sodium hypochlorite, without water, in 15% solution state",
+          "reference product": "sodium hypochlorite, without water, in 15% solution state",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Sodium hypochlorite, 15% in H2O, at plant",
+          "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.392939,
+          "id": "bp-c7c88174c5f11ce8",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "market for sodium hypochlorite, without water, in 15% solution state",
+            "reference product": "sodium hypochlorite, without water, in 15% solution state",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Sodium hypochlorite, 15% in H2O, at plant",
+            "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "596edf588c3254d10a6f820e375fcf906c3914fd1bf0198356d29cda9f5debe5",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "original_factor": 1,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.6-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "source_sign": 1,
+            "inventory_sha256": "2f7b547fe8dc97d16f8515bcac88d472c1a4eec9aec9ac3fe5cf223592b4a1eb",
+            "inputs": [
+              {
+                "recipe": "deferred-naocl-producer-bdef801f61f09a072b6a",
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0
+              },
+              {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0514,
+                "uncertainty type": 2,
+                "loc": -2.9681171065210177,
+                "scale": 0.41255302689472534,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 2,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0131,
+                "uncertainty type": 2,
+                "loc": -4.3351430487750315,
+                "scale": 0.41255302689472534,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 2,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market group for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "binding_sha256": "655d20306ab2ef525b713d8c54b86761018cd15443f789fb05b0301703781064",
+                "rule_id": "bp-b9b0c0c1d15a55d8"
+              },
+              {
+                "source": [
+                  "chemical factory construction, organics",
+                  "chemical factory, organics",
+                  "RER",
+                  "unit"
+                ],
+                "binding_sha256": "526b3121470aa4e7b907ed5dbbe87c179e45eb32ded1a6bda69b9499c49b94d5",
+                "rule_id": "bp-fa8c66186468f780"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "binding_sha256": "f949c1403e48bded071030e947c5d4af593bc638247583efa98d55bc6286e38e",
+                "rule_id": "bp-4a7e42807ddffd8a"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RER",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "a147764e438f83642751b71b694c2c8ca149c64c13dc096fbe3937f83fb69fb9",
+                "rule_id": "bp-49b843b95c0c6223"
+              },
+              {
+                "source": [
+                  "market for sodium hydroxide, without water, in 50% solution state",
+                  "sodium hydroxide, without water, in 50% solution state",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "282d47e936be1cf20da46090fc84ff5adba2a89d4e2b1d4723d57059ed387191",
+                "rule_id": "bp-1d075913a8c7a9b6"
+              },
+              {
+                "source": [
+                  "market for chlorine, liquid",
+                  "chlorine, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "33e56f12509e592f66380e67d1ffcb87aed8e6238ca8632e2e6c0a8a9d91dc3f",
+                "rule_id": "bp-3080b1f0605165b9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "b87e4f1b7c8aae9dcb233c4aa0f47aacf53e55cabf399cf8e3461d84493b86ed",
+                "rule_id": "bp-d6b9d771677aa51e"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "040f14a3ed4909fc4e7f979d374ac377827a93f0f37acab03970834fd3f4a80b",
+                "rule_id": "bp-8e691fdb86f7b1c6"
+              }
+            ],
+            "expected_foreground_records": 3,
+            "expected_foreground_biosphere_exchanges": 3
+          },
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": 1,
+            "inventory_sha256": "34dddd8b4b70237de12ea3ee2bc681d185d2d0ba38a2e34975829f64e2d1ebb5",
+            "inputs": [
+              {
+                "recipe": "deferred-naocl-producer-b731cb199cef80e64e82",
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0131,
+                "uncertainty type": 2,
+                "loc": -4.3351430487750315,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0514,
+                "uncertainty type": 2,
+                "loc": -2.9681171065210177,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "chemical factory construction, organics",
+                  "chemical factory, organics",
+                  "RER",
+                  "unit"
+                ],
+                "binding_sha256": "526b3121470aa4e7b907ed5dbbe87c179e45eb32ded1a6bda69b9499c49b94d5",
+                "rule_id": "bp-fa8c66186468f780"
+              },
+              {
+                "source": [
+                  "market for chlorine, liquid",
+                  "chlorine, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "33e56f12509e592f66380e67d1ffcb87aed8e6238ca8632e2e6c0a8a9d91dc3f",
+                "rule_id": "bp-3080b1f0605165b9"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RER",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "a147764e438f83642751b71b694c2c8ca149c64c13dc096fbe3937f83fb69fb9",
+                "rule_id": "bp-49b843b95c0c6223"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "binding_sha256": "f949c1403e48bded071030e947c5d4af593bc638247583efa98d55bc6286e38e",
+                "rule_id": "bp-4a7e42807ddffd8a"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "binding_sha256": "655d20306ab2ef525b713d8c54b86761018cd15443f789fb05b0301703781064",
+                "rule_id": "bp-b9b0c0c1d15a55d8"
+              },
+              {
+                "source": [
+                  "market for sodium hydroxide, without water, in 50% solution state",
+                  "sodium hydroxide, without water, in 50% solution state",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "282d47e936be1cf20da46090fc84ff5adba2a89d4e2b1d4723d57059ed387191",
+                "rule_id": "bp-1d075913a8c7a9b6"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "040f14a3ed4909fc4e7f979d374ac377827a93f0f37acab03970834fd3f4a80b",
+                "rule_id": "bp-8e691fdb86f7b1c6"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135",
+                "rule_id": "bp-d6b9d771677aa51e"
+              }
+            ],
+            "expected_foreground_records": 3,
+            "expected_foreground_biosphere_exchanges": 3
+          }
+        ],
+        "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles.",
+        "source_witnesses": [
+          {
+            "version": "3.6",
+            "identity": {
+              "location": "RER",
+              "name": "market for sodium hypochlorite, without water, in 15% solution state",
+              "reference product": "sodium hypochlorite, without water, in 15% solution state",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "bb03b963736cf791e88041b457b6f24745120defd8ba031032a18b68c1f88beb",
+            "inventory_sha256": "2f7b547fe8dc97d16f8515bcac88d472c1a4eec9aec9ac3fe5cf223592b4a1eb"
+          },
+          {
+            "version": "3.6",
+            "identity": {
+              "name": "sodium hypochlorite production, product in 15% solution state",
+              "reference product": "sodium hypochlorite, without water, in 15% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "97e59c5d3a6ec500fca1b952ad6bfccd611e716a546c4bd8e0b9b41a7dbd1a79",
+            "inventory_sha256": "f4674784f57b9cba5728b575c3a2e3ae4b89bd1c7417b6be7197133e68373e7a"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "RER",
+              "name": "market for sodium hypochlorite, without water, in 15% solution state",
+              "reference product": "sodium hypochlorite, without water, in 15% solution state",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9294127f28fa532743e1bb5c24536edff1675f916e19711a69a8e338350e727f",
+            "inventory_sha256": "34dddd8b4b70237de12ea3ee2bc681d185d2d0ba38a2e34975829f64e2d1ebb5"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "sodium hypochlorite production, product in 15% solution state",
+              "reference product": "sodium hypochlorite, without water, in 15% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a62667e0dcaacfce723021e21eac09df800efd776d4458e67f090d3104d2c390",
+            "inventory_sha256": "42afb51898b90bbe16d517d320fd94072be16b07e479746dce70159e42878752"
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "caller_conversion_factor": 1,
+        "generated_recipe_ids": {
+          "3.6": "deferred-naocl-16a9dd5cd0f7029e47c5",
+          "3.9": "deferred-naocl-3469cb71877754d72661"
+        },
+        "expected_foreground_records": 3,
+        "expected_foreground_biosphere_exchanges": 3
+      },
+      "limitations": [
+        "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "374e20bcc33542d1510a16eecd624e8b1dc688345b4f97feab58e5ea1e626c91"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "17876012a502fdacd89a17a46db87d658204d2d7cf774dc6156dedea0b4e791d"
+        }
+      ]
     }
   ]
 }

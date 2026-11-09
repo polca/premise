@@ -14,7 +14,7 @@
   "entries": [
     {
       "decision_id": "uvek-2026-screening-8286122f7b4a585ec69e",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-8286122f7b4a585ec69e",
         "slug": "electricity-production-at-hard-coal-fired-igcc-power-plant",
@@ -68,16 +68,250 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.11e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-hard-coal-fired-igcc-power-plant (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram dry-active NaOCl",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram dry-active NaOCl",
+        "caller_conversion_factor": 1,
+        "legacy_solution_convention": "Reference active substance, not wet solution mass; ecoinvent v2 section4.5.8."
+      },
       "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_naocl_review.json",
+          "sha256": "9685c2b24785f980e6b9e565fdacab6bb4bfdcc84e53dee95f7201825a86433e",
+          "source_witnesses": [
+            {
+              "version": "3.6",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "bb03b963736cf791e88041b457b6f24745120defd8ba031032a18b68c1f88beb",
+              "inventory_sha256": "2f7b547fe8dc97d16f8515bcac88d472c1a4eec9aec9ac3fe5cf223592b4a1eb"
+            },
+            {
+              "version": "3.6",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "97e59c5d3a6ec500fca1b952ad6bfccd611e716a546c4bd8e0b9b41a7dbd1a79",
+              "inventory_sha256": "f4674784f57b9cba5728b575c3a2e3ae4b89bd1c7417b6be7197133e68373e7a"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9294127f28fa532743e1bb5c24536edff1675f916e19711a69a8e338350e727f",
+              "inventory_sha256": "34dddd8b4b70237de12ea3ee2bc681d185d2d0ba38a2e34975829f64e2d1ebb5"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "a62667e0dcaacfce723021e21eac09df800efd776d4458e67f090d3104d2c390",
+              "inventory_sha256": "42afb51898b90bbe16d517d320fd94072be16b07e479746dce70159e42878752"
+            }
+          ],
+          "biosphere_witnesses": [
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "76c99cbbfdc926e2f177e0ac685703d36606ca49c30a46f5b63cd7103d440259",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium, ion",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "ebea1a358fdc0e227ba4a9d3fed998ca9bd66ed501b5c95a802c40cf9ea58f13",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "35d5207c1c85181377d34331436e0d3d71794cd4d70ed29658205522edf0b1f6",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "e2beed7debf9044f3b81e8d9e5bb02cc3b8add3199f6302e36af2e1e90d8a6d4",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium I",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "fcc6b45f70a41888413e872186f27cd2c04b4679d20e4f95edb26db7e4c21915",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6576cfdcb865b81153d545e75e6f32b79261906fd7b1104325eefa92f083c2d2",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            }
+          ],
+          "methodology_sources": [
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/overview_methodology_ecoinvent%20version%202.pdf",
+              "section": "4.5.8 Dissolved chemicals, printedp15, PDFpage24",
+              "interpretation": "Legacy dissolved-chemical reference is active substance; carrier concentration affects transport/processing, not reference active kilograms."
+            },
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Fundamentals/dataqualityguideline_ecoinvent_3_20130506.pdf",
+              "section": "Product naming, dissolved chemicals",
+              "interpretation": "The without-water wording makes explicit the active-substance reference already used in v1/v2."
+            }
+          ],
+          "local_freight_overrides": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "7732fb6151981bed67e886066e437e36dc3550fa798a61e044b46102271c026d",
+              "source_metadata_sha256": "18d0ef04aa91709de5d7024dbce6efca73b302fcfa7d7f8141276b93557e27ae",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "a68db5c9f90a056ea1535421b3410a5d59748cfb174021109cb3f7b4e5d2ae57",
+              "source_metadata_sha256": "842db43f8918abfeddf4c4ca30d3782b4719f4d969393962ecd371e88e85f84a",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_active_chemical_reconstruction",
+        "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
+        "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+      },
       "validation": [],
       "commits": []
     },
     {
       "decision_id": "uvek-2026-screening-f024a1de428dd3b3e3cd",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-f024a1de428dd3b3e3cd",
         "slug": "electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
@@ -131,16 +365,250 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.11e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram dry-active NaOCl",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram dry-active NaOCl",
+        "caller_conversion_factor": 1,
+        "legacy_solution_convention": "Reference active substance, not wet solution mass; ecoinvent v2 section4.5.8."
+      },
       "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_naocl_review.json",
+          "sha256": "9685c2b24785f980e6b9e565fdacab6bb4bfdcc84e53dee95f7201825a86433e",
+          "source_witnesses": [
+            {
+              "version": "3.6",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "bb03b963736cf791e88041b457b6f24745120defd8ba031032a18b68c1f88beb",
+              "inventory_sha256": "2f7b547fe8dc97d16f8515bcac88d472c1a4eec9aec9ac3fe5cf223592b4a1eb"
+            },
+            {
+              "version": "3.6",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "97e59c5d3a6ec500fca1b952ad6bfccd611e716a546c4bd8e0b9b41a7dbd1a79",
+              "inventory_sha256": "f4674784f57b9cba5728b575c3a2e3ae4b89bd1c7417b6be7197133e68373e7a"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9294127f28fa532743e1bb5c24536edff1675f916e19711a69a8e338350e727f",
+              "inventory_sha256": "34dddd8b4b70237de12ea3ee2bc681d185d2d0ba38a2e34975829f64e2d1ebb5"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "a62667e0dcaacfce723021e21eac09df800efd776d4458e67f090d3104d2c390",
+              "inventory_sha256": "42afb51898b90bbe16d517d320fd94072be16b07e479746dce70159e42878752"
+            }
+          ],
+          "biosphere_witnesses": [
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "76c99cbbfdc926e2f177e0ac685703d36606ca49c30a46f5b63cd7103d440259",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium, ion",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "ebea1a358fdc0e227ba4a9d3fed998ca9bd66ed501b5c95a802c40cf9ea58f13",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "35d5207c1c85181377d34331436e0d3d71794cd4d70ed29658205522edf0b1f6",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "e2beed7debf9044f3b81e8d9e5bb02cc3b8add3199f6302e36af2e1e90d8a6d4",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium I",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "fcc6b45f70a41888413e872186f27cd2c04b4679d20e4f95edb26db7e4c21915",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6576cfdcb865b81153d545e75e6f32b79261906fd7b1104325eefa92f083c2d2",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            }
+          ],
+          "methodology_sources": [
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/overview_methodology_ecoinvent%20version%202.pdf",
+              "section": "4.5.8 Dissolved chemicals, printedp15, PDFpage24",
+              "interpretation": "Legacy dissolved-chemical reference is active substance; carrier concentration affects transport/processing, not reference active kilograms."
+            },
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Fundamentals/dataqualityguideline_ecoinvent_3_20130506.pdf",
+              "section": "Product naming, dissolved chemicals",
+              "interpretation": "The without-water wording makes explicit the active-substance reference already used in v1/v2."
+            }
+          ],
+          "local_freight_overrides": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "7732fb6151981bed67e886066e437e36dc3550fa798a61e044b46102271c026d",
+              "source_metadata_sha256": "18d0ef04aa91709de5d7024dbce6efca73b302fcfa7d7f8141276b93557e27ae",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "a68db5c9f90a056ea1535421b3410a5d59748cfb174021109cb3f7b4e5d2ae57",
+              "source_metadata_sha256": "842db43f8918abfeddf4c4ca30d3782b4719f4d969393962ecd371e88e85f84a",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_active_chemical_reconstruction",
+        "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
+        "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+      },
       "validation": [],
       "commits": []
     },
     {
       "decision_id": "uvek-2026-screening-62b556049ace56fa4892",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-62b556049ace56fa4892",
         "slug": "electricity-production-at-lignite-fired-igcc-power-plant",
@@ -196,16 +664,250 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.384e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-lignite-fired-igcc-power-plant (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram dry-active NaOCl",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram dry-active NaOCl",
+        "caller_conversion_factor": 1,
+        "legacy_solution_convention": "Reference active substance, not wet solution mass; ecoinvent v2 section4.5.8."
+      },
       "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_naocl_review.json",
+          "sha256": "9685c2b24785f980e6b9e565fdacab6bb4bfdcc84e53dee95f7201825a86433e",
+          "source_witnesses": [
+            {
+              "version": "3.6",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "bb03b963736cf791e88041b457b6f24745120defd8ba031032a18b68c1f88beb",
+              "inventory_sha256": "2f7b547fe8dc97d16f8515bcac88d472c1a4eec9aec9ac3fe5cf223592b4a1eb"
+            },
+            {
+              "version": "3.6",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "97e59c5d3a6ec500fca1b952ad6bfccd611e716a546c4bd8e0b9b41a7dbd1a79",
+              "inventory_sha256": "f4674784f57b9cba5728b575c3a2e3ae4b89bd1c7417b6be7197133e68373e7a"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9294127f28fa532743e1bb5c24536edff1675f916e19711a69a8e338350e727f",
+              "inventory_sha256": "34dddd8b4b70237de12ea3ee2bc681d185d2d0ba38a2e34975829f64e2d1ebb5"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "a62667e0dcaacfce723021e21eac09df800efd776d4458e67f090d3104d2c390",
+              "inventory_sha256": "42afb51898b90bbe16d517d320fd94072be16b07e479746dce70159e42878752"
+            }
+          ],
+          "biosphere_witnesses": [
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "76c99cbbfdc926e2f177e0ac685703d36606ca49c30a46f5b63cd7103d440259",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium, ion",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "ebea1a358fdc0e227ba4a9d3fed998ca9bd66ed501b5c95a802c40cf9ea58f13",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "35d5207c1c85181377d34331436e0d3d71794cd4d70ed29658205522edf0b1f6",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "e2beed7debf9044f3b81e8d9e5bb02cc3b8add3199f6302e36af2e1e90d8a6d4",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium I",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "fcc6b45f70a41888413e872186f27cd2c04b4679d20e4f95edb26db7e4c21915",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6576cfdcb865b81153d545e75e6f32b79261906fd7b1104325eefa92f083c2d2",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            }
+          ],
+          "methodology_sources": [
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/overview_methodology_ecoinvent%20version%202.pdf",
+              "section": "4.5.8 Dissolved chemicals, printedp15, PDFpage24",
+              "interpretation": "Legacy dissolved-chemical reference is active substance; carrier concentration affects transport/processing, not reference active kilograms."
+            },
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Fundamentals/dataqualityguideline_ecoinvent_3_20130506.pdf",
+              "section": "Product naming, dissolved chemicals",
+              "interpretation": "The without-water wording makes explicit the active-substance reference already used in v1/v2."
+            }
+          ],
+          "local_freight_overrides": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "7732fb6151981bed67e886066e437e36dc3550fa798a61e044b46102271c026d",
+              "source_metadata_sha256": "18d0ef04aa91709de5d7024dbce6efca73b302fcfa7d7f8141276b93557e27ae",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "a68db5c9f90a056ea1535421b3410a5d59748cfb174021109cb3f7b4e5d2ae57",
+              "source_metadata_sha256": "842db43f8918abfeddf4c4ca30d3782b4719f4d969393962ecd371e88e85f84a",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_active_chemical_reconstruction",
+        "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
+        "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+      },
       "validation": [],
       "commits": []
     },
     {
       "decision_id": "uvek-2026-screening-a36ecc3cfd0b1e70fbe0",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-a36ecc3cfd0b1e70fbe0",
         "slug": "electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
@@ -261,10 +963,244 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.384e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram dry-active NaOCl",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram dry-active NaOCl",
+        "caller_conversion_factor": 1,
+        "legacy_solution_convention": "Reference active substance, not wet solution mass; ecoinvent v2 section4.5.8."
+      },
       "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_naocl_review.json",
+          "sha256": "9685c2b24785f980e6b9e565fdacab6bb4bfdcc84e53dee95f7201825a86433e",
+          "source_witnesses": [
+            {
+              "version": "3.6",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "bb03b963736cf791e88041b457b6f24745120defd8ba031032a18b68c1f88beb",
+              "inventory_sha256": "2f7b547fe8dc97d16f8515bcac88d472c1a4eec9aec9ac3fe5cf223592b4a1eb"
+            },
+            {
+              "version": "3.6",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "97e59c5d3a6ec500fca1b952ad6bfccd611e716a546c4bd8e0b9b41a7dbd1a79",
+              "inventory_sha256": "f4674784f57b9cba5728b575c3a2e3ae4b89bd1c7417b6be7197133e68373e7a"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9294127f28fa532743e1bb5c24536edff1675f916e19711a69a8e338350e727f",
+              "inventory_sha256": "34dddd8b4b70237de12ea3ee2bc681d185d2d0ba38a2e34975829f64e2d1ebb5"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "a62667e0dcaacfce723021e21eac09df800efd776d4458e67f090d3104d2c390",
+              "inventory_sha256": "42afb51898b90bbe16d517d320fd94072be16b07e479746dce70159e42878752"
+            }
+          ],
+          "biosphere_witnesses": [
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "76c99cbbfdc926e2f177e0ac685703d36606ca49c30a46f5b63cd7103d440259",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium, ion",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "ebea1a358fdc0e227ba4a9d3fed998ca9bd66ed501b5c95a802c40cf9ea58f13",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "35d5207c1c85181377d34331436e0d3d71794cd4d70ed29658205522edf0b1f6",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "e2beed7debf9044f3b81e8d9e5bb02cc3b8add3199f6302e36af2e1e90d8a6d4",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium I",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "fcc6b45f70a41888413e872186f27cd2c04b4679d20e4f95edb26db7e4c21915",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6576cfdcb865b81153d545e75e6f32b79261906fd7b1104325eefa92f083c2d2",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            }
+          ],
+          "methodology_sources": [
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/overview_methodology_ecoinvent%20version%202.pdf",
+              "section": "4.5.8 Dissolved chemicals, printedp15, PDFpage24",
+              "interpretation": "Legacy dissolved-chemical reference is active substance; carrier concentration affects transport/processing, not reference active kilograms."
+            },
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Fundamentals/dataqualityguideline_ecoinvent_3_20130506.pdf",
+              "section": "Product naming, dissolved chemicals",
+              "interpretation": "The without-water wording makes explicit the active-substance reference already used in v1/v2."
+            }
+          ],
+          "local_freight_overrides": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "7732fb6151981bed67e886066e437e36dc3550fa798a61e044b46102271c026d",
+              "source_metadata_sha256": "18d0ef04aa91709de5d7024dbce6efca73b302fcfa7d7f8141276b93557e27ae",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "a68db5c9f90a056ea1535421b3410a5d59748cfb174021109cb3f7b4e5d2ae57",
+              "source_metadata_sha256": "842db43f8918abfeddf4c4ca30d3782b4719f4d969393962ecd371e88e85f84a",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_active_chemical_reconstruction",
+        "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
+        "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+      },
       "validation": [],
       "commits": []
     },
@@ -423,7 +1359,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-cdba548fe7d3b9829dab",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-cdba548fe7d3b9829dab",
         "slug": "perfluorosulfonic-acid-membrane-production-ew1100-engineering-reference",
@@ -473,10 +1409,244 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 0.15038135208080808 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned perfluorosulfonic-acid-membrane-production-ew1100-engineering-reference (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram dry-active NaOCl",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram dry-active NaOCl",
+        "caller_conversion_factor": 1,
+        "legacy_solution_convention": "Reference active substance, not wet solution mass; ecoinvent v2 section4.5.8."
+      },
       "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_naocl_review.json",
+          "sha256": "9685c2b24785f980e6b9e565fdacab6bb4bfdcc84e53dee95f7201825a86433e",
+          "source_witnesses": [
+            {
+              "version": "3.6",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "bb03b963736cf791e88041b457b6f24745120defd8ba031032a18b68c1f88beb",
+              "inventory_sha256": "2f7b547fe8dc97d16f8515bcac88d472c1a4eec9aec9ac3fe5cf223592b4a1eb"
+            },
+            {
+              "version": "3.6",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "97e59c5d3a6ec500fca1b952ad6bfccd611e716a546c4bd8e0b9b41a7dbd1a79",
+              "inventory_sha256": "f4674784f57b9cba5728b575c3a2e3ae4b89bd1c7417b6be7197133e68373e7a"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "location": "RER",
+                "name": "market for sodium hypochlorite, without water, in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9294127f28fa532743e1bb5c24536edff1675f916e19711a69a8e338350e727f",
+              "inventory_sha256": "34dddd8b4b70237de12ea3ee2bc681d185d2d0ba38a2e34975829f64e2d1ebb5"
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "sodium hypochlorite production, product in 15% solution state",
+                "reference product": "sodium hypochlorite, without water, in 15% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "a62667e0dcaacfce723021e21eac09df800efd776d4458e67f090d3104d2c390",
+              "inventory_sha256": "42afb51898b90bbe16d517d320fd94072be16b07e479746dce70159e42878752"
+            }
+          ],
+          "biosphere_witnesses": [
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "76c99cbbfdc926e2f177e0ac685703d36606ca49c30a46f5b63cd7103d440259",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium, ion",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "ebea1a358fdc0e227ba4a9d3fed998ca9bd66ed501b5c95a802c40cf9ea58f13",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.6",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "35d5207c1c85181377d34331436e0d3d71794cd4d70ed29658205522edf0b1f6",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "5e050fab-1837-4c42-b597-ed2f376f768f",
+              "source_name": "Chloride",
+              "target": {
+                "name": "Chloride",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "e2beed7debf9044f3b81e8d9e5bb02cc3b8add3199f6302e36af2e1e90d8a6d4",
+              "canonical_metadata_sha256": "6ef8d8ffceb701a52983526c2910f2c4a67da2bfc2cf5291f5b81ba56d0568c5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "1fc409bc-b8e7-48b2-92d5-2ced4aa7bae2",
+              "source_name": "Sodium I",
+              "target": {
+                "name": "Sodium I",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "fcc6b45f70a41888413e872186f27cd2c04b4679d20e4f95edb26db7e4c21915",
+              "canonical_metadata_sha256": "80c6d5dda38f7d9f0b0a20bbb30c317d1a00fe128d75dc7a3fc8fdadd3e9595d"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6576cfdcb865b81153d545e75e6f32b79261906fd7b1104325eefa92f083c2d2",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            }
+          ],
+          "methodology_sources": [
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/overview_methodology_ecoinvent%20version%202.pdf",
+              "section": "4.5.8 Dissolved chemicals, printedp15, PDFpage24",
+              "interpretation": "Legacy dissolved-chemical reference is active substance; carrier concentration affects transport/processing, not reference active kilograms."
+            },
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Fundamentals/dataqualityguideline_ecoinvent_3_20130506.pdf",
+              "section": "Product naming, dissolved chemicals",
+              "interpretation": "The without-water wording makes explicit the active-substance reference already used in v1/v2."
+            }
+          ],
+          "local_freight_overrides": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "7732fb6151981bed67e886066e437e36dc3550fa798a61e044b46102271c026d",
+              "source_metadata_sha256": "18d0ef04aa91709de5d7024dbce6efca73b302fcfa7d7f8141276b93557e27ae",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source": {
+                "name": "market group for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "a68db5c9f90a056ea1535421b3410a5d59748cfb174021109cb3f7b4e5d2ae57",
+              "source_metadata_sha256": "842db43f8918abfeddf4c4ca30d3782b4719f4d969393962ecd371e88e85f84a",
+              "target": {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_active_chemical_reconstruction",
+        "recipe_id": "deferred-naocl-3469cb71877754d72661",
+        "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
+      },
       "validation": [],
       "commits": []
     },
