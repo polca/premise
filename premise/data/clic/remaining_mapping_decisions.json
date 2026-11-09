@@ -394,7 +394,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-ad29e37f34a7b0d2b065",
-      "status": "in_progress",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-ad29e37f34a7b0d2b065",
         "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
@@ -443,12 +443,89 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-87f7d6834d9147fa: -688484 kilogram of market for inert waste in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference": -1,
+        "target_reference": 1,
+        "unit": "kilogram",
+        "conversion_factor": -1
+      },
       "rejected_prior_candidate_reason": "Landfill is the wrong route: source uses an independently verified production-only allocated clinker terminal plus freight.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
-      "commits": []
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_waste_markets_review.json",
+          "sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+          "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+          "terminal_witnesses": [
+            {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "919fd019595c8e398e088cffb94344a36ff56dd89a441eb62f6c52a397f7d489",
+              "inventory_sha256": "868222b76fe367cd88ead1700bb78b739a0278db17b7b6bf62d46347b5088c5f",
+              "nonproduction_count": 0,
+              "reference_amount": -1,
+              "original_market_fraction": 1.0
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_market_reconstruction_with_documented_screening_components",
+        "recipe_id": "deferred-waste-market-bad1b3a323f58dd0d12d",
+        "freight_entries": 2,
+        "incineration_entries": 0,
+        "incineration_fraction": 0,
+        "allocated_empty_handover_fraction": 1.0,
+        "collapsed_empty_terminals": 1,
+        "limitations": "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Inert waste retains its100%empty allocated clinker-treatment route and original0.0036rail/0.0258roadtkm perkg. No construction-waste landfill counterpart is used.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. "
+      },
+      "validation": [
+        {
+          "check": "Brightpath signed quantities, uncertainty, profile refusal and atomic replay",
+          "passed_cases": 28
+        },
+        {
+          "check": "Premise cold/warm, portable evidence and omission-drift refusal",
+          "passed_cases": 26
+        },
+        {
+          "check": "Actual migrated helper LCI on unchanged native matrices",
+          "finite_cases": 3,
+          "receipt": "native_deferred_waste_markets_lci_report.json"
+        },
+        {
+          "check": "Full encrypted public scenario/certification/export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-waste-markets",
+          "activity_count": 12455,
+          "receipt": "deferred_waste_markets_export_report.json"
+        },
+        {
+          "check": "Readback of all restored inputs, fractions, uncertainty, audits and complete links; original background signatures unchanged",
+          "receipt": "deferred_waste_markets_export_readback.json",
+          "restored_input_count": 25
+        },
+        {
+          "check": "Eight separate RoW freight uncertainty distributions retained",
+          "receipt": "deferred_waste_markets_freight_uncertainty_readback.json"
+        },
+        {
+          "check": "Full migration generator byte-identical",
+          "sha256": "8ab1fc04bfcb7b23bbc9fa285c41d47bb381e544d7965a535cff412a24ddfca0"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "2ab4ec811b93943f4b47f0bfcb533b54f1e53372"
+        },
+        {
+          "repository": "premise",
+          "commit": "74fa379585d790078055adba838c7a8ff845b5c7"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-e9ef258182b7597f7874",
@@ -510,7 +587,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-31a78eae0e6d78a50a8f",
-      "status": "in_progress",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-31a78eae0e6d78a50a8f",
         "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
@@ -559,12 +636,115 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-ef0d29b6fa71b9c8: -420000 kilogram of market for waste mineral oil in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference": -1,
+        "target_reference": 1,
+        "unit": "kilogram",
+        "conversion_factor": -1
+      },
       "rejected_prior_candidate_reason": "A whole-market incinerator replacement would burden empty allocated kiln shares and lose freight/route fractions.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
-      "commits": []
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_waste_markets_review.json",
+          "sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+          "source_inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107",
+          "terminal_witnesses": [
+            {
+              "identity": {
+                "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+                "reference product": "waste mineral oil",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "52a4a7cc6834f6cd983fae1f65f88f9d37e52f22613a0b3fe89c024d96606cb2",
+              "inventory_sha256": "7004b5d5e68ab7b44e075de0863e3bc8c711441dbf348000d026924f9011c312",
+              "nonproduction_count": 53,
+              "reference_amount": -1,
+              "original_market_fraction": 0.436916590689578
+            },
+            {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "eb50d373311146357099fb8203680855ae3a0a2d9447bbdffa86485a40bba89f",
+              "inventory_sha256": "e5ba3a875294c0374ae85a8bdf7cc20af8b173b80cd2c0ea16e63883179bf6c5",
+              "nonproduction_count": 0,
+              "reference_amount": -1,
+              "original_market_fraction": 0.126166818620844
+            },
+            {
+              "identity": {
+                "name": "treatment of waste mineral oil, hazardous waste incineration",
+                "reference product": "waste mineral oil",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "38be3d5fd1c894be29abb1da0dbb43519d535c23896c892e93638e1f7b70770a",
+              "inventory_sha256": "0b991aaccc344147f3d7244c9aed197948d1b63301bccaff86198594af389940",
+              "nonproduction_count": 53,
+              "reference_amount": -1,
+              "original_market_fraction": 0.436916590689578
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_market_reconstruction_with_documented_screening_components",
+        "recipe_id": "deferred-waste-market-eb02326d461abc9266ea",
+        "freight_entries": 2,
+        "incineration_entries": 2,
+        "incineration_fraction": 0.873833181379156,
+        "allocated_empty_handover_fraction": 0.126166818620844,
+        "collapsed_empty_terminals": 1,
+        "limitations": "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Every original HWI share remains a separate service input, using the complete native Swiss waste-oil hazardous incinerator per signed source kilogram. Both source HWI variants and native documentation describe10%water waste oil and100%burden allocation to the disposal function; no explicit energy-export supplier credit is added. Native/modern source emissions, energy-recovery technology, flue-gas/residue treatment and CH versusRoW technology/geography differ. Native descriptive text interchanges thermal/electric output labels; retain this inconsistency without inventing an energy credit or correcting quantities. Original empty cement-kiln shares remain unburdened only under the observed source allocation. No water-content or lower-heating-value multiplier is applied.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. "
+      },
+      "validation": [
+        {
+          "check": "Brightpath signed quantities, uncertainty, profile refusal and atomic replay",
+          "passed_cases": 28
+        },
+        {
+          "check": "Premise cold/warm, portable evidence and omission-drift refusal",
+          "passed_cases": 26
+        },
+        {
+          "check": "Actual migrated helper LCI on unchanged native matrices",
+          "finite_cases": 3,
+          "receipt": "native_deferred_waste_markets_lci_report.json"
+        },
+        {
+          "check": "Full encrypted public scenario/certification/export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-waste-markets",
+          "activity_count": 12455,
+          "receipt": "deferred_waste_markets_export_report.json"
+        },
+        {
+          "check": "Readback of all restored inputs, fractions, uncertainty, audits and complete links; original background signatures unchanged",
+          "receipt": "deferred_waste_markets_export_readback.json",
+          "restored_input_count": 25
+        },
+        {
+          "check": "Eight separate RoW freight uncertainty distributions retained",
+          "receipt": "deferred_waste_markets_freight_uncertainty_readback.json"
+        },
+        {
+          "check": "Full migration generator byte-identical",
+          "sha256": "8ab1fc04bfcb7b23bbc9fa285c41d47bb381e544d7965a535cff412a24ddfca0"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "2ab4ec811b93943f4b47f0bfcb533b54f1e53372"
+        },
+        {
+          "repository": "premise",
+          "commit": "74fa379585d790078055adba838c7a8ff845b5c7"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-b81892ef79e851727f96",
@@ -626,7 +806,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-a68fb3c409e0ccbedc03",
-      "status": "in_progress",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-a68fb3c409e0ccbedc03",
         "slug": "treatment-of-used-power-conversion-system-electrolysis-1-mw",
@@ -675,12 +855,141 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-dc3ac2fe6b0e61bf: -466.40000000000003 kilogram of market for waste mineral oil in pinned treatment-of-used-power-conversion-system-electrolysis-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference": -1,
+        "target_reference": 1,
+        "unit": "kilogram",
+        "conversion_factor": -1
+      },
       "rejected_prior_candidate_reason": "A whole-market incinerator replacement would burden empty allocated kiln shares and lose freight/route fractions.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
-      "commits": []
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_waste_markets_review.json",
+          "sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+          "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+          "terminal_witnesses": [
+            {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "ea9f9a0275eafe8de6393850377f39eedaf3595d92880f8d6d6a2413bf89c068",
+              "inventory_sha256": "4ace5370ab6cf583118241de48cbafa953ff9fb48f2de93ce2ebe76270fbd6c4",
+              "nonproduction_count": 0,
+              "reference_amount": -1,
+              "original_market_fraction": 0.00969024242811162
+            },
+            {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "US",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "55c23f841c2b41a03afe6656549c0148fc0944f3260ff4b8471dd0b33d210d35",
+              "inventory_sha256": "598036e7ba584b26a3c4aa229f636b7034adff03e32ac148364e095d8f73bf66",
+              "nonproduction_count": 0,
+              "reference_amount": -1,
+              "original_market_fraction": 0.0306648502198906
+            },
+            {
+              "identity": {
+                "name": "treatment of waste mineral oil, hazardous waste incineration",
+                "reference product": "waste mineral oil",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "56c5c080535299a45d889178ce952d5c613c2ab2291c4dfedc42869c9fad8d1f",
+              "inventory_sha256": "8e67d82d78e274605390cf76fa31496a3321f20f7c8b6072c69a4562b3e3f1d8",
+              "nonproduction_count": 60,
+              "reference_amount": -1,
+              "original_market_fraction": 0.315447172002172
+            },
+            {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "2fdc86e940a8ed4df0982ccb54e024c33853b1fcf3e5da4bc36b8d6328fadc49",
+              "inventory_sha256": "f76dd28303ba1c3415fe2977f3521cd263038a83ec768db32acc1040655e68fc",
+              "nonproduction_count": 0,
+              "reference_amount": -1,
+              "original_market_fraction": 0.328591585433064
+            },
+            {
+              "identity": {
+                "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+                "reference product": "waste mineral oil",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "dcd49681bec1e3636aa711358b27cc528f1951bcf1fb9a25afe0843d41822cb7",
+              "inventory_sha256": "f683dfce2264cfaa14e51ddbb8b8ee3e2894a0a7b97a5c94d42bb65d6eb9f51e",
+              "nonproduction_count": 60,
+              "reference_amount": -1,
+              "original_market_fraction": 0.315606149916762
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_faithful_market_reconstruction_with_documented_screening_components",
+        "recipe_id": "deferred-waste-market-50f4925138b4cb960750",
+        "freight_entries": 8,
+        "incineration_entries": 2,
+        "incineration_fraction": 0.631053321918934,
+        "allocated_empty_handover_fraction": 0.36894667808106624,
+        "collapsed_empty_terminals": 3,
+        "limitations": "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Every original HWI share remains a separate service input, using the complete native Swiss waste-oil hazardous incinerator per signed source kilogram. Both source HWI variants and native documentation describe10%water waste oil and100%burden allocation to the disposal function; no explicit energy-export supplier credit is added. Native/modern source emissions, energy-recovery technology, flue-gas/residue treatment and CH versusRoW technology/geography differ. Native descriptive text interchanges thermal/electric output labels; retain this inconsistency without inventing an energy credit or correcting quantities. Original empty cement-kiln shares remain unburdened only under the observed source allocation. No water-content or lower-heating-value multiplier is applied.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. "
+      },
+      "validation": [
+        {
+          "check": "Brightpath signed quantities, uncertainty, profile refusal and atomic replay",
+          "passed_cases": 28
+        },
+        {
+          "check": "Premise cold/warm, portable evidence and omission-drift refusal",
+          "passed_cases": 26
+        },
+        {
+          "check": "Actual migrated helper LCI on unchanged native matrices",
+          "finite_cases": 3,
+          "receipt": "native_deferred_waste_markets_lci_report.json"
+        },
+        {
+          "check": "Full encrypted public scenario/certification/export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-waste-markets",
+          "activity_count": 12455,
+          "receipt": "deferred_waste_markets_export_report.json"
+        },
+        {
+          "check": "Readback of all restored inputs, fractions, uncertainty, audits and complete links; original background signatures unchanged",
+          "receipt": "deferred_waste_markets_export_readback.json",
+          "restored_input_count": 25
+        },
+        {
+          "check": "Eight separate RoW freight uncertainty distributions retained",
+          "receipt": "deferred_waste_markets_freight_uncertainty_readback.json"
+        },
+        {
+          "check": "Full migration generator byte-identical",
+          "sha256": "8ab1fc04bfcb7b23bbc9fa285c41d47bb381e544d7965a535cff412a24ddfca0"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "2ab4ec811b93943f4b47f0bfcb533b54f1e53372"
+        },
+        {
+          "repository": "premise",
+          "commit": "74fa379585d790078055adba838c7a8ff845b5c7"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-364b29f8f839f725ced0",
@@ -1212,5 +1521,35 @@
       "validation": [],
       "commits": []
     }
-  ]
+  ],
+  "auxiliary_component_decisions": [
+    {
+      "rule_id": "bp-97d38b4e34e0274c",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "review_path": "export/uvek_cable_rail_review.json",
+      "review_sha256": "adf7032f88911e11dde19f3684d776f1d1d2b8c4950e158b177c21dd2c62d880",
+      "fingerprint": "8fa309e1a269c9be9d20676d8b70263019c4d73951d1665c30164b837a9b3141",
+      "inventory_sha256": "091ca166a7c4f161d285e0b8413f8d8c57775213e94b6234b1d20823875fd5c1",
+      "metadata_sha256": "c419d8aeed8535c1134b2aa4554be4ede2e0f9afb3af144d15aee99301e4e05a",
+      "source": {
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "location": "CH",
+        "unit": "ton kilometer"
+      },
+      "limitations": [
+        "Use complete already-reviewed Swiss PF-diesel and electric-with-shunting freight services with the exact observed positive source market shares. Include vehicle manufacture, maintenance, tracks, operation and end of life. Do not substitute the former operation-only placeholder, normalize the shares or scale capacity/lifetimes. Native energy intensity, load factors, fleets, vintage and inventories remain screening approximations. Preserve caller signed amounts, uncertainty, formulas, foreground ownership and separate emissions; internal source market uncertainty/formulas are not reconstructed. No consequential conversion or inverse inferred."
+      ]
+    }
+  ],
+  "progress": {
+    "starting_deferred_exchanges": 20,
+    "restored_in_this_goal": 3,
+    "final_unsupported_omissions": 0,
+    "pending_exchanges": 17
+  }
 }

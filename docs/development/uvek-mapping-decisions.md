@@ -1,26 +1,37 @@
 # Remaining UVEK mapping decisions
 
-This log tracks the 20 deferred exchanges remaining after 22 original inputs were
-restored. The active goal is to resolve every case autonomously, with evidence,
-limitations and decisions retained for later review. The authoritative structured
-log is `premise/data/clic/remaining_mapping_decisions.json`. It retains each
-original source pin, exact signed exchange, rejected prior candidate, current
-status, evidence, selected disposition, validation and commit references.
+This ledger covers the 20 exchanges left after the first 22 restorations.
+Three further market inputs are now restored and validated; 17 remain pending.
+The authoritative structured record is
+`premise/data/clic/remaining_mapping_decisions.json`, retaining original source
+pins/exchanges, reference bases, rejected candidates, selected dispositions,
+evidence hashes, limitations, validation and exact commit references.
 
-Standing user auto-approval applies. Prefer verified counterparts, justified
-functional proxies and faithful reconstructions. Unsupported exchanges may receive
-explicit final omission decisions with warnings under the existing authorization;
-that is distinct from simply postponing their investigation. Do not silently
-change reference bases, concentration, signs, credits, ownership or system models.
-The user experience and electricity-pilot selection remain unchanged.
+## Autonomous decision policy
 
-The first batch reconstructs inert-waste and mineral-oil markets. Empty allocated
-clinker handovers have been independently checked and must not acquire invented
-landfill burdens. Original route fractions and freight remain explicit. A new
-freight binding was encountered for Swiss rail transport; its exact-profile
-approval needs checking before the parent composition is admitted.
+Use the user's standing auto-approval. Prefer verified counterparts, justified
+functional proxies and faithful reconstructions. Explicit final unsupported
+omissions are permitted only after evidence-based investigation, with warnings
+and unquantified effects; postponement alone does not resolve a case. Preserve
+cut-off-only routing, source ownership, signed quantities and supported
+uncertainty. The user-facing API and 9-root/55-record selection remain unchanged.
 
-| Original decision | Source profile | Exchange | Signed amount | Status |
+## Verified waste-market decisions
+
+The inert-waste and two mineral-oil markets retain every source treatment share
+and freight amount. Five audited, independently verified production-only clinker
+terminals are collapsed without invented landfill burdens or recovery credits.
+Incineration applies only to the original oil-incineration fractions. Four foreign
+rail legs use complete RER rail as documented geographic/fleet/loading proxies;
+the complete reviewed Swiss rail recipe is separately qualified after fresh
+source-reference and inventory-hash checks. The full encrypted scenario,
+certification, export and readback pass. Eight uncertain RoW freight legs retain
+their exact separate distributions; deterministic identical HWI entries may merge
+without changing their total. Scientific/LCIA equivalence is not claimed.
+
+## Case status
+
+| Original decision | Source profile | Source exchange | Signed amount | Status |
 | --- | --- | --- | ---: | --- |
 | `uvek-2026-screening-8286122f7b4a585ec69e` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.11e-05 kilogram | pending |
 | `uvek-2026-screening-f024a1de428dd3b3e3cd` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.11e-05 kilogram | pending |
@@ -28,11 +39,11 @@ approval needs checking before the parent composition is admitted.
 | `uvek-2026-screening-a36ecc3cfd0b1e70fbe0` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.384e-05 kilogram | pending |
 | `uvek-2026-screening-48ec18f887271c0c2356` | 3.6 cut-off | market group for natural gas, high pressure (Europe without Switzerland) | 0.2068145390620961 cubic meter | pending |
 | `uvek-2026-screening-cdba548fe7d3b9829dab` | 3.9 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 0.15038135208080808 kilogram | pending |
-| `uvek-2026-screening-ad29e37f34a7b0d2b065` | 3.9 cut-off | market for inert waste (CH) | -688484 kilogram | in_progress |
+| `uvek-2026-screening-ad29e37f34a7b0d2b065` | 3.9 cut-off | market for inert waste (CH) | -688484 kilogram | restored |
 | `uvek-2026-screening-e9ef258182b7597f7874` | 3.9 cut-off | market for waste concrete, not reinforced (CH) | -207020000 kilogram | pending |
-| `uvek-2026-screening-31a78eae0e6d78a50a8f` | 3.9 cut-off | market for waste mineral oil (CH) | -420000 kilogram | in_progress |
+| `uvek-2026-screening-31a78eae0e6d78a50a8f` | 3.9 cut-off | market for waste mineral oil (CH) | -420000 kilogram | restored |
 | `uvek-2026-screening-b81892ef79e851727f96` | 3.9 cut-off | market for waste concrete, not reinforced (Europe without Switzerland) | -5600 kilogram | pending |
-| `uvek-2026-screening-a68fb3c409e0ccbedc03` | 3.9 cut-off | market for waste mineral oil (RoW) | -466.40000000000003 kilogram | in_progress |
+| `uvek-2026-screening-a68fb3c409e0ccbedc03` | 3.9 cut-off | market for waste mineral oil (RoW) | -466.40000000000003 kilogram | restored |
 | `uvek-2026-screening-364b29f8f839f725ced0` | 3.9 cut-off | market for waste paperboard (RoW) | -31.2708 kilogram | pending |
 | `uvek-2026-screening-7eed9598b634124f22ad` | 3.9 cut-off | market for acrylic dispersion, with water, in 58% solution (RER) | 2.7e-06 kilogram | pending |
 | `uvek-2026-screening-ceb3843ec051ad01ed7d` | 3.9 cut-off | market for natural gas, high pressure (CH) | 0.003 cubic meter | pending |
@@ -43,4 +54,4 @@ approval needs checking before the parent composition is admitted.
 | `uvek-2026-screening-fc3ee282d0e21e35df15` | 3.12 cut-off | market for waste paperboard (RoW) | -0.60866 kilogram | pending |
 | `uvek-2026-screening-0e2220f339c9d5ced47d` | 3.12 cut-off | market for grain oriented electrical steel, 0.23 mm coil (RER) | 947.32 kilogram | pending |
 
-All initial entries remain unresolved; this ledger initialization approves no new mapping.
+Next: concrete and paperboard route boundaries, delivered-gas reference bases, solution bases and specialty materials.
