@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 20 |
+| 3.6 | 27 | 19 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
 | 3.9 | 17 | 30 |
 | 3.12 | 8 | 15 |
 
-These are 65 exact-profile cases involving 57 distinct rules, after reusing
+These are 64 exact-profile cases involving 56 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -398,10 +398,24 @@ refused on unresolved mappings. Triethylene glycol remains unresolved because
 the source includes a substantial recycled share. Zeolite also remains
 unresolved: the native spent catalyst-carrier composition includes carbon and
 metals absent from the source's stated carbon-free gas-process zeolite.
+The exact 3.6 Swiss class-2 wastewater treatment now uses its native counterpart
+without the additional residential sewer network in the old target. Both
+describe 71,100 population-capacity equivalents, COD 0.1556 kg/m3 and three-stage
+treatment with sludge digestion. The native plant, internal sewer grid and
+all other direct technosphere inputs remain; the old and new native targets'
+direct biosphere coordinates are identical within each release. Opposite
+references (-1 m3 waste / +1 m3 service) require factor -1 without volume or
+capacity scaling. Complete-process energy, chemical, sludge/residue and ash
+recovery differences remain warnings; no internal recipe is reconstructed.
+Ten focused Premise and 204 relevant Brightpath checks pass, the native LCI is
+finite with unchanged scientific hashes, all 282 earlier fingerprints remain
+valid and generator replay is byte-identical. The current correspondence
+module contains 578 cases; no full 578-case run is claimed. The other wastewater
+market, zeolite case and uninspected profiles remain refused.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 282 exact-profile fingerprints, with review evidence and
+ledger contains 283 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

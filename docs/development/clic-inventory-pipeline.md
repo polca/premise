@@ -594,6 +594,18 @@ remain valid and full generator replay is byte-identical. Actual 3.7/3.8 cohorts
 complete; the full pilot remains refused. Recycled triethylene-glycol supply
 and the spent-catalyst versus carbon-free-zeolite mismatch remain unresolved.
 
+`uvek_pilot_wastewater_endpoint_review.json` corrects only the inspected 3.6
+Swiss class-2 wastewater treatment endpoint. The existing native counterpart
+matches its treatment class, capacity and declared COD without adding the old
+target's residential sewer network. Keep native plant/internal-network inputs
+and direct emissions; opposite waste/service references require factor -1 per
+m3. Complete-process energy, chemical, residue/ash-recovery and biosphere
+differences remain explicit warnings. Ten focused Premise and 204 relevant
+Brightpath checks pass, the native supplier LCI is finite with unchanged
+scientific hashes, all 282 earlier fingerprints remain valid and full generator
+replay is byte-identical. Uninspected profiles, the separate wastewater market
+and the zeolite composition mismatch remain refused.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

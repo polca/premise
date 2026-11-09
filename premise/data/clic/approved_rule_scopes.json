@@ -19285,6 +19285,127 @@
           "fingerprint": "c446a898a1423cf1301317cd0610bc814deb99bcda5ce4ce8c08d976b706bc31"
         }
       ]
+    },
+    {
+      "rule_id": "bp-fb5a0385ef4ba237",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_wastewater_endpoint_review.json",
+      "review_sha256": "d83932e5b421590f621b4b5d9f2532468fac7641846d70dc2f9a4c68dd0f1ada",
+      "authorization": "Standing auto-approval of independently inspected matching whole-function/unit disposal services, applied to the actual negative-reference Swiss class-2 wastewater treatment and its positive-reference native counterpart. The closer native target removes an erroneous extra residential-collection stage while preserving the complete treatment plant and its internal sewer infrastructure. No new waste grade, treatment fate, helper, recovery model, physical quantity basis or reconstruction is introduced.",
+      "inspection": {
+        "rule_id": "bp-fb5a0385ef4ba237",
+        "source": {
+          "location": "CH",
+          "name": "treatment of wastewater, average, capacity 1.1E10l/year",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+          "reference product": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "name": "Treatment, sewage, to wastewater treatment, class 2",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 2",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_reference_unit": "cubic meter",
+        "source_metadata_sha256": "2930084c62ffd710001e11a425d2d7733553da74854b98ec7e2f85008b306004",
+        "source_inventory_sha256": "277081125709e797786048f51b40da47a599f01be9d94d27276705f57b769791",
+        "source_comment_sha256": "fb05f569c1eb81a883951274e176f87c5357bfb027f843a83d6470b8acd46133",
+        "conversion_factor": -1,
+        "capacity_class": 2,
+        "declared_population_capacity": 71100,
+        "declared_cod_kg_per_m3": 0.1556,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 2",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 2",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "4f07f4dc044c274481ac683d3d1766bd83f5d3361ce3c8fe4a4408eeaa780a96",
+            "inventory_sha256": "4a9e365921dac65a2f26a2400c983016ed0bf174a26d40b481ff0afe2d8ddf1b",
+            "comment_sha256": "f5b28c4380b9380a711b88a84a97e56f9857ac8cef6d8c617a13744be00e1ca1",
+            "direct_technosphere_coordinates": 30
+          },
+          "2026": {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 2",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 2",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "metadata_sha256": "65bc8845e04c6879846a7972d4e44237c4f052eb75cf23029417f4f9b3e1375f",
+            "inventory_sha256": "b64e7b61f6984f7cceb2ded0085bfb1d536bbc1322c9573df0c20d15c03f27f3",
+            "comment_sha256": "02071f0a1c325f9db1284d16d12e7d521cb12a6e8d22b8d0649edeeaf60889f5",
+            "direct_technosphere_coordinates": 30
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "previous_target_extra_stage": {
+          "2025": {
+            "identity": {
+              "location": "CH",
+              "name": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+              "reference product": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "856f5eec307aa8d546288a790832b68a654c5958c0c521027ec871f6d914b6e3",
+            "inventory_sha256": "94fa890ceee253bb49329ab4df4e8cce06930377bbc2c3a4f0dd509f3c0fbd6c",
+            "extra_stage": "Residential sewer grid",
+            "direct_biosphere_coordinates_unchanged": true,
+            "direct_biosphere_coordinates": 104
+          },
+          "2026": {
+            "identity": {
+              "location": "CH",
+              "name": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+              "reference product": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "5d43a9007af9eee298e57e5d2f1851e9dd7faf506347618f4ad775ab8c1b0de3",
+            "inventory_sha256": "d85f792778e3330b202796928aed97684b61c9f8a2e12ceddd3eea31cd6315de",
+            "extra_stage": "Residential sewer grid",
+            "direct_biosphere_coordinates_unchanged": true,
+            "direct_biosphere_coordinates": 105
+          }
+        },
+        "boundary": "Same complete Swiss class-2 municipal wastewater treatment per m3, with 71100 population-capacity equivalents, declared COD 0.1556 kg/m3, three-stage mechanical/biological/chemical treatment and sludge digestion. Select the existing native treatment process without the additional Residential sewer grid in the previous from-residence target. Source and target retain their class-2 plant and internal sewer-grid infrastructure; do not remove that internal network or add a collection/loss factor. One source waste reference is -1 m3 and the native service reference is +1 m3, so preserve the magnitude with factor -1, including negative and positive caller exchanges, formulas and uncertainty. Keep complete native operation, chemicals, sludge treatment, energy supplies, transport and emissions once, together with separately listed caller collection, transport and emissions. Actual historical source/native backgrounds, energy supplies, reagent bases, paper/plastic/sludge residue routes and ash extraction/recovery, allocations, water/biosphere definitions and vintage differ. These remain explicit screening limitations with unquantified score effects; do not reconstruct those internal differences or add a credit. The native reference and matching class/COD do not establish full composition or LCIA equivalence. Only the exact inspected 3.6 cut-off profile is admitted."
+      },
+      "limitations": [
+        "Same complete Swiss class-2 municipal wastewater treatment per m3, with 71100 population-capacity equivalents, declared COD 0.1556 kg/m3, three-stage mechanical/biological/chemical treatment and sludge digestion. Select the existing native treatment process without the additional Residential sewer grid in the previous from-residence target. Source and target retain their class-2 plant and internal sewer-grid infrastructure; do not remove that internal network or add a collection/loss factor. One source waste reference is -1 m3 and the native service reference is +1 m3, so preserve the magnitude with factor -1, including negative and positive caller exchanges, formulas and uncertainty. Keep complete native operation, chemicals, sludge treatment, energy supplies, transport and emissions once, together with separately listed caller collection, transport and emissions. Actual historical source/native backgrounds, energy supplies, reagent bases, paper/plastic/sludge residue routes and ash extraction/recovery, allocations, water/biosphere definitions and vintage differ. These remain explicit screening limitations with unquantified score effects; do not reconstruct those internal differences or add a credit. The native reference and matching class/COD do not establish full composition or LCIA equivalence. Only the exact inspected 3.6 cut-off profile is admitted."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6740e259f9809a44523d23225489ba0a03d85afc33d458ffe4a0b66d45ad42d0"
+        }
+      ]
     }
   ]
 }

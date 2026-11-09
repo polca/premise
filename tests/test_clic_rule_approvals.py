@@ -340,6 +340,7 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
             "bp-d60ada0a6741edb5",
             "bp-3aedb5762ff23e68",
             "bp-b39070e2c2728597",
+            "bp-fb5a0385ef4ba237",
         ]
     ]
     + [
@@ -381,7 +382,7 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
     ).harmonize(resolved, version="2026", family="uvek")
     target = result.activities[0]["exchanges"][1]
     assert target["amount"] == -amount
-    assert target["unit"] == "kilogram"
+    assert target["unit"] == source["unit"] == rule["target"]["unit"]
     assert all(target[k] == v for k, v in rule["target"].items())
     assert target["negative"] is (amount > 0)
     assert target["loc"] == source["loc"] and target["scale"] == source["scale"]
@@ -827,6 +828,7 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-1cb5578cf49cfd48",
         "bp-cac4eeaf7215b33d",
         "bp-ac5d1249cfc2626f",
+        "bp-fb5a0385ef4ba237",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1552,6 +1554,75 @@ def test_unreviewed_waste_fate_changes_still_refuse_migration(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
     resolved = graph(rule["source"], version=version)
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
+        )
+    assert resolved.activities == before
+
+
+def test_wastewater_endpoint_keeps_treatment_volume_and_cached_stage_warning(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-fb5a0385ef4ba237"
+    )
+    resolved = graph(rule["source"], version="3.6")
+    resolved.activities[0]["exchanges"][1]["amount"] = -2.5
+    resolved.activities[0]["exchanges"].append(
+        {
+            "name": "Carbon dioxide, fossil",
+            "categories": ("air", "non-urban air or from high stacks"),
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.037,
+            "uncertainty type": 0,
+            "formula": "separate_caller_emissions",
+        }
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 3
+        treatment, emission = activity["exchanges"][1:]
+        assert (
+            treatment["name"] == "Treatment, sewage, to wastewater treatment, class 2"
+        )
+        assert treatment["amount"] == 2.5 and treatment["unit"] == "cubic meter"
+        assert (
+            emission["amount"] == 0.037
+            and emission["formula"] == "separate_caller_emissions"
+        )
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
+        )
+        assert "Residential sewer grid" in warning["message"]
+        assert "internal sewer-grid infrastructure" in warning["message"]
+        assert "ash extraction/recovery" in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize("rule_id", ["bp-1d429dc5bcb36b3e", "bp-3c10f9aaee8ffe42"])
+def test_other_zeolite_and_wastewater_market_boundaries_remain_unapproved(
+    tmp_path, rule_id
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version="3.9")
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
         ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
