@@ -378,3 +378,24 @@ restored, two partial and one final unsupported omission. Across the original
 omission remains separate. Scores remain screening. Installed-wheel checks are
 the next electricity milestone gate. This does not complete the expanded goal:
 all 18 additional sector updates still require implementation and integration.
+
+### Electricity milestone verified from installed wheels
+
+Both isolated installed wheels pass all 41 full/partial caller migrations,
+447 approved scopes, 3,667 recipes and 756 reviews. Exact GOES omission and
+uninspected-release/cross-system-model refusal checks pass. A fresh encrypted
+REMIND public run using those installed packages passes electricity update,
+certification and Brightway export. Independent readback of its 12,516 activities
+verifies complete links, 39 full/2 partial/1 final unsupported dispositions, all
+113 titanium helper recipes, warning/audit/uncertainty retention and two finite
+LCIs. All 55 source pins and foreground provenance match the original nine-root
+recipe; background scientific signatures remain unchanged.
+
+The requirement-level electricity audit is recorded in
+[uvek-electricity-milestone-verification.json](uvek-electricity-milestone-verification.json),
+with hashes of the private reproducibility receipts and tested wheels. No
+supported background version, sector gate or electricity root selection changed.
+Five obsolete owned cohort caches were removed (14,346,194 bytes); all five
+current cohorts were retained. Local commits are Brightpath `f294050` and Premise
+`9f350ae4` for titanium, with earlier dispositions preserved in history. No push
+was performed. The expanded goal remains active for the 18 other sector updates.

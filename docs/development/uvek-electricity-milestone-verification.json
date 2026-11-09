@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "milestone": "electricity_pilot_mapping_and_export",
+  "status": "verified_screening_milestone",
+  "expanded_goal_complete": false,
+  "remaining_scope": "Operationalize18additionalstandardsectorupdates; each is currentlyaudited_not_operational.",
+  "background": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "source_selection": {
+    "roots": 9,
+    "clic_records": 55,
+    "all_source_pins_and_provenance_verified": true,
+    "provider": "CLIC"
+  },
+  "original42_dispositions": {
+    "fully_restored": 39,
+    "partial": 2,
+    "final_unsupported": 1,
+    "pending": 0
+  },
+  "goal_starting20_dispositions": {
+    "restored": 17,
+    "partially_restored_with_final_unsupported_branches": 2,
+    "final_unsupported": 1
+  },
+  "export": {
+    "name": "premise-uvek-2026-remind-SSP2-NPi-2050-electricity-final-wheel",
+    "activity_count": 12516,
+    "scientific_status": "screening_only",
+    "readback_complete_links": true,
+    "source_signatures_unchanged": true
+  },
+  "requirements": [
+    {
+      "requirement": "Original20deferrals each have final evidence-based disposition, with no postponed cases.",
+      "evidence": "remaining_mapping_decisions.json:17restored/2partial/1finalunsupported; each retains originalpin, evidence and validation.",
+      "status": "proved"
+    },
+    {
+      "requirement": "Nine electricity roots,55CLICrecords and their source ownership/pins retained.",
+      "evidence": "Actual installed-wheel exportmanifest/provenance compared with all55original recipe pins;9roots unchanged; CLIC provider remains source.",
+      "status": "proved"
+    },
+    {
+      "requirement": "Exact-profile signs/quantities/formulas/uncertainty, allocation/recovery boundaries and refusal gates.",
+      "evidence": "Focused per-batch tests and pre-IAM sourcegraph checks; final41caller installed-wheel migrations, unsupportedrelease/cross-model refusals and exact947.32kgGOESaudit.",
+      "status": "proved"
+    },
+    {
+      "requirement": "Scientific limitations and omissions remain visible; no impact-completeness claim.",
+      "evidence": "Actual exported screening metadata:39full/2partial/1finalunsupported;22paperboard branches; separate priorCSPomission; literal sourceaudits, stock bindings, full proxy warnings and canonically linked flows.",
+      "status": "proved"
+    },
+    {
+      "requirement": "Public API encrypted scenario, update/certification/export and finite LCI.",
+      "evidence": "REMIND SSP2-NPi2050 actual installed-wheel run;12516activities;2independent prospective readback demands finite;113titaniumhelpers checked.",
+      "status": "proved"
+    },
+    {
+      "requirement": "Generated and packaged resources are reproducible and source backgrounds unchanged.",
+      "evidence": "Byte-identical generator replay and resource-manifest pin; both wheelimports isolated fromcheckouts; all447scopes/3667recipes/756reviews checked; native/BIO scientificsignatures unchanged.",
+      "status": "proved"
+    },
+    {
+      "requirement": "Targeted commits and unused owned cache cleanup; no push.",
+      "evidence": "Brightpathf294050; Premise9f350ae4 and earlier targeted batches; cache_cleanup_after_titanium.json retains5current cohorts, removes5obsoleteentries(14346194bytes).",
+      "status": "proved"
+    }
+  ],
+  "verification_receipts": [
+    {
+      "name": "electricity_final_installed_wheel_checks.json",
+      "sha256": "b6ff1a5d6c2f9c4596abc7cef9badb74f5dc9bdfeea7d920f7b63f481f6409ab",
+      "location": "private task workspace"
+    },
+    {
+      "name": "electricity_final_wheel_export_report.json",
+      "sha256": "26c4b7396c1db9f5fcf61ec8c27a4cbb246989bc1ee873a91a7aec911347a095",
+      "location": "private task workspace"
+    },
+    {
+      "name": "electricity_final_wheel_export_readback.json",
+      "sha256": "af33da05c6d59969e9f52d11fc1121f4042e9884b53b052051dc34e6165c5884",
+      "location": "private task workspace"
+    },
+    {
+      "name": "deferred_titanium_generator_replay.json",
+      "sha256": "25b9255ff323b00e6b9c87b669707c0753454f1983acd134e234de270fbffddc",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_deferred_titanium_lci_report.json",
+      "sha256": "1fa9563b0c0739e5791b5ded6eef07ed2b00ba3a8384656f640d7827fdb95203",
+      "location": "private task workspace"
+    },
+    {
+      "name": "deferred_titanium_quantity_check.json",
+      "sha256": "77a77a547628263e1b0b025c04d66f80c81880e5b3c4d74fd1c0b8999293cb31",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_titanium.json",
+      "sha256": "13519c2f9d7469fa39575bc6a23e73bbb4dc9488d37a37b37332635f4a272f27",
+      "location": "private task workspace"
+    },
+    {
+      "name": "electricity_final_wheel_ledger_delta.json",
+      "sha256": "9dcde7c4b7daeed8f061c30dca3a83d35565f1eacca662b31afc34481e814372",
+      "location": "private task workspace"
+    },
+    {
+      "name": "electricity_final_ledger_install.log",
+      "sha256": "5b1bd3bef020278261eb689a35817430ab862697d96a355dda673fc0ac379ffb",
+      "location": "private task workspace"
+    }
+  ],
+  "wheels": [
+    {
+      "name": "brightpath-1.0.0a14-py3-none-any.whl",
+      "sha256": "2c36b1d18c51a475d73fcd39e1c1558f1fe06b874b5b79a3c57a29187792c581"
+    },
+    {
+      "name": "premise-2.6.0-py3-none-any.whl",
+      "sha256": "833e350f06ca3f115c676f357ef0f13381d0d517366f124d448792b2ff35366d"
+    }
+  ]
+}
