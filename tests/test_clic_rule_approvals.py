@@ -655,14 +655,40 @@ def test_review_limitations_survive_cache_and_invalidate_stale_warning(
     )
 
 
-def test_refused_transaction_retains_review_limitations_without_target(tmp_path):
+def test_refused_transaction_retains_review_limitations_without_target(
+    tmp_path, monkeypatch
+):
+    from brightpath import TechnosphereProfile
     from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
-    indexed = {r["id"]: r for r in load_uvek_technosphere_resource()["replace"]}
+    resource = load_uvek_technosphere_resource()
+    indexed = {r["id"]: r for r in resource["replace"]}
     reviewed = indexed["bp-0227e3e438bfcee6"]
-    unreviewed = indexed["bp-4438f1d4119c16e4"]
-    resolved = graph(reviewed["source"], unreviewed["source"], version="3.6")
+    withheld = indexed["bp-4438f1d4119c16e4"]
+    withheld_scope = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        withheld,
+        TechnosphereProfile("ecoinvent", "3.6", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+
+    # The turbine now has a separate review. Withhold only this test's policy
+    # admission so the rollback assertion stays independent of the live queue.
+    def policy_without_turbine(target):
+        return tuple(
+            scope
+            for scope in approved_compatibility_rule_scopes(target)
+            if scope != withheld_scope
+        )
+
+    monkeypatch.setattr(
+        "premise.inventory.clic_harmonize.approved_compatibility_rule_scopes",
+        policy_without_turbine,
+    )
+    resolved = graph(reviewed["source"], withheld["source"], version="3.6")
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
         ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
@@ -1772,11 +1798,10 @@ def test_approved_dense_soda_proxy_keeps_missing_densification_warning_in_cache(
     "rule_id,version",
     [
         ("bp-e6c831a29eb4d1fa", "3.6"),
-        ("bp-ccc007a13f79d195", "3.9"),
         ("bp-ef0d29b6fa71b9c8", "3.9"),
         ("bp-dc3ac2fe6b0e61bf", "3.9"),
-        # Plastic DE/RoW now preserve their complete source fates; the old flat
-        # endpoints remain refused in test_old_flat_waste_endpoint_remains_unapproved.
+        # Plastic DE/RoW and PE collection now preserve their source fates;
+        # their old flat endpoints remain refused in the fingerprint test below.
         ("bp-7df5d08d5bab9d33", "3.9"),
     ],
 )
@@ -1873,6 +1898,7 @@ def test_other_wastewater_market_boundaries_remain_unapproved(tmp_path, rule_id)
         ("uvek_pilot_uncontrolled_market_review.json", "bp-e172491d6da0b115", "3.9"),
         ("uvek_pilot_uncontrolled_market_review.json", "bp-b7606642f4256898", "3.9"),
         ("uvek_pilot_uncontrolled_market_review.json", "bp-5c29c14c8825b76f", "3.12"),
+        ("uvek_pilot_pe_collection_review.json", "bp-ccc007a13f79d195", "3.9"),
     ],
 )
 def test_old_flat_waste_endpoint_remains_unapproved(review_file, rule_id, version):
