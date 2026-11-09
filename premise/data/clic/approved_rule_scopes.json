@@ -42982,6 +42982,1637 @@
           "fingerprint": "0a29d2ff63b18f7707350097c8d33d7d2764a6747835f2bc7d3e189d45888aef"
         }
       ]
+    },
+    {
+      "rule_id": "bp-40761695e2d0fc24",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_scrap",
+      "review_path": "export/uvek_pilot_nitrate_scrap_review.json",
+      "review_sha256": "ec45074cda73e22561d106b1583fb7de617742911a2b4424a170a3060215db7f",
+      "authorization": "Standing ordinary same-waste/unit whole-treatment and exact documented-composition screening proxies, complete whole-freight services and source-preserving market helpers. Fresh42-coordinate and recovered-mass matches, production-only cutoff recovery suppliers and absenceofFAE establish this exact ordinary-case scope. No new treatment, physical omission, recovery credit or cross-model decision.",
+      "inspection": {
+        "rule_id": "bp-40761695e2d0fc24",
+        "source": {
+          "location": "RoW",
+          "name": "market for scrap aluminium",
+          "reference product": "scrap aluminium",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "classification": "proxy",
+          "confidence": 1,
+          "conversion_factor": -1.0,
+          "id": "bp-40761695e2d0fc24",
+          "mapping_method": "reviewed_market_composition",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_market_composition_review.json"
+            ],
+            "profiles": [
+              {
+                "conversion_factor": -1.0,
+                "review": {
+                  "evidence": [
+                    "brightpath/data/export/uvek_market_composition_review.json#ecoinvent-3.6-cutoff/dbc72640efafee8c91a6ca30497923fdfc20c29870c3f02a211b0599d9aa685d"
+                  ],
+                  "reason": "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up older regional road correction retains every signed source coefficient: complete RER heavy-lorry fleet for original all-sizes road markets. Geographic fleet, vintage and inventory differences remain screening limitations; no inverse is inferred.",
+                  "source_sign": -1.0,
+                  "status": "verified",
+                  "target_sign": 1
+                },
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.6"
+                },
+                "target": {
+                  "recipe_ref": "older-regional-road-market-composition-d872877aa03c5263d55a"
+                }
+              },
+              {
+                "conversion_factor": -1.0,
+                "review": {
+                  "evidence": [
+                    "brightpath/data/export/uvek_market_composition_review.json#ecoinvent-3.7-cutoff/7cddcca70f05e0344504dc9e382145c451d4c486451871c0b4c0dd37266c99eb"
+                  ],
+                  "reason": "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up older regional road correction retains every signed source coefficient: complete RER heavy-lorry fleet for original all-sizes road markets. Geographic fleet, vintage and inventory differences remain screening limitations; no inverse is inferred.",
+                  "source_sign": -1.0,
+                  "status": "verified",
+                  "target_sign": 1
+                },
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.7"
+                },
+                "target": {
+                  "recipe_ref": "older-regional-road-market-composition-648dee5ad420d8b1fed3"
+                }
+              },
+              {
+                "conversion_factor": -1.0,
+                "review": {
+                  "evidence": [
+                    "brightpath/data/export/uvek_market_composition_review.json#ecoinvent-3.8-cutoff/c7b5b8074409aafeac52bf9aba8f3ac7d1646d8b334c30380c45ad8e25cc324c"
+                  ],
+                  "reason": "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up older regional road correction retains every signed source coefficient: complete RER heavy-lorry fleet for original all-sizes road markets. Geographic fleet, vintage and inventory differences remain screening limitations; no inverse is inferred.",
+                  "source_sign": -1.0,
+                  "status": "verified",
+                  "target_sign": 1
+                },
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.8"
+                },
+                "target": {
+                  "recipe_ref": "older-regional-road-market-composition-23f47f075ce5108c00ff"
+                }
+              },
+              {
+                "conversion_factor": -1.0,
+                "review": {
+                  "evidence": [
+                    "brightpath/data/export/uvek_market_composition_review.json#ecoinvent-3.9-cutoff/1780aecc2625eecc27700eb2471c887248b07f1df4a7f07bea6afc90a0e2c2cb"
+                  ],
+                  "reason": "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up older regional road correction retains every signed source coefficient: complete RER heavy-lorry fleet for original all-sizes road markets. Geographic fleet, vintage and inventory differences remain screening limitations; no inverse is inferred.",
+                  "source_sign": -1.0,
+                  "status": "verified",
+                  "target_sign": 1
+                },
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.9"
+                },
+                "target": {
+                  "recipe_ref": "older-regional-road-market-composition-14f604bbe44ed6c0b52c"
+                }
+              },
+              {
+                "conversion_factor": -1.0,
+                "review": {
+                  "evidence": [
+                    "brightpath/data/export/uvek_market_composition_review.json#ecoinvent-3.10-cutoff/62d9471487d3ca9c007f20f8329daeeda420def25fe6badfef97df5a3e64ec5b"
+                  ],
+                  "reason": "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred. Follow-up older regional road correction retains every signed source coefficient: complete RER heavy-lorry fleet for original all-sizes road markets. Geographic fleet, vintage and inventory differences remain screening limitations; no inverse is inferred.",
+                  "source_sign": -1.0,
+                  "status": "verified",
+                  "target_sign": 1
+                },
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.10"
+                },
+                "target": {
+                  "recipe_ref": "older-regional-road-market-composition-0615ca7b0e8ce991133c"
+                }
+              }
+            ],
+            "reason": "Select an exact inspected market profile; no unreviewed component or profile fallback is approved.",
+            "status": "unresolved"
+          },
+          "report_correspondence": true,
+          "review_ref": "r-7a90c836ca379739",
+          "source": {
+            "location": "RoW",
+            "name": "market for scrap aluminium",
+            "reference product": "scrap aluminium",
+            "unit": "kilogram"
+          },
+          "target": {
+            "recipe_ref": "older-regional-road-market-composition-d872877aa03c5263d55a"
+          },
+          "technosphere_information_loss": "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred."
+        },
+        "previous_rule_sha256": "39fd042233fef65f86d25265dc380800b964a4036165c7013a5c4bbbd9f14ac8",
+        "previous_review": {
+          "evidence": [
+            "brightpath/data/export/uvek_market_composition_review.json"
+          ],
+          "limitations": [
+            "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred."
+          ],
+          "rationale": "Reviewed market-composition helper: retain the inspected active supply mix and freight quantities, using only the existing resolved directional component mappings for this exact source profile. The source has a unit-magnitude reference, active technosphere inputs only and no direct biosphere exchanges. Apply each component's reference-sign factor independently: negative inputs to negative treatment references are treatment demand, whereas negative inputs to positive product references are recovery credits. No component omission, empty allocation or missing-provider fallback is used. These helpers inherit the component correspondences' heuristic, technology, composition, geography and allocation approximations; resolved signs do not establish scientific or LCIA equivalence. Internal component uncertainty and parameter formulas are not reconstructed. Preserve caller-owned signed quantities, uncertainty, formulas, foreground suppliers, production and separate emissions. Score and export all returned helpers. Missing or changed exact profiles require a new review; no reverse correspondence is inferred."
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "8e6396c0e7cf4890c37eda5718925360bcc0f1c6b1093cbdfd69a32f3634beba",
+        "source_inventory_sha256": "1780aecc2625eecc27700eb2471c887248b07f1df4a7f07bea6afc90a0e2c2cb",
+        "ordinary_treatment": {
+          "source": {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap aluminium, municipal incineration",
+              "reference product": "scrap aluminium",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "93776e70a1e77006baf44771bcc2e4d8f2369a88d28d03c7436672a37608c9c0",
+            "inventory_sha256": "8d6a2115c2099d976e8207deb1692fea0748c54fdaffb823dc411beb6d30b99d"
+          },
+          "target": {
+            "name": "Disposal, aluminium, 0% water, to municipal incineration",
+            "reference product": "Disposal, aluminium, 0% water, to municipal incineration",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "composition_coordinates": 42,
+          "all_documented_coordinates_match": true,
+          "recovery_kg": 0.30848,
+          "recovered_cutoff_stock": {
+            "version": "3.9",
+            "identity": {
+              "name": "aluminium scrap, post-consumer, prepared for melting, Recycled Content cut-off",
+              "reference product": "aluminium scrap, post-consumer, prepared for melting",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "eb1d69731afcd1ef875bba141f8273ceb093aeea50535f64e84ebd694fdda007",
+            "inventory_sha256": "32bc3ae97e4ad0f158c0b7823f9d184832b5719f82558635d025ce0abf9018a2"
+          },
+          "stock_nonproduction_exchanges": 0
+        },
+        "freight_witnesses": [
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "ed97ca397ef7323e2357655f573957cc0005990fad334425c5632953c3adefd9",
+            "source_inventory_sha256": "0c8c82d65ba37661f71d1f25995ca6844781744a4c664a33248f1146ddc0d04d",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_resolved_child_market_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0008124854420980722,
+              "uncertainty type": 2,
+              "loc": -7.115412561338657,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "5eec92f28619a465ce59cbbbe58bba9499d8a8475c5561584dcc6c13f4d47a7a",
+            "source_inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0029325763106612677,
+              "uncertainty type": 2,
+              "loc": -5.831873955384336,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "3bc5d719214ed513eddb1f3263ffee6467f3380de745db3164d20746da65f0f9",
+            "source_inventory_sha256": "67d3a561f43de59c8b3b483db80f4ca1f9abe9e603c42c1b3d7886f9f6f6a579",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.00020573828760997995,
+              "uncertainty type": 2,
+              "loc": -8.488905645373796,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "9242044d72ee67df879c1ce100501eb5bb9c534759f95c078b9c25e745c3897a",
+            "source_inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_pilot_nitrate_operating_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0040458296676008434,
+              "uncertainty type": 2,
+              "loc": -5.510068640084499,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "6bdd38a9de2e0bb427c64623a8de9d7bbc03ff96a3a946c89aafa18366d60169",
+            "source_inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.003203370292029836,
+              "uncertainty type": 2,
+              "loc": -5.7435518071602525,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "291bc540633513fe3d1341e31fa63d87624ee1b8c03dbcf52f97a71e9daf6270",
+            "source_inventory_sha256": "5d63ba039a6eb078230a4bd26fda48d2d3567f593d8136aa50bc51a30ff9d0bd",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_average_sludge_landfarming_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_older_regional_road_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0003461605163611663,
+              "uncertainty type": 2,
+              "loc": -7.96860797036524,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "ee4483351124f67842363308e01fd9a0d8a5081b3b16f128978938eab15fbd14",
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_average_sludge_landfarming_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_resolved_child_market_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_older_regional_road_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.016762842782120813,
+              "uncertainty type": 2,
+              "loc": -4.0885905812399015,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "95cb1dc98af9189e31e2dd9aae1a97f50db830f32b0b3073ccdfe697f7b5c8ba",
+            "source_inventory_sha256": "999dcbf65753e116027a726bf5204b3a97ffd00f0a12b4688e9a7a3aa037de11",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_average_sludge_landfarming_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_older_regional_road_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.002210996701518021,
+              "uncertainty type": 2,
+              "loc": -6.114311868958677,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          }
+        ],
+        "preserve_other_profiles": true,
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "1780aecc2625eecc27700eb2471c887248b07f1df4a7f07bea6afc90a0e2c2cb",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "name": "Disposal, aluminium, 0% water, to municipal incineration",
+                "reference product": "Disposal, aluminium, 0% water, to municipal incineration",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0008124854420980722,
+                "uncertainty type": 2,
+                "loc": -7.115412561338657,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0029325763106612677,
+                "uncertainty type": 2,
+                "loc": -5.831873955384336,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00020573828760997995,
+                "uncertainty type": 2,
+                "loc": -8.488905645373796,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0040458296676008434,
+                "uncertainty type": 2,
+                "loc": -5.510068640084499,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.003203370292029836,
+                "uncertainty type": 2,
+                "loc": -5.7435518071602525,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0003461605163611663,
+                "uncertainty type": 2,
+                "loc": -7.96860797036524,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.016762842782120813,
+                "uncertainty type": 2,
+                "loc": -4.0885905812399015,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.002210996701518021,
+                "uncertainty type": 2,
+                "loc": -6.114311868958677,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of scrap aluminium, municipal incineration",
+                  "scrap aluminium",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "28b824272056697fd3619aa1d25d7e6fb7f5da37916a6904e0f3795a61cb9a01"
+              }
+            ]
+          }
+        ],
+        "limitations": "Only the exact ecoinvent3.9cutoff RoW scrap-aluminium and scrap-copper markets: preserve their sole ordinary-incineration demand and all eight original collection entries each, retaining amounts, normal/lognormal uncertainty, bounds, pedigree and exchange order. Both source market/treatment references are-1kg; callers map at factor-1 to positive one-kg helpers and the negative treatment coefficient independently becomes positive complete native treatment. Reuse the standing same-waste/unit ordinary-MSWI whole-function screening correspondence and documented-composition rule: all42 wet-composition coordinates, including unknowns, match each specific native0%-water metal incinerator. Native documentation also matches source recovery308.48gAl or310gCu perkg; source recovered-stock links point only to positive production-only RecycledContentcutoff handovers. Preserve that burden-free boundary without inventing avoided-primary-production credits, charged remelting or separate empty-stock demand; do not replace any nonempty recovery supplier. The complete native treatment retains its own residue disposal, operations, internal energy and infrastructure once. Historical geography, background supplier mixes, slag/emission accounting, allocation, internal uncertainty, native upstream biosphere exclusions and vintage differences remain explicit warnings with unquantified score effects; full inventory or LCIA equivalence is not established. Preserve source market collection separately from native treatment-internal residue transport. Complete generic RER rail and heavy-road services follow the existing exact whole-freight witnesses, not coal-only CN rail or diesel-only US rail; retain all individual entries and their original signed tkm, without aggregation, normalization, traction/distance/payload factors or duplicate vehicle infrastructure. Restore the original freight uncertainty missing from the earlier aluminium composition. The existing aluminium default target and every non3.9profile entry and recipe remain unchanged. No SwissFAE correspondence, fly-ash extraction, new recovery technology, moisture/density factor, standalone scrap recovery/freight approval, reverse or cross-model route is admitted. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and purchases. Only the two inspected3.9cutoff profiles receive new Premise approvals; old aluminium raw-profile availability does not admit unapproved CLIC scopes.",
+        "previous_target": {
+          "recipe_ref": "older-regional-road-market-composition-d872877aa03c5263d55a"
+        },
+        "original_factor": -1.0,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "GENERATED_SERVICE"
+      },
+      "limitations": [
+        "Only the exact ecoinvent3.9cutoff RoW scrap-aluminium and scrap-copper markets: preserve their sole ordinary-incineration demand and all eight original collection entries each, retaining amounts, normal/lognormal uncertainty, bounds, pedigree and exchange order. Both source market/treatment references are-1kg; callers map at factor-1 to positive one-kg helpers and the negative treatment coefficient independently becomes positive complete native treatment. Reuse the standing same-waste/unit ordinary-MSWI whole-function screening correspondence and documented-composition rule: all42 wet-composition coordinates, including unknowns, match each specific native0%-water metal incinerator. Native documentation also matches source recovery308.48gAl or310gCu perkg; source recovered-stock links point only to positive production-only RecycledContentcutoff handovers. Preserve that burden-free boundary without inventing avoided-primary-production credits, charged remelting or separate empty-stock demand; do not replace any nonempty recovery supplier. The complete native treatment retains its own residue disposal, operations, internal energy and infrastructure once. Historical geography, background supplier mixes, slag/emission accounting, allocation, internal uncertainty, native upstream biosphere exclusions and vintage differences remain explicit warnings with unquantified score effects; full inventory or LCIA equivalence is not established. Preserve source market collection separately from native treatment-internal residue transport. Complete generic RER rail and heavy-road services follow the existing exact whole-freight witnesses, not coal-only CN rail or diesel-only US rail; retain all individual entries and their original signed tkm, without aggregation, normalization, traction/distance/payload factors or duplicate vehicle infrastructure. Restore the original freight uncertainty missing from the earlier aluminium composition. The existing aluminium default target and every non3.9profile entry and recipe remain unchanged. No SwissFAE correspondence, fly-ash extraction, new recovery technology, moisture/density factor, standalone scrap recovery/freight approval, reverse or cross-model route is admitted. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and purchases. Only the two inspected3.9cutoff profiles receive new Premise approvals; old aluminium raw-profile availability does not admit unapproved CLIC scopes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "84ab2d3f148e43ad7700fda68ca6604c956d23dcdc5700d79f488b4757f60054"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-abb99c164e8e6883",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_scrap",
+      "review_path": "export/uvek_pilot_nitrate_scrap_review.json",
+      "review_sha256": "ec45074cda73e22561d106b1583fb7de617742911a2b4424a170a3060215db7f",
+      "authorization": "Standing ordinary same-waste/unit whole-treatment and exact documented-composition screening proxies, complete whole-freight services and source-preserving market helpers. Fresh42-coordinate and recovered-mass matches, production-only cutoff recovery suppliers and absenceofFAE establish this exact ordinary-case scope. No new treatment, physical omission, recovery credit or cross-model decision.",
+      "inspection": {
+        "rule_id": "bp-abb99c164e8e6883",
+        "source": {
+          "location": "RoW",
+          "name": "market for scrap copper",
+          "reference product": "scrap copper",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.6,
+          "conversion_factor": -1,
+          "id": "bp-abb99c164e8e6883",
+          "mapping_method": "pairwise_review",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-abb99c164e8e6883"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "review_ref": "r-c722d5b67b2c4523",
+          "source": {
+            "location": "RoW",
+            "name": "market for scrap copper",
+            "reference product": "scrap copper",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, copper, 0% water, to municipal incineration",
+            "reference product": "Disposal, copper, 0% water, to municipal incineration",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "a6442c606e90fd932498c5cf62f224f5d15621194eeecac8b404e8f9304af2c2",
+        "previous_review": {
+          "limitations": [
+            "Identity-level comparison only; inventory composition and LCIA equivalence are not verified.",
+            "Geographic proxy."
+          ],
+          "rationale": "Branch supplies waste handling for the named material rather than an unrelated supplied product/material."
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "a46e9d3814808e27fdc431c6991a765d1fcfdd7a4390e128b9f360aa2e1213bf",
+        "source_inventory_sha256": "58f83d7afbc982944cfa0f22391bbd1e40e99ba44e0c1fdb755b5cedd773f8fa",
+        "ordinary_treatment": {
+          "source": {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of scrap copper, municipal incineration",
+              "reference product": "scrap copper",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "dcc87c5308db753cafef3fd17baab4721443e6adbfcdc84b0d168223b2a5ade7",
+            "inventory_sha256": "7d9f35d56e755d4ebfb1b83d7a4f95aa0b94ffc36dd1fcf0472fd3dea83ef593"
+          },
+          "target": {
+            "name": "Disposal, copper, 0% water, to municipal incineration",
+            "reference product": "Disposal, copper, 0% water, to municipal incineration",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "composition_coordinates": 42,
+          "all_documented_coordinates_match": true,
+          "recovery_kg": 0.31,
+          "recovered_cutoff_stock": {
+            "version": "3.9",
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "reference product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6cae77a76a633a1495660ba1c4ca43177f89a9d67243cec14e019a01af1166f3",
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb"
+          },
+          "stock_nonproduction_exchanges": 0
+        },
+        "freight_witnesses": [
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "ed97ca397ef7323e2357655f573957cc0005990fad334425c5632953c3adefd9",
+            "source_inventory_sha256": "0c8c82d65ba37661f71d1f25995ca6844781744a4c664a33248f1146ddc0d04d",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_resolved_child_market_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0008124854420980722,
+              "uncertainty type": 2,
+              "loc": -7.115412561338657,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "5eec92f28619a465ce59cbbbe58bba9499d8a8475c5561584dcc6c13f4d47a7a",
+            "source_inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0029325763106612677,
+              "uncertainty type": 2,
+              "loc": -5.831873955384336,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "3bc5d719214ed513eddb1f3263ffee6467f3380de745db3164d20746da65f0f9",
+            "source_inventory_sha256": "67d3a561f43de59c8b3b483db80f4ca1f9abe9e603c42c1b3d7886f9f6f6a579",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.00020573828760997995,
+              "uncertainty type": 2,
+              "loc": -8.488905645373796,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "9242044d72ee67df879c1ce100501eb5bb9c534759f95c078b9c25e745c3897a",
+            "source_inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_pilot_nitrate_operating_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0040458296676008434,
+              "uncertainty type": 2,
+              "loc": -5.510068640084499,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "6bdd38a9de2e0bb427c64623a8de9d7bbc03ff96a3a946c89aafa18366d60169",
+            "source_inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.003203370292029836,
+              "uncertainty type": 2,
+              "loc": -5.7435518071602525,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "291bc540633513fe3d1341e31fa63d87624ee1b8c03dbcf52f97a71e9daf6270",
+            "source_inventory_sha256": "5d63ba039a6eb078230a4bd26fda48d2d3567f593d8136aa50bc51a30ff9d0bd",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_average_sludge_landfarming_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_older_regional_road_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.0003461605163611663,
+              "uncertainty type": 2,
+              "loc": -7.96860797036524,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "ee4483351124f67842363308e01fd9a0d8a5081b3b16f128978938eab15fbd14",
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_average_sludge_landfarming_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_resolved_child_market_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_older_regional_road_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_pilot_uncontrolled_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.016762842782120813,
+              "uncertainty type": 2,
+              "loc": -4.0885905812399015,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            }
+          },
+          {
+            "owner": {
+              "name": "market for silicone product",
+              "reference product": "silicone product",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "95cb1dc98af9189e31e2dd9aae1a97f50db830f32b0b3073ccdfe697f7b5c8ba",
+            "source_inventory_sha256": "999dcbf65753e116027a726bf5204b3a97ffd00f0a12b4688e9a7a3aa037de11",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_average_sludge_landfarming_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_older_regional_road_review.json",
+              "uvek_steel_residue_market_review.json"
+            ],
+            "original_coefficients": {
+              "amount": 0.002210996701518021,
+              "uncertainty type": 2,
+              "loc": -6.114311868958677,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            }
+          }
+        ],
+        "preserve_other_profiles": false,
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "58f83d7afbc982944cfa0f22391bbd1e40e99ba44e0c1fdb755b5cedd773f8fa",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "name": "Disposal, copper, 0% water, to municipal incineration",
+                "reference product": "Disposal, copper, 0% water, to municipal incineration",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0008124854420980722,
+                "uncertainty type": 2,
+                "loc": -7.115412561338657,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0029325763106612677,
+                "uncertainty type": 2,
+                "loc": -5.831873955384336,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00020573828760997995,
+                "uncertainty type": 2,
+                "loc": -8.488905645373796,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0040458296676008434,
+                "uncertainty type": 2,
+                "loc": -5.510068640084499,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.003203370292029836,
+                "uncertainty type": 2,
+                "loc": -5.7435518071602525,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0003461605163611663,
+                "uncertainty type": 2,
+                "loc": -7.96860797036524,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.016762842782120813,
+                "uncertainty type": 2,
+                "loc": -4.0885905812399015,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.002210996701518021,
+                "uncertainty type": 2,
+                "loc": -6.114311868958677,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of scrap copper, municipal incineration",
+                  "scrap copper",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "7f5f6540a23f6c77a95b8e95135d77647fc01be7e2122588af156ff7ffd39ef0"
+              }
+            ]
+          }
+        ],
+        "limitations": "Only the exact ecoinvent3.9cutoff RoW scrap-aluminium and scrap-copper markets: preserve their sole ordinary-incineration demand and all eight original collection entries each, retaining amounts, normal/lognormal uncertainty, bounds, pedigree and exchange order. Both source market/treatment references are-1kg; callers map at factor-1 to positive one-kg helpers and the negative treatment coefficient independently becomes positive complete native treatment. Reuse the standing same-waste/unit ordinary-MSWI whole-function screening correspondence and documented-composition rule: all42 wet-composition coordinates, including unknowns, match each specific native0%-water metal incinerator. Native documentation also matches source recovery308.48gAl or310gCu perkg; source recovered-stock links point only to positive production-only RecycledContentcutoff handovers. Preserve that burden-free boundary without inventing avoided-primary-production credits, charged remelting or separate empty-stock demand; do not replace any nonempty recovery supplier. The complete native treatment retains its own residue disposal, operations, internal energy and infrastructure once. Historical geography, background supplier mixes, slag/emission accounting, allocation, internal uncertainty, native upstream biosphere exclusions and vintage differences remain explicit warnings with unquantified score effects; full inventory or LCIA equivalence is not established. Preserve source market collection separately from native treatment-internal residue transport. Complete generic RER rail and heavy-road services follow the existing exact whole-freight witnesses, not coal-only CN rail or diesel-only US rail; retain all individual entries and their original signed tkm, without aggregation, normalization, traction/distance/payload factors or duplicate vehicle infrastructure. Restore the original freight uncertainty missing from the earlier aluminium composition. The existing aluminium default target and every non3.9profile entry and recipe remain unchanged. No SwissFAE correspondence, fly-ash extraction, new recovery technology, moisture/density factor, standalone scrap recovery/freight approval, reverse or cross-model route is admitted. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and purchases. Only the two inspected3.9cutoff profiles receive new Premise approvals; old aluminium raw-profile availability does not admit unapproved CLIC scopes.",
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, copper, 0% water, to municipal incineration",
+          "reference product": "Disposal, copper, 0% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW"
+      },
+      "limitations": [
+        "Only the exact ecoinvent3.9cutoff RoW scrap-aluminium and scrap-copper markets: preserve their sole ordinary-incineration demand and all eight original collection entries each, retaining amounts, normal/lognormal uncertainty, bounds, pedigree and exchange order. Both source market/treatment references are-1kg; callers map at factor-1 to positive one-kg helpers and the negative treatment coefficient independently becomes positive complete native treatment. Reuse the standing same-waste/unit ordinary-MSWI whole-function screening correspondence and documented-composition rule: all42 wet-composition coordinates, including unknowns, match each specific native0%-water metal incinerator. Native documentation also matches source recovery308.48gAl or310gCu perkg; source recovered-stock links point only to positive production-only RecycledContentcutoff handovers. Preserve that burden-free boundary without inventing avoided-primary-production credits, charged remelting or separate empty-stock demand; do not replace any nonempty recovery supplier. The complete native treatment retains its own residue disposal, operations, internal energy and infrastructure once. Historical geography, background supplier mixes, slag/emission accounting, allocation, internal uncertainty, native upstream biosphere exclusions and vintage differences remain explicit warnings with unquantified score effects; full inventory or LCIA equivalence is not established. Preserve source market collection separately from native treatment-internal residue transport. Complete generic RER rail and heavy-road services follow the existing exact whole-freight witnesses, not coal-only CN rail or diesel-only US rail; retain all individual entries and their original signed tkm, without aggregation, normalization, traction/distance/payload factors or duplicate vehicle infrastructure. Restore the original freight uncertainty missing from the earlier aluminium composition. The existing aluminium default target and every non3.9profile entry and recipe remain unchanged. No SwissFAE correspondence, fly-ash extraction, new recovery technology, moisture/density factor, standalone scrap recovery/freight approval, reverse or cross-model route is admitted. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and purchases. Only the two inspected3.9cutoff profiles receive new Premise approvals; old aluminium raw-profile availability does not admit unapproved CLIC scopes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "794685e75556bca6aed3db4421464adda5b49d558713e18ffa968d6d4f17b46f"
+        }
+      ]
     }
   ]
 }

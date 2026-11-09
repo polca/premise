@@ -1135,6 +1135,25 @@ refuses 40 cases across 35 parent rules; nested supplier progress does not
 resolve the full nitrate market automatically. No full scenario certification
 or export is claimed by these component checks.
 
+Two ordinary 3.9 cut-off RoW scrap markets, aluminium and copper, now preserve
+their original incineration fate and sixteen total collection entries with
+uncertainty. All 42 documented wet-composition coordinates and the recovered
+metal amounts match the native treatment documentation. Source recovery
+providers are production-only cut-off handovers; no recovery credit or
+additional remelting is introduced. Swiss FAE remains excluded. The aluminium
+default and four other source profiles/recipes remain unchanged, including
+runtime results apart from the explanatory warning. The review
+`export/uvek_pilot_nitrate_scrap_review.json` is pinned at SHA-256
+`ec45074cda73e22561d106b1583fb7de617742911a2b4424a170a3060215db7f`.
+All 358 earlier fingerprints, 3,289 recipes and 715 shared reviews remain
+unchanged; the ledger now has 360 scopes and the resource has 3,291 recipes.
+This checkpoint passes 35 focused Brightpath and 17 Premise cases, full
+byte-identical generation, two installed-wheel conversions and two finite
+native LCI checks with unchanged scientific signatures. Coverage is now 75 of
+125 nitrate suppliers, leaving 50 across 17 reference-product labels. These
+component checks do not certify the whole nitrate market or electricity
+scenario; the public frontier remains 35 parent rules / 40 cases.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

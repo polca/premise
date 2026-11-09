@@ -239,3 +239,45 @@ No dry/wet composition factor, uncontrolled-fate replacement or extra recovery
 credit is introduced. The European group remains refused pending its separate
 Swiss FAE decision. See [polystyrene findings](uvek-polystyrene-waste-findings.md)
 for scope and validation; this does not admit the whole nitrate-salt market.
+
+## Ordinary RoW aluminium and copper scrap markets
+
+The two exact 3.9 cut-off RoW markets now use source-preserving compositions
+under the standing same-waste/unit ordinary-MSWI and whole-freight proxy
+conditions. All 42 documented wet-composition coordinates match each specific
+native metal incinerator, including values documented as unknown. Native
+recovery documentation matches the source's 0.30848 kg aluminium or 0.31 kg
+copper per kg. Both source recovery links lead only to positive,
+production-only Recycled Content cut-off handovers, with no upstream inventory
+burden. The complete native services retain this burden-free recovery boundary;
+no primary-metal substitution credit, remelting burden or extra recovery
+process is introduced. This does not admit nonempty recovered-product supplies.
+
+Each source market has one ordinary incineration fate and eight separate
+collection entries. Its negative reference maps to a positive helper using
+factor −1; the negative treatment coefficient is transformed independently.
+All sixteen original freight quantities, exchange order, lognormal uncertainty
+and pedigree fields are retained. Generic whole rail replaces the inappropriate
+coal-only Chinese and diesel-only US rail heuristics. Collection remains
+separate from the complete native treatment's internal residue logistics.
+The aluminium refinement also restores collection uncertainty missing from its
+earlier recipe. Its default target, four other version-profile entries and
+complete older recipes remain unchanged; runtime comparisons verify all four.
+Only the inspected 3.9 source profiles gain Premise approval.
+
+Historical geography, supplier mixes, slag/emission accounting, allocation,
+internal uncertainty, biosphere exclusions and vintage remain explicit
+screening limitations with unquantified score effects. Full inventory or LCIA
+equivalence is not claimed. Swiss copper uses fly-ash extraction and remains
+under its earlier pending modelling decision; matching composition alone does
+not establish that technology correspondence.
+
+Validation: 35 focused Brightpath cases (including four older-profile runtime
+comparisons), 17 Premise cases, full byte-identical resource generation, both
+installed-wheel conversions and both finite native-background LCI checks pass.
+All previous 358 approval fingerprints, 3,289 recipes and 715 shared reviews
+remain unchanged. Two new scopes bring the ledger to 360. The packaged review
+is `export/uvek_pilot_nitrate_scrap_review.json`, SHA-256
+`ec45074cda73e22561d106b1583fb7de617742911a2b4424a170a3060215db7f`.
+Private primary and semantic checks are `nitrate_scrap_review_primary.private.json`,
+`nitrate_scrap_closure_findings.json` and `nitrate_scrap_staged_review.json`.
