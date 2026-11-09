@@ -3,6 +3,32 @@
 # used in the production of electricity
 ---
 biomass crops - purpose grown:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road
+      reference product:
+      - Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road
+      unit: kilogram
+    native_supply_class: forest
+    native_reference_amount: 1
+    native_limitations:
+    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Complete native inventories and their existing carbon accounting are retained; no invented biogenic uptake, recovery credit or drying burden.
+    - All selected supplies reference one kilogram of dry wood; preserve fuel dry mass without converting the separate gross-energy residue process to kg. IAM technology fractions use a common woody-fuel basis; no density, moisture or calorific multiplier is inferred. Geographic portfolios and vintage remain screening proxies with unquantified score effects.
   iam_aliases:
     image:
       - Primary Energy|Biomass|Energy Crops
@@ -24,6 +50,32 @@ biomass crops - purpose grown:
     value: 18.5
 
 biomass wood - purpose grown:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road
+      reference product:
+      - Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road
+      unit: kilogram
+    native_supply_class: forest
+    native_reference_amount: 1
+    native_limitations:
+    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Complete native inventories and their existing carbon accounting are retained; no invented biogenic uptake, recovery credit or drying burden.
+    - All selected supplies reference one kilogram of dry wood; preserve fuel dry mass without converting the separate gross-energy residue process to kg. IAM technology fractions use a common woody-fuel basis; no density, moisture or calorific multiplier is inferred. Geographic portfolios and vintage remain screening proxies with unquantified score effects.
   iam_aliases:
     message: Primary Energy|Biomass|Fuelwood
     image: Primary Energy|Biomass|Traditional
@@ -39,6 +91,22 @@ biomass wood - purpose grown:
     value: 18.5
 
 biomass - residual:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Wood chips, hardwood, wet, measured as dry mass, at sawmill
+      - Wood chips, softwood, wet, measured as dry mass, at sawmill
+      reference product:
+      - Wood chips, hardwood, wet, measured as dry mass, at sawmill
+      - Wood chips, softwood, wet, measured as dry mass, at sawmill
+      unit: kilogram
+    native_supply_class: sawmill
+    native_reference_amount: 1
+    native_limitations:
+    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Complete native inventories and their existing carbon accounting are retained; no invented biogenic uptake, recovery credit or drying burden.
+    - All selected supplies reference one kilogram of dry wood; preserve fuel dry mass without converting the separate gross-energy residue process to kg. IAM technology fractions use a common woody-fuel basis; no density, moisture or calorific multiplier is inferred. Geographic portfolios and vintage remain screening proxies with unquantified score effects.
   iam_aliases:
     message: Primary Energy|Biomass|Residues
     image: Primary Energy|Biomass|Residues

@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "status": "native_woodchip_stage_in_development_sector_gate_not_enabled",
+  "authorization": "User autonomous expanded goal and standing auto-approval; log functional proxies for later review.",
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "basis": "Positive1kgdrywood references, factor+1 for matching dry-kg fuel inputs. No MJ-to-kg conversion or LHV rescaling.",
+  "limitations": [
+    "Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Complete native inventories and their existing carbon accounting are retained; no invented biogenic uptake, recovery credit or drying burden.",
+    "All selected supplies reference one kilogram of dry wood; preserve fuel dry mass without converting the separate gross-energy residue process to kg. IAM technology fractions use a common woody-fuel basis; no density, moisture or calorific multiplier is inferred. Geographic portfolios and vintage remain screening proxies with unquantified score effects."
+  ],
+  "witnesses": [
+    {
+      "identity": {
+        "name": "Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "DE",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "0e487d52299439c5bed898458a3bd3d75f73dcf5decd7b02a802301b01ddaeb1",
+      "metadata_sha256": "fe87ed5a520be28442e9d43460bafa8f512cc0ecdf991aafb284b3a72e5cb32c"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "SE",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "b17fabd5b399567e83b66abc75315e3444d254adfa98c3833b596fba57309f3d",
+      "metadata_sha256": "ae9d9c677f8ee3310cd88557da53a9213eacdc5c33544a150f5bf9b431f9e113"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+        "reference product": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "fdedfd7a97e79c4f58fadde97c402084bda039825510bec077a3a5cbb3991af7",
+      "metadata_sha256": "ff5c13a0414fab81d7279512b64030c49601e0ca8a0206f27b6e0f13aeca4396"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+        "reference product": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "626be08feea2bac359a5986e936a1db3a6f2c5421c94cbb5e8ea3b00c8cce3c1",
+      "metadata_sha256": "814b837b1d6271ed43787948ee2224c13e43f0b3e24be902a554a2f368303f00"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "131df90fe0bcd9f14c0c406badaf4750ca0857b2c6babb74609c064ac8a61451",
+      "metadata_sha256": "44cee57ae6f6332a967f4f9ca1e57ee6cd14d6628badcb4d92b7dc4298040368"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "DE",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "202b646617c976c15e45aa6a4788b4c1abe1308fd5a7d2c63e4b933d7b574049",
+      "metadata_sha256": "709cfb7ce6619043258c38a14ef587d08355929f9ac352bea0f0ad4548420c93"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "DE",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "dae797e4e988f378ba3baebfd4c9b77c0647b4061261a197db1b430686fe4b54",
+      "metadata_sha256": "5f4e710d51c94890625297eeb88bb752c67228188a4d4116545ab8a8a24910d0"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "SE",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "70ecbfc6f4d30117a7d5fd16d31be775651b9166601514241848e47e52a2f4c2",
+      "metadata_sha256": "8a378758c683db8e4359c2f293665135f3ade375cc808bbd23f4131cd5cc319d"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "6deec64efc877a9aaca93573f3e36f756893626713befbccdc9ae8a96dbce53a",
+      "metadata_sha256": "c0d56af90e1af76d2e8718ed1040dd82a22244447197dcda654186d0f670cd49"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "fcd3190e181f74cc1a955b97d2dd7dbb2801c51dd21e2b374b12cee35d6d15fb",
+      "metadata_sha256": "fe37516deb19e43969c22f2f8357dfda70187afd9f3d7c87e33a3a23877c8378"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+        "reference product": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+        "location": "AT",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "80618fe339d35705137a7c8da6af20665c33913e306aeabb12dbcfdeedc7c889",
+      "metadata_sha256": "7e14d1acd2ff99bbbae6210e4462b5ec92507e152030a86f3c71c24bf216c563"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+        "reference product": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "6346aba3ad9410b47907509b7e8a57bdf85fd5b8d9bdce687a6fe35ce88cfed7",
+      "metadata_sha256": "bafb7a4679026ae0a68a3ed689c1572ec3358de9f9702445dd2b760347161bdb"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+        "reference product": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "372fbdd516d92ae028535421d2b6e04d6792ca36b55faf5cdb7a777294a08666",
+      "metadata_sha256": "b5bceb3039c21a7028ad24ac01eb30cfaa0760356491cec6740d8630f450b2ff"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "567e366cf8e4bbcfcb2de552b8545036802a06cbf0e6a9a3e76bd43b23c899d8",
+      "metadata_sha256": "989706d4d6453c1fe9d568d331d7b47df75d4c7c6f14fea34d11415114789212"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "DE",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "5f1fa43e06bf10d8471720c188f632509b98fb143cc68e631a2031896f4e0fa9",
+      "metadata_sha256": "c6d43de8f3723e1e696b78a0010f503860197bc1c485726a042e1ad9d735658e"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road",
+        "reference product": "Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road",
+        "location": "SE",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "4d527b2959b8211a60134a8eba35d416b9c25755bf91ee01860959aee328bc27",
+      "metadata_sha256": "bea33bc31159ea305b97eed93d47bfde28d0344cf2681b4b46fa639115b65d89"
+    }
+  ],
+  "baseline_portfolios": [
+    {
+      "identity": {
+        "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "6deec64efc877a9aaca93573f3e36f756893626713befbccdc9ae8a96dbce53a",
+      "metadata_sha256": "c0d56af90e1af76d2e8718ed1040dd82a22244447197dcda654186d0f670cd49"
+    },
+    {
+      "identity": {
+        "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "fcd3190e181f74cc1a955b97d2dd7dbb2801c51dd21e2b374b12cee35d6d15fb",
+      "metadata_sha256": "fe37516deb19e43969c22f2f8357dfda70187afd9f3d7c87e33a3a23877c8378"
+    }
+  ],
+  "rejected_candidates": [
+    "Woodchips from forestry residues:+1MJandgross-calorificresourceflow; not a verified dry-mass counterpart.",
+    "Heat/combustion services with MJreference are not raw fuel supplies.",
+    "Glued/composite industrial residual wood is not clean forest or sawmill feedstock."
+  ],
+  "outstanding_sector_work": [
+    "Review pellet feedstock/supply boundary before claiming complete biomass-sector operationalization.",
+    "Public API update/combined certification/export and packaged resources after implementation passes."
+  ],
+  "validation": {
+    "woodchip_stage_only": true,
+    "real_IAM_regions": 13,
+    "relinked_exchanges": 93,
+    "private_finite_LCI_demands": 2,
+    "public_rollout_complete": false
+  }
+}

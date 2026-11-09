@@ -13,24 +13,20 @@
   "sectors": [
     {
       "sector": "biomass",
-      "status": "audited_not_operational",
+      "status": "implementation_in_progress",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "static_declarations_only",
+        "kind": "native_woodchip_stage_implemented_not_full_sector_coverage",
         "files": [
           {
             "path": "premise/iam_variables_mapping/biomass.yaml",
             "ecoinvent_role_count": 3,
-            "explicit_nonempty_uvek_role_count": 0,
-            "missing_or_empty_uvek_roles": [
-              "biomass crops - purpose grown",
-              "biomass wood - purpose grown",
-              "biomass - residual"
-            ],
+            "explicit_nonempty_uvek_role_count": 3,
+            "missing_or_empty_uvek_roles": [],
             "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
           }
         ],
@@ -61,11 +57,24 @@
           "code": "biosphere_axis_review",
           "path": "premise/energy/biomass.py",
           "finding": "Direct biosphere dictionary calls need inspection to ensure they use3.10biosphere rather than2026technosphere release."
+        },
+        {
+          "code": "remaining_biomass_rollout",
+          "finding": "Pellet/feedstock boundary, combined electricity fuel-role compatibility, public dispatch, certification/export, cold/warm public workflows and final package checks remain required before admitting biomass."
         }
       ],
-      "decisions": [],
+      "decisions": [
+        {
+          "decision": "Use complete native forest-road dry-kgchips for purpose-grown proxies and clean sawmill dry-kgchips for forest-residue proxies. Retain within-class nativeRERportfolio weighting and explicit geographic fallback; no mass/energy conversion.",
+          "authorization": "Standing autonomous approval; scientific boundaries/score effects logged for review.",
+          "review": "premise/data/biomass/uvek2026_review.json"
+        }
+      ],
       "implementation_commits": [],
-      "tests": [],
+      "tests": [
+        "77focused stage/activity-map/CLIC-requirement regressions passed.",
+        "A pre-existing missing-geothermal-alias test was stale after the verified Bagnore electricity supplement. Its missing-alias contract now uses the still CLIC-only BiomassIGCCrole; no runtime electricity behavior changed."
+      ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_biomass",
@@ -112,6 +121,37 @@
         "next_actions": [
           "Inspect primary drymass/caloric/allocation evidence and native energy-consumer exchange bases.",
           "Implement family/biosphere propagation, uvek_aliases for IAM and procedural forestry mappings, native sector transformation/validation and real export checks; keep gate until passes."
+        ]
+      },
+      "woodchip_stage": {
+        "status": "private_real_IAM_and_LCI_validation_passed",
+        "implementation": "premise/energy/uvek_biomass.py",
+        "documentation": "docs/development/uvek-biomass.md",
+        "review": "premise/data/biomass/uvek2026_review.json",
+        "real_IAM": "REMIND SSP2-NPi2050 encrypted source",
+        "regional_markets": 13,
+        "relinked_fuel_exchanges": 93,
+        "matrix_activities": 12526,
+        "finite_LCI_demands": 2,
+        "source_signatures_unchanged": true,
+        "tests_passed": 77,
+        "public_biomass_gate": "still_closed",
+        "receipts": [
+          {
+            "name": "native_biomass_real_stage_report.json",
+            "sha256": "bbbf24c2ca7eff79b5d9d9a76a1089848e8c075063347a59206ad74c2716b77a",
+            "location": "private task workspace"
+          },
+          {
+            "name": "native_biomass_stage_lci_report.json",
+            "sha256": "a6bbfe519d68bb827386e60ef4c40d28e11c13d91a8e13398fd7043973acc007",
+            "location": "private task workspace"
+          },
+          {
+            "name": "native_biomass_stage_tests.log",
+            "sha256": "8f608eecb86429bd8bdca1ab5364552e0eb1d59def05ff2268f62c8b4e1032b9",
+            "location": "private task workspace"
+          }
         ]
       }
     },

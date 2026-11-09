@@ -59,6 +59,22 @@ sawnwood:
     mask: market
 
 wood chips, hardwood:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, measured as dry mass, at sawmill
+      reference product:
+      - Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, measured as dry mass, at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
       name:
@@ -85,6 +101,20 @@ beam:
     mask: market
 
 wood chips, softwood:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, measured as dry mass, at sawmill
+      reference product:
+      - Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, measured as dry mass, at sawmill
+      unit: kilogram
   ecoinvent_aliases:
     fltr:
       name: wood chips production, softwood
