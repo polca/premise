@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-49 already have exact current CLIC approval fingerprints for their source
+55 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
 scientifically reviewed target. The other suppliers cover 22 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 76 automatically new scientific decisions. Coverage is
+decisions. They are not 70 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -138,6 +138,20 @@ reviewed inert-landfill helper after fresh source and native closure inspection.
 The [waste-boundary findings](uvek-nitrate-waste-boundaries.md) describe its
 preserved collection and landfill boundary, together with the other waste
 markets still requiring work. This adds no new migration rule or recipe.
+
+Six exact 3.9 polyethylene waste markets now have source-preserving country
+helpers: Peru, India, Brazil, Colombia, Cyprus and South Africa. Their original
+treatment shares and collection freight remain separate, with uncertainty.
+Fresh complete treatment witnesses match the already reviewed source helpers
+for open burning, open dumps and unsanitary landfills at the original
+infiltration classes. Brazil's small ordinary-incineration branch retains its
+previously inspected complete native service. This does not admit a Swiss FAE
+branch or substitute controlled incineration for uncontrolled disposal.
+All earlier recipes, reviews and pilot approval fingerprints remain unchanged;
+six new market recipes reuse five existing treatment recipes. Native LCI and
+installed-wheel checks cover each complete returned graph. The RoW market's
+additional hyperarid classes and the European group's Swiss technology branch
+remain unresolved.
 
 This dependency expansion sits behind one currently blocked parent rule.
 Consequently, the headline count of 35 unresolved rules / 40 source-profile

@@ -950,6 +950,24 @@ The public frontier remains 35 rules / 40 cases, with nitrate coverage now
 describe the remaining fate, recovery and wastewater boundaries. This is still
 not full scenario transformation, certification or export.
 
+Six further exact 3.9 PE waste markets now preserve the original country fates
+and collection freight for PE, IN, BR, CO, CY and ZA. Fresh full source
+witnesses match five existing uncontrolled-treatment recipes and the small
+Brazilian ordinary-incineration branch. Six new market helpers preserve every
+original share and supported uncertainty; uncontrolled disposal remains its
+source inventory and infiltration class. All 3,238 prior recipes, 706 shared
+reviews and 334 approval fingerprints remain unchanged. There are now 340
+registered scopes and 707 shared reviews. Historical sewer/processing evidence
+and compiled recipes remain unchanged; generator replay is byte-identical after
+the new country corrections. Sixty-five focused Brightpath checks and 67
+Premise checks pass, including cache paths, exact-profile refusals and historical
+drift guards. All six actual migrated graphs give finite native LCI, preserving
+foreground reference balance and native scientific hashes. Installed-wheel
+migration covers all six cases. The public frontier remains 35 rules / 40 cases;
+nitrate coverage is now 55 of 125 suppliers, leaving 70. RoW hyperarid treatments,
+the European group's Swiss FAE branch and other unresolved suppliers remain
+completion gates. Full prospective certification/export is not yet achieved.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

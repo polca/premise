@@ -26,6 +26,27 @@ source/native operating or aftercare lifetimes. The packaged pilot review pins
 the raw rule, every recipe in its closure, the earlier review and fresh source
 and native hashes. No migration rule or recipe changes.
 
+Six further exact 3.9 PE markets now preserve their original country fates:
+Peru, India, Brazil, Colombia, Cyprus and South Africa. Each uses its original
+market reference and collection freight, with supported uncertainty. Fresh
+full source metadata and inventory hashes match the previously reviewed
+uncontrolled-treatment witnesses. Five unchanged source-treatment recipes keep
+open burning, open dumps and unsanitary landfills, including their infiltration
+classes, physical emissions and operating inputs. Brazil's small ordinary
+incineration share retains the independently reviewed complete native PE/PP
+incinerator. No new fate, FAE proxy, recovery credit or physical omission is
+introduced. The complete migrated graphs contain four or five records, with
+187 or 295 explicit elementary exchanges respectively, and pass native LCI.
+
+The six country rules supersede their previous flat targets. Older sewer and
+processing reviews record those earlier targets as authoring dependencies.
+Their original evidence and complete compiled recipes stay unchanged. The
+maintainer generator applies the country corrections after historical reviews;
+its replay reproduces the packaged resource byte for byte. Historical drift
+tests inspect the original authoring stage, while the new tests independently
+freeze the corrected country rules and reused treatment recipes. All 334
+earlier pilot approval fingerprints remain unchanged.
+
 Other findings remain work items, not admissions:
 
 - Regional concrete and final-disposal mineral-wool services use generic
