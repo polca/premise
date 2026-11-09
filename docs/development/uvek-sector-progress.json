@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "native_supplier_and_basis_preflight_implemented_public_integration_pending",
+      "status": "native_supplier_and_distribution_stages_verified_supplemental_mappings_and_public_rollout_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -808,13 +808,31 @@
           "decision": "Bind28exact native+1MJdelivered heat providers, preserve complete native inventories and declared geography/technology/allocation differences. Use reviewed energy routes only for16final-energy roles;12heat-output/allocated roles retain factor1.",
           "review": "premise/data/heat/uvek2026_review.json",
           "authorization": "Standing autonomous approval; explicit warnings remain required at rollout."
+        },
+        {
+          "decision": "Preserve complete native district delivery, replacing only plant heat with the owned secondary market. Retain actual heat/network coefficients, signs, formulas and supported uncertainty; do not recalculate loss from prose.",
+          "review": "premise/data/heat/uvek2026_distribution_review.json",
+          "authorization": "Standing autonomous approval."
+        },
+        {
+          "decision": "Reject inherited electrolysis match for refinery hydrogen; use complete native fossil SMR as a limited+1kgproxy for source3.9cutoff.",
+          "review": "brightpath/data/export/uvek_heat_hydrogen_market_review.json",
+          "authorization": "Standing autonomous approval."
         }
       ],
-      "implementation_commits": [],
+      "implementation_commits": [
+        "25f0dacf",
+        "27ec8018",
+        "7f8356be",
+        "d1149c50"
+      ],
       "tests": [
         "46 reference-basis plus existing heat tests passed.",
         "Four read-only native factor replays match independently evaluated source quantities; source graphs unchanged.",
-        "101focused/shared mapping, physical-basis, heat and CLIC requirements tests passed;38native tests plus28actual-source role replays passed from isolated installed wheels. Groups overlap."
+        "101focused/shared mapping, physical-basis, heat and CLIC requirements tests passed;38native tests plus28actual-source role replays passed from isolated installed wheels. Groups overlap.",
+        "84native distribution/supplier/basis and existing heat tests passed;58native tests passed from isolated installed wheels. Groups overlap.",
+        "Installed real-IAM secondary/delivery stage has13mixes,13delivery copies,3finiteLCIs, complete links and unchanged original scientific signatures.",
+        "New fossil-H2scope:41Brightpath and10focusedPremise checks passed; old447fingerprints unchanged, total448. Original installed default biomass/electricity workflow and41restored callers still pass."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -869,6 +887,23 @@
           "heat, industrial, from hydrogen boiler"
         ],
         "public_runtime_updates_and_export": "not_implemented"
+      },
+      "distribution_stage": {
+        "implementation": "premise/energy/uvek_heat_distribution.py",
+        "verification": "docs/development/uvek-heat-distribution-verification.json",
+        "regional_secondary_markets": 13,
+        "native_delivery_copies": 13,
+        "finite_LCI_demands": 3,
+        "source_signatures_unchanged": true,
+        "public_heat_update_operational": false
+      },
+      "supplemental_mapping_frontier": {
+        "resolution_roots": 12,
+        "foreground_records": 76,
+        "original55pins_unchanged": true,
+        "observed_pending3_9cases": 14,
+        "review": "docs/development/uvek-heat-mapping-frontier.json",
+        "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases"
       }
     },
     {

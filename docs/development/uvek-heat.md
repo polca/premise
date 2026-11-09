@@ -48,3 +48,27 @@ requirements. Isolated installed resources pass 38 native tests and replay all
 28 bindings against actual native inventories, with unchanged source records.
 The [preflight record](uvek-heat-preflight.json) contains receipt hashes; the
 [sector tracker](uvek-sector-progress.json) retains the complete expanded scope.
+
+
+District delivery now has a planner that copies the complete inspected native
+Swiss delivery service and changes only its plant-heat supplier to the IAM
+secondary market. Actual heat/network coefficients, all other flows, signs,
+formulas and supported uncertainty remain. No second loss multiplier is inferred
+from prose. Original producer records remain unchanged.
+
+A private stage with the real encrypted REMIND2050 data produces 13 secondary
+mixes from seven positive technologies and 13 delivery copies. Its 11,973-activity
+graph has complete links, three finite LCIs and unchanged original scientific
+signatures. Isolated installed packages replay it. These are development checks,
+not a public heat update or export. See the
+[distribution verification](uvek-heat-distribution-verification.json).
+
+Three supplemental heat roots resolve 76 foreground records, retaining all 55
+original pins. The fossil-hydrogen dependency now uses an explicit native SMR
+screening proxy instead of electrolysis, with mass/pressure, refinery-allocation,
+geography and vintage limitations. Preparation then stops on 14 unreviewed
+correspondences in the observed3.9cohort; later cohorts may expose more. The
+[mapping frontier](uvek-heat-mapping-frontier.json) records primary references.
+One wastewater case has source production-1m³ and native+1m³; approving its old
++1factor would reproduce the treatment-sign error. It remains gated pending
+signed-service review.

@@ -1,0 +1,953 @@
+{
+  "schema_version": 1,
+  "status": "pending_scientific_review_not_approved",
+  "context": "First blocked ecoinvent3.9cutoff cohort of the12-root heat-expanded graph. This is an observed frontier, not a bound on all remaining heat or sector mapping work.",
+  "identified_cases": 14,
+  "foreground_records": 76,
+  "root_count": 12,
+  "original55pins_unchanged": true,
+  "categories": {
+    "requires_initial_correspondence_review": 9,
+    "requires_exact_profile_extension": 4,
+    "requires_signed_treatment_review": 1
+  },
+  "primary_evidence_receipt": {
+    "name": "heat_pending_scope_primary_evidence.private.json",
+    "sha256": "28eb23cdc3290046243e29d523b7fefb09c5c5ee7107ef39ea4ef4c154c84183",
+    "location": "private task workspace"
+  },
+  "cases": [
+    {
+      "rule_id": "bp-745c517f85a78ba7",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for natural gas, medium pressure, vehicle grade",
+        "reference product": "natural gas, medium pressure, vehicle grade",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+        "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for natural gas, medium pressure, vehicle grade",
+            "reference product": "natural gas, medium pressure, vehicle grade",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "77ffeed5208ac0c43cf4b83f521f613fc6dfeccec0dfdeff7bf2c4e08623bb9b",
+          "metadata_sha256": "e174facee00e0067a2e187cf0e726624fd3129e1aa1519b6c3544573e4cd5288"
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "1a7da922111268a7c3f7a1a05d0ba74e63b5168ef4365c8c98d871f694276406",
+          "metadata_sha256": "785f52e3c0156b4866902403e6009b723403c6c02bf6b478150815d30ade6931"
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "24ab63bd0df21ac69fe47734778d2acd6a4757417d5436727acfedb434c7eb97",
+          "metadata_sha256": "e6028dce5a65b4bc992a5e0b58b489020b6930b2fa95d87b4095df15e241dd2f"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-deb7a57e4b2bc6e7",
+      "status": "requires_exact_profile_extension",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for NOx retained, by selective catalytic reduction",
+        "reference product": "NOx retained, by selective catalytic reduction",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "GLO",
+        "name": "NOx retained, in SCR",
+        "reference product": "NOx retained, in SCR",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for NOx retained, by selective catalytic reduction",
+            "reference product": "NOx retained, by selective catalytic reduction",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4cf32cd5ebb3a5f372398bf16fdd0e3e7debb6f93b089eb38dea17c410cc5ed4",
+          "metadata_sha256": "bedd9d439bead8e04a3cb9e9336d531c52f81699879ff8049eb138dafe65db74"
+        },
+        "2025": {
+          "identity": {
+            "location": "GLO",
+            "name": "NOx retained, in SCR",
+            "reference product": "NOx retained, in SCR",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e0767c14b4ac81bce5ac1e855b22cae40055cd04c935eb091e2ccc4f3209375e",
+          "metadata_sha256": "93106308eaab4084a885821f851c3b80d17e1dda65b7e75d38cf012a225c5101"
+        },
+        "2026": {
+          "identity": {
+            "location": "GLO",
+            "name": "NOx retained, in SCR",
+            "reference product": "NOx retained, in SCR",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6b429bd8cce6d39db967e213e110e5ce49d3481843c0400fac2446802b20181c",
+          "metadata_sha256": "c1006a438b08ffa20e3aacc3f168d6921a877eb64caf8a383a8eaea0337b9035"
+        }
+      },
+      "previous_scopes": [
+        {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9e802861048fdfa7",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for compressed air, 1000 kPa gauge",
+        "reference product": "compressed air, 1000 kPa gauge",
+        "unit": "cubic meter"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
+        "reference product": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
+        "unit": "cubic meter"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "RER",
+            "name": "market for compressed air, 1000 kPa gauge",
+            "reference product": "compressed air, 1000 kPa gauge",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "39cfada1bf2db9dca90064be249de448af2fab6455c00014af206f1c57777dae",
+          "metadata_sha256": "55c2ff615c9526414dd448c3b2f1b5c67d1eddcd137d02a15c51263f5a05f5ac"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
+            "reference product": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "e7117fe2a54b1ce2a7267bb4b51b9b1ccc610e0803c5083d7a579dd676cc9f26",
+          "metadata_sha256": "4da09000f5d797a0f170bc6b136d34855eaa8b836333726c3c91837d9cd2090e"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
+            "reference product": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "67c735b7e33d1afa3f7d2bff61be4a2ab2ead4d9933ab50e3cff1a1649801106",
+          "metadata_sha256": "0e5678a0a9a9f3e30ebc7d224eb962920d8f45bd433c037f296adc54546ee5c0"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-508c267844c98459",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for acrylonitrile",
+        "reference product": "acrylonitrile",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Acrylonitrile from Sohio process, at plant",
+        "reference product": "Acrylonitrile from Sohio process, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for acrylonitrile",
+            "reference product": "acrylonitrile",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d3b44acb8246b41be9761d057dd747ae87dd93117621fe208d2ae915130f499d",
+          "metadata_sha256": "12772e8d529d54e0017d24aa471b8a4aaf7045a3b0a4c087214ac763cd634928"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Acrylonitrile from Sohio process, at plant",
+            "reference product": "Acrylonitrile from Sohio process, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "18c8421cbe5e8139f457a275e177155ea3717b429e67419bbb53a99e6f4b82c7",
+          "metadata_sha256": "fe51ac05fed6060369c68d4c77918c6070deafe7d82679bc96829f2f149f5b9a"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Acrylonitrile from Sohio process, at plant",
+            "reference product": "Acrylonitrile from Sohio process, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8926b60e54e63316354c8182d473b43d15d2e4cf4c55c7a5950e04da15e7cb2f",
+          "metadata_sha256": "e4580c02945b2bd1dc5e395d0fc9b68bf8153f7e30228780766b866e8a9e2249"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-c48d784ebf2f5852",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for acrylic acid",
+        "reference product": "acrylic acid",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Acrylic acid, at plant",
+        "reference product": "Acrylic acid, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "RER",
+            "name": "market for acrylic acid",
+            "reference product": "acrylic acid",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "fbe8ad39b8101cfe15c0e0ff5da17df801b3d21e8fd61e7500dfaff9d785d2ce",
+          "metadata_sha256": "5b7f99d09771326f5509612978aee580a3d873d19da5777f3c47d287da985125"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Acrylic acid, at plant",
+            "reference product": "Acrylic acid, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "5cb7f711cee1cbd6fa4642038a691d22280936cfa279429681444053fa76872f",
+          "metadata_sha256": "4e05a5f1c4e45154dfcf2ca892a2c4dda561bd02a75bf274b43eb4d0218415f0"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Acrylic acid, at plant",
+            "reference product": "Acrylic acid, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "04192bb1ddd9b49eaafd6db6af84a4ff0449a30324b82c57723bfdfdd1d4f61d",
+          "metadata_sha256": "d8378430b76786e391a8be0618362a293b2356e709889ee02938479bd14617e1"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-1b705d854d098ad0",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for dimethyl sulfoxide",
+        "reference product": "dimethyl sulfoxide",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Dimethyl sulfoxide, at plant",
+        "reference product": "Dimethyl sulfoxide, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for dimethyl sulfoxide",
+            "reference product": "dimethyl sulfoxide",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d77f4f8eb8e0fe7e4a3ec72f7fbd9cc8c102f1cc3374a3ce07842a0d00df4097",
+          "metadata_sha256": "ac4e39dd54739a41f21fea54114b468ff9413c719d334da2f29e9f5fb0880ca9"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Dimethyl sulfoxide, at plant",
+            "reference product": "Dimethyl sulfoxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "2a5561d2c71eba9cf77bbc9bf047ec3e0b68b515bb992223a3adec5e2677b86c",
+          "metadata_sha256": "b60b5a1e4d7653c1bdfa2b9eb471bbd9183054f0a731a65197ad196dba0aca71"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Dimethyl sulfoxide, at plant",
+            "reference product": "Dimethyl sulfoxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c3c79bfe55cf97fa3ef046cd7c4e4e16068ca35488ca9144546f525c7698bc88",
+          "metadata_sha256": "6ee4b5c633a7fd89fcadedcc487495de43046815412bdf409cbcdb96ea5d128a"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-58894aa1e29f0229",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for methyl acrylate",
+        "reference product": "methyl acrylate",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "GLO",
+        "name": "Methyl acrylate, at plant",
+        "reference product": "Methyl acrylate, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for methyl acrylate",
+            "reference product": "methyl acrylate",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "01aad9be7361589dd278f7b148e179416644b56b56fc3083d02b252571337491",
+          "metadata_sha256": "add3b586b96505d8a4a7fe1557238c7b2742077f76bb9efb2f754eedc90fa3fb"
+        },
+        "2025": {
+          "identity": {
+            "location": "GLO",
+            "name": "Methyl acrylate, at plant",
+            "reference product": "Methyl acrylate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "63b5c3db5c4cd57776a93f47be6efc1cb3604612acf73ee79dec4ad20952fa8a",
+          "metadata_sha256": "f3aae9ffb4f1877ca2f2482f0483b1379d2d7f89740c2a3c3271bdee6c7aa55a"
+        },
+        "2026": {
+          "identity": {
+            "location": "GLO",
+            "name": "Methyl acrylate, at plant",
+            "reference product": "Methyl acrylate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "52786588e0397e29eb2e7bab350074e30463a681ae6c60d749cc56dd0abb8b41",
+          "metadata_sha256": "6be45550e2814666c57f0c215cb9c070bb4332374a3458f4d313bad439a924ce"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-412f090ea47af121",
+      "status": "requires_exact_profile_extension",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for nitrogen, liquid",
+        "reference product": "nitrogen, liquid",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Nitrogen, liquid, at plant",
+        "reference product": "Nitrogen, liquid, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "RER",
+            "name": "market for nitrogen, liquid",
+            "reference product": "nitrogen, liquid",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "72abeb1b673ecc377e33f0a842036d7fca5645152017c606a2275fe5627e35eb",
+          "metadata_sha256": "9e1ac4a9296d18df27369320fdd3ee7956faaaec74d3436752164ce2c2d4fbfc"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Nitrogen, liquid, at plant",
+            "reference product": "Nitrogen, liquid, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "81040a2f4b26a7c17ae5aa043d745afada9b2cef1e3c0f907923e89e0a5a8914",
+          "metadata_sha256": "ffa0ab3c4ba098b36feee2fc6ea82cb1bfd20ef3950eb734312dbb01bd10e082"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Nitrogen, liquid, at plant",
+            "reference product": "Nitrogen, liquid, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "74969c5cf801f7f306b85a8d434779cc34b356278cd42c7938fa43a954d54f35",
+          "metadata_sha256": "3f867419e38b8eeffcf5ec787389807a2166fdc087abea445f5ef350776faf28"
+        }
+      },
+      "previous_scopes": [
+        {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f7197c47047750a",
+      "status": "requires_exact_profile_extension",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for heat, from steam, in chemical industry",
+        "reference product": "heat, from steam, in chemical industry",
+        "unit": "megajoule"
+      },
+      "target_candidate": {
+        "recipe_ref": "chemical-heat-water-1ced12d9ab9a80752fd2"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {},
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "RER",
+            "name": "market for heat, from steam, in chemical industry",
+            "reference product": "heat, from steam, in chemical industry",
+            "unit": "megajoule"
+          },
+          "inventory_sha256": "2401364cb7d3637cb28682398b01d3e65e302c03b71ace94354914a3a037b69b",
+          "metadata_sha256": "8e8a90410cb65c2898b2ba150acb4cf457202cc040d2a95c88213f14c4d778ab"
+        }
+      },
+      "previous_scopes": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-667e1179d41e1bd5",
+      "status": "requires_signed_treatment_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "CH",
+        "name": "treatment of wastewater, average, wastewater treatment",
+        "reference product": "wastewater, average",
+        "unit": "cubic meter"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Treatment, sewage, to wastewater treatment, class 1",
+        "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+        "unit": "cubic meter"
+      },
+      "source_production_amounts": [
+        -1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": -1,
+      "warning": "Do not approve inherited factor+1 for this negative source treatment reference.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "CH",
+            "name": "treatment of wastewater, average, wastewater treatment",
+            "reference product": "wastewater, average",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "6c51ee5a5bc54015fad241fe19c29fc33b12b27872c179c64c53dae62360efe0",
+          "metadata_sha256": "6d76a9335fbe78adc825dd685050673f14de06f07709717f8263c7410aa3f496"
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, sewage, to wastewater treatment, class 1",
+            "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "325deffc585f7e9186114d29a52ef831e90c393a5246ccdba4d7b8fe699ba1e2",
+          "metadata_sha256": "9f594f4139d789ec83bb14819ba02dd891f77e2259a819508c2fa490a2f9da37"
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, sewage, to wastewater treatment, class 1",
+            "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "f5e2d9baac53590add03c8d761ebf71d4ba3cc616563a7754f0bed7c31459b68",
+          "metadata_sha256": "91d590ed22f26bc2c16fb58ae87dae12ab2bd736340e23dbffa25976d5957856"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-943f69ba68d96deb",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for potassium permanganate",
+        "reference product": "potassium permanganate",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Potassium permanganate, at plant",
+        "reference product": "Potassium permanganate, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for potassium permanganate",
+            "reference product": "potassium permanganate",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "77de43026979f52a56c4b76c8acda33632ff61c041a70b5402748c7ffc604031",
+          "metadata_sha256": "ab55fcc2f577eea27caaf010d92fc6a6d17363f4dc8260c9a63480f3c9ebafe6"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Potassium permanganate, at plant",
+            "reference product": "Potassium permanganate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "01f48cb9eb7a543b104c606c553ae367ea709b11a86fc2666e9dc7bd8af9258b",
+          "metadata_sha256": "8c4dfc588ef7563de4143f38f90e9185ae0fed525ad93e300daca978892e7393"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Potassium permanganate, at plant",
+            "reference product": "Potassium permanganate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7f1c23f2c2f9d493ce5ad76f29ee50d5d867b35991e10a27dcec8633fc2215b7",
+          "metadata_sha256": "ce82ec8a81ab6ba93821cc8550cdf8d7771d0772d5f68b9c5e1888d10ffc788d"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-f1bc637c4fcf6060",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for water, deionised",
+        "reference product": "water, deionised",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Water, deionised, at plant",
+        "reference product": "Water, deionised, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for water, deionised",
+            "reference product": "water, deionised",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8126b5538932eb92a3da430bf7c22b5afddf1837b19313d7039b790efad1365e",
+          "metadata_sha256": "99789af6f899658788d58cca6eca9cc6fa22863a34c5ea6d97d6f6849202f4f0"
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+          "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944"
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "1d7fe7c87e6806833088deed8891fb9928f2bf7abfcf50c1bd3f3e794f707988",
+          "metadata_sha256": "be7c253619e026023bd1d16979cff690835a02863c07132bdb4ab4f069e33afd"
+        }
+      },
+      "previous_scopes": []
+    },
+    {
+      "rule_id": "bp-08f2432b62895931",
+      "status": "requires_exact_profile_extension",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for epoxy resin, liquid",
+        "reference product": "epoxy resin, liquid",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Epoxy resin, liquid, at plant",
+        "reference product": "Epoxy resin, liquid, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "RER",
+            "name": "market for epoxy resin, liquid",
+            "reference product": "epoxy resin, liquid",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d99ab6d5ac6480b5c4532af04ad8810dfabb9401c29a06ee84a5e83d7e25cd5b",
+          "metadata_sha256": "2a3f5f1e6927c51ef858318454f968c33eaba4fcefce9a4ac1f3c3524c88f27e"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Epoxy resin, liquid, at plant",
+            "reference product": "Epoxy resin, liquid, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e3a840103d230fca666df62e39dc3c30ccdfcb26200c98310b3195a149cb1dd2",
+          "metadata_sha256": "74324784ca1ec3a15c7bcdf0a53f61ce2edb5e3594863fe33cc139e425ce3339"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Epoxy resin, liquid, at plant",
+            "reference product": "Epoxy resin, liquid, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "5f9d559ddbf432c2573c7114151c06cbb95905d3e29ca690fb488703059be01f",
+          "metadata_sha256": "1627ee265173b932264d5de632dc6700141d89148a465793d0153290162d5ce4"
+        }
+      },
+      "previous_scopes": [
+        {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a0067903079f6814",
+      "status": "requires_initial_correspondence_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for ammonium bicarbonate",
+        "reference product": "ammonium bicarbonate",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Ammonium bicarbonate, at plant",
+        "reference product": "Ammonium bicarbonate, at plant",
+        "unit": "kilogram"
+      },
+      "source_production_amounts": [
+        1.0
+      ],
+      "native_production_amounts": {
+        "2025": [
+          1
+        ],
+        "2026": [
+          1.0
+        ]
+      },
+      "required_reference_sign_factor": null,
+      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "witnesses": {
+        "3.9": {
+          "identity": {
+            "location": "RER",
+            "name": "market for ammonium bicarbonate",
+            "reference product": "ammonium bicarbonate",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "576f707138d733a8ba8a0a7834bcbc7affb41667748a26370a8e883b7d030c4b",
+          "metadata_sha256": "14e6c7770080a7ef067ebe73d771f1b86e2faef102b65c02cd25eeefb6906884"
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Ammonium bicarbonate, at plant",
+            "reference product": "Ammonium bicarbonate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "23d261fb6c122fa0010fb001849c87e9bfa62989f27ef489e2f087a60dd13434",
+          "metadata_sha256": "9ab15e37ede13974bb87f34fa09776835602c68436b5077f57f664658d653ddd"
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Ammonium bicarbonate, at plant",
+            "reference product": "Ammonium bicarbonate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4c62b2fc48da389a8100159b156270e8b9e8248a9e5441ecb357dfcee964d9c8",
+          "metadata_sha256": "fe5fbc3e137b4a3e3d3f12ee7902d38b8184b8008352c1c0b1d461404e2195cb"
+        }
+      },
+      "previous_scopes": []
+    }
+  ]
+}

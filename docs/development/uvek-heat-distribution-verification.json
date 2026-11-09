@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "status": "native_distribution_stage_and_existing_public_workflow_verified_not_public_heat_rollout",
+  "context": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "implementation": "premise/energy/uvek_heat_distribution.py",
+  "review": "premise/data/heat/uvek2026_distribution_review.json",
+  "scenario": "encrypted REMIND SSP2-NPi2050",
+  "stage": {
+    "matrix_shape": [
+      11973,
+      11973
+    ],
+    "canonical_biosphere_rows": 4362,
+    "complete_links": true,
+    "regional_secondary_markets": 13,
+    "native_delivery_copies": 13,
+    "actual_positive_IAM_roles": 7,
+    "source_network_quantities_unchanged": true,
+    "source_scientific_signatures_unchanged": true,
+    "public_heat_rollout": false
+  },
+  "finite_LCI_demands": 3,
+  "installed_stage_equivalent": true,
+  "installed_package_tests": 58,
+  "distribution_and_shared_heat_tests": 84,
+  "Brightpath_scoped_hydrogen_tests": 41,
+  "Premise_focused_scope_tests": 10,
+  "test_groups_overlap": true,
+  "approval_module_partial_run": "Stopped after203passes and one stale titanium-as-unreviewed refusal fixture failed. The guard now deliberately withholds its exact scope; it, drift checks and the new cold/warm hydrogen test pass in the focused10-test run. The interrupted full module is not reported as passing.",
+  "lint": "Ruff/Black pass for new/changed modules. Generator has the same two pre-existingI001import-order findings as HEAD; all other generator lint passes.",
+  "existing_public_default_regression": {
+    "updates": [
+      "biomass",
+      "electricity"
+    ],
+    "activities": 12529,
+    "original_pins": 55,
+    "original_roots": 9,
+    "semantic_certification_and_export": "passed from isolated installed wheels",
+    "biomass_markets": 13,
+    "literal_pellet_substitution_audits": 5,
+    "original39full2partial_callers_and_GOES_audit": "passed",
+    "original_titanium_helpers_verified": 113,
+    "source_signatures_unchanged": true,
+    "canonical_external_biosphere_only": true
+  },
+  "packaged_wheels": {
+    "premise-2.6.0-py3-none-any.whl": "436e38b99a88fa0071343f80a376c327e937f300c14120e3d322cf57a079fa0a",
+    "brightpath-1.0.0a14-py3-none-any.whl": "40ab8e3bd48ed6329443f5cf9a1a4dfcf0e6e822ff5d80a1b3fc8501464377bb"
+  },
+  "new_exact_scope_count": 448,
+  "previous447fingerprints_unchanged": true,
+  "heat_supplemental_graph": {
+    "roots": 12,
+    "foreground_records": 76,
+    "original55pins_unchanged": true,
+    "preparation": "blocked in observed3.9cohort on14unreviewed correspondences; not admitted or omitted implicitly",
+    "frontier": "docs/development/uvek-heat-mapping-frontier.json"
+  },
+  "limitations": [
+    "District copies retain native Swiss loss/network assumptions; geography, temperature, technology, density, vintage and unquantified score effects remain.",
+    "The pinned native background retains2991upstream biosphere exclusions from its original import; this stage does not repair or quantify them.",
+    "No LCIA equivalence, impact completeness or full heat operationalization is claimed. End-use mappings, updates/relinking, certification and export remain required before opening heat.",
+    "One pending wastewater correspondence has source reference-1m3 and native+1m3; its inherited+1factor must not be approved."
+  ],
+  "commits": {
+    "Brightpath_hydrogen": "ab1d4f6",
+    "Premise_hydrogen_scope": "d1149c50",
+    "distribution": "Committed with this verification; see git history."
+  },
+  "receipts": [
+    {
+      "name": "native_heat_distribution_tests.log",
+      "sha256": "c1c76ca4be75adcab6f3ac333e51b9c41a579fb1b0a2a35fc396f81056ce9cb5",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_distribution_stage_report.json",
+      "sha256": "cc5780f8654db7378b035fe6a74279fff4c8790a92ff130107192ccb734dd492",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_distribution_installed_stage_report.json",
+      "sha256": "4b9074db58ea9062bc76c5b19ee17e89458935d47669dc453ca0b11bf2513fa4",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_distribution_installed_package_checks.json",
+      "sha256": "4e5bf75fd1e4e783cefaf87e755c4489658bb87fb8a037a94218ae31bf82b241",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_dependencies_default_export_report.json",
+      "sha256": "0358ea2c45df2f6804471c3100fafc27e091e4c3f06e875837ad1ec79ddae786",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_dependencies_default_readback.json",
+      "sha256": "f2d97f75a288a991c4f0232e5cefcc55780e3f1705886ab312411f8a0227d1bb",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_dependencies_original_mappings_readback.json",
+      "sha256": "2e211eb04f349af7a6b7762c25347279f26fd0e349913427ec528dd07602261a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_dependencies_electricity_installed_checks.json",
+      "sha256": "3f64a8a7819461cf523a3436df99f74bd9b40a3af88f27ff78ca344966835abe",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_hydrogen_proxy_tests.log",
+      "sha256": "038dfdc49ad824260e7d6bb93e0594643b4e68a453917b87e63d24491033b6e6",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_hydrogen_scope_registration.json",
+      "sha256": "7e35a8042ead2b7b408c4d0e4b1d6bd41c48e8c119260eab04a86927d2abe0df",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_scoped_approval_focused_tests.log",
+      "sha256": "c3d845e15e307b8b11a609392c70f1d7086bb004ab3e9433ea12b2683d912ed7",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_generator_lint_baseline.json",
+      "sha256": "e5a6fab3d32cbb1a6359b196a15c6d7c61174ac250c550fd5a262d91020c1d9f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplemental_resolution_report.json",
+      "sha256": "557d1629c651d5533e3bb925b90d7be2006db76c1b8ea04e595c5fe12a27124b",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_dependencies.json",
+      "sha256": "8477fc4bb0b5bb43edca9067114f291e61400a5bd37e12dc036a10246525c42e",
+      "location": "private task workspace"
+    }
+  ]
+}

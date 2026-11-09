@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "reviewed_native_distribution_prototype_public_heat_rollout_pending",
+  "authorization": "Standing autonomous modelling approval; scoped native distribution proxy with retained literal quantities and audit.",
+  "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "source": {
+    "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+    "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+    "location": "CH",
+    "unit": "megajoule"
+  },
+  "source_inventory_sha256": "c28a750ebd260ac3db052f5c314f1ce83f89952b395aaf1fd88eccd650a54c7e",
+  "source_metadata_sha256": "db5100850e4f5ada36e9c3d38f968ec67a20aadbea99945bbac01d377ae8a1fa",
+  "reference_amount": 1,
+  "reference_unit": "megajoule",
+  "heat_input": {
+    "name": "Heat, natural gas, at industrial furnace 1MW",
+    "reference product": "Heat, natural gas, at industrial furnace 1MW",
+    "location": "CH",
+    "unit": "megajoule"
+  },
+  "network_input": {
+    "name": "Transport, district heat, average",
+    "reference product": "Transport, district heat, average",
+    "location": "CH",
+    "unit": "megajoule"
+  },
+  "decision": "Create scenario-owned district delivery copies of the complete native network service. Replace only the original plant-heat supplier with the corresponding regional IAM secondary heat market. Preserve every signed source coefficient, formula, supported uncertainty and other network/energy/biosphere exchanges. Source heat-input quantity already accounts for the documented loss boundary; do not recalculate it from prose or add another loss multiplier.",
+  "limitations": [
+    "The complete native Swiss district-delivery model proxies other IAM regions. Network density, pipe/infrastructure, supply temperature, operating conditions, loss convention, vintage and geography remain native screening assumptions; their score effects are unquantified.",
+    "The original gas-plant identity describes the native prototype before its heat input is replaced by the IAM generation mix. Copies receive explicit generic delivery names and source/target provenance. No extra distribution, pumping or avoided-heat credit is added.",
+    "The observed prose loss percentage is not a separately applicable divisor. Preserve the actual inventory heat coefficient and the separate transport-network service once. No equivalence to a regional future network is claimed."
+  ],
+  "receipts": [
+    {
+      "name": "native_heat_district_delivery.private.json",
+      "sha256": "9f4ecc37e3e5f0541dc25c779506204f0110d5235666016164ffa52b7646367b",
+      "location": "private task workspace"
+    }
+  ]
+}
