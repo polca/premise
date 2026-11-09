@@ -27034,6 +27034,821 @@
           "fingerprint": "65c7f0d329d26c16ca76db067c1f36e46a3e5e7d5546c6dbe6ce46f65c2001b6"
         }
       ]
+    },
+    {
+      "rule_id": "bp-59f60997076df042",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-59f60997076df042",
+        "source": {
+          "name": "market group for transport, freight train",
+          "reference product": "transport, freight train",
+          "location": "GLO",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "followup_review",
+        "raw_rule_sha256": "9b9d2fb0cd52af3abf8c8517dede9a1e225f4fc5a45a1b2b6b49f29b15ab459e",
+        "selected_rule_sha256": "10a98c33511f8570d999c7617ffa81cd709438b667523b448d8781efe0e86e76",
+        "fingerprint": "7e3a9c0b005de2c057289e4a681dd1e555b0d1d3467406c45e32a516dcbe70ec",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market group for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "metadata_sha256": "155d5ea6688023346752c4ae2cc5bb5748d263af8d789acd15032cef69a40019",
+          "inventory_sha256": "1f6325b2a2226c92ecb219a2e35098071456833dc12e1ea0b6578f49b8bcecdf"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+            "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_whole_freight_review.json",
+          "uvek_pilot_kcl_site_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The global freight-train market group uses the complete European mixed electric/diesel rail service per original tkm. Native shunting, train and track life cycles are included. The historical European traction, electricity, loading, geography and infrastructure mix replaces the global source portfolio; this is not coal-only rail or train operation alone. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The global freight-train market group uses the complete European mixed electric/diesel rail service per original tkm. Native shunting, train and track life cycles are included. The historical European traction, electricity, loading, geography and infrastructure mix replaces the global source portfolio; this is not coal-only rail or train operation alone. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7e3a9c0b005de2c057289e4a681dd1e555b0d1d3467406c45e32a516dcbe70ec"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-999a70594224e212",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-999a70594224e212",
+        "source": {
+          "name": "market group for transport, freight, inland waterways, barge",
+          "reference product": "transport, freight, inland waterways, barge",
+          "location": "GLO",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, barge",
+          "reference product": "Transport, barge",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "a9dbc4804fbcf9a80238ccc59f9f3d1d2b2a7ab4c0282488c38b9aac20b87978",
+        "selected_rule_sha256": "ccc0c9ba49d00d193c2b8bc5cc14501b60ba77e3394e4110997a2df3f1c6dae5",
+        "fingerprint": "42ebbd356e1bcb91a1b4bf9b416970e4514286ba96dd4b1ab65751dc6fd17b70",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market group for transport, freight, inland waterways, barge",
+            "reference product": "transport, freight, inland waterways, barge",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "metadata_sha256": "720b0b785db95c42055b00bb44623cde8db92f2aaacb63adafc04ff77dddad5c",
+          "inventory_sha256": "93b93ae886bd3f0bbda601f2840433add9b6af6acf66ac4ff779c7439cb7aa56"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08",
+            "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "671108054c8945359d4378e0d7679b1de893d973b4dece3e0d629e42a6d103fb",
+            "inventory_sha256": "ede9a55f91db61662b4a9ccb437cf4b8393ce59af94809c37cd3e06c72071b82"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_whole_freight_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The global barge market group uses the complete European inland-barge service per original tkm. Its vessel, ports and canal construction, operation, maintenance and disposal remain once. European route/canal assumptions, vessel technology, fuel, loading, geography and vintage differ from the global source mix. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The global barge market group uses the complete European inland-barge service per original tkm. Its vessel, ports and canal construction, operation, maintenance and disposal remain once. European route/canal assumptions, vessel technology, fuel, loading, geography and vintage differ from the global source mix. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "42ebbd356e1bcb91a1b4bf9b416970e4514286ba96dd4b1ab65751dc6fd17b70"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c87d564423c75554",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-c87d564423c75554",
+        "source": {
+          "name": "market group for transport, freight, lorry, unspecified",
+          "reference product": "transport, freight, lorry, unspecified",
+          "location": "GLO",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, lorry, fleet average",
+          "reference product": "Transport, freight, lorry, fleet average",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "e67029da033268d41e2b27b5a12d3394f74fbedef6a1902cfad6548e5315e9cb",
+        "selected_rule_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f",
+        "fingerprint": "2be4fae657f50c6a4143f84286154d202da5385923604e8efbcebe397b580414",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market group for transport, freight, lorry, unspecified",
+            "reference product": "transport, freight, lorry, unspecified",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "metadata_sha256": "89335f0432c6201b72ea10ba61b55669e076892bc62f2bc29bf54e05e13d6b95",
+          "inventory_sha256": "b5b6ec72598e434ae9d017e089c2016e5b558845d4d415214d544cf864621014"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6",
+            "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "abde6d1efda1c9aa544258cfa058427cbc5c29bdf9562a51d9d1a3194f9db896",
+            "inventory_sha256": "ade1a32bc0c9477d3f8e2a58217e60a23f05164b64d9a10363cd2471425e3ae1"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_whole_freight_review.json",
+          "uvek_pilot_kcl_site_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The global unspecified-lorry market group uses the complete native heavy-road fleet service per original tkm. Its RER label carries a fleet model based on Swiss 2020 shares. Source global vehicle weights, emission standards, fuels, payload, empty running, infrastructure, geography and vintage are screening differences. No source fleet split, tonne-to-vehicle-km conversion or added truck is inferred. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The global unspecified-lorry market group uses the complete native heavy-road fleet service per original tkm. Its RER label carries a fleet model based on Swiss 2020 shares. Source global vehicle weights, emission standards, fuels, payload, empty running, infrastructure, geography and vintage are screening differences. No source fleet split, tonne-to-vehicle-km conversion or added truck is inferred. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2be4fae657f50c6a4143f84286154d202da5385923604e8efbcebe397b580414"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-55c88a17f0ffb64f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-55c88a17f0ffb64f",
+        "source": {
+          "name": "market for transport, freight, sea, container ship",
+          "reference product": "transport, freight, sea, container ship",
+          "location": "GLO",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "OCE",
+          "name": "Transport, transoceanic container ship",
+          "reference product": "Transport, transoceanic container ship",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "e830a14edac4bb663255de80ac598db675e30f2cd4c4e677b3b190c5ad5236f8",
+        "selected_rule_sha256": "e830a14edac4bb663255de80ac598db675e30f2cd4c4e677b3b190c5ad5236f8",
+        "fingerprint": "34080709bb3c9b79e0c7ac5fa92bcf71fff508ba4e0e2495471e9749de7e6d75",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for transport, freight, sea, container ship",
+            "reference product": "transport, freight, sea, container ship",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "metadata_sha256": "abf37e4c45d7a70c5fd298632ad3ee1400da6c92d62f3566d42ff39c5b420e2e",
+          "inventory_sha256": "ab3ad3b5fa1cda1f8116a55f5ea61acbdd4bc8354ce4cf41ae2d8c12b57b1721"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed",
+            "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "84b6609111e37d2873473610aa2e3123a7f7e9a766bfa735b37ccb7ccee1128b",
+            "inventory_sha256": "12cc87fa4b5285c81a1c7d2f3a3e5cc8c6983bbc5680fbc3bd1c92e1ef5f3d22"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_older_pet_whole_freight_review.json",
+          "uvek_pilot_kcl_site_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The global container-ship market uses the complete native ocean container service per original tkm. Native vessel manufacture, operation, maintenance, wrecking and the two ports remain once. Vessel capacity, fuel, loading, empty trips, lifetime, port assumptions and vintage differ; no added vessel or port and no capacity/lifetime multiplier is introduced. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The global container-ship market uses the complete native ocean container service per original tkm. Native vessel manufacture, operation, maintenance, wrecking and the two ports remain once. Vessel capacity, fuel, loading, empty trips, lifetime, port assumptions and vintage differ; no added vessel or port and no capacity/lifetime multiplier is introduced. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "34080709bb3c9b79e0c7ac5fa92bcf71fff508ba4e0e2495471e9749de7e6d75"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b25755fd394b9346",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-b25755fd394b9346",
+        "source": {
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "location": "RoW",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "followup_review",
+        "raw_rule_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98",
+        "selected_rule_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98",
+        "fingerprint": "d2ea5ab62a8a6c02fbf49e1fbdded5ca4cc7f6f8ce68ae8c01080f875bedbfc7",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "metadata_sha256": "9242044d72ee67df879c1ce100501eb5bb9c534759f95c078b9c25e745c3897a",
+          "inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+            "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_whole_freight_review.json",
+          "uvek_pilot_uncontrolled_market_review.json",
+          "uvek_older_pet_whole_freight_review.json",
+          "uvek_pilot_kcl_site_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The rest-of-world freight-train market uses the same complete European mixed electric/diesel rail service per original tkm. Preserve the whole native train, shunting and track inventory. Geographic traction, power, loading, infrastructure and vintage differences remain; no coal-only or operation-only substitute is admitted. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The rest-of-world freight-train market uses the same complete European mixed electric/diesel rail service per original tkm. Preserve the whole native train, shunting and track inventory. Geographic traction, power, loading, infrastructure and vintage differences remain; no coal-only or operation-only substitute is admitted. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d2ea5ab62a8a6c02fbf49e1fbdded5ca4cc7f6f8ce68ae8c01080f875bedbfc7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c5304556b418deab",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-c5304556b418deab",
+        "source": {
+          "name": "market for transport, freight, lorry 16-32 metric ton, EURO3",
+          "reference product": "transport, freight, lorry 16-32 metric ton, EURO3",
+          "location": "RoW",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+          "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "c6008ed2bcd63f769d992688952a79c03c41d58a8712bde83fe5507076755818",
+        "selected_rule_sha256": "c6008ed2bcd63f769d992688952a79c03c41d58a8712bde83fe5507076755818",
+        "fingerprint": "06192c95a3a31adb71829c30576c6cd26e8e385ccb93e4e567c7d85ede7aa04b",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO3",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO3",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "metadata_sha256": "80ef7d4b66075f59e66cdc37534534d3f3acc0b5af121f22b095f9441e903123",
+          "inventory_sha256": "8be67d55aa4fddea9a4df9f3b444415bc266095a455646d193714ba4da4d35b0"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "CH",
+              "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "55e49024c0cce9bba5b56477d81edb2142c9824bdf9431faf3fafd968e677222",
+            "inventory_sha256": "201111ff1fc4928f32b3f6f7650411a1d85e73e3956bf65069bd6e5f031aafe1"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CH",
+              "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "d86fdc813dfe0250c489c43e25cd49417d3ea21dfbc08101245c9ba89d02c312",
+            "inventory_sha256": "4157f35cb735f38a33089c64410889c4806d8b651a703d3923519d559145283e"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_whole_freight_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The rest-of-world 16-32 metric ton EURO3 lorry market uses the complete Swiss 16-32 t gross-weight fleet service per original tkm. The nominal weight class is retained, but EURO3 is replaced by the native mixed fleet, not an equal emission standard. Payload, empty running, fuel/drive mix, infrastructure, geography and vintage differ. No density, payload or lifetime multiplier is inferred. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The rest-of-world 16-32 metric ton EURO3 lorry market uses the complete Swiss 16-32 t gross-weight fleet service per original tkm. The nominal weight class is retained, but EURO3 is replaced by the native mixed fleet, not an equal emission standard. Payload, empty running, fuel/drive mix, infrastructure, geography and vintage differ. No density, payload or lifetime multiplier is inferred. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "06192c95a3a31adb71829c30576c6cd26e8e385ccb93e4e567c7d85ede7aa04b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fc87385b1c0a40f4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-fc87385b1c0a40f4",
+        "source": {
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "location": "CL",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CL",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "0427a6264d921ba706e7e1ccc3c7b09b3dc65adc28da98199567de082639fa86",
+        "selected_rule_sha256": "0427a6264d921ba706e7e1ccc3c7b09b3dc65adc28da98199567de082639fa86",
+        "fingerprint": "3fc2b721e6d3879fa847d65d3ef99bcdad3530b21aa191c4ccaa55f3dc17a103",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "CL",
+            "unit": "kilowatt hour"
+          },
+          "metadata_sha256": "1614b8c816e9590b160ed4835332f941e2f993b3cceacaa7875a01a61ab4b02a",
+          "inventory_sha256": "7bf52eec3faf8d173d558f11688ccdc472338bcef9935af254c521e01ee539f0"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "CL",
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "0ada426939c8dd2c9eeabacd6577bbc222d1672d2c60684c23d1c388cf4ec0c4",
+            "inventory_sha256": "767d07d113e76bbe300f8c7dd6538c10069f33b64f230f549caf4ce290173a2f"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CL",
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "metadata_sha256": "df05eb6ef218a0c6e680a86fce27deea0c87068134390cf8a7cee25e17073c6b",
+            "inventory_sha256": "f46acf6933d634895fee0f84ba2c2778f3a66f53f40354b8f5987cfa8dbb18bc"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_pilot_kcl_site_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The Chilean delivered medium-voltage market uses the complete Chilean consumption-grid service per original kWh, not the domestic-production-only service. Retain native voltage-grid topology, losses, infrastructure and SF6 once. The native 2023 consumption portfolio, imports, grid-loss and network/emission conventions differ from source 3.9. The generic metadata footer claiming no losses does not replace the actual native inventory; no source self-loop, grid or SF6 inventory is duplicated. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The Chilean delivered medium-voltage market uses the complete Chilean consumption-grid service per original kWh, not the domestic-production-only service. Retain native voltage-grid topology, losses, infrastructure and SF6 once. The native 2023 consumption portfolio, imports, grid-loss and network/emission conventions differ from source 3.9. The generic metadata footer claiming no losses does not replace the actual native inventory; no source self-loop, grid or SF6 inventory is duplicated. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3fc2b721e6d3879fa847d65d3ef99bcdad3530b21aa191c4ccaa55f3dc17a103"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-155787c4bf1ee018",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_operating_review.json",
+      "review_sha256": "b093a6591e607e6289345eced3565e5481a263b2d9ce5ea3c43268da008df7bd",
+      "authorization": "Standing independently inspected whole-service, same-function/unit and geographic screening-proxy approvals. Freshly verified source/native references and exact existing freight/operating witnesses support these eight direct services actually required by the nitrate graph. This is an explicit new exact admission for each direct use after inspection; the earlier KCl parent-only approval remains unchanged and is not itself broadened. No new primitive, quantity basis, fuel efficiency, avoided burden, physical omission or recovery/allocation model is introduced. Preserve the complete native service and all caller signs/uncertainty. No rule/helper/migration route changes.",
+      "inspection": {
+        "rule_id": "bp-155787c4bf1ee018",
+        "source": {
+          "name": "market for diesel, burned in building machine",
+          "reference product": "diesel, burned in building machine",
+          "location": "GLO",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Diesel, burned in building machine, average",
+          "reference product": "Diesel, burned in building machine, average",
+          "unit": "megajoule"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677",
+        "selected_rule_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677",
+        "fingerprint": "534b23be97a469f75903358fd78474dabf9257297818e50f0052194be11d05e2",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for diesel, burned in building machine",
+            "reference product": "diesel, burned in building machine",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "metadata_sha256": "c376cde306bc081bd9d979d7fa7ee876a782554a026712f84d9329fdcae9ad93",
+          "inventory_sha256": "160b0e9bf8b766571f5a6c538adb390bb63b0883529f6755641fed885c04d4bf"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "CH",
+              "name": "Diesel, burned in building machine, average",
+              "reference product": "Diesel, burned in building machine, average",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "826a0435bf9c58e50e80baff78445b6374ad49e888879d2e5bcdb705656bb98f",
+            "inventory_sha256": "b03c72599facdb7b0fcdcaac0b14c61a29f4fd193e88fa938b7fb9d777a458bc"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CH",
+              "name": "Diesel, burned in building machine, average",
+              "reference product": "Diesel, burned in building machine, average",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "620c902ac6ac9f1829c43b08d977bd10b19eec5dde73ac3319761759c650803d",
+            "inventory_sha256": "9517aeb77a8c9ba8708525a1240bd3b0c29c953732a48f40c5e3ffad2669408b"
+          }
+        ],
+        "whole_service_prior_authority_matches": [
+          "uvek_pilot_uncontrolled_market_review.json",
+          "uvek_pilot_kcl_site_review.json"
+        ],
+        "native2025_2026_direct_technosphere_vectors_match": true,
+        "limitations": "The global building-machine combustion market uses the complete Swiss average building-machine service per original fuel MJ. Both references describe diesel fuel burned, not electrical output. Preserve native machine/fuel/lubricant/emission and end-of-life burdens once. Historical fleet, particle filters, fuel, emissions, allocation and geography differ. This does not authorize a mobile generator, hydraulic excavator or pump; no electrical efficiency or fuel-normalization multiplier is introduced. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      },
+      "limitations": [
+        "The global building-machine combustion market uses the complete Swiss average building-machine service per original fuel MJ. Both references describe diesel fuel burned, not electrical output. Preserve native machine/fuel/lubricant/emission and end-of-life burdens once. Historical fleet, particle filters, fuel, emissions, allocation and geography differ. This does not authorize a mobile generator, hydraulic excavator or pump; no electrical efficiency or fuel-normalization multiplier is introduced. Use the complete native service per original signed service unit at factor +1. Preserve caller uncertainty, formulas, foreground ownership, separate emissions and other purchases. This is a screening correspondence, not an assertion of inventory or LCIA equivalence. Retain native infrastructure, operation, maintenance, disposal, upstream supply and emissions once; do not append the source service inventory or add duplicate fuel, vehicle, network, port, heat or recovery credits. Source and both native releases have inspected positive unit references and unchanged 2025/2026 direct technosphere vectors. Native biosphere exclusions, allocation, emissions and vintage differences remain warnings with unquantified score effects. Only the enumerated ecoinvent 3.9 cut-off source and UVEK 2026 cut-off destination with ecoinvent 3.10 biosphere are independently admitted here. Other releases, inverse and cross-system-model routes receive no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "534b23be97a469f75903358fd78474dabf9257297818e50f0052194be11d05e2"
+        }
+      ]
     }
   ]
 }

@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-26 already have exact current CLIC approval fingerprints for their source
+34 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 42 reference-product
+scientifically reviewed target. The other suppliers cover 35 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 99 automatically new scientific decisions. Coverage is
+decisions. They are not 91 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -87,6 +87,23 @@ The actual four-record migrated graph gives finite LCI on the unchanged native
 background. This approval covers the site and its internal helper closure;
 it does not independently admit the raw PVF, freight or operating heuristics,
 other releases, the full nitrate market or a nutrient-fertilizer correspondence.
+
+Eight direct operating services now have separate exact 3.9 cut-off approvals:
+global and rest-of-world freight rail, global barge, unspecified global lorry,
+global container ship, rest-of-world 16–32 t EURO3 lorry, Chilean medium-voltage
+consumption electricity and global building-machine diesel combustion. Their
+source hashes match existing whole-service evidence, and fresh native inventory
+inspection verifies positive references and unchanged direct technosphere
+vectors across the two UVEK releases. Original signed service quantities and
+uncertainty are preserved at factor +1, with explicit fleet, geography, grid-mix,
+emissions, allocation and vintage warnings. Complete native infrastructure and
+operations are retained once. This adds no new transport, electricity, fuel or
+recovery credit. It does not change the KCl parent review or any existing raw
+migration rule. The previously approved 3.6 building-machine market remains
+separately approved; no other source profile inherits these new 3.9 admissions.
+All eight actual migrated services give finite LCI on unchanged native matrices,
+and public cache and installed-wheel checks pass. The complete nitrate market
+is still unresolved.
 
 This dependency expansion sits behind one currently blocked parent rule.
 Consequently, the headline count of 35 unresolved rules / 40 source-profile

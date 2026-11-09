@@ -834,10 +834,41 @@ registered scopes. Fourteen new Brightpath cases, 46 relevant regression cases
 and 38 focused Premise cases pass. The actual four-record migrated graph gives
 finite LCI on unchanged native matrices; one residual correction reconciles
 independent solves to about 1.1e-15 relative difference. Full generator replay
-is byte-identical and isolated installed-wheel conversion passes. This fixes a dependency within the nitrate-salt chain;
+is byte-identical and isolated installed-wheel conversion passes. This fixes a
+dependency within the nitrate-salt chain;
 the parent frontier remains 35 rules / 40 cases, with all nine roots and 55 CLIC
-records retained. Standalone child heuristics and uninspected releases remain
+records retained. That site approval covers its helper closure; direct services
+require separate reviews, described below. Uninspected releases remain
 unapproved. Whole-pilot transformation, certification and export remain gates.
+
+`uvek_pilot_nitrate_operating_review.json` separately admits eight existing
+3.9 cut-off service correspondences needed directly by the nitrate graph: six
+whole freight services, Chilean delivered medium-voltage electricity and
+building-machine diesel combustion per fuel MJ. Fresh source and native
+inspection verifies positive unit references and the same native 2025/2026
+direct technosphere vectors. Exact source inventory hashes match existing
+whole-service evidence. Complete rail/road/barge/container services retain
+native vehicle, vessel, track, road, port and canal burdens once; the specified
+16–32 t EURO3 lorry uses the already reviewed complete native fleet of that
+weight class. Geographic, fleet, loading, fuel, vintage and emissions differences
+remain explicit screening warnings. The electricity service keeps the native
+consumption grid and losses; diesel is fuel combustion rather than electrical
+output. Original signed quantities, uncertainty, formulas and separate caller
+emissions remain unchanged, without source-service duplication or new helpers.
+
+These eight direct cases have their own evidence and exact fingerprints; the
+KCl parent-only review remains unchanged. The older separate 3.6 diesel review
+is preserved. There are now 319 registered scopes, with all 311 earlier scopes
+unchanged. Forty-nine Brightpath cases and 75 focused Premise cases pass,
+including cold/warm caches and refusals for uninspected profiles. Eight actual
+publicly migrated graphs give finite LCI on unchanged native matrices; one
+residual correction per case gives maximum relative supply difference about
+2.1e-15 and equation residual below 2.9e-15. All eight installed-wheel migrations
+pass. Mapping rules, coefficients and migration routes remain unchanged.
+The full pilot still refuses 35 parent rules / 40 cases, retaining nine roots
+and 55 CLIC records. Nitrate coverage is now 34 of 125 external suppliers;
+the remaining 91 identities span 35 product labels. These are dependency counts,
+not new-decision counts or proof of a completed nitrate conversion.
 
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,

@@ -110,7 +110,7 @@ def test_kcl_other_releases_remain_unapproved(tmp_path, version):
 @pytest.mark.parametrize(
     "rule_id", [None, "bp-155787c4bf1ee018", "bp-fc87385b1c0a40f4"]
 )
-def test_kcl_approval_does_not_admit_old_nutrient_or_standalone_operating_rules(
+def test_kcl_approval_does_not_admit_old_nutrient_or_uninspected_operating_profiles(
     rule_id,
 ):
     resource = load_uvek_technosphere_resource()
@@ -123,7 +123,11 @@ def test_kcl_approval_does_not_admit_old_nutrient_or_standalone_operating_rules(
         resource,
         "replace",
         rule,
-        TechnosphereProfile("ecoinvent", "3.9", "cutoff"),
+        # The two 3.9 operating services now have a separate direct review.
+        # Their uninspected 3.12 profiles still cannot inherit the KCl approval.
+        TechnosphereProfile(
+            "ecoinvent", "3.9" if rule_id is None else "3.12", "cutoff"
+        ),
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
     assert fingerprint not in approved_compatibility_rule_scopes(
