@@ -306,3 +306,23 @@ the generic external hook. All additional sectors await their blocker audit;
 none is represented as already supported. The electricity-only refusal gate
 remains until actual sector implementations pass validation. Electricity mapping
 and packaging remain the first milestone, not completion of the expanded goal.
+
+### First static audit of the 18 additional sectors
+
+The sector tracker now records actual callback modules, signatures, mapping-file
+role counts and shared blockers for all 18 updates. This is a static audit, not
+runtime support. Only electricity receives background-family and biosphere-axis
+arguments through the current public dispatcher. Other sector InventorySet calls
+that omit `family=` still select ecoinvent aliases. Their native matching and
+physical transformation contracts require implementation before lifting the gate.
+
+The first pass finds no nonempty UVEK role declarations in the existing biomass,
+cement, steel, heat, CDR, transport or final-energy variable mappings. Fuels has
+nine such declarations among 91 ecoinvent roles, reflecting electricity-pilot
+coverage rather than a complete fuel-sector implementation. Final energy has
+424 ecoinvent role declarations; that count is not a count of necessary new
+inventories. Battery, renewables, mining, metals and emissions also require
+procedural/data-file audits beyond those IAM YAML files. The tracker marks all
+18 sectors `audited_not_operational`; no no-op, missing alias or unavailable IAM
+variable is accepted as successful sector validation. Source hashes and line
+references make this audit reviewable as implementation progresses.

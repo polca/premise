@@ -13,201 +13,1963 @@
   "sectors": [
     {
       "sector": "biomass",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/biomass.yaml",
+            "ecoinvent_role_count": 3,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "biomass crops - purpose grown",
+              "biomass wood - purpose grown",
+              "biomass - residual"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/energy/biomass.py:39",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/energy/biomass.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        },
+        {
+          "code": "biosphere_axis_review",
+          "path": "premise/energy/biomass.py",
+          "finding": "Direct biosphere dictionary calls need inspection to ensure they use3.10biosphere rather than2026technosphere release."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_biomass",
+        "module": "premise/energy/biomass.py",
+        "module_sha256": "d835f8c3140fcc77a867b41dbd1ba5e5974570408a9b6fa2584d97448d521120",
+        "update_function_line": 39,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 128,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [
+          127
+        ],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "biomass.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "cement",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/cement.yaml",
+            "ecoinvent_role_count": 5,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "cement, dry feed rotary kiln",
+              "cement, dry feed rotary kiln, efficient",
+              "cement, dry feed rotary kiln, efficient, with on-site CCS",
+              "cement, dry feed rotary kiln, efficient, with oxyfuel CCS",
+              "cement, dry feed rotary kiln, efficient, with MEA CCS"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/materials/cement.py:34",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/materials/cement.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        },
+        {
+          "code": "biosphere_axis_review",
+          "path": "premise/materials/cement.py",
+          "finding": "Direct biosphere dictionary calls need inspection to ensure they use3.10biosphere rather than2026technosphere release."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_cement",
+        "module": "premise/materials/cement.py",
+        "module_sha256": "3ed001e3f68d058a7edba699259ec41cf35ea57ec1f792c0170e1474265c1e17",
+        "update_function_line": 34,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 133,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [
+          146
+        ],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "cement.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "steel",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/steel.yaml",
+            "ecoinvent_role_count": 9,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "steel - primary - BF/BOF",
+              "steel - primary - BF/BOF CCS",
+              "steel - primary - DRI",
+              "steel - primary - DRI CCS",
+              "steel - primary - H-DRI",
+              "steel - primary - TGR BF/BOF",
+              "steel - primary - TGR BF/BOF CCS",
+              "steel - primary - Electrowinning",
+              "steel - secondary"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/materials/steel.py:24",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/materials/steel.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_steel",
+        "module": "premise/materials/steel.py",
+        "module_sha256": "35728db7f39ecfbe4cdebde90944ba0f9b1bc95ae90f163153346b54ee4c3e39",
+        "update_function_line": 24,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 111,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "steel.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "fuels",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/fuels.yaml",
+            "ecoinvent_role_count": 91,
+            "explicit_nonempty_uvek_role_count": 9,
+            "missing_or_empty_uvek_roles": [
+              "pulverised lignite",
+              "petroleum coke",
+              "biomass",
+              "waste",
+              "methane, from biomass",
+              "methane, synthetic",
+              "methane, from coal",
+              "gasoline",
+              "petrol, 5% ethanol",
+              "syngas",
+              "petrol, synthetic, from electrolysis",
+              "petrol, synthetic, from coal",
+              "petrol, synthetic, from coal, with CCS",
+              "diesel, synthetic, from electrolysis",
+              "diesel, synthetic, from coal",
+              "diesel, synthetic, from coal, with CCS",
+              "diesel, synthetic, from wood",
+              "diesel, synthetic, from wood, with CCS",
+              "diesel, synthetic, from grass",
+              "diesel, synthetic, from grass, with CCS",
+              "diesel, synthetic, from natural gas",
+              "diesel, synthetic, from natural gas, with CCS",
+              "hydrogen, from petroleum",
+              "hydrogen, from electrolysis, PEM",
+              "hydrogen, from electrolysis, PEM, from CSP",
+              "hydrogen, from electrolysis, PEM, from Solar PV",
+              "hydrogen, from electrolysis, PEM, from onshore wind",
+              "hydrogen, from electrolysis, PEM, from offshore wind",
+              "hydrogen, from electrolysis, PEM, from geothermal",
+              "hydrogen, from electrolysis, PEM, from hydropower",
+              "hydrogen, from electrolysis, AEC",
+              "hydrogen, from electrolysis, SOEC",
+              "hydrogen, from solar",
+              "hydrogen, from pyrolysis",
+              "hydrogen, from biomass",
+              "hydrogen, from biomass, with CCS",
+              "hydrogen, from coal",
+              "hydrogen, from coal, with CCS",
+              "hydrogen, from natural gas",
+              "hydrogen, from natural gas, with CCS",
+              "hydrogen, from biogas",
+              "hydrogen, from biogas, with CCS",
+              "hydrogen, from oil",
+              "hydrogen, from oil, with CCS",
+              "biodiesel, from oil crops",
+              "biodiesel, from used cooking oil, with CCS",
+              "bioethanol, from wood",
+              "bioethanol, from wood, with CCS",
+              "bioethanol, from residues",
+              "bioethanol, from grass",
+              "bioethanol, from grass, with CCS",
+              "bioethanol, from grain",
+              "bioethanol, from grain, with CCS",
+              "bioethanol, from sugar",
+              "bioethanol, from sugar, with CCS",
+              "ethanol",
+              "ethyl tert-butyl ether",
+              "methanol, from wood",
+              "methanol, from grass",
+              "methanol, from wood, with CCS",
+              "methanol, from grass, with CCS",
+              "liquefied petroleum gas",
+              "liquefied petroleum gas, synthetic, from natural gas",
+              "liquefied petroleum gas, synthetic, from natural gas, with CCS",
+              "liquefied petroleum gas, synthetic, from biomass",
+              "liquefied petroleum gas, synthetic, from biomass, with CCS",
+              "liquefied petroleum gas, synthetic, from coal",
+              "liquefied petroleum gas, synthetic, from coal, with CCS",
+              "nuclear fuel element, for boiling water reactor",
+              "nuclear fuel element, for pressure water reactor",
+              "meat and bone meal",
+              "kerosene",
+              "kerosene, synthetic, from electrolysis, energy allocation",
+              "kerosene, synthetic, from electrolysis, economic allocation",
+              "kerosene, synthetic, from coal, energy allocation",
+              "kerosene, synthetic, from coal, economic allocation",
+              "kerosene, synthetic, from coal, energy allocation, with CCS",
+              "kerosene, synthetic, from coal, economic allocation, with CCS",
+              "kerosene, synthetic, from biomass, energy allocation",
+              "kerosene, synthetic, from biomass, energy allocation, with CCS",
+              "kerosene, synthetic, from natural gas, energy allocation",
+              "kerosene, synthetic, from natural gas, energy allocation, with CCS"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/fuels/base.py:29",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/fuels/base.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_fuels",
+        "module": "premise/fuels/base.py",
+        "module_sha256": "491c0afb95b78756f9a98f34c90a3de3d887e237a6daab142493255f8624ee19",
+        "update_function_line": 29,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 122,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "fuels.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "renewable",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/electricity/renewables.py:22",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/electricity/renewables.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_wind_turbines",
+        "module": "premise/electricity/renewables.py",
+        "module_sha256": "f522b9a4eca7c339506111c42d05a1b2ca58456a7b65e35f446393874e5ffafc",
+        "update_function_line": 22,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 92,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "metals",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/materials/metals.py:266",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/materials/metals.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        },
+        {
+          "code": "biosphere_axis_review",
+          "path": "premise/materials/metals.py",
+          "finding": "Direct biosphere dictionary calls need inspection to ensure they use3.10biosphere rather than2026technosphere release."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_metals",
+        "module": "premise/materials/metals.py",
+        "module_sha256": "05cbf77a5dcd99bd8e74ce42055aaf2b9b53bdf06ac9216a1b6cf3f8bd51fbc8",
+        "update_function_line": 266,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 1418,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [
+          2384
+        ],
+        "version_assumption_lines_to_review": [
+          423,
+          425,
+          1900
+        ],
+        "role_files": [],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "mining",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/materials/mining.py:33",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/materials/mining.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_mining",
+        "module": "premise/materials/mining.py",
+        "module_sha256": "a9f3888f681b85b7d228c4b9afd97f38378cdf32282cc9fc75e5c1b753a44a12",
+        "update_function_line": 33,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 174,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "heat",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/heat.yaml",
+            "ecoinvent_role_count": 49,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "heat, buildings, from district heating",
+              "heat, buildings, from hydrogen boiler",
+              "heat, buildings, from hydrogen fuel cell",
+              "heat, buildings, from natural gas boiler",
+              "heat, buildings, from biomethane boiler",
+              "heat, buildings, from LPG boiler",
+              "heat, buildings, from biomass-based methanol boiler",
+              "heat, buildings, from coal-based methanol boiler",
+              "heat, buildings, from coal stove",
+              "heat, buildings, from wood logs heater",
+              "heat, buildings, from wood pellets heater",
+              "heat, buildings, from heat pump",
+              "heat, buildings, from electric heater",
+              "heat, buildings, from light fuel oil boiler",
+              "heat, buildings, residual",
+              "heat, industrial, from biomass boiler",
+              "heat, industrial, from hydrogen boiler",
+              "heat, industrial, from hydrogen fuel cell",
+              "heat, industrial, from electric boiler",
+              "heat, industrial, from heat pump",
+              "heat, industrial, from natural gas boiler",
+              "heat, industrial, from biomethane boiler",
+              "heat, industrial, from coal furnace",
+              "heat, industrial, from light fuel oil boiler",
+              "heat, industrial, from biofuel boiler",
+              "heat, industrial, from solar thermal",
+              "heat, industrial, from district heating",
+              "heat, secondary, from biomass",
+              "heat, secondary, from biomass CHP",
+              "heat, secondary, from biomass residual",
+              "heat, secondary, from biomass with CCS",
+              "heat, secondary, from coal",
+              "heat, secondary, from coal CHP",
+              "heat, secondary, from coal residual",
+              "heat, secondary, from coal with CCS",
+              "heat, secondary, from coke",
+              "heat, secondary, from coke with CCS",
+              "heat, secondary, from natural gas",
+              "heat, secondary, from natural gas CHP",
+              "heat, secondary, from natural gas residual",
+              "heat, secondary, from natural gas with CCS",
+              "heat, secondary, from oil",
+              "heat, secondary, from oil with CCS",
+              "heat, secondary, from electricity",
+              "heat, secondary, from heat pump",
+              "heat, secondary, from geothermal",
+              "heat, secondary, from nuclear",
+              "heat, secondary, from solar thermal",
+              "heat, secondary, residual"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/energy/heat.py:220",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/energy/heat.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_heat",
+        "module": "premise/energy/heat.py",
+        "module_sha256": "3938d3991f840bdc203a9662119353ec2fae000f94f5f6e520fca4703dc35396",
+        "update_function_line": 220,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 313,
+            "family_keyword_supplied": false
+          },
+          {
+            "line": 321,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [
+          699,
+          715,
+          718,
+          725
+        ],
+        "role_files": [
+          "heat.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "cdr",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/carbon_dioxide_removal.yaml",
+            "ecoinvent_role_count": 18,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "direct air capture (solvent, high-temp, gas heat) with storage",
+              "direct air capture (solvent, high-temp, industrial steam heat) with storage",
+              "direct air capture (solvent, high-temp, heat pump) with storage",
+              "direct air capture (solvent, high-temp, hydrogen heat) with storage",
+              "direct air capture (solvent, high-temp) with storage",
+              "direct air capture (sorbent, low-temp, heat pump) with storage",
+              "direct air capture (sorbent, low-temp, gas heat) with storage",
+              "direct air capture (sorbent, low-temp) with storage",
+              "enhanced rock weathering",
+              "ocean liming",
+              "biochar",
+              "biomass power generation, with CCS",
+              "biomass heat generation, with CCS",
+              "synthetic fuels, with CCS",
+              "biofuels, with CCS",
+              "cement production, non-fossil CO2, with CCS",
+              "afforestation, eucalyptus plantation",
+              "afforestation, poplar plantation"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/emissions/carbon_dioxide_removal.py:64",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/emissions/carbon_dioxide_removal.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_cdr",
+        "module": "premise/emissions/carbon_dioxide_removal.py",
+        "module_sha256": "0a82d8cde45f29050aebfde001579d4e2458817c5e51613a831e032a208090bd",
+        "update_function_line": 64,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 135,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "carbon_dioxide_removal.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "battery",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/batteries/battery.py:42",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_battery",
+        "module": "premise/batteries/battery.py",
+        "module_sha256": "b2fd2caa2db5129777559a574cb05a54aad0a350c637acd7178b24208ca78f26",
+        "update_function_line": 42,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "cars",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/transport_passenger_cars.yaml",
+            "ecoinvent_role_count": 35,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "passenger car, battery electric, large",
+              "passenger car, fuel cell electric, large",
+              "passenger car, compressed gas, large",
+              "passenger car, plugin gasoline hybrid, large",
+              "passenger car, gasoline, large",
+              "passenger car, battery electric, medium",
+              "passenger car, fuel cell electric, medium",
+              "passenger car, compressed gas, medium",
+              "passenger car, liquefied petroleum gas, medium",
+              "passenger car, plugin gasoline hybrid, medium",
+              "passenger car, diesel hybrid, medium",
+              "passenger car, plugin diesel hybrid, medium",
+              "passenger car, diesel, medium",
+              "passenger car, gasoline, medium",
+              "passenger car, hybrid gasoline, medium",
+              "passenger car, battery electric, mini",
+              "passenger car, fuel cell electric, mini",
+              "passenger car, compressed gas, mini",
+              "passenger car, plugin gasoline hybrid, mini",
+              "passenger car, gasoline, mini",
+              "passenger car, battery electric, medium SUV",
+              "passenger car, fuel cell electric, medium SUV",
+              "passenger car, compressed gas, medium SUV",
+              "passenger car, plugin gasoline hybrid, medium SUV",
+              "passenger car, gasoline, medium SUV",
+              "passenger car, battery electric, small",
+              "passenger car, fuel cell electric, small",
+              "passenger car, compressed gas, small",
+              "passenger car, plugin gasoline hybrid, small",
+              "passenger car, gasoline, small",
+              "passenger car, battery electric, van",
+              "passenger car, fuel cell electric, van",
+              "passenger car, compressed gas, van",
+              "passenger car, plugin gasoline hybrid, van",
+              "passenger car, gasoline, van"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/transport/transport.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_vehicles",
+        "module": "premise/transport/transport.py",
+        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
+        "update_function_line": 47,
+        "declared_arguments": [
+          "scenario",
+          "vehicle_type",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 210,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "transport_passenger_cars.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "two_wheelers",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/transport_two_wheelers.yaml",
+            "ecoinvent_role_count": 6,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "moped, gasoline",
+              "moped, battery electric",
+              "motorcycle, 50-250cc, gasoline",
+              "motorcycle, 50-250cc, battery electric",
+              "motorcycle, >250cc, gasoline",
+              "motorcycle, >250cc, battery electric"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/transport/transport.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_vehicles",
+        "module": "premise/transport/transport.py",
+        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
+        "update_function_line": 47,
+        "declared_arguments": [
+          "scenario",
+          "vehicle_type",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 210,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "transport_two_wheelers.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "trucks",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/transport_road_freight.yaml",
+            "ecoinvent_role_count": 38,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "truck, battery electric, 3.5 metric ton",
+              "truck, fuel cell electric, 3.5 metric ton",
+              "truck, gasoline, 3.5 metric ton",
+              "truck, diesel, 3.5 metric ton",
+              "truck, diesel hybrid, 3.5 metric ton",
+              "truck, plugin diesel hybrid, 3.5 metric ton",
+              "truck, compressed gas, 3.5 metric ton",
+              "truck, liquefied petroleum gas, 3.5 metric ton",
+              "truck, battery electric, 7.5 metric ton",
+              "truck, fuel cell electric, 7.5 metric ton",
+              "truck, gasoline, 7.5 metric ton",
+              "truck, diesel, 7.5 metric ton",
+              "truck, diesel hybrid, 7.5 metric ton",
+              "truck, plugin diesel hybrid, 7.5 metric ton",
+              "truck, compressed gas, 7.5 metric ton",
+              "truck, liquefied petroleum gas, 7.5 metric ton",
+              "truck, battery electric, 18 metric ton",
+              "truck, fuel cell electric, 18 metric ton",
+              "truck, gasoline, 18 metric ton",
+              "truck, diesel, 18 metric ton",
+              "truck, gasoline hybrid, 18 metric ton",
+              "truck, diesel hybrid, 18 metric ton",
+              "truck, compressed gas, 18 metric ton",
+              "truck, liquefied petroleum gas, 18 metric ton",
+              "truck, diesel plugin hybrid, 18 metric ton",
+              "truck, battery electric, 26 metric ton",
+              "truck, fuel cell electric, 26 metric ton",
+              "truck, diesel, 26 metric ton",
+              "truck, compressed gas, 26 metric ton",
+              "truck, battery electric, 40 metric ton",
+              "truck, fuel cell electric, 40 metric ton",
+              "truck, diesel hybrid, 40 metric ton",
+              "truck, gasoline hybrid, 40 metric ton",
+              "truck, diesel, 40 metric ton",
+              "truck, gasoline, 40 metric ton",
+              "truck, compressed gas, 40 metric ton",
+              "truck, liquefied petroleum gas, 40 metric ton",
+              "truck, diesel plugin hybrid, 40 metric ton"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/transport/transport.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_vehicles",
+        "module": "premise/transport/transport.py",
+        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
+        "update_function_line": 47,
+        "declared_arguments": [
+          "scenario",
+          "vehicle_type",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 210,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "transport_road_freight.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "ships",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/transport_sea_freight.yaml",
+            "ecoinvent_role_count": 9,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "ship, marine oil",
+              "ship, diesel",
+              "ship, biodiesel",
+              "ship, electric",
+              "ship, fuel cell",
+              "ship, ammonia",
+              "ship, methanol",
+              "ship, synthetic methane",
+              "ship, synthetic LPG"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/transport/transport.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_vehicles",
+        "module": "premise/transport/transport.py",
+        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
+        "update_function_line": 47,
+        "declared_arguments": [
+          "scenario",
+          "vehicle_type",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 210,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "transport_sea_freight.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "buses",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/transport_bus.yaml",
+            "ecoinvent_role_count": 7,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "bus, diesel",
+              "bus, gasoline",
+              "bus, diesel hybrid",
+              "bus, compressed gas",
+              "bus, liquefied petroleum gas",
+              "bus, fuel cell",
+              "bus, battery electric"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/transport/transport.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_vehicles",
+        "module": "premise/transport/transport.py",
+        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
+        "update_function_line": 47,
+        "declared_arguments": [
+          "scenario",
+          "vehicle_type",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 210,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "transport_bus.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "trains",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/transport_rail_freight.yaml",
+            "ecoinvent_role_count": 3,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "train, electric",
+              "train, diesel-electric",
+              "train, fuel cell"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/transport/transport.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_vehicles",
+        "module": "premise/transport/transport.py",
+        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
+        "update_function_line": 47,
+        "declared_arguments": [
+          "scenario",
+          "vehicle_type",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 210,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "transport_rail_freight.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "final energy",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [
+          {
+            "path": "premise/iam_variables_mapping/final_energy.yaml",
+            "ecoinvent_role_count": 424,
+            "explicit_nonempty_uvek_role_count": 0,
+            "missing_or_empty_uvek_roles": [
+              "Buildings - Heating - District Heating",
+              "Buildings - Heating - Heat pump",
+              "Buildings - Heating - Resistance",
+              "Buildings - Heating - Gases",
+              "Buildings - Heating - Other",
+              "Buildings - Heating - H2",
+              "Buildings - Heating - Biofuel",
+              "Buildings - Heating - Liquid coal",
+              "Buildings - Heating - LPG",
+              "Buildings - Heating - Oil",
+              "Buildings - Heating - Syn Fuel",
+              "Buildings - Heating - Solid Coal",
+              "Buildings - Heating - Solid biomass modern",
+              "Buildings - Heating - Solid biomass traditional",
+              "Buildings - Other - Elec",
+              "Buildings - Water heating - Elec",
+              "Buildings - Water heating - Heat",
+              "Buildings - Water heating - H2",
+              "Buildings - Water heating - Oil",
+              "Buildings - Water heating - Coal",
+              "Buildings - Water heating - Modern biomass",
+              "Buildings - Water heating - Traditional biomass",
+              "Buildings - Water heating - Nat Gas",
+              "Buildings - Cooling - Elec",
+              "Buildings - Cooking - Elec",
+              "Buildings - Cooking - Nat Gas",
+              "Buildings - Cooking - Oil",
+              "Buildings - Cooking - Coal",
+              "Buildings - Cooking - Modern biomass",
+              "Buildings - Cooking - Traditional biomass",
+              "CDR - DAC - Elec",
+              "CDR - DAC - Gases",
+              "CDR - DAC - Heat",
+              "CDR - DAC - H2",
+              "CDR - Enhanced Weathering - Diesel",
+              "CDR - Enhanced Weathering - Elec",
+              "CDR - OAE, electric calciner - Diesel",
+              "CDR - OAE, electric calciner - Elec",
+              "CDR - OAE, electric calciner - H2",
+              "CDR - OAE, traditional calciner - Diesel",
+              "CDR - OAE, traditional calciner - Elec",
+              "CDR - OAE, traditional calciner - Gases",
+              "CDR - OAE, traditional calciner - Hydrogen",
+              "Industry - Cement - Elec",
+              "Industry - Cement - H2",
+              "Industry - Cement - Bio CH4",
+              "Industry - Cement - Nat Gas",
+              "Industry - Cement - SNG",
+              "Industry - Cement - Biofuel",
+              "Industry - Cement - Oil",
+              "Industry - Cement - Syn Fuel",
+              "Industry - Cement - Liquid coal",
+              "Industry - Cement - LPG",
+              "Industry - Cement - Solid biomass",
+              "Industry - Cement - Solid coal",
+              "Industry - Cement - Secondary heat",
+              "Industry - Chemicals - Elec",
+              "Industry - Chemicals - Chemicals - H2",
+              "Industry - Chemicals - Chemicals - Elec, high temp",
+              "Industry - Chemicals - Chemicals - Elec, low temp",
+              "Industry - Chemicals - Chemicals - Bio CH4",
+              "Industry - Chemicals - Chemicals - Nat Gas",
+              "Industry - Chemicals - Chemicals - SNG",
+              "Industry - Chemicals - Chemicals - Biofuel",
+              "Industry - Chemicals - Chemicals - Liquid fossil",
+              "Industry - Chemicals - Chemicals - Syn Fuel",
+              "Industry - Chemicals - Chemicals - Solid Biomass",
+              "Industry - Chemicals - Chemicals - Solid coal",
+              "Industry - Chemicals - Formaldehyde - Elec",
+              "Industry - Chemicals - Resins - Elec",
+              "Industry - Chemicals - Resins - Nat Gas",
+              "Industry - Chemicals - Resins - H2",
+              "Industry - Chemicals - Resins - Biofuel",
+              "Industry - Chemicals - Resins - Liquid Coal",
+              "Industry - Chemicals - Resins - LPG",
+              "Industry - Chemicals - Resins - Syn Fuel",
+              "Industry - Chemicals - Resins - Liquid fossil",
+              "Industry - Chemicals - Resins - Solid coal",
+              "Industry - Chemicals - Resins - Solid Biomass",
+              "Industry - Chemicals - Ammonia - Elec",
+              "Industry - Chemicals - Ammonia - Nat Gas",
+              "Industry - Chemicals - Ammonia - Biofuel",
+              "Industry - Chemicals - Ammonia - Liquid fossil",
+              "Industry - Chemicals - Ammonia - Solid coal",
+              "Industry - Chemicals - Ammonia - Solid Biomass",
+              "Industry - Chemicals - Ammonia - Other",
+              "Industry - Chemicals - Heavy Refinery Products - Elec",
+              "Industry - Chemicals - Heavy Refinery Products - Nat Gas",
+              "Industry - Chemicals - Heavy Refinery Products - Biofuel",
+              "Industry - Chemicals - Heavy Refinery Products - Liquid fossil",
+              "Industry - Chemicals - Heavy Refinery Products - Solid coal",
+              "Industry - Chemicals - Heavy Refinery Products - Solid Biomass",
+              "Industry - Chemicals - High-Value Chemicals - Elec",
+              "Industry - Chemicals - High-Value Chemicals - Nat Gas",
+              "Industry - Chemicals - High-Value Chemicals - Biofuel",
+              "Industry - Chemicals - High-Value Chemicals - H2",
+              "Industry - Chemicals - High-Value Chemicals - Liquid Coal",
+              "Industry - Chemicals - High-Value Chemicals - Syn Fuel",
+              "Industry - Chemicals - High-Value Chemicals - LPG",
+              "Industry - Chemicals - High-Value Chemicals - Liquid fossil",
+              "Industry - Chemicals - High-Value Chemicals - Solid coal",
+              "Industry - Chemicals - High-Value Chemicals - Solid Biomass",
+              "Industry - Aluminum - Elec",
+              "Industry - Aluminum - Biofuel",
+              "Industry - Aluminum - LPG",
+              "Industry - Aluminum - Syn Fuel",
+              "Industry - Aluminum - Liquid fossil",
+              "Industry - Aluminum - Nat Gas",
+              "Industry - Aluminum - Heat",
+              "Industry - Aluminum - Solid coal",
+              "Industry - Aluminum - Solid Biomass",
+              "Industry - Chemicals - Methanol - Elec",
+              "Industry - Chemicals - Methanol - Nat Gas",
+              "Industry - Chemicals - Methanol - Biofuel",
+              "Industry - Chemicals - Methanol - H2",
+              "Industry - Chemicals - Methanol - Liquid fossil",
+              "Industry - Chemicals - Methanol - Solid coal",
+              "Industry - Chemicals - Methanol - Solid Biomass",
+              "Industry - Chemicals - Fertilizer - Elec",
+              "Industry - Chemicals - Fertilizer - Nat Gas",
+              "Industry - Chemicals - Fertilizer - Heat",
+              "Industry - Chemicals - Fertilizer - H2",
+              "Industry - Chemicals - Fertilizer - Liquid fossil",
+              "Industry - Chemicals - Fertilizer - Solid coal",
+              "Industry - Chemicals - Fertilizer - Solid Biomass",
+              "Industry - Food Processing - Elec",
+              "Industry - Food Processing - Nat Gas",
+              "Industry - Food Processing - Heat",
+              "Industry - Food Processing - H2",
+              "Industry - Food Processing - Liquid fossil",
+              "Industry - Food Processing - Solid coal",
+              "Industry - Food Processing - Solid Biomass",
+              "Industry - Non-Metallic Minerals - Electricity",
+              "Industry - Non-Metallic Minerals - Nat Gas",
+              "Industry - Non-Metallic Minerals - Heat",
+              "Industry - Non-Metallic Minerals - H2",
+              "Industry - Non-Metallic Minerals - Liquid fossil",
+              "Industry - Non-Metallic Minerals - Solid Biomass",
+              "Industry - Non-Metallic Minerals - Solid Coal",
+              "Industry - Other - Elec",
+              "Industry - Other - Heat",
+              "Industry - Other - H2",
+              "Industry - Other - Elec, high temp",
+              "Industry - Other - Elec, low temp",
+              "Industry - Other - Bio CH4",
+              "Industry - Other - Nat Gas",
+              "Industry - Other - SNG",
+              "Industry - Other - Biofuel",
+              "Industry - Other - Liquid fossil",
+              "Industry - Other - Syn Fuel",
+              "Industry - Other - Solid Biomass",
+              "Industry - Other - Solid coal",
+              "Industry - Paper - Elec",
+              "Industry - Paper - Nat Gas",
+              "Industry - Paper - Heat",
+              "Industry - Paper - H2",
+              "Industry - Paper - Liquid fossil",
+              "Industry - Paper - Solid coal",
+              "Industry - Paper - Solid Biomass",
+              "Industry - Steel - BF/BOF - Elec",
+              "Industry - Steel - BF/BOF + CCS - Elec",
+              "Industry - Steel - DRI EAF - Elec",
+              "Industry - Steel - DRI EAF + CCS - Elec",
+              "Industry - Steel - EAF - Elec",
+              "Industry - Steel - Electrowinning - Elec",
+              "Industry - Steel - H-DRI/EAF - Elec",
+              "Industry - Steel - SR/BOF - Elec",
+              "Industry - Steel - SR/BOF + CCS - Elec",
+              "Industry - Steel - TGR BF/BOF - Elec",
+              "Industry - Steel - TGR BF/BOF + CCS - Elec",
+              "Industry - Steel - BF/BOF - Coal",
+              "Industry - Steel - BF/BOF + CCS - Coal",
+              "Industry - Steel - DRI EAF - Coal",
+              "Industry - Steel - DRI EAF + CCS - Coal",
+              "Industry - Steel - EAF - Coal",
+              "Industry - Steel - Electrowinning - Coal",
+              "Industry - Steel - H-DRI/EAF - Coal",
+              "Industry - Steel - SR/BOF - Coal",
+              "Industry - Steel - SR/BOF + CCS - Coal",
+              "Industry - Steel - TGR BF/BOF - Coal",
+              "Industry - Steel - TGR BF/BOF + CCS - Coal",
+              "Industry - Steel - BF/BOF - H2",
+              "Industry - Steel - BF/BOF + CCS - H2",
+              "Industry - Steel - DRI EAF - H2",
+              "Industry - Steel - DRI EAF + CCS - H2",
+              "Industry - Steel - EAF - H2",
+              "Industry - Steel - Electrowinning - H2",
+              "Industry - Steel - H-DRI/EAF - H2",
+              "Industry - Steel - SR/BOF - H2",
+              "Industry - Steel - SR/BOF + CCS - H2",
+              "Industry - Steel - TGR BF/BOF - H2",
+              "Industry - Steel - TGR BF/BOF + CCS - H2",
+              "Industry - Steel - BF/BOF - Biomass",
+              "Industry - Steel - BF/BOF + CCS - Biomass",
+              "Industry - Steel - DRI EAF - Biomass",
+              "Industry - Steel - DRI EAF + CCS - Biomass",
+              "Industry - Steel - EAF - Biomass",
+              "Industry - Steel - Electrowinning - Biomass",
+              "Industry - Steel - H-DRI/EAF - Biomass",
+              "Industry - Steel - SR/BOF - Biomass",
+              "Industry - Steel - SR/BOF + CCS - Biomass",
+              "Industry - Steel - TGR BF/BOF - Biomass",
+              "Industry - Steel - TGR BF/BOF + CCS - Biomass",
+              "Industry - Steel - BF/BOF - Nat Gas",
+              "Industry - Steel - BF/BOF + CCS - Nat Gas",
+              "Industry - Steel - DRI EAF - Nat Gas",
+              "Industry - Steel - DRI EAF + CCS - Nat Gas",
+              "Industry - Steel - EAF - Nat Gas",
+              "Industry - Steel - Electrowinning - Nat Gas",
+              "Industry - Steel - H-DRI/EAF - Nat Gas",
+              "Industry - Steel - SR/BOF - Nat Gas",
+              "Industry - Steel - SR/BOF + CCS - Nat Gas",
+              "Industry - Steel - TGR BF/BOF - Nat Gas",
+              "Industry - Steel - TGR BF/BOF + CCS - Nat Gas",
+              "Industry - Steel - BF/BOF - Oil",
+              "Industry - Steel - BF/BOF + CCS - Oil",
+              "Industry - Steel - DRI EAF - Oil",
+              "Industry - Steel - DRI EAF + CCS - Oil",
+              "Industry - Steel - EAF - Oil",
+              "Industry - Steel - Electrowinning - Oil",
+              "Industry - Steel - H-DRI/EAF - Oil",
+              "Industry - Steel - SR/BOF - Oil",
+              "Industry - Steel - SR/BOF + CCS - Oil",
+              "Industry - Steel - TGR BF/BOF - Oil",
+              "Industry - Steel - TGR BF/BOF + CCS - Oil",
+              "Industry - Steel - BF/BOF - Secondary Heat",
+              "Industry - Steel - BF/BOF + CCS - Secondary Heat",
+              "Industry - Steel - DRI EAF - Secondary Heat",
+              "Industry - Steel - DRI EAF + CCS - Secondary Heat",
+              "Industry - Steel - EAF - Secondary Heat",
+              "Industry - Steel - Electrowinning - Secondary Heat",
+              "Industry - Steel - H-DRI/EAF - Secondary Heat",
+              "Industry - Steel - SR/BOF - Secondary Heat",
+              "Industry - Steel - SR/BOF + CCS - Secondary Heat",
+              "Industry - Steel - TGR BF/BOF - Secondary Heat",
+              "Industry - Steel - TGR BF/BOF + CCS - Secondary Heat",
+              "Industry - Steel - All steel - Elec",
+              "Industry - Steel - All steel - H2",
+              "Industry - Steel - All steel - Bio CH4",
+              "Industry - All Steel - Secondary Heat",
+              "Industry - Steel - All steel - Nat Gas",
+              "Industry - Steel - All steel - SNG",
+              "Industry - Steel - All steel - Biofuel",
+              "Industry - Steel - All steel - LPG",
+              "Industry - Steel - All steel - Liquid fossil",
+              "Industry - Steel - All steel - Liquid coal",
+              "Industry - Steel - All steel - Syn Fuel",
+              "Industry - Steel - All steel - Solid Biomass",
+              "Industry - Steel - All steel - Solid coal",
+              "Industry - Non-energy use - Solid coal",
+              "Industry - Non-energy use - Biomass",
+              "Industry - Non-energy use - Bio CH4",
+              "Industry - Non-energy use - Nat Gas",
+              "Industry - Non-energy use - Hydrogen",
+              "Industry - Non-energy use - Biofuel",
+              "Industry - Non-energy use - Elec",
+              "Industry - Non-energy use - Liquid fossil",
+              "Industry - Non-energy use - Syn Fuel",
+              "Transport - Freight - Domestic Shipping - Elec",
+              "Transport - Freight - Domestic Shipping - H2",
+              "Transport - Freight - Domestic Shipping - Biofuel",
+              "Transport - Freight - Domestic Shipping - Liquid fossil",
+              "Transport - Freight - Domestic Shipping - Syn Fuel",
+              "Transport - Freight - Domestic Shipping - LNG",
+              "Transport - Freight - Int. Shipping - Biofuel",
+              "Transport - Freight - Int. Shipping - Liquid fossil",
+              "Transport - Freight - Int. Shipping - Syn Fuel",
+              "Transport - Freight - Int. Shipping - Elec",
+              "Transport - Freight - Int. Shipping - H2",
+              "Transport - Freight - Int. Shipping - LNG",
+              "Transport - Freight - Rail - Elec",
+              "Transport - Freight - Rail - Biofuel",
+              "Transport - Freight - Rail - Liquid fossil",
+              "Transport - Freight - Rail - Syn Fuel",
+              "Transport - Freight - Rail - H2",
+              "Transport - Freight - Truck(18t) - Elec",
+              "Transport - Freight - Truck(18t) - Bio CH4",
+              "Transport - Freight - Truck(18t) - Nat Gas",
+              "Transport - Freight - Truck(18t) - SNG",
+              "Transport - Freight - Truck(18t) - H2",
+              "Transport - Freight - Truck(18t) - Biofuel",
+              "Transport - Freight - Truck(18t) - Liquid fossil",
+              "Transport - Freight - Truck(18t) - Syn Fuel",
+              "Transport - Freight - Truck(26t) - Elec",
+              "Transport - Freight - Truck(26t) - Bio CH4",
+              "Transport - Freight - Truck(26t) - Nat Gas",
+              "Transport - Freight - Truck(26t) - SNG",
+              "Transport - Freight - Truck(26t) - H2",
+              "Transport - Freight - Truck(26t) - Biofuel",
+              "Transport - Freight - Truck(26t) - Liquid fossil",
+              "Transport - Freight - Truck(26t) - Syn Fuel",
+              "Transport - Freight - Truck(40t) - Elec",
+              "Transport - Freight - Truck(40t) - Bio CH4",
+              "Transport - Freight - Truck(40t) - Nat Gas",
+              "Transport - Freight - Truck(40t) - SNG",
+              "Transport - Freight - Truck(40t) - H2",
+              "Transport - Freight - Truck(40t) - Biofuel",
+              "Transport - Freight - Truck(40t) - Liquid fossil",
+              "Transport - Freight - Truck(40t) - Syn Fuel",
+              "Transport - Freight - Truck(0-3_5t) - Elec",
+              "Transport - Freight - Truck(0-3_5t) - Bio CH4",
+              "Transport - Freight - Truck(0-3_5t) - Nat Gas",
+              "Transport - Freight - Truck(0-3_5t) - SNG",
+              "Transport - Freight - Truck(0-3_5t) - H2",
+              "Transport - Freight - Truck(0-3_5t) - Biofuel",
+              "Transport - Freight - Truck(0-3_5t) - Liquid fossil",
+              "Transport - Freight - Truck(0-3_5t) - Syn Fuel",
+              "Transport - Freight - Truck(7_5t) - Elec",
+              "Transport - Freight - Truck(7_5t) - Bio CH4",
+              "Transport - Freight - Truck(7_5t) - Nat Gas",
+              "Transport - Freight - Truck(7_5t) - SNG",
+              "Transport - Freight - Truck(7_5t) - H2",
+              "Transport - Freight - Truck(7_5t) - Biofuel",
+              "Transport - Freight - Truck(7_5t) - Liquid fossil",
+              "Transport - Freight - Truck(7_5t) - Syn Fuel",
+              "Transport - Freight - Domestic Aviation - Elec",
+              "Transport - Freight - Domestic Aviation - H2",
+              "Transport - Freight - Domestic Aviation - Liquid fossil",
+              "Transport - Freight - Domestic Aviation - Biofuel",
+              "Transport - Freight - Domestic Aviation - Syn Fuel",
+              "Transport - Pass - Int Aviation - Biofuel",
+              "Transport - Pass - Int Aviation - Liquid fossil",
+              "Transport - Pass - Int Aviation - H2",
+              "Transport - Pass - Int Aviation - Elec",
+              "Transport - Pass - Int Aviation - Syn Fuel",
+              "Transport - Pass - Domestic Aviation - H2",
+              "Transport - Pass - Domestic Aviation - Biofuel",
+              "Transport - Pass - Domestic Aviation - Liquid fossil",
+              "Transport - Pass - Domestic Aviation - Syn Fuel",
+              "Transport - Pass - Domestic Aviation - Elec",
+              "Transport - Pass - Rail - Elec",
+              "Transport - Pass - Rail - Biofuel",
+              "Transport - Pass - Rail - Liquid fossil",
+              "Transport - Pass - Rail - Syn Fuel",
+              "Transport - Pass - Rail - H2",
+              "Transport - Pass - Bus - Elec",
+              "Transport - Pass - Bus - Bio CH4",
+              "Transport - Pass - Bus - Nat Gas",
+              "Transport - Pass - Bus - SNG",
+              "Transport - Pass - Bus - H2",
+              "Transport - Pass - Bus - Biofuel",
+              "Transport - Pass - Bus - Liquid fossil",
+              "Transport - Pass - Bus - Syn Fuel",
+              "Transport - Pass - Large Car and SUV - Elec",
+              "Transport - Pass - Large Car and SUV - Bio CH4",
+              "Transport - Pass - Large Car and SUV - Nat Gas",
+              "Transport - Pass - Large Car and SUV - SNG",
+              "Transport - Pass - Large Car and SUV - H2",
+              "Transport - Pass - Large Car and SUV - Biofuel",
+              "Transport - Pass - Large Car and SUV - Liquid fossil",
+              "Transport - Pass - Large Car and SUV - Syn Fuel",
+              "Transport - Pass - Large Car - Elec",
+              "Transport - Pass - Large Car - Bio CH4",
+              "Transport - Pass - Large Car - Nat Gas",
+              "Transport - Pass - Large Car - SNG",
+              "Transport - Pass - Large Car - H2",
+              "Transport - Pass - Large Car - Biofuel",
+              "Transport - Pass - Large Car - Liquid fossil",
+              "Transport - Pass - Large Car - Syn Fuel",
+              "Transport - Pass - Van - Elec",
+              "Transport - Pass - Van - Bio CH4",
+              "Transport - Pass - Van - Nat Gas",
+              "Transport - Pass - Van - SNG",
+              "Transport - Pass - Van - H2",
+              "Transport - Pass - Van - Biofuel",
+              "Transport - Pass - Van - Liquid fossil",
+              "Transport - Pass - Van - Syn Fuel",
+              "Transport - Pass - Compact Car - Elec",
+              "Transport - Pass - Compact Car - Bio CH4",
+              "Transport - Pass - Compact Car - Nat Gas",
+              "Transport - Pass - Compact Car - SNG",
+              "Transport - Pass - Compact Car - H2",
+              "Transport - Pass - Compact Car - Biofuel",
+              "Transport - Pass - Compact Car - Liquid fossil",
+              "Transport - Pass - Compact Car - Syn Fuel",
+              "Transport - Pass - Midsize Car - Elec",
+              "Transport - Pass - Midsize Car - Bio CH4",
+              "Transport - Pass - Midsize Car - Nat Gas",
+              "Transport - Pass - Midsize Car - SNG",
+              "Transport - Pass - Midsize Car - H2",
+              "Transport - Pass - Midsize Car - Biofuel",
+              "Transport - Pass - Midsize Car - Liquid fossil",
+              "Transport - Pass - Midsize Car - Syn Fuel",
+              "Transport - Pass - Mini Car - Elec",
+              "Transport - Pass - Mini Car - Bio CH4",
+              "Transport - Pass - Mini Car - Nat Gas",
+              "Transport - Pass - Mini Car - SNG",
+              "Transport - Pass - Mini Car - H2",
+              "Transport - Pass - Mini Car - Biofuel",
+              "Transport - Pass - Mini Car - Liquid fossil",
+              "Transport - Pass - Mini Car - Diesel",
+              "Transport - Pass - Mini Car - Syn Fuel",
+              "Transport - Pass - Subcompact Car - Elec",
+              "Transport - Pass - Subcompact Car - Bio CH4",
+              "Transport - Pass - Subcompact Car - Nat Gas",
+              "Transport - Pass - Subcompact Car - SNG",
+              "Transport - Pass - Subcompact Car - H2",
+              "Transport - Pass - Subcompact Car - Biofuel",
+              "Transport - Pass - Subcompact Car - Liquid fossil",
+              "Transport - Pass - Subcompact Car - Syn Fuel",
+              "Transport - Pass - Moped - Elec",
+              "Transport - Pass - Moped - Biofuel",
+              "Transport - Pass - Moped - Liquid fossil",
+              "Transport - Pass - Moped - Syn Fuel",
+              "Transport - Pass - Motorcycle(50-250cc) - Elec",
+              "Transport - Pass - Motorcycle(50-250cc) - Biofuel",
+              "Transport - Pass - Motorcycle(50-250cc) - Liquid fossil",
+              "Transport - Pass - Motorcycle(50-250cc) - Syn Fuel",
+              "Transport - Pass - Motorcycle(>250cc) - Elec",
+              "Transport - Pass - Motorcycle(>250cc) - Biofuel",
+              "Transport - Pass - Motorcycle(>250cc) - Liquid fossil",
+              "Transport - Pass - Motorcycle(>250cc) - Syn Fuel",
+              "Transportation excl. International Shipping - Electricity",
+              "Transportation excl. International Shipping - Gases|Gas",
+              "Transportation excl. International Shipping - Gases|Biomass",
+              "Transportation excl. International Shipping - Hydrogen",
+              "Transportation excl. International Shipping - Liquids|Biomass|Fuel Cell",
+              "Transportation excl. International Shipping - Liquids|Biomass|Combustion",
+              "Transportation excl. International Shipping - Liquids|Coal",
+              "Transportation excl. International Shipping - Liquids|Gas",
+              "Transportation excl. International Shipping - Liquids|Oil|Light",
+              "Transportation excl. International Shipping - Liquids|Oil|Heavy",
+              "Transportation excl. International Shipping - Other",
+              "Transportation excl. International Shipping - Solids|Coal"
+            ],
+            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+          }
+        ],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/energy/final_energy.py:17",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/energy/final_energy.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_final_energy",
+        "module": "premise/energy/final_energy.py",
+        "module_sha256": "61411198f682649bb3777862e97820d7c42632627da01e79d8d5187eb4edc1f3",
+        "update_function_line": 17,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 108,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "final_energy.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     },
     {
       "sector": "emissions",
-      "status": "awaiting_blocker_audit",
-      "requirements": [],
-      "native_mapping_coverage": null,
-      "blockers": [],
+      "status": "audited_not_operational",
+      "requirements": [
+        "Family-aware native supplier matching and exact source/reference-basis review.",
+        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+        "Real public API update/certification/export and finite LCI; combined/default regression."
+      ],
+      "native_mapping_coverage": {
+        "kind": "static_declarations_only",
+        "files": [],
+        "runtime_verified": false
+      },
+      "blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/emissions/emissions.py:50",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/emissions/emissions.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
       "decisions": [],
       "implementation_commits": [],
       "tests": [],
-      "integration_exports": []
+      "integration_exports": [],
+      "static_audit": {
+        "callback": "_update_emissions",
+        "module": "premise/emissions/emissions.py",
+        "module_sha256": "42bd285e77b503342f2be5edbf3f5ffe3762d500111bec67cb929b369303d454",
+        "update_function_line": 50,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model",
+          "gains_scenario"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 133,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      }
     }
   ],
   "combined_default_run": {
@@ -217,5 +1979,18 @@
   "packaged_resource_checks": {
     "status": "pending_final_implementation",
     "evidence": []
-  }
+  },
+  "audit_method": "AST public callback/argument/InventorySet/version/biosphere call audit plus YAML role counts; read-only source inspection, not runtime validation.",
+  "shared_blockers": [
+    {
+      "code": "scope_gate",
+      "path": "premise/database/background.py:validate_uvek_scope",
+      "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+    },
+    {
+      "code": "family_dispatch",
+      "path": "premise/database/new_database.py:NewDatabase.update",
+      "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+    }
+  ]
 }
