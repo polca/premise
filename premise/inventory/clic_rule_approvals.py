@@ -88,6 +88,30 @@ def annotate_compatibility_reviews(report, approval_metadata):
         ]
 
 
+def approved_recipe_source_omission(loss, report):
+    """Accept only a literal omission inside a matched, fingerprinted recipe review."""
+    if loss.code != "migration.recipe_source_input_omission":
+        return False
+    details = loss.to_dict()["details"]
+    index = details.get("omission_index")
+    if type(index) is not int or index < 0:
+        return False
+    for review in report.get("premise_compatibility_reviews", ()):
+        inspection = review.get("inspection", {})
+        omissions = inspection.get("approved_recipe_source_omissions", {}).get(
+            details.get("recipe_id"), []
+        )
+        if (
+            index < len(omissions)
+            and details.get("omission") == omissions[index]
+            and details.get("source_profile") == inspection.get("source_profile")
+            and details.get("basis")
+            == {"amount": 1, "unit": inspection.get("source", {}).get("unit")}
+        ):
+            return True
+    return False
+
+
 def approved_compatibility_rule_scopes(target):
     """Authorize existing inspected pilot decisions, without approving new matches.
 

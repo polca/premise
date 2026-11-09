@@ -1,7 +1,8 @@
 # Proposed scoped omission of trace recyclate in one HDPE market
 
-Status: user decision pending. No mapping, omission policy or approval scope is
-enabled. Scope is only the ecoinvent 3.9 cut-off global market for high-density
+Status: the user approved the four specified omissions with warnings.
+The exact HDPE mapping is implemented and validated; its admission contains
+only those four omissions. Scope is only the ecoinvent 3.9 cut-off global market for high-density
 polyethylene granulate required by the existing electricity pilot's nitrate
 supply. Destination: UVEK 2026 cut-off with ecoinvent 3.10 biosphere.
 
@@ -56,7 +57,8 @@ cross-system-model conversions.
 
 The alternative is to retain all four nonempty recycling branches and prepare
 their source-based reconstructions, including the additional treatment and
-utility dependencies. No omission is assumed while this decision is pending.
+utility dependencies. The explicit approval covers only these four entries; it does not authorize
+other omissions or a general threshold.
 
 ## Private candidate and checks
 
@@ -81,7 +83,27 @@ Evidence in the private pilot directory:
 `native_pe_recycling_candidates.private.json`. Reproduction scripts:
 `draft_hdpe_trace_omission.py` and `check_hdpe_trace_candidate_lci.py`.
 
-Implementation, if approved, must expose the four omissions in warnings,
-portable provenance and audit output through an exact reviewed scope. Existing
-refusals for other omissions must remain; broadening pragmatic loss allowances
-is not part of this decision.
+The implementation exposes all four omissions as separate recipe-source losses
+and warnings, in generated-helper metadata, portable review provenance and
+cached audits. Premise accepts only literal entries from a matched exact review
+fingerprint, including the recipe ID, source profile, entry index and unit basis.
+Other omission codes and mismatched entries still fail; no general pragmatic
+loss allowance is added.
+
+## Implemented checkpoint
+
+The packaged review is `export/uvek_pilot_nitrate_hdpe_review.json`, SHA-256
+`3cfbcad1b1d2d5bff392cb8f3e02182bab731f216572ba4e70e4f0302bead456`.
+It adds one exact profile scope, preserving all previous 360 fingerprints,
+3,291 recipes and 716 reviews. The complete resource generation is byte-identical;
+only the named HDPE rule and its new recipe change. Independent source comparisons
+verify that only the four approved original entries are absent and every other
+input coefficient, uncertainty field and exchange order remains unchanged.
+
+Validation passes 138 focused Brightpath cases and 17 Premise cases for the
+mapping/gate, plus the separate exact-scope drift check and nine existing
+approval/refusal regressions. Cold/warm caches retain all four audit records.
+The actual migrated graph and installed wheel both execute the public converter;
+its native LCI is finite and the source scientific signatures remain unchanged.
+These are component checks, not full electricity-scenario certification/export
+or a quantified LCIA comparison with the omitted recycling branches.

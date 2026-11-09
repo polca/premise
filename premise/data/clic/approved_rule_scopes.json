@@ -44613,6 +44613,573 @@
           "fingerprint": "794685e75556bca6aed3db4421464adda5b49d558713e18ffa968d6d4f17b46f"
         }
       ]
+    },
+    {
+      "rule_id": "bp-eae66c60e7256051",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_hdpe",
+      "review_path": "export/uvek_pilot_nitrate_hdpe_review.json",
+      "review_sha256": "3cfbcad1b1d2d5bff392cb8f3e02182bab731f216572ba4e70e4f0302bead456",
+      "authorization": "Explicit user reply: Approve four omissions with warnings. This applies only to the four enumerated3.9cutoff GLOHDPE recycled-supply exchanges from the checked proposal/candidate; preserve virgin/delivery quantities and uncertainty, no renormalization or general omission threshold. Standing same-product/unit/geographic and whole-freight proxy conditions cover remaining endpoints.",
+      "inspection": {
+        "rule_id": "bp-eae66c60e7256051",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 1.0,
+          "id": "bp-eae66c60e7256051",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "GLO",
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Polyethylene, HDPE, granulate, at plant",
+            "reference product": "Polyethylene, HDPE, granulate, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "bfda0ecf950ed5acd38f01ffe66eae7b2015a30039310a548ec73d097a0dd8f7",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "617f6bf981968141c9f7ff4210422b42fddbbef2eee71b9c65f7efc2f71c56d8",
+        "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "preserve_other_profiles": false,
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+            "inputs": [
+              {
+                "amount": 0.809364548494888,
+                "uncertainty type": 0,
+                "loc": 0.809364548494888,
+                "name": "Polyethylene, HDPE, granulate, at plant",
+                "reference product": "Polyethylene, HDPE, granulate, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.190635451504994,
+                "uncertainty type": 0,
+                "loc": 0.190635451504994,
+                "name": "Polyethylene, HDPE, granulate, at plant",
+                "reference product": "Polyethylene, HDPE, granulate, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.2887,
+                "uncertainty type": 2,
+                "loc": -1.2423671923132475,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.4504,
+                "uncertainty type": 2,
+                "loc": -0.7976192021566564,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.5248,
+                "uncertainty type": 2,
+                "loc": -0.6447380413522577,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "location": "OCE",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "polyethylene production, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e1647d1604434ed9c26f5b4ccd7c7b09cff3d64afa6bb19a0c80897210f0d530"
+              },
+              {
+                "source": [
+                  "polyethylene production, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "47188b7bfef3a41bb6ee88bc5d4ece615391653425d1444594828bd5585ff9d9"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "10a98c33511f8570d999c7617ffa81cd709438b667523b448d8781efe0e86e76"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, container ship",
+                  "transport, freight, sea, container ship",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "e830a14edac4bb663255de80ac598db675e30f2cd4c4e677b3b190c5ad5236f8"
+              }
+            ],
+            "source_input_omissions": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "GLO",
+                  "name": "market for polyethylene, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+                "original_index": 1,
+                "source_exchange": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "US",
+                  "unit": "kilogram",
+                  "amount": 2.93285310007683e-14,
+                  "uncertainty type": 0,
+                  "loc": 2.93285310007683e-14,
+                  "type": "technosphere"
+                },
+                "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "GLO",
+                  "name": "market for polyethylene, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+                "original_index": 2,
+                "source_exchange": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "CH",
+                  "unit": "kilogram",
+                  "amount": 2.93285310007683e-14,
+                  "uncertainty type": 0,
+                  "loc": 2.93285310007683e-14,
+                  "type": "technosphere"
+                },
+                "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "GLO",
+                  "name": "market for polyethylene, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+                "original_index": 3,
+                "source_exchange": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "RoW",
+                  "unit": "kilogram",
+                  "amount": 2.93285310007683e-14,
+                  "uncertainty type": 0,
+                  "loc": 2.93285310007683e-14,
+                  "type": "technosphere"
+                },
+                "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "GLO",
+                  "name": "market for polyethylene, high density, granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+                "original_index": 6,
+                "source_exchange": {
+                  "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                  "reference product": "polyethylene, high density, granulate",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram",
+                  "amount": 2.93285310007683e-14,
+                  "uncertainty type": 0,
+                  "loc": 2.93285310007683e-14,
+                  "type": "technosphere"
+                },
+                "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+              }
+            ]
+          }
+        ],
+        "approved_recipe_source_omissions": {
+          "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "original_index": 1,
+              "source_exchange": {
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "location": "US",
+                "unit": "kilogram",
+                "amount": 2.93285310007683e-14,
+                "uncertainty type": 0,
+                "loc": 2.93285310007683e-14,
+                "type": "technosphere"
+              },
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "original_index": 2,
+              "source_exchange": {
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "location": "CH",
+                "unit": "kilogram",
+                "amount": 2.93285310007683e-14,
+                "uncertainty type": 0,
+                "loc": 2.93285310007683e-14,
+                "type": "technosphere"
+              },
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "original_index": 3,
+              "source_exchange": {
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": 2.93285310007683e-14,
+                "uncertainty type": 0,
+                "loc": 2.93285310007683e-14,
+                "type": "technosphere"
+              },
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "original_index": 6,
+              "source_exchange": {
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram",
+                "amount": 2.93285310007683e-14,
+                "uncertainty type": 0,
+                "loc": 2.93285310007683e-14,
+                "type": "technosphere"
+              },
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution."
+            }
+          ]
+        },
+        "omitted_recycled_kg_per_source_kg": 1.173141240030732e-13,
+        "retained_virgin_kg_per_source_kg": 0.9999999999998821,
+        "renormalized": false,
+        "freight_witnesses": [
+          {
+            "owner": {
+              "name": "market for transformer, high voltage use",
+              "reference product": "transformer, high voltage use",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "155d5ea6688023346752c4ae2cc5bb5748d263af8d789acd15032cef69a40019",
+            "source_inventory_sha256": "1f6325b2a2226c92ecb219a2e35098071456833dc12e1ea0b6578f49b8bcecdf",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_uncontrolled_disposal_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_pilot_nitrate_operating_review.json"
+            ]
+          },
+          {
+            "owner": {
+              "name": "market for transformer, high voltage use",
+              "reference product": "transformer, high voltage use",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "89335f0432c6201b72ea10ba61b55669e076892bc62f2bc29bf54e05e13d6b95",
+            "source_inventory_sha256": "b5b6ec72598e434ae9d017e089c2016e5b558845d4d415214d544cf864621014",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_uncontrolled_disposal_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_pilot_nitrate_operating_review.json"
+            ]
+          },
+          {
+            "owner": {
+              "name": "market for transformer, high voltage use",
+              "reference product": "transformer, high voltage use",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "abf37e4c45d7a70c5fd298632ad3ee1400da6c92d62f3566d42ff39c5b420e2e",
+            "source_inventory_sha256": "ab3ad3b5fa1cda1f8116a55f5ea61acbdd4bc8354ce4cf41ae2d8c12b57b1721",
+            "mode": "container",
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_older_pet_whole_freight_review.json",
+              "uvek_pet_waste_market_review.json",
+              "uvek_uncontrolled_disposal_review.json",
+              "uvek_additional_cutoff_waste_market_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_pilot_nitrate_operating_review.json",
+              "uvek_steel_residue_market_review.json",
+              "uvek_refrigerant_patch_formula_review.json"
+            ]
+          }
+        ],
+        "virgin_producer_entries": [
+          {
+            "source": {
+              "name": "polyethylene production, high density, granulate",
+              "reference product": "polyethylene, high density, granulate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.809364548494888,
+              "uncertainty type": 0,
+              "loc": 0.809364548494888
+            },
+            "target": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "3f85d1b9957607fe662ac25bd2bf3f3ce1a8840d5f5e58efaefd82ee5d110000"
+          },
+          {
+            "source": {
+              "name": "polyethylene production, high density, granulate",
+              "reference product": "polyethylene, high density, granulate",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.190635451504994,
+              "uncertainty type": 0,
+              "loc": 0.190635451504994
+            },
+            "target": {
+              "name": "Polyethylene, HDPE, granulate, at plant",
+              "reference product": "Polyethylene, HDPE, granulate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "d4f857bb8244b241b70cdc2e96349d4ca55624a30f71f7e5b4346a3211587988"
+          }
+        ],
+        "limitations": "User explicitly approved omission of exactly four positive source recycled-to-generic HDPE supplies in the3.9cutoff global HDPE market, CH/US/RoW/EuropewithoutSwitzerland, each2.93285310007683e-14kg per sourcekg,total1.173141240030732e-13kg/kg. Their recycling inventories are nonempty; do not represent them as zero-burden cut-off stock, native empty RecyclingPE disposal or virgin supply. Report each original exchange, uncertainty, source profile, inventory hash and source position as an explicit loss/warning and in portable helper provenance. The omission score effect is unquantified and is not asserted zero. Retain the two original positive virgin producer entries separately(.809364548494888RoW,.190635451504994RER,total.999999999999882kg); do not renormalize, aggregate, infer recycled-content factors or scale market delivery. Both use the complete native European virgin HDPE granulate product per originalkg under the standing same-product/unit/geographic screening proxy. Native cumulative product vintage, geography, allocation, background supply, emission and internal uncertainty differences remain warnings; source/native inventory and LCIA equivalence are not established, and not all embodied energy can be prospectively relinked through an explicit native supply chain. Keep all three original delivery entries, quantities and uncertainty through reviewed complete generic rail, heavy-road and container-ship services; no coal-only traction proxy, distance/payload/vehicle factor or duplicate infrastructure. Only the enumerated four original source entries qualify; no general trace threshold, other omission, standalone recyclate correspondence, density/purity conversion, avoided-product credit, reverse or cross-model route is approved. Preserve caller signed quantities, uncertainty, formulas, ownership and separate purchases/emissions; native upstream biosphere exclusions remain a limitation. Exact-source/profile recipe audit is mandatory; unapproved omissions remain refused.",
+        "generated_flow_type": "GENERATED_PRODUCT"
+      },
+      "limitations": [
+        "User explicitly approved omission of exactly four positive source recycled-to-generic HDPE supplies in the3.9cutoff global HDPE market, CH/US/RoW/EuropewithoutSwitzerland, each2.93285310007683e-14kg per sourcekg,total1.173141240030732e-13kg/kg. Their recycling inventories are nonempty; do not represent them as zero-burden cut-off stock, native empty RecyclingPE disposal or virgin supply. Report each original exchange, uncertainty, source profile, inventory hash and source position as an explicit loss/warning and in portable helper provenance. The omission score effect is unquantified and is not asserted zero. Retain the two original positive virgin producer entries separately(.809364548494888RoW,.190635451504994RER,total.999999999999882kg); do not renormalize, aggregate, infer recycled-content factors or scale market delivery. Both use the complete native European virgin HDPE granulate product per originalkg under the standing same-product/unit/geographic screening proxy. Native cumulative product vintage, geography, allocation, background supply, emission and internal uncertainty differences remain warnings; source/native inventory and LCIA equivalence are not established, and not all embodied energy can be prospectively relinked through an explicit native supply chain. Keep all three original delivery entries, quantities and uncertainty through reviewed complete generic rail, heavy-road and container-ship services; no coal-only traction proxy, distance/payload/vehicle factor or duplicate infrastructure. Only the enumerated four original source entries qualify; no general trace threshold, other omission, standalone recyclate correspondence, density/purity conversion, avoided-product credit, reverse or cross-model route is approved. Preserve caller signed quantities, uncertainty, formulas, ownership and separate purchases/emissions; native upstream biosphere exclusions remain a limitation. Exact-source/profile recipe audit is mandatory; unapproved omissions remain refused."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "223c184c88227dcec4638c2fb0b41cd1ce1527804e547ee1a6f494759491d3f7"
+        }
+      ]
     }
   ]
 }

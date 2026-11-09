@@ -22,6 +22,7 @@ from .clic_download import _write_json
 from .clic_rule_approvals import (
     annotate_compatibility_reviews,
     approved_compatibility_rule_scopes,
+    approved_recipe_source_omission,
     compatibility_approval_metadata,
 )
 from .clic_target import resolve_inventory_target
@@ -328,6 +329,7 @@ class ClicHarmonizer:
                             loss.code
                             for loss in report.losses
                             if loss.code not in allowed_losses
+                            and not approved_recipe_source_omission(loss, report_data)
                         ]
                         if report
                         else []

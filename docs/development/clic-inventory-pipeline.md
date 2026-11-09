@@ -1154,6 +1154,29 @@ native LCI checks with unchanged scientific signatures. Coverage is now 75 of
 component checks do not certify the whole nitrate market or electricity
 scenario; the public frontier remains 35 parent rules / 40 cases.
 
+The exact 3.9 cut-off global HDPE market now implements the user's approval
+for four positive trace-recyclate omissions, totalling 1.173141240030732e-13 kg
+per source kg. It preserves both virgin shares and all three freight entries,
+including uncertainty and order, without normalization. Each omitted source
+entry is a separate `migration.recipe_source_input_omission` loss and warning,
+retained in the generated helper's metadata and the portable review/audit.
+Premise accepts only literal losses from an actually matched exact review
+fingerprint, with the reviewed recipe ID, source profile, entry index and unit
+basis. Existing biosphere/unapproved-source losses remain separate refusals;
+no general small-exchange threshold or pragmatic loss allowance is added.
+
+The review `export/uvek_pilot_nitrate_hdpe_review.json` is pinned at SHA-256
+`3cfbcad1b1d2d5bff392cb8f3e02182bab731f216572ba4e70e4f0302bead456`.
+All 360 earlier fingerprints, 3,291 recipes and 716 reviews remain unchanged;
+the ledger now has 361 scopes and the resource has 3,292 recipes. Validation
+passes 138 focused Brightpath cases, 17 mapping/gate Premise cases, a separate
+exact-omission drift check and nine existing approval/refusal regressions.
+Full generation is byte-identical, the installed wheel reports all four losses,
+and actual migrated native LCI is finite with unchanged scientific signatures.
+Coverage is now 76 of 125 nitrate suppliers, leaving 49 across 16 labels.
+The complete nitrate market and electricity scenario still remain refused;
+these checks do not constitute prospective certification or export.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
