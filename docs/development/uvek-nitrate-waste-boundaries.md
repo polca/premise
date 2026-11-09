@@ -81,12 +81,29 @@ diesel-only matches. The original road entry and plant-residue logistics remain
 separate. Native technology, geography, allocation, vintage and score differences
 remain screening limitations.
 
+Five exact 3.9 final-disposal markets now preserve their source generic
+cleanfill services: two regional concrete markets and three mineral-wool
+markets. Each complete treatment retains 1 kg of operation and 1.48×10⁻⁹
+facility units, with signed caller quantities and all source uncertainty.
+Concrete collection retains ten separate freight entries; the mineral-wool
+final-disposal markets have none. UVEK's mineral-wool demolition wrapper adds
+three particulate releases, 0.015 tkm collection and a different landfill
+process, so it is not the endpoint for these source services.
+
+Fresh source and complete native inspection reuses the reviewed generic
+operation/construction functions and whole-freight services. The nine operating
+and three facility land quantities match. Native oil-boiler heat, waste-heat
+release, background material grades, freight, internal uncertainty, geography,
+allocation and vintage remain screening differences. The native facility's
+450,000 m³ capacity and documented five-year monitoring period do not justify a
+new density, moisture or lifetime factor. Source absence of direct leachate is
+a source-data limitation, not a physical-zero claim. No handling, demolition,
+crushing, recycling, recovery credit or absent collection is added. These
+scopes do not admit mineral-wool recycling/sorting, which have additional
+physical exchanges, or the separately pending concrete-sorting allocation.
+
 Other findings remain work items, not admissions:
 
-- Regional concrete and final-disposal mineral-wool services use generic
-  inert-landfill operation and infrastructure. Their source references,
-  uncertainty, delegated component markets and geographic boundaries must be
-  preserved before admitting their helpers.
 - Mineral-wool recycling contains explicit dismantling dust emissions. It
   cannot be treated as an empty cut-off handover. Sorting and collection branches
   also retain their own operations and final-disposal links.
@@ -102,10 +119,6 @@ Other findings remain work items, not admissions:
 - Average-wastewater markets include sewer infrastructure, direct elementary
   releases and country-specific treated fractions. A complete native treatment
   process alone does not represent the whole source market.
-- The inspected reinforcement-steel recycling service contains dismantling
-  energy only. Its source cut-off boundary does not authorize adding remelting
-  or an avoided-primary-steel credit. Collection and sorting are separate
-  services with additional exchanges.
 
 The solvent-based alkyd paint inspection also finds a substantive boundary
 difference: the source reference excludes bulk solvent, while the native wet

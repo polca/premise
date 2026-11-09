@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-57 already have exact current CLIC approval fingerprints for their source
+62 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 22 reference-product
+scientifically reviewed target. The other suppliers cover 20 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 68 automatically new scientific decisions. Coverage is
+decisions. They are not 63 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -198,3 +198,23 @@ slightly and remains an explicit warning; caller uncertainty and signed
 formulas are preserved. The existing raw rule and all earlier approvals remain
 unchanged. This resolves one external nitrate dependency; the full nitrate
 market remains unapproved, with 57 of 125 suppliers scoped and 68 remaining.
+
+Five exact 3.9 final-disposal markets are now composed independently: regional
+concrete in Europe without Switzerland and RoW, and mineral-wool final disposal
+in CH, Europe without Switzerland and RoW. Each treatment retains the source
+1 kg generic landfill-operation service and 1.48×10⁻⁹ facility units per kg.
+The two concrete markets retain all ten original rail/road entries, including
+uncertainty and separate entries sharing a native endpoint. The mineral-wool
+markets contain no collection or direct handling emissions; the broader native
+demolition wrapper is therefore excluded.
+
+The complete generic native operation and facility reuse the earlier reviewed
+function/unit and geographic proxies, with their heat, materials, internal
+uncertainty, allocation, vintage and upstream-exclusion limitations. Nine
+operation and three facility land coordinates match the source quantities.
+Neither the 450,000 m³ facility capacity nor the waste density or water content
+is used to infer a multiplier. The source records' absence of direct leachate
+is a documented source-data limitation. The five complete target graphs pass
+native LCI without changing destination scientific contents. This brings exact
+nitrate supplier coverage to 62 of 125, leaving 63. The full nitrate market and
+prospective pilot remain incomplete.

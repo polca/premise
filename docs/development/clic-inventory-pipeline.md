@@ -1014,6 +1014,28 @@ suppliers scoped, leaving 68; the public parent frontier remains 35 rules /
 40 cases. The complete native service gives finite LCI on unchanged source
 scientific contents. Full prospective certification and export remain pending.
 
+Five exact 3.9 concrete/mineral-wool final-disposal markets now retain their
+complete generic operation and facility components, source uncertainty and ten
+original collection-freight entries. The broader native demolition/crushing
+wrappers are excluded. Fresh source/native witnesses establish the previously
+reviewed whole-service boundaries and matching land quantities; heat, material,
+geography, internal uncertainty, vintage and native biosphere exclusions remain
+warnings. No new density, moisture, lifetime, recovery or physical-omission
+assumption is introduced. All 342 earlier approval fingerprints, 3,247 recipes
+and 708 shared reviews remain unchanged. Five new scopes and ten recipes bring
+the totals to 347 scopes, 3,257 recipes and 710 reviews.
+
+Sixty-two focused Brightpath checks and 50 Premise checks pass, covering signed
+uncertainty, complete components/collection, other-version refusals, cached
+warnings and atomic authoring drift guards. Full generator replay reproduces
+the packaged resource byte for byte. All five installed-wheel conversions and
+packaged evidence checks also pass. All five complete migrated graphs give
+finite native LCI, exact foreground reference balance and agreement with the
+independent native solve, without changing destination scientific contents.
+The nitrate supplier audit now scopes 62 of 125 suppliers, leaving 63; the
+public refusal frontier remains 35 rules / 40 cases. Full prospective scenario
+certification and export remain outstanding.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

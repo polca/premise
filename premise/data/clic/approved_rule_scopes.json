@@ -34945,6 +34945,1750 @@
           "fingerprint": "1a69abe2e204abd5ec99a9c22d86bd5545fb0daf2e1c76903b82dea5b02ffc7b"
         }
       ]
+    },
+    {
+      "rule_id": "bp-27cf83b0f4734423",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_cleanfill",
+      "review_path": "export/uvek_pilot_nitrate_cleanfill_review.json",
+      "review_sha256": "8cbac6c3ce492c91cf693218f932112cbcc6fa07bb916d290e8ae5542a07981b",
+      "authorization": "Standing inspected matching-function/unit complete-service, geographic proxy and source-preserving helper approvals. Fresh source markets/treatments delegate solely to generic cleanfill operation/construction already reviewed as complete native functions. Retain original amounts, uncertainty and all market collection; no material-specific treatment, physical omission, density/moisture factor, recovery credit, inverse or cross-model correspondence. This does not broaden concrete sorting or empty clinker allocation decisions.",
+      "inspection": {
+        "rule_id": "bp-27cf83b0f4734423",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for waste concrete",
+          "reference product": "waste concrete",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, concrete, as building waste",
+          "reference product": "Disposal, concrete, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.343276,
+          "conversion_factor": -1,
+          "id": "bp-27cf83b0f4734423",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-27cf83b0f4734423"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for waste concrete",
+            "reference product": "waste concrete",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, concrete, as building waste",
+            "reference product": "Disposal, concrete, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "0077e36bad2232fc1c81493bc7a20f1143930ff1f9242281dccd1221cfa79d4d",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "171b8e4a71572f423af319b03a32fc0beb347fac41926aad1fffe1ed9da70a5b",
+        "source_inventory_sha256": "940b3e67a90c46ff69c55bb0102b47247a76c7c310977d879102d0cacc764182",
+        "source_treatment_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "treatment of waste concrete, inert material landfill",
+            "reference product": "waste concrete",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "44ca2727380286cf5ff928bb83f48593f00088fcb88f74bf18a7ccaef30debdf",
+          "inventory_sha256": "5bf0dc5647370498dc630c00cbd3ee3768a75797ede7af154d3ec8053c695209"
+        },
+        "source_components": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for inert material landfill",
+                "reference product": "inert material landfill",
+                "location": "GLO",
+                "unit": "unit"
+              },
+              "metadata_sha256": "78a1c0b6717f8752960a6b27213c6e5abc609629551f567ca46ef53011fab7ff",
+              "inventory_sha256": "74dfa5c27344b575f3245af5ee7d9b87d5f6866d01a9e71550d96972e3100859"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "inert material landfill construction",
+                "reference product": "inert material landfill",
+                "location": "RoW",
+                "unit": "unit"
+              },
+              "metadata_sha256": "89bf9af37c1da3e4308967c5fda969e1961abb474db400d7be7cdd2671d5a775",
+              "inventory_sha256": "e01c5c304a5901c6cb0c69b39e6ae41cb96c58003bb2029076aab65042e0ccee"
+            },
+            "target": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "source_amount": 1.48e-09,
+            "delegation_is_single_unit": true
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9b640fcd401ce2d6fbcbc1f674464481448176db799f86ba0c0127ccf08a4b8b",
+              "inventory_sha256": "fde88b9095cbd9352442318cf6ea87dccaf6f654768f80a46c46b0e4db20f413"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "f66b02ba290be00fc5bf8841c0524bb2da26bb94b12f01d0435ef597ee666b97",
+              "inventory_sha256": "28498888e26c091ee9a26951e138ca0a1a3819744ccf80ffff95b65e63b6eea1"
+            },
+            "target": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "source_amount": 1.0,
+            "delegation_is_single_unit": true
+          }
+        ],
+        "source_market_treatment_coefficients": {
+          "amount": -1.0,
+          "uncertainty type": 0,
+          "loc": -1.0
+        },
+        "treatment_recipe": "pilot-cleanfill-treatment-74e0760ea215971e1680",
+        "freight_witnesses": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "Europe without Switzerland",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "623d6cefce8f922295eb3404f4de8e469e9e447dd01e78ced9e3ebb25a067f0b",
+              "inventory_sha256": "2acd46cbcd5ff54e5a40b52f2b0788dfe8f3c21a0b9ac1b88873bba4ba4f3cea"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0112,
+              "uncertainty type": 2,
+              "loc": -4.491841500681089,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_whole_freight_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight, lorry, unspecified",
+                "reference product": "transport, freight, lorry, unspecified",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+              "inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.01932,
+              "uncertainty type": 2,
+              "loc": -3.946614450197765,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "940b3e67a90c46ff69c55bb0102b47247a76c7c310977d879102d0cacc764182",
+            "inputs": [
+              {
+                "amount": 0.0112,
+                "uncertainty type": 2,
+                "loc": -4.491841500681089,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01932,
+                "uncertainty type": 2,
+                "loc": -3.946614450197765,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "pilot-cleanfill-treatment-74e0760ea215971e1680"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "RoW",
+                  "unit"
+                ],
+                "binding_sha256": "74664c71fbbd0a83c8bd2a45b9fe288eb9bd5dec9e862bfa5dc6fc8fc4860bba"
+              },
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4109bea7a76d943d728d832fd5ca373ad9d81750f0624bf74911889eca74f783"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "42038688b240a709393bc8d1e829b21d464fb903510e6b49fe79acd232a0f753"
+              },
+              {
+                "source": [
+                  "treatment of waste concrete, inert material landfill",
+                  "waste concrete",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "185b31fba2a35e9d97ac3f238eae0a71c9d3e8bbe799cf2f2deacaaf4d427b29"
+              }
+            ]
+          }
+        ],
+        "limitations": "The regional concrete market retains its sole landfill fate and all original road/rail collection terms. Do not use the native building-waste crushing/recycling mix. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      },
+      "limitations": [
+        "The regional concrete market retains its sole landfill fate and all original road/rail collection terms. Do not use the native building-waste crushing/recycling mix. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c7961d6b0941cf4b91c00ee610a468e2ee91905c8bcf482dd72e58816c8024a2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-04610171c203b281",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_cleanfill",
+      "review_path": "export/uvek_pilot_nitrate_cleanfill_review.json",
+      "review_sha256": "8cbac6c3ce492c91cf693218f932112cbcc6fa07bb916d290e8ae5542a07981b",
+      "authorization": "Standing inspected matching-function/unit complete-service, geographic proxy and source-preserving helper approvals. Fresh source markets/treatments delegate solely to generic cleanfill operation/construction already reviewed as complete native functions. Retain original amounts, uncertainty and all market collection; no material-specific treatment, physical omission, density/moisture factor, recovery credit, inverse or cross-model correspondence. This does not broaden concrete sorting or empty clinker allocation decisions.",
+      "inspection": {
+        "rule_id": "bp-04610171c203b281",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste concrete",
+          "reference product": "waste concrete",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, concrete, as building waste",
+          "reference product": "Disposal, concrete, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.343276,
+          "conversion_factor": -1,
+          "id": "bp-04610171c203b281",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-04610171c203b281"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for waste concrete",
+            "reference product": "waste concrete",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, concrete, as building waste",
+            "reference product": "Disposal, concrete, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "2c583559ac6a09d23af13f1f50a4979a70b85abecbeaadd9d980b6bb3cf713c9",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "2e1f527aef34a1046393c5de80cf25ecbbf5f3e334f87f64bb6c5d2b31c7e3e4",
+        "source_inventory_sha256": "0e4b4da3cf32477df294a34a3db0576d07f4fae4b31497633af99aa7e2311e2b",
+        "source_treatment_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "treatment of waste concrete, inert material landfill",
+            "reference product": "waste concrete",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "bd49d7db3cf9014ccc294642447b07a488273ab4758e6c5b168fa34ef5fe44b0",
+          "inventory_sha256": "488745d06101d132b45ca510f97bb3ee505dd84d8112a2e684d80b612fe56dab"
+        },
+        "source_components": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for inert material landfill",
+                "reference product": "inert material landfill",
+                "location": "GLO",
+                "unit": "unit"
+              },
+              "metadata_sha256": "78a1c0b6717f8752960a6b27213c6e5abc609629551f567ca46ef53011fab7ff",
+              "inventory_sha256": "74dfa5c27344b575f3245af5ee7d9b87d5f6866d01a9e71550d96972e3100859"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "inert material landfill construction",
+                "reference product": "inert material landfill",
+                "location": "RoW",
+                "unit": "unit"
+              },
+              "metadata_sha256": "89bf9af37c1da3e4308967c5fda969e1961abb474db400d7be7cdd2671d5a775",
+              "inventory_sha256": "e01c5c304a5901c6cb0c69b39e6ae41cb96c58003bb2029076aab65042e0ccee"
+            },
+            "target": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "source_amount": 1.48e-09,
+            "delegation_is_single_unit": true
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9b640fcd401ce2d6fbcbc1f674464481448176db799f86ba0c0127ccf08a4b8b",
+              "inventory_sha256": "fde88b9095cbd9352442318cf6ea87dccaf6f654768f80a46c46b0e4db20f413"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "f66b02ba290be00fc5bf8841c0524bb2da26bb94b12f01d0435ef597ee666b97",
+              "inventory_sha256": "28498888e26c091ee9a26951e138ca0a1a3819744ccf80ffff95b65e63b6eea1"
+            },
+            "target": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "source_amount": 1.0,
+            "delegation_is_single_unit": true
+          }
+        ],
+        "source_market_treatment_coefficients": {
+          "amount": -1.0,
+          "uncertainty type": 0,
+          "loc": -1.0
+        },
+        "treatment_recipe": "pilot-cleanfill-treatment-977b789d66413d68bfc8",
+        "freight_witnesses": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "IN",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "ed97ca397ef7323e2357655f573957cc0005990fad334425c5632953c3adefd9",
+              "inventory_sha256": "0c8c82d65ba37661f71d1f25995ca6844781744a4c664a33248f1146ddc0d04d"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0008124854420980722,
+              "uncertainty type": 2,
+              "loc": -7.115412561338657,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "CN",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "5eec92f28619a465ce59cbbbe58bba9499d8a8475c5561584dcc6c13f4d47a7a",
+              "inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0029325763106612677,
+              "uncertainty type": 2,
+              "loc": -5.831873955384336,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "ZA",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "3bc5d719214ed513eddb1f3263ffee6467f3380de745db3164d20746da65f0f9",
+              "inventory_sha256": "67d3a561f43de59c8b3b483db80f4ca1f9abe9e603c42c1b3d7886f9f6f6a579"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.00020573828760997995,
+              "uncertainty type": 2,
+              "loc": -8.488905645373796,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RoW",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "9242044d72ee67df879c1ce100501eb5bb9c534759f95c078b9c25e745c3897a",
+              "inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0040458296676008434,
+              "uncertainty type": 2,
+              "loc": -5.510068640084499,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "US",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "6bdd38a9de2e0bb427c64623a8de9d7bbc03ff96a3a946c89aafa18366d60169",
+              "inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.003203370292029836,
+              "uncertainty type": 2,
+              "loc": -5.7435518071602525,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight, lorry, unspecified",
+                "reference product": "transport, freight, lorry, unspecified",
+                "location": "ZA",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "291bc540633513fe3d1341e31fa63d87624ee1b8c03dbcf52f97a71e9daf6270",
+              "inventory_sha256": "5d63ba039a6eb078230a4bd26fda48d2d3567f593d8136aa50bc51a30ff9d0bd"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.0003461605163611663,
+              "uncertainty type": 2,
+              "loc": -7.96860797036524,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight, lorry, unspecified",
+                "reference product": "transport, freight, lorry, unspecified",
+                "location": "RoW",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "ee4483351124f67842363308e01fd9a0d8a5081b3b16f128978938eab15fbd14",
+              "inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.016762842782120813,
+              "uncertainty type": 2,
+              "loc": -4.0885905812399015,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight, lorry, unspecified",
+                "reference product": "transport, freight, lorry, unspecified",
+                "location": "BR",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "95cb1dc98af9189e31e2dd9aae1a97f50db830f32b0b3073ccdfe697f7b5c8ba",
+              "inventory_sha256": "999dcbf65753e116027a726bf5204b3a97ffd00f0a12b4688e9a7a3aa037de11"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_coefficients": {
+              "amount": 0.002210996701518021,
+              "uncertainty type": 2,
+              "loc": -6.114311868958677,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "authority": "uvek_pilot_nitrate_goods_review.json"
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "0e4b4da3cf32477df294a34a3db0576d07f4fae4b31497633af99aa7e2311e2b",
+            "inputs": [
+              {
+                "amount": 0.0008124854420980722,
+                "uncertainty type": 2,
+                "loc": -7.115412561338657,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0029325763106612677,
+                "uncertainty type": 2,
+                "loc": -5.831873955384336,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00020573828760997995,
+                "uncertainty type": 2,
+                "loc": -8.488905645373796,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0040458296676008434,
+                "uncertainty type": 2,
+                "loc": -5.510068640084499,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.003203370292029836,
+                "uncertainty type": 2,
+                "loc": -5.7435518071602525,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0003461605163611663,
+                "uncertainty type": 2,
+                "loc": -7.96860797036524,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.016762842782120813,
+                "uncertainty type": 2,
+                "loc": -4.0885905812399015,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.002210996701518021,
+                "uncertainty type": 2,
+                "loc": -6.114311868958677,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "pilot-cleanfill-treatment-977b789d66413d68bfc8"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "RoW",
+                  "unit"
+                ],
+                "binding_sha256": "74664c71fbbd0a83c8bd2a45b9fe288eb9bd5dec9e862bfa5dc6fc8fc4860bba"
+              },
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "42038688b240a709393bc8d1e829b21d464fb903510e6b49fe79acd232a0f753"
+              },
+              {
+                "source": [
+                  "treatment of waste concrete, inert material landfill",
+                  "waste concrete",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f58682c87baaee6b19972c927bba405ad62363fc46ccad579e241086b6e9bb2f"
+              }
+            ]
+          }
+        ],
+        "limitations": "The regional concrete market retains its sole landfill fate and all original road/rail collection terms. Do not use the native building-waste crushing/recycling mix. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      },
+      "limitations": [
+        "The regional concrete market retains its sole landfill fate and all original road/rail collection terms. Do not use the native building-waste crushing/recycling mix. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7497abd473c936cebd5dc9c98a05a52b97e5863b9c91e4bcbbd3c0a91d034008"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a02fb5e48d17b633",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_cleanfill",
+      "review_path": "export/uvek_pilot_nitrate_cleanfill_review.json",
+      "review_sha256": "8cbac6c3ce492c91cf693218f932112cbcc6fa07bb916d290e8ae5542a07981b",
+      "authorization": "Standing inspected matching-function/unit complete-service, geographic proxy and source-preserving helper approvals. Fresh source markets/treatments delegate solely to generic cleanfill operation/construction already reviewed as complete native functions. Retain original amounts, uncertainty and all market collection; no material-specific treatment, physical omission, density/moisture factor, recovery credit, inverse or cross-model correspondence. This does not broaden concrete sorting or empty clinker allocation decisions.",
+      "inspection": {
+        "rule_id": "bp-a02fb5e48d17b633",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste mineral wool, for final disposal",
+          "reference product": "waste mineral wool, for final disposal",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, mineral wool, to final disposal",
+          "reference product": "Disposal, building, mineral wool, to final disposal",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.480256,
+          "conversion_factor": -1,
+          "id": "bp-a02fb5e48d17b633",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-a02fb5e48d17b633"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for waste mineral wool, for final disposal",
+            "reference product": "waste mineral wool, for final disposal",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, building, mineral wool, to final disposal",
+            "reference product": "Disposal, building, mineral wool, to final disposal",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "8d4b39cb2346407824303f7c91bc5139a3e38238010b808a400b1fcfd4994b17",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "c533c52b77a4f4b586a501a800c4b97a1444c055241bd568891d354efc13f62a",
+        "source_inventory_sha256": "823f0a529c793877e1b7ffdd1a955807ef5fac05d274a3c84498184503d34e53",
+        "source_treatment_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "treatment of waste mineral wool, inert material landfill",
+            "reference product": "waste mineral wool, for final disposal",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "65d92cfa89edb2e39fc81262149df987508a77858d825f5dd45009ac6b482525",
+          "inventory_sha256": "8161a8ecba20b06d071ec2a901b67db61e729286001c2b47a833f27efa5ef9d7"
+        },
+        "source_components": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for inert material landfill",
+                "reference product": "inert material landfill",
+                "location": "GLO",
+                "unit": "unit"
+              },
+              "metadata_sha256": "78a1c0b6717f8752960a6b27213c6e5abc609629551f567ca46ef53011fab7ff",
+              "inventory_sha256": "74dfa5c27344b575f3245af5ee7d9b87d5f6866d01a9e71550d96972e3100859"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "inert material landfill construction",
+                "reference product": "inert material landfill",
+                "location": "RoW",
+                "unit": "unit"
+              },
+              "metadata_sha256": "89bf9af37c1da3e4308967c5fda969e1961abb474db400d7be7cdd2671d5a775",
+              "inventory_sha256": "e01c5c304a5901c6cb0c69b39e6ae41cb96c58003bb2029076aab65042e0ccee"
+            },
+            "target": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "source_amount": 1.48e-09,
+            "delegation_is_single_unit": true
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9b640fcd401ce2d6fbcbc1f674464481448176db799f86ba0c0127ccf08a4b8b",
+              "inventory_sha256": "fde88b9095cbd9352442318cf6ea87dccaf6f654768f80a46c46b0e4db20f413"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "f66b02ba290be00fc5bf8841c0524bb2da26bb94b12f01d0435ef597ee666b97",
+              "inventory_sha256": "28498888e26c091ee9a26951e138ca0a1a3819744ccf80ffff95b65e63b6eea1"
+            },
+            "target": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "source_amount": 1.0,
+            "delegation_is_single_unit": true
+          }
+        ],
+        "source_market_treatment_coefficients": {
+          "amount": -1.0,
+          "uncertainty type": 0,
+          "loc": -1.0
+        },
+        "treatment_recipe": "pilot-cleanfill-treatment-fe9176f8621c3b3193d4",
+        "freight_witnesses": [],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "823f0a529c793877e1b7ffdd1a955807ef5fac05d274a3c84498184503d34e53",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "pilot-cleanfill-treatment-fe9176f8621c3b3193d4"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "RoW",
+                  "unit"
+                ],
+                "binding_sha256": "74664c71fbbd0a83c8bd2a45b9fe288eb9bd5dec9e862bfa5dc6fc8fc4860bba"
+              },
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "42038688b240a709393bc8d1e829b21d464fb903510e6b49fe79acd232a0f753"
+              },
+              {
+                "source": [
+                  "treatment of waste mineral wool, inert material landfill",
+                  "waste mineral wool, for final disposal",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "2dcf5c7052d4c2236bf616c3f0e9791b87b892ae32d9498256c50eebe7f8e04b"
+              }
+            ]
+          }
+        ],
+        "limitations": "The mineral-wool final-disposal market contains only the landfill service, with no collection freight or direct handling dust. Do not use the broader native demolition/final-disposal wrapper, which adds particulate releases, collection and a different landfill process. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      },
+      "limitations": [
+        "The mineral-wool final-disposal market contains only the landfill service, with no collection freight or direct handling dust. Do not use the broader native demolition/final-disposal wrapper, which adds particulate releases, collection and a different landfill process. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f4b50ee76275b80ee18ec0d9b3fba9c0d21fc91037acca141e78b4a4e8f0979a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ae6049bad9231067",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_cleanfill",
+      "review_path": "export/uvek_pilot_nitrate_cleanfill_review.json",
+      "review_sha256": "8cbac6c3ce492c91cf693218f932112cbcc6fa07bb916d290e8ae5542a07981b",
+      "authorization": "Standing inspected matching-function/unit complete-service, geographic proxy and source-preserving helper approvals. Fresh source markets/treatments delegate solely to generic cleanfill operation/construction already reviewed as complete native functions. Retain original amounts, uncertainty and all market collection; no material-specific treatment, physical omission, density/moisture factor, recovery credit, inverse or cross-model correspondence. This does not broaden concrete sorting or empty clinker allocation decisions.",
+      "inspection": {
+        "rule_id": "bp-ae6049bad9231067",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for waste mineral wool, for final disposal",
+          "reference product": "waste mineral wool, for final disposal",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, mineral wool, to final disposal",
+          "reference product": "Disposal, building, mineral wool, to final disposal",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.480256,
+          "conversion_factor": -1,
+          "id": "bp-ae6049bad9231067",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-ae6049bad9231067"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for waste mineral wool, for final disposal",
+            "reference product": "waste mineral wool, for final disposal",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, building, mineral wool, to final disposal",
+            "reference product": "Disposal, building, mineral wool, to final disposal",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "bd6a8d28e51a2e62a9cfe06e1d46860f631666d38c34eea5a5c4cac7d15d02b8",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "10128cfa69c08bfef9358b4cef6079a6113d4687a5c519d379352fb0eba5a0a8",
+        "source_inventory_sha256": "7bca713fad59bcd74627ae804353d30ecb4aa9c4d0c408ae1fcbdfa70a85dd73",
+        "source_treatment_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "treatment of waste mineral wool, inert material landfill",
+            "reference product": "waste mineral wool, for final disposal",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "7b14155c4fae19fe460b14065868987286633188f40e3c5ac164f4bfaa72c19c",
+          "inventory_sha256": "b119a321f916fedf2ccf5109aa3f67bf89a805466a5b83ee1109952f2f241520"
+        },
+        "source_components": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for inert material landfill",
+                "reference product": "inert material landfill",
+                "location": "GLO",
+                "unit": "unit"
+              },
+              "metadata_sha256": "78a1c0b6717f8752960a6b27213c6e5abc609629551f567ca46ef53011fab7ff",
+              "inventory_sha256": "74dfa5c27344b575f3245af5ee7d9b87d5f6866d01a9e71550d96972e3100859"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "inert material landfill construction",
+                "reference product": "inert material landfill",
+                "location": "RoW",
+                "unit": "unit"
+              },
+              "metadata_sha256": "89bf9af37c1da3e4308967c5fda969e1961abb474db400d7be7cdd2671d5a775",
+              "inventory_sha256": "e01c5c304a5901c6cb0c69b39e6ae41cb96c58003bb2029076aab65042e0ccee"
+            },
+            "target": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "source_amount": 1.48e-09,
+            "delegation_is_single_unit": true
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9b640fcd401ce2d6fbcbc1f674464481448176db799f86ba0c0127ccf08a4b8b",
+              "inventory_sha256": "fde88b9095cbd9352442318cf6ea87dccaf6f654768f80a46c46b0e4db20f413"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "f66b02ba290be00fc5bf8841c0524bb2da26bb94b12f01d0435ef597ee666b97",
+              "inventory_sha256": "28498888e26c091ee9a26951e138ca0a1a3819744ccf80ffff95b65e63b6eea1"
+            },
+            "target": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "source_amount": 1.0,
+            "delegation_is_single_unit": true
+          }
+        ],
+        "source_market_treatment_coefficients": {
+          "amount": -1.0,
+          "uncertainty type": 0,
+          "loc": -1.0
+        },
+        "treatment_recipe": "pilot-cleanfill-treatment-586925a21a0195158644",
+        "freight_witnesses": [],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "7bca713fad59bcd74627ae804353d30ecb4aa9c4d0c408ae1fcbdfa70a85dd73",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "pilot-cleanfill-treatment-586925a21a0195158644"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "RoW",
+                  "unit"
+                ],
+                "binding_sha256": "74664c71fbbd0a83c8bd2a45b9fe288eb9bd5dec9e862bfa5dc6fc8fc4860bba"
+              },
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "42038688b240a709393bc8d1e829b21d464fb903510e6b49fe79acd232a0f753"
+              },
+              {
+                "source": [
+                  "treatment of waste mineral wool, inert material landfill",
+                  "waste mineral wool, for final disposal",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "7a0ae837b4e687a32c456b372c32c329a57eb433db41cdc76189c6b1d32f7c24"
+              }
+            ]
+          }
+        ],
+        "limitations": "The mineral-wool final-disposal market contains only the landfill service, with no collection freight or direct handling dust. Do not use the broader native demolition/final-disposal wrapper, which adds particulate releases, collection and a different landfill process. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      },
+      "limitations": [
+        "The mineral-wool final-disposal market contains only the landfill service, with no collection freight or direct handling dust. Do not use the broader native demolition/final-disposal wrapper, which adds particulate releases, collection and a different landfill process. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "447b19cab45bff3d8e9e15495bc63a059fed02b95905c1682fc1b9e596d1c7e9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c45c2b4da8bad1d5",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_cleanfill",
+      "review_path": "export/uvek_pilot_nitrate_cleanfill_review.json",
+      "review_sha256": "8cbac6c3ce492c91cf693218f932112cbcc6fa07bb916d290e8ae5542a07981b",
+      "authorization": "Standing inspected matching-function/unit complete-service, geographic proxy and source-preserving helper approvals. Fresh source markets/treatments delegate solely to generic cleanfill operation/construction already reviewed as complete native functions. Retain original amounts, uncertainty and all market collection; no material-specific treatment, physical omission, density/moisture factor, recovery credit, inverse or cross-model correspondence. This does not broaden concrete sorting or empty clinker allocation decisions.",
+      "inspection": {
+        "rule_id": "bp-c45c2b4da8bad1d5",
+        "source": {
+          "location": "CH",
+          "name": "market for waste mineral wool, for final disposal",
+          "reference product": "waste mineral wool, for final disposal",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, mineral wool, to final disposal",
+          "reference product": "Disposal, building, mineral wool, to final disposal",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.560256,
+          "conversion_factor": -1,
+          "id": "bp-c45c2b4da8bad1d5",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-c45c2b4da8bad1d5"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CH",
+            "name": "market for waste mineral wool, for final disposal",
+            "reference product": "waste mineral wool, for final disposal",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, building, mineral wool, to final disposal",
+            "reference product": "Disposal, building, mineral wool, to final disposal",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "eda39c457b936e5377c81ecd466415177b5c0f854ddcd7a28d6e6d4d8e8a7ad5",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "dc851b0ec3577b80da1b9b7429c6a2e413fcf16d13eff3103ba409da0944f668",
+        "source_inventory_sha256": "11b41ce8eb4df839feb22f1ec488e0f7f70a1145eda156790e129e706d1ef5d9",
+        "source_treatment_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "treatment of waste mineral wool, inert material landfill",
+            "reference product": "waste mineral wool, for final disposal",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "3ad78487febc7e395e63214fca95736976c10784859c81143eb8def11eb2cc40",
+          "inventory_sha256": "3a236d1d7dc28999ceacaaf804575a2e1f0869e4029d3f270096ab15c22140a1"
+        },
+        "source_components": [
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "inert material landfill construction",
+                "reference product": "inert material landfill",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "metadata_sha256": "4536288c7784ba6f0e26a63f9413ea0b3cd2e35b5871fc950b4c9eabf7f8e3f3",
+              "inventory_sha256": "e16b900688ea6c9e45551a3f52cfbeb4f4d4093e9bf78b01c7e72edbee35b0ed"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "inert material landfill construction",
+                "reference product": "inert material landfill",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "metadata_sha256": "4536288c7784ba6f0e26a63f9413ea0b3cd2e35b5871fc950b4c9eabf7f8e3f3",
+              "inventory_sha256": "e16b900688ea6c9e45551a3f52cfbeb4f4d4093e9bf78b01c7e72edbee35b0ed"
+            },
+            "target": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "source_amount": 1.48e-09,
+            "delegation_is_single_unit": false
+          },
+          {
+            "source": {
+              "version": "3.9",
+              "identity": {
+                "name": "process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "6b8675ce7fd135bd3e851b188fa23ac00e61627ca1b2d310a6f9fe9c4ba50772",
+              "inventory_sha256": "387b19dde5d71193384e281b25d52cfc229e5c8d44afc62abcf18858cb6fb12c"
+            },
+            "source_producer": {
+              "version": "3.9",
+              "identity": {
+                "name": "process-specific burdens, inert material landfill",
+                "reference product": "process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "6b8675ce7fd135bd3e851b188fa23ac00e61627ca1b2d310a6f9fe9c4ba50772",
+              "inventory_sha256": "387b19dde5d71193384e281b25d52cfc229e5c8d44afc62abcf18858cb6fb12c"
+            },
+            "target": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "source_amount": 1.0,
+            "delegation_is_single_unit": false
+          }
+        ],
+        "source_market_treatment_coefficients": {
+          "amount": -1.0,
+          "uncertainty type": 0,
+          "loc": -1.0
+        },
+        "treatment_recipe": "pilot-cleanfill-treatment-440abafdf5a9f0572bb1",
+        "freight_witnesses": [],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "11b41ce8eb4df839feb22f1ec488e0f7f70a1145eda156790e129e706d1ef5d9",
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "pilot-cleanfill-treatment-440abafdf5a9f0572bb1"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "f55c56191b553dd2465761918f83d5372180851062358ac1efd2b14502fcdca0"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "ab053e57694bbe3fd175e386df3f391246f10fa4a1b0fe0a0941d7896318fce9"
+              },
+              {
+                "source": [
+                  "treatment of waste mineral wool, inert material landfill",
+                  "waste mineral wool, for final disposal",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "76194516a5543f0c0704f3054412b68d84ce77fe6bf57c9c3ecf8405875e2f9c"
+              }
+            ]
+          }
+        ],
+        "limitations": "The mineral-wool final-disposal market contains only the landfill service, with no collection freight or direct handling dust. Do not use the broader native demolition/final-disposal wrapper, which adds particulate releases, collection and a different landfill process. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      },
+      "limitations": [
+        "The mineral-wool final-disposal market contains only the landfill service, with no collection freight or direct handling dust. Do not use the broader native demolition/final-disposal wrapper, which adds particulate releases, collection and a different landfill process. Keep the complete source final-disposal boundary per as-received signed kg. Each original treatment uses1kg of generic inert-landfill operation and1.48e-9facility units. Preserve both coefficients, source uncertainty and the original waste-market-to-treatment exchange through a positive helper; negative waste reference-1 requires caller factor-1. Retain complete native operation and facility inventories once under the earlier generic-cleanfill whole-function/unit approval. Generic land occupation/transformation quantities match the full source operation(9) and facility(3) coordinates. The native operation has its own0.00143MJ oil-boiler input and4.8e-5MJ waste-heat release; the source uses mixed non-natural-gas heat. Complete facility material grades, source pitch and HDPE supplies, operating machines, electricity, fuel, freight, geography, vintage, internal uncertainty and allocation differ; retain them as screened whole-service differences, not new independent material/heat approvals. Both source and native facilities document450000m3; no capacity, density, moisture, water-content, dry-mass, distance, payload or lifetime scaling is introduced. Native2026 documentation states five years of recultivation/monitoring; no undocumented lifetime equality is assumed. Source market/treatment records have no direct elementary exchanges and explicitly omit negligible leachate; this is a source-data limitation, not evidence of physical zero or an authorization to omit any present emission. No handling dust, building demolition, crushing, recycling, collection freight absent from the source, recovery credit or material-specific leachate is added. Keep native facility access-road and operating logistics separate from original market collection. Preserve every original market freight term at its signed tkm and uncertainty, without aggregation or renormalization. Use the previously inspected whole RER generic mixed-traction rail and heavy-lorry fleet, retaining vehicle, network, fuel, maintenance and infrastructure once; do not substitute coal-only or diesel-only rail or infer payload/traction factors. Geographic fleet/traction, loading, fuel, infrastructure and vintage differences remain warnings. Preserve caller quantities, formulas, uncertainty, ownership, separate emissions and other purchases. Installed native biosphere exclusions and all score differences remain limitations with unquantified effects; no LCIA equivalence is asserted. Only enumerated source3.9cutoff closures qualify for UVEK2026cutoff and ecoinvent3.10biosphere; raw component bindings are drift guards and do not independently approve their use, other source versions, reverse or cross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "aad5892efd1a938cf3f0f5341372c1f83a05090d481f2fc7b73febcf0e252a48"
+        }
+      ]
     }
   ]
 }
