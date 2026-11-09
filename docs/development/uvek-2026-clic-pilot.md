@@ -217,6 +217,12 @@ LCIs with unchanged source hashes. Sodium hypochlorite remains unresolved:
 its source producer buys chlorine despite a captured-emissions description,
 whereas the native captured-chlorine process has no purchased chlorine input.
 Acrylic dispersion remains outside this chemical approval.
+A separate [hypochlorite reconstruction proposal](uvek-hypochlorite-reconstruction-proposal.md)
+now preserves the actual 3.6/3.9 active-product chemistry, direct releases and
+delivery through source-based helpers. Both complete private candidates yield
+finite LCI on unchanged native matrices. The proposed average chemical-plant
+steam proxy changes the source thermal supplier mix and awaits explicit
+approval. No hypochlorite correspondence or new scope is enabled.
 The ecoinvent 3.12 generic alkyd-paint market purchases exactly the previously
 approved water-based producer. Matching original source and native reference
 hashes support extending the same water-based supplier and +1/0.60 scaling
