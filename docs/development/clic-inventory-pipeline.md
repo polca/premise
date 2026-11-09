@@ -592,7 +592,8 @@ Sixteen focused Premise and 198 relevant Brightpath checks pass, three native
 LCIs are finite with unchanged scientific hashes, all 279 earlier fingerprints
 remain valid and full generator replay is byte-identical. Actual 3.7/3.8 cohorts
 complete; the full pilot remains refused. Recycled triethylene-glycol supply
-and the spent-catalyst versus carbon-free-zeolite mismatch remain unresolved.
+and the spent-catalyst versus carbon-free-zeolite mismatch were unresolved at
+that checkpoint; subsequent scoped decisions are recorded below.
 
 `uvek_pilot_wastewater_endpoint_review.json` corrects only the inspected 3.6
 Swiss class-2 wastewater treatment endpoint. The existing native counterpart
@@ -761,6 +762,25 @@ and existing recipes/reviews remain unchanged. Twenty-five recipes are added;
 full authoring replay is byte-identical. The frontier is 37 rules / 42 exact-profile
 cases and 305 fingerprints. Paperboard's controlled fraction remains unresolved;
 the full prospective scenario/certification/export is still unvalidated.
+
+`uvek_pilot_teg_supply_review.json` additionally preserves the exact 3.6 RER
+triethylene-glycol market's virgin/recovered shares and original road, rail and
+barge delivery. Its positive recovered-product reference has only production;
+the same original activity's negative waste reference retains the recycling
+electricity, infrastructure and residue-treatment burdens. The source-bound stock
+helper preserves that allocation, while the virgin share uses the complete native
+TEG product with explicit allocation, energy, emissions and vintage limitations.
+The three freight-source hashes match existing approvals; the helper uses native
+rail rather than its raw child's incorrect aircraft endpoint. The two exact
+scopes leave all 305 earlier fingerprints unchanged. Seventeen new Brightpath
+cases, ten storage cases and twenty-one focused Premise cases pass. The actual
+migrated three-record graph gives finite LCI on unchanged native matrices;
+one residual-correction step resolves the independently ordered solves' initial
+rounding difference without changing coefficients. Full authoring replay is
+byte-identical. The current frontier is 36 rules / 41 exact-profile cases and
+307 fingerprints. Other TEG source releases, the paperboard approximation and
+other pending scientific decisions remain refused. Scenario certification and
+prospective export remain completion gates.
 
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,

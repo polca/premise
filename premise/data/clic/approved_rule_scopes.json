@@ -24870,6 +24870,370 @@
           "fingerprint": "128820f4c22d9c36b99549ffd62388fe1d8788009a56b75740c80cdb423d51d6"
         }
       ]
+    },
+    {
+      "rule_id": "bp-52289684219e9b0f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_teg_stock",
+      "review_path": "export/uvek_pilot_teg_supply_review.json",
+      "review_sha256": "934e94b58d760a4c0837189ff9e2ca6bd9092f1d35015cd0444493fa39494dac",
+      "authorization": "Standing independently inspected same whole-material/function/unit and geographic supply proxies, source-preserving helpers and positive production-only cut-off stock boundaries. Preserve actual virgin/recovered market shares, complete same-mode collection freight and the source recovered-product allocation verified against its same-activity burdened waste reference. No new grade, negative treatment assigned zero, missing-inventory assumption, recovery credit, allocation reconstruction, physical omission, inverse or cross-model route.",
+      "inspection": {
+        "rule_id": "bp-52289684219e9b0f",
+        "source": {
+          "location": "RER",
+          "name": "treatment of spent sawing slurry from Si-wafer cutting",
+          "reference product": "triethylene glycol",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.416983,
+          "id": "bp-52289684219e9b0f",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "treatment of spent sawing slurry from Si-wafer cutting",
+            "reference product": "triethylene glycol",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Triethylene glycol, at plant",
+            "reference product": "Triethylene glycol, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "ce17b9f8af69eca64bf0ca4bb8fdda61513c8fd99f5db20869f240f359547310",
+        "compiled_rule": {
+          "confidence": 1,
+          "id": "bp-52289684219e9b0f",
+          "mapping_method": "reviewed_pilot_teg_stock",
+          "source": {
+            "location": "RER",
+            "name": "treatment of spent sawing slurry from Si-wafer cutting",
+            "reference product": "triethylene glycol",
+            "unit": "kilogram"
+          },
+          "target": {
+            "recipe_ref": "pilot-teg-stock-f61d1c2c435e9ff854f4"
+          },
+          "conversion_factor": 1,
+          "reference_flow_sign_review": {
+            "status": "unresolved",
+            "reason": "Select only the exact inspected positive3.6cutoff recovered-product reference. Other releases and negative waste references are not approved.",
+            "profiles": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.6",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "recipe_ref": "pilot-teg-stock-f61d1c2c435e9ff854f4"
+                },
+                "conversion_factor": 1,
+                "review": {
+                  "status": "verified",
+                  "source_sign": 1,
+                  "target_sign": 1,
+                  "reason": "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies.",
+                  "evidence": [
+                    "brightpath/data/export/uvek_pilot_teg_supply_review.json#ecoinvent-3.6-cutoff/0c303db73cfdb126e6a1eb92ce560dd0b35b486fb3769be3fa5f9a627d0c9d93"
+                  ]
+                }
+              }
+            ],
+            "evidence": [
+              "brightpath/data/export/uvek_pilot_teg_supply_review.json"
+            ]
+          },
+          "review_ref": "r-e21a435e4faa642a",
+          "report_correspondence": true,
+          "classification": "proxy",
+          "technosphere_information_loss": "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies."
+        },
+        "recipe_id": "pilot-teg-stock-f61d1c2c435e9ff854f4",
+        "recipe": {
+          "name": "Allocated cut-off stock, triethylene glycol, RER",
+          "reference product": "triethylene glycol",
+          "location": "RER",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies.",
+          "rationale": "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies.",
+          "evidence": [
+            "brightpath/data/export/uvek_pilot_teg_supply_review.json: complete source and same-activity burdened waste-reference hashes."
+          ]
+        },
+        "recipe_review": {
+          "rationale": "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies.",
+          "limitations": [
+            "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies."
+          ],
+          "evidence": [
+            "brightpath/data/export/uvek_pilot_teg_supply_review.json"
+          ]
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "version": "3.6",
+          "identity": {
+            "name": "treatment of spent sawing slurry from Si-wafer cutting",
+            "reference product": "triethylene glycol",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "023d856f4ed4ba3eabfaf94dcb9e6302aa18ada8ceed76379b1d756b29fb5361",
+          "inventory_sha256": "0c303db73cfdb126e6a1eb92ce560dd0b35b486fb3769be3fa5f9a627d0c9d93"
+        },
+        "burdened_peer_witness": {
+          "version": "3.6",
+          "identity": {
+            "name": "treatment of spent sawing slurry from Si-wafer cutting",
+            "reference product": "spent sawing slurry from Si-wafer cutting",
+            "location": "RER",
+            "unit": "litre"
+          },
+          "metadata_sha256": "ef74f0d1a7cfb9a0cef7c1737763e83a79674292704f9b4207e3b59dd254e52e",
+          "inventory_sha256": "cf51a33343a98d6f8d98c4c0d65e15f85a860344f816e39577e4ccecf18dfe16"
+        },
+        "same_activity_uuid": "8a413a0c-7a73-4fdb-b7da-5536178ec483",
+        "limitations": "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies."
+      },
+      "limitations": [
+        "Preserve the exact positive 1kg recovered triethylene-glycol reference in inspected ecoinvent3.6cutoff. Its entire inventory is one self-linked production exchange, no parameters, formulas, processing, freight or biosphere. The same original recycling activity UUID also has a negative-litre spent-sawing-slurry treatment reference with active electricity, infrastructure and residue-treatment burdens; those remain in that separate waste service. This verifies the observed source allocation handover rather than inferring missing recycling burdens to be zero. Retain a positive production-only material helper and signed quantities; no avoided virgin-product credit, fresh recycling burden, native mass-allocation substitution, cut-off across system models or inferred reverse. No claim that physical recycling is impact-free; only this exact source reference qualifies."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "22859b5711af1c452c51f1c56bde20eb3660dea0d31af4aec46e93656f7ee32f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4cfebace89e5bd1c",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_teg_supply",
+      "review_path": "export/uvek_pilot_teg_supply_review.json",
+      "review_sha256": "934e94b58d760a4c0837189ff9e2ca6bd9092f1d35015cd0444493fa39494dac",
+      "authorization": "Standing independently inspected same whole-material/function/unit and geographic supply proxies, source-preserving helpers and positive production-only cut-off stock boundaries. Preserve actual virgin/recovered market shares, complete same-mode collection freight and the source recovered-product allocation verified against its same-activity burdened waste reference. No new grade, negative treatment assigned zero, missing-inventory assumption, recovery credit, allocation reconstruction, physical omission, inverse or cross-model route.",
+      "inspection": {
+        "rule_id": "bp-4cfebace89e5bd1c",
+        "source": {
+          "location": "RER",
+          "name": "market for triethylene glycol",
+          "reference product": "triethylene glycol",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Triethylene glycol, at plant",
+          "reference product": "Triethylene glycol, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.622905,
+          "id": "bp-4cfebace89e5bd1c",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "market for triethylene glycol",
+            "reference product": "triethylene glycol",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Triethylene glycol, at plant",
+            "reference product": "Triethylene glycol, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "0f43f40051a08707824c8144f1370e80c536d0d8719618b9404ed1d30a6439dc",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "b6eae63fb95de07215a668a777e10cbc8e7e557d73c4e21bf051719324056666",
+        "source_inventory_sha256": "a0a6bf54038a4945254233414226032946a1703c03ad5ea06a9e9aca898d62d2",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.6-cutoff",
+            "inventory_sha256": "a0a6bf54038a4945254233414226032946a1703c03ad5ea06a9e9aca898d62d2",
+            "source_sign": 1,
+            "inputs": [
+              {
+                "amount": 0.0438,
+                "uncertainty type": 2,
+                "loc": -3.128121461599737,
+                "scale": 0.41255302689472534,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 2,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0219,
+                "uncertainty type": 2,
+                "loc": -3.8212686421596818,
+                "scale": 0.41255302689472534,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 2,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.1713,
+                "uncertainty type": 2,
+                "loc": -1.7643388736520629,
+                "scale": 0.41255302689472534,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 2,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.647131654973173,
+                "uncertainty type": 0,
+                "loc": 0.647131654973173,
+                "name": "Triethylene glycol, at plant",
+                "reference product": "Triethylene glycol, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.352868345026827,
+                "uncertainty type": 0,
+                "loc": 0.352868345026827,
+                "recipe": "pilot-teg-stock-f61d1c2c435e9ff854f4",
+                "zero_burden_supplier": {
+                  "rule_id": "bp-52289684219e9b0f",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.6",
+                    "system_model": "cutoff"
+                  },
+                  "profile_review_sha256": "d89b129c9881d175e0a018715b3dd7ef0ba8fe40639a666d367df311e839546b"
+                }
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "040f14a3ed4909fc4e7f979d374ac377827a93f0f37acab03970834fd3f4a80b"
+              },
+              {
+                "source": [
+                  "market for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f964ba9d49552eb035da8a92d925cbf7454fc2e6d9f1056e82ab4531a18a1438"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "b87e4f1b7c8aae9dcb233c4aa0f47aacf53e55cabf399cf8e3461d84493b86ed"
+              },
+              {
+                "source": [
+                  "ethylene glycol production",
+                  "triethylene glycol",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "a78d2002dbc6125a8f0a25ef5b4e1c147c5be6fef9bc186adf1f14f78c673633"
+              },
+              {
+                "source": [
+                  "treatment of spent sawing slurry from Si-wafer cutting",
+                  "triethylene glycol",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "98e02ca9ec26d87fda215297a9984270503866254e0d73fb98bc79955f3c40a9"
+              }
+            ]
+          }
+        ],
+        "limitations": "Preserve the actual3.6RER triethylene-glycol market:0.647131654973173kg virgin product and0.352868345026827kg recovered product per deliveredkg, without renormalization. Virgin source and native references are positive1kg of the same ethylene-oxide-derived TEG coproduct from joint mono/di/triethylene-glycol production. Use complete native Triethylene glycol, at plant once for only the virgin share. Source/native allocated precursor and energy coefficients, allocation basis, water/emission coverage, age and upstream background differ and score effects are unquantified; no molecular, yield, purity, moisture or coproduct multiplier is introduced. Retain recovered source production-only cut-off product with exact source and same-activity negative-waste-reference evidence, not the nonempty native mass-allocated recycling process and not additional virgin material. Preserve source recycling burdens in the separately modelled waste-treatment reference; no avoided-production credit or new zero treatment is inferred. Preserve original source collection road, rail and barge tkm and marginal uncertainty separately through the exact already-inspected complete native same-mode services. Their source hashes match the whole-freight/regional-road authorities; rail must not use the erroneous aircraft endpoint in the raw child heuristic. Native traction/vehicle/fuel/load/geography/vintage differences remain warnings; do not add infrastructure or payload/lifetime multipliers. Native virgin inputs include upstream raw-material supply, not the separately retained final TEG delivery. Preserve caller signed quantities, supported uncertainty, formulas, ownership and separate emissions. The source parent market and recovered product contain no parameters or formulas; the virgin producer has parameters and is represented as a complete native product proxy, without reconstructing its internal formulas. Retain native inventory exclusions and do not claim LCIA equality. Only exact3.6cutoff suppliers qualify; no other release, biosphere-family inference, cross-system-model or reverse correspondence is approved. Child bindings freeze drift, not global admission of their heuristics."
+      },
+      "limitations": [
+        "Preserve the actual3.6RER triethylene-glycol market:0.647131654973173kg virgin product and0.352868345026827kg recovered product per deliveredkg, without renormalization. Virgin source and native references are positive1kg of the same ethylene-oxide-derived TEG coproduct from joint mono/di/triethylene-glycol production. Use complete native Triethylene glycol, at plant once for only the virgin share. Source/native allocated precursor and energy coefficients, allocation basis, water/emission coverage, age and upstream background differ and score effects are unquantified; no molecular, yield, purity, moisture or coproduct multiplier is introduced. Retain recovered source production-only cut-off product with exact source and same-activity negative-waste-reference evidence, not the nonempty native mass-allocated recycling process and not additional virgin material. Preserve source recycling burdens in the separately modelled waste-treatment reference; no avoided-production credit or new zero treatment is inferred. Preserve original source collection road, rail and barge tkm and marginal uncertainty separately through the exact already-inspected complete native same-mode services. Their source hashes match the whole-freight/regional-road authorities; rail must not use the erroneous aircraft endpoint in the raw child heuristic. Native traction/vehicle/fuel/load/geography/vintage differences remain warnings; do not add infrastructure or payload/lifetime multipliers. Native virgin inputs include upstream raw-material supply, not the separately retained final TEG delivery. Preserve caller signed quantities, supported uncertainty, formulas, ownership and separate emissions. The source parent market and recovered product contain no parameters or formulas; the virgin producer has parameters and is represented as a complete native product proxy, without reconstructing its internal formulas. Retain native inventory exclusions and do not claim LCIA equality. Only exact3.6cutoff suppliers qualify; no other release, biosphere-family inference, cross-system-model or reverse correspondence is approved. Child bindings freeze drift, not global admission of their heuristics."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "99a35b39b9b15d3363627827e3015a0d2d4b9d52734f678a3e356d8dd39edb47"
+        }
+      ]
     }
   ]
 }

@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 11 |
+| 3.6 | 27 | 10 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
 | 3.9 | 17 | 21 |
 | 3.12 | 8 | 10 |
 
-These are 42 exact-profile cases involving 37 distinct rules, after reusing
+These are 41 exact-profile cases involving 36 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -611,10 +611,31 @@ composition differs from the available native paper candidates. The module
 contains 693 cases; no full module run or prospective scenario/export completion
 is claimed.
 
+The exact 3.6 RER triethylene-glycol market now retains its original virgin and
+recovered shares, plus separate road, rail and barge quantities. The recovered
+positive product reference is production-only; the same source activity's
+negative-litre waste reference contains the recycling energy, infrastructure
+and residue-treatment burdens. A source-bound stock helper preserves that
+allocation instead of adding virgin production, native mass-allocated recycling
+or an avoided-product credit. The virgin share uses the complete native TEG
+product, with allocation, precursor/energy, vintage and emissions differences
+warned. All three collection-source hashes match earlier freight reviews; the
+new parent explicitly uses rail rather than its child's erroneous aircraft
+heuristic. No global freight correction or other source release is admitted.
+
+The actual three-record migrated graph has a finite, nonempty LCI on the
+unchanged native matrices. Independent native and extended solves initially
+differed by 1.58 × 10⁻⁸ in relative supply norm; one residual-correction step
+reduced that to 3.30 × 10⁻¹⁶, with equation residual 6.42 × 10⁻¹⁶. No inventory
+coefficient changed. Seventeen new Brightpath cases plus ten storage cases pass,
+as do twenty-one focused Premise cases including cold/warm cache and refusal
+guards. These results do not establish impact-score equivalence or a completed
+prospective scenario.
+
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 305 exact-profile fingerprints, with review evidence and
+ledger contains 307 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
