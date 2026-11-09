@@ -287,13 +287,22 @@ def scenario_metadata(
             for audit in scenario["clic inventories"].get("approved_clic_omissions", [])
             if audit.get("details", {}).get("screening_only")
         ]
-        if deferred:
+        partial = scenario["clic inventories"].get("partial_mappings", [])
+        if deferred or partial:
             metadata["scientific_status"] = "screening_only"
             metadata["screening_limitations"] = {
                 "deferred_exchange_count": len(deferred),
                 "decision_ids": [audit["details"]["decision_id"] for audit in deferred],
                 "impact_effect": "unquantified; omitted burdens or credits require restoration before complete score interpretation",
             }
+            if partial:
+                metadata["screening_limitations"].update(
+                    partial_mapping_count=len(partial),
+                    partial_mappings=deepcopy(partial),
+                    omitted_recipe_branch_count=sum(
+                        item["omitted_branch_count"] for item in partial
+                    ),
+                )
 
     return metadata
 

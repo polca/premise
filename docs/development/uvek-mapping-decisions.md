@@ -215,3 +215,39 @@ Near steel, rolling and transformer records were inspected; electric steel denot
 EAF steel, not a verified electrical grade. Native paper/cardboard alternatives
 are managed treatment routes. Their final scientific dispositions and final
 packaging checks remain due; no final unsupported omission is registered yet.
+
+### Final partial paperboard dispositions (ecoinvent 3.9 and 3.12)
+
+Standing autonomous approval applied to the two RoW waste-paperboard exchanges.
+Both retain the source municipal-incineration fraction (12.5163193694194%) and
+all original freight, without renormalization. Each omits eleven nonempty
+uncontrolled-treatment branches (87.4836806305805%) with literal source audits.
+No native counterpart for open burning, open dumps or unsanitary landfill was
+found in the 11,947-identity catalogue. Managed treatment is not a replacement.
+These two exchanges are **partial**, not fully restored. The complete native
+cardboard incinerator has conflicting moisture documentation; no inferred
+moisture, energy or dry-mass correction is applied. Technology, composition,
+allocation, geography and vintage differences and unquantified score effects
+remain explicit.
+
+The two source profiles have separate fingerprinted inspections under the same
+rule identity. Omission policy and exact-profile gates remain strict. Actual
+applied partial mappings are recorded in the harmonization manifest and export
+metadata, including cache hits; unused approvals cannot label unrelated inputs.
+Partial helpers retain `PARTIAL SCREENING:` names and all 22 omission audits.
+
+Brightpath commit `7974790` contains the reviewed recipes, authoring and tests.
+Validation: 21 Brightpath tests; 55 Premise regression tests; byte-identical
+resource regeneration; two native LCIs; public encrypted REMIND SSP2-NPi 2050
+scenario, certification and 12,483-activity export. Independent readback checked
+38 fully restored and two partial callers, warning/audit/metadata retention,
+complete links, two finite prospective LCIs and unchanged background scientific
+signatures. Pre-IAM checks verified both caller signs, quantities and supported
+uncertainty with an unchanged source graph. Private reproducibility receipts:
+`partial_paperboard_export_readback.json`, `partial_paperboard_quantity_check.json`
+and `partial_paperboard_regressions.log` in the task workspace.
+
+Goal status: 16 of the starting 20 exchanges fully restored, two partially
+represented with final unsupported branches, and titanium/electrical steel still
+pending. Across the original 42: 38 full, two partial and two pending. Final
+packaged-resource verification remains due.

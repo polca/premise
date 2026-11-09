@@ -2017,6 +2017,110 @@
         }
       ],
       "status": "Exact3.9 wet acrylic dispersion and binder source-recipe reconstruction, including actual waste routes, source coefficients, canonical flows, transport and inherited empty-handover audits; no guessed concentration factor."
+    },
+    {
+      "review_path": "export/uvek_partial_paperboard_review.json",
+      "review_sha256": "a3b3c65df084c115e1f14381b560595e863a58add21669757883756f79db2e09",
+      "restored_decisions": [
+        {
+          "id": "uvek-2026-screening-364b29f8f839f725ced0",
+          "slug": "treatment-of-used-power-conversion-system-electrolysis-1-mw",
+          "version_id": 5914,
+          "semantic_version": "1.0.0",
+          "sha256": "c49715c0b232e91e044dd24150852080c883f01f37918e7243cf72725314812f",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.9"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -31.2708,
+            "location": "RoW",
+            "name": "market for waste paperboard",
+            "reference product": "waste paperboard",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 7,
+          "screening_only": true,
+          "deferred_rule_id": "bp-3e43100f56430f0c",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, cork board, as building waste",
+            "reference product": "Disposal, cork board, as building waste",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-3e43100f56430f0c: -31.2708 kilogram of market for waste paperboard in pinned treatment-of-used-power-conversion-system-electrolysis-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        },
+        {
+          "id": "uvek-2026-screening-fc3ee282d0e21e35df15",
+          "slug": "motor-drive-production-industrial-75-kw",
+          "version_id": 5820,
+          "semantic_version": "1.0.0",
+          "sha256": "dc5d26f2cf049e6baa1208e7a860c32f73a3d533983019108fbe9a3f0987a34e",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.12"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.12"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -0.60866,
+            "location": "RoW",
+            "name": "market for waste paperboard",
+            "reference product": "waste paperboard",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 13,
+          "screening_only": true,
+          "deferred_rule_id": "bp-3e43100f56430f0c",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, cork board, as building waste",
+            "reference product": "Disposal, cork board, as building waste",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-3e43100f56430f0c: -0.60866 kilogram of market for waste paperboard in pinned motor-drive-production-industrial-75-kw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        }
+      ],
+      "status": "PARTIAL final disposition: managed-incineration fraction and all market freight retained, eleven nonempty uncontrolled branches per source profile explicitly omitted with audits/warnings. These are not fully restored exchanges.",
+      "disposition": "partial_with_final_unsupported_branches"
     }
   ]
 }

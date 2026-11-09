@@ -3589,7 +3589,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-364b29f8f839f725ced0",
-      "status": "pending",
+      "status": "partial_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-364b29f8f839f725ced0",
         "slug": "treatment-of-used-power-conversion-system-electrolysis-1-mw",
@@ -3638,10 +3638,653 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-3e43100f56430f0c: -31.2708 kilogram of market for waste paperboard in pinned treatment-of-used-power-conversion-system-electrolysis-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": -1,
+        "source_unit": "kilogram original market wet waste",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram original source-market basis with partial burdens",
+        "caller_conversion_factor": -1
+      },
       "rejected_prior_candidate_reason": "Cork-board disposal is not a paperboard-treatment counterpart.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_partial_paperboard_review.json",
+          "sha256": "a3b3c65df084c115e1f14381b560595e863a58add21669757883756f79db2e09",
+          "native_counterpart_search": {
+            "identity_count": 11947,
+            "uncontrolled_candidates": 0,
+            "managed_paper_candidates_inspected": 28,
+            "search_terms": [
+              "open burn",
+              "open dump",
+              "unsanitary",
+              "uncontrolled",
+              "dump site"
+            ],
+            "catalog_path": "export/reference_catalogs/uvek__2026__cutoff.json",
+            "catalog_sha256": "56586af27833bc087bd8c71791f48e1851c53e8b4540dfc56a4b6b0752e01cea"
+          },
+          "native_municipal_witness": {
+            "identity": {
+              "name": "Disposal, packaging cardboard, 19.6% water, to municipal incineration",
+              "reference product": "Disposal, packaging cardboard, 19.6% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b80bad4ca75ecbe8538a424d74e0ca5c03ee306cbd53f2f14b6784a4df8f33cb",
+            "metadata_sha256": "4be297ce9a1302a82ac8426faf258401c5909e7696187b574ae1f5fe3520c92b"
+          },
+          "source_witnesses": [
+            {
+              "version": "3.9",
+              "identity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "metadata_sha256": "c9d529a593b5c58a2026a91d2498bf5e62540dac153078e2dd49509327ff8a36"
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "metadata_sha256": "665bac7ae79c89a65160abd5c8384d521f12139d7ed23b20ecd4b03fecaabdb9"
+            }
+          ],
+          "unsupported_nonempty_supplier_witnesses": [
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "048d1ca78ca055d8868b1a916fb13ead421018eec722903964e65115c81ff44c",
+              "metadata_sha256": "008664e6f1975611e5a12cb844366f09a1b5daf40a7319a8ffea1931eb33b9d1",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open burning",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "ee60a8ac3d2262ed6bd4a8970d7425c28ad83fa568a5167f42d8b8fd9103532a",
+              "metadata_sha256": "dcc2af7c45af0d61365fa297213dccdc005014fd3055554ecb72bae07969b04b",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 59
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "14a35a81bbfe299093fe5e1dc69fb48e889ae65d6552ebd0383d2b7505578b81",
+              "metadata_sha256": "9a33cbf3d161f06a11351d2f186bae83d7a2c8bf8d94bd1d8548ce97512d9447",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "4d83235d9ca74a4599b82e50f58f2f9414b4cdc660b2f670999c0cfa56bcf300",
+              "metadata_sha256": "40a2ea095d35ecef849e9486395c49ce4f63086db36d7c3125ad3ca3b90b8882",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 73
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "dcbb494294d98e5e2ff1582951b242e8a6889271a6ab504ab2b5ba7218b66141",
+              "metadata_sha256": "3d82e579de32be26b6fb123d5d3083535f30b589788279f98f0a4ff2ae536ba5",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "389b3ff67dfc870b925ea2bd7d4c08cf49ba4a2f83dff019808a2e4b1b90d8cc",
+              "metadata_sha256": "a181304802e2ed3784b5fc6b5e37961a0dd66733c9ee447a1e6bfa9350ab7ecc",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "38ca8816e75031b728ed8af7433beb4e491dcb1cd01d0ad40a63f719d8ba4c7e",
+              "metadata_sha256": "bd7f60b582342a43af25c334c9204aef84e4698221d1a1539f9269c15de9b02b",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "0ee4f13f190333612a4bf85cf70bbc6180eca62b5663c0b665a4ca60bc4fdaf8",
+              "metadata_sha256": "03e81ef5a47fdb80fe195c472ca2cbabe79e5bd12ca2fd6f38875f64a8d93c1d",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "be5e1293d68d7e6f7b9e85272b0a0b5114644d8b5e8a6cbe6a1c8877c9fb48fa",
+              "metadata_sha256": "1c78f3ba06c9df0a21763b13b6d605b63c2044c74b3021cc6bb607f6e0e30e7a",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "aa659d0381c5d42d6f87a80b11b9d52db53a32e8f8cbf48bfc05e9deb7d16607",
+              "metadata_sha256": "3f3e5bff9b8e002489b8b96293168adb1ee4bdee40d0d494963c7d004ed40df1",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "8abf662e8f7bc7b08261d6e6929f56a2b867341ae8e00c6001136df84f69bf84",
+              "metadata_sha256": "e4d810722b3078fb3a30f86c72df0ee19497c087792f6624983e17fb0b9217ec",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 71
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open burning",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "61da0e7b52d10345a6001a2861bee1a4172551dc25d7db1404198719dc715f1d",
+              "metadata_sha256": "c5bf3c4c2493d69ca2fcde132adaec05883bb15e4f8bce9ab241842a4fd3ffdc",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 96
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "876e2a8ba045e42a0302b2ae23e7a1925955a75e14fabd784b805af1b7c227f6",
+              "metadata_sha256": "558f60e8abe0cec801cd5103fee9d8097029906eded6ca156fc80e2258c4b7f9",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 128
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "dea57cc909d8ce52881d2e17752d001c7f1404a3aadf416e40dea4939ce75747",
+              "metadata_sha256": "94c02f17d7703a2ab3a26a2181ddfe011e3c3808c386c5683c26357a6d3f6b8e",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "0ffada02a1904d72c7f12f05c9b906a8064b1629939d06a68fd4541e81b2a245",
+              "metadata_sha256": "1f7aa27f48678a281f3c841e5944489eff34ac7b2ca4fc4a6c1433e4e8a931df",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "67d87cfc081ae304bffd05954e04f413cb0aab19e0dfffca460fd39a12ab7713",
+              "metadata_sha256": "d30f6ce256885980e2b09aca7d131bf8f3072df1a252242054607646cdf10654",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "1866f06365b7cd64438217388b296412298b6d2b127518a455a51acd8f9e8b6a",
+              "metadata_sha256": "d9bec4ed82015d8ab25ee23089665b84fa713e523d5a95d8f2a5191860b95c68",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "9865f60ec41e5b981e39345b2d51d8841f12d4f0e8ad2a08d68188e70e9325fb",
+              "metadata_sha256": "e05b4d2263737d7e132c32541b656a533ea77117fcd9218157266f93bd961b2c",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 130
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "ed4e866353cb2b3a4d1728756150757de133fa16edca25ca26c0bc63b798e3e1",
+              "metadata_sha256": "dc30d55304e77dd1cfe4b7ea6adf6ce70b0eb03d53994083a25d964c1f99f51e",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "bf76090560750d8634c1927cec0d45ddbcb670d306bfc6fcb4a637077fb3ab81",
+              "metadata_sha256": "93c2ccae3e23b6af87d8e57d2e93ea3e9521a68cc6dc2398a0b540c922126f2f",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5c807d6273c42310c21040de6fc2c7c69518901b437ed5b94760ec68b05273f4",
+              "metadata_sha256": "3e980704dd0500e4683f9d7d3c62c88e1c92f594d8b34d70679d1cef7c17c821",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "befdee349d239cd2e97ba72fade02d093f75112ef25d3be4dc3c9d81b5d4247c",
+              "metadata_sha256": "af1827af4c08d053ba1545d126dca87996af8236f43c69090f420884773fbe79",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            }
+          ],
+          "literal_source_omissions": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 5,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0607441311418571,
+                "uncertainty type": 0,
+                "loc": -0.0607441311418571,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 6,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open burning",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0818907401750148,
+                "uncertainty type": 0,
+                "loc": -0.0818907401750148,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 7,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.115379729550937,
+                "uncertainty type": 0,
+                "loc": -0.115379729550937,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 8,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0283896623691172,
+                "uncertainty type": 0,
+                "loc": -0.0283896623691172,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 9,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0455126395631949,
+                "uncertainty type": 0,
+                "loc": -0.0455126395631949,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 10,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.13676748891967,
+                "uncertainty type": 0,
+                "loc": -0.13676748891967,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 12,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.025191639833373,
+                "uncertainty type": 0,
+                "loc": -0.025191639833373,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 13,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0306443440211472,
+                "uncertainty type": 0,
+                "loc": -0.0306443440211472,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 14,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0475699648170677,
+                "uncertainty type": 0,
+                "loc": -0.0475699648170677,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 15,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.284383401445226,
+                "uncertainty type": 0,
+                "loc": -0.284383401445226,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "original_index": 16,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0183630644692003,
+                "uncertainty type": 0,
+                "loc": -0.0183630644692003,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "partial_with_final_unsupported_branches",
+        "recipe_id": "partial-paperboard-fc4f18d52993ab4e81c2",
+        "represented_treatment_mass_fraction": 0.125163193694194,
+        "final_unsupported_mass_fraction": 0.8748368063058053,
+        "unsupported_nonempty_branch_count": 11,
+        "fully_restored": false,
+        "limitations": "PARTIAL SCREENING ONLY: final partial representation of the exact cut-off paperboard market. Retain only the original 12.5163193694194% municipal-incineration mass fraction and every original market freight coefficient. Eleven nonempty open-burning, open-dump and unsanitary-landfill branches, totalling 87.4836806305805% of treatment mass, have no defensible native uncontrolled counterpart and are explicitly omitted with literal source-exchange audits. This is a final unsupported-branch disposition, not deferred investigation, an empty handover or a zero-impact assumption. Do not interpret this helper as a complete market inventory or LCIA score. Do not renormalize the supported fraction, substitute managed treatment for uncontrolled routes, invent a recovery credit or publish a copied source biosphere vector. Keep the original one-kg source-market wet-waste basis; generated positive reference and caller factor -1 preserve signed waste demand, formulas and supported uncertainty. Complete native packaging-cardboard municipal incineration supplies the supported route per original wet kg, retaining its full materials, infrastructure, energy, emissions, effluent, ash and residue inventory. Native name states 19.6% water while its composition documentation states 10.437%; inspected source municipal references report 19.6% for3.9 and10.4367% for3.12, and source market aggregate composition also differs. No concentration, moisture, heating-value or dry-mass multiplier is inferred. Composition/grade, collection versus market-delivery boundary, energy recovery/allocation, emission capture, ash/effluent/residue treatment, CH geography versus source RoW/GLO, vintage and native internal uncertainty remain screening differences with unquantified score effects. All original road/rail entries remain separate with original uncertainty, using complete native RER fleet/rail services as explicit geography/traction/loading/vintage proxies; no aircraft, coal-only freight, distance or capacity factor. The 2,991 upstream biosphere exclusions remain visible. Other releases, inverse and cross-system-model conversions are not qualified."
+      },
       "validation": [],
       "commits": []
     },
@@ -5253,7 +5896,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-fc3ee282d0e21e35df15",
-      "status": "pending",
+      "status": "partial_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-fc3ee282d0e21e35df15",
         "slug": "motor-drive-production-industrial-75-kw",
@@ -5302,10 +5945,653 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-3e43100f56430f0c: -0.60866 kilogram of market for waste paperboard in pinned motor-drive-production-industrial-75-kw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": -1,
+        "source_unit": "kilogram original market wet waste",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram original source-market basis with partial burdens",
+        "caller_conversion_factor": -1
+      },
       "rejected_prior_candidate_reason": "Cork-board disposal is not a paperboard-treatment counterpart.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_partial_paperboard_review.json",
+          "sha256": "a3b3c65df084c115e1f14381b560595e863a58add21669757883756f79db2e09",
+          "native_counterpart_search": {
+            "identity_count": 11947,
+            "uncontrolled_candidates": 0,
+            "managed_paper_candidates_inspected": 28,
+            "search_terms": [
+              "open burn",
+              "open dump",
+              "unsanitary",
+              "uncontrolled",
+              "dump site"
+            ],
+            "catalog_path": "export/reference_catalogs/uvek__2026__cutoff.json",
+            "catalog_sha256": "56586af27833bc087bd8c71791f48e1851c53e8b4540dfc56a4b6b0752e01cea"
+          },
+          "native_municipal_witness": {
+            "identity": {
+              "name": "Disposal, packaging cardboard, 19.6% water, to municipal incineration",
+              "reference product": "Disposal, packaging cardboard, 19.6% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b80bad4ca75ecbe8538a424d74e0ca5c03ee306cbd53f2f14b6784a4df8f33cb",
+            "metadata_sha256": "4be297ce9a1302a82ac8426faf258401c5909e7696187b574ae1f5fe3520c92b"
+          },
+          "source_witnesses": [
+            {
+              "version": "3.9",
+              "identity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "b734d9705f3a5c8fd6fd0216f26ff6dcd448546b0f517f65cb46c94dc83ef98d",
+              "metadata_sha256": "c9d529a593b5c58a2026a91d2498bf5e62540dac153078e2dd49509327ff8a36"
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "metadata_sha256": "665bac7ae79c89a65160abd5c8384d521f12139d7ed23b20ecd4b03fecaabdb9"
+            }
+          ],
+          "unsupported_nonempty_supplier_witnesses": [
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "048d1ca78ca055d8868b1a916fb13ead421018eec722903964e65115c81ff44c",
+              "metadata_sha256": "008664e6f1975611e5a12cb844366f09a1b5daf40a7319a8ffea1931eb33b9d1",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open burning",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "ee60a8ac3d2262ed6bd4a8970d7425c28ad83fa568a5167f42d8b8fd9103532a",
+              "metadata_sha256": "dcc2af7c45af0d61365fa297213dccdc005014fd3055554ecb72bae07969b04b",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 59
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "14a35a81bbfe299093fe5e1dc69fb48e889ae65d6552ebd0383d2b7505578b81",
+              "metadata_sha256": "9a33cbf3d161f06a11351d2f186bae83d7a2c8bf8d94bd1d8548ce97512d9447",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "4d83235d9ca74a4599b82e50f58f2f9414b4cdc660b2f670999c0cfa56bcf300",
+              "metadata_sha256": "40a2ea095d35ecef849e9486395c49ce4f63086db36d7c3125ad3ca3b90b8882",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 73
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "dcbb494294d98e5e2ff1582951b242e8a6889271a6ab504ab2b5ba7218b66141",
+              "metadata_sha256": "3d82e579de32be26b6fb123d5d3083535f30b589788279f98f0a4ff2ae536ba5",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "389b3ff67dfc870b925ea2bd7d4c08cf49ba4a2f83dff019808a2e4b1b90d8cc",
+              "metadata_sha256": "a181304802e2ed3784b5fc6b5e37961a0dd66733c9ee447a1e6bfa9350ab7ecc",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "38ca8816e75031b728ed8af7433beb4e491dcb1cd01d0ad40a63f719d8ba4c7e",
+              "metadata_sha256": "bd7f60b582342a43af25c334c9204aef84e4698221d1a1539f9269c15de9b02b",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "0ee4f13f190333612a4bf85cf70bbc6180eca62b5663c0b665a4ca60bc4fdaf8",
+              "metadata_sha256": "03e81ef5a47fdb80fe195c472ca2cbabe79e5bd12ca2fd6f38875f64a8d93c1d",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 78
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "be5e1293d68d7e6f7b9e85272b0a0b5114644d8b5e8a6cbe6a1c8877c9fb48fa",
+              "metadata_sha256": "1c78f3ba06c9df0a21763b13b6d605b63c2044c74b3021cc6bb607f6e0e30e7a",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "aa659d0381c5d42d6f87a80b11b9d52db53a32e8f8cbf48bfc05e9deb7d16607",
+              "metadata_sha256": "3f3e5bff9b8e002489b8b96293168adb1ee4bdee40d0d494963c7d004ed40df1",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 80
+            },
+            {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "8abf662e8f7bc7b08261d6e6929f56a2b867341ae8e00c6001136df84f69bf84",
+              "metadata_sha256": "e4d810722b3078fb3a30f86c72df0ee19497c087792f6624983e17fb0b9217ec",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 71
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open burning",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "61da0e7b52d10345a6001a2861bee1a4172551dc25d7db1404198719dc715f1d",
+              "metadata_sha256": "c5bf3c4c2493d69ca2fcde132adaec05883bb15e4f8bce9ab241842a4fd3ffdc",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 96
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "876e2a8ba045e42a0302b2ae23e7a1925955a75e14fabd784b805af1b7c227f6",
+              "metadata_sha256": "558f60e8abe0cec801cd5103fee9d8097029906eded6ca156fc80e2258c4b7f9",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 128
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "dea57cc909d8ce52881d2e17752d001c7f1404a3aadf416e40dea4939ce75747",
+              "metadata_sha256": "94c02f17d7703a2ab3a26a2181ddfe011e3c3808c386c5683c26357a6d3f6b8e",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "0ffada02a1904d72c7f12f05c9b906a8064b1629939d06a68fd4541e81b2a245",
+              "metadata_sha256": "1f7aa27f48678a281f3c841e5944489eff34ac7b2ca4fc4a6c1433e4e8a931df",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "67d87cfc081ae304bffd05954e04f413cb0aab19e0dfffca460fd39a12ab7713",
+              "metadata_sha256": "d30f6ce256885980e2b09aca7d131bf8f3072df1a252242054607646cdf10654",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "1866f06365b7cd64438217388b296412298b6d2b127518a455a51acd8f9e8b6a",
+              "metadata_sha256": "d9bec4ed82015d8ab25ee23089665b84fa713e523d5a95d8f2a5191860b95c68",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "9865f60ec41e5b981e39345b2d51d8841f12d4f0e8ad2a08d68188e70e9325fb",
+              "metadata_sha256": "e05b4d2263737d7e132c32541b656a533ea77117fcd9218157266f93bd961b2c",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 130
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "ed4e866353cb2b3a4d1728756150757de133fa16edca25ca26c0bc63b798e3e1",
+              "metadata_sha256": "dc30d55304e77dd1cfe4b7ea6adf6ce70b0eb03d53994083a25d964c1f99f51e",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, unsanitary landfill, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "bf76090560750d8634c1927cec0d45ddbcb670d306bfc6fcb4a637077fb3ab81",
+              "metadata_sha256": "93c2ccae3e23b6af87d8e57d2e93ea3e9521a68cc6dc2398a0b540c922126f2f",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 135
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5c807d6273c42310c21040de6fc2c7c69518901b437ed5b94760ec68b05273f4",
+              "metadata_sha256": "3e980704dd0500e4683f9d7d3c62c88e1c92f594d8b34d70679d1cef7c17c821",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            },
+            {
+              "version": "3.12",
+              "identity": {
+                "name": "treatment of waste paperboard, open dump, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "befdee349d239cd2e97ba72fade02d093f75112ef25d3be4dc3c9d81b5d4247c",
+              "metadata_sha256": "af1827af4c08d053ba1545d126dca87996af8236f43c69090f420884773fbe79",
+              "source_reference_amount": -1,
+              "nonproduction_exchanges": 133
+            }
+          ],
+          "literal_source_omissions": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 2,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open burning",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0818907401750148,
+                "uncertainty type": 0,
+                "loc": -0.0818907401750148,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 3,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0183630644692003,
+                "uncertainty type": 0,
+                "loc": -0.0183630644692003,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 4,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0607441311418571,
+                "uncertainty type": 0,
+                "loc": -0.0607441311418571,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 5,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.284383401445226,
+                "uncertainty type": 0,
+                "loc": -0.284383401445226,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 6,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.115379729550937,
+                "uncertainty type": 0,
+                "loc": -0.115379729550937,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 7,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, dry infiltration class (100mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0455126395631949,
+                "uncertainty type": 0,
+                "loc": -0.0455126395631949,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 9,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0283896623691172,
+                "uncertainty type": 0,
+                "loc": -0.0283896623691172,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 10,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, moist infiltration class (300mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.025191639833373,
+                "uncertainty type": 0,
+                "loc": -0.025191639833373,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 11,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, unsanitary landfill, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0475699648170677,
+                "uncertainty type": 0,
+                "loc": -0.0475699648170677,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 12,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, wet infiltration class (500mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.13676748891967,
+                "uncertainty type": 0,
+                "loc": -0.13676748891967,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste paperboard",
+                "reference product": "waste paperboard",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8c1db2d1565c320df7fc13f667fcd9f0553b744344f24546f6c7a571d58655d5",
+              "original_index": 13,
+              "source_exchange": {
+                "name": "treatment of waste paperboard, open dump, very wet infiltration class (1000mm)",
+                "reference product": "waste paperboard",
+                "location": "GLO",
+                "unit": "kilogram",
+                "amount": -0.0306443440211472,
+                "uncertainty type": 0,
+                "loc": -0.0306443440211472,
+                "type": "technosphere"
+              },
+              "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "partial_with_final_unsupported_branches",
+        "recipe_id": "partial-paperboard-a3ba1a38288ae446519d",
+        "represented_treatment_mass_fraction": 0.125163193694194,
+        "final_unsupported_mass_fraction": 0.8748368063058052,
+        "unsupported_nonempty_branch_count": 11,
+        "fully_restored": false,
+        "limitations": "PARTIAL SCREENING ONLY: final partial representation of the exact cut-off paperboard market. Retain only the original 12.5163193694194% municipal-incineration mass fraction and every original market freight coefficient. Eleven nonempty open-burning, open-dump and unsanitary-landfill branches, totalling 87.4836806305805% of treatment mass, have no defensible native uncontrolled counterpart and are explicitly omitted with literal source-exchange audits. This is a final unsupported-branch disposition, not deferred investigation, an empty handover or a zero-impact assumption. Do not interpret this helper as a complete market inventory or LCIA score. Do not renormalize the supported fraction, substitute managed treatment for uncontrolled routes, invent a recovery credit or publish a copied source biosphere vector. Keep the original one-kg source-market wet-waste basis; generated positive reference and caller factor -1 preserve signed waste demand, formulas and supported uncertainty. Complete native packaging-cardboard municipal incineration supplies the supported route per original wet kg, retaining its full materials, infrastructure, energy, emissions, effluent, ash and residue inventory. Native name states 19.6% water while its composition documentation states 10.437%; inspected source municipal references report 19.6% for3.9 and10.4367% for3.12, and source market aggregate composition also differs. No concentration, moisture, heating-value or dry-mass multiplier is inferred. Composition/grade, collection versus market-delivery boundary, energy recovery/allocation, emission capture, ash/effluent/residue treatment, CH geography versus source RoW/GLO, vintage and native internal uncertainty remain screening differences with unquantified score effects. All original road/rail entries remain separate with original uncertainty, using complete native RER fleet/rail services as explicit geography/traction/loading/vintage proxies; no aircraft, coal-only freight, distance or capacity factor. The 2,991 upstream biosphere exclusions remain visible. Other releases, inverse and cross-system-model conversions are not qualified."
+      },
       "validation": [],
       "commits": []
     },

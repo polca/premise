@@ -86,6 +86,39 @@ def _catalog_fingerprint(provider, context):
     }
 
 
+def _partial_mapping_coverage(diagnostics):
+    """Summarize only applied, fingerprinted partial decisions, including cache hits."""
+    partial = {}
+    for diagnostic in diagnostics:
+        if diagnostic.get("code") != "clic.compatibility_proxy_limitations":
+            continue
+        review = diagnostic.get("details", {})
+        inspection = review.get("inspection", {})
+        if (
+            inspection.get("final_disposition")
+            != "partial_with_final_unsupported_branches"
+        ):
+            continue
+        recipe_id = inspection["generated_recipe_id"]
+        partial[review["fingerprint"]] = {
+            "fingerprint": review["fingerprint"],
+            "rule_id": review["rule_id"],
+            "source_profile": copy.deepcopy(inspection["source_profile"]),
+            "recipe_id": recipe_id,
+            "represented_treatment_mass_fraction": inspection[
+                "represented_treatment_mass_fraction"
+            ],
+            "final_unsupported_mass_fraction": inspection[
+                "final_unsupported_mass_fraction"
+            ],
+            "omitted_branch_count": len(
+                inspection["approved_recipe_source_omissions"][recipe_id]
+            ),
+            "final_disposition": inspection["final_disposition"],
+        }
+    return [partial[key] for key in sorted(partial)]
+
+
 class ClicHarmonizer:
     """Cache independent source cohorts, leaving unrelated cohorts reusable.
 
@@ -416,6 +449,7 @@ class ClicHarmonizer:
                     and reference[1] in activities
                 ):
                     edge["input"] = ("__clic__", reference[1])
+        partial_mappings = _partial_mapping_coverage(diagnostics)
         manifest = {
             "schema_version": CLIC_HARMONIZATION_SCHEMA,
             "source": "CLIC",
@@ -428,6 +462,7 @@ class ClicHarmonizer:
             "migration_resource_fingerprint": resources,
             "policy": policy_metadata,
             "cohorts": summaries,
+            **({"partial_mappings": partial_mappings} if partial_mappings else {}),
             "generated_helpers": sorted(
                 code for code in activities if code not in rows
             ),

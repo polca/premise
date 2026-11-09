@@ -1,5 +1,7 @@
 """Tests for the scenario metadata attached to exported Brightway databases."""
 
+from copy import deepcopy
+
 import premise.brightway2 as brightway2_module
 import premise.brightway25 as brightway25_module
 from premise import __version__
@@ -203,3 +205,32 @@ def test_screening_omissions_are_visible_in_export_metadata():
     assert metadata["screening_limitations"]["decision_ids"] == ["deferred-input"]
     assert scenario == before
     assert "scientific_status" not in scenario_metadata(SCENARIO)
+
+
+def test_partial_clic_mapping_is_screening_even_without_a_whole_exchange_omission():
+    partial = {
+        "rule_id": "synthetic-partial",
+        "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff",
+        },
+        "represented_treatment_mass_fraction": 0.125,
+        "final_unsupported_mass_fraction": 0.875,
+        "omitted_branch_count": 11,
+    }
+    scenario = {**SCENARIO, "clic inventories": {"partial_mappings": [partial]}}
+    before = deepcopy(scenario)
+    metadata = scenario_metadata(scenario)
+    assert metadata["scientific_status"] == "screening_only"
+    limits = metadata["screening_limitations"]
+    assert (
+        limits["deferred_exchange_count"] == 0 and limits["partial_mapping_count"] == 1
+    )
+    assert limits["omitted_recipe_branch_count"] == 11 and limits[
+        "partial_mappings"
+    ] == [partial]
+    metadata["screening_limitations"]["partial_mappings"][0][
+        "omitted_branch_count"
+    ] = 99
+    assert scenario == before
