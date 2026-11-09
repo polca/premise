@@ -1,0 +1,1216 @@
+{
+  "schema_version": 1,
+  "goal": "Resolve all 20 remaining deferred exchanges in the UVEK 2026 cut-off / ecoinvent 3.10 biosphere electricity pilot.",
+  "authorization": "User explicitly activated autonomous resolution and requested decisions logged for later review; standing auto-approval and explicit unsupported-exchange warning/omission policy apply.",
+  "baseline": {
+    "restored_exchanges": 22,
+    "starting_deferred_exchanges": 20,
+    "supplier_identities": 14,
+    "approved_scopes": 429,
+    "premise_commit": "3cf25754b1c439d1fcb06c855af03e1c0835f84f",
+    "brightpath_commit": "fc063479286d8155726f1c990ce2b5c342217a23"
+  },
+  "completion_rule": "Every entry needs an evidence-based final disposition and validation; pending investigations cannot be relabelled as resolved. Explicit final omissions remain visible and impact effects unquantified.",
+  "entries": [
+    {
+      "decision_id": "uvek-2026-screening-8286122f7b4a585ec69e",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-8286122f7b4a585ec69e",
+        "slug": "electricity-production-at-hard-coal-fired-igcc-power-plant",
+        "version_id": 4193,
+        "semantic_version": "1.0.1",
+        "sha256": "0310b9f087ce98fc9e7f320690327a06e30fa35575fcd1988158533fa682f1b2",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.6"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 4.11e-05,
+          "categories": [
+            "Materials/fuels"
+          ],
+          "loc": 5.48e-06,
+          "location": "RER",
+          "name": "market for sodium hypochlorite, without water, in 15% solution state",
+          "reference product": "sodium hypochlorite, without water, in 15% solution state",
+          "type": "technosphere",
+          "uncertainty type": 0,
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 74,
+        "screening_only": true,
+        "deferred_rule_id": "bp-c7c88174c5f11ce8",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Sodium hypochlorite, 15% in H2O, at plant",
+          "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.11e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-hard-coal-fired-igcc-power-plant (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-f024a1de428dd3b3e3cd",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-f024a1de428dd3b3e3cd",
+        "slug": "electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
+        "version_id": 4196,
+        "semantic_version": "1.0.1",
+        "sha256": "c72336a04b59a681652d49370f87b327a7eadf508df8f35bf79a4da49b51845e",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.6"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 4.11e-05,
+          "categories": [
+            "Materials/fuels"
+          ],
+          "loc": 5.48e-06,
+          "location": "RER",
+          "name": "market for sodium hypochlorite, without water, in 15% solution state",
+          "reference product": "sodium hypochlorite, without water, in 15% solution state",
+          "type": "technosphere",
+          "uncertainty type": 0,
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 78,
+        "screening_only": true,
+        "deferred_rule_id": "bp-c7c88174c5f11ce8",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Sodium hypochlorite, 15% in H2O, at plant",
+          "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.11e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-62b556049ace56fa4892",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-62b556049ace56fa4892",
+        "slug": "electricity-production-at-lignite-fired-igcc-power-plant",
+        "version_id": 4197,
+        "semantic_version": "1.0.1",
+        "sha256": "ba313321bba3b0e12783f6be4553da0a4267043e99c79df7099bcd9a51fef5b2",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.6"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 4.384e-05,
+          "categories": [
+            "Materials/fuels"
+          ],
+          "comment": "scaled by conversion factor f (1el -> 1Jin)",
+          "loc": 5.48e-06,
+          "location": "RER",
+          "name": "market for sodium hypochlorite, without water, in 15% solution state",
+          "negative": "Sodium hypochlorite, 15% in hydrogenO, at plant U",
+          "reference product": "sodium hypochlorite, without water, in 15% solution state",
+          "type": "technosphere",
+          "uncertainty type": 0,
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 74,
+        "screening_only": true,
+        "deferred_rule_id": "bp-c7c88174c5f11ce8",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Sodium hypochlorite, 15% in H2O, at plant",
+          "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.384e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-lignite-fired-igcc-power-plant (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-a36ecc3cfd0b1e70fbe0",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-a36ecc3cfd0b1e70fbe0",
+        "slug": "electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
+        "version_id": 4201,
+        "semantic_version": "1.0.1",
+        "sha256": "1c6e6685e990624b671c07eb0dd66308d7d3dd40af2a1b9de862d9583aa8c2e8",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.6"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 4.384e-05,
+          "categories": [
+            "Materials/fuels"
+          ],
+          "comment": "scaled by efficiency factor f (see \"Parameters\")",
+          "loc": 5.48e-06,
+          "location": "RER",
+          "name": "market for sodium hypochlorite, without water, in 15% solution state",
+          "negative": "Sodium hypochlorite, 15% in hydrogenO, at plant U",
+          "reference product": "sodium hypochlorite, without water, in 15% solution state",
+          "type": "technosphere",
+          "uncertainty type": 0,
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 76,
+        "screening_only": true,
+        "deferred_rule_id": "bp-c7c88174c5f11ce8",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Sodium hypochlorite, 15% in H2O, at plant",
+          "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 4.384e-05 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-48ec18f887271c0c2356",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-48ec18f887271c0c2356",
+        "slug": "electricity-production-at-natural-gas-fired-combined-cycle-power-plant-post-pipeline-200km-storage-1000m",
+        "version_id": 4203,
+        "semantic_version": "1.0.1",
+        "sha256": "124f9fd88f43140692eef26e3c0c810cec67cfd0f672c289612efce60266f33a",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.6"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.6"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "allocation": 0,
+          "amount": 0.2068145390620961,
+          "categories": [
+            "Materials/fuels"
+          ],
+          "loc": 0.02564102564102564,
+          "location": "Europe without Switzerland",
+          "name": "market group for natural gas, high pressure",
+          "negative": 0,
+          "reference product": "natural gas, high pressure",
+          "type": "technosphere",
+          "uncertainty type": 0,
+          "unit": "cubic meter"
+        },
+        "original_exchange_index": 43,
+        "screening_only": true,
+        "deferred_rule_id": "bp-7fe8308839f735bb",
+        "deferred_candidate": {
+          "location": "AE",
+          "name": "Natural gas, at production",
+          "reference product": "Natural gas, at production",
+          "unit": "cubic meter"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-7fe8308839f735bb: 0.2068145390620961 cubic meter of market group for natural gas, high pressure in pinned electricity-production-at-natural-gas-fired-combined-cycle-power-plant-post-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "At-production gas omits the regional high-pressure delivery mix; native normal-volume units need explicit basis checks.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-cdba548fe7d3b9829dab",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-cdba548fe7d3b9829dab",
+        "slug": "perfluorosulfonic-acid-membrane-production-ew1100-engineering-reference",
+        "version_id": 5761,
+        "semantic_version": "1.0.0",
+        "sha256": "8c1ac23f876fec2d3b4c8b7226bf4f25dc9fe776619b8937366c22424bb22830",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 0.15038135208080808,
+          "location": "RER",
+          "name": "market for sodium hypochlorite, without water, in 15% solution state",
+          "product": "sodium hypochlorite, without water, in 15% solution state",
+          "reference product": "sodium hypochlorite, without water, in 15% solution state",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 3,
+        "screening_only": true,
+        "deferred_rule_id": "bp-c7c88174c5f11ce8",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Sodium hypochlorite, 15% in H2O, at plant",
+          "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-c7c88174c5f11ce8: 0.15038135208080808 kilogram of market for sodium hypochlorite, without water, in 15% solution state in pinned perfluorosulfonic-acid-membrane-production-ew1100-engineering-reference (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Dry-active source versus nominal 15% native solution needs actual reference-basis evidence; do not infer 1/0.15 from names.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-ad29e37f34a7b0d2b065",
+      "status": "in_progress",
+      "original_deferral": {
+        "id": "uvek-2026-screening-ad29e37f34a7b0d2b065",
+        "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
+        "version_id": 1840,
+        "semantic_version": "1.0.0",
+        "sha256": "d58bb0758488c10ef8425b6e657074aa874cfc6443ceafb88792e38e1f5f2efd",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": -688484,
+          "location": "CH",
+          "name": "market for inert waste",
+          "reference product": "inert waste",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 2,
+        "screening_only": true,
+        "deferred_rule_id": "bp-87f7d6834d9147fa",
+        "deferred_candidate": {
+          "location": "CH",
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-87f7d6834d9147fa: -688484 kilogram of market for inert waste in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Landfill is the wrong route: source uses an independently verified production-only allocated clinker terminal plus freight.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-e9ef258182b7597f7874",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-e9ef258182b7597f7874",
+        "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
+        "version_id": 1840,
+        "semantic_version": "1.0.0",
+        "sha256": "d58bb0758488c10ef8425b6e657074aa874cfc6443ceafb88792e38e1f5f2efd",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": -207020000,
+          "location": "CH",
+          "name": "market for waste concrete, not reinforced",
+          "reference product": "waste concrete, not reinforced",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 4,
+        "screening_only": true,
+        "deferred_rule_id": "bp-4335e9c5e2d93a7f",
+        "deferred_candidate": {
+          "location": "CH",
+          "name": "Disposal, building, concrete, not reinforced, to final disposal",
+          "reference product": "Disposal, building, concrete, not reinforced, to final disposal",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-4335e9c5e2d93a7f: -207020000 kilogram of market for waste concrete, not reinforced in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Final disposal alone loses the original sorting and nonempty recycling branches.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-31a78eae0e6d78a50a8f",
+      "status": "in_progress",
+      "original_deferral": {
+        "id": "uvek-2026-screening-31a78eae0e6d78a50a8f",
+        "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
+        "version_id": 1840,
+        "semantic_version": "1.0.0",
+        "sha256": "d58bb0758488c10ef8425b6e657074aa874cfc6443ceafb88792e38e1f5f2efd",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": -420000,
+          "location": "CH",
+          "name": "market for waste mineral oil",
+          "reference product": "waste mineral oil",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 6,
+        "screening_only": true,
+        "deferred_rule_id": "bp-ef0d29b6fa71b9c8",
+        "deferred_candidate": {
+          "location": "CH",
+          "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-ef0d29b6fa71b9c8: -420000 kilogram of market for waste mineral oil in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "A whole-market incinerator replacement would burden empty allocated kiln shares and lose freight/route fractions.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-b81892ef79e851727f96",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-b81892ef79e851727f96",
+        "slug": "treatment-of-electrolyzer-balance-of-plant-1mwe-pem",
+        "version_id": 4858,
+        "semantic_version": "1.0.1",
+        "sha256": "c254e82b49460e5832753a01c0caeeced3e9d3d3ff127db35c555ac8df2cead2",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": -5600,
+          "location": "Europe without Switzerland",
+          "name": "market for waste concrete, not reinforced",
+          "reference product": "waste concrete, not reinforced",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 7,
+        "screening_only": true,
+        "deferred_rule_id": "bp-b47c8547ff19ec86",
+        "deferred_candidate": {
+          "location": "CH",
+          "name": "Disposal, building, concrete, not reinforced, to final disposal",
+          "reference product": "Disposal, building, concrete, not reinforced, to final disposal",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-b47c8547ff19ec86: -5600 kilogram of market for waste concrete, not reinforced in pinned treatment-of-electrolyzer-balance-of-plant-1mwe-pem (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Final disposal alone loses the original sorting and nonempty recycling branches.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-a68fb3c409e0ccbedc03",
+      "status": "in_progress",
+      "original_deferral": {
+        "id": "uvek-2026-screening-a68fb3c409e0ccbedc03",
+        "slug": "treatment-of-used-power-conversion-system-electrolysis-1-mw",
+        "version_id": 5914,
+        "semantic_version": "1.0.0",
+        "sha256": "c49715c0b232e91e044dd24150852080c883f01f37918e7243cf72725314812f",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": -466.40000000000003,
+          "location": "RoW",
+          "name": "market for waste mineral oil",
+          "reference product": "waste mineral oil",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 6,
+        "screening_only": true,
+        "deferred_rule_id": "bp-dc3ac2fe6b0e61bf",
+        "deferred_candidate": {
+          "location": "CH",
+          "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-dc3ac2fe6b0e61bf: -466.40000000000003 kilogram of market for waste mineral oil in pinned treatment-of-used-power-conversion-system-electrolysis-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "A whole-market incinerator replacement would burden empty allocated kiln shares and lose freight/route fractions.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-364b29f8f839f725ced0",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-364b29f8f839f725ced0",
+        "slug": "treatment-of-used-power-conversion-system-electrolysis-1-mw",
+        "version_id": 5914,
+        "semantic_version": "1.0.0",
+        "sha256": "c49715c0b232e91e044dd24150852080c883f01f37918e7243cf72725314812f",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": -31.2708,
+          "location": "RoW",
+          "name": "market for waste paperboard",
+          "reference product": "waste paperboard",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 7,
+        "screening_only": true,
+        "deferred_rule_id": "bp-3e43100f56430f0c",
+        "deferred_candidate": {
+          "location": "CH",
+          "name": "Disposal, cork board, as building waste",
+          "reference product": "Disposal, cork board, as building waste",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-3e43100f56430f0c: -31.2708 kilogram of market for waste paperboard in pinned treatment-of-used-power-conversion-system-electrolysis-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Cork-board disposal is not a paperboard-treatment counterpart.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-7eed9598b634124f22ad",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-7eed9598b634124f22ad",
+        "slug": "deionized-water-production-via-reverse-osmosis-from-brackish-water",
+        "version_id": 4870,
+        "semantic_version": "1.0.1",
+        "sha256": "ba13824d64ecc59832ea761a73c502de033616f70f32667baf67f846254ec743",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 2.7e-06,
+          "location": "RER",
+          "name": "market for acrylic dispersion, with water, in 58% solution",
+          "reference product": "acrylic dispersion, with water, in 58% solution state",
+          "type": "technosphere",
+          "uncertainty type": 0,
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 5,
+        "screening_only": true,
+        "deferred_rule_id": "bp-0ad47155a89ab7bb",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Acrylic dispersion, 65% in H2O, at plant",
+          "reference product": "Acrylic dispersion, 65% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-0ad47155a89ab7bb: 2.7e-06 kilogram of market for acrylic dispersion, with water, in 58% solution in pinned deionized-water-production-via-reverse-osmosis-from-brackish-water (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Source wet binder and native documented 100%-binder basis conflict with nominal concentration labels; verify before scaling.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-ceb3843ec051ad01ed7d",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-ceb3843ec051ad01ed7d",
+        "slug": "electricity-production-at-biomass-fired-igcc-power-plant",
+        "version_id": 4184,
+        "semantic_version": "1.0.1",
+        "sha256": "d0942a872f830719a6d251aae69c5ce1fe6c733ddcfddf30682071e26c720122",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 0.003,
+          "location": "CH",
+          "name": "market for natural gas, high pressure",
+          "reference product": "natural gas, high pressure",
+          "type": "technosphere",
+          "unit": "cubic meter"
+        },
+        "original_exchange_index": 4,
+        "screening_only": true,
+        "deferred_rule_id": "bp-6cada1fa986bcf8b",
+        "deferred_candidate": {
+          "location": "AE",
+          "name": "Natural gas, at production",
+          "reference product": "Natural gas, at production",
+          "unit": "cubic meter"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-6cada1fa986bcf8b: 0.003 cubic meter of market for natural gas, high pressure in pinned electricity-production-at-biomass-fired-igcc-power-plant (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "At-production gas omits the high-pressure delivery boundary; native normal-volume units also need explicit basis checks.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-816a5046c84431ffe53b",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-816a5046c84431ffe53b",
+        "slug": "electricity-production-at-biomass-fired-igcc-power-plant-post-pipeline-200km-storage-1000m",
+        "version_id": 4185,
+        "semantic_version": "1.0.1",
+        "sha256": "ea6b0749db0799d4ccac2168fe2b60475bf8033c198bc4421584aa15d087ed3f",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 0.0034999999999999996,
+          "location": "CH",
+          "name": "market for natural gas, high pressure",
+          "reference product": "natural gas, high pressure",
+          "type": "technosphere",
+          "unit": "cubic meter"
+        },
+        "original_exchange_index": 4,
+        "screening_only": true,
+        "deferred_rule_id": "bp-6cada1fa986bcf8b",
+        "deferred_candidate": {
+          "location": "AE",
+          "name": "Natural gas, at production",
+          "reference product": "Natural gas, at production",
+          "unit": "cubic meter"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-6cada1fa986bcf8b: 0.0034999999999999996 cubic meter of market for natural gas, high pressure in pinned electricity-production-at-biomass-fired-igcc-power-plant-post-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "At-production gas omits the high-pressure delivery boundary; native normal-volume units also need explicit basis checks.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-a6d33406a770349e9394",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-a6d33406a770349e9394",
+        "slug": "electrolyzer-production-1mwe-pem-stack",
+        "version_id": 4856,
+        "semantic_version": "1.0.1",
+        "sha256": "c146fa79fd6efec23c9aaccf00027af10874208c3e7a26d81ce8b8c5f9c7caa4",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.9"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 528,
+          "comment": "bipolar plate",
+          "location": "GLO",
+          "name": "market for titanium",
+          "reference product": "titanium",
+          "type": "technosphere",
+          "uncertainty type": 0,
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 3,
+        "screening_only": true,
+        "deferred_rule_id": "bp-49e229b952f6983c",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Titanium dioxide, chloride process, at plant",
+          "reference product": "Titanium dioxide, chloride process, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-49e229b952f6983c: 528 kilogram of market for titanium in pinned electrolyzer-production-1mwe-pem-stack (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Titanium dioxide is chemically and functionally different from titanium metal.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-edc4e34b1b9682c231a3",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-edc4e34b1b9682c231a3",
+        "slug": "insulated-gate-bipolar-transistor-half-bridge-module-production-electrolysis-motor-drive-1200-v-300-a",
+        "version_id": 5819,
+        "semantic_version": "1.0.0",
+        "sha256": "b9aec7c12b9eeb6c6f72ae0ef04ebc9e27bc769e046a1f6526e72664dfa57d82",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.12"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 0.0015895724050230488,
+          "comment": "SILICON IGBT DIE FABRICATION BOUNDARY, 2026-10-19. The selected FF300R12KT4 silicon IGBT module previously bought 1 g raw electronic-grade silicon without wafer fabrication. Replace only that die feed with the native GLO market for wafer, fabricated, for integrated circuit at 0.001/(2330*270e-6) = 0.00158957240502 square meter per module. This purchases FEOL/BEOL chemistry, process gases, lithography, doping, cleanroom utilities, upstream raw wafer and native fabrication yields once. No second complete module or packaged IC is purchased. Preserve every other module input, the 340 g unit, all consumer quantities, bulk ownership, lifetimes and EOL. The 1 g die mass is the EXISTING geometry assumption, not a newly recovered manufacturer BOM; 270 micrometres matches the native electronic wafer thickness, not a claim about this thinned IGBT4 die. A historical generic silicon IC fab is a process proxy for a power IGBT, not an exact qualified IGBT recipe. Illustrative 100/270/400 um thickness sensitivity is reported; it is not a measured distribution. The published PELCA IGBT model (https://doi.org/10.3390/su18052663) confirms why raw-wafer, device-processing and cleanroom boundaries are needed; its different 750 V ultrathin design is not silently copied as this 1200 V IGBT4. Manufacturer identity: https://www.infineon.com/part/FF300R12KT4 . Unknown module composition, actual die dimensions and power-device fabrication remain design sensitivities; this corrects an omitted manufacturing boundary without inventing new metal fractions. Actual SiC devices remain separate. Existing supplemental workbook only; no runtime, native, mapping or primary/secondary-share changes.",
+          "location": "GLO",
+          "name": "market for wafer, fabricated, for integrated circuit",
+          "reference product": "wafer, fabricated, for integrated circuit",
+          "type": "technosphere",
+          "unit": "square meter"
+        },
+        "original_exchange_index": 5,
+        "screening_only": true,
+        "deferred_rule_id": "bp-fb36b57c4751ac7d",
+        "deferred_candidate": {
+          "location": "GLO",
+          "name": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+          "reference product": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+          "unit": "square meter"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-fb36b57c4751ac7d: 0.0015895724050230488 square meter of market for wafer, fabricated, for integrated circuit in pinned insulated-gate-bipolar-transistor-half-bridge-module-production-electrolysis-motor-drive-1200-v-300-a (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Logic-type wafer is a candidate with unverified fabrication, area/mass and technology boundary.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-68398736fed09315c29e",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-68398736fed09315c29e",
+        "slug": "iridium-production-economic-allocation-proxy",
+        "version_id": 5768,
+        "semantic_version": "1.0.1",
+        "sha256": "ccce6f512773471b00566311e32535b10624cfeb5297ff4e666557ee7e9fd902",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.12"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 13.84976564156525,
+          "code": "c6cd117291a44a9836d7fe6247228147",
+          "comment": "SIBX active mass represented by sodium ethyl xanthate at 1:1 kg. Different alkyl chain; functional manufacturing proxy, not chemical equivalence or evidence for field emissions or equivalent environmental impacts. Reagent dose basis: commercial; North-only capacity-share engineering scenario. Amounts are generated from the separately recorded model parameters.",
+          "database": "ecoinvent-3.12-cutoff",
+          "location": "GLO",
+          "name": "market for sodium ethyl xanthate",
+          "reference product": "sodium ethyl xanthate",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 7,
+        "screening_only": true,
+        "deferred_rule_id": "bp-6046387e041ea5c2",
+        "deferred_candidate": {
+          "location": "GLO",
+          "name": "Chemicals organic, at plant",
+          "reference product": "Chemicals organic, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-6046387e041ea5c2: 13.84976564156525 kilogram of market for sodium ethyl xanthate in pinned iridium-production-economic-allocation-proxy (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "A generic organic-chemical process does not establish sodium ethyl xanthate production.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-fc3ee282d0e21e35df15",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-fc3ee282d0e21e35df15",
+        "slug": "motor-drive-production-industrial-75-kw",
+        "version_id": 5820,
+        "semantic_version": "1.0.0",
+        "sha256": "dc5d26f2cf049e6baa1208e7a860c32f73a3d533983019108fbe9a3f0987a34e",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.12"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": -0.60866,
+          "location": "RoW",
+          "name": "market for waste paperboard",
+          "reference product": "waste paperboard",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 13,
+        "screening_only": true,
+        "deferred_rule_id": "bp-3e43100f56430f0c",
+        "deferred_candidate": {
+          "location": "CH",
+          "name": "Disposal, cork board, as building waste",
+          "reference product": "Disposal, cork board, as building waste",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-3e43100f56430f0c: -0.60866 kilogram of market for waste paperboard in pinned motor-drive-production-industrial-75-kw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Cork-board disposal is not a paperboard-treatment counterpart.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    },
+    {
+      "decision_id": "uvek-2026-screening-0e2220f339c9d5ced47d",
+      "status": "pending",
+      "original_deferral": {
+        "id": "uvek-2026-screening-0e2220f339c9d5ced47d",
+        "slug": "power-conversion-system-production-electrolysis-transformer-and-rectifier-1-mw",
+        "version_id": 5823,
+        "semantic_version": "1.0.0",
+        "sha256": "fe09e8f3de82e27f0ee97d53e9b168b2d8a3c1df595b96faa1e8ebf1bc9a3d7a",
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.12"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.12"
+          }
+        },
+        "target": {
+          "technosphere": {
+            "family": "uvek",
+            "version": "2026",
+            "system_model": "cutoff"
+          },
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.10"
+          }
+        },
+        "exchange": {
+          "amount": 947.32,
+          "comment": "Existing native finished 0.23mm/3.2%Si GOES coil. Replaces alloy preparation/rolling/annealing, not additional stock. Core cutting/stacking and actual lamination specification remain unverified.",
+          "location": "RER",
+          "name": "market for grain oriented electrical steel, 0.23 mm coil",
+          "reference product": "grain oriented electrical steel, 0.23 mm coil",
+          "type": "technosphere",
+          "unit": "kilogram"
+        },
+        "original_exchange_index": 26,
+        "screening_only": true,
+        "deferred_rule_id": "bp-0baf74e5f1f09452",
+        "deferred_candidate": {
+          "location": "RER",
+          "name": "Reinforcing steel, electric, at plant",
+          "reference product": "Reinforcing steel, electric, at plant",
+          "unit": "kilogram"
+        },
+        "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+        "message": "SCREENING ONLY — deferred unresolved supplier bp-0baf74e5f1f09452: 947.32 kilogram of market for grain oriented electrical steel, 0.23 mm coil in pinned power-conversion-system-production-electrolysis-transformer-and-rectifier-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      },
+      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "rejected_prior_candidate_reason": "Reinforcing steel does not establish grain-oriented electrical-steel production or grade.",
+      "evidence": [],
+      "selected_disposition": null,
+      "validation": [],
+      "commits": []
+    }
+  ]
+}
