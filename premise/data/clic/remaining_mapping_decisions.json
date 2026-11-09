@@ -6817,5 +6817,33 @@
     "pending_exchanges": 1,
     "partially_restored_exchanges": 2,
     "final_unsupported_recipe_branches": 22
+  },
+  "scope_extension": {
+    "status": "active",
+    "goal_document": "docs/development/uvek-operationalization-goal.md",
+    "instruction": "User explicitly extends the same active goal to operationalize all18other standard sector updates. Original electricity mapping objective and constraints remain; electricity completion alone does not complete the goal.",
+    "additional_sectors": [
+      "biomass",
+      "cement",
+      "steel",
+      "fuels",
+      "renewable",
+      "metals",
+      "mining",
+      "heat",
+      "cdr",
+      "battery",
+      "cars",
+      "two_wheelers",
+      "trucks",
+      "ships",
+      "buses",
+      "trains",
+      "final energy",
+      "emissions"
+    ],
+    "sequence": "Finish electricity mapping and packaging, then audit and operationalize sector updates.",
+    "public_ux": "unchanged",
+    "sector_tracker": "docs/development/uvek-sector-progress.json"
   }
 }

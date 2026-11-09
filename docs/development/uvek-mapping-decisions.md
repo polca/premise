@@ -294,3 +294,15 @@ cohorts. Receipts in the private task workspace: `final_goes_export_readback.jso
 Goal status: 16 starting exchanges fully restored, two partial with final
 unsupported branches, one final whole unsupported omission, and titanium pending.
 Final packaging and goal-wide completion audit remain due.
+
+### Active goal extended to the other 18 standard sector updates
+
+The user explicitly extended this same active goal beyond the electricity pilot.
+The complete retained objective and new implementation/completion requirements
+are in [uvek-operationalization-goal.md](uvek-operationalization-goal.md).
+[uvek-sector-progress.json](uvek-sector-progress.json) tracks all 18 names,
+verified against the current public update registry, excluding electricity and
+the generic external hook. All additional sectors await their blocker audit;
+none is represented as already supported. The electricity-only refusal gate
+remains until actual sector implementations pass validation. Electricity mapping
+and packaging remain the first milestone, not completion of the expanded goal.

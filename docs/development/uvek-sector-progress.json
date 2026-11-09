@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "goal_document": "docs/development/uvek-operationalization-goal.md",
+  "background": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "registry_source": "premise/database/new_database.py:NewDatabase.update",
+  "current_scope_gate": "premise/database/background.py:validate_uvek_scope currently admits electricity only. Do not remove before sector-specific implementation and validation.",
+  "sectors": [
+    {
+      "sector": "biomass",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "cement",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "steel",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "fuels",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "renewable",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "metals",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "mining",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "heat",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "cdr",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "battery",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "cars",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "two_wheelers",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "trucks",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "ships",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "buses",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "trains",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "final energy",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    },
+    {
+      "sector": "emissions",
+      "status": "awaiting_blocker_audit",
+      "requirements": [],
+      "native_mapping_coverage": null,
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [],
+      "tests": [],
+      "integration_exports": []
+    }
+  ],
+  "combined_default_run": {
+    "status": "not_started",
+    "evidence": []
+  },
+  "packaged_resource_checks": {
+    "status": "pending_final_implementation",
+    "evidence": []
+  }
+}
