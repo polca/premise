@@ -2,7 +2,7 @@
 
 Scope: the nine ecoinvent 3.9 cut-off normal-strength concrete markets required
 by the UVEK 2026 / ecoinvent 3.10 biosphere electricity pilot: BR, PE, AT, IN,
-CO, RoW, RNA, CH and ZA. This inspection enables no mapping or new scope.
+CO, RoW, RNA, CH and ZA. All nine exact profiles are now implemented and verified.
 Future modelling decisions are covered by the user's automatic-approval
 instruction, while exact data and unit/boundary checks still apply.
 
@@ -53,10 +53,10 @@ uncertainty limitations. No structural-performance equivalence or strength,
 clinker-content or density conversion factor is established by this inspection.
 The source producer inventories remain available for reviewing those choices.
 
-A future implementation should therefore retain the source market/renaming
-forest and all original freight, and qualify complete native production
-suppliers at its leaves. It should not replace the nine roots with bare
-at-plant suppliers or reconstruct unrelated concrete applications.
+The implementation retains the source market/renaming forest and all original
+freight, with complete native production screening at its leaves. It does not
+replace the nine roots with bare at-plant suppliers or reconstruct unrelated
+concrete applications.
 
 Private evidence: `nitrate_concrete_grade_markets_primary.private.json`,
 `nitrate_concrete_grade_market_findings.json`,
@@ -65,6 +65,51 @@ Private evidence: `nitrate_concrete_grade_markets_primary.private.json`,
 `concrete_delivery_topology_findings.json`.
 Reproduction scripts: `inspect_nitrate_concrete_grade_markets.py`,
 `inspect_concrete_delivery_closure.py`; the topology receipt records the
-independent topological traversal and unmodified supply sums. No prospective
-scenario, certification, export or native LCI is claimed for this unfinished
-concrete category.
+independent topological traversal and unmodified supply sums. Full prospective scenario, certification and export remain separate unverified
+gates; the component checks are reported below.
+
+## Implemented screening model and verification
+
+The production proxy is the complete Swiss `Concrete, normal, at plant`, at
+one native cubic metre per original source cubic metre. It documents B 35/25
+with CEM I 42.5, 300 kg cement, 190 kg water, 1,890 kg gravel and density
+2,380 kg/m³. It includes manufacturing, internal transport, infrastructure,
+wastewater and production waste; administration is excluded as documented.
+Source binder/strength recipes and producer uncertainty are not reconstructed.
+A shared native supplier introduces shared upstream uncertainty across source
+branches; the source producers' distinct uncertainty models are not recreated.
+These are explicit screening limitations, not structural-performance or
+strength-standard equivalence. Source-grade labels on generated helpers retain
+traceability and do not certify that the proxy meets that grade.
+
+All original source market coefficients, supported uncertainty, node input
+order and 56 freight entries remain unchanged. No shares are aggregated or
+normalized. Freight uses complete RER rail/heavy-road, CH light-road and CH
+32–40-t fleet inventories, with the stated country, technology, emission-standard
+and upper-size-class approximations. No volume, density, strength, binder,
+payload or distance multiplier, additional cement process, or recovery credit
+is introduced. Source inventories and caller-owned quantities remain unchanged.
+Native exclusions and all score effects remain unquantified warnings.
+
+Packaged evidence: Brightpath
+`export/uvek_pilot_nitrate_concrete_delivery_review.json`, SHA-256
+`dd58c37af1c28a5b10c90d86191d9e7353402193e81a806b120be8b43dfba70a`.
+Fresh readback binds all 112 source inventories and ten native release-specific
+endpoint inventories. Nine root recipes and 32 auxiliary recipes retain the
+41-node forest. All 381 prior fingerprints, 3,327 recipes and 723 shared reviews
+remain unchanged. Nine scopes, 41 recipes and one review are added (390 total
+scopes). Standalone grades, other releases and reverse/cross-model routes gain
+no approval.
+
+87 focused Brightpath and 73 Premise tests pass, covering signed uncertainty,
+caller non-mutation, source-version refusal, generated-helper counts, portable
+warnings and cold/warm cache behavior. Semantic comparison verifies every one
+of the 32 internal links, 56 production entries and 56 freight entries against
+primary readback. All nine actual migrated graphs yield finite native LCI,
+with native technosphere/biosphere scientific signatures unchanged. Full
+generator replay is byte-identical. These checks do not establish comparative
+LCIA or complete the electricity scenario/certification/export.
+
+All nine installed-wheel conversions pass. Wheel, installed stage, verified
+build copies and nine superseded harmonization files were removed, preserving
+the five current audited cache entries and all lockfiles.

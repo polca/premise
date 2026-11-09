@@ -1,8 +1,10 @@
 # Cement and concrete grade proxies
 
-Status: proposed; not approved or enabled. Three actual pilot correspondences
-have strength-class or binder-blend differences beyond the standing inspected
-same-function approvals. Their public migration paths currently refuse them.
+Status: the 3.9 Swiss normal-strength concrete case is now implemented as part
+of the [nine-market retained-delivery forest](uvek-concrete-delivery-findings.md).
+The two 3.6 cases below remain to be implemented and verified under the current
+automatic-approval instruction. All three have strength-class or binder-blend
+differences that must remain explicit.
 
 | Source profile and product | Inspected source boundary | Proposed complete native supplier |
 | --- | --- | --- |
@@ -44,6 +46,13 @@ releases have the same positive reference bases and matching direct
 technosphere coordinates. Candidate native LCIs are finite and nonempty,
 with unchanged scientific hashes for the installed technosphere and biosphere.
 Those calculations establish computability only; the prospective scenario and
-export remain unverified. No helper, source database edit or approval
-fingerprint is introduced by this proposal. Uninspected versions and inverse
+export remain unverified. The original proposal introduced no helper, source database edit or approval
+fingerprint; the later 3.9 implementation is linked below. Uninspected versions and inverse
 or cross-system-model routes remain outside its scope.
+
+For the 3.9 Swiss market, the implemented correspondence retains its grade-market
+mixture, upstream delivery and uncertainty before using complete native concrete
+production as a screening proxy. An at-plant-only replacement would have lost
+that delivery. The earlier proposal enabled no mapping; see the linked final
+implementation and its limits. The two 3.6 source boundaries still require their
+own final implementation checks and must not inherit that exact-profile scope.
