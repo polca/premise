@@ -1011,8 +1011,20 @@ def update_uvek_electricity(
 ):
     """Run the native electricity pilot through the normal scenario entry point."""
 
+    inventory = get_scenario_inventory(scenario)
+    iam_mix = scenario["iam data"].electricity_mix
+    if (
+        (family, str(version), system_model, biosphere_version)
+        == ("uvek", "2026", "cutoff", "3.10")
+        and iam_mix is not None
+        and "Geothermal" in iam_mix.coords["variables"].values
+        and bool((iam_mix.sel(variables="Geothermal") > 0).any())
+    ):
+        from ..inventory.uvek_supplements import prepare_geothermal_supplement
+
+        prepare_geothermal_supplement(inventory)
     electricity = UVEKElectricity(
-        database=get_scenario_inventory(scenario),
+        database=inventory,
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],

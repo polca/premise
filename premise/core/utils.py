@@ -282,6 +282,18 @@ def scenario_metadata(
         # including superstructure and scenario-array metadata.
         metadata["inventory_manifest"] = deepcopy(scenario["clic inventories"])
         metadata["inventory_recipe"] = deepcopy(scenario.get("clic recipe"))
+        deferred = [
+            audit
+            for audit in scenario["clic inventories"].get("approved_clic_omissions", [])
+            if audit.get("details", {}).get("screening_only")
+        ]
+        if deferred:
+            metadata["scientific_status"] = "screening_only"
+            metadata["screening_limitations"] = {
+                "deferred_exchange_count": len(deferred),
+                "decision_ids": [audit["details"]["decision_id"] for audit in deferred],
+                "impact_effect": "unquantified; omitted burdens or credits require restoration before complete score interpretation",
+            }
 
     return metadata
 

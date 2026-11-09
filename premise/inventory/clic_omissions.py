@@ -25,6 +25,9 @@ def prepare_approved_omissions(activities, versions, target):
     records, audits = copy.deepcopy(activities), []
     for activity in records:
         row = rows[activity["code"]]
+        original_indices = {
+            id(exchange): index for index, exchange in enumerate(activity["exchanges"])
+        }
         for decision in review["decisions"]:
             if decision["target"] != target or row.get("slug") != decision["slug"]:
                 continue
@@ -53,11 +56,12 @@ def prepare_approved_omissions(activities, versions, target):
                 raise ClicInventoryError(
                     "CLIC omission approval does not cover this changed exchange."
                 )
+            original_index = original_indices[id(exchange)]
             audit = {
                 "severity": "warning",
                 "code": "migration.technosphere_omission",
                 "message": decision["message"],
-                "path": f"datasets[{activity['code']}].exchanges[{index}]",
+                "path": f"datasets[{activity['code']}].exchanges[{original_index}]",
                 "details": {
                     "decision_id": decision["id"],
                     "source_pin": {
@@ -69,6 +73,9 @@ def prepare_approved_omissions(activities, versions, target):
                     "source_exchange": copy.deepcopy(exchange),
                     "activity_code": activity["code"],
                     "approved_omission": True,
+                    "original_exchange_index": original_index,
+                    "screening_only": decision.get("screening_only", False),
+                    "deferred_rule_id": decision.get("deferred_rule_id"),
                 },
             }
             audits.append(audit)

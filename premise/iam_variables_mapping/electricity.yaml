@@ -1197,7 +1197,15 @@ Gas ST:
     new name: electricity production, natural gas, subcritical, steam cycle
     reference product: electricity, high voltage
 Geothermal:
-  uvek_aliases: {}
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Electricity, geothermal flash, Bagnore source screening proxy, at plant
+      reference product: Electricity, geothermal, at plant
+      unit: kilowatt hour
+    native_reference_amount: 1
+    native_limitations:
+    - Screening proxy uses the complete published Italian Bagnore hydrothermal flash inventory, allocated 95% to electricity, for generic IAM geothermal in every region. Geogenic emissions remain; no avoided natural-release credit or IAM-share omission. Site, technology, allocation, normalization, native material/treatment proxies and publication boundary limitations remain unquantified. IAM efficiency rescaling is not applied to this complete inventory.
   ecoinvent_aliases:
     fltr:
     - electricity production, deep geothermal

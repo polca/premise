@@ -183,3 +183,23 @@ def test_write_brightway25_database_stores_metadata_on_slow_path(monkeypatch):
     )
 
     assert databases["slow-db"]["pathway"] == "SSP2-RCP19"
+
+
+def test_screening_omissions_are_visible_in_export_metadata():
+    from copy import deepcopy
+
+    scenario = {
+        **SCENARIO,
+        "clic inventories": {
+            "approved_clic_omissions": [
+                {"details": {"screening_only": True, "decision_id": "deferred-input"}}
+            ]
+        },
+    }
+    before = deepcopy(scenario)
+    metadata = scenario_metadata(scenario)
+    assert metadata["scientific_status"] == "screening_only"
+    assert metadata["screening_limitations"]["deferred_exchange_count"] == 1
+    assert metadata["screening_limitations"]["decision_ids"] == ["deferred-input"]
+    assert scenario == before
+    assert "scientific_status" not in scenario_metadata(SCENARIO)

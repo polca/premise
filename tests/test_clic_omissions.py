@@ -169,3 +169,25 @@ def test_harmonization_and_cache_retain_scoped_warning_audit_and_provenance(
     assert len(calls) == 1
     assert len(calls[0][0]["exchanges"]) == 2
     assert len(graph.activities[0]["exchanges"]) == 3
+
+
+def test_multiple_screening_omissions_retain_original_indices(tmp_path, monkeypatch):
+    import premise.inventory.clic_omissions as module
+
+    activities, versions, target = fixture()
+    second = copy.deepcopy(DECISION)
+    second["id"] = "second-screening"
+    second["exchange"] = copy.deepcopy(activities[0]["exchanges"][2])
+    second["screening_only"] = True
+    second["deferred_rule_id"] = "deferred-rule"
+    path = tmp_path / "review.json"
+    path.write_text(json.dumps({"schema_version": 1, "decisions": [DECISION, second]}))
+    monkeypatch.setattr(module, "REVIEW_PATH", path)
+    before = copy.deepcopy(activities)
+    result, audits = prepare_approved_omissions(activities, versions, target)
+    assert activities == before
+    assert len(result[0]["exchanges"]) == 1
+    assert [a["details"]["original_exchange_index"] for a in audits] == [1, 2]
+    assert audits[1]["path"].endswith("exchanges[2]")
+    assert audits[1]["details"]["screening_only"]
+    assert audits[1]["details"]["source_exchange"] == second["exchange"]
