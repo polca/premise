@@ -143,3 +143,26 @@ wood chips market:
   ecoinvent_aliases:
     fltr:
       name: market for wood chips, wet, measured as dry mass
+
+pellet production:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood pellet, measured as dry mass, at plant
+      reference product:
+      - Wood pellet, measured as dry mass, at plant
+      unit: kilogram
+pellet woody feedstock:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Shavings, softwood, measured as dry mass, at planing mill
+      - Shavings, hardwood, measured as dry mass, at planing mill
+      - Saw dust, production mix, wet, measured as dry mass, at sawmill
+      reference product:
+      - Shavings, softwood, measured as dry mass, at planing mill
+      - Shavings, hardwood, measured as dry mass, at planing mill
+      - Saw dust, production mix, wet, measured as dry mass, at sawmill
+      unit: kilogram

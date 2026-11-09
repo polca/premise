@@ -153,6 +153,32 @@
             "location": "private task workspace"
           }
         ]
+      },
+      "pellet_stage": {
+        "status": "private_real_IAM_and_LCI_validation_passed_public_rollout_pending",
+        "raw_feedstock_links_changed": 5,
+        "total_relinked_exchanges": 98,
+        "tests_passed": 80,
+        "private_finite_LCI_demands": 3,
+        "process_quantities_and_nonfeedstock_exchanges_preserved": true,
+        "review": "premise/data/biomass/uvek2026_review.json#pellet_decision",
+        "receipts": [
+          {
+            "name": "native_biomass_pellet_tests.log",
+            "sha256": "aff712e4edd213bf0dca6b56faa1b79c7caff27a1130d03dd587adec221f8945",
+            "location": "private task workspace"
+          },
+          {
+            "name": "native_biomass_pellet_real_report.json",
+            "sha256": "2ed558270f6e178f24517b725817385c5ba3580eae31c09d77fbe05fcc7d3b63",
+            "location": "private task workspace"
+          },
+          {
+            "name": "native_biomass_pellet_lci_report.json",
+            "sha256": "e6a517c9914be1141a199de987053668517579896f0d6067459ac5f8a19a7c96",
+            "location": "private task workspace"
+          }
+        ]
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "native_woodchip_stage_in_development_sector_gate_not_enabled",
+  "status": "woodchip_and_pellet_adapter_in_development_public_rollout_not_verified",
   "authorization": "User autonomous expanded goal and standing auto-approval; log functional proxies for later review.",
   "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
   "basis": "Positive1kgdrywood references, factor+1 for matching dry-kg fuel inputs. No MJ-to-kg conversion or LHV rescaling.",
@@ -204,8 +204,62 @@
   "validation": {
     "woodchip_stage_only": true,
     "real_IAM_regions": 13,
-    "relinked_exchanges": 93,
-    "private_finite_LCI_demands": 2,
-    "public_rollout_complete": false
+    "relinked_exchanges": 98,
+    "private_finite_LCI_demands": 3,
+    "public_rollout_complete": false,
+    "pellet_factory_raw_feedstock_links_changed": 5
+  },
+  "pellet_decision": {
+    "authorization": "Standing autonomous scientific auto-approval. Scoped functional proxy, with explicit warnings.",
+    "producer": {
+      "name": "Wood pellet, measured as dry mass, at plant",
+      "reference product": "Wood pellet, measured as dry mass, at plant",
+      "location": "RER",
+      "unit": "kilogram"
+    },
+    "scope": "Retain complete native pellet factory and original signed dry-kg feedstock coefficients; replace only native chip/shavings/sawdust supply links with the regional IAM dry-wood mix. Retain all binder, electricity/heat, infrastructure, freight, packaging, wastes, production and direct emissions. Do not replace the complete pellet service with raw chips.",
+    "limitations": "Native forest/sawmill chips proxy the original dry-kg shavings and sawdust feedstocks only inside pellet manufacture. Particle size, moisture, milling/drying/pressing performance, collection, origin and coproduct allocation differ. All original factory process coefficients remain; no guessed grinding, drying, yield, calorific or density multiplier is added. Upstream feedstock burdens change and score effects are unquantified; no equivalence is claimed.",
+    "witnesses": [
+      {
+        "identity": {
+          "name": "Wood pellet, measured as dry mass, at plant",
+          "reference product": "Wood pellet, measured as dry mass, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "inventory_sha256": "1e4fd0dbe015a3449a0309dd149cdc3b3e5bfc5a2322d85d4be93bb491819af7",
+        "metadata_sha256": "9e19160fca6b8d5d0bc27d829d6138d439073b6c4bb6053a1aefb4a0522c584a"
+      },
+      {
+        "identity": {
+          "name": "Shavings, softwood, measured as dry mass, at planing mill",
+          "reference product": "Shavings, softwood, measured as dry mass, at planing mill",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "inventory_sha256": "5fbc89c58bf74fae2e678aef88bbdaeda59416406b6bb3719dbdbfeb43ccb441",
+        "metadata_sha256": "2295dc2a36cc54029799571211bc485c4381d451111b4ebc58560a182a3e292a"
+      },
+      {
+        "identity": {
+          "name": "Shavings, hardwood, measured as dry mass, at planing mill",
+          "reference product": "Shavings, hardwood, measured as dry mass, at planing mill",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "inventory_sha256": "54b3ad0c0999d5293b9923002d16f57c35925483aaa9635850b8ba45938bee1b",
+        "metadata_sha256": "b06cdb8850207573d8d45a756d61e7c07e7822575edd6d318c7c3e033b72af84"
+      },
+      {
+        "identity": {
+          "name": "Saw dust, production mix, wet, measured as dry mass, at sawmill",
+          "reference product": "Saw dust, production mix, wet, measured as dry mass, at sawmill",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "inventory_sha256": "54849ddef78ed345ba66e445e97efd5240f5437371137ae8a88ca905d27b2e90",
+        "metadata_sha256": "d02da5eb402df0f5ff767875ec16310f8ac1f2ffd46890468e8fd3524711ac9f"
+      }
+    ]
   }
 }

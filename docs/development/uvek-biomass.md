@@ -1,7 +1,7 @@
 # Native biomass rollout
 
-The native dry-mass wood-chip stage is implemented and privately validated.
-The public UVEK biomass gate remains closed until pellet coverage, combined
+The native dry-mass wood-chip and pellet-feedstock adapter is privately validated.
+The public UVEK biomass gate remains closed until combined
 updates, certification, export and packaged-resource checks are complete.
 Electricity support remains available through the existing public API.
 
@@ -35,8 +35,14 @@ The separately named forestry-residue process has a +1 MJ reference and a gross
 calorific biomass resource flow. It is not relabelled kg. Combustion/heat services
 also have MJ references and are excluded from raw-fuel aliases. Glued/composite
 industrial residual wood is not substituted for clean forest or mill residues.
-Pellet coverage requires its own upstream-boundary review and remains outstanding.
-These limits must not be presented as full biomass-sector support.
+Pellet manufacture now retains its native process coefficients while replacing
+only five verified dry-kg raw-feedstock links (chips, shavings and sawdust) with
+the IAM wood mix. Binder, process energy, infrastructure, freight, packaging,
+wastes, output and other direct flows remain. Particle size, milling/drying,
+origin and allocation differ, with unquantified score effects; no extra processing
+factor is invented. Precursors are scoped to pellet manufacture, not material
+uses or allocated byproduct outputs. A full-factory snapshot checks that no
+other quantity changes. Public rollout is still outstanding.
 
 Planning resolves the entire supplier/consumer vector before changing inventory.
 Validation checks actual linked IAM shares, dry-mass totals, producer inventories
@@ -54,3 +60,10 @@ unchanged. These are private stage checks, not public certification/export.
 Evidence hashes and remaining rollout work are in the sector tracker. Private
 receipts include `native_biomass_real_stage_report.json`,
 `native_biomass_stage_lci_report.json` and `native_biomass_stage_tests.log`.
+
+Pellet-stage evidence: 80 focused tests pass. The real REMIND2050 stage creates
+13 mixes and updates 98 fuel/feedstock links, including five inside the pellet
+factory. Three private LCIs (pellet, EUR biomass and Swiss ORC electricity) are
+finite with complete links on the 12,526-activity graph and unchanged source
+signatures. Legacy ordered forestry selection explicitly ignores native-only
+YAML entries, preventing an empty-filter match of unrelated ECI activities.

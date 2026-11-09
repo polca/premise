@@ -21,9 +21,9 @@ from ..core.transformation import (
     BaseTransformation,
     IAMDataCollection,
     List,
-    get_shares_from_production_volume,
-    np,
-    uuid,
+    get_shares_from_production_volume as get_shares_from_production_volume,
+    np as np,
+    uuid as uuid,
     ws,
 )
 from ..inventory.activity_maps import InventorySet, act_fltr, get_mapping
@@ -139,6 +139,8 @@ class Biomass(BaseTransformation):
         ordered_mapping = {}
 
         for entry in config.values():
+            if "ecoinvent_aliases" not in entry:
+                continue
             aliases = entry.get("ecoinvent_aliases", {})
             fltr = aliases.get("fltr", {})
             mask = aliases.get("mask")

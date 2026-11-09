@@ -265,3 +265,92 @@ def test_missing_iam_data_is_explicit_and_cannot_be_a_passing_empty_update(nativ
     with pytest.raises(ValueError, match="nonempty"):
         b.validate({})
     assert data == before
+
+
+def add_pellet(native):
+    from premise.energy.uvek_biomass import PELLET_NAME
+
+    data, _ = native
+    feed_names = [
+        "Shavings, softwood, measured as dry mass, at planing mill",
+        "Shavings, hardwood, measured as dry mass, at planing mill",
+        "Saw dust, production mix, wet, measured as dry mass, at sawmill",
+    ]
+    feeds = [activity(name, "RER") for name in feed_names]
+    for feed in feeds:
+        feed["exchanges"].append(
+            {
+                "type": "biosphere",
+                "name": "Retained upstream flow",
+                "amount": 0.1,
+                "unit": "kilogram",
+                "categories": ("air",),
+                "input": ("bio310", "flow"),
+            }
+        )
+    binder = activity("Binder", "RER")
+    factory = activity("Pellet factory", "RER", "unit")
+    pellet = activity(PELLET_NAME, "RER")
+    pellet["exchanges"] += [
+        exchange(a, amount) for a, amount in zip(feeds, [0.2, 0.3, 0.4], strict=True)
+    ]
+    pellet["exchanges"] += [
+        exchange(data[4], 0.1),
+        exchange(binder, 0.005),
+        exchange(factory, 1e-6),
+    ]
+    material = activity("Wood material user", "RER")
+    material["exchanges"].append(exchange(feeds[0], -0.7))
+    data.extend([*feeds, binder, factory, pellet, material])
+    return pellet, feeds, material
+
+
+def test_pellet_changes_only_verified_raw_feed_links_and_keeps_complete_factory(native):
+    from premise.energy.uvek_biomass import PELLET_LIMITATION
+
+    pellet, feeds, material = add_pellet(native)
+    before = copy.deepcopy(pellet)
+    material_before = copy.deepcopy(material)
+    feeds_before = copy.deepcopy(feeds)
+    b = adapter(native)
+    plans = b.plan()
+    b.apply(plans)
+    b.validate(plans)
+    assert pellet["exchanges"][0] == before["exchanges"][0]
+    for actual, expected in zip(
+        pellet["exchanges"][1:5], before["exchanges"][1:5], strict=True
+    ):
+        assert actual["name"] == MARKET_NAME and actual["amount"] == expected["amount"]
+    assert pellet["exchanges"][5:] == before["exchanges"][5:]
+    assert feeds == feeds_before and material == material_before
+    assert PELLET_LIMITATION in plans["EUR"]["market"]["premise biomass"]["limitations"]
+    pellet["exchanges"][-1]["amount"] *= 2
+    with pytest.raises(ValueError, match="Pellet factory changed"):
+        b.validate(plans)
+
+
+def test_pellet_unknown_feedstock_unit_is_refused_without_mutation(native):
+    pellet, _, _ = add_pellet(native)
+    pellet["exchanges"][1]["unit"] = "cubic meter"
+    before = copy.deepcopy(native[0])
+    with pytest.raises(ValueError, match="dry-kg basis"):
+        adapter(native).plan()
+    assert native[0] == before
+
+
+def test_ecoinvent_ordered_forestry_mapping_ignores_native_only_roles(
+    tmp_path, monkeypatch
+):
+    import premise.energy.biomass as module
+
+    path = tmp_path / "mapping.yaml"
+    path.write_text(
+        "legacy:\n  ecoinvent_aliases:\n    fltr:\n      name: Legacy forestry\nnative_only:\n  uvek_aliases:\n    fltr:\n      name: Native pellet\n"
+    )
+    monkeypatch.setattr(module, "BIOMASS_ACTIVITIES", path)
+    owner = object.__new__(module.Biomass)
+    legacy = activity("Legacy forestry")
+    other = activity("Unrelated")
+    owner.database = [legacy, other]
+    result = owner._build_ordered_biomass_activity_mapping()
+    assert result == {(legacy["name"], legacy["reference product"]): [legacy]}

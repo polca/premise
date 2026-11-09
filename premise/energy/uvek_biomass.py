@@ -1,4 +1,4 @@
-"""Native dry-mass wood-chip stage; the public biomass gate stays closed pending rollout."""
+"""Native dry-mass biomass and pellet feedstocks, with explicit screening boundaries."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ import math
 from collections import defaultdict
 
 from ..core.transformation import BaseTransformation
+from ..core.filesystem_constants import DATA_DIR
 from ..inventory.activity_maps import BIOMASS_TYPES, InventorySet, get_mapping
 from ..reporting.provenance import record_change_event
 from ..validation.validation_framework import (
@@ -19,6 +20,17 @@ from ..validation.validation_framework import (
 
 MARKET_NAME = "market for lignocellulosic biomass, used as fuel"
 MARKET_PRODUCT = "lignocellulosic biomass"
+PELLET_NAME = "Wood pellet, measured as dry mass, at plant"
+PROCEDURAL_MAPPING = DATA_DIR / "biomass" / "biomass_activities.yaml"
+PELLET_LIMITATION = (
+    "Inside native pellet manufacture only, the IAM dry-wood mix proxies original "
+    "dry-kg chips, shavings and sawdust supplies. Particle size, moisture, milling, "
+    "drying/pressing performance, origin and allocation differ. Original factory "
+    "feedstock quantities, process energy, binder, infrastructure, freight, wastes "
+    "and output remain; upstream feedstock burdens change. No guessed processing, "
+    "yield, density or calorific multiplier or credit is added. Effects remain "
+    "unquantified; neither feedstock-grade nor LCIA equivalence is claimed."
+)
 NATIVE_MIX = (
     "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill"
 )
@@ -36,7 +48,7 @@ PROXY_LIMITATION = (
     "this stage does not correct moisture-dependent combustion performance. "
     "Historical supplier weights are deterministic proxies, not future uncertainty estimates. "
     "Effects and the native upstream biosphere exclusions "
-    "remain unquantified. This wood-chip stage does not establish pellet coverage."
+    "remain unquantified. Pellet feedstock substitution has separate limitations."
 )
 GEOGRAPHY_LIMITATION = (
     "Where an IAM region has no native positive historical portfolio for a "
@@ -74,10 +86,10 @@ def _positive_shares(values, *, label):
 
 
 class UVEKBiomass(BaseTransformation):
-    """Plan and validate a native wood-chip update without changing ECI code paths.
+    """Plan native biomass mixes while preserving manufacturing quantities.
 
-    Pellet/upstream feedstock coverage and public dispatch remain separate rollout
-    gates. Native producers and material/byproduct users are never rewritten here.
+    Wood-chip suppliers and material/byproduct uses retain their inventories.
+    Only reviewed raw feedstock links change inside native pellet manufacture.
     """
 
     def __init__(
@@ -168,7 +180,43 @@ class UVEKBiomass(BaseTransformation):
         self.producer_snapshots = {
             k: copy.deepcopy(self.providers[k]) for k in self.native_keys
         }
+        procedural = mapping.generate_map(
+            get_mapping(PROCEDURAL_MAPPING, "uvek_aliases")
+        )
+        self.pellet_keys = {
+            identity(a) for a in procedural.get("pellet production", ())
+        }
+        self.pellet_feedstock_keys = {
+            identity(a) for a in procedural.get("pellet woody feedstock", ())
+        }
+        self.pellet_feedstock_names = set(
+            get_mapping(PROCEDURAL_MAPPING, "uvek_aliases")
+            .get("pellet woody feedstock", {})
+            .get("fltr", {})
+            .get("name", [])
+        )
+        if self.pellet_keys and not self.pellet_feedstock_names:
+            raise ValueError("Missing reviewed pellet feedstock aliases.")
+        for key in self.pellet_keys | self.pellet_feedstock_keys:
+            supplier = self.providers[key]
+            refs = [e for e in supplier["exchanges"] if e["type"] == "production"]
+            if (
+                len(refs) != 1
+                or refs[0]["amount"] != 1
+                or refs[0].get("unit", supplier["unit"]) != "kilogram"
+                or len(supplier["exchanges"]) <= 1
+            ):
+                raise ValueError(
+                    "Pellet producer/feedstock needs a verified nonempty +1 dry-kg reference."
+                )
+        self.pellet_snapshots = {
+            k: copy.deepcopy(self.providers[k]) for k in self.pellet_keys
+        }
+        self.producer_snapshots.update(
+            {k: copy.deepcopy(self.providers[k]) for k in self.pellet_feedstock_keys}
+        )
         self.relinked = []
+        self.relinked_indices = []
 
     def get_ecoinvent_locs(self):
         """Map only reviewed suppliers and their fuel consumers.
@@ -180,6 +228,13 @@ class UVEKBiomass(BaseTransformation):
         names = {NATIVE_MIX}
         for entry in definitions.values():
             names.update(entry.get("fltr", {}).get("name", []))
+        feed_names = set(
+            get_mapping(PROCEDURAL_MAPPING, "uvek_aliases")
+            .get("pellet woody feedstock", {})
+            .get("fltr", {})
+            .get("name", [])
+        )
+        all_suppliers = {identity(a): a for a in self.database}
         suppliers = {
             identity(a): a
             for a in self.database
@@ -195,6 +250,11 @@ class UVEKBiomass(BaseTransformation):
                 if exchange["type"] != "technosphere":
                     continue
                 supplier = suppliers.get(identity(exchange))
+                if (
+                    dataset["name"] == PELLET_NAME
+                    and exchange.get("name") in feed_names
+                ):
+                    supplier = all_suppliers.get(identity(exchange))
                 if supplier is not None and (
                     not exchange.get("input")
                     or tuple(exchange["input"])
@@ -296,11 +356,24 @@ class UVEKBiomass(BaseTransformation):
                 or identity(dataset) in self.native_keys
             ):
                 continue
-            for exchange in dataset["exchanges"]:
+            pellet = identity(dataset) in self.pellet_keys
+            allowed_names = source_names | (
+                self.pellet_feedstock_names if pellet else set()
+            )
+            for original_index, exchange in enumerate(dataset["exchanges"]):
+                if (
+                    pellet
+                    and exchange["type"] == "technosphere"
+                    and exchange.get("name") in self.pellet_feedstock_names
+                    and exchange.get("unit") != "kilogram"
+                ):
+                    raise ValueError(
+                        "Pellet feedstock needs a reviewed dry-kg basis; no unit conversion inferred."
+                    )
                 if (
                     exchange["type"] != "technosphere"
                     or exchange.get("unit") != "kilogram"
-                    or exchange.get("name") not in source_names
+                    or exchange.get("name") not in allowed_names
                 ):
                     continue
                 supplier = self.providers.get(identity(exchange))
@@ -317,6 +390,9 @@ class UVEKBiomass(BaseTransformation):
                 if (
                     identity(supplier) not in self.native_keys
                     and supplier["name"] != NATIVE_MIX
+                    and not (
+                        pellet and identity(supplier) in self.pellet_feedstock_keys
+                    )
                 ):
                     continue
                 location = dataset["location"]
@@ -333,13 +409,15 @@ class UVEKBiomass(BaseTransformation):
                     )
                 if not math.isfinite(float(exchange["amount"])):
                     raise ValueError("Native biomass caller quantity must be finite.")
-                plans[region]["consumers"].append((dataset, exchange))
+                plans[region]["consumers"].append((dataset, exchange, original_index))
         return plans
 
     @staticmethod
     def _energy_consumer(dataset):
         """Keep material processing and allocated byproduct outputs outside this stage."""
         if dataset["unit"] in {"megajoule", "kilowatt hour"}:
+            return True
+        if identity(dataset) == (PELLET_NAME, PELLET_NAME, "RER", "kilogram"):
             return True
         name = dataset["name"].lower().lstrip("x ")
         return name.startswith(
@@ -403,7 +481,8 @@ class UVEKBiomass(BaseTransformation):
                 "reference_basis": "one kilogram dry woody fuel; no unit conversion",
                 "iam_shares": copy.deepcopy(plan["shares"]),
                 "supplier_vector": copy.deepcopy(vector),
-                "limitations": [PROXY_LIMITATION, GEOGRAPHY_LIMITATION],
+                "limitations": [PROXY_LIMITATION, GEOGRAPHY_LIMITATION]
+                + ([PELLET_LIMITATION] if self.pellet_keys else []),
             }
             market["comment"] = PROXY_LIMITATION
             if status == "created":
@@ -419,7 +498,7 @@ class UVEKBiomass(BaseTransformation):
                 reason_code="biomass.uvek.native_dry_mass_mix",
                 explanation=PROXY_LIMITATION,
             )
-            for dataset, exchange in plan["consumers"]:
+            for dataset, exchange, original_index in plan["consumers"]:
                 original = copy.deepcopy(exchange)
                 exchange.update(
                     name=MARKET_NAME,
@@ -430,14 +509,23 @@ class UVEKBiomass(BaseTransformation):
                 if "reference product" in exchange:
                     exchange["reference product"] = MARKET_PRODUCT
                 self.relinked.append((dataset, exchange, original, market))
+                self.relinked_indices.append(original_index)
                 self._validation_relinked_targets[id(dataset)] = dataset
                 record_change_event(
                     self,
                     dataset,
                     "modified",
                     sector="biomass",
-                    reason_code="biomass.uvek.native_dry_mass_relink",
-                    explanation="Original signed dry kg and all quantity/uncertainty metadata retained.",
+                    reason_code=(
+                        "biomass.uvek.pellet_feedstock_proxy"
+                        if identity(dataset) in self.pellet_keys
+                        else "biomass.uvek.native_dry_mass_relink"
+                    ),
+                    explanation=(
+                        PELLET_LIMITATION
+                        if identity(dataset) in self.pellet_keys
+                        else "Original signed dry kg and all quantity/uncertainty metadata retained."
+                    ),
                 )
         return plans
 
@@ -502,6 +590,17 @@ class UVEKBiomass(BaseTransformation):
             for k, snapshot in self.producer_snapshots.items()
         ):
             raise ValueError("Native biomass supplier inventory was changed.")
+        for key, snapshot in self.pellet_snapshots.items():
+            restored = copy.deepcopy(self.providers[key])
+            for (dataset, _, original, _), index in zip(
+                self.relinked, self.relinked_indices, strict=True
+            ):
+                if identity(dataset) == key:
+                    restored["exchanges"][index] = original
+            if restored != snapshot:
+                raise ValueError(
+                    "Pellet factory changed outside the reviewed dry-feedstock links."
+                )
         return ValidationPhaseResult(
             phase_id="sector:biomass:uvek",
             kind="sector",
@@ -514,6 +613,12 @@ class UVEKBiomass(BaseTransformation):
                     "error",
                     "applicable",
                     len(self.relinked),
+                ),
+                ValidationRuleResult(
+                    "biomass.uvek.pellet_factory",
+                    "error",
+                    "applicable",
+                    len(self.pellet_keys),
                 ),
                 ValidationRuleResult(
                     "biomass.uvek.native_supply_proxies",
