@@ -729,6 +729,9 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
         ("bp-815270d3fcbfb53b", "3.9", -1),
         ("bp-1b20be09e53aaa84", "3.6", -1),
         ("bp-bcbf9e1008a58e4b", "3.6", -1),
+        ("bp-9caeb1b3bd66b612", "3.6", 1),
+        ("bp-9caeb1b3bd66b612", "3.9", 1),
+        ("bp-9caeb1b3bd66b612", "3.12", 1),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -859,6 +862,77 @@ def test_bare_inert_landfill_retains_source_boundary_and_cached_gap_warning(
 
 
 @pytest.mark.parametrize(
+    "version,electric,converter",
+    [
+        ("3.6", 0.4328572718177839, 0.5671427281822161),
+        ("3.9", 0.2578923451030648, 0.7421076548969346),
+        ("3.12", 0.25789234510306475, 0.7421076548969346),
+    ],
+)
+def test_low_alloyed_cast_stock_keeps_source_routes_delivery_and_cached_warning(
+    tmp_path, version, electric, converter
+):
+    from collections import defaultdict
+
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-9caeb1b3bd66b612"
+    )
+    resolved = graph(rule["source"], version=version)
+    resolved.activities[0]["exchanges"][1]["amount"] = 2.5
+    resolved.activities[0]["exchanges"].append(
+        {
+            "name": "Carbon dioxide, fossil",
+            "categories": ["air"],
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.375,
+        }
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        foreground = next(
+            a for a in result.activities if a["code"] == resolved.activities[0]["code"]
+        )
+        demand = foreground["exchanges"][1]
+        assert demand["amount"] == 2.5
+        helper = next(a for a in result.activities if a["code"] == demand["input"][1])
+        quantities = defaultdict(float)
+        for exchange in helper["exchanges"]:
+            if exchange["type"] == "technosphere":
+                quantities[exchange["name"]] += exchange["amount"]
+        assert dict(quantities) == pytest.approx(
+            {
+                "Steel, electric, low-alloyed, at plant": electric,
+                "Steel, converter, low-alloyed, at plant": converter,
+                "Transport, barge": 0.0201,
+                "Transport, freight, lorry, fleet average": 0.2065,
+                "Transport, freight, rail": 0.1903,
+                "Transport, transoceanic freight ship": 0.4409,
+            }
+        )
+        assert not any(
+            "rolling" in e["name"].lower() or e["type"] == "biosphere"
+            for e in helper["exchanges"]
+        )
+        assert foreground["exchanges"][-1]["amount"] == 0.375
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
+            and "without extra rolling" in d["message"]
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
     "rule_id",
     [
         "bp-eb04730488ad462a",
@@ -906,6 +980,7 @@ def test_bare_inert_landfill_retains_source_boundary_and_cached_gap_warning(
         "bp-2d7bd6f9508a4c17",
         "bp-b16c64b2ed0f8102",
         "bp-f0abe48d8c3176d4",
+        "bp-9caeb1b3bd66b612",
         "bp-1b20be09e53aaa84",
         "bp-bcbf9e1008a58e4b",
     ],

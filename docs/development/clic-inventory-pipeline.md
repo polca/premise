@@ -678,6 +678,25 @@ frontier is 46 distinct unresolved rules / 53 exact source-profile cases,
 with 294 approval fingerprints. The three material-grade proposals remain
 pending despite finite candidate LCIs; their public conversions are refused.
 
+`uvek_pilot_low_alloyed_cast_stock_review.json` reconstructs the three actual
+3.6/3.9/3.12 low-alloyed-steel market profiles at the casting boundary. All
+25 producer references were inspected; source furnace shares and road, rail,
+barge and sea delivery quantities remain intact. Complete native converter
+and Swiss low-alloyed electric processes supply the corresponding routes.
+Their technology, geography, alloy, allocation, fleet and vintage differences
+remain explicit proxies. The old native market's extra rolling and fixed
+63%/37% furnace mix are not imported. No allocation, mass-yield, grade or
+capacity factor is added; source/caller processing remains separate.
+Each helper has two combined deterministic furnace demands and four freight
+exchanges with their original uncertainty.
+Thirty-six relevant Brightpath and eighteen focused Premise checks pass.
+All three packaged helper-input LCIs are finite with unchanged scientific
+hashes; all 294 earlier fingerprints and existing recipes/reviews remain
+unchanged. Full generator replay and wheel review/authority/manifest byte
+checks pass. The current frontier is 45 distinct unresolved rules / 50 exact
+source-profile cases, with 297 approval fingerprints. The full pilot remains
+refused; material-grade proposals and chemical-basis questions are unresolved.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

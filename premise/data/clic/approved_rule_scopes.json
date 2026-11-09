@@ -21125,6 +21125,801 @@
           "fingerprint": "48421b62c149166faf29ff0cc93311d80f6044acaa17e8229da391379be575de"
         }
       ]
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_low_alloyed_cast_stock",
+      "review_path": "export/uvek_pilot_low_alloyed_cast_stock_review.json",
+      "review_sha256": "13dc3be71d252eca07522d31f94ddfab7ae09bd1d6b1d944c148ce97569b4c8e",
+      "authorization": "Standing independently inspected same whole-material/function/unit geographic proxies and helpers composed from independently resolved components, applied only to the actual 3.6/3.9/3.12 low-alloyed cast-stock markets. Retain source route shares and all market delivery quantities. No new process primitive, grade, inferred inverse or physical exchange omission.",
+      "inspection": {
+        "rule_id": "bp-9caeb1b3bd66b612",
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Steel, low-alloyed, at plant",
+          "reference product": "Steel, low-alloyed, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 1.0,
+          "id": "bp-9caeb1b3bd66b612",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Steel, low-alloyed, at plant",
+            "reference product": "Steel, low-alloyed, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_review": {},
+        "previous_rule_sha256": "f05f3f4b0a40403169218b35dc748c471f11a42dc4b1cbaeaea167743f360a1f",
+        "source_reference_amount": 1,
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.12-cutoff",
+            "inventory_sha256": "92d029d1477c9fc67b75d1ae8da5cd9ff461364757b311df65fa71230ec21d95",
+            "source_sign": 1,
+            "inputs": [
+              {
+                "name": "Steel, converter, low-alloyed, at plant",
+                "reference product": "Steel, converter, low-alloyed, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.7421076548969346,
+                "uncertainty type": 0,
+                "loc": 0.7421076548969346
+              },
+              {
+                "name": "Steel, electric, low-alloyed, at plant",
+                "reference product": "Steel, electric, low-alloyed, at plant",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.2578923451030648,
+                "uncertainty type": 0,
+                "loc": 0.2578923451030648
+              },
+              {
+                "amount": 0.0201,
+                "uncertainty type": 2,
+                "loc": -3.907035463917107,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.2065,
+                "uncertainty type": 2,
+                "loc": -1.5774548665810497,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.4409,
+                "uncertainty type": 2,
+                "loc": -0.8189371866182451,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "location": "OCE",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.1903,
+                "uncertainty type": 2,
+                "loc": -1.6591535046800332,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f14bb23ab8814da8c1a3ce105a1f564d44d92e221ea6c9679015a25d4ccb138a"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "13b900912fc3adcd1c3a60a032bd3ef546a25f61c6afbd5f0374f42dffd2cd94"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "Europe without Switzerland and Austria",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad2184c755519fa44628dd8995059ca4d9d40299f30ef623ff61803f827926f3"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "7724ce2ec16204d60f2094a256d77df19abb732da36ecb614a98e1d68d41b251"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "51284bfc34ad5761838aa6c885f7e24b6686a3d553830a61f43be7a811045c43"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "27e96dac115571ae745f0be9343ef262452ede5ed9dcece8be54cd3d11c6e44a"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "570b1d3c709ba46d3a32fb7d0d331eadd9a1be4eb94de6b69ee48dee0db78dab"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "AT",
+                  "kilogram"
+                ],
+                "binding_sha256": "da1eb6c506389b1c28fb8d9d1c4d94c088b967f62b6d60c19b15975e737fa11f"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "CA-QC",
+                  "kilogram"
+                ],
+                "binding_sha256": "5ae305f82ac51c72a6251ad63494cb170fd8e685a2d630138f7e5e60963cca57"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, inland waterways, barge, diesel",
+                  "transport, freight, inland waterways, barge, diesel",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "ed85178e4f25844218e90634b747de06d247d607011085f90e2bbe0f5069b0f1"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, diesel, unspecified",
+                  "transport, freight, lorry, diesel, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8ac6377d26a5b6a2489395f408b42a558c0d1e943a3916da561b6f4db8712248"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",
+                  "transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "6e12aa26128375b19d91db16db17ff9981b3d363d15906198939af9c16c5960b"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, train, fleet average",
+                  "transport, freight, train, fleet average",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "48ddc5466394c787f45ed8ec2e8b80b8cd63e72862c76a60b34bda2230ce4f14"
+              }
+            ],
+            "source_route_shares": {
+              "electric": 0.25789234510306475,
+              "converter": 0.7421076548969346
+            }
+          },
+          {
+            "label": "ecoinvent-3.6-cutoff",
+            "inventory_sha256": "bb5487fe245b6f477e9eee48727a9697538b1c686f7eca192223e8bbef1c3375",
+            "source_sign": 1,
+            "inputs": [
+              {
+                "name": "Steel, converter, low-alloyed, at plant",
+                "reference product": "Steel, converter, low-alloyed, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.5671427281822161,
+                "uncertainty type": 0,
+                "loc": 0.5671427281822161
+              },
+              {
+                "name": "Steel, electric, low-alloyed, at plant",
+                "reference product": "Steel, electric, low-alloyed, at plant",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.4328572718177839,
+                "uncertainty type": 0,
+                "loc": 0.4328572718177839
+              },
+              {
+                "amount": 0.0201,
+                "uncertainty type": 2,
+                "loc": -3.907035463917107,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.2065,
+                "uncertainty type": 2,
+                "loc": -1.5774548665810497,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.4409,
+                "uncertainty type": 2,
+                "loc": -0.8189371866182451,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "location": "OCE",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.1903,
+                "uncertainty type": 2,
+                "loc": -1.6591535046800332,
+                "scale": 0.44944410108488464,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market group for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4a93a659489b9b0d367563aaa9a6a23390c1fc2c04f8facd250a4e27e0d74cb"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4bf2115eac1195515024bb84d21fb03ecd275f879679408737d7ec44c26bb952"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, bulk carrier for dry goods",
+                  "transport, freight, sea, bulk carrier for dry goods",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "6ad82fb631359f6d045b79dfa4290d72273f0d05e132b37adc1340ed2391ce2b"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "27d51660c2250a2dafbecaedabc68d697095df87bb661ee2d25896259899afc8"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "570b1d3c709ba46d3a32fb7d0d331eadd9a1be4eb94de6b69ee48dee0db78dab"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "27e96dac115571ae745f0be9343ef262452ede5ed9dcece8be54cd3d11c6e44a"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "d22ca6be153018f6a4de0dbe86fca50eaffd1e7927b5db09acd30105cfc59f4b"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "CA-QC",
+                  "kilogram"
+                ],
+                "binding_sha256": "5ae305f82ac51c72a6251ad63494cb170fd8e685a2d630138f7e5e60963cca57"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "9a88afa7d221832ffcc69e3e0911499eaacf4afbb857a4cab8d8b66d3a073918"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f14bb23ab8814da8c1a3ce105a1f564d44d92e221ea6c9679015a25d4ccb138a"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "7724ce2ec16204d60f2094a256d77df19abb732da36ecb614a98e1d68d41b251"
+              }
+            ],
+            "source_route_shares": {
+              "electric": 0.4328572718177839,
+              "converter": 0.5671427281822161
+            }
+          },
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "inventory_sha256": "e5b92b12131f2baebd8e3d9ff29a947042b4d05e7043debe1ec232ee46c5a815",
+            "source_sign": 1,
+            "inputs": [
+              {
+                "name": "Steel, converter, low-alloyed, at plant",
+                "reference product": "Steel, converter, low-alloyed, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.7421076548969346,
+                "uncertainty type": 0,
+                "loc": 0.7421076548969346
+              },
+              {
+                "name": "Steel, electric, low-alloyed, at plant",
+                "reference product": "Steel, electric, low-alloyed, at plant",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.2578923451030648,
+                "uncertainty type": 0,
+                "loc": 0.2578923451030648
+              },
+              {
+                "amount": 0.1903,
+                "uncertainty type": 2,
+                "loc": -1.6591535046800332,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0201,
+                "uncertainty type": 2,
+                "loc": -3.907035463917107,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.2065,
+                "uncertainty type": 2,
+                "loc": -1.5774548665810497,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.4409,
+                "uncertainty type": 2,
+                "loc": -0.8189371866182451,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "location": "OCE",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "27e96dac115571ae745f0be9343ef262452ede5ed9dcece8be54cd3d11c6e44a"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "CA-QC",
+                  "kilogram"
+                ],
+                "binding_sha256": "5ae305f82ac51c72a6251ad63494cb170fd8e685a2d630138f7e5e60963cca57"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "570b1d3c709ba46d3a32fb7d0d331eadd9a1be4eb94de6b69ee48dee0db78dab"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "13b900912fc3adcd1c3a60a032bd3ef546a25f61c6afbd5f0374f42dffd2cd94"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "AT",
+                  "kilogram"
+                ],
+                "binding_sha256": "da1eb6c506389b1c28fb8d9d1c4d94c088b967f62b6d60c19b15975e737fa11f"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "f45d3ee4b86de7e7299e425d3d7c1e3474c727a1e73b52501ccc1f979b5258e2"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f14bb23ab8814da8c1a3ce105a1f564d44d92e221ea6c9679015a25d4ccb138a"
+              },
+              {
+                "source": [
+                  "steel production, converter, low-alloyed",
+                  "steel, low-alloyed",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "7724ce2ec16204d60f2094a256d77df19abb732da36ecb614a98e1d68d41b251"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "steel, low-alloyed",
+                  "Europe without Switzerland and Austria",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad2184c755519fa44628dd8995059ca4d9d40299f30ef623ff61803f827926f3"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "10a98c33511f8570d999c7617ffa81cd709438b667523b448d8781efe0e86e76"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "ccc0c9ba49d00d193c2b8bc5cc14501b60ba77e3394e4110997a2df3f1c6dae5"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, bulk carrier for dry goods",
+                  "transport, freight, sea, bulk carrier for dry goods",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "6ad82fb631359f6d045b79dfa4290d72273f0d05e132b37adc1340ed2391ce2b"
+              }
+            ],
+            "source_route_shares": {
+              "converter": 0.7421076548969346,
+              "electric": 0.2578923451030648
+            }
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "source_metadata_sha256": "301e91327c946822cdb879626ba5c96a7657ed7e40db294a6baa6f569a17b340",
+            "source_inventory_sha256": "92d029d1477c9fc67b75d1ae8da5cd9ff461364757b311df65fa71230ec21d95",
+            "source_comment_sha256": "af14d04dbbe6bd621fbec387694a07b5695c3970e1e691e19aff69b4f2c4da34",
+            "reference_amount": 1,
+            "active_technosphere_count": 13,
+            "direct_biosphere_count": 0
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "source_metadata_sha256": "23ce1407c4870fba8b9571594dcf8ad3f1863d9039bf0130b42e6a5ba54a5b23",
+            "source_inventory_sha256": "bb5487fe245b6f477e9eee48727a9697538b1c686f7eca192223e8bbef1c3375",
+            "source_comment_sha256": "94e701237b5edc076c875c6350ca660eb68069371356fc03215d8168bfb8c0b8",
+            "reference_amount": 1,
+            "active_technosphere_count": 11,
+            "direct_biosphere_count": 0
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_metadata_sha256": "8ad3d11c6b8649c1c7cd9165ae683ec2d6003ccf71de1951617f391f3d55b8fa",
+            "source_inventory_sha256": "e5b92b12131f2baebd8e3d9ff29a947042b4d05e7043debe1ec232ee46c5a815",
+            "source_comment_sha256": "61df93b7c344493d26cea545ecacb9b13ca5d7751d2aa6870b3053621888f658",
+            "reference_amount": 1,
+            "active_technosphere_count": 13,
+            "direct_biosphere_count": 0
+          }
+        ],
+        "limitations": "Reviewed low-alloyed cast-stock market helper. Preserve every inspected source producer share, its BOF/electric route and original separate road, rail, barge and sea delivery demand. Use the complete native RER low-alloyed converter/casting process for BOF supply and the complete native Swiss low-alloyed electric/casting process for electric supply as independently inspected same whole-material/function/unit geographic proxies. All 25 source producer references and all six native component references are positive 1; source markets have a self-linked positive 1 kg reference and only active technosphere inputs. Their declared endpoints are steelmaking and casting; the Austrian narrative mentions downstream rolling but its included-activities boundary ends at billets. No source or chosen native producer has a direct rolling-service input. Do not import the old native whole-market target: it adds one kg hot rolling and fixes the furnace split at 63% BOF/37% electric. This helper retains source route shares without extra rolling, an alloy/iron ratio, scrap yield, 0.99 allocation multiplier, capacity normalization, new steelmaking primitive or recovered-product credit. Preserve complete native alloy additions, infrastructure, scrap sourcing, by-product gases, wastes and allocation once. The native Swiss electric process has 0.99 economic allocation to steel; other source plants, technologies, alloy recipes, steel quality and coproduct allocation are approximated, not reconstructed. Whole native freight services retain vehicle/rail/ship/port/infrastructure/fuel/emissions inventories at the original signed net-ton-km quantities; native fleet, rail/ship class, geography, trade representation and vintage differ. No individual traction, payload, gross-weight or distance multiplier is inferred. Specific mechanical grades or application performance, inventory and LCIA equivalence are unverified; effects on scores are unquantified. Preserve signed caller quantities, uncertainty, formulas, ownership and separate processing/emissions. Only the enumerated exact cut-off profiles qualify; no inverse or cross-system-model route is inferred. Repeated native furnace suppliers are combined only for deterministic source shares, without rounding or renormalizing them; each freight exchange retains its original uncertainty.",
+        "generated_flow_type": "GENERATED_PRODUCT"
+      },
+      "limitations": [
+        "Reviewed low-alloyed cast-stock market helper. Preserve every inspected source producer share, its BOF/electric route and original separate road, rail, barge and sea delivery demand. Use the complete native RER low-alloyed converter/casting process for BOF supply and the complete native Swiss low-alloyed electric/casting process for electric supply as independently inspected same whole-material/function/unit geographic proxies. All 25 source producer references and all six native component references are positive 1; source markets have a self-linked positive 1 kg reference and only active technosphere inputs. Their declared endpoints are steelmaking and casting; the Austrian narrative mentions downstream rolling but its included-activities boundary ends at billets. No source or chosen native producer has a direct rolling-service input. Do not import the old native whole-market target: it adds one kg hot rolling and fixes the furnace split at 63% BOF/37% electric. This helper retains source route shares without extra rolling, an alloy/iron ratio, scrap yield, 0.99 allocation multiplier, capacity normalization, new steelmaking primitive or recovered-product credit. Preserve complete native alloy additions, infrastructure, scrap sourcing, by-product gases, wastes and allocation once. The native Swiss electric process has 0.99 economic allocation to steel; other source plants, technologies, alloy recipes, steel quality and coproduct allocation are approximated, not reconstructed. Whole native freight services retain vehicle/rail/ship/port/infrastructure/fuel/emissions inventories at the original signed net-ton-km quantities; native fleet, rail/ship class, geography, trade representation and vintage differ. No individual traction, payload, gross-weight or distance multiplier is inferred. Specific mechanical grades or application performance, inventory and LCIA equivalence are unverified; effects on scores are unquantified. Preserve signed caller quantities, uncertainty, formulas, ownership and separate processing/emissions. Only the enumerated exact cut-off profiles qualify; no inverse or cross-system-model route is inferred. Repeated native furnace suppliers are combined only for deterministic source shares, without rounding or renormalizing them; each freight exchange retains its original uncertainty."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1f5e4bcd842847133d5313637ae9a28867d78cfedd57835ea55067a25c755321"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "bba465857a60f2ed6762158a6e068df4d001f029e7159dd1e3abba6a1432808c"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e6df5e11c73f3f413f460026d48a985ee8e6d9041399f2c432db6f50482db100"
+        }
+      ]
     }
   ]
 }

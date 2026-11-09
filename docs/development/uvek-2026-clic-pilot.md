@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 13 |
+| 3.6 | 27 | 12 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 27 |
-| 3.12 | 8 | 13 |
+| 3.9 | 17 | 26 |
+| 3.12 | 8 | 12 |
 
-These are 53 exact-profile cases involving 46 distinct rules, after reusing
+These are 50 exact-profile cases involving 45 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -502,10 +502,32 @@ cover short-chain polyols, mixed kraft paper and class-I nickel. Their native
 candidate LCIs are finite, but approval remains pending and their exact public
 conversions remain refused. Acrylic/hypochlorite reference-basis ambiguities
 are excluded from the steel decision.
+The 3.6/3.9/3.12 low-alloyed-steel markets now have inspected casting helpers.
+The previous native whole-market target adds hot rolling and fixes the BOF/EAF
+mix at 63%/37%. The helpers instead retain every source producer share and
+all four original delivery quantities, using complete native RER converter
+and Swiss low-alloyed electric casting processes. Twenty-five source producer
+references were checked; the Austrian record's declared endpoint is billets,
+despite its narrative discussing downstream rolling. No rolling, mass-yield,
+purity, capacity or allocation multiplier is introduced. Native electric
+steel's 0.99 economic allocation remains internal; geographic, plant, alloy,
+gas, residue, freight-fleet and vintage approximations remain warnings.
+Repeated deterministic furnace demands are combined into two supplier totals;
+the four freight exchanges retain their original uncertainty.
+Thirty-six relevant Brightpath and eighteen focused Premise checks pass,
+including caller-owned rolling, signs, uncertainty, exact-version refusals,
+helper ownership, source furnace/freight quantities and cache warnings.
+All three actual packaged helper-input LCIs are finite with unchanged source
+scientific hashes. All 294 earlier approval fingerprints, 3,180 recipes and
+687 shared reviews remain unchanged. One rule gains three profile-specific
+recipes and one shared review; full authoring replay is byte-identical and
+wheel review/authority/manifest bytes match. The module now contains 649 cases;
+no full 649-case run is claimed. Grade, chemical-basis and other unresolved
+decisions remain refused; the full prospective scenario/export is unvalidated.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 294 exact-profile fingerprints, with review evidence and
+ledger contains 297 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
