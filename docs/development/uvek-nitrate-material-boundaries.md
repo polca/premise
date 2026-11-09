@@ -51,11 +51,12 @@ screening limitations remain in warnings; specific performance and LCIA equality
 are not established. The new review passes 114 focused Brightpath and 114
 Premise checks, ten actual native LCI cases and ten installed-wheel conversions.
 
-Four delivery markets still require further work. The HDPE market is now
+Three sand delivery markets still require further work. The HDPE market is now
 admitted with exactly four explicitly approved trace omissions, two separate
 virgin supplies and all original freight, as described below. The foam-glass
-market combines production with recycled cullet and production without cullet; equal density/conductivity does not establish equal
-feedstock or energy. Neither can be collapsed to one virgin/native product.
+market is now admitted under the separate explicit minor-branch feedstock-proxy
+approval below. Equal density/conductivity alone does not
+establish equal feedstock, energy or uncertainty.
 The three sand markets include river extraction, with an extraction and
 allocation boundary different from the generic native gravel/sand pit.
 
@@ -186,8 +187,8 @@ feedstock changes, including feldspar and potassium-nitrate inputs. Small
 binary rounding differences in waste-wood amounts and lognormal locations are
 retained in the report separately. A future reconstruction cannot assume that all
 unchanged nominal ingredients have unchanged uncertainty, or discard the source
-parameter declarations. No hybrid process or new foam-glass correspondence
-is enabled by this inspection.
+parameter declarations. The inspection alone enabled no hybrid or correspondence; the subsequent
+explicit screening approval below supplies the new scientific decision.
 
 Private evidence: `nitrate_hdpe_foam_routes_primary.private.json`,
 `native_pe_recycling_candidates.private.json` and `foam_glass_feedstock_delta.json`.
@@ -198,5 +199,8 @@ a complete-native screening option for only the 0.9901% cullet-free branch,
 with explicit feedstock, energy, emissions and internal-uncertainty differences.
 Its six-input candidate preserves both producer entries and all four freight
 entries and gives finite native-background LCI. The alternative is an explicit
-reconstruction of the actual source producer. No mapping is enabled before
-that new scientific choice is approved.
+reconstruction of the actual source producer. The user approved the scoped screening option with warnings, and the exact
+market mapping is now implemented. Both source shares and all four freight
+entries remain unchanged, with source parameter definitions in provenance and
+the accepted native internal uncertainty model. See the linked implementation
+checkpoint for tests and limitations.

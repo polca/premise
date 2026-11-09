@@ -1177,6 +1177,25 @@ Coverage is now 76 of 125 nitrate suppliers, leaving 49 across 16 labels.
 The complete nitrate market and electricity scenario still remain refused;
 these checks do not constitute prospective certification or export.
 
+The 3.9 cut-off global foam-glass market now implements the explicit user
+approval for the 0.9901% cullet-free branch to use the complete native
+cullet-based process as a screening proxy. Both original producer entries and
+all four original freight entries remain separate, with quantities, uncertainty
+and order unchanged. The two/nine source producer parameter definitions remain
+in review/provenance; the native internal uncertainty model is retained and
+its differences disclosed. No branch is omitted, share normalized, storage
+wrapper introduced or source/native LCIA equivalence claimed.
+
+The review `export/uvek_pilot_nitrate_foam_review.json` is pinned at SHA-256
+`f94708a67bb1baec49f41ecee1a3737654a577dfe13c5880d7f8ad14e4d96b02`.
+All 361 earlier fingerprints, 3,292 recipes and 717 reviews remain unchanged;
+the ledger now has 362 scopes and the resource has 3,293 recipes. This passes
+23 focused Brightpath cases, nine Premise cases, full byte-identical generation,
+installed-wheel conversion and finite migrated native LCI with unchanged
+scientific signatures. Nitrate coverage is now 77 of 125 suppliers, leaving
+48 across 15 labels. The full electricity scenario remains unverified; the
+strict public frontier still refuses 35 parent rules / 40 source cases.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

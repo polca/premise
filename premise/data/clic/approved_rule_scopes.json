@@ -45180,6 +45180,660 @@
           "fingerprint": "223c184c88227dcec4638c2fb0b41cd1ce1527804e547ee1a6f494759491d3f7"
         }
       ]
+    },
+    {
+      "rule_id": "bp-9186a15d39b6f600",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_foam",
+      "review_path": "export/uvek_pilot_nitrate_foam_review.json",
+      "review_sha256": "f94708a67bb1baec49f41ecee1a3737654a577dfe13c5880d7f8ad14e4d96b02",
+      "authorization": "Explicit user reply: Approve scoped proxy with warnings. Scope: use complete native cullet-basedfoamglass for only the0.9901%source withoutcullet branch in the3.9cutoff GLOmarket, retain bothsourceproducerentries and4freights separately and all quantities/uncertainty. Warnfeedstock, energy, CO2, parameters and internal uncertainty differences; scoreeffectunquantified. No source omission or general grade/technology approval. Standing complete-function/geographic/freight proxy conditions apply to the other endpoints.",
+      "inspection": {
+        "rule_id": "bp-9186a15d39b6f600",
+        "source": {
+          "location": "GLO",
+          "name": "market for foam glass",
+          "reference product": "foam glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Foam glass, at plant",
+          "reference product": "Foam glass, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.449242,
+          "id": "bp-9186a15d39b6f600",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "GLO",
+            "name": "market for foam glass",
+            "reference product": "foam glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Foam glass, at plant",
+            "reference product": "Foam glass, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "1950c88444c9f124ef6131decd1794399b96b3f5441cefd6043ee8a162266a47",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "a25b32c97f5526b12f49b1b19978d9d8ade253f3cf5b291e3755f82ee4aeb7c8",
+        "source_inventory_sha256": "1368b280ab4672b14889334d2b6035387717b0ec7c572b7055a2bb9c8eb7cdce",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "1368b280ab4672b14889334d2b6035387717b0ec7c572b7055a2bb9c8eb7cdce",
+            "inputs": [
+              {
+                "amount": 0.99009900990099,
+                "uncertainty type": 0,
+                "loc": 0.99009900990099,
+                "name": "Foam glass, at plant",
+                "reference product": "Foam glass, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0099009900990099,
+                "uncertainty type": 0,
+                "loc": 0.0099009900990099,
+                "name": "Foam glass, at plant",
+                "reference product": "Foam glass, at plant",
+                "location": "RER",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0136,
+                "uncertainty type": 2,
+                "loc": -4.29768548624013,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.001,
+                "uncertainty type": 2,
+                "loc": -6.907755278982137,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0018,
+                "uncertainty type": 2,
+                "loc": -6.319968614080018,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "location": "CH",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0583,
+                "uncertainty type": 2,
+                "loc": -2.8421531856256905,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "foam glass production",
+                  "foam glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "08d788e788f4e65d2641202e012180048a8e5f0c0324fa3fb9e522cb574c6ecb"
+              },
+              {
+                "source": [
+                  "foam glass production, without cullet",
+                  "foam glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "0e9766ca63b29de479977b6a2f351b8a12bfc82a45c327090358f7b911fa64f3"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "10a98c33511f8570d999c7617ffa81cd709438b667523b448d8781efe0e86e76"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "ccc0c9ba49d00d193c2b8bc5cc14501b60ba77e3394e4110997a2df3f1c6dae5"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, light commercial vehicle",
+                  "transport, freight, light commercial vehicle",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "b7f317c191b0061a7fd45e869cd3510327c34925084c23babf2534e8c081fd90"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f"
+              }
+            ]
+          }
+        ],
+        "source_producer_entries": [
+          {
+            "source": {
+              "name": "foam glass production",
+              "reference product": "foam glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.99009900990099,
+              "uncertainty type": 0,
+              "loc": 0.99009900990099
+            },
+            "source_metadata_sha256": "f4b2f7a3811df77e8cc1ebf27760e4930651e5da28ee6f78bb80639456958ca6",
+            "source_inventory_sha256": "f7d3b20be44809e52d7fdcc82ab07680ec9592b6bd8089d6f4f101298cb290c4",
+            "target": {
+              "name": "Foam glass, at plant",
+              "reference product": "Foam glass, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_parameter_definitions": [
+              {
+                "description": "fraction, process water, to air",
+                "id": "daadf2d4-7bbb-4f69-8ab5-58df4c1685eb",
+                "unit": "dimensionless",
+                "comment": "Literature value. In case when no industry/process specific data are available, default evaporation fraction value is used. This value is 15% and is based on literature (Statistics Canada, 2007 & Shaffer, K.H., 2008, Consumptive water use in the Great Lakes Basin, USGS & Shiklomanov, 2003, World Water Resources at the Beginning of the 21st Century) and has been approved by an expert.",
+                "amount": 0.15,
+                "pedigree": {
+                  "reliability": 4,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 2,
+                  "further technological correlation": 4
+                },
+                "uncertainty type": 2,
+                "loc": -1.9,
+                "scale": 0.30335622624235026,
+                "scale without pedigree": 0.30335622624235026,
+                "name": "fraction_PW_to_air"
+              },
+              {
+                "description": "fraction, tap water, to air",
+                "id": "148c8010-cc60-48cd-9b40-fc7278e377f7",
+                "unit": "dimensionless",
+                "comment": "Calculated value. See comment in the other parametres present in this dataset. Tap water is considered to be always used as process water, thus process water fractions to air are applied to all tap water input flows to calculate the amount of water consumed in the processes.",
+                "amount": 0.15,
+                "pedigree": {
+                  "reliability": 4,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 2,
+                  "further technological correlation": 4
+                },
+                "uncertainty type": 2,
+                "loc": -1.9,
+                "scale": 0.30335622624235026,
+                "scale without pedigree": 0.30335622624235026,
+                "name": "fraction_TW_to_air"
+              }
+            ],
+            "feedstock_proxy_required": false
+          },
+          {
+            "source": {
+              "name": "foam glass production, without cullet",
+              "reference product": "foam glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_coefficients": {
+              "amount": 0.0099009900990099,
+              "uncertainty type": 0,
+              "loc": 0.0099009900990099
+            },
+            "source_metadata_sha256": "01a6c1063dc0cefdd5516ae64037f73c306794e39b8568d434a552a58fda1780",
+            "source_inventory_sha256": "c6f8a014424ea26857b75f6025398948676488ed2dc387df8456debb6374716c",
+            "target": {
+              "name": "Foam glass, at plant",
+              "reference product": "Foam glass, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_parameter_definitions": [
+              {
+                "description": "CaO in cullet",
+                "id": "98782e7d-9cba-4684-9029-c127491306ad",
+                "unit": "kilogram",
+                "comment": "Average CaO content in container glass (EU commission 2012: Best Available Techniques (BAT) Reference Document for the Manufacture of Glass)\n",
+                "amount": 0.105,
+                "pedigree": {
+                  "reliability": 2,
+                  "completeness": 1,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 2
+                },
+                "uncertainty type": 5,
+                "minimum": 0.09,
+                "loc": 0.105,
+                "maximum": 0.12,
+                "name": "CaO_in_cullet"
+              },
+              {
+                "description": "Na2O in cullet",
+                "id": "31540bbb-541c-41f3-8c37-bfe21e71f99f",
+                "unit": "kilogram",
+                "comment": "Average Na2O content in container glass (EU commission 2012: Best Available Techniques (BAT) Reference Document for the Manufacture of Glass)",
+                "amount": 0.13,
+                "pedigree": {
+                  "reliability": 2,
+                  "completeness": 1,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 2
+                },
+                "uncertainty type": 5,
+                "minimum": 0.12,
+                "loc": 0.13,
+                "maximum": 0.14,
+                "name": "Na2O_in_cullet"
+              },
+              {
+                "description": "cullet input, kg per kg output",
+                "id": "04045952-5ce9-439b-a6bc-da65e10bf922",
+                "unit": "dimensionless",
+                "comment": "Cullet input in original dataset",
+                "amount": 0.81385,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 3,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "uncertainty type": 2,
+                "loc": -0.21,
+                "scale": 0.05099019513592785,
+                "scale without pedigree": 0.05099019513592785,
+                "name": "cullet_fraction"
+              },
+              {
+                "description": "electricity input",
+                "id": "995ce519-56cb-4fe3-b9d7-b1954e9d534a",
+                "unit": "kilowatt hour",
+                "comment": "electricity use per kg glass in original dataset",
+                "amount": 1.4969,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 3,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "uncertainty type": 2,
+                "loc": 0.4,
+                "scale": 0.05099019513592785,
+                "scale without pedigree": 0.05099019513592785,
+                "name": "electricity_original"
+              },
+              {
+                "description": "energy saving factor",
+                "id": "893c9efe-ef53-4a6a-835f-0968cceb455b",
+                "unit": "dimensionless",
+                "comment": "Reduction of energy requirement per % cullet (EU commission 2012: Best Available Techniques (BAT) Reference Document for the Manufacture of Glass)\n",
+                "amount": 0.25,
+                "pedigree": {
+                  "reliability": 2,
+                  "completeness": 1,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "uncertainty type": 5,
+                "minimum": 0.2,
+                "loc": 0.25,
+                "maximum": 0.3,
+                "name": "energy_saving_factor"
+              },
+              {
+                "description": "fraction, process water, to air",
+                "id": "daadf2d4-7bbb-4f69-8ab5-58df4c1685eb",
+                "unit": "dimensionless",
+                "comment": "Literature value. In case when no industry/process specific data are available, default evaporation fraction value is used. This value is 15% and is based on literature (Statistics Canada, 2007 & Shaffer, K.H., 2008, Consumptive water use in the Great Lakes Basin, USGS & Shiklomanov, 2003, World Water Resources at the Beginning of the 21st Century) and has been approved by an expert.",
+                "amount": 0.15,
+                "pedigree": {
+                  "reliability": 4,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 2,
+                  "further technological correlation": 4
+                },
+                "uncertainty type": 2,
+                "loc": -1.9,
+                "scale": 0.30335622624235026,
+                "scale without pedigree": 0.30335622624235026,
+                "name": "fraction_PW_to_air"
+              },
+              {
+                "description": "fraction, tap water, to air",
+                "id": "148c8010-cc60-48cd-9b40-fc7278e377f7",
+                "unit": "dimensionless",
+                "comment": "Calculated value. See comment in the other parametres present in this dataset. Tap water is considered to be always used as process water, thus process water fractions to air are applied to all tap water input flows to calculate the amount of water consumed in the processes.",
+                "amount": 0.15,
+                "pedigree": {
+                  "reliability": 4,
+                  "completeness": 4,
+                  "temporal correlation": 3,
+                  "geographical correlation": 2,
+                  "further technological correlation": 4
+                },
+                "uncertainty type": 2,
+                "loc": -1.9,
+                "scale": 0.30335622624235026,
+                "scale without pedigree": 0.30335622624235026,
+                "name": "fraction_TW_to_air"
+              },
+              {
+                "description": "original cullet input, kg per kg raw material input",
+                "id": "c69f2811-f8f9-467f-975e-150b7f6c9eaf",
+                "unit": "dimensionless",
+                "comment": "68% cullet in original dataset.",
+                "amount": 0.68,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 3,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "uncertainty type": 2,
+                "loc": -0.38,
+                "scale": 0.05099019513592785,
+                "scale without pedigree": 0.05099019513592785,
+                "name": "cullet_original"
+              },
+              {
+                "description": "original soda input",
+                "id": "408009d2-a4e7-4990-9866-a257fd0c9c15",
+                "unit": "kilogram",
+                "comment": "Soda input in original dataset",
+                "amount": 0.046154,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 3,
+                  "temporal correlation": 1,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "uncertainty type": 2,
+                "loc": -3.08,
+                "scale": 0.05099019513592785,
+                "scale without pedigree": 0.05099019513592785,
+                "name": "soda_original"
+              }
+            ],
+            "feedstock_proxy_required": true
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "owner": {
+              "name": "market for transformer, high voltage use",
+              "reference product": "transformer, high voltage use",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "155d5ea6688023346752c4ae2cc5bb5748d263af8d789acd15032cef69a40019",
+            "source_inventory_sha256": "1f6325b2a2226c92ecb219a2e35098071456833dc12e1ea0b6578f49b8bcecdf",
+            "mode": "rail",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_uncontrolled_disposal_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_pilot_nitrate_operating_review.json"
+            ]
+          },
+          {
+            "owner": {
+              "name": "market for tin plated chromium steel sheet, 2 mm",
+              "reference product": "tin plated chromium steel sheet, 2 mm",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "source": {
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "720b0b785db95c42055b00bb44623cde8db92f2aaacb63adafc04ff77dddad5c",
+            "source_inventory_sha256": "93b93ae886bd3f0bbda601f2840433add9b6af6acf66ac4ff779c7439cb7aa56",
+            "mode": "barge",
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_uncontrolled_disposal_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_nitrate_operating_review.json"
+            ]
+          },
+          {
+            "owner": {
+              "name": "market for refractory, basic, packed",
+              "reference product": "refractory, basic, packed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market group for transport, freight, light commercial vehicle",
+              "reference product": "transport, freight, light commercial vehicle",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "698c6869c94632b8360053243334c1d1b158f53a79f75e7459c583cf38441031",
+            "source_inventory_sha256": "8780804abe84d6b62b8ddf87866ea4e9c0c9d954450a30df4bad65b2e3e1b187",
+            "mode": "light",
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json"
+            ]
+          },
+          {
+            "owner": {
+              "name": "market for transformer, high voltage use",
+              "reference product": "transformer, high voltage use",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_metadata_sha256": "89335f0432c6201b72ea10ba61b55669e076892bc62f2bc29bf54e05e13d6b95",
+            "source_inventory_sha256": "b5b6ec72598e434ae9d017e089c2016e5b558845d4d415214d544cf864621014",
+            "mode": "heavy",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "exact_prior_source_hash_matches": [
+              "uvek_reference_flow_sign_review.json",
+              "uvek_uncontrolled_disposal_review.json",
+              "uvek_cable_rail_review.json",
+              "uvek_industrial_waste_market_review.json",
+              "uvek_whole_freight_review.json",
+              "uvek_pilot_kcl_site_review.json",
+              "uvek_ash_market_review.json",
+              "uvek_pilot_nitrate_operating_review.json"
+            ]
+          }
+        ],
+        "minor_without_cullet_share": 0.0099009900990099,
+        "source_known_process_differences_at_market_scale": [
+          {
+            "reference_product": "electricity, medium voltage",
+            "unit": "kilowatt hour",
+            "source_without_cullet_minus_source_with_cullet_per_kg_market": 0.0030355839198377226
+          },
+          {
+            "reference_product": "glass cullet, sorted",
+            "unit": "kilogram",
+            "source_without_cullet_minus_source_with_cullet_per_kg_market": -0.008057920792079207
+          },
+          {
+            "reference_product": "lime",
+            "unit": "kilogram",
+            "source_without_cullet_minus_source_with_cullet_per_kg_market": 0.0015108601485148512
+          },
+          {
+            "reference_product": "silica sand",
+            "unit": "kilogram",
+            "source_without_cullet_minus_source_with_cullet_per_kg_market": 0.0045223175864467025
+          },
+          {
+            "reference_product": "soda ash, light",
+            "unit": "kilogram",
+            "source_without_cullet_minus_source_with_cullet_per_kg_market": 0.001790937879271802
+          },
+          {
+            "reference_product": "Carbon dioxide, fossil",
+            "unit": "kilogram",
+            "source_without_cullet_minus_source_with_cullet_per_kg_market": 0.0013069318312613363
+          }
+        ],
+        "producer_shares_renormalized": false,
+        "source_market_entries_omitted": 0,
+        "active_source_internal_uncertainty_reproduced": false,
+        "limitations": "User explicitly approved the complete native cullet-based Foamglass atplant process per originalkg as a screening proxy for only the0.0099009900990099(0.9901%)cullet-free production branch inside the exact3.9cutoff global foamglass market. Preserve both original supplier entries separately(.99009900990099cullet-based and.0099009900990099withoutcullet), their quantities and uncertainty, and all four original delivery entries; do not normalize or aggregate. Both native and source products have positivekg references, density110kg/m3 and conductivity.040W/mK. The ordinary cullet-based source and native process also match nominalcullet(.81385kg,withinonebinaryULP)and meltingelectricity(1.4969kWh). The approved minor-branch proxy deliberately does not preserve its no-cullet feedstock, extra lime/silica/soda, meltingelectricity1.80349397590361kWh or directfossilCO2.161385114957395kg comparedwithsourcebase.029385kg. Source known differences at original market share are recorded separately; no full native/sourceLCIA difference or negligible-score claim follows from the small share. Retain the complete native material, packaging, processing, rawmaterial logistics, infrastructure, energy and disposal inventory once, including native internal uncertainty, allocation, water and chemical-supply assumptions. Source cullet-free9parameterdefinitions versus2inbase, and changed feldspar/potassium-nitrate pedigree/uncertainty, are retained in review/provenance but not reproduced as an active source production model. Geography, energy, allocation, chemical/waste handling, background vintage and native upstream biosphere exclusions remain explicit warnings with unquantified score effects. Source finalmarket rail/barge/lightroad/heavyroad quantities and supporteduncertainty remain separate from native internal transport and use independently inspected complete same-mode services, not coal-only traction, vehicle-operation-only service or a heavy-lorry replacement for the3.5tlight-commercial proxy. Add no regional-storage wrapper, renewablecertificate adjustment, extra rawmaterial/energy credit, density/yield/moisture/cullet multiplier or new omitted exchange. Preserve caller signed quantities, formulas, uncertainty, ownership, separate emissions and purchases. No standalone cullet-freeproduction, other releases, productgrade, source chemical/utility supplier, reverse or cross-system-model correspondence is approved. Only this exact inspected3.9cutoff parent qualifies; internal source inventory or LCIA equivalence is not claimed."
+      },
+      "limitations": [
+        "User explicitly approved the complete native cullet-based Foamglass atplant process per originalkg as a screening proxy for only the0.0099009900990099(0.9901%)cullet-free production branch inside the exact3.9cutoff global foamglass market. Preserve both original supplier entries separately(.99009900990099cullet-based and.0099009900990099withoutcullet), their quantities and uncertainty, and all four original delivery entries; do not normalize or aggregate. Both native and source products have positivekg references, density110kg/m3 and conductivity.040W/mK. The ordinary cullet-based source and native process also match nominalcullet(.81385kg,withinonebinaryULP)and meltingelectricity(1.4969kWh). The approved minor-branch proxy deliberately does not preserve its no-cullet feedstock, extra lime/silica/soda, meltingelectricity1.80349397590361kWh or directfossilCO2.161385114957395kg comparedwithsourcebase.029385kg. Source known differences at original market share are recorded separately; no full native/sourceLCIA difference or negligible-score claim follows from the small share. Retain the complete native material, packaging, processing, rawmaterial logistics, infrastructure, energy and disposal inventory once, including native internal uncertainty, allocation, water and chemical-supply assumptions. Source cullet-free9parameterdefinitions versus2inbase, and changed feldspar/potassium-nitrate pedigree/uncertainty, are retained in review/provenance but not reproduced as an active source production model. Geography, energy, allocation, chemical/waste handling, background vintage and native upstream biosphere exclusions remain explicit warnings with unquantified score effects. Source finalmarket rail/barge/lightroad/heavyroad quantities and supporteduncertainty remain separate from native internal transport and use independently inspected complete same-mode services, not coal-only traction, vehicle-operation-only service or a heavy-lorry replacement for the3.5tlight-commercial proxy. Add no regional-storage wrapper, renewablecertificate adjustment, extra rawmaterial/energy credit, density/yield/moisture/cullet multiplier or new omitted exchange. Preserve caller signed quantities, formulas, uncertainty, ownership, separate emissions and purchases. No standalone cullet-freeproduction, other releases, productgrade, source chemical/utility supplier, reverse or cross-system-model correspondence is approved. Only this exact inspected3.9cutoff parent qualifies; internal source inventory or LCIA equivalence is not claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c0e60c8a2053d18cbf70a5ce662da55d98e13e4a9eee0a208f129f287f149517"
+        }
+      ]
     }
   ]
 }

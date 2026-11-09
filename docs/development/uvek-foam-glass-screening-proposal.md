@@ -1,7 +1,7 @@
 # Foam-glass market: scoped feedstock-proxy decision
 
-Status: user decision pending. The private candidate has finite native-background
-LCI; no foam-glass mapping, helper or approval scope is enabled. Scope is only
+Status: the user approved the scoped proxy with warnings. The exact market
+mapping is implemented and validated. Scope is only
 the required ecoinvent 3.9 cut-off global foam-glass market in the electricity
 pilot's nitrate-supply closure, targeting UVEK 2026 cut-off and ecoinvent 3.10
 biosphere.
@@ -93,3 +93,25 @@ Private artifacts: `foam_glass_screening_candidate.private.json`, SHA-256
 `foam_glass_screening_candidate_lci.json` and `foam_glass_feedstock_delta.json`.
 Reproduction scripts: `draft_foam_glass_screening_candidate.py` and
 `check_foam_glass_screening_candidate_lci.py`.
+
+## Implemented checkpoint
+
+The packaged review `export/uvek_pilot_nitrate_foam_review.json` is pinned at
+SHA-256 `f94708a67bb1baec49f41ecee1a3737654a577dfe13c5880d7f8ad14e4d96b02`.
+Only the named source market gains approval. Both supplier entries and all four
+freight entries retain their original quantities, supported uncertainty and
+order; the two/nine source producer parameter definitions remain in the review
+and portable provenance. The active internal uncertainty remains native, as
+explicitly approved. No market entry is omitted or share normalized.
+
+All previous 361 scope fingerprints, 3,292 recipes and 717 reviews remain
+unchanged. The ledger now has 362 exact scopes. Validation passes 23 focused
+Brightpath tests, nine Premise tests, full byte-identical resource generation,
+installed-wheel conversion and actual migrated native-background LCI with
+unchanged scientific signatures. Independent primary-source comparison verifies
+all six coefficients and their uncertainty fields. These component checks do
+not quantify proxy LCIA error or certify/export the full electricity scenario.
+
+Private final receipts: `nitrate_foam_staged_review.json`,
+`native_nitrate_foam_lci_report.json` and
+`nitrate_foam_installed_wheel_runtime.json`.
