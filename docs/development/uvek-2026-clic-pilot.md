@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 19 |
+| 3.6 | 27 | 17 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 30 |
-| 3.12 | 8 | 15 |
+| 3.9 | 17 | 29 |
+| 3.12 | 8 | 14 |
 
-These are 64 exact-profile cases involving 56 distinct rules, after reusing
+These are 60 exact-profile cases involving 53 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -412,10 +412,32 @@ finite with unchanged scientific hashes, all 282 earlier fingerprints remain
 valid and generator replay is byte-identical. The current correspondence
 module contains 578 cases; no full 578-case run is claimed. The other wastewater
 market, zeolite case and uninspected profiles remain refused.
+Three closer existing suppliers resolve four further profiles. The 3.6/3.9
+generic wet wood-chip market uses the complete RER forest/sawmill and
+hardwood/softwood mix, with signed kg dry matter retained without moisture,
+density or yield scaling. Native species and forest/sawmill shares differ and
+remain explicit warnings. The 3.12 stainless market has only EAF/AOD Type-304
+producers ending in cast slabs; it now uses the native EAF 18/8 process without
+the old target's converter share and hot rolling. The 3.6 >32 t EURO4 diesel
+freight service uses the complete native 32–40 t diesel fleet, with the
+class/standard, load, mode and vintage approximations retained. All source
+producers have inspected positive references; no helper or quantity multiplier
+is introduced. Twenty-three focused Premise and 211 relevant Brightpath checks
+pass, three native LCIs are finite with unchanged scientific hashes, all 283
+earlier fingerprints remain valid and full generator replay is byte-identical.
+The current correspondence module contains 600 cases; no full 600-case run is
+claimed. The 3.7/3.8 cohorts still complete, while the full pilot remains refused.
+The separate 3.9 wastewater market was inspected: it combines partial treatment
+with direct releases and sewer infrastructure; its supplier uses a regional
+one-/two-/three-stage technology mix. The class-2 treatment approval does not
+authorize replacing that market by 100% treatment. Nickel purity and cement/
+concrete strength or binder differences remain refused. The latter three
+profiles have a separate [cement/concrete proposal](uvek-cement-concrete-grade-proposal.md)
+with finite native candidate LCIs; no approval is inferred from those checks.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 283 exact-profile fingerprints, with review evidence and
+ledger contains 287 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

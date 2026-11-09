@@ -19406,6 +19406,863 @@
           "fingerprint": "6740e259f9809a44523d23225489ba0a03d85afc33d458ffe4a0b66d45ad42d0"
         }
       ]
+    },
+    {
+      "rule_id": "bp-84bd9cf473cdeee9",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_wood_steel_freight_review.json",
+      "review_sha256": "c51ffd9cf18176c5e1bca75460edf6748bbbd555e78c0eae037bcd348da5ba2f",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/function/unit and geographic supply-service proxies, including correction to a closer existing native supplier. Applied only to the enumerated wet-chip dry-mass markets, unrolled EAF stainless market and complete heavy-diesel freight service after checking actual producer references and native process stages. No new grade, helper, physical quantity conversion, manufacturing stage, omitted exchange, recovery credit, individual traction substitution or reconstructed allocation is introduced.",
+      "inspection": {
+        "rule_id": "bp-84bd9cf473cdeee9",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for wood chips, wet, measured as dry mass",
+          "reference product": "wood chips, wet, measured as dry mass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+          "reference product": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+          "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "767627bc530fd799fb10acf3c3c3c1ff485bed4a57b339e588b216f36621a08f",
+            "inventory_sha256": "653181e9d422e4acd44de4339fc46442af25a9c8b7dfbe7345093c3d4e27708d",
+            "activity_comment_sha256": "07d8990a67ac6f72614ffcb865aafba8087286964dacae1db0ddd9ad976a57a7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "hardwood forestry, beech, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "d446f6604c0f38559656fac82239534df93810ae52b6b7216dc6400086553b59",
+                "inventory_sha256": "0a3e107a9208b4f7a5a20e7c3b1443acf2eb407c5be865aa4504fdfcd41a4351",
+                "comment_sha256": "d591c5cfa5f49ff35e8ae20c0694a771354c51aa7fc41d238bc75ce551027455"
+              },
+              {
+                "identity": {
+                  "name": "hardwood forestry, birch, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "4a295944995b3c577152d36644678a314d592a696358b68e19b389d51b7c47b4",
+                "inventory_sha256": "61fdd51b2287e9feda1e773b89d488fde51831fb186c3d97da28ea2f69012c19",
+                "comment_sha256": "2a21bf4c470382299af0623a86da893cf0117f209f2f243377e1d04577246c61"
+              },
+              {
+                "identity": {
+                  "name": "hardwood forestry, oak, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "9ee1eec001936cc61c7a73106d386a11cc70abb4c2db4d0091621b193cb675a2",
+                "inventory_sha256": "4d6ae869dae8e6308348d0420ac13fbde03819e78d84346018db9f5f1b163da6",
+                "comment_sha256": "212b36419897692e9a123744b6b61e9f5daed25a82b1a93131dfa1f0015c01c2"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, pine, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "31292686724ab32c3918da00cc077a09854c6156e8806b7d8b442429c94520d2",
+                "inventory_sha256": "3f7d7fd84c78eb10b0148ff7868afb639c7496425c943ac4d63b9cd57ced1650",
+                "comment_sha256": "1908923f2e8e8ccb142591e5dacacd68fe8d88c460de500d32da26a325ebfa70"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, pine, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "da6fc35dc3f2222946e5342d7e18372ee309669d7702a6f24fed8699df025261",
+                "inventory_sha256": "a7854d8d5244b02292c0e23c141ddd83463d513cfae6dce5bc5c2f4d22881d88",
+                "comment_sha256": "6ce41a751deeae3af8c4e480873330325fa945504d23d39095075a4b6713b3b1"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, spruce, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "6496e022c5f4e2bde8d4941b7082ef5ad065a207c5fa71be2b2de96d08203fe9",
+                "inventory_sha256": "002a7a5460d9f96f3d41190c74cab9a0877501c51da3936790c5ef58fc7a6705",
+                "comment_sha256": "6a6bf1010d0fe78d1d9a29a77c1c32fa0d40ab297b0e578ce0ab58cca9a21193"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, spruce, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "0965cc1a6303d8932d1f9653b607099f7818c14c140f8c2433240f9aeede19a5",
+                "inventory_sha256": "4dc1a5b0fe78f1737c14870a190b8a22d2d170d98229009daab7ce4d37f87c44",
+                "comment_sha256": "bfd6466a302669c56fb1e9b4d6146c1674b7335f2ae45297b3c0d2b5e8b5b362"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4fe1cc71691e3a4dfe2006cd603ab79ab5c301966204e81c8717129dd85e2eab",
+            "inventory_sha256": "f3f5fc9d46f84ef5570dca065e7155e5ba00486fbe1fb31f69a2a9b9cad74bfe",
+            "activity_comment_sha256": "23ccc8914a727aca724ee577645a3b3f828cb947b6540549c5b2b27586244a7f",
+            "product_information_sha256": "6c4c42146f1a2d16a571bd5f8668e5b9faaefe1b3fa521bf7f737e3608090f07",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "wood chips production, hardwood, at sawmill",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "492cff7d169bd0e356744cd4b12c5e0a2820d786b4ed39d07a6f42fda7a00bb5",
+                "inventory_sha256": "1c68bba194529de585b41c96274eebb75a292439785261c4a30d3feffbbfcad9",
+                "comment_sha256": "46b21d707718f654dad2afdd3bf312cc5bd682be91a30c697bdb7bd3ecea984e"
+              },
+              {
+                "identity": {
+                  "name": "hardwood forestry, oak, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "c69170ab9e8ec4f9760a6ab913fb417e5cd6dc54c90be8cc44256d5cfb792c0e",
+                "inventory_sha256": "dda9d376cde527002fd53bef92f3ca2fb323e533eb580f7685a2fe75325e36b9",
+                "comment_sha256": "1ecfff0cc29de7e5a4cb63d8be457d891adb21e04110656cf15a499d0082a2a7"
+              },
+              {
+                "identity": {
+                  "name": "wood chips production, softwood, at sawmill",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "2ccd5b94501537a66dc667d8f334d0a30b10508c77e3178c6741b9e8b11fd7b4",
+                "inventory_sha256": "b5690a2e2f0f457685159281351cd65bcb7a2256b6af3de44931c36683c567cb",
+                "comment_sha256": "4e5345d61a6230ae3ba340f7acbbc39fc15e72ddd332a43fea0bde6f5a54b73e"
+              },
+              {
+                "identity": {
+                  "name": "hardwood forestry, beech, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "eb0359818026bb33bbd3249ed3894d9ab5b47bc7db4328d14c6c1afe4544cc08",
+                "inventory_sha256": "43dbcd409f9e786f1ac18fc34a2cf5e541626e6bd344161f7c5f46b9f1203026",
+                "comment_sha256": "5e8b4a90b6b197255f3bdc13703daac0f109d03c169524f7ac682dd77d0db8a2"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, spruce, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "b61870dfa2fea5d64fa31d35fd61f607d48223620422c01f8e6c0d463254d452",
+                "inventory_sha256": "850fd5a42326a0b34b15f238b6fec790c2cccc371b6f0152e372945b7250c997",
+                "comment_sha256": "0b3f50eb98a2663bcd11a5cb8133268917376fc16d8eb510b93e7b9213ec0185"
+              },
+              {
+                "identity": {
+                  "name": "hardwood forestry, birch, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "6200f382da3aef252247841e9c32316d4a5761bbfce5da7f5f4d8340ce2d1007",
+                "inventory_sha256": "80bd54c366e758a82cc9c724b7ec158dc86619f624d6903119b5f2d247631469",
+                "comment_sha256": "de1750f66cc7b8df0e1db67cd996e65b238c6cb4387ef48eb92083de42718d76"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, pine, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "DE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "81e5cb91749f15e871c3ee3e644d176bd0cb4e4c33fa796108e56f0e89ad7d9a",
+                "inventory_sha256": "69ca986ff66d21b7a53df29dc22b51305872a52b469f01a323faf53128eed645",
+                "comment_sha256": "8e1dfec17201a437ce27c8958821c15a43cfeb934e4377dd7db53e902907b5a6"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, pine, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "ae356b980af49d6233b791aa4a6d5b9c3260643078e8adea430ebdc35d80c388",
+                "inventory_sha256": "91526b6e001ce064118916b5135611e1a98a4b84c97560be4fb7faa504beb351",
+                "comment_sha256": "a7eaabf9dd20372bf93779fc35e1a883feb7433b813bd3b57274c0c915e0c78a"
+              },
+              {
+                "identity": {
+                  "name": "softwood forestry, spruce, sustainable forest management",
+                  "reference product": "wood chips, wet, measured as dry mass",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "bd42400a6e6f2c39056822caf627021bb8c642e2e44b3efb45cf9b9edd410428",
+                "inventory_sha256": "10a2c29bbcb3a1d6af406abd0cdeb6fecbb0ffe3c2eb1afbb3ac900eaf167c96",
+                "comment_sha256": "00a6c55e0a65e95c95990127e1a77169bb9d0712f1d4ab7cfe0afe095647120f"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "5987327d81d6aba95727ecb1c50cf63962da9ef2ced5e27f326a72a35dcef603",
+            "inventory_sha256": "51a968d9c39b15d3501e88519fb24743be8461a960c759eedaea72142d1ad93b",
+            "comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "direct_technosphere_coordinates": 12
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "fe37516deb19e43969c22f2f8357dfda70187afd9f3d7c87e33a3a23877c8378",
+            "inventory_sha256": "fcd3190e181f74cc1a955b97d2dd7dbb2801c51dd21e2b374b12cee35d6d15fb",
+            "comment_sha256": "aeb2a833d36c82c3ee4960a6b844ce6ef621d29cd773d73cf09b454a5fecd4b6",
+            "direct_technosphere_coordinates": 12
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Replace the hardwood-only sawmill target with the existing complete European production mix of wet wood chips, measured as dry mass. The source generic market supplies hardwood and softwood forest chips in 3.6, and forest plus sawmill chips in 3.9. Native RER supply includes hardwood/softwood forest and sawmill chips; this is not a hardwood-only, dry-chip, charcoal, combustion or heat service. Preserve signed kg dry matter at factor +1 despite the wet product label; do not apply a moisture, density, wood-yield, drying or heating-value factor or add another wood/chipping process. Keep the complete native species/forest/sawmill weights, allocated forestry and sawmill burdens and existing logistics once, without renormalizing its recorded coefficients. Native species, sawmill/forest and supply shares differ from the exact source profiles, particularly the 3.6 forestry-only mix; moisture, harvesting/co-product allocation, transport and delivery, geographic coverage, background, biosphere exclusions and vintage remain limitations. Separate caller freight and emissions remain unchanged; no equivalence of precise species composition, moisture, energy content or LCIA results is asserted and score effects are unquantified."
+      },
+      "limitations": [
+        "Replace the hardwood-only sawmill target with the existing complete European production mix of wet wood chips, measured as dry mass. The source generic market supplies hardwood and softwood forest chips in 3.6, and forest plus sawmill chips in 3.9. Native RER supply includes hardwood/softwood forest and sawmill chips; this is not a hardwood-only, dry-chip, charcoal, combustion or heat service. Preserve signed kg dry matter at factor +1 despite the wet product label; do not apply a moisture, density, wood-yield, drying or heating-value factor or add another wood/chipping process. Keep the complete native species/forest/sawmill weights, allocated forestry and sawmill burdens and existing logistics once, without renormalizing its recorded coefficients. Native species, sawmill/forest and supply shares differ from the exact source profiles, particularly the 3.6 forestry-only mix; moisture, harvesting/co-product allocation, transport and delivery, geographic coverage, background, biosphere exclusions and vintage remain limitations. Separate caller freight and emissions remain unchanged; no equivalence of precise species composition, moisture, energy content or LCIA results is asserted and score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a9856582d8961f5f3692812f24c192ab87afedc869f911487701199e29742892"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "89c50cafaea9caa6c11bf86f9e3d82fbc586ef46f8710e209f6ef3213cfa6426"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_wood_steel_freight_review.json",
+      "review_sha256": "c51ffd9cf18176c5e1bca75460edf6748bbbd555e78c0eae037bcd348da5ba2f",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/function/unit and geographic supply-service proxies, including correction to a closer existing native supplier. Applied only to the enumerated wet-chip dry-mass markets, unrolled EAF stainless market and complete heavy-diesel freight service after checking actual producer references and native process stages. No new grade, helper, physical quantity conversion, manufacturing stage, omitted exchange, recovery credit, individual traction substitution or reconstructed allocation is introduced.",
+      "inspection": {
+        "rule_id": "bp-4529f104ab14ba19",
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, chromium steel 18/8",
+          "reference product": "steel, chromium steel 18/8",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Chromium steel 18/8, at plant",
+          "reference product": "Chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Steel, electric, chromium steel 18/8, at plant",
+          "reference product": "Steel, electric, chromium steel 18/8, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "8e487ed52cd8e29d031590b9b7b99433a42798d461400657bd70a95d66494b66",
+            "inventory_sha256": "25bb93f30d709a56c4a16060b42ee4e5057038b4d4a13aa2f1458316ff055b61",
+            "activity_comment_sha256": "3515b71f5b08d83fab21e34b42ea940c7daafa11a12cdb93ce1e8b3ef37cd26c",
+            "product_information_sha256": "e1c96ea29c6a7fbdca7b78d60496e52296f78d28c8f028a7f02dd849d0e69253",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "steel production, electric, chromium steel 18/8",
+                  "reference product": "steel, chromium steel 18/8",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "cfaaad4594abc4b8578024ae9862a5b3cb19b3c2a34fef99505a4c8373adc7be",
+                "inventory_sha256": "15cb92db7d5474815a740973ad5b99aeb856b51d4281e2b2e157a06324a9dbdb",
+                "comment_sha256": "c56cf140715a623aa6cba6add79d05fa870c03246b34d8247d9b7d99e920ad6c"
+              },
+              {
+                "identity": {
+                  "name": "steel production, electric, chromium steel 18/8",
+                  "reference product": "steel, chromium steel 18/8",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "7d9a88effe1ad035b851d0e5a30e9083177d607b0936b90cbaea3faaad5ad60f",
+                "inventory_sha256": "835a50eb25f120495cf2259a9c9fd1f4b854d22b9c081a8a6260fbb34b66132a",
+                "comment_sha256": "3065dc425b63199c22822963f0760046a1899bd948493a63325422a88e9ed22d"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "5eca2f758625b1e6a6359665960a155ab2c649bde9fa833c7c0dd84853d41b3c",
+            "inventory_sha256": "41b081e3b2e1820ba7b83892e03c520e70eb093b917b757e4013dc1ca11dc4cd",
+            "comment_sha256": "f5336bd3c9a435862e360c84e3f3a5b4bee625732bcb83b4f7a9d26d32575587",
+            "direct_technosphere_coordinates": 16
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "f9cc7fa20cf43e4d7daac459652e4b1b4f6da095907b67191a04314269a54e92",
+            "inventory_sha256": "6f8b6d5d941e31966e60586ca169f96628466425f4afa960195a161ffa692c1c",
+            "comment_sha256": "b4303be50bc289eb41b912c33dcc3cf250186ed892ff4dfc18187630b5996763",
+            "direct_technosphere_coordinates": 16
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Replace the rolled 37% electric/63% converter steel mix with the existing complete native electric-furnace chromium-steel-18/8 process at plant. The actual 3.12 source market has two positive-reference Type304/18-8 EAF and AOD producers, whose endpoint is continuously cast stainless slabs, not hot-rolled steel. Both source/native EAF supplies use scrap as the iron-bearing input together with alloying feedstock; the native definition includes steelmaking and casting and has no rolling input. Preserve signed kg at factor +1 and the complete native feedstock, alloying, energy, internal freight, infrastructure, residues and emissions once. Do not add hot rolling, a converter share, metal-yield/alloy-content scaling, extra scrap or a recovery credit, and retain separately listed caller fabrication/transport. Native historical European EAF/alloy averages approximate the global source producers; detailed alloy composition, furnace/secondary-metallurgy efficiency, allocation, internal recycling and residue routes, delivery, geography, biosphere definitions and vintage differ. These are screening limitations with unquantified score effects, not exact alloy or LCIA equivalence. Only the enumerated cut-off profile is admitted."
+      },
+      "limitations": [
+        "Replace the rolled 37% electric/63% converter steel mix with the existing complete native electric-furnace chromium-steel-18/8 process at plant. The actual 3.12 source market has two positive-reference Type304/18-8 EAF and AOD producers, whose endpoint is continuously cast stainless slabs, not hot-rolled steel. Both source/native EAF supplies use scrap as the iron-bearing input together with alloying feedstock; the native definition includes steelmaking and casting and has no rolling input. Preserve signed kg at factor +1 and the complete native feedstock, alloying, energy, internal freight, infrastructure, residues and emissions once. Do not add hot rolling, a converter share, metal-yield/alloy-content scaling, extra scrap or a recovery credit, and retain separately listed caller fabrication/transport. Native historical European EAF/alloy averages approximate the global source producers; detailed alloy composition, furnace/secondary-metallurgy efficiency, allocation, internal recycling and residue routes, delivery, geography, biosphere definitions and vintage differ. These are screening limitations with unquantified score effects, not exact alloy or LCIA equivalence. Only the enumerated cut-off profile is admitted."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "367018d980eb2530db21ee352af71a997c288f60ae83c74596870efdbf2d0ce9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-07d1ab8592869587",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_wood_steel_freight_review.json",
+      "review_sha256": "c51ffd9cf18176c5e1bca75460edf6748bbbd555e78c0eae037bcd348da5ba2f",
+      "authorization": "Standing auto-approval of independently inspected matching whole-material/function/unit and geographic supply-service proxies, including correction to a closer existing native supplier. Applied only to the enumerated wet-chip dry-mass markets, unrolled EAF stainless market and complete heavy-diesel freight service after checking actual producer references and native process stages. No new grade, helper, physical quantity conversion, manufacturing stage, omitted exchange, recovery credit, individual traction substitution or reconstructed allocation is introduced.",
+      "inspection": {
+        "rule_id": "bp-07d1ab8592869587",
+        "source": {
+          "location": "RER",
+          "name": "transport, freight, lorry >32 metric ton, EURO4",
+          "reference product": "transport, freight, lorry >32 metric ton, EURO4",
+          "unit": "ton kilometer"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Transport, freight, lorry, fleet average",
+          "reference product": "Transport, freight, lorry, fleet average",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+          "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "11d25d7be50920b87db0f5e7bd47391fc1be0b43c9fa52ce25a18445605cfada",
+            "inventory_sha256": "d58f831d733ca79ffec1d5293071cf77e094f123249a1e5f8da70b46c1f1a1ac",
+            "activity_comment_sha256": "ebc60669dc61b4953a0902c000ee5a8aeda185ef5bd78782d641639e1ec2f1f4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "ton kilometer",
+            "metadata_sha256": "615ccdb1b1771989ba96b17f01291796bc0907d429b85a5ea644c6703d4aec72",
+            "inventory_sha256": "3282aee3b1e8943b1ec07e35b0fb672ea37b717843dac5417a3170c3e0313c8b",
+            "comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "ton kilometer",
+            "metadata_sha256": "83cdd128b67a3946801b6fb832d87d2e2076d126cca9928a7fbd155081ab1a6d",
+            "inventory_sha256": "5ef6c9a4baeecdc3a26baa1bc4079dfa0203ac0b8ee3d936522c7992804d8bfe",
+            "comment_sha256": "9abacce564e5a7e4c49b8e6add446c88b274309f624755ebc33cfba2fa201fbf",
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "native_complete_service_evidence": {
+          "2025": {
+            "mode_mix": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "29b2551f58926da6f007590ddeb32b6d5685389ee2cacd22fbaa655df0a43ada",
+                "reference_amount": 1
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "34105c72a064039ced790d8267f66e052750c46ffb87dd1b79c1d21a2168a84e",
+                "reference_amount": 1
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "5bc5f03764298e2c741f92d74f32841689dfd7548caf666c7f65d3541fb8f277",
+                "reference_amount": 1
+              }
+            ],
+            "year_standard_services": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "9839ffbb7411ea8a76e1290ad99a392a508fdd04c149d28233b9a2de1e961fe6",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "d760323fb5b5641c530af82e9245e3cc1b0fc73941e352797e3d410d6c210183",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "3fe8bb484e963b13ffdabaaa5944bacb12cd127ca0f15495814e3725224677ba",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "98e5ee4bf9b036dc56bf6c0c8efb323912faee6115b84a502d16560deb6531ac",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "2ece80993fa46a78172964ccdef15896d4677d11adb82398de20310e2735597f",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "67dc452742e247b1336b8bca9bba18164238ffa41de7ed7e93c9c2e5c7d3b23c",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "1a7f0631cec74e04f8d0d8a5be7134b9945caaedacdeac47feda68f3ddf1c151",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "af9d14fd37cf008d72595bc89ab287f1dd625467c36282ba3c7ec717d25c15d2",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "d58495fc6838c92200edaec5a3979d3ade2d627a0d32a20697c65275777acc53",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "b2264b951322e8a131f23f77ff0096d3ac50c767d30bc664259a33c75c35b1ec",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "ddb80bbf9cce95c0a9704354afc2d9f7521b09f27421e7ab6503f16ad6ee6fec",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "53596087c83f4e3527b2591c36d2515b2f6c8ade5ebb271208bda4a300a782fa",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              }
+            ],
+            "scope": "Complete transport services, not isolated vehicle operation or traction."
+          },
+          "2026": {
+            "mode_mix": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "f2e66709412439741d38da5a5d10513ef01a9433455690e6ec357653fb8dddf9",
+                "reference_amount": 1
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "174c13f31a4b6a041758f689e30caeb90235f8cdc2acd391f56e41c80f5b6000",
+                "reference_amount": 1
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "0cabda93195bf9184b9303c9f685c5ef61a874519bd524e50bfa1879adb35210",
+                "reference_amount": 1
+              }
+            ],
+            "year_standard_services": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "709133fc7e8871aae5251026ccf6b53c26728a1ed3b21868772f64008f93f79a",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "b6f7c37cec6fd3b5536dd6a9aa21ff541858557fa99b37f61697b6b19d52e2e6",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "59eff4cb1a72c9c80816e700593bc22e6538ce1986fe9c88565ab389b696e1ce",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "565b6bda01625bf0ee188384c2ea7d04e8bc688307e7173229f6eaf7b5d42efb",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "ef50aaba8311108001d0a89fede337bbe91402776e757bbf6e6a7c9e9bd75790",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "e583f1b84ac6f4ab6795a3b91936232d455c31f13d1cc45146f6800c548db6c8",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "5fe04fcaff101a10c7661c5911f84cc2478bb73dcfda32b89b91b0a929197614",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "bb3a49018550a09453b34167f39aa1f2e1483213c75ee8a6230c001bc76c91b2",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2002, EURO-III, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "6b1f01841f1c0226afe593a3087171ab45c80c63b134d2279af3c22a9f26dc90",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2006, EURO-IV, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "e426cfa3adff36283378f5eb8ea1d357d70e65154f947c08b098c6f2bf1b8961",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "5853fd1c0bb0b5a76eabb135c07bdb7beb08f2e893e115b23fe616fa08db57b9",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "inventory_sha256": "525e050795dd21a1b7ff931ffec2c82a011f561e0d1d7895e89f8d1c48d01865",
+                "reference_amount": 1,
+                "technosphere_coordinate_count": 11,
+                "fuel_vehicle_road_lifecycle_present": true
+              }
+            ],
+            "scope": "Complete transport services, not isolated vehicle operation or traction."
+          }
+        },
+        "limitations": "Replace the all-size road fleet with the existing complete RER 32t-40t heavy-diesel freight service. The source provides one net tonne-kilometre by a >32t EURO4 diesel lorry. Native supply retains its complete 40t diesel long-haul/regional/urban and historical EURO-standard fleet mixture, including fuel supply, vehicle lifecycle, roads, maintenance and emissions. Preserve signed net tkm at factor +1 without a gross-vehicle-mass, payload, empty-return or distance multiplier, or separately added vehicle/fuel/road burdens. The >32t source class is approximated by the native 32t-40t fleet; EURO4 is not retained as a specific standard and the mode/year weights, payload, fuel efficiency and emissions differ. Native 2020 Swiss fleet evidence is extrapolated to RER. Source/native geography, technology, exhaust/non-exhaust factors, background, biosphere definitions and vintage differences remain explicit whole-service proxy limitations with unquantified score effects. Separate caller transport, fuel and emissions remain unchanged. No individual traction substitution, helper, omitted exchange, recovery credit or inferred inverse is authorized."
+      },
+      "limitations": [
+        "Replace the all-size road fleet with the existing complete RER 32t-40t heavy-diesel freight service. The source provides one net tonne-kilometre by a >32t EURO4 diesel lorry. Native supply retains its complete 40t diesel long-haul/regional/urban and historical EURO-standard fleet mixture, including fuel supply, vehicle lifecycle, roads, maintenance and emissions. Preserve signed net tkm at factor +1 without a gross-vehicle-mass, payload, empty-return or distance multiplier, or separately added vehicle/fuel/road burdens. The >32t source class is approximated by the native 32t-40t fleet; EURO4 is not retained as a specific standard and the mode/year weights, payload, fuel efficiency and emissions differ. Native 2020 Swiss fleet evidence is extrapolated to RER. Source/native geography, technology, exhaust/non-exhaust factors, background, biosphere definitions and vintage differences remain explicit whole-service proxy limitations with unquantified score effects. Separate caller transport, fuel and emissions remain unchanged. No individual traction substitution, helper, omitted exchange, recovery credit or inferred inverse is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "58ebcd096fe8e04a41c603b9fb76196617df5dccbf2cfff8bbc320f80f671e16"
+        }
+      ]
     }
   ]
 }

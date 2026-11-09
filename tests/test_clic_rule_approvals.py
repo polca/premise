@@ -559,6 +559,10 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-1cb5578cf49cfd48", "3.6"),
         ("bp-cac4eeaf7215b33d", "3.6"),
         ("bp-ac5d1249cfc2626f", "3.6"),
+        ("bp-84bd9cf473cdeee9", "3.6"),
+        ("bp-84bd9cf473cdeee9", "3.9"),
+        ("bp-4529f104ab14ba19", "3.12"),
+        ("bp-07d1ab8592869587", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -829,6 +833,9 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-cac4eeaf7215b33d",
         "bp-ac5d1249cfc2626f",
         "bp-fb5a0385ef4ba237",
+        "bp-84bd9cf473cdeee9",
+        "bp-4529f104ab14ba19",
+        "bp-07d1ab8592869587",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1057,6 +1064,10 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
         ("bp-1cb5578cf49cfd48", "3.6", "primary/secondary shares"),
         ("bp-cac4eeaf7215b33d", "3.6", "0.367102654107643%"),
         ("bp-ac5d1249cfc2626f", "3.6", "kg of residue"),
+        ("bp-84bd9cf473cdeee9", "3.6", "kg dry matter"),
+        ("bp-84bd9cf473cdeee9", "3.9", "kg dry matter"),
+        ("bp-4529f104ab14ba19", "3.12", "Do not add hot rolling"),
+        ("bp-07d1ab8592869587", "3.6", "net tkm"),
         ("bp-6ce52de989145df6", "3.12", "without wood-density"),
         (
             "bp-8a37fb9191501441",
@@ -1623,6 +1634,33 @@ def test_other_zeolite_and_wastewater_market_boundaries_remain_unapproved(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
     resolved = graph(rule["source"], version="3.9")
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-9c3675cc3a3f003c", "3.6"),
+        ("bp-953779a9d7354634", "3.6"),
+        ("bp-67e316270a112622", "3.9"),
+        ("bp-1104956dff1c701e", "3.12"),
+    ],
+)
+def test_cement_concrete_nickel_grades_do_not_inherit_supply_approval(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
         ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(

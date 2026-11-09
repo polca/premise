@@ -606,6 +606,20 @@ scientific hashes, all 282 earlier fingerprints remain valid and full generator
 replay is byte-identical. Uninspected profiles, the separate wastewater market
 and the zeolite composition mismatch remain refused.
 
+`uvek_pilot_wood_steel_freight_review.json` corrects three suppliers for four
+inspected profiles: 3.6/3.9 wet chips measured as dry mass use the native RER
+mixed forest/sawmill supply; 3.12 cast EAF stainless uses native EAF 18/8 without
+converter steel or rolling; 3.6 heavy EURO4 diesel freight uses complete native
+32–40 t diesel transport. Species/supply shares, steel inventory details and
+freight class/standard/load/vintage differences remain warnings. Signed kg/tkm
+retain factor +1 without moisture, alloy, payload or other scaling. No helper
+is added. Twenty-three focused Premise and 211 relevant Brightpath checks pass,
+three native LCIs are finite with unchanged scientific hashes, all 283 earlier
+fingerprints remain valid and full generator replay is byte-identical. Source
+3.7/3.8 cohorts complete; the full pilot remains refused. The separate wastewater
+market's untreated/direct-release boundary and cement/concrete/nickel grades
+are excluded from these approvals.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
