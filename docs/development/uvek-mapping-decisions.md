@@ -1,7 +1,7 @@
 # Remaining UVEK mapping decisions
 
 This ledger covers the 20 exchanges left after the first 22 restorations.
-Eleven further inputs are now restored and validated; nine remain pending.
+Thirteen further inputs are now restored and validated; seven remain pending.
 The authoritative structured record is
 `premise/data/clic/remaining_mapping_decisions.json`, retaining original source
 pins/exchanges, reference bases, rejected candidates, selected dispositions,
@@ -40,9 +40,9 @@ without changing their total. Scientific/LCIA equivalence is not claimed.
 | `uvek-2026-screening-48ec18f887271c0c2356` | 3.6 cut-off | market group for natural gas, high pressure (Europe without Switzerland) | 0.2068145390620961 cubic meter | restored |
 | `uvek-2026-screening-cdba548fe7d3b9829dab` | 3.9 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 0.15038135208080808 kilogram | restored |
 | `uvek-2026-screening-ad29e37f34a7b0d2b065` | 3.9 cut-off | market for inert waste (CH) | -688484 kilogram | restored |
-| `uvek-2026-screening-e9ef258182b7597f7874` | 3.9 cut-off | market for waste concrete, not reinforced (CH) | -207020000 kilogram | pending |
+| `uvek-2026-screening-e9ef258182b7597f7874` | 3.9 cut-off | market for waste concrete, not reinforced (CH) | -207020000 kilogram | restored |
 | `uvek-2026-screening-31a78eae0e6d78a50a8f` | 3.9 cut-off | market for waste mineral oil (CH) | -420000 kilogram | restored |
-| `uvek-2026-screening-b81892ef79e851727f96` | 3.9 cut-off | market for waste concrete, not reinforced (Europe without Switzerland) | -5600 kilogram | pending |
+| `uvek-2026-screening-b81892ef79e851727f96` | 3.9 cut-off | market for waste concrete, not reinforced (Europe without Switzerland) | -5600 kilogram | restored |
 | `uvek-2026-screening-a68fb3c409e0ccbedc03` | 3.9 cut-off | market for waste mineral oil (RoW) | -466.40000000000003 kilogram | restored |
 | `uvek-2026-screening-364b29f8f839f725ced0` | 3.9 cut-off | market for waste paperboard (RoW) | -31.2708 kilogram | pending |
 | `uvek-2026-screening-7eed9598b634124f22ad` | 3.9 cut-off | market for acrylic dispersion, with water, in 58% solution (RER) | 2.7e-06 kilogram | pending |
@@ -67,8 +67,7 @@ All three original volumes/uncertainty match before IAM. Later normal IAM quanti
 changes remain separately reported. The complete scenario/export/readback and
 source-signature checks pass; 21 Brightpath and 10 Premise tests pass.
 
-Next: concrete routes and
-remaining material/treatment evidence. Final packaging verification is still due
+Next: remaining material/treatment evidence. Final packaging verification is still due
 at the end of the active goal.
 
 ## Dry-active hypochlorite decisions
@@ -92,3 +91,33 @@ Original technosphere and biosphere scientific signatures remain unchanged.
 Commits: Brightpath `d73bdd1`, Premise `9bf486ae`. Nine original deferrals and the
 previously approved CSP salt omission remain visible. Final packaging is due at
 goal completion; no scientific equivalence or impact-completeness claim is made.
+
+## Concrete-treatment decisions
+
+Two exact 3.9 concrete-waste markets and their European generic-inert dependency
+now have complete source-route reconstructions. Sorting, recycling and collection
+retain their source fractions, every freight coefficient, machine diesel and
+three particulate-size emissions. Recycling is nonempty. Sorting retains the
+actual generic-inert destination: the Swiss allocated kiln handover and European
+sanitary-landfill/kiln split, each with source freight. Collection retains its
+actual final-disposal market. One newly audited production-only European clinker
+terminal is bound to its own direct verified correspondence, with no invented
+landfill or recovery credit and no renormalization. Existing source-input audits
+remain literal and fingerprinted. Native landfill moisture/composition, utilities,
+equipment, allocation, geography, fleet and vintage remain screening differences;
+no water, capacity or lifetime correction is invented.
+
+Validation: 28 Brightpath and 24 Premise tests; three finite native LCIs; identical
+resource replay; complete public encrypted scenario/certification/export and
+readback of 12,471 activities, all 35 restored callers and ten new helpers.
+Both caller waste quantities/metadata are preserved with factor -1 before IAM.
+Every new helper coefficient and audit survives export; a positive lognormal
+coefficient's explicit negative=False may use the standard absent-field false
+default. Complete retained links and unchanged source scientific signatures pass.
+Commits: Brightpath `55a2dd9`, Premise `c1180841`.
+
+Seven original deferrals remain: paperboard disposal (two releases), acrylic
+dispersion, titanium, fabricated wafer, sodium ethyl xanthate and grain-oriented
+electrical steel. Final packaged-resource verification remains due at completion.
+Unused owned harmonization caches were cleaned after the NaOCl batch (25 entries,
+65,533,047 bytes); current results and scientific evidence were retained.

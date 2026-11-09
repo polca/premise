@@ -1997,7 +1997,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-e9ef258182b7597f7874",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-e9ef258182b7597f7874",
         "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
@@ -2571,8 +2571,51 @@
         "recipe_id": "deferred-concrete-ddbb9dd0b4247c98a69e",
         "limitations": "Autonomously reviewed exact3.9cut-off concrete-waste route reconstruction. Preserve original market treatment shares and all freight, with no renormalization. Reconstruct the nonempty source collection, sorting and recycling operations using complete native diesel burning, electricity, excavation and sorting infrastructure at original coefficients, plus exact canonical3.10 particulate emissions. Negative source treatment inputs become positive demand for generated positive-reference treatment services; parent caller factor -1 preserves signed waste demand. Recycling is not an empty allocated stock. Sorting retains its actual0.4kg generic inert-waste route, not an invented0.4kg landfill. Generic CH inert waste uses its reviewed zero-inventory allocated clinker handover and retained freight. Generic European inert waste retains its sanitary-landfill fraction, an independently verified production-only clinker handover and freight. Collection retains the source final-disposal market; source treatment and market freight are not conflated. Complete native sanitary/inert landfill services are screening proxies, retaining infrastructure/operation/emissions but differing in allocation, geography, technology and vintage. Source utility/factory/vehicle technologies, capacity/lifetime, internal uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. No added recovery credit, fuel credit or landfill for a verified empty kiln handover. Preserve caller signs/quantities/formulas/uncertainty; inspect only3.9cut-off with no inverse or cross-model qualification."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath caller signs/uncertainty, exact treatment shares, nonempty diesel/PM processing, helper coefficients, audits, exact-profile refusals and atomic replay",
+          "passed_cases": 28
+        },
+        {
+          "check": "Premise cold/warm warnings, treatment signs, literal nested audits and uninspected-release refusal",
+          "passed_cases": 24
+        },
+        {
+          "check": "Three actual migrated treatment graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_concrete_lci_report.json",
+          "finite_cases": 3
+        },
+        {
+          "check": "Both original source waste quantities and supported metadata preserved with reference factor -1 before IAM; source graph unchanged",
+          "receipt": "deferred_concrete_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-concrete",
+          "activity_count": 12471,
+          "receipt": "deferred_concrete_export_report.json"
+        },
+        {
+          "check": "All 35 restored inputs and ten new helpers read back with retained coefficients and source-input audits, complete linking and unchanged backgrounds",
+          "receipt": "deferred_concrete_export_readback.json",
+          "uncertainty_export_note": "An explicit negative=False on positive lognormal coefficients uses the standard absent-field false default after export. Amount/loc/scale/type remain exact; no true-negative field or uncertainty loss is admitted."
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_concrete_generator_replay.json",
+          "sha256": "13dc44c2500e1768511185165f06d46a14e12ae351ac8c1dc73321afbc33d078"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "55a2dd9"
+        },
+        {
+          "repository": "premise",
+          "commit": "c1180841"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-31a78eae0e6d78a50a8f",
@@ -2737,7 +2780,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-b81892ef79e851727f96",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-b81892ef79e851727f96",
         "slug": "treatment-of-electrolyzer-balance-of-plant-1mwe-pem",
@@ -3311,8 +3354,51 @@
         "recipe_id": "deferred-concrete-c77751f8b28a41973e3f",
         "limitations": "Autonomously reviewed exact3.9cut-off concrete-waste route reconstruction. Preserve original market treatment shares and all freight, with no renormalization. Reconstruct the nonempty source collection, sorting and recycling operations using complete native diesel burning, electricity, excavation and sorting infrastructure at original coefficients, plus exact canonical3.10 particulate emissions. Negative source treatment inputs become positive demand for generated positive-reference treatment services; parent caller factor -1 preserves signed waste demand. Recycling is not an empty allocated stock. Sorting retains its actual0.4kg generic inert-waste route, not an invented0.4kg landfill. Generic CH inert waste uses its reviewed zero-inventory allocated clinker handover and retained freight. Generic European inert waste retains its sanitary-landfill fraction, an independently verified production-only clinker handover and freight. Collection retains the source final-disposal market; source treatment and market freight are not conflated. Complete native sanitary/inert landfill services are screening proxies, retaining infrastructure/operation/emissions but differing in allocation, geography, technology and vintage. Source utility/factory/vehicle technologies, capacity/lifetime, internal uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. No added recovery credit, fuel credit or landfill for a verified empty kiln handover. Preserve caller signs/quantities/formulas/uncertainty; inspect only3.9cut-off with no inverse or cross-model qualification."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath caller signs/uncertainty, exact treatment shares, nonempty diesel/PM processing, helper coefficients, audits, exact-profile refusals and atomic replay",
+          "passed_cases": 28
+        },
+        {
+          "check": "Premise cold/warm warnings, treatment signs, literal nested audits and uninspected-release refusal",
+          "passed_cases": 24
+        },
+        {
+          "check": "Three actual migrated treatment graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_concrete_lci_report.json",
+          "finite_cases": 3
+        },
+        {
+          "check": "Both original source waste quantities and supported metadata preserved with reference factor -1 before IAM; source graph unchanged",
+          "receipt": "deferred_concrete_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-concrete",
+          "activity_count": 12471,
+          "receipt": "deferred_concrete_export_report.json"
+        },
+        {
+          "check": "All 35 restored inputs and ten new helpers read back with retained coefficients and source-input audits, complete linking and unchanged backgrounds",
+          "receipt": "deferred_concrete_export_readback.json",
+          "uncertainty_export_note": "An explicit negative=False on positive lognormal coefficients uses the standard absent-field false default after export. Amount/loc/scale/type remain exact; no true-negative field or uncertainty loss is admitted."
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_concrete_generator_replay.json",
+          "sha256": "13dc44c2500e1768511185165f06d46a14e12ae351ac8c1dc73321afbc33d078"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "55a2dd9"
+        },
+        {
+          "repository": "premise",
+          "commit": "c1180841"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-a68fb3c409e0ccbedc03",
@@ -4216,12 +4302,77 @@
       "limitations": [
         "Use complete already-reviewed Swiss PF-diesel and electric-with-shunting freight services with the exact observed positive source market shares. Include vehicle manufacture, maintenance, tracks, operation and end of life. Do not substitute the former operation-only placeholder, normalize the shares or scale capacity/lifetimes. Native energy intensity, load factors, fleets, vintage and inventories remain screening approximations. Preserve caller signed amounts, uncertainty, formulas, foreground ownership and separate emissions; internal source market uncertainty/formulas are not reconstructed. No consequential conversion or inverse inferred."
       ]
+    },
+    {
+      "rule_id": "bp-f9049261a31e0da4",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "review_path": "export/uvek_deferred_concrete_review.json",
+      "review_sha256": "c777ad7e2ca50d27ecc0cd89a471ad4881911aa02e33cd66982a6bb029369314",
+      "fingerprint": "36c9a61728259883f0cd2fa52c748366d90f1af7ac862f1b6e03886812a10335",
+      "inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c",
+      "metadata_sha256": "222d688a0de79463eb564fe301188a53f232d7efbbc787bd67191860fe59031c",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for inert waste",
+        "reference product": "inert waste",
+        "unit": "kilogram"
+      },
+      "limitations": "Autonomously reviewed exact3.9cut-off concrete-waste route reconstruction. Preserve original market treatment shares and all freight, with no renormalization. Reconstruct the nonempty source collection, sorting and recycling operations using complete native diesel burning, electricity, excavation and sorting infrastructure at original coefficients, plus exact canonical3.10 particulate emissions. Negative source treatment inputs become positive demand for generated positive-reference treatment services; parent caller factor -1 preserves signed waste demand. Recycling is not an empty allocated stock. Sorting retains its actual0.4kg generic inert-waste route, not an invented0.4kg landfill. Generic CH inert waste uses its reviewed zero-inventory allocated clinker handover and retained freight. Generic European inert waste retains its sanitary-landfill fraction, an independently verified production-only clinker handover and freight. Collection retains the source final-disposal market; source treatment and market freight are not conflated. Complete native sanitary/inert landfill services are screening proxies, retaining infrastructure/operation/emissions but differing in allocation, geography, technology and vintage. Source utility/factory/vehicle technologies, capacity/lifetime, internal uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. No added recovery credit, fuel credit or landfill for a verified empty kiln handover. Preserve caller signs/quantities/formulas/uncertainty; inspect only3.9cut-off with no inverse or cross-model qualification.",
+      "validation": [
+        {
+          "check": "Brightpath caller signs/uncertainty, exact treatment shares, nonempty diesel/PM processing, helper coefficients, audits, exact-profile refusals and atomic replay",
+          "passed_cases": 28
+        },
+        {
+          "check": "Premise cold/warm warnings, treatment signs, literal nested audits and uninspected-release refusal",
+          "passed_cases": 24
+        },
+        {
+          "check": "Three actual migrated treatment graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_concrete_lci_report.json",
+          "finite_cases": 3
+        },
+        {
+          "check": "Both original source waste quantities and supported metadata preserved with reference factor -1 before IAM; source graph unchanged",
+          "receipt": "deferred_concrete_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-concrete",
+          "activity_count": 12471,
+          "receipt": "deferred_concrete_export_report.json"
+        },
+        {
+          "check": "All 35 restored inputs and ten new helpers read back with retained coefficients and source-input audits, complete linking and unchanged backgrounds",
+          "receipt": "deferred_concrete_export_readback.json",
+          "uncertainty_export_note": "An explicit negative=False on positive lognormal coefficients uses the standard absent-field false default after export. Amount/loc/scale/type remain exact; no true-negative field or uncertainty loss is admitted."
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_concrete_generator_replay.json",
+          "sha256": "13dc44c2500e1768511185165f06d46a14e12ae351ac8c1dc73321afbc33d078"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "55a2dd9"
+        },
+        {
+          "repository": "premise",
+          "commit": "c1180841"
+        }
+      ]
     }
   ],
   "progress": {
     "starting_deferred_exchanges": 20,
-    "restored_in_this_goal": 11,
+    "restored_in_this_goal": 13,
     "final_unsupported_omissions": 0,
-    "pending_exchanges": 9
+    "pending_exchanges": 7
   }
 }
