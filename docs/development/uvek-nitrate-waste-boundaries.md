@@ -33,10 +33,11 @@ full source metadata and inventory hashes match the previously reviewed
 uncontrolled-treatment witnesses. Five unchanged source-treatment recipes keep
 open burning, open dumps and unsanitary landfills, including their infiltration
 classes, physical emissions and operating inputs. Brazil's small ordinary
-incineration share retains the independently reviewed complete native PE/PP
-incinerator. No new fate, FAE proxy, recovery credit or physical omission is
-introduced. The complete migrated graphs contain four or five records, with
-187 or 295 explicit elementary exchanges respectively, and pass native LCI.
+incineration share uses the independently reviewed complete native polyethylene
+incinerator for waste containing 0.4% water. No new fate, FAE proxy, recovery
+credit or physical omission is introduced. The complete migrated graphs contain
+four or five records, with 187 or 295 explicit elementary exchanges respectively,
+and pass native LCI.
 
 The six country rules supersede their previous flat targets. Older sewer and
 processing reviews record those earlier targets as authoring dependencies.
@@ -46,6 +47,16 @@ its replay reproduces the packaged resource byte for byte. Historical drift
 tests inspect the original authoring stage, while the new tests independently
 freeze the corrected country rules and reused treatment recipes. All 334
 earlier pilot approval fingerprints remain unchanged.
+
+Follow-up boundary correction: the Brazilian controlled branch initially
+retained the raw child's generic PE/PP disposal target. That wrapper adds
+collection transport around the specific incinerator, duplicating a boundary
+already represented by the source market. The corrected branch selects the
+specific incinerator directly from the original full 44-coordinate composition
+review. Fresh native metadata and inventory hashes match that authority. Source
+treatment share, market freight, uncertainty and the plant's downstream residue
+logistics remain unchanged. The six country evidence bindings are reissued with
+clarified warnings; the 334 earlier fingerprints remain unchanged.
 
 Other findings remain work items, not admissions:
 

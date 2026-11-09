@@ -968,6 +968,15 @@ nitrate coverage is now 55 of 125 suppliers, leaving 70. RoW hyperarid treatment
 the European group's Swiss FAE branch and other unresolved suppliers remain
 completion gates. Full prospective certification/export is not yet achieved.
 
+The Brazilian ordinary-incineration branch is subsequently corrected to the
+specific native polyethylene 0.4%-water incinerator already established by the
+original complete-composition review. The raw child's generic PE/PP disposal
+wrapper adds collection beyond that plant boundary; it is not used. Original
+source shares and freight remain unchanged. Fresh native hashes match the
+earlier authority, and regression checks require the specific incinerator.
+The country group's evidence bindings are reissued; the total remains 340 and
+all 334 approvals preceding that group remain unchanged.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

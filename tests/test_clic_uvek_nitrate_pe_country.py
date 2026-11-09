@@ -69,6 +69,18 @@ def test_country_market_keeps_fates_and_warnings_on_cold_and_warm_cache(
             all(actual_input[k] == v for k, v in original.items() if k != "recipe")
             for actual_input, original in zip(inputs, expected, strict=True)
         )
+        if row["source"]["location"] == "BR":
+            controlled = [
+                x
+                for x in inputs
+                if x["type"] == "technosphere"
+                and x["unit"] == "kilogram"
+                and "Disposal," in x["name"]
+            ]
+            assert len(controlled) == 1
+            assert controlled[0]["name"] == (
+                "Disposal, polyethylene, 0.4% water, to municipal incineration"
+            )
         assert sum(
             x["type"] == "biosphere"
             for a in result.activities[1:]

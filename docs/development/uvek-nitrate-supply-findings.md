@@ -145,8 +145,10 @@ treatment shares and collection freight remain separate, with uncertainty.
 Fresh complete treatment witnesses match the already reviewed source helpers
 for open burning, open dumps and unsanitary landfills at the original
 infiltration classes. Brazil's small ordinary-incineration branch retains its
-previously inspected complete native service. This does not admit a Swiss FAE
-branch or substitute controlled incineration for uncontrolled disposal.
+previously inspected complete native polyethylene incinerator for 0.4%-water
+waste. A follow-up correction removes the generic disposal wrapper's additional
+collection while retaining the original market freight. This does not admit a
+Swiss FAE branch or substitute controlled incineration for uncontrolled disposal.
 All earlier recipes, reviews and pilot approval fingerprints remain unchanged;
 six new market recipes reuse five existing treatment recipes. Native LCI and
 installed-wheel checks cover each complete returned graph. The RoW market's
