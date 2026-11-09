@@ -555,6 +555,9 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-8e58bbf6b2e31687", "3.6"),
         ("bp-4389bb6ee9ab35e9", "3.8"),
         ("bp-ac05197a0852076a", "3.6"),
+        ("bp-1cb5578cf49cfd48", "3.6"),
+        ("bp-cac4eeaf7215b33d", "3.6"),
+        ("bp-ac5d1249cfc2626f", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -821,6 +824,9 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-8e58bbf6b2e31687",
         "bp-4389bb6ee9ab35e9",
         "bp-ac05197a0852076a",
+        "bp-1cb5578cf49cfd48",
+        "bp-cac4eeaf7215b33d",
+        "bp-ac5d1249cfc2626f",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1046,6 +1052,9 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
         ("bp-8e58bbf6b2e31687", "3.6", "40W"),
         ("bp-4389bb6ee9ab35e9", "3.8", "no added loss factor"),
         ("bp-ac05197a0852076a", "3.6", "Add no rolling"),
+        ("bp-1cb5578cf49cfd48", "3.6", "primary/secondary shares"),
+        ("bp-cac4eeaf7215b33d", "3.6", "0.367102654107643%"),
+        ("bp-ac5d1249cfc2626f", "3.6", "kg of residue"),
         ("bp-6ce52de989145df6", "3.12", "without wood-density"),
         (
             "bp-8a37fb9191501441",

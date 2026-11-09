@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 23 |
+| 3.6 | 27 | 20 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
 | 3.9 | 17 | 30 |
 | 3.12 | 8 | 15 |
 
-These are 68 exact-profile cases involving 60 distinct rules, after reusing
+These are 65 exact-profile cases involving 57 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -379,10 +379,29 @@ target-link coverage are checked. Three other source cohorts remain refused.
 The normal public constructor loads 11,947 activities; its electricity update
 still refuses the pending mislabeled heat-pump correspondence
 `bp-17d12aa909c440e8`. No prospective scenario or export is certified.
+Three further 3.6 profiles use independently inspected same-product supply
+proxies. Generic copper is corrected from primary-only RLA refining to the
+existing complete RER primary/secondary supply; the packaged 3.6-to-3.7 rename
+supports its cathode identity. The current source inventory differs from the
+historical cathode-review row and was inspected afresh, including all 23
+positive-reference producers. Methanol retains the complete native storage
+chain, with the source's small coal-route share and native import/route
+differences warned. The zinc-production-named activity supplies an allocated
+indium-rich residue, not zinc metal or a treatment service; signed residue kg
+retain factor +1 and the native allocated burdens. No helper or recovery credit
+is added. Sixteen focused Premise and 198 relevant Brightpath checks pass,
+three native LCIs are finite with unchanged scientific hashes, all 279 earlier
+fingerprints remain valid and full generator replay is byte-identical.
+The current correspondence module contains 571 cases; no full 571-case run is
+claimed. Source 3.7 and 3.8 cohorts still complete; the full scenario remains
+refused on unresolved mappings. Triethylene glycol remains unresolved because
+the source includes a substantial recycled share. Zeolite also remains
+unresolved: the native spent catalyst-carrier composition includes carbon and
+metals absent from the source's stated carbon-free gas-process zeolite.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 279 exact-profile fingerprints, with review evidence and
+ledger contains 282 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

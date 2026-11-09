@@ -18771,6 +18771,520 @@
           "fingerprint": "c05244302a48dfde5ab085f50b9e01d47a09163732be6ebe2157cbcedf41e1c7"
         }
       ]
+    },
+    {
+      "rule_id": "bp-1cb5578cf49cfd48",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_metal_chemical_supply_review.json",
+      "review_sha256": "d33b402f9e329da4cecb30bf72b34aaac0d528df6b743ca8783bc11f13a26488",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function, mass-unit and geographic supply proxies. Reuse the already reviewed complete copper consumer-supply boundary after checking the actual generic 3.6 reference and all producers; retain whole methanol supply and allocated indium-rich residue identity. No new grade, helper, physical quantity conversion, empty stock, recovery credit or allocation reconstruction is introduced. Only the enumerated exact cut-off profiles are admitted.",
+      "inspection": {
+        "rule_id": "bp-1cb5578cf49cfd48",
+        "source": {
+          "location": "GLO",
+          "name": "market for copper",
+          "reference product": "copper",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Copper, at regional storage",
+          "reference product": "Copper, at regional storage",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "cdf800b7ca0da8a81d59ffb47901b0110c0e91256b2f34f78f5f58ef01c3f83a",
+            "inventory_sha256": "d7be2c70d641a5ed8ff9912f3f193c8970c110482d760e844b410d430d4692e2",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "copper production, primary",
+                  "reference product": "copper",
+                  "location": "AU",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "584dce108ce584e9f55d20e9d1f20f7fb61f0eb66b8c1363953265b6f5275ca2",
+                "inventory_sha256": "3a66bf86992eae3679eb0d6dbd2afb2b53d57c6a83fb2cc2eb63760976d27970"
+              },
+              {
+                "identity": {
+                  "name": "copper production, primary",
+                  "reference product": "copper",
+                  "location": "RAS",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "f0fc9b03c03c8bc0497390cb1b1f92f91a8e280788c22417094b45ac62c9d35a",
+                "inventory_sha256": "a945082fe260d537fdde4647df46f02b69980bdf312556b35c4cb770b41df342"
+              },
+              {
+                "identity": {
+                  "name": "copper production, primary",
+                  "reference product": "copper",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "633c053034ff7094e5fcc23a918f8a3a05925425c09e9a47b2daa0970faee029",
+                "inventory_sha256": "f3378620bdd3c91b76ed2887f9453b4738c5b5c0e0461a73f4d0a454cb786953"
+              },
+              {
+                "identity": {
+                  "name": "copper production, primary",
+                  "reference product": "copper",
+                  "location": "RLA",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "f1d8e275c8427a7786b09d81a7f5f20f9e3a5216d45bdb42b3931dc0b67ab41e",
+                "inventory_sha256": "41ff70a761b333eebba191a7bf9cd260e8c216d58632cca0ae70112bfc52c3cd"
+              },
+              {
+                "identity": {
+                  "name": "copper production, primary",
+                  "reference product": "copper",
+                  "location": "RNA",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "26629fd4610128d664e90de728586f9c95becd8d95f23f388c052c94b3c6a465",
+                "inventory_sha256": "06d51af9237a715ac2e82ab5da70f23998d4a5ddfe5e5dd8a198b32e28e9c82e"
+              },
+              {
+                "identity": {
+                  "name": "copper production, solvent-extraction electro-winning",
+                  "reference product": "copper",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "9145b34ecb838df06a4baba2981a253b1b9bcb81528f3e9e47f85d4fa3ca11a6",
+                "inventory_sha256": "a4da02be687c5818c8e99925e66423b56369ea68e3bb786389afb9384dd1c07f"
+              },
+              {
+                "identity": {
+                  "name": "platinum group metal, extraction and refinery operations",
+                  "reference product": "copper",
+                  "location": "ZA",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "b9ae0cc09ce8616ff59b54407890e30056e0923f12920919d03dd4a5b4a78f72",
+                "inventory_sha256": "c93fb4ff8b8276dae62438f2fb5e2b05b23790aba5fefd0cb27c0167bf342672"
+              },
+              {
+                "identity": {
+                  "name": "aluminium alloy production, AlLi",
+                  "reference product": "copper",
+                  "location": "CA-QC",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "cfe61226709e1cd15b4a4b9b7db2099920670604e7c960d086b85b4040225a9f",
+                "inventory_sha256": "f4c1fbc7a7d1b3f04ec5ac6f4e9d2788a40c4f21ac979ec322b764b873931316"
+              },
+              {
+                "identity": {
+                  "name": "aluminium alloy production, Metallic Matrix Composite",
+                  "reference product": "copper",
+                  "location": "CA-QC",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "209d2a10fb70ba6db5d12500b117f18505ceb9210a59354d667197c6ae3b2de3",
+                "inventory_sha256": "a1c06261fb3cb279fdfb7c9e95c32a1134003f55517573a0c60092fa089de522"
+              },
+              {
+                "identity": {
+                  "name": "treatment of metal part of electronics scrap, in blister-copper, by electrolytic refining",
+                  "reference product": "copper",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "b76c69c8bdad1ddd53baddb222b00a36fdbe0a098e54b9cc9c923b03d37467d2",
+                "inventory_sha256": "7b868b9c435de2a9a6f2f75e7ff81dba60964d3d6ec5f741bda6189812541e58"
+              },
+              {
+                "identity": {
+                  "name": "gold-silver-zinc-lead-copper mine operation and refining",
+                  "reference product": "copper",
+                  "location": "SE",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "10dc4c2b04a681ba851d3cce2228d64732c043aa9b3bc196431e846d106306b9",
+                "inventory_sha256": "1eb10ee270b72eccf76131684137e93a0a6a172494cdcb441fdd227c1845800f"
+              },
+              {
+                "identity": {
+                  "name": "platinum group metal mine operation, ore with high palladium content",
+                  "reference product": "copper",
+                  "location": "RU",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "5b461091643f068448f7568a090bb96aad79bb8f55fd2e244ecb79739f962d67",
+                "inventory_sha256": "ccc5af25cf423c0d95a541ca00fcc575423b3fd3e19d87e67ea0392554d4fca8"
+              },
+              {
+                "identity": {
+                  "name": "treatment of copper cake",
+                  "reference product": "copper",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "49a6889683999a2ca97eaa2956c644f05738e8d6413bf01980a70faea1c090ec",
+                "inventory_sha256": "44d6966b5b6c86a415061b8ce74cb6c256c65195ffa50a236dadfab9af5908d8"
+              },
+              {
+                "identity": {
+                  "name": "treatment of copper scrap by electrolytic refining",
+                  "reference product": "copper",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "5327861632eaf24b4e4b1d285761bf51e665008e5aeaac2f71c460255fe67f52",
+                "inventory_sha256": "5c39c2efe2bff6cf161bfe85d5232d0a3956b6e40ae4bcbe3a3297cc84235a15"
+              },
+              {
+                "identity": {
+                  "name": "copper production, primary",
+                  "reference product": "copper",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "21c1ec3100e16bef8bcc292de59dd07be14e0cd9b74c29d9d1cbde7ec3fca7b1",
+                "inventory_sha256": "dbd1a373e59bf3b3b1748f6ac7729a375567be128b99c571aeff5e6902f0e56e"
+              },
+              {
+                "identity": {
+                  "name": "aluminium alloy production, AlLi",
+                  "reference product": "copper",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "70e79586d8e7f0fb37aaa7d224cf74eccbd59a76dfd72a320787279956ae2dd5",
+                "inventory_sha256": "b62fec7a88e6fc8dd9756803f40d88c70cc88853ee5fa6a7d5fc2efe96a5d646"
+              },
+              {
+                "identity": {
+                  "name": "aluminium alloy production, Metallic Matrix Composite",
+                  "reference product": "copper",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "597fcc77a3ce4e27ca580842e3de22abb620fa795f2628f60f88add29c92be7a",
+                "inventory_sha256": "14e91d6a6bd67d8d84c58056c20dc19a5150390a41ac2727481b91c12296b4e1"
+              },
+              {
+                "identity": {
+                  "name": "treatment of metal part of electronics scrap, in blister-copper, by electrolytic refining",
+                  "reference product": "copper",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "33f6fb60f3caf71525e38f2e27340e28ebd0ce2677129db3e6ab397a16619215",
+                "inventory_sha256": "77955c0bde3584f8712abd198de818fbebf00d5d4d5bee35991de9a73c6086fc"
+              },
+              {
+                "identity": {
+                  "name": "primary zinc production from concentrate",
+                  "reference product": "copper",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "437d14fd7804a04b4917b2b0cb09d953cddc409b0a43883ad4522a380a52b83c",
+                "inventory_sha256": "b3ca7d3386df09ccd588bd728baba339cfdce6167b71d56d2d283fade412e1b5"
+              },
+              {
+                "identity": {
+                  "name": "treatment of copper scrap by electrolytic refining",
+                  "reference product": "copper",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "2fd98c899a9b85d4ab90c733b8e9d4d3aa6d8e8d73c2195e2f1fea3e245fdcff",
+                "inventory_sha256": "dbbfc959d964867531648f4d522c658f3845640cc36fcb285cd0b7dad7c79f63"
+              },
+              {
+                "identity": {
+                  "name": "treatment of non-Fe-Co-metals, from used Li-ion battery, pyrometallurgical processing",
+                  "reference product": "copper",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "9e00e78dcb94b5dc1abf860c4ab132d947df205d831f9a8394b7fd57d43dee7a",
+                "inventory_sha256": "94c25373e070b82aaf3e0e270f0e44be194fa1dc7c21e16a13a5702a666be5b5"
+              },
+              {
+                "identity": {
+                  "name": "treatment of non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical processing",
+                  "reference product": "copper",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "3ba08380b3b86bf3b37cb6bc4a78ae878b8834eeeee0df5c263d3e839b42ff9b",
+                "inventory_sha256": "cb57074ddb9b775e9eac8a9a09ce6886628dd3bfb20c6063f2d8b0644b975bbf"
+              },
+              {
+                "identity": {
+                  "name": "treatment of used cable",
+                  "reference product": "copper",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "fe6b30d4d209498463676d18ef15e1a875a5acad9433cbc36e25054a47e3b548",
+                "inventory_sha256": "abc7e9f7b1bb126fd96785fb3411c74cc4c7d71dcb92282f5f96676889675923"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "b8dc2538619b2e8d6c2bb4bd0e702b5a18813cade31335ecd5bdfd6729ce3806",
+            "inventory_sha256": "eafb13c7e3440f34635bd611daf28d6b8bb28e6eb6fde633439fd2c99d4ccd51",
+            "comment_sha256": "f4ce03571b3b65d8c3cf621fbb70523dd7792d8e6b7ab0385ff99840a5fff625",
+            "direct_technosphere_coordinates": 13
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d4e8f918d4e3ce87cce0f5e754493246394fd8fc345f663b90ba20ed609a39c1",
+            "inventory_sha256": "3c10ec9d116795754cbad75f35715615e837997380166e98bc35b5ee8ca48df8",
+            "comment_sha256": "332a37d243f708ad9444f2f808adaf082f9cd84ec8f5474bbf8c6cc62d982617",
+            "direct_technosphere_coordinates": 13
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Use the complete native Copper, at regional storage supply in place of a Latin-American primary-only refinery. The actual 3.6 global market supplies generic refined copper from primary, SX-EW, allocated co-product and recovered copper providers, all inspected with positive 1 kg copper references. The packaged 3.6-to-3.7 rename identifies this generic copper market with copper cathode, without a physical quantity change. Native regional storage includes primary/refined and secondary metal, concentrate supply/refining, freight and its original scrap input; retain that complete inventory once. This reuses the existing matching copper-consumer-supply decision after fresh inspection: the current 3.6 inventory SHA differs from the historical cathode-review row, so no equality with that older source inventory is asserted. Preserve signed kg at factor +1; do not add metal, separate concentrate refining, duplicate transport, a cathode-manufacturing process, recovery credit, ore/purity factor or new helper. Native historical German/RER consumption, technology, import and primary/secondary shares differ from the source global mix; allocation, background, delivery, biosphere and vintage differences remain warnings. Score effects are unquantified.",
+        "previous_target": {
+          "location": "RLA",
+          "name": "Copper, primary, at refinery",
+          "reference product": "Copper, primary, at refinery",
+          "unit": "kilogram"
+        }
+      },
+      "limitations": [
+        "Use the complete native Copper, at regional storage supply in place of a Latin-American primary-only refinery. The actual 3.6 global market supplies generic refined copper from primary, SX-EW, allocated co-product and recovered copper providers, all inspected with positive 1 kg copper references. The packaged 3.6-to-3.7 rename identifies this generic copper market with copper cathode, without a physical quantity change. Native regional storage includes primary/refined and secondary metal, concentrate supply/refining, freight and its original scrap input; retain that complete inventory once. This reuses the existing matching copper-consumer-supply decision after fresh inspection: the current 3.6 inventory SHA differs from the historical cathode-review row, so no equality with that older source inventory is asserted. Preserve signed kg at factor +1; do not add metal, separate concentrate refining, duplicate transport, a cathode-manufacturing process, recovery credit, ore/purity factor or new helper. Native historical German/RER consumption, technology, import and primary/secondary shares differ from the source global mix; allocation, background, delivery, biosphere and vintage differences remain warnings. Score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4e857754d17bf99ba1508a442c5876d196296ebd32ae8e2f426d3642bd7b2945"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cac4eeaf7215b33d",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_metal_chemical_supply_review.json",
+      "review_sha256": "d33b402f9e329da4cecb30bf72b34aaac0d528df6b743ca8783bc11f13a26488",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function, mass-unit and geographic supply proxies. Reuse the already reviewed complete copper consumer-supply boundary after checking the actual generic 3.6 reference and all producers; retain whole methanol supply and allocated indium-rich residue identity. No new grade, helper, physical quantity conversion, empty stock, recovery credit or allocation reconstruction is introduced. Only the enumerated exact cut-off profiles are admitted.",
+      "inspection": {
+        "rule_id": "bp-cac4eeaf7215b33d",
+        "source": {
+          "location": "GLO",
+          "name": "market for methanol",
+          "reference product": "methanol",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Methanol, at regional storage",
+          "reference product": "Methanol, at regional storage",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c853c65bf661f4630844c1c11f557bdabf62772825fb8c2612620d64445f9b99",
+            "inventory_sha256": "bdb2b42426765832bf8799d4b4a73ae010909926e09249c533eacdda6a14650d",
+            "activity_comment_sha256": "89da18a0037c135442af4ae9c8c62cda413f67194dd47bb3c85d74b28c412167",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "synthetic fuel production, from coal, high temperature Fisher-Tropsch operations",
+                  "reference product": "methanol",
+                  "location": "ZA",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "b878d23ff7a27e2aa86801ca37f45877705bb2284f7baa4f61d894aec5196ab8",
+                "inventory_sha256": "a25815214c026f7732afe92b0db88839c4d471b558c592ea392d0e0afcb7139b"
+              },
+              {
+                "identity": {
+                  "name": "methanol production",
+                  "reference product": "methanol",
+                  "location": "GLO",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "33068804759628c8bdb2ab07dad412963ceb1ce892850f2c956596bbd80119a8",
+                "inventory_sha256": "a23be280eb347a8f75a0b25e08ae406c48c43ad23fc885f8125699533ba0a0d6"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "f4ac4a4d8689d87eaee79d5ccd9c92ef9b15c9efab9a12031c6728fa2a79e95a",
+            "inventory_sha256": "8b10b8b5bf7ca72c069b173050418f36c016637c57393bcf8654c167d16be749",
+            "comment_sha256": "98ba977bce0b53edf9ce84f7df9f74271c4575083bc189d2473bc26b1fa24f83",
+            "direct_technosphere_coordinates": 6
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "ffd88f2cbcdd227ded1e1f8a4f908273f72e410e8d1f9f43bbbc88b872df6717",
+            "inventory_sha256": "09f6faccdda07b4c7b617c0422c1fc44c5beaadb935006594750769c67445801",
+            "comment_sha256": "b48dec86b546028cc0e57c1e5893d0f9aaa82b2466aed07d73bb6d33bc87eea9",
+            "direct_technosphere_coordinates": 6
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Same whole methanol commodity per signed kg, supplied through the complete native regional-storage chain, with its existing natural-gas steam-reforming production, storage, freight and emissions. Source 3.6 global supply is 99.6328973458924% methanol-production output and 0.367102654107643% allocated coal-based Fischer-Tropsch output; native storage does not reproduce that exact production mix and uses historical European/Swiss import assumptions. Preserve the delivered kg at factor +1 without an MJ/LHV, molecular-weight, concentration, density or production-yield factor. Retain internal native burdens and credits as recorded, with separate caller transport, use and emissions unchanged; do not add another methanol or fuel-production service. Generic product correspondence does not establish grade, route-share, market-delivery, geographic, allocation, background, vintage or LCIA equivalence. Those differences and the unquantified score effects remain warnings."
+      },
+      "limitations": [
+        "Same whole methanol commodity per signed kg, supplied through the complete native regional-storage chain, with its existing natural-gas steam-reforming production, storage, freight and emissions. Source 3.6 global supply is 99.6328973458924% methanol-production output and 0.367102654107643% allocated coal-based Fischer-Tropsch output; native storage does not reproduce that exact production mix and uses historical European/Swiss import assumptions. Preserve the delivered kg at factor +1 without an MJ/LHV, molecular-weight, concentration, density or production-yield factor. Retain internal native burdens and credits as recorded, with separate caller transport, use and emissions unchanged; do not add another methanol or fuel-production service. Generic product correspondence does not establish grade, route-share, market-delivery, geographic, allocation, background, vintage or LCIA equivalence. Those differences and the unquantified score effects remain warnings."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3f1ebb70f508db5d6e0ac272ea024eeed5cdd4719277959d74044bb62897ebd9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ac5d1249cfc2626f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_metal_chemical_supply_review.json",
+      "review_sha256": "d33b402f9e329da4cecb30bf72b34aaac0d528df6b743ca8783bc11f13a26488",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function, mass-unit and geographic supply proxies. Reuse the already reviewed complete copper consumer-supply boundary after checking the actual generic 3.6 reference and all producers; retain whole methanol supply and allocated indium-rich residue identity. No new grade, helper, physical quantity conversion, empty stock, recovery credit or allocation reconstruction is introduced. Only the enumerated exact cut-off profiles are admitted.",
+      "inspection": {
+        "rule_id": "bp-ac5d1249cfc2626f",
+        "source": {
+          "location": "RoW",
+          "name": "primary zinc production from concentrate",
+          "reference product": "indium rich leaching residues, from zinc production",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Leaching residues, indium rich, from zinc circuit, at smelter",
+          "reference product": "Leaching residues, indium rich, from zinc circuit, at smelter",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "d15ba69c358e8af1cdc823d986d589a71f59e8252b04645f28d88049d2550638",
+            "inventory_sha256": "e1f2a311ae97f74611a2c92825a1bffd4a2dd8e269b27eb1be1b3d903e7371ae",
+            "activity_comment_sha256": "713f67b3f7f6680c3f64726e5e15262a8b2af9cd2d756ddf33c609f32bd9aa39",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": []
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "87d9c2c176b86abf5b3bdf7517b0e2ee91bb067a53f49dbbdfd979020816769e",
+            "inventory_sha256": "a44fc7f94e8beae7f432045ecbfe980dc322d0e4fd546cc50b2b1dd25b9f8b6a",
+            "comment_sha256": "4485bac4dcac720c0063825ff3c0e5b2230a53d7c9ecc2c5f57c2554f7f4364d",
+            "direct_technosphere_coordinates": 15
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "d5fdf8113d98ac55ce4db64fc87624171092d1a469c1b93ca167cd8b5ce81015",
+            "inventory_sha256": "f61d74a8fe2885ffe6523b897ecde43712c0d54b824735b5c0afddc7e9500b10",
+            "comment_sha256": "7940177ad65edf54054ce662ce679d16e79473cd226857183cb6a942c18e46d8",
+            "direct_technosphere_coordinates": 15
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Same allocated indium-rich zinc-leaching-residue supply per signed kg of residue. The source activity name refers to zinc production, but its exact positive reference product is indium rich leaching residues, from zinc production, not zinc metal, indium metal or a waste-treatment demand. Native multi-output zinc smelting explicitly allocates burdens to its leaching-residue co-product. Preserve both complete allocated product inventories through the selected native residue proxy at factor +1: do not select zinc metal by activity name, apply an indium-content/concentrate-yield multiplier, reverse the product sign, add indium refining or a disposal/recovery credit, or assign the residue an empty cut-off stock. Retain native upstream inputs and burdens once. Source global/RoW 2012 smelters and native European historical pyro/hydrometallurgical mix, allocation, concentrate origins, water/emissions, background and vintage differ; no exact residue composition, moisture, allocation or LCIA equivalence is claimed and score effects are unquantified."
+      },
+      "limitations": [
+        "Same allocated indium-rich zinc-leaching-residue supply per signed kg of residue. The source activity name refers to zinc production, but its exact positive reference product is indium rich leaching residues, from zinc production, not zinc metal, indium metal or a waste-treatment demand. Native multi-output zinc smelting explicitly allocates burdens to its leaching-residue co-product. Preserve both complete allocated product inventories through the selected native residue proxy at factor +1: do not select zinc metal by activity name, apply an indium-content/concentrate-yield multiplier, reverse the product sign, add indium refining or a disposal/recovery credit, or assign the residue an empty cut-off stock. Retain native upstream inputs and burdens once. Source global/RoW 2012 smelters and native European historical pyro/hydrometallurgical mix, allocation, concentrate origins, water/emissions, background and vintage differ; no exact residue composition, moisture, allocation or LCIA equivalence is claimed and score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c446a898a1423cf1301317cd0610bc814deb99bcda5ce4ce8c08d976b706bc31"
+        }
+      ]
     }
   ]
 }

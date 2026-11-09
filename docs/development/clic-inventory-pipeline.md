@@ -580,6 +580,20 @@ byte-identical. All 277 earlier fingerprints remain unchanged. The actual 3.8
 cohort completes with its three existing approved helpers; 3.7 also completes,
 while the full electricity pilot remains refused on unresolved correspondences.
 
+`uvek_pilot_metal_chemical_supply_review.json` inspects three exact 3.6 profiles:
+the generic copper market now uses complete native primary/secondary supply;
+methanol retains its complete native storage chain; and the zinc-production
+activity is mapped by its actual allocated indium-rich-residue product.
+Positive kg references retain factor +1. The current copper inventory was
+inspected afresh rather than equated with an older reviewed source hash.
+Production/recovery shares, allocation, delivery and vintage remain warnings;
+no helper, recovered-metal credit or empty residue stock is introduced.
+Sixteen focused Premise and 198 relevant Brightpath checks pass, three native
+LCIs are finite with unchanged scientific hashes, all 279 earlier fingerprints
+remain valid and full generator replay is byte-identical. Actual 3.7/3.8 cohorts
+complete; the full pilot remains refused. Recycled triethylene-glycol supply
+and the spent-catalyst versus carbon-free-zeolite mismatch remain unresolved.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
