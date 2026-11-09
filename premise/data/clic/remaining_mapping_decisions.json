@@ -4044,7 +4044,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-edc4e34b1b9682c231a3",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-edc4e34b1b9682c231a3",
         "slug": "insulated-gate-bipolar-transistor-half-bridge-module-production-electrolysis-motor-drive-1200-v-300-a",
@@ -4199,8 +4199,54 @@
         "recipe_id": "deferred-wafer-25644cb27de4f11c68be",
         "limitations": "Autonomously approved exact3.12cut-off complete-functional fabricated-wafer screening proxy. Source generic fabricated integrated-circuit wafer and native logic-type fabricated wafer both explicitly reference positive1m2 of processed wafer, including layering/patterning/doping/heat treatment, substrate, chemicals/gases, energy, emissions, waste/water treatment, infrastructure and internal chemical transport. Keep the complete native logic-fabrication inventory as a representative non-memory manufacturing route, including its own substrate and yield. Source circuit type is unspecified; do not claim the logic subtype or its process generation is verified. Native memory fabrication is another available subtype, not a measured source mix; no invented logic/memory split or average is introduced. No raw-silicon, unfabricated-wafer, mass-based or wafer-count substitution. Caller area, signs, formulas and supported uncertainty use factor+1. Retain every original market-delivery road/rail leg separately, in addition to the native factorys internal chemical freight. Source European circa2000 versus native Ireland2017/Asian-energy global representation, generic versus logic circuit, wafer thickness/mass, fabrication yield, substrate inputs, chemicals/gases, factory throughput/capacity/lifetime, electricity/heat, emissions, effluent/waste management, allocation, native internal uncertainty and vintage differ substantially. Source nominal wafer mass .7kg/m2 versus native documented1.68kg/m2 is not an area conversion factor; keep1m2 per source1m2 and make no thickness/mass/yield compensation or extra substrate addition. Native logic uses17500kWh and14760MJheat per m2 versus source27600kWh and58959MJ; preserve complete native process quantities without tuning an energy match. The source generic silicon-wafer model itself is a proxy in the host silicon-carbide module; this mapping does not establish a SiC-specific manufacturing inventory or remove that limitation. Market delivery uses complete native RER road/rail with geographic/fleet/vintage warnings and no extra multiplier. No source chemical/emission vector is copied, no isolated avoided-emission/yield credit, source-market freight omission or added die cutting/packaging is introduced. Upstream2991biosphere exclusions and unquantified score effects remain explicit. This is a complete functional screening proxy, not scientific/LCIA equivalence. Other releases, inverse and cross-system-model conversions are not qualified."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath physical area, signs, caller metadata, complete native fabrication, both freight legs, uninspected-release refusal and atomic replay",
+          "passed_cases": 13
+        },
+        {
+          "check": "Premise cold/warm area/metadata/warnings and other-release refusal",
+          "passed_cases": 6
+        },
+        {
+          "check": "Finite native LCI with unchanged complete fabrication and original background matrices",
+          "receipt": "native_deferred_wafer_lci_report.json",
+          "finite_cases": 1
+        },
+        {
+          "check": "Original source square metres and supported metadata exact before IAM; source graph unchanged",
+          "receipt": "deferred_wafer_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-wafer",
+          "activity_count": 12475,
+          "receipt": "deferred_wafer_export_report.json"
+        },
+        {
+          "check": "All 37 restored callers read back, full native 17500kWh/14760MJ fabrication unchanged, source freight retained, complete links and original source signatures unchanged",
+          "receipt": "deferred_wafer_export_readback.json"
+        },
+        {
+          "check": "Exact full wafer and xanthate scientific limitations retained in database metadata and corresponding helpers",
+          "receipt": "wafer_and_xanthate_warning_provenance_readback.json"
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_wafer_generator_replay.json",
+          "sha256": "afc9d614a71679abe753b4d3656402b7f5aba1a55e0fc8d42796f918e3e5c0b5"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "96ad008"
+        },
+        {
+          "repository": "premise",
+          "commit": "27e9d912"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-68398736fed09315c29e",
@@ -5048,8 +5094,8 @@
   ],
   "progress": {
     "starting_deferred_exchanges": 20,
-    "restored_in_this_goal": 14,
+    "restored_in_this_goal": 15,
     "final_unsupported_omissions": 0,
-    "pending_exchanges": 6
+    "pending_exchanges": 5
   }
 }

@@ -1,7 +1,7 @@
 # Remaining UVEK mapping decisions
 
 This ledger covers the 20 exchanges left after the first 22 restorations.
-Fourteen further inputs are now restored and validated; six remain pending.
+Fifteen further inputs are now restored and validated; five remain pending.
 The authoritative structured record is
 `premise/data/clic/remaining_mapping_decisions.json`, retaining original source
 pins/exchanges, reference bases, rejected candidates, selected dispositions,
@@ -49,7 +49,7 @@ without changing their total. Scientific/LCIA equivalence is not claimed.
 | `uvek-2026-screening-ceb3843ec051ad01ed7d` | 3.9 cut-off | market for natural gas, high pressure (CH) | 0.003 cubic meter | restored |
 | `uvek-2026-screening-816a5046c84431ffe53b` | 3.9 cut-off | market for natural gas, high pressure (CH) | 0.0034999999999999996 cubic meter | restored |
 | `uvek-2026-screening-a6d33406a770349e9394` | 3.9 cut-off | market for titanium (GLO) | 528 kilogram | pending |
-| `uvek-2026-screening-edc4e34b1b9682c231a3` | 3.12 cut-off | market for wafer, fabricated, for integrated circuit (GLO) | 0.0015895724050230488 square meter | pending |
+| `uvek-2026-screening-edc4e34b1b9682c231a3` | 3.12 cut-off | market for wafer, fabricated, for integrated circuit (GLO) | 0.0015895724050230488 square meter | restored |
 | `uvek-2026-screening-68398736fed09315c29e` | 3.12 cut-off | market for sodium ethyl xanthate (GLO) | 13.84976564156525 kilogram | restored |
 | `uvek-2026-screening-fc3ee282d0e21e35df15` | 3.12 cut-off | market for waste paperboard (RoW) | -0.60866 kilogram | pending |
 | `uvek-2026-screening-0e2220f339c9d5ced47d` | 3.12 cut-off | market for grain oriented electrical steel, 0.23 mm coil (RER) | 947.32 kilogram | pending |
@@ -124,13 +124,13 @@ Unused owned harmonization caches were cleaned after the NaOCl batch (25 entries
 
 ## Active-xanthate synthesis decision
 
-The exact3.12market now uses two derived native synthesis helpers, retaining its
+The exact 3.12 market now uses two derived native synthesis helpers, retaining its
 original producer shares, chemical/utility coefficients, separate nitrogen/water
 flows, supported uncertainty and all freight. The current biomass-ethanol match
 is rejected: native fossil ethylene hydration supplies active ethanol, with an
 explicit coal/Fischer–Tropsch-feedstock substitution warning for part of source
 supply. Legacy active-reference conventions avoid guessed concentration factors.
-Public Kunene Table14 supports the chemical route; liquid versus dry phase and
+Public Kunene Table 14 supports the chemical route; liquid versus dry phase and
 generic source waste/water assumptions remain explicit limitations. Twenty-two
 missing-country grid entries use complete native global MV supply, representing
 0.7132% of RoW producer electricity; other native countries/regions remain.
@@ -138,11 +138,42 @@ Existing exact reviewed hazardous-waste markets retain their full nine-helper
 closure and freight. No source exchange, direct water flow or treatment share is
 omitted; no recovery credit is invented.
 
-Validation:14Brightpath and6Premise tests, finite LCI of the13-record foreground,
+Validation: 14 Brightpath and 6 Premise tests, finite LCI of the 13-record foreground,
 byte-identical replay, full encrypted public scenario/certification/export and
-readback of12,474activities. All36restored callers and all three new helpers pass,
-including13/60producer inputs and six market inputs with supported uncertainty.
-Original background scientific signatures remain unchanged. Commits:Brightpath
-`449fb5d`, Premise`ec3a2111`. Six original deferrals remain; final packaging is due
+readback of 12,474 activities. All 36 restored callers and all three new helpers pass,
+including 13/60 producer inputs and six market inputs with supported uncertainty.
+Original background scientific signatures remain unchanged. Commits: Brightpath
+`449fb5d`, Premise `ec3a2111`. Six original deferrals remain; final packaging is due
 at goal completion. Native technologies, delivery/allocation, phase, water/waste,
 geography/vintage and score effects remain screening limitations.
+
+## Fabricated-wafer decision
+
+The exact 3.12 market now supplies the complete native logic-type fabrication
+process per verified square metre, retaining both original market-delivery
+freight legs. Source circuit type is unspecified: logic is a representative
+non-memory functional screening proxy, not verified subtype equivalence. The
+native memory alternative does not establish a source mix. No mixture, wafer
+count, thickness/mass/yield conversion or energy compensation is invented.
+Native fabrication retains substrate, processing, chemicals/gases, energy,
+emissions, effluent/waste treatment, infrastructure and internal chemical freight.
+The source generic silicon model in the SiC host is already a proxy; this change
+does not establish SiC-specific fabrication. Technology/generation, nominal mass,
+yield, geography, vintage, allocation and score differences remain explicit.
+
+Validation: 13 Brightpath and 6 Premise tests; finite native LCI; identical replay;
+full encrypted public scenario/certification/export and readback of 12,475
+activities, all 37 restored callers and exact native fabrication demand (17,500
+kWh and 14,760 MJ per m²). Original market freight and caller area are retained.
+Complete links, source immutability and full wafer/xanthate warning text in
+exported database metadata and helpers pass. Commits: Brightpath `96ad008`,
+Premise `27e9d912`.
+
+Five original exchanges remain pending: acrylic dispersion, titanium, two
+paperboard-disposal profiles and grain-oriented electrical steel. The broad
+native steel search found no GOES grade. Source GOES is an aggregated 2,747-flow
+biosphere inventory, with no technosphere inputs or process parameters; generic
+reinforcing steel and whole-transformer inventories are not equivalent materials.
+A final disposition still requires its logged evidence review. Final packaging
+and completion checks remain due; no new final unsupported omission has yet been
+registered in this goal.
