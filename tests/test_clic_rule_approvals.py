@@ -743,6 +743,8 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
         ("bp-9caeb1b3bd66b612", "3.6", 1),
         ("bp-9caeb1b3bd66b612", "3.9", 1),
         ("bp-9caeb1b3bd66b612", "3.12", 1),
+        ("bp-1d429dc5bcb36b3e", "3.9", -1),
+        ("bp-0930282b4ba7e381", "3.12", -1),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -996,6 +998,8 @@ def test_low_alloyed_cast_stock_keeps_source_routes_delivery_and_cached_warning(
         "bp-bcbf9e1008a58e4b",
         "bp-8cde42cb022d74ed",
         "bp-281c3f362d35e83f",
+        "bp-1d429dc5bcb36b3e",
+        "bp-0930282b4ba7e381",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1836,10 +1840,8 @@ def test_wastewater_endpoint_keeps_treatment_volume_and_cached_stage_warning(tmp
     assert resolved.activities == before
 
 
-@pytest.mark.parametrize("rule_id", ["bp-1d429dc5bcb36b3e", "bp-3c10f9aaee8ffe42"])
-def test_other_zeolite_and_wastewater_market_boundaries_remain_unapproved(
-    tmp_path, rule_id
-):
+@pytest.mark.parametrize("rule_id", ["bp-3c10f9aaee8ffe42"])
+def test_other_wastewater_market_boundaries_remain_unapproved(tmp_path, rule_id):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
@@ -1852,6 +1854,81 @@ def test_other_zeolite_and_wastewater_market_boundaries_remain_unapproved(
         ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
             resolved, family="uvek", version="2026"
         )
+    assert resolved.activities == before
+
+
+def test_old_composition_specific_zeolite_endpoint_remains_unapproved():
+    from brightpath import DATA_DIR, TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_pilot_inert_composition_review.json").read_text()
+    )
+    row = next(r for r in review["records"] if r["rule_id"] == "bp-1d429dc5bcb36b3e")
+    resource = load_uvek_technosphere_resource()
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        row["previous_rule"],
+        TechnosphereProfile("ecoinvent", "3.9", "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    assert fingerprint not in approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [("bp-1d429dc5bcb36b3e", "3.9"), ("bp-0930282b4ba7e381", "3.12")],
+)
+def test_inert_compositions_keep_components_freight_and_cached_warnings(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    resolved.activities[0]["exchanges"][1]["amount"] = -2.5
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        foreground, helper = result.activities
+        assert foreground["exchanges"][1]["amount"] == 2.5
+        tech = [x for x in helper["exchanges"] if x["type"] == "technosphere"]
+        assert len(tech) == (5 if version == "3.12" else 2)
+        biosphere = [x for x in helper["exchanges"] if x["type"] == "biosphere"]
+        assert len(biosphere) == (1 if version == "3.12" else 0)
+        assert sorted(x["amount"] for x in tech if x["unit"] != "ton kilometer") == [
+            1.48e-9,
+            1,
+        ]
+        roads = [x for x in tech if x["unit"] == "ton kilometer"]
+        if version == "3.12":
+            assert len(roads) == 3
+            assert sum(x["amount"] for x in roads) == pytest.approx(0.077)
+            omissions = [
+                d
+                for d in result.diagnostics
+                if d["code"] == "migration.recipe_input_omission"
+            ]
+            assert omissions == []
+            assert biosphere[0]["name"] == "Non-hazardous waste disposed"
+            assert biosphere[0]["amount"] == 1
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+        )
+        assert "retain that source-data gap" in warning["message"]
+        assert "unquantified score" in warning["message"]
     assert resolved.activities == before
 
 

@@ -713,6 +713,21 @@ Brightpath validation covers 564 distinct relevant cases across the broader
 run and corrected storage rerun. Full authoring replay is byte-identical;
 wheel evidence/manifest bytes match, and obsolete build/cache outputs are removed.
 
+`uvek_pilot_inert_composition_review.json` adds exact RoW zeolite 3.9 and
+inert-waste final-disposal-market 3.12 helpers. Reviewed complete generic landfill
+operation and facility services preserve original quantities and uncertainty,
+with the documented source leachate inventory gap warned. The market retains
+three separate road-freight quantities through its exact previously reviewed
+regional fleet proxies. The nonphysical waste indicator exists in ecoinvent 3.10
+biosphere and remains included; conditional omission is warned and audited only
+if unsupported. No moisture/capacity factor or composition-specific landfill
+emissions are introduced. Forty-four relevant Brightpath checks across runs and
+thirteen focused Premise checks pass; both actual packaged helper-input LCIs are
+finite, with scientific source hashes unchanged. Full authoring replay and wheel
+checks pass. All 299 earlier fingerprints and existing recipes/reviews remain
+unchanged. The frontier is now 41 rules / 46 exact-profile cases, with 301 approved
+fingerprints. Full prospective scenario/certification/export remains unvalidated.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

@@ -180,10 +180,10 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 11 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 25 |
-| 3.12 | 8 | 12 |
+| 3.9 | 17 | 24 |
+| 3.12 | 8 | 11 |
 
-These are 48 exact-profile cases involving 43 distinct rules, after reusing
+These are 46 exact-profile cases involving 41 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -544,10 +544,26 @@ expectations for the new review and endpoint. Full authoring replay and wheel
 evidence/manifest checks also pass; the inspected wheel, generated build and
 superseded harmonization caches were removed.
 
+The inspected RoW zeolite 3.9 treatment and inert-waste 3.12 final-disposal
+market now have helpers using the reviewed complete generic landfill operation
+and facility services. Their source leachate inventory gap is retained and
+warned; the old composition-specific disposal endpoints are excluded. The
+market retains its three original road-freight quantities and uncertainty,
+whose exact source inventories match earlier regional-freight evidence. The
+nonphysical waste indicator is present in ecoinvent 3.10 biosphere and retained;
+the existing warned omission policy applies only if it is unavailable. Neither
+moisture nor facility capacity is rescaled. All 299 earlier approval fingerprints,
+3,183 recipes and 689 reviews remain unchanged. Forty-four relevant Brightpath
+checks pass across the broader run and corrected focused rerun; thirteen focused
+Premise checks pass. Both packaged helper-input LCIs are finite, with source
+scientific hashes unchanged. Full authoring replay is byte-identical and wheel
+review/authority/manifest checks pass. The module contains 669 cases; no full
+669-case run or prospective scenario/export completion is claimed.
+
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 299 exact-profile fingerprints, with review evidence and
+ledger contains 301 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

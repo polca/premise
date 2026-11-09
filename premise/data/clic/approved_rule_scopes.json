@@ -22164,6 +22164,882 @@
           "fingerprint": "fbb6521d5163f55aafb96c449c08b055b20352552579c83b696c7b80459e0a81"
         }
       ]
+    },
+    {
+      "rule_id": "bp-1d429dc5bcb36b3e",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_inert_composition",
+      "review_path": "export/uvek_pilot_inert_composition_review.json",
+      "review_sha256": "5a03c29a361ab5027a2134fa7904b186568738f39789846e88742fb89e0d5aa2",
+      "authorization": "Standing independently inspected matching whole-function/unit geographic proxies and source-preserving component helpers, plus existing scoped nonphysical-indicator omission policy. Reuse the exact generic cleanfill operation/facility functions and exact previously approved regional freight inventories. Preserve source quantities and marginal uncertainty. No new waste fate, physical omission, whole-treatment proxy, chemical substitution or inferred reverse is authorized.",
+      "inspection": {
+        "rule_id": "bp-1d429dc5bcb36b3e",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of waste zeolite, inert material landfill",
+          "reference product": "waste zeolite",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, zeolite, 5% water, to construction waste landfill",
+          "reference product": "Disposal, zeolite, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.257788,
+          "conversion_factor": -1,
+          "id": "bp-1d429dc5bcb36b3e",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-1d429dc5bcb36b3e"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "treatment of waste zeolite, inert material landfill",
+            "reference product": "waste zeolite",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, zeolite, 5% water, to construction waste landfill",
+            "reference product": "Disposal, zeolite, 5% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        "previous_review": {},
+        "previous_rule_sha256": "66f5ec452e23734d69e9054185879f79fff28ccfe9523369394c96257a512035",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "af4b68ca6288db8b4fb07fef482922adebc419782a6d75bc5f20a6e73787c9a0",
+        "source_inventory_sha256": "16c42292e416aa3a794bc493af59cb81252188d92bb73adae1f91dc64366ef65",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "inventory_sha256": "16c42292e416aa3a794bc493af59cb81252188d92bb73adae1f91dc64366ef65",
+            "source_sign": -1,
+            "inputs": [
+              {
+                "amount": 1.48e-09,
+                "uncertainty type": 2,
+                "loc": -20.331223749170388,
+                "scale": 0.044721359549995794,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.20976176963403032,
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit",
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.0,
+                "uncertainty type": 2,
+                "loc": 0.0,
+                "scale": 0.044721359549995794,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.20976176963403032,
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "RoW",
+                  "unit"
+                ],
+                "binding_sha256": "74664c71fbbd0a83c8bd2a45b9fe288eb9bd5dec9e862bfa5dc6fc8fc4860bba"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "42038688b240a709393bc8d1e829b21d464fb903510e6b49fe79acd232a0f753"
+              },
+              {
+                "source": [
+                  "market for extrusion, plastic film",
+                  "extrusion, plastic film",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2bf3627123db30d88fc3e3ebc974c7e551275c39c56bf1815e6667c2f6b8b232"
+              },
+              {
+                "source": [
+                  "market for gravel, round",
+                  "gravel, round",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "d044b2c9d10acb650673cb22323c4f634c378b158935a370141d8ad2b37045d8"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "PE",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a91b2934f2bb7687fdb3ce3e3e4caf649e6e6bc13821c56c7f19204f33c680e"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "c65ffa9ad95f76b865c0bf663b21b00c34d707ac5d2d49aee3653b3293db8b9f"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "CO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a94c805aacf88973281b8750277113ad8212f223d2451f66833b07d80f488025"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "0c1b652502d4cd9512c2a2980a802cbe9cd88e3de8b252b3cfa3655e58284129"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "78d62a02d612afef6011042bca17ab64485a2bdb81335d37ef2591f883830103"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "35412995de02bb4c356605973d0c667c4b179372e9784660a216ba3e92517343"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "ZA",
+                  "kilogram"
+                ],
+                "binding_sha256": "33c2ce287338f9c4ae10bdac661799a71265ecbbb2de3e58ab0bb48a0b1efa1a"
+              },
+              {
+                "source": [
+                  "market for polyethylene, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "bfda0ecf950ed5acd38f01ffe66eae7b2015a30039310a548ec73d097a0dd8f7"
+              }
+            ]
+          }
+        ],
+        "component_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste zeolite, inert material landfill",
+              "reference product": "waste zeolite",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "af4b68ca6288db8b4fb07fef482922adebc419782a6d75bc5f20a6e73787c9a0",
+            "inventory_sha256": "16c42292e416aa3a794bc493af59cb81252188d92bb73adae1f91dc64366ef65",
+            "reference_amount": -1.0,
+            "nonproduction_exchanges": 2
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for inert material landfill",
+              "reference product": "inert material landfill",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "metadata_sha256": "78a1c0b6717f8752960a6b27213c6e5abc609629551f567ca46ef53011fab7ff",
+            "inventory_sha256": "74dfa5c27344b575f3245af5ee7d9b87d5f6866d01a9e71550d96972e3100859",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 1
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "9b640fcd401ce2d6fbcbc1f674464481448176db799f86ba0c0127ccf08a4b8b",
+            "inventory_sha256": "fde88b9095cbd9352442318cf6ea87dccaf6f654768f80a46c46b0e4db20f413",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 1
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "metadata_sha256": "89bf9af37c1da3e4308967c5fda969e1961abb474db400d7be7cdd2671d5a775",
+            "inventory_sha256": "e01c5c304a5901c6cb0c69b39e6ae41cb96c58003bb2029076aab65042e0ccee",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 24
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f66b02ba290be00fc5bf8841c0524bb2da26bb94b12f01d0435ef597ee666b97",
+            "inventory_sha256": "28498888e26c091ee9a26951e138ca0a1a3819744ccf80ffff95b65e63b6eea1",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 20
+          }
+        ],
+        "freight_witnesses": [],
+        "limitations": "Reconstruct only the inspected RoW zeolite3.9 treatment and inert-waste3.12 final-disposal market from complete native generic inert-landfill operation and facility components. Source leachate is explicitly not inventoried as considered negligible: retain that source-data gap, not a conclusion that physical leachate is zero. Do not import the old oil-catalyst-carrier or composition-specific inert-disposal emissions. Retain 1 kg operation and 1.48e-9 facility units per as-received kg, preserving their original uncertainty. The single-provider component markets add no freight or losses; source/native facilities document the same450000m3 capacity. No moisture, dry-mass, density, capacity, lifetime or allocation multiplier is inferred, including for5%-water zeolite and0.5%-water generic inert waste. The Swiss native complete generic inventories are geographic proxies for source RoW services; retain native energy supply, land-use definitions, additional waste heat, infrastructure, material/freight, allocation and vintage differences with unquantified score effects. Native use/aftercare-duration equality is not established. The3.12 market retains all three original road-freight quantities separately, with their original uncertainty, through the previously reviewed complete RER heavy-diesel fleet per tkm. Its exact ZA/BR/RoW source freight inventories match the existing regional-freight witnesses; country, class, fuel, load, duty, age and emissions mixtures are not reconstructed by this geographic fleet proxy. Add no separate vehicle, road or landfill logistics. Retain the exact nonphysical Non-hazardous waste disposed indicator where supported; if unavailable, omit only that indicator with an explicit warning and omission audit under the standing policy. No physical release, recovery credit, alternate disposal fate, empty treatment or inverse route is introduced. Negative source waste references and positive helper services require factor-1; preserve signed caller quantities, uncertainty, formulas, ownership, separate emissions and collection. Only the two enumerated exact cut-off profiles qualify. Component-rule hashes are drift witnesses, not global approval of their other profiles or old endpoints."
+      },
+      "limitations": [
+        "Reconstruct only the inspected RoW zeolite3.9 treatment and inert-waste3.12 final-disposal market from complete native generic inert-landfill operation and facility components. Source leachate is explicitly not inventoried as considered negligible: retain that source-data gap, not a conclusion that physical leachate is zero. Do not import the old oil-catalyst-carrier or composition-specific inert-disposal emissions. Retain 1 kg operation and 1.48e-9 facility units per as-received kg, preserving their original uncertainty. The single-provider component markets add no freight or losses; source/native facilities document the same450000m3 capacity. No moisture, dry-mass, density, capacity, lifetime or allocation multiplier is inferred, including for5%-water zeolite and0.5%-water generic inert waste. The Swiss native complete generic inventories are geographic proxies for source RoW services; retain native energy supply, land-use definitions, additional waste heat, infrastructure, material/freight, allocation and vintage differences with unquantified score effects. Native use/aftercare-duration equality is not established. The3.12 market retains all three original road-freight quantities separately, with their original uncertainty, through the previously reviewed complete RER heavy-diesel fleet per tkm. Its exact ZA/BR/RoW source freight inventories match the existing regional-freight witnesses; country, class, fuel, load, duty, age and emissions mixtures are not reconstructed by this geographic fleet proxy. Add no separate vehicle, road or landfill logistics. Retain the exact nonphysical Non-hazardous waste disposed indicator where supported; if unavailable, omit only that indicator with an explicit warning and omission audit under the standing policy. No physical release, recovery credit, alternate disposal fate, empty treatment or inverse route is introduced. Negative source waste references and positive helper services require factor-1; preserve signed caller quantities, uncertainty, formulas, ownership, separate emissions and collection. Only the two enumerated exact cut-off profiles qualify. Component-rule hashes are drift witnesses, not global approval of their other profiles or old endpoints."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0a397db6ac86c2225dd056dee5006e0505af1220e8f555c9a2929e265d4d9242"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0930282b4ba7e381",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_inert_composition",
+      "review_path": "export/uvek_pilot_inert_composition_review.json",
+      "review_sha256": "5a03c29a361ab5027a2134fa7904b186568738f39789846e88742fb89e0d5aa2",
+      "authorization": "Standing independently inspected matching whole-function/unit geographic proxies and source-preserving component helpers, plus existing scoped nonphysical-indicator omission policy. Reuse the exact generic cleanfill operation/facility functions and exact previously approved regional freight inventories. Preserve source quantities and marginal uncertainty. No new waste fate, physical omission, whole-treatment proxy, chemical substitution or inferred reverse is authorized.",
+      "inspection": {
+        "rule_id": "bp-0930282b4ba7e381",
+        "source": {
+          "location": "RoW",
+          "name": "market for inert waste, for final disposal",
+          "reference product": "inert waste, for final disposal",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, construction waste, to final disposal type B",
+          "reference product": "Disposal, construction waste, to final disposal type B",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.332163,
+          "conversion_factor": -1,
+          "id": "bp-0930282b4ba7e381",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-0930282b4ba7e381"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for inert waste, for final disposal",
+            "reference product": "inert waste, for final disposal",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, construction waste, to final disposal type B",
+            "reference product": "Disposal, construction waste, to final disposal type B",
+            "unit": "kilogram"
+          }
+        },
+        "previous_review": {},
+        "previous_rule_sha256": "21e5d6493b4f4ff9fdc5b200d0e5d4a6ebad7eea9e9f2891be21ab983db5f525",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "fce8856b8b846a566d1709d5076b32fdb06a8ea884438fdc8f45a4550bc5d669",
+        "source_inventory_sha256": "453e9b1d2238ce3eedd062f73537b0df992ab601de111555d16540deadbb68d0",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.12-cutoff",
+            "inventory_sha256": "453e9b1d2238ce3eedd062f73537b0df992ab601de111555d16540deadbb68d0",
+            "source_sign": -1,
+            "inputs": [
+              {
+                "amount": 1.48e-09,
+                "uncertainty type": 2,
+                "loc": -20.331223749170388,
+                "scale": 0.20493901531919198,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.0,
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit",
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.0,
+                "uncertainty type": 2,
+                "loc": 0.0,
+                "scale": 0.20493901531919198,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.0,
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "name": "Non-hazardous waste disposed",
+                "categories": [
+                  "inventory indicator",
+                  "waste"
+                ],
+                "unit": "kilogram",
+                "type": "biosphere",
+                "approved_omission_if_unavailable": true,
+                "omission_rationale": "Retain the exact nonphysical waste-accounting indicator where supported; otherwise omit only that indicator with an explicit warning under the standing policy."
+              },
+              {
+                "amount": 0.0013796252463669672,
+                "uncertainty type": 2,
+                "loc": -6.585943377295928,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.008811943375615302,
+                "uncertainty type": 2,
+                "loc": -4.731647275889365,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.06680843137801773,
+                "uncertainty type": 2,
+                "loc": -2.70592598817059,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "treatment of inert waste, inert material landfill",
+                  "inert waste, for final disposal",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "2eac8e5cc823df7f093a11614761020cfbd4d4cf12866785762c64065f3589b8"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, diesel, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "c1743aed79bb2d14afe9e292ee5f634d89a0cad34097e4d873f2cd3021909dde"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, diesel, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4d639064a1beff45a5c9daa3da9bffb1a783b264904470cf48d20fba79148973"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, diesel, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "91f867a713550215fb8a5240b480231c2aa1ac7648d208544e38e0675c8c2a18"
+              },
+              {
+                "source": [
+                  "market for inert material landfill",
+                  "inert material landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "a1f0059b27e4a3c9f9cb7699c3e945f6fa061a6a8feac7291dc3a376d39d0314"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "c86500ad2feee552898d5057149e649f685f7184179b72fca4ababd8fbd8e0c8"
+              },
+              {
+                "source": [
+                  "inert material landfill construction",
+                  "inert material landfill",
+                  "RoW",
+                  "unit"
+                ],
+                "binding_sha256": "74664c71fbbd0a83c8bd2a45b9fe288eb9bd5dec9e862bfa5dc6fc8fc4860bba"
+              },
+              {
+                "source": [
+                  "process-specific burdens, inert material landfill",
+                  "process-specific burdens, inert material landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "42038688b240a709393bc8d1e829b21d464fb903510e6b49fe79acd232a0f753"
+              },
+              {
+                "source": [
+                  "market for extrusion, plastic film",
+                  "extrusion, plastic film",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2bf3627123db30d88fc3e3ebc974c7e551275c39c56bf1815e6667c2f6b8b232"
+              },
+              {
+                "source": [
+                  "market for gravel, round",
+                  "gravel, round",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "d044b2c9d10acb650673cb22323c4f634c378b158935a370141d8ad2b37045d8"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "c65ffa9ad95f76b865c0bf663b21b00c34d707ac5d2d49aee3653b3293db8b9f"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "35412995de02bb4c356605973d0c667c4b179372e9784660a216ba3e92517343"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "ZA",
+                  "kilogram"
+                ],
+                "binding_sha256": "33c2ce287338f9c4ae10bdac661799a71265ecbbb2de3e58ab0bb48a0b1efa1a"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "PE",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a91b2934f2bb7687fdb3ce3e3e4caf649e6e6bc13821c56c7f19204f33c680e"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "78d62a02d612afef6011042bca17ab64485a2bdb81335d37ef2591f883830103"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "CO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a94c805aacf88973281b8750277113ad8212f223d2451f66833b07d80f488025"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "0c1b652502d4cd9512c2a2980a802cbe9cd88e3de8b252b3cfa3655e58284129"
+              },
+              {
+                "source": [
+                  "market for polyethylene, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "KR",
+                  "kilogram"
+                ],
+                "binding_sha256": "44a1aaf19f65e170469f58a8cf8328d82208f1628a15a31517fc7275a82ba119"
+              },
+              {
+                "source": [
+                  "market for polyethylene, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "JP",
+                  "kilogram"
+                ],
+                "binding_sha256": "061e5615af9ecd08c0fb2b4712fcf4f0ff73552620e2b730e433c34813b9382e"
+              },
+              {
+                "source": [
+                  "market for polyethylene, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "US",
+                  "kilogram"
+                ],
+                "binding_sha256": "a1bd10407b3eab6593d2961764cd7f7756c562010ed0588ba96d9da3545bcf7b"
+              },
+              {
+                "source": [
+                  "market for polyethylene, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "06903643222d923c03735c475e20980b8170feb0cdb9bc7dc08aa26b8b73ed79"
+              },
+              {
+                "source": [
+                  "market for polyethylene, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "7dc948c8d9d0810923896d9be48b583837ccbdfe17c831ff36079c154a3c6a33"
+              }
+            ]
+          }
+        ],
+        "component_witnesses": [
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "market for inert waste, for final disposal",
+              "reference product": "inert waste, for final disposal",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "fce8856b8b846a566d1709d5076b32fdb06a8ea884438fdc8f45a4550bc5d669",
+            "inventory_sha256": "453e9b1d2238ce3eedd062f73537b0df992ab601de111555d16540deadbb68d0",
+            "reference_amount": -1.0,
+            "nonproduction_exchanges": 4
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "treatment of inert waste, inert material landfill",
+              "reference product": "inert waste, for final disposal",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "f75ea0a0c38b06449058f0048aadb83940026899cbb7e89ef768abf4b4804e7a",
+            "inventory_sha256": "9b4f1a1f8ed9465e099937d9593d9e92b8b9bb33332a722e65db8c11fff0e413",
+            "reference_amount": -1.0,
+            "nonproduction_exchanges": 3
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "market for inert material landfill",
+              "reference product": "inert material landfill",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "metadata_sha256": "595c61bce7dc77febf66862ff96b5a6133b7a71aaf37777d714d0f9adc6b1c26",
+            "inventory_sha256": "79eaf04b2b55e8c92928edd7d44c89c2e0c3136692b522211bd003dd612bd19e",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 1
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "market for process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "fe2d7cd0556108fd58c0ec5b8ce0b0bbc67959caafc2ac62e7dd5280c613e9b9",
+            "inventory_sha256": "3c4c58f261838f91739a5556cc66e438dd9bc6a91e10554b6f1c01cd403c659f",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 1
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "1f758cdfd66935c19df2e47d648cbd9897c48bf896be9509f9839caffb1ab8d7",
+            "inventory_sha256": "ea3cc15162837ec40acc34428321a7fa1e4f9dbeeaf608bd65fa98076759dfb1",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 3
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "ffc4314eff8168b3f5ef8638b4bd4a03e9ee581ad777bdb78da64c77154b5b3b",
+            "inventory_sha256": "8056264d6ea26f51517f7d6b14a3c970c69c0ce3906f34ed181d84c64ae3b188",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 5
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "53a3534b1aa45869af0e7bbab604130045179db04b0e88f40f913471f43ea0ba",
+            "inventory_sha256": "d48fa2e7e95bedb6e60b97ae5aad85d4693a6bb8988c1e8e6b9c301afa9448c9",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 4
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "metadata_sha256": "dc47dbf371b1a828045c5e2011735cf9f70ab501fa89a72d6bc1d206b3bbc8fb",
+            "inventory_sha256": "f1b2ba049c4cf63c40bf16ff4b49edefcad4074b59bbfdbc14f87aa2c7b83f75",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 28
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "e7bfa095936f769fe9a873d1935f56fe7ba5caf9b03544c7392b4d68c14144da",
+            "inventory_sha256": "8c9947d88492b1c8cf1ab1383c2a48ad710d3a4f561bdc52b9745a0e450ab878",
+            "reference_amount": 1.0,
+            "nonproduction_exchanges": 21
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "ea3cc15162837ec40acc34428321a7fa1e4f9dbeeaf608bd65fa98076759dfb1",
+            "reference_amount": 1
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "8056264d6ea26f51517f7d6b14a3c970c69c0ce3906f34ed181d84c64ae3b188",
+            "reference_amount": 1
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "d48fa2e7e95bedb6e60b97ae5aad85d4693a6bb8988c1e8e6b9c301afa9448c9",
+            "reference_amount": 1
+          }
+        ],
+        "limitations": "Reconstruct only the inspected RoW zeolite3.9 treatment and inert-waste3.12 final-disposal market from complete native generic inert-landfill operation and facility components. Source leachate is explicitly not inventoried as considered negligible: retain that source-data gap, not a conclusion that physical leachate is zero. Do not import the old oil-catalyst-carrier or composition-specific inert-disposal emissions. Retain 1 kg operation and 1.48e-9 facility units per as-received kg, preserving their original uncertainty. The single-provider component markets add no freight or losses; source/native facilities document the same450000m3 capacity. No moisture, dry-mass, density, capacity, lifetime or allocation multiplier is inferred, including for5%-water zeolite and0.5%-water generic inert waste. The Swiss native complete generic inventories are geographic proxies for source RoW services; retain native energy supply, land-use definitions, additional waste heat, infrastructure, material/freight, allocation and vintage differences with unquantified score effects. Native use/aftercare-duration equality is not established. The3.12 market retains all three original road-freight quantities separately, with their original uncertainty, through the previously reviewed complete RER heavy-diesel fleet per tkm. Its exact ZA/BR/RoW source freight inventories match the existing regional-freight witnesses; country, class, fuel, load, duty, age and emissions mixtures are not reconstructed by this geographic fleet proxy. Add no separate vehicle, road or landfill logistics. Retain the exact nonphysical Non-hazardous waste disposed indicator where supported; if unavailable, omit only that indicator with an explicit warning and omission audit under the standing policy. No physical release, recovery credit, alternate disposal fate, empty treatment or inverse route is introduced. Negative source waste references and positive helper services require factor-1; preserve signed caller quantities, uncertainty, formulas, ownership, separate emissions and collection. Only the two enumerated exact cut-off profiles qualify. Component-rule hashes are drift witnesses, not global approval of their other profiles or old endpoints."
+      },
+      "limitations": [
+        "Reconstruct only the inspected RoW zeolite3.9 treatment and inert-waste3.12 final-disposal market from complete native generic inert-landfill operation and facility components. Source leachate is explicitly not inventoried as considered negligible: retain that source-data gap, not a conclusion that physical leachate is zero. Do not import the old oil-catalyst-carrier or composition-specific inert-disposal emissions. Retain 1 kg operation and 1.48e-9 facility units per as-received kg, preserving their original uncertainty. The single-provider component markets add no freight or losses; source/native facilities document the same450000m3 capacity. No moisture, dry-mass, density, capacity, lifetime or allocation multiplier is inferred, including for5%-water zeolite and0.5%-water generic inert waste. The Swiss native complete generic inventories are geographic proxies for source RoW services; retain native energy supply, land-use definitions, additional waste heat, infrastructure, material/freight, allocation and vintage differences with unquantified score effects. Native use/aftercare-duration equality is not established. The3.12 market retains all three original road-freight quantities separately, with their original uncertainty, through the previously reviewed complete RER heavy-diesel fleet per tkm. Its exact ZA/BR/RoW source freight inventories match the existing regional-freight witnesses; country, class, fuel, load, duty, age and emissions mixtures are not reconstructed by this geographic fleet proxy. Add no separate vehicle, road or landfill logistics. Retain the exact nonphysical Non-hazardous waste disposed indicator where supported; if unavailable, omit only that indicator with an explicit warning and omission audit under the standing policy. No physical release, recovery credit, alternate disposal fate, empty treatment or inverse route is introduced. Negative source waste references and positive helper services require factor-1; preserve signed caller quantities, uncertainty, formulas, ownership, separate emissions and collection. Only the two enumerated exact cut-off profiles qualify. Component-rule hashes are drift witnesses, not global approval of their other profiles or old endpoints."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "98a3fbbec440b5af1f497e35f2ec278f52e8b75e470c0f95325103a5fecacc90"
+        }
+      ]
     }
   ]
 }
