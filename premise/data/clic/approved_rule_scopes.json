@@ -117122,6 +117122,2938 @@
           "fingerprint": "a5c26936395e6e84861893fc882edf015aebdde2a0f484fbd5d9b0bda5f73dc2"
         }
       ]
+    },
+    {
+      "rule_id": "bp-49e229b952f6983c",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_titanium",
+      "review_path": "export/uvek_deferred_titanium_review.json",
+      "review_sha256": "137a329a878193a28936b114c53ea30a83e8c1d15e3a8f0a6db9ec4da490bf72",
+      "authorization": "Autonomous remaining-mapping goal and standing auto-approval. Derived native-input source-chain reconstruction and explicit complete functional proxies; raw source inventories remain private.",
+      "inspection": {
+        "rule_id": "bp-49e229b952f6983c",
+        "source": {
+          "location": "GLO",
+          "name": "market for titanium",
+          "reference product": "titanium",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Titanium dioxide, chloride process, at plant",
+          "reference product": "Titanium dioxide, chloride process, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.196543,
+          "id": "bp-49e229b952f6983c",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "GLO",
+            "name": "market for titanium",
+            "reference product": "titanium",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Titanium dioxide, chloride process, at plant",
+            "reference product": "Titanium dioxide, chloride process, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "636313278e23395f2eae20422fa19c61e49d61d1d396d47b26f86e7fe6ece7ea",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "original_factor": 1,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": 1,
+            "inventory_sha256": "ac988344c43383b642e34b5446abb40e4a1fce88406c13865127bfef456a4092",
+            "inputs": [
+              {
+                "recipe": "deferred-titanium-stage-5b7bdd8561b36502fe3a",
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.3448,
+                "uncertainty type": 2,
+                "loc": -1.0647907401925991,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4049691346263318,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer",
+                "amount": 0.0363,
+                "uncertainty type": 2,
+                "loc": -3.315937537711332,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4049691346263318,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer",
+                "amount": 0.3614,
+                "uncertainty type": 2,
+                "loc": -1.0177699008240089,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4049691346263318,
+                "type": "technosphere"
+              },
+              {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer",
+                "amount": 0.3633,
+                "uncertainty type": 2,
+                "loc": -1.0125263397549809,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4049691346263318,
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market group for electricity, high voltage",
+                  "electricity, high voltage",
+                  "GLO",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2f9c80eaacf32839",
+                "binding_sha256": "e00273a3d8bb188d073e4e67128d7a098905aef2b51112f4b9ff8a343190ede7"
+              },
+              {
+                "source": [
+                  "market for chemical factory, organics",
+                  "chemical factory, organics",
+                  "GLO",
+                  "unit"
+                ],
+                "rule_id": "bp-5b8c937d3fb21468",
+                "binding_sha256": "ea09ff0e6cef09a0a018fa2941f6ca594c59c700b00fc41ae34986ee3d29c8d3"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-296624bc97644b88",
+                "binding_sha256": "15f7cdbab9679ecde8047420d2f7ba5c966865b440baf6cbeed9edbe7178616a"
+              },
+              {
+                "source": [
+                  "treatment of inert waste, sanitary landfill",
+                  "inert waste",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-5ec1f9f7a6103c98",
+                "binding_sha256": "f8947e002c50a4dcd138b2a35588004c039b5fdbde2605e2a3325ae679343de5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-949e9423153a45de",
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-46ffc4892be8fcb1",
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-e567e56fc816d39f",
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-b25755fd394b9346",
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-4a797a6b30510a65",
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-1af2418d10ae3176",
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-a51d49493f310338",
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-6b4f9e5ca470ac92",
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for magnesium",
+                  "magnesium",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-2c31977a8dd582df",
+                "binding_sha256": "aaca733a37ad315fcb1979f2262bb896b4bb708758a379e25205a6a170f9e7de"
+              },
+              {
+                "source": [
+                  "magnesium chloride, from titanium sponge production, Recycled Content cut-off",
+                  "magnesium chloride, from titanium sponge production",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-151ec6beddb1708c",
+                "binding_sha256": "7eafc77e2fa5d0b5ed85757013b2a3d5152bdc5739290396628700b71abf5e6a"
+              },
+              {
+                "source": [
+                  "market for sulfuric acid",
+                  "sulfuric acid",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-7532c17fac15ff33",
+                "binding_sha256": "648093a4f4a945e1c6c9004a0aab02cd1f1049b8597d7919e5db80511264f2c4"
+              },
+              {
+                "source": [
+                  "market for basic oxygen furnace slag",
+                  "basic oxygen furnace slag",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-0e3c0fc62c6c49be",
+                "binding_sha256": "446c4e3e9a666d0f26e7bf13a2c88282d4cf6fe5ec8b06923082f18168b0a93b"
+              },
+              {
+                "source": [
+                  "market for chlorine, liquid",
+                  "chlorine, liquid",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-dfa75efead55c5e9",
+                "binding_sha256": "52e9c384a5e58967c5b701dd8113e7b302dfed5726aa7d8c8d1a329d4ef81ceb"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "rule_id": "bp-f7dd94e542cba21d",
+                "binding_sha256": "568f058bd28db8883f1a9e5af8e9c0435d2398e22cdf6da5ead3a555a8ae3b80"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "rule_id": "bp-4458360e03e22566",
+                "binding_sha256": "ed2b91f7770a6d1f903fe33eda12e82f0018b1c7644e47614f6ea253ee6dda47"
+              },
+              {
+                "source": [
+                  "market for petroleum coke",
+                  "petroleum coke",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-ed9567d915d3e1af",
+                "binding_sha256": "73608b7cb8bdaa51c930a9b1af37a383d80e252ad683382c472d52dac817ecd5"
+              },
+              {
+                "source": [
+                  "market for sodium hydroxide, without water, in 50% solution state",
+                  "sodium hydroxide, without water, in 50% solution state",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-1d075913a8c7a9b6",
+                "binding_sha256": "282d47e936be1cf20da46090fc84ff5adba2a89d4e2b1d4723d57059ed387191"
+              },
+              {
+                "source": [
+                  "market for tap water",
+                  "tap water",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-182cd513cb8969f1",
+                "binding_sha256": "54c928609da7a8721f875c8dca9872cfc00c698d140850d9f28151be6763d364"
+              },
+              {
+                "source": [
+                  "vanadium-titanomagnetite mine operation and beneficiation",
+                  "titania slag, 94% titanium dioxide",
+                  "CN",
+                  "kilogram"
+                ],
+                "rule_id": "bp-08d39ba64410a1da",
+                "binding_sha256": "83b7c55358dd438f7ad12c4ffd0674dffa4f988cbf617cf2e2dc4f891b77df52"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-59f60997076df042",
+                "binding_sha256": "10a98c33511f8570d999c7617ffa81cd709438b667523b448d8781efe0e86e76"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-999a70594224e212",
+                "binding_sha256": "ccc0c9ba49d00d193c2b8bc5cc14501b60ba77e3394e4110997a2df3f1c6dae5"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-c87d564423c75554",
+                "binding_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, container ship",
+                  "transport, freight, sea, container ship",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-55c88a17f0ffb64f",
+                "binding_sha256": "e830a14edac4bb663255de80ac598db675e30f2cd4c4e677b3b190c5ad5236f8"
+              },
+              {
+                "source": [
+                  "market for wastewater from pig iron production",
+                  "wastewater from pig iron production",
+                  "RoW",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-7e371cf8a52dd86c",
+                "binding_sha256": "9e1a13036c3455e4ad48aea004b17f41bc85a4149e90bf4313bf77fef6922af3"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "SY",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-b68f333b0eb9e6d6",
+                "binding_sha256": "797448c3be6c6b3d1147faca8ce216099172141161407ea66137d9dab26908bc"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-252ec999ee1fc358",
+                "binding_sha256": "08e3b3015115a9936287ebf53ef30fb23857d6d7d04f58c6748c0591407b1744"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "IN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-39c5b9d331541f84",
+                "binding_sha256": "2fd2cb8c7463ed4da88ed1cc8f00d46dc23ed1887ca3fdcd16fd9d8e8007cf7e"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "LB",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-536e79a61db3df53",
+                "binding_sha256": "49210a1ab8055b0f37b68f7a65cffb34ac2f7fde6b118cdbf481895d8e932105"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-ce118b23c8f8cd5c",
+                "binding_sha256": "debb9ffbad959f5a6eff841091b1c37950db2e46e01e2ae11ebdec4449e10c2a"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RU",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-1237581aa7459b6a",
+                "binding_sha256": "2e09d4fbad13e90d7e871ba84798fd0fc09630006cf3ab42bd59ab7bc8a62b4d"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-02ead287df03be41",
+                "binding_sha256": "1d4ad3843b4649dc1b2fe02969f195e80bc17587a41bc41a4b702d23ba7e7931"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RER",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-49b843b95c0c6223",
+                "binding_sha256": "a147764e438f83642751b71b694c2c8ca149c64c13dc096fbe3937f83fb69fb9"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TW",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-48a23f96f333d538",
+                "binding_sha256": "aa0e45363372daae8a731de270fae57f22ee2c6427c2014ef617bc1e020fd70b"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-4ad69c2f62e90f0c",
+                "binding_sha256": "3bab33b99154fa598c85ba855ea01bf43574d36426d2ddbb9a6af31ae7fd645b"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TR",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-972c9a6076b1cd54",
+                "binding_sha256": "d33c4abdc877fdd4ce89db64858831d0a1caf2d761c9dfdce74f29d164aa4d0c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "YE",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f1c7b653d5a7f72c",
+                "binding_sha256": "9db7c0306f18b201ec0a443aa1846516da1c3b5899c8175abfeec8e7bed00406"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RLA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-9d30b98cb51ab151",
+                "binding_sha256": "93469f867c515bc97e0bc78bc6d08c2d4fb3c0d8bbc85b3cee4cbb7803536698"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RME",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-82ad62164fbd3e18",
+                "binding_sha256": "40a649576911cb8a6c47a6a1f7b505f628a3477588c3cceb04b55c0ea4311b65"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-085e6a82dfd135c0",
+                "binding_sha256": "5f60ae48dafb1374e3173b73dad20a6ae51b5587040285607e77c139183f0ca7"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "LK",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2da44aa49b59c390",
+                "binding_sha256": "79aa95613fb4686a8b80f3327d6fb78615beb38ac769a4ed520956099931ade6"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-80aa08a836e8caf6",
+                "binding_sha256": "61d727041acbd083cead3f5caac0ab575b547f31902956c7d81ec4c61a6a1ddd"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-5fe15d7b5531ffd6",
+                "binding_sha256": "34e02f5dc2efff8fde685c8df9a3aea3891791b79b04bf509ee66572afab9464"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-861c31642b2bf0b4",
+                "binding_sha256": "e45a66c90d95e7c86b890a073435a1a7c4145cde5da9a7b7994bd6e22aca28fe"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-26c82ca4b6476fbf",
+                "binding_sha256": "dac49a4a8d651320c4b1ba1c4106ac88ebd323724a38ee3a075ae9486bb19600"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "SG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-b9c6cca8bc2d06b4",
+                "binding_sha256": "da15e160a29dae5f04cc660f691d5d74ba8e4b418f89e2d81928c827c7d3a573"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RAF",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-c87d2c64f3d8d973",
+                "binding_sha256": "3dfa776bc6098b41a8dc31d745c123e7f706bb92a274cea4648616b880a5a0bc"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-05755e112b4cb541",
+                "binding_sha256": "797181902a2bf6cbaca69e133d8a5f1bae0bda393fa849508352c7108011b4c0"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "ID",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-fc9e4184d070b645",
+                "binding_sha256": "f14d7021484b1b5756301d579aaa2ea9680937f3d0870ee5859b37abea1af344"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "IL",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-7aab556fc62c4d8a",
+                "binding_sha256": "68da3543f17c4967e60cb7813875d6d7f51ea68a9af152d31be4cbfebeef91cb"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BD",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2fd0fd1e158ae888",
+                "binding_sha256": "f4e2f7e9aaa87df7d1794bc8c980e210848dd60369b1bcba36891c84cf394e58"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AU",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-45c9f9c3254ce0de",
+                "binding_sha256": "7304e501c5f33f8547a7f457921cebad07809f9c5e09403d38c7caf8994f716c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f1e0f62720d0e814",
+                "binding_sha256": "828c3e568535e0a8690e4682f2b668650732270fb829a64d662ddd31fcaf8207"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "OM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-955d8965ef81b908",
+                "binding_sha256": "2f8f439f786f55100c645dbeeb1c48e4c3f9fa969b2bf9a12dc99d9eceef8bbf"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "HK",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-a2e521d9e65f4ff0",
+                "binding_sha256": "16ab49e72623b41ecb686dd0b54e87f3defd63d6014ddd8577418ca6daff6c24"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "GE",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-4a3ed40ec98ff91d",
+                "binding_sha256": "68336b7bd8e9769afe3deca2ab33da943f4c787f93097b50545df59b30b3e9e6"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CY",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-d04eb50285426fed",
+                "binding_sha256": "9b71f531524781413263cde6eab35452c7945634216a756697b5ec64ebcb60d2"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "PK",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2c71dd76afdfb9ee",
+                "binding_sha256": "80f921ddbc4b26b69c11d2bfb932dc5ec675b188a0b0dfc4079075b42e836118"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "PH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-0f41397ea9dfc430",
+                "binding_sha256": "ba108f6e90eee44510d31731535c5f41141a48a6cc7a4cc03a3b8be5bfed5f09"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TJ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-7da13dbcf5478734",
+                "binding_sha256": "4c71e1b260b0edef2964b75fc3f927f6e73be7e79fe1b676d4028e173c4890bf"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KP",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-df766535b7bad5b9",
+                "binding_sha256": "b8f5f4f462be5a4f15de2b724538ee00498be80b37a7aaf650820b8b58d351ff"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "UZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-d473095afebaa05b",
+                "binding_sha256": "6161d5e7d7f06a7150b175457eb11f118a7769bd6d19a839e09833d564ac957c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KR",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-edf268e27a77f30c",
+                "binding_sha256": "8ff88636088b833453f0aa3d4160a10d205dcd8b5345844e9dfbe3b8fd8a8dfd"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "QA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-146999088c22b09d",
+                "binding_sha256": "791cd4d184342b0964a18c53b6e800fa5d8da67438e0dc880bbe2f0cba3a810b"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2a1d57517c1c9c50",
+                "binding_sha256": "761cc896e837c5422f5b271bcf3993f8844e4fd437103d5d85caa1cfde9c1188"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NP",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-905f2bdaa88e6266",
+                "binding_sha256": "37cc0bd1b3db5e3a795fb77eade6c5e4901c0129c0a0173a7f4d8603df6b46b1"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "JO",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-76a93ba6f52c0e8f",
+                "binding_sha256": "73f1d486c2b7f61b590ded9a362627afcaa58de4fd9b56ec1774683673aafded"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RNA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-a819b95a8342323b",
+                "binding_sha256": "75329a9046190f00b05eeb92fb9f090165ebb5c9dbf5e35ad863cd397842c8c4"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MY",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-1f81c9e148362de4",
+                "binding_sha256": "1de9b84e4f7c54373e79d8ec4e9110218956276797d608a8478b5f5ecbb26116"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "VN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-7eb0db24a3fc1e76",
+                "binding_sha256": "b56507c34ee58ce861844dccd0ee5a0a72d2d4cb68cf08ff02e30aa781dce9cf"
+              },
+              {
+                "source": [
+                  "market for inert waste",
+                  "inert waste",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-f9049261a31e0da4",
+                "binding_sha256": "295841fa31685fa1b0388afac11cf201579c6dda4222241e58a26eae22d4d9a5"
+              },
+              {
+                "source": [
+                  "market for inert waste",
+                  "inert waste",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-87f7d6834d9147fa",
+                "binding_sha256": "85a3085f7cf21263d8884fdc318c88191691a26a7ecf7252c4fe8d02b1b57e75"
+              },
+              {
+                "source": [
+                  "market for sulfuric acid",
+                  "sulfuric acid",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-7740a48a01851669",
+                "binding_sha256": "2f627a5957f8d385f42a9fe96eefaa567832fc2e75ffa266450c7f01527bf494"
+              },
+              {
+                "source": [
+                  "market for basic oxygen furnace slag",
+                  "basic oxygen furnace slag",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-454fe7a83cbaa613",
+                "binding_sha256": "6f795765fb973d78d7862876d8228233149677da1f21e31c0037a77eb8a9b750"
+              },
+              {
+                "source": [
+                  "market for chlorine, liquid",
+                  "chlorine, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-3080b1f0605165b9",
+                "binding_sha256": "33e56f12509e592f66380e67d1ffcb87aed8e6238ca8632e2e6c0a8a9d91dc3f"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "CA-QC",
+                  "megajoule"
+                ],
+                "rule_id": "bp-b093a40f996187dc",
+                "binding_sha256": "8b900fc2c33c580f317d980dc1e50a13570aadd4e56b4a621f084e6fd3fd9273"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "rule_id": "bp-4a7e42807ddffd8a",
+                "binding_sha256": "f949c1403e48bded071030e947c5d4af593bc638247583efa98d55bc6286e38e"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "rule_id": "bp-b9b0c0c1d15a55d8",
+                "binding_sha256": "655d20306ab2ef525b713d8c54b86761018cd15443f789fb05b0301703781064"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "CA-QC",
+                  "megajoule"
+                ],
+                "rule_id": "bp-43986fca5315c8e5",
+                "binding_sha256": "6c746c6abcaa13ea94113adf979e04903e015a2f8569cf0dfbcd1b21050fece3"
+              },
+              {
+                "source": [
+                  "heavy mineral sand quarry operation",
+                  "rutile, 95% titanium dioxide",
+                  "AU",
+                  "kilogram"
+                ],
+                "rule_id": "bp-249acdf14957d4ba",
+                "binding_sha256": "976053219032ea78c405685d21034c00f52e7070401dac4dd7e78a16500c53eb"
+              },
+              {
+                "source": [
+                  "rutile production, synthetic, 95% titanium dioxide, Becher process",
+                  "rutile, 95% titanium dioxide",
+                  "AU",
+                  "kilogram"
+                ],
+                "rule_id": "bp-3c3b11b24c7478fa",
+                "binding_sha256": "10947565f5270a693ad73cac629e7d2fb516123767ee02d2aa84e0808101714c"
+              },
+              {
+                "source": [
+                  "rutile production, synthetic, 95% titanium dioxide, Benelite process",
+                  "rutile, 95% titanium dioxide",
+                  "IN",
+                  "kilogram"
+                ],
+                "rule_id": "bp-475351aff2df6843",
+                "binding_sha256": "2a2e5a741426b842a076369bade59768ffb24e11e24b7cee4e6cd59d7ad176d5"
+              },
+              {
+                "source": [
+                  "heavy mineral sand quarry operation",
+                  "rutile, 95% titanium dioxide",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-6b09f18776e522b7",
+                "binding_sha256": "048581a8750c0257552bddc6804b5c9fa859da92069408e9779f34a9c5f337fc"
+              },
+              {
+                "source": [
+                  "heavy mineral sand quarry operation and titania slag production",
+                  "rutile, 95% titanium dioxide",
+                  "ZA",
+                  "kilogram"
+                ],
+                "rule_id": "bp-bffac5a6908002be",
+                "binding_sha256": "8c7bedcf26354087c5f7daae0595ba2e3efa3a63bd12e32bc4d512e7624d82e6"
+              },
+              {
+                "source": [
+                  "market group for tap water",
+                  "tap water",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-15a5350bb1bcdb67",
+                "binding_sha256": "dfd134dae10c80a8c8a93ad62ed09657b3e997804d1d0803bbfb69ba4a01d6b2"
+              },
+              {
+                "source": [
+                  "market for wastewater from pig iron production",
+                  "wastewater from pig iron production",
+                  "CH",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-370d86f95a1eb95a",
+                "binding_sha256": "c5039ec959c4468cc28baf5c185f5eb072941f013918f981ba847026c1cb0136"
+              },
+              {
+                "source": [
+                  "market for wastewater from pig iron production",
+                  "wastewater from pig iron production",
+                  "Europe without Switzerland",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-0b346b8f3969e16b",
+                "binding_sha256": "7a598e99e37344a6e9d269afa6bee1126e935ef4891a4fea0dcf79750bfcea06"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "JP",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-aa17a8203063bba2",
+                "binding_sha256": "e5a656c8e9fb46f50c9c32b3cdb5081d767fd2dd7458b3c53f5b0b13f6c3cad0"
+              }
+            ]
+          }
+        ],
+        "limitations": "Autonomously reviewed exactecoinvent3.9cut-off titanium metal source-chain reconstruction for the pinned528kgcaller. Preserve actual +1kgmetal/sponge/TiCl4references and the original sponge-country shares CN0.425/RoW0.33/JP0.245, freight layers and distinct country electricity legs. Keep separately allocated Mg-product and Cl-product electrolysis inventories by full identity and actual +1kgproduct, despite stale comments about1kgMgCl2. Virgin Mg/Cl remain separate from recovered streams. The MgCl2recovered stock has a verified +1kgpositive production-only reference; its negative sponge coefficient remains a zero-allocated stock output, not negative treatment demand, primary MgCl2burdens or an invented recovery credit. Preserve original source process chemicals, utilities, heat-market geography shares, direct emissions and supported uncertainty. Use complete native95%rutile(AU) as a screening feedstock proxy for source95%natural/synthetic rutile routes; warn about mineral-sand versus Becher/Benelite/smelting technologies and iron/vanadium co-product allocation. Only the CN94%slag feed uses94/95native95%rutile kg, supported by actual paired CN/RoW/JP TiCl4charge evidence; retain original slag-market freight without rescaling. This is a scoped synthesis-feed proxy, not metal-to-oxide substitution or a global slag mapping; reactor impurities/yields and score effects remain uncertain. Retain RoW inert-waste landfill fraction/freight; four verified production-only negative-reference clinker handovers are literal allocation audits, never replaced by landfill or a fabricated credit. Reuse exact-profile reviewed waste and heat helpers and inherited audits. Complete native pig-iron effluent treatment per original signedm3 is an explicit whole-service screening proxy: source sewer infrastructure, treated/untreated shares, direct releases, composition and internal uncertainty are replaced by native class3treatment+sewer model, not preserved or proven equivalent. No source market untreated-release vector is additionally added, and no extra sewer/avoided-emission credit is invented. Native grids use the matching voltage/country where present, otherwise explicit complete GLOgrid proxies per original quantity. The GLO other-than-NG heat group retains its geographical shares, using the existing reviewed RoW mixed-fuel closure and an explicit complete heavy-fuel-oil furnace proxy for its RER/CA-QC branches; the former natural-gas matches are rejected, and those source fuel/technology portfolios are replaced with a stated limitation. Other native chemical/factory/fuel/freight technologies, route mixes, delivery boundaries, allocation, geography, vintage and internal uncertainty differ; no unverified solution/lifetime/distance multiplier. Preserve caller signedkg/formulas/supported uncertainty at+1. Canonical3.10biosphere uses matching UUID/role/unit/compartment. Missing2991upstream native biosphere exchanges and all proxy/allocation limitations remain visible with unquantified score effects. Other releases, inverse and cross-system-model routes are not qualified.",
+        "generated_recipe_id": "deferred-titanium-d1bb4dca871159c1e5a4",
+        "source_witnesses": [
+          {
+            "identity": {
+              "name": "market for titanium sponge",
+              "reference product": "titanium sponge",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "17c83059025abd7d3d9a8f44771b1e8e1d621569de121d35a8ee480ae1c72cb1",
+            "metadata_sha256": "81fdc1a72888ccf7047691744d951e144ae18e6d3e166c9a440156f0d98acb73"
+          },
+          {
+            "identity": {
+              "name": "titanium sponge production, from titanium tetrachloride",
+              "reference product": "titanium sponge",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5f7b991d3951118434c39fd1579df2d211269a24833b9cce6ebcbea3200a2f80",
+            "metadata_sha256": "a155debe077d73a8f2449533e415910a8868fbc0d93f63a7739a4b55b90be90e"
+          },
+          {
+            "identity": {
+              "name": "titanium sponge production, from titanium tetrachloride",
+              "reference product": "titanium sponge",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7f24f4528ad0def2d176828c5a4d617ecb0f4ab25d21fc17096fd7cd27df6cec",
+            "metadata_sha256": "569d9b40fe264ca784093dc586b0369fd23037763a9aea7f563cb79435f17cb4"
+          },
+          {
+            "identity": {
+              "name": "titanium sponge production, from titanium tetrachloride",
+              "reference product": "titanium sponge",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "debc29b50b2c69ed43e24ebbb9c2530f6118afd0d2e6df2778ea96c7d5671d63",
+            "metadata_sha256": "d4f688a3bc86b17f5af3f702e04eb245f43729db680d2971f5b104133262a9a2"
+          },
+          {
+            "identity": {
+              "name": "magnesium chloride, from titanium sponge production, Recycled Content cut-off",
+              "reference product": "magnesium chloride, from titanium sponge production",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6c1dc234dafde03db6de00bdeb73059bb298e4817ec228257b4ffdaece097176",
+            "metadata_sha256": "d22241cc8d9455a57bb8cc07d3ff03d7af2f975c2e38c426334daa40b576c444"
+          },
+          {
+            "identity": {
+              "name": "market for magnesium, for reuse in titanium sponge production",
+              "reference product": "magnesium, for reuse in titanium sponge production",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7853d54a9786d1fe373ff5d748aa3143670cd0d921976410e91eeb2e5bb7f49e",
+            "metadata_sha256": "29510b41aca71e3f238d3105bcbd60619937813979fdc8acd31c78e987d0c2a7"
+          },
+          {
+            "identity": {
+              "name": "titanium tetrachloride production",
+              "reference product": "titanium tetrachloride",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6ca8d0f3e1af73936330557a7bc51dd4a811c32db50011ce0f766db448d2af8b",
+            "metadata_sha256": "cf77b7bd56f254e446bb09eb7d9cfee987fb2dc6109fdf197d5e39aecf853c24"
+          },
+          {
+            "identity": {
+              "name": "market for magnesium, for reuse in titanium sponge production",
+              "reference product": "magnesium, for reuse in titanium sponge production",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "302ebfdaffd5ebe5e8c4d13c16a38988b431825871fe2a5938a749a2cb7dc7a4",
+            "metadata_sha256": "6ab16c688830cffcdd361c465b696ea95c7aee4b521d7e35b44f96afeb5d7eba"
+          },
+          {
+            "identity": {
+              "name": "titanium tetrachloride production",
+              "reference product": "titanium tetrachloride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9ef1938e87141969366aa1dfc8a7b28fe5b1c43492e1366f3c09a3a4a1ee330d",
+            "metadata_sha256": "d1618c3c04fc88e7d2cd72aee7e994bc9af179d199d2b9edf7a9db4d75cda852"
+          },
+          {
+            "identity": {
+              "name": "market for magnesium, for reuse in titanium sponge production",
+              "reference product": "magnesium, for reuse in titanium sponge production",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5b9e4ecc989715b0e68da2fa71907de67b9c53a0732fd89bd7d1aba481913e14",
+            "metadata_sha256": "0aebe79ce25ec8ee5a548e2ffcdb7e22abe79397c4f17a42713b745f233e46b5"
+          },
+          {
+            "identity": {
+              "name": "titanium tetrachloride production",
+              "reference product": "titanium tetrachloride",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5f8bab74a31593af09aad0c2e814f77226a3038924996583165664f2ab34bad5",
+            "metadata_sha256": "d310dbc3ce36bf8b534db0c4fac68b9a99d6d015d653114befe43d4ffadcbeba"
+          },
+          {
+            "identity": {
+              "name": "electrolysis of magnesium chloride, from titanium sponge production",
+              "reference product": "magnesium, for reuse in titanium sponge production",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "879d210ef1807d5abb5a89bbbeea97b7ee868db446e184bd4b58558c4998c2fa",
+            "metadata_sha256": "09e2557832d944f840f05fba34912b7be9b71e43f96b51bfd32ee61b2252491a"
+          },
+          {
+            "identity": {
+              "name": "market for chlorine, for reuse in titanium tetrachloride production",
+              "reference product": "chlorine, for reuse in titanium tetrachloride production",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5c2fe9b3109d436704b8c007b79774d07810cafec0351bc97adb6d3bd66ceb18",
+            "metadata_sha256": "dbeae9f5573a722f6b7b3dcf82f3bb6d50f2cf7a2799accf0e5de7f454d6635c"
+          },
+          {
+            "identity": {
+              "name": "market for titania slag, 94% titanium dioxide",
+              "reference product": "titania slag, 94% titanium dioxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e6194a7a55cab5cb44c4febe06754e67b7a137249ebca14d7299bdf15d8ee12e",
+            "metadata_sha256": "6660211eb0e12c97791397b720f4f2f5487e2636f83bb92247ebc3006fbeafb0"
+          },
+          {
+            "identity": {
+              "name": "electrolysis of magnesium chloride, from titanium sponge production",
+              "reference product": "magnesium, for reuse in titanium sponge production",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e0869910e98463c4fcb8f9b46a213f78a7b1fc3a43b713ebee0071cf0bce72c9",
+            "metadata_sha256": "5b68d3c7b3355ab7e3813d2194a10a2c4779cf4315d232863548279aaca952a2"
+          },
+          {
+            "identity": {
+              "name": "market for chlorine, for reuse in titanium tetrachloride production",
+              "reference product": "chlorine, for reuse in titanium tetrachloride production",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2816d33535ffd607975e296a8ac0d2a7cd221e12172ea64ac6edab6b50b84b0d",
+            "metadata_sha256": "7309dbdbb9d1235e0f0e4ceb6ef949beb3a588adb68658d9bfa8aec5b139bcc5"
+          },
+          {
+            "identity": {
+              "name": "market for rutile, 95% titanium dioxide",
+              "reference product": "rutile, 95% titanium dioxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2a03537a80481ef710ce2d6d03438f3c8b458769c8c6f6e65edcf3086e204d8b",
+            "metadata_sha256": "2b5f480b4cf50e70747d5659bcdb9c62b3108427b4d02c4348b38d7ff689a252"
+          },
+          {
+            "identity": {
+              "name": "electrolysis of magnesium chloride, from titanium sponge production",
+              "reference product": "magnesium, for reuse in titanium sponge production",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b6a1cfbc9aff3e1a247efbcb62eded9154f4a08cb0969765ca4a3405fb668a40",
+            "metadata_sha256": "05b26ffbae0dc2bba4379b535ff871939213e53722ac800d22ddbb6c12cf9d0b"
+          },
+          {
+            "identity": {
+              "name": "market for chlorine, for reuse in titanium tetrachloride production",
+              "reference product": "chlorine, for reuse in titanium tetrachloride production",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5266c4c6e15d5c16398fbc66ba91ab11c9767a72aa21108f1d34a0e9ea45115f",
+            "metadata_sha256": "94f1d4a645ce9e39be997dd8bf24556f2bef3d6d382da03019252cb8aee109f1"
+          },
+          {
+            "identity": {
+              "name": "market for magnesium chloride, from titanium sponge production",
+              "reference product": "magnesium chloride, from titanium sponge production",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5ea97eabd8f44d9a2496b4bb7c96667d460e569b65dd9df52436ca9ac2f135f4",
+            "metadata_sha256": "d718bda90225da7058e64414bbd42ebe08bff591210595ea6a235f3ddb48f48d"
+          },
+          {
+            "identity": {
+              "name": "electrolysis of magnesium chloride, from titanium sponge production",
+              "reference product": "chlorine, for reuse in titanium tetrachloride production",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b913cdc41f7a9d1cfc10ff13349da530cb4bfbcf63185a924e0293488d44e2d6",
+            "metadata_sha256": "01497138ddd3b4a666cf1488f0876ff04e8f82bb209384f959c4b225bac086a7"
+          },
+          {
+            "identity": {
+              "name": "electrolysis of magnesium chloride, from titanium sponge production",
+              "reference product": "chlorine, for reuse in titanium tetrachloride production",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2e033b0a7477872a49cd98421af2d7e21bfc6216307ca82f541282bb6cdc9152",
+            "metadata_sha256": "b53b0f8f908b5ba1ae801b74fdef5b11282dd51575ea619de96695a4cc846fc6"
+          },
+          {
+            "identity": {
+              "name": "electrolysis of magnesium chloride, from titanium sponge production",
+              "reference product": "chlorine, for reuse in titanium tetrachloride production",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5dc9283acbb2954351d7c46f8e4ef087a7c7ae3614904c884ba6e06f717cc62a",
+            "metadata_sha256": "169e21fb15c7070cbc3d7eeef1c36ef4e49757a11a3460d2730b72dc5636b318"
+          },
+          {
+            "identity": {
+              "location": "GLO",
+              "name": "market for titanium",
+              "reference product": "titanium",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "ac988344c43383b642e34b5446abb40e4a1fce88406c13865127bfef456a4092",
+            "metadata_sha256": "0e4841478c345f6b06fc001494fda763e0c98944d4bd6fb5163165c2d03d1445"
+          },
+          {
+            "identity": {
+              "name": "titanium production",
+              "reference product": "titanium",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "35be979f3518928fd8941f8bc84d7094f74390f2170d307467031a392377e0c2",
+            "metadata_sha256": "52fb67057645b00ca1a15e264f5e460b2ee921f32cbfd8de9c92a4f1299e10ab"
+          },
+          {
+            "identity": {
+              "name": "market for inert waste",
+              "reference product": "inert waste",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+            "metadata_sha256": "412ac7e98855498efc21475185c1f2bd09a19a0bfc6eb8e889b17d9192a69997"
+          },
+          {
+            "identity": {
+              "name": "market group for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "inventory_sha256": "5d84060de14084b29872a450323ead50cb62fd78a9ad0d3c22d3e64026524c7b",
+            "metadata_sha256": "c40d438b5990715459b1222240ac9361249474dd941ea55e479c9143342ad1ee"
+          },
+          {
+            "identity": {
+              "name": "market group for heat, district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "inventory_sha256": "4db98495c7fb9b170f3e41b888eafd8b3a1c4999805d5249efe9d0181beb2044",
+            "metadata_sha256": "e4edb54f59ac6eb35d2fbc492a1582e60d849692139894454519a0a1b14ec8de"
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "caller_conversion_factor": 1,
+        "physical_reference": "one kilogram metal; do not map titanium to titanium dioxide",
+        "expected_foreground_records": 114,
+        "expected_foreground_biosphere_exchanges": 171,
+        "approved_recipe_source_omissions": {
+          "deferred-titanium-inert-56c49e46b8a65138c045": [
+            {
+              "original_index": 2,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "BR",
+                "unit": "kilogram",
+                "amount": -0.0004874542674927177,
+                "uncertainty type": 0,
+                "loc": -0.0004874542674927177,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            {
+              "original_index": 3,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "US",
+                "unit": "kilogram",
+                "amount": -0.06281127794067003,
+                "uncertainty type": 0,
+                "loc": -0.06281127794067003,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            {
+              "original_index": 4,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.6200088643474869,
+                "uncertainty type": 0,
+                "loc": -0.6200088643474869,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            {
+              "original_index": 5,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "CO",
+                "unit": "kilogram",
+                "amount": -4.286739848569684e-06,
+                "uncertainty type": 0,
+                "loc": -4.286739848569684e-06,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            }
+          ],
+          "deferred-concrete-ccc89e73133fcd6a3b64": [
+            {
+              "original_index": 2,
+              "rationale": "Independently verified production-only allocated clinker terminal: zero nonproduction exchanges, source LCI contribution exactly zero. Retain signed source quantity in this audit. No invented landfill, fuel burden, recovery credit or renormalization; no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "location": "Europe without Switzerland",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -0.5648257344156875,
+                "loc": -0.5648257344156875,
+                "location": "Europe without Switzerland",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ],
+          "deferred-waste-market-bad1b3a323f58dd0d12d": [
+            {
+              "original_index": 1,
+              "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens.",
+              "source_activity": {
+                "location": "CH",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -1.0,
+                "loc": -1.0,
+                "location": "CH",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Autonomously reviewed exactecoinvent3.9cut-off titanium metal source-chain reconstruction for the pinned528kgcaller. Preserve actual +1kgmetal/sponge/TiCl4references and the original sponge-country shares CN0.425/RoW0.33/JP0.245, freight layers and distinct country electricity legs. Keep separately allocated Mg-product and Cl-product electrolysis inventories by full identity and actual +1kgproduct, despite stale comments about1kgMgCl2. Virgin Mg/Cl remain separate from recovered streams. The MgCl2recovered stock has a verified +1kgpositive production-only reference; its negative sponge coefficient remains a zero-allocated stock output, not negative treatment demand, primary MgCl2burdens or an invented recovery credit. Preserve original source process chemicals, utilities, heat-market geography shares, direct emissions and supported uncertainty. Use complete native95%rutile(AU) as a screening feedstock proxy for source95%natural/synthetic rutile routes; warn about mineral-sand versus Becher/Benelite/smelting technologies and iron/vanadium co-product allocation. Only the CN94%slag feed uses94/95native95%rutile kg, supported by actual paired CN/RoW/JP TiCl4charge evidence; retain original slag-market freight without rescaling. This is a scoped synthesis-feed proxy, not metal-to-oxide substitution or a global slag mapping; reactor impurities/yields and score effects remain uncertain. Retain RoW inert-waste landfill fraction/freight; four verified production-only negative-reference clinker handovers are literal allocation audits, never replaced by landfill or a fabricated credit. Reuse exact-profile reviewed waste and heat helpers and inherited audits. Complete native pig-iron effluent treatment per original signedm3 is an explicit whole-service screening proxy: source sewer infrastructure, treated/untreated shares, direct releases, composition and internal uncertainty are replaced by native class3treatment+sewer model, not preserved or proven equivalent. No source market untreated-release vector is additionally added, and no extra sewer/avoided-emission credit is invented. Native grids use the matching voltage/country where present, otherwise explicit complete GLOgrid proxies per original quantity. The GLO other-than-NG heat group retains its geographical shares, using the existing reviewed RoW mixed-fuel closure and an explicit complete heavy-fuel-oil furnace proxy for its RER/CA-QC branches; the former natural-gas matches are rejected, and those source fuel/technology portfolios are replaced with a stated limitation. Other native chemical/factory/fuel/freight technologies, route mixes, delivery boundaries, allocation, geography, vintage and internal uncertainty differ; no unverified solution/lifetime/distance multiplier. Preserve caller signedkg/formulas/supported uncertainty at+1. Canonical3.10biosphere uses matching UUID/role/unit/compartment. Missing2991upstream native biosphere exchanges and all proxy/allocation limitations remain visible with unquantified score effects. Other releases, inverse and cross-system-model routes are not qualified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4c1f5dff8a8162b8582923c23ae56bf11d44bbb624701deaa8e5b0872c929a35"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-375988c6d6244191",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_titanium",
+      "review_path": "export/uvek_deferred_titanium_review.json",
+      "review_sha256": "137a329a878193a28936b114c53ea30a83e8c1d15e3a8f0a6db9ec4da490bf72",
+      "authorization": "Autonomous remaining-mapping goal and standing auto-approval. Derived native-input source-chain reconstruction and explicit complete functional proxies; raw source inventories remain private.",
+      "inspection": {
+        "rule_id": "bp-375988c6d6244191",
+        "source": {
+          "location": "RoW",
+          "name": "market for inert waste",
+          "reference product": "inert waste",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.216249,
+          "conversion_factor": -1,
+          "id": "bp-375988c6d6244191",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-375988c6d6244191"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for inert waste",
+            "reference product": "inert waste",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "c7b2f87b083bd2bf444ea222a2377df4298637828f745fefe1c710d130b304b2",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_TREATMENT_SERVICE",
+        "original_factor": -1,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": -1,
+            "inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+            "inputs": [
+              {
+                "location": "CH",
+                "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+                "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+                "unit": "kilogram",
+                "amount": 0.3166881167045019,
+                "uncertainty type": 0,
+                "loc": 0.3166881167045019,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0008124854420980722,
+                "uncertainty type": 2,
+                "loc": -7.115412561338657,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0029325763106612677,
+                "uncertainty type": 2,
+                "loc": -5.831873955384336,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.00020573828760997995,
+                "uncertainty type": 2,
+                "loc": -8.488905645373796,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0040458296676008434,
+                "uncertainty type": 2,
+                "loc": -5.510068640084499,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.003203370292029836,
+                "uncertainty type": 2,
+                "loc": -5.7435518071602525,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer",
+                "amount": 0.0003461605163611663,
+                "uncertainty type": 2,
+                "loc": -7.96860797036524,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer",
+                "amount": 0.016762842782120813,
+                "uncertainty type": 2,
+                "loc": -4.0885905812399015,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer",
+                "amount": 0.002210996701518021,
+                "uncertainty type": 2,
+                "loc": -6.114311868958677,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "type": "technosphere"
+              }
+            ],
+            "source_input_omissions": [
+              {
+                "original_index": 2,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "BR",
+                  "unit": "kilogram",
+                  "amount": -0.0004874542674927177,
+                  "uncertainty type": 0,
+                  "loc": -0.0004874542674927177,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              },
+              {
+                "original_index": 3,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "US",
+                  "unit": "kilogram",
+                  "amount": -0.06281127794067003,
+                  "uncertainty type": 0,
+                  "loc": -0.06281127794067003,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              },
+              {
+                "original_index": 4,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram",
+                  "amount": -0.6200088643474869,
+                  "uncertainty type": 0,
+                  "loc": -0.6200088643474869,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              },
+              {
+                "original_index": 5,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "CO",
+                  "unit": "kilogram",
+                  "amount": -4.286739848569684e-06,
+                  "uncertainty type": 0,
+                  "loc": -4.286739848569684e-06,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market group for electricity, high voltage",
+                  "electricity, high voltage",
+                  "GLO",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2f9c80eaacf32839",
+                "binding_sha256": "e00273a3d8bb188d073e4e67128d7a098905aef2b51112f4b9ff8a343190ede7"
+              },
+              {
+                "source": [
+                  "market for chemical factory, organics",
+                  "chemical factory, organics",
+                  "GLO",
+                  "unit"
+                ],
+                "rule_id": "bp-5b8c937d3fb21468",
+                "binding_sha256": "ea09ff0e6cef09a0a018fa2941f6ca594c59c700b00fc41ae34986ee3d29c8d3"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-296624bc97644b88",
+                "binding_sha256": "15f7cdbab9679ecde8047420d2f7ba5c966865b440baf6cbeed9edbe7178616a"
+              },
+              {
+                "source": [
+                  "treatment of inert waste, sanitary landfill",
+                  "inert waste",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-5ec1f9f7a6103c98",
+                "binding_sha256": "f8947e002c50a4dcd138b2a35588004c039b5fdbde2605e2a3325ae679343de5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-949e9423153a45de",
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-46ffc4892be8fcb1",
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-e567e56fc816d39f",
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-b25755fd394b9346",
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-4a797a6b30510a65",
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-1af2418d10ae3176",
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-a51d49493f310338",
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-6b4f9e5ca470ac92",
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for magnesium",
+                  "magnesium",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-2c31977a8dd582df",
+                "binding_sha256": "aaca733a37ad315fcb1979f2262bb896b4bb708758a379e25205a6a170f9e7de"
+              },
+              {
+                "source": [
+                  "magnesium chloride, from titanium sponge production, Recycled Content cut-off",
+                  "magnesium chloride, from titanium sponge production",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-151ec6beddb1708c",
+                "binding_sha256": "7eafc77e2fa5d0b5ed85757013b2a3d5152bdc5739290396628700b71abf5e6a"
+              },
+              {
+                "source": [
+                  "market for sulfuric acid",
+                  "sulfuric acid",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-7532c17fac15ff33",
+                "binding_sha256": "648093a4f4a945e1c6c9004a0aab02cd1f1049b8597d7919e5db80511264f2c4"
+              },
+              {
+                "source": [
+                  "market for basic oxygen furnace slag",
+                  "basic oxygen furnace slag",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-0e3c0fc62c6c49be",
+                "binding_sha256": "446c4e3e9a666d0f26e7bf13a2c88282d4cf6fe5ec8b06923082f18168b0a93b"
+              },
+              {
+                "source": [
+                  "market for chlorine, liquid",
+                  "chlorine, liquid",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-dfa75efead55c5e9",
+                "binding_sha256": "52e9c384a5e58967c5b701dd8113e7b302dfed5726aa7d8c8d1a329d4ef81ceb"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "rule_id": "bp-f7dd94e542cba21d",
+                "binding_sha256": "568f058bd28db8883f1a9e5af8e9c0435d2398e22cdf6da5ead3a555a8ae3b80"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "rule_id": "bp-4458360e03e22566",
+                "binding_sha256": "ed2b91f7770a6d1f903fe33eda12e82f0018b1c7644e47614f6ea253ee6dda47"
+              },
+              {
+                "source": [
+                  "market for petroleum coke",
+                  "petroleum coke",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-ed9567d915d3e1af",
+                "binding_sha256": "73608b7cb8bdaa51c930a9b1af37a383d80e252ad683382c472d52dac817ecd5"
+              },
+              {
+                "source": [
+                  "market for sodium hydroxide, without water, in 50% solution state",
+                  "sodium hydroxide, without water, in 50% solution state",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-1d075913a8c7a9b6",
+                "binding_sha256": "282d47e936be1cf20da46090fc84ff5adba2a89d4e2b1d4723d57059ed387191"
+              },
+              {
+                "source": [
+                  "market for tap water",
+                  "tap water",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-182cd513cb8969f1",
+                "binding_sha256": "54c928609da7a8721f875c8dca9872cfc00c698d140850d9f28151be6763d364"
+              },
+              {
+                "source": [
+                  "vanadium-titanomagnetite mine operation and beneficiation",
+                  "titania slag, 94% titanium dioxide",
+                  "CN",
+                  "kilogram"
+                ],
+                "rule_id": "bp-08d39ba64410a1da",
+                "binding_sha256": "83b7c55358dd438f7ad12c4ffd0674dffa4f988cbf617cf2e2dc4f891b77df52"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-59f60997076df042",
+                "binding_sha256": "10a98c33511f8570d999c7617ffa81cd709438b667523b448d8781efe0e86e76"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-999a70594224e212",
+                "binding_sha256": "ccc0c9ba49d00d193c2b8bc5cc14501b60ba77e3394e4110997a2df3f1c6dae5"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-c87d564423c75554",
+                "binding_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, container ship",
+                  "transport, freight, sea, container ship",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-55c88a17f0ffb64f",
+                "binding_sha256": "e830a14edac4bb663255de80ac598db675e30f2cd4c4e677b3b190c5ad5236f8"
+              },
+              {
+                "source": [
+                  "market for wastewater from pig iron production",
+                  "wastewater from pig iron production",
+                  "RoW",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-7e371cf8a52dd86c",
+                "binding_sha256": "9e1a13036c3455e4ad48aea004b17f41bc85a4149e90bf4313bf77fef6922af3"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "SY",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-b68f333b0eb9e6d6",
+                "binding_sha256": "797448c3be6c6b3d1147faca8ce216099172141161407ea66137d9dab26908bc"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-252ec999ee1fc358",
+                "binding_sha256": "08e3b3015115a9936287ebf53ef30fb23857d6d7d04f58c6748c0591407b1744"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "IN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-39c5b9d331541f84",
+                "binding_sha256": "2fd2cb8c7463ed4da88ed1cc8f00d46dc23ed1887ca3fdcd16fd9d8e8007cf7e"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "LB",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-536e79a61db3df53",
+                "binding_sha256": "49210a1ab8055b0f37b68f7a65cffb34ac2f7fde6b118cdbf481895d8e932105"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-ce118b23c8f8cd5c",
+                "binding_sha256": "debb9ffbad959f5a6eff841091b1c37950db2e46e01e2ae11ebdec4449e10c2a"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RU",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-1237581aa7459b6a",
+                "binding_sha256": "2e09d4fbad13e90d7e871ba84798fd0fc09630006cf3ab42bd59ab7bc8a62b4d"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-02ead287df03be41",
+                "binding_sha256": "1d4ad3843b4649dc1b2fe02969f195e80bc17587a41bc41a4b702d23ba7e7931"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RER",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-49b843b95c0c6223",
+                "binding_sha256": "a147764e438f83642751b71b694c2c8ca149c64c13dc096fbe3937f83fb69fb9"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TW",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-48a23f96f333d538",
+                "binding_sha256": "aa0e45363372daae8a731de270fae57f22ee2c6427c2014ef617bc1e020fd70b"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-4ad69c2f62e90f0c",
+                "binding_sha256": "3bab33b99154fa598c85ba855ea01bf43574d36426d2ddbb9a6af31ae7fd645b"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TR",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-972c9a6076b1cd54",
+                "binding_sha256": "d33c4abdc877fdd4ce89db64858831d0a1caf2d761c9dfdce74f29d164aa4d0c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "YE",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f1c7b653d5a7f72c",
+                "binding_sha256": "9db7c0306f18b201ec0a443aa1846516da1c3b5899c8175abfeec8e7bed00406"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RLA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-9d30b98cb51ab151",
+                "binding_sha256": "93469f867c515bc97e0bc78bc6d08c2d4fb3c0d8bbc85b3cee4cbb7803536698"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RME",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-82ad62164fbd3e18",
+                "binding_sha256": "40a649576911cb8a6c47a6a1f7b505f628a3477588c3cceb04b55c0ea4311b65"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-085e6a82dfd135c0",
+                "binding_sha256": "5f60ae48dafb1374e3173b73dad20a6ae51b5587040285607e77c139183f0ca7"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "LK",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2da44aa49b59c390",
+                "binding_sha256": "79aa95613fb4686a8b80f3327d6fb78615beb38ac769a4ed520956099931ade6"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-80aa08a836e8caf6",
+                "binding_sha256": "61d727041acbd083cead3f5caac0ab575b547f31902956c7d81ec4c61a6a1ddd"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-5fe15d7b5531ffd6",
+                "binding_sha256": "34e02f5dc2efff8fde685c8df9a3aea3891791b79b04bf509ee66572afab9464"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-861c31642b2bf0b4",
+                "binding_sha256": "e45a66c90d95e7c86b890a073435a1a7c4145cde5da9a7b7994bd6e22aca28fe"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-26c82ca4b6476fbf",
+                "binding_sha256": "dac49a4a8d651320c4b1ba1c4106ac88ebd323724a38ee3a075ae9486bb19600"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "SG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-b9c6cca8bc2d06b4",
+                "binding_sha256": "da15e160a29dae5f04cc660f691d5d74ba8e4b418f89e2d81928c827c7d3a573"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RAF",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-c87d2c64f3d8d973",
+                "binding_sha256": "3dfa776bc6098b41a8dc31d745c123e7f706bb92a274cea4648616b880a5a0bc"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-05755e112b4cb541",
+                "binding_sha256": "797181902a2bf6cbaca69e133d8a5f1bae0bda393fa849508352c7108011b4c0"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "ID",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-fc9e4184d070b645",
+                "binding_sha256": "f14d7021484b1b5756301d579aaa2ea9680937f3d0870ee5859b37abea1af344"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "IL",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-7aab556fc62c4d8a",
+                "binding_sha256": "68da3543f17c4967e60cb7813875d6d7f51ea68a9af152d31be4cbfebeef91cb"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BD",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2fd0fd1e158ae888",
+                "binding_sha256": "f4e2f7e9aaa87df7d1794bc8c980e210848dd60369b1bcba36891c84cf394e58"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AU",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-45c9f9c3254ce0de",
+                "binding_sha256": "7304e501c5f33f8547a7f457921cebad07809f9c5e09403d38c7caf8994f716c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f1e0f62720d0e814",
+                "binding_sha256": "828c3e568535e0a8690e4682f2b668650732270fb829a64d662ddd31fcaf8207"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "OM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-955d8965ef81b908",
+                "binding_sha256": "2f8f439f786f55100c645dbeeb1c48e4c3f9fa969b2bf9a12dc99d9eceef8bbf"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "HK",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-a2e521d9e65f4ff0",
+                "binding_sha256": "16ab49e72623b41ecb686dd0b54e87f3defd63d6014ddd8577418ca6daff6c24"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "GE",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-4a3ed40ec98ff91d",
+                "binding_sha256": "68336b7bd8e9769afe3deca2ab33da943f4c787f93097b50545df59b30b3e9e6"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CY",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-d04eb50285426fed",
+                "binding_sha256": "9b71f531524781413263cde6eab35452c7945634216a756697b5ec64ebcb60d2"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "PK",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2c71dd76afdfb9ee",
+                "binding_sha256": "80f921ddbc4b26b69c11d2bfb932dc5ec675b188a0b0dfc4079075b42e836118"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "PH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-0f41397ea9dfc430",
+                "binding_sha256": "ba108f6e90eee44510d31731535c5f41141a48a6cc7a4cc03a3b8be5bfed5f09"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TJ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-7da13dbcf5478734",
+                "binding_sha256": "4c71e1b260b0edef2964b75fc3f927f6e73be7e79fe1b676d4028e173c4890bf"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KP",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-df766535b7bad5b9",
+                "binding_sha256": "b8f5f4f462be5a4f15de2b724538ee00498be80b37a7aaf650820b8b58d351ff"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "UZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-d473095afebaa05b",
+                "binding_sha256": "6161d5e7d7f06a7150b175457eb11f118a7769bd6d19a839e09833d564ac957c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KR",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-edf268e27a77f30c",
+                "binding_sha256": "8ff88636088b833453f0aa3d4160a10d205dcd8b5345844e9dfbe3b8fd8a8dfd"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "QA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-146999088c22b09d",
+                "binding_sha256": "791cd4d184342b0964a18c53b6e800fa5d8da67438e0dc880bbe2f0cba3a810b"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2a1d57517c1c9c50",
+                "binding_sha256": "761cc896e837c5422f5b271bcf3993f8844e4fd437103d5d85caa1cfde9c1188"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NP",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-905f2bdaa88e6266",
+                "binding_sha256": "37cc0bd1b3db5e3a795fb77eade6c5e4901c0129c0a0173a7f4d8603df6b46b1"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "JO",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-76a93ba6f52c0e8f",
+                "binding_sha256": "73f1d486c2b7f61b590ded9a362627afcaa58de4fd9b56ec1774683673aafded"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RNA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-a819b95a8342323b",
+                "binding_sha256": "75329a9046190f00b05eeb92fb9f090165ebb5c9dbf5e35ad863cd397842c8c4"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MY",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-1f81c9e148362de4",
+                "binding_sha256": "1de9b84e4f7c54373e79d8ec4e9110218956276797d608a8478b5f5ecbb26116"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "VN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-7eb0db24a3fc1e76",
+                "binding_sha256": "b56507c34ee58ce861844dccd0ee5a0a72d2d4cb68cf08ff02e30aa781dce9cf"
+              },
+              {
+                "source": [
+                  "market for inert waste",
+                  "inert waste",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-f9049261a31e0da4",
+                "binding_sha256": "295841fa31685fa1b0388afac11cf201579c6dda4222241e58a26eae22d4d9a5"
+              },
+              {
+                "source": [
+                  "market for inert waste",
+                  "inert waste",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-87f7d6834d9147fa",
+                "binding_sha256": "85a3085f7cf21263d8884fdc318c88191691a26a7ecf7252c4fe8d02b1b57e75"
+              },
+              {
+                "source": [
+                  "market for sulfuric acid",
+                  "sulfuric acid",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-7740a48a01851669",
+                "binding_sha256": "2f627a5957f8d385f42a9fe96eefaa567832fc2e75ffa266450c7f01527bf494"
+              },
+              {
+                "source": [
+                  "market for basic oxygen furnace slag",
+                  "basic oxygen furnace slag",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-454fe7a83cbaa613",
+                "binding_sha256": "6f795765fb973d78d7862876d8228233149677da1f21e31c0037a77eb8a9b750"
+              },
+              {
+                "source": [
+                  "market for chlorine, liquid",
+                  "chlorine, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-3080b1f0605165b9",
+                "binding_sha256": "33e56f12509e592f66380e67d1ffcb87aed8e6238ca8632e2e6c0a8a9d91dc3f"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "CA-QC",
+                  "megajoule"
+                ],
+                "rule_id": "bp-b093a40f996187dc",
+                "binding_sha256": "8b900fc2c33c580f317d980dc1e50a13570aadd4e56b4a621f084e6fd3fd9273"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "rule_id": "bp-4a7e42807ddffd8a",
+                "binding_sha256": "f949c1403e48bded071030e947c5d4af593bc638247583efa98d55bc6286e38e"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "rule_id": "bp-b9b0c0c1d15a55d8",
+                "binding_sha256": "655d20306ab2ef525b713d8c54b86761018cd15443f789fb05b0301703781064"
+              },
+              {
+                "source": [
+                  "market for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "CA-QC",
+                  "megajoule"
+                ],
+                "rule_id": "bp-43986fca5315c8e5",
+                "binding_sha256": "6c746c6abcaa13ea94113adf979e04903e015a2f8569cf0dfbcd1b21050fece3"
+              },
+              {
+                "source": [
+                  "heavy mineral sand quarry operation",
+                  "rutile, 95% titanium dioxide",
+                  "AU",
+                  "kilogram"
+                ],
+                "rule_id": "bp-249acdf14957d4ba",
+                "binding_sha256": "976053219032ea78c405685d21034c00f52e7070401dac4dd7e78a16500c53eb"
+              },
+              {
+                "source": [
+                  "rutile production, synthetic, 95% titanium dioxide, Becher process",
+                  "rutile, 95% titanium dioxide",
+                  "AU",
+                  "kilogram"
+                ],
+                "rule_id": "bp-3c3b11b24c7478fa",
+                "binding_sha256": "10947565f5270a693ad73cac629e7d2fb516123767ee02d2aa84e0808101714c"
+              },
+              {
+                "source": [
+                  "rutile production, synthetic, 95% titanium dioxide, Benelite process",
+                  "rutile, 95% titanium dioxide",
+                  "IN",
+                  "kilogram"
+                ],
+                "rule_id": "bp-475351aff2df6843",
+                "binding_sha256": "2a2e5a741426b842a076369bade59768ffb24e11e24b7cee4e6cd59d7ad176d5"
+              },
+              {
+                "source": [
+                  "heavy mineral sand quarry operation",
+                  "rutile, 95% titanium dioxide",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-6b09f18776e522b7",
+                "binding_sha256": "048581a8750c0257552bddc6804b5c9fa859da92069408e9779f34a9c5f337fc"
+              },
+              {
+                "source": [
+                  "heavy mineral sand quarry operation and titania slag production",
+                  "rutile, 95% titanium dioxide",
+                  "ZA",
+                  "kilogram"
+                ],
+                "rule_id": "bp-bffac5a6908002be",
+                "binding_sha256": "8c7bedcf26354087c5f7daae0595ba2e3efa3a63bd12e32bc4d512e7624d82e6"
+              },
+              {
+                "source": [
+                  "market group for tap water",
+                  "tap water",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-15a5350bb1bcdb67",
+                "binding_sha256": "dfd134dae10c80a8c8a93ad62ed09657b3e997804d1d0803bbfb69ba4a01d6b2"
+              },
+              {
+                "source": [
+                  "market for wastewater from pig iron production",
+                  "wastewater from pig iron production",
+                  "CH",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-370d86f95a1eb95a",
+                "binding_sha256": "c5039ec959c4468cc28baf5c185f5eb072941f013918f981ba847026c1cb0136"
+              },
+              {
+                "source": [
+                  "market for wastewater from pig iron production",
+                  "wastewater from pig iron production",
+                  "Europe without Switzerland",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-0b346b8f3969e16b",
+                "binding_sha256": "7a598e99e37344a6e9d269afa6bee1126e935ef4891a4fea0dcf79750bfcea06"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "JP",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-aa17a8203063bba2",
+                "binding_sha256": "e5a656c8e9fb46f50c9c32b3cdb5081d767fd2dd7458b3c53f5b0b13f6c3cad0"
+              }
+            ],
+            "recipe_namespace": "deferred-titanium-inert"
+          }
+        ],
+        "limitations": "Autonomously reviewed exactecoinvent3.9cut-off titanium metal source-chain reconstruction for the pinned528kgcaller. Preserve actual +1kgmetal/sponge/TiCl4references and the original sponge-country shares CN0.425/RoW0.33/JP0.245, freight layers and distinct country electricity legs. Keep separately allocated Mg-product and Cl-product electrolysis inventories by full identity and actual +1kgproduct, despite stale comments about1kgMgCl2. Virgin Mg/Cl remain separate from recovered streams. The MgCl2recovered stock has a verified +1kgpositive production-only reference; its negative sponge coefficient remains a zero-allocated stock output, not negative treatment demand, primary MgCl2burdens or an invented recovery credit. Preserve original source process chemicals, utilities, heat-market geography shares, direct emissions and supported uncertainty. Use complete native95%rutile(AU) as a screening feedstock proxy for source95%natural/synthetic rutile routes; warn about mineral-sand versus Becher/Benelite/smelting technologies and iron/vanadium co-product allocation. Only the CN94%slag feed uses94/95native95%rutile kg, supported by actual paired CN/RoW/JP TiCl4charge evidence; retain original slag-market freight without rescaling. This is a scoped synthesis-feed proxy, not metal-to-oxide substitution or a global slag mapping; reactor impurities/yields and score effects remain uncertain. Retain RoW inert-waste landfill fraction/freight; four verified production-only negative-reference clinker handovers are literal allocation audits, never replaced by landfill or a fabricated credit. Reuse exact-profile reviewed waste and heat helpers and inherited audits. Complete native pig-iron effluent treatment per original signedm3 is an explicit whole-service screening proxy: source sewer infrastructure, treated/untreated shares, direct releases, composition and internal uncertainty are replaced by native class3treatment+sewer model, not preserved or proven equivalent. No source market untreated-release vector is additionally added, and no extra sewer/avoided-emission credit is invented. Native grids use the matching voltage/country where present, otherwise explicit complete GLOgrid proxies per original quantity. The GLO other-than-NG heat group retains its geographical shares, using the existing reviewed RoW mixed-fuel closure and an explicit complete heavy-fuel-oil furnace proxy for its RER/CA-QC branches; the former natural-gas matches are rejected, and those source fuel/technology portfolios are replaced with a stated limitation. Other native chemical/factory/fuel/freight technologies, route mixes, delivery boundaries, allocation, geography, vintage and internal uncertainty differ; no unverified solution/lifetime/distance multiplier. Preserve caller signedkg/formulas/supported uncertainty at+1. Canonical3.10biosphere uses matching UUID/role/unit/compartment. Missing2991upstream native biosphere exchanges and all proxy/allocation limitations remain visible with unquantified score effects. Other releases, inverse and cross-system-model routes are not qualified.",
+        "generated_recipe_id": "deferred-titanium-inert-56c49e46b8a65138c045",
+        "source_witnesses": [
+          {
+            "identity": {
+              "name": "market for inert waste",
+              "reference product": "inert waste",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+            "metadata_sha256": "412ac7e98855498efc21475185c1f2bd09a19a0bfc6eb8e889b17d9192a69997"
+          }
+        ],
+        "source_reference_amount": -1,
+        "target_reference_amount": 1,
+        "caller_conversion_factor": -1,
+        "physical_reference": "one kilogram wet inert-waste treatment; source negative reference; four verified allocated clinker handovers remain literal audits",
+        "auxiliary_component_only": true,
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "approved_recipe_source_omissions": {
+          "deferred-titanium-inert-56c49e46b8a65138c045": [
+            {
+              "original_index": 2,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "BR",
+                "unit": "kilogram",
+                "amount": -0.0004874542674927177,
+                "uncertainty type": 0,
+                "loc": -0.0004874542674927177,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            {
+              "original_index": 3,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "US",
+                "unit": "kilogram",
+                "amount": -0.06281127794067003,
+                "uncertainty type": 0,
+                "loc": -0.06281127794067003,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            {
+              "original_index": 4,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.6200088643474869,
+                "uncertainty type": 0,
+                "loc": -0.6200088643474869,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            {
+              "original_index": 5,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "CO",
+                "unit": "kilogram",
+                "amount": -4.286739848569684e-06,
+                "uncertainty type": 0,
+                "loc": -4.286739848569684e-06,
+                "type": "technosphere"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Autonomously reviewed exactecoinvent3.9cut-off titanium metal source-chain reconstruction for the pinned528kgcaller. Preserve actual +1kgmetal/sponge/TiCl4references and the original sponge-country shares CN0.425/RoW0.33/JP0.245, freight layers and distinct country electricity legs. Keep separately allocated Mg-product and Cl-product electrolysis inventories by full identity and actual +1kgproduct, despite stale comments about1kgMgCl2. Virgin Mg/Cl remain separate from recovered streams. The MgCl2recovered stock has a verified +1kgpositive production-only reference; its negative sponge coefficient remains a zero-allocated stock output, not negative treatment demand, primary MgCl2burdens or an invented recovery credit. Preserve original source process chemicals, utilities, heat-market geography shares, direct emissions and supported uncertainty. Use complete native95%rutile(AU) as a screening feedstock proxy for source95%natural/synthetic rutile routes; warn about mineral-sand versus Becher/Benelite/smelting technologies and iron/vanadium co-product allocation. Only the CN94%slag feed uses94/95native95%rutile kg, supported by actual paired CN/RoW/JP TiCl4charge evidence; retain original slag-market freight without rescaling. This is a scoped synthesis-feed proxy, not metal-to-oxide substitution or a global slag mapping; reactor impurities/yields and score effects remain uncertain. Retain RoW inert-waste landfill fraction/freight; four verified production-only negative-reference clinker handovers are literal allocation audits, never replaced by landfill or a fabricated credit. Reuse exact-profile reviewed waste and heat helpers and inherited audits. Complete native pig-iron effluent treatment per original signedm3 is an explicit whole-service screening proxy: source sewer infrastructure, treated/untreated shares, direct releases, composition and internal uncertainty are replaced by native class3treatment+sewer model, not preserved or proven equivalent. No source market untreated-release vector is additionally added, and no extra sewer/avoided-emission credit is invented. Native grids use the matching voltage/country where present, otherwise explicit complete GLOgrid proxies per original quantity. The GLO other-than-NG heat group retains its geographical shares, using the existing reviewed RoW mixed-fuel closure and an explicit complete heavy-fuel-oil furnace proxy for its RER/CA-QC branches; the former natural-gas matches are rejected, and those source fuel/technology portfolios are replaced with a stated limitation. Other native chemical/factory/fuel/freight technologies, route mixes, delivery boundaries, allocation, geography, vintage and internal uncertainty differ; no unverified solution/lifetime/distance multiplier. Preserve caller signedkg/formulas/supported uncertainty at+1. Canonical3.10biosphere uses matching UUID/role/unit/compartment. Missing2991upstream native biosphere exchanges and all proxy/allocation limitations remain visible with unquantified score effects. Other releases, inverse and cross-system-model routes are not qualified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c0110bf9d5b399d68b73e2a10a958c53b18b815d941c745d9d0cd221c8fe5957"
+        }
+      ]
     }
   ]
 }

@@ -5010,7 +5010,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-a6d33406a770349e9394",
-      "status": "pending",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-a6d33406a770349e9394",
         "slug": "electrolyzer-production-1mwe-pem-stack",
@@ -5061,12 +5061,839 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-49e229b952f6983c: 528 kilogram of market for titanium in pinned electrolyzer-production-1mwe-pem-stack (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram titanium metal",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram titanium metal",
+        "caller_conversion_factor": 1,
+        "physical_reference": "one kilogram metal; do not map titanium to titanium dioxide"
+      },
       "rejected_prior_candidate_reason": "Titanium dioxide is chemically and functionally different from titanium metal.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
-      "commits": []
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_titanium_review.json",
+          "sha256": "137a329a878193a28936b114c53ea30a83e8c1d15e3a8f0a6db9ec4da490bf72",
+          "source_witnesses": [
+            {
+              "identity": {
+                "name": "market for titanium sponge",
+                "reference product": "titanium sponge",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "17c83059025abd7d3d9a8f44771b1e8e1d621569de121d35a8ee480ae1c72cb1",
+              "metadata_sha256": "81fdc1a72888ccf7047691744d951e144ae18e6d3e166c9a440156f0d98acb73"
+            },
+            {
+              "identity": {
+                "name": "titanium sponge production, from titanium tetrachloride",
+                "reference product": "titanium sponge",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5f7b991d3951118434c39fd1579df2d211269a24833b9cce6ebcbea3200a2f80",
+              "metadata_sha256": "a155debe077d73a8f2449533e415910a8868fbc0d93f63a7739a4b55b90be90e"
+            },
+            {
+              "identity": {
+                "name": "titanium sponge production, from titanium tetrachloride",
+                "reference product": "titanium sponge",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "7f24f4528ad0def2d176828c5a4d617ecb0f4ab25d21fc17096fd7cd27df6cec",
+              "metadata_sha256": "569d9b40fe264ca784093dc586b0369fd23037763a9aea7f563cb79435f17cb4"
+            },
+            {
+              "identity": {
+                "name": "titanium sponge production, from titanium tetrachloride",
+                "reference product": "titanium sponge",
+                "location": "JP",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "debc29b50b2c69ed43e24ebbb9c2530f6118afd0d2e6df2778ea96c7d5671d63",
+              "metadata_sha256": "d4f688a3bc86b17f5af3f702e04eb245f43729db680d2971f5b104133262a9a2"
+            },
+            {
+              "identity": {
+                "name": "magnesium chloride, from titanium sponge production, Recycled Content cut-off",
+                "reference product": "magnesium chloride, from titanium sponge production",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "6c1dc234dafde03db6de00bdeb73059bb298e4817ec228257b4ffdaece097176",
+              "metadata_sha256": "d22241cc8d9455a57bb8cc07d3ff03d7af2f975c2e38c426334daa40b576c444"
+            },
+            {
+              "identity": {
+                "name": "market for magnesium, for reuse in titanium sponge production",
+                "reference product": "magnesium, for reuse in titanium sponge production",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "7853d54a9786d1fe373ff5d748aa3143670cd0d921976410e91eeb2e5bb7f49e",
+              "metadata_sha256": "29510b41aca71e3f238d3105bcbd60619937813979fdc8acd31c78e987d0c2a7"
+            },
+            {
+              "identity": {
+                "name": "titanium tetrachloride production",
+                "reference product": "titanium tetrachloride",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "6ca8d0f3e1af73936330557a7bc51dd4a811c32db50011ce0f766db448d2af8b",
+              "metadata_sha256": "cf77b7bd56f254e446bb09eb7d9cfee987fb2dc6109fdf197d5e39aecf853c24"
+            },
+            {
+              "identity": {
+                "name": "market for magnesium, for reuse in titanium sponge production",
+                "reference product": "magnesium, for reuse in titanium sponge production",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "302ebfdaffd5ebe5e8c4d13c16a38988b431825871fe2a5938a749a2cb7dc7a4",
+              "metadata_sha256": "6ab16c688830cffcdd361c465b696ea95c7aee4b521d7e35b44f96afeb5d7eba"
+            },
+            {
+              "identity": {
+                "name": "titanium tetrachloride production",
+                "reference product": "titanium tetrachloride",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "9ef1938e87141969366aa1dfc8a7b28fe5b1c43492e1366f3c09a3a4a1ee330d",
+              "metadata_sha256": "d1618c3c04fc88e7d2cd72aee7e994bc9af179d199d2b9edf7a9db4d75cda852"
+            },
+            {
+              "identity": {
+                "name": "market for magnesium, for reuse in titanium sponge production",
+                "reference product": "magnesium, for reuse in titanium sponge production",
+                "location": "JP",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5b9e4ecc989715b0e68da2fa71907de67b9c53a0732fd89bd7d1aba481913e14",
+              "metadata_sha256": "0aebe79ce25ec8ee5a548e2ffcdb7e22abe79397c4f17a42713b745f233e46b5"
+            },
+            {
+              "identity": {
+                "name": "titanium tetrachloride production",
+                "reference product": "titanium tetrachloride",
+                "location": "JP",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5f8bab74a31593af09aad0c2e814f77226a3038924996583165664f2ab34bad5",
+              "metadata_sha256": "d310dbc3ce36bf8b534db0c4fac68b9a99d6d015d653114befe43d4ffadcbeba"
+            },
+            {
+              "identity": {
+                "name": "electrolysis of magnesium chloride, from titanium sponge production",
+                "reference product": "magnesium, for reuse in titanium sponge production",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "879d210ef1807d5abb5a89bbbeea97b7ee868db446e184bd4b58558c4998c2fa",
+              "metadata_sha256": "09e2557832d944f840f05fba34912b7be9b71e43f96b51bfd32ee61b2252491a"
+            },
+            {
+              "identity": {
+                "name": "market for chlorine, for reuse in titanium tetrachloride production",
+                "reference product": "chlorine, for reuse in titanium tetrachloride production",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5c2fe9b3109d436704b8c007b79774d07810cafec0351bc97adb6d3bd66ceb18",
+              "metadata_sha256": "dbeae9f5573a722f6b7b3dcf82f3bb6d50f2cf7a2799accf0e5de7f454d6635c"
+            },
+            {
+              "identity": {
+                "name": "market for titania slag, 94% titanium dioxide",
+                "reference product": "titania slag, 94% titanium dioxide",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "e6194a7a55cab5cb44c4febe06754e67b7a137249ebca14d7299bdf15d8ee12e",
+              "metadata_sha256": "6660211eb0e12c97791397b720f4f2f5487e2636f83bb92247ebc3006fbeafb0"
+            },
+            {
+              "identity": {
+                "name": "electrolysis of magnesium chloride, from titanium sponge production",
+                "reference product": "magnesium, for reuse in titanium sponge production",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "e0869910e98463c4fcb8f9b46a213f78a7b1fc3a43b713ebee0071cf0bce72c9",
+              "metadata_sha256": "5b68d3c7b3355ab7e3813d2194a10a2c4779cf4315d232863548279aaca952a2"
+            },
+            {
+              "identity": {
+                "name": "market for chlorine, for reuse in titanium tetrachloride production",
+                "reference product": "chlorine, for reuse in titanium tetrachloride production",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "2816d33535ffd607975e296a8ac0d2a7cd221e12172ea64ac6edab6b50b84b0d",
+              "metadata_sha256": "7309dbdbb9d1235e0f0e4ceb6ef949beb3a588adb68658d9bfa8aec5b139bcc5"
+            },
+            {
+              "identity": {
+                "name": "market for rutile, 95% titanium dioxide",
+                "reference product": "rutile, 95% titanium dioxide",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "2a03537a80481ef710ce2d6d03438f3c8b458769c8c6f6e65edcf3086e204d8b",
+              "metadata_sha256": "2b5f480b4cf50e70747d5659bcdb9c62b3108427b4d02c4348b38d7ff689a252"
+            },
+            {
+              "identity": {
+                "name": "electrolysis of magnesium chloride, from titanium sponge production",
+                "reference product": "magnesium, for reuse in titanium sponge production",
+                "location": "JP",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "b6a1cfbc9aff3e1a247efbcb62eded9154f4a08cb0969765ca4a3405fb668a40",
+              "metadata_sha256": "05b26ffbae0dc2bba4379b535ff871939213e53722ac800d22ddbb6c12cf9d0b"
+            },
+            {
+              "identity": {
+                "name": "market for chlorine, for reuse in titanium tetrachloride production",
+                "reference product": "chlorine, for reuse in titanium tetrachloride production",
+                "location": "JP",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5266c4c6e15d5c16398fbc66ba91ab11c9767a72aa21108f1d34a0e9ea45115f",
+              "metadata_sha256": "94f1d4a645ce9e39be997dd8bf24556f2bef3d6d382da03019252cb8aee109f1"
+            },
+            {
+              "identity": {
+                "name": "market for magnesium chloride, from titanium sponge production",
+                "reference product": "magnesium chloride, from titanium sponge production",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5ea97eabd8f44d9a2496b4bb7c96667d460e569b65dd9df52436ca9ac2f135f4",
+              "metadata_sha256": "d718bda90225da7058e64414bbd42ebe08bff591210595ea6a235f3ddb48f48d"
+            },
+            {
+              "identity": {
+                "name": "electrolysis of magnesium chloride, from titanium sponge production",
+                "reference product": "chlorine, for reuse in titanium tetrachloride production",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "b913cdc41f7a9d1cfc10ff13349da530cb4bfbcf63185a924e0293488d44e2d6",
+              "metadata_sha256": "01497138ddd3b4a666cf1488f0876ff04e8f82bb209384f959c4b225bac086a7"
+            },
+            {
+              "identity": {
+                "name": "electrolysis of magnesium chloride, from titanium sponge production",
+                "reference product": "chlorine, for reuse in titanium tetrachloride production",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "2e033b0a7477872a49cd98421af2d7e21bfc6216307ca82f541282bb6cdc9152",
+              "metadata_sha256": "b53b0f8f908b5ba1ae801b74fdef5b11282dd51575ea619de96695a4cc846fc6"
+            },
+            {
+              "identity": {
+                "name": "electrolysis of magnesium chloride, from titanium sponge production",
+                "reference product": "chlorine, for reuse in titanium tetrachloride production",
+                "location": "JP",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5dc9283acbb2954351d7c46f8e4ef087a7c7ae3614904c884ba6e06f717cc62a",
+              "metadata_sha256": "169e21fb15c7070cbc3d7eeef1c36ef4e49757a11a3460d2730b72dc5636b318"
+            },
+            {
+              "identity": {
+                "location": "GLO",
+                "name": "market for titanium",
+                "reference product": "titanium",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "ac988344c43383b642e34b5446abb40e4a1fce88406c13865127bfef456a4092",
+              "metadata_sha256": "0e4841478c345f6b06fc001494fda763e0c98944d4bd6fb5163165c2d03d1445"
+            },
+            {
+              "identity": {
+                "name": "titanium production",
+                "reference product": "titanium",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "35be979f3518928fd8941f8bc84d7094f74390f2170d307467031a392377e0c2",
+              "metadata_sha256": "52fb67057645b00ca1a15e264f5e460b2ee921f32cbfd8de9c92a4f1299e10ab"
+            },
+            {
+              "identity": {
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "metadata_sha256": "412ac7e98855498efc21475185c1f2bd09a19a0bfc6eb8e889b17d9192a69997"
+            },
+            {
+              "identity": {
+                "name": "market group for heat, district or industrial, natural gas",
+                "reference product": "heat, district or industrial, natural gas",
+                "location": "GLO",
+                "unit": "megajoule"
+              },
+              "inventory_sha256": "5d84060de14084b29872a450323ead50cb62fd78a9ad0d3c22d3e64026524c7b",
+              "metadata_sha256": "c40d438b5990715459b1222240ac9361249474dd941ea55e479c9143342ad1ee"
+            },
+            {
+              "identity": {
+                "name": "market group for heat, district or industrial, other than natural gas",
+                "reference product": "heat, district or industrial, other than natural gas",
+                "location": "GLO",
+                "unit": "megajoule"
+              },
+              "inventory_sha256": "4db98495c7fb9b170f3e41b888eafd8b3a1c4999805d5249efe9d0181beb2044",
+              "metadata_sha256": "e4edb54f59ac6eb35d2fbc492a1582e60d849692139894454519a0a1b14ec8de"
+            }
+          ],
+          "canonical_biosphere_witnesses": [
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "68e32537-beae-41c2-be72-74df4d273c11",
+              "source_name": "Hydrochloric acid",
+              "target": {
+                "name": "Hydrochloric acid",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "c0b1417034ea8c0a4b472c080f10dc1a92e6e89839d1b5d0c8ac3fd7453cc8a9",
+              "canonical_metadata_sha256": "720b65516b4c83dd53c49228819c91d8b0df84a45f0571f29d1b0a619becd23b"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "8b7dc667-f04e-492c-a161-80b1482126b0",
+              "source_name": "Hydrogen fluoride",
+              "target": {
+                "name": "Hydrogen fluoride",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "d85e833890d3cc9a39eb142b937c3ab9d9a674e067a85db22ada79f3e1f14a8b",
+              "canonical_metadata_sha256": "591198525af4d0fb29632fc85e5d7e6da83d3ad01feebadcf23b3218974a0f67"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "68e32537-beae-41c2-be72-74df4d273c11",
+              "source_name": "Hydrochloric acid",
+              "target": {
+                "name": "Hydrochloric acid",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "c0b1417034ea8c0a4b472c080f10dc1a92e6e89839d1b5d0c8ac3fd7453cc8a9",
+              "canonical_metadata_sha256": "720b65516b4c83dd53c49228819c91d8b0df84a45f0571f29d1b0a619becd23b"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "8b7dc667-f04e-492c-a161-80b1482126b0",
+              "source_name": "Hydrogen fluoride",
+              "target": {
+                "name": "Hydrogen fluoride",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "d85e833890d3cc9a39eb142b937c3ab9d9a674e067a85db22ada79f3e1f14a8b",
+              "canonical_metadata_sha256": "591198525af4d0fb29632fc85e5d7e6da83d3ad01feebadcf23b3218974a0f67"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "aa7cac3a-3625-41d4-bc54-33e2cf11ec46",
+              "source_name": "Carbon dioxide, fossil",
+              "target": {
+                "name": "Carbon dioxide, fossil",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "2284cfbeb630f8aaa4afcc5f8f120e350a7d6dee6aaee67cec22927f2e1743d8",
+              "canonical_metadata_sha256": "842f1c5902c01485684354cec9cf493dc39719246ea179d6799a38cc2d0bfda5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "099b36ab-4c03-4587-87f4-2f81e337afb8",
+              "source_name": "Carbon monoxide, fossil",
+              "target": {
+                "name": "Carbon monoxide, fossil",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6e4fe962fa249624718cd4707fd768a1614a89fdac46d2cf2ee535720ae049f9",
+              "canonical_metadata_sha256": "a11fbf4a77e4ff02429c776b3c10d54f404ef090f31c1242f358399c83265066"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "68e32537-beae-41c2-be72-74df4d273c11",
+              "source_name": "Hydrochloric acid",
+              "target": {
+                "name": "Hydrochloric acid",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "c0b1417034ea8c0a4b472c080f10dc1a92e6e89839d1b5d0c8ac3fd7453cc8a9",
+              "canonical_metadata_sha256": "720b65516b4c83dd53c49228819c91d8b0df84a45f0571f29d1b0a619becd23b"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "8b7dc667-f04e-492c-a161-80b1482126b0",
+              "source_name": "Hydrogen fluoride",
+              "target": {
+                "name": "Hydrogen fluoride",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "d85e833890d3cc9a39eb142b937c3ab9d9a674e067a85db22ada79f3e1f14a8b",
+              "canonical_metadata_sha256": "591198525af4d0fb29632fc85e5d7e6da83d3ad01feebadcf23b3218974a0f67"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "68e32537-beae-41c2-be72-74df4d273c11",
+              "source_name": "Hydrochloric acid",
+              "target": {
+                "name": "Hydrochloric acid",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "c0b1417034ea8c0a4b472c080f10dc1a92e6e89839d1b5d0c8ac3fd7453cc8a9",
+              "canonical_metadata_sha256": "720b65516b4c83dd53c49228819c91d8b0df84a45f0571f29d1b0a619becd23b"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "8b7dc667-f04e-492c-a161-80b1482126b0",
+              "source_name": "Hydrogen fluoride",
+              "target": {
+                "name": "Hydrogen fluoride",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "d85e833890d3cc9a39eb142b937c3ab9d9a674e067a85db22ada79f3e1f14a8b",
+              "canonical_metadata_sha256": "591198525af4d0fb29632fc85e5d7e6da83d3ad01feebadcf23b3218974a0f67"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "aa7cac3a-3625-41d4-bc54-33e2cf11ec46",
+              "source_name": "Carbon dioxide, fossil",
+              "target": {
+                "name": "Carbon dioxide, fossil",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "2284cfbeb630f8aaa4afcc5f8f120e350a7d6dee6aaee67cec22927f2e1743d8",
+              "canonical_metadata_sha256": "842f1c5902c01485684354cec9cf493dc39719246ea179d6799a38cc2d0bfda5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "099b36ab-4c03-4587-87f4-2f81e337afb8",
+              "source_name": "Carbon monoxide, fossil",
+              "target": {
+                "name": "Carbon monoxide, fossil",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6e4fe962fa249624718cd4707fd768a1614a89fdac46d2cf2ee535720ae049f9",
+              "canonical_metadata_sha256": "a11fbf4a77e4ff02429c776b3c10d54f404ef090f31c1242f358399c83265066"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "68e32537-beae-41c2-be72-74df4d273c11",
+              "source_name": "Hydrochloric acid",
+              "target": {
+                "name": "Hydrochloric acid",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "c0b1417034ea8c0a4b472c080f10dc1a92e6e89839d1b5d0c8ac3fd7453cc8a9",
+              "canonical_metadata_sha256": "720b65516b4c83dd53c49228819c91d8b0df84a45f0571f29d1b0a619becd23b"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "8b7dc667-f04e-492c-a161-80b1482126b0",
+              "source_name": "Hydrogen fluoride",
+              "target": {
+                "name": "Hydrogen fluoride",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "d85e833890d3cc9a39eb142b937c3ab9d9a674e067a85db22ada79f3e1f14a8b",
+              "canonical_metadata_sha256": "591198525af4d0fb29632fc85e5d7e6da83d3ad01feebadcf23b3218974a0f67"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "68e32537-beae-41c2-be72-74df4d273c11",
+              "source_name": "Hydrochloric acid",
+              "target": {
+                "name": "Hydrochloric acid",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "c0b1417034ea8c0a4b472c080f10dc1a92e6e89839d1b5d0c8ac3fd7453cc8a9",
+              "canonical_metadata_sha256": "720b65516b4c83dd53c49228819c91d8b0df84a45f0571f29d1b0a619becd23b"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "8b7dc667-f04e-492c-a161-80b1482126b0",
+              "source_name": "Hydrogen fluoride",
+              "target": {
+                "name": "Hydrogen fluoride",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "d85e833890d3cc9a39eb142b937c3ab9d9a674e067a85db22ada79f3e1f14a8b",
+              "canonical_metadata_sha256": "591198525af4d0fb29632fc85e5d7e6da83d3ad01feebadcf23b3218974a0f67"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "aa7cac3a-3625-41d4-bc54-33e2cf11ec46",
+              "source_name": "Carbon dioxide, fossil",
+              "target": {
+                "name": "Carbon dioxide, fossil",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "2284cfbeb630f8aaa4afcc5f8f120e350a7d6dee6aaee67cec22927f2e1743d8",
+              "canonical_metadata_sha256": "842f1c5902c01485684354cec9cf493dc39719246ea179d6799a38cc2d0bfda5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "099b36ab-4c03-4587-87f4-2f81e337afb8",
+              "source_name": "Carbon monoxide, fossil",
+              "target": {
+                "name": "Carbon monoxide, fossil",
+                "categories": [
+                  "air",
+                  "non-urban air or from high stacks"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6e4fe962fa249624718cd4707fd768a1614a89fdac46d2cf2ee535720ae049f9",
+              "canonical_metadata_sha256": "a11fbf4a77e4ff02429c776b3c10d54f404ef090f31c1242f358399c83265066"
+            }
+          ],
+          "feed_charge_evidence": {
+            "status": "Private physical-reference evidence; no native feedstock proxy or titanium mapping yet registered.",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_CN_TiCl4_inventory_sha256": "6ca8d0f3e1af73936330557a7bc51dd4a811c32db50011ce0f766db448d2af8b",
+            "source_RoW_TiCl4_inventory_sha256": "9ef1938e87141969366aa1dfc8a7b28fe5b1c43492e1366f3c09a3a4a1ee330d",
+            "per_same_positive_1kg_TiCl4_reference": {
+              "CN_titania_slag_kg": 0.4465479174261463,
+              "RoW_rutile_kg": 0.44184741303218666,
+              "observed_feed_mass_ratio": 0.9894736842105258,
+              "nominal_grade_ratio_94_over_95": 0.9894736842105263,
+              "TiO2_charge_CN_kg": 0.4197550423805775,
+              "TiO2_charge_RoW_kg": 0.4197550423805773
+            },
+            "interpretation": "Actual corresponding source TiCl4 recipes corroborate the94/95feed-mass factor independently of a name-only concentration inference. Source high-grade slag producer comment explicitly declares94%TiO2; native rutile documentation describes95%TiO2 mineral-sand coproduct, positive1kg commodity reference. Inspect/verify the source95%rutile reference against native95%rutile before enabling.",
+            "potential_scoped_proxy": "Use complete native95%rutile for CN94%slag only within reconstructed TiCl4, at actual audited feed-charge ratio, with explicit ore/mining versus slag/smelting, iron/vanadium coproduct allocation, impurity/reactor assumptions, geography/vintage/uncertainty and unquantified-score warnings. Preserve other source TiCl4 inputs/emissions and original country shares. No added iron recovery credit or generic global slag-market approval.",
+            "recovery_constraint": "Mg and Cl electrolysis share a name but have distinct reference products and allocated inventories; use full identity. Their comment models1kgMgCl2 while actual outputs reference1kgMg or1kgCl: follow actual production exchanges, not stale prose. MgCl2stock is a verified positive-reference production-only cut-off handover; it is not virgin Mg/Cl and is not a negative-reference waste-treatment process."
+          },
+          "allocated_empty_handover_audits": {
+            "deferred-titanium-inert-56c49e46b8a65138c045": [
+              {
+                "original_index": 2,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "BR",
+                  "unit": "kilogram",
+                  "amount": -0.0004874542674927177,
+                  "uncertainty type": 0,
+                  "loc": -0.0004874542674927177,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              },
+              {
+                "original_index": 3,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "US",
+                  "unit": "kilogram",
+                  "amount": -0.06281127794067003,
+                  "uncertainty type": 0,
+                  "loc": -0.06281127794067003,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              },
+              {
+                "original_index": 4,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram",
+                  "amount": -0.6200088643474869,
+                  "uncertainty type": 0,
+                  "loc": -0.6200088643474869,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              },
+              {
+                "original_index": 5,
+                "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "CO",
+                  "unit": "kilogram",
+                  "amount": -4.286739848569684e-06,
+                  "uncertainty type": 0,
+                  "loc": -4.286739848569684e-06,
+                  "type": "technosphere"
+                },
+                "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                }
+              }
+            ],
+            "deferred-concrete-ccc89e73133fcd6a3b64": [
+              {
+                "original_index": 2,
+                "rationale": "Independently verified production-only allocated clinker terminal: zero nonproduction exchanges, source LCI contribution exactly zero. Retain signed source quantity in this audit. No invented landfill, fuel burden, recovery credit or renormalization; no claim that physical kiln treatment is burden-free.",
+                "source_activity": {
+                  "location": "Europe without Switzerland",
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "amount": -0.5648257344156875,
+                  "loc": -0.5648257344156875,
+                  "location": "Europe without Switzerland",
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.9"
+                }
+              }
+            ],
+            "deferred-waste-market-bad1b3a323f58dd0d12d": [
+              {
+                "original_index": 1,
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens.",
+                "source_activity": {
+                  "location": "CH",
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "amount": -1.0,
+                  "loc": -1.0,
+                  "location": "CH",
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.9"
+                }
+              }
+            ]
+          },
+          "auxiliary_exact_inert_market_rule": "bp-375988c6d6244191"
+        },
+        {
+          "verification_receipts": [
+            "deferred_titanium_quantity_check.json",
+            "native_deferred_titanium_lci_report.json",
+            "deferred_titanium_export_readback.json",
+            "deferred_titanium_generator_replay.json"
+          ],
+          "location": "private task workspace"
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_chain_reconstruction_with_explicit_functional_proxies",
+        "recipe_id": "deferred-titanium-d1bb4dca871159c1e5a4",
+        "limitations": "Autonomously reviewed exactecoinvent3.9cut-off titanium metal source-chain reconstruction for the pinned528kgcaller. Preserve actual +1kgmetal/sponge/TiCl4references and the original sponge-country shares CN0.425/RoW0.33/JP0.245, freight layers and distinct country electricity legs. Keep separately allocated Mg-product and Cl-product electrolysis inventories by full identity and actual +1kgproduct, despite stale comments about1kgMgCl2. Virgin Mg/Cl remain separate from recovered streams. The MgCl2recovered stock has a verified +1kgpositive production-only reference; its negative sponge coefficient remains a zero-allocated stock output, not negative treatment demand, primary MgCl2burdens or an invented recovery credit. Preserve original source process chemicals, utilities, heat-market geography shares, direct emissions and supported uncertainty. Use complete native95%rutile(AU) as a screening feedstock proxy for source95%natural/synthetic rutile routes; warn about mineral-sand versus Becher/Benelite/smelting technologies and iron/vanadium co-product allocation. Only the CN94%slag feed uses94/95native95%rutile kg, supported by actual paired CN/RoW/JP TiCl4charge evidence; retain original slag-market freight without rescaling. This is a scoped synthesis-feed proxy, not metal-to-oxide substitution or a global slag mapping; reactor impurities/yields and score effects remain uncertain. Retain RoW inert-waste landfill fraction/freight; four verified production-only negative-reference clinker handovers are literal allocation audits, never replaced by landfill or a fabricated credit. Reuse exact-profile reviewed waste and heat helpers and inherited audits. Complete native pig-iron effluent treatment per original signedm3 is an explicit whole-service screening proxy: source sewer infrastructure, treated/untreated shares, direct releases, composition and internal uncertainty are replaced by native class3treatment+sewer model, not preserved or proven equivalent. No source market untreated-release vector is additionally added, and no extra sewer/avoided-emission credit is invented. Native grids use the matching voltage/country where present, otherwise explicit complete GLOgrid proxies per original quantity. The GLO other-than-NG heat group retains its geographical shares, using the existing reviewed RoW mixed-fuel closure and an explicit complete heavy-fuel-oil furnace proxy for its RER/CA-QC branches; the former natural-gas matches are rejected, and those source fuel/technology portfolios are replaced with a stated limitation. Other native chemical/factory/fuel/freight technologies, route mixes, delivery boundaries, allocation, geography, vintage and internal uncertainty differ; no unverified solution/lifetime/distance multiplier. Preserve caller signedkg/formulas/supported uncertainty at+1. Canonical3.10biosphere uses matching UUID/role/unit/compartment. Missing2991upstream native biosphere exchanges and all proxy/allocation limitations remain visible with unquantified score effects. Other releases, inverse and cross-system-model routes are not qualified."
+      },
+      "validation": [
+        "14Brightpath tests passed, including Mg/Cl allocation, stock sign, oxide charge, waste/freight shares, exact-release refusals and atomic drift checks.",
+        "48Premise tests passed, including cold/warm exact-scope reconstruction, literal audits and screening metadata.",
+        "Resource generator replay byte-identical;2native finiteLCIs passed with exact rational foreground reference equations and independent native/extended supply comparison.",
+        "Public encryptedREMIND SSP2-NPi2050 constructor/update/certification/12516activity export and independentreadback passed;39full/2partial/1finalunsupported with zero pending electricity mappings, all113titaniumclosurehelpers,2finiteprospectiveLCIs, full warning/audit retention and unchanged source signatures.",
+        "Pre-IAM original528kgquantity/formula/supported uncertainty verified; sourcegraphunchanged."
+      ],
+      "commits": [
+        "brightpath:f294050"
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-edc4e34b1b9682c231a3",
@@ -6718,7 +7545,9 @@
         "Independent readback:947.32kg original omission, final-resolution warning/review/metadata and38full+2partial mappings retained;2finiteLCIs;source signatures unchanged.",
         "Pre-IAM source graph unchanged and final audit retained in owned foreground provenance."
       ],
-      "commits": []
+      "commits": [
+        "premise:51b366ea"
+      ]
     }
   ],
   "auxiliary_component_decisions": [
@@ -6812,9 +7641,9 @@
   ],
   "progress": {
     "starting_deferred_exchanges": 20,
-    "restored_in_this_goal": 16,
+    "restored_in_this_goal": 17,
     "final_unsupported_omissions": 1,
-    "pending_exchanges": 1,
+    "pending_exchanges": 0,
     "partially_restored_exchanges": 2,
     "final_unsupported_recipe_branches": 22
   },
@@ -6845,5 +7674,15 @@
     "sequence": "Finish electricity mapping and packaging, then audit and operationalize sector updates.",
     "public_ux": "unchanged",
     "sector_tracker": "docs/development/uvek-sector-progress.json"
+  },
+  "electricity_milestone": {
+    "status": "mapping_dispositions_validated_packaging_in_progress",
+    "full_restored_original42": 39,
+    "partial_original42": 2,
+    "final_unsupported_whole_original42": 1,
+    "pending_original42": 0,
+    "latest_export": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-titanium",
+    "export_activity_count": 12516,
+    "active_goal_includes_18_other_sector_updates": true
   }
 }

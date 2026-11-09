@@ -40,56 +40,6 @@
       "message": "Approved scoped UVEK 2026 CSP omission: the pinned 110 MW plant decommissioning inventory's -23,000,000 kg used-nitrate-salt reuse credit is omitted. Its ecoinvent 3.9 market supplies a reusable product carrying allocated storage-construction burdens; no equivalent UVEK supplier is established. Printer toner is an incorrect match. The foregone reuse credit and its score effect are unquantified. Plant, virgin salt production, storage construction and other decommissioning exchanges are retained; no replacement credit or zero-burden supplier is added."
     },
     {
-      "id": "uvek-2026-screening-a6d33406a770349e9394",
-      "slug": "electrolyzer-production-1mwe-pem-stack",
-      "version_id": 4856,
-      "semantic_version": "1.0.1",
-      "sha256": "c146fa79fd6efec23c9aaccf00027af10874208c3e7a26d81ce8b8c5f9c7caa4",
-      "source": {
-        "biosphere": {
-          "family": "ecoinvent",
-          "version": "3.9"
-        },
-        "technosphere": {
-          "family": "ecoinvent",
-          "system_model": "cutoff",
-          "version": "3.9"
-        }
-      },
-      "target": {
-        "technosphere": {
-          "family": "uvek",
-          "version": "2026",
-          "system_model": "cutoff"
-        },
-        "biosphere": {
-          "family": "ecoinvent",
-          "version": "3.10"
-        }
-      },
-      "exchange": {
-        "amount": 528,
-        "comment": "bipolar plate",
-        "location": "GLO",
-        "name": "market for titanium",
-        "reference product": "titanium",
-        "type": "technosphere",
-        "uncertainty type": 0,
-        "unit": "kilogram"
-      },
-      "original_exchange_index": 3,
-      "screening_only": true,
-      "deferred_rule_id": "bp-49e229b952f6983c",
-      "deferred_candidate": {
-        "location": "RER",
-        "name": "Titanium dioxide, chloride process, at plant",
-        "reference product": "Titanium dioxide, chloride process, at plant",
-        "unit": "kilogram"
-      },
-      "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
-      "message": "SCREENING ONLY — deferred unresolved supplier bp-49e229b952f6983c: 528 kilogram of market for titanium in pinned electrolyzer-production-1mwe-pem-stack (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
-    },
-    {
       "id": "uvek-2026-screening-0e2220f339c9d5ced47d",
       "slug": "power-conversion-system-production-electrolysis-transformer-and-rectifier-1-mw",
       "version_id": 5823,

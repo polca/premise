@@ -326,3 +326,55 @@ procedural/data-file audits beyond those IAM YAML files. The tracker marks all
 18 sectors `audited_not_operational`; no no-op, missing alias or unavailable IAM
 variable is accepted as successful sector validation. Source hashes and line
 references make this audit reviewable as implementation progresses.
+
+### Titanium metal restored with scoped functional proxies
+
+The final pending electricity input is 528 kg of ecoinvent 3.9 cut-off titanium
+metal. It now uses the observed metal/sponge/TiCl4 chain, with separate allocated
+magnesium and chlorine electrolysis inventories and a verified positive-reference
+recovered MgCl2 stock. Source country and freight shares, process coefficients,
+signed reference quantities and canonical direct flows remain. Twenty-seven new
+stages reuse 86 reviewed helpers. The RoW inert-waste market has its own exact
+source-profile correspondence; four verified production-only negative-reference
+clinker handovers have literal allocation audits, alongside two inherited audits.
+No missing nonempty physical treatment is called an empty handover.
+
+Explicit functional proxies remain: AU mineral-sand rutile replaces source
+natural/synthetic/slag feed routes; only CN 94% slag uses the paired-source
+94/95 feed-charge ratio. Original feed-market freight is retained. Missing
+country grids use native global grids. GLO heat keeps geographical weights;
+RER/CA-QC non-gas branches use a heavy-fuel-oil furnace proxy instead of the
+incorrect former natural-gas matches. The existing active-NaOH basis authority
+is pinned. Pig-iron effluent uses complete native class-3 treatment including
+its sewer per original signed m³: this replaces source treatment coverage,
+untreated releases, rural/urban sewer mix and internal uncertainty. It is not a
+preserved water balance or equivalent emission model. No extra sewer, source
+release vector or recovery/avoided-emission credit is added. All proxy,
+technology, allocation, geography and vintage effects remain unquantified.
+
+Validation: 14 Brightpath tests and 48 Premise tests pass, including quantities,
+normal/lognormal signs, recovery allocation, literal audits, exact-release
+refusals, cold/warm cache behavior and atomic authoring drift. Generator replay
+is byte-identical. Two native LCIs pass with exact rational foreground equations,
+row-balance checks and independent native/extended supply comparisons. The
+114-record titanium foreground has condition number about 21,436; its maximum
+floating forward error against the exact rational reference is 7.11e-15. A
+matrix-derived forward-error bound and row-wise backward checks handle unequal
+scales without changing any physical coefficient. Native/extended supply
+comparison after reported iterative refinement differs by at most 2.84e-14.
+
+The public encrypted REMIND SSP2-NPi 2050 run passes constructor, electricity
+update, certification and a 12,516-activity Brightway export. Independent
+readback verifies all 113 titanium helper recipes, the original 528 kg caller,
+supported uncertainty, six allocation audits, warnings and unchanged background
+scientific signatures. Two prospective LCI demands are finite. Private task
+receipts: `native_deferred_titanium_lci_report.json`,
+`deferred_titanium_export_readback.json`, `deferred_titanium_generator_replay.json`,
+`titanium_brightpath_tests.log` and `titanium_premise_tests.log`.
+
+All 20 starting electricity deferrals have a validated disposition: 17 fully
+restored, two partial and one final unsupported omission. Across the original
+42: 39 full, two partial and one final unsupported. The earlier CSP used-salt
+omission remains separate. Scores remain screening. Installed-wheel checks are
+the next electricity milestone gate. This does not complete the expanded goal:
+all 18 additional sector updates still require implementation and integration.
