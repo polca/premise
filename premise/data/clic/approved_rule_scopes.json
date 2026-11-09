@@ -110598,6 +110598,1069 @@
           "fingerprint": "967d705327b034dc15543ac417fe53fa8300b7734ba924e5f8ac96b52c7ec3d0"
         }
       ]
+    },
+    {
+      "rule_id": "bp-87f7d6834d9147fa",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_waste_markets",
+      "review_path": "export/uvek_deferred_waste_markets_review.json",
+      "review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+      "authorization": "Standing user auto-approval of coming modelling decisions and explicit request to progress deferred work; exact source market composition, complete native HWI proxy, and literal audited collapse of independently verified production-only allocated clinker handovers.",
+      "inspection": {
+        "rule_id": "bp-87f7d6834d9147fa",
+        "source": {
+          "location": "CH",
+          "name": "market for inert waste",
+          "reference product": "inert waste",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.296249,
+          "conversion_factor": -1,
+          "id": "bp-87f7d6834d9147fa",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-87f7d6834d9147fa"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CH",
+            "name": "market for inert waste",
+            "reference product": "inert waste",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "8296a1110dd908a1ed85ee906b9f0141f411ed5f37bd673d0d5c9a1ddf55da44",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": -1,
+            "inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+            "inputs": [
+              {
+                "recipe": "older-swiss-rail-061b7121127c9a779bfc",
+                "amount": 0.0036,
+                "uncertainty type": 2,
+                "loc": -5.626821433520073,
+                "scale": 0.4049691346263318
+              },
+              {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0258,
+                "uncertainty type": 2,
+                "loc": -3.6573807870545654,
+                "scale": 0.4049691346263318,
+                "type": "technosphere"
+              }
+            ],
+            "source_input_omissions": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "CH",
+                  "name": "market for inert waste",
+                  "reference product": "inert waste",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+                "original_index": 1,
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "inert waste",
+                  "location": "CH",
+                  "unit": "kilogram",
+                  "amount": -1.0,
+                  "uncertainty type": 0,
+                  "loc": -1.0,
+                  "type": "technosphere"
+                },
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "72bc50d6fed6f8305ed0be601760e2f797a3dfcfd83d74f650e9ef2143e2628f",
+                "rule_id": "bp-97d38b4e34e0274c",
+                "approved_fingerprint": "8fa309e1a269c9be9d20676d8b70263019c4d73951d1665c30164b837a9b3141"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135",
+                "rule_id": "bp-d6b9d771677aa51e",
+                "approved_fingerprint": "cc98ff84f79491e751651f6a4247a2c7c0b56c0f9338bc4f5d0a35ce2da0fef6"
+              }
+            ]
+          }
+        ],
+        "original_factor": -1,
+        "limitations": "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Inert waste retains its100%empty allocated clinker-treatment route and original0.0036rail/0.0258roadtkm perkg. No construction-waste landfill counterpart is used.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. ",
+        "generated_recipe_id": "deferred-waste-market-bad1b3a323f58dd0d12d",
+        "source_witness": {
+          "metadata_sha256": "793ebc8f622df0808b7417385fce23f0fd3d4c3669aa99aaf558116e4533c434",
+          "inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b"
+        },
+        "terminal_witnesses": [
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "inert waste",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "919fd019595c8e398e088cffb94344a36ff56dd89a441eb62f6c52a397f7d489",
+            "inventory_sha256": "868222b76fe367cd88ead1700bb78b739a0278db17b7b6bf62d46347b5088c5f",
+            "nonproduction_count": 0,
+            "reference_amount": -1,
+            "original_market_fraction": 1.0
+          }
+        ],
+        "approved_recipe_source_omissions": {
+          "deferred-waste-market-bad1b3a323f58dd0d12d": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "CH",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+              "original_index": 1,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "location": "CH",
+                "unit": "kilogram",
+                "amount": -1.0,
+                "uncertainty type": 0,
+                "loc": -1.0,
+                "type": "technosphere"
+              },
+              "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+            }
+          ]
+        },
+        "freight_exchange_count": 2,
+        "incineration_exchange_count": 0,
+        "source_treatment_fraction": 1.0,
+        "empty_handover_fraction": 1.0,
+        "incineration_fraction": 0,
+        "expected_foreground_records": 3,
+        "expected_foreground_biosphere_exchanges": 0
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Inert waste retains its100%empty allocated clinker-treatment route and original0.0036rail/0.0258roadtkm perkg. No construction-waste landfill counterpart is used.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. "
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ebd76abe0b61a2b4407c5c62a8e83029900e3e6ba110179fff314e9ceef59edf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ef0d29b6fa71b9c8",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_waste_markets",
+      "review_path": "export/uvek_deferred_waste_markets_review.json",
+      "review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+      "authorization": "Standing user auto-approval of coming modelling decisions and explicit request to progress deferred work; exact source market composition, complete native HWI proxy, and literal audited collapse of independently verified production-only allocated clinker handovers.",
+      "inspection": {
+        "rule_id": "bp-ef0d29b6fa71b9c8",
+        "source": {
+          "location": "CH",
+          "name": "market for waste mineral oil",
+          "reference product": "waste mineral oil",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.330823,
+          "conversion_factor": -1,
+          "id": "bp-ef0d29b6fa71b9c8",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-ef0d29b6fa71b9c8"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CH",
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "6e616cdeb362aff6e039672d5065473ede6314c6d25fcd1f44519b457ab2f93d",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": -1,
+            "inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107",
+            "inputs": [
+              {
+                "recipe": "older-swiss-rail-061b7121127c9a779bfc",
+                "amount": 0.00356,
+                "uncertainty type": 2,
+                "loc": -5.637994734118198,
+                "scale": 0.4074309757492673
+              },
+              {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.02577,
+                "uncertainty type": 2,
+                "loc": -3.6585442543178632,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "location": "CH",
+                "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "unit": "kilogram",
+                "amount": 0.436916590689578,
+                "uncertainty type": 0,
+                "loc": 0.436916590689578,
+                "type": "technosphere"
+              },
+              {
+                "location": "CH",
+                "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "unit": "kilogram",
+                "amount": 0.436916590689578,
+                "uncertainty type": 0,
+                "loc": 0.436916590689578,
+                "type": "technosphere"
+              }
+            ],
+            "source_input_omissions": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "CH",
+                  "name": "market for waste mineral oil",
+                  "reference product": "waste mineral oil",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107",
+                "original_index": 4,
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "CH",
+                  "unit": "kilogram",
+                  "amount": -0.126166818620844,
+                  "uncertainty type": 0,
+                  "loc": -0.126166818620844,
+                  "type": "technosphere"
+                },
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "72bc50d6fed6f8305ed0be601760e2f797a3dfcfd83d74f650e9ef2143e2628f",
+                "rule_id": "bp-97d38b4e34e0274c",
+                "approved_fingerprint": "8fa309e1a269c9be9d20676d8b70263019c4d73951d1665c30164b837a9b3141"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135",
+                "rule_id": "bp-d6b9d771677aa51e",
+                "approved_fingerprint": "cc98ff84f79491e751651f6a4247a2c7c0b56c0f9338bc4f5d0a35ce2da0fef6"
+              }
+            ]
+          }
+        ],
+        "original_factor": -1,
+        "limitations": "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Every original HWI share remains a separate service input, using the complete native Swiss waste-oil hazardous incinerator per signed source kilogram. Both source HWI variants and native documentation describe10%water waste oil and100%burden allocation to the disposal function; no explicit energy-export supplier credit is added. Native/modern source emissions, energy-recovery technology, flue-gas/residue treatment and CH versusRoW technology/geography differ. Native descriptive text interchanges thermal/electric output labels; retain this inconsistency without inventing an energy credit or correcting quantities. Original empty cement-kiln shares remain unburdened only under the observed source allocation. No water-content or lower-heating-value multiplier is applied.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. ",
+        "generated_recipe_id": "deferred-waste-market-eb02326d461abc9266ea",
+        "source_witness": {
+          "metadata_sha256": "70d4fb19c6d707572bf7ace1eca60ae7d05d3e546fb1bdcb027914048a985f68",
+          "inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107"
+        },
+        "terminal_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+              "reference product": "waste mineral oil",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "52a4a7cc6834f6cd983fae1f65f88f9d37e52f22613a0b3fe89c024d96606cb2",
+            "inventory_sha256": "7004b5d5e68ab7b44e075de0863e3bc8c711441dbf348000d026924f9011c312",
+            "nonproduction_count": 53,
+            "reference_amount": -1,
+            "original_market_fraction": 0.436916590689578
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "waste mineral oil",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "eb50d373311146357099fb8203680855ae3a0a2d9447bbdffa86485a40bba89f",
+            "inventory_sha256": "e5ba3a875294c0374ae85a8bdf7cc20af8b173b80cd2c0ea16e63883179bf6c5",
+            "nonproduction_count": 0,
+            "reference_amount": -1,
+            "original_market_fraction": 0.126166818620844
+          },
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration",
+              "reference product": "waste mineral oil",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "38be3d5fd1c894be29abb1da0dbb43519d535c23896c892e93638e1f7b70770a",
+            "inventory_sha256": "0b991aaccc344147f3d7244c9aed197948d1b63301bccaff86198594af389940",
+            "nonproduction_count": 53,
+            "reference_amount": -1,
+            "original_market_fraction": 0.436916590689578
+          }
+        ],
+        "approved_recipe_source_omissions": {
+          "deferred-waste-market-eb02326d461abc9266ea": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "CH",
+                "name": "market for waste mineral oil",
+                "reference product": "waste mineral oil",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107",
+              "original_index": 4,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "CH",
+                "unit": "kilogram",
+                "amount": -0.126166818620844,
+                "uncertainty type": 0,
+                "loc": -0.126166818620844,
+                "type": "technosphere"
+              },
+              "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+            }
+          ]
+        },
+        "freight_exchange_count": 2,
+        "incineration_exchange_count": 2,
+        "source_treatment_fraction": 1.0,
+        "empty_handover_fraction": 0.126166818620844,
+        "incineration_fraction": 0.873833181379156,
+        "expected_foreground_records": 3,
+        "expected_foreground_biosphere_exchanges": 0
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Every original HWI share remains a separate service input, using the complete native Swiss waste-oil hazardous incinerator per signed source kilogram. Both source HWI variants and native documentation describe10%water waste oil and100%burden allocation to the disposal function; no explicit energy-export supplier credit is added. Native/modern source emissions, energy-recovery technology, flue-gas/residue treatment and CH versusRoW technology/geography differ. Native descriptive text interchanges thermal/electric output labels; retain this inconsistency without inventing an energy credit or correcting quantities. Original empty cement-kiln shares remain unburdened only under the observed source allocation. No water-content or lower-heating-value multiplier is applied.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. "
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7ddf77063fec4d6f2d49f439bee31e088d5e89c0ae9fcfd9b04bea958d0a4039"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-dc3ac2fe6b0e61bf",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_waste_markets",
+      "review_path": "export/uvek_deferred_waste_markets_review.json",
+      "review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+      "authorization": "Standing user auto-approval of coming modelling decisions and explicit request to progress deferred work; exact source market composition, complete native HWI proxy, and literal audited collapse of independently verified production-only allocated clinker handovers.",
+      "inspection": {
+        "rule_id": "bp-dc3ac2fe6b0e61bf",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste mineral oil",
+          "reference product": "waste mineral oil",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.250823,
+          "conversion_factor": -1,
+          "id": "bp-dc3ac2fe6b0e61bf",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-dc3ac2fe6b0e61bf"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "4264bfd3a5038420a63adb00bc93a2448da16b2c9e52c6fc64848e2f52e72504",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": -1,
+            "inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+            "inputs": [
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0008124854420980722,
+                "uncertainty type": 2,
+                "loc": -7.115412561338657,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0029325763106612677,
+                "uncertainty type": 2,
+                "loc": -5.831873955384336,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.00020573828760997995,
+                "uncertainty type": 2,
+                "loc": -8.488905645373796,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0040458296676008434,
+                "uncertainty type": 2,
+                "loc": -5.510068640084499,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.003203370292029836,
+                "uncertainty type": 2,
+                "loc": -5.7435518071602525,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0003461605163611663,
+                "uncertainty type": 2,
+                "loc": -7.96860797036524,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.016762842782120813,
+                "uncertainty type": 2,
+                "loc": -4.0885905812399015,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.002210996701518021,
+                "uncertainty type": 2,
+                "loc": -6.114311868958677,
+                "scale": 0.4074309757492673,
+                "type": "technosphere"
+              },
+              {
+                "location": "CH",
+                "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "unit": "kilogram",
+                "amount": 0.315447172002172,
+                "uncertainty type": 0,
+                "loc": 0.315447172002172,
+                "type": "technosphere"
+              },
+              {
+                "location": "CH",
+                "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+                "unit": "kilogram",
+                "amount": 0.315606149916762,
+                "uncertainty type": 0,
+                "loc": 0.315606149916762,
+                "type": "technosphere"
+              }
+            ],
+            "source_input_omissions": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "RoW",
+                  "name": "market for waste mineral oil",
+                  "reference product": "waste mineral oil",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                "original_index": 9,
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "BR",
+                  "unit": "kilogram",
+                  "amount": -0.00969024242811162,
+                  "uncertainty type": 0,
+                  "loc": -0.00969024242811162,
+                  "type": "technosphere"
+                },
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "RoW",
+                  "name": "market for waste mineral oil",
+                  "reference product": "waste mineral oil",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                "original_index": 10,
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "US",
+                  "unit": "kilogram",
+                  "amount": -0.0306648502198906,
+                  "uncertainty type": 0,
+                  "loc": -0.0306648502198906,
+                  "type": "technosphere"
+                },
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+              },
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "source_activity": {
+                  "location": "RoW",
+                  "name": "market for waste mineral oil",
+                  "reference product": "waste mineral oil",
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                "original_index": 12,
+                "source_exchange": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "RoW",
+                  "unit": "kilogram",
+                  "amount": -0.328591585433064,
+                  "uncertainty type": 0,
+                  "loc": -0.328591585433064,
+                  "type": "technosphere"
+                },
+                "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c",
+                "rule_id": "bp-949e9423153a45de",
+                "approved_fingerprint": "46e81f47cf7d31c5d81eb853864183927b5d2255ae616ada2897dc5638f6215a"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db",
+                "rule_id": "bp-46ffc4892be8fcb1",
+                "approved_fingerprint": "a5adfb499245ac1290adbe73e42079930dd9117ce751e25aabbb1214f5f98ae5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35",
+                "rule_id": "bp-e567e56fc816d39f",
+                "approved_fingerprint": "b816843b769c42376040e8301e9f3989cc1f285212e1d2870b5f485790ef23c4"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98",
+                "rule_id": "bp-b25755fd394b9346",
+                "approved_fingerprint": "d2ea5ab62a8a6c02fbf49e1fbdded5ca4cc7f6f8ce68ae8c01080f875bedbfc7"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9",
+                "rule_id": "bp-4a797a6b30510a65",
+                "approved_fingerprint": "49165c80a73870cee321aeac4944c95760e6756dda9c50977d212d848a56713c"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703",
+                "rule_id": "bp-1af2418d10ae3176",
+                "approved_fingerprint": "8114f2a418b0a946666dc9da27d6bf97d22d0321b9d5f90a78e1173675e96a93"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955",
+                "rule_id": "bp-a51d49493f310338",
+                "approved_fingerprint": "03b322946817b121d749f11efbe2bfa98e02138a7fa39bbe70bc0d2dda829c15"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9",
+                "rule_id": "bp-6b4f9e5ca470ac92",
+                "approved_fingerprint": "a98030380e852e986496fcda3c26c385912a3ded7232f1063e76d0333fc951ea"
+              }
+            ]
+          }
+        ],
+        "original_factor": -1,
+        "limitations": "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Every original HWI share remains a separate service input, using the complete native Swiss waste-oil hazardous incinerator per signed source kilogram. Both source HWI variants and native documentation describe10%water waste oil and100%burden allocation to the disposal function; no explicit energy-export supplier credit is added. Native/modern source emissions, energy-recovery technology, flue-gas/residue treatment and CH versusRoW technology/geography differ. Native descriptive text interchanges thermal/electric output labels; retain this inconsistency without inventing an energy credit or correcting quantities. Original empty cement-kiln shares remain unburdened only under the observed source allocation. No water-content or lower-heating-value multiplier is applied.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. ",
+        "generated_recipe_id": "deferred-waste-market-50f4925138b4cb960750",
+        "source_witness": {
+          "metadata_sha256": "5fc67e0cae75322395ccb8a7598e5520b8e8822458022859148e9f137ee00b57",
+          "inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22"
+        },
+        "terminal_witnesses": [
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "waste mineral oil",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "ea9f9a0275eafe8de6393850377f39eedaf3595d92880f8d6d6a2413bf89c068",
+            "inventory_sha256": "4ace5370ab6cf583118241de48cbafa953ff9fb48f2de93ce2ebe76270fbd6c4",
+            "nonproduction_count": 0,
+            "reference_amount": -1,
+            "original_market_fraction": 0.00969024242811162
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "waste mineral oil",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "55c23f841c2b41a03afe6656549c0148fc0944f3260ff4b8471dd0b33d210d35",
+            "inventory_sha256": "598036e7ba584b26a3c4aa229f636b7034adff03e32ac148364e095d8f73bf66",
+            "nonproduction_count": 0,
+            "reference_amount": -1,
+            "original_market_fraction": 0.0306648502198906
+          },
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration",
+              "reference product": "waste mineral oil",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "56c5c080535299a45d889178ce952d5c613c2ab2291c4dfedc42869c9fad8d1f",
+            "inventory_sha256": "8e67d82d78e274605390cf76fa31496a3321f20f7c8b6072c69a4562b3e3f1d8",
+            "nonproduction_count": 60,
+            "reference_amount": -1,
+            "original_market_fraction": 0.315447172002172
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "waste mineral oil",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "2fdc86e940a8ed4df0982ccb54e024c33853b1fcf3e5da4bc36b8d6328fadc49",
+            "inventory_sha256": "f76dd28303ba1c3415fe2977f3521cd263038a83ec768db32acc1040655e68fc",
+            "nonproduction_count": 0,
+            "reference_amount": -1,
+            "original_market_fraction": 0.328591585433064
+          },
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+              "reference product": "waste mineral oil",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "dcd49681bec1e3636aa711358b27cc528f1951bcf1fb9a25afe0843d41822cb7",
+            "inventory_sha256": "f683dfce2264cfaa14e51ddbb8b8ee3e2894a0a7b97a5c94d42bb65d6eb9f51e",
+            "nonproduction_count": 60,
+            "reference_amount": -1,
+            "original_market_fraction": 0.315606149916762
+          }
+        ],
+        "approved_recipe_source_omissions": {
+          "deferred-waste-market-50f4925138b4cb960750": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste mineral oil",
+                "reference product": "waste mineral oil",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+              "original_index": 9,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "BR",
+                "unit": "kilogram",
+                "amount": -0.00969024242811162,
+                "uncertainty type": 0,
+                "loc": -0.00969024242811162,
+                "type": "technosphere"
+              },
+              "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste mineral oil",
+                "reference product": "waste mineral oil",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+              "original_index": 10,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "US",
+                "unit": "kilogram",
+                "amount": -0.0306648502198906,
+                "uncertainty type": 0,
+                "loc": -0.0306648502198906,
+                "type": "technosphere"
+              },
+              "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for waste mineral oil",
+                "reference product": "waste mineral oil",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+              "original_index": 12,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.328591585433064,
+                "uncertainty type": 0,
+                "loc": -0.328591585433064,
+                "type": "technosphere"
+              },
+              "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+            }
+          ]
+        },
+        "freight_exchange_count": 8,
+        "incineration_exchange_count": 2,
+        "source_treatment_fraction": 1.0000000000000002,
+        "empty_handover_fraction": 0.36894667808106624,
+        "incineration_fraction": 0.631053321918934,
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested further progress on the deferred work. Reconstruct only the inspected ecoinvent3.9cut-off waste market with its original treatment fractions and every freight exchange, without renormalization. Source negative1kg waste reference becomes a positive1kg treatment service: parent factor-1, with component references handled independently. Preserve caller signed amounts, formulas, uncertainty and bounds after this one reference-sign change. The documented clinker-treatment terminals have exactly zero nonproduction exchanges in the inspected allocated cut-off source inventory; collapse only those empty terminals, preserving the exact original exchange and source/profile/inventory witnesses in explicit source-omission audits. This is not evidence that real kiln treatment is burden-free and does not establish a new avoided-production credit or landfill. The source allocated terminal contributes exactly zero to its source LCI, whereas the complete migrated market still inherits nonzero freight and applicable incineration burdens. The helper represents treatment of the full original kilogram, including the audited allocated-handover fractions; do not renormalize incineration to one kilogram. Retained freight uses only existing reviewed exact-profile correspondences, with their vehicle/fleet/geography approximations. Native1990s/2000vintage, geography, allocation, internal uncertainty and2991upstreambiosphere exclusions remain explicit; total score effects are unquantified. No other source release, reverse or cross-system-model route is qualified. Every original HWI share remains a separate service input, using the complete native Swiss waste-oil hazardous incinerator per signed source kilogram. Both source HWI variants and native documentation describe10%water waste oil and100%burden allocation to the disposal function; no explicit energy-export supplier credit is added. Native/modern source emissions, energy-recovery technology, flue-gas/residue treatment and CH versusRoW technology/geography differ. Native descriptive text interchanges thermal/electric output labels; retain this inconsistency without inventing an energy credit or correcting quantities. Original empty cement-kiln shares remain unburdened only under the observed source allocation. No water-content or lower-heating-value multiplier is applied.  IN/CN/ZA/US rail legs use the complete RER rail service per original tonne-kilometre as a geographic/fleet/propulsion/loading/vintage proxy; every original entry remains separate, with no distance/capacity/lifetime multiplier or coal-specific supplier. "
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "69d7759c9a65953815d91bfcc58e136ea52a815cdf64c9d7bc301dae3a08469f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-97d38b4e34e0274c",
+      "operation": "replace",
+      "mapping_method": "reviewed_older_swiss_rail",
+      "review_path": "export/uvek_cable_rail_review.json",
+      "review_sha256": "adf7032f88911e11dde19f3684d776f1d1d2b8c4950e158b177c21dd2c62d880",
+      "authorization": "Reuse independently checked complete Swiss freight recipe after fresh source3.9 reference and inventory-hash verification for this waste-market batch.",
+      "inspection": {
+        "rule_id": "bp-97d38b4e34e0274c",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "review_path": "export/uvek_cable_rail_review.json",
+        "review_sha256": "adf7032f88911e11dde19f3684d776f1d1d2b8c4950e158b177c21dd2c62d880",
+        "fingerprint": "8fa309e1a269c9be9d20676d8b70263019c4d73951d1665c30164b837a9b3141",
+        "inventory_sha256": "091ca166a7c4f161d285e0b8413f8d8c57775213e94b6234b1d20823875fd5c1",
+        "metadata_sha256": "c419d8aeed8535c1134b2aa4554be4ede2e0f9afb3af144d15aee99301e4e05a",
+        "source": {
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "location": "CH",
+          "unit": "ton kilometer"
+        },
+        "limitations": [
+          "Use complete already-reviewed Swiss PF-diesel and electric-with-shunting freight services with the exact observed positive source market shares. Include vehicle manufacture, maintenance, tracks, operation and end of life. Do not substitute the former operation-only placeholder, normalize the shares or scale capacity/lifetimes. Native energy intensity, load factors, fleets, vintage and inventories remain screening approximations. Preserve caller signed amounts, uncertainty, formulas, foreground ownership and separate emissions; internal source market uncertainty/formulas are not reconstructed. No consequential conversion or inverse inferred."
+        ]
+      },
+      "limitations": [
+        "Use complete already-reviewed Swiss PF-diesel and electric-with-shunting freight services with the exact observed positive source market shares. Include vehicle manufacture, maintenance, tracks, operation and end of life. Do not substitute the former operation-only placeholder, normalize the shares or scale capacity/lifetimes. Native energy intensity, load factors, fleets, vintage and inventories remain screening approximations. Preserve caller signed amounts, uncertainty, formulas, foreground ownership and separate emissions; internal source market uncertainty/formulas are not reconstructed. No consequential conversion or inverse inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8fa309e1a269c9be9d20676d8b70263019c4d73951d1665c30164b837a9b3141"
+        }
+      ]
     }
   ]
 }

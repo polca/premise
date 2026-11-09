@@ -162,3 +162,25 @@ IAM generator-efficiency changes alter four oil quantities in the final scenario
 readback records their ratios separately. These are scenario changes, not
 migration concentration/yield factors. Original source database signatures remain
 unchanged in the exported-database readback checks.
+
+## Inert-waste and waste-oil market restoration
+
+Three ecoinvent 3.9 cut-off market inputs are restored with their original route
+shares and freight. Inert waste's empty allocated clinker-treatment branch is
+explicitly audited rather than mapped to landfill. Swiss and RoW oil markets use
+native hazardous incineration only for their original incineration fractions
+(0.873833181379156 and 0.631053321918934 kg/kg); their empty allocated kiln
+fractions remain in five literal source-input audits. No renormalization,
+landfill burden, added energy credit or unreviewed source-profile fallback occurs.
+Four rail-country legs use complete native RER freight as explicit geographic,
+fleet, propulsion and loading proxies. Existing complete Swiss rail is separately
+qualified for this exact source profile after a fresh inventory-hash check.
+
+The full encrypted electricity scenario exports to
+`premise-uvek-2026-remind-SSP2-NPi-2050-restored-waste-markets`: 12,455 activities,
+complete retained links and finite LCIs. Original background signatures are
+unchanged. Migration/authoring tests: 28 passed; Premise tests: 26 passed. Readback
+retains all eight uncertain RoW freight legs with exact amount/loc/scale metadata,
+all three restored caller service signs and five empty-terminal audits.
+Twenty-five of the original 42 CLIC exchanges are now restored; 17 remain deferred.
+Detailed evidence and final decisions are in the autonomous mapping decision log.

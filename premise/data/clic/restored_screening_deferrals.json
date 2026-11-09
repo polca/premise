@@ -1163,6 +1163,157 @@
         }
       ],
       "status": "Concrete sorting restored with verified -1 waste-reference to +1 service-reference conversion; no new helper or omission."
+    },
+    {
+      "review_path": "export/uvek_deferred_waste_markets_review.json",
+      "review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+      "restored_decisions": [
+        {
+          "id": "uvek-2026-screening-ad29e37f34a7b0d2b065",
+          "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
+          "version_id": 1840,
+          "semantic_version": "1.0.0",
+          "sha256": "d58bb0758488c10ef8425b6e657074aa874cfc6443ceafb88792e38e1f5f2efd",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.9"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -688484,
+            "location": "CH",
+            "name": "market for inert waste",
+            "reference product": "inert waste",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 2,
+          "screening_only": true,
+          "deferred_rule_id": "bp-87f7d6834d9147fa",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-87f7d6834d9147fa: -688484 kilogram of market for inert waste in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        },
+        {
+          "id": "uvek-2026-screening-31a78eae0e6d78a50a8f",
+          "slug": "treatment-of-concentrating-solar-power-plant-110-mw",
+          "version_id": 1840,
+          "semantic_version": "1.0.0",
+          "sha256": "d58bb0758488c10ef8425b6e657074aa874cfc6443ceafb88792e38e1f5f2efd",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.9"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -420000,
+            "location": "CH",
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 6,
+          "screening_only": true,
+          "deferred_rule_id": "bp-ef0d29b6fa71b9c8",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-ef0d29b6fa71b9c8: -420000 kilogram of market for waste mineral oil in pinned treatment-of-concentrating-solar-power-plant-110-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        },
+        {
+          "id": "uvek-2026-screening-a68fb3c409e0ccbedc03",
+          "slug": "treatment-of-used-power-conversion-system-electrolysis-1-mw",
+          "version_id": 5914,
+          "semantic_version": "1.0.0",
+          "sha256": "c49715c0b232e91e044dd24150852080c883f01f37918e7243cf72725314812f",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.9"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -466.40000000000003,
+            "location": "RoW",
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 6,
+          "screening_only": true,
+          "deferred_rule_id": "bp-dc3ac2fe6b0e61bf",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-dc3ac2fe6b0e61bf: -466.40000000000003 kilogram of market for waste mineral oil in pinned treatment-of-used-power-conversion-system-electrolysis-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        }
+      ],
+      "status": "Three complete market callers restored, preserving original freight and HWI shares; five literal audits collapse verified production-only allocated clinker handovers without adding landfill burdens."
     }
   ]
 }
