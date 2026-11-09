@@ -86,6 +86,34 @@ network burden, delivery and embodied-water accounting must be resolved
 explicitly before selecting a correspondence. No additional embodied-water
 exchange or geographic water-balance factor is inferred for caller datasets.
 
+A fresh internal-supply audit of the six national markets reads 31 complete
+water records and retains 42 internal water links, including six explicit
+market self-purchases. Treatment processes also buy water from their own
+market. These are supply feedbacks, not independent delivered-water inputs.
+All six recorded systems solve with finite, nonnegative supply; maximum
+absolute equation residual is 2.23 × 10⁻¹⁶. The inspection retains 16 parameter
+definitions; no exchange formula is present in these records.
+
+For example, the Indian market purchases 0.428571428571429 kg from itself per
+operation. Even without the smaller treatment feedback, its net supply
+multiplier is 1/(1 − 0.428571428571429) = 1.75. With treatment feedback the
+required market supply is 1.7500562587 operations per delivered kg. Brazil's
+corresponding figures are 2.4230769231 and 2.4231880058. A self-purchase
+coefficient must not be interpreted as a loss fraction or applied just once.
+These are properties of the recorded source matrix, not corrected engineering
+loss estimates or proposed destination factors.
+
+Brightpath currently rejects cyclic recipe dependencies explicitly in
+`brightpath/migrations/schema.py`. The earlier finding that the nitrate-salt
+production graph is acyclic still holds, but does not establish that every
+external supplier closure is acyclic. A source-preserving water reconstruction
+must account for these feedbacks. Mean-only algebraic elimination would also
+require an uncertainty/correlation review; silently flattening them or removing
+self-links is not an admissible fix. This audit does not yet cover the full
+European water-market group or approve any native water correspondence.
+Private readback and numerical evidence: `nitrate_water_cycle_primary.private.json`
+and `nitrate_water_internal_cycles.json`.
+
 The earlier four-service checkpoint passed 74 focused Brightpath cases and 97
 focused Premise cases, plus actual native LCI and installed-wheel checks. Native
 scientific hashes remain unchanged. The private cabinet check initially used a

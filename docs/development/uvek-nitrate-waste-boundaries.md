@@ -124,6 +124,26 @@ water-based paint concentration factor alone would introduce extra solvent
 burdens. Both solvent-based market correspondences remain unresolved; there is
 no automatic extension of that earlier paint decision.
 
+A fresh paint/resin readback now covers 15 complete source/native records.
+The native paint buys 0.28 kg of white spirit directly and 0.294 kg of the
+native resin; that resin buys another 0.429 kg of white spirit per reference.
+Naively scaling the complete paint by 1/0.60 therefore supplies about
+0.676877 kg of white spirit through these two explicit carrier purchases.
+Both source paint producers instead list 0.01356 kg of direct processing
+white spirit per solvent-free kg, and their source resin production has no
+white-spirit input. Four principal resin precursor quantities match the
+native process exactly, so its “70%” title alone does not justify an additional
+0.7 resin-reference multiplier. Processing solvent, bulk carrier and resin
+reference quantities must be distinguished explicitly. The carrier quantity
+comparison is not a full solvent balance or an LCIA difference.
+
+A defensible dry-paint reconstruction still needs an explicit reviewed boundary
+for native direct and resin-embedded carrier, retained processing inputs and
+emissions, and original market delivery. Neither a title-only concentration
+factor nor an unexplained negative solvent credit is established by these
+checks. No paint helper, substitution or approval is enabled. Fresh evidence:
+`nitrate_paint_basis_primary.private.json` and `nitrate_paint_basis_findings.json`.
+
 Detailed licensed inventories remain private in
 `nitrate_remaining_waste_full_evidence.private.json`,
 `nitrate_concrete_full_evidence.private.json` and
