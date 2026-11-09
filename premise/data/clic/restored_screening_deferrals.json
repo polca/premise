@@ -1101,6 +1101,68 @@
         }
       ],
       "status": "Complete native screening proxies restored; signed source quantities unchanged; uncertainty and documented limitations retained."
+    },
+    {
+      "review_path": "export/uvek_deferred_sorting_review.json",
+      "review_sha256": "a543788b5d3382d7b722aee80913097bd880808059ee2dead2f27cecdabb517d",
+      "restored_decisions": [
+        {
+          "id": "uvek-2026-screening-e66b6829d6e36073ac3a",
+          "slug": "dismantling-lignite-igcc-power-plant-450mw",
+          "version_id": 3298,
+          "semantic_version": "1.0.1",
+          "sha256": "93b7cd9be3c3f92c4e00bdffe0a84978a259bbe735155cdec857708543b023d0",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.6"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.6"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": -305000000,
+            "categories": [
+              "Waste to treatment"
+            ],
+            "loc": 19.53582233457169,
+            "location": "CH",
+            "name": "treatment of waste concrete, not reinforced, sorting plant",
+            "negative": 0,
+            "reference product": "waste concrete, not reinforced",
+            "scale": 0,
+            "type": "technosphere",
+            "uncertainty type": 0,
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 11,
+          "screening_only": true,
+          "deferred_rule_id": "bp-e6c831a29eb4d1fa",
+          "deferred_candidate": {
+            "location": "CH",
+            "name": "Disposal, building, concrete, not reinforced, to sorting plant",
+            "reference product": "Disposal, building, concrete, not reinforced, to sorting plant",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-e6c831a29eb4d1fa: -305000000 kilogram of treatment of waste concrete, not reinforced, sorting plant in pinned dismantling-lignite-igcc-power-plant-450mw (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        }
+      ],
+      "status": "Concrete sorting restored with verified -1 waste-reference to +1 service-reference conversion; no new helper or omission."
     }
   ]
 }

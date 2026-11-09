@@ -110478,6 +110478,126 @@
           "fingerprint": "794c769f8993d7160aee4008fe7718e4efe74fc90b9ebfab4fae32ec843519e9"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e6c831a29eb4d1fa",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_sorting",
+      "review_path": "export/uvek_deferred_sorting_review.json",
+      "review_sha256": "a543788b5d3382d7b722aee80913097bd880808059ee2dead2f27cecdabb517d",
+      "authorization": "User auto-approved coming modelling decisions and requested proceeding with the deferred work; exact negative-waste to positive-service sign correction with documented source/native boundary differences.",
+      "inspection": {
+        "rule_id": "bp-e6c831a29eb4d1fa",
+        "source": {
+          "location": "CH",
+          "name": "treatment of waste concrete, not reinforced, sorting plant",
+          "reference product": "waste concrete, not reinforced",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, concrete, not reinforced, to sorting plant",
+          "reference product": "Disposal, building, concrete, not reinforced, to sorting plant",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, building, concrete, not reinforced, to sorting plant",
+          "reference product": "Disposal, building, concrete, not reinforced, to sorting plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.6,
+          "conversion_factor": -1,
+          "id": "bp-e6c831a29eb4d1fa",
+          "mapping_method": "pairwise_review",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-e6c831a29eb4d1fa"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "review_ref": "r-79ab4583a027a05e",
+          "source": {
+            "location": "CH",
+            "name": "treatment of waste concrete, not reinforced, sorting plant",
+            "reference product": "waste concrete, not reinforced",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, building, concrete, not reinforced, to sorting plant",
+            "reference product": "Disposal, building, concrete, not reinforced, to sorting plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "c61a0b601c2f6fc94697c55841d7eb48ac0dc5b995b95e1bc9e637406c81ad5d",
+        "previous_review": {
+          "limitations": [
+            "Identity-level comparison only; inventory composition and LCIA equivalence are not verified."
+          ],
+          "rationale": "Branch supplies waste handling for the named material rather than an unrelated supplied product/material."
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": -1
+          }
+        ],
+        "source_reference_amount": -1,
+        "target_reference_amount": 1,
+        "conversion_factor": -1,
+        "inventory_witnesses": [
+          {
+            "version": "3.6",
+            "identity": {
+              "location": "CH",
+              "name": "treatment of waste concrete, not reinforced, sorting plant",
+              "reference product": "waste concrete, not reinforced",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "57bf96d1c533b4c83c8935ce92ad3005621bc6dfde54c066c5f7d022506ab671",
+            "inventory_sha256": "48ce703b0c2ded2d21579b0db27ece0ecaf9af274767ff0ed37f8b0d1acc33e3"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CH",
+              "name": "Disposal, building, concrete, not reinforced, to sorting plant",
+              "reference product": "Disposal, building, concrete, not reinforced, to sorting plant",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "770b39a4af7e499cc2e1a85a1e450af8f18b8a06fae6703b2534c210a8f3784b",
+            "inventory_sha256": "7e4d6122f6c615ca937a8b50a92f32d37b4f834c701eec27cd579a392db22243"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with deferred work. Restore the exact ecoinvent3.6cut-off Swiss concrete-sorting reference using the complete native Swiss sorting service. Both descriptions concern100%inert unreinforced concrete, density2200kg/m3, late1990s Swiss demolition/skid-steer and dry sorting/crushing/manual sorting. Source reference is negative1kg of waste; native reference is positive1kg of treatment service. Therefore conversion factor-1 preserves physical waste-treatment demand: an original negative caller input becomes a positive service purchase, not a disposal credit. Signed normal/lognormal uncertainty, formulas and bounds transform consistently. Source/native common machine0.000505m3, low-voltage electricity0.0037kWh, sorting-facility1e-10unit, diesel0.0437MJ and0.4kg final-waste flow have matching quantities; native contains its own transport, final disposal and direct emissions once. Source market routing, transport fleets, water/emission definitions, allocation, vintage, native internal uncertainty and2991upstreambiosphere exclusions remain limitations with unquantified score differences. No density/water factor, extra disposal, recovered-material credit or source omission is introduced. Source3.9markets/recycling/clinker handovers are not this identity/profile and do not inherit this approval; neither do reverse or cross-system-model routes."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with deferred work. Restore the exact ecoinvent3.6cut-off Swiss concrete-sorting reference using the complete native Swiss sorting service. Both descriptions concern100%inert unreinforced concrete, density2200kg/m3, late1990s Swiss demolition/skid-steer and dry sorting/crushing/manual sorting. Source reference is negative1kg of waste; native reference is positive1kg of treatment service. Therefore conversion factor-1 preserves physical waste-treatment demand: an original negative caller input becomes a positive service purchase, not a disposal credit. Signed normal/lognormal uncertainty, formulas and bounds transform consistently. Source/native common machine0.000505m3, low-voltage electricity0.0037kWh, sorting-facility1e-10unit, diesel0.0437MJ and0.4kg final-waste flow have matching quantities; native contains its own transport, final disposal and direct emissions once. Source market routing, transport fleets, water/emission definitions, allocation, vintage, native internal uncertainty and2991upstreambiosphere exclusions remain limitations with unquantified score differences. No density/water factor, extra disposal, recovered-material credit or source omission is introduced. Source3.9markets/recycling/clinker handovers are not this identity/profile and do not inherit this approval; neither do reverse or cross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "967d705327b034dc15543ac417fe53fa8300b7734ba924e5f8ac96b52c7ec3d0"
+        }
+      ]
     }
   ]
 }

@@ -1,8 +1,9 @@
 # UVEK electricity screening export
 
-Latest checkpoint: the first restoration batch brings back 21 inputs using eight
-reviewed native material proxies across ten exact source profiles. Twenty-one
-inputs remain deferred; screening limitations still apply.
+Latest checkpoint: two restoration batches bring back 22 inputs using eight
+reviewed native material proxies and one concrete-sorting sign correction across
+eleven exact source profiles. Twenty inputs remain deferred; screening limitations
+still apply.
 
 The first operational milestone uses UVEK 2026 cut-off with ecoinvent 3.10
 biosphere through the ordinary public Premise API. The user requested deferring
@@ -127,3 +128,37 @@ public encrypted REMIND / SSP2-NPi / 2050 scenario exports again to
 and finite LCI. The earlier screening database remains available for comparison.
 The historical table above describes the original backlog, including restored
 cases; the active omission registry is the current deferred-exchange list.
+
+## Concrete-sorting sign restoration
+
+The exact Swiss ecoinvent 3.6 cut-off sorting reference is -1 kg waste; the
+matching complete UVEK sorting service references +1 kg. The registered factor
+is therefore -1, preserving physical treatment demand rather than producing a
+negative disposal score. Signed normal/lognormal uncertainty, formulas and
+bounds follow the same one-time sign change. Both descriptions cover the same
+inert concrete and demolition/sorting boundary; native transport and emissions
+remain explicit limitations. One original pinned exchange leaves the omission
+registry, with its original decision retained in the restoration ledger.
+
+The remaining 20 deferred exchanges still require separate work. In particular,
+the Swiss inert-waste market uses an empty allocated clinker-treatment handover
+plus freight; a landfill would invent disposal burdens. Concrete markets mix
+final disposal, sorting and nonempty recycling. Oil markets mix incineration and
+empty allocated cement-kiln handovers. These need faithful boundary treatment;
+existing generic landfill/incineration candidates are not automatically approved.
+Solution-reference bases, gas delivery and specialty-material counterparts remain
+unresolved. The workflow/export remains screening only.
+
+The second public encrypted scenario update and export also passed, producing
+`premise-uvek-2026-remind-SSP2-NPi-2050-restored-materials-sorting` with 12,452
+activities and finite LCI. Seven Brightpath sign/uncertainty/release-isolation
+cases and two Premise cold/warm cases pass. The installed wheel carries both
+restoration reviews and their resource/manifest; nine representative public
+facade migrations are checked there.
+
+Restored material quantities and supported uncertainty were verified exactly in
+the actual harmonized CLIC graph before IAM transformation. Normal subsequent
+IAM generator-efficiency changes alter four oil quantities in the final scenario;
+readback records their ratios separately. These are scenario changes, not
+migration concentration/yield factors. Original source database signatures remain
+unchanged in the exported-database readback checks.
