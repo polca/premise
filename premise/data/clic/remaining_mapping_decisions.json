@@ -4103,7 +4103,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-68398736fed09315c29e",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-68398736fed09315c29e",
         "slug": "iridium-production-economic-allocation-proxy",
@@ -4155,10 +4155,544 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-6046387e041ea5c2: 13.84976564156525 kilogram of market for sodium ethyl xanthate in pinned iridium-production-economic-allocation-proxy (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram pure sodium ethyl xanthate",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram active sodium ethyl xanthate",
+        "caller_conversion_factor": 1,
+        "chemical_reference_convention": "Legacy dissolved chemicals reference active substance; source and native NaOH/ethanol active kg use no concentration multiplier."
+      },
       "rejected_prior_candidate_reason": "A generic organic-chemical process does not establish sodium ethyl xanthate production.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_xanthate_review.json",
+          "sha256": "69d2c522699a96e300bbe3892826a7bc9dd39d46a9078983fd5471b3f4b72716",
+          "source_witnesses": [
+            {
+              "identity": {
+                "location": "GLO",
+                "name": "market for sodium ethyl xanthate",
+                "reference product": "sodium ethyl xanthate",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "3902a0eb6b90f4cf4ae89ddd5c7ed669f44460ecd7f5b35ccdcc90cf9cd3079c",
+              "metadata_sha256": "1c44b64058add6cd456073e38dbf9bb32dad8a9e924d44c87a8b6ef3165ea27c"
+            },
+            {
+              "identity": {
+                "name": "sodium ethyl xanthate production",
+                "reference product": "sodium ethyl xanthate",
+                "location": "ZA",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "e9f4b8f003e2f6717a264a5031eb8837a57e6811dff7457e3fb8238eed60fc1b",
+              "metadata_sha256": "33399747af06fbfc687c4c8e36651923b3b7a0b6816ab7fd3f5ff3710deaa55e"
+            },
+            {
+              "identity": {
+                "name": "sodium ethyl xanthate production",
+                "reference product": "sodium ethyl xanthate",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "66f0e98dd5f37442b0a7e923d2a7565dacea8d01d7f9ae3e7ecd9e8f2b51558c",
+              "metadata_sha256": "c08ae23a2551ab45830f26fb12ac512821a7bc5c83d27cdd09a7a1a5e5de3491"
+            }
+          ],
+          "methodology_sources": [
+            {
+              "url": "https://open.uct.ac.za/server/api/core/bitstreams/80bfc837-7adf-4c4f-bdce-b2cc4dc82595/content",
+              "author": "M.C.Kunene",
+              "title": "Life cycle assessment of the production of xanthate salts and of their application for ARD mitigation",
+              "section": "Table14, printedp65, PDFpage85",
+              "interpretation": "Independent chemical-route check; does not establish dry-phase, generic waste or source-supply-model equivalence."
+            },
+            {
+              "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/overview_methodology_ecoinvent%20version%202.pdf",
+              "section": "4.5.8 Dissolved chemicals",
+              "interpretation": "Legacy dissolved-chemical reference is active substance; no automatic concentration mass multiplier."
+            }
+          ],
+          "canonical_biosphere_witnesses": [
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "e5ea66ee-28e2-4e9b-9a25-4414551d821c",
+              "source_name": "Nitrogen",
+              "target": {
+                "name": "Nitrogen",
+                "categories": [
+                  "air"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "052509de2ae77c86d08da9ae10f90e5cad2d81cf8dff7f910b6a437a09f229b2",
+              "canonical_metadata_sha256": "d3054cc3909f9ac331001816325f4228ac7be7bc4e18e201e8feefa838f46cc8"
+            },
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "075e433b-4be4-448e-9510-9a5029c1ce94",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "air"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "f8216cf67ad08eb3da05ce31d9b77f335089d72aea42a555162bb85d9a81f1dd",
+              "canonical_metadata_sha256": "787f81921d881439e7b5b1d55ce9e6dfbdf29a1e336316b1198c1a22cc9a18be"
+            },
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "167e3db55363f67b123ab3f5b0977c073972be88dca2b989cabf66c2de4b4391",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            },
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "fc1c42ce-a759-49fa-b987-f1ec5e503db1",
+              "source_name": "Water, cooling, unspecified natural origin",
+              "target": {
+                "name": "Water, cooling, unspecified natural origin",
+                "categories": [
+                  "natural resource",
+                  "in water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "natural resource",
+              "canonical_role": "natural resource",
+              "source_metadata_sha256": "0b32c2bffaf0775c2e4903d496e09c979aefef25f959d7336fada72b7535589a",
+              "canonical_metadata_sha256": "f752d518db8c2be054efaf5e5171a8aa66be832873ceb5349f3db345e53eefd3"
+            },
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "e5ea66ee-28e2-4e9b-9a25-4414551d821c",
+              "source_name": "Nitrogen",
+              "target": {
+                "name": "Nitrogen",
+                "categories": [
+                  "air"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "052509de2ae77c86d08da9ae10f90e5cad2d81cf8dff7f910b6a437a09f229b2",
+              "canonical_metadata_sha256": "d3054cc3909f9ac331001816325f4228ac7be7bc4e18e201e8feefa838f46cc8"
+            },
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "075e433b-4be4-448e-9510-9a5029c1ce94",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "air"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "f8216cf67ad08eb3da05ce31d9b77f335089d72aea42a555162bb85d9a81f1dd",
+              "canonical_metadata_sha256": "787f81921d881439e7b5b1d55ce9e6dfbdf29a1e336316b1198c1a22cc9a18be"
+            },
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+              "source_name": "Water",
+              "target": {
+                "name": "Water",
+                "categories": [
+                  "water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "167e3db55363f67b123ab3f5b0977c073972be88dca2b989cabf66c2de4b4391",
+              "canonical_metadata_sha256": "8da716eaab0de2f4dde1c432b4d373a1755410938e26947d717eafbf61b9e52e"
+            },
+            {
+              "source_version": "3.12",
+              "canonical_version": "3.10",
+              "publisher_uuid": "fc1c42ce-a759-49fa-b987-f1ec5e503db1",
+              "source_name": "Water, cooling, unspecified natural origin",
+              "target": {
+                "name": "Water, cooling, unspecified natural origin",
+                "categories": [
+                  "natural resource",
+                  "in water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "natural resource",
+              "canonical_role": "natural resource",
+              "source_metadata_sha256": "0b32c2bffaf0775c2e4903d496e09c979aefef25f959d7336fada72b7535589a",
+              "canonical_metadata_sha256": "f752d518db8c2be054efaf5e5171a8aa66be832873ceb5349f3db345e53eefd3"
+            }
+          ],
+          "source_country_grid_overrides": [
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "NE",
+                "unit": "kilowatt hour"
+              },
+              "amount": 9.955684441445647e-06,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "ZM",
+                "unit": "kilowatt hour"
+              },
+              "amount": 9.889854294780248e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "MU",
+                "unit": "kilowatt hour"
+              },
+              "amount": 4.533488636874223e-06,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "BJ",
+                "unit": "kilowatt hour"
+              },
+              "amount": 8.60333508811368e-06,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "ER",
+                "unit": "kilowatt hour"
+              },
+              "amount": 2.030844974126491e-06,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "LY",
+                "unit": "kilowatt hour"
+              },
+              "amount": 0.00020001951506940207,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "SN",
+                "unit": "kilowatt hour"
+              },
+              "amount": 3.619429880146777e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "ZW",
+                "unit": "kilowatt hour"
+              },
+              "amount": 6.217159905001849e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "BW",
+                "unit": "kilowatt hour"
+              },
+              "amount": 2.70682443182162e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "KE",
+                "unit": "kilowatt hour"
+              },
+              "amount": 6.81023997784416e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "MZ",
+                "unit": "kilowatt hour"
+              },
+              "amount": 9.37196695305956e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "TG",
+                "unit": "kilowatt hour"
+              },
+              "amount": 1.2822255697149633e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "SD",
+                "unit": "kilowatt hour"
+              },
+              "amount": 0.00010335322336484872,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "CG",
+                "unit": "kilowatt hour"
+              },
+              "amount": 5.4968671830147595e-06,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "CD",
+                "unit": "kilowatt hour"
+              },
+              "amount": 8.711347960654326e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "SS",
+                "unit": "kilowatt hour"
+              },
+              "amount": 3.1667548458218666e-06,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "CI",
+                "unit": "kilowatt hour"
+              },
+              "amount": 6.51982237716533e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "GA",
+                "unit": "kilowatt hour"
+              },
+              "amount": 1.5915915609517498e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "AO",
+                "unit": "kilowatt hour"
+              },
+              "amount": 8.463661645594069e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "GH",
+                "unit": "kilowatt hour"
+              },
+              "amount": 0.00012539071819004863,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "CM",
+                "unit": "kilowatt hour"
+              },
+              "amount": 3.3090214931780086e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            },
+            {
+              "source": {
+                "name": "market for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "NA",
+                "unit": "kilowatt hour"
+              },
+              "amount": 2.2153681214994644e-05,
+              "target": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "GLO",
+                "unit": "kilowatt hour"
+              }
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "native_synthesis_with_explicit_complete_functional_chemical_and_utility_proxies",
+        "recipe_id": "deferred-xanthate-d1a861c5dea350e89267",
+        "limitations": "Autonomously reviewed exact3.12cut-off sodium ethyl xanthate synthesis reconstruction, positive1kgpure/active product. Retain both source producer entries (.00409999999999999ZA and.9958999999999999RoW), every original market freight leg, source precursor and utility coefficients, supported uncertainty and four direct biosphere flows per producer. Use complete native CS2, fossil ethylene-hydration ethanol, active-reference NaOH, liquid nitrogen, deionised water, chemical plant, MV electricity, hazardous-waste incineration and unpolluted wastewater treatment. Do not use generic organic chemicals or biomass ethanol. Public Kunene thesis Table14 independently supports the CS2/ethanol/caustic chemistry and nominal reactant masses; source supplied dry-active reference and published liquid-plant study are not a proven phase/drying equivalence. Do not invent drying, phase or purity factors. Native ethanol stands in for the source coal/FT contribution as an explicit fossil-feedstock technology proxy; active-substance quantities remain1:1 without a guessed99.7%/50%multiplier. Missing-country MV grids use complete nativeGLO grids, retaining separate source coefficients, quantities, loss/network boundaries and uncertainty; other native countries/regions are retained. Preserve native chemical/waste/utility inventories in full. Signed waste inputs become positive demand using independently inspected negative source references. Native hazardous waste25%moisture, municipal-treatment size/boundary, mixed source supply/delivery versus at-plant suppliers, reactant technologies/allocation, factory capacity/lifetime, geography, vintage and internal uncertainty differ. Retain nitrogen emission and all three separate water-resource/return flows in exact canonical3.10 compartments by verified publisher UUID; no collapse into one net-water exchange. The source inventory includes generic waste treatment and water assumptions beyond the public liquid-plant description; retain them without asserting plant-measured equivalence. No new recovery credit, omitted source exchange, renormalization or arbitrary unit multiplier. Caller signs, active kg, formulas and supported uncertainty remain at factor+1.2991upstreambiosphere exclusions and unquantified score effects remain explicit. Other releases, inverse and cross-system-model conversions are not qualified."
+      },
       "validation": [],
       "commits": []
     },

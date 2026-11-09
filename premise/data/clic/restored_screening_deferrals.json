@@ -1847,6 +1847,64 @@
         }
       ],
       "status": "Source-faithful concrete-waste sorting, nonempty recycling and collection, preserving inert waste fates, particulate emissions and freight."
+    },
+    {
+      "review_path": "export/uvek_deferred_xanthate_review.json",
+      "review_sha256": "69d2c522699a96e300bbe3892826a7bc9dd39d46a9078983fd5471b3f4b72716",
+      "restored_decisions": [
+        {
+          "id": "uvek-2026-screening-68398736fed09315c29e",
+          "slug": "iridium-production-economic-allocation-proxy",
+          "version_id": 5768,
+          "semantic_version": "1.0.1",
+          "sha256": "ccce6f512773471b00566311e32535b10624cfeb5297ff4e666557ee7e9fd902",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.12"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.12"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": 13.84976564156525,
+            "code": "c6cd117291a44a9836d7fe6247228147",
+            "comment": "SIBX active mass represented by sodium ethyl xanthate at 1:1 kg. Different alkyl chain; functional manufacturing proxy, not chemical equivalence or evidence for field emissions or equivalent environmental impacts. Reagent dose basis: commercial; North-only capacity-share engineering scenario. Amounts are generated from the separately recorded model parameters.",
+            "database": "ecoinvent-3.12-cutoff",
+            "location": "GLO",
+            "name": "market for sodium ethyl xanthate",
+            "reference product": "sodium ethyl xanthate",
+            "type": "technosphere",
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 7,
+          "screening_only": true,
+          "deferred_rule_id": "bp-6046387e041ea5c2",
+          "deferred_candidate": {
+            "location": "GLO",
+            "name": "Chemicals organic, at plant",
+            "reference product": "Chemicals organic, at plant",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-6046387e041ea5c2: 13.84976564156525 kilogram of market for sodium ethyl xanthate in pinned iridium-production-economic-allocation-proxy (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        }
+      ],
+      "status": "Exact3.12 active-xanthate synthesis with explicit native chemical/feedstock, utility geography and waste-treatment limitations; original producer shares, quantities, canonical emissions and freight retained."
     }
   ]
 }

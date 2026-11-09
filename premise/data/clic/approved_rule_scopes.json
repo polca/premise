@@ -113385,6 +113385,843 @@
           "fingerprint": "36c9a61728259883f0cd2fa52c748366d90f1af7ac862f1b6e03886812a10335"
         }
       ]
+    },
+    {
+      "rule_id": "bp-6046387e041ea5c2",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_xanthate",
+      "review_path": "export/uvek_deferred_xanthate_review.json",
+      "review_sha256": "69d2c522699a96e300bbe3892826a7bc9dd39d46a9078983fd5471b3f4b72716",
+      "authorization": "User autonomous resolution goal with standing auto-approval; use derived native synthesis graph with explicit fossil-ethanol/feedstock, utility geography, treatment and reference-basis warnings. Raw licensed source inventories remain private.",
+      "inspection": {
+        "rule_id": "bp-6046387e041ea5c2",
+        "source": {
+          "location": "GLO",
+          "name": "market for sodium ethyl xanthate",
+          "reference product": "sodium ethyl xanthate",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "GLO",
+          "name": "Chemicals organic, at plant",
+          "reference product": "Chemicals organic, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.4,
+          "id": "bp-6046387e041ea5c2",
+          "mapping_method": "pairwise_review",
+          "review_ref": "r-36a16cb01d5e258d",
+          "source": {
+            "location": "GLO",
+            "name": "market for sodium ethyl xanthate",
+            "reference product": "sodium ethyl xanthate",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "GLO",
+            "name": "Chemicals organic, at plant",
+            "reference product": "Chemicals organic, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "eb8da5f452a9acd2a7a0108587343219f9c3de52b0e2b16ef6c0ba886451143c",
+        "previous_review": {
+          "limitations": [
+            "Identity-level comparison only; inventory composition and LCIA equivalence are not verified."
+          ],
+          "rationale": "Low-confidence named target does not preserve the source chemical identity; branch provides the correct broad chemical family. Coarse proxy only."
+        },
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "original_factor": 1,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.12-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "source_sign": 1,
+            "inventory_sha256": "3902a0eb6b90f4cf4ae89ddd5c7ed669f44460ecd7f5b35ccdcc90cf9cd3079c",
+            "inputs": [
+              {
+                "recipe": "deferred-xanthate-producer-f3c78cd4e1f5f86cd8bb",
+                "amount": 0.00409999999999999,
+                "uncertainty type": 0,
+                "loc": 0.00409999999999999
+              },
+              {
+                "recipe": "deferred-xanthate-producer-134f787acdccbeb702ff",
+                "amount": 0.9958999999999999,
+                "uncertainty type": 0,
+                "loc": 0.9958999999999999
+              },
+              {
+                "location": "RER",
+                "name": "Transport, barge tanker",
+                "reference product": "Transport, barge tanker",
+                "unit": "ton kilometer",
+                "amount": 0.0246,
+                "uncertainty type": 2,
+                "loc": -3.70500883604382,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer",
+                "amount": 0.2088,
+                "uncertainty type": 2,
+                "loc": -1.5663784229736533,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              },
+              {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer",
+                "amount": 0.599,
+                "uncertainty type": 2,
+                "loc": -0.5124936808666878,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer",
+                "amount": 0.3091,
+                "uncertainty type": 2,
+                "loc": -1.1740904298440664,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 4,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for carbon disulfide",
+                  "carbon disulfide",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-3252570eb55adead",
+                "binding_sha256": "244d70e8d215b34653bb1030cfca373fbad74424ac9c6c3b2bc33a829c94a50a"
+              },
+              {
+                "source": [
+                  "market for chemical factory, organics",
+                  "chemical factory, organics",
+                  "GLO",
+                  "unit"
+                ],
+                "rule_id": "bp-5b8c937d3fb21468",
+                "binding_sha256": "ea09ff0e6cef09a0a018fa2941f6ca594c59c700b00fc41ae34986ee3d29c8d3"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "ZA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-6af8519b6eae52db",
+                "binding_sha256": "22873801617f6be082a715b6df49473d62ec202b6bb63e9f382fe0dae72b0a31"
+              },
+              {
+                "source": [
+                  "market for ethanol, without water, in 99.7% solution state, from ethylene",
+                  "ethanol, without water, in 99.7% solution state, from ethylene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-02ad72c78509d9d0",
+                "binding_sha256": "82b4366343807bd50dfa8f61482ba53d31c4a4f131bd05d2354b400e9c21b260"
+              },
+              {
+                "source": [
+                  "market for hazardous waste, for incineration",
+                  "hazardous waste, for incineration",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-ef673f7bc19f4581",
+                "binding_sha256": "152b646e37da34fd38c410aac9c5dd470360e17e6efe0b98e108bf0ae3e4aaf5"
+              },
+              {
+                "source": [
+                  "market for nitrogen, liquid",
+                  "nitrogen, liquid",
+                  "RAF",
+                  "kilogram"
+                ],
+                "rule_id": "bp-6f86cbd6961fdfc9",
+                "binding_sha256": "d4e2d33ca5803e028c6977354745edc8b01811aecd82eaf35eedb3443950f446"
+              },
+              {
+                "source": [
+                  "market for sodium hydroxide, without water, in 50% solution state",
+                  "sodium hydroxide, without water, in 50% solution state",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-d7d358d48a007a28",
+                "binding_sha256": "499b846bac2f8eff9f7cd1cba4dca719c441130f8de45795d95b5c4b58348a86"
+              },
+              {
+                "source": [
+                  "market for wastewater, unpolluted",
+                  "wastewater, unpolluted",
+                  "RoW",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-c7e4264eac8d8ea6",
+                "binding_sha256": "e486803b3870c76ed7d8adc98770b70229a05c72905fc82f082820f97c68623c"
+              },
+              {
+                "source": [
+                  "market for water, deionised",
+                  "water, deionised",
+                  "RoW",
+                  "kilogram"
+                ],
+                "rule_id": "bp-603ffa52668e2ab6",
+                "binding_sha256": "a5566cc66fc48241f7a1ede32eefbf3fc518693a36c3197013e0615463601137"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NE",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-a1dd26576539f6b7",
+                "binding_sha256": "47fc7911959fc0d3c84d9b0303efb2790fad99dd7a5f8803b89c3d8089944504"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "ZM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-08d2535dc9b4532d",
+                "binding_sha256": "b9fb3fcebd8b416e9dd59cc0864c64b60d5b7d3bb10f252fccf872fe15eb5b71"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-2f2d2f22813f9c32",
+                "binding_sha256": "0134dffc6836a2ef003b64d91a14a2514c1d04023dc49a33a5ac10ef5ee106c9"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RU",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-1237581aa7459b6a",
+                "binding_sha256": "2e09d4fbad13e90d7e871ba84798fd0fc09630006cf3ab42bd59ab7bc8a62b4d"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MU",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-23cf8c8ff561e8e2",
+                "binding_sha256": "9bf18f0aefca4c821a3450fa9f81ac3ba9be078a9675f3faea837a77cbed6f9b"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RER",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-49b843b95c0c6223",
+                "binding_sha256": "a147764e438f83642751b71b694c2c8ca149c64c13dc096fbe3937f83fb69fb9"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BJ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-3a4fa25c32013697",
+                "binding_sha256": "19cff4077d541a7b71a78e89223b3c0756e58bce18a186fa4c7901a9c7ee3785"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "ER",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-58a7c9d96d92e2a7",
+                "binding_sha256": "e9bccff532bd61473d991ec555c3fe5384705ed24ef462b338873ba813eddf9a"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-945fbae6fb4ee0f3",
+                "binding_sha256": "5f115999b4bfd29494168a907da0848ea518dec3afe5299d5aa361682c29da3c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AU",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-45c9f9c3254ce0de",
+                "binding_sha256": "7304e501c5f33f8547a7f457921cebad07809f9c5e09403d38c7caf8994f716c"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RNA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-a819b95a8342323b",
+                "binding_sha256": "75329a9046190f00b05eeb92fb9f090165ebb5c9dbf5e35ad863cd397842c8c4"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "LY",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-1b258c6ed43df5f2",
+                "binding_sha256": "54f5a2be8ae72bc4bd5293256290ae13efe40faef149e8b6cd0dd8a5638cb711"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "SN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-5f603bb48862d872",
+                "binding_sha256": "7337374eb05348919b0b9285cac69dd763f093152774fce289bd33eeda318ada"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "DZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-d5661bc6118e47ca",
+                "binding_sha256": "cbb52edbc318dab531d3a1b39cd09f1ddbc56a3119582ec62dc52bb370c20b20"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TN",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f27af27e06e75f14",
+                "binding_sha256": "c17bb7ea2118a2428ed372dcf75720673668b8bd7ea9b97bb2b2276cc83d9b69"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "ZW",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f16087e7f4f03b32",
+                "binding_sha256": "c0ae98fc872284a200e10c01ae473768b0e270d1c7b44a1f87eeb966590ccd5c"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "ET",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-de56e7146a5cfc3e",
+                "binding_sha256": "06caa4ae113b73bfe90e299fff935cc59e4b33c1047a7ebb6c91c9c7f0a53931"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-e2cc99ae35d677f8",
+                "binding_sha256": "f5d709a376be4893a2fc687240e47457ec102acf28c90750b65f5ce35a985a6f"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "BW",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-09ce36833ac56021",
+                "binding_sha256": "1afffe745cbd58495fe26dd90f40700207959a48fbe7eb9e6e45b56e12df9d4a"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RAS",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-78fcb88821f30a79",
+                "binding_sha256": "4c9ced7da87a68980eadd4487a6b6aa09a9511f616e2d91e242adee4743f87d1"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "KE",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f40025fb554339ca",
+                "binding_sha256": "175debc59a2662d5d7d8bd1e54b7467721d85d536ab63cfd8b4bf4bb04178e5d"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "MZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-a434e4b89a9c2fc5",
+                "binding_sha256": "b3f8c13706ecb5035b0e5403641f4ad8df9169421d47f2c594fdf0ce134777b3"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "TG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-119ffa0958f9af8d",
+                "binding_sha256": "a40763b20c3cabda92d03bd5e36049a11d454263403fdb6acf1aae989d7a20d2"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "SD",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-7b5fb8000198589b",
+                "binding_sha256": "419efa6d7b9c440170e1ffad8bd2aca4ce5052ebae492e41644ebc0b4a4bbb90"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-5c016f108a069b41",
+                "binding_sha256": "efb625aef7c9e7e1bd5841f105891633921c2a492ec98a683bb1b6ecc208f6f4"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CD",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-023f7765de659691",
+                "binding_sha256": "ffff8e9a0074aaca264e38ad548c10bb42b2d8a99b812748baf4e7bd7505435f"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "SS",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-e6810cfd3a5725a7",
+                "binding_sha256": "de514d2137d6dd6cad51b2d075365c4051e73b38193c9fa28e9922f4682bbdea"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "EG",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-90e55a239af51a0a",
+                "binding_sha256": "8201410dcd1255818249aa0064d5b96c716c6a163c84bf1c70336d3968e1b4a0"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NZ",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-f1e0f62720d0e814",
+                "binding_sha256": "828c3e568535e0a8690e4682f2b668650732270fb829a64d662ddd31fcaf8207"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CI",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-981f3de9e93c458c",
+                "binding_sha256": "902b98362f7fc332cc04aea96f759c1282af5de2edef272befecedfb85758625"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "GA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-276d4285be1ebc99",
+                "binding_sha256": "5935808129d08a2c3c8b9cdd6ffedf7e9de45027ad14125cfcdb9e552dfceb6d"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "AO",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-15b8549d772610f8",
+                "binding_sha256": "389ccb7970b5fc6ffbb0366afc838ed1779cc8889878e603b3045790c58275c4"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RLA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-9d30b98cb51ab151",
+                "binding_sha256": "93469f867c515bc97e0bc78bc6d08c2d4fb3c0d8bbc85b3cee4cbb7803536698"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "GH",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-ba60da0c7cfefa85",
+                "binding_sha256": "262b349bb66b8aeba3d956880f95ca69728ce2762bb4860566f7b0c31e013a95"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CM",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-8fc33e29bbf1bbdd",
+                "binding_sha256": "80bcc0666377187dbb9763b4b9e6c3348ca2c31dea519879854e4e1e63009f28"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "NA",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-d8060f4fdb01d890",
+                "binding_sha256": "9c1a12afcefb5946fae64c0111b2cfe003792a6926a9061f102434033679cb6d"
+              },
+              {
+                "source": [
+                  "market for ethanol, without water, in 99.7% solution state, from ethylene",
+                  "ethanol, without water, in 99.7% solution state, from ethylene",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-533134d2fbe5ce77",
+                "binding_sha256": "770b8db40a8ddb0459522d1ca07744e63b00f15994d0a673656ec5478489abb6"
+              },
+              {
+                "source": [
+                  "market for hazardous waste, for incineration",
+                  "hazardous waste, for incineration",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-62002dd49882716c",
+                "binding_sha256": "6a155f2b95be3c2c8a03ae290321cfd2e451b36d8c6d8499e9621a2e1a5ba7c6"
+              },
+              {
+                "source": [
+                  "market for hazardous waste, for incineration",
+                  "hazardous waste, for incineration",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-e0c46eb6a6d0891b",
+                "binding_sha256": "4ce26d19de458c72ca6fd3febaa3c0393b320d162c69c6d7f5ee0110c3985c0c"
+              },
+              {
+                "source": [
+                  "market for nitrogen, liquid",
+                  "nitrogen, liquid",
+                  "RLA",
+                  "kilogram"
+                ],
+                "rule_id": "bp-d0d4b74627896ca6",
+                "binding_sha256": "bc480947f20324500f4b12b900c6f538171da8d876cb2210752f6702119fc9c2"
+              },
+              {
+                "source": [
+                  "market for nitrogen, liquid",
+                  "nitrogen, liquid",
+                  "Asia without China",
+                  "kilogram"
+                ],
+                "rule_id": "bp-7ab29bd4ae95bc4a",
+                "binding_sha256": "572e0fc0baacd1e9962433f648333faeaaaf1f98ac9d83ad026becfd7d2e7d02"
+              },
+              {
+                "source": [
+                  "market for nitrogen, liquid",
+                  "nitrogen, liquid",
+                  "CN",
+                  "kilogram"
+                ],
+                "rule_id": "bp-c536e3fc733a22e3",
+                "binding_sha256": "6309c442bf505e546d1d2d1d7fb3c5c1637288c189ef0292fd375e487e8b0a01"
+              },
+              {
+                "source": [
+                  "market for nitrogen, liquid",
+                  "nitrogen, liquid",
+                  "RNA",
+                  "kilogram"
+                ],
+                "rule_id": "bp-6b3e4af23a81b434",
+                "binding_sha256": "4b211c948851e0f4678ea37362271fda104199d02bee563199c0daff3fa121a0"
+              },
+              {
+                "source": [
+                  "market for nitrogen, liquid",
+                  "nitrogen, liquid",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-412f090ea47af121",
+                "binding_sha256": "f211276614fc617790e9009fb3ee89232691c54ddc267bf354c560f9f8a847e6"
+              },
+              {
+                "source": [
+                  "market for sodium hydroxide, without water, in 50% solution state",
+                  "sodium hydroxide, without water, in 50% solution state",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-298d4a1db293e750",
+                "binding_sha256": "ce2f29f47e92f49f07b05d69ba90a5d77b0aec9b3052514ada03f686debc68df"
+              },
+              {
+                "source": [
+                  "market for sodium hydroxide, without water, in 50% solution state",
+                  "sodium hydroxide, without water, in 50% solution state",
+                  "US",
+                  "kilogram"
+                ],
+                "rule_id": "bp-c7663e128351eb8f",
+                "binding_sha256": "b7be17ee7b5dacc48c9dd8277f9030d8424dcbc4609cc6df28249037bd611e78"
+              },
+              {
+                "source": [
+                  "market for wastewater, unpolluted",
+                  "wastewater, unpolluted",
+                  "CH",
+                  "cubic meter"
+                ],
+                "rule_id": "bp-8ba1a05d3947e096",
+                "binding_sha256": "ce35b1333a83e7f420670a8fea9005d1373c91e38b08facb1f036cc2a1d3eea6"
+              },
+              {
+                "source": [
+                  "market for water, deionised",
+                  "water, deionised",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-f1bc637c4fcf6060",
+                "binding_sha256": "575f67b60505f89358eccbc318ec5d800caaed3ba6e013e7506dca3555d27b37"
+              },
+              {
+                "source": [
+                  "market for water, deionised",
+                  "water, deionised",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-813e89e197b90e26",
+                "binding_sha256": "febdefd3795117c497abb91648a0ebca969a3257fea4af959595b2eeb9628a72"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, inland waterways, barge tanker, diesel",
+                  "transport, freight, inland waterways, barge tanker, diesel",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-945d4f0c8848858c",
+                "binding_sha256": "f099df8fa9d31212c7a2a9c26b29ba29f8a0ec4d805a2189e7fa1db66206fbcc"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, diesel, unspecified",
+                  "transport, freight, lorry, diesel, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-17557527b93c3bc6",
+                "binding_sha256": "8ac6377d26a5b6a2489395f408b42a558c0d1e943a3916da561b6f4db8712248"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, container ship, heavy fuel oil",
+                  "transport, freight, sea, container ship, heavy fuel oil",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-0721dc4212547a4d",
+                "binding_sha256": "777084870b99dbd081a58b22095dd95ba8b6f88a097b7fba15bb7d6af7caf301"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, train, fleet average",
+                  "transport, freight, train, fleet average",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-3048233792ab5feb",
+                "binding_sha256": "48ddc5466394c787f45ed8ec2e8b80b8cd63e72862c76a60b34bda2230ce4f14"
+              }
+            ]
+          }
+        ],
+        "limitations": "Autonomously reviewed exact3.12cut-off sodium ethyl xanthate synthesis reconstruction, positive1kgpure/active product. Retain both source producer entries (.00409999999999999ZA and.9958999999999999RoW), every original market freight leg, source precursor and utility coefficients, supported uncertainty and four direct biosphere flows per producer. Use complete native CS2, fossil ethylene-hydration ethanol, active-reference NaOH, liquid nitrogen, deionised water, chemical plant, MV electricity, hazardous-waste incineration and unpolluted wastewater treatment. Do not use generic organic chemicals or biomass ethanol. Public Kunene thesis Table14 independently supports the CS2/ethanol/caustic chemistry and nominal reactant masses; source supplied dry-active reference and published liquid-plant study are not a proven phase/drying equivalence. Do not invent drying, phase or purity factors. Native ethanol stands in for the source coal/FT contribution as an explicit fossil-feedstock technology proxy; active-substance quantities remain1:1 without a guessed99.7%/50%multiplier. Missing-country MV grids use complete nativeGLO grids, retaining separate source coefficients, quantities, loss/network boundaries and uncertainty; other native countries/regions are retained. Preserve native chemical/waste/utility inventories in full. Signed waste inputs become positive demand using independently inspected negative source references. Native hazardous waste25%moisture, municipal-treatment size/boundary, mixed source supply/delivery versus at-plant suppliers, reactant technologies/allocation, factory capacity/lifetime, geography, vintage and internal uncertainty differ. Retain nitrogen emission and all three separate water-resource/return flows in exact canonical3.10 compartments by verified publisher UUID; no collapse into one net-water exchange. The source inventory includes generic waste treatment and water assumptions beyond the public liquid-plant description; retain them without asserting plant-measured equivalence. No new recovery credit, omitted source exchange, renormalization or arbitrary unit multiplier. Caller signs, active kg, formulas and supported uncertainty remain at factor+1.2991upstreambiosphere exclusions and unquantified score effects remain explicit. Other releases, inverse and cross-system-model conversions are not qualified.",
+        "generated_recipe_id": "deferred-xanthate-d1a861c5dea350e89267",
+        "source_witnesses": [
+          {
+            "identity": {
+              "location": "GLO",
+              "name": "market for sodium ethyl xanthate",
+              "reference product": "sodium ethyl xanthate",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "3902a0eb6b90f4cf4ae89ddd5c7ed669f44460ecd7f5b35ccdcc90cf9cd3079c",
+            "metadata_sha256": "1c44b64058add6cd456073e38dbf9bb32dad8a9e924d44c87a8b6ef3165ea27c"
+          },
+          {
+            "identity": {
+              "name": "sodium ethyl xanthate production",
+              "reference product": "sodium ethyl xanthate",
+              "location": "ZA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e9f4b8f003e2f6717a264a5031eb8837a57e6811dff7457e3fb8238eed60fc1b",
+            "metadata_sha256": "33399747af06fbfc687c4c8e36651923b3b7a0b6816ab7fd3f5ff3710deaa55e"
+          },
+          {
+            "identity": {
+              "name": "sodium ethyl xanthate production",
+              "reference product": "sodium ethyl xanthate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "66f0e98dd5f37442b0a7e923d2a7565dacea8d01d7f9ae3e7ecd9e8f2b51558c",
+            "metadata_sha256": "c08ae23a2551ab45830f26fb12ac512821a7bc5c83d27cdd09a7a1a5e5de3491"
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "caller_conversion_factor": 1,
+        "expected_foreground_records": 13,
+        "expected_foreground_biosphere_exchanges": 8
+      },
+      "limitations": [
+        "Autonomously reviewed exact3.12cut-off sodium ethyl xanthate synthesis reconstruction, positive1kgpure/active product. Retain both source producer entries (.00409999999999999ZA and.9958999999999999RoW), every original market freight leg, source precursor and utility coefficients, supported uncertainty and four direct biosphere flows per producer. Use complete native CS2, fossil ethylene-hydration ethanol, active-reference NaOH, liquid nitrogen, deionised water, chemical plant, MV electricity, hazardous-waste incineration and unpolluted wastewater treatment. Do not use generic organic chemicals or biomass ethanol. Public Kunene thesis Table14 independently supports the CS2/ethanol/caustic chemistry and nominal reactant masses; source supplied dry-active reference and published liquid-plant study are not a proven phase/drying equivalence. Do not invent drying, phase or purity factors. Native ethanol stands in for the source coal/FT contribution as an explicit fossil-feedstock technology proxy; active-substance quantities remain1:1 without a guessed99.7%/50%multiplier. Missing-country MV grids use complete nativeGLO grids, retaining separate source coefficients, quantities, loss/network boundaries and uncertainty; other native countries/regions are retained. Preserve native chemical/waste/utility inventories in full. Signed waste inputs become positive demand using independently inspected negative source references. Native hazardous waste25%moisture, municipal-treatment size/boundary, mixed source supply/delivery versus at-plant suppliers, reactant technologies/allocation, factory capacity/lifetime, geography, vintage and internal uncertainty differ. Retain nitrogen emission and all three separate water-resource/return flows in exact canonical3.10 compartments by verified publisher UUID; no collapse into one net-water exchange. The source inventory includes generic waste treatment and water assumptions beyond the public liquid-plant description; retain them without asserting plant-measured equivalence. No new recovery credit, omitted source exchange, renormalization or arbitrary unit multiplier. Caller signs, active kg, formulas and supported uncertainty remain at factor+1.2991upstreambiosphere exclusions and unquantified score effects remain explicit. Other releases, inverse and cross-system-model conversions are not qualified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "60ce208712b17687cba7afb9fbf31df3c24aca8c545aca68ba52b883dfa5a3f8"
+        }
+      ]
     }
   ]
 }
