@@ -3589,7 +3589,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-364b29f8f839f725ced0",
-      "status": "partial_awaiting_validation",
+      "status": "partially_restored_with_final_unsupported_branches",
       "original_deferral": {
         "id": "uvek-2026-screening-364b29f8f839f725ced0",
         "slug": "treatment-of-used-power-conversion-system-electrolysis-1-mw",
@@ -4274,6 +4274,15 @@
               "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
             }
           ]
+        },
+        {
+          "verification_receipts": [
+            "partial_paperboard_export_readback.json",
+            "partial_paperboard_quantity_check.json",
+            "partial_paperboard_regressions.log",
+            "partial_paperboard_generator_replay.json"
+          ],
+          "location": "private task workspace"
         }
       ],
       "selected_disposition": {
@@ -4285,8 +4294,16 @@
         "fully_restored": false,
         "limitations": "PARTIAL SCREENING ONLY: final partial representation of the exact cut-off paperboard market. Retain only the original 12.5163193694194% municipal-incineration mass fraction and every original market freight coefficient. Eleven nonempty open-burning, open-dump and unsanitary-landfill branches, totalling 87.4836806305805% of treatment mass, have no defensible native uncontrolled counterpart and are explicitly omitted with literal source-exchange audits. This is a final unsupported-branch disposition, not deferred investigation, an empty handover or a zero-impact assumption. Do not interpret this helper as a complete market inventory or LCIA score. Do not renormalize the supported fraction, substitute managed treatment for uncontrolled routes, invent a recovery credit or publish a copied source biosphere vector. Keep the original one-kg source-market wet-waste basis; generated positive reference and caller factor -1 preserve signed waste demand, formulas and supported uncertainty. Complete native packaging-cardboard municipal incineration supplies the supported route per original wet kg, retaining its full materials, infrastructure, energy, emissions, effluent, ash and residue inventory. Native name states 19.6% water while its composition documentation states 10.437%; inspected source municipal references report 19.6% for3.9 and10.4367% for3.12, and source market aggregate composition also differs. No concentration, moisture, heating-value or dry-mass multiplier is inferred. Composition/grade, collection versus market-delivery boundary, energy recovery/allocation, emission capture, ash/effluent/residue treatment, CH geography versus source RoW/GLO, vintage and native internal uncertainty remain screening differences with unquantified score effects. All original road/rail entries remain separate with original uncertainty, using complete native RER fleet/rail services as explicit geography/traction/loading/vintage proxies; no aircraft, coal-only freight, distance or capacity factor. The 2,991 upstream biosphere exclusions remain visible. Other releases, inverse and cross-system-model conversions are not qualified."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        "Brightpath:21 focused tests; generator replay byte-identical;2native finite LCIs.",
+        "Premise:55 focused/cache/omission/metadata regression tests; changed Python Ruff and Black checks passed.",
+        "Public encrypted REMIND SSP2-NPi2050 constructor/update/certification/12483activity export passed; independent2finite LCI/readback verified38full+2partial callers,22literal branch audits, warnings/metadata and unchanged source signatures.",
+        "Original2caller signs/formulas/supported uncertainty verified before IAM; source graph unchanged."
+      ],
+      "commits": [
+        "brightpath:7974790",
+        "premise:76ba67a9"
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-7eed9598b634124f22ad",
@@ -5896,7 +5913,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-fc3ee282d0e21e35df15",
-      "status": "partial_awaiting_validation",
+      "status": "partially_restored_with_final_unsupported_branches",
       "original_deferral": {
         "id": "uvek-2026-screening-fc3ee282d0e21e35df15",
         "slug": "motor-drive-production-industrial-75-kw",
@@ -6581,6 +6598,15 @@
               "rationale": "Final scoped omission of this nonempty uncontrolled-disposal branch: no native open-burning/open-dump/unsanitary counterpart found after searching11947identities and inspecting28paper-disposal candidates. Managed incineration/landfill is not an equivalent fate. Original negative input to a negative treatment reference represents omitted positive treatment demand, not a zero-impact stock or invented recovery credit. Retain exact signed quantity/uncertainty here; no renormalization, replacement credit or burden-free claim. Environmental/LCIA effects are unquantified; this helper is explicitly PARTIAL."
             }
           ]
+        },
+        {
+          "verification_receipts": [
+            "partial_paperboard_export_readback.json",
+            "partial_paperboard_quantity_check.json",
+            "partial_paperboard_regressions.log",
+            "partial_paperboard_generator_replay.json"
+          ],
+          "location": "private task workspace"
         }
       ],
       "selected_disposition": {
@@ -6592,8 +6618,16 @@
         "fully_restored": false,
         "limitations": "PARTIAL SCREENING ONLY: final partial representation of the exact cut-off paperboard market. Retain only the original 12.5163193694194% municipal-incineration mass fraction and every original market freight coefficient. Eleven nonempty open-burning, open-dump and unsanitary-landfill branches, totalling 87.4836806305805% of treatment mass, have no defensible native uncontrolled counterpart and are explicitly omitted with literal source-exchange audits. This is a final unsupported-branch disposition, not deferred investigation, an empty handover or a zero-impact assumption. Do not interpret this helper as a complete market inventory or LCIA score. Do not renormalize the supported fraction, substitute managed treatment for uncontrolled routes, invent a recovery credit or publish a copied source biosphere vector. Keep the original one-kg source-market wet-waste basis; generated positive reference and caller factor -1 preserve signed waste demand, formulas and supported uncertainty. Complete native packaging-cardboard municipal incineration supplies the supported route per original wet kg, retaining its full materials, infrastructure, energy, emissions, effluent, ash and residue inventory. Native name states 19.6% water while its composition documentation states 10.437%; inspected source municipal references report 19.6% for3.9 and10.4367% for3.12, and source market aggregate composition also differs. No concentration, moisture, heating-value or dry-mass multiplier is inferred. Composition/grade, collection versus market-delivery boundary, energy recovery/allocation, emission capture, ash/effluent/residue treatment, CH geography versus source RoW/GLO, vintage and native internal uncertainty remain screening differences with unquantified score effects. All original road/rail entries remain separate with original uncertainty, using complete native RER fleet/rail services as explicit geography/traction/loading/vintage proxies; no aircraft, coal-only freight, distance or capacity factor. The 2,991 upstream biosphere exclusions remain visible. Other releases, inverse and cross-system-model conversions are not qualified."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        "Brightpath:21 focused tests; generator replay byte-identical;2native finite LCIs.",
+        "Premise:55 focused/cache/omission/metadata regression tests; changed Python Ruff and Black checks passed.",
+        "Public encrypted REMIND SSP2-NPi2050 constructor/update/certification/12483activity export passed; independent2finite LCI/readback verified38full+2partial callers,22literal branch audits, warnings/metadata and unchanged source signatures.",
+        "Original2caller signs/formulas/supported uncertainty verified before IAM; source graph unchanged."
+      ],
+      "commits": [
+        "brightpath:7974790",
+        "premise:76ba67a9"
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-0e2220f339c9d5ced47d",
@@ -6748,6 +6782,8 @@
     "starting_deferred_exchanges": 20,
     "restored_in_this_goal": 16,
     "final_unsupported_omissions": 0,
-    "pending_exchanges": 4
+    "pending_exchanges": 2,
+    "partially_restored_exchanges": 2,
+    "final_unsupported_recipe_branches": 22
   }
 }
