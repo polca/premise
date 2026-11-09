@@ -743,6 +743,25 @@ All 301 previous fingerprints and existing recipes/reviews remain unchanged.
 The frontier is now 40 rules / 45 exact-profile cases, with 302 fingerprints;
 the full prospective scenario/certification/export remains unvalidated.
 
+`uvek_pilot_uncontrolled_market_review.json` adds the exact 3.9 DE/RoW
+mixed-plastic and 3.12 RoW untreated-wood market graphs. Twenty-two complete source
+helpers preserve all open-burning/open-dump/unsanitary releases, full receiving
+context and marginal uncertainty; canonicalization uses identical publisher
+UUID/unit/context in ecoinvent 3.10 with explicit label/CAS metadata warnings.
+The two complete operating services and original collection freight reuse exact
+earlier inventory witnesses. Controlled fractions use composition-matching native
+services with their coverage, technology, allocation and geographic limitations;
+the wood thermal-output report differs by 3.5 versus 3.49 MJ. The missing native
+direct waste-accounting indicator is retained once for that controlled fraction.
+No treatment fate is collapsed; source helpers omit no physical release, and no
+moisture/recovery factor is invented. Twenty-eight relevant Brightpath checks and twenty-eight focused
+Premise checks pass; all three actual migrated graphs yield finite LCI, including
+direct foreground flows, with unchanged source hashes. All 302 earlier fingerprints
+and existing recipes/reviews remain unchanged. Twenty-five recipes are added;
+full authoring replay is byte-identical. The frontier is 37 rules / 42 exact-profile
+cases and 305 fingerprints. Paperboard's controlled fraction remains unresolved;
+the full prospective scenario/certification/export is still unvalidated.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

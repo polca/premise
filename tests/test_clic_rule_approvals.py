@@ -746,6 +746,9 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
         ("bp-1d429dc5bcb36b3e", "3.9", -1),
         ("bp-0930282b4ba7e381", "3.12", -1),
         ("bp-22c3a52062d0cb16", "3.9", -1),
+        ("bp-e172491d6da0b115", "3.9", -1),
+        ("bp-b7606642f4256898", "3.9", -1),
+        ("bp-5c29c14c8825b76f", "3.12", -1),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -1002,6 +1005,9 @@ def test_low_alloyed_cast_stock_keeps_source_routes_delivery_and_cached_warning(
         "bp-1d429dc5bcb36b3e",
         "bp-0930282b4ba7e381",
         "bp-22c3a52062d0cb16",
+        "bp-e172491d6da0b115",
+        "bp-b7606642f4256898",
+        "bp-5c29c14c8825b76f",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1769,8 +1775,8 @@ def test_approved_dense_soda_proxy_keeps_missing_densification_warning_in_cache(
         ("bp-ccc007a13f79d195", "3.9"),
         ("bp-ef0d29b6fa71b9c8", "3.9"),
         ("bp-dc3ac2fe6b0e61bf", "3.9"),
-        ("bp-e172491d6da0b115", "3.9"),
-        ("bp-b7606642f4256898", "3.9"),
+        # Plastic DE/RoW now preserve their complete source fates; the old flat
+        # endpoints remain refused in test_old_flat_waste_endpoint_remains_unapproved.
         ("bp-7df5d08d5bab9d33", "3.9"),
     ],
 )
@@ -1860,13 +1866,16 @@ def test_other_wastewater_market_boundaries_remain_unapproved(tmp_path, rule_id)
 
 
 @pytest.mark.parametrize(
-    "review_file,rule_id",
+    "review_file,rule_id,version",
     [
-        ("uvek_pilot_inert_composition_review.json", "bp-1d429dc5bcb36b3e"),
-        ("uvek_pilot_european_scrap_steel_review.json", "bp-22c3a52062d0cb16"),
+        ("uvek_pilot_inert_composition_review.json", "bp-1d429dc5bcb36b3e", "3.9"),
+        ("uvek_pilot_european_scrap_steel_review.json", "bp-22c3a52062d0cb16", "3.9"),
+        ("uvek_pilot_uncontrolled_market_review.json", "bp-e172491d6da0b115", "3.9"),
+        ("uvek_pilot_uncontrolled_market_review.json", "bp-b7606642f4256898", "3.9"),
+        ("uvek_pilot_uncontrolled_market_review.json", "bp-5c29c14c8825b76f", "3.12"),
     ],
 )
-def test_old_flat_waste_endpoint_remains_unapproved(review_file, rule_id):
+def test_old_flat_waste_endpoint_remains_unapproved(review_file, rule_id, version):
     from brightpath import DATA_DIR, TechnosphereProfile
     from brightpath.background.rule_approvals import compatibility_rule_fingerprint
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -1878,7 +1887,7 @@ def test_old_flat_waste_endpoint_remains_unapproved(review_file, rule_id):
         resource,
         "replace",
         row["previous_rule"],
-        TechnosphereProfile("ecoinvent", "3.9", "cutoff"),
+        TechnosphereProfile("ecoinvent", version, "cutoff"),
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
     assert fingerprint not in approved_compatibility_rule_scopes(
@@ -2001,6 +2010,116 @@ def test_european_scrap_steel_preserves_mixed_fates_recovery_and_cache_warning(
         )
         assert not any(
             d["code"] == "migration.recipe_input_omission" for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [
+        ("bp-e172491d6da0b115", "3.9"),
+        ("bp-b7606642f4256898", "3.9"),
+        ("bp-5c29c14c8825b76f", "3.12"),
+    ],
+)
+def test_mixed_disposal_markets_keep_complete_owned_graph_and_cached_warnings(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    resolved.activities[0]["exchanges"][1]["amount"] = -2.5
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        assert len(result.activities) == (3 if rule_id == "bp-e172491d6da0b115" else 13)
+        foreground = next(
+            a for a in result.activities if a["code"] == resolved.activities[0]["code"]
+        )
+        assert foreground["exchanges"][1]["amount"] == 2.5
+        root = next(
+            a
+            for a in result.activities
+            if a.get("brightpath_conversion", {})
+            .get("recipe_id", "")
+            .startswith("pilot-uncontrolled-market-")
+        )
+        leaves = [
+            a
+            for a in result.activities
+            if a.get("brightpath_conversion", {})
+            .get("recipe_id", "")
+            .startswith("pilot-uncontrolled-source-")
+        ]
+        assert len(leaves) == (1 if rule_id == "bp-e172491d6da0b115" else 11)
+        assert all(
+            a["brightpath_conversion"]["biosphere_binding_profile"]
+            == {"family": "ecoinvent", "version": "3.10"}
+            for a in leaves
+        )
+        inputs = [x for x in root["exchanges"] if x["type"] == "technosphere"]
+        assert sum(
+            x["amount"] for x in inputs if x["unit"] == "kilogram"
+        ) == pytest.approx(1, abs=1e-14)
+        assert sum(
+            x["amount"] for x in inputs if x["unit"] == "ton kilometer"
+        ) == pytest.approx(
+            0.0683546083228227
+            if rule_id == "bp-e172491d6da0b115"
+            else 0.077 if version == "3.12" else 0.03052
+        )
+        if version == "3.12":
+            total = sum(
+                x["amount"]
+                for x in root["exchanges"]
+                if x["type"] == "biosphere"
+                and x["name"] == "Non-hazardous waste disposed"
+            )
+            fields = ("name", "reference product", "location", "unit")
+            for leaf in leaves:
+                link = next(x for x in inputs if all(x[f] == leaf[f] for f in fields))
+                total += link["amount"] * sum(
+                    x["amount"]
+                    for x in leaf["exchanges"]
+                    if x["type"] == "biosphere"
+                    and x["name"] == "Non-hazardous waste disposed"
+                )
+            assert total == pytest.approx(1, abs=1e-14)
+        assert not any(
+            d["code"] == "migration.recipe_input_omission" for d in result.diagnostics
+        )
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+        )
+        assert "CAS/label metadata changes" in warning["message"]
+        assert "whole-country traction mixes" in warning["message"]
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize("version", ["3.9", "3.12"])
+def test_paperboard_does_not_inherit_uncontrolled_market_approval(tmp_path, version):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-3e43100f56430f0c"
+    )
+    resolved = graph(rule["source"], version=version)
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
         )
     assert resolved.activities == before
 

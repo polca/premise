@@ -180,10 +180,10 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 11 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 23 |
-| 3.12 | 8 | 11 |
+| 3.9 | 17 | 21 |
+| 3.12 | 8 | 10 |
 
-These are 45 exact-profile cases involving 40 distinct rules, after reusing
+These are 42 exact-profile cases involving 37 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -583,10 +583,38 @@ or LCIA-equivalence result. All 301 earlier approval fingerprints and existing
 recipes/reviews remain unchanged. The module contains 675 cases; no full module
 run is claimed.
 
+Three further mixed-fate markets retain all original treatment shares: 3.9
+DE/RoW mixed plastic and 3.12 RoW untreated wood. Twenty-two complete source
+helpers retain every signed physical biosphere exchange and its marginal
+uncertainty for open burning, open dumping and unsanitary landfilling. Exact
+publisher UUID, unit and full receiving compartment match the requested
+ecoinvent 3.10 biosphere; label/CAS metadata differences remain warnings, with
+no chemical mass factor or compartment inference. The two unsanitary operating
+services and all freight inventories match prior review fingerprints. Controlled
+fractions use native services with 44 matched composition/heating-value entries;
+native background/coverage differences and the wood thermal-output report's
+3.5 versus 3.49 MJ difference remain screening limitations. Original country
+freight quantities stay separate through whole-fleet geographic proxies,
+including their traction-mix limitations. No treatment fate is dropped; source
+helpers omit no physical flow. No moisture or allocation multiplier is introduced.
+
+Twenty-eight relevant Brightpath checks and twenty-eight focused Premise checks
+pass. All three actual migrated graphs have finite LCI on unchanged native
+background matrices, including their direct foreground emissions and flows
+whose existing biosphere IDs were unused by the native background. The wood
+graph retains one kg of direct waste accounting across the uncontrolled and
+controlled fractions. Source scientific hashes and caller data remain unchanged.
+The 25 added recipes comprise three markets and 22 source helpers; all 302 earlier
+fingerprints, 3,186 recipes and 691 reviews remain unchanged. Full authoring replay
+is byte-identical. Paperboard is still refused: its controlled-incineration
+composition differs from the available native paper candidates. The module
+contains 693 cases; no full module run or prospective scenario/export completion
+is claimed.
+
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 302 exact-profile fingerprints, with review evidence and
+ledger contains 305 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance
