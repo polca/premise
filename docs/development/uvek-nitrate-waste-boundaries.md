@@ -198,3 +198,15 @@ content-bound approval is reissued explicitly for the expanded shared rule;
 public conversion retains all scientific data and changes only the explanatory
 comment. Uninspected versions, inverse and cross-model routes remain outside
 this admission.
+
+## Regional polystyrene checkpoint
+
+Seven 3.9 cut-off PS markets now preserve all original fate and freight entries
+through the reviewed regional reconstruction. Eleven shared treatment helpers
+retain 1,081 direct elementary exchanges and ten operating inputs; 212 exact
+publisher definitions establish their canonical 3.10 biosphere identities.
+Ordinary incineration uses the specific complete native 0.2%-water PS process.
+No dry/wet composition factor, uncontrolled-fate replacement or extra recovery
+credit is introduced. The European group remains refused pending its separate
+Swiss FAE decision. See [polystyrene findings](uvek-polystyrene-waste-findings.md)
+for scope and validation; this does not admit the whole nitrate-salt market.

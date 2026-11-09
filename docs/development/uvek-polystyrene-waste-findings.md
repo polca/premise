@@ -1,7 +1,8 @@
 # Polystyrene waste markets: inspected boundaries and pending FAE proxy
 
-This is an inspection checkpoint, not an enabled mapping. It covers the eight
-remaining ecoinvent 3.9 cut-off polystyrene markets in the UVEK 2026 technosphere
+Seven regional markets are now admitted for this pilot. The European market
+group remains refused pending its FAE decision. The inspection covers eight
+ecoinvent 3.9 cut-off polystyrene markets in the UVEK 2026 technosphere
 / ecoinvent 3.10 biosphere electricity pilot: PE, RoW, CO, IN, CY, BR, ZA and the
 European RER market group. No source market, country or treatment share is
 removed to simplify the pilot.
@@ -58,23 +59,36 @@ Private primary evidence: `nitrate_ps_full_evidence.private.json` and
 `nitrate_ps_market_preflight.json`, `nitrate_ps_composition_preflight.json` and
 `nitrate_ps_documented_composition_preflight.json`. The production-property
 comparison and documented wet-composition comparison are deliberately distinct.
-No new migration rule, helper or approval has been enabled at this checkpoint.
+The original inspection enabled no mapping; the regional implementation below
+now admits only the seven non-European markets.
 
-## Regional helper preparation
+## Regional implementation checkpoint
 
-A private derived-target draft now covers the seven regional markets outside
-the European group. Fresh read-only checks bind 37 required source/native
-inventories to the earlier inspection. Eleven shared source-treatment helpers
+The packaged review `export/uvek_pilot_nitrate_ps_review.json` now admits the
+seven regional markets outside the European group. Fresh read-only checks bind
+37 required source/native inventories to the earlier inspection. Eleven shared source-treatment helpers
 retain 1,081 direct elementary exchanges, including signed/zero quantities and
 uncertainty. Their 212 distinct elementary definitions match the installed
 canonical 3.10 UUID, unit, complete compartment and flow role. Ten original
 operating inputs match the previously inspected complete diesel-combustion and
-skid-steer services. The seven market drafts retain all 30 original treatment
+skid-steer services. The seven market recipes retain all 30 original treatment
 terms and ten collection-freight entries, without aggregation or normalization.
 
 Ordinary incineration uses the specific reviewed native PS process. No FAE
-branch is included. These are preparation artifacts, not an enabled converter:
-packaged review/scopes, deterministic replay, regression tests, actual native
-LCI and installed-package verification are still required before admission.
-Private artifacts: `nitrate_ps_regional_helper_draft.json` and
+branch is included. Seven exact source-profile scopes increase the ledger from
+351 to 358, preserving every previous fingerprint. Eighteen new recipes leave
+all 3,271 earlier recipes and 714 earlier shared reviews unchanged.
+
+Validation: 71 focused Brightpath and 57 Premise tests pass, including signed
+normal/lognormal uncertainty, formulas, cold/warm caches, caller immutability,
+portable warnings, drift refusal and refusal of other releases. Full resource
+generation is byte-identical. All seven converted graphs produce finite LCI
+on the installed native background, whose scientific contents remain unchanged.
+The built wheel runs all seven routes and retains the packaged manifest and
+review authorities. A separate comparison against the primary inventories
+checks every original coefficient, uncertainty field and exchange order. These
+are component checks; the complete nitrate supply and electricity scenario
+remain refused while their other dependencies are unresolved.
+
+Private preparation artifacts: `nitrate_ps_regional_helper_draft.json` and
 `nitrate_ps_regional_draft_primary.private.json`.

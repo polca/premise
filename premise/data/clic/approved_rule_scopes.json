@@ -40231,6 +40231,2757 @@
           "fingerprint": "ca879c07f5cea6098924fd0e2016c7795da7ac6374bf660df40cfc1b8a998df2"
         }
       ]
+    },
+    {
+      "rule_id": "bp-d093e99633f0e56d",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_ps",
+      "review_path": "export/uvek_pilot_nitrate_ps_review.json",
+      "review_sha256": "ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary PS incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-d093e99633f0e56d",
+        "source": {
+          "location": "PE",
+          "name": "market for waste polystyrene",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics, as building waste",
+          "reference product": "Disposal, polystyrene plastics, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.344286,
+          "conversion_factor": -1,
+          "id": "bp-d093e99633f0e56d",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-d093e99633f0e56d"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "PE",
+            "name": "market for waste polystyrene",
+            "reference product": "waste polystyrene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polystyrene plastics, as building waste",
+            "reference product": "Disposal, polystyrene plastics, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "39ae6202c28f018b3f8905dcb912360a019ed20f6197b4e0a97365aac8dc320f",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "377273c247a053a0a7c241482e1e637485f815750e0fba22b9183c502bf63c5b",
+        "source_inventory_sha256": "c381291eab8aace97e97617c507eaddebd77394a3776983281c7371eb2b58daa",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-2a577aba79fe9d8926ea"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-e2f57aab701585c0738e"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open burning",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 279,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "c381291eab8aace97e97617c507eaddebd77394a3776983281c7371eb2b58daa",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.3606937759374287,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 3
+                },
+                "scale without pedigree": 0.377094152699296,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.289881443371072,
+                "uncertainty type": 0,
+                "loc": 0.289881443371072,
+                "recipe": "pilot-ps-treatment-2a577aba79fe9d8926ea"
+              },
+              {
+                "amount": 0.647646040622039,
+                "uncertainty type": 0,
+                "loc": 0.647646040622039,
+                "recipe": "pilot-ps-treatment-e2f57aab701585c0738e"
+              },
+              {
+                "amount": 0.0624725160068898,
+                "uncertainty type": 0,
+                "loc": 0.0624725160068898,
+                "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, municipal incineration",
+                  "waste polystyrene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e55e85195b614f73213f418c1ee72bab9ff4f5c0232f0101021b8ef98fd80856"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open burning",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "550e9a1096357e0bf0c92f27bbee5b4ee8afd7a56209ae13e8ca82109f9ac11a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "321f5223e755308c29c913da2b39826d7753fb88dfb803bce3f6f1cc79ac29eb"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fae5870de2c4d61b2af054240ac561bf34ba4d86ad2c17684328b7bd2d84392b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4f3b059b0ae09731e1031134d75bb74d960893a6030497573f68503776f81c41"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a942919048362489792299650c4816ee83f52025c02e603cf9a5bb131d1e6a7a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "af69f947efefd4b6ef3ec59219e368eed23863ea61dcb204c6b879e3205b0271"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c27f21f3a23f982a9bd989e664ecdc18df4de669f01accfbe09de1608d210ef5"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1d2947ffadbed6105f767a73f85501960a39d70c71b9449c579072a1b3857ad"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "00536e0db09d8fad61ed4ef9dd859274913fda94362f44e3e3285b6ee62dce7b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2539a2aa3380935bcb28ecb31b0d380f7dd69b687662a0d8702edbf9587fb53f"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b353ab26ab5277b0e93da62719dcce16a53c3320387558a7b788fa669ba2664c"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9960b3dbc2145dd142ca512e26e7ab11d3a11a3be409f610dc3769df565a619c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-722c7189186ba89f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_ps",
+      "review_path": "export/uvek_pilot_nitrate_ps_review.json",
+      "review_sha256": "ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary PS incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-722c7189186ba89f",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste polystyrene",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics, as building waste",
+          "reference product": "Disposal, polystyrene plastics, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.344286,
+          "conversion_factor": -1,
+          "id": "bp-722c7189186ba89f",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-722c7189186ba89f"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for waste polystyrene",
+            "reference product": "waste polystyrene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polystyrene plastics, as building waste",
+            "reference product": "Disposal, polystyrene plastics, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "06c66c244c6dd1611212f4e8fd6451508c0234c68c70967294c4ced072f8042a",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "1039d7fcf19ed8ad843c74b847c236d8f405ed91ca9e1a78bf8ed6bac48e1f22",
+        "source_inventory_sha256": "ceae3fc80edede8f21a1c2af0d55922689b654ef9ddbe81bd4653748ee9991ba",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-2a577aba79fe9d8926ea"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-a287a4419c8ca3152e17"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-6c5f04263442d64febe2"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-e2f57aab701585c0738e"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, municipal incineration",
+              "reference product": "waste polystyrene",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "ordinary_incinerator": true
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-e68cb163fc5ddb3b6964"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open burning",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-9e023b4195897ff177ed"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-5e80e0e74169d312b1ab"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-ddbb7fccfb1c9043b16f"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 13,
+        "expected_foreground_biosphere_exchanges": 1081,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "ceae3fc80edede8f21a1c2af0d55922689b654ef9ddbe81bd4653748ee9991ba",
+            "inputs": [
+              {
+                "amount": 0.003225847220316541,
+                "uncertainty type": 2,
+                "loc": -5.7365596592609265,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.004450430953717091,
+                "uncertainty type": 2,
+                "loc": -5.414754343961089,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0035237218259663665,
+                "uncertainty type": 2,
+                "loc": -5.648237511036843,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01932,
+                "uncertainty type": 2,
+                "loc": -3.946614450197765,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0499944695133922,
+                "uncertainty type": 0,
+                "loc": 0.0499944695133922,
+                "recipe": "pilot-ps-treatment-2a577aba79fe9d8926ea"
+              },
+              {
+                "amount": 0.234923821966288,
+                "uncertainty type": 0,
+                "loc": 0.234923821966288,
+                "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+              },
+              {
+                "amount": 0.0250926981761765,
+                "uncertainty type": 0,
+                "loc": 0.0250926981761765,
+                "recipe": "pilot-ps-treatment-a287a4419c8ca3152e17"
+              },
+              {
+                "amount": 0.0581108636290239,
+                "uncertainty type": 0,
+                "loc": 0.0581108636290239,
+                "recipe": "pilot-ps-treatment-6c5f04263442d64febe2"
+              },
+              {
+                "amount": 0.0717986390931305,
+                "uncertainty type": 0,
+                "loc": 0.0717986390931305,
+                "recipe": "pilot-ps-treatment-e2f57aab701585c0738e"
+              },
+              {
+                "amount": 0.107643629912986,
+                "uncertainty type": 0,
+                "loc": 0.107643629912986,
+                "name": "Disposal, polystyrene, 0.2% water, to municipal incineration",
+                "reference product": "Disposal, polystyrene, 0.2% water, to municipal incineration",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0792268474637745,
+                "uncertainty type": 0,
+                "loc": 0.0792268474637745,
+                "recipe": "pilot-ps-treatment-e68cb163fc5ddb3b6964"
+              },
+              {
+                "amount": 0.154202153568209,
+                "uncertainty type": 0,
+                "loc": 0.154202153568209,
+                "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+              },
+              {
+                "amount": 0.0974434868744582,
+                "uncertainty type": 0,
+                "loc": 0.0974434868744582,
+                "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+              },
+              {
+                "amount": 0.035073452155838,
+                "uncertainty type": 0,
+                "loc": 0.035073452155838,
+                "recipe": "pilot-ps-treatment-9e023b4195897ff177ed"
+              },
+              {
+                "amount": 0.0623369227600257,
+                "uncertainty type": 0,
+                "loc": 0.0623369227600257,
+                "recipe": "pilot-ps-treatment-5e80e0e74169d312b1ab"
+              },
+              {
+                "amount": 0.0241530148866973,
+                "uncertainty type": 0,
+                "loc": 0.0241530148866973,
+                "recipe": "pilot-ps-treatment-ddbb7fccfb1c9043b16f"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, municipal incineration",
+                  "waste polystyrene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e55e85195b614f73213f418c1ee72bab9ff4f5c0232f0101021b8ef98fd80856"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open burning",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "550e9a1096357e0bf0c92f27bbee5b4ee8afd7a56209ae13e8ca82109f9ac11a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "321f5223e755308c29c913da2b39826d7753fb88dfb803bce3f6f1cc79ac29eb"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fae5870de2c4d61b2af054240ac561bf34ba4d86ad2c17684328b7bd2d84392b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4f3b059b0ae09731e1031134d75bb74d960893a6030497573f68503776f81c41"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a942919048362489792299650c4816ee83f52025c02e603cf9a5bb131d1e6a7a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "af69f947efefd4b6ef3ec59219e368eed23863ea61dcb204c6b879e3205b0271"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c27f21f3a23f982a9bd989e664ecdc18df4de669f01accfbe09de1608d210ef5"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1d2947ffadbed6105f767a73f85501960a39d70c71b9449c579072a1b3857ad"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "00536e0db09d8fad61ed4ef9dd859274913fda94362f44e3e3285b6ee62dce7b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2539a2aa3380935bcb28ecb31b0d380f7dd69b687662a0d8702edbf9587fb53f"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b353ab26ab5277b0e93da62719dcce16a53c3320387558a7b788fa669ba2664c"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ce01bea780fcd696180afdfc483e652c581dd343f932a2ad5a80c20467dbd68e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-66536370bbd63054",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_ps",
+      "review_path": "export/uvek_pilot_nitrate_ps_review.json",
+      "review_sha256": "ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary PS incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-66536370bbd63054",
+        "source": {
+          "location": "CO",
+          "name": "market for waste polystyrene",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics, as building waste",
+          "reference product": "Disposal, polystyrene plastics, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.344286,
+          "conversion_factor": -1,
+          "id": "bp-66536370bbd63054",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-66536370bbd63054"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CO",
+            "name": "market for waste polystyrene",
+            "reference product": "waste polystyrene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polystyrene plastics, as building waste",
+            "reference product": "Disposal, polystyrene plastics, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "fb4e4a7f89eb8233c28c863e7ba3ee9a5cb22d75c9c9fa1ab5001982919dca07",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "37f0e4bf0de693427d3e023c5a5416923808d08fcbbb24099b128679b97992d3",
+        "source_inventory_sha256": "73ad7e1d46829711109b1538c6a540966bdba95868a7775b3467f631a1633661",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open burning",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 279,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "73ad7e1d46829711109b1538c6a540966bdba95868a7775b3467f631a1633661",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.750923285285251,
+                "uncertainty type": 0,
+                "loc": 0.750923285285251,
+                "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+              },
+              {
+                "amount": 0.200310827741168,
+                "uncertainty type": 0,
+                "loc": 0.200310827741168,
+                "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+              },
+              {
+                "amount": 0.0487658869735807,
+                "uncertainty type": 0,
+                "loc": 0.0487658869735807,
+                "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, municipal incineration",
+                  "waste polystyrene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e55e85195b614f73213f418c1ee72bab9ff4f5c0232f0101021b8ef98fd80856"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open burning",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "550e9a1096357e0bf0c92f27bbee5b4ee8afd7a56209ae13e8ca82109f9ac11a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "321f5223e755308c29c913da2b39826d7753fb88dfb803bce3f6f1cc79ac29eb"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fae5870de2c4d61b2af054240ac561bf34ba4d86ad2c17684328b7bd2d84392b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4f3b059b0ae09731e1031134d75bb74d960893a6030497573f68503776f81c41"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a942919048362489792299650c4816ee83f52025c02e603cf9a5bb131d1e6a7a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "af69f947efefd4b6ef3ec59219e368eed23863ea61dcb204c6b879e3205b0271"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c27f21f3a23f982a9bd989e664ecdc18df4de669f01accfbe09de1608d210ef5"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1d2947ffadbed6105f767a73f85501960a39d70c71b9449c579072a1b3857ad"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "00536e0db09d8fad61ed4ef9dd859274913fda94362f44e3e3285b6ee62dce7b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2539a2aa3380935bcb28ecb31b0d380f7dd69b687662a0d8702edbf9587fb53f"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b353ab26ab5277b0e93da62719dcce16a53c3320387558a7b788fa669ba2664c"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0c1a2b7dc324ae137fb7dce7e6e87adf8f383436286e694db8506b783ab50760"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-136f863d5593674a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_ps",
+      "review_path": "export/uvek_pilot_nitrate_ps_review.json",
+      "review_sha256": "ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary PS incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-136f863d5593674a",
+        "source": {
+          "location": "IN",
+          "name": "market for waste polystyrene",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics, as building waste",
+          "reference product": "Disposal, polystyrene plastics, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.344286,
+          "conversion_factor": -1,
+          "id": "bp-136f863d5593674a",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-136f863d5593674a"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "IN",
+            "name": "market for waste polystyrene",
+            "reference product": "waste polystyrene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polystyrene plastics, as building waste",
+            "reference product": "Disposal, polystyrene plastics, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "4ff1aa1c1c84aeade32350ca09b02a36c2d6cb64a3c7f896298bf6823e2f1ca9",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "226c897add5ebb65890554910911ecfae154878b7ee85c2e065cdf76fa37e186",
+        "source_inventory_sha256": "999aefab8082b43ee1008a673936010e373bad71093b3ac58e2e9ec9917a162f",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open burning",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 279,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "999aefab8082b43ee1008a673936010e373bad71093b3ac58e2e9ec9917a162f",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.2105284767503,
+                "uncertainty type": 0,
+                "loc": 0.2105284767503,
+                "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+              },
+              {
+                "amount": 0.505163942939495,
+                "uncertainty type": 0,
+                "loc": 0.505163942939495,
+                "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+              },
+              {
+                "amount": 0.284307580310206,
+                "uncertainty type": 0,
+                "loc": 0.284307580310206,
+                "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, municipal incineration",
+                  "waste polystyrene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e55e85195b614f73213f418c1ee72bab9ff4f5c0232f0101021b8ef98fd80856"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open burning",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "550e9a1096357e0bf0c92f27bbee5b4ee8afd7a56209ae13e8ca82109f9ac11a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "321f5223e755308c29c913da2b39826d7753fb88dfb803bce3f6f1cc79ac29eb"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fae5870de2c4d61b2af054240ac561bf34ba4d86ad2c17684328b7bd2d84392b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4f3b059b0ae09731e1031134d75bb74d960893a6030497573f68503776f81c41"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a942919048362489792299650c4816ee83f52025c02e603cf9a5bb131d1e6a7a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "af69f947efefd4b6ef3ec59219e368eed23863ea61dcb204c6b879e3205b0271"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c27f21f3a23f982a9bd989e664ecdc18df4de669f01accfbe09de1608d210ef5"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1d2947ffadbed6105f767a73f85501960a39d70c71b9449c579072a1b3857ad"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "00536e0db09d8fad61ed4ef9dd859274913fda94362f44e3e3285b6ee62dce7b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2539a2aa3380935bcb28ecb31b0d380f7dd69b687662a0d8702edbf9587fb53f"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b353ab26ab5277b0e93da62719dcce16a53c3320387558a7b788fa669ba2664c"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "503296e359e3dd0d38f9b5c368346187d1a8c35697b326db9db9f4a18739bc17"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3c8a7c64f2d53850",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_ps",
+      "review_path": "export/uvek_pilot_nitrate_ps_review.json",
+      "review_sha256": "ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary PS incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-3c8a7c64f2d53850",
+        "source": {
+          "location": "CY",
+          "name": "market for waste polystyrene",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics, as building waste",
+          "reference product": "Disposal, polystyrene plastics, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.344286,
+          "conversion_factor": -1,
+          "id": "bp-3c8a7c64f2d53850",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-3c8a7c64f2d53850"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CY",
+            "name": "market for waste polystyrene",
+            "reference product": "waste polystyrene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polystyrene plastics, as building waste",
+            "reference product": "Disposal, polystyrene plastics, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "13d3901b13ee86280d85452245a97009fda0146ea28ac4d6aeaedd7951cedf65",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "5f5a1aa8f17c72a63b2f8e2d8c82463db4a06f62575a5e9d72be9332fe0e1090",
+        "source_inventory_sha256": "0341436d487062dab3df445ad5635627ac52861bdb1a6455b31ea0745cb35f2f",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open burning",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 4,
+        "expected_foreground_biosphere_exchanges": 177,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "0341436d487062dab3df445ad5635627ac52861bdb1a6455b31ea0745cb35f2f",
+            "inputs": [
+              {
+                "amount": 0.02125,
+                "uncertainty type": 2,
+                "loc": -3.851398383611711,
+                "scale": 0.3606937759374287,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 3
+                },
+                "scale without pedigree": 0.377094152699296,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.986422907233126,
+                "uncertainty type": 0,
+                "loc": 0.986422907233126,
+                "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+              },
+              {
+                "amount": 0.0135770927668737,
+                "uncertainty type": 0,
+                "loc": 0.0135770927668737,
+                "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, municipal incineration",
+                  "waste polystyrene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e55e85195b614f73213f418c1ee72bab9ff4f5c0232f0101021b8ef98fd80856"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open burning",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "550e9a1096357e0bf0c92f27bbee5b4ee8afd7a56209ae13e8ca82109f9ac11a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "321f5223e755308c29c913da2b39826d7753fb88dfb803bce3f6f1cc79ac29eb"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fae5870de2c4d61b2af054240ac561bf34ba4d86ad2c17684328b7bd2d84392b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4f3b059b0ae09731e1031134d75bb74d960893a6030497573f68503776f81c41"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a942919048362489792299650c4816ee83f52025c02e603cf9a5bb131d1e6a7a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "af69f947efefd4b6ef3ec59219e368eed23863ea61dcb204c6b879e3205b0271"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c27f21f3a23f982a9bd989e664ecdc18df4de669f01accfbe09de1608d210ef5"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1d2947ffadbed6105f767a73f85501960a39d70c71b9449c579072a1b3857ad"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "00536e0db09d8fad61ed4ef9dd859274913fda94362f44e3e3285b6ee62dce7b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2539a2aa3380935bcb28ecb31b0d380f7dd69b687662a0d8702edbf9587fb53f"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b353ab26ab5277b0e93da62719dcce16a53c3320387558a7b788fa669ba2664c"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c8d45537ed66f52ac99bc455b0699abf66d068822e446e4fbea58722b0cb2677"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-eb39ba92cbbf2b8c",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_ps",
+      "review_path": "export/uvek_pilot_nitrate_ps_review.json",
+      "review_sha256": "ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary PS incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-eb39ba92cbbf2b8c",
+        "source": {
+          "location": "BR",
+          "name": "market for waste polystyrene",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics, as building waste",
+          "reference product": "Disposal, polystyrene plastics, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.344286,
+          "conversion_factor": -1,
+          "id": "bp-eb39ba92cbbf2b8c",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-eb39ba92cbbf2b8c"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "BR",
+            "name": "market for waste polystyrene",
+            "reference product": "waste polystyrene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polystyrene plastics, as building waste",
+            "reference product": "Disposal, polystyrene plastics, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "58e33475ae713892ff22d382649e6e43ef5eb62864496c5a61b53b63ebaa4d7e",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "82f465a6fb0c17199f03000dfa4c6c01bb3956b384fbc04d2421f9187d4e2b4b",
+        "source_inventory_sha256": "b9834bdfbc1a808a9de1093bf8ff1116776a1eab6b9ae75e99befcd69c880dac",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, municipal incineration",
+              "reference product": "waste polystyrene",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "ordinary_incinerator": true
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open burning",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "999dcbf65753e116027a726bf5204b3a97ffd00f0a12b4688e9a7a3aa037de11",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 279,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "b9834bdfbc1a808a9de1093bf8ff1116776a1eab6b9ae75e99befcd69c880dac",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.881137422307789,
+                "uncertainty type": 0,
+                "loc": 0.881137422307789,
+                "recipe": "pilot-ps-treatment-9b141905458dbb248002"
+              },
+              {
+                "amount": 0.00560402324236877,
+                "uncertainty type": 0,
+                "loc": 0.00560402324236877,
+                "name": "Disposal, polystyrene, 0.2% water, to municipal incineration",
+                "reference product": "Disposal, polystyrene, 0.2% water, to municipal incineration",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0840657818025282,
+                "uncertainty type": 0,
+                "loc": 0.0840657818025282,
+                "recipe": "pilot-ps-treatment-6c06294a27a3c7addfbd"
+              },
+              {
+                "amount": 0.0291927726473145,
+                "uncertainty type": 0,
+                "loc": 0.0291927726473145,
+                "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, municipal incineration",
+                  "waste polystyrene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e55e85195b614f73213f418c1ee72bab9ff4f5c0232f0101021b8ef98fd80856"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open burning",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "550e9a1096357e0bf0c92f27bbee5b4ee8afd7a56209ae13e8ca82109f9ac11a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "321f5223e755308c29c913da2b39826d7753fb88dfb803bce3f6f1cc79ac29eb"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fae5870de2c4d61b2af054240ac561bf34ba4d86ad2c17684328b7bd2d84392b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4f3b059b0ae09731e1031134d75bb74d960893a6030497573f68503776f81c41"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a942919048362489792299650c4816ee83f52025c02e603cf9a5bb131d1e6a7a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "af69f947efefd4b6ef3ec59219e368eed23863ea61dcb204c6b879e3205b0271"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c27f21f3a23f982a9bd989e664ecdc18df4de669f01accfbe09de1608d210ef5"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1d2947ffadbed6105f767a73f85501960a39d70c71b9449c579072a1b3857ad"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "00536e0db09d8fad61ed4ef9dd859274913fda94362f44e3e3285b6ee62dce7b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2539a2aa3380935bcb28ecb31b0d380f7dd69b687662a0d8702edbf9587fb53f"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b353ab26ab5277b0e93da62719dcce16a53c3320387558a7b788fa669ba2664c"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "408fcdb86615e9a3e99109fbda1a9ab4e312e3e620dab230224e379d831b711c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d73471e2bf8511ba",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_ps",
+      "review_path": "export/uvek_pilot_nitrate_ps_review.json",
+      "review_sha256": "ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary PS incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-d73471e2bf8511ba",
+        "source": {
+          "location": "ZA",
+          "name": "market for waste polystyrene",
+          "reference product": "waste polystyrene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polystyrene plastics, as building waste",
+          "reference product": "Disposal, polystyrene plastics, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.344286,
+          "conversion_factor": -1,
+          "id": "bp-d73471e2bf8511ba",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-d73471e2bf8511ba"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "ZA",
+            "name": "market for waste polystyrene",
+            "reference product": "waste polystyrene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polystyrene plastics, as building waste",
+            "reference product": "Disposal, polystyrene plastics, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "2dc0fdde9da84506c6f662985c525bffd7892c2173e556fd1268103c45e66272",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "dfde914959ce900acd2fdfb1692f24e58a7f67cce132dc751292381fc6b5a544",
+        "source_inventory_sha256": "9a86cce128a857bb5125ac46427d1020c6c8f4b5853da5701df9adc0b3aabef0",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-2a577aba79fe9d8926ea"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-e2f57aab701585c0738e"
+          },
+          {
+            "source": {
+              "name": "treatment of waste polystyrene, open burning",
+              "reference product": "waste polystyrene",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "5d63ba039a6eb078230a4bd26fda48d2d3567f593d8136aa50bc51a30ff9d0bd",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 279,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "9a86cce128a857bb5125ac46427d1020c6c8f4b5853da5701df9adc0b3aabef0",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0338346476700409,
+                "uncertainty type": 0,
+                "loc": 0.0338346476700409,
+                "recipe": "pilot-ps-treatment-2a577aba79fe9d8926ea"
+              },
+              {
+                "amount": 0.932741443289229,
+                "uncertainty type": 0,
+                "loc": 0.932741443289229,
+                "recipe": "pilot-ps-treatment-e2f57aab701585c0738e"
+              },
+              {
+                "amount": 0.0334239090407301,
+                "uncertainty type": 0,
+                "loc": 0.0334239090407301,
+                "recipe": "pilot-ps-treatment-681b69471a6078f88ddc"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, municipal incineration",
+                  "waste polystyrene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e55e85195b614f73213f418c1ee72bab9ff4f5c0232f0101021b8ef98fd80856"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open burning",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "550e9a1096357e0bf0c92f27bbee5b4ee8afd7a56209ae13e8ca82109f9ac11a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "321f5223e755308c29c913da2b39826d7753fb88dfb803bce3f6f1cc79ac29eb"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fae5870de2c4d61b2af054240ac561bf34ba4d86ad2c17684328b7bd2d84392b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4f3b059b0ae09731e1031134d75bb74d960893a6030497573f68503776f81c41"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a942919048362489792299650c4816ee83f52025c02e603cf9a5bb131d1e6a7a"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, open dump, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "af69f947efefd4b6ef3ec59219e368eed23863ea61dcb204c6b879e3205b0271"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c27f21f3a23f982a9bd989e664ecdc18df4de669f01accfbe09de1608d210ef5"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1d2947ffadbed6105f767a73f85501960a39d70c71b9449c579072a1b3857ad"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "00536e0db09d8fad61ed4ef9dd859274913fda94362f44e3e3285b6ee62dce7b"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2539a2aa3380935bcb28ecb31b0d380f7dd69b687662a0d8702edbf9587fb53f"
+              },
+              {
+                "source": [
+                  "treatment of waste polystyrene, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste polystyrene",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b353ab26ab5277b0e93da62719dcce16a53c3320387558a7b788fa669ba2664c"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional polystyrene treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind212elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all1081direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native polystyrene0.2%water municipal-incineration process, whose44documentedwet-composition coordinates and direct fossilCO2 match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition or expanded-PS wrappers. Reserved pure-polymer carbon properties disagree with the source documented wet waste model; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0a29d2ff63b18f7707350097c8d33d7d2764a6747835f2bc7d3e189d45888aef"
+        }
+      ]
     }
   ]
 }

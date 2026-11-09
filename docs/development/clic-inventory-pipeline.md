@@ -1114,6 +1114,27 @@ unchanged 3.12 scientific graph. Nitrate coverage is 66 of 125 suppliers,
 leaving 59 across 18 labels. The public frontier remains 35 rules / 40 cases;
 full prospective scenario certification and export remain outstanding.
 
+Seven regional ecoinvent 3.9 cut-off polystyrene markets (PE, RoW, CO, IN,
+CY, BR and ZA) now retain all 30 fate terms, ten freight entries, ten operating
+inputs and 1,081 direct elementary exchanges through eleven shared treatment
+helpers. The specific native 0.2%-water incinerator covers only ordinary
+incineration; uncontrolled fates remain source-based helpers. The European
+market group remains excluded pending the separate FAE decision. The review
+`export/uvek_pilot_nitrate_ps_review.json` is pinned at SHA-256
+`ed0e4330cb86611b1c85065fd10ffc9a5c0320943d95632b89060a2b04b6eb19`.
+All 351 previous approval fingerprints remain unchanged, bringing the total to
+358. All 3,271 earlier recipes and 714 earlier shared reviews remain unchanged.
+
+This checkpoint passes 71 focused Brightpath tests, 57 Premise tests, a
+byte-identical full resource regeneration, seven installed-wheel conversions
+and seven finite native-background LCI checks with unchanged source signatures.
+Primary-source comparisons independently verify coefficients, uncertainty and
+exchange order. Nitrate-supply coverage is now 73 of 125 external suppliers;
+52 remain unscoped across 18 reference-product labels. The strict pilot still
+refuses 40 cases across 35 parent rules; nested supplier progress does not
+resolve the full nitrate market automatically. No full scenario certification
+or export is claimed by these component checks.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
