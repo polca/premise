@@ -795,9 +795,26 @@ Brightpath cases, ten storage cases and twenty-one focused Premise cases pass;
 the actual twelve-record migrated graph gives finite LCI on unchanged native
 matrices. Byte-identical generator replay and isolated installed-wheel migration
 also pass. All earlier fingerprints, recipes and reviews remain unchanged.
-The current frontier is 35 rules / 40 exact-profile cases, with 308 approved
+That checkpoint's frontier was 35 rules / 40 exact-profile cases, with 308 approved
 fingerprints. The full scenario, certification and prospective export remain
 unvalidated; pending scientific proposals are still refused.
+
+`uvek_pilot_purge_handover_review.json` corrects the exact 3.9 Chilean
+sodium-nitrate-rich purge-stream market and its explicit production-only
+Recycled Content cut-off provider. Source-bound helpers preserve the positive
+kg references, original handover, signed uncertainty and caller formulas.
+The former nutrient-potassium-nitrate and indium-residue targets are removed
+only for those profiles. Standard allocation warnings remain; physical nitrate
+production, the nonempty CSP reused-salt construction suppliers and other
+source releases receive no implied zero-burden approval. All 308 earlier
+fingerprints remain unchanged; two exact scopes and two recipes are added.
+There are now 310 registered scopes. The parent refusal frontier remains
+35 rules / 40 cases. Public conversion and cold/warm cache checks pass, as do
+six checks of the actual generated graphs on unchanged native matrices: the
+handover adds zero inventory and the synthetic caller's separate release stays
+unchanged. Generator replay is byte-identical and installed-wheel conversion
+passes. The complete salt-market conversion and prospective pilot remain
+unvalidated.
 
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,

@@ -26249,6 +26249,261 @@
           "fingerprint": "e32b64bd649e62d99f7a0476cb3b8d0288995c31641bd87ab1f744c57056ea5c"
         }
       ]
+    },
+    {
+      "rule_id": "bp-3a4c5a92235c6c39",
+      "operation": "replace",
+      "mapping_method": "reviewed_cutoff_stock_recipe",
+      "review_path": "export/uvek_pilot_purge_handover_review.json",
+      "review_sha256": "8ec148a7665f2214d56682f8b122b026921832420dbbd274687c0327d406699c",
+      "authorization": "Standing independently inspected positive production-only Recycled Content cut-off stock handovers and source-preserving market helpers. The exact positive one-kg source reference is complete, self-linked and explicitly price-zero, with no other exchanges, parameters or formulas. Preserve its observed source allocation rather than infer zero processing from a missing inventory. No new chemistry, nutrient basis, treatment endpoint, physical omission, recovery credit, allocation reconstruction, inverse or cross-model correspondence is introduced. Only the enumerated 3.9 cut-off profiles qualify.",
+      "inspection": {
+        "rule_id": "bp-3a4c5a92235c6c39",
+        "source": {
+          "location": "GLO",
+          "name": "purge gas, rich in sodium nitrate, Recycled Content cut-off",
+          "reference product": "purge gas, rich in sodium nitrate",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.166949,
+          "id": "bp-3a4c5a92235c6c39",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "GLO",
+            "name": "purge gas, rich in sodium nitrate, Recycled Content cut-off",
+            "reference product": "purge gas, rich in sodium nitrate",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "GLO",
+            "name": "Leaching residues, indium rich, from zinc circuit, at smelter",
+            "reference product": "Leaching residues, indium rich, from zinc circuit, at smelter",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "84607bf477e514766540647b54aedd90ed9b8e8961c72acb280d9da12bcd0814",
+        "compiled_rule": {
+          "confidence": 1,
+          "id": "bp-3a4c5a92235c6c39",
+          "mapping_method": "reviewed_cutoff_stock_recipe",
+          "source": {
+            "location": "GLO",
+            "name": "purge gas, rich in sodium nitrate, Recycled Content cut-off",
+            "reference product": "purge gas, rich in sodium nitrate",
+            "unit": "kilogram"
+          },
+          "target": {
+            "recipe_ref": "cutoff-stock-b54024a04342dfffe867"
+          },
+          "conversion_factor": 1,
+          "reference_flow_sign_review": {
+            "status": "unresolved",
+            "reason": "Select only an exact inspected positive cut-off stock profile; no other allocation or treatment context is approved.",
+            "evidence": [
+              "brightpath/data/export/uvek_pilot_purge_handover_review.json"
+            ],
+            "profiles": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "recipe_ref": "cutoff-stock-b54024a04342dfffe867"
+                },
+                "conversion_factor": 1,
+                "review": {
+                  "status": "verified",
+                  "source_sign": 1,
+                  "target_sign": 1,
+                  "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+                  "evidence": [
+                    "brightpath/data/export/uvek_pilot_purge_handover_review.json#ecoinvent-3.9-cutoff/6b531a76e56ec2d92263dcf40c09beb5b4f8be372ae78f3d3bef8b291a52b3b1"
+                  ]
+                }
+              }
+            ]
+          },
+          "review_ref": "r-69bc2431e5d33b69",
+          "report_correspondence": true
+        },
+        "recipe_id": "cutoff-stock-b54024a04342dfffe867",
+        "recipe": {
+          "name": "Allocated cut-off stock, purge gas, rich in sodium nitrate, GLO",
+          "reference product": "purge gas, rich in sodium nitrate",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_pilot_purge_handover_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        },
+        "recipe_review": {
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "limitations": [
+            "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers."
+          ],
+          "evidence": [
+            "brightpath/data/export/uvek_pilot_purge_handover_review.json"
+          ]
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "purge gas, rich in sodium nitrate, Recycled Content cut-off",
+            "reference product": "purge gas, rich in sodium nitrate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "4ca1a9a8028192ef05712521ec5feac081e1d3aa22b8eaba7b7625d5832f902a",
+          "inventory_sha256": "6b531a76e56ec2d92263dcf40c09beb5b4f8be372ae78f3d3bef8b291a52b3b1"
+        },
+        "allocation_evidence": {
+          "explicit_recycled_content_cutoff_name": true,
+          "positive_self_production_kg": 1,
+          "total_exchanges": 1,
+          "price": 0,
+          "parameters": false,
+          "formulas": false
+        },
+        "limitations": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers."
+      },
+      "limitations": [
+        "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "45c7295ce8df45ef320def5164e17878422705d03d286f4162fdbadd0273499e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f3ca7ebde96f926d",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_purge_handover",
+      "review_path": "export/uvek_pilot_purge_handover_review.json",
+      "review_sha256": "8ec148a7665f2214d56682f8b122b026921832420dbbd274687c0327d406699c",
+      "authorization": "Standing independently inspected positive production-only Recycled Content cut-off stock handovers and source-preserving market helpers. The exact positive one-kg source reference is complete, self-linked and explicitly price-zero, with no other exchanges, parameters or formulas. Preserve its observed source allocation rather than infer zero processing from a missing inventory. No new chemistry, nutrient basis, treatment endpoint, physical omission, recovery credit, allocation reconstruction, inverse or cross-model correspondence is introduced. Only the enumerated 3.9 cut-off profiles qualify.",
+      "inspection": {
+        "rule_id": "bp-f3ca7ebde96f926d",
+        "source": {
+          "location": "CL",
+          "name": "market for purge gas, rich in sodium nitrate",
+          "reference product": "purge gas, rich in sodium nitrate",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Potassium nitrate, as N, at regional storehouse",
+          "reference product": "Potassium nitrate, as N, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.165294,
+          "id": "bp-f3ca7ebde96f926d",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "CL",
+            "name": "market for purge gas, rich in sodium nitrate",
+            "reference product": "purge gas, rich in sodium nitrate",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Potassium nitrate, as N, at regional storehouse",
+            "reference product": "Potassium nitrate, as N, at regional storehouse",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "4dfc63247ad01ecd1125ea77b428107e20a41b702cbc2ca4db901a367b715677",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "b12943b09752eeaf6ea00e48fcd5261440d2be7d9a3042fe13f0c49a8fc38831",
+        "source_inventory_sha256": "feb080110422c08b402acba8485405f74972d0535a9dce6da74863792a0b2765",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "inventory_sha256": "feb080110422c08b402acba8485405f74972d0535a9dce6da74863792a0b2765",
+            "source_sign": 1,
+            "inputs": [
+              {
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "recipe": "cutoff-stock-b54024a04342dfffe867",
+                "zero_burden_supplier": {
+                  "rule_id": "bp-3a4c5a92235c6c39",
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "profile_review_sha256": "7de96300e6856339fb1bb6508e74a95aa87ced265a384459cf1820e6b010e5b3"
+                }
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "purge gas, rich in sodium nitrate, Recycled Content cut-off",
+                  "purge gas, rich in sodium nitrate",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "f821bc6b4a3ddad4d84a99c6b6ca3fedffc0e3e6a656f5ab568b436939a88483"
+              }
+            ]
+          }
+        ],
+        "limitations": "Preserve the exact inspected ecoinvent 3.9 cut-off Chilean market for the sodium-nitrate-rich purge stream. Its complete inventory is positive one-kg self-production and a one-kg input from the explicit production-only Recycled Content cut-off supplier. The market has no freight, losses, processing, direct biosphere, parameters or formulas. Represent both the market handover and that source stock through positive foreground references, retaining the original signed input and supported uncertainty. The observed cut-off allocation does not mean physical nitrate production, refining or recycling is impact-free; those burdens remain in their separately modelled source activities. Do not replace this stream with potassium nitrate measured as N, virgin nitrate production, leaching residues containing indium, a combustion or treatment service, or an avoided-production credit. The chemical label does not establish fuel energy, pure NaNO3 content, nutrient content, gas volume or a density; no chemical, purity, concentration, nutrient, energy or unit multiplier is introduced. Preserve caller signed kilograms, uncertainty, formulas, foreground ownership, separate emissions and all other purchases. No physical processing inventory is missing from this explicitly allocated positive reference and none is inferred or omitted. Report the production-only stock boundary and its limited scope through the normal warning and audit paths. This does not approve the whole CSP nitrate-salt market, its nonempty allocated reused-salt construction suppliers, KCl production, PVF film/disposal, other releases, negative-reference empty treatment, inverse or cross-system-model routes."
+      },
+      "limitations": [
+        "Preserve the exact inspected ecoinvent 3.9 cut-off Chilean market for the sodium-nitrate-rich purge stream. Its complete inventory is positive one-kg self-production and a one-kg input from the explicit production-only Recycled Content cut-off supplier. The market has no freight, losses, processing, direct biosphere, parameters or formulas. Represent both the market handover and that source stock through positive foreground references, retaining the original signed input and supported uncertainty. The observed cut-off allocation does not mean physical nitrate production, refining or recycling is impact-free; those burdens remain in their separately modelled source activities. Do not replace this stream with potassium nitrate measured as N, virgin nitrate production, leaching residues containing indium, a combustion or treatment service, or an avoided-production credit. The chemical label does not establish fuel energy, pure NaNO3 content, nutrient content, gas volume or a density; no chemical, purity, concentration, nutrient, energy or unit multiplier is introduced. Preserve caller signed kilograms, uncertainty, formulas, foreground ownership, separate emissions and all other purchases. No physical processing inventory is missing from this explicitly allocated positive reference and none is inferred or omitted. Report the production-only stock boundary and its limited scope through the normal warning and audit paths. This does not approve the whole CSP nitrate-salt market, its nonempty allocated reused-salt construction suppliers, KCl production, PVF film/disposal, other releases, negative-reference empty treatment, inverse or cross-system-model routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8c53a4fd8582516a5952c208cbdf8207cf6575eea1fd964a31bf3cb3095da444"
+        }
+      ]
     }
   ]
 }

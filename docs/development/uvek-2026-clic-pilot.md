@@ -664,15 +664,31 @@ An [inspection of the nitrate-salt supply](uvek-nitrate-supply-findings.md)
 also identifies allocated reused-salt burdens and technical-grade component
 dependencies behind one refused parent. The 14 inspected source records form
 an acyclic graph supported by the existing recipe format. They reference
-125 external suppliers; 21 have exact existing approval scopes. The rest need
+125 external suppliers; 25 have exact existing approval scopes. The rest need
 inspection or existing pending decisions, and may reuse standing reviews where
-their scope applies. No nitrate mapping is enabled. This expansion shows why
+their scope applies. The complete nitrate-salt market remains refused. This shows why
 the parent-rule count alone does not measure the remaining work.
+
+The inspected 3.9 Chilean sodium-nitrate-rich purge-stream market and its
+production-only `Recycled Content cut-off` provider now have source-bound
+helpers. They retain positive kg references and the original handover, without
+the old potassium-nitrate nutrient or indium-residue burdens. This preserves an
+observed source allocation, with warnings; it does not assign zero impact to
+physical purge generation or the nonempty reused-salt storage inventories.
+Twenty-two new Brightpath cases, ten storage checks and the existing stock
+regressions pass, as do thirty-nine focused Premise cases. Six numerical checks
+against unchanged native matrices preserve zero incremental handover burden,
+signed purchases and the caller's independent emission. Full authoring replay
+is byte-identical and installed-wheel conversion reproduces the helpers. All
+308 previous fingerprints, 3,224 recipes and 695 reviews remain unchanged; two
+exact scopes and two recipes are added. The refused parent frontier remains
+35 rules / 40 cases: this resolves underlying dependencies, not the complete
+nitrate-salt supply or the prospective scenario.
 
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 308 exact-profile fingerprints, with review evidence and
+ledger contains 310 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

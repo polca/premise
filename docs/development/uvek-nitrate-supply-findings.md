@@ -1,7 +1,7 @@
 # Nitrate-salt supply required by the UVEK electricity pilot
 
-Status: source-boundary inspection complete; target supplier correspondences
-remain unresolved. No mapping or approval scope has been installed.
+Status: source-boundary inspection complete; the whole salt-market mapping
+remains refused. Its purge-stream dependency is now corrected as described below.
 
 This inspection concerns `bp-cfcab3636e7a220d`, the ecoinvent 3.9 cut-off global
 market for nitrate salts for solar power applications. The destination remains
@@ -53,12 +53,22 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-21 already have exact current CLIC approval fingerprints for their source
+25 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 45 reference-product
+scientifically reviewed target. The other suppliers cover 43 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 104 automatically new scientific decisions.
+decisions. They are not 100 automatically new scientific decisions. Coverage is
+checked using the public scope auditor and original packaged rule bodies;
+profile-selected rule projections are not approval fingerprints.
+
+The Chilean sodium-nitrate-rich purge-stream market is now one of those
+approved suppliers. Fresh source inspection found a positive, production-only
+`Recycled Content cut-off` provider and a market containing only that handover.
+The two corrected correspondences preserve this allocation through source-bound
+helpers, with normal stock warnings, signed kg and uncertainty. They add no
+potassium-nitrate nutrient, indium-residue, fuel or avoided-production burden.
+This does not extend to the four nonempty reused-salt construction suppliers.
 
 This dependency expansion sits behind one currently blocked parent rule.
 Consequently, the headline count of 35 unresolved rules / 40 source-profile
