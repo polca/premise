@@ -20263,6 +20263,181 @@
           "fingerprint": "58ebcd096fe8e04a41c603b9fb76196617df5dccbf2cfff8bbc320f80f671e16"
         }
       ]
+    },
+    {
+      "rule_id": "bp-84737a1a1790ee76",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_pilot_secondary_aluminium_pcb_review.json",
+      "review_sha256": "10fdcbd22d705300ac0dc2e8929e1b533240158ef2098e534b02d66a6f6813b8",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function/unit and geographic supply/disposal-service proxies, including correction to a closer existing native supplier. The enumerated actual profiles represent secondary cast aluminium billets and PCB preparation, not a new alloy grade, chemical reaction, recovery model, downstream refining stage or mathematical inverse. Actual opposite waste/service references are handled separately from the positive metal-product reference. No new helper, omitted exchange, empty treatment service or added recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-84737a1a1790ee76",
+        "source": {
+          "location": "RER",
+          "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner",
+          "reference product": "aluminium, cast alloy",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Aluminium, secondary, from old scrap, at plant",
+          "reference product": "Aluminium, secondary, from old scrap, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1c1d68c7e39ea5b8ffb56647bbaa26a21afdadccaf817bba1dbbdbb977226b7d",
+            "inventory_sha256": "4c8513a1a58a97c036826f2fe265a812f3fe65a6200ce332d042f8079fcf01da",
+            "activity_comment_sha256": "44b27b37733b3515a8c8101efd0237c998f36c7542ca1af62055119c40f0207f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "796bebed4d02aeb34826d08b09f543015822045e8303ff9c26a21d3e79f87aad",
+            "inventory_sha256": "5705626d896f9ebf007dcaa9423b07b395e0a4d3e52365dcc6adcde36cac9b9d",
+            "comment_sha256": "731c3454cca985fd3043ddac0aa0274145b15cc3e128c44d8cb575989788679c",
+            "direct_technosphere_coordinates": 19
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "eabf46d61458431e75897d2d28519d064164c48d3c26c72c2481a33d871289d5",
+            "inventory_sha256": "3a672fe0839b346f344fbea1dc266c10c6e958da1ed5bea2a17fa2ba9e51fed8",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b",
+            "direct_technosphere_coordinates": 19
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Correct the primary/secondary cast-alloy production mix to the existing complete secondary aluminium process from old scrap. The actual source is a positive-reference output of cast secondary billets from prepared post-consumer scrap, despite the treatment activity name. Both source/native definitions include melting/refining, alloying and casting; the native uses EAA2008/2005 old-scrap data and the source combines EAA2008/2005 with older data. Preserve signed kg of generic secondary alloy stock at factor +1 without a waste-reference reversal, alloy-content, purity, scrap-yield or fabrication factor. Retain the complete native old-scrap input, furnace, alloying, casting, energy, transport, residues and emissions once; add no primary-production mix, extra scrap, casting stage or recovered-metal credit. Source/native scrap preparation and upstream allocation, exact alloy composition and weak alloying data, regional background, transport/delivery and vintage differ. The source explicitly acknowledges missing salt-slag/dross processing; no claim is made that the native inventory closes that gap. These remain screening limitations with unquantified score effects; no particular alloy grade or LCIA equivalence is established.",
+        "previous_target": {
+          "location": "RER",
+          "name": "Aluminium, production mix, cast alloy, at plant",
+          "reference product": "Aluminium, production mix, cast alloy, at plant",
+          "unit": "kilogram"
+        }
+      },
+      "limitations": [
+        "Correct the primary/secondary cast-alloy production mix to the existing complete secondary aluminium process from old scrap. The actual source is a positive-reference output of cast secondary billets from prepared post-consumer scrap, despite the treatment activity name. Both source/native definitions include melting/refining, alloying and casting; the native uses EAA2008/2005 old-scrap data and the source combines EAA2008/2005 with older data. Preserve signed kg of generic secondary alloy stock at factor +1 without a waste-reference reversal, alloy-content, purity, scrap-yield or fabrication factor. Retain the complete native old-scrap input, furnace, alloying, casting, energy, transport, residues and emissions once; add no primary-production mix, extra scrap, casting stage or recovered-metal credit. Source/native scrap preparation and upstream allocation, exact alloy composition and weak alloying data, regional background, transport/delivery and vintage differ. The source explicitly acknowledges missing salt-slag/dross processing; no claim is made that the native inventory closes that gap. These remain screening limitations with unquantified score effects; no particular alloy grade or LCIA equivalence is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "546699de938d994f860bbce03e1507f869b9d7fe3725a4ab01af44a91ca114e1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f820f97f9f3c080",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_secondary_aluminium_pcb_review.json",
+      "review_sha256": "10fdcbd22d705300ac0dc2e8929e1b533240158ef2098e534b02d66a6f6813b8",
+      "authorization": "Standing auto-approval of independently inspected same whole-material/function/unit and geographic supply/disposal-service proxies, including correction to a closer existing native supplier. The enumerated actual profiles represent secondary cast aluminium billets and PCB preparation, not a new alloy grade, chemical reaction, recovery model, downstream refining stage or mathematical inverse. Actual opposite waste/service references are handled separately from the positive metal-product reference. No new helper, omitted exchange, empty treatment service or added recovery credit is introduced.",
+      "inspection": {
+        "rule_id": "bp-9f820f97f9f3c080",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of scrap printed wiring boards, shredding and separation",
+          "reference product": "used printed wiring boards",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Disposal, treatment of printed wiring boards",
+          "reference product": "Disposal, treatment of printed wiring boards",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": -1,
+            "metadata_sha256": "b1e7b9cfe4a78f8eb69316ae6b033fb61817ef6bdab19841746890454b19704c",
+            "inventory_sha256": "b191a01db4297897fdc7892773495641480f9d3d142a798065944bbd956a76c1",
+            "activity_comment_sha256": "8761b4807c17c06ac0104236b4f4ba70010b54558c3e62eb954896fcb5201c3f",
+            "product_information_sha256": "3476a4b471b124c1a18150ebd2a51605187f83012bbb63fea1a632e7c75b2755"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "a2420b30e4ea059911650bf28b6bacbc5ad34887ad7c61d73e8f58a00eed033d",
+            "inventory_sha256": "0b5a5a7bd0396f6d1d4771763b8948850befaec3ca8858fdf5a898b182b84412",
+            "comment_sha256": "2899c933fe902f2d8b7465439948b22a22893ee6fe32169d97d9550b4cef138e",
+            "direct_technosphere_coordinates": 3
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "ddd6e1ad27832979e2511e46d2abbd11c14300bc57ab8cf04bf5894a1fb68d82",
+            "inventory_sha256": "1db56b445e33d26f950399e58471d83404647286ec9821f97be71a79f1b9f907",
+            "comment_sha256": "8aeae4bace7e82a285166914ee2fa39b8a75c3c36e8ee658b6da55b198450ca7",
+            "direct_technosphere_coordinates": 3
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Same complete printed-wiring-board preparation service before further metallurgical recovery, per kg of boards. Source/native describe weighing, shredding and sampling, a WEEE preparation facility and electricity, with100% of allocated burdens assigned to disposal/preparation. Source has -1 kg waste reference and native +1 kg service reference: keep factor -1 for treatment demand and genuine credits, preserving signs, uncertainty and formulas. Source electricity sums to0.04kWh and facility input is4e-10unit, matching the native reference coordinates. Source includes a -1kg output to a separately inspected positive-reference production-only Recycled Content cut-off electronics stock; this is an allocation boundary, not a new avoided-primary-metal credit or a model for actual refining. Native 100%-to-disposal allocation is retained without adding downstream precious-metal refining, recycling credits, a second preparation plant or uncharacterized empty service. Keep the complete native service including its original0.5tkm freight estimate and0.144MJ waste-heat entry, which are absent as separate source exchanges; source regional electricity weights, freight, stock representation, allocation/background and vintage differ. Those native internal estimates are not multipliers of caller quantities; separate caller transport, materials and emissions remain unchanged. Score effects are unquantified; no exact inventory or LCIA equivalence is claimed.",
+        "prepared_scrap_allocation": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "identity": {
+            "name": "electronics scrap, Recycled Content cut-off",
+            "reference product": "electronics scrap",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "3e233a9850f958d29fc1b7addf59e363fa115df7be186a558e6c8661925688e7",
+          "inventory_sha256": "43eee7bbbc1fe5c9405c37a45f0f3a6674ff0eaa0128b3d68b7c9978d6fa81d3",
+          "reference_amount": 1,
+          "reference_only": true
+        }
+      },
+      "limitations": [
+        "Same complete printed-wiring-board preparation service before further metallurgical recovery, per kg of boards. Source/native describe weighing, shredding and sampling, a WEEE preparation facility and electricity, with100% of allocated burdens assigned to disposal/preparation. Source has -1 kg waste reference and native +1 kg service reference: keep factor -1 for treatment demand and genuine credits, preserving signs, uncertainty and formulas. Source electricity sums to0.04kWh and facility input is4e-10unit, matching the native reference coordinates. Source includes a -1kg output to a separately inspected positive-reference production-only Recycled Content cut-off electronics stock; this is an allocation boundary, not a new avoided-primary-metal credit or a model for actual refining. Native 100%-to-disposal allocation is retained without adding downstream precious-metal refining, recycling credits, a second preparation plant or uncharacterized empty service. Keep the complete native service including its original0.5tkm freight estimate and0.144MJ waste-heat entry, which are absent as separate source exchanges; source regional electricity weights, freight, stock representation, allocation/background and vintage differ. Those native internal estimates are not multipliers of caller quantities; separate caller transport, materials and emissions remain unchanged. Score effects are unquantified; no exact inventory or LCIA equivalence is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "816e2df81750a22ead65dff654272a241d7ced331f8d4ff53cd05e732abdd4ff"
+        }
+      ]
     }
   ]
 }

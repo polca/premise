@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 17 |
+| 3.6 | 27 | 16 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 29 |
+| 3.9 | 17 | 28 |
 | 3.12 | 8 | 14 |
 
-These are 60 exact-profile cases involving 53 distinct rules, after reusing
+These are 58 exact-profile cases involving 51 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -434,10 +434,27 @@ authorize replacing that market by 100% treatment. Nickel purity and cement/
 concrete strength or binder differences remain refused. The latter three
 profiles have a separate [cement/concrete proposal](uvek-cement-concrete-grade-proposal.md)
 with finite native candidate LCIs; no approval is inferred from those checks.
+Two further inspected processing counterparts are admitted. The 3.6 refiner's
+positive secondary-aluminium billet output uses native old-scrap secondary
+production instead of the primary/secondary alloy mix, retaining factor +1.
+The 3.9 PCB waste service uses its matching native weighing/shredding/sampling
+stage with factor -1. The source and native PCB inventories assign all
+preparation burdens to disposal; their electricity and facility quantities
+match. Native freight and waste heat
+remain explicit differences. The source's prepared-electronics co-product was
+verified as a positive production-only cut-off stock; no downstream metallurgy
+or new recovery credit is added. Thirteen focused Premise and 216 relevant
+Brightpath checks pass, two native LCIs are finite with unchanged scientific
+hashes, all 287 earlier fingerprints remain valid and generator replay is
+byte-identical. The current module contains 612 cases; no full 612-case run is
+claimed. The source grain-oriented electrical-steel producer has no technosphere
+exchanges and 2,747 biosphere exchanges: its aggregated upstream inventory
+cannot be relinked to UVEK by a primitive replacement. The reinforcing-steel
+and generic-organic-chemical substitutions remain refused.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 287 exact-profile fingerprints, with review evidence and
+ledger contains 289 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

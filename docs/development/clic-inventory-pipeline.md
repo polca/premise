@@ -620,6 +620,19 @@ fingerprints remain valid and full generator replay is byte-identical. Source
 market's untreated/direct-release boundary and cement/concrete/nickel grades
 are excluded from these approvals.
 
+`uvek_pilot_secondary_aluminium_pcb_review.json` covers a positive 3.6 secondary
+cast-billet product and a negative 3.9 PCB preparation service. The aluminium
+supplier is corrected to native old-scrap secondary production; source/native
+definitions include refining, alloying and casting. PCB preparation retains
+matching electricity, facility and all-to-disposal allocation, with native
+freight/waste-heat differences warned. Its source co-product is an inspected
+positive production-only cut-off stock; no new metal credit or downstream
+refining stage is added. Thirteen focused Premise and 216 relevant Brightpath
+checks pass, two native LCIs are finite with unchanged scientific hashes,
+all 287 earlier fingerprints remain valid and generator replay is byte-identical.
+Xanthate and electrical-steel substitutions remain refused; the latter source
+contains an aggregated biosphere inventory without technosphere links.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

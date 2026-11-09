@@ -352,6 +352,7 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
         ("bp-00d0820dc5481d5d", "3.9"),
         ("bp-cccd7819bb6cea4b", "3.9"),
         ("bp-4a8d844635b7637e", "3.9"),
+        ("bp-9f820f97f9f3c080", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -563,6 +564,7 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-84bd9cf473cdeee9", "3.9"),
         ("bp-4529f104ab14ba19", "3.12"),
         ("bp-07d1ab8592869587", "3.6"),
+        ("bp-84737a1a1790ee76", "3.6"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -836,6 +838,8 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         "bp-84bd9cf473cdeee9",
         "bp-4529f104ab14ba19",
         "bp-07d1ab8592869587",
+        "bp-84737a1a1790ee76",
+        "bp-9f820f97f9f3c080",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1068,6 +1072,7 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
         ("bp-84bd9cf473cdeee9", "3.9", "kg dry matter"),
         ("bp-4529f104ab14ba19", "3.12", "Do not add hot rolling"),
         ("bp-07d1ab8592869587", "3.6", "net tkm"),
+        ("bp-84737a1a1790ee76", "3.6", "secondary billets"),
         ("bp-6ce52de989145df6", "3.12", "without wood-density"),
         (
             "bp-8a37fb9191501441",
@@ -1661,6 +1666,74 @@ def test_cement_concrete_nickel_grades_do_not_inherit_supply_approval(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
     resolved = graph(rule["source"], version=version)
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError, match="independent review"):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, family="uvek", version="2026"
+        )
+    assert resolved.activities == before
+
+
+def test_pcb_preparation_keeps_service_quantity_and_cached_allocation_warning(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r
+        for r in load_uvek_technosphere_resource()["replace"]
+        if r["id"] == "bp-9f820f97f9f3c080"
+    )
+    resolved = graph(rule["source"], version="3.9")
+    resolved.activities[0]["exchanges"][1]["amount"] = -2.5
+    resolved.activities[0]["exchanges"].append(
+        {
+            "name": "Carbon dioxide, fossil",
+            "categories": ("air", "non-urban air or from high stacks"),
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.037,
+            "uncertainty type": 0,
+            "formula": "separate_caller_emissions",
+        }
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 3
+        preparation, emission = activity["exchanges"][1:]
+        assert preparation["name"] == "Disposal, treatment of printed wiring boards"
+        assert preparation["amount"] == 2.5 and preparation["unit"] == "kilogram"
+        assert (
+            emission["amount"] == 0.037
+            and emission["formula"] == "separate_caller_emissions"
+        )
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
+        )
+        assert all(
+            term in warning["message"]
+            for term in ("100%", "production-only", "0.5tkm", "0.144MJ")
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize("rule_id", ["bp-6046387e041ea5c2", "bp-0baf74e5f1f09452"])
+def test_xanthate_and_grain_oriented_steel_do_not_inherit_processing_approval(
+    tmp_path, rule_id
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version="3.12")
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
         ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
