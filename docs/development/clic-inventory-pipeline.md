@@ -870,6 +870,33 @@ and 55 CLIC records. Nitrate coverage is now 34 of 125 external suppliers;
 the remaining 91 identities span 35 product labels. These are dependency counts,
 not new-decision counts or proof of a completed nitrate conversion.
 
+`uvek_pilot_nitrate_matching_service_review.json` admits four further exact
+3.9 markets required by the nitrate graph: the control cabinet for the historical
+160 kWe CHP unit, seamless steel-pipe drawing, copper-wire drawing and Tovex
+blasting. Each market contains only positive supplies of the same equipment or
+process, summing to one, without separate freight, losses or direct emissions.
+Fresh source/native inspection verifies the historical cabinet and reference
+quantity, the metal-processing exclusions and the included explosive supply.
+The cabinet is one complete cabinet, not a capacity or lifetime multiplier.
+The drawing services exclude the caller's main metal purchase; the pipe model's
+inherited wire-drawing factor is already internal. Blasting includes its Tovex
+and detonation emissions once, with the same documented omission of rock
+emissions. Complete native functions retain their background, energy, waste,
+geographic, vintage and biosphere-exclusion limitations as warnings.
+
+All 319 earlier scopes remain unchanged; there are now 323. Seventy-four
+Brightpath cases and 97 focused Premise cases pass, including both cache paths
+and refusals for uninspected releases. Four actual migrated graphs give finite
+LCI on unchanged native matrices, with exact foreground reference balance and
+independent native-supply agreement. The cabinet's large inventory exposes an
+absolute-residual scaling limit in the earlier private numerical check. Mixed
+absolute/relative row balances pass; pure componentwise ratios and the unscaled
+residual remain in the report. No inventory coefficient or rule is changed.
+All four installed-wheel conversions pass. The full pilot still refuses
+35 parent rules / 40 cases; nitrate coverage is 38 of 125 external suppliers,
+leaving 87 identities. The [material-boundary findings](uvek-nitrate-material-boundaries.md)
+explain why the other delivery and water cases are not automatically admitted.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

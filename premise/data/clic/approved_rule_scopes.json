@@ -27849,6 +27849,536 @@
           "fingerprint": "534b23be97a469f75903358fd78474dabf9257297818e50f0052194be11d05e2"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e8b868791ff78fc6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_matching_service_review.json",
+      "review_sha256": "8146c2503a434b7e9aca68b8004bbc465f53665ba348587a74a440222db8fba5",
+      "authorization": "Standing independently inspected matching whole-product/function/unit, processing-reference and geographic screening approvals. Fresh inspection establishes the same historical cabinet, metal-processing exclusion boundary or Tovex service, with positive exact references and no market freight or losses. No new material grade, quantity basis, equipment size, disposal endpoint, missing-provider fallback, physical omission or invented process approximation is selected. Native/source internal background conventions differ and are warnings; preserve each complete native function once and all separate caller purchases. These four source3.9cutoff cases have explicit independent admission; no raw mapping/recipe/route change.",
+      "inspection": {
+        "rule_id": "bp-e8b868791ff78fc6",
+        "source": {
+          "name": "market for control cabinet, heat and power co-generation unit, 160kW electrical",
+          "reference product": "control cabinet, heat and power co-generation unit, 160kW electrical",
+          "location": "GLO",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Control cabinet cogen unit 160kWe",
+          "reference product": "Control cabinet cogen unit 160kWe",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "5285310721f1a5e7e96ec5a76e5797db19eb77a47b0254ffaa3386c4d0a67ff1",
+        "fingerprint": "9caf90392144fa49688c7e304945e03106f736dc97be1d1c66572a1af74a1906",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for control cabinet, heat and power co-generation unit, 160kW electrical",
+            "reference product": "control cabinet, heat and power co-generation unit, 160kW electrical",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "metadata_sha256": "f6afe092ec4a0b6bb5d829870d82d8471cbb5ccc0ae0830107a4d9d09d27b95a",
+          "inventory_sha256": "4df6a0444cd3febe5629b6622987b5c4e9670b5af4313c6c795d917ba0d5ce8f"
+        },
+        "source_producer_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "control cabinet production, heat and power co-generation unit, 160kW electrical",
+              "reference product": "control cabinet, heat and power co-generation unit, 160kW electrical",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "metadata_sha256": "3ad8af0bc1e7b4627dd880e8de2765ab8923fe73f7053e7e2c6941f799e9a112",
+            "inventory_sha256": "dfd63d75cfea17b153bc49f57f5172b3100436f22147fdf9427360552212ab18"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "control cabinet production, heat and power co-generation unit, 160kW electrical",
+              "reference product": "control cabinet, heat and power co-generation unit, 160kW electrical",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "metadata_sha256": "38e0320da862af1fa17f0214fef6f8e8ebcd40a9d9762c427b27520d6bf536dc",
+            "inventory_sha256": "ee0660d84a50d21fd9f345d3685882b66382ff714156b6384df7b2bcca00f066"
+          }
+        ],
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Control cabinet cogen unit 160kWe",
+              "reference product": "Control cabinet cogen unit 160kWe",
+              "unit": "unit"
+            },
+            "metadata_sha256": "0d91f426432b6abb68966c80bd210d18901d07ce489a7e256efddfaa3084532a",
+            "inventory_sha256": "2fe1e131795504b3f0412151fdfa0ca7dbab15136fc842f37d60fc24d0484607"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Control cabinet cogen unit 160kWe",
+              "reference product": "Control cabinet cogen unit 160kWe",
+              "unit": "unit"
+            },
+            "metadata_sha256": "8d17b348ce45892cc1d4fb5531ab5173a9f7764d1a5ff3989aa660efae1fa7c5",
+            "inventory_sha256": "684938b186c6c251aaeae797d52e20f9c1e7ae8429f8be99a9f824e216647880"
+          }
+        ],
+        "matching_function_evidence": {
+          "market_only_unit_positive_supply": true,
+          "positive_source_producer_reference_count": 2,
+          "native2025_2026_direct_technosphere_vectors_match": true,
+          "same_historical_160kWe_cabinet_and_operating_lifetime": true,
+          "nominal_material_quantity_classes_match": 10,
+          "assembly_electricity_quantity_matches": true
+        },
+        "preexisting_other_profiles": [],
+        "uninspected_profile_guards": [
+          "3.6",
+          "3.12"
+        ],
+        "limitations": "One complete control cabinet for the documented 160kWe CHP unit maps to one native cabinet for the same historical Jakobsberg/Basel plant, not one kW or a complete generator. Both describe the same 1987 unit and assumed100000h operation; major nominal material quantities and assembly electricity match. This does not imply identical material grades: native nickel purity/PVC supply, historical fuel versus useful-heat conventions and regional plastic/wastewater fates differ. No factor160,100000 or an added cogenerator is introduced. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      },
+      "limitations": [
+        "One complete control cabinet for the documented 160kWe CHP unit maps to one native cabinet for the same historical Jakobsberg/Basel plant, not one kW or a complete generator. Both describe the same 1987 unit and assumed100000h operation; major nominal material quantities and assembly electricity match. This does not imply identical material grades: native nickel purity/PVC supply, historical fuel versus useful-heat conventions and regional plastic/wastewater fates differ. No factor160,100000 or an added cogenerator is introduced. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9caf90392144fa49688c7e304945e03106f736dc97be1d1c66572a1af74a1906"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1d72298e464032e1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_matching_service_review.json",
+      "review_sha256": "8146c2503a434b7e9aca68b8004bbc465f53665ba348587a74a440222db8fba5",
+      "authorization": "Standing independently inspected matching whole-product/function/unit, processing-reference and geographic screening approvals. Fresh inspection establishes the same historical cabinet, metal-processing exclusion boundary or Tovex service, with positive exact references and no market freight or losses. No new material grade, quantity basis, equipment size, disposal endpoint, missing-provider fallback, physical omission or invented process approximation is selected. Native/source internal background conventions differ and are warnings; preserve each complete native function once and all separate caller purchases. These four source3.9cutoff cases have explicit independent admission; no raw mapping/recipe/route change.",
+      "inspection": {
+        "rule_id": "bp-1d72298e464032e1",
+        "source": {
+          "name": "market for drawing of pipe, steel",
+          "reference product": "drawing of pipe, steel",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Drawing of pipes, steel",
+          "reference product": "Drawing of pipes, steel",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "43c154c760885fa1678e5c8c45df4e84d9ed6ba55397f47d8d2e776653984c95",
+        "fingerprint": "fed6517ffd112c2d8ad73ef4c32d85277d39dba64ad713357fd092e7aa95d8d5",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for drawing of pipe, steel",
+            "reference product": "drawing of pipe, steel",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "4dd946cf61e8ee435a39b5c37b01593a9a109d110cef2e46066ff28b4e960eda",
+          "inventory_sha256": "eeba35ebbfc706fb0983eaecb64815a98d6f521b8945198660844d77bae9d7df"
+        },
+        "source_producer_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "drawing of pipe, steel",
+              "reference product": "drawing of pipe, steel",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "bcca83242fa12ec9aac69469f7cf64ec58b4a6a0c985dacf2b4fb2e03ab03e70",
+            "inventory_sha256": "621934a618df8242b1b29b1415d5b95cf94790c265721147aeef32fc9f9ed260"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "drawing of pipe, steel",
+              "reference product": "drawing of pipe, steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "dd5556ef5f9b6e20d926733ef1229e112b0ff6379793c5c969765da9d742606a",
+            "inventory_sha256": "434097d43cbe16d9898465c99d500ab54bba443de1c30f9b6f9cef716b4a83ba"
+          }
+        ],
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Drawing of pipes, steel",
+              "reference product": "Drawing of pipes, steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "c5e0e7d577e9d002ed7c6bc4ae3c6dd29e41582a255ea9367244495cb1241feb",
+            "inventory_sha256": "77da2f0481a0ffabe8904ee2c5b9926a7f3f7fe9a53d41ee9859c37e53bfa5a2"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Drawing of pipes, steel",
+              "reference product": "Drawing of pipes, steel",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8154e221104c3336a2e6f39b0bd5ce3405cf0d1ae31e096224c82a548e3295e8",
+            "inventory_sha256": "892ae1919919b6059a6e5b05e7c7bfed951ccdcb37e09d4ebd2ac730902d601a"
+          }
+        ],
+        "matching_function_evidence": {
+          "market_only_unit_positive_supply": true,
+          "positive_source_producer_reference_count": 2,
+          "native2025_2026_direct_technosphere_vectors_match": true,
+          "main_steel_excluded_both": true,
+          "inherited_wire_drawing_factor_already_internal": true
+        },
+        "preexisting_other_profiles": [],
+        "uninspected_profile_guards": [
+          "3.6",
+          "3.12"
+        ],
+        "limitations": "One kg of steel seamless-tube drawing maps to one kg of the same native processing service. Source and native documentation exclude the main steel material and both already include110%of steel-wire drawing as their inherited process approximation. Preserve separate caller steel purchases; do not add another kg of steel, repeat wire drawing or apply factor1.1 again. Neither dataset represents welded tubes, and the inherited wire-drawing approximation remains explicit. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      },
+      "limitations": [
+        "One kg of steel seamless-tube drawing maps to one kg of the same native processing service. Source and native documentation exclude the main steel material and both already include110%of steel-wire drawing as their inherited process approximation. Preserve separate caller steel purchases; do not add another kg of steel, repeat wire drawing or apply factor1.1 again. Neither dataset represents welded tubes, and the inherited wire-drawing approximation remains explicit. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fed6517ffd112c2d8ad73ef4c32d85277d39dba64ad713357fd092e7aa95d8d5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f5bb4fd2f8c87a5a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_matching_service_review.json",
+      "review_sha256": "8146c2503a434b7e9aca68b8004bbc465f53665ba348587a74a440222db8fba5",
+      "authorization": "Standing independently inspected matching whole-product/function/unit, processing-reference and geographic screening approvals. Fresh inspection establishes the same historical cabinet, metal-processing exclusion boundary or Tovex service, with positive exact references and no market freight or losses. No new material grade, quantity basis, equipment size, disposal endpoint, missing-provider fallback, physical omission or invented process approximation is selected. Native/source internal background conventions differ and are warnings; preserve each complete native function once and all separate caller purchases. These four source3.9cutoff cases have explicit independent admission; no raw mapping/recipe/route change.",
+      "inspection": {
+        "rule_id": "bp-f5bb4fd2f8c87a5a",
+        "source": {
+          "name": "market for wire drawing, copper",
+          "reference product": "wire drawing, copper",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Wire drawing, copper",
+          "reference product": "Wire drawing, copper",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "f3fadc87b70bcb8faf49dc9b9b1f15649aa10f6a5268d4d8c383427f7afc5b27",
+        "fingerprint": "1122857feb70373068ab5bc3a2f44e8545122c6dc7cbf3b33742c8b3df6629fb",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for wire drawing, copper",
+            "reference product": "wire drawing, copper",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "1894d55b51695ab758d64b4a375ee522d24f5a82ce98ece62e766cf43ad2a2be",
+          "inventory_sha256": "da4d672dc4dad300638c6a13c7e301336213c54a2ffbabfaab5958299751d823"
+        },
+        "source_producer_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "wire drawing, copper",
+              "reference product": "wire drawing, copper",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "2ada6a789bc8e2c0c004a605b27d7a84cb5d3812f1356aa7d059cb0479ba70a9",
+            "inventory_sha256": "af50ac0133618a101476c5969d69057edcd07921af4054257befa31ed6b97a81"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "wire drawing, copper",
+              "reference product": "wire drawing, copper",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "868a01e1f07b7ea3122f19d151ceaaff026914eee1c7396fd152317222c81a84",
+            "inventory_sha256": "fc4327a0672155a1f6513c23583e0e3aa78620379676f545d1b0d951c9881ec2"
+          }
+        ],
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Wire drawing, copper",
+              "reference product": "Wire drawing, copper",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "20734104c48b03c0f1661069b1ac888d3b343bbb9c5398f64a288db667b66f9f",
+            "inventory_sha256": "3ce2266fef87010e361e43a8edcbf2ef78791a825aaeb53e46ffc16d9068fe77"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Wire drawing, copper",
+              "reference product": "Wire drawing, copper",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "a33be69e7f28344bd984a1548d0def0bc4b4471504f73a58379c1ab9959c9364",
+            "inventory_sha256": "94c4775a9c0fca766193e5e9c489a609db92665e2e5a3dbf5ca5220ef8bd1cb9"
+          }
+        ],
+        "matching_function_evidence": {
+          "market_only_unit_positive_supply": true,
+          "positive_source_producer_reference_count": 2,
+          "native2025_2026_direct_technosphere_vectors_match": true,
+          "main_copper_excluded_both": true,
+          "nominal_copper_loss_compensation_matches": true
+        },
+        "preexisting_other_profiles": [],
+        "uninspected_profile_guards": [
+          "3.6",
+          "3.12"
+        ],
+        "limitations": "One kg of copper wire drawing maps to one kg of the same native processing service. Both exclude the main copper being worked and balance the same nominal primary-copper loss compensation. Preserve separate caller copper purchases. Native packaging, lubrication, machinery, waste treatment, energy and internal logistics remain once. No extra kg of copper, density/volume factor or separate transport is introduced; the inherited European process estimate and extrapolation from aluminium processing remain limitations. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      },
+      "limitations": [
+        "One kg of copper wire drawing maps to one kg of the same native processing service. Both exclude the main copper being worked and balance the same nominal primary-copper loss compensation. Preserve separate caller copper purchases. Native packaging, lubrication, machinery, waste treatment, energy and internal logistics remain once. No extra kg of copper, density/volume factor or separate transport is introduced; the inherited European process estimate and extrapolation from aluminium processing remain limitations. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1122857feb70373068ab5bc3a2f44e8545122c6dc7cbf3b33742c8b3df6629fb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0fecb41f281a2718",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_nitrate_matching_service_review.json",
+      "review_sha256": "8146c2503a434b7e9aca68b8004bbc465f53665ba348587a74a440222db8fba5",
+      "authorization": "Standing independently inspected matching whole-product/function/unit, processing-reference and geographic screening approvals. Fresh inspection establishes the same historical cabinet, metal-processing exclusion boundary or Tovex service, with positive exact references and no market freight or losses. No new material grade, quantity basis, equipment size, disposal endpoint, missing-provider fallback, physical omission or invented process approximation is selected. Native/source internal background conventions differ and are warnings; preserve each complete native function once and all separate caller purchases. These four source3.9cutoff cases have explicit independent admission; no raw mapping/recipe/route change.",
+      "inspection": {
+        "rule_id": "bp-0fecb41f281a2718",
+        "source": {
+          "name": "market for blasting",
+          "reference product": "blasting",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Blasting",
+          "reference product": "Blasting",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "curated_legacy",
+        "raw_rule_sha256": "1b5300b0f831865d6c6ee31b583082b8b8db564e65063bd08b4aa70c04bce513",
+        "fingerprint": "447b6229fa820e1adbc30bef57bda3714915e474251454f9de01c95d1686d3ca",
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "name": "market for blasting",
+            "reference product": "blasting",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "706d8972e6faebe816c3941f6c466c6bcef551f17cad921b9abcbf9067c9dd29",
+          "inventory_sha256": "dd024b4db9717c1c85533fdd838cb9611527dd91bcfb24564f94b649b9f57554"
+        },
+        "source_producer_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "blasting",
+              "reference product": "blasting",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "adc90a0abadcee1ff7135fa23e9daa29c5663d1c5f49be9b99b3ef40709d0773",
+            "inventory_sha256": "5ccee73b7f63a50383eef1db712584fc6124a12a7451c3af8d7243f6c37fb8ac"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "blasting",
+              "reference product": "blasting",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "54e4d5371212ded3b84707f4ae0cfcb184fd917b5aa75a15b44d5e3da64e2aec",
+            "inventory_sha256": "dffe6f74d061ce5b22a91bbe9c1631f80b4489be47c61eb1a7712b5a17586a56"
+          }
+        ],
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Blasting",
+              "reference product": "Blasting",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "7cdfb07440d228e38bac0587a00d3577c74db9b4181070848748feab1ead28a5",
+            "inventory_sha256": "ea8295ce3de1336ed0b1b7c9ca7acb7c0fcd915b80ef2cb06d6f2ffb2d1d2336"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Blasting",
+              "reference product": "Blasting",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "0cada0e288bb9da5f3629018b78720765a69b66a308748f97bb668716ad95ac3",
+            "inventory_sha256": "958683cbac9249fe0bef2bb67044a425072efc475b758c115992b2b6a568779d"
+          }
+        ],
+        "matching_function_evidence": {
+          "market_only_unit_positive_supply": true,
+          "positive_source_producer_reference_count": 2,
+          "native2025_2026_direct_technosphere_vectors_match": true,
+          "same_Tovex_blasting_reference": true,
+          "one_kg_explosive_included_once": true,
+          "blasted_rock_emissions_excluded_both": true
+        },
+        "preexisting_other_profiles": [],
+        "uninspected_profile_guards": [
+          "3.6",
+          "3.12"
+        ],
+        "limitations": "One kg of blasting denotes use of one kg of Tovex explosive in both source providers and the native complete service, not a kg of blasted rock or a kg of explosive alone. Both include the explosive supply and stoichiometric detonation emissions and exclude blasted-rock emissions. Add neither a second explosive supply nor another detonation inventory and infer no rock yield. Retain the shared source-quality warning that this estimated model requires case-specific scrutiny if it becomes a major contributor. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      },
+      "limitations": [
+        "One kg of blasting denotes use of one kg of Tovex explosive in both source providers and the native complete service, not a kg of blasted rock or a kg of explosive alone. Both include the explosive supply and stoichiometric detonation emissions and exclude blasted-rock emissions. Add neither a second explosive supply nor another detonation inventory and infer no rock yield. Retain the shared source-quality warning that this estimated model requires case-specific scrutiny if it becomes a major contributor. Apply factor +1 to the original signed reference quantity, preserving caller uncertainty, formulas, ownership, separately purchased materials and separate emissions. The market has only positive producer supplies summing to one, without freight, losses, direct biosphere, parameters or formulas. Source providers and native references are positive units. Use the complete native equipment or processing service once, including its own materials, supply, energy, internal logistics, waste treatment and emissions. Do not append the source inventory, duplicate main metal or machinery, multiply capacity/lifetime, or add a recovery/heat/avoided-production credit. Historical geography, energy and material supply, allocation, waste/emission conventions, vintage and native biosphere exclusions differ and remain warnings with unquantified score effects. This is a screening correspondence and does not establish LCIA equivalence. Only the independently inspected source3.9cutoff profile is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; no other source release, inverse or cross-system-model correspondence is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "447b6229fa820e1adbc30bef57bda3714915e474251454f9de01c95d1686d3ca"
+        }
+      ]
     }
   ]
 }

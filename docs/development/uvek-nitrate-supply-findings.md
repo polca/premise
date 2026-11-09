@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-34 already have exact current CLIC approval fingerprints for their source
+38 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 35 reference-product
+scientifically reviewed target. The other suppliers cover 31 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 91 automatically new scientific decisions. Coverage is
+decisions. They are not 87 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -104,6 +104,20 @@ separately approved; no other source profile inherits these new 3.9 admissions.
 All eight actual migrated services give finite LCI on unchanged native matrices,
 and public cache and installed-wheel checks pass. The complete nitrate market
 is still unresolved.
+
+Four further exact 3.9 markets now have independent matching-function reviews:
+the same historical 160 kWe CHP control cabinet, seamless steel-pipe drawing,
+copper-wire drawing and Tovex blasting. Their markets add no freight, losses or
+direct emissions to the positive unit supplier mix. Their native references and
+functional boundaries are inspected, preserving the complete native function
+and separate caller purchases without capacity, lifetime, extra main-metal or
+explosive multipliers. Four finite native LCI checks, public cache checks and
+installed-wheel checks pass. Native supply and exact foreground reference
+balances agree under the documented mixed row-residual check, with original
+unscaled numerical findings retained. The [material-boundary inspection](uvek-nitrate-material-boundaries.md)
+records the delivery and water-accounting cases still requiring work. These
+reviews change no raw mapping or recipe and do not approve the complete salt
+market.
 
 This dependency expansion sits behind one currently blocked parent rule.
 Consequently, the headline count of 35 unresolved rules / 40 source-profile
