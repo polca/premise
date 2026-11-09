@@ -114414,6 +114414,541 @@
           "fingerprint": "4ab517514b583d113eb009ea784e9bb23404d60be35fd8cc568c0adb856a8f6d"
         }
       ]
+    },
+    {
+      "rule_id": "bp-0ad47155a89ab7bb",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_acrylic",
+      "review_path": "export/uvek_deferred_acrylic_review.json",
+      "review_sha256": "1389417ba62d89e4da4b7e58dd4999f62447729c60343f308fc297b2ba5568d8",
+      "authorization": "Autonomous remaining-mapping goal and standing auto-approval. Use derived native source-recipe graph to bypass unresolved whole-formulation concentration references; raw source inventories remain private.",
+      "inspection": {
+        "rule_id": "bp-0ad47155a89ab7bb",
+        "source": {
+          "location": "RER",
+          "name": "market for acrylic dispersion, with water, in 58% solution",
+          "reference product": "acrylic dispersion, with water, in 58% solution state",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Acrylic dispersion, 65% in H2O, at plant",
+          "reference product": "Acrylic dispersion, 65% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.352167,
+          "id": "bp-0ad47155a89ab7bb",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "market for acrylic dispersion, with water, in 58% solution",
+            "reference product": "acrylic dispersion, with water, in 58% solution state",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Acrylic dispersion, 65% in H2O, at plant",
+            "reference product": "Acrylic dispersion, 65% in H2O, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "82cb5cac5996557a92940ae6a3f39b5ea4ba6143a9f58d5d5f67e662f69f8702",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "original_factor": 1,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": 1,
+            "inventory_sha256": "9c8e63e8b82b7ba94eb4ab8bd28ff03026ae29fcaa5f86a8ecc8c6d3883ddf67",
+            "inputs": [
+              {
+                "recipe": "deferred-acrylic-stage-fcf9acf40eb47dc1caf7",
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0
+              },
+              {
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "amount": 0.0438,
+                "uncertainty type": 2,
+                "loc": -3.128121461599737,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer",
+                "amount": 0.0219,
+                "uncertainty type": 2,
+                "loc": -3.8212686421596818,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer",
+                "amount": 0.1713,
+                "uncertainty type": 2,
+                "loc": -1.7643388736520629,
+                "scale": 0.41231056256176607,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 5,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4711687595755899,
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for 1-butanol",
+                  "1-butanol",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-257e3a6876074635",
+                "binding_sha256": "882a8033c51832bbd468b3a5609d065631616433abc1471752904ee36cba2d0c"
+              },
+              {
+                "source": [
+                  "market for butyl acrylate",
+                  "butyl acrylate",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-0a9ce2359dab4bf9",
+                "binding_sha256": "4108794a899b5b0ef38137938a3eda6dd7e74342bdb533b260537763ce9a7b8f"
+              },
+              {
+                "source": [
+                  "chemical factory construction, organics",
+                  "chemical factory, organics",
+                  "RER",
+                  "unit"
+                ],
+                "rule_id": "bp-fa8c66186468f780",
+                "binding_sha256": "526b3121470aa4e7b907ed5dbbe87c179e45eb32ded1a6bda69b9499c49b94d5"
+              },
+              {
+                "source": [
+                  "market group for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "RER",
+                  "kilowatt hour"
+                ],
+                "rule_id": "bp-49b843b95c0c6223",
+                "binding_sha256": "a147764e438f83642751b71b694c2c8ca149c64c13dc096fbe3937f83fb69fb9"
+              },
+              {
+                "source": [
+                  "market for esters of versatic acid",
+                  "esters of versatic acid",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-1b0f52618f090973",
+                "binding_sha256": "9d3e427851d1b2499e39cac8301b38bc712c28e9850dfeb22e65c554ec09e99b"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "rule_id": "bp-4a7e42807ddffd8a",
+                "binding_sha256": "f949c1403e48bded071030e947c5d4af593bc638247583efa98d55bc6286e38e"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RER",
+                  "megajoule"
+                ],
+                "rule_id": "bp-b9b0c0c1d15a55d8",
+                "binding_sha256": "655d20306ab2ef525b713d8c54b86761018cd15443f789fb05b0301703781064"
+              },
+              {
+                "source": [
+                  "market for vinyl acetate",
+                  "vinyl acetate",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-2eeefdde5619e4a5",
+                "binding_sha256": "ea99b077b175eb70f073931bc628b7545fb7847199902468e331074addfc3c86"
+              },
+              {
+                "source": [
+                  "market for waste paint",
+                  "waste paint",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-d99294ec3a9982d6",
+                "binding_sha256": "e4f2be109e57673fc1182e7aa2fd23d4e26f65349f56d15e01ba036e1f8a2c3b"
+              },
+              {
+                "source": [
+                  "market for waste paint",
+                  "waste paint",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-5c44ff7c10e3c5ad",
+                "binding_sha256": "f01c3bdb9d5d8ea85745f635641b77f249f0795b49ab677280e8aff41bcb90f6"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-8e691fdb86f7b1c6",
+                "binding_sha256": "040f14a3ed4909fc4e7f979d374ac377827a93f0f37acab03970834fd3f4a80b"
+              },
+              {
+                "source": [
+                  "market for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-25557ccca7d5a61f",
+                "binding_sha256": "f964ba9d49552eb035da8a92d925cbf7454fc2e6d9f1056e82ab4531a18a1438"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-d6b9d771677aa51e",
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "market for chemical, organic",
+                  "chemical, organic",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-65d60275b4f9e27a",
+                "binding_sha256": "a6c278b376732dc169b50879471103404f52968fafba2835f9f2b469c00fdf17"
+              },
+              {
+                "source": [
+                  "market for ethylene glycol",
+                  "ethylene glycol",
+                  "GLO",
+                  "kilogram"
+                ],
+                "rule_id": "bp-d8aa748d3c6d8667",
+                "binding_sha256": "429b567bab91dd495d0bffc6c04d799faa858a7fbeec8a2c734438d37423f20e"
+              },
+              {
+                "source": [
+                  "market for titanium dioxide",
+                  "titanium dioxide",
+                  "RER",
+                  "kilogram"
+                ],
+                "rule_id": "bp-011b0c14ef8a369d",
+                "binding_sha256": "8a5449f5b35e2f596cdb1c52c75443440bf98614787880495cb9684db35e3a29"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-a3a951644bd5ed9c",
+                "binding_sha256": "4109bea7a76d943d728d832fd5ca373ad9d81750f0624bf74911889eca74f783"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, hazardous waste incineration",
+                  "waste emulsion paint",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-8ca802df8ae9e823",
+                "binding_sha256": "b9734456e97a3b791c9989f98a3033dbac6777ab7e0d9d745476dd053d49cd9e"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, municipal incineration",
+                  "waste emulsion paint",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-853337f95ab0c6b7",
+                "binding_sha256": "f17a84fa612c7ec3bfc6df663e1617980cea54831b3d42bb248e680b58c71dcf"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, inert material landfill",
+                  "waste emulsion paint",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-dea784de0f1f206a",
+                "binding_sha256": "86eda2aeba241e1118d66efd0c48ad37bb6d229c7c719d92ca1ba0d14af5ae9e"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, sanitary landfill",
+                  "waste emulsion paint",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-97df6d2b30522d82",
+                "binding_sha256": "5349dbdbc1ec8a5bcbdff266035d078aa26e46a6d26370f07340fef93b0066b2"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, hazardous waste incineration, with energy recovery",
+                  "waste emulsion paint",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "rule_id": "bp-da3a6a28ed97930b",
+                "binding_sha256": "b357f7e9146674c95638b15774541d5c6914a4edd631475545bedebf4b18231a"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CH",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-97d38b4e34e0274c",
+                "binding_sha256": "72bc50d6fed6f8305ed0be601760e2f797a3dfcfd83d74f650e9ef2143e2628f"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, hazardous waste incineration",
+                  "waste emulsion paint",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-09d6402c15213a87",
+                "binding_sha256": "d6a0d8c56e71a1593e1fe88633e8da4eb0c4a1cc9f04e91abdcc69917013f7bc"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, hazardous waste incineration, with energy recovery",
+                  "waste emulsion paint",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-f676b209902fecb0",
+                "binding_sha256": "2eba3ab558d8307464eb6d412c83455e087eb4a7ee4df3afe7871d1dcd451934"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, municipal incineration with fly ash extraction",
+                  "waste emulsion paint",
+                  "CH",
+                  "kilogram"
+                ],
+                "rule_id": "bp-948aab90cfe1b564",
+                "binding_sha256": "c4af58e621aadae2e5011cda39b3f03072af1c4b67d8a75420c4084a785d657a"
+              }
+            ]
+          }
+        ],
+        "limitations": "Reviewed reconstruction for the exact ecoinvent 3.9 cut-off wet acrylic-dispersion recipe. Both source production exchanges explicitly reference 1 kg of wet mixture: 54% dry binder and 58% dry dispersion. The dispersion market reports 59% dry content but supplies 1 kg of that same wet producer. Preserve the actual wet transactions and all original coefficients; do not normalize the inconsistent 58/59 metadata or stale 65/34 market comments. Native legacy binder/dispersion concentration labels, 100%-base comments and incomplete material balances do not establish a safe conversion factor, so neither complete legacy formulation is used directly. Reconstruct the wet binder from butyl acrylate, versatic-acid esters and vinyl acetate, together with source utilities, factory, waste treatment and direct flows. Reconstruct dispersion using that wet binder and the actual source pigment, chemicals, utilities, waste treatment and water withdrawal. Correct 1-butanol to native 1-butanol rather than 2-butanol. Use the complete native titanium-dioxide production mix, not titanium metal or an arbitrarily single-route pigment. Preserve both source market-delivery layers; rail remains rail. Reconstruct both emulsion-paint waste markets from their original hazardous/municipal/sanitary/inert shares and freight, rather than substituting one construction landfill. Complete native 0%-water treatments supply the same dry-waste basis. Municipal fly-ash extraction, metal recovery, ash treatment and hazardous-branch energy recovery/allocation differ from native proxies; no extra recovery or avoided-energy credit is added. All nine direct source flows retain exact canonical ecoinvent 3.10 publisher UUIDs, units, roles and compartments. Keep dissolved solids, suspended solids, hydrocarbons and BOD/COD/DOC/TOC indicators separately; these overlapping indicators are not independent additive masses. Caller signed wet kg, formulas and supported uncertainty remain at factor +1. No guessed concentration multiplier, added carrier water, negative dewatering, drying, yield correction or new source-exchange omission is introduced. Two inherited, reviewed production-only paint-to-clinker handovers remain literal audits; no physical zero-burden claim or renormalization is made. Native chemical technologies, allocation, heat mix/delivery, generic-factory capacity/lifetime, waste composition, freight fleets, market versus at-plant supply, geography, vintage, native internal uncertainty and the 2,991 upstream biosphere exclusions remain limitations. The older confidential source recipes do not establish modern industry equivalence, and score effects remain unquantified. Other source releases, inverse routes and cross-system-model conversions are not qualified.",
+        "generated_recipe_id": "deferred-acrylic-33bc3beac2f47e17737c",
+        "source_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "market for acrylic dispersion, with water, in 58% solution",
+              "reference product": "acrylic dispersion, with water, in 58% solution state",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9c8e63e8b82b7ba94eb4ab8bd28ff03026ae29fcaa5f86a8ecc8c6d3883ddf67",
+            "metadata_sha256": "c2241d2d9c139677ca1d83b5a4d23aab86c41d3add7d81f798cd4afb9fea1bc4"
+          },
+          {
+            "identity": {
+              "name": "acrylic dispersion production, with water, in 58% solution",
+              "reference product": "acrylic dispersion, with water, in 58% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5be4e4d4e2439da1a8b540e3ced3ad09b146a9a77989e9f2e01aa476cbb5fcc3",
+            "metadata_sha256": "5be10db22d52087efa930781819f62eb8a951350170f563b0a18ded3b55ac780"
+          },
+          {
+            "identity": {
+              "name": "market for acrylic binder, with water, in 54% solution state",
+              "reference product": "acrylic binder, with water, in 54% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9e44d9893ae3e625926bceedb1a6579233e696073e0f1ec76a325e46adb55dce",
+            "metadata_sha256": "0efeb425acaff9b6584c938e24fdcf7161d292a2964dba532d96d2ef4ee54ea5"
+          },
+          {
+            "identity": {
+              "name": "acrylic binder production, with water, in 54% solution state",
+              "reference product": "acrylic binder, with water, in 54% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9a4702ad8121462e94e425e529954b8dfd9691fa6fac121ef3e0729bedfd536f",
+            "metadata_sha256": "3b51f90f68d0ddf83cda8e1e81d7741a5bf01eff2d457e6f4dd106c358029391"
+          },
+          {
+            "identity": {
+              "name": "market for waste emulsion paint",
+              "reference product": "waste emulsion paint",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f5a6520f271d47a48dc106cccaca66fb27fb3947d133c33d623fc0cad1e496a5",
+            "metadata_sha256": "23d38b3b35e3342738d246aa1ac08db55db1e3b50c793e27679e3ef6dbfc4856"
+          },
+          {
+            "identity": {
+              "name": "market for waste emulsion paint",
+              "reference product": "waste emulsion paint",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2332bf544d5220fff7a9568099256d658b8d8e80499cf10145f0ae4774fae4cb",
+            "metadata_sha256": "6c0cd507492908646f88c50594af6cdb9b6faa5ca377038826274f1dc424cd6a"
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "caller_conversion_factor": 1,
+        "physical_reference": "one kilogram wet source mixture, no native legacy concentration conversion",
+        "expected_foreground_records": 19,
+        "expected_foreground_biosphere_exchanges": 9,
+        "approved_recipe_source_omissions": {
+          "pilot-hazardous-paint-cdc8e5a706034c8d3834": [
+            {
+              "original_index": 4,
+              "rationale": "Automatically approved exact source paint-to-clinker link omission: linked source contains only self-linkedproduction-1kg and no processing/emission inventory, with Waste classification and zero price. Original signedquantity/uncertainty retained in audit. Do not add clinker burdens/credits or renormalize other fates; actual physical coprocessing impacts remain unquantified. No general empty-provider approval.",
+              "source_activity": {
+                "location": "CH",
+                "name": "market for waste paint",
+                "reference product": "waste paint",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -0.360416954663814,
+                "loc": -0.360416954663814,
+                "location": "CH",
+                "name": "clinker production",
+                "reference product": "waste paint",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "3209959e38b712b548cc76b92facab57845c5397d6bbd21ce17be817b7da3a68",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ],
+          "pilot-hazardous-paint-239f75078d35986a9f38": [
+            {
+              "original_index": 4,
+              "rationale": "Automatically approved exact source paint-to-clinker link omission: linked source contains only self-linkedproduction-1kg and no processing/emission inventory, with Waste classification and zero price. Original signedquantity/uncertainty retained in audit. Do not add clinker burdens/credits or renormalize other fates; actual physical coprocessing impacts remain unquantified. No general empty-provider approval.",
+              "source_activity": {
+                "location": "Europe without Switzerland",
+                "name": "market for waste paint",
+                "reference product": "waste paint",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -0.0709286601763139,
+                "loc": -0.0709286601763139,
+                "location": "Europe without Switzerland",
+                "name": "clinker production",
+                "reference product": "waste paint",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "93c88566ed3a378dbe8c65160fcc434f4967e0043c5bfd395cdf5876ff6f9d94",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Reviewed reconstruction for the exact ecoinvent 3.9 cut-off wet acrylic-dispersion recipe. Both source production exchanges explicitly reference 1 kg of wet mixture: 54% dry binder and 58% dry dispersion. The dispersion market reports 59% dry content but supplies 1 kg of that same wet producer. Preserve the actual wet transactions and all original coefficients; do not normalize the inconsistent 58/59 metadata or stale 65/34 market comments. Native legacy binder/dispersion concentration labels, 100%-base comments and incomplete material balances do not establish a safe conversion factor, so neither complete legacy formulation is used directly. Reconstruct the wet binder from butyl acrylate, versatic-acid esters and vinyl acetate, together with source utilities, factory, waste treatment and direct flows. Reconstruct dispersion using that wet binder and the actual source pigment, chemicals, utilities, waste treatment and water withdrawal. Correct 1-butanol to native 1-butanol rather than 2-butanol. Use the complete native titanium-dioxide production mix, not titanium metal or an arbitrarily single-route pigment. Preserve both source market-delivery layers; rail remains rail. Reconstruct both emulsion-paint waste markets from their original hazardous/municipal/sanitary/inert shares and freight, rather than substituting one construction landfill. Complete native 0%-water treatments supply the same dry-waste basis. Municipal fly-ash extraction, metal recovery, ash treatment and hazardous-branch energy recovery/allocation differ from native proxies; no extra recovery or avoided-energy credit is added. All nine direct source flows retain exact canonical ecoinvent 3.10 publisher UUIDs, units, roles and compartments. Keep dissolved solids, suspended solids, hydrocarbons and BOD/COD/DOC/TOC indicators separately; these overlapping indicators are not independent additive masses. Caller signed wet kg, formulas and supported uncertainty remain at factor +1. No guessed concentration multiplier, added carrier water, negative dewatering, drying, yield correction or new source-exchange omission is introduced. Two inherited, reviewed production-only paint-to-clinker handovers remain literal audits; no physical zero-burden claim or renormalization is made. Native chemical technologies, allocation, heat mix/delivery, generic-factory capacity/lifetime, waste composition, freight fleets, market versus at-plant supply, geography, vintage, native internal uncertainty and the 2,991 upstream biosphere exclusions remain limitations. The older confidential source recipes do not establish modern industry equivalence, and score effects remain unquantified. Other source releases, inverse routes and cross-system-model conversions are not qualified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "40c339eb0a371964ff0301ce095da71cd6eec0c77852d4d02678ab039f685a12"
+        }
+      ]
     }
   ]
 }

@@ -88,55 +88,6 @@
       "message": "SCREENING ONLY — deferred unresolved supplier bp-3e43100f56430f0c: -31.2708 kilogram of market for waste paperboard in pinned treatment-of-used-power-conversion-system-electrolysis-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
     },
     {
-      "id": "uvek-2026-screening-7eed9598b634124f22ad",
-      "slug": "deionized-water-production-via-reverse-osmosis-from-brackish-water",
-      "version_id": 4870,
-      "semantic_version": "1.0.1",
-      "sha256": "ba13824d64ecc59832ea761a73c502de033616f70f32667baf67f846254ec743",
-      "source": {
-        "biosphere": {
-          "family": "ecoinvent",
-          "version": "3.9"
-        },
-        "technosphere": {
-          "family": "ecoinvent",
-          "system_model": "cutoff",
-          "version": "3.9"
-        }
-      },
-      "target": {
-        "technosphere": {
-          "family": "uvek",
-          "version": "2026",
-          "system_model": "cutoff"
-        },
-        "biosphere": {
-          "family": "ecoinvent",
-          "version": "3.10"
-        }
-      },
-      "exchange": {
-        "amount": 2.7e-06,
-        "location": "RER",
-        "name": "market for acrylic dispersion, with water, in 58% solution",
-        "reference product": "acrylic dispersion, with water, in 58% solution state",
-        "type": "technosphere",
-        "uncertainty type": 0,
-        "unit": "kilogram"
-      },
-      "original_exchange_index": 5,
-      "screening_only": true,
-      "deferred_rule_id": "bp-0ad47155a89ab7bb",
-      "deferred_candidate": {
-        "location": "RER",
-        "name": "Acrylic dispersion, 65% in H2O, at plant",
-        "reference product": "Acrylic dispersion, 65% in H2O, at plant",
-        "unit": "kilogram"
-      },
-      "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
-      "message": "SCREENING ONLY — deferred unresolved supplier bp-0ad47155a89ab7bb: 2.7e-06 kilogram of market for acrylic dispersion, with water, in 58% solution in pinned deionized-water-production-via-reverse-osmosis-from-brackish-water (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
-    },
-    {
       "id": "uvek-2026-screening-a6d33406a770349e9394",
       "slug": "electrolyzer-production-1mwe-pem-stack",
       "version_id": 4856,

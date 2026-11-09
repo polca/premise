@@ -1961,6 +1961,62 @@
         }
       ],
       "status": "Exact3.12 complete native logic fabrication as representative untyped-wafer functional proxy per signed square metre, retaining market delivery freight and all stated technology/yield/mass/energy limitations."
+    },
+    {
+      "review_path": "export/uvek_deferred_acrylic_review.json",
+      "review_sha256": "1389417ba62d89e4da4b7e58dd4999f62447729c60343f308fc297b2ba5568d8",
+      "restored_decisions": [
+        {
+          "id": "uvek-2026-screening-7eed9598b634124f22ad",
+          "slug": "deionized-water-production-via-reverse-osmosis-from-brackish-water",
+          "version_id": 4870,
+          "semantic_version": "1.0.1",
+          "sha256": "ba13824d64ecc59832ea761a73c502de033616f70f32667baf67f846254ec743",
+          "source": {
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.9"
+            },
+            "technosphere": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            }
+          },
+          "target": {
+            "technosphere": {
+              "family": "uvek",
+              "version": "2026",
+              "system_model": "cutoff"
+            },
+            "biosphere": {
+              "family": "ecoinvent",
+              "version": "3.10"
+            }
+          },
+          "exchange": {
+            "amount": 2.7e-06,
+            "location": "RER",
+            "name": "market for acrylic dispersion, with water, in 58% solution",
+            "reference product": "acrylic dispersion, with water, in 58% solution state",
+            "type": "technosphere",
+            "uncertainty type": 0,
+            "unit": "kilogram"
+          },
+          "original_exchange_index": 5,
+          "screening_only": true,
+          "deferred_rule_id": "bp-0ad47155a89ab7bb",
+          "deferred_candidate": {
+            "location": "RER",
+            "name": "Acrylic dispersion, 65% in H2O, at plant",
+            "reference product": "Acrylic dispersion, 65% in H2O, at plant",
+            "unit": "kilogram"
+          },
+          "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
+          "message": "SCREENING ONLY — deferred unresolved supplier bp-0ad47155a89ab7bb: 2.7e-06 kilogram of market for acrylic dispersion, with water, in 58% solution in pinned deionized-water-production-via-reverse-osmosis-from-brackish-water (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+        }
+      ],
+      "status": "Exact3.9 wet acrylic dispersion and binder source-recipe reconstruction, including actual waste routes, source coefficients, canonical flows, transport and inherited empty-handover audits; no guessed concentration factor."
     }
   ]
 }

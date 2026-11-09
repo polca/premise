@@ -3647,7 +3647,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-7eed9598b634124f22ad",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-7eed9598b634124f22ad",
         "slug": "deionized-water-production-via-reverse-osmosis-from-brackish-water",
@@ -3697,10 +3697,333 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-0ad47155a89ab7bb: 2.7e-06 kilogram of market for acrylic dispersion, with water, in 58% solution in pinned deionized-water-production-via-reverse-osmosis-from-brackish-water (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "kilogram wet acrylic dispersion",
+        "helper_reference_amount": 1,
+        "helper_unit": "kilogram wet acrylic dispersion",
+        "caller_conversion_factor": 1,
+        "physical_reference": "one kilogram wet source mixture, no native legacy concentration conversion"
+      },
       "rejected_prior_candidate_reason": "Source wet binder and native documented 100%-binder basis conflict with nominal concentration labels; verify before scaling.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_acrylic_review.json",
+          "sha256": "1389417ba62d89e4da4b7e58dd4999f62447729c60343f308fc297b2ba5568d8",
+          "source_witnesses": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "market for acrylic dispersion, with water, in 58% solution",
+                "reference product": "acrylic dispersion, with water, in 58% solution state",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "9c8e63e8b82b7ba94eb4ab8bd28ff03026ae29fcaa5f86a8ecc8c6d3883ddf67",
+              "metadata_sha256": "c2241d2d9c139677ca1d83b5a4d23aab86c41d3add7d81f798cd4afb9fea1bc4"
+            },
+            {
+              "identity": {
+                "name": "acrylic dispersion production, with water, in 58% solution",
+                "reference product": "acrylic dispersion, with water, in 58% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "5be4e4d4e2439da1a8b540e3ced3ad09b146a9a77989e9f2e01aa476cbb5fcc3",
+              "metadata_sha256": "5be10db22d52087efa930781819f62eb8a951350170f563b0a18ded3b55ac780"
+            },
+            {
+              "identity": {
+                "name": "market for acrylic binder, with water, in 54% solution state",
+                "reference product": "acrylic binder, with water, in 54% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "9e44d9893ae3e625926bceedb1a6579233e696073e0f1ec76a325e46adb55dce",
+              "metadata_sha256": "0efeb425acaff9b6584c938e24fdcf7161d292a2964dba532d96d2ef4ee54ea5"
+            },
+            {
+              "identity": {
+                "name": "acrylic binder production, with water, in 54% solution state",
+                "reference product": "acrylic binder, with water, in 54% solution state",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "9a4702ad8121462e94e425e529954b8dfd9691fa6fac121ef3e0729bedfd536f",
+              "metadata_sha256": "3b51f90f68d0ddf83cda8e1e81d7741a5bf01eff2d457e6f4dd106c358029391"
+            },
+            {
+              "identity": {
+                "name": "market for waste emulsion paint",
+                "reference product": "waste emulsion paint",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "f5a6520f271d47a48dc106cccaca66fb27fb3947d133c33d623fc0cad1e496a5",
+              "metadata_sha256": "23d38b3b35e3342738d246aa1ac08db55db1e3b50c793e27679e3ef6dbfc4856"
+            },
+            {
+              "identity": {
+                "name": "market for waste emulsion paint",
+                "reference product": "waste emulsion paint",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "2332bf544d5220fff7a9568099256d658b8d8e80499cf10145f0ae4774fae4cb",
+              "metadata_sha256": "6c0cd507492908646f88c50594af6cdb9b6faa5ca377038826274f1dc424cd6a"
+            }
+          ],
+          "canonical_biosphere_witnesses": [
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "bfa26b15-5340-441e-acb4-0bb19a4028d3",
+              "source_name": "Hydrocarbons, aliphatic, alkanes, unspecified",
+              "target": {
+                "name": "Hydrocarbons, aliphatic, alkanes, unspecified",
+                "categories": [
+                  "air",
+                  "urban air close to ground"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "b8b5da6eb5f851d8109fb33b9f5107a758b3f76ad57a978567a4b17a5da85b27",
+              "canonical_metadata_sha256": "1fc99cbfc2d5f092a2ae3a39b4ab2881046b95eddfcc73fd87d2424c60a24309"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "70d467b6-115e-43c5-add2-441de9411348",
+              "source_name": "BOD5, Biological Oxygen Demand",
+              "target": {
+                "name": "BOD5, Biological Oxygen Demand",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "6698370568b294cdf506234fb69f5935f8c6d7ad82fe41366cca74b23d7cc543",
+              "canonical_metadata_sha256": "4313eb097a280282c6102aa3f71456e0d74784dc73e775c78191b9f16e8ae871"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "fc0b5c85-3b49-42c2-a3fd-db7e57b696e3",
+              "source_name": "COD, Chemical Oxygen Demand",
+              "target": {
+                "name": "COD, Chemical Oxygen Demand",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "de22f35ca1cbcc5ef6e6fe0f105747e948617507b1dcfd477f77216ebd480410",
+              "canonical_metadata_sha256": "f61ec092a46db2de9b1ddf8359f47f7178b6387e06733721a78e8a0081330d40"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "960c0f37-f34c-4fc1-b77c-22d8b35fd8d5",
+              "source_name": "DOC, Dissolved Organic Carbon",
+              "target": {
+                "name": "DOC, Dissolved Organic Carbon",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "da6b71ed438ea1955cdc397aa8870a0a61e6da608491cf1f0829e060ae51b6c5",
+              "canonical_metadata_sha256": "b149d9e3b06b33ea42994f399c6f3097f364da7e972b3f6edcb190edb7056c7a"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "cfecebe1-1e13-458d-85bc-d40a9f934927",
+              "source_name": "Dissolved solids",
+              "target": {
+                "name": "Dissolved solids",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "83967c3ab5b41147588c4673cd8f49eadb2cb3b39fc8552018aeed194b68bccd",
+              "canonical_metadata_sha256": "c7073639d0e6343b021164fb25d77494ddc0ab9d08aa949409b0cbc03ef0f446"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "3844f446-ded5-4727-8421-17a00ef4eba7",
+              "source_name": "Suspended solids, unspecified",
+              "target": {
+                "name": "Suspended solids, unspecified",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "efe960ce1dfb1da6aa12d5fcd89bad2fe2ddc977ee984f52075a18e2f40eba11",
+              "canonical_metadata_sha256": "ca68d6f66c96b884d1f6945e877a2a05c583676dcce0e814e4a27dbbd7c113f5"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "f65558fb-61a1-4e48-b4f2-60d62f14b085",
+              "source_name": "TOC, Total Organic Carbon",
+              "target": {
+                "name": "TOC, Total Organic Carbon",
+                "categories": [
+                  "water",
+                  "surface water"
+                ],
+                "unit": "kilogram"
+              },
+              "source_role": "emission",
+              "canonical_role": "emission",
+              "source_metadata_sha256": "fc1cc31855deb3129935d0131f85d9e22f8caf1277c8feae8645e4425bb4e736",
+              "canonical_metadata_sha256": "e6eeb9183c597a7e95d4e52a25de8c0dd17d1f14190c104278902c06a61c2493"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "831f249e-53f2-49cf-a93c-7cee105f048e",
+              "source_name": "Water, unspecified natural origin",
+              "target": {
+                "name": "Water, unspecified natural origin",
+                "categories": [
+                  "natural resource",
+                  "in water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "natural resource",
+              "canonical_role": "natural resource",
+              "source_metadata_sha256": "0db82bda107e5c295a15b29ce6b4c7c1d5d4dc6d5f7351407aa6d387b0c7adb6",
+              "canonical_metadata_sha256": "b9a089259242506eafdab227b985dedf65a394f23a6ad1490cbd25b3050fe57a"
+            },
+            {
+              "source_version": "3.9",
+              "canonical_version": "3.10",
+              "publisher_uuid": "831f249e-53f2-49cf-a93c-7cee105f048e",
+              "source_name": "Water, unspecified natural origin",
+              "target": {
+                "name": "Water, unspecified natural origin",
+                "categories": [
+                  "natural resource",
+                  "in water"
+                ],
+                "unit": "cubic meter"
+              },
+              "source_role": "natural resource",
+              "canonical_role": "natural resource",
+              "source_metadata_sha256": "0db82bda107e5c295a15b29ce6b4c7c1d5d4dc6d5f7351407aa6d387b0c7adb6",
+              "canonical_metadata_sha256": "b9a089259242506eafdab227b985dedf65a394f23a6ad1490cbd25b3050fe57a"
+            }
+          ],
+          "rejected_legacy_formulations": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Acrylic dispersion, 65% in H2O, at plant",
+                "reference product": "Acrylic dispersion, 65% in H2O, at plant",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "dc6dff7732dd2263049576cefa426cceb22ec053ea5914b83a891e809655ac4c",
+              "metadata_sha256": "8ebed81ea6aea70b136f789e308dde8a6e457adccaec710cfdb758a31d16afca"
+            },
+            {
+              "identity": {
+                "name": "Acrylic binder, 34% in H2O, at plant",
+                "reference product": "Acrylic binder, 34% in H2O, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "inventory_sha256": "1e52ea10cffe9657cba36a7530921e29d8442e7f1422a18c17b9cadb1050cda4",
+              "metadata_sha256": "5c2a03d82634c884a3657a6d06f19670890adc017d1b56dc987743e7a383e6a3"
+            }
+          ],
+          "rejection_reason": "Inconsistent100%-base comments/34%-65%labels and incomplete precursor balances cannot establish a defensible scaling factor. Use actual source wet production recipes instead.",
+          "inherited_allocated_empty_handover_audits": {
+            "pilot-hazardous-paint-cdc8e5a706034c8d3834": [
+              {
+                "original_index": 4,
+                "rationale": "Automatically approved exact source paint-to-clinker link omission: linked source contains only self-linkedproduction-1kg and no processing/emission inventory, with Waste classification and zero price. Original signedquantity/uncertainty retained in audit. Do not add clinker burdens/credits or renormalize other fates; actual physical coprocessing impacts remain unquantified. No general empty-provider approval.",
+                "source_activity": {
+                  "location": "CH",
+                  "name": "market for waste paint",
+                  "reference product": "waste paint",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "amount": -0.360416954663814,
+                  "loc": -0.360416954663814,
+                  "location": "CH",
+                  "name": "clinker production",
+                  "reference product": "waste paint",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "3209959e38b712b548cc76b92facab57845c5397d6bbd21ce17be817b7da3a68",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.9"
+                }
+              }
+            ],
+            "pilot-hazardous-paint-239f75078d35986a9f38": [
+              {
+                "original_index": 4,
+                "rationale": "Automatically approved exact source paint-to-clinker link omission: linked source contains only self-linkedproduction-1kg and no processing/emission inventory, with Waste classification and zero price. Original signedquantity/uncertainty retained in audit. Do not add clinker burdens/credits or renormalize other fates; actual physical coprocessing impacts remain unquantified. No general empty-provider approval.",
+                "source_activity": {
+                  "location": "Europe without Switzerland",
+                  "name": "market for waste paint",
+                  "reference product": "waste paint",
+                  "unit": "kilogram"
+                },
+                "source_exchange": {
+                  "amount": -0.0709286601763139,
+                  "loc": -0.0709286601763139,
+                  "location": "Europe without Switzerland",
+                  "name": "clinker production",
+                  "reference product": "waste paint",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                "source_inventory_sha256": "93c88566ed3a378dbe8c65160fcc434f4967e0043c5bfd395cdf5876ff6f9d94",
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "system_model": "cutoff",
+                  "version": "3.9"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "selected_disposition": {
+        "type": "source_wet_recipe_reconstruction_without_legacy_concentration_factor",
+        "recipe_id": "deferred-acrylic-33bc3beac2f47e17737c",
+        "limitations": "Reviewed reconstruction for the exact ecoinvent 3.9 cut-off wet acrylic-dispersion recipe. Both source production exchanges explicitly reference 1 kg of wet mixture: 54% dry binder and 58% dry dispersion. The dispersion market reports 59% dry content but supplies 1 kg of that same wet producer. Preserve the actual wet transactions and all original coefficients; do not normalize the inconsistent 58/59 metadata or stale 65/34 market comments. Native legacy binder/dispersion concentration labels, 100%-base comments and incomplete material balances do not establish a safe conversion factor, so neither complete legacy formulation is used directly. Reconstruct the wet binder from butyl acrylate, versatic-acid esters and vinyl acetate, together with source utilities, factory, waste treatment and direct flows. Reconstruct dispersion using that wet binder and the actual source pigment, chemicals, utilities, waste treatment and water withdrawal. Correct 1-butanol to native 1-butanol rather than 2-butanol. Use the complete native titanium-dioxide production mix, not titanium metal or an arbitrarily single-route pigment. Preserve both source market-delivery layers; rail remains rail. Reconstruct both emulsion-paint waste markets from their original hazardous/municipal/sanitary/inert shares and freight, rather than substituting one construction landfill. Complete native 0%-water treatments supply the same dry-waste basis. Municipal fly-ash extraction, metal recovery, ash treatment and hazardous-branch energy recovery/allocation differ from native proxies; no extra recovery or avoided-energy credit is added. All nine direct source flows retain exact canonical ecoinvent 3.10 publisher UUIDs, units, roles and compartments. Keep dissolved solids, suspended solids, hydrocarbons and BOD/COD/DOC/TOC indicators separately; these overlapping indicators are not independent additive masses. Caller signed wet kg, formulas and supported uncertainty remain at factor +1. No guessed concentration multiplier, added carrier water, negative dewatering, drying, yield correction or new source-exchange omission is introduced. Two inherited, reviewed production-only paint-to-clinker handovers remain literal audits; no physical zero-burden claim or renormalization is made. Native chemical technologies, allocation, heat mix/delivery, generic-factory capacity/lifetime, waste composition, freight fleets, market versus at-plant supply, geography, vintage, native internal uncertainty and the 2,991 upstream biosphere exclusions remain limitations. The older confidential source recipes do not establish modern industry equivalence, and score effects remain unquantified. Other source releases, inverse routes and cross-system-model conversions are not qualified."
+      },
       "validation": [],
       "commits": []
     },
