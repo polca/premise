@@ -32470,6 +32470,263 @@
           "fingerprint": "93939d5c0e85b284220c6804c4eb28831df68067f18e9d87f8e9157e4e4196e9"
         }
       ]
+    },
+    {
+      "rule_id": "bp-d8873da67e5c7974",
+      "operation": "replace",
+      "mapping_method": "reviewed_waste_concrete_inert_reconstruction",
+      "review_path": "export/uvek_pilot_nitrate_concrete_review.json",
+      "review_sha256": "3d6d16cc5ef0786bab060076c0ea63d936d5477d9de75971bf4e50af5c6e01eb",
+      "authorization": "Existing standing approval for independently inspected complete matching-function/unit screening proxies, source-preserving helper composition and warned nonphysical-indicator omission. No new individual heat/material substitution, disposal fate, recovery credit, empty allocation or reverse mapping. Exact3.9Swiss concrete-market reuse after fresh market, treatment, complete generic-component and native2026 closure inspection. No new primitive, waste fate, quantity basis, omission, reverse route or cross-system-model decision.",
+      "inspection": {
+        "rule_id": "bp-d8873da67e5c7974",
+        "source": {
+          "location": "CH",
+          "name": "market for waste concrete",
+          "reference product": "waste concrete",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "waste-concrete-inert-service-9be9ca0c42cfe084e31e"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "reviewed_waste_concrete_inert_reconstruction",
+        "raw_rule_sha256": "cf35883a8261ad622ea7881e36fc7480d2b83847be51cd9fd9f90fa929e7b455",
+        "fingerprint": "71ea7b5dc411cdcf03bc2a229df2df175a968a9a422d00d77a955e7d9187ae03",
+        "conversion_factor": -1,
+        "source_reference_amount": -1,
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "location": "CH",
+            "name": "market for waste concrete",
+            "reference product": "waste concrete",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "89ff98a7464f72d6b53b10e44187e62ef9f93d601e86932fa3d928f034c3a939",
+          "inventory_sha256": "df7ebd1bc8fec8c00df3f65230f2565c22a0f85f82f9830601d2b09569aa6af4"
+        },
+        "source_component_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "c419d8aeed8535c1134b2aa4554be4ede2e0f9afb3af144d15aee99301e4e05a",
+            "inventory_sha256": "091ca166a7c4f161d285e0b8413f8d8c57775213e94b6234b1d20823875fd5c1"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "0878be666fd7f1c29ebe2d17ca6fb4ce6ddf3f2ea6f8389b5a0953a3a8433b8c",
+            "inventory_sha256": "e8ff1103f7c9caefe1e741f56cc1162735541856eeb21581639e7edba150c615"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "treatment of waste concrete, inert material landfill",
+              "reference product": "waste concrete",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "ad1093d75970a0fc28739451ea3e5666fee536e0dd48fb4db386628e924b6aaa",
+            "inventory_sha256": "d48d279113a1249996fbf517103dea862a98cc42d7b5394c8170200eb81dc85d"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "4536288c7784ba6f0e26a63f9413ea0b3cd2e35b5871fc950b4c9eabf7f8e3f3",
+            "inventory_sha256": "e16b900688ea6c9e45551a3f52cfbeb4f4d4093e9bf78b01c7e72edbee35b0ed"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "6b8675ce7fd135bd3e851b188fa23ac00e61627ca1b2d310a6f9fe9c4ba50772",
+            "inventory_sha256": "387b19dde5d71193384e281b25d52cfc229e5c8d44afc62abcf18858cb6fb12c"
+          }
+        ],
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "name": "Transport, freight, rail, diesel, with particle filter",
+              "reference product": "Transport, freight, rail, diesel, with particle filter",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "3391881600fc99131cad955d6c666745ea40352b2f3b88ea2d6d947faaf76d36",
+            "inventory_sha256": "3c110f682596bb23b0f791828599db67f3892e852c35030250816ac722f5bb87"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "Transport, freight, rail, diesel, with particle filter",
+              "reference product": "Transport, freight, rail, diesel, with particle filter",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "3c8570b9be38e22f9e6832765f9a1ed4a5e5c5770b38dc222457d015cac057cb",
+            "inventory_sha256": "d3d83e0bcdd95841d206426fab533d87f5aa3bf8a417308cecbd91ed3415c7e2"
+          },
+          {
+            "version": "2025",
+            "identity": {
+              "name": "Transport, freight, rail, electricity with shunting",
+              "reference product": "Transport, freight, rail, electricity with shunting",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "c93cca6de97d726be7a6fa61bda63e1dabac806467cbc63cde18525c67ea68f1",
+            "inventory_sha256": "b60972f0c81d9b12b23e72591392c82b50fb30b3bc1184e20ac11ef840d95436"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "Transport, freight, rail, electricity with shunting",
+              "reference product": "Transport, freight, rail, electricity with shunting",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "628815a50b5b20e07ea118ef631525fe4bd63aa208a7a263a3a0472bf4c1c671",
+            "inventory_sha256": "dcaddbe0479f60e62b66c52fa33815bc562afdd75cda9f4e2576679c28c79336"
+          },
+          {
+            "version": "2025",
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6",
+            "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "metadata_sha256": "abde6d1efda1c9aa544258cfa058427cbc5c29bdf9562a51d9d1a3194f9db896",
+            "inventory_sha256": "ade1a32bc0c9477d3f8e2a58217e60a23f05164b64d9a10363cd2471425e3ae1"
+          },
+          {
+            "version": "2025",
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "1ce37de9a3fc8aed5fa3671e069c9e85b99b216f0295e058d760c3aa69ba44c7",
+            "inventory_sha256": "8fd7a3cbf7b563c608fbd3ed7d4b77876a12b9089f5497be162567a76f8d1e84"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "metadata_sha256": "cc9533fd1652883772a594488f8be3cd9f10bfa58e4e0d601181c8f5b4fabc94",
+            "inventory_sha256": "a50ff5139a6a11fd96b79fa23e2e6b06527c40680c3a56e7680b36f294871f1a"
+          },
+          {
+            "version": "2025",
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "0a01101fda3cb714adba60464197a5bb4eab82a412e46f2d532d8fc36e7b31c1",
+            "inventory_sha256": "e1872dd50b8f5ba8b029219859255e5e1d93def668b0cbc90d32f2eea48a596a"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "70d2fb3556fefc06d2d2eaa65056d237b956eac1a1605114d990bf3f6427cbb0",
+            "inventory_sha256": "c40abd05a8ada25c48212fb6218a5a2481f2b822b33d1a427ecfaa35119c882f"
+          }
+        ],
+        "recipe_closure_sha256": {
+          "waste-concrete-inert-service-9be9ca0c42cfe084e31e": "0dab6bddd963dd7bfa26d0a20694dd3c193a1b66655239c3ae4669c568e9e625",
+          "older-swiss-rail-061b7121127c9a779bfc": "3ee4038a899b9cbea1e9caec02f0e53afe9f42c07b69e192a3842aa2c47fc1e5",
+          "waste-concrete-inert-service-567b003a119e79093a5c": "65f861c1d80afbfb5b7c747d979f2024d4004e849a1b9de3b619fb4cdf1c5a7f"
+        },
+        "uninspected_profile_guards": [
+          "3.6",
+          "3.12"
+        ],
+        "matching_function_evidence": {
+          "market_and_treatment_inventory_hashes_match_prior_review": true,
+          "source_generic_components_match_prior_full_inventory_witnesses": true,
+          "native2025_generic_components_match_prior_full_inventory_witnesses": true,
+          "native2025_2026_direct_technosphere_vectors_match": true,
+          "native_vector_comparison_relative_tolerance": 1e-14,
+          "native_vector_comparison_absolute_tolerance": 1e-17,
+          "as_received_kg_and_source_uncertainty_preserved": true,
+          "generic_landfill_operation_kg": 1,
+          "original_facility_units": 1.48e-09,
+          "original_separate_collection_entries": 2,
+          "native_facility_aftercare_comment_now_available": true,
+          "equal_source_native_lifetime_established": false
+        },
+        "limitations": "Reviewed Swiss waste-concrete inert-landfill reconstruction under the standing approval for complete matching-function/unit screening proxies. Preserve the as-received waste basis (0.5 kg water/kg), one kg generic inert-landfill operation, 1.48e-9 facility units and the original separate road and rail collection. Both component functions are generic cleanfill services; all nine operating land-use quantities and three facility land-use quantities match the inspected source. Facility capacity is 450000 m3 on both sides; no density, capacity, moisture or lifetime scaling is inferred. The complete native operating process has its own oil-boiler heat supply and waste-heat release, whereas the source uses mixed non-natural-gas heat with version-specific quantities. The native facility has different background material and freight supplies; source pitch-market supply includes a minor recycled-polyethylene-derived supplier as well as petroleum refinery production. Native use/aftercare durations are not explicitly documented. These supply, technology, vintage and life-cycle-detail differences are reported screening limitations, not LCIA equivalence. This does not authorize an individual heat or material substitution outside these complete services. Do not use the native building-waste recycling/crushing mix, add demolition, apply dry-mass scaling, add material-specific emissions absent from the source, or invent recovery credits. Retain the exact nonphysical waste indicator where supported; only an unavailable nonphysical indicator may be omitted with the already approved explicit warning. Preserve signed caller quantities, formulas, uncertainty and ownership. No physical-emission omission or reverse correspondence is inferred. Fresh UVEK2026 full metadata additionally describes five years of facility monitoring after closure; this does not establish equal operating or aftercare lifetimes. Only the exact3.9Swiss market is independently admitted here. Preserve its complete reviewed helper closure, including both original collection exchanges and their uncertainty, with no new primitive or physical omission. The3.6sorting/clinker fate decision remains separate and unresolved."
+      },
+      "limitations": [
+        "Reviewed Swiss waste-concrete inert-landfill reconstruction under the standing approval for complete matching-function/unit screening proxies. Preserve the as-received waste basis (0.5 kg water/kg), one kg generic inert-landfill operation, 1.48e-9 facility units and the original separate road and rail collection. Both component functions are generic cleanfill services; all nine operating land-use quantities and three facility land-use quantities match the inspected source. Facility capacity is 450000 m3 on both sides; no density, capacity, moisture or lifetime scaling is inferred. The complete native operating process has its own oil-boiler heat supply and waste-heat release, whereas the source uses mixed non-natural-gas heat with version-specific quantities. The native facility has different background material and freight supplies; source pitch-market supply includes a minor recycled-polyethylene-derived supplier as well as petroleum refinery production. Native use/aftercare durations are not explicitly documented. These supply, technology, vintage and life-cycle-detail differences are reported screening limitations, not LCIA equivalence. This does not authorize an individual heat or material substitution outside these complete services. Do not use the native building-waste recycling/crushing mix, add demolition, apply dry-mass scaling, add material-specific emissions absent from the source, or invent recovery credits. Retain the exact nonphysical waste indicator where supported; only an unavailable nonphysical indicator may be omitted with the already approved explicit warning. Preserve signed caller quantities, formulas, uncertainty and ownership. No physical-emission omission or reverse correspondence is inferred. Fresh UVEK2026 full metadata additionally describes five years of facility monitoring after closure; this does not establish equal operating or aftercare lifetimes. Only the exact3.9Swiss market is independently admitted here. Preserve its complete reviewed helper closure, including both original collection exchanges and their uncertainty, with no new primitive or physical omission. The3.6sorting/clinker fate decision remains separate and unresolved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "71ea7b5dc411cdcf03bc2a229df2df175a968a9a422d00d77a955e7d9187ae03"
+        }
+      ]
     }
   ]
 }

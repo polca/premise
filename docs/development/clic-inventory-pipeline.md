@@ -933,6 +933,23 @@ identities across 22 product labels. Recycled-HDPE supply, no-cullet foam glass,
 river-sand extraction, water accounting and pending grade/waste choices remain
 unresolved. This is not a completed nitrate conversion or prospective export.
 
+The exact 3.9 Swiss waste-concrete market now independently reuses its existing
+inert-landfill helper closure. Fresh market, treatment and generic-component
+hashes match the earlier complete review; native 2026 quantities and positive
+references are inspected. Collection, operation and infrastructure remain in
+three returned helpers, preserving their uncertainty and the caller's treatment
+sign. No migration rule or recipe changes, and all 333 earlier fingerprints
+remain unchanged; there are now 334 scopes. The complete migrated four-record
+graph gives finite native LCI with exact foreground reference balance, unchanged
+native scientific hashes and independent native-supply agreement. Installed-wheel
+migration and packaged-evidence checks pass. Relevant Brightpath regressions and
+Premise approval/cache checks pass; two historical refusal fixtures were updated
+to distinguish earlier approved mappings from their rejected predecessors.
+The public frontier remains 35 rules / 40 cases, with nitrate coverage now
+49 of 125 external identities. The [waste-boundary findings](uvek-nitrate-waste-boundaries.md)
+describe the remaining fate, recovery and wastewater boundaries. This is still
+not full scenario transformation, certification or export.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
