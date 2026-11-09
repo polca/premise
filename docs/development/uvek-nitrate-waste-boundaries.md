@@ -180,3 +180,21 @@ final-disposal functions; it authorizes no broader country or isolated
 component correspondence. Earlier Swiss/RoW warning snapshots described that
 European choice as pending; this separately fingerprinted admission records
 the subsequent user approval and implementation.
+
+The inspected 3.9 RoW inert-waste final-disposal market now retains its sole
+generic treatment plus all six rail and three road collection entries. It
+uses the previously reviewed complete generic operation and facility per
+original wet kg, retaining the source 1 kg and 1.48×10⁻⁹ unit coefficients and
+uncertainty. No type-B/oil-catalyst-carrier emission inventory, leachate, density
+or moisture factor is introduced. Native energy, land definitions, material
+and infrastructure supplies, allocation, internal uncertainty, geography and
+vintage remain warned whole-service differences.
+
+Source 3.9 has no direct biosphere exchange or waste indicator. The existing
+3.12 variant retains its exact recipe, three original road entries and its
+nonphysical disposal indicator with the original optional-omission warning
+policy. That older recipe and sign decision are byte-for-byte unchanged. Its
+content-bound approval is reissued explicitly for the expanded shared rule;
+public conversion retains all scientific data and changes only the explanatory
+comment. Uninspected versions, inverse and cross-model routes remain outside
+this admission.

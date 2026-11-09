@@ -1086,6 +1086,34 @@ leaving 60 across 19 labels; the public frontier remains 35 rules / 40 cases.
 All three nitrate mineral-wool markets are scoped. Full prospective scenario
 certification and export remain incomplete.
 
+The exact 3.9 RoW inert-waste final-disposal market now retains its source
+market-to-treatment exchange, generic operation/facility quantities and all
+nine collection entries (six rail, three road). The source contains no direct
+biosphere exchange or disposal indicator; none is invented. Existing complete
+generic-function and whole-freight approvals apply after fresh source/native
+inspection, with leachate inventory gaps, geography, energy/material supplies,
+land definitions, uncertainty and vintage differences retained as warnings.
+
+The shared rule's existing 3.12 profile entry, default target and six-input
+recipe are unchanged. Public-facade comparison retains every scientific field;
+only the converted exchange's scope-explanation comment changes. Its approval
+fingerprint is explicitly reissued for the expanded raw rule, preserving the
+original scientific review and recording the extension evidence in portable
+metadata. The other 349 prior fingerprints remain unchanged; the new 3.9 scope
+brings the total to 351. All 3,269 old recipes and 713 shared reviews remain
+unchanged; two recipes and one review bring totals to 3,271 and 714.
+
+Thirty-seven Brightpath tests and 18 selected Premise checks pass, including
+older-profile preservation, source uncertainty, nine separate freight terms,
+uninspected-version refusals, cached warnings and atomic authoring drift
+checks. Full resource replay is byte-identical. The complete new three-record
+graph gives finite native LCI, exact rational foreground balance and agreement
+with the independent native solve, with unchanged destination scientific
+contents. Installed-wheel checks exercise both the new 3.9 route and the
+unchanged 3.12 scientific graph. Nitrate coverage is 66 of 125 suppliers,
+leaving 59 across 18 labels. The public frontier remains 35 rules / 40 cases;
+full prospective scenario certification and export remain outstanding.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-65 already have exact current CLIC approval fingerprints for their source
+66 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 19 reference-product
+scientifically reviewed target. The other suppliers cover 18 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 60 automatically new scientific decisions. Coverage is
+decisions. They are not 59 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -267,3 +267,21 @@ All three mineral-wool markets encountered in this nitrate branch are now
 scoped. Exact nitrate coverage is 65 of 125 suppliers, leaving 60 across 19
 product labels. The full nitrate supply, scenario certification and export
 remain outstanding.
+
+The exact 3.9 RoW inert-waste final-disposal market is now scoped through its
+original generic landfill treatment and nine separate collection entries
+(six rail, three road). Both the market-to-treatment exchange and the original
+1 kg operation / 1.48×10⁻⁹ facility-unit coefficients retain their uncertainty
+through nested helpers. All source collection quantities and uncertainty remain
+separate, using the reviewed whole RER freight services. The source has no
+direct biosphere exchange or waste-accounting indicator; none is added. The
+source's explicit leachate inventory gap remains a warning.
+
+The same raw rule already served source 3.12. Its selected sign decision,
+default target and complete six-input scientific recipe remain unchanged.
+Public-facade comparison before/after the extension finds only the converted
+exchange's explanatory comment changed. The older approval binding is
+explicitly reissued because the full raw rule now includes a 3.9 profile and
+combined warning; this does not change the 3.12 mapping, indicator or omission
+policy. Other 349 approval fingerprints remain unchanged. The exact nitrate
+supplier coverage is now 66 of 125, leaving 59 across 18 product labels.
