@@ -119,3 +119,18 @@ Detailed licensed inventories remain private in
 `nitrate_concrete_full_evidence.private.json` and
 `nitrate_paint_existing_helpers_full_evidence.private.json`. These findings do
 not certify the full nitrate conversion, scenario or Brightway export.
+
+The exact 3.9 RoW reinforcement-steel recycling service now uses the complete
+native Swiss dismantling service after fresh source and both native-release
+inspection. Both records contain one 0.626 MJ building-machine input per kg,
+with no direct elementary exchanges or further treatment/credit. Source and
+native documentation identify dismantling using skid-steer loaders; neither
+record represents remelting. The source's historical Swiss basis is retained
+as a limitation of its RoW label. The source lognormal scale is
+0.2683281572999748 versus native 0.2653141255310852. Whole-service reuse keeps
+native internal uncertainty and reports that difference; it preserves caller
+uncertainty under the −1 waste-reference conversion. The sole operating
+service matches the independently approved nitrate operating review. No
+source fuel is added again, and collection/sorting services receive no new
+approval. Native exclusions and upstream geography, allocation, technology
+and vintage remain limitations with unquantified score effects.

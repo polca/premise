@@ -1002,6 +1002,18 @@ remains 35 rules / 40 cases; nitrate coverage is now 56 of 125 suppliers,
 leaving 69. The European/Swiss FAE branch and other unresolved correspondences
 still prevent full prospective certification and export.
 
+The exact 3.9 RoW reinforcement-steel recycling correspondence is now scoped
+independently for UVEK 2026 with canonical ecoinvent 3.10 biosphere. Fresh
+complete source and native inspection establishes the same dismantling
+function and sole 0.626 MJ/kg building-machine input. Native internal
+uncertainty differs slightly and remains a portable warning; signed caller
+quantities, formulas and uncertainty follow the −1 waste-reference factor.
+No raw rule or helper changes were needed. All 341 earlier scopes remain
+unchanged, for 342 total. The nitrate dependency audit now finds 57 of 125
+suppliers scoped, leaving 68; the public parent frontier remains 35 rules /
+40 cases. The complete native service gives finite LCI on unchanged source
+scientific contents. Full prospective certification and export remain pending.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

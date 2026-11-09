@@ -34803,6 +34803,148 @@
           "fingerprint": "044d4a85f7053bb14b548b4882419ec049f006e2baf08ffba694b1304cee22bf"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ec00b5ae0b9755ee",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_nitrate_steel_recycling_review.json",
+      "review_sha256": "7116fc48534ddbb03f98ec9151caf1c50f5844d46e74dadb62822a2eab7595e5",
+      "authorization": "Standing complete matching-function/unit and geographic screening-proxy approvals, after fresh inspection of the exact source and complete native inventories. The existing approved building-machine operator is the sole input on both sides at the same quantity. No new modelling primitive, material recovery, physical omission, quantity factor, rule, helper or migration route. Independent exact admission does not broaden the separate operating review.",
+      "inspection": {
+        "rule_id": "bp-ec00b5ae0b9755ee",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of waste reinforcement steel, recycling",
+          "reference product": "waste reinforcement steel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, reinforcement steel, to recycling",
+          "reference product": "Disposal, building, reinforcement steel, to recycling",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "mapping_method": "heuristic_similarity",
+        "raw_rule_sha256": "db8fa2d433cdd78a6b945619685142c2b1be58412948074d09ccbf9d29f14e3d",
+        "selected_rule_sha256": "db8fa2d433cdd78a6b945619685142c2b1be58412948074d09ccbf9d29f14e3d",
+        "fingerprint": "1a69abe2e204abd5ec99a9c22d86bd5545fb0daf2e1c76903b82dea5b02ffc7b",
+        "conversion_factor": -1,
+        "source_reference_amount": -1,
+        "native_reference_amounts": {
+          "2025": 1,
+          "2026": 1
+        },
+        "source_witness": {
+          "version": "3.9",
+          "identity": {
+            "location": "RoW",
+            "name": "treatment of waste reinforcement steel, recycling",
+            "reference product": "waste reinforcement steel",
+            "unit": "kilogram"
+          },
+          "metadata_sha256": "d963bfd6f0b9465936a4419c509eaade6f586fdde802364a6e8160fdad2ab2f4",
+          "inventory_sha256": "d03b1ac48aed6531bf735b67fdd3760d701f4b2a2ef31bda8483f8745d8c9ef3"
+        },
+        "native_witnesses": [
+          {
+            "version": "2025",
+            "identity": {
+              "location": "CH",
+              "name": "Disposal, building, reinforcement steel, to recycling",
+              "reference product": "Disposal, building, reinforcement steel, to recycling",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "df51e1d04e8278f045a0e353aa97bbb21c2a02b66a606b4162131ff9e1f7a0e2",
+            "inventory_sha256": "60919aadd3e5122217cb1b212ec6e3bcb0279e8e138d2725df27b2b79da1516b"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CH",
+              "name": "Disposal, building, reinforcement steel, to recycling",
+              "reference product": "Disposal, building, reinforcement steel, to recycling",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "7cca4ae2776687588d688c709ba57dad00f9e182ca51ae722fad8ec0824be04e",
+            "inventory_sha256": "d0d026bc0e213fa3f3117a4ba8b7ad47f5d54fd0fcc055b4a988543d3d8a7b8e"
+          }
+        ],
+        "operating_authority_rule": "bp-155787c4bf1ee018",
+        "operating_service_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "name": "market for diesel, burned in building machine",
+              "reference product": "diesel, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "c376cde306bc081bd9d979d7fa7ee876a782554a026712f84d9329fdcae9ad93",
+            "inventory_sha256": "160b0e9bf8b766571f5a6c538adb390bb63b0883529f6755641fed885c04d4bf"
+          },
+          {
+            "version": "2025",
+            "identity": {
+              "location": "CH",
+              "name": "Diesel, burned in building machine, average",
+              "reference product": "Diesel, burned in building machine, average",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "826a0435bf9c58e50e80baff78445b6374ad49e888879d2e5bcdb705656bb98f",
+            "inventory_sha256": "b03c72599facdb7b0fcdcaac0b14c61a29f4fd193e88fa938b7fb9d777a458bc"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CH",
+              "name": "Diesel, burned in building machine, average",
+              "reference product": "Diesel, burned in building machine, average",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "620c902ac6ac9f1829c43b08d977bd10b19eec5dde73ac3319761759c650803d",
+            "inventory_sha256": "9517aeb77a8c9ba8708525a1240bd3b0c29c953732a48f40c5e3ffad2669408b"
+          }
+        ],
+        "source_operating_amount_MJ_per_kg": 0.626,
+        "native_operating_amount_MJ_per_kg": 0.626,
+        "native2025_2026_direct_technosphere_and_uncertainty_match": true,
+        "source_internal_uncertainty_scale": 0.2683281572999748,
+        "native_internal_uncertainty_scale": 0.2653141255310852,
+        "uninspected_profile_guards": [
+          "3.6",
+          "3.12"
+        ],
+        "limitations": "Use the complete Swiss native reinforcement-steel dismantling service per signed kg of the inspected ecoinvent3.9 cut-off RoW recycling service. Both inventories contain only0.626MJ of building-machine diesel per kg and describe dismantling using skid-steer loaders, with the source itself based on late-1990s Swiss technology. Source waste reference-1kg and native positive treatment reference+1kg require caller factor-1. The native service retains its complete upstream machine/fuel/emission burdens once. This is the source cut-off dismantling boundary, not steel remelting or a zero-inventory recovered-material stock; add no scrap purchase, recovered-steel credit, sorting, collection, density or energy-efficiency multiplier. Caller-signed amounts, uncertainty and formulas remain preserved through the sign change. Native internal lognormal scale0.2653141255310852 differs from source0.2683281572999748; whole-service reuse keeps native internal uncertainty and does not assert equal distributions. Geography, historical machine/fuel/emission/allocation and vintage differences remain screening limitations, with unquantified score effects and the installed UVEK biosphere exclusions. No direct physical elementary exchange is present in either inspected dismantling record; this does not establish zero upstream emissions. Preserve separately supplied caller emissions and all other purchases without adding source fuel a second time. Only this exact3.9cutoff source is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; other releases, collection/sorting services, inverse and cross-model routes remain outside this review."
+      },
+      "limitations": [
+        "Use the complete Swiss native reinforcement-steel dismantling service per signed kg of the inspected ecoinvent3.9 cut-off RoW recycling service. Both inventories contain only0.626MJ of building-machine diesel per kg and describe dismantling using skid-steer loaders, with the source itself based on late-1990s Swiss technology. Source waste reference-1kg and native positive treatment reference+1kg require caller factor-1. The native service retains its complete upstream machine/fuel/emission burdens once. This is the source cut-off dismantling boundary, not steel remelting or a zero-inventory recovered-material stock; add no scrap purchase, recovered-steel credit, sorting, collection, density or energy-efficiency multiplier. Caller-signed amounts, uncertainty and formulas remain preserved through the sign change. Native internal lognormal scale0.2653141255310852 differs from source0.2683281572999748; whole-service reuse keeps native internal uncertainty and does not assert equal distributions. Geography, historical machine/fuel/emission/allocation and vintage differences remain screening limitations, with unquantified score effects and the installed UVEK biosphere exclusions. No direct physical elementary exchange is present in either inspected dismantling record; this does not establish zero upstream emissions. Preserve separately supplied caller emissions and all other purchases without adding source fuel a second time. Only this exact3.9cutoff source is admitted for UVEK2026cutoff with ecoinvent3.10biosphere; other releases, collection/sorting services, inverse and cross-model routes remain outside this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1a69abe2e204abd5ec99a9c22d86bd5545fb0daf2e1c76903b82dea5b02ffc7b"
+        }
+      ]
     }
   ]
 }

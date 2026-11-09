@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-56 already have exact current CLIC approval fingerprints for their source
+57 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
 scientifically reviewed target. The other suppliers cover 22 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 69 automatically new scientific decisions. Coverage is
+decisions. They are not 68 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -186,3 +186,15 @@ Detailed licensed coefficients and source metadata remain in the private
 pilot work area: `nitrate_source_routes_full_evidence.private.json`,
 `nitrate_raw_production_full_evidence.private.json` and
 `nitrate_source_dag_preflight.json`.
+
+The exact 3.9 RoW reinforcement-steel recycling service is independently
+admitted as the complete native Swiss dismantling service. Fresh inspection
+confirms the same single 0.626 MJ building-machine input per kg, and native
+2026 documentation describes the same skid-steer dismantling boundary. The
+source itself uses historical Swiss technology. Source reference −1 and native
+reference +1 require a −1 caller factor. This introduces no remelting, scrap
+credit, collection or density factor. Native internal uncertainty differs
+slightly and remains an explicit warning; caller uncertainty and signed
+formulas are preserved. The existing raw rule and all earlier approvals remain
+unchanged. This resolves one external nitrate dependency; the full nitrate
+market remains unapproved, with 57 of 125 suppliers scoped and 68 remaining.
