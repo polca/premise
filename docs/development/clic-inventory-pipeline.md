@@ -816,6 +816,29 @@ unchanged. Generator replay is byte-identical and installed-wheel conversion
 passes. The complete salt-market conversion and prospective pilot remain
 unvalidated.
 
+`uvek_pilot_kcl_site_review.json` additionally preserves the exact 3.9 Chilean
+industrial potassium-chloride site through three source-bound helpers. It avoids
+the old fertilizer reference in kg K2O and keeps the original industrial-grade
+kg basis, operating services and five elementary exchanges. PVF film retains
+both producer shares and four delivery entries. PVF waste retains its sole
+ordinary-incineration fate and eleven collection entries, using a complete native
+service matching all 44 declared wet-composition/heating-value coordinates.
+Signed waste demand becomes positive treatment demand; supported uncertainty
+and caller formulas remain intact. The native Chilean consumption-grid mix,
+whole freight services and complete film inventory retain their documented
+technology, geography, cumulative-data and emissions limitations. No physical
+omission or new recovery credit is introduced.
+
+The new exact scope leaves all 310 earlier fingerprints unchanged, giving 311
+registered scopes. Fourteen new Brightpath cases, 46 relevant regression cases
+and 38 focused Premise cases pass. The actual four-record migrated graph gives
+finite LCI on unchanged native matrices; one residual correction reconciles
+independent solves to about 1.1e-15 relative difference. Full generator replay
+is byte-identical and isolated installed-wheel conversion passes. This fixes a dependency within the nitrate-salt chain;
+the parent frontier remains 35 rules / 40 cases, with all nine roots and 55 CLIC
+records retained. Standalone child heuristics and uninspected releases remain
+unapproved. Whole-pilot transformation, certification and export remain gates.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

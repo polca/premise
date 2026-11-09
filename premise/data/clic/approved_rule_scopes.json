@@ -26504,6 +26504,536 @@
           "fingerprint": "8c53a4fd8582516a5952c208cbdf8207cf6575eea1fd964a31bf3cb3095da444"
         }
       ]
+    },
+    {
+      "rule_id": "bp-8c9638f0b5439efb",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_kcl_site",
+      "review_path": "export/uvek_pilot_kcl_site_review.json",
+      "review_sha256": "a0bec2275ac9f4944e8339171cd13404e3070d6f921fad46b3d6af940c9fbd73",
+      "authorization": "Standing independently inspected same-material/unit whole-product and waste-service proxies, geographic service proxies, exact canonical biosphere identities and complete source-preserving helpers. Preserve every source site/market coefficient, supported uncertainty, original PVF producer shares, full disposal fate and15freight entries. No new chemical basis, nutrient factor, disposal model, physical omission, recovery credit or cross-model route. Scope is only the enumerated3.9cutoff KCl parent; unrelated heuristic child correspondences remain unapproved.",
+      "inspection": {
+        "rule_id": "bp-8c9638f0b5439efb",
+        "source": {
+          "location": "CL",
+          "name": "potassium chloride production, from salar brine",
+          "reference product": "potassium chloride, industrial grade",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Potassium chloride, as K2O, at regional storehouse",
+          "reference product": "Potassium chloride, as K2O, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.276955,
+          "id": "bp-8c9638f0b5439efb",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "CL",
+            "name": "potassium chloride production, from salar brine",
+            "reference product": "potassium chloride, industrial grade",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Potassium chloride, as K2O, at regional storehouse",
+            "reference product": "Potassium chloride, as K2O, at regional storehouse",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "6343911158907125f3e0960cee15d1d87b4c31f81dab00d4d2fb8a677798c2ba",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "1ee691456843debf59d64f2f91908d1e31be0228f74826c1d33c87e8b874ee81",
+        "source_inventory_sha256": "052abfa0422048cf0b218515b3d279c1d1476428017dc8088f296a44aa220b23",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "052abfa0422048cf0b218515b3d279c1d1476428017dc8088f296a44aa220b23",
+            "inputs": [
+              {
+                "amount": 0.01,
+                "uncertainty type": 2,
+                "loc": -4.605170185988091,
+                "scale": 0.02449489742783178,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.05099019513592785,
+                "name": "Diesel, burned in building machine, average",
+                "reference product": "Diesel, burned in building machine, average",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.08,
+                "uncertainty type": 2,
+                "loc": -2.5257286443082556,
+                "scale": 0.05099019513592785,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.08124038404635961,
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "CL",
+                "unit": "kilowatt hour",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.018,
+                "uncertainty type": 2,
+                "loc": -4.017383521085972,
+                "scale": 0.05099019513592785,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.08124038404635961,
+                "recipe": "pilot-kcl-pvf-film-9245201e83acb791cc91"
+              },
+              {
+                "amount": 0.018,
+                "uncertainty type": 2,
+                "loc": -4.017383521085972,
+                "scale": 0.08944271909999159,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 1,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.08944271909999159,
+                "negative": false,
+                "recipe": "pilot-kcl-pvf-waste-7712c018931209ca4e4d"
+              },
+              {
+                "amount": 0.02619,
+                "uncertainty type": 2,
+                "loc": -3.6423776204625167,
+                "scale": 0.4,
+                "pedigree": {
+                  "reliability": 5,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.44944410108488464,
+                "name": "Water",
+                "categories": [
+                  "air"
+                ],
+                "unit": "cubic meter",
+                "type": "biosphere",
+                "biosphere_targets": [
+                  {
+                    "profile": {
+                      "family": "ecoinvent",
+                      "version": "3.10"
+                    },
+                    "target": {
+                      "name": "Water",
+                      "categories": [
+                        "air"
+                      ],
+                      "unit": "cubic meter"
+                    },
+                    "reason": "Exact publisher UUID 075e433b-4be4-448e-9510-9a5029c1ce94, unit and full receiving compartment; no chemical or compartment multiplier."
+                  }
+                ]
+              },
+              {
+                "amount": 3.09,
+                "uncertainty type": 2,
+                "loc": 1.128171090909654,
+                "scale": 0.3492849839314596,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.35496478698597694,
+                "name": "Occupation, mineral extraction site",
+                "categories": [
+                  "natural resource",
+                  "land"
+                ],
+                "unit": "square meter-year",
+                "type": "biosphere",
+                "biosphere_targets": [
+                  {
+                    "profile": {
+                      "family": "ecoinvent",
+                      "version": "3.10"
+                    },
+                    "target": {
+                      "name": "Occupation, mineral extraction site",
+                      "categories": [
+                        "natural resource",
+                        "land"
+                      ],
+                      "unit": "square meter-year"
+                    },
+                    "reason": "Exact publisher UUID 379ba5c9-5c3a-43d0-8e2d-605ad9c39e46, unit and full receiving compartment; no chemical or compartment multiplier."
+                  }
+                ]
+              },
+              {
+                "amount": 0.103,
+                "uncertainty type": 2,
+                "loc": -2.2730262907525014,
+                "scale": 0.3492849839314596,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.35496478698597694,
+                "name": "Transformation, from unspecified, natural (non-use)",
+                "categories": [
+                  "natural resource",
+                  "land"
+                ],
+                "unit": "square meter",
+                "type": "biosphere",
+                "biosphere_targets": [
+                  {
+                    "profile": {
+                      "family": "ecoinvent",
+                      "version": "3.10"
+                    },
+                    "target": {
+                      "name": "Transformation, from unspecified, natural (non-use)",
+                      "categories": [
+                        "natural resource",
+                        "land"
+                      ],
+                      "unit": "square meter"
+                    },
+                    "reason": "Exact publisher UUID 1a1d0d4b-6b95-4815-ad06-2ec5fe333c43, unit and full receiving compartment; no chemical or compartment multiplier."
+                  }
+                ]
+              },
+              {
+                "amount": 0.103,
+                "uncertainty type": 2,
+                "loc": -2.2730262907525014,
+                "scale": 0.3492849839314596,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.35496478698597694,
+                "name": "Transformation, to mineral extraction site",
+                "categories": [
+                  "natural resource",
+                  "land"
+                ],
+                "unit": "square meter",
+                "type": "biosphere",
+                "biosphere_targets": [
+                  {
+                    "profile": {
+                      "family": "ecoinvent",
+                      "version": "3.10"
+                    },
+                    "target": {
+                      "name": "Transformation, to mineral extraction site",
+                      "categories": [
+                        "natural resource",
+                        "land"
+                      ],
+                      "unit": "square meter"
+                    },
+                    "reason": "Exact publisher UUID 626915e9-2424-4059-8b6a-fae47161acdf, unit and full receiving compartment; no chemical or compartment multiplier."
+                  }
+                ]
+              },
+              {
+                "amount": 0.027,
+                "uncertainty type": 2,
+                "loc": -3.611918412977808,
+                "scale": 0.02449489742783178,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 1
+                },
+                "scale without pedigree": 0.05099019513592785,
+                "name": "Water, salt, sole",
+                "categories": [
+                  "natural resource",
+                  "in water"
+                ],
+                "unit": "cubic meter",
+                "type": "biosphere",
+                "biosphere_targets": [
+                  {
+                    "profile": {
+                      "family": "ecoinvent",
+                      "version": "3.10"
+                    },
+                    "target": {
+                      "name": "Water, salt, sole",
+                      "categories": [
+                        "natural resource",
+                        "in water"
+                      ],
+                      "unit": "cubic meter"
+                    },
+                    "reason": "Exact publisher UUID 79238018-8ec1-4615-9469-2b0df95a43c3, unit and full receiving compartment; no chemical or compartment multiplier."
+                  }
+                ]
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, medium voltage",
+                  "electricity, medium voltage",
+                  "CL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "0427a6264d921ba706e7e1ccc3c7b09b3dc65adc28da98199567de082639fa86"
+              },
+              {
+                "source": [
+                  "market for polyvinylfluoride, film",
+                  "polyvinylfluoride, film",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "65ad8e20e6701f88b03f8efbc317dcfcedf4b3ee7aee796f99343b0461ff1ef5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "Europe without Switzerland",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "4109bea7a76d943d728d832fd5ca373ad9d81750f0624bf74911889eca74f783"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "IN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "71fae5f9b5ba9e3a423189aba774888edb144fafe53de1ec9ff57a3d7381b90c"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "08a2e9ccb0b1095706fc4693841a362fb713659aaec56773ef9b51716cfdfb35"
+              },
+              {
+                "source": [
+                  "market for transport, freight, inland waterways, barge",
+                  "transport, freight, inland waterways, barge",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "35a6188a83aa121fc29afd8d1401ac0d5ea223c33d25dbb0a3c12e80b9925b83"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market for transport, freight, sea, container ship",
+                  "transport, freight, sea, container ship",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "e830a14edac4bb663255de80ac598db675e30f2cd4c4e677b3b190c5ad5236f8"
+              },
+              {
+                "source": [
+                  "market for waste polyvinylfluoride",
+                  "waste polyvinylfluoride",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "aa2ec3d55b38213627e89be5dee4bca26d700b6f3facd3c8a644399f5e31ac12"
+              },
+              {
+                "source": [
+                  "market group for transport, freight train",
+                  "transport, freight train",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "10a98c33511f8570d999c7617ffa81cd709438b667523b448d8781efe0e86e76"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, light commercial vehicle",
+                  "transport, freight, light commercial vehicle",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "b7f317c191b0061a7fd45e869cd3510327c34925084c23babf2534e8c081fd90"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f"
+              },
+              {
+                "source": [
+                  "polyvinylfluoride, film production",
+                  "polyvinylfluoride, film",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "aad8ded025fbee5dc1f19dd53398afb5d7282deda22a324511d173f04b2a79bc"
+              },
+              {
+                "source": [
+                  "polyvinylfluoride, film production",
+                  "polyvinylfluoride, film",
+                  "US",
+                  "kilogram"
+                ],
+                "binding_sha256": "3eee7ef7f3d7e8ddf0748d648160403147d84179e84e3a8dfe25722e8ccc56d6"
+              },
+              {
+                "source": [
+                  "treatment of waste polyvinylfluoride, municipal incineration",
+                  "waste polyvinylfluoride",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "39d48cc469f0440b594594fffb2e01c1afc9bfc22b6175efe3da208554ff2c3f"
+              }
+            ]
+          }
+        ],
+        "limitations": "Preserve the exact inspected ecoinvent3.9 cut-off industrial potassium-chloride production from Chilean salar brine as a positive one-kg source helper. The source specifies minimum95%KCl and contains four operating/material/waste inputs and five direct elementary exchanges. Preserve those original signed coefficients and supported uncertainty. Do not substitute kgK2O nutrient fertilizer, infer chemical purity/yield or introduce a nutrient, density, water or molecular multiplier. Diesel uses the complete reviewed building-machine combustion service per fuelMJ, including machine/fuel/emissions once; no electrical-output normalization. Electricity uses the complete native Chilean medium-voltage consumption-grid service per deliveredkWh, retaining its native grid topology, losses, infrastructure and SF6. It is not the domestic-production-only mix; portfolio, import, network, allocation, geography and vintage differences remain warnings. Film supply retains the two original producer shares separately through complete native PVF film at plant, not PVC/PTFE. Both source producers and native film use the same nominal dispersion/pigment quantities; the native process retains its own complete cumulative production, internal transport, infrastructure, energy and emissions once. Its historical US design replaces global producer technology/geographies; source useful-heat versus native fuel-energy conventions, incomplete documented emissions and uncertain cumulative transport boundaries remain explicit screening limitations, not LCIA equivalence. Original final-market delivery remains separate, with every road/light-road/rail/sea entry preserved. Waste retains its sole ordinary-incineration fate and all eleven collection entries. All44 wet-composition/heating-value coordinates match native2026 PVF disposal; unknown values stay unknown. Preserve the original source generic-PVF waste model without inventing a pigment/recovery adjustment. Negative-reference source waste demand becomes positive complete native treatment using factor-1 on each original signed exchange and its uncertainty. Add no source incineration inventory or emissions, extra recovery/heat/metal credit, FAE branch or uncontrolled fate on top of that complete service. Complete same-mode freight uses the previously reviewed rail, heavy-road,3.5t-light-road,barge and container-ship endpoints per originaltkm; country, fleet, fuel, loading, emission, infrastructure and vintage differences remain warnings. The generic rail proxy is not coal-only transport; the light-commercial entry is not a heavy lorry. Keep native whole-vehicle/vessel/port infrastructure once. Source parent/markets have no parameters/formulas. Five signed site biosphere exchanges use exact publisherUUID/unit/fullreceiving-compartment ecoinvent3.10 definitions with no chemical or compartment factor. Preserve caller quantities, uncertainty, formulas, ownership, separate emissions and purchases; score/export all three returned helpers. Native biosphere exclusions and allocation/emission differences remain warnings with unquantified score effects. Only this exact3.9cutoff parent qualifies, not standalone PVF/freight/electricity approvals, the complete nitrate-salt supply chain, other releases, inverse or cross-system-model routes. Raw child fingerprints freeze drift without admitting their heuristic endpoints."
+      },
+      "limitations": [
+        "Preserve the exact inspected ecoinvent3.9 cut-off industrial potassium-chloride production from Chilean salar brine as a positive one-kg source helper. The source specifies minimum95%KCl and contains four operating/material/waste inputs and five direct elementary exchanges. Preserve those original signed coefficients and supported uncertainty. Do not substitute kgK2O nutrient fertilizer, infer chemical purity/yield or introduce a nutrient, density, water or molecular multiplier. Diesel uses the complete reviewed building-machine combustion service per fuelMJ, including machine/fuel/emissions once; no electrical-output normalization. Electricity uses the complete native Chilean medium-voltage consumption-grid service per deliveredkWh, retaining its native grid topology, losses, infrastructure and SF6. It is not the domestic-production-only mix; portfolio, import, network, allocation, geography and vintage differences remain warnings. Film supply retains the two original producer shares separately through complete native PVF film at plant, not PVC/PTFE. Both source producers and native film use the same nominal dispersion/pigment quantities; the native process retains its own complete cumulative production, internal transport, infrastructure, energy and emissions once. Its historical US design replaces global producer technology/geographies; source useful-heat versus native fuel-energy conventions, incomplete documented emissions and uncertain cumulative transport boundaries remain explicit screening limitations, not LCIA equivalence. Original final-market delivery remains separate, with every road/light-road/rail/sea entry preserved. Waste retains its sole ordinary-incineration fate and all eleven collection entries. All44 wet-composition/heating-value coordinates match native2026 PVF disposal; unknown values stay unknown. Preserve the original source generic-PVF waste model without inventing a pigment/recovery adjustment. Negative-reference source waste demand becomes positive complete native treatment using factor-1 on each original signed exchange and its uncertainty. Add no source incineration inventory or emissions, extra recovery/heat/metal credit, FAE branch or uncontrolled fate on top of that complete service. Complete same-mode freight uses the previously reviewed rail, heavy-road,3.5t-light-road,barge and container-ship endpoints per originaltkm; country, fleet, fuel, loading, emission, infrastructure and vintage differences remain warnings. The generic rail proxy is not coal-only transport; the light-commercial entry is not a heavy lorry. Keep native whole-vehicle/vessel/port infrastructure once. Source parent/markets have no parameters/formulas. Five signed site biosphere exchanges use exact publisherUUID/unit/fullreceiving-compartment ecoinvent3.10 definitions with no chemical or compartment factor. Preserve caller quantities, uncertainty, formulas, ownership, separate emissions and purchases; score/export all three returned helpers. Native biosphere exclusions and allocation/emission differences remain warnings with unquantified score effects. Only this exact3.9cutoff parent qualifies, not standalone PVF/freight/electricity approvals, the complete nitrate-salt supply chain, other releases, inverse or cross-system-model routes. Raw child fingerprints freeze drift without admitting their heuristic endpoints."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "65c7f0d329d26c16ca76db067c1f36e46a3e5e7d5546c6dbe6ce46f65c2001b6"
+        }
+      ]
     }
   ]
 }

@@ -1,7 +1,8 @@
 # Nitrate-salt supply required by the UVEK electricity pilot
 
 Status: source-boundary inspection complete; the whole salt-market mapping
-remains refused. Its purge-stream dependency is now corrected as described below.
+remains refused. Its purge-stream and industrial-KCl dependencies are now corrected
+as described below.
 
 This inspection concerns `bp-cfcab3636e7a220d`, the ecoinvent 3.9 cut-off global
 market for nitrate salts for solar power applications. The destination remains
@@ -53,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-25 already have exact current CLIC approval fingerprints for their source
+26 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 43 reference-product
+scientifically reviewed target. The other suppliers cover 42 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 100 automatically new scientific decisions. Coverage is
+decisions. They are not 99 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -69,6 +70,23 @@ The two corrected correspondences preserve this allocation through source-bound
 helpers, with normal stock warnings, signed kg and uncertainty. They add no
 potassium-nitrate nutrient, indium-residue, fuel or avoided-production burden.
 This does not extend to the four nonempty reused-salt construction suppliers.
+
+The exact 3.9 Chilean industrial-KCl site is now another approved supplier.
+Its original industrial-grade reference is reconstructed from its four inputs
+and five elementary exchanges, without a K2O nutrient or purity multiplier.
+Two auxiliary helpers preserve the PVF film producers, sole ordinary waste
+incineration fate, and every individual market freight entry. The complete
+native PVF incinerator matches all 44 declared wet-composition/heating-value
+coordinates. The film's nominal dispersion and pigment inputs match, while
+historical geography, energy conventions, cumulative transport boundaries and
+incomplete emissions remain screening limitations. Native Chilean consumption
+at medium voltage retains its grid losses, infrastructure and SF6 inventory.
+The source's negative waste input becomes positive treatment demand with
+consistent uncertainty scaling; separate caller emissions remain unchanged.
+The actual four-record migrated graph gives finite LCI on the unchanged native
+background. This approval covers the site and its internal helper closure;
+it does not independently admit the raw PVF, freight or operating heuristics,
+other releases, the full nitrate market or a nutrient-fertilizer correspondence.
 
 This dependency expansion sits behind one currently blocked parent rule.
 Consequently, the headline count of 35 unresolved rules / 40 source-profile
