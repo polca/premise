@@ -36,7 +36,20 @@ BIOMASS_ACTIVITIES = DATA_DIR / "biomass" / "biomass_activities.yaml"
 logger = create_logger("biomass")
 
 
-def _update_biomass(scenario, version, system_model):
+def _update_biomass(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
+
+    if family == "uvek":
+        from .uvek_biomass import update_uvek_biomass
+
+        return update_uvek_biomass(
+            scenario,
+            version,
+            system_model,
+            family=family,
+            biosphere_version=biosphere_version,
+        )
 
     if scenario["iam data"].biomass_mix is None:
         print("No biomass scenario data available -- skipping")

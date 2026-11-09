@@ -1,5 +1,12 @@
 # UVEK 2026 CLIC electricity pilot
 
+This document retains the original pilot scope and implementation history. The
+active [operationalization goal](uvek-operationalization-goal.md) now also covers
+all 18 other standard sector updates. [Biomass](uvek-biomass.md) and electricity
+are operational screening updates; the other 17 remain gated pending verification.
+New modelling decisions use the user’s standing autonomous approval and are logged
+for later review; historical approval wording below does not require new prompts.
+
 ## Objective and scope
 
 Enable and validate a CLIC-backed premise workflow using UVEK 2026 cut-off
@@ -56,7 +63,7 @@ checks. Other sectors must have explicit support boundaries. An imported UVEK
 database, an inventory-provider test or a finite source-database LCI alone does
 not establish a working prospective scenario.
 
-## Current checkpoint
+## Historical pilot checkpoint
 
 The destination resolver and CLIC provider accept the exact context. Regression
 tests cover actual destination keys, canonical biosphere references, signed

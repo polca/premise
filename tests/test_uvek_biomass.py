@@ -209,11 +209,12 @@ def test_biomass_native_roles_do_not_import_legacy_forestry_inventories():
     assert required_roots(["biomass"], family="uvek") == ()
 
 
-def test_public_sector_gate_stays_closed_during_woodchip_stage():
+def test_public_scope_admits_native_biomass_but_refuses_unverified_sectors():
     from premise.database.background import validate_uvek_scope
 
-    with pytest.raises(ValueError, match="supports electricity only"):
-        validate_uvek_scope("biomass")
+    assert validate_uvek_scope("biomass") == ["biomass"]
+    with pytest.raises(ValueError, match="supports biomass and electricity"):
+        validate_uvek_scope("cement")
 
 
 def test_repeated_application_keeps_owned_market_codes_and_does_not_duplicate(native):
@@ -354,3 +355,81 @@ def test_ecoinvent_ordered_forestry_mapping_ignores_native_only_roles(
     owner.database = [legacy, other]
     result = owner._build_ordered_biomass_activity_mapping()
     assert result == {(legacy["name"], legacy["reference product"]): [legacy]}
+
+
+def test_native_callback_preserves_warnings_validation_and_quantity_metadata(native):
+    from premise.energy.biomass import _update_biomass
+    from premise.core.utils import scenario_metadata
+
+    data, iam = native
+    scenario = {
+        "model": "remind",
+        "pathway": "test",
+        "year": 2050,
+        "iam data": iam,
+        "database": data,
+    }
+    original = copy.deepcopy(data[-2]["exchanges"][-1])
+    with pytest.warns(UserWarning):
+        result = _update_biomass(scenario, "2026", "cutoff", "uvek", "3.10")
+    assert result is scenario and result["native sector limitations"]["biomass"]
+    assert any(
+        p["phase_id"] == "sector:biomass:uvek"
+        for p in result["_validation_phase_results"]
+    )
+    assert all(
+        "premise biomass technology" not in e
+        for a in result["database"]
+        for e in a["exchanges"]
+    )
+    actual = next(a for a in data if a["name"] == "Heat, wood")["exchanges"][-1]
+    assert actual["amount"] == original["amount"]
+    metadata = scenario_metadata(result)
+    assert metadata["scientific_status"] == "screening_only"
+    assert (
+        metadata["native_sector_limitations"]["biomass"]
+        == result["native sector limitations"]["biomass"]
+    )
+    metadata["native_sector_limitations"]["biomass"].clear()
+    assert result["native sector limitations"]["biomass"]
+
+
+def test_native_callback_records_missing_iam_as_not_applicable_without_inventory():
+    from premise.energy.biomass import _update_biomass
+
+    scenario = {
+        "model": "remind",
+        "pathway": "test",
+        "year": 2050,
+        "iam data": SimpleNamespace(biomass_mix=None),
+    }
+    result = _update_biomass(scenario, "2026", "cutoff", "uvek", "3.10")
+    phase = result["_validation_phase_results"][0]
+    assert phase["rule_results"][0]["applicability"] == "not_applicable"
+    assert phase["rule_results"][0]["checked_object_count"] == 0
+    assert "database" not in result and "native sector limitations" not in result
+
+
+def test_callback_retains_literal_pellet_feedstock_audit(native):
+    from premise.energy.biomass import _update_biomass
+
+    pellet, _, _ = add_pellet(native)
+    original = copy.deepcopy(pellet["exchanges"])
+    scenario = {
+        "model": "remind",
+        "pathway": "test",
+        "year": 2050,
+        "iam data": native[1],
+        "database": native[0],
+    }
+    with pytest.warns(UserWarning):
+        _update_biomass(scenario, "2026", "cutoff", "uvek", "3.10")
+    audits = pellet["premise biomass feedstock substitutions"]
+    assert len(audits) == 4
+    for audit in audits:
+        assert audit["source_exchange"] == original[audit["original_index"]]
+        assert audit["target_amount"] == audit["source_exchange"]["amount"]
+        assert (
+            audit["target_market"][0] == MARKET_NAME
+            and "unquantified" in audit["limitations"]
+        )

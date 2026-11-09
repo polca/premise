@@ -152,8 +152,10 @@ wood chips:
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   lhv:
     unit: megajoule

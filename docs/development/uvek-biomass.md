@@ -1,9 +1,16 @@
 # Native biomass rollout
 
-The native dry-mass wood-chip and pellet-feedstock adapter is privately validated.
-The public UVEK biomass gate remains closed until combined
-updates, certification, export and packaged-resource checks are complete.
-Electricity support remains available through the existing public API.
+UVEK 2026 cut-off with the ecoinvent 3.10 biosphere supports native biomass
+through the normal `NewDatabase` workflow. `update()` runs biomass before
+electricity; `update("biomass")` selects it explicitly. Existing report/export
+paths and ecoinvent behavior remain unchanged. Other 17 sector updates are still
+gated while their implementations are developed under the expanded goal.
+
+This is a screening implementation with explicit supply and process proxies,
+not LCIA equivalence. Export metadata retains native-sector limitations even
+without a CLIC manifest. Missing or all-zero IAM biomass data is recorded as
+not applicable, without claiming a successful transformation or checking out
+inventory; invalid finite/nonnegative inputs are refused before mutation.
 
 Three IAM entries now have `uvek_aliases` alongside unchanged
 `ecoinvent_aliases`. Two procedural wood-chip entries have corresponding native
@@ -42,7 +49,8 @@ wastes, output and other direct flows remain. Particle size, milling/drying,
 origin and allocation differ, with unquantified score effects; no extra processing
 factor is invented. Precursors are scoped to pellet manufacture, not material
 uses or allocated byproduct outputs. A full-factory snapshot checks that no
-other quantity changes. Public rollout is still outstanding.
+other quantity changes. Each substituted pellet input retains its literal
+original exchange and reference basis in the exported factory audit.
 
 Planning resolves the entire supplier/consumer vector before changing inventory.
 Validation checks actual linked IAM shares, dry-mass totals, producer inventories
@@ -50,20 +58,22 @@ and unchanged caller quantities. Missing/invalid IAM data cannot be reported as 
 passing empty update. Unrelated legacy geographies such as CPA in material
 production are not mapped or assigned invented geographic aliases.
 
-Focused regressions: 77 tests pass across the new stage, native/default activity
-mapping and CLIC root requirements. The real encrypted REMIND SSP2-NPi 2050
-private stage creates 13 regional mixes and retargets 93 fuel exchanges. Its full
-12,526-activity sparse matrix has complete links and finite LCI for the EUR
-biomass market and the Swiss ORC electricity process; mixed row backward errors
-are below 1.5e-15. Source technosphere/biosphere scientific signatures are
-unchanged. These are private stage checks, not public certification/export.
-Evidence hashes and remaining rollout work are in the sector tracker. Private
-receipts include `native_biomass_real_stage_report.json`,
-`native_biomass_stage_lci_report.json` and `native_biomass_stage_tests.log`.
+The real encrypted REMIND SSP2-NPi 2050 default biomass/electricity run passes
+semantic certification and Brightway export with 12,529 activities, 13 regional
+biomass mixes and all 55 pinned CLIC records from the original nine roots.
+Readback verifies actual IAM supplier fractions, five literal pellet source
+audits, unchanged non-feedstock pellet coefficients, complete retained links,
+warning metadata and three finite LCIs (pellet, EUR biomass and Swiss ORC).
+Original source technosphere/biosphere scientific signatures remain unchanged.
+Cache-disabled and warm-cache runs have identical biomass supplier vectors.
 
-Pellet-stage evidence: 80 focused tests pass. The real REMIND2050 stage creates
-13 mixes and updates 98 fuel/feedstock links, including five inside the pellet
-factory. Three private LCIs (pellet, EUR biomass and Swiss ORC electricity) are
-finite with complete links on the 12,526-activity graph and unchanged source
-signatures. Legacy ordered forestry selection explicitly ignores native-only
-YAML entries, preventing an empty-filter match of unrelated ECI activities.
+Relevant public integration regressions pass (146 focused tests, 54 shared
+checks; groups overlap with smaller audit runs). Isolated installed wheels
+pass 58 native regressions, all 41 reviewed electricity caller restorations,
+exact unsupported-case policy and cross-model refusal checks, plus a real
+default public update/certification/export and three-demand readback.
+Receipt hashes and scientific boundaries are recorded in
+[`uvek-biomass-verification.json`](uvek-biomass-verification.json) and the
+[sector tracker](uvek-sector-progress.json). Private coefficients and licensed
+inventories are not committed. These checks establish the biomass milestone;
+the full expanded goal remains active for the other 17 sectors.

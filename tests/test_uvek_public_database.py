@@ -13,7 +13,7 @@ def test_public_update_refuses_unverified_sector_before_mutation():
     owner.prepare_inventories = Mock(
         side_effect=AssertionError("Unexpected preparation")
     )
-    with pytest.raises(ValueError, match="supports electricity only"):
+    with pytest.raises(ValueError, match="supports biomass and electricity"):
         owner.update("cement")
     owner.prepare_inventories.assert_not_called()
 

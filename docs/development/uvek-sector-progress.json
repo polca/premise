@@ -9,18 +9,18 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "premise/database/background.py:validate_uvek_scope currently admits electricity only. Do not remove before sector-specific implementation and validation.",
+  "current_scope_gate": "Public UVEK updates admit verified biomass and electricity, in dependency order by default. The other 17 standard sectors remain refused pending implementation and validation.",
   "sectors": [
     {
       "sector": "biomass",
-      "status": "implementation_in_progress",
+      "status": "operational_screening_with_explicit_proxy_limitations",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "native_woodchip_stage_implemented_not_full_sector_coverage",
+        "kind": "native_woodchip_and_scoped_pellet_feedstock_public_runtime_verified",
         "files": [
           {
             "path": "premise/iam_variables_mapping/biomass.yaml",
@@ -30,52 +30,53 @@
             "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
           }
         ],
-        "runtime_verified": false
+        "runtime_verified": true
       },
-      "blockers": [
-        {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/energy/biomass.py:39",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/energy/biomass.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
-        },
-        {
-          "code": "biosphere_axis_review",
-          "path": "premise/energy/biomass.py",
-          "finding": "Direct biosphere dictionary calls need inspection to ensure they use3.10biosphere rather than2026technosphere release."
-        },
-        {
-          "code": "remaining_biomass_rollout",
-          "finding": "Pellet/feedstock boundary, combined electricity fuel-role compatibility, public dispatch, certification/export, cold/warm public workflows and final package checks remain required before admitting biomass."
-        }
-      ],
       "decisions": [
         {
           "decision": "Use complete native forest-road dry-kgchips for purpose-grown proxies and clean sawmill dry-kgchips for forest-residue proxies. Retain within-class nativeRERportfolio weighting and explicit geographic fallback; no mass/energy conversion.",
           "authorization": "Standing autonomous approval; scientific boundaries/score effects logged for review.",
           "review": "premise/data/biomass/uvek2026_review.json"
+        },
+        {
+          "decision": "Retain complete native pellet factory, substituting only five native dry-kg raw feedstock suppliers with IAM wood mix at unchanged quantities. Warn about particle size, processing, geography and allocation; preserve literal originals in exported audit.",
+          "authorization": "Standing autonomous approval",
+          "review": "premise/data/biomass/uvek2026_review.json#pellet_decision"
         }
       ],
-      "implementation_commits": [],
+      "implementation_commits": [
+        "b196ab5c",
+        "9714d7e3"
+      ],
       "tests": [
         "77focused stage/activity-map/CLIC-requirement regressions passed.",
-        "A pre-existing missing-geothermal-alias test was stale after the verified Bagnore electricity supplement. Its missing-alias contract now uses the still CLIC-only BiomassIGCCrole; no runtime electricity behavior changed."
+        "A pre-existing missing-geothermal-alias test was stale after the verified Bagnore electricity supplement. Its missing-alias contract now uses the still CLIC-only BiomassIGCCrole; no runtime electricity behavior changed.",
+        "146 focused public biomass/electricity/background/metadata regressions passed.",
+        "54 shared database and sector-validation regressions passed.",
+        "73 focused audit/callback checks passed (overlapping test groups are not additive).",
+        "58 native biomass/mapping/background tests passed from isolated installed wheels."
       ],
-      "integration_exports": [],
+      "integration_exports": [
+        {
+          "scenario": "encrypted REMIND SSP2-NPi 2050",
+          "default_updates": [
+            "biomass",
+            "electricity"
+          ],
+          "activities": 12529,
+          "regional_biomass_markets": 13,
+          "native_stage_relinked_exchanges": 98,
+          "literal_pellet_substitution_audits": 5,
+          "finite_LCI_demands": 3,
+          "CLIC_roots": 9,
+          "CLIC_pinned_records": 55,
+          "canonical_biosphere": "ecoinvent-3.10-biosphere",
+          "source_scientific_signatures_unchanged": true,
+          "cache_disabled_and_warm_vectors_identical": true,
+          "public_semantic_certification_and_Brightway_export": "passed, including isolated installed package",
+          "verification": "docs/development/uvek-biomass-verification.json"
+        }
+      ],
       "static_audit": {
         "callback": "_update_biomass",
         "module": "premise/energy/biomass.py",
@@ -135,7 +136,7 @@
         "finite_LCI_demands": 2,
         "source_signatures_unchanged": true,
         "tests_passed": 77,
-        "public_biomass_gate": "still_closed",
+        "public_biomass_gate": "opened after combined public and package verification; earlier stage evidence retained",
         "receipts": [
           {
             "name": "native_biomass_real_stage_report.json",
@@ -155,7 +156,7 @@
         ]
       },
       "pellet_stage": {
-        "status": "private_real_IAM_and_LCI_validation_passed_public_rollout_pending",
+        "status": "public_default_export_verified_with_five_literal_source_audits",
         "raw_feedstock_links_changed": 5,
         "total_relinked_exchanges": 98,
         "tests_passed": 80,
@@ -179,7 +180,40 @@
             "location": "private task workspace"
           }
         ]
-      }
+      },
+      "resolved_blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/energy/biomass.py:39",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/energy/biomass.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        },
+        {
+          "code": "biosphere_axis_review",
+          "path": "premise/energy/biomass.py",
+          "finding": "Direct biosphere dictionary calls need inspection to ensure they use3.10biosphere rather than2026technosphere release."
+        },
+        {
+          "code": "remaining_biomass_rollout",
+          "finding": "Pellet/feedstock boundary, combined electricity fuel-role compatibility, public dispatch, certification/export, cold/warm public workflows and final package checks remain required before admitting biomass."
+        }
+      ],
+      "blockers": [],
+      "public_rollout_implementation": "This tracker and the public biomass dispatch/export changes are committed together; use git history for the rollout commit."
     },
     {
       "sector": "cement",
@@ -212,12 +246,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -300,12 +334,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -454,12 +488,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -517,12 +551,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -578,12 +612,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -650,12 +684,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -769,12 +803,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -868,12 +902,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -931,12 +965,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1026,12 +1060,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1105,12 +1139,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1216,12 +1250,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1298,12 +1332,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1378,12 +1412,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1454,12 +1488,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -1951,12 +1985,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -2014,12 +2048,12 @@
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+          "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
         },
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+          "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
         },
         {
           "code": "sector_implementation_and_integration",
@@ -2061,24 +2095,29 @@
     }
   ],
   "combined_default_run": {
-    "status": "not_started",
-    "evidence": []
+    "status": "biomass_and_electricity_verified_other_17_pending",
+    "evidence": [
+      "docs/development/uvek-biomass-verification.json"
+    ]
   },
   "packaged_resource_checks": {
-    "status": "pending_final_implementation",
-    "evidence": []
+    "status": "electricity_and_biomass_verified_expanded_goal_final_package_pending",
+    "evidence": [
+      "docs/development/uvek-electricity-milestone-verification.json",
+      "docs/development/uvek-biomass-verification.json"
+    ]
   },
   "audit_method": "AST public callback/argument/InventorySet/version/biosphere call audit plus YAML role counts; read-only source inspection, not runtime validation.",
   "shared_blockers": [
     {
       "code": "scope_gate",
       "path": "premise/database/background.py:validate_uvek_scope",
-      "finding": "Public UVEK update gate accepts electricity only; sector request refused before mutation. Do not bypass without verified implementation."
+      "finding": "Public UVEK gate admits biomass/electricity; other 17 requested sectors still require verified implementations."
     },
     {
       "code": "family_dispatch",
       "path": "premise/database/new_database.py:NewDatabase.update",
-      "finding": "Only electricity receives source_family and biosphere_version arguments. Other sector callbacks need explicit family-aware setup/dispatch before they can use native UVEK identities and canonical3.10biosphere."
+      "finding": "Biomass and electricity receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
     }
   ]
 }

@@ -323,3 +323,14 @@ def test_exact_inclusive_filters_preserve_existing_any_mask_semantics():
         mask={"location": ["DE", "FR"]},
         exact=True,
     ) == [wanted]
+
+
+def test_generated_native_biomass_market_is_a_mapped_electricity_fuel():
+    market = native(
+        "market for lignocellulosic biomass, used as fuel",
+        "kilogram",
+        **{"reference product": "lignocellulosic biomass"},
+    )
+    mapping = InventorySet([market], model="remind", family="uvek")
+    assert mapping.generate_powerplant_fuels_map()["Biomass IGCC"] == [market]
+    assert mapping.generate_fuel_map()["wood chips"] == [market]

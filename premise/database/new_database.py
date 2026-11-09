@@ -2974,10 +2974,11 @@ class NewDatabase:
             },
         }
         if getattr(self, "source_family", "ecoinvent") == "uvek":
-            self.sector_update_methods["electricity"]["args"] += (
-                self.source_family,
-                self.biosphere_version,
-            )
+            for sector in ("biomass", "electricity"):
+                self.sector_update_methods[sector]["args"] += (
+                    self.source_family,
+                    self.biosphere_version,
+                )
 
         if isinstance(sectors, str):
             description = f"Processing scenarios for sector '{sectors}'"

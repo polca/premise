@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "woodchip_and_pellet_adapter_in_development_public_rollout_not_verified",
+  "status": "public_default_update_certification_export_and_installed_package_verified",
   "authorization": "User autonomous expanded goal and standing auto-approval; log functional proxies for later review.",
   "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
   "basis": "Positive1kgdrywood references, factor+1 for matching dry-kg fuel inputs. No MJ-to-kg conversion or LHV rescaling.",
@@ -197,17 +197,20 @@
     "Heat/combustion services with MJreference are not raw fuel supplies.",
     "Glued/composite industrial residual wood is not clean forest or sawmill feedstock."
   ],
-  "outstanding_sector_work": [
-    "Review pellet feedstock/supply boundary before claiming complete biomass-sector operationalization.",
-    "Public API update/combined certification/export and packaged resources after implementation passes."
-  ],
+  "outstanding_sector_work": [],
   "validation": {
-    "woodchip_stage_only": true,
+    "woodchip_stage_only": false,
     "real_IAM_regions": 13,
     "relinked_exchanges": 98,
     "private_finite_LCI_demands": 3,
-    "public_rollout_complete": false,
-    "pellet_factory_raw_feedstock_links_changed": 5
+    "public_rollout_complete": true,
+    "pellet_factory_raw_feedstock_links_changed": 5,
+    "public_default_update": true,
+    "public_export_activities": 12529,
+    "public_finite_LCI_demands": 3,
+    "cache_disabled_and_warm_vectors_identical": true,
+    "installed_package_verified": true,
+    "verification": "docs/development/uvek-biomass-verification.json"
   },
   "pellet_decision": {
     "authorization": "Standing autonomous scientific auto-approval. Scoped functional proxy, with explicit warnings.",

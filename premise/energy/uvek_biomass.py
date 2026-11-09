@@ -636,3 +636,117 @@ class UVEKBiomass(BaseTransformation):
                 ),
             ),
         )
+
+
+def update_uvek_biomass(
+    scenario, version, system_model, *, family="uvek", biosphere_version=None
+):
+    """Apply native biomass through the ordinary scenario-store update bridge."""
+    import warnings
+
+    from ..inventory.inventory_store import (
+        get_scenario_inventory,
+        replace_scenario_inventory,
+    )
+    from ..validation.validation_framework import record_validation_phase
+
+    expected = {
+        "family": "uvek",
+        "version": "2026",
+        "system_model": "cutoff",
+        "biosphere_family": "ecoinvent",
+        "biosphere_version": "3.10",
+    }
+    if (family, str(version), system_model, biosphere_version) != (
+        "uvek",
+        "2026",
+        "cutoff",
+        "3.10",
+    ):
+        raise ValueError(
+            "Native biomass requires UVEK2026cutoff and ecoinvent3.10biosphere."
+        )
+    context = scenario.get("background context")
+    if context is not None and context != expected:
+        raise ValueError(
+            "Native biomass arguments disagree with scenario background context."
+        )
+    mix = scenario["iam data"].biomass_mix
+    if mix is not None:
+        values = _at_year(mix, scenario["year"]).values.ravel()
+        if any(not math.isfinite(float(v)) or float(v) < 0 for v in values):
+            raise ValueError(
+                "Invalid finite/nonnegative IAM biomass data for the selected year."
+            )
+        positive = any(float(v) > 0 for v in values)
+    else:
+        positive = False
+    if not positive:
+        record_validation_phase(
+            scenario,
+            ValidationPhaseResult(
+                phase_id="sector:biomass:uvek",
+                kind="sector",
+                rule_results=(
+                    ValidationRuleResult(
+                        "biomass.uvek.IAM_availability", "error", "not_applicable", 0
+                    ),
+                ),
+            ),
+        )
+        return scenario
+    biomass = UVEKBiomass(
+        get_scenario_inventory(scenario),
+        scenario["iam data"],
+        scenario["model"],
+        scenario["pathway"],
+        scenario["year"],
+        version,
+        system_model,
+        scenario.get("cache"),
+        scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
+    )
+    plans = biomass.plan()
+    biomass.apply(plans)
+    record_validation_phase(scenario, biomass.validate(plans))
+    limitations = [PROXY_LIMITATION]
+    if any(
+        row["geographic_proxy"] for plan in plans.values() for row in plan["vector"]
+    ):
+        limitations.append(GEOGRAPHY_LIMITATION)
+    if biomass.pellet_keys:
+        limitations.append(PELLET_LIMITATION)
+    for message in limitations:
+        warnings.warn(message, UserWarning, stacklevel=2)
+    for key in biomass.pellet_keys:
+        substitutions = []
+        for (dataset, exchange, original, market), index in zip(
+            biomass.relinked, biomass.relinked_indices, strict=True
+        ):
+            if identity(dataset) == key:
+                substitutions.append(
+                    {
+                        "original_index": index,
+                        "source_exchange": copy.deepcopy(original),
+                        "target_market": identity(market),
+                        "target_amount": exchange["amount"],
+                        "basis": "unchanged signed dry kilograms; factor +1",
+                        "limitations": PELLET_LIMITATION,
+                    }
+                )
+        if substitutions:
+            biomass.providers[key][
+                "premise biomass feedstock substitutions"
+            ] = substitutions
+    for plan in plans.values():
+        for exchange in plan["market"]["exchanges"]:
+            exchange.pop("premise biomass technology", None)
+    replace_scenario_inventory(scenario, biomass.database)
+    scenario["index"] = biomass.index
+    scenario["cache"] = biomass.cache
+    scenario.setdefault("mapping", {})["biomass"] = biomass.suppliers
+    scenario.setdefault("background context", expected)
+    scenario.setdefault("native sector limitations", {})["biomass"] = limitations
+    return scenario

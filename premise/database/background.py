@@ -39,14 +39,15 @@ def resolve_source_background(version, *, family="ecoinvent", system_model="cuto
 def validate_uvek_scope(sectors):
     """Refuse unverified sectors before inventory preparation or scenario mutation."""
     if sectors is None:
-        return ["electricity"]
+        return ["biomass", "electricity"]
     selected = [sectors] if isinstance(sectors, str) else sectors
     if not isinstance(selected, list) or not all(isinstance(s, str) for s in selected):
         raise TypeError("sectors must be a string or a list of strings.")
-    unsupported = sorted(set(selected) - {"electricity"})
+    unsupported = sorted(set(selected) - {"biomass", "electricity"})
     if unsupported:
         raise ValueError(
-            f"The UVEK 2026 pilot supports electricity only; unsupported sectors: {unsupported}."
+            "UVEK 2026 supports biomass and electricity; "
+            f"unsupported sectors: {unsupported}."
         )
     return list(selected)
 

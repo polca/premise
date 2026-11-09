@@ -316,6 +316,14 @@ def scenario_metadata(
                     ),
                 )
 
+    native_limits = scenario.get("native sector limitations")
+    if native_limits:
+        metadata["scientific_status"] = "screening_only"
+        metadata["native_sector_limitations"] = deepcopy(native_limits)
+        metadata.setdefault("screening_limitations", {})["native_sector_proxies"] = (
+            sorted(native_limits)
+        )
+
     return metadata
 
 

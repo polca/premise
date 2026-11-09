@@ -42,8 +42,10 @@ Biomass CHP:
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   ecoinvent_aliases:
     fltr:
@@ -79,8 +81,10 @@ Biomass CHP (existing):
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   ecoinvent_aliases:
     fltr:
@@ -134,8 +138,10 @@ Biomass IGCC:
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   ecoinvent_aliases:
     fltr:
@@ -171,8 +177,10 @@ Biomass IGCC CCS:
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   ecoinvent_aliases:
     fltr:
@@ -215,8 +223,10 @@ Biomass MSW:
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   ecoinvent_aliases:
     fltr:
@@ -240,8 +250,10 @@ Biomass ST:
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   ecoinvent_aliases:
     fltr:
@@ -272,8 +284,10 @@ Biomass ST CCS:
     fltr:
       name:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit: kilogram
   ecoinvent_aliases:
     fltr:
@@ -302,11 +316,13 @@ Coal CF 50-50:
       - Hard coal, at regional storage
       - Hard coal, burned in power plant
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Hard coal, at mine
       - Hard coal, at regional storage
       - Hard coal, burned in power plant
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit:
       - kilogram
       - megajoule
@@ -341,11 +357,13 @@ Coal CF 80-20:
       - Hard coal, at regional storage
       - Hard coal, burned in power plant
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - market for lignocellulosic biomass, used as fuel
       reference product:
       - Hard coal, at mine
       - Hard coal, at regional storage
       - Hard coal, burned in power plant
       - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - lignocellulosic biomass
       unit:
       - kilogram
       - megajoule

@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "scope": "Biomass public rollout plus electricity regression. Expanded 18-sector goal remains active; other 17 sectors are not operational.",
+  "background": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "scenario": "encrypted REMIND SSP2-NPi2050",
+  "workflow": "Existing NewDatabase constructor, default update(), certification, Brightway export; no manual helper installation.",
+  "export_activities": 12529,
+  "regional_biomass_markets": 13,
+  "literal_pellet_substitution_audits": 5,
+  "finite_LCI_demands": 3,
+  "CLIC_records": 55,
+  "CLIC_roots": 9,
+  "source_scientific_signatures_unchanged": true,
+  "cache_disabled_and_warm_vectors_identical": true,
+  "installed_package_checks": {
+    "native_tests": 58,
+    "reviewed_electricity_callers": 41,
+    "approved_exact_scopes": 447,
+    "recipes": 3667,
+    "reviews": 756,
+    "final_GOES_audit_and_cross_model_refusals": "passed"
+  },
+  "limitations": [
+    "Screening proxies; no scientific/LCIA equivalence or impact completeness claimed.",
+    "See uvek2026_review.json for wood supply, geography, dry-mass/common-LHV and pellet-processing boundaries.",
+    "Original electricity partial paperboard, final GOES and prior CSP omissions remain visible.",
+    "The other 17 updates remain gated; this is not full expanded-goal completion."
+  ],
+  "receipts": [
+    {
+      "name": "native_biomass_public_cold_export_report.json",
+      "sha256": "5506c2c92760a92e312b319ff3057248cbb0af489b92a1811637d6fdbc989450",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_public_warm_export_report.json",
+      "sha256": "e8f15d6e964f9d6bac1279e828bde61860235c1ef759434de3ce37dc92260acf",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_public_readback.json",
+      "sha256": "ea76f82f497438f7b64f6f082bece6143a3df3d93763fbb8fa1a0a8cfe5391c7",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_public_wheel_export_report.json",
+      "sha256": "0816fb2dc5c72e667699d8db7bcef63e46508ba52577e0fad6b9e6c24b4bf7f8",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_wheel_readback.json",
+      "sha256": "b753454793d75543769b57316eab468b6433f5b366007ed3a3a7650d4bf67758",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_previous_mappings_readback.json",
+      "sha256": "c31661750856cbfcf9ed0c7c1e75d1c9b8dcab1b4112730c6b245ae206b997dc",
+      "location": "private task workspace"
+    },
+    {
+      "name": "biomass_installed_electricity_checks.json",
+      "sha256": "b0293661801cf8fc9e470a7338a1da2aee0f3963b57be94aef48101fb6df1e40",
+      "location": "private task workspace"
+    },
+    {
+      "name": "biomass_installed_native_tests.json",
+      "sha256": "cc0d51db73ff6aab7ce6bf2cc41d0623d08cf50bf1792ae8aa85b74642f0e116",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_public_tests.log",
+      "sha256": "3fc6e715cb2cbd53bdbac4e8280acabe3269acbb50d752c3937a4e6d0c3df062",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_shared_regressions.log",
+      "sha256": "ba57ffd033d260ed14f6feb55b92ab378d313204a6efd345842a0149ffea736d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_biomass_audit_tests.log",
+      "sha256": "64e1969b957e2db9f081bddf13fce82d66001918bb49402eca669a8dbe037efa",
+      "location": "private task workspace"
+    },
+    {
+      "name": "biomass_final_wheel_equivalence.json",
+      "sha256": "db7ea016f784c137a14b2c167edbcf25a8c8754c1e2495808be7f3ce3f80859e",
+      "location": "private task workspace"
+    }
+  ],
+  "final_wheel": {
+    "runtime_validated_wheel_sha256": "ebea0ad55e1c4c801981a6ce9740bba45c690f7ab199427e8e47daa988b1715a",
+    "final_wheel_sha256": "e9878dd6d17190bb5d24b0690289abf6a0316b98249dde03c85d17dcd50effbb",
+    "changed_members": [
+      "premise/data/biomass/uvek2026_review.json",
+      "premise-2.6.0.dist-info/RECORD"
+    ],
+    "runtime_and_alias_resources_identical": true,
+    "change": "Only reviewed evidence status changed after installed default-update/export checks; runtime, aliases and scientific decisions identical."
+  }
+}
