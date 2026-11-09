@@ -130,3 +130,64 @@ Licensed coefficients and detailed metadata remain in the private pilot area:
 `nitrate_water_network_full_evidence.private.json`,
 `native_water_balance_alternatives.private.json`, and
 `native_nitrate_matching_service_lci_report.json`.
+
+## HDPE recyclate and foam-glass follow-up
+
+Fresh read-only inspection covers 41 complete source/native records for the two
+required supply markets, their explicit recyclate branches and native product
+candidates. Four additional native recycling records cover both installed
+releases of `xx Recycling PE` and `xx Recycling mixed plastics`.
+
+The four HDPE recycled-to-generic entries are each positive
+2.93285310007683e-14 kg per source kg. Each renaming provider buys a nonempty
+recycled-HDPE market, which buys actual recycling production and delivery.
+Their 0.001-kg declared production volumes do not make these entries zero or
+burden-free. Native PE recycling handovers are explicitly empty and allocate
+recycling burdens to the recycled product's production. Their documentation's
+rough avoided-product/electricity suggestion does not establish a complete
+attributed recyclate supplier. Mapping these source supplies to an empty
+handover or virgin polymer would therefore misrepresent their functions.
+
+The [HDPE trace-omission proposal](uvek-hdpe-trace-omission-proposal.md) requests
+an explicit decision for only the four positive trace entries. Its private
+five-input candidate retains both virgin shares and all three delivery entries
+without normalization and produces finite native-background LCI. The omission's
+score effect remains unquantified. No mapping, omission gate or approval has
+been enabled while that decision is pending.
+
+The foam-glass market contains 0.99009900990099 kg of cullet-based production
+and 0.0099009900990099 kg of production without cullet, plus four delivery
+entries. The two producers have positive kg references and the same declared
+density and conductivity. Their actual feedstocks and melting inventory differ:
+
+| Quantity per kg of foam glass | Cullet-based source | Source without cullet |
+| --- | ---: | ---: |
+| Sorted cullet, kg | 0.81385 | 0 |
+| Lime, kg | 0 | 0.152596875 |
+| Silica sand, kg | 0 | 0.4567540762 |
+| Light soda ash, kg | 0.046154 | 0.2270387258 |
+| Electricity, kWh | 1.4969 | 1.8034939759 |
+| Direct fossil CO2, kg | 0.029385 | 0.1613851150 |
+
+The native at-plant process matches the source's cullet-based electricity and
+cullet quantities (the latter within one binary floating-point ULP). No native
+cullet-free producer is established. The regional-storage wrappers add logistics
+and electricity-certificate adjustments, so they do not supply a cullet-free
+production inventory. Do not collapse or omit the second producer, infer a
+density/conductivity multiplier, or claim feedstock equivalence from its copied
+technology paragraph: the explicit description and actual exchanges identify
+the no-cullet adjustment.
+
+The source variant retains nine parameter definitions versus two in the original;
+no exchange formula is present in the imported records. The independent delta
+audit also finds changed uncertainty and pedigree fields outside the nominal
+feedstock changes, including feldspar and potassium-nitrate inputs. Small
+binary rounding differences in waste-wood quantities/locations are retained
+in the report separately. A future reconstruction cannot assume that all
+unchanged nominal ingredients have unchanged uncertainty, or discard the source
+parameter declarations. No hybrid process or new foam-glass correspondence
+is enabled by this inspection.
+
+Private evidence: `nitrate_hdpe_foam_routes_primary.private.json`,
+`native_pe_recycling_candidates.private.json` and `foam_glass_feedstock_delta.json`.
+The delta check is reproduced by `check_foam_glass_feedstock_delta.py`.
