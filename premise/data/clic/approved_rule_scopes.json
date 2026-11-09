@@ -68617,6 +68617,1338 @@
           "fingerprint": "704730fe5122dc5a58161db1031f628a5b4773502bffb3adcd8866a465e017ad"
         }
       ]
+    },
+    {
+      "rule_id": "bp-2c2bc6ea684a72c4",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_european_glass",
+      "review_path": "export/uvek_pilot_european_glass_review.json",
+      "review_sha256": "8e82bc6fdf90a4ab5d594f58aed7281bd1bcab0985ee62049f290c3a2203e37b",
+      "authorization": "User instruction: auto-approve coming decisions. Exact European3.9cutoff glass routing with complete native glass-specific construction-waste landfill as explicitly warned sanitary-landfill screening proxy; retain all market routes and reuse frozen qualified treatment recipes.",
+      "inspection": {
+        "rule_id": "bp-2c2bc6ea684a72c4",
+        "source": {
+          "location": "RER",
+          "name": "market group for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "xx Recycling glass",
+          "reference product": "xx Recycling glass",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.269242,
+          "conversion_factor": -1,
+          "id": "bp-2c2bc6ea684a72c4",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-2c2bc6ea684a72c4"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RER",
+            "name": "market group for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "xx Recycling glass",
+            "reference product": "xx Recycling glass",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "20390d6907e958ceb23848a1cef6729517d09b39146549452e12222faa703745",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "693ba39645107276fec8acd506a10558ebb7277b553ea2d702cbf8c9e6b8ff3e",
+        "source_inventory_sha256": "523e98c210586b710e09061fa3fba8fddd4ca3d5c33b6b8d359ad2199ef75690",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "WASTE_FLOW",
+        "expected_foreground_records": 53,
+        "expected_foreground_biosphere_exchanges": 138,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "523e98c210586b710e09061fa3fba8fddd4ca3d5c33b6b8d359ad2199ef75690",
+            "inputs": [
+              {
+                "amount": 0.9900533128413856,
+                "uncertainty type": 0,
+                "loc": 0.9900533128413856,
+                "recipe": "pilot-european-glass-68176558d9c4389b635c"
+              },
+              {
+                "amount": 0.009946687158614355,
+                "uncertainty type": 0,
+                "loc": 0.009946687158614355,
+                "recipe": "pilot-fae-routes-8f889308ecfe1d58ee3a"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for cast iron",
+                  "cast iron",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "652710dbd0647ac535507a9a47166896323bff1e2a747390694f5bdc201c78a7"
+              },
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "AT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f9b7c2e54188ffa6b503f20d90ae9626845cdd13ad4386437de8d67e625666b5"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "BE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "6b0182f3fcdbf7011776f5133c1b41c8afa4888342ac7efb0d96bd36a8c22b51"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "BG",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "215dd6c061408c22495871658bbb65e6c166946e3a6076f718c13e2ae80d54fe"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CH",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "995a6fe65af0bb1c8b84508d3415adffbffcda0676f12351492948501980ac96"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "CZ",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "b0cfc9ed453cebae7572027e1b1b831b52727a4c7425932ce4eff2c4c1957b5b"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "DE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4dbfdf0bf6025043d4b8b1390aab6f47dfd53a8e04287c339a1002f7a4f19aa4"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "DK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "e1002ea0c4049c35eb4181901a70af35411733f90d16c5ee88b6dc75ae8c3a33"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "ES",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "deebe09e0a3a98c4f337dd048b82af853689af02bceae892500b2e2a9a3cb36b"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "FI",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "e0ef5a8c11954996d318937813d9a796f709dcf4b2701953195b2e7ea01856d2"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "FR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "0a5b4c339c28f951fc2e08e28e13dd8a1bc55c5c04bf9302d2ac6e8c43d94e5f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "GB",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "689884c7ae794e57fd306bc6a31a7956d13b7e031ee0a00e28462e47a5e8ba0c"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "HU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "5ef70c39f6b086ee84679aa0544e2bdbc5919bb2d11e7cad3a07a02af39ef980"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "IT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "5e4c838a6a29558fea0a6e2e9d1b942ca6078f1fba5460daf201cca78b8d7af0"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "JP",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f58188befff3758866ce9228a629e43fbadea683aa136ed9249c244569fd1fa4"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "KR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "cd4e74b96b02cd181739adf7e105a4f0b3f025d5dcb33cceb2ff13c227249f7d"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "LU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "3427bf925293ed19c96839ca13d110427954f12b3d61eec3c3a2dba690e18bd5"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "NL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f16400e3ce88ae1825e965b1747f9405247750c883d19c24cf34400df71b734f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "NO",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "d902deff61fca4c2ffc37d9be27a6ec1e65b249118a4f2498bdd25fc16ecee84"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "PL",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "f6fac17b495cf6c32d07f371abb774f0252e35d524455c0cf8703f083dccdd68"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "PT",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "da6df445b463cb4edaffe2726d0acaefda198ad07e662b0c8e42567bd1b54cde"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "RU",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "8f83a884d62672f14b2938dd73b90f6ec3471a9de63d491e4b14c3b553f7d94d"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "RoW",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "a7b6a0ef82d51a99d516a8347f32ba21166110d45b4749aef4ef376bc0b43738"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "SE",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "2473c599d0af97f69ee57a061f47df41e3a3c85269df228c54dea2fd66edfc6f"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "SK",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "4e67d83fcb8a0c7235a954d6130bea408983776f052ca73cf30172c44b438b7a"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "TR",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "6632c106ad1f9cf77614a7d8282a67cdc3c11e69fdcae47f4e929659a328fbcf"
+              },
+              {
+                "source": [
+                  "market for electricity, for reuse in municipal waste incineration only",
+                  "electricity, for reuse in municipal waste incineration only",
+                  "TW",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "8d60ca2e980788f226aca618e25251e0937a441cd6b787bc1432cedb3e5ac935"
+              },
+              {
+                "source": [
+                  "market for excavation, hydraulic digger",
+                  "excavation, hydraulic digger",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "bc929c3e08eda739271b9025e632fd5beb4eebe1da8d032f34be2f3d89b70179"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for extrusion, plastic pipes",
+                  "extrusion, plastic pipes",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "fa662e7096a214ee6fb0e331a91b089c55a83f93d610164bcdf28390c22c12c1"
+              },
+              {
+                "source": [
+                  "market for gravel, round",
+                  "gravel, round",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "cff6f64379ea8d24c1168fa19c9fcb6ad255581760ab8fb360ef1fef18f5baed"
+              },
+              {
+                "source": [
+                  "market for gravel, round",
+                  "gravel, round",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "d044b2c9d10acb650673cb22323c4f634c378b158935a370141d8ad2b37045d8"
+              },
+              {
+                "source": [
+                  "market for municipal waste incineration facility",
+                  "municipal waste incineration facility",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "1a72c8282618c9713e4c50c785b82ab2797793d3dc3d78ed6e303060711d9517"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "0c1b652502d4cd9512c2a2980a802cbe9cd88e3de8b252b3cfa3655e58284129"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "71b0c5cd3d7c5f03d27593a3c0f502017f6798211b38ab532a6bce94bc1ae4d7"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "CO",
+                  "kilogram"
+                ],
+                "binding_sha256": "a94c805aacf88973281b8750277113ad8212f223d2451f66833b07d80f488025"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "c65ffa9ad95f76b865c0bf663b21b00c34d707ac5d2d49aee3653b3293db8b9f"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "78d62a02d612afef6011042bca17ab64485a2bdb81335d37ef2591f883830103"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "PE",
+                  "kilogram"
+                ],
+                "binding_sha256": "8a91b2934f2bb7687fdb3ce3e3e4caf649e6e6bc13821c56c7f19204f33c680e"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "35412995de02bb4c356605973d0c667c4b179372e9784660a216ba3e92517343"
+              },
+              {
+                "source": [
+                  "market for pitch",
+                  "pitch",
+                  "ZA",
+                  "kilogram"
+                ],
+                "binding_sha256": "33c2ce287338f9c4ae10bdac661799a71265ecbbb2de3e58ab0bb48a0b1efa1a"
+              },
+              {
+                "source": [
+                  "market for polyethylene, high density, granulate",
+                  "polyethylene, high density, granulate",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "9cebe1054f5f0c8412a45630b58eaf25a2de12a5941d827f7951aab460c08d59"
+              },
+              {
+                "source": [
+                  "market for polypropylene, granulate",
+                  "polypropylene, granulate",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2fae0bc57b8d34ae582427531c0d1c96b763c201102eec1f61cebbc9c3f42c83"
+              },
+              {
+                "source": [
+                  "market for polyvinylchloride, bulk polymerised",
+                  "polyvinylchloride, bulk polymerised",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "741f308afceb864afe5e98e5f5d2f7e385a87985b5d1720c0efb7dee291b8ed2"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "163658c5639281af80ba382889c863dfb7e26d135e992d470e52a3353db8230a"
+              },
+              {
+                "source": [
+                  "market for process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "f7d9dcaecc27dce689ad42c41343a0b5ffc5c6a3edcc90a3e61495748aab30a9"
+              },
+              {
+                "source": [
+                  "market for reinforcing steel",
+                  "reinforcing steel",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "0e3f8e7b696f6e4e3451da0a22ccca71df1ff2f53e37536fe0e30ec58d4df3d6"
+              },
+              {
+                "source": [
+                  "market for sand",
+                  "sand",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "e0a001dd54d3af8e2d7ea38a4fe1f0a8f991c36079307c39d9a32763e65e0d36"
+              },
+              {
+                "source": [
+                  "market for sand",
+                  "sand",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "a4d5eee1d96d2c4b44962dd6b886ab8de47d8a57fca86f19e62da2dbb977826f"
+              },
+              {
+                "source": [
+                  "market for sand",
+                  "sand",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "5acd786cd7f1868b4ea7639fa703b3b074db545a296d604189c4484187a2ded7"
+              },
+              {
+                "source": [
+                  "market for sand",
+                  "sand",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "e805858aa0242fb41759149eb4fc9a2307b632406f2c77c084c5b15e7e667ccc"
+              },
+              {
+                "source": [
+                  "market for sewer grid, 5E9l/year, 110 km",
+                  "sewer grid, 5E9l/year, 110 km",
+                  "GLO",
+                  "kilometer"
+                ],
+                "binding_sha256": "b56c75fcaabe763f624469cea55cd87e73110958081696189d346cc52f4bd851"
+              },
+              {
+                "source": [
+                  "market for slag landfill",
+                  "slag landfill",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "47823879b2b451c2a610e71d0132da5c673f6209c679888c84cdb03960960eae"
+              },
+              {
+                "source": [
+                  "market for steel, chromium steel 18/8, hot rolled",
+                  "steel, chromium steel 18/8, hot rolled",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c8ea8d5b04dc30f8819d156492c04ea1b78a64420cb99471bc1a1a807a7edc56"
+              },
+              {
+                "source": [
+                  "market for synthetic rubber",
+                  "synthetic rubber",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "98a497b847dfe72fa376e5d7c6a61a6a3200985fb2e941b8a6fd45e729777881"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RER",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "1ce8c87e9de5f0f3f55edf58627120df32e872f92c5141866388155449bf5135"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "AL",
+                  "kilogram"
+                ],
+                "binding_sha256": "4898f3b07b0f0d1918276c40f39cc0f021feef1eca39d1e5cd31a87e4a9a2af9"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "AT",
+                  "kilogram"
+                ],
+                "binding_sha256": "851a0e69287e5b93a87b841c2a5b821fc34281f38ca29882defcd8a649d23d1a"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "BA",
+                  "kilogram"
+                ],
+                "binding_sha256": "c79e124bca0604c691433b2fb1b93d5dcfca63de672618f64f1add9eed6fedfe"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "BE",
+                  "kilogram"
+                ],
+                "binding_sha256": "0f3e9c36db9390d251ce8622da6783152f5e9a79aae34825a046eefaf9532405"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "BG",
+                  "kilogram"
+                ],
+                "binding_sha256": "00aead6c0369964583634e09a4437f0817d873105f428d119effa27bd39100f4"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "645f3b8c9f7f18039240ee010daff790baae6c34d53043f01b89f5eb0b38b3b5"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "CZ",
+                  "kilogram"
+                ],
+                "binding_sha256": "289264fe32ceabc789ff7ea3a1c8dbe833636e2cdffce624b1efc1b446808937"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "DE",
+                  "kilogram"
+                ],
+                "binding_sha256": "d800325759f5d428cdeea763db307a8ca4878da8a2375af6553c8b1034a9923f"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "DK",
+                  "kilogram"
+                ],
+                "binding_sha256": "18cf1213085fc966e04d8964c113c9fab8cb34776a4031a045eccb75f6030382"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "EE",
+                  "kilogram"
+                ],
+                "binding_sha256": "229ed1778d7c76888cedd4fcf980ed8cefaf448758ef05f5c541ae51d29e0c18"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "ES",
+                  "kilogram"
+                ],
+                "binding_sha256": "d29f6b301756eb3f5d392d68349022c3394f2e0764872814aeca5041463b5c03"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "FI",
+                  "kilogram"
+                ],
+                "binding_sha256": "f12720ab144118605eec598c31a37d104850dca306de9311d4fc1fbee92c4117"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "FR",
+                  "kilogram"
+                ],
+                "binding_sha256": "078e94ac822ab9512e05da0f31989317d988e01928d6480791f018b9ea0bbf6f"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "GB",
+                  "kilogram"
+                ],
+                "binding_sha256": "5231474efb0120e82f65f60bbf35fd432eb96245715f20710808f0f10aead014"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "GR",
+                  "kilogram"
+                ],
+                "binding_sha256": "6e7f41a414da28484ff90a9599b60feb995d6262724ee8ab9954d8a31ba92fed"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "HR",
+                  "kilogram"
+                ],
+                "binding_sha256": "d56f6339301ee2e490843651cd1bce9d3ab341669e149a4630db847eff1f218c"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "HU",
+                  "kilogram"
+                ],
+                "binding_sha256": "c7991864a57f31b10c3f66b77824467ef574fe2443198e8a8f464944d020f41b"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "IE",
+                  "kilogram"
+                ],
+                "binding_sha256": "fa5443de1a0a8f2e03ea38ed8738e8bf77d295d103295fad63f9842ab8be6e33"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "IS",
+                  "kilogram"
+                ],
+                "binding_sha256": "a604df76dd42e3f78c72a702931e66f7ff2eed5cfd52a8824fc253a0a98c986e"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "IT",
+                  "kilogram"
+                ],
+                "binding_sha256": "55a4dd7583c707e989104ba6aa34a1cca9f0e2aed699fb9b2a91a64d8552cafb"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "LT",
+                  "kilogram"
+                ],
+                "binding_sha256": "6a84777ae5fb3e13c52f94d220b316527848f4128bbd0ed5fa66b16d8301595d"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "LU",
+                  "kilogram"
+                ],
+                "binding_sha256": "855d048af9f4f78d6f1bbc208d8ee529f1f3364ebd79cb39a371aea007ddadc1"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "LV",
+                  "kilogram"
+                ],
+                "binding_sha256": "f1bd397e2214ef6266ef2bd97e640eb7cbd83c37c4d5a887e126a5ecddb3a2e3"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "ME",
+                  "kilogram"
+                ],
+                "binding_sha256": "57c78d8fbf9b156539a1dc3f9c33c0fb9f9a1ebd2d161ee2668db03774c58e03"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "MK",
+                  "kilogram"
+                ],
+                "binding_sha256": "cdf4856db56662c1743ad1cef5d2007a7d7913048e62aabfcec843d852f6d7c6"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "MT",
+                  "kilogram"
+                ],
+                "binding_sha256": "c8dba9fd01d2a58e7113d8462cb730bd081897dd7bea2aa605e93f49ec716e14"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "NL",
+                  "kilogram"
+                ],
+                "binding_sha256": "9177ba2359c4218cb7d483c47d7aa1bcb5a39b4fe215049fd8692fbb2434cbca"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "NO",
+                  "kilogram"
+                ],
+                "binding_sha256": "9b91cae50afb075c1a2577ddcbcd4bad202b2fa2518413a879607c24a469b346"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "PL",
+                  "kilogram"
+                ],
+                "binding_sha256": "89ce3ccf2b92a75bd002a2ae9f43bbf6ef5922d8cbc7edadadba5edc19c15415"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "PT",
+                  "kilogram"
+                ],
+                "binding_sha256": "6c596c5519cd8c1f5636681a9f939881c074e60c60b34ae8c31261e106591f49"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "RO",
+                  "kilogram"
+                ],
+                "binding_sha256": "42cec305e4f17f1545b47053003ae7d2e34d8eb07cc2f503ead733fac6b1670f"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "RS",
+                  "kilogram"
+                ],
+                "binding_sha256": "7bb9e9ab9afe6885c6c743a276fa8454816fe8f4eeee0e058bdc96067f5740a9"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "SE",
+                  "kilogram"
+                ],
+                "binding_sha256": "72b14f5a15e03d99e62db6ddca7e1059dd119756a0709cc9154b404c9a78610e"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "SI",
+                  "kilogram"
+                ],
+                "binding_sha256": "4d39d2ac7bba33e50f6d6d0edfbc0e633bc90eb1d2adaa2613bfbe2bd773a538"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "SK",
+                  "kilogram"
+                ],
+                "binding_sha256": "91ecee680fb94aaedaca4f661015e6a0fd4484423aadf8db53fa9da344f45757"
+              },
+              {
+                "source": [
+                  "market for waste glass",
+                  "waste glass",
+                  "XK",
+                  "kilogram"
+                ],
+                "binding_sha256": "5edd1081142703c80838da0128bc659135d6dcbc614fe82f67344d93009f6c32"
+              },
+              {
+                "source": [
+                  "market for waste graphical paper",
+                  "waste graphical paper",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "e48adba241c5876052346ef8a371f54124d99c198524e019c9ddf5c73a0435bb"
+              },
+              {
+                "source": [
+                  "market for waste graphical paper",
+                  "waste graphical paper",
+                  "CO",
+                  "kilogram"
+                ],
+                "binding_sha256": "13188fec73ef04120e70204833dce6316f6ef1d672446ae684fcb52d64975d0e"
+              },
+              {
+                "source": [
+                  "market for waste graphical paper",
+                  "waste graphical paper",
+                  "CY",
+                  "kilogram"
+                ],
+                "binding_sha256": "a3c1b7adf05e5e0613f5e6508437bc49327ff7ae2ff948b4f19e5405351aa341"
+              },
+              {
+                "source": [
+                  "market for waste graphical paper",
+                  "waste graphical paper",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "1f27cae312b6a52a13b4e90d136f7ebc562f00b513886524cee3157af0796359"
+              },
+              {
+                "source": [
+                  "market for waste graphical paper",
+                  "waste graphical paper",
+                  "PE",
+                  "kilogram"
+                ],
+                "binding_sha256": "013557403346121ed5d110f7d7364afb865a23fecbb343366473fa56ce0fbc2c"
+              },
+              {
+                "source": [
+                  "market for waste graphical paper",
+                  "waste graphical paper",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "441b964b9e027752e277bb3b654fd70682c08fa6957eb057e029f23e17f677d2"
+              },
+              {
+                "source": [
+                  "market for waste graphical paper",
+                  "waste graphical paper",
+                  "ZA",
+                  "kilogram"
+                ],
+                "binding_sha256": "ae8683b27ae5c48a1afe494a3a5f8da1f7c931729110378b175bcd5ab922f9a8"
+              },
+              {
+                "source": [
+                  "market for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "BR",
+                  "kilogram"
+                ],
+                "binding_sha256": "839860588cd3847d8ec5f3d690616e14d4a148df0fdebe6601f48eed512816f3"
+              },
+              {
+                "source": [
+                  "market for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "CO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4849528660046e6ecb5489281e6c13120c4fe025162bb19884738d380b74e466"
+              },
+              {
+                "source": [
+                  "market for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "CY",
+                  "kilogram"
+                ],
+                "binding_sha256": "96fc4a300cebf3d3b591c88be64506c529b70f785890661193f0d1abb9d63ef0"
+              },
+              {
+                "source": [
+                  "market for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "IN",
+                  "kilogram"
+                ],
+                "binding_sha256": "6ee14e741301d2e79adb191757fac708e00861a34c9e2db8108bca8d199e33df"
+              },
+              {
+                "source": [
+                  "market for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "PE",
+                  "kilogram"
+                ],
+                "binding_sha256": "f7ffe22b2888bfa0af292350dca8ce7ac8be19535fef3306b1be694a3b3b9c42"
+              },
+              {
+                "source": [
+                  "market for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "d6f55f54abddf46c899379008916f0b56773995d9458a565d2198dc831ca8b32"
+              },
+              {
+                "source": [
+                  "market for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "ZA",
+                  "kilogram"
+                ],
+                "binding_sha256": "f5f1a1491aa25b1173da04745415102cc42760d7e88865c0854c9d58795931a0"
+              },
+              {
+                "source": [
+                  "market for wastewater treatment facility, capacity 5E9l/year",
+                  "wastewater treatment facility, capacity 5E9l/year",
+                  "GLO",
+                  "unit"
+                ],
+                "binding_sha256": "d830d5d6ba7265e9298920ca5e7fd1bac46693828fa989cda70ce24b62889fc8"
+              },
+              {
+                "source": [
+                  "market group for concrete, normal strength",
+                  "concrete, normal strength",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "1b43ab0e8edae147945c012f2915905bb7626851f33b0282e7296ee65e208672"
+              },
+              {
+                "source": [
+                  "market group for electricity, low voltage",
+                  "electricity, low voltage",
+                  "GLO",
+                  "kilowatt hour"
+                ],
+                "binding_sha256": "9660c03535b2dc623bd09144f0fd9753bae71a98263c35c4c69d0f4bb5bd9a9e"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, natural gas",
+                  "heat, district or industrial, natural gas",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "d309eea1dbc2005c07eac8670ac99a4e3c54b45440306a4a4526031b7d21892c"
+              },
+              {
+                "source": [
+                  "market group for heat, district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "2b39f77b383018f3a13ceccd27ffb3a6c035b90795a5a94615daf91b1822e7cd"
+              },
+              {
+                "source": [
+                  "market group for tap water",
+                  "tap water",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "dfd134dae10c80a8c8a93ad62ed09657b3e997804d1d0803bbfb69ba4a01d6b2"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "80de680ecb1d1ecbf59b287e8bcb737fa9ff33a905540b1244fbfc08f58e5e1f"
+              },
+              {
+                "source": [
+                  "market group for waste glass",
+                  "waste glass",
+                  "Europe without Switzerland",
+                  "kilogram"
+                ],
+                "binding_sha256": "498d7b2a4a1d1cbfb7435924287c4ac9dfd01ca761d199c1e86b3074daf9dcc6"
+              },
+              {
+                "source": [
+                  "market group for waste graphical paper",
+                  "waste graphical paper",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "9a4de8db2da7dd08c7ad2bebd9e0eecb60078769d9cbf5a3bc0085d17e15e1f0"
+              },
+              {
+                "source": [
+                  "market group for waste plastic, mixture",
+                  "waste plastic, mixture",
+                  "RER",
+                  "kilogram"
+                ],
+                "binding_sha256": "3a5ac3c4e9aa228e611afe645fadc8ffa10b0a2a3b88169ccd6ed260436375d1"
+              },
+              {
+                "source": [
+                  "municipal waste incineration facility construction",
+                  "municipal waste incineration facility",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "5baaf0091de2fcafe482c43a634081e67f97ebfcf233838f4f4ab584b7ee2f63"
+              },
+              {
+                "source": [
+                  "process-specific burdens, slag landfill",
+                  "process-specific burdens, slag landfill",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "cd5c33e6726aad94dedb8034c29af97c80634191a11b83efa3fd5d40fed00f4e"
+              },
+              {
+                "source": [
+                  "slag landfill construction",
+                  "slag landfill",
+                  "CH",
+                  "unit"
+                ],
+                "binding_sha256": "b1da19a9624abeedf7a92889d8fa9cc3615948b0aa4072cef7045499f7c8393f"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration with fly ash extraction",
+                  "waste glass",
+                  "CH",
+                  "kilogram"
+                ],
+                "binding_sha256": "a11fe5575594d7d7ede7d47157ce07f79f2fdc143e122e678073ab125ccfae18"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, sanitary landfill",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "3a0d8feca510656bbab7b9895cfb567f0545795725c36e489eac039500174b96"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Automatic approval: user instruction auto-approve coming decisions within the UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only the exact ecoinvent3.9cutoff European waste-glass group qualifies. Preserve its two original CH/non-CH group shares, all36country routes and every market-level treatment and collection coefficient with original signed marginal uncertainty, without aggregation or renormalization. Keep market stages distinct and reuse existing qualified uncontrolled-treatment and SwissFAE helpers, including their exact publisher identities and existing limitations. Negative source waste reference-1 maps to positive1kg service through factor-1; transform every negative waste-supplier coefficient once. Ordinary municipal incineration uses complete native glass-specific incineration with previously inspected44documented wet-composition coordinates. New screening choice: replace the sanitary-glass-landfill treatment portion (29.31391935221355% of European source routing) with complete native glass-specific construction-waste landfill per signedkg, not with empty recycling or cement-composition inert waste. The44documented waste-composition/heating-value coordinates agree, including2%wet-model water despite reserved0%labels; composition agreement does not establish landfill or LCIA equivalence. Source sanitary landfill is20m high,30year operation, with collected/treated leachate for100years and carbonate-phase estimate5693years; native mineral-construction landfill is11m high,15year operation,60,000year extrapolation and carbonate phase beyond60,000years. Landfill design, leachate collection/treatment, climate/hydrology, release timing, short/long-term speciation, land use, infrastructure, auxiliary materials/energy, allocation, internal uncertainty, geography and vintage differ; the full native service replaces the source internal inventory, including21direct elementary and49technosphere terms. Do not add source leachate, land use, infrastructure or operations on top of complete native service. Retain SwissFAE proxy warnings; no new recovery/energy credit or omission of a market branch. Source original uncontrolled fates remain uncontrolled at their exact infiltration classes. Use complete native genericRERheavy-road freight per originaltkm and marginal uncertainty; its fleet/geography/internal uncertainty/vintage are proxies, without new distance/load multiplier or duplicate collection. Native upstream biosphere exclusions and every score effect remain explicitly unquantified. Preserve caller ownership, formulas, signed uncertainty, foreground suppliers and separate emissions/purchases. No reverse, cross-system-model, other release, standalone country/treatment or full electricity-scenario/certification/export approval is established.",
+        "sanitary_landfill_share": 0.2931391935221355,
+        "sanitary_landfill_target": {
+          "name": "Disposal, glass, 0% water, to construction waste landfill",
+          "reference product": "Disposal, glass, 0% water, to construction waste landfill",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_market_nodes": 38,
+        "new_source_market_helpers": 37,
+        "source_treatment_nodes": 12
+      },
+      "limitations": [
+        "Automatic approval: user instruction auto-approve coming decisions within the UVEK2026cutoff/ecoinvent3.10biosphere electricity pilot. Only the exact ecoinvent3.9cutoff European waste-glass group qualifies. Preserve its two original CH/non-CH group shares, all36country routes and every market-level treatment and collection coefficient with original signed marginal uncertainty, without aggregation or renormalization. Keep market stages distinct and reuse existing qualified uncontrolled-treatment and SwissFAE helpers, including their exact publisher identities and existing limitations. Negative source waste reference-1 maps to positive1kg service through factor-1; transform every negative waste-supplier coefficient once. Ordinary municipal incineration uses complete native glass-specific incineration with previously inspected44documented wet-composition coordinates. New screening choice: replace the sanitary-glass-landfill treatment portion (29.31391935221355% of European source routing) with complete native glass-specific construction-waste landfill per signedkg, not with empty recycling or cement-composition inert waste. The44documented waste-composition/heating-value coordinates agree, including2%wet-model water despite reserved0%labels; composition agreement does not establish landfill or LCIA equivalence. Source sanitary landfill is20m high,30year operation, with collected/treated leachate for100years and carbonate-phase estimate5693years; native mineral-construction landfill is11m high,15year operation,60,000year extrapolation and carbonate phase beyond60,000years. Landfill design, leachate collection/treatment, climate/hydrology, release timing, short/long-term speciation, land use, infrastructure, auxiliary materials/energy, allocation, internal uncertainty, geography and vintage differ; the full native service replaces the source internal inventory, including21direct elementary and49technosphere terms. Do not add source leachate, land use, infrastructure or operations on top of complete native service. Retain SwissFAE proxy warnings; no new recovery/energy credit or omission of a market branch. Source original uncontrolled fates remain uncontrolled at their exact infiltration classes. Use complete native genericRERheavy-road freight per originaltkm and marginal uncertainty; its fleet/geography/internal uncertainty/vintage are proxies, without new distance/load multiplier or duplicate collection. Native upstream biosphere exclusions and every score effect remain explicitly unquantified. Preserve caller ownership, formulas, signed uncertainty, foreground suppliers and separate emissions/purchases. No reverse, cross-system-model, other release, standalone country/treatment or full electricity-scenario/certification/export approval is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "000419b81a373a86015c9432d5d64574a9f8f4593f43a85d79d644d8542b84c0"
+        }
+      ]
     }
   ]
 }

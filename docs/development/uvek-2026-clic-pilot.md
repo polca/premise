@@ -710,3 +710,14 @@ and one Finnish gas-electricity name. The inspected pilot purchases linked in
 the diagnostic without rewriting source geography. These findings authorize no
 global location substitution. Certification, report generation, transformed
 Brightway export and a finite prospective LCI remain completion gates.
+
+### European glass treatment checkpoint
+
+The exact 3.9 cut-off European glass-treatment group now preserves its country
+routing and collection stages through a composed helper. Its sanitary-landfill
+portion uses an explicitly warned complete glass-specific construction-landfill
+screening proxy under the user's standing automatic approval. See
+[the source boundary, limitations and verification](uvek-european-glass-findings.md).
+This adds one exact scope without changing the previous 395 fingerprints; the
+required nitrate dependency set now has 108 of 125 suppliers scoped. The full
+scenario, certification and export gates remain open.
