@@ -270,7 +270,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-48ec18f887271c0c2356",
-      "status": "pending",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-48ec18f887271c0c2356",
         "slug": "electricity-production-at-natural-gas-fired-combined-cycle-power-plant-post-pipeline-200km-storage-1000m",
@@ -326,12 +326,100 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-7fe8308839f735bb: 0.2068145390620961 cubic meter of market group for natural gas, high pressure in pinned electricity-production-at-natural-gas-fired-combined-cycle-power-plant-post-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "cubic meter",
+        "helper_reference_amount": 1,
+        "helper_unit": "cubic meter",
+        "native_unit": "megajoule",
+        "native_energy_per_reference": 38.256575270163715,
+        "energy_basis_kind": "documented generic legacy NCV times audited source fuel mass; not measured source NCV",
+        "caller_conversion_factor": 1
+      },
       "rejected_prior_candidate_reason": "At-production gas omits the regional high-pressure delivery mix; native normal-volume units need explicit basis checks.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
-      "commits": []
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_delivered_gas_review.json",
+          "sha256": "e2e7ac963e2d38fd1165dfc8ad08831edcc592fc248d37474aee61b69a5fb7aa",
+          "source_witness": {
+            "version": "3.6",
+            "identity": {
+              "location": "Europe without Switzerland",
+              "name": "market group for natural gas, high pressure",
+              "reference product": "natural gas, high pressure",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "a0f43cb5731f350d2469b8680d9bf3dbbbe7af8bce348d695abed95a219fc38b",
+            "inventory_sha256": "5d7606fa5fa5ff740e3648bf01c538ca04252135a9a285344b73d5026c6d9857"
+          },
+          "native_witness": {
+            "version": "2026",
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "9deb28bfba237da8f7b08ed57a4f35e71e4ee276a72c6675db160d33b7b55451",
+            "inventory_sha256": "4f79392c0fa732bbd4a8db719b0d9458118caec093dc8f2062c7d8418efa995c"
+          },
+          "property_evidence": {
+            "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/overview_methodology_ecoinvent%20version%202.pdf",
+            "publisher": "ecoinvent Centre",
+            "title": "Overview and Methodology, ecoinvent data v2.0 (2007)",
+            "section": "Table4.6, printedp16 (PDFpage25)",
+            "interpretation": "Published generic natural-gas NCV45.4MJ/kg, applied as explicit fuel-quality proxy; source-specific NCV remains unknown."
+          }
+        }
+      ],
+      "selected_disposition": {
+        "type": "complete_native_high_pressure_delivered_fuel_energy_proxy",
+        "recipe_id": "deferred-delivered-gas-52beaa2b0f89f7430e73",
+        "limitations": "User-approved autonomous modelling decision: legacy source-mass-based delivered-gas ENERGY SCREENING PROXY, not a verified source calorific property. The exact3.6cut-off Europe-without-Switzerland market group has positive1m3 reference, declared dry/wet fuel mass0.842655842955148kg and zero water, but no net calorific property; its gross-energy field10.9015926281975MJ is not substituted for net energy. Ecoinvent v2 Overview and Methodology(2007), Table4.6, provides a generic natural-gas net calorific value45.4MJ/kg. Apply that documented legacy FUEL-QUALITY ASSUMPTION to the audited source mass: 38.256575270163715MJ per original m3, supplied by the complete native RER high-pressure gas-at-consumer process. This is a calibrated functional fuel-supply proxy, not a measured3.6NCV or exact gas-composition/volume/carbon-mass equivalence. It avoids assuming equal m3/Nm3 states and does not inherit the independently documented3.9Swiss36MJ/m3. The native RER model represents EU-28 trade2023 with production, transport, distribution, compression, network own fuel and leakage; source geography/origin mix, historical fuel quality, density/carbon content, trade vintage, internal uncertainty and2991upstreambiosphere exclusions differ. Caller volume, signed uncertainty and formulas remain unchanged at factor+1, as do separately listed stack emissions. No extra burner, network, dilution/state correction, avoided credit or numerical calorific uncertainty distribution is invented; proxy score effects remain unquantified. Only the exact3.6cut-off identity/profile is qualified; no other release, reverse or cross-system-model route inherits this property assumption."
+      },
+      "validation": [
+        {
+          "check": "Brightpath caller units/quantities/uncertainty, exact-profile refusals and atomic replay",
+          "passed_cases": 21
+        },
+        {
+          "check": "Premise cold/warm and non-admitted release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Actual migrated gas-helper LCIs on unchanged native matrices",
+          "finite_cases": 2,
+          "receipt": "native_deferred_delivered_gas_lci_report.json"
+        },
+        {
+          "check": "All three source gas quantities and uncertainty metadata unchanged before IAM",
+          "receipt": "deferred_delivered_gas_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-delivered-gas",
+          "activity_count": 12457,
+          "receipt": "deferred_delivered_gas_export_report.json"
+        },
+        {
+          "check": "Native MJ coefficients, restored callers, complete links and unchanged source signatures read back; normal later IAM quantity ratios retained separately",
+          "receipt": "deferred_delivered_gas_export_readback.json"
+        },
+        {
+          "check": "Resource generation byte identical",
+          "receipt": "deferred_delivered_gas_generator_replay.json"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "211f3c0aa6a0900f797e798f8f26f0a6422f8993"
+        },
+        {
+          "repository": "premise",
+          "commit": "7840e137aaf68e93c11e7c18390b3047ae83f3da"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-cdba548fe7d3b9829dab",
@@ -1110,7 +1198,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-ceb3843ec051ad01ed7d",
-      "status": "pending",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-ceb3843ec051ad01ed7d",
         "slug": "electricity-production-at-biomass-fired-igcc-power-plant",
@@ -1159,16 +1247,97 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-6cada1fa986bcf8b: 0.003 cubic meter of market for natural gas, high pressure in pinned electricity-production-at-biomass-fired-igcc-power-plant (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "cubic meter",
+        "helper_reference_amount": 1,
+        "helper_unit": "cubic meter",
+        "native_unit": "megajoule",
+        "native_energy_per_reference": 36.0,
+        "energy_basis_kind": "actual source reference NCV",
+        "caller_conversion_factor": 1
+      },
       "rejected_prior_candidate_reason": "At-production gas omits the high-pressure delivery boundary; native normal-volume units also need explicit basis checks.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
-      "commits": []
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_delivered_gas_review.json",
+          "sha256": "e2e7ac963e2d38fd1165dfc8ad08831edcc592fc248d37474aee61b69a5fb7aa",
+          "source_witness": {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for natural gas, high pressure",
+              "reference product": "natural gas, high pressure",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "c024324e9c936d5140d9af9ced8bc3126a17308e20ea7dfe2c78067f256af77c",
+            "inventory_sha256": "54808868576efcc740f474ea0c181f4898b5bd2698387bee7b36a1892a19b8ba"
+          },
+          "native_witness": {
+            "version": "2026",
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "d80565867eeced02b921b1e3d50c607b6d6b18d9c36dfd3c79374fc9a573f559",
+            "inventory_sha256": "893dcab12df103daad81a4aac13cf5a58147de97a00eacd8b57c504fd902daa9"
+          }
+        }
+      ],
+      "selected_disposition": {
+        "type": "complete_native_high_pressure_delivered_fuel_energy_proxy",
+        "recipe_id": "deferred-delivered-gas-dce31adcf468d41bd94d",
+        "limitations": "Autonomous user-approved source-energy-based delivered-fuel screening proxy, only for ecoinvent3.9cut-off Swiss high-pressure gas. Actual source output is positive1cubicmetre and explicitly declares36MJ net fuel energy perSm3 at15degC/1013mbar. Actual native CH high-pressure consumer supply is positive1MJ of fuel and includes upstream production/trade, transport, compression, network infrastructure, own fuel demand and leakage. A positive1-source-m3 product helper therefore purchases36MJ of that complete native supply. Caller signed volume, formulas and supported uncertainty retain factor+1; no equal-volume Sm3/Nm3 equivalence, ideal-gas state correction, invented calorific factor, extra pipeline/distribution burden or end-use combustion is introduced. This preserves the source declared net fuel energy rather than exact gas composition/volume/carbon mass: source/native density, carbon content, origins and trade mix differ, and separately listed caller stack emissions remain unchanged. Native trade2023 versus source2019statistics, allocation, technology, internal uncertainty and2991upstreambiosphere exclusions remain explicit, with unquantified score effects and no LCIA-equivalence claim. The3.6European market group lacks a verified net calorific property and must not inherit36. No other release, reverse or cross-system-model conversion is qualified."
+      },
+      "validation": [
+        {
+          "check": "Brightpath caller units/quantities/uncertainty, exact-profile refusals and atomic replay",
+          "passed_cases": 21
+        },
+        {
+          "check": "Premise cold/warm and non-admitted release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Actual migrated gas-helper LCIs on unchanged native matrices",
+          "finite_cases": 2,
+          "receipt": "native_deferred_delivered_gas_lci_report.json"
+        },
+        {
+          "check": "All three source gas quantities and uncertainty metadata unchanged before IAM",
+          "receipt": "deferred_delivered_gas_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-delivered-gas",
+          "activity_count": 12457,
+          "receipt": "deferred_delivered_gas_export_report.json"
+        },
+        {
+          "check": "Native MJ coefficients, restored callers, complete links and unchanged source signatures read back; normal later IAM quantity ratios retained separately",
+          "receipt": "deferred_delivered_gas_export_readback.json"
+        },
+        {
+          "check": "Resource generation byte identical",
+          "receipt": "deferred_delivered_gas_generator_replay.json"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "211f3c0aa6a0900f797e798f8f26f0a6422f8993"
+        },
+        {
+          "repository": "premise",
+          "commit": "7840e137aaf68e93c11e7c18390b3047ae83f3da"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-816a5046c84431ffe53b",
-      "status": "pending",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-816a5046c84431ffe53b",
         "slug": "electricity-production-at-biomass-fired-igcc-power-plant-post-pipeline-200km-storage-1000m",
@@ -1217,12 +1386,93 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-6cada1fa986bcf8b: 0.0034999999999999996 cubic meter of market for natural gas, high pressure in pinned electricity-production-at-biomass-fired-igcc-power-plant-post-pipeline-200km-storage-1000m (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "cubic meter",
+        "helper_reference_amount": 1,
+        "helper_unit": "cubic meter",
+        "native_unit": "megajoule",
+        "native_energy_per_reference": 36.0,
+        "energy_basis_kind": "actual source reference NCV",
+        "caller_conversion_factor": 1
+      },
       "rejected_prior_candidate_reason": "At-production gas omits the high-pressure delivery boundary; native normal-volume units also need explicit basis checks.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
-      "commits": []
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_delivered_gas_review.json",
+          "sha256": "e2e7ac963e2d38fd1165dfc8ad08831edcc592fc248d37474aee61b69a5fb7aa",
+          "source_witness": {
+            "version": "3.9",
+            "identity": {
+              "location": "CH",
+              "name": "market for natural gas, high pressure",
+              "reference product": "natural gas, high pressure",
+              "unit": "cubic meter"
+            },
+            "metadata_sha256": "c024324e9c936d5140d9af9ced8bc3126a17308e20ea7dfe2c78067f256af77c",
+            "inventory_sha256": "54808868576efcc740f474ea0c181f4898b5bd2698387bee7b36a1892a19b8ba"
+          },
+          "native_witness": {
+            "version": "2026",
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "metadata_sha256": "d80565867eeced02b921b1e3d50c607b6d6b18d9c36dfd3c79374fc9a573f559",
+            "inventory_sha256": "893dcab12df103daad81a4aac13cf5a58147de97a00eacd8b57c504fd902daa9"
+          }
+        }
+      ],
+      "selected_disposition": {
+        "type": "complete_native_high_pressure_delivered_fuel_energy_proxy",
+        "recipe_id": "deferred-delivered-gas-dce31adcf468d41bd94d",
+        "limitations": "Autonomous user-approved source-energy-based delivered-fuel screening proxy, only for ecoinvent3.9cut-off Swiss high-pressure gas. Actual source output is positive1cubicmetre and explicitly declares36MJ net fuel energy perSm3 at15degC/1013mbar. Actual native CH high-pressure consumer supply is positive1MJ of fuel and includes upstream production/trade, transport, compression, network infrastructure, own fuel demand and leakage. A positive1-source-m3 product helper therefore purchases36MJ of that complete native supply. Caller signed volume, formulas and supported uncertainty retain factor+1; no equal-volume Sm3/Nm3 equivalence, ideal-gas state correction, invented calorific factor, extra pipeline/distribution burden or end-use combustion is introduced. This preserves the source declared net fuel energy rather than exact gas composition/volume/carbon mass: source/native density, carbon content, origins and trade mix differ, and separately listed caller stack emissions remain unchanged. Native trade2023 versus source2019statistics, allocation, technology, internal uncertainty and2991upstreambiosphere exclusions remain explicit, with unquantified score effects and no LCIA-equivalence claim. The3.6European market group lacks a verified net calorific property and must not inherit36. No other release, reverse or cross-system-model conversion is qualified."
+      },
+      "validation": [
+        {
+          "check": "Brightpath caller units/quantities/uncertainty, exact-profile refusals and atomic replay",
+          "passed_cases": 21
+        },
+        {
+          "check": "Premise cold/warm and non-admitted release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Actual migrated gas-helper LCIs on unchanged native matrices",
+          "finite_cases": 2,
+          "receipt": "native_deferred_delivered_gas_lci_report.json"
+        },
+        {
+          "check": "All three source gas quantities and uncertainty metadata unchanged before IAM",
+          "receipt": "deferred_delivered_gas_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-delivered-gas",
+          "activity_count": 12457,
+          "receipt": "deferred_delivered_gas_export_report.json"
+        },
+        {
+          "check": "Native MJ coefficients, restored callers, complete links and unchanged source signatures read back; normal later IAM quantity ratios retained separately",
+          "receipt": "deferred_delivered_gas_export_readback.json"
+        },
+        {
+          "check": "Resource generation byte identical",
+          "receipt": "deferred_delivered_gas_generator_replay.json"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "211f3c0aa6a0900f797e798f8f26f0a6422f8993"
+        },
+        {
+          "repository": "premise",
+          "commit": "7840e137aaf68e93c11e7c18390b3047ae83f3da"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-a6d33406a770349e9394",
@@ -1548,8 +1798,8 @@
   ],
   "progress": {
     "starting_deferred_exchanges": 20,
-    "restored_in_this_goal": 3,
+    "restored_in_this_goal": 6,
     "final_unsupported_omissions": 0,
-    "pending_exchanges": 17
+    "pending_exchanges": 14
   }
 }

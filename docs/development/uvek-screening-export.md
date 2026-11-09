@@ -1,9 +1,8 @@
 # UVEK electricity screening export
 
-Latest checkpoint: two restoration batches bring back 22 inputs using eight
-reviewed native material proxies and one concrete-sorting sign correction across
-eleven exact source profiles. Twenty inputs remain deferred; screening limitations
-still apply.
+Latest checkpoint: 28 original CLIC inputs are restored and validated; 14 remain
+deferred. Source quantities, supported uncertainty and scientific limitations
+remain explicit in the active decision ledger.
 
 The first operational milestone uses UVEK 2026 cut-off with ecoinvent 3.10
 biosphere through the ordinary public Premise API. The user requested deferring
