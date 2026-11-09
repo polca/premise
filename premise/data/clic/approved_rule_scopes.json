@@ -99097,6 +99097,3370 @@
           "fingerprint": "5d293183ed39933dfe07914a0a6ae6cb3950bd337360a0d77f2101bcebb0930d"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4458360e03e22566",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_mixed_heat_market",
+      "review_path": "export/uvek_pilot_mixed_heat_market_review.json",
+      "review_sha256": "f48a6fc0038e40bfad7c71d620281d0da77d4588f20422d7e5f82b0396019986",
+      "authorization": "User explicitly auto-approved subsequent decisions in the current electricity pilot. Individually documented screening proxies and allocated-heat bases retain all 188 market terms and the exact 3.9 cut-off scope, with unquantified warnings; no broader producer/route approval.",
+      "inspection": {
+        "rule_id": "bp-4458360e03e22566",
+        "source": {
+          "location": "RoW",
+          "name": "market for heat, district or industrial, other than natural gas",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "unit": "megajoule"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+          "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+          "unit": "megajoule"
+        },
+        "previous_rule": {
+          "confidence": 0.392605,
+          "id": "bp-4458360e03e22566",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RoW",
+            "name": "market for heat, district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+            "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+            "unit": "megajoule"
+          }
+        },
+        "previous_rule_sha256": "27789eba43ac84a5171b975b09971da3124125c10f0b6b7c3237e82ec6ffe311",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "54c61253a96afad0a2f23ed089e36d3312b6530363eebf7375c59f90abe3cb2a",
+        "source_inventory_sha256": "80ebbf4a73763aff7427bf24482a51e818d5867e614bb361e038fc2a6d2c0345",
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_sign": 1,
+            "inventory_sha256": "80ebbf4a73763aff7427bf24482a51e818d5867e614bb361e038fc2a6d2c0345",
+            "source_metadata_sha256": "54c61253a96afad0a2f23ed089e36d3312b6530363eebf7375c59f90abe3cb2a",
+            "inputs": [
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.4077136217126253e-06,
+                "uncertainty type": 0,
+                "loc": 2.4077136217126253e-06,
+                "recipe": "pilot-mixed-heat-market-2451469d0155d831067e"
+              },
+              {
+                "amount": 0.0009334975387224854,
+                "uncertainty type": 0,
+                "loc": 0.0009334975387224854,
+                "recipe": "pilot-mixed-heat-market-caf7bc87f62cc3fa29bf"
+              },
+              {
+                "amount": 0.0005884065373986261,
+                "uncertainty type": 0,
+                "loc": 0.0005884065373986261,
+                "recipe": "pilot-mixed-heat-market-164c41b336023bed64ad"
+              },
+              {
+                "name": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "reference product": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 7.764454592082688e-07,
+                "uncertainty type": 0,
+                "loc": 7.764454592082688e-07,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 8.291675567976584e-05,
+                "uncertainty type": 0,
+                "loc": 8.291675567976584e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0003471398590037549,
+                "uncertainty type": 0,
+                "loc": 0.0003471398590037549,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, lignite, at cogen, allocation exergy",
+                "reference product": "Heat, lignite, at cogen, allocation exergy",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "amount": 0.0031335761334618717,
+                "uncertainty type": 0,
+                "loc": 0.0031335761334618717,
+                "type": "technosphere"
+              },
+              {
+                "amount": 3.9302660077894227e-07,
+                "uncertainty type": 0,
+                "loc": 3.9302660077894227e-07,
+                "recipe": "pilot-mixed-heat-market-7d81477af10507210622"
+              },
+              {
+                "amount": 1.3201662744113157e-06,
+                "uncertainty type": 0,
+                "loc": 1.3201662744113157e-06,
+                "recipe": "pilot-mixed-heat-market-62f1ed0c390f4c933cb9"
+              },
+              {
+                "amount": 1.6527272443011943e-06,
+                "uncertainty type": 0,
+                "loc": 1.6527272443011943e-06,
+                "recipe": "pilot-mixed-heat-market-07a51b478a3247bc3df5"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.0077605148177953e-08,
+                "uncertainty type": 0,
+                "loc": 1.0077605148177953e-08,
+                "recipe": "pilot-mixed-heat-market-fe9aab212cdd9bddd4d5"
+              },
+              {
+                "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+                "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.003779854912954588,
+                "uncertainty type": 0,
+                "loc": 0.003779854912954588,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00042148099691772346,
+                "uncertainty type": 0,
+                "loc": 0.00042148099691772346,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 1.6733477226787927e-05,
+                "uncertainty type": 0,
+                "loc": 1.6733477226787927e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 300kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.8113637332832735e-05,
+                "uncertainty type": 0,
+                "loc": 3.8113637332832735e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 6.167494350684941e-06,
+                "uncertainty type": 0,
+                "loc": 6.167494350684941e-06,
+                "recipe": "pilot-mixed-heat-market-3c7ff288aa9a60aad99d"
+              },
+              {
+                "amount": 4.5358343171460016e-07,
+                "uncertainty type": 0,
+                "loc": 4.5358343171460016e-07,
+                "recipe": "pilot-mixed-heat-market-e881e1b0f1eb87a828f0"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.672882454597546e-06,
+                "uncertainty type": 0,
+                "loc": 1.672882454597546e-06,
+                "recipe": "pilot-mixed-heat-market-019c8a680798fd86fc70"
+              },
+              {
+                "amount": 0.00623135858008517,
+                "uncertainty type": 0,
+                "loc": 0.00623135858008517,
+                "recipe": "pilot-mixed-heat-market-de1be784e8feeae68406"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 7.17149023626804e-06,
+                "uncertainty type": 0,
+                "loc": 7.17149023626804e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 3.829489956307638e-06,
+                "uncertainty type": 0,
+                "loc": 3.829489956307638e-06,
+                "recipe": "pilot-mixed-heat-market-56c500f8b6bc17cf366c"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 1.3588086776001945e-06,
+                "uncertainty type": 0,
+                "loc": 1.3588086776001945e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 8.415078301629274e-06,
+                "uncertainty type": 0,
+                "loc": 8.415078301629274e-06,
+                "recipe": "pilot-mixed-heat-market-1f12197d97ea4f712d5f"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 5.204543094561568e-06,
+                "uncertainty type": 0,
+                "loc": 5.204543094561568e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00022506162675830588,
+                "uncertainty type": 0,
+                "loc": 0.00022506162675830588,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 300kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0032019223392831383,
+                "uncertainty type": 0,
+                "loc": 0.0032019223392831383,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0011121269069516218,
+                "uncertainty type": 0,
+                "loc": 0.0011121269069516218,
+                "type": "technosphere"
+              },
+              {
+                "amount": 4.71631920934731e-06,
+                "uncertainty type": 0,
+                "loc": 4.71631920934731e-06,
+                "recipe": "pilot-mixed-heat-market-089f980820099866f2b5"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, hardwood chips from forest, at furnace 5000kW",
+                "reference product": "Heat, hardwood chips from forest, at furnace 5000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004304218520656762,
+                "uncertainty type": 0,
+                "loc": 0.004304218520656762,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0003053743712290963,
+                "uncertainty type": 0,
+                "loc": 0.0003053743712290963,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, softwood chips from forest, at furnace 5000kW",
+                "reference product": "Heat, softwood chips from forest, at furnace 5000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0004039343534710188,
+                "uncertainty type": 0,
+                "loc": 0.0004039343534710188,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.002640252736048123,
+                "uncertainty type": 0,
+                "loc": 0.002640252736048123,
+                "recipe": "pilot-mixed-heat-market-8e0412cbe7a083f98061"
+              },
+              {
+                "amount": 5.331053123386165e-06,
+                "uncertainty type": 0,
+                "loc": 5.331053123386165e-06,
+                "recipe": "pilot-mixed-heat-market-da294a9954619b62c726"
+              },
+              {
+                "amount": 2.2674611583400492e-06,
+                "uncertainty type": 0,
+                "loc": 2.2674611583400492e-06,
+                "recipe": "pilot-mixed-heat-market-1c31b76e91146a1bb0d7"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 2.288519878063485e-05,
+                "uncertainty type": 0,
+                "loc": 2.288519878063485e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.8269533504749846e-05,
+                "uncertainty type": 0,
+                "loc": 1.8269533504749846e-05,
+                "recipe": "pilot-mixed-heat-market-33a68c5e6f487491933c"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "reference product": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 7.764454592082688e-07,
+                "uncertainty type": 0,
+                "loc": 7.764454592082688e-07,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, hardwood chips from forest, at furnace 300kW",
+                "reference product": "Heat, hardwood chips from forest, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004105562281241528,
+                "uncertainty type": 0,
+                "loc": 0.004105562281241528,
+                "type": "technosphere"
+              },
+              {
+                "amount": 3.1372570678955686e-06,
+                "uncertainty type": 0,
+                "loc": 3.1372570678955686e-06,
+                "recipe": "pilot-mixed-heat-market-7261bef8789dfb9a972e"
+              },
+              {
+                "amount": 6.385647982129441e-05,
+                "uncertainty type": 0,
+                "loc": 6.385647982129441e-05,
+                "recipe": "pilot-mixed-heat-market-f2213a222ebddf64adda"
+              },
+              {
+                "amount": 8.211124562496302e-06,
+                "uncertainty type": 0,
+                "loc": 8.211124562496302e-06,
+                "recipe": "pilot-mixed-heat-market-69828297fcbc0d760ea6"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 1000kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 1000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004304218520656762,
+                "uncertainty type": 0,
+                "loc": 0.004304218520656762,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.2182310785267764e-06,
+                "uncertainty type": 0,
+                "loc": 3.2182310785267764e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 6.560520951463881e-06,
+                "uncertainty type": 0,
+                "loc": 6.560520951463881e-06,
+                "recipe": "pilot-mixed-heat-market-18827989976986d2beca"
+              },
+              {
+                "amount": 1.259700643522254e-06,
+                "uncertainty type": 0,
+                "loc": 1.259700643522254e-06,
+                "recipe": "pilot-mixed-heat-market-2d3c7a330003e3dcf75b"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 5000kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 5000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004304218520656762,
+                "uncertainty type": 0,
+                "loc": 0.004304218520656762,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, hardwood chips from forest, at furnace 1000kW",
+                "reference product": "Heat, hardwood chips from forest, at furnace 1000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004304218520656762,
+                "uncertainty type": 0,
+                "loc": 0.004304218520656762,
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.6008074864242317e-05,
+                "uncertainty type": 0,
+                "loc": 2.6008074864242317e-05,
+                "recipe": "pilot-mixed-heat-market-ea331288646f68efb078"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "amount": 4.917871312310866e-06,
+                "uncertainty type": 0,
+                "loc": 4.917871312310866e-06,
+                "recipe": "pilot-mixed-heat-market-aa8870dcac19bfebe23d"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 300kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.8113637332832735e-05,
+                "uncertainty type": 0,
+                "loc": 3.8113637332832735e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.2396149339510545e-06,
+                "uncertainty type": 0,
+                "loc": 1.2396149339510545e-06,
+                "recipe": "pilot-mixed-heat-market-cd08e88c47b582a814f5"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0003502971688355277,
+                "uncertainty type": 0,
+                "loc": 0.0003502971688355277,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00011127927907083697,
+                "uncertainty type": 0,
+                "loc": 0.00011127927907083697,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00623135858008517,
+                "uncertainty type": 0,
+                "loc": 0.00623135858008517,
+                "recipe": "pilot-mixed-heat-market-2e1c619dfbe58a72c954"
+              },
+              {
+                "amount": 2.0558314502283137e-06,
+                "uncertainty type": 0,
+                "loc": 2.0558314502283137e-06,
+                "recipe": "pilot-mixed-heat-market-dfe71f481d0a8b9c695b"
+              },
+              {
+                "amount": 2.9124278878234417e-06,
+                "uncertainty type": 0,
+                "loc": 2.9124278878234417e-06,
+                "recipe": "pilot-mixed-heat-market-5b46336023148eeaf160"
+              },
+              {
+                "amount": 7.77069289991677e-06,
+                "uncertainty type": 0,
+                "loc": 7.77069289991677e-06,
+                "recipe": "pilot-mixed-heat-market-e3f2e06b40970115400e"
+              },
+              {
+                "name": "Heat, softwood chips from forest, at furnace 300kW",
+                "reference product": "Heat, softwood chips from forest, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00039069060417666986,
+                "uncertainty type": 0,
+                "loc": 0.00039069060417666986,
+                "type": "technosphere"
+              },
+              {
+                "amount": 4.098973515974212e-05,
+                "uncertainty type": 0,
+                "loc": 4.098973515974212e-05,
+                "recipe": "pilot-mixed-heat-market-9f8d3e26e91182137fd2"
+              },
+              {
+                "amount": 0.00146759960848174,
+                "uncertainty type": 0,
+                "loc": 0.00146759960848174,
+                "recipe": "pilot-mixed-heat-market-d983540624ed979c072a"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 2.3600361242529694e-06,
+                "uncertainty type": 0,
+                "loc": 2.3600361242529694e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, softwood chips from forest, at furnace 1000kW",
+                "reference product": "Heat, softwood chips from forest, at furnace 1000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0004039343534710188,
+                "uncertainty type": 0,
+                "loc": 0.0004039343534710188,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00623135858008517,
+                "uncertainty type": 0,
+                "loc": 0.00623135858008517,
+                "recipe": "pilot-mixed-heat-market-b33da364fad937feef6f"
+              },
+              {
+                "name": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "reference product": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 1.1734508829702004e-06,
+                "uncertainty type": 0,
+                "loc": 1.1734508829702004e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 8.535731560506802e-06,
+                "uncertainty type": 0,
+                "loc": 8.535731560506802e-06,
+                "recipe": "pilot-mixed-heat-market-744f29b75e2bfca35508"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0021627228010161832,
+                "uncertainty type": 0,
+                "loc": 0.0021627228010161832,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0001397215550553806,
+                "uncertainty type": 0,
+                "loc": 0.0001397215550553806,
+                "type": "technosphere"
+              },
+              {
+                "amount": 6.238600542595981e-05,
+                "uncertainty type": 0,
+                "loc": 6.238600542595981e-05,
+                "recipe": "pilot-mixed-heat-market-03e03d0515beeac53ccb"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 8.160003690220115e-05,
+                "uncertainty type": 0,
+                "loc": 8.160003690220115e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.4938655905122316e-13,
+                "uncertainty type": 0,
+                "loc": 4.4938655905122316e-13,
+                "type": "technosphere"
+              },
+              {
+                "amount": 5.310897913089813e-06,
+                "uncertainty type": 0,
+                "loc": 5.310897913089813e-06,
+                "recipe": "pilot-mixed-heat-market-be47f19f22d597bde95f"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 7.030047000426268e-05,
+                "uncertainty type": 0,
+                "loc": 7.030047000426268e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.7710892156578812e-05,
+                "uncertainty type": 0,
+                "loc": 1.7710892156578812e-05,
+                "recipe": "pilot-mixed-heat-market-1dafd1c92401180ca5f4"
+              },
+              {
+                "amount": 4.462613762223796e-05,
+                "uncertainty type": 0,
+                "loc": 4.462613762223796e-05,
+                "recipe": "pilot-mixed-heat-market-60725dbaf80ed0a0740a"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.1566075017100917e-06,
+                "uncertainty type": 0,
+                "loc": 2.1566075017100917e-06,
+                "recipe": "pilot-mixed-heat-market-203228d30b698d4b28b8"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00013465915646961005,
+                "uncertainty type": 0,
+                "loc": 0.00013465915646961005,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 5.649783448969229e-05,
+                "uncertainty type": 0,
+                "loc": 5.649783448969229e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 4.3713769111475624e-05,
+                "uncertainty type": 0,
+                "loc": 4.3713769111475624e-05,
+                "recipe": "pilot-mixed-heat-market-e6705bf77344321236b0"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 2.3671877488719176e-05,
+                "uncertainty type": 0,
+                "loc": 2.3671877488719176e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, softwood chips from forest, at furnace 300kW",
+                "reference product": "Heat, softwood chips from forest, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00039069060417666986,
+                "uncertainty type": 0,
+                "loc": 0.00039069060417666986,
+                "type": "technosphere"
+              },
+              {
+                "amount": 6.147339140388576e-07,
+                "uncertainty type": 0,
+                "loc": 6.147339140388576e-07,
+                "recipe": "pilot-mixed-heat-market-dec1f4d71a97c1b2d41b"
+              },
+              {
+                "amount": 2.6201773385262797e-07,
+                "uncertainty type": 0,
+                "loc": 2.6201773385262797e-07,
+                "recipe": "pilot-mixed-heat-market-ed34d989e9b159be04fd"
+              },
+              {
+                "name": "Heat, propane/butane, at boiler condensing modulating 50kW",
+                "reference product": "Heat, propane/butane, at boiler condensing modulating 50kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.005589237639712424,
+                "uncertainty type": 0,
+                "loc": 0.005589237639712424,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00623135858008517,
+                "uncertainty type": 0,
+                "loc": 0.00623135858008517,
+                "recipe": "pilot-mixed-heat-market-071c167c694d8ddfef4e"
+              },
+              {
+                "name": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "reference product": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 7.764454592082688e-07,
+                "uncertainty type": 0,
+                "loc": 7.764454592082688e-07,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.650365485700066e-07,
+                "uncertainty type": 0,
+                "loc": 4.650365485700066e-07,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 1000kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 1000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004304218520656762,
+                "uncertainty type": 0,
+                "loc": 0.004304218520656762,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 7.255875706688189e-07,
+                "uncertainty type": 0,
+                "loc": 7.255875706688189e-07,
+                "recipe": "pilot-mixed-heat-market-bfac16916b5ec30b154b"
+              },
+              {
+                "amount": 0.00013959279133282329,
+                "uncertainty type": 0,
+                "loc": 0.00013959279133282329,
+                "recipe": "pilot-mixed-heat-market-93c9c4fbe174e8989dd6"
+              },
+              {
+                "name": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "reference product": "Heat, at cogen 300kWth, diesel, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 7.764454592082688e-07,
+                "uncertainty type": 0,
+                "loc": 7.764454592082688e-07,
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.49160628862198e-05,
+                "uncertainty type": 0,
+                "loc": 2.49160628862198e-05,
+                "recipe": "pilot-mixed-heat-market-e40c57a8dfb289eb98f0"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.400787115596742e-06,
+                "uncertainty type": 0,
+                "loc": 1.400787115596742e-06,
+                "recipe": "pilot-mixed-heat-market-a5e60af685436ea821b3"
+              },
+              {
+                "amount": 8.970748182736482e-06,
+                "uncertainty type": 0,
+                "loc": 8.970748182736482e-06,
+                "recipe": "pilot-mixed-heat-market-046fb3c1de1f11b16e15"
+              },
+              {
+                "amount": 0.00623135858008517,
+                "uncertainty type": 0,
+                "loc": 0.00623135858008517,
+                "recipe": "pilot-mixed-heat-market-3dd42db23b3363efce69"
+              },
+              {
+                "amount": 2.0961418708210305e-06,
+                "uncertainty type": 0,
+                "loc": 2.0961418708210305e-06,
+                "recipe": "pilot-mixed-heat-market-c5800b97a1dbbcf36e43"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.2226658564559395e-13,
+                "uncertainty type": 0,
+                "loc": 3.2226658564559395e-13,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.147942278990067e-05,
+                "uncertainty type": 0,
+                "loc": 4.147942278990067e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 5000kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 5000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004304218520656762,
+                "uncertainty type": 0,
+                "loc": 0.004304218520656762,
+                "type": "technosphere"
+              },
+              {
+                "amount": 6.697198471286045e-05,
+                "uncertainty type": 0,
+                "loc": 6.697198471286045e-05,
+                "recipe": "pilot-mixed-heat-market-2efa53299feb6325f60e"
+              },
+              {
+                "amount": 2.0051960414153162e-05,
+                "uncertainty type": 0,
+                "loc": 2.0051960414153162e-05,
+                "recipe": "pilot-mixed-heat-market-cc11f34ea0f60f6520d9"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, hardwood chips from forest, at furnace 5000kW",
+                "reference product": "Heat, hardwood chips from forest, at furnace 5000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004304218520656762,
+                "uncertainty type": 0,
+                "loc": 0.004304218520656762,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00019309386471160657,
+                "uncertainty type": 0,
+                "loc": 0.00019309386471160657,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+                "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.08037428634386137,
+                "uncertainty type": 0,
+                "loc": 0.08037428634386137,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00010528780689007354,
+                "uncertainty type": 0,
+                "loc": 0.00010528780689007354,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00010134945687647851,
+                "uncertainty type": 0,
+                "loc": 0.00010134945687647851,
+                "recipe": "pilot-mixed-heat-market-4e05b49f2843ac244522"
+              },
+              {
+                "name": "Heat, at hard coal industrial furnace 1-10MW",
+                "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+                "location": "RER",
+                "unit": "megajoule",
+                "amount": 0.7031927263941006,
+                "uncertainty type": 0,
+                "loc": 0.7031927263941006,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 5.28753463273832e-05,
+                "uncertainty type": 0,
+                "loc": 5.28753463273832e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, hard coal, at cogen, allocation exergy",
+                "reference product": "Heat, hard coal, at cogen, allocation exergy",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "amount": 6.622613967228326e-05,
+                "uncertainty type": 0,
+                "loc": 6.622613967228326e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.9004865155442048e-05,
+                "uncertainty type": 0,
+                "loc": 1.9004865155442048e-05,
+                "recipe": "pilot-mixed-heat-market-1a96ff2fa1250d809b4c"
+              },
+              {
+                "amount": 1.0379933302623392e-06,
+                "uncertainty type": 0,
+                "loc": 1.0379933302623392e-06,
+                "recipe": "pilot-mixed-heat-market-74b57686541c64768883"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 2.8463465983414597e-05,
+                "uncertainty type": 0,
+                "loc": 2.8463465983414597e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 9.011047019874973e-06,
+                "uncertainty type": 0,
+                "loc": 9.011047019874973e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.773093414490723e-14,
+                "uncertainty type": 0,
+                "loc": 1.773093414490723e-14,
+                "recipe": "pilot-mixed-heat-market-ac2e6357e4f21dd023a1"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, mixed chips from industry, at furnace 300kW",
+                "reference product": "Heat, mixed chips from industry, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0934772580812784,
+                "uncertainty type": 0,
+                "loc": 0.0934772580812784,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0021464886131245483,
+                "uncertainty type": 0,
+                "loc": 0.0021464886131245483,
+                "type": "technosphere"
+              },
+              {
+                "amount": 4.637521535571502e-05,
+                "uncertainty type": 0,
+                "loc": 4.637521535571502e-05,
+                "recipe": "pilot-mixed-heat-market-6300c51203bbaefc94c5"
+              },
+              {
+                "amount": 1.441097536189452e-06,
+                "uncertainty type": 0,
+                "loc": 1.441097536189452e-06,
+                "recipe": "pilot-mixed-heat-market-2d8188619ba75394d4b3"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 1.5712119287829617e-07,
+                "uncertainty type": 0,
+                "loc": 1.5712119287829617e-07,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.7638954119451404e-06,
+                "uncertainty type": 0,
+                "loc": 2.7638954119451404e-06,
+                "recipe": "pilot-mixed-heat-market-dceb3b69bd53e14c4260"
+              },
+              {
+                "amount": 0.00032249191719204226,
+                "uncertainty type": 0,
+                "loc": 0.00032249191719204226,
+                "recipe": "pilot-mixed-heat-market-5279683d97ca2c245b34"
+              },
+              {
+                "name": "Heat, lignite, at cogen, allocation exergy",
+                "reference product": "Heat, lignite, at cogen, allocation exergy",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "amount": 0.0007530073750788675,
+                "uncertainty type": 0,
+                "loc": 0.0007530073750788675,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, hardwood chips from forest, at furnace 1000kW",
+                "reference product": "Heat, hardwood chips from forest, at furnace 1000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004273801677035399,
+                "uncertainty type": 0,
+                "loc": 0.004273801677035399,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00012286707811250832,
+                "uncertainty type": 0,
+                "loc": 0.00012286707811250832,
+                "recipe": "pilot-mixed-heat-market-ef60fb5d16b5688bfbff"
+              },
+              {
+                "amount": 7.809931371905981e-07,
+                "uncertainty type": 0,
+                "loc": 7.809931371905981e-07,
+                "recipe": "pilot-mixed-heat-market-dc1bda3668c9e310d081"
+              },
+              {
+                "name": "Heat, softwood chips from forest, at furnace 5000kW",
+                "reference product": "Heat, softwood chips from forest, at furnace 5000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0004039343534710188,
+                "uncertainty type": 0,
+                "loc": 0.0004039343534710188,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.4938655905122316e-13,
+                "uncertainty type": 0,
+                "loc": 4.4938655905122316e-13,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.658909710564383e-06,
+                "uncertainty type": 0,
+                "loc": 1.658909710564383e-06,
+                "recipe": "pilot-mixed-heat-market-bf4ac468f40b7df9decf"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 5.826311228796281e-05,
+                "uncertainty type": 0,
+                "loc": 5.826311228796281e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.4186252355627164e-06,
+                "uncertainty type": 0,
+                "loc": 2.4186252355627164e-06,
+                "recipe": "pilot-mixed-heat-market-8c0552d857bd3dcd1f4f"
+              },
+              {
+                "name": "Heat, hard coal, at cogen, allocation exergy",
+                "reference product": "Heat, hard coal, at cogen, allocation exergy",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "amount": 0.0003697985896714564,
+                "uncertainty type": 0,
+                "loc": 0.0003697985896714564,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 8.409780801911535e-06,
+                "uncertainty type": 0,
+                "loc": 8.409780801911535e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, hard coal, at cogen, allocation exergy",
+                "reference product": "Heat, hard coal, at cogen, allocation exergy",
+                "location": "RU",
+                "unit": "megajoule",
+                "amount": 0.0031705381608022297,
+                "uncertainty type": 0,
+                "loc": 0.0031705381608022297,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, softwood chips from forest, at furnace 1000kW",
+                "reference product": "Heat, softwood chips from forest, at furnace 1000kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0004039343534710188,
+                "uncertainty type": 0,
+                "loc": 0.0004039343534710188,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.259700643522254e-06,
+                "uncertainty type": 0,
+                "loc": 1.259700643522254e-06,
+                "recipe": "pilot-mixed-heat-market-643a279e14c0b2ca35ec"
+              },
+              {
+                "name": "Heat, hardwood chips from forest, at furnace 300kW",
+                "reference product": "Heat, hardwood chips from forest, at furnace 300kW",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.004105562281241528,
+                "uncertainty type": 0,
+                "loc": 0.004105562281241528,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.001152269908952364,
+                "uncertainty type": 0,
+                "loc": 0.001152269908952364,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.7214935517120335e-06,
+                "uncertainty type": 0,
+                "loc": 3.7214935517120335e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.2798558538186057e-06,
+                "uncertainty type": 0,
+                "loc": 1.2798558538186057e-06,
+                "recipe": "pilot-mixed-heat-market-a102cea4f1a690c2a202"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.0345580457668007e-13,
+                "uncertainty type": 0,
+                "loc": 3.0345580457668007e-13,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0024277670734043915,
+                "uncertainty type": 0,
+                "loc": 0.0024277670734043915,
+                "recipe": "pilot-mixed-heat-market-8d56983b47bd625e66c6"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 2.0954260133518787e-05,
+                "uncertainty type": 0,
+                "loc": 2.0954260133518787e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00023499768946753133,
+                "uncertainty type": 0,
+                "loc": 0.00023499768946753133,
+                "recipe": "pilot-mixed-heat-market-3a596e17bdf29e122358"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 6.889398382920283e-06,
+                "uncertainty type": 0,
+                "loc": 6.889398382920283e-06,
+                "recipe": "pilot-mixed-heat-market-cad9c55c9ed31aee312b"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.00014724515885926597,
+                "uncertainty type": 0,
+                "loc": 0.00014724515885926597,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.15039717229561e-05,
+                "uncertainty type": 0,
+                "loc": 6.15039717229561e-05,
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.4891684715999703e-06,
+                "uncertainty type": 0,
+                "loc": 2.4891684715999703e-06,
+                "recipe": "pilot-mixed-heat-market-18c4aa779360bd52ebbe"
+              },
+              {
+                "name": "Heat, hard coal, at cogen, allocation exergy",
+                "reference product": "Heat, hard coal, at cogen, allocation exergy",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "amount": 9.412847215734609e-07,
+                "uncertainty type": 0,
+                "loc": 9.412847215734609e-07,
+                "type": "technosphere"
+              },
+              {
+                "amount": 7.628399593544951e-06,
+                "uncertainty type": 0,
+                "loc": 7.628399593544951e-06,
+                "recipe": "pilot-mixed-heat-market-4ffc734109d9865ad37e"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.720072248505939e-06,
+                "uncertainty type": 0,
+                "loc": 4.720072248505939e-06,
+                "type": "technosphere"
+              },
+              {
+                "amount": 7.0140131831319035e-06,
+                "uncertainty type": 0,
+                "loc": 7.0140131831319035e-06,
+                "recipe": "pilot-mixed-heat-market-67fb3d7e4d8376c5d6c3"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.0345580457668007e-13,
+                "uncertainty type": 0,
+                "loc": 3.0345580457668007e-13,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 1.0298339451285684e-05,
+                "uncertainty type": 0,
+                "loc": 1.0298339451285684e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 6.621874647174436e-15,
+                "uncertainty type": 0,
+                "loc": 6.621874647174436e-15,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.005377558661528419,
+                "uncertainty type": 0,
+                "loc": 0.005377558661528419,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.3105391582350025e-05,
+                "uncertainty type": 0,
+                "loc": 1.3105391582350025e-05,
+                "recipe": "pilot-mixed-heat-market-e8f8c20f0ce865611d1f"
+              },
+              {
+                "amount": 4.0466779604419536e-05,
+                "uncertainty type": 0,
+                "loc": 4.0466779604419536e-05,
+                "recipe": "pilot-mixed-heat-market-00b1e6edef46eea6b1fc"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0002568148400664367,
+                "uncertainty type": 0,
+                "loc": 0.0002568148400664367,
+                "type": "technosphere"
+              },
+              {
+                "amount": 1.8643569524129366e-06,
+                "uncertainty type": 0,
+                "loc": 1.8643569524129366e-06,
+                "recipe": "pilot-mixed-heat-market-d03d0b99ec39062daa0c"
+              },
+              {
+                "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 4.055348203033955e-05,
+                "uncertainty type": 0,
+                "loc": 4.055348203033955e-05,
+                "type": "technosphere"
+              },
+              {
+                "name": "Heat from waste, at municipal waste incineration plant",
+                "reference product": "Heat from waste, at municipal waste incineration plant",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 0.0014760769390269274,
+                "uncertainty type": 0,
+                "loc": 0.0014760769390269274,
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-MP",
+                  "megajoule"
+                ],
+                "binding_sha256": "2a4b80ff5373a37741fa3054e6784514f47de2e0b6420dca5dbc28decd2b980a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-MRO",
+                  "megajoule"
+                ],
+                "binding_sha256": "5cdf23325e49aa8bee5ab7b5b6f65f35c90d0f42b73497124d60ebdbde52ce26"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-Southern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "2bd19cb35b99aa0f257a0a7e744a21ba4002172c2abd46d85835e150b2f80dec"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "0421ddf82ccb525c178c89ea86dc7d17311d2e12187e80de169c4eb6a6529c66"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-North-eastern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "d7269672e93d909155cebecf6642e522232c9cd98b1d4805df462dde97643eb1"
+              },
+              {
+                "source": [
+                  "treatment of waste paint, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "10a1707ccbf650796ddb36f98297b4738f810b6ba46a1a031f90f69b468cd335"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "CL",
+                  "megajoule"
+                ],
+                "binding_sha256": "63434725483955dfadc60710dcfe5ef74fb102291d8e5542e62ab12f206b78f6"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, lignite",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "eb710868473c536fe2f969603363ed623545130f74b3c64f969fb16d784fd93a"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-HA",
+                  "megajoule"
+                ],
+                "binding_sha256": "0025077b0fbb015b68fc80f93cd3bdff04dfa87c769adf707420ae631dea5a1c"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-JX",
+                  "megajoule"
+                ],
+                "binding_sha256": "ee2f3b5fd1c057005b42e45aa4e62e68a71d1a436ed6f986a1d97f7be2ab2423"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-HN",
+                  "megajoule"
+                ],
+                "binding_sha256": "5258b2b6f0795999042983929d6cd8aadfa411b7105a48613af7f252c7238639"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-KA",
+                  "megajoule"
+                ],
+                "binding_sha256": "418a7364c6df8dec8bea6a0bffea0bbce5dd5875c1dbeca38f4915e1d97e7955"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-Northern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "cb1e7c91c7df5ef4220c41d20bb3203705a918252be3472db96ffed181a6e638"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-XZ",
+                  "megajoule"
+                ],
+                "binding_sha256": "f3ca72991d398c1d93d78ff57c3917a0a4baef30d459a3d47432f93a46571f71"
+              },
+              {
+                "source": [
+                  "treatment of coal tar, in industrial furnace 1MW",
+                  "heat, district or industrial, other than natural gas",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "17b99367aabc3891275551044fc22128540a9105d79734654353f3d3cba9a31c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CA-BC",
+                  "megajoule"
+                ],
+                "binding_sha256": "f57d9cdd3961b269a17d8da9f1f6c703df113e95a481c83e89366b5209ed46bd"
+              },
+              {
+                "source": [
+                  "heat production, untreated waste wood, at furnace 1000-5000 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "0ef88a7c8415a2f5ed66d8e12c53fa63e7e0e2d7bdb63c15f26ff2569d37c35e"
+              },
+              {
+                "source": [
+                  "heat production, straw, organic, at furnace 300kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "fc91e3c77e6252f21670d2db976231ab1dd3f2e244e5c31b53c77505dc58713b"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-GD",
+                  "megajoule"
+                ],
+                "binding_sha256": "1b6d7eb469f136f4593708cdb9f03854b329de27ef9df202f64af64a2c6f4730"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "MX",
+                  "megajoule"
+                ],
+                "binding_sha256": "9ad73f7045239c42579c5e953d75f2c59fbd11c82db9d5dae24209c13e99367c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-GJ",
+                  "megajoule"
+                ],
+                "binding_sha256": "e370d935c2f66d67bcfac5117e95c217a2770f623baf8a1508ee07560c1520c5"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-HL",
+                  "megajoule"
+                ],
+                "binding_sha256": "c7dc6b87091c5fd79e764858a9839ecfac8daf12a9fca2083f525f8144b19b13"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-Eastern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "6d26ec224de7a9412c2357c00a8399e12269ca4485588d448fcf81190d67140a"
+              },
+              {
+                "source": [
+                  "heat production, untreated waste wood, at furnace 1000-5000 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "80cb25d06e59b9b9f5ddec6ec16c5ab17d4bd5068cb0544d075fc8c6485020c0"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-AH",
+                  "megajoule"
+                ],
+                "binding_sha256": "8ea1ce9b3698a4a7aab2cafb799bdce1296e7556f2d7a641fb1b9cff48e1ab26"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "TZ",
+                  "megajoule"
+                ],
+                "binding_sha256": "5c59f07ec97a156029f557f74cf6e97cc7911891882175624966009f92b04881"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-SH",
+                  "megajoule"
+                ],
+                "binding_sha256": "641e05acf668f6beca60d00e49acb46ef43b36f3ca97024fa14f62cd47e96768"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-AP",
+                  "megajoule"
+                ],
+                "binding_sha256": "6928e7ec3f4e0950ca87aba8241b474608b429cde13d51dc0bcc4b9cec10b441"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-ASCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "838eeaf7aed8d528a37ee04c734577d9ab18b29ee3381886b25482abf4ed2000"
+              },
+              {
+                "source": [
+                  "sulfate pulp production, from softwood, unbleached",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "7ea9085dbd3ac2b95cd9f1038629d3acf9bec2ff917f0a14e8eac55081d5a973"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-NPCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "67b67a70fc9da54e1f6c8b168bbf68fedf670222837a9a4fdc4dab2aaa32dac4"
+              },
+              {
+                "source": [
+                  "heat production, wood chips from industry, at furnace 300kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "ac5c3d6f557d923dc0494b8d8b09092827186bc9b04bb949453255e6edf598db"
+              },
+              {
+                "source": [
+                  "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "cad569e1796b660a395aa4864eeb106231e888f1a1f1e1ae48f1b3f92176c3f7"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-HB",
+                  "megajoule"
+                ],
+                "binding_sha256": "a8b1c75aac4e0bccd28102d10caf02ea1af15832c3e0ea9263816d55bc987090"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-ASCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "1c3b3177b96b26ff989917b67dc6a15eac17ecca5115c90bf5eb25f05e67999a"
+              },
+              {
+                "source": [
+                  "heat production, hardwood chips from forest, at furnace 5000kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "09faa9ab747f059fc115dafc4708f2ae4c600a11c1c350b916c6e8a5e620b95d"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-GD",
+                  "megajoule"
+                ],
+                "binding_sha256": "ffcf61346efe4ddf2ef6547d6a2492893ad73bf16ce481d4339d12c753fd1189"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "TH",
+                  "megajoule"
+                ],
+                "binding_sha256": "0b408408cc7ee9862aca03fc8e6d23d88aa2a96bdf4c5776e06431f1fd9e05ea"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CY",
+                  "megajoule"
+                ],
+                "binding_sha256": "551020df0c8858cfb6d471cc619242e74284d448d6bcaaf67e4317675ad3f2b5"
+              },
+              {
+                "source": [
+                  "heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "b7bd9b824621a45765f2568fe981b9ef3b2fd3249fb6e155f6a9bc7a7638c2a7"
+              },
+              {
+                "source": [
+                  "heat production, at coal coke industrial furnace 1-10MW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "3ee08d43cc85df250d39f2fb60fcb95667c75c5c5bb8198c6755d407d969dc2f"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-HE",
+                  "megajoule"
+                ],
+                "binding_sha256": "76331ce9ed0b2dd8879314631715425bba58bb485aedefa16386c0d14b505154"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-GZ",
+                  "megajoule"
+                ],
+                "binding_sha256": "989dec407612cc52aca4a3c564dcc624a8906cd83837a9a49fd73733fc700128"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "TW",
+                  "megajoule"
+                ],
+                "binding_sha256": "7b72675526617da1e99d9d44c883c8764695dd50178ebdb8429ef47ca8504a99"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "6eec12d4ac7311f64d3e7cc7bf887b03568e67656770bcc19b345ba1588116eb"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-UT",
+                  "megajoule"
+                ],
+                "binding_sha256": "927be7f0b952c166ea74069bbfaae0775e3de530e9370a34ec01f3fc636bf397"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-Northern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "36de0976dafa767a4d91a15673f0c8b8a43c1fbd6d1d56d0883bbd203036376b"
+              },
+              {
+                "source": [
+                  "heat production, hardwood chips from forest, at furnace 300kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "99df9619b2525b6daa5f178c54b904e9f35f6f4d170baa66dffb4b8987af7e22"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "MX",
+                  "megajoule"
+                ],
+                "binding_sha256": "c3d72bea337bb7d851d83548779c88855dcf09378fa74255bcad393391f8a497"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "JP",
+                  "megajoule"
+                ],
+                "binding_sha256": "9d4317339c64adbb7f43f371bea98685936a8ba29dd733df2c67cbeb1a799834"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "e1f0899efc7a112c57c1c847f517c06c1165bfb8a7818e0da88049e5e68d1b6b"
+              },
+              {
+                "source": [
+                  "heat production, wood chips from industry, at furnace 1000kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "bf0fb006150f9ace0b81bdb73d2cc166d68336680f51fc4a8c022500c0117d00"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "536c66923dc51dc08226b9b0b101b3b051d10990c9d66776b74e9945a691004b"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-NM",
+                  "megajoule"
+                ],
+                "binding_sha256": "caf8e7ccb86fe822ec267b68e39ba9b4813207eed043a25e69b4fb851fd38dc4"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-TJ",
+                  "megajoule"
+                ],
+                "binding_sha256": "e9ae0c9d78335ec0f2c456413326e1c022bbc876ebfc08cceb28be61e332e3d8"
+              },
+              {
+                "source": [
+                  "heat production, wood chips from industry, at furnace 5000kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "d3830aba84cc077ae314f30c5e70fdb3d739b511bdb54e13be2bbbbe03df24ac"
+              },
+              {
+                "source": [
+                  "heat production, hardwood chips from forest, at furnace 1000kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "33ddf088a3564f94a133964e795f09e6bca57688d86304b9bf33f81d246717a9"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-RFC",
+                  "megajoule"
+                ],
+                "binding_sha256": "10d034be51746a32cddb70d340ecbf8a3042a881f408d49cdc103afa08b9d933"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-SERC",
+                  "megajoule"
+                ],
+                "binding_sha256": "12c1cce1baa7df09fa94ec62bad35286f83744d4838b087454a0659ec60e6cfc"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-ZJ",
+                  "megajoule"
+                ],
+                "binding_sha256": "6de4f96476994903a080f3093912447892bbc1a41e1d7bd1b5a37f7b5cc40a7b"
+              },
+              {
+                "source": [
+                  "heat production, straw, at furnace 300kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "4145115fbce4c9ae682694fc84f53d6d2c7b4e9df8521ebf0ce56f2d6babd762"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-TRE",
+                  "megajoule"
+                ],
+                "binding_sha256": "294cfa0ce9a7d3817b8c5ab6ce4730d67a65d06d3e7c31b427e7ace4751450ae"
+              },
+              {
+                "source": [
+                  "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "JP",
+                  "megajoule"
+                ],
+                "binding_sha256": "2f653d80fdee52f9dae18bfb2d23c3fc58bdc4e01573d974e1fd3c21786b8e66"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CA-AB",
+                  "megajoule"
+                ],
+                "binding_sha256": "7927efce1ba2fe58b2a6e76948962b450be25c89152916761ce2b8102551da8e"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-HICC",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b9aef07819d25c13d822a5a2bc3c6486011b1109891934142429c94c50a5b36"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CL",
+                  "megajoule"
+                ],
+                "binding_sha256": "189eb1bc432ecbd1cdcb6b6eae38eb2005311972dd11a8503a1d43742a000e87"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-Western grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "ae2b4282b9d3d5e722a28ea20c3b7fdca1143435b1476f8789958b2b335c2341"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-NX",
+                  "megajoule"
+                ],
+                "binding_sha256": "66eb0be008b2df59eda4cec609b74ce250f994930a6011030cbfc16dd9e97f71"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-LN",
+                  "megajoule"
+                ],
+                "binding_sha256": "7024350c621cd172a2af2ec64410a4cbd44168a9201629225fd18869bb9bba66"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "TW",
+                  "megajoule"
+                ],
+                "binding_sha256": "a00622f7268785facd8bb3cca4cacc15d150a206cc335f23e365b69e548bda93"
+              },
+              {
+                "source": [
+                  "heat production, softwood chips from forest, at furnace 300kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "24d1444b1f8db6e4410474e81520a96ff2f516e7b8a8f1b7b901c1705d999cf6"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "657bddb5b022c3565b962502457a03c5fa1a4fe48b215cbaa4421bfba2721d4b"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-North-eastern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "8ff8069b973a4d831c273852ba625b8a20314bb1f3b2ddce0acbe2892d78ba2c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "6a636f88973cc1b1cc81c3fa89241acb0eb80e6405e30582796f416beeb0f8e8"
+              },
+              {
+                "source": [
+                  "heat production, softwood chips from forest, at furnace 1000kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "9bc9b5351b6b91d96885a2b9887996c0e716da52e22753025c5ff0c5a29bca3d"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-Southern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "7642cfe1231d80c140e87f73bf8b5bb6b37ed1d015af2dee4668f31e7b63ce0a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "15cb2af1b4121c87ca68c9dc7173e0fd678e756cb2a74ac6f76cdb1071e71f2f"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-JS",
+                  "megajoule"
+                ],
+                "binding_sha256": "78a922380e41d9f2bb9dc4dd83a359ed23a28661a8033c3bb34c26f09faedbce"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "JP",
+                  "megajoule"
+                ],
+                "binding_sha256": "df5cb03a7c4223c2091d601dad5ab2a92d6d7972f08229b6ae0a7d69ffa6b80a"
+              },
+              {
+                "source": [
+                  "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "TW",
+                  "megajoule"
+                ],
+                "binding_sha256": "e70e66963c4a72788899ffbb4ce8cb8f47c50bfbbf7b928f7a96d86991e08e17"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-HICC",
+                  "megajoule"
+                ],
+                "binding_sha256": "5088a582b1aa455a0fa11c1f74657af34bec220efecd7a89225cd82db07dcece"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "AU",
+                  "megajoule"
+                ],
+                "binding_sha256": "7b7f8ff54c0c9814158bcf38c79483abba060e4d6e86b0a6dc5ebe596a6ed0c2"
+              },
+              {
+                "source": [
+                  "treatment of spent antifreezer liquid, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "f7efc23c5de30c40c277c166656f1b5614a38c501fc1eb0aa4e449c24e608fd4"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-SX",
+                  "megajoule"
+                ],
+                "binding_sha256": "a7b1708b7775f9908660f563dcacf1e94e56b8c142a966e5f7a6b7ea2a55f675"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-RFC",
+                  "megajoule"
+                ],
+                "binding_sha256": "9e2d52eb9c11bfc2ce3ddb088544933bffed5d283641cb34bfd4acdcd34f6ec6"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "074149ce932cc45e8468ce1d7303bf9e3000c0277d0bd74a61b2c58e20dee937"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-SERC",
+                  "megajoule"
+                ],
+                "binding_sha256": "ad6c92675977162f7d93e05db9684a5dbed0acb7b4df4e46233ee0c73b589c49"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "ZA",
+                  "megajoule"
+                ],
+                "binding_sha256": "5db3369c0fb016b1000046d028711cfa63e4ea028d429d33ec5c0887749c6c29"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-XJ",
+                  "megajoule"
+                ],
+                "binding_sha256": "6d731d9c4050f4b781f2a8d34d4cf3658b777ad4164f0b6b8a2c6c9c53a43ba3"
+              },
+              {
+                "source": [
+                  "sulfate pulp production, from softwood, bleached",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "85789dae074e68590eca7f7d988196b2b77d452ccc2ef8259a04267ce8d48ed2"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-North-eastern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "a4f2699e75beb814c1d0e5ee376e53da28eaa9494de051b69b8cdb1562d870f4"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "MY",
+                  "megajoule"
+                ],
+                "binding_sha256": "baf5c7f5b4061edb0fe01e1b9d5b8223d65d24f367ea3050324a0f43421aee87"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "TW",
+                  "megajoule"
+                ],
+                "binding_sha256": "cf5c80a39185388593757b8ba461baa940fe4be09f3fd96cf27e30f403349e96"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CA-NS",
+                  "megajoule"
+                ],
+                "binding_sha256": "c1d78b65abe959ce9c8d98571494fe49f39ab69db6c38aaae868fef2dd62e4c2"
+              },
+              {
+                "source": [
+                  "heat production, softwood chips from forest, at furnace 300kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "c0a4ff8f8ad038b135d7f315a7c3afa56da107da7f233321f08b0dfebadb4497"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-BJ",
+                  "megajoule"
+                ],
+                "binding_sha256": "d12b8d4faa6103013892496b00b5ef8cb0e75a47a6deb3ed6a8a4c591b5868b8"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-QH",
+                  "megajoule"
+                ],
+                "binding_sha256": "5e2beba82807ccdac09d5b01440b6981c1fca99c398ded00c2a5df697d08932d"
+              },
+              {
+                "source": [
+                  "heat production, propane, at industrial furnace >100kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "41d5d5d7477160fb9214a448ac8ba20c5f1f3324a0e7f7f3c233924c7939e704"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-Northern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "5da5a12c8af691b0799dc3dbfc90f0e358fab08518c52e312a28a8c5802ab276"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-South-eastern/Mid-western grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "3fd0abc76a5c73ac731d6fa796cba24d8ecfc27ccd653eb9d2de4ea3af6b8a17"
+              },
+              {
+                "source": [
+                  "sulfate pulp production, from eucalyptus, bleached",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "3aa3496fa4f039ec682b34dc351ef84533c5a36fa3947439f706320a54d1cd90"
+              },
+              {
+                "source": [
+                  "heat production, wood chips from industry, at furnace 1000kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "ad92d89e722b5ea42ee7cfdf14754a999053d0ad436426ee36ea826d87de4c81"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-PB",
+                  "megajoule"
+                ],
+                "binding_sha256": "d7144d35d1e2058b3308af119f6c7373b9ceba5f2ac4cccf17ce349cd53b99b1"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-CQ",
+                  "megajoule"
+                ],
+                "binding_sha256": "d6ac500fc8fd9fd1f35f23cd310350b0fcb479b6b3b2dec07363b1d1bcadd8f1"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "37040d2d312330c26b8a4ccf7be77f0fabc57ef3933178b90f1ea7605c0ea6ee"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-Southern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "2e69e10d3e7d698d909d73f8b4ff24b2eb486feff1ce1460e8edcc2c4507c841"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "AU",
+                  "megajoule"
+                ],
+                "binding_sha256": "32c6280125840b7f6498d643f5b41c4bd3f1750e87c93f2433ee278492ac44a4"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-TN",
+                  "megajoule"
+                ],
+                "binding_sha256": "bacfef617602b3fa5233c860632a566e8e3189bb226f6f9b65dc3228fe5a4565"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-GX",
+                  "megajoule"
+                ],
+                "binding_sha256": "eae6e7d2f7d70ed678a181b0765847f94097407fa491ac4b8ff22958ba6ea685"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "2c886b5d5aba732a9dbd94fb81aeae5b3d2d2b420c0f24d1951aea8e9d1d3263"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-North-eastern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "068d0e714ccaab4debdbcca07d62c616e383b8eae6038ef667487a28f6b39909"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-SH",
+                  "megajoule"
+                ],
+                "binding_sha256": "1dd04f75b581f8ac8adce4ebb1e526ccd52d926061ac32f64f8d4f6ed6b692ef"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-Southern grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b5063c0c95afb6de835803d13c0c3906f2b7aceeafc106f3a81be3f2c08daa2"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-South-eastern/Mid-western grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "00284a9275aa4aec4bf16c87b513b0459656605e14acef94e4f181197013df84"
+              },
+              {
+                "source": [
+                  "treatment of fly ash and scrubber sludge, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "c5d134060788e817995081bf5444107cbb5124dc96a26e3cc41e5f866b5f48e1"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "PE",
+                  "megajoule"
+                ],
+                "binding_sha256": "9f6a16034e1b4ef1b0fa6b902bd59ba4fdb0b23c1782f14398176d2ce4b51c52"
+              },
+              {
+                "source": [
+                  "heat production, wood chips from industry, at furnace 5000kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "782dbabd6994508d2c90d9324721c0d8cc0fb768ed992536e96045c44bb4f587"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "7969e1e7359409b0210e9dbd13567a2ede77070818de17f298d2fccfd035d39d"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "TW",
+                  "megajoule"
+                ],
+                "binding_sha256": "bbea2e98a135f9ae4ef8ff8b2c4c97e0b3b6810b471e547190c3090823789c2e"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-RJ",
+                  "megajoule"
+                ],
+                "binding_sha256": "d2bafa16ff3acd65ba7eff0670529d8c64c73c2a1274edd3ad75c821c363cc27"
+              },
+              {
+                "source": [
+                  "heat production, hardwood chips from forest, at furnace 5000kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "f29de6ff6db328ce91dc763e398d27237f07746bc28bc61bc95703a535cd3641"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "MX",
+                  "megajoule"
+                ],
+                "binding_sha256": "f82ab143db182da2858c1eabd26047548d4efaf9422745c420d1f593d9295ab4"
+              },
+              {
+                "source": [
+                  "heat production, heavy fuel oil, at industrial furnace 1MW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "c047416318ab7e778286355c95c86f9169663bb98f82b4e2cea65bd65fc3c8be"
+              },
+              {
+                "source": [
+                  "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "24a6cb3cb5380689cc6198300aa361ef0bca9ec51859a8a87fab340fc715c629"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "CO",
+                  "megajoule"
+                ],
+                "binding_sha256": "aa91d9f852a7f020e94d9333cb88b3ac84bd62760cf1d9850c4d1b3bb5b3be91"
+              },
+              {
+                "source": [
+                  "heat production, at hard coal industrial furnace 1-10MW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "a9b87f9b7b2757f907a3f62e033c2631c1153c73351c21fd0c3dd68f0dc3f118"
+              },
+              {
+                "source": [
+                  "treatment of waste emulsion paint, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "1edcd92cbc7d971558dc89f033a37102f2c3300daee03e631a58b51a61432ca3"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, hard coal",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "de329186af888e3358f98a1cbf2ba11a97e449413d5f06730d2afe697d15b3ce"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "bddc07dfa2037ba56b8c3492211f4e7dd13e51cc1d29ff7e8f86ea0b9eccee46"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-YN",
+                  "megajoule"
+                ],
+                "binding_sha256": "81854ec772670c91f6874233e4f837c9b56f53a554fd6fe283dac413b562ce27"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "34ef62c253f57c7b8e18571f06734f9bae99be05e4431886066631528549b56a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-TRE",
+                  "megajoule"
+                ],
+                "binding_sha256": "b088cb6ded08ccff1ba3ab5a38b4e9f8baec973dc588813fcb2d93ed6ca88761"
+              },
+              {
+                "source": [
+                  "refinery gas, burned in furnace",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "5c52b3885b19fc7de54fbe28800e179c8f61c0b08b5527d35e0d69e3edd033fb"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-UP",
+                  "megajoule"
+                ],
+                "binding_sha256": "da3d4bb16b4fa80b0b15987b33b1ebea2832528262973c2ead043300c8021514"
+              },
+              {
+                "source": [
+                  "heat production, wood chips from industry, at furnace 300kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "99c88f366c9b0f3c3ebbfcd729e72ed96b037dde61ee4fc7fd652c3826bfbd19"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "d25bfa9c1fea190915d9528dd068a8cae9efe3e6e5f6cc1a582c081d2bc40cd1"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "3de05920b7825f70e8d855ea6f487bab23a9d8e666e89b3aa40ccfcfe403d3dd"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-GS",
+                  "megajoule"
+                ],
+                "binding_sha256": "c758531bfd01c4b9d11ea80b2dc786b76f03b857695624adad217d42f6fb360c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CA-PE",
+                  "megajoule"
+                ],
+                "binding_sha256": "5e87ee43808a95410c5a85aaa16d80061b28726d8374361b08ddcebb63e7fae0"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-OR",
+                  "megajoule"
+                ],
+                "binding_sha256": "de0eea6c5dba249bd61eba0f51fa108102a545b8cdc43e6db6cdbeb066a47f46"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "AU",
+                  "megajoule"
+                ],
+                "binding_sha256": "d11ec4c7ad985560c2ded05b78cb2d7802aa1554bd5555ef45463e8c8e5a5afa"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "ccc69fc0315890fd6281427c13c22baec20160897f449d9a9dfd1f291c9da936"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, lignite",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "3f07efa6d932b5a310332fe9cc09e13fac8482682634bd71b5308efc44a21eeb"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-GA",
+                  "megajoule"
+                ],
+                "binding_sha256": "5d0facd56186f5d059285d3b166d4bb1517c0ad57843f58e223d074b26f5f65f"
+              },
+              {
+                "source": [
+                  "heat production, hardwood chips from forest, at furnace 1000kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "0e856df5504ba034c5c1f79e8bd6bc4ff6238aae3cf05bea95d46cd2d752702d"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "03ddf10a4db02e081b4895ec28cbf8995919c2c78b6c99c7b184451a31b4711c"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sweet sorghum, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "ed1985a80563fa9770f83959b9a858f016a8aa40179cbe82e1b895b024209883"
+              },
+              {
+                "source": [
+                  "heat production, softwood chips from forest, at furnace 5000kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "f864a4d87384bfad208d7c464e1af5c068e230f027775a860982d1fb07759b49"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-MH",
+                  "megajoule"
+                ],
+                "binding_sha256": "dd90293a4ca93a0457d8f8419463a3f7f1479db37673f69d95fdf2acadbd905a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-CT",
+                  "megajoule"
+                ],
+                "binding_sha256": "956f08bf632c0e4376d43b3c5119383e255de915e53bb3465d37d1a5004fe62c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "24d3f7c3b7653a97a2bba9822b0c1196ed00e1c525b79e3e7ad7f76ab31f81ec"
+              },
+              {
+                "source": [
+                  "treatment of used capacitor, to hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "d44b8b943c35daeafb65bfd1f9be554806dc1521750f0e98af9e0bf550937dc1"
+              },
+              {
+                "source": [
+                  "steel production, electric, low-alloyed",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "eb2c9c7541b2dc167ea27651714e886fe35f4dbb3f6e5ce1de007fa82cba0350"
+              },
+              {
+                "source": [
+                  "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "f5435e8267042dc311095771d8656338e7bbabc189f998e17126199791ff9e21"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-FJ",
+                  "megajoule"
+                ],
+                "binding_sha256": "4dd14322e4a18bebda0e951e660468f4705c4621be156442f0a099b6d91efea7"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, hard coal",
+                  "heat, district or industrial, other than natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "0b818bbcc8c6fdbf6159f08a5088a4f91b3298b9067cf558af4a2e44bca4c1aa"
+              },
+              {
+                "source": [
+                  "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "7e5e8445f35fe03f5351a8095c5fa55c4b5bbd6ca8a46b0598b4671b2c96176c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, hard coal",
+                  "heat, district or industrial, other than natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "3158cbb020ec18d4f15528faa33aadd1272c9a67d7247d29f90391f42aeb7d4d"
+              },
+              {
+                "source": [
+                  "heat production, softwood chips from forest, at furnace 1000kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "82790e4556ab193c3647ac480ec0dffba7ef4ac36ea39bb7ddd89ebebe7a6d11"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-SC",
+                  "megajoule"
+                ],
+                "binding_sha256": "0d2bf0c75b810cd7def690002f04713ba946f011c2079a7cb14130e90b105176"
+              },
+              {
+                "source": [
+                  "heat production, hardwood chips from forest, at furnace 300kW",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "e0a7636ba2c852ff3177861fd2dbd0ddbce3b7d19eacc38c45c5c0587cf5f869"
+              },
+              {
+                "source": [
+                  "treatment of refinery sludge, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "f137cf22595e1503307cdd16cd44356ae06c0a4da33fb59687cb28b8de663965"
+              },
+              {
+                "source": [
+                  "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+                  "heat, district or industrial, other than natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "896e8e59904a0bf378259284ed89158a123d3722c7121c17a49ba85231a28991"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-JL",
+                  "megajoule"
+                ],
+                "binding_sha256": "4e87b78125ec63b5b2b164191b8269302c91e936ce7466314fa1a8fd1b70c8e1"
+              },
+              {
+                "source": [
+                  "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "5f9bd2c5549fb97344d8bbdba905169c8ff822c6b364fd7a5d7415d458c20958"
+              },
+              {
+                "source": [
+                  "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+                  "heat, district or industrial, other than natural gas",
+                  "BR-South-eastern/Mid-western grid",
+                  "megajoule"
+                ],
+                "binding_sha256": "d9f48416860768694deb7a378279513c28e4ae3097b22e88a35c1223c4cc19e1"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "ZA",
+                  "megajoule"
+                ],
+                "binding_sha256": "8c10338aa9ca96ab0c2bde84b6cf21a9cd5cd2d0b0de3080504aa1bed453390f"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "JP",
+                  "megajoule"
+                ],
+                "binding_sha256": "1b00b5de72e35e59b311a3d5d5c3b5f97fe7cd0803ac12be5f50345fb5292872"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-HR",
+                  "megajoule"
+                ],
+                "binding_sha256": "a23eb628acae610d6c8001973685575b97f8b5aeecdcc207be138ab67b16f8d0"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-NPCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "bb2e1eedef134becf218c808c98e2bdb8522bc713c9b3ad47382d1c66dd35c7a"
+              },
+              {
+                "source": [
+                  "sulfate pulp production, from hardwood, bleached",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "0f19108629c57a80564a2e62aaf0f19a80700facdc7d6a76452d3c4f3f5f9487"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-BR",
+                  "megajoule"
+                ],
+                "binding_sha256": "e6d3bcdafb6122b86762deb26bae19b519cb49d4d3720aca1a82b0588c2079f5"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-MRO",
+                  "megajoule"
+                ],
+                "binding_sha256": "f035e5236c626162e5c3cacf2c1ae85a25dca34800ebd9975e41ac5e7cb414dc"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-SA",
+                  "megajoule"
+                ],
+                "binding_sha256": "a9353c4c6fb44f1c19429a3c8ae26f09db9361bcc4b4a8389e53abc43058a67d"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, hard coal",
+                  "heat, district or industrial, other than natural gas",
+                  "CO",
+                  "megajoule"
+                ],
+                "binding_sha256": "19e19319cc7292cafd090c4c7c48466e33eb44bb5df0ea3a3929b3f074084c12"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, oil",
+                  "heat, district or industrial, other than natural gas",
+                  "US-WECC",
+                  "megajoule"
+                ],
+                "binding_sha256": "31bb0948f026f7b0aa16f502f076a84814541d28900ef6de2c48ef92fc467cad"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "IN-WB",
+                  "megajoule"
+                ],
+                "binding_sha256": "5c859c798c3153440b4b06ad3a072447f62408263e77da34fb7ad8a5c5f73bec"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-SD",
+                  "megajoule"
+                ],
+                "binding_sha256": "985a8eb8af42a69ac0fcddbf3c72993a8d434460f522fe32b3d544e007870d79"
+              },
+              {
+                "source": [
+                  "treatment of bilge oil, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "6c9ab1e13b9547ad9c7613e74fe480a1e1e98078e2c6ffb8ec3674c60968e088"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW",
+                  "heat, district or industrial, other than natural gas",
+                  "ID",
+                  "megajoule"
+                ],
+                "binding_sha256": "fbee2592b267a269f392a2792849bfa5d21689e56154da12c2a93954973f70d6"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "CA-ON",
+                  "megajoule"
+                ],
+                "binding_sha256": "9a795f205907c77a22da2e8244bcdca1332d62bb4c69540db357c41a65236143"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "bb6d9a0c8616ce0d32044ed8b5c3934349a308fe56dc706d8e727f7ec555b90a"
+              },
+              {
+                "source": [
+                  "treatment of coal gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "BR",
+                  "megajoule"
+                ],
+                "binding_sha256": "ccd93682d1f0aff57a098399cf19d23b38d70885e2f9f3b0011756db52d033f2"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "BR",
+                  "megajoule"
+                ],
+                "binding_sha256": "9aa6faa8f6db9f87a866fd825d99efd430e92db6407055f93ba4e309b5e98c7a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+                  "heat, district or industrial, other than natural gas",
+                  "US-WECC",
+                  "megajoule"
+                ],
+                "binding_sha256": "5a01c8ed07783d89c1ab2099534f79e6cdf69696c6ed67110d074f335b280e10"
+              },
+              {
+                "source": [
+                  "treatment of blast furnace gas, in power plant",
+                  "heat, district or industrial, other than natural gas",
+                  "CN-HU",
+                  "megajoule"
+                ],
+                "binding_sha256": "6bc3a16beafeb6fa45fe2f71eab426753ca623104c85c5b6d76754c43a3d5715"
+              },
+              {
+                "source": [
+                  "sulfate pulp production, from eucalyptus, bleached",
+                  "heat, district or industrial, other than natural gas",
+                  "RLA",
+                  "megajoule"
+                ],
+                "binding_sha256": "dafd1e8178dc27983bc53f7207b355b1483de9a07c72d6c40b8e2fcc0ef1240b"
+              },
+              {
+                "source": [
+                  "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+                  "heat, district or industrial, other than natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "d5f3b919d7afac42c90438610d7eb51453dec30a043f2b90c5a6ce307fd220ea"
+              }
+            ]
+          }
+        ],
+        "expected_foreground_records": 77,
+        "expected_foreground_biosphere_exchanges": 0,
+        "limitations": "User automatic approval for subsequent modelling decisions applies only within the exact UVEK 2026 cut-off / ecoinvent 3.10 biosphere electricity pilot. Only the encountered ecoinvent 3.9 cut-off RoW other-than-natural-gas district/industrial heat market is qualified. Preserve all 188 original market supplier coefficients, source order and marginal uncertainty individually, without omission, aggregation or normalization. Positive source and reconstructed heat reference 1 MJ means factor +1: negative caller heat credits remain negative. There is no district consumer network, loss uplift, efficiency multiplier, co-output credit, avoided fuel or material credit. Complete native useful-heat services include their own efficiency, infrastructure, fuel, emissions, ash handling and allocation. Furnace/wood species/feedstock/capacity matches remain distinct where available. Native historical CH, national coal and ENTSO-E coal fleets proxy missing source locations; historical UCTE is used for absent oil-power locations, not an invented global oil fleet. Native geographic text/identity contradictions, vintage, efficiency, emissions and internal uncertainty remain limitations. Wood CHP 1 MWth substitutes source 6667 kW CHP and 2014 variants. LPG 50 kW condensing/modulating propane/butane heat substitutes industrial >100 kW propane. Coal-tar heat uses the complete heavy-fuel-oil furnace on which the source explicitly based its proxy, with fuel sourcing, composition, PAH/metals, allocation and emissions differences. Two straw and six pulp-mill heat entries use complete native biomass heat screening proxies; industrial wood replaces straw, and wood-chip CHP replaces pulp-mill/black-liquor recovered heat. Cultivation/organic status, ash/alkali, chemical recovery, feedstock, source coproduct versus native exergy allocation, scale and emissions differences are explicit; no source internal inventory or LCIA equivalence is asserted. For 48 gas-plant heat outputs and one coke furnace, source allocated fuel demand per heat MJ drives native per-fuel-MJ combustion; do not equate fuel MJ to heat MJ. Native blast-furnace gas excludes fuel production whereas source buys gas: retain this upstream boundary/allocation difference explicitly; native coke-oven fuel production stays included. For refinery heat, preserve audited gas mass by source kg divided by native kg per fuel MJ, retaining source reference ambiguity and native infrastructure difference without inferred thermal efficiency. For 24 bagasse/oil CHP outputs and one EAF heat output, source nonproduction coordinates are proportional to companion electricity/steel inventory; the audited ratio weights the complete native donor as an allocated-burden proxy, not physical electricity consumption or a steel purchase. Native bagasse donor includes economic agricultural/refinery/distillery allocation; source separate combustion allocation differs. Native oil fleet/CHP share, EAF steel/slag allocation, output heat quality and internal uncertainties differ. These ratios do not establish native allocation equivalence or an energy-unit conversion. Twelve exact positive source heat outputs contain production only; use the verified native positive recovered-heat output whose documented allocation is 100% to waste disposal and 0% to energy and whose inventory likewise contains production only. Retain their original heat shares with explicit waste/feedstock/technology/geography proxy warnings, not an invented zero physical combustion or empty disposal service. Six municipal recovered-heat wrappers use that same complete native recovered-heat service at plant gate; source internal regional routing, recovery and allocation are replaced, not claimed identical. No generic empty-provider fallback, zero-burden helper or omission authorization is introduced. Source producer internal formulas, parameters, exchanges and uncertainty are replaced by the specified native models; audited driver coefficients and market/caller quantities remain distinct. Native bundle pin and 2,991 upstream biosphere exclusions persist. All proxy score effects remain unquantified. Preserve caller ownership, formulas, signed uncertainty, foreground links and separate exchanges. Uninspected profiles, standalone producers, reverse or cross-system-model routes and full scenario/certification/export are outside this decision."
+      },
+      "limitations": [
+        "User automatic approval for subsequent modelling decisions applies only within the exact UVEK 2026 cut-off / ecoinvent 3.10 biosphere electricity pilot. Only the encountered ecoinvent 3.9 cut-off RoW other-than-natural-gas district/industrial heat market is qualified. Preserve all 188 original market supplier coefficients, source order and marginal uncertainty individually, without omission, aggregation or normalization. Positive source and reconstructed heat reference 1 MJ means factor +1: negative caller heat credits remain negative. There is no district consumer network, loss uplift, efficiency multiplier, co-output credit, avoided fuel or material credit. Complete native useful-heat services include their own efficiency, infrastructure, fuel, emissions, ash handling and allocation. Furnace/wood species/feedstock/capacity matches remain distinct where available. Native historical CH, national coal and ENTSO-E coal fleets proxy missing source locations; historical UCTE is used for absent oil-power locations, not an invented global oil fleet. Native geographic text/identity contradictions, vintage, efficiency, emissions and internal uncertainty remain limitations. Wood CHP 1 MWth substitutes source 6667 kW CHP and 2014 variants. LPG 50 kW condensing/modulating propane/butane heat substitutes industrial >100 kW propane. Coal-tar heat uses the complete heavy-fuel-oil furnace on which the source explicitly based its proxy, with fuel sourcing, composition, PAH/metals, allocation and emissions differences. Two straw and six pulp-mill heat entries use complete native biomass heat screening proxies; industrial wood replaces straw, and wood-chip CHP replaces pulp-mill/black-liquor recovered heat. Cultivation/organic status, ash/alkali, chemical recovery, feedstock, source coproduct versus native exergy allocation, scale and emissions differences are explicit; no source internal inventory or LCIA equivalence is asserted. For 48 gas-plant heat outputs and one coke furnace, source allocated fuel demand per heat MJ drives native per-fuel-MJ combustion; do not equate fuel MJ to heat MJ. Native blast-furnace gas excludes fuel production whereas source buys gas: retain this upstream boundary/allocation difference explicitly; native coke-oven fuel production stays included. For refinery heat, preserve audited gas mass by source kg divided by native kg per fuel MJ, retaining source reference ambiguity and native infrastructure difference without inferred thermal efficiency. For 24 bagasse/oil CHP outputs and one EAF heat output, source nonproduction coordinates are proportional to companion electricity/steel inventory; the audited ratio weights the complete native donor as an allocated-burden proxy, not physical electricity consumption or a steel purchase. Native bagasse donor includes economic agricultural/refinery/distillery allocation; source separate combustion allocation differs. Native oil fleet/CHP share, EAF steel/slag allocation, output heat quality and internal uncertainties differ. These ratios do not establish native allocation equivalence or an energy-unit conversion. Twelve exact positive source heat outputs contain production only; use the verified native positive recovered-heat output whose documented allocation is 100% to waste disposal and 0% to energy and whose inventory likewise contains production only. Retain their original heat shares with explicit waste/feedstock/technology/geography proxy warnings, not an invented zero physical combustion or empty disposal service. Six municipal recovered-heat wrappers use that same complete native recovered-heat service at plant gate; source internal regional routing, recovery and allocation are replaced, not claimed identical. No generic empty-provider fallback, zero-burden helper or omission authorization is introduced. Source producer internal formulas, parameters, exchanges and uncertainty are replaced by the specified native models; audited driver coefficients and market/caller quantities remain distinct. Native bundle pin and 2,991 upstream biosphere exclusions persist. All proxy score effects remain unquantified. Preserve caller ownership, formulas, signed uncertainty, foreground links and separate exchanges. Uninspected profiles, standalone producers, reverse or cross-system-model routes and full scenario/certification/export are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0fa8e326af7398788c7a367e998b6fb863cda6a3e54b31f535c57b488862f784"
+        }
+      ]
     }
   ]
 }
