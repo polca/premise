@@ -144,6 +144,13 @@ factor nor an unexplained negative solvent credit is established by these
 checks. No paint helper, substitution or approval is enabled. Fresh evidence:
 `nitrate_paint_basis_primary.private.json` and `nitrate_paint_basis_findings.json`.
 
+A [dry-paint screening proposal](uvek-dry-alkyd-paint-proposal.md) now defines
+three private candidate helpers, an explicit carrier/processing-solvent boundary
+and two finite native-background component LCI checks. It retains the fourteen
+original market freight entries and their uncertainty. The source nitrogen
+purge difference is explicitly part of the requested decision. No paint
+correspondence is enabled pending approval and the remaining freight evidence.
+
 Detailed licensed inventories remain private in
 `nitrate_remaining_waste_full_evidence.private.json`,
 `nitrate_concrete_full_evidence.private.json` and
