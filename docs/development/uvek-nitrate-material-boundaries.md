@@ -204,3 +204,13 @@ market mapping is now implemented. Both source shares and all four freight
 entries remain unchanged, with source parameter definitions in provenance and
 the accepted native internal uncertainty model. See the linked implementation
 checkpoint for tests and limitations.
+
+The [three-market sand proposal](uvek-sand-extraction-allocation-proposal.md)
+now separates ordinary extraction/processing proxies from the RoW zinc-mine
+sand co-product. Its source mining inventory has 264 nonproduction exchanges,
+all proportional to the source zinc-concentrate vector by 1/95, including
+supported uncertainty scaling. A documented 59% Zn concentrate basis and a
+native contained-metal reference support a scoped allocated-mining proxy for
+review. All six producer entries and seventeen delivery entries remain in the
+three finite private candidates. No new sand scope is enabled before the two
+scientific decisions are approved.
