@@ -1,7 +1,7 @@
 # Remaining UVEK mapping decisions
 
 This ledger covers the 20 exchanges left after the first 22 restorations.
-Fifteen further inputs are now restored and validated; five remain pending.
+Sixteen further inputs are now restored and validated; four remain pending.
 The authoritative structured record is
 `premise/data/clic/remaining_mapping_decisions.json`, retaining original source
 pins/exchanges, reference bases, rejected candidates, selected dispositions,
@@ -45,7 +45,7 @@ without changing their total. Scientific/LCIA equivalence is not claimed.
 | `uvek-2026-screening-b81892ef79e851727f96` | 3.9 cut-off | market for waste concrete, not reinforced (Europe without Switzerland) | -5600 kilogram | restored |
 | `uvek-2026-screening-a68fb3c409e0ccbedc03` | 3.9 cut-off | market for waste mineral oil (RoW) | -466.40000000000003 kilogram | restored |
 | `uvek-2026-screening-364b29f8f839f725ced0` | 3.9 cut-off | market for waste paperboard (RoW) | -31.2708 kilogram | pending |
-| `uvek-2026-screening-7eed9598b634124f22ad` | 3.9 cut-off | market for acrylic dispersion, with water, in 58% solution (RER) | 2.7e-06 kilogram | pending |
+| `uvek-2026-screening-7eed9598b634124f22ad` | 3.9 cut-off | market for acrylic dispersion, with water, in 58% solution (RER) | 2.7e-06 kilogram | restored |
 | `uvek-2026-screening-ceb3843ec051ad01ed7d` | 3.9 cut-off | market for natural gas, high pressure (CH) | 0.003 cubic meter | restored |
 | `uvek-2026-screening-816a5046c84431ffe53b` | 3.9 cut-off | market for natural gas, high pressure (CH) | 0.0034999999999999996 cubic meter | restored |
 | `uvek-2026-screening-a6d33406a770349e9394` | 3.9 cut-off | market for titanium (GLO) | 528 kilogram | pending |
@@ -177,3 +177,41 @@ reinforcing steel and whole-transformer inventories are not equivalent materials
 A final disposition still requires its logged evidence review. Final packaging
 and completion checks remain due; no new final unsupported omission has yet been
 registered in this goal.
+
+## Wet acrylic reconstruction decision
+
+The exact 3.9 dispersion and binder production exchanges reference wet kilograms.
+Their dry-content properties, market comments and native legacy 100%-base labels
+conflict. No concentration factor is inferred. Six new helpers instead retain
+the source wet recipes, monomer/pigment/utility/factory coefficients, both delivery
+layers, water withdrawals and direct indicators, using complete native suppliers.
+Source 1-butanol uses native 1-butanol rather than 2-butanol. Emulsion-paint waste
+markets retain their actual hazardous/municipal/sanitary/inert shares and freight,
+replacing the incorrect whole-market construction-landfill candidate. Native
+fly-ash extraction/recovery, waste technology, energy allocation, supply mix,
+delivery, equipment, geography and vintage differences remain explicit proxies.
+No fabricated carrier water, dewatering, drying or recipe normalization is used.
+Two inherited production-only paint-to-clinker audits and the previously verified
+empty recovered-stock credit remain literal and unchanged; no new source exchange
+is omitted or recovery credit invented.
+
+Validation: 14 Brightpath and 6 Premise tests; finite native LCI of 19 foreground
+records with nine direct canonical flows; byte-identical replay; full encrypted
+public scenario/certification/export and readback of 12,481 activities. All 38
+restored callers and six new helpers pass. Dissolved and suspended solids stay
+distinct, BOD/COD/DOC/TOC stay separate, and both source water withdrawals remain.
+A canonical dissolved-solids definition unused by the original native matrix is
+retained as an additional foreground biosphere row; its database definition and
+the original backgrounds are unchanged. Identical deterministic HWI proxy entries
+may merge during export; original fractions remain in the review and their exact
+aggregate is retained. Uncertain quantities/parameters, inherited audits, complete
+links and full limitations survive export. Commits: Brightpath `519bf9b`, Premise
+`732e48ea`.
+
+Four original exchanges remain pending: titanium, two paperboard-disposal
+profiles and grain-oriented electrical steel. The expanded search of all 11,947
+native identities found no grain-oriented grade or uncontrolled-disposal model.
+Near steel, rolling and transformer records were inspected; electric steel denotes
+EAF steel, not a verified electrical grade. Native paper/cardboard alternatives
+are managed treatment routes. Their final scientific dispositions and final
+packaging checks remain due; no final unsupported omission is registered yet.

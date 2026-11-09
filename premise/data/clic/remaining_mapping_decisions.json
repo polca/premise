@@ -3647,7 +3647,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-7eed9598b634124f22ad",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-7eed9598b634124f22ad",
         "slug": "deionized-water-production-via-reverse-osmosis-from-brackish-water",
@@ -4024,8 +4024,51 @@
         "recipe_id": "deferred-acrylic-33bc3beac2f47e17737c",
         "limitations": "Reviewed reconstruction for the exact ecoinvent 3.9 cut-off wet acrylic-dispersion recipe. Both source production exchanges explicitly reference 1 kg of wet mixture: 54% dry binder and 58% dry dispersion. The dispersion market reports 59% dry content but supplies 1 kg of that same wet producer. Preserve the actual wet transactions and all original coefficients; do not normalize the inconsistent 58/59 metadata or stale 65/34 market comments. Native legacy binder/dispersion concentration labels, 100%-base comments and incomplete material balances do not establish a safe conversion factor, so neither complete legacy formulation is used directly. Reconstruct the wet binder from butyl acrylate, versatic-acid esters and vinyl acetate, together with source utilities, factory, waste treatment and direct flows. Reconstruct dispersion using that wet binder and the actual source pigment, chemicals, utilities, waste treatment and water withdrawal. Correct 1-butanol to native 1-butanol rather than 2-butanol. Use the complete native titanium-dioxide production mix, not titanium metal or an arbitrarily single-route pigment. Preserve both source market-delivery layers; rail remains rail. Reconstruct both emulsion-paint waste markets from their original hazardous/municipal/sanitary/inert shares and freight, rather than substituting one construction landfill. Complete native 0%-water treatments supply the same dry-waste basis. Municipal fly-ash extraction, metal recovery, ash treatment and hazardous-branch energy recovery/allocation differ from native proxies; no extra recovery or avoided-energy credit is added. All nine direct source flows retain exact canonical ecoinvent 3.10 publisher UUIDs, units, roles and compartments. Keep dissolved solids, suspended solids, hydrocarbons and BOD/COD/DOC/TOC indicators separately; these overlapping indicators are not independent additive masses. Caller signed wet kg, formulas and supported uncertainty remain at factor +1. No guessed concentration multiplier, added carrier water, negative dewatering, drying, yield correction or new source-exchange omission is introduced. Two inherited, reviewed production-only paint-to-clinker handovers remain literal audits; no physical zero-burden claim or renormalization is made. Native chemical technologies, allocation, heat mix/delivery, generic-factory capacity/lifetime, waste composition, freight fleets, market versus at-plant supply, geography, vintage, native internal uncertainty and the 2,991 upstream biosphere exclusions remain limitations. The older confidential source recipes do not establish modern industry equivalence, and score effects remain unquantified. Other source releases, inverse routes and cross-system-model conversions are not qualified."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath wet quantities, monomers, correct butanol isomer, source waste fates, separate direct indicators/water, uncertainty, exact-release refusal and atomic replay",
+          "passed_cases": 14
+        },
+        {
+          "check": "Premise cold/warm source preservation, nine direct flows, literal inherited audits and other-release refusal",
+          "passed_cases": 6
+        },
+        {
+          "check": "Finite native LCI of19-record graph with9canonical direct flows and unchanged background matrices; negative supply only verified empty recovered stock",
+          "receipt": "native_deferred_acrylic_lci_report.json",
+          "finite_cases": 1
+        },
+        {
+          "check": "Original wet-kg caller quantity and supported metadata exact before IAM; source graph unchanged",
+          "receipt": "deferred_acrylic_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-acrylic",
+          "activity_count": 12481,
+          "receipt": "deferred_acrylic_export_report.json"
+        },
+        {
+          "check": "All38restored callers, all6newhelpers, original waste-route totals/freight, uncertain coefficients,9canonicalflows and2inherited audits read back; complete linking, full limitations and unchanged backgrounds",
+          "receipt": "deferred_acrylic_export_readback.json",
+          "deterministic_export_note": "Two identical deterministic hazardous-incineration proxy entries may merge; exact original fractions remain in the review and their exported aggregate is preserved. Uncertain entries and their parameters remain separate and exact."
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_acrylic_generator_replay.json",
+          "sha256": "367e852a4e0d36c7a41ab8715e3f54a6bcbdb79f47d177a4caa9fde0d5621597"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "519bf9b"
+        },
+        {
+          "repository": "premise",
+          "commit": "732e48ea"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-ceb3843ec051ad01ed7d",
@@ -5417,8 +5460,8 @@
   ],
   "progress": {
     "starting_deferred_exchanges": 20,
-    "restored_in_this_goal": 15,
+    "restored_in_this_goal": 16,
     "final_unsupported_omissions": 0,
-    "pending_exchanges": 5
+    "pending_exchanges": 4
   }
 }
