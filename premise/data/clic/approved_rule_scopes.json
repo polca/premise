@@ -97334,6 +97334,1769 @@
           "fingerprint": "478757c91f5b3a81056f8c7634a692a799cbf7b83626fcf1dcddc7a8316a002f"
         }
       ]
+    },
+    {
+      "rule_id": "bp-f7dd94e542cba21d",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_ng_heat_market",
+      "review_path": "export/uvek_pilot_ng_heat_market_review.json",
+      "review_sha256": "af702c55886c65cf6f3ef1341d0dbfd29088df2e166cecf41eee64adf060f170",
+      "authorization": "Userautomaticapprovalforcomingdecisions;exactencountered3.9and3.12cutoffnaturalgasheatmarkets preserve43supplierentrieseachthroughexplicitnativeusefulheatservices,withcycle/capacity/allocation/geography/metadatawarnings andnoextraheatdeliveryorefficiencycredit.",
+      "inspection": {
+        "rule_id": "bp-f7dd94e542cba21d",
+        "source": {
+          "location": "RoW",
+          "name": "market for heat, district or industrial, natural gas",
+          "reference product": "heat, district or industrial, natural gas",
+          "unit": "megajoule"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+          "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+          "unit": "megajoule"
+        },
+        "previous_rule": {
+          "confidence": 0.445679,
+          "id": "bp-f7dd94e542cba21d",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RoW",
+            "name": "market for heat, district or industrial, natural gas",
+            "reference product": "heat, district or industrial, natural gas",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+            "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+            "unit": "megajoule"
+          }
+        },
+        "previous_rule_sha256": "92d5994c527bf482566431fd2959f6ca01d271f1269b06309a025735f27f46ce",
+        "previous_review": {},
+        "source_reference_amount": 1,
+        "original_factor": 1,
+        "authorized_system_model": "cutoff",
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "1f20ab7a284c8c5d30b71de103e752470635046cfc6f3f11359c3e0e536321d7",
+            "inputs": [
+              {
+                "amount": 0.00597303323502041,
+                "uncertainty type": 0,
+                "loc": 0.00597303323502041,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000417630934599796,
+                "uncertainty type": 0,
+                "loc": 0.000417630934599796,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0159472534152559,
+                "uncertainty type": 0,
+                "loc": 0.0159472534152559,
+                "name": "Heat, natural gas, at industrial furnace 1MW",
+                "reference product": "Heat, natural gas, at industrial furnace 1MW",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0160870095894897,
+                "uncertainty type": 0,
+                "loc": 0.0160870095894897,
+                "name": "xx Heat, natural gas, at boiler modulating >100kW",
+                "reference product": "xx Heat, natural gas, at boiler modulating >100kW",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01094170746026,
+                "uncertainty type": 0,
+                "loc": 0.01094170746026,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "KR",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.100083288558118,
+                "uncertainty type": 0,
+                "loc": 0.100083288558118,
+                "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+                "reference product": "Heat, at cogen 1MWe lean burn, allocation exergy",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00314281983600945,
+                "uncertainty type": 0,
+                "loc": 0.00314281983600945,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00862996092532523,
+                "uncertainty type": 0,
+                "loc": 0.00862996092532523,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.40127863562945e-05,
+                "uncertainty type": 0,
+                "loc": 2.40127863562945e-05,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0421510250720895,
+                "uncertainty type": 0,
+                "loc": 0.0421510250720895,
+                "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00744497188283477,
+                "uncertainty type": 0,
+                "loc": 0.00744497188283477,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0163310722593857,
+                "uncertainty type": 0,
+                "loc": 0.0163310722593857,
+                "name": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+                "reference product": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000485572844104784,
+                "uncertainty type": 0,
+                "loc": 0.000485572844104784,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000315128488300066,
+                "uncertainty type": 0,
+                "loc": 0.000315128488300066,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.36233661746195,
+                "uncertainty type": 0,
+                "loc": 0.36233661746195,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "RU",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00407454856897576,
+                "uncertainty type": 0,
+                "loc": 0.00407454856897576,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0158429470312231,
+                "uncertainty type": 0,
+                "loc": 0.0158429470312231,
+                "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+                "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00537321910733719,
+                "uncertainty type": 0,
+                "loc": 0.00537321910733719,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00348280670952872,
+                "uncertainty type": 0,
+                "loc": 0.00348280670952872,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.238518035212757,
+                "uncertainty type": 0,
+                "loc": 0.238518035212757,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00835060619465378,
+                "uncertainty type": 0,
+                "loc": 0.00835060619465378,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00584330380889349,
+                "uncertainty type": 0,
+                "loc": 0.00584330380889349,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00390837851401175,
+                "uncertainty type": 0,
+                "loc": 0.00390837851401175,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 7.0585510073205e-05,
+                "uncertainty type": 0,
+                "loc": 7.0585510073205e-05,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00683120684362639,
+                "uncertainty type": 0,
+                "loc": 0.00683120684362639,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 9.81178660285714e-07,
+                "uncertainty type": 0,
+                "loc": 9.81178660285714e-07,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00177950123659405,
+                "uncertainty type": 0,
+                "loc": 0.00177950123659405,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00514391904658481,
+                "uncertainty type": 0,
+                "loc": 0.00514391904658481,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00527244349617644,
+                "uncertainty type": 0,
+                "loc": 0.00527244349617644,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0186305490836935,
+                "uncertainty type": 0,
+                "loc": 0.0186305490836935,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "RU",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 7.85495118493441e-05,
+                "uncertainty type": 0,
+                "loc": 7.85495118493441e-05,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0003476980858212,
+                "uncertainty type": 0,
+                "loc": 0.0003476980858212,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0169328855509139,
+                "uncertainty type": 0,
+                "loc": 0.0169328855509139,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00011852483566459,
+                "uncertainty type": 0,
+                "loc": 0.00011852483566459,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00027427228689771,
+                "uncertainty type": 0,
+                "loc": 0.00027427228689771,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "TW",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00070056118747656,
+                "uncertainty type": 0,
+                "loc": 0.00070056118747656,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00188753877856412,
+                "uncertainty type": 0,
+                "loc": 0.00188753877856412,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0518374583288853,
+                "uncertainty type": 0,
+                "loc": 0.0518374583288853,
+                "name": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+                "reference product": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000148193195798846,
+                "uncertainty type": 0,
+                "loc": 0.000148193195798846,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00260741937024863,
+                "uncertainty type": 0,
+                "loc": 0.00260741937024863,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "KR",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00677769866279999,
+                "uncertainty type": 0,
+                "loc": 0.00677769866279999,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00252544797448391,
+                "uncertainty type": 0,
+                "loc": 0.00252544797448391,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00232961593870774,
+                "uncertainty type": 0,
+                "loc": 0.00232961593870774,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "SA",
+                  "megajoule"
+                ],
+                "binding_sha256": "46774128a06d0d7fe70d0bde6e79e0a0b53183bdb1db758fa00e2d71f6ef76c7"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-MRO",
+                  "megajoule"
+                ],
+                "binding_sha256": "ece85bc49081142712a0fcdb657fe9e18afd61f42219635e9caed2b39849a6ea"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at industrial furnace >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "928fc14b3694eeea25e92cc6cc52bce198105f38cabbfbc0aadb27f11ab30b4f"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at boiler modulating >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "ca1299652c9c3af058138a0d60255265ccbd3df3344537bba4a38e6dbbe92b53"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "bd80920238d770e30e917d453615e75ef2bd0e5115c202961a3ec2815efde7b9"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "5906b88f3f292b199abb714640db6c44d7de257b896a0f92e40cf8a68ad443df"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-RFC",
+                  "megajoule"
+                ],
+                "binding_sha256": "563543dc7b6ff99639ab6ea4f730b70b6419e3fb6d91cf6ed35906a9299cc393"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-SERC",
+                  "megajoule"
+                ],
+                "binding_sha256": "c3627323bde981e1f9a6e6d69112baed23288cdb08af11d6a07f96783c48c751"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-BC",
+                  "megajoule"
+                ],
+                "binding_sha256": "77a1b07fc85af2f389771bf5d7f3214cd8dff88f8fa6e4ded09c1d8c83de91dc"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, 500kW electrical, lean burn",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "6b4846ea5681a0aa4a479e745738f6b06101f9fd6c4d9a2536a2219b1bb2a69d"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "IR",
+                  "megajoule"
+                ],
+                "binding_sha256": "f2844771f4eebb01703f5206770b0e088481fbe47a55a24b4475a7d13330f8de"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at industrial furnace low-NOx >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "8170c445eac76219e08157524a32aca2c04773eb36b5af80004f838fc6729d4a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-ON",
+                  "megajoule"
+                ],
+                "binding_sha256": "b6345d1fb0579b90e5526d44afcd42c7579389e2979f47913280abc4cb739dd4"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "PE",
+                  "megajoule"
+                ],
+                "binding_sha256": "d16485a272c1422730e5b5e59e950fb0db475c760a8b74798ebc4033dfffa511"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "699b32d5850ad4be458c529a67113f7dda1f55367299a29338909e91afad3bba"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-WECC",
+                  "megajoule"
+                ],
+                "binding_sha256": "9db354d7dd36543d4794923fbebb942b819b7ca0a611dc78a8f13e0e5b209001"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at boiler condensing modulating >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "71b88880a5bdf8ca26eb9994b737eb7ebcd1b089df20df38c5bd918a7b2b9dec"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "AU",
+                  "megajoule"
+                ],
+                "binding_sha256": "2d8e77fd9bed8314171918167c8fa99d73cc88bfb00ebfc0633fc6570e90f925"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-TRE",
+                  "megajoule"
+                ],
+                "binding_sha256": "67628d57a60998ec21de69c65c681db8a0e90cfe87245bc644a48890b6ba9de3"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "43be8509282f75b19e5adc2cad3427ea3a3e0370b6e6fff411947e9733051d08"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "22f8a3889735edfb983884ced79f93b73d9902ed8c2fe205a8e115510f257d12"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-TRE",
+                  "megajoule"
+                ],
+                "binding_sha256": "336021f178613fa3d9eee25cefd93ff16ecbf0bbaadeb2525612d757307a7129"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-NPCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "2272006e2c42716dd27f3efc0c59474dd9f92f6146356da1208d2b0fbda0b46a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-ASCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "f43323a70541cb8fda71a0bcd31de11cb11d4e9666b977d0b4929419bbef6e88"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-WECC",
+                  "megajoule"
+                ],
+                "binding_sha256": "4b2499a24afecc4ee2265c1c53b86251faaa52bd2a88a25ff00bd878ba3d93d4"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CO",
+                  "megajoule"
+                ],
+                "binding_sha256": "2a84e4b301fdd07cc540e8ef2ab8b1d1cfbdb06c63d049a702fccf4f2e1087c5"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-AB",
+                  "megajoule"
+                ],
+                "binding_sha256": "0c6eb146977af5043827bc523d0d3cafebbde9f95404da26cfef952277b7f9c5"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-SERC",
+                  "megajoule"
+                ],
+                "binding_sha256": "7c9ae1e8981cc2df225961d3c9d39edcf6d1c31b55a8632a04c20e654b52297d"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-RFC",
+                  "megajoule"
+                ],
+                "binding_sha256": "0c10a5704b9e31a756e11dc99b1dffbb6815c67314dc13fb5735f46ea2883508"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "7825e9c31226dc3729364102851f259493a565dcc6189162eb02305f1ffd407b"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-NB",
+                  "megajoule"
+                ],
+                "binding_sha256": "0f75f4de9b4a7b68fb8379ff179b1eacdbac04a9a1214b2c4df883e17c8d0ef1"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "IR",
+                  "megajoule"
+                ],
+                "binding_sha256": "96d44a81e8ae3df749eff83e1f95f207d8c95900bcd0e102e59429b41be8f25c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "SA",
+                  "megajoule"
+                ],
+                "binding_sha256": "476b1d7689e3ed1b63a78f6dba23f3d6c9a3d6edcefcbf1e226dfb05ac598ba8"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-ASCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "1465b60ea213bb983191fa2057ed985041b48bb467dfa095c9123f66e09bbbfa"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "TW",
+                  "megajoule"
+                ],
+                "binding_sha256": "db5be15b6eacc5d93f200918c44ddded2ab6ad8d0d82af7019dbd2dee42d5739"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-MRO",
+                  "megajoule"
+                ],
+                "binding_sha256": "22346fd0c901d212481adbdd2a90490f41e05c3c0c8650511b38fac918a770bf"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "b399b24a0432be9173adf6ac16afdff49c310a53dd8e3f3e3ea381a6a60c5a9f"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, 200kW electrical, lean burn",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "8e9f4eec25a481c1bb7388802dd671db9efc384b70ef2a40901b4904a299e155"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-SK",
+                  "megajoule"
+                ],
+                "binding_sha256": "35422394f2c45196d52280a351fc30154e32246a9c947cde3b1aefafc8bdeeba"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "80e5d1303eba8a82727e2442755ab173e7d5689bdda2595c88c2f703c0052161"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "ee4c648f416323601f19ef05aef6c488988aa80a9cd5ffbd7a9de8d3ed50088f"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "AR",
+                  "megajoule"
+                ],
+                "binding_sha256": "46f36454cfa4d1a39f61211b71a9bf6d188ddae4c738b85c6a6d2b2f3dfceca5"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-NPCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "614c526fb2c385572bbb8292177619d5bd5c12509a94c7af17dbb4f86e656789"
+              }
+            ],
+            "source_metadata_sha256": "2897aaab09109bc9a8f409fbf9f559e773c9e09bdc48756aeb5616d704c9980c",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "expected_foreground_records": 2,
+            "expected_foreground_biosphere_exchanges": 0
+          },
+          {
+            "label": "ecoinvent-3.12-cutoff",
+            "source_sign": 1,
+            "inventory_sha256": "0de66e85d17d376c44620c3c3605a25500f5f927034c9d51544031491e3e082e",
+            "inputs": [
+              {
+                "amount": 0.00835060619465378,
+                "uncertainty type": 0,
+                "loc": 0.00835060619465378,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00260741937024863,
+                "uncertainty type": 0,
+                "loc": 0.00260741937024863,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "KR",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0518374583288853,
+                "uncertainty type": 0,
+                "loc": 0.0518374583288853,
+                "name": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+                "reference product": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000315128488300066,
+                "uncertainty type": 0,
+                "loc": 0.000315128488300066,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 9.81178660285714e-07,
+                "uncertainty type": 0,
+                "loc": 9.81178660285714e-07,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0169328855509139,
+                "uncertainty type": 0,
+                "loc": 0.0169328855509139,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01094170746026,
+                "uncertainty type": 0,
+                "loc": 0.01094170746026,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "KR",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 2.40127863562945e-05,
+                "uncertainty type": 0,
+                "loc": 2.40127863562945e-05,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00683120684362639,
+                "uncertainty type": 0,
+                "loc": 0.00683120684362639,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000485572844104784,
+                "uncertainty type": 0,
+                "loc": 0.000485572844104784,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00584330380889349,
+                "uncertainty type": 0,
+                "loc": 0.00584330380889349,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.238518035212757,
+                "uncertainty type": 0,
+                "loc": 0.238518035212757,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00188753877856412,
+                "uncertainty type": 0,
+                "loc": 0.00188753877856412,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.100083288558118,
+                "uncertainty type": 0,
+                "loc": 0.100083288558118,
+                "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+                "reference product": "Heat, at cogen 1MWe lean burn, allocation exergy",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0159472534152559,
+                "uncertainty type": 0,
+                "loc": 0.0159472534152559,
+                "name": "Heat, natural gas, at industrial furnace 1MW",
+                "reference product": "Heat, natural gas, at industrial furnace 1MW",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00407454856897576,
+                "uncertainty type": 0,
+                "loc": 0.00407454856897576,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00348280670952872,
+                "uncertainty type": 0,
+                "loc": 0.00348280670952872,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00527244349617644,
+                "uncertainty type": 0,
+                "loc": 0.00527244349617644,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0186305490836935,
+                "uncertainty type": 0,
+                "loc": 0.0186305490836935,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "RU",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 7.85495118493441e-05,
+                "uncertainty type": 0,
+                "loc": 7.85495118493441e-05,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0160870095894897,
+                "uncertainty type": 0,
+                "loc": 0.0160870095894897,
+                "name": "xx Heat, natural gas, at boiler modulating >100kW",
+                "reference product": "xx Heat, natural gas, at boiler modulating >100kW",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00677769866279999,
+                "uncertainty type": 0,
+                "loc": 0.00677769866279999,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00744497188283477,
+                "uncertainty type": 0,
+                "loc": 0.00744497188283477,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00027427228689771,
+                "uncertainty type": 0,
+                "loc": 0.00027427228689771,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "TW",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00177950123659405,
+                "uncertainty type": 0,
+                "loc": 0.00177950123659405,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00537321910733719,
+                "uncertainty type": 0,
+                "loc": 0.00537321910733719,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000417630934599796,
+                "uncertainty type": 0,
+                "loc": 0.000417630934599796,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00252544797448391,
+                "uncertainty type": 0,
+                "loc": 0.00252544797448391,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0003476980858212,
+                "uncertainty type": 0,
+                "loc": 0.0003476980858212,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00011852483566459,
+                "uncertainty type": 0,
+                "loc": 0.00011852483566459,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00514391904658481,
+                "uncertainty type": 0,
+                "loc": 0.00514391904658481,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00390837851401175,
+                "uncertainty type": 0,
+                "loc": 0.00390837851401175,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00314281983600945,
+                "uncertainty type": 0,
+                "loc": 0.00314281983600945,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0421510250720895,
+                "uncertainty type": 0,
+                "loc": 0.0421510250720895,
+                "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+                "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+                "location": "CH",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00597303323502041,
+                "uncertainty type": 0,
+                "loc": 0.00597303323502041,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.000148193195798846,
+                "uncertainty type": 0,
+                "loc": 0.000148193195798846,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "ENTSO-E",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 7.0585510073205e-05,
+                "uncertainty type": 0,
+                "loc": 7.0585510073205e-05,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00862996092532523,
+                "uncertainty type": 0,
+                "loc": 0.00862996092532523,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00070056118747656,
+                "uncertainty type": 0,
+                "loc": 0.00070056118747656,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0158429470312231,
+                "uncertainty type": 0,
+                "loc": 0.0158429470312231,
+                "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+                "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0163310722593857,
+                "uncertainty type": 0,
+                "loc": 0.0163310722593857,
+                "name": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+                "reference product": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+                "location": "RER",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.00232961593870774,
+                "uncertainty type": 0,
+                "loc": 0.00232961593870774,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "US",
+                "unit": "megajoule",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.36233661746195,
+                "uncertainty type": 0,
+                "loc": 0.36233661746195,
+                "name": "Heat, natural gas, at CHP power plant",
+                "reference product": "Heat, natural gas, at CHP power plant",
+                "location": "RU",
+                "unit": "megajoule",
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "22f8a3889735edfb983884ced79f93b73d9902ed8c2fe205a8e115510f257d12"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "80e5d1303eba8a82727e2442755ab173e7d5689bdda2595c88c2f703c0052161"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, 200kW electrical, lean burn",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "8e9f4eec25a481c1bb7388802dd671db9efc384b70ef2a40901b4904a299e155"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "PE",
+                  "megajoule"
+                ],
+                "binding_sha256": "d16485a272c1422730e5b5e59e950fb0db475c760a8b74798ebc4033dfffa511"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CO",
+                  "megajoule"
+                ],
+                "binding_sha256": "2a84e4b301fdd07cc540e8ef2ab8b1d1cfbdb06c63d049a702fccf4f2e1087c5"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "SA",
+                  "megajoule"
+                ],
+                "binding_sha256": "476b1d7689e3ed1b63a78f6dba23f3d6c9a3d6edcefcbf1e226dfb05ac598ba8"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "KR",
+                  "megajoule"
+                ],
+                "binding_sha256": "bd80920238d770e30e917d453615e75ef2bd0e5115c202961a3ec2815efde7b9"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-BC",
+                  "megajoule"
+                ],
+                "binding_sha256": "77a1b07fc85af2f389771bf5d7f3214cd8dff88f8fa6e4ded09c1d8c83de91dc"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-WECC",
+                  "megajoule"
+                ],
+                "binding_sha256": "4b2499a24afecc4ee2265c1c53b86251faaa52bd2a88a25ff00bd878ba3d93d4"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-ON",
+                  "megajoule"
+                ],
+                "binding_sha256": "b6345d1fb0579b90e5526d44afcd42c7579389e2979f47913280abc4cb739dd4"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-TRE",
+                  "megajoule"
+                ],
+                "binding_sha256": "336021f178613fa3d9eee25cefd93ff16ecbf0bbaadeb2525612d757307a7129"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "43be8509282f75b19e5adc2cad3427ea3a3e0370b6e6fff411947e9733051d08"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "b399b24a0432be9173adf6ac16afdff49c310a53dd8e3f3e3ea381a6a60c5a9f"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "5906b88f3f292b199abb714640db6c44d7de257b896a0f92e40cf8a68ad443df"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at industrial furnace >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "928fc14b3694eeea25e92cc6cc52bce198105f38cabbfbc0aadb27f11ab30b4f"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-WECC",
+                  "megajoule"
+                ],
+                "binding_sha256": "9db354d7dd36543d4794923fbebb942b819b7ca0a611dc78a8f13e0e5b209001"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-TRE",
+                  "megajoule"
+                ],
+                "binding_sha256": "67628d57a60998ec21de69c65c681db8a0e90cfe87245bc644a48890b6ba9de3"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-RFC",
+                  "megajoule"
+                ],
+                "binding_sha256": "0c10a5704b9e31a756e11dc99b1dffbb6815c67314dc13fb5735f46ea2883508"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "7825e9c31226dc3729364102851f259493a565dcc6189162eb02305f1ffd407b"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-NB",
+                  "megajoule"
+                ],
+                "binding_sha256": "0f75f4de9b4a7b68fb8379ff179b1eacdbac04a9a1214b2c4df883e17c8d0ef1"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at boiler modulating >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "ca1299652c9c3af058138a0d60255265ccbd3df3344537bba4a38e6dbbe92b53"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "TR",
+                  "megajoule"
+                ],
+                "binding_sha256": "ee4c648f416323601f19ef05aef6c488988aa80a9cd5ffbd7a9de8d3ed50088f"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "IR",
+                  "megajoule"
+                ],
+                "binding_sha256": "f2844771f4eebb01703f5206770b0e088481fbe47a55a24b4475a7d13330f8de"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "TW",
+                  "megajoule"
+                ],
+                "binding_sha256": "db5be15b6eacc5d93f200918c44ddded2ab6ad8d0d82af7019dbd2dee42d5739"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-AB",
+                  "megajoule"
+                ],
+                "binding_sha256": "0c6eb146977af5043827bc523d0d3cafebbde9f95404da26cfef952277b7f9c5"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "AU",
+                  "megajoule"
+                ],
+                "binding_sha256": "2d8e77fd9bed8314171918167c8fa99d73cc88bfb00ebfc0633fc6570e90f925"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-MRO",
+                  "megajoule"
+                ],
+                "binding_sha256": "ece85bc49081142712a0fcdb657fe9e18afd61f42219635e9caed2b39849a6ea"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "AR",
+                  "megajoule"
+                ],
+                "binding_sha256": "46f36454cfa4d1a39f61211b71a9bf6d188ddae4c738b85c6a6d2b2f3dfceca5"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "IR",
+                  "megajoule"
+                ],
+                "binding_sha256": "96d44a81e8ae3df749eff83e1f95f207d8c95900bcd0e102e59429b41be8f25c"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-ASCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "1465b60ea213bb983191fa2057ed985041b48bb467dfa095c9123f66e09bbbfa"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-SERC",
+                  "megajoule"
+                ],
+                "binding_sha256": "7c9ae1e8981cc2df225961d3c9d39edcf6d1c31b55a8632a04c20e654b52297d"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-NPCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "2272006e2c42716dd27f3efc0c59474dd9f92f6146356da1208d2b0fbda0b46a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-RFC",
+                  "megajoule"
+                ],
+                "binding_sha256": "563543dc7b6ff99639ab6ea4f730b70b6419e3fb6d91cf6ed35906a9299cc393"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, 500kW electrical, lean burn",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "6b4846ea5681a0aa4a479e745738f6b06101f9fd6c4d9a2536a2219b1bb2a69d"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "SA",
+                  "megajoule"
+                ],
+                "binding_sha256": "46774128a06d0d7fe70d0bde6e79e0a0b53183bdb1db758fa00e2d71f6ef76c7"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "CA-SK",
+                  "megajoule"
+                ],
+                "binding_sha256": "35422394f2c45196d52280a351fc30154e32246a9c947cde3b1aefafc8bdeeba"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-ASCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "f43323a70541cb8fda71a0bcd31de11cb11d4e9666b977d0b4929419bbef6e88"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-SERC",
+                  "megajoule"
+                ],
+                "binding_sha256": "c3627323bde981e1f9a6e6d69112baed23288cdb08af11d6a07f96783c48c751"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-MRO",
+                  "megajoule"
+                ],
+                "binding_sha256": "22346fd0c901d212481adbdd2a90490f41e05c3c0c8650511b38fac918a770bf"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at boiler condensing modulating >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "71b88880a5bdf8ca26eb9994b737eb7ebcd1b089df20df38c5bd918a7b2b9dec"
+              },
+              {
+                "source": [
+                  "heat production, natural gas, at industrial furnace low-NOx >100kW",
+                  "heat, district or industrial, natural gas",
+                  "RoW",
+                  "megajoule"
+                ],
+                "binding_sha256": "8170c445eac76219e08157524a32aca2c04773eb36b5af80004f838fc6729d4a"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "US-NPCC",
+                  "megajoule"
+                ],
+                "binding_sha256": "614c526fb2c385572bbb8292177619d5bd5c12509a94c7af17dbb4f86e656789"
+              },
+              {
+                "source": [
+                  "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                  "heat, district or industrial, natural gas",
+                  "RU",
+                  "megajoule"
+                ],
+                "binding_sha256": "699b32d5850ad4be458c529a67113f7dda1f55367299a29338909e91afad3bba"
+              }
+            ],
+            "source_metadata_sha256": "e4d279b127926e16dfac7fee692576aa95ac5ffd30fe89b85b5c996be953dd0b",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "expected_foreground_records": 2,
+            "expected_foreground_biosphere_exchanges": 0
+          }
+        ],
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          }
+        ],
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0,
+        "limitations": "User instructionauto-approvecomingdecisionswithinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytheencountered3.9and3.12cutoffRoWnatural-gasdistrict/industrialheatmarketprofilesqualify. Preserveall43originalpositive heat-MJ supplierentriesperprofile,marginaluncertainty,sourceorderandzeroswithoutaggregation/renormalization,evenwhenseveralentriesusethesamenativeendpoint. Sourceandnativeheatproductreferencespositive1MJmeanfactor+1:retaincallernegativeheatcreditsasnegative,no waste-signflip. Sourceheatmarketexplicitlynodeliverytransport/losses. Useexplicitcomplete nativeplant-gateheatservices,notfuel-MJburningservicesnorDistrictheat-at-consumerwrappers. Nativefurnace/boilerheatservicesalreadyincludeefficiency;nativeCHPheatservicesalreadyincludeallocatedfuel/infrastructure/emissions andexergyallocation. No extraefficiency/COP,districtnetwork,11%deliveryuplift,heat/electricitycredit orfuel/MJfactor. Sourceindustrialfurnace>100kWusescompleteSwiss1MWheatfurnace(95%Hu);lowNOx/modulating/condensing sourcebranchesusespecificcomplete nativeheatwrappers. Source200kWeleanburnuses300kWthnativeCHheatservice,source500kWeuses1MWthCHheatservicewithexplicitthermal-vs-electricalcapacity/scale/efficiencywarnings. Source1MWeleanburnusescloserexplicitnative1MWeleanburnRERheatservice,notpreviousprivate1MWthcandidate. Nativeallocationexergyandheatquality/temperature,source/nativefuel/air/water/infrastructure/internaluncertainty andvintage differencesareexplicit/unquantified. Sourceconventional100MWeandcombined-cycle400MWeheatbranches usecomplete nativecountryCHPheataverages; noassertionthatanaveragefleetmatchescycle/capacity/efficiency. USsubregionsusenationalUS;absentcountriesandRoWuseENTSO-Easexplicitgeographicproxy,notinventedcountries/globalmix. NativeRUidentityandupstreamburnersupplierareRUwhilefree-textgeographyusesROin2022; retainthiscontradictionaswarning,do notsilentlyreinterpretlocationorclaimprecisegeographicequivalence. Othernativecomment/identitygeographicinconsistenciesretainedinportableevidence. Preserveoriginaltechnologysharesbutnativeproxychoicesdo notreconstructallsourcecycle/scale/geographicdistinctionsorinternaluncertaintycorrelations. Sourceproducerinternalparameters/formulas,allocations andwater/energybalancesarereplacedbycomplete nativeheatservices; do notcopy sourceinternalpurchases/emissions/credits asecondtime. Allsource/raw/nativeinventoryfingerprintsarefreshcheckedandunit/outputheatboundarydocumented; matchingnames/MJunitsalonearenotproof. Native2991upstreambiosphereexclusionsandallproxy scoreeffects remainexplicit/unquantified,noinventory/LCIAequivalence. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparateemissions/purchases. No physicalomission,standaloneproducer,uninspectedrelease,reverse,cross-system-model orfullscenario/certification/exportapproval."
+      },
+      "limitations": [
+        "User instructionauto-approvecomingdecisionswithinexactUVEK2026cutoff/ecoinvent3.10biosphereelectricitypilot. Onlytheencountered3.9and3.12cutoffRoWnatural-gasdistrict/industrialheatmarketprofilesqualify. Preserveall43originalpositive heat-MJ supplierentriesperprofile,marginaluncertainty,sourceorderandzeroswithoutaggregation/renormalization,evenwhenseveralentriesusethesamenativeendpoint. Sourceandnativeheatproductreferencespositive1MJmeanfactor+1:retaincallernegativeheatcreditsasnegative,no waste-signflip. Sourceheatmarketexplicitlynodeliverytransport/losses. Useexplicitcomplete nativeplant-gateheatservices,notfuel-MJburningservicesnorDistrictheat-at-consumerwrappers. Nativefurnace/boilerheatservicesalreadyincludeefficiency;nativeCHPheatservicesalreadyincludeallocatedfuel/infrastructure/emissions andexergyallocation. No extraefficiency/COP,districtnetwork,11%deliveryuplift,heat/electricitycredit orfuel/MJfactor. Sourceindustrialfurnace>100kWusescompleteSwiss1MWheatfurnace(95%Hu);lowNOx/modulating/condensing sourcebranchesusespecificcomplete nativeheatwrappers. Source200kWeleanburnuses300kWthnativeCHheatservice,source500kWeuses1MWthCHheatservicewithexplicitthermal-vs-electricalcapacity/scale/efficiencywarnings. Source1MWeleanburnusescloserexplicitnative1MWeleanburnRERheatservice,notpreviousprivate1MWthcandidate. Nativeallocationexergyandheatquality/temperature,source/nativefuel/air/water/infrastructure/internaluncertainty andvintage differencesareexplicit/unquantified. Sourceconventional100MWeandcombined-cycle400MWeheatbranches usecomplete nativecountryCHPheataverages; noassertionthatanaveragefleetmatchescycle/capacity/efficiency. USsubregionsusenationalUS;absentcountriesandRoWuseENTSO-Easexplicitgeographicproxy,notinventedcountries/globalmix. NativeRUidentityandupstreamburnersupplierareRUwhilefree-textgeographyusesROin2022; retainthiscontradictionaswarning,do notsilentlyreinterpretlocationorclaimprecisegeographicequivalence. Othernativecomment/identitygeographicinconsistenciesretainedinportableevidence. Preserveoriginaltechnologysharesbutnativeproxychoicesdo notreconstructallsourcecycle/scale/geographicdistinctionsorinternaluncertaintycorrelations. Sourceproducerinternalparameters/formulas,allocations andwater/energybalancesarereplacedbycomplete nativeheatservices; do notcopy sourceinternalpurchases/emissions/credits asecondtime. Allsource/raw/nativeinventoryfingerprintsarefreshcheckedandunit/outputheatboundarydocumented; matchingnames/MJunitsalonearenotproof. Native2991upstreambiosphereexclusionsandallproxy scoreeffects remainexplicit/unquantified,noinventory/LCIAequivalence. Preservecallerownership,formulas,signeduncertainty,foregroundlinks andseparateemissions/purchases. No physicalomission,standaloneproducer,uninspectedrelease,reverse,cross-system-model orfullscenario/certification/exportapproval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c3f99863e3f6ccd480f2763446c3fcc7f9056344c32da34bb6a96556ebcf5e8b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5d293183ed39933dfe07914a0a6ae6cb3950bd337360a0d77f2101bcebb0930d"
+        }
+      ]
     }
   ]
 }
