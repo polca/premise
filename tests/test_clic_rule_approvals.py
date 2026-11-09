@@ -567,6 +567,7 @@ def test_inspected_waste_reference_preserves_treatment_and_credit_signs(
         ("bp-84737a1a1790ee76", "3.6"),
         ("bp-2d7bd6f9508a4c17", "3.6"),
         ("bp-b16c64b2ed0f8102", "3.12"),
+        ("bp-f0abe48d8c3176d4", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -904,6 +905,7 @@ def test_bare_inert_landfill_retains_source_boundary_and_cached_gap_warning(
         "bp-9f820f97f9f3c080",
         "bp-2d7bd6f9508a4c17",
         "bp-b16c64b2ed0f8102",
+        "bp-f0abe48d8c3176d4",
         "bp-1b20be09e53aaa84",
         "bp-bcbf9e1008a58e4b",
     ],
@@ -1141,6 +1143,7 @@ def test_tap_water_proxy_keeps_delivered_kg_and_cached_loss_warning(
         ("bp-84737a1a1790ee76", "3.6", "secondary billets"),
         ("bp-2d7bd6f9508a4c17", "3.6", "positive oxide reference"),
         ("bp-b16c64b2ed0f8102", "3.12", "without a 1.53 hydroxide-feed multiplier"),
+        ("bp-f0abe48d8c3176d4", "3.9", "without adding hot/cold rolling"),
         ("bp-6ce52de989145df6", "3.12", "without wood-density"),
         (
             "bp-8a37fb9191501441",
@@ -1722,9 +1725,11 @@ def test_other_zeolite_and_wastewater_market_boundaries_remain_unapproved(
         ("bp-953779a9d7354634", "3.6"),
         ("bp-67e316270a112622", "3.9"),
         ("bp-1104956dff1c701e", "3.12"),
+        ("bp-5968433ef239f628", "3.12"),
+        ("bp-7c580ffe9daa9693", "3.12"),
     ],
 )
-def test_cement_concrete_nickel_grades_do_not_inherit_supply_approval(
+def test_unapproved_material_grades_do_not_inherit_supply_approval(
     tmp_path, rule_id, version
 ):
     from brightpath.background import PackageCatalogProvider

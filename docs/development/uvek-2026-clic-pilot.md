@@ -180,10 +180,10 @@ foreign foreground anchors retained, gives:
 | 3.6 | 27 | 13 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 28 |
+| 3.9 | 17 | 27 |
 | 3.12 | 8 | 13 |
 
-These are 54 exact-profile cases involving 47 distinct rules, after reusing
+These are 53 exact-profile cases involving 46 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -487,10 +487,25 @@ system-model guard now compares both sides after all reviewed pilot corrections,
 including the approved diesel factor, and still requires exact executable-rule
 and helper-coefficient preservation. The 631-case Premise correspondence module
 was exercised selectively; no full 631-case run is claimed.
+The exact 3.9 unalloyed-steel market now uses its inspected complete native
+converter/cast-steel counterpart. Both source producers and the native process
+end at steelmaking/casting, without rolling. Signed stock kg retain factor +1;
+pig-iron/scrap mix, gas handling, wastes, allocation, delivery, geography and
+vintage differences remain warnings. No extra steelmaking, rolling or
+recovery credit is added. Twelve focused checks pass, including refusals for
+six pending material-grade cases. The native supplier LCI is finite with
+unchanged scientific hashes; all 293 earlier fingerprints remain valid.
+The unchanged raw rule and its authorization evidence are verified in the
+wheel. The current module contains 638 cases; no full 638-case run is claimed.
+Three further [material-grade screening proposals](uvek-material-grade-proposal.md)
+cover short-chain polyols, mixed kraft paper and class-I nickel. Their native
+candidate LCIs are finite, but approval remains pending and their exact public
+conversions remain refused. Acrylic/hypochlorite reference-basis ambiguities
+are excluded from the steel decision.
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 293 exact-profile fingerprints, with review evidence and
+ledger contains 294 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

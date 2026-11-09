@@ -666,6 +666,18 @@ cover 734 Brightpath cases across focused runs. A stale historical comparison
 now applies the same complete reviewed pilot overlays as the authoring path,
 retaining exact rule and helper-coefficient comparisons after those corrections.
 
+`uvek_pilot_unalloyed_cast_steel_review.json` admits the exact 3.9 unalloyed
+steel market under the standing complete matching-supply proxy approval.
+Both actual source producers and the native process end at converter steel
+and casting, without rolling. Signed stock kg retain factor +1; production,
+scrap, gas, allocation, delivery and vintage differences remain warnings.
+No raw rule or helper changes. Twelve focused checks pass, all 293 earlier
+fingerprints remain valid, and the native supplier LCI is finite with unchanged
+scientific hashes. Wheel evidence and authority hashes are verified. The
+frontier is 46 distinct unresolved rules / 53 exact source-profile cases,
+with 294 approval fingerprints. The three material-grade proposals remain
+pending despite finite candidate LCIs; their public conversions are refused.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

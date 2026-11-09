@@ -21023,6 +21023,108 @@
           "fingerprint": "75f34aba091a15bfaabda048980fb1851876328429943bad172b0beb16e9cc5e"
         }
       ]
+    },
+    {
+      "rule_id": "bp-f0abe48d8c3176d4",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pilot_unalloyed_cast_steel_review.json",
+      "review_sha256": "f55333d9ccaa352d44fed25013a4a2a73e83cd466742f80a24ac1370334dbe69",
+      "authorization": "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval. Actual source producer inventories and native definitions establish the same unalloyed converter/casting stock boundary. No new material grade, rolling stage, unit or composition multiplier, helper, omission or recovery model is introduced. Admit only the enumerated actual 3.9 cut-off pilot profile.",
+      "inspection": {
+        "rule_id": "bp-f0abe48d8c3176d4",
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, unalloyed",
+          "reference product": "steel, unalloyed",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, converter, unalloyed, at plant",
+          "reference product": "Steel, converter, unalloyed, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "353b65ea38cf85780e3192c140c8071f8bd2742e7c2b9222827a598ba8cb9d82",
+            "inventory_sha256": "ab4026f2e8854f39d9973fa428515331fd5af93e403ae4ee9c0737947cbdce0f",
+            "activity_comment_sha256": "e94f8678bb705abe644ffbf6d032f170ea0e3f4f8e1436a68383c00029224f04",
+            "product_information_sha256": "b595f020f094acac8687228d01751fb34f1ce528cee27b603e2e0569d9cdbd9c",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "steel production, converter, unalloyed",
+                  "reference product": "steel, unalloyed",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "4cd26bd604f1e0faf09fcf8bd0d5c0895563fa62594be663b165f801a26e0c3f",
+                "inventory_sha256": "d1045381155ef5e7ecb885bce056fa0cd7357c59372adb3be740cba308e9bab3"
+              },
+              {
+                "identity": {
+                  "name": "steel production, converter, unalloyed",
+                  "reference product": "steel, unalloyed",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "31b2af62106e0130f6759979cfbf271db61df51a7374462e4061311d2cc68758",
+                "inventory_sha256": "34225ddf159fef2b142653ebd54041d40fe50648ae1b7d14f100980b4398d0ae"
+              }
+            ]
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "ee39157ce606ff575300abca97fc2fa0c79af0917c80e81003fa5e05df0095fd",
+            "inventory_sha256": "404fd3328cd7426223258d65f7f9413f81c80bc602836cdcb89900af42b68890",
+            "comment_sha256": "76374afe9895afb1c21b9c238e1230093f789664cb7410aeffc769cfd2fc3c66",
+            "direct_technosphere_coordinates": 26,
+            "direct_biosphere_coordinates": 13
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "bafda7b1d554e0166e6c9163cbac28d335b76e7224ed0acaf2abb4b33fa3b826",
+            "inventory_sha256": "0a7932953f57139cc6334a7e489d43f134c0ace1904dac50eb92ff1cd35a4898",
+            "comment_sha256": "a3d1db321aec9912a93da5267f7ece7a4313ca7a9b2ce8f9e8daf044b434f5dd",
+            "direct_technosphere_coordinates": 26,
+            "direct_biosphere_coordinates": 12
+          }
+        },
+        "native_direct_technosphere_coordinates_match": true,
+        "limitations": "Same unalloyed basic-oxygen/converter cast-steel stock per signed kg. Both actual source producers end at steelmaking and continuous casting, and the complete native converter inventory likewise ends at cast steel; neither includes hot rolling. Preserve factor +1 without adding hot/cold rolling, an alloy/iron-content ratio, extra pig iron, scrap-yield adjustment, furnace infrastructure or gas/recovery credits. Native complete pig-iron/scrap cooling mix, energy/by-product gas handling, secondary metallurgy, wastes, emissions, allocation, geography and vintage approximate the source European/extrapolated-global producers. The source market has separate delivery transport not reconstructed by this whole-supply proxy; retain native internal logistics and separate caller transport once. No quantified carbon-grade or downstream-product performance equivalence is asserted. Source/native inventory and LCIA equivalence is not established; score effects are unquantified. Only the exact inspected 3.9 cut-off market is admitted; electrical steel, alloyed grades, uninspected profiles and inverse/cross-system-model routes remain unresolved."
+      },
+      "limitations": [
+        "Same unalloyed basic-oxygen/converter cast-steel stock per signed kg. Both actual source producers end at steelmaking and continuous casting, and the complete native converter inventory likewise ends at cast steel; neither includes hot rolling. Preserve factor +1 without adding hot/cold rolling, an alloy/iron-content ratio, extra pig iron, scrap-yield adjustment, furnace infrastructure or gas/recovery credits. Native complete pig-iron/scrap cooling mix, energy/by-product gas handling, secondary metallurgy, wastes, emissions, allocation, geography and vintage approximate the source European/extrapolated-global producers. The source market has separate delivery transport not reconstructed by this whole-supply proxy; retain native internal logistics and separate caller transport once. No quantified carbon-grade or downstream-product performance equivalence is asserted. Source/native inventory and LCIA equivalence is not established; score effects are unquantified. Only the exact inspected 3.9 cut-off market is admitted; electrical steel, alloyed grades, uninspected profiles and inverse/cross-system-model routes remain unresolved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "48421b62c149166faf29ff0cc93311d80f6044acaa17e8229da391379be575de"
+        }
+      ]
     }
   ]
 }
