@@ -29,13 +29,42 @@ The fifth supply-only market is the European tap-water group. It delegates to
 country markets, so its lack of direct distribution exchanges does not prove
 that the water system lacks losses or infrastructure.
 
-Fourteen other goods markets contain separate freight. These include expanded
-perlite, foam glass, alloy, particleboard, polymers, refractory material, sand,
+The initial fourteen other goods markets contain separate freight. These include
+expanded perlite, foam glass, alloy, particleboard, polymers, refractory material, sand,
 silicone, steel sheet and transformer supplies. Their existing at-plant targets
 must not silently replace the source delivery boundary. Further source-based
 compositions need to retain the individual original transport entries and
 uncertainty, using independently inspected complete same-mode services. A
 material match alone does not approve deleting delivery or changing its scale.
+
+Nine of those markets now preserve their supply/delivery boundary through
+reviewed source-bound compositions: expanded perlite, Fe-Ni-Cr alloy,
+cement-bonded particleboard in two geographies, HIPS, basic packed refractory,
+generic silicone, tin-plated chromium-steel sheet and the ICT transformer model.
+The recipes retain all 14 original producer entries and 41 freight entries,
+including uncertainty, without normalizing shares. Native kg, m3 and m2
+references match the source quantity basis. The cumulative board inventory has
+no explicit upstream links through which to propagate prospective energy
+changes; that inherited source limitation remains. Internal production logistics
+and original market delivery are distinct and retained once. The complete-product
+screening limitations remain in warnings; specific performance and LCIA equality
+are not established. The new review passes 114 focused Brightpath and 114
+Premise checks, ten actual native LCI cases and ten installed-wheel conversions.
+
+Five delivery markets still require further work. The HDPE market contains
+four recycled-to-generic renaming suppliers alongside two virgin-production
+suppliers. The foam-glass market combines production with recycled cullet and
+production without cullet; equal density/conductivity does not establish equal
+feedstock or energy. Neither can be collapsed to one virgin/native product.
+The three sand markets include river extraction, with an extraction and
+allocation boundary different from the generic native gravel/sand pit.
+
+The 3.9 generator market is now separately reviewed at factor +1 per explicit
+thermal MJ. Its fuel input supports that corrected reference basis, unlike the
+older 3.6 ambiguous reference whose approved proxy normalizes fuel demand.
+The existing complete-native-generator size/application proxy remains with its
+limitations; neither a copied normalization nor a new efficiency, heat credit
+or separate generator is introduced.
 
 Seven water markets remain unapproved. Six national markets include distribution
 losses, a network purchase and a direct water release. The source provider
@@ -57,8 +86,8 @@ network burden, delivery and embodied-water accounting must be resolved
 explicitly before selecting a correspondence. No additional embodied-water
 exchange or geographic water-balance factor is inferred for caller datasets.
 
-The four admitted services pass 74 focused Brightpath cases and 97 focused
-Premise cases, plus actual native LCI and installed-wheel checks. Native
+The earlier four-service checkpoint passed 74 focused Brightpath cases and 97
+focused Premise cases, plus actual native LCI and installed-wheel checks. Native
 scientific hashes remain unchanged. The private cabinet check initially used a
 demand-normalized absolute residual unsuitable for its much larger internal
 flows. Independent solutions agree; the report retains the unscaled residual

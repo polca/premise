@@ -897,6 +897,42 @@ All four installed-wheel conversions pass. The full pilot still refuses
 leaving 87 identities. The [material-boundary findings](uvek-nitrate-material-boundaries.md)
 explain why the other delivery and water cases are not automatically admitted.
 
+`uvek_pilot_nitrate_goods_review.json` preserves nine further 3.9 material
+markets through source-bound helpers: expanded perlite, Fe-Ni-Cr alloy,
+cement-bonded particleboard in two geographies, HIPS, packed basic refractory,
+generic silicone product, tin-plated chromium-steel sheet and the source ICT
+transformer model. Fresh source/native inspection checks the product/reference
+class and relevant physical boundaries. Fourteen original producer entries and
+all 41 original road, rail, barge, bulk-ship and container-ship delivery entries
+remain separate, with their signed quantities and supported uncertainty.
+Complete native at-plant production retains its own inbound logistics once;
+market delivery is retained separately. Original kg, m3 and m2 references remain,
+without density, thickness, capacity, yield, performance or allocation factors.
+Generic product, geography, fleet, vessel, energy, vintage, allocation and
+biosphere-exclusion differences remain explicit screening limitations.
+
+The same review separately admits the 3.9 generator market per thermal MJ.
+Fresh inspection shows that its provider now explicitly states that basis and
+has a fuel draw consistent with it. Factor +1 preserves the energy reference;
+the earlier 3.6 fuel-normalization factor must not be copied. The already
+approved complete-native-generator capacity/application proxy and warnings
+remain. The direct 3.6 provider mapping is unchanged; the direct 3.9 provider
+receives no independent admission here.
+
+All 323 earlier fingerprints remain unchanged; there are now 333 registered
+scopes. Nine rules change and nine recipes are added, with all 3,229 prior recipes and
+698 reviews preserved. There are now 706 shared reviews. Full generator replay
+is byte-identical. The focused runs pass 114 Brightpath and 114 Premise checks,
+including the old 3.6 generator, supported uncertainty, cold/warm caches,
+transactional drift refusal and uninspected-release refusals. Ten actual migrated
+graphs give finite LCI on unchanged native matrices with exact foreground
+reference balance and reported mixed row-residual verification. All ten
+installed-wheel migrations pass. The full pilot still refuses 35 parent rules /
+40 cases; nitrate coverage is now 48 of 125 external suppliers, leaving 77
+identities across 22 product labels. Recycled-HDPE supply, no-cullet foam glass,
+river-sand extraction, water accounting and pending grade/waste choices remain
+unresolved. This is not a completed nitrate conversion or prospective export.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and

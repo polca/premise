@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-38 already have exact current CLIC approval fingerprints for their source
+48 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
-scientifically reviewed target. The other suppliers cover 31 reference-product
+scientifically reviewed target. The other suppliers cover 22 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 87 automatically new scientific decisions. Coverage is
+decisions. They are not 77 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -118,6 +118,20 @@ unscaled numerical findings retained. The [material-boundary inspection](uvek-ni
 records the delivery and water-accounting cases still requiring work. These
 reviews change no raw mapping or recipe and do not approve the complete salt
 market.
+
+Nine further material markets now retain their original supply/delivery
+boundaries through reviewed helpers. They preserve all 14 producer entries and
+41 individual freight entries, including marginal uncertainty. The native
+at-plant products have independently inspected matching reference classes;
+complete internal production/logistics and separate original market delivery
+are retained once. The explicit 3.9 thermal-MJ generator market is separately
+admitted at factor +1; its corrected fuel basis differs from the earlier
+ambiguous 3.6 source and must not inherit that normalization factor. Ten actual
+native LCI and installed-wheel checks pass; all earlier approval fingerprints
+remain unchanged. Recycled HDPE and foam glass without cullet are actual supply
+variants in the remaining markets, not interchangeable geographic copies of
+virgin production. Their shares remain unresolved rather than being silently
+collapsed to the available generic native products.
 
 This dependency expansion sits behind one currently blocked parent rule.
 Consequently, the headline count of 35 unresolved rules / 40 source-profile
