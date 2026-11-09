@@ -14,7 +14,7 @@
   "entries": [
     {
       "decision_id": "uvek-2026-screening-8286122f7b4a585ec69e",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-8286122f7b4a585ec69e",
         "slug": "electricity-production-at-hard-coal-fired-igcc-power-plant",
@@ -306,12 +306,54 @@
         "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
         "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath active kg, uncertainty, reactants, canonical emissions, same-mode freight, exact-profile refusals and atomic replay",
+          "passed_cases": 19
+        },
+        {
+          "check": "Premise cold/warm and uninspected release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Two actual migrated producer/market graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_naocl_lci_report.json",
+          "finite_cases": 2
+        },
+        {
+          "check": "Five source signed active-kg quantities and supported metadata exact before IAM; original graph unchanged",
+          "receipt": "deferred_naocl_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-naocl",
+          "activity_count": 12461,
+          "receipt": "deferred_naocl_export_report.json"
+        },
+        {
+          "check": "All 33 restored inputs read back, including six reactants/utilities, three canonical emissions and original uncertain rail/road coefficients; complete linking and unchanged backgrounds",
+          "receipt": "deferred_naocl_export_readback.json"
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_naocl_generator_replay.json",
+          "sha256": "59ddd280c3365e60213d89026f6bfacd852961b04ea7b44d429b19bab2e70f9d"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "d73bdd1"
+        },
+        {
+          "repository": "premise",
+          "commit": "9bf486ae"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-f024a1de428dd3b3e3cd",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-f024a1de428dd3b3e3cd",
         "slug": "electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
@@ -603,12 +645,54 @@
         "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
         "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath active kg, uncertainty, reactants, canonical emissions, same-mode freight, exact-profile refusals and atomic replay",
+          "passed_cases": 19
+        },
+        {
+          "check": "Premise cold/warm and uninspected release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Two actual migrated producer/market graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_naocl_lci_report.json",
+          "finite_cases": 2
+        },
+        {
+          "check": "Five source signed active-kg quantities and supported metadata exact before IAM; original graph unchanged",
+          "receipt": "deferred_naocl_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-naocl",
+          "activity_count": 12461,
+          "receipt": "deferred_naocl_export_report.json"
+        },
+        {
+          "check": "All 33 restored inputs read back, including six reactants/utilities, three canonical emissions and original uncertain rail/road coefficients; complete linking and unchanged backgrounds",
+          "receipt": "deferred_naocl_export_readback.json"
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_naocl_generator_replay.json",
+          "sha256": "59ddd280c3365e60213d89026f6bfacd852961b04ea7b44d429b19bab2e70f9d"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "d73bdd1"
+        },
+        {
+          "repository": "premise",
+          "commit": "9bf486ae"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-62b556049ace56fa4892",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-62b556049ace56fa4892",
         "slug": "electricity-production-at-lignite-fired-igcc-power-plant",
@@ -902,12 +986,54 @@
         "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
         "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath active kg, uncertainty, reactants, canonical emissions, same-mode freight, exact-profile refusals and atomic replay",
+          "passed_cases": 19
+        },
+        {
+          "check": "Premise cold/warm and uninspected release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Two actual migrated producer/market graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_naocl_lci_report.json",
+          "finite_cases": 2
+        },
+        {
+          "check": "Five source signed active-kg quantities and supported metadata exact before IAM; original graph unchanged",
+          "receipt": "deferred_naocl_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-naocl",
+          "activity_count": 12461,
+          "receipt": "deferred_naocl_export_report.json"
+        },
+        {
+          "check": "All 33 restored inputs read back, including six reactants/utilities, three canonical emissions and original uncertain rail/road coefficients; complete linking and unchanged backgrounds",
+          "receipt": "deferred_naocl_export_readback.json"
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_naocl_generator_replay.json",
+          "sha256": "59ddd280c3365e60213d89026f6bfacd852961b04ea7b44d429b19bab2e70f9d"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "d73bdd1"
+        },
+        {
+          "repository": "premise",
+          "commit": "9bf486ae"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-a36ecc3cfd0b1e70fbe0",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-a36ecc3cfd0b1e70fbe0",
         "slug": "electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
@@ -1201,8 +1327,50 @@
         "recipe_id": "deferred-naocl-16a9dd5cd0f7029e47c5",
         "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath active kg, uncertainty, reactants, canonical emissions, same-mode freight, exact-profile refusals and atomic replay",
+          "passed_cases": 19
+        },
+        {
+          "check": "Premise cold/warm and uninspected release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Two actual migrated producer/market graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_naocl_lci_report.json",
+          "finite_cases": 2
+        },
+        {
+          "check": "Five source signed active-kg quantities and supported metadata exact before IAM; original graph unchanged",
+          "receipt": "deferred_naocl_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-naocl",
+          "activity_count": 12461,
+          "receipt": "deferred_naocl_export_report.json"
+        },
+        {
+          "check": "All 33 restored inputs read back, including six reactants/utilities, three canonical emissions and original uncertain rail/road coefficients; complete linking and unchanged backgrounds",
+          "receipt": "deferred_naocl_export_readback.json"
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_naocl_generator_replay.json",
+          "sha256": "59ddd280c3365e60213d89026f6bfacd852961b04ea7b44d429b19bab2e70f9d"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "d73bdd1"
+        },
+        {
+          "repository": "premise",
+          "commit": "9bf486ae"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-48ec18f887271c0c2356",
@@ -1359,7 +1527,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-cdba548fe7d3b9829dab",
-      "status": "restored_awaiting_validation",
+      "status": "restored",
       "original_deferral": {
         "id": "uvek-2026-screening-cdba548fe7d3b9829dab",
         "slug": "perfluorosulfonic-acid-membrane-production-ew1100-engineering-reference",
@@ -1647,8 +1815,50 @@
         "recipe_id": "deferred-naocl-3469cb71877754d72661",
         "limitations": "Autonomous user-approved source-faithful dry-active NaOCl reconstruction, only for the inspected3.6/3.9cut-off profiles. Source market and producer both reference positive1kg dry NaOCl (without water, in15%solution state). Reconstruct the actual source virgin-chlorine/caustic production inputs, reaction-salt/water emissions and original market freight rather than use UVEKs differently bounded off-gas-capture NaOCl process. Ecoinvent v2 methodology section4.5.8 and v3 guideline section4.2.3 explicitly define dissolved-chemical references by active substance: the legacy50%-in-H2O NaOH name does not imply a half-kilogram active output. Thus the inspected native NaOH and Cl2 references supply the source active kilograms at factor1; no guessed6.6667 NaOCl dilution or factor2 NaOH multiplier is introduced. Preserve caller signed active kg, formulas and uncertainty at factor1. Producer inputs include .952447874110337kg virginCl2 and1.07441948482084kg activeNaOH plus source utilities/capital; preserve their supported coefficient uncertainty. Keep .476223937055169kgchloride,.30883719149539kgsodium and.000241806230380622m3reactionwater in their exact canonical3.10 compartments/roles/units via unchanged publisher UUIDs. No new chemical, avoided off-gas-emission credit, unreported dilution water, extra reactor or omission is added. Common native chemical-plant/utility technologies, allocation, capacity/lifetime, heat-market composition versus complete HFO/NG heat proxies, delivered heat boundary, geography/vintage, internal supplier uncertainty and2991upstreambiosphere exclusions differ; score effects remain unquantified. All original transport legs remain separate at their original signed coefficient; water transported under the source product definition is not rescaled from the15%label. Other releases, inverse and cross-system-model routes are not qualified. Source generic RER rail freight uses complete native RER rail freight, with operation, rolling stock and infrastructure, at the original signed tonne-kilometre quantity and uncertainty. Reject the heuristic aircraft candidate: transport mode differs. Native fleet, traction, loading, allocation and vintage differ; effects remain unquantified. This correction is local to the inspected NaOCl profiles."
       },
-      "validation": [],
-      "commits": []
+      "validation": [
+        {
+          "check": "Brightpath active kg, uncertainty, reactants, canonical emissions, same-mode freight, exact-profile refusals and atomic replay",
+          "passed_cases": 19
+        },
+        {
+          "check": "Premise cold/warm and uninspected release refusals",
+          "passed_cases": 10
+        },
+        {
+          "check": "Two actual migrated producer/market graphs on unchanged native matrices have finite LCI",
+          "receipt": "native_deferred_naocl_lci_report.json",
+          "finite_cases": 2
+        },
+        {
+          "check": "Five source signed active-kg quantities and supported metadata exact before IAM; original graph unchanged",
+          "receipt": "deferred_naocl_quantity_check.json"
+        },
+        {
+          "check": "Encrypted public scenario, certification and export",
+          "database": "premise-uvek-2026-remind-SSP2-NPi-2050-restored-naocl",
+          "activity_count": 12461,
+          "receipt": "deferred_naocl_export_report.json"
+        },
+        {
+          "check": "All 33 restored inputs read back, including six reactants/utilities, three canonical emissions and original uncertain rail/road coefficients; complete linking and unchanged backgrounds",
+          "receipt": "deferred_naocl_export_readback.json"
+        },
+        {
+          "check": "Generator byte identical",
+          "receipt": "deferred_naocl_generator_replay.json",
+          "sha256": "59ddd280c3365e60213d89026f6bfacd852961b04ea7b44d429b19bab2e70f9d"
+        }
+      ],
+      "commits": [
+        {
+          "repository": "brightpath",
+          "commit": "d73bdd1"
+        },
+        {
+          "repository": "premise",
+          "commit": "9bf486ae"
+        }
+      ]
     },
     {
       "decision_id": "uvek-2026-screening-ad29e37f34a7b0d2b065",
@@ -2968,8 +3178,8 @@
   ],
   "progress": {
     "starting_deferred_exchanges": 20,
-    "restored_in_this_goal": 6,
+    "restored_in_this_goal": 11,
     "final_unsupported_omissions": 0,
-    "pending_exchanges": 14
+    "pending_exchanges": 9
   }
 }

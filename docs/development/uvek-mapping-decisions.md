@@ -1,7 +1,7 @@
 # Remaining UVEK mapping decisions
 
 This ledger covers the 20 exchanges left after the first 22 restorations.
-Six further inputs are now restored and validated; 14 remain pending.
+Eleven further inputs are now restored and validated; nine remain pending.
 The authoritative structured record is
 `premise/data/clic/remaining_mapping_decisions.json`, retaining original source
 pins/exchanges, reference bases, rejected candidates, selected dispositions,
@@ -33,12 +33,12 @@ without changing their total. Scientific/LCIA equivalence is not claimed.
 
 | Original decision | Source profile | Source exchange | Signed amount | Status |
 | --- | --- | --- | ---: | --- |
-| `uvek-2026-screening-8286122f7b4a585ec69e` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.11e-05 kilogram | pending |
-| `uvek-2026-screening-f024a1de428dd3b3e3cd` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.11e-05 kilogram | pending |
-| `uvek-2026-screening-62b556049ace56fa4892` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.384e-05 kilogram | pending |
-| `uvek-2026-screening-a36ecc3cfd0b1e70fbe0` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.384e-05 kilogram | pending |
+| `uvek-2026-screening-8286122f7b4a585ec69e` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.11e-05 kilogram | restored |
+| `uvek-2026-screening-f024a1de428dd3b3e3cd` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.11e-05 kilogram | restored |
+| `uvek-2026-screening-62b556049ace56fa4892` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.384e-05 kilogram | restored |
+| `uvek-2026-screening-a36ecc3cfd0b1e70fbe0` | 3.6 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 4.384e-05 kilogram | restored |
 | `uvek-2026-screening-48ec18f887271c0c2356` | 3.6 cut-off | market group for natural gas, high pressure (Europe without Switzerland) | 0.2068145390620961 cubic meter | restored |
-| `uvek-2026-screening-cdba548fe7d3b9829dab` | 3.9 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 0.15038135208080808 kilogram | pending |
+| `uvek-2026-screening-cdba548fe7d3b9829dab` | 3.9 cut-off | market for sodium hypochlorite, without water, in 15% solution state (RER) | 0.15038135208080808 kilogram | restored |
 | `uvek-2026-screening-ad29e37f34a7b0d2b065` | 3.9 cut-off | market for inert waste (CH) | -688484 kilogram | restored |
 | `uvek-2026-screening-e9ef258182b7597f7874` | 3.9 cut-off | market for waste concrete, not reinforced (CH) | -207020000 kilogram | pending |
 | `uvek-2026-screening-31a78eae0e6d78a50a8f` | 3.9 cut-off | market for waste mineral oil (CH) | -420000 kilogram | restored |
@@ -67,6 +67,28 @@ All three original volumes/uncertainty match before IAM. Later normal IAM quanti
 changes remain separately reported. The complete scenario/export/readback and
 source-signature checks pass; 21 Brightpath and 10 Premise tests pass.
 
-Next: source-faithful active-basis hypochlorite production, concrete routes and
+Next: concrete routes and
 remaining material/treatment evidence. Final packaging verification is still due
 at the end of the active goal.
+
+## Dry-active hypochlorite decisions
+
+Five inputs from exact ecoinvent 3.6/3.9 cut-off profiles now use source-faithful
+producer/market reconstructions. The active-kg reference convention is verified
+against the official legacy methodology, rather than inferred from concentration
+names. Complete native reactants/utilities retain source quantities; three direct
+reaction emissions retain units, compartments and publisher UUIDs in canonical
+3.10. The erroneous heuristic rail-to-aircraft match is replaced locally by
+complete native RER rail, retaining source quantities and uncertainty. No dilution
+multiplier, off-gas credit or omission is added. Technology, utility composition,
+delivery, geography, allocation and vintage differences remain explicit.
+
+Validation: 19 Brightpath and 10 Premise tests; two finite native LCIs; identical
+generator replay; complete encrypted public scenario/certification/export and
+readback of 12,461 activities, all 33 restored callers, exact producer coefficients
+and uncertain freight. All five caller quantities/metadata match before IAM;
+subsequent ordinary IAM operating-quantity changes are recorded separately.
+Original technosphere and biosphere scientific signatures remain unchanged.
+Commits: Brightpath `d73bdd1`, Premise `9bf486ae`. Nine original deferrals and the
+previously approved CSP salt omission remain visible. Final packaging is due at
+goal completion; no scientific equivalence or impact-completeness claim is made.
