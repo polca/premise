@@ -733,3 +733,15 @@ positive-reference, production-only cut-off stock bindings. See
 The required nitrate dependency set now has 111 of 125 suppliers scoped. The
 three new scopes preserve all previous 396 fingerprints; full scenario,
 certification and export gates remain open.
+
+### Hazardous-waste and paint checkpoint
+
+Six exact 3.9 cut-off hazardous-waste and paint markets now retain their original
+nonempty treatment and collection entries through inspected services. Five
+production-only clinker/waste-paint links are explicitly omitted with signed
+source quantities and fingerprints in the omission audit, without renormalizing
+the remaining routes. The energy-label inconsistency and physical limitations
+remain warnings. See [boundaries and verification](uvek-hazardous-paint-routing-findings.md).
+The required nitrate supplier set has 117 of 125 exact scopes, with all previous
+399 fingerprints unchanged. Full pilot mapping, scenario, certification and
+export gates remain open.
