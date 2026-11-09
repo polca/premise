@@ -1,5 +1,9 @@
 # UVEK electricity screening export
 
+Latest checkpoint: the first restoration batch brings back 21 inputs using eight
+reviewed native material proxies across ten exact source profiles. Twenty-one
+inputs remain deferred; screening limitations still apply.
+
 The first operational milestone uses UVEK 2026 cut-off with ecoinvent 3.10
 biosphere through the ordinary public Premise API. The user requested deferring
 remaining scientific refinements to prioritize a working scenario and Brightway
@@ -7,8 +11,8 @@ export. Existing ecoinvent behavior and the user-facing API remain unchanged.
 
 ## Scientific boundary
 
-Exactly 42 original CLIC exchanges covering 23 supplier identities and 27 source
-profile cases are deferred. All nine roots and 55 source records remain selected,
+The initial checkpoint deferred 42 original CLIC exchanges covering 23 supplier
+identities and 27 source profile cases. All nine roots and 55 source records remain selected,
 with no retained workbooks. These omissions are **screening only**: their omitted
 burdens or credits and score effects are unquantified. They are not approvals of
 the former heuristic supplier candidates. No renormalization, invented recovery
@@ -100,3 +104,26 @@ supplementary publication provenance survive export. Focused integration tests:
 67 passed. Separate component tests: 29 Brightpath and 25 Premise cases passed.
 Both distribution wheels include the new resources; the installed Brightpath
 wheel exercises the three component migrations.
+
+## First restoration batch
+
+Eight supplier rules now restore 21 exact original CLIC exchanges: Portland
+cement, normal concrete, lubricating oil, tetrafluoroethylene, polyether polyols,
+kraft paper, liquid epoxy resin and Class I nickel. Caller quantities and
+supported uncertainty retain factor +1. The review explicitly retains delivery,
+grade, formulation, vintage and allocation differences, TFE/epoxy metadata
+conflicts, and the native caution on nickel-dominated results. No new helper,
+omission, purity/yield/concentration correction or reverse route is introduced.
+
+The ten exact compatibility scopes are pinned to the packaged Brightpath review.
+`restored_screening_deferrals.json` retains the original decisions, source pins,
+signed exchange dictionaries and replacement-review hash. Only these 21 decisions
+leave the active omission registry; all other refusals/omissions remain enforced.
+
+Validation: 70 Brightpath migration/authoring cases and 33 Premise cold/warm and
+omission cases pass. Full resource generation replays byte identically. The
+public encrypted REMIND / SSP2-NPi / 2050 scenario exports again to
+`premise-uvek-2026-remind-SSP2-NPi-2050-restored-materials`, with 12,452 activities
+and finite LCI. The earlier screening database remains available for comparison.
+The historical table above describes the original backlog, including restored
+cases; the active omission registry is the current deferred-exchange list.

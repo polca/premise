@@ -109582,6 +109582,902 @@
           "fingerprint": "4634a5c1c8cafbcc5fecc7a9816768e8de07a5f594c978eb0307db4d5e6680b3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-9c3675cc3a3f003c",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-9c3675cc3a3f003c",
+        "source": {
+          "location": "CH",
+          "name": "cement production, Portland",
+          "reference product": "cement, Portland",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Portland cement, strength class Z 42.5, at plant",
+          "reference product": "Portland cement, strength class Z 42.5, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 1.0,
+          "id": "bp-9c3675cc3a3f003c",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "CH",
+            "name": "cement production, Portland",
+            "reference product": "cement, Portland",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Portland cement, strength class Z 42.5, at plant",
+            "reference product": "Portland cement, strength class Z 42.5, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "24e05bdb8cd1fd0e8150686f7a1fe111e65438a23d2bd35fead5bb040d45236a",
+        "previous_review": {},
+        "target": {
+          "location": "CH",
+          "name": "Portland cement, strength class Z 42.5, at plant",
+          "reference product": "Portland cement, strength class Z 42.5, at plant",
+          "unit": "kilogram"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.6",
+            "identity": {
+              "location": "CH",
+              "name": "cement production, Portland",
+              "reference product": "cement, Portland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "4f52c227f91dbfa84915b41a098b764e20318e375a2b5e9b0f04d628cb97b52d",
+            "metadata_sha256": "f2e378bca7e13aa7b73150ab4fd185576bb12960f540c97fbac7c0fbc633e785"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CH",
+              "name": "Portland cement, strength class Z 42.5, at plant",
+              "reference product": "Portland cement, strength class Z 42.5, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "db29ed3d5b9797616cdd7dceb4f6f53e2bfda849fa393ebc30b27140c9d85eee",
+            "metadata_sha256": "17bca2e19a5558a0b8444e1b9cfd350bcfb3846c17bcf292ce921c9f48a765e4"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source Swiss Portland cement is the representative CEM I 42.5/52.5 R mix; native is Swiss Z42.5, documented CEM I42.5, 90%clinker/5%gypsum/5%milling additions. Source grinding electricity0.0438kWh/kg versus native0.0292 and manufacturing vintage, milling additions, clinker, emissions, strength-class and allocation differences are retained as limitations. No strength or clinker-factor correction. Both exclude packing/administration."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source Swiss Portland cement is the representative CEM I 42.5/52.5 R mix; native is Swiss Z42.5, documented CEM I42.5, 90%clinker/5%gypsum/5%milling additions. Source grinding electricity0.0438kWh/kg versus native0.0292 and manufacturing vintage, milling additions, clinker, emissions, strength-class and allocation differences are retained as limitations. No strength or clinker-factor correction. Both exclude packing/administration."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "971e514660f990d60cbb4e3c5ed8a9146c2f89e0d87d4d54fa649a29a3ac2f06"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-953779a9d7354634",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-953779a9d7354634",
+        "source": {
+          "location": "CH",
+          "name": "market for concrete, normal",
+          "reference product": "concrete, normal",
+          "unit": "cubic meter"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Concrete, normal, at plant",
+          "reference product": "Concrete, normal, at plant",
+          "unit": "cubic meter"
+        },
+        "previous_rule": {
+          "confidence": 1.0,
+          "id": "bp-953779a9d7354634",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "CH",
+            "name": "market for concrete, normal",
+            "reference product": "concrete, normal",
+            "unit": "cubic meter"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Concrete, normal, at plant",
+            "reference product": "Concrete, normal, at plant",
+            "unit": "cubic meter"
+          }
+        },
+        "previous_rule_sha256": "882950f9c1a04280b8d8d28767be8f215d6fda2d1fc95b35ef766681d670fbc5",
+        "previous_review": {},
+        "target": {
+          "location": "CH",
+          "name": "Concrete, normal, at plant",
+          "reference product": "Concrete, normal, at plant",
+          "unit": "cubic meter"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.6",
+            "identity": {
+              "location": "CH",
+              "name": "market for concrete, normal",
+              "reference product": "concrete, normal",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "2523fbfb70c4eaf417b311888f469685d870683d22fe521db63c6e9b86fb408e",
+            "metadata_sha256": "84c008616fa72309ef131e773df7e751b707b7c2dd2d235691c5751b1ee1c02b"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "CH",
+              "name": "Concrete, normal, at plant",
+              "reference product": "Concrete, normal, at plant",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "5abee5aa0e81b063ed20528360d266451342ec7c3fc79127c2b31094693c8bec",
+            "metadata_sha256": "0f3dca865b967c58b83346643850ab6be56241abd6ff67b07b463f2d758c474f"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source Swiss delivered normal concrete mixes 25%CEM II/A and75%CEM II/B producers; native Swiss at-plant concrete uses300kgCEM I42.5,190kgwater and1890kggravel per m3, density2380kg/m3. This changes binder/strength formulation and manufacturing vintage. Source61.642roadtkm and8.806railtkm per m3 are replaced by the complete native supply boundary, not retained as a delivered-market reconstruction. Delivery, mix, water, allocation and uncertainty differ. No density or cement-content scaling, extra freight or extra source producer is introduced."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source Swiss delivered normal concrete mixes 25%CEM II/A and75%CEM II/B producers; native Swiss at-plant concrete uses300kgCEM I42.5,190kgwater and1890kggravel per m3, density2380kg/m3. This changes binder/strength formulation and manufacturing vintage. Source61.642roadtkm and8.806railtkm per m3 are replaced by the complete native supply boundary, not retained as a delivered-market reconstruction. Delivery, mix, water, allocation and uncertainty differ. No density or cement-content scaling, extra freight or extra source producer is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "df34a56dd788e4ed82eba79df3818ec95d86d8d293f1bbb2ba12abf757c14458"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-4f69327dbf9d3e42",
+        "source": {
+          "location": "RER",
+          "name": "market for lubricating oil",
+          "reference product": "lubricating oil",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Lubricating oil, at plant",
+          "reference product": "Lubricating oil, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 1.0,
+          "id": "bp-4f69327dbf9d3e42",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "RER",
+            "name": "market for lubricating oil",
+            "reference product": "lubricating oil",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Lubricating oil, at plant",
+            "reference product": "Lubricating oil, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "516392b820dfc5f9b0c1d71fd68d46db3e43410c571022441391c1b47f0a63ed",
+        "previous_review": {},
+        "target": {
+          "location": "RER",
+          "name": "Lubricating oil, at plant",
+          "reference product": "Lubricating oil, at plant",
+          "unit": "kilogram"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.6",
+            "identity": {
+              "location": "RER",
+              "name": "market for lubricating oil",
+              "reference product": "lubricating oil",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "908a39350e97c631104d66c897c29794406849dee636ce13da1ed7e721bf3798",
+            "metadata_sha256": "b59b5e296bcbdeb558b303d7b5a81d263845d863707e28011a8ef0ef1fd9dc74"
+          },
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "RER",
+              "name": "market for lubricating oil",
+              "reference product": "lubricating oil",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "092da7535244dc50e8c9368dfca601186909275b9633d988375765035b6fb440",
+            "metadata_sha256": "3084968807ef25e137edda4b5a78a240968963c45e373137420653b1cdf57564"
+          },
+          {
+            "version": "3.12",
+            "identity": {
+              "location": "RER",
+              "name": "market for lubricating oil",
+              "reference product": "lubricating oil",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "18c7cb40f7f423cc8d5481f82e6385f5e495ab455c9a49468f5499f5458fd0b8",
+            "metadata_sha256": "9c73f5049605605f1a964fe1038960f93f90ff6fc12a0dcdf76e6f72c057c448"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Lubricating oil, at plant",
+              "reference product": "Lubricating oil, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "db7a73b1c5b09da08c6d70b6cc0f5bd599b48f9c38760c1bfde4419869bfb5eb",
+            "metadata_sha256": "739aa5f7f6ca2397ff51be1a7b8a1e1809b1a12b4a1a5297b0ca949ae309a6a8"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Complete native liquid lubricating oil is a hydrocracking/distillation/dewaxing screening proxy, documented75%yield with theoretical process data and incomplete air/water emissions and omitted solid wastes. Native1.33kgdiesel/kg already represents its yield; do not divide caller demand by0.75. It replaces the source European delivered market, including its production technology and source0.1713road/0.0438rail/0.0219bargetkm perkg rather than reconstructing those freight legs. Lubricant formulation, additives, production routes, delivery, emission completeness, geography, vintage and internal uncertainty differ."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Complete native liquid lubricating oil is a hydrocracking/distillation/dewaxing screening proxy, documented75%yield with theoretical process data and incomplete air/water emissions and omitted solid wastes. Native1.33kgdiesel/kg already represents its yield; do not divide caller demand by0.75. It replaces the source European delivered market, including its production technology and source0.1713road/0.0438rail/0.0219bargetkm perkg rather than reconstructing those freight legs. Lubricant formulation, additives, production routes, delivery, emission completeness, geography, vintage and internal uncertainty differ."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1dcbb07d3cb6975558ac2d703cbcacae26ee7e3531fd6c03ff6ec2d48845946e"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "63932206f18d49c1d6e12908e6b7a917eeb8735292ff82eb52f3c33762eaf24b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3f3ade4fbf735c732eaf6088b45907229381df02cc4532aa88ad97cf7e7783ff"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-18d0fd79bfe6791b",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-18d0fd79bfe6791b",
+        "source": {
+          "location": "GLO",
+          "name": "market for tetrafluoroethylene",
+          "reference product": "tetrafluoroethylene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Tetrafluoroethylene, at plant",
+          "reference product": "Tetrafluoroethylene, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.518526,
+          "id": "bp-18d0fd79bfe6791b",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "GLO",
+            "name": "market for tetrafluoroethylene",
+            "reference product": "tetrafluoroethylene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Tetrafluoroethylene, at plant",
+            "reference product": "Tetrafluoroethylene, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "dd2883d160ffe09bfd8607592b27003561e0362d4784a14d045472b4179f8f23",
+        "previous_review": {},
+        "target": {
+          "location": "RER",
+          "name": "Tetrafluoroethylene, at plant",
+          "reference product": "Tetrafluoroethylene, at plant",
+          "unit": "kilogram"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.9",
+            "identity": {
+              "location": "GLO",
+              "name": "market for tetrafluoroethylene",
+              "reference product": "tetrafluoroethylene",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d8280b30195d7b611ac1021f8e2925da48c6878800c52514452bff85d865b1a1",
+            "metadata_sha256": "1161cd62bd4caea69bf3d7437fe728437fb38e27938353e6851920e1d51c50c2"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Tetrafluoroethylene, at plant",
+              "reference product": "Tetrafluoroethylene, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b55c357b0dfbf049602487094245430f9c92bcc5a0c8bfdfabea03c123835bef",
+            "metadata_sha256": "020bb519ef2a29ce3e5e9992c6b273e47177977bb049592724a0b2fec51609da"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. The two inspected source producers document monomer TFE production by chlorodifluoromethane pyrolysis. Native also consumes1.8105kgchlorodifluoromethane/kg with industrial heat and no listed polymerization supplier. Native CAS9002-84-0 and PTFE/polymer synonyms conflict with its monomer name/formula/inventory. Use only as an explicitly uncertain monomer-production screening proxy based on the documented process evidence; do not claim the CAS conflict is corrected or that monomer/polymer identity is established by name alone. Source production mix, chemical emissions, heat/nitrogen requirements, delivery, by-product treatment and vintage differ; no PTFE polymerization step, stoichiometric correction or avoided HCl credit is invented."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. The two inspected source producers document monomer TFE production by chlorodifluoromethane pyrolysis. Native also consumes1.8105kgchlorodifluoromethane/kg with industrial heat and no listed polymerization supplier. Native CAS9002-84-0 and PTFE/polymer synonyms conflict with its monomer name/formula/inventory. Use only as an explicitly uncertain monomer-production screening proxy based on the documented process evidence; do not claim the CAS conflict is corrected or that monomer/polymer identity is established by name alone. Source production mix, chemical emissions, heat/nitrogen requirements, delivery, by-product treatment and vintage differ; no PTFE polymerization step, stoichiometric correction or avoided HCl credit is invented."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "99ac2db9aa948e9dd6cf8e73c7f0df33e5f9848cf98d6738efa44742e672d4ca"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5968433ef239f628",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-5968433ef239f628",
+        "source": {
+          "location": "RoW",
+          "name": "market for polyether polyols, short chain",
+          "reference product": "polyether polyols, short chain",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Polyols, at plant",
+          "reference product": "Polyols, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.186278,
+          "id": "bp-5968433ef239f628",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RoW",
+            "name": "market for polyether polyols, short chain",
+            "reference product": "polyether polyols, short chain",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Polyols, at plant",
+            "reference product": "Polyols, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "d29045d2274e98817c5fe1f965003188d971abeadf26282da8a571b14b05e93b",
+        "previous_review": {},
+        "target": {
+          "location": "RER",
+          "name": "Polyols, at plant",
+          "reference product": "Polyols, at plant",
+          "unit": "kilogram"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.12",
+            "identity": {
+              "location": "RoW",
+              "name": "market for polyether polyols, short chain",
+              "reference product": "polyether polyols, short chain",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "36d2bce9dbcbce60bf6342e7df7f93bb8e1e53ea90b26b075acfbe6bfa778e9a",
+            "metadata_sha256": "e3b876516141aba2033eef53f15207c824b33cb89ec83103c6712e9e17fceaf1"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Polyols, at plant",
+              "reference product": "Polyols, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9b5838939c6e13fadd396222a7afeb30afb0a7af301b7e5ecb3b1b21a74d63d8",
+            "metadata_sha256": "ef045ce41f4542aa7da86c46c91a09e9bdcfd7f453e63513a182406a09791f0a"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source short-chain liquid polyether polyols (<1000g/mol) are for rigid polyurethane with MDI. Native explicitly describes polyether polyols from alcohol/epoxide alkoxylation but does not establish chain-length, hydroxyl-number or rigid-foam-grade equivalence. Its complete aggregated European eco-profile is a grade screening proxy; source formulation, trade mix/freight, process/emission boundary, native excluded emissions, vintage and uncertainty differ. No functionality, molecular-weight, solution-basis or polyurethane-yield factor is invented."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source short-chain liquid polyether polyols (<1000g/mol) are for rigid polyurethane with MDI. Native explicitly describes polyether polyols from alcohol/epoxide alkoxylation but does not establish chain-length, hydroxyl-number or rigid-foam-grade equivalence. Its complete aggregated European eco-profile is a grade screening proxy; source formulation, trade mix/freight, process/emission boundary, native excluded emissions, vintage and uncertainty differ. No functionality, molecular-weight, solution-basis or polyurethane-yield factor is invented."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c66065cc0db74cc9229a830e996aec3d364dce8f08bd96edec8cb02b2cdfb689"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7c580ffe9daa9693",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-7c580ffe9daa9693",
+        "source": {
+          "location": "RER",
+          "name": "market for kraft paper",
+          "reference product": "kraft paper",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Kraft paper, bleached, at plant",
+          "reference product": "Kraft paper, bleached, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.434325,
+          "id": "bp-7c580ffe9daa9693",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "market for kraft paper",
+            "reference product": "kraft paper",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Kraft paper, bleached, at plant",
+            "reference product": "Kraft paper, bleached, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "592d9833bc773a951e062ec86733c3523bf9b64b326df393c2cab65aadca237b",
+        "previous_review": {},
+        "target": {
+          "location": "RER",
+          "name": "Kraft paper, bleached, at plant",
+          "reference product": "Kraft paper, bleached, at plant",
+          "unit": "kilogram"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.12",
+            "identity": {
+              "location": "RER",
+              "name": "market for kraft paper",
+              "reference product": "kraft paper",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9266d74fda062ec14941eb95c5f4e1af823ddc90bf16a47ff4fa8fae83533441",
+            "metadata_sha256": "8d24a3baa436de6df99c456b17ad6b0c2a8c5910dc5031f51896809ce56de22a"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Kraft paper, bleached, at plant",
+              "reference product": "Kraft paper, bleached, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d6ad29f0df346ebeb84fcedf963f1659f2e4599803c4f040c1ea063f42c38e58",
+            "metadata_sha256": "f4f715cfc708fb6d63eefa61a0dba93b27e2062d4496ce35d91f72557ba4c4ff"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source producer is the2021European sack-kraft weighted bleached/unbleached mix, mainly integrated mills; native is a bleached non-integrated mill from early1990s Swiss data extrapolated to Europe. Both represent positive1kg of packaging/kraft paper, but bleaching, pulp/energy integration, furnish, source market freight, water/emissions, uncertainty and vintage differ. Native includes purchased pulp and internal treatment once; no extra pulping, bleaching or sack conversion is added. Use as complete screening-grade proxy, not a claim that the original brown/white mix is retained."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source producer is the2021European sack-kraft weighted bleached/unbleached mix, mainly integrated mills; native is a bleached non-integrated mill from early1990s Swiss data extrapolated to Europe. Both represent positive1kg of packaging/kraft paper, but bleaching, pulp/energy integration, furnish, source market freight, water/emissions, uncertainty and vintage differ. Native includes purchased pulp and internal treatment once; no extra pulping, bleaching or sack conversion is added. Use as complete screening-grade proxy, not a claim that the original brown/white mix is retained."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5cf5c6421d8b16b0a4f571965baadee7b3f81f2aad9f123af0be45b46ec08182"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-08f2432b62895931",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-08f2432b62895931",
+        "source": {
+          "location": "RER",
+          "name": "market for epoxy resin, liquid",
+          "reference product": "epoxy resin, liquid",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Epoxy resin, liquid, at plant",
+          "reference product": "Epoxy resin, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 1.0,
+          "id": "bp-08f2432b62895931",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "RER",
+            "name": "market for epoxy resin, liquid",
+            "reference product": "epoxy resin, liquid",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Epoxy resin, liquid, at plant",
+            "reference product": "Epoxy resin, liquid, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "11051efe1ae291794edd43c8046aaa6615b1f53d84360f0975c4bc27961714ff",
+        "previous_review": {},
+        "target": {
+          "location": "RER",
+          "name": "Epoxy resin, liquid, at plant",
+          "reference product": "Epoxy resin, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.12",
+            "identity": {
+              "location": "RER",
+              "name": "market for epoxy resin, liquid",
+              "reference product": "epoxy resin, liquid",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "072cd0f41c3c653bd01cb9dfe69209e68eab7721ed381b387a9e1a3e338b7a08",
+            "metadata_sha256": "ba4a3cd9038b8256052aba332616f83e44f5874ffc9b1d39e2499084f4e42ebc"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Epoxy resin, liquid, at plant",
+              "reference product": "Epoxy resin, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5f9d559ddbf432c2573c7114151c06cbb95905d3e29ca690fb488703059be01f",
+            "metadata_sha256": "1627ee265173b932264d5de632dc6700141d89148a465793d0153290162d5ce4"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source liquid epoxy producer explicitly consumes bisphenolA and epichlorohydrin. Native declares that production technology and a complete aggregated European liquid-resin eco-profile, but its CAS25928-94-3 conflicts with that stated chemistry (the independently checked label corresponds to a diethylene-glycol/epichlorohydrin polymer). Use the complete declared liquid-resin eco-profile only as an uncertain functional screening proxy: the CAS/technology conflict remains unresolved and no exact chemical-identity or LCIA equivalence is asserted. Source stoichiometric/Gendorf process versus older industry eco-profile, delivery, allocation, grade, emissions, vintage and uncertainty differ. No CAS relabelling, chemical reaction correction, concentration factor or extra upstream chemical burden is introduced."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Source liquid epoxy producer explicitly consumes bisphenolA and epichlorohydrin. Native declares that production technology and a complete aggregated European liquid-resin eco-profile, but its CAS25928-94-3 conflicts with that stated chemistry (the independently checked label corresponds to a diethylene-glycol/epichlorohydrin polymer). Use the complete declared liquid-resin eco-profile only as an uncertain functional screening proxy: the CAS/technology conflict remains unresolved and no exact chemical-identity or LCIA equivalence is asserted. Source stoichiometric/Gendorf process versus older industry eco-profile, delivery, allocation, grade, emissions, vintage and uncertainty differ. No CAS relabelling, chemical reaction correction, concentration factor or extra upstream chemical burden is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "40b5fff2d38fc092de9e4577a789a274e1eb84ffa06ec2ac5b97dbd38808d7d4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1104956dff1c701e",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_deferred_materials_review.json",
+      "review_sha256": "e2caa58488ec9f6b573300466849f6376a2082b33d5d68c391b7628abc571559",
+      "authorization": "User instruction: commit and proceed with deferred work; standing auto-approval of coming decisions with explicit screening limitations. Restore only exact inspected identities/profiles and their pinned CLIC exchanges.",
+      "inspection": {
+        "rule_id": "bp-1104956dff1c701e",
+        "source": {
+          "location": "GLO",
+          "name": "market for nickel, class 1",
+          "reference product": "nickel, class 1",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "GLO",
+          "name": "Nickel, 99.5%, at plant",
+          "reference product": "Nickel, 99.5%, at plant",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 1.0,
+          "id": "bp-1104956dff1c701e",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "GLO",
+            "name": "market for nickel, class 1",
+            "reference product": "nickel, class 1",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "GLO",
+            "name": "Nickel, 99.5%, at plant",
+            "reference product": "Nickel, 99.5%, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "fd990b192f1dc591c9e7880fbf2a8da8d16ade7beca7fd31a5572c97d3d1c45e",
+        "previous_review": {},
+        "target": {
+          "location": "GLO",
+          "name": "Nickel, 99.5%, at plant",
+          "reference product": "Nickel, 99.5%, at plant",
+          "unit": "kilogram"
+        },
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1
+          }
+        ],
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "inventory_witnesses": [
+          {
+            "version": "3.12",
+            "identity": {
+              "location": "GLO",
+              "name": "market for nickel, class 1",
+              "reference product": "nickel, class 1",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "24c55b8d34227231ef073718b1c8beb357b5350d07bc01871a5a8a6ccbdbc0e6",
+            "metadata_sha256": "7c404f799071b3d8cd1fc33cd85d6adb9fd0331c3bd818fa4077eafe4bc16c1e"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "location": "GLO",
+              "name": "Nickel, 99.5%, at plant",
+              "reference product": "Nickel, 99.5%, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5f2556ad44a114199f0996c2a31814462442fe04647b8805576ee58b130a61f7",
+            "metadata_sha256": "83692918f4b5d99aaadc1e5bc73ddf9c52bbde39a137edaecdfcfa3b60015ce3"
+          }
+        ],
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Native expressly documents Class I nickel production, nominal99.5%, with coupled copper and a1994global production mix; source modern Class1 market includes primary/co-product/recycled routes. Native itself warns against this generic model where ClassI nickel impact is important. Retain that limitation and require later sensitivity/detail review for nickel-dominated results. Grade/purity, ore/refining mix, recycling, copper allocation, delivery, geography, substituted emission data, vintage and uncertainty differ. No purity multiplier, refining add-on, copper/recovery credit or source-market-mix reconstruction is invented."
+      },
+      "limitations": [
+        "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Native expressly documents Class I nickel production, nominal99.5%, with coupled copper and a1994global production mix; source modern Class1 market includes primary/co-product/recycled routes. Native itself warns against this generic model where ClassI nickel impact is important. Retain that limitation and require later sensitivity/detail review for nickel-dominated results. Grade/purity, ore/refining mix, recycling, copper allocation, delivery, geography, substituted emission data, vintage and uncertainty differ. No purity multiplier, refining add-on, copper/recovery credit or source-market-mix reconstruction is invented."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "794c769f8993d7160aee4008fe7718e4efe74fc90b9ebfab4fae32ec843519e9"
+        }
+      ]
     }
   ]
 }
