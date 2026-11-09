@@ -91,6 +91,28 @@
           "biomass.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "native_reference_preflight": {
+        "status": "primary_evidence_collected_not_operational",
+        "private_receipt": "native_biomass_initial_candidates.private.json",
+        "receipt_sha256": "2af2b3acbf23feba67be16e273df6192dfde9b69df64e29f411113fd9baf8fa6",
+        "catalog_candidates": 132,
+        "primary_references": 63,
+        "reference_units": {
+          "kilogram": 29,
+          "cubic meter": 1,
+          "megajoule": 33
+        },
+        "observations": [
+          "Native wood-chip suppliers include actual+1kg references explicitly labelled measured-as-dry-mass; do not assume every native wood supply requires a volume/density conversion.",
+          "Native Woodchips from forestry residues has actual+1MJreference with2technosphere inputs and1biosphere flow; cannot be relabelledkg or infer mass from name. Its allocation/transport/biogenic-carbon boundary needs explicit review.",
+          "Existing IAM biomass aliases use18.5MJ/kg and match legacy procedural names; review drymass/energy normalization, production-versus-residual proxies, native consumers and validation together before implementation.",
+          "Broad candidate evidence includes33MJreference processes, many being combustion/heat services. Exclude burned-in-furnace supplies from raw biomass aliases; an MJunit alone does not establish a fuel-supply function."
+        ],
+        "next_actions": [
+          "Inspect primary drymass/caloric/allocation evidence and native energy-consumer exchange bases.",
+          "Implement family/biosphere propagation, uvek_aliases for IAM and procedural forestry mappings, native sector transformation/validation and real export checks; keep gate until passes."
+        ]
       }
     },
     {

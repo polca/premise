@@ -399,3 +399,17 @@ Five obsolete owned cohort caches were removed (14,346,194 bytes); all five
 current cohorts were retained. Local commits are Brightpath `f294050` and Premise
 `9f350ae4` for titanium, with earlier dispositions preserved in history. No push
 was performed. The expanded goal remains active for the 18 other sector updates.
+
+### Biomass native-reference preflight started
+
+The first sector preflight inspected 63 complete native reference inventories
+from 132 broad catalogue candidates. Actual references include 29 kg, one m³
+and 33 MJ processes. Several commodity wood-chip supplies explicitly measure dry
+mass in kg, so a generic density conversion would be unjustified. Many MJ
+candidates are combustion/heat services and must not become raw-biomass aliases.
+`Woodchips from forestry residues` instead has a +1 MJ reference with two
+transport inputs and one biosphere flow; its supply/allocation/carbon boundary
+requires review before normalization against the IAM's 18.5 MJ/kg convention.
+The tracker records private evidence hashes and remaining family, procedural
+mapping, consumer, validation and integration work. No biomass aliases, factors
+or sector gate have been changed or claimed operational.
