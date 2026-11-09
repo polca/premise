@@ -192,3 +192,11 @@ is enabled by this inspection.
 Private evidence: `nitrate_hdpe_foam_routes_primary.private.json`,
 `native_pe_recycling_candidates.private.json` and `foam_glass_feedstock_delta.json`.
 The delta check is reproduced by `check_foam_glass_feedstock_delta.py`.
+
+A [scoped foam-glass proposal](uvek-foam-glass-screening-proposal.md) now offers
+a complete-native screening option for only the 0.9901% cullet-free branch,
+with explicit feedstock, energy, emissions and internal-uncertainty differences.
+Its six-input candidate preserves both producer entries and all four freight
+entries and gives finite native-background LCI. The alternative is an explicit
+reconstruction of the actual source producer. No mapping is enabled before
+that new scientific choice is approved.
