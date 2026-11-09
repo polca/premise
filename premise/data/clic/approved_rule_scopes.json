@@ -47331,6 +47331,2757 @@
           "fingerprint": "d2144a8e90fa4339d681730b66cc98fb7290a449c242498de10eb1bacddf7554"
         }
       ]
+    },
+    {
+      "rule_id": "bp-0bc0bfd91c107b89",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_glass",
+      "review_path": "export/uvek_pilot_nitrate_glass_review.json",
+      "review_sha256": "b18737d17178d3de6330c951d8fd2d3c0e0082c59941afb3c72090e9f9af0493",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary glass incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-0bc0bfd91c107b89",
+        "source": {
+          "location": "IN",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.256604,
+          "conversion_factor": -1,
+          "id": "bp-0bc0bfd91c107b89",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-0bc0bfd91c107b89"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "IN",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "2e3f5ffb1b883dbe09da485b9cfe94abef5dbe42147788f3541ba3306947347e",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "47c7d08e74cf7879442d0d9cfd9b29e1214fc035b7d497225795c5ce20cd8e75",
+        "source_inventory_sha256": "89fca8809048a4664e6352cb6c599a4b8b908006c09fd36c4a18dec0bae40787",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 44,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "89fca8809048a4664e6352cb6c599a4b8b908006c09fd36c4a18dec0bae40787",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.2105284767503,
+                "uncertainty type": 0,
+                "loc": 0.2105284767503,
+                "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+              },
+              {
+                "amount": 0.505163942939495,
+                "uncertainty type": 0,
+                "loc": 0.505163942939495,
+                "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+              },
+              {
+                "amount": 0.284307580310206,
+                "uncertainty type": 0,
+                "loc": 0.284307580310206,
+                "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c6fe3f815d9ae9b359111f833b1a8e48ce603c85d82d9c4e3307289b0253c0f3"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d765c54ce85aacbb77021440489fcef1511f052b24769871511aed5ee28805ae"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "63c35e260cb1ba330843bf54fc3129f0278eb2337a57b212a981365d84f40041"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1472e083e5590d89",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_glass",
+      "review_path": "export/uvek_pilot_nitrate_glass_review.json",
+      "review_sha256": "b18737d17178d3de6330c951d8fd2d3c0e0082c59941afb3c72090e9f9af0493",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary glass incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-1472e083e5590d89",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.256604,
+          "conversion_factor": -1,
+          "id": "bp-1472e083e5590d89",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-1472e083e5590d89"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "RoW",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "17f9102a21fdd880e12566ef05506865efec12d77d8bdc048d8d83e26728f0e4",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "98ce804b2e7c8400345b248ba0815e88474ce2d3c98d7a0792676f3154c88475",
+        "source_inventory_sha256": "ebf5f168a537e4b0c7f6f4d04f54791d051ea5b7d8113995c45d209d3492c044",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, moist infiltration class (300mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-e4d5f82688c8f3976eba"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-c95e296237f3a3aa349c"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-27ad656678927fbec417"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-ee5c2a9f79a0a14c44f1"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-4fddf816faedcd26458a"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, municipal incineration",
+              "reference product": "waste glass",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "ordinary_incinerator": true
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-ed29c4d741a32ed90f62"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, dry infiltration class (100mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-c07fdad0ce14ee35949d"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-dcad833c16afdde91509"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 13,
+        "expected_foreground_biosphere_exchanges": 146,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "ebf5f168a537e4b0c7f6f4d04f54791d051ea5b7d8113995c45d209d3492c044",
+            "inputs": [
+              {
+                "amount": 0.003225847220316541,
+                "uncertainty type": 2,
+                "loc": -5.7365596592609265,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.004450430953717091,
+                "uncertainty type": 2,
+                "loc": -5.414754343961089,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0035237218259663665,
+                "uncertainty type": 2,
+                "loc": -5.648237511036843,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01932,
+                "uncertainty type": 2,
+                "loc": -3.946614450197765,
+                "scale": 0.4049691346263318,
+                "pedigree": {
+                  "reliability": 1,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.4959838707054898,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.023662237452226,
+                "uncertainty type": 0,
+                "loc": 0.023662237452226,
+                "recipe": "pilot-glass-treatment-e4d5f82688c8f3976eba"
+              },
+              {
+                "amount": 0.0750884351572832,
+                "uncertainty type": 0,
+                "loc": 0.0750884351572832,
+                "recipe": "pilot-glass-treatment-c95e296237f3a3aa349c"
+              },
+              {
+                "amount": 0.0768726245762464,
+                "uncertainty type": 0,
+                "loc": 0.0768726245762464,
+                "recipe": "pilot-glass-treatment-27ad656678927fbec417"
+              },
+              {
+                "amount": 0.258622556115927,
+                "uncertainty type": 0,
+                "loc": 0.258622556115927,
+                "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+              },
+              {
+                "amount": 0.0337819715299597,
+                "uncertainty type": 0,
+                "loc": 0.0337819715299597,
+                "recipe": "pilot-glass-treatment-ee5c2a9f79a0a14c44f1"
+              },
+              {
+                "amount": 0.153727935616123,
+                "uncertainty type": 0,
+                "loc": 0.153727935616123,
+                "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+              },
+              {
+                "amount": 0.0609226871729106,
+                "uncertainty type": 0,
+                "loc": 0.0609226871729106,
+                "recipe": "pilot-glass-treatment-4fddf816faedcd26458a"
+              },
+              {
+                "amount": 0.126083373049048,
+                "uncertainty type": 0,
+                "loc": 0.126083373049048,
+                "name": "Disposal, glass, 0% water, to municipal incineration",
+                "reference product": "Disposal, glass, 0% water, to municipal incineration",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0208443807352204,
+                "uncertainty type": 0,
+                "loc": 0.0208443807352204,
+                "recipe": "pilot-glass-treatment-ed29c4d741a32ed90f62"
+              },
+              {
+                "amount": 0.0517910479865242,
+                "uncertainty type": 0,
+                "loc": 0.0517910479865242,
+                "recipe": "pilot-glass-treatment-c07fdad0ce14ee35949d"
+              },
+              {
+                "amount": 0.0794462428184695,
+                "uncertainty type": 0,
+                "loc": 0.0794462428184695,
+                "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+              },
+              {
+                "amount": 0.0391565077900618,
+                "uncertainty type": 0,
+                "loc": 0.0391565077900618,
+                "recipe": "pilot-glass-treatment-dcad833c16afdde91509"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c6fe3f815d9ae9b359111f833b1a8e48ce603c85d82d9c4e3307289b0253c0f3"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d765c54ce85aacbb77021440489fcef1511f052b24769871511aed5ee28805ae"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "80e1c79b6422a02a04b22dbc5a0ca808d83d83634ec2098702cf6b20608c6826"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-83f75651eb0ac89d",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_glass",
+      "review_path": "export/uvek_pilot_nitrate_glass_review.json",
+      "review_sha256": "b18737d17178d3de6330c951d8fd2d3c0e0082c59941afb3c72090e9f9af0493",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary glass incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-83f75651eb0ac89d",
+        "source": {
+          "location": "CY",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.256604,
+          "conversion_factor": -1,
+          "id": "bp-83f75651eb0ac89d",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-83f75651eb0ac89d"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CY",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "b4f237ad345df5939c8ab029ec0c12fa41dde2ca2cab3e5dded751e22b74ab30",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "45485cc919d28d85c38afe2ea89887fad3d61102ef3a12b2b86506fd4f95393e",
+        "source_inventory_sha256": "8380a8ffb0f9c3d7929f3ba6ac39170cbef06e84d0f29ab98b0c0d5bbea35bff",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 4,
+        "expected_foreground_biosphere_exchanges": 34,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "8380a8ffb0f9c3d7929f3ba6ac39170cbef06e84d0f29ab98b0c0d5bbea35bff",
+            "inputs": [
+              {
+                "amount": 0.02125,
+                "uncertainty type": 2,
+                "loc": -3.851398383611711,
+                "scale": 0.3606937759374287,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 3
+                },
+                "scale without pedigree": 0.377094152699296,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.986422907233126,
+                "uncertainty type": 0,
+                "loc": 0.986422907233126,
+                "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+              },
+              {
+                "amount": 0.0135770927668737,
+                "uncertainty type": 0,
+                "loc": 0.0135770927668737,
+                "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c6fe3f815d9ae9b359111f833b1a8e48ce603c85d82d9c4e3307289b0253c0f3"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d765c54ce85aacbb77021440489fcef1511f052b24769871511aed5ee28805ae"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b24e2c254ba70b42cf041a654198970da4386e5edfb0a224b43c474330e5884f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-783b6a217b6be465",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_glass",
+      "review_path": "export/uvek_pilot_nitrate_glass_review.json",
+      "review_sha256": "b18737d17178d3de6330c951d8fd2d3c0e0082c59941afb3c72090e9f9af0493",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary glass incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-783b6a217b6be465",
+        "source": {
+          "location": "CO",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.256604,
+          "conversion_factor": -1,
+          "id": "bp-783b6a217b6be465",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-783b6a217b6be465"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CO",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "c9d914dd0e811edc9c1b9fe1621f62bf9bbfff217cfa9b3bd6a0e1dc6484e89a",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "11a582a5771c1007c8660f7b9696c5176e8feb06396783c4d5d53ea3f3ae5b90",
+        "source_inventory_sha256": "f918a4759f3b38533e1bc02dd8405d1bea400fce99c8d13b833b9fb947e962c9",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 44,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "f918a4759f3b38533e1bc02dd8405d1bea400fce99c8d13b833b9fb947e962c9",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.750923285285251,
+                "uncertainty type": 0,
+                "loc": 0.750923285285251,
+                "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+              },
+              {
+                "amount": 0.200310827741168,
+                "uncertainty type": 0,
+                "loc": 0.200310827741168,
+                "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+              },
+              {
+                "amount": 0.0487658869735807,
+                "uncertainty type": 0,
+                "loc": 0.0487658869735807,
+                "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c6fe3f815d9ae9b359111f833b1a8e48ce603c85d82d9c4e3307289b0253c0f3"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d765c54ce85aacbb77021440489fcef1511f052b24769871511aed5ee28805ae"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c76044a978fb4146a1900e6f8942b65b9b268d0c9cab16bfa537afe7897957af"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-02e192048b8bcd1a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_glass",
+      "review_path": "export/uvek_pilot_nitrate_glass_review.json",
+      "review_sha256": "b18737d17178d3de6330c951d8fd2d3c0e0082c59941afb3c72090e9f9af0493",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary glass incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-02e192048b8bcd1a",
+        "source": {
+          "location": "PE",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.256604,
+          "conversion_factor": -1,
+          "id": "bp-02e192048b8bcd1a",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-02e192048b8bcd1a"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "PE",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "d80edb4cc67933835ba8a5125b4c9354eaaf6d7ec852271c40ee297af2dae691",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "1d18206e9c35038fd79e400014193454f999b663732bde86ed22bb362ea5f174",
+        "source_inventory_sha256": "9fea260456b4cc2425e62d9892c8beddbfa1fa51c395885724b2f897f938c7e8",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-c95e296237f3a3aa349c"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, dry infiltration class (100mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-c07fdad0ce14ee35949d"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 44,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "9fea260456b4cc2425e62d9892c8beddbfa1fa51c395885724b2f897f938c7e8",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.3606937759374287,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 1,
+                  "further technological correlation": 3
+                },
+                "scale without pedigree": 0.377094152699296,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.647646040622039,
+                "uncertainty type": 0,
+                "loc": 0.647646040622039,
+                "recipe": "pilot-glass-treatment-c95e296237f3a3aa349c"
+              },
+              {
+                "amount": 0.289881443371072,
+                "uncertainty type": 0,
+                "loc": 0.289881443371072,
+                "recipe": "pilot-glass-treatment-c07fdad0ce14ee35949d"
+              },
+              {
+                "amount": 0.0624725160068898,
+                "uncertainty type": 0,
+                "loc": 0.0624725160068898,
+                "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c6fe3f815d9ae9b359111f833b1a8e48ce603c85d82d9c4e3307289b0253c0f3"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d765c54ce85aacbb77021440489fcef1511f052b24769871511aed5ee28805ae"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "17252a47f9f19e1b9e734344370ec99b79951b4d3ac0c9d0da9eef36502b49df"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-31ac9406c0c4a96b",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_glass",
+      "review_path": "export/uvek_pilot_nitrate_glass_review.json",
+      "review_sha256": "b18737d17178d3de6330c951d8fd2d3c0e0082c59941afb3c72090e9f9af0493",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary glass incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-31ac9406c0c4a96b",
+        "source": {
+          "location": "BR",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.256604,
+          "conversion_factor": -1,
+          "id": "bp-31ac9406c0c4a96b",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-31ac9406c0c4a96b"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "BR",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "755aa2cf5728b379d7ec2b7d31dd6374ab8d6bd0db83fbbbb940182ee8b0a102",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "0c5e0f128e443540354d4d1dc12d2ba367ea326c8f49bca7310a2a5f77611748",
+        "source_inventory_sha256": "9f8ec169f90b19c8cf982769a9fcd9ad461a7aed6bfbad25b708cd4a2f97ea74",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, wet infiltration class (500mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, municipal incineration",
+              "reference product": "waste glass",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "ordinary_incinerator": true
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "999dcbf65753e116027a726bf5204b3a97ffd00f0a12b4688e9a7a3aa037de11",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 44,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "9f8ec169f90b19c8cf982769a9fcd9ad461a7aed6bfbad25b708cd4a2f97ea74",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.881137422307789,
+                "uncertainty type": 0,
+                "loc": 0.881137422307789,
+                "recipe": "pilot-glass-treatment-dd8ae0e970eace24c2c9"
+              },
+              {
+                "amount": 0.0840657818025282,
+                "uncertainty type": 0,
+                "loc": 0.0840657818025282,
+                "recipe": "pilot-glass-treatment-2bbcfc07744b7592fbda"
+              },
+              {
+                "amount": 0.00560402324236877,
+                "uncertainty type": 0,
+                "loc": 0.00560402324236877,
+                "name": "Disposal, glass, 0% water, to municipal incineration",
+                "reference product": "Disposal, glass, 0% water, to municipal incineration",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0291927726473145,
+                "uncertainty type": 0,
+                "loc": 0.0291927726473145,
+                "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c6fe3f815d9ae9b359111f833b1a8e48ce603c85d82d9c4e3307289b0253c0f3"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d765c54ce85aacbb77021440489fcef1511f052b24769871511aed5ee28805ae"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2f9bf9ad99d7cb9984566edf860742eb88eae885be78765f894b209074d369d8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d10bb437e67418c5",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_glass",
+      "review_path": "export/uvek_pilot_nitrate_glass_review.json",
+      "review_sha256": "b18737d17178d3de6330c951d8fd2d3c0e0082c59941afb3c72090e9f9af0493",
+      "authorization": "Standing inspected source-preserving helpers, exact publisher-definition and complete matching-function/unit operating/freight/incineration approvals. Fresh source/native inventories bind all original regional fates, quantities and uncertainty. Ordinary glass incineration reuses the prior44coordinate wet-composition authority after exact3.9comment/directCO2/native-metadata checks. No FAE substitution or new quantity/recovery model.",
+      "inspection": {
+        "rule_id": "bp-d10bb437e67418c5",
+        "source": {
+          "location": "ZA",
+          "name": "market for waste glass",
+          "reference product": "waste glass",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, flat glass, as building waste",
+          "reference product": "Disposal, flat glass, as building waste",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.256604,
+          "conversion_factor": -1,
+          "id": "bp-d10bb437e67418c5",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-d10bb437e67418c5"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "ZA",
+            "name": "market for waste glass",
+            "reference product": "waste glass",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, flat glass, as building waste",
+            "reference product": "Disposal, flat glass, as building waste",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "1a0138fea24e64b97dd533c5bd412653349372c622ce1a6760d1a5ffad233924",
+        "previous_review": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "cd8950863520f6c6f1cc97ba2f2ab2b2d3604ac8072d35e70ac8cff32cca89b7",
+        "source_inventory_sha256": "010d6ecf67aa7f315c5aa5c787b1bf54176fd3feeb47421b14c212bb55acee44",
+        "source_fates": [
+          {
+            "source": {
+              "name": "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-c95e296237f3a3aa349c"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open dump, dry infiltration class (100mm)",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-c07fdad0ce14ee35949d"
+          },
+          {
+            "source": {
+              "name": "treatment of waste glass, open burning",
+              "reference product": "waste glass",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_inventory_sha256": "5d63ba039a6eb078230a4bd26fda48d2d3567f593d8136aa50bc51a30ff9d0bd",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "expected_foreground_records": 5,
+        "expected_foreground_biosphere_exchanges": 44,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "010d6ecf67aa7f315c5aa5c787b1bf54176fd3feeb47421b14c212bb55acee44",
+            "inputs": [
+              {
+                "amount": 0.077,
+                "uncertainty type": 2,
+                "loc": -2.563949857128453,
+                "scale": 0.40509258201058185,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 2,
+                  "temporal correlation": 3,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.458475735453906,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.932741443289229,
+                "uncertainty type": 0,
+                "loc": 0.932741443289229,
+                "recipe": "pilot-glass-treatment-c95e296237f3a3aa349c"
+              },
+              {
+                "amount": 0.0338346476700409,
+                "uncertainty type": 0,
+                "loc": 0.0338346476700409,
+                "recipe": "pilot-glass-treatment-c07fdad0ce14ee35949d"
+              },
+              {
+                "amount": 0.0334239090407301,
+                "uncertainty type": 0,
+                "loc": 0.0334239090407301,
+                "recipe": "pilot-glass-treatment-66c1dca6a61baacaa542"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "BR",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "f4256492cf3ec98c076c78ac87d4f8c0daffd5045d37e8df6a92f548a08d0bd9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "ZA",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "39a5612f3092475ae935aba83a208ae096110b469b622d56248a5629d7e64703"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, municipal incineration",
+                  "waste glass",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "67bebe477488221096acd01f43542193bac74dfdcd137f6f4bacfc998a4f8e4b"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open burning",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "2a4f6d534c8a69c645057d592262f0c3ccf63318f9351893d6ae371796e36124"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "b7d043018f6a70d24cc88d6b95c2e1e8cf1f462feaf18979b1e8516b31769a4e"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "c6fe3f815d9ae9b359111f833b1a8e48ce603c85d82d9c4e3307289b0253c0f3"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "74e55c5c15075e563339f7f46d9d70b30feed0b3af81a7e1c9b35bd7f22e3953"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "8958969ae8ed8eb765a98af0cbaf94b8b69af7c150d93327d5ab0ba89b4dfc32"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, open dump, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "4368af5cd5c80b3bf9bfc5636eac0ffa3c792c7fe0da85378844b98ef0fdd4a9"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, dry infiltration class (100mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "e237ad65c20d2a97f7cf597bf47a5b3ea912062525972b61ebfabc1da73eec26"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "d765c54ce85aacbb77021440489fcef1511f052b24769871511aed5ee28805ae"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, moist infiltration class (300mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "6b02e6dd7e76d882b2d6a968f27f9606dd133caf9535a44546bcf2e82afac2bc"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, very wet infiltration class (1000mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "ad0ee6ddbb49c1961666058ad4b7536d4418810aceb0fde232be45fe44bcc101"
+              },
+              {
+                "source": [
+                  "treatment of waste glass, unsanitary landfill, wet infiltration class (500mm)",
+                  "waste glass",
+                  "GLO",
+                  "kilogram"
+                ],
+                "binding_sha256": "14ec08fe949230ae234b3a4a57be7f79a564bd8d08272de5a0900024827044ad"
+              }
+            ]
+          }
+        ],
+        "limitations": "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      },
+      "limitations": [
+        "Retain every original ecoinvent3.9cutoff regional glass treatment share, elementary exchange and individual collection quantity at its signed amount and uncertainty, including zeros. Eleven shared source-preserving helpers retain open burning, open dumps and all five unsanitary/open-dump infiltration classes, including hyperarid-250mm. Do not substitute controlled incineration, a wetter class or empty recycling for those source fates. Exact publisher UUID, unit, complete compartment and emission/resource role bind45elementary definitions to installed canonical ecoinvent3.10. Publisher label/CAS changes remain warnings without molecular/speciation/compartment factors. Preserve all146direct source elementary terms and the10original diesel-combustion/skid-steer operating entries across the shared helpers. Whole native operating technology, fuel, machinery, geography, allocation, internal uncertainty and vintage remain screened differences; do not add source machinery/fuel a second time. Ordinary incineration alone uses the specific complete native glass municipal-incineration process, whose44documentedwet-composition coordinates match the inspected ordinary source and prior reviewed source3.6. Do not use building-demolition wrappers. Reserved source water content is0 whereas the documented wet waste model is2%water and matches44native coordinates; do not infer a carbon, water, density or energy multiplier. Native incineration emissions, energy/ash/residue management, allocation, infrastructure, geography and vintage remain complete-service limitations, not LCIA equivalence. Keep every original freight entry at its signedtkm/uncertainty through the previously reviewed complete genericRERrail/heavy-road services, without aggregation, renormalization, coal-only/diesel-only train substitution, loading/distance scaling or duplicate infrastructure/logistics. Preserve caller ownership, signed quantities/formulas/uncertainty, foreground suppliers and separate emissions/purchases. Negative waste references-1map to positive helper services through factor-1. No physical omission, new disposal/recovery credit, moisture/drymass factor, inverse or cross-system-model route. Native biosphere exclusions and all score effects remain warned/unquantified. Only seven enumerated exact3.9cutoff parent closures qualify forUVEK2026cutoff/ecoinvent3.10biosphere. The European group and SwissFAE branch remain outside this review; their separate pending modelling decision is not applied. Raw component bindings guard drift and grant no standalone service or other-version approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "907c9fd9688b8be18a168274006c22084a4d17e4ec46bdf90d40bad18eb05f17"
+        }
+      ]
     }
   ]
 }
