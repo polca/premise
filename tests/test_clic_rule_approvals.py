@@ -341,6 +341,7 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
             "bp-3aedb5762ff23e68",
             "bp-b39070e2c2728597",
             "bp-fb5a0385ef4ba237",
+            "bp-8cde42cb022d74ed",
         ]
     ]
     + [
@@ -353,6 +354,7 @@ def test_older_road_approval_does_not_extend_to_an_uninspected_release():
         ("bp-cccd7819bb6cea4b", "3.9"),
         ("bp-4a8d844635b7637e", "3.9"),
         ("bp-9f820f97f9f3c080", "3.9"),
+        ("bp-281c3f362d35e83f", "3.9"),
     ],
 )
 @pytest.mark.parametrize("amount", [-2, 2])
@@ -682,7 +684,7 @@ def test_refused_transaction_retains_review_limitations_without_target(tmp_path)
 @pytest.mark.parametrize(
     "rule_id",
     [
-        "bp-8cde42cb022d74ed",  # Different waste composition and landfill class.
+        "bp-8cde42cb022d74ed",  # Old endpoint had a different waste/landfill class.
         "bp-1b20be09e53aaa84",  # Direct composition-specific endpoint remains unapproved.
         "bp-bcbf9e1008a58e4b",  # Only the generic operation/facility helper is approved.
     ],
@@ -706,6 +708,15 @@ def test_unverified_landfill_coordinates_do_not_inherit_waste_approval(rule_id):
             if row["rule_id"] == rule_id
         )
         assert "recipe_ref" not in rule["target"]
+    elif rule["mapping_method"] == "reviewed_pilot_sanitary_inert":
+        from brightpath import DATA_DIR
+
+        review = json.loads(
+            (DATA_DIR / "export/uvek_pilot_sanitary_inert_review.json").read_text()
+        )
+        rule = next(
+            row["previous_rule"] for row in review["rules"] if row["rule_id"] == rule_id
+        )
     fingerprint = compatibility_rule_fingerprint(
         resource,
         "replace",
@@ -983,6 +994,8 @@ def test_low_alloyed_cast_stock_keeps_source_routes_delivery_and_cached_warning(
         "bp-9caeb1b3bd66b612",
         "bp-1b20be09e53aaa84",
         "bp-bcbf9e1008a58e4b",
+        "bp-8cde42cb022d74ed",
+        "bp-281c3f362d35e83f",
     ],
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
@@ -1338,6 +1351,55 @@ def test_legacy_additive_boundary_remains_unapproved(tmp_path, rule_id, version)
     with pytest.raises(ClicInventoryError, match="independent review"):
         ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
             resolved, family="uvek", version="2026"
+        )
+    assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id,version",
+    [("bp-8cde42cb022d74ed", "3.6"), ("bp-281c3f362d35e83f", "3.9")],
+)
+def test_sanitary_inert_keeps_wet_mass_and_cached_native_boundary_warning(
+    tmp_path, rule_id, version
+):
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    rule = next(
+        r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    resolved = graph(rule["source"], version=version)
+    resolved.activities[0]["exchanges"][1]["amount"] = -2.5
+    resolved.activities[0]["exchanges"].append(
+        {
+            "name": "Carbon dioxide, fossil",
+            "categories": ("air", "non-urban air or from high stacks"),
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.037,
+            "uncertainty type": 0,
+        }
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, family="uvek", version="2026")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        (activity,) = result.activities
+        assert len(activity["exchanges"]) == 3
+        disposal, emission = activity["exchanges"][1:]
+        assert disposal["amount"] == 2.5
+        assert disposal["name"] == rule["target"]["name"]
+        assert emission["amount"] == 0.037
+        warning = next(
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+        )
+        assert all(
+            token in warning["message"]
+            for token in ("sanitary", "manganese", "42", "unquantified")
         )
     assert resolved.activities == before
 

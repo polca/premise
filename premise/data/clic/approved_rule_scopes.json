@@ -21920,6 +21920,250 @@
           "fingerprint": "e6df5e11c73f3f413f460026d48a985ee8e6d9041399f2c432db6f50482db100"
         }
       ]
+    },
+    {
+      "rule_id": "bp-8cde42cb022d74ed",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_sanitary_inert",
+      "review_path": "export/uvek_pilot_sanitary_inert_review.json",
+      "review_sha256": "264913a5308cdb4d4c0a922f673bfad714f605c472cbff567c77f3ff5e3aabc6",
+      "authorization": "Standing independently inspected same whole-waste/function/unit and geographic service-proxy approval, including correction to a closer existing native supplier. Exact waste composition and the primary sanitary-landfill fate are retained. This introduces no new waste grade, fate substitution, unit conversion, helper primitive, omitted source/caller exchange or recovery model. Only the actual CH3.6 and European3.9 cut-off service profiles qualify.",
+      "inspection": {
+        "rule_id": "bp-8cde42cb022d74ed",
+        "source": {
+          "location": "CH",
+          "name": "treatment of inert waste, sanitary landfill",
+          "reference product": "inert waste",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.342716,
+          "conversion_factor": -1,
+          "id": "bp-8cde42cb022d74ed",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-8cde42cb022d74ed"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "CH",
+            "name": "treatment of inert waste, sanitary landfill",
+            "reference product": "inert waste",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        "target": {
+          "name": "Disposal, inert material, 0% water, to sanitary landfill",
+          "reference product": "Disposal, inert material, 0% water, to sanitary landfill",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": -1,
+        "conversion_factor": -1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": -1,
+            "metadata_sha256": "931917bc33c855c4f803ee5944b7b852fcbb845a35185b347617cb6eb97799ba",
+            "inventory_sha256": "25bd2c4f9740d583af478e66e47906217947daf7a09b1f3114c65a18d596ed34",
+            "activity_comment_sha256": "76e94d307a9ff6901f3fe8c9ad95306ccf814f0a016cab4352e97455428f05a6",
+            "waste_composition_sha256": "7f9cd82754d8b3abf4980f544de1fb08ee65650ccd2f4af71aae8a12cec60a04",
+            "matched_composition_entries": 42,
+            "exact_publisher_release_coordinates": 21,
+            "native_manganese_representation_difference": true
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, inert material, 0% water, to sanitary landfill",
+              "reference product": "Disposal, inert material, 0% water, to sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "6aa80235d48fd0c05808fdbe37cce4db2c2d04b5cb894602d8783d150bf398c8",
+            "inventory_sha256": "8a13e79cbc717ae3d7c39400f3174b3aacf8938a7a83520b2961c733fb0b0879",
+            "direct_biosphere_exchanges": 23
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, inert material, 0% water, to sanitary landfill",
+              "reference product": "Disposal, inert material, 0% water, to sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "b62db8abf127eb077f1c75aec428c1990dda69c918b86dd7256cf5db5253afea",
+            "inventory_sha256": "47af93837d72ee2dadac752b2ad5a4d97915cbeab625dde9f6f0828eca79298c",
+            "direct_biosphere_exchanges": 23
+          }
+        },
+        "limitations": "Use the complete native inert-material sanitary-landfill service for the inspected cement-like inert waste. All 42 declared wet-composition entries match the source; both declare zero overall degradability. The 0%-water product labels and source product properties are not a reason to renormalize the shared wet-composition inventory. Source reference -1 kg and native reference +1 kg require factor -1, preserving signed as-received kg without moisture, dry-mass, density, capacity or lifetime scaling. Retain sanitary base sealing, leachate collection/treatment, landfill operations, infrastructure, auxiliary waste handling and long-term groundwater releases; do not use the old 5%-water construction/inert-landfill endpoint. Twenty-one nominal releases match publisher ID, receiving compartment, unit and amount. The source manganese release has the same signed mass and long-term groundwater compartment but the imported native2026 inventory uses a different generic-manganese identifier/species label; retain that native biosphere difference with no molecular or CF-equivalence claim. Native additional waste heat, complete boiler/energy supply, auxiliary paper/plastic disposal, internal freight, background allocation and vintage differ. The complete Swiss service represents the inspected CH3.6 case and is a geographic proxy for Europe-without-Switzerland3.9. Separate caller collection, processing, formulas, uncertainty and emissions remain unchanged. No added carbon, heat, metal or recovery credit is inferred. Inventory and LCIA equality are not established; score effects are unquantified. Only the enumerated exact cut-off profiles are reviewed; other profiles and inferred inverse/cross-model routes remain unresolved."
+      },
+      "limitations": [
+        "Use the complete native inert-material sanitary-landfill service for the inspected cement-like inert waste. All 42 declared wet-composition entries match the source; both declare zero overall degradability. The 0%-water product labels and source product properties are not a reason to renormalize the shared wet-composition inventory. Source reference -1 kg and native reference +1 kg require factor -1, preserving signed as-received kg without moisture, dry-mass, density, capacity or lifetime scaling. Retain sanitary base sealing, leachate collection/treatment, landfill operations, infrastructure, auxiliary waste handling and long-term groundwater releases; do not use the old 5%-water construction/inert-landfill endpoint. Twenty-one nominal releases match publisher ID, receiving compartment, unit and amount. The source manganese release has the same signed mass and long-term groundwater compartment but the imported native2026 inventory uses a different generic-manganese identifier/species label; retain that native biosphere difference with no molecular or CF-equivalence claim. Native additional waste heat, complete boiler/energy supply, auxiliary paper/plastic disposal, internal freight, background allocation and vintage differ. The complete Swiss service represents the inspected CH3.6 case and is a geographic proxy for Europe-without-Switzerland3.9. Separate caller collection, processing, formulas, uncertainty and emissions remain unchanged. No added carbon, heat, metal or recovery credit is inferred. Inventory and LCIA equality are not established; score effects are unquantified. Only the enumerated exact cut-off profiles are reviewed; other profiles and inferred inverse/cross-model routes remain unresolved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4be1460e8704e9186368c5756d38460673eff473fa97c4b4a29085d876719626"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-281c3f362d35e83f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_sanitary_inert",
+      "review_path": "export/uvek_pilot_sanitary_inert_review.json",
+      "review_sha256": "264913a5308cdb4d4c0a922f673bfad714f605c472cbff567c77f3ff5e3aabc6",
+      "authorization": "Standing independently inspected same whole-waste/function/unit and geographic service-proxy approval, including correction to a closer existing native supplier. Exact waste composition and the primary sanitary-landfill fate are retained. This introduces no new waste grade, fate substitution, unit conversion, helper primitive, omitted source/caller exchange or recovery model. Only the actual CH3.6 and European3.9 cut-off service profiles qualify.",
+      "inspection": {
+        "rule_id": "bp-281c3f362d35e83f",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of inert waste, sanitary landfill",
+          "reference product": "inert waste",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.262716,
+          "conversion_factor": -1,
+          "id": "bp-281c3f362d35e83f",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-281c3f362d35e83f"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of inert waste, sanitary landfill",
+            "reference product": "inert waste",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        "target": {
+          "name": "Disposal, inert material, 0% water, to sanitary landfill",
+          "reference product": "Disposal, inert material, 0% water, to sanitary landfill",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": -1,
+        "conversion_factor": -1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": -1,
+            "metadata_sha256": "488d2598563ccaee960ddc4c32f1875a190afaa7a54e2a62094143e497fc0822",
+            "inventory_sha256": "ed2c58320cfca3b3d4e394b55fa4aedb200f5d132ba08ca432ea3d8e9e3a3239",
+            "activity_comment_sha256": "57f5b3a8c5596f01197838bf221f9589d8ac2e4cdd50b25c1b3415b1b90a9bdb",
+            "waste_composition_sha256": "7f9cd82754d8b3abf4980f544de1fb08ee65650ccd2f4af71aae8a12cec60a04",
+            "matched_composition_entries": 42,
+            "exact_publisher_release_coordinates": 21,
+            "native_manganese_representation_difference": true
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, inert material, 0% water, to sanitary landfill",
+              "reference product": "Disposal, inert material, 0% water, to sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "6aa80235d48fd0c05808fdbe37cce4db2c2d04b5cb894602d8783d150bf398c8",
+            "inventory_sha256": "8a13e79cbc717ae3d7c39400f3174b3aacf8938a7a83520b2961c733fb0b0879",
+            "direct_biosphere_exchanges": 23
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, inert material, 0% water, to sanitary landfill",
+              "reference product": "Disposal, inert material, 0% water, to sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "b62db8abf127eb077f1c75aec428c1990dda69c918b86dd7256cf5db5253afea",
+            "inventory_sha256": "47af93837d72ee2dadac752b2ad5a4d97915cbeab625dde9f6f0828eca79298c",
+            "direct_biosphere_exchanges": 23
+          }
+        },
+        "limitations": "Use the complete native inert-material sanitary-landfill service for the inspected cement-like inert waste. All 42 declared wet-composition entries match the source; both declare zero overall degradability. The 0%-water product labels and source product properties are not a reason to renormalize the shared wet-composition inventory. Source reference -1 kg and native reference +1 kg require factor -1, preserving signed as-received kg without moisture, dry-mass, density, capacity or lifetime scaling. Retain sanitary base sealing, leachate collection/treatment, landfill operations, infrastructure, auxiliary waste handling and long-term groundwater releases; do not use the old 5%-water construction/inert-landfill endpoint. Twenty-one nominal releases match publisher ID, receiving compartment, unit and amount. The source manganese release has the same signed mass and long-term groundwater compartment but the imported native2026 inventory uses a different generic-manganese identifier/species label; retain that native biosphere difference with no molecular or CF-equivalence claim. Native additional waste heat, complete boiler/energy supply, auxiliary paper/plastic disposal, internal freight, background allocation and vintage differ. The complete Swiss service represents the inspected CH3.6 case and is a geographic proxy for Europe-without-Switzerland3.9. Separate caller collection, processing, formulas, uncertainty and emissions remain unchanged. No added carbon, heat, metal or recovery credit is inferred. Inventory and LCIA equality are not established; score effects are unquantified. Only the enumerated exact cut-off profiles are reviewed; other profiles and inferred inverse/cross-model routes remain unresolved."
+      },
+      "limitations": [
+        "Use the complete native inert-material sanitary-landfill service for the inspected cement-like inert waste. All 42 declared wet-composition entries match the source; both declare zero overall degradability. The 0%-water product labels and source product properties are not a reason to renormalize the shared wet-composition inventory. Source reference -1 kg and native reference +1 kg require factor -1, preserving signed as-received kg without moisture, dry-mass, density, capacity or lifetime scaling. Retain sanitary base sealing, leachate collection/treatment, landfill operations, infrastructure, auxiliary waste handling and long-term groundwater releases; do not use the old 5%-water construction/inert-landfill endpoint. Twenty-one nominal releases match publisher ID, receiving compartment, unit and amount. The source manganese release has the same signed mass and long-term groundwater compartment but the imported native2026 inventory uses a different generic-manganese identifier/species label; retain that native biosphere difference with no molecular or CF-equivalence claim. Native additional waste heat, complete boiler/energy supply, auxiliary paper/plastic disposal, internal freight, background allocation and vintage differ. The complete Swiss service represents the inspected CH3.6 case and is a geographic proxy for Europe-without-Switzerland3.9. Separate caller collection, processing, formulas, uncertainty and emissions remain unchanged. No added carbon, heat, metal or recovery credit is inferred. Inventory and LCIA equality are not established; score effects are unquantified. Only the enumerated exact cut-off profiles are reviewed; other profiles and inferred inverse/cross-model routes remain unresolved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fbb6521d5163f55aafb96c449c08b055b20352552579c83b696c7b80459e0a81"
+        }
+      ]
     }
   ]
 }

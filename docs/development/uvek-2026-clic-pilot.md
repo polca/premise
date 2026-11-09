@@ -177,13 +177,13 @@ foreign foreground anchors retained, gives:
 
 | Ecoinvent cut-off source | Selected CLIC records | Unapproved correspondences |
 | --- | ---: | ---: |
-| 3.6 | 27 | 12 |
+| 3.6 | 27 | 11 |
 | 3.7 | 2 | 0 |
 | 3.8 | 1 | 0 |
-| 3.9 | 17 | 26 |
+| 3.9 | 17 | 25 |
 | 3.12 | 8 | 12 |
 
-These are 50 exact-profile cases involving 45 distinct rules, after reusing
+These are 48 exact-profile cases involving 43 distinct rules, after reusing
 six existing reviewed helper decisions and inspecting direct production
 counterparts for the pilot's exact source profiles, including powder sodium
 chloride and Swiss kerosene with inspected upstream combustion boundaries,
@@ -524,10 +524,30 @@ recipes and one shared review; full authoring replay is byte-identical and
 wheel review/authority/manifest bytes match. The module now contains 649 cases;
 no full 649-case run is claimed. Grade, chemical-basis and other unresolved
 decisions remain refused; the full prospective scenario/export is unvalidated.
+
+Two further exact profiles now use the complete native sanitary-landfill
+service for inert material: Swiss 3.6 and Europe-without-Switzerland 3.9.
+The old endpoint had a different landfill class and waste composition; all
+42 declared wet-composition entries match the corrected endpoint. Factor -1
+preserves as-received waste kg without moisture or capacity scaling. Sanitary
+sealing, leachate treatment and long-term releases remain included. Twenty-one
+nominal releases match exact publisher coordinates; the inherited native
+manganese identifier/species difference remains an explicit warning, alongside
+auxiliary disposal, energy, geography, allocation, vintage and unquantified
+score differences. Sixteen focused Premise checks pass, retaining the refusal
+of the old endpoint and uninspected releases. The native supplier LCI is finite
+with unchanged scientific source hashes. No helper or inverse is introduced.
+All 297 earlier approval fingerprints remain unchanged.
+Across validation runs, 564 relevant Brightpath cases pass: the broader run
+passed 562, and a focused ten-case storage rerun passed after updating two
+expectations for the new review and endpoint. Full authoring replay and wheel
+evidence/manifest checks also pass; the inspected wheel, generated build and
+superseded harmonization caches were removed.
+
 The correspondence counts describe the current review frontier, not separate
 approval questions or
 a claim that later validation cannot find additional blockers. The approval
-ledger contains 297 exact-profile fingerprints, with review evidence and
+ledger contains 299 exact-profile fingerprints, with review evidence and
 limitations retained through audits, portable diagnostics and cache reuse.
 The separately approved SCR screening proxy retains the source's signed kg of
 NOx retained and separate stack emissions, with the 85%/about-80% performance

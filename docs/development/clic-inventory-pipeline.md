@@ -693,9 +693,25 @@ Thirty-six relevant Brightpath and eighteen focused Premise checks pass.
 All three packaged helper-input LCIs are finite with unchanged scientific
 hashes; all 294 earlier fingerprints and existing recipes/reviews remain
 unchanged. Full generator replay and wheel review/authority/manifest byte
-checks pass. The current frontier is 45 distinct unresolved rules / 50 exact
+checks pass. That checkpoint had 45 distinct unresolved rules / 50 exact
 source-profile cases, with 297 approval fingerprints. The full pilot remains
 refused; material-grade proposals and chemical-basis questions are unresolved.
+
+`uvek_pilot_sanitary_inert_review.json` corrects the inspected Swiss 3.6 and
+European 3.9 inert-waste sanitary-landfill endpoints. All 42 declared wet
+composition entries match the native sanitary service. Source reference -1 kg
+and native +1 kg require factor -1 without moisture, capacity or lifetime
+scaling. Complete sealing, leachate treatment and long-term releases remain
+included. Twenty-one nominal biosphere releases match exact publisher
+coordinates; the inherited native manganese-definition difference and auxiliary
+treatment, energy, geography, allocation, vintage and score effects remain
+explicit warnings. Sixteen focused Premise checks and the finite native supplier
+LCI pass, with scientific source hashes unchanged. All 297 earlier fingerprints
+remain unchanged; the current frontier is 43 rules / 48 exact-profile cases
+and 299 approved fingerprints. No new helper or inverse is introduced.
+Brightpath validation covers 564 distinct relevant cases across the broader
+run and corrected storage rerun. Full authoring replay is byte-identical;
+wheel evidence/manifest bytes match, and obsolete build/cache outputs are removed.
 
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
