@@ -34152,6 +34152,657 @@
           "fingerprint": "957e339216ffd59e0b82bbe184ab0c7db7be7fca853c22684cb970e25ad09165"
         }
       ]
+    },
+    {
+      "rule_id": "bp-38a8afc636bbea5a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_pe_row",
+      "review_path": "export/uvek_pilot_nitrate_pe_row_review.json",
+      "review_sha256": "8f00cd5bd185067ca4527b9b59aa9c743fa883be4122d0932e0c3e57dbe91772",
+      "authorization": "Standing complete source-preserving helper composition, exact prior whole-waste/operating/freight reuse and publisher-identity conventions. Hyperarid source inventories are retained rather than approximated by wetter classes; fresh full source/installed target elementary definitions establish the same publisher UUID, signed unit, complete compartment and role. No new modelling primitive, disposal fate, physical omission, allocation/recovery credit or cross-model correspondence.",
+      "inspection": {
+        "rule_id": "bp-38a8afc636bbea5a",
+        "source": {
+          "location": "RoW",
+          "name": "market for waste polyethylene",
+          "reference product": "waste polyethylene",
+          "unit": "kilogram"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+          "reference product": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+          "unit": "kilogram"
+        },
+        "previous_rule": {
+          "confidence": 0.6,
+          "conversion_factor": -1,
+          "id": "bp-38a8afc636bbea5a",
+          "mapping_method": "pairwise_review",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-38a8afc636bbea5a"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "review_ref": "r-c722d5b67b2c4523",
+          "source": {
+            "location": "RoW",
+            "name": "market for waste polyethylene",
+            "reference product": "waste polyethylene",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+            "reference product": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+            "unit": "kilogram"
+          }
+        },
+        "previous_rule_sha256": "efee92928b3661e4fa2fc29c71c84b7fd62ac1e95f30e46e9f590464e178ff51",
+        "previous_review": {
+          "limitations": [
+            "Identity-level comparison only; inventory composition and LCIA equivalence are not verified.",
+            "Geographic proxy."
+          ],
+          "rationale": "Branch supplies waste handling for the named material rather than an unrelated supplied product/material."
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_metadata_sha256": "4e194053ee7888267a076f620af789d36868fa9ce874b37a27873dc96de8e4d8",
+        "source_inventory_sha256": "16998876e5a61f70a6e04788bcb7dd8e5162c5c9885f760a9999b917842bc5a6",
+        "source_fates": [
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, unsanitary landfill, very wet infiltration class (1000mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9494ab280288c206d01c41792babc903a3d1064883b7379ee7793386e7453624",
+              "inventory_sha256": "a153f3c941d065132ef12a8b3140500b4063a947d6eb8640a7a5a95aee4b8642"
+            },
+            "source_exchange": {
+              "amount": -0.0792268474637746,
+              "uncertainty type": 0,
+              "loc": -0.0792268474637746
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-499bb2ae8576686d306e"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, municipal incineration",
+                "reference product": "waste polyethylene",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "f5324a9e675b7c1b8daeb585f6c92157dc7c14c31f2a777365b33c54e84aa137",
+              "inventory_sha256": "6192f08c570740ca0a2f4cb9d656bf4ce366498ceabdd44f28d2c6e77e22271c"
+            },
+            "source_exchange": {
+              "amount": -0.107643629912986,
+              "uncertainty type": 0,
+              "loc": -0.107643629912986
+            },
+            "reference_factor": -1,
+            "target": {
+              "name": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+              "reference product": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "declared_wet_composition_coordinates_matching_prior_review": 44,
+            "raw_child_heuristic_target_not_used": true
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, unsanitary landfill, wet infiltration class (500mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "9181717f67c54284c03175d1d079aeb7742fce95510006529f7dd943a10aa36a",
+              "inventory_sha256": "49508e8507993f797e68568006cc2af6e2235b43bcb7cf007de57f36ebcb14c3"
+            },
+            "source_exchange": {
+              "amount": -0.234923821966288,
+              "uncertainty type": 0,
+              "loc": -0.234923821966288
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-d5863cdcbae6852c4ba7"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, open dump, moist infiltration class (300mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "829239b3476b7d9c3505b981fad027fecb0967470756f8e8a0b28b4329c13d73",
+              "inventory_sha256": "e8c85b2aa43b328dd77a74a1a2b9768eb64b59b70cb96072c33bbe915cd46d3e"
+            },
+            "source_exchange": {
+              "amount": -0.0250926981761765,
+              "uncertainty type": 0,
+              "loc": -0.0250926981761765
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-35f5d7ff61367ee67e8a"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, unsanitary landfill, hyperarid infiltration class (-250mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "11208cd40395ff49cb6cb5762d692bd7eb8b970f002d1a8f5d7f4b7eb3abc792",
+              "inventory_sha256": "ec3bdbb27f4c6b5901474ec7edb1022161bb418dece9f7b96ffe6346d76e99f5"
+            },
+            "source_exchange": {
+              "amount": -0.035073452155838,
+              "uncertainty type": 0,
+              "loc": -0.035073452155838
+            },
+            "reference_factor": -1,
+            "new_hyperarid_recipe": "pilot-pe-hyperarid-653e959b8bc1da533593"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, unsanitary landfill, moist infiltration class (300mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "e02da5c79224ba39458a486245dac4dab141f669cbc20526621586780cbf58a7",
+              "inventory_sha256": "1dfed7958c65f4adf8d56b4c2c45edb41b9061c69ddec88b5c267a75d1ddc112"
+            },
+            "source_exchange": {
+              "amount": -0.0623369227600257,
+              "uncertainty type": 0,
+              "loc": -0.0623369227600257
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-bfa3c6f7649d405fcd0c"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, open dump, very wet infiltration class (1000mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "343df0e18b2cd704e52d3926e35c5937736210a59dd9a8a2714bec243ea5c037",
+              "inventory_sha256": "feac46b5137b80702e70243c3b6db32b091508e3d9e8b123a82abd01e847d065"
+            },
+            "source_exchange": {
+              "amount": -0.0581108636290239,
+              "uncertainty type": 0,
+              "loc": -0.0581108636290239
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-c7eb736495925d6465db"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, open dump, dry infiltration class (100mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "41e3b23af66a0a9884245ba9a381bf6b6204b7a7edacd1bc56cf424918a66bb8",
+              "inventory_sha256": "9797c139d3fe0a3f18ca5c929dd182c85eff2ff25a1b04977c0a50d5f1d958c7"
+            },
+            "source_exchange": {
+              "amount": -0.0499944695133922,
+              "uncertainty type": 0,
+              "loc": -0.0499944695133922
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-06b7f29c226120635a7c"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, open dump, hyperarid infiltration class (-250mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "f902b7a3258a8a70711e240404d1d7d45c544811caef693840bc941e160e696d",
+              "inventory_sha256": "39e1a3e1280ea23687b2f10b34640280a29f330994d95b6803ef7082e00afd66"
+            },
+            "source_exchange": {
+              "amount": -0.0241530148866973,
+              "uncertainty type": 0,
+              "loc": -0.0241530148866973
+            },
+            "reference_factor": -1,
+            "new_hyperarid_recipe": "pilot-pe-hyperarid-a4ceab02f7c4cbdfe516"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, unsanitary landfill, dry infiltration class (100mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "21b510772a2843b3f5228e36e90334ea7b8f6137bef8087cb844860a94a7dfe8",
+              "inventory_sha256": "88a248515197307d8e29032cd0f87cadb2812ec799a180569b37d5ac6362de9d"
+            },
+            "source_exchange": {
+              "amount": -0.0717986390931305,
+              "uncertainty type": 0,
+              "loc": -0.0717986390931305
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-d788d494110fafb7e0a4"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, open dump, wet infiltration class (500mm)",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "08e6ac12f41f90938e1988fd02719cdcdfc6d4ebafb68d39d77194ac007e4e44",
+              "inventory_sha256": "d4ccd8089d06c7449f08d8886e281dfe8b96bc007cc6b837627ea2813cd99c9b"
+            },
+            "source_exchange": {
+              "amount": -0.154202153568209,
+              "uncertainty type": 0,
+              "loc": -0.154202153568209
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-48c9a85cfdad8677efd8"
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "treatment of waste polyethylene, open burning",
+                "reference product": "waste polyethylene",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "metadata_sha256": "cc0194992f5741770017ac281db67f259bd4ac15293528d1c102489e5d6ab676",
+              "inventory_sha256": "aba343ccdb658e3655631ea6156a5fbec73bd2fe8ae36a3628e568b7a2afe54c"
+            },
+            "source_exchange": {
+              "amount": -0.0974434868744583,
+              "uncertainty type": 0,
+              "loc": -0.0974434868744583
+            },
+            "reference_factor": -1,
+            "prior_unchanged_recipe": "pilot-pe-source-8a814b40565e94e693aa"
+          }
+        ],
+        "freight_witnesses": [
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "CN",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "5eec92f28619a465ce59cbbbe58bba9499d8a8475c5561584dcc6c13f4d47a7a",
+              "inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "authority": "export/uvek_pilot_nitrate_goods_review.json",
+            "selected_from_prior_whole_freight_review_not_raw_child_heuristic": true
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "RoW",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "9242044d72ee67df879c1ce100501eb5bb9c534759f95c078b9c25e745c3897a",
+              "inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "authority": "export/uvek_pilot_nitrate_goods_review.json",
+            "selected_from_prior_whole_freight_review_not_raw_child_heuristic": true
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight train",
+                "reference product": "transport, freight train",
+                "location": "US",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "6bdd38a9de2e0bb427c64623a8de9d7bbc03ff96a3a946c89aafa18366d60169",
+              "inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e"
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "authority": "export/uvek_pilot_nitrate_goods_review.json",
+            "selected_from_prior_whole_freight_review_not_raw_child_heuristic": true
+          },
+          {
+            "source_witness": {
+              "version": "3.9",
+              "identity": {
+                "name": "market for transport, freight, lorry, unspecified",
+                "reference product": "transport, freight, lorry, unspecified",
+                "location": "RoW",
+                "unit": "ton kilometer"
+              },
+              "metadata_sha256": "ee4483351124f67842363308e01fd9a0d8a5081b3b16f128978938eab15fbd14",
+              "inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "authority": "export/uvek_pilot_nitrate_goods_review.json",
+            "selected_from_prior_whole_freight_review_not_raw_child_heuristic": true
+          }
+        ],
+        "source_treatment_share_sum": -1.0,
+        "previous_native_flow_type": "WASTE_FLOW",
+        "original_factor": -1,
+        "authorized_system_model": "cutoff",
+        "profiles": [
+          {
+            "label": "ecoinvent-3.9-cutoff",
+            "source_sign": -1,
+            "inventory_sha256": "16998876e5a61f70a6e04788bcb7dd8e5162c5c9885f760a9999b917842bc5a6",
+            "inputs": [
+              {
+                "amount": 0.003225847220316541,
+                "uncertainty type": 2,
+                "loc": -5.7365596592609265,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.004450430953717091,
+                "uncertainty type": 2,
+                "loc": -5.414754343961089,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0035237218259663665,
+                "uncertainty type": 2,
+                "loc": -5.648237511036843,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.01932,
+                "uncertainty type": 2,
+                "loc": -3.946614450197765,
+                "scale": 0.4074309757492673,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.5,
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.0792268474637746,
+                "uncertainty type": 0,
+                "loc": 0.0792268474637746,
+                "recipe": "pilot-pe-source-499bb2ae8576686d306e"
+              },
+              {
+                "amount": 0.107643629912986,
+                "uncertainty type": 0,
+                "loc": 0.107643629912986,
+                "name": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+                "reference product": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+                "location": "CH",
+                "unit": "kilogram",
+                "type": "technosphere"
+              },
+              {
+                "amount": 0.234923821966288,
+                "uncertainty type": 0,
+                "loc": 0.234923821966288,
+                "recipe": "pilot-pe-source-d5863cdcbae6852c4ba7"
+              },
+              {
+                "amount": 0.0250926981761765,
+                "uncertainty type": 0,
+                "loc": 0.0250926981761765,
+                "recipe": "pilot-pe-source-35f5d7ff61367ee67e8a"
+              },
+              {
+                "amount": 0.035073452155838,
+                "uncertainty type": 0,
+                "loc": 0.035073452155838,
+                "recipe": "pilot-pe-hyperarid-653e959b8bc1da533593"
+              },
+              {
+                "amount": 0.0623369227600257,
+                "uncertainty type": 0,
+                "loc": 0.0623369227600257,
+                "recipe": "pilot-pe-source-bfa3c6f7649d405fcd0c"
+              },
+              {
+                "amount": 0.0581108636290239,
+                "uncertainty type": 0,
+                "loc": 0.0581108636290239,
+                "recipe": "pilot-pe-source-c7eb736495925d6465db"
+              },
+              {
+                "amount": 0.0499944695133922,
+                "uncertainty type": 0,
+                "loc": 0.0499944695133922,
+                "recipe": "pilot-pe-source-06b7f29c226120635a7c"
+              },
+              {
+                "amount": 0.0241530148866973,
+                "uncertainty type": 0,
+                "loc": 0.0241530148866973,
+                "recipe": "pilot-pe-hyperarid-a4ceab02f7c4cbdfe516"
+              },
+              {
+                "amount": 0.0717986390931305,
+                "uncertainty type": 0,
+                "loc": 0.0717986390931305,
+                "recipe": "pilot-pe-source-d788d494110fafb7e0a4"
+              },
+              {
+                "amount": 0.154202153568209,
+                "uncertainty type": 0,
+                "loc": 0.154202153568209,
+                "recipe": "pilot-pe-source-48c9a85cfdad8677efd8"
+              },
+              {
+                "amount": 0.0974434868744583,
+                "uncertainty type": 0,
+                "loc": 0.0974434868744583,
+                "recipe": "pilot-pe-source-8a814b40565e94e693aa"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market for diesel, burned in building machine",
+                  "diesel, burned in building machine",
+                  "GLO",
+                  "megajoule"
+                ],
+                "binding_sha256": "3b1861c3274945480ca2e0fb9dc4545ab816ea4f7c42d5e3da617e18157bf677"
+              },
+              {
+                "source": [
+                  "market for excavation, skid-steer loader",
+                  "excavation, skid-steer loader",
+                  "GLO",
+                  "cubic meter"
+                ],
+                "binding_sha256": "6a40382a88bea7f6e7ffe0e14cb4b89ccab08cd1846702631265a2ef7e9a03d5"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "CN",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "d46aef23fff44037150a3dbba425a0a576c0bd41f781827ff25bffb4a2ab84db"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "65daeb9709326706d1483db81c837f98391e55ce60de20cc1c7ec0c937a50c98"
+              },
+              {
+                "source": [
+                  "market for transport, freight train",
+                  "transport, freight train",
+                  "US",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "0902700ae508f9039ad1299a4bec8801b919686a03e7a2791a6781484bb2cff9"
+              },
+              {
+                "source": [
+                  "market for transport, freight, lorry, unspecified",
+                  "transport, freight, lorry, unspecified",
+                  "RoW",
+                  "ton kilometer"
+                ],
+                "binding_sha256": "8c05935945592db59d34fa92d8b4d9a8baa248978d5ab15e353020e54bbb6955"
+              },
+              {
+                "source": [
+                  "treatment of waste polyethylene, municipal incineration",
+                  "waste polyethylene",
+                  "RoW",
+                  "kilogram"
+                ],
+                "binding_sha256": "7b576ccee434760629e776a1149f3efe436bdeffe846b4829893a4e4aa334982"
+              }
+            ]
+          }
+        ],
+        "limitations": "Preserve all12 original rest-of-world polyethylene-treatment shares and4 separate original collection-freight entries with signed quantities and supported uncertainty, without aggregation or renormalization. Nine exact previously reviewed uncontrolled-treatment recipes remain unchanged; two new hyperarid(-250mm) helpers retain their complete101-flow source inventories, original operating inputs and separately inspected canonical3.10 definition metadata. Open burning, open dumps and five infiltration classes remain their source fates rather than controlled incineration or an empty allocation. All1145 foreground elementary exchanges are retained across11 shared treatment helpers, including signed/zero amounts, uncertainty, full compartments and emission/resource roles. Publisher UUID/unit/context/role identify canonical definitions; Ca/Na/Sr names, sodium CAS changes and removal of an individual CAS for generic NOx remain metadata warnings without molecular/speciation/compartment factors. The ordinary-incineration portion uses the exact complete native polyethylene0.4%-water incinerator from the prior44-coordinate composition review, not the raw genericPE/PP wrapper with additional collection. Native energy, ash/residue treatment, internal residue transport, infrastructure, allocation and emissions remain once, with geographic, technology, vintage, biosphere-exclusion and unquantified-score limitations. Original country-allocated rail entries use the complete generic RER freight-rail service from the already inspected whole-freight authority; do not select the raw coal-only CN train or diesel-only US target. Keep road freight at its original tkm through the inspected complete RER heavy fleet. Source-specific quantities/uncertainty remain separate even where native suppliers coincide. Native traction, wagon/fleet, loading, fuel, infrastructure, geography and vintage differences remain screening warnings. Retain as-received kg and net tkm; introduce no moisture, dry-mass, density, heating-value, distance, payload, capacity, lifetime, recovery or avoided-production factor. Source market/treatments have no parameters/formulas. Preserve caller-owned signed quantities, formulas, uncertainty, production, foreground suppliers and separate emissions. Negative waste reference-1 maps to positive helper treatment via factor-1. Raw child hashes freeze drift and do not grant standalone approvals. No new treatment model, polymer blend, FAE assumption, physical omission, inverse or cross-system-model conversion is inferred. Only the exact3.9cutoff RoW parent closure qualifies for UVEK2026cutoff/ecoinvent3.10biosphere; other profiles and European/Swiss branches remain unapproved."
+      },
+      "limitations": [
+        "Preserve all12 original rest-of-world polyethylene-treatment shares and4 separate original collection-freight entries with signed quantities and supported uncertainty, without aggregation or renormalization. Nine exact previously reviewed uncontrolled-treatment recipes remain unchanged; two new hyperarid(-250mm) helpers retain their complete101-flow source inventories, original operating inputs and separately inspected canonical3.10 definition metadata. Open burning, open dumps and five infiltration classes remain their source fates rather than controlled incineration or an empty allocation. All1145 foreground elementary exchanges are retained across11 shared treatment helpers, including signed/zero amounts, uncertainty, full compartments and emission/resource roles. Publisher UUID/unit/context/role identify canonical definitions; Ca/Na/Sr names, sodium CAS changes and removal of an individual CAS for generic NOx remain metadata warnings without molecular/speciation/compartment factors. The ordinary-incineration portion uses the exact complete native polyethylene0.4%-water incinerator from the prior44-coordinate composition review, not the raw genericPE/PP wrapper with additional collection. Native energy, ash/residue treatment, internal residue transport, infrastructure, allocation and emissions remain once, with geographic, technology, vintage, biosphere-exclusion and unquantified-score limitations. Original country-allocated rail entries use the complete generic RER freight-rail service from the already inspected whole-freight authority; do not select the raw coal-only CN train or diesel-only US target. Keep road freight at its original tkm through the inspected complete RER heavy fleet. Source-specific quantities/uncertainty remain separate even where native suppliers coincide. Native traction, wagon/fleet, loading, fuel, infrastructure, geography and vintage differences remain screening warnings. Retain as-received kg and net tkm; introduce no moisture, dry-mass, density, heating-value, distance, payload, capacity, lifetime, recovery or avoided-production factor. Source market/treatments have no parameters/formulas. Preserve caller-owned signed quantities, formulas, uncertainty, production, foreground suppliers and separate emissions. Negative waste reference-1 maps to positive helper treatment via factor-1. Raw child hashes freeze drift and do not grant standalone approvals. No new treatment model, polymer blend, FAE assumption, physical omission, inverse or cross-system-model conversion is inferred. Only the exact3.9cutoff RoW parent closure qualifies for UVEK2026cutoff/ecoinvent3.10biosphere; other profiles and European/Swiss branches remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "044d4a85f7053bb14b548b4882419ec049f006e2baf08ffba694b1304cee22bf"
+        }
+      ]
     }
   ]
 }

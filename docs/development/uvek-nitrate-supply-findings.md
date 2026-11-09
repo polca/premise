@@ -54,12 +54,12 @@ unit and complete receiving compartment. This verifies the inspected source
 structure; it is **not a linked UVEK inventory or a native LCI result**.
 
 The inspected graph references 125 distinct external suppliers. Of those,
-55 already have exact current CLIC approval fingerprints for their source
+56 already have exact current CLIC approval fingerprints for their source
 profile. All have raw mapping entries, but a raw entry does not establish a
 scientifically reviewed target. The other suppliers cover 22 reference-product
 labels across multiple geographies. Some may reuse standing reviews after
 inspection, while others overlap existing pending material, heat or waste
-decisions. They are not 70 automatically new scientific decisions. Coverage is
+decisions. They are not 69 automatically new scientific decisions. Coverage is
 checked using the public scope auditor and original packaged rule bodies;
 profile-selected rule projections are not approval fingerprints.
 
@@ -151,9 +151,22 @@ collection while retaining the original market freight. This does not admit a
 Swiss FAE branch or substitute controlled incineration for uncontrolled disposal.
 All earlier recipes, reviews and pilot approval fingerprints remain unchanged;
 six new market recipes reuse five existing treatment recipes. Native LCI and
-installed-wheel checks cover each complete returned graph. The RoW market's
-additional hyperarid classes and the European group's Swiss technology branch
-remain unresolved.
+installed-wheel checks cover each complete returned graph. At that checkpoint,
+the RoW market's additional hyperarid classes and the European group's Swiss
+technology branch remained unresolved.
+
+The exact 3.9 rest-of-world PE market now also preserves its complete source
+mix. Its twelve treatment shares and four collection-freight entries remain
+separate, with signed quantities and uncertainty. Two new source-based helpers
+retain the hyperarid landfill and open-dump inventories; nine earlier treatment
+recipes remain unchanged. The controlled portion selects the specific native
+PE incinerator directly from the complete-composition authority. Freight uses
+the previously inspected generic RER rail and heavy-lorry services, including
+their geographic and technology warnings, rather than the raw coal-specific or
+diesel-specific rail matches. The complete thirteen-record migrated graph
+retains 1,145 elementary exchanges and gives finite native LCI. This resolves
+the RoW hyperarid branch described at the earlier checkpoint. The European
+group's Swiss FAE branch remains unresolved.
 
 This dependency expansion sits behind one currently blocked parent rule.
 Consequently, the headline count of 35 unresolved rules / 40 source-profile

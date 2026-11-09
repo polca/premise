@@ -58,6 +58,29 @@ treatment share, market freight, uncertainty and the plant's downstream residue
 logistics remain unchanged. The six country evidence bindings are reissued with
 clarified warnings; the 334 earlier fingerprints remain unchanged.
 
+The exact 3.9 rest-of-world PE market is now independently admitted with all
+twelve original fates and four separate freight entries. Two added helpers
+retain the source hyperarid infiltration class rather than substituting a
+wetter class. Each contains its original 101 elementary exchanges; the
+unsanitary service also retains both operating inputs. Nine earlier treatment
+recipes remain unchanged. The complete graph returns thirteen records and
+1,145 elementary exchanges, with no physical omission or extra recovery credit.
+
+Fresh read-only inspection checks 101 complete source and installed canonical
+3.10 elementary definitions by publisher UUID, unit, full compartment and
+emission/resource role. Ten label or CAS metadata differences remain in the
+review, including calcium, sodium and strontium labels and removal of an
+individual CAS from generic nitrogen oxides. These publisher-lineage changes
+introduce no molecular, speciation or compartment factor. Signed quantities,
+zero entries and uncertainty remain unchanged. The native operating services
+reuse their earlier full-inventory witnesses. Complete controlled incineration
+uses the specific PE plant from the prior composition review. All freight
+endpoints are selected from the earlier whole-service authority: the three
+original rail quantities use generic RER rail, not the raw coal-only or
+diesel-only matches. The original road entry and plant-residue logistics remain
+separate. Native technology, geography, allocation, vintage and score differences
+remain screening limitations.
+
 Other findings remain work items, not admissions:
 
 - Regional concrete and final-disposal mineral-wool services use generic

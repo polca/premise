@@ -977,6 +977,31 @@ earlier authority, and regression checks require the specific incinerator.
 The country group's evidence bindings are reissued; the total remains 340 and
 all 334 approvals preceding that group remain unchanged.
 
+The exact 3.9 rest-of-world PE market now retains twelve original treatment
+shares and four original freight entries. Two new helpers preserve the complete
+hyperarid landfill/open-dump inventories, including their 101 elementary
+exchanges each and original operating inputs. Nine earlier treatment recipes
+remain unchanged. Fresh source and installed canonical 3.10 definitions match
+publisher UUID, unit, complete compartment and emission/resource role; label/CAS
+updates are warnings without chemical or compartment factors. The controlled
+portion selects the specific reviewed PE incinerator. Generic RER rail and
+heavy-lorry services come directly from the earlier whole-freight authority,
+retaining individual original quantities and uncertainty. Raw narrower rail or
+generic disposal matches are not used.
+
+All 340 earlier approval fingerprints, 3,244 recipes and 707 shared reviews
+remain unchanged. There are now 341 scopes, three added recipes and 708 shared
+reviews. Seventy-eight focused Brightpath checks and 67 Premise checks pass,
+including earlier country/collection routes, exact-profile refusals, cache paths
+and atomic authoring drift guards. Full generator replay is byte-identical.
+The complete thirteen-record migrated graph retains 1,145 elementary exchanges
+and gives finite native LCI, with exact foreground reference balance,
+independent native-supply agreement and unchanged native scientific hashes.
+Installed-wheel conversion and evidence checks pass. The public frontier
+remains 35 rules / 40 cases; nitrate coverage is now 56 of 125 suppliers,
+leaving 69. The European/Swiss FAE branch and other unresolved correspondences
+still prevent full prospective certification and export.
+
 Six existing reviewed helper decisions are also pinned for their exact pilot
 profiles: the 3.8 chemical-industry heat market and used-cooking-oil market,
 and the 3.9 Swiss/European scrap-aluminium markets, global WEEE market and
