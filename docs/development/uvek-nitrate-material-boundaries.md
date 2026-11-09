@@ -51,7 +51,8 @@ screening limitations remain in warnings; specific performance and LCIA equality
 are not established. The new review passes 114 focused Brightpath and 114
 Premise checks, ten actual native LCI cases and ten installed-wheel conversions.
 
-Three sand delivery markets still require further work. The HDPE market is now
+The three sand delivery markets are now admitted under the explicit extraction
+and allocated-mining approvals linked below. The HDPE market is now
 admitted with exactly four explicitly approved trace omissions, two separate
 virgin supplies and all original freight, as described below. The foam-glass
 market is now admitted under the separate explicit minor-branch feedstock-proxy
@@ -212,5 +213,14 @@ all proportional to the source zinc-concentrate vector by 1/95, including
 supported uncertainty scaling. A documented 59% Zn concentrate basis and a
 native contained-metal reference support a scoped allocated-mining proxy for
 review. All six producer entries and seventeen delivery entries remain in the
-three finite private candidates. No new sand scope is enabled before the two
-scientific decisions are approved.
+three compositions. Both scientific decisions were explicitly approved and
+implemented: all source producer and freight quantities remain unchanged,
+with the agreed limitations and three exact approval scopes.
+
+The [complete seven-market water audit and proposal](uvek-water-delivery-proposal.md)
+extends the earlier national audit to the European group: 48 source processes,
+67 internal links and eight self-links. Source-preserving reconstruction would
+need cycle support and review of 69 currently unscoped external suppliers. A
+separate whole-native delivered-water screening option is prepared for explicit
+scientific approval; it replaces source internal loss, treatment, network and
+water-accounting assumptions and is not enabled.
