@@ -114222,6 +114222,198 @@
           "fingerprint": "60ce208712b17687cba7afb9fbf31df3c24aca8c545aca68ba52b883dfa5a3f8"
         }
       ]
+    },
+    {
+      "rule_id": "bp-fb36b57c4751ac7d",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_wafer",
+      "review_path": "export/uvek_deferred_wafer_review.json",
+      "review_sha256": "3b5049be3623274ede7921e8d798978f2d030a0122ed1f652d35493a1595fae6",
+      "authorization": "Standing user auto-approval and autonomous goal: inspect actual reference/function, then use complete native representative functional screening proxy with explicit subtype, yield, material, energy and geography limitations.",
+      "inspection": {
+        "rule_id": "bp-fb36b57c4751ac7d",
+        "source": {
+          "location": "GLO",
+          "name": "market for wafer, fabricated, for integrated circuit",
+          "reference product": "wafer, fabricated, for integrated circuit",
+          "unit": "square meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "previous_target": {
+          "location": "GLO",
+          "name": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+          "reference product": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+          "unit": "square meter"
+        },
+        "previous_rule": {
+          "confidence": 0.64513,
+          "id": "bp-fb36b57c4751ac7d",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "GLO",
+            "name": "market for wafer, fabricated, for integrated circuit",
+            "reference product": "wafer, fabricated, for integrated circuit",
+            "unit": "square meter"
+          },
+          "target": {
+            "location": "GLO",
+            "name": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+            "reference product": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+            "unit": "square meter"
+          }
+        },
+        "previous_rule_sha256": "10d69c49669bb55a0f8f11d4e3700b7b4ae47eb4d8bbc78583fdf3a88461ff03",
+        "previous_review": {},
+        "previous_native_flow_type": "PRODUCT_FLOW",
+        "generated_flow_type": "GENERATED_PRODUCT",
+        "original_factor": 1,
+        "profiles": [
+          {
+            "label": "ecoinvent-3.12-cutoff",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "source_sign": 1,
+            "inventory_sha256": "0186489462f88d3aed218ec6aac446a8b6dfebb3881f4b24368eeb1aecf8df8a",
+            "inputs": [
+              {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer",
+                "amount": 0.014,
+                "uncertainty type": 2,
+                "loc": -4.268697949366879,
+                "scale": 0.4516635916254486,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              },
+              {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer",
+                "amount": 0.014,
+                "uncertainty type": 2,
+                "loc": -4.268697949366879,
+                "scale": 0.4516635916254486,
+                "pedigree": {
+                  "reliability": 3,
+                  "completeness": 1,
+                  "temporal correlation": 5,
+                  "geographical correlation": 5,
+                  "further technological correlation": 4
+                },
+                "scale without pedigree": 0.34641016151377546,
+                "type": "technosphere"
+              },
+              {
+                "name": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+                "reference product": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+                "location": "GLO",
+                "unit": "square meter",
+                "amount": 1.0,
+                "uncertainty type": 0,
+                "loc": 1.0,
+                "type": "technosphere"
+              }
+            ],
+            "bindings": [
+              {
+                "source": [
+                  "market group for transport, freight, lorry, diesel, unspecified",
+                  "transport, freight, lorry, diesel, unspecified",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-17557527b93c3bc6",
+                "binding_sha256": "8ac6377d26a5b6a2489395f408b42a558c0d1e943a3916da561b6f4db8712248"
+              },
+              {
+                "source": [
+                  "market group for transport, freight, train, fleet average",
+                  "transport, freight, train, fleet average",
+                  "GLO",
+                  "ton kilometer"
+                ],
+                "rule_id": "bp-3048233792ab5feb",
+                "binding_sha256": "48ddc5466394c787f45ed8ec2e8b80b8cd63e72862c76a60b34bda2230ce4f14"
+              }
+            ]
+          }
+        ],
+        "limitations": "Autonomously approved exact3.12cut-off complete-functional fabricated-wafer screening proxy. Source generic fabricated integrated-circuit wafer and native logic-type fabricated wafer both explicitly reference positive1m2 of processed wafer, including layering/patterning/doping/heat treatment, substrate, chemicals/gases, energy, emissions, waste/water treatment, infrastructure and internal chemical transport. Keep the complete native logic-fabrication inventory as a representative non-memory manufacturing route, including its own substrate and yield. Source circuit type is unspecified; do not claim the logic subtype or its process generation is verified. Native memory fabrication is another available subtype, not a measured source mix; no invented logic/memory split or average is introduced. No raw-silicon, unfabricated-wafer, mass-based or wafer-count substitution. Caller area, signs, formulas and supported uncertainty use factor+1. Retain every original market-delivery road/rail leg separately, in addition to the native factorys internal chemical freight. Source European circa2000 versus native Ireland2017/Asian-energy global representation, generic versus logic circuit, wafer thickness/mass, fabrication yield, substrate inputs, chemicals/gases, factory throughput/capacity/lifetime, electricity/heat, emissions, effluent/waste management, allocation, native internal uncertainty and vintage differ substantially. Source nominal wafer mass .7kg/m2 versus native documented1.68kg/m2 is not an area conversion factor; keep1m2 per source1m2 and make no thickness/mass/yield compensation or extra substrate addition. Native logic uses17500kWh and14760MJheat per m2 versus source27600kWh and58959MJ; preserve complete native process quantities without tuning an energy match. The source generic silicon-wafer model itself is a proxy in the host silicon-carbide module; this mapping does not establish a SiC-specific manufacturing inventory or remove that limitation. Market delivery uses complete native RER road/rail with geographic/fleet/vintage warnings and no extra multiplier. No source chemical/emission vector is copied, no isolated avoided-emission/yield credit, source-market freight omission or added die cutting/packaging is introduced. Upstream2991biosphere exclusions and unquantified score effects remain explicit. This is a complete functional screening proxy, not scientific/LCIA equivalence. Other releases, inverse and cross-system-model conversions are not qualified.",
+        "generated_recipe_id": "deferred-wafer-25644cb27de4f11c68be",
+        "source_witnesses": [
+          {
+            "identity": {
+              "location": "GLO",
+              "name": "market for wafer, fabricated, for integrated circuit",
+              "reference product": "wafer, fabricated, for integrated circuit",
+              "unit": "square meter"
+            },
+            "inventory_sha256": "0186489462f88d3aed218ec6aac446a8b6dfebb3881f4b24368eeb1aecf8df8a",
+            "metadata_sha256": "7446db6181d9dbfca762cb4b06ad378f6a830419ad1e34fb123cc256a25ebfb4"
+          },
+          {
+            "identity": {
+              "name": "wafer production, fabricated, for integrated circuit",
+              "reference product": "wafer, fabricated, for integrated circuit",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "inventory_sha256": "2a43dc3832e11969b722a38f4e0b62787a58c72f0108316706d126ef29be95a8",
+            "metadata_sha256": "d88b1aa6ffd26a8c94a76c62cacf072a463f67f7181ea75ec97fdb6a7e87d99c"
+          }
+        ],
+        "native_witness": {
+          "identity": {
+            "name": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+            "reference product": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+            "location": "GLO",
+            "unit": "square meter"
+          },
+          "inventory_sha256": "7b7525df4eef77cca4bf68da21cf09eae96b0659f22892e50762b52f0ae9cbe4",
+          "metadata_sha256": "dd5d1ebea22da471bbf4ef7a5dd62eacd173fc3db8810ffd4f899074074bad04"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "caller_conversion_factor": 1,
+        "physical_reference": "one square metre of fabricated wafer; no mass/thickness/wafer-count conversion",
+        "expected_foreground_records": 2,
+        "expected_foreground_biosphere_exchanges": 0
+      },
+      "limitations": [
+        "Autonomously approved exact3.12cut-off complete-functional fabricated-wafer screening proxy. Source generic fabricated integrated-circuit wafer and native logic-type fabricated wafer both explicitly reference positive1m2 of processed wafer, including layering/patterning/doping/heat treatment, substrate, chemicals/gases, energy, emissions, waste/water treatment, infrastructure and internal chemical transport. Keep the complete native logic-fabrication inventory as a representative non-memory manufacturing route, including its own substrate and yield. Source circuit type is unspecified; do not claim the logic subtype or its process generation is verified. Native memory fabrication is another available subtype, not a measured source mix; no invented logic/memory split or average is introduced. No raw-silicon, unfabricated-wafer, mass-based or wafer-count substitution. Caller area, signs, formulas and supported uncertainty use factor+1. Retain every original market-delivery road/rail leg separately, in addition to the native factorys internal chemical freight. Source European circa2000 versus native Ireland2017/Asian-energy global representation, generic versus logic circuit, wafer thickness/mass, fabrication yield, substrate inputs, chemicals/gases, factory throughput/capacity/lifetime, electricity/heat, emissions, effluent/waste management, allocation, native internal uncertainty and vintage differ substantially. Source nominal wafer mass .7kg/m2 versus native documented1.68kg/m2 is not an area conversion factor; keep1m2 per source1m2 and make no thickness/mass/yield compensation or extra substrate addition. Native logic uses17500kWh and14760MJheat per m2 versus source27600kWh and58959MJ; preserve complete native process quantities without tuning an energy match. The source generic silicon-wafer model itself is a proxy in the host silicon-carbide module; this mapping does not establish a SiC-specific manufacturing inventory or remove that limitation. Market delivery uses complete native RER road/rail with geographic/fleet/vintage warnings and no extra multiplier. No source chemical/emission vector is copied, no isolated avoided-emission/yield credit, source-market freight omission or added die cutting/packaging is introduced. Upstream2991biosphere exclusions and unquantified score effects remain explicit. This is a complete functional screening proxy, not scientific/LCIA equivalence. Other releases, inverse and cross-system-model conversions are not qualified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4ab517514b583d113eb009ea784e9bb23404d60be35fd8cc568c0adb856a8f6d"
+        }
+      ]
     }
   ]
 }

@@ -4044,7 +4044,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-edc4e34b1b9682c231a3",
-      "status": "pending",
+      "status": "restored_awaiting_validation",
       "original_deferral": {
         "id": "uvek-2026-screening-edc4e34b1b9682c231a3",
         "slug": "insulated-gate-bipolar-transistor-half-bridge-module-production-electrolysis-motor-drive-1200-v-300-a",
@@ -4094,10 +4094,111 @@
         "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
         "message": "SCREENING ONLY — deferred unresolved supplier bp-fb36b57c4751ac7d: 0.0015895724050230488 square meter of market for wafer, fabricated, for integrated circuit in pinned insulated-gate-bipolar-transistor-half-bridge-module-production-electrolysis-motor-drive-1200-v-300-a (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
       },
-      "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
+      "reference_basis": {
+        "source_reference_amount": 1,
+        "source_unit": "square meter fabricated wafer",
+        "helper_reference_amount": 1,
+        "helper_unit": "square meter fabricated wafer",
+        "caller_conversion_factor": 1,
+        "physical_reference": "one square metre of fabricated wafer; no mass/thickness/wafer-count conversion"
+      },
       "rejected_prior_candidate_reason": "Logic-type wafer is a candidate with unverified fabrication, area/mass and technology boundary.",
-      "evidence": [],
-      "selected_disposition": null,
+      "evidence": [
+        {
+          "review_path": "export/uvek_deferred_wafer_review.json",
+          "sha256": "3b5049be3623274ede7921e8d798978f2d030a0122ed1f652d35493a1595fae6",
+          "source_witnesses": [
+            {
+              "identity": {
+                "location": "GLO",
+                "name": "market for wafer, fabricated, for integrated circuit",
+                "reference product": "wafer, fabricated, for integrated circuit",
+                "unit": "square meter"
+              },
+              "inventory_sha256": "0186489462f88d3aed218ec6aac446a8b6dfebb3881f4b24368eeb1aecf8df8a",
+              "metadata_sha256": "7446db6181d9dbfca762cb4b06ad378f6a830419ad1e34fb123cc256a25ebfb4"
+            },
+            {
+              "identity": {
+                "name": "wafer production, fabricated, for integrated circuit",
+                "reference product": "wafer, fabricated, for integrated circuit",
+                "location": "GLO",
+                "unit": "square meter"
+              },
+              "inventory_sha256": "2a43dc3832e11969b722a38f4e0b62787a58c72f0108316706d126ef29be95a8",
+              "metadata_sha256": "d88b1aa6ffd26a8c94a76c62cacf072a463f67f7181ea75ec97fdb6a7e87d99c"
+            }
+          ],
+          "native_witness": {
+            "identity": {
+              "name": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+              "reference product": "Wafer, fabricated, for integrated circuit, logic type, at plant",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "inventory_sha256": "7b7525df4eef77cca4bf68da21cf09eae96b0659f22892e50762b52f0ae9cbe4",
+            "metadata_sha256": "dd5d1ebea22da471bbf4ef7a5dd62eacd173fc3db8810ffd4f899074074bad04"
+          },
+          "rejected_native_alternative": {
+            "identity": {
+              "name": "Wafer, fabricated, for integrated circuit, memory type, at plant",
+              "reference product": "Wafer, fabricated, for integrated circuit, memory type, at plant",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "inventory_sha256": "fa3452f5c3a3ccff816cb86f08ac555d458924d8b6f8c384303ef1ef114e0fb6",
+            "metadata_sha256": "53ae3a89a1df9f0ce74d367af3408e1e92c39aa6c0710ebb5bb2bd290107230f"
+          },
+          "rejection_reason": "Memory-specific circuit manufacturing is not established for the unspecified source/power-electronics host; neither subtype provides evidence for inventing a logic/memory supply mix. Selected complete logic route remains an explicit representative proxy, not subtype equivalence.",
+          "freight_witnesses": [
+            {
+              "source": {
+                "name": "market group for transport, freight, lorry, diesel, unspecified",
+                "reference product": "transport, freight, lorry, diesel, unspecified",
+                "location": "GLO",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "baef0da96745da678126e158958000a4248ca16b1dcdcf2c27bdcb3fb32c6656",
+              "source_metadata_sha256": "afb8a043bdb92e0c2d8d538f08cbcb5b9b3c9d63acfd95aa9526d9312dbae33d",
+              "target": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "ade1a32bc0c9477d3f8e2a58217e60a23f05164b64d9a10363cd2471425e3ae1",
+              "native_metadata_sha256": "abde6d1efda1c9aa544258cfa058427cbc5c29bdf9562a51d9d1a3194f9db896",
+              "factor": 1,
+              "limitations": "Complete RER rail and road fleet services are explicit global-delivery geography/fleet/loading/propulsion/allocation/vintage proxies per original signed tonne-kilometre. Preserve every source freight quantity and supported uncertainty; no distance or capacity multiplier."
+            },
+            {
+              "source": {
+                "name": "market group for transport, freight, train, fleet average",
+                "reference product": "transport, freight, train, fleet average",
+                "location": "GLO",
+                "unit": "ton kilometer"
+              },
+              "source_inventory_sha256": "d94b72a3792f4dc2298b93a17c64ee55c3e0269f9fd7a77fcbdfce04d9686bbb",
+              "source_metadata_sha256": "01b1b812f281bef2e8b2e2750d76c3d51d6864c708dd5acd98880a14ac055957",
+              "target": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "native_inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+              "native_metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+              "factor": 1,
+              "limitations": "Complete RER rail and road fleet services are explicit global-delivery geography/fleet/loading/propulsion/allocation/vintage proxies per original signed tonne-kilometre. Preserve every source freight quantity and supported uncertainty; no distance or capacity multiplier."
+            }
+          ]
+        }
+      ],
+      "selected_disposition": {
+        "type": "complete_native_logic_fabrication_representative_functional_proxy",
+        "recipe_id": "deferred-wafer-25644cb27de4f11c68be",
+        "limitations": "Autonomously approved exact3.12cut-off complete-functional fabricated-wafer screening proxy. Source generic fabricated integrated-circuit wafer and native logic-type fabricated wafer both explicitly reference positive1m2 of processed wafer, including layering/patterning/doping/heat treatment, substrate, chemicals/gases, energy, emissions, waste/water treatment, infrastructure and internal chemical transport. Keep the complete native logic-fabrication inventory as a representative non-memory manufacturing route, including its own substrate and yield. Source circuit type is unspecified; do not claim the logic subtype or its process generation is verified. Native memory fabrication is another available subtype, not a measured source mix; no invented logic/memory split or average is introduced. No raw-silicon, unfabricated-wafer, mass-based or wafer-count substitution. Caller area, signs, formulas and supported uncertainty use factor+1. Retain every original market-delivery road/rail leg separately, in addition to the native factorys internal chemical freight. Source European circa2000 versus native Ireland2017/Asian-energy global representation, generic versus logic circuit, wafer thickness/mass, fabrication yield, substrate inputs, chemicals/gases, factory throughput/capacity/lifetime, electricity/heat, emissions, effluent/waste management, allocation, native internal uncertainty and vintage differ substantially. Source nominal wafer mass .7kg/m2 versus native documented1.68kg/m2 is not an area conversion factor; keep1m2 per source1m2 and make no thickness/mass/yield compensation or extra substrate addition. Native logic uses17500kWh and14760MJheat per m2 versus source27600kWh and58959MJ; preserve complete native process quantities without tuning an energy match. The source generic silicon-wafer model itself is a proxy in the host silicon-carbide module; this mapping does not establish a SiC-specific manufacturing inventory or remove that limitation. Market delivery uses complete native RER road/rail with geographic/fleet/vintage warnings and no extra multiplier. No source chemical/emission vector is copied, no isolated avoided-emission/yield credit, source-market freight omission or added die cutting/packaging is introduced. Upstream2991biosphere exclusions and unquantified score effects remain explicit. This is a complete functional screening proxy, not scientific/LCIA equivalence. Other releases, inverse and cross-system-model conversions are not qualified."
+      },
       "validation": [],
       "commits": []
     },

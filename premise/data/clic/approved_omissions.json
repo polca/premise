@@ -187,55 +187,6 @@
       "message": "SCREENING ONLY — deferred unresolved supplier bp-49e229b952f6983c: 528 kilogram of market for titanium in pinned electrolyzer-production-1mwe-pem-stack (1.0.1) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
     },
     {
-      "id": "uvek-2026-screening-edc4e34b1b9682c231a3",
-      "slug": "insulated-gate-bipolar-transistor-half-bridge-module-production-electrolysis-motor-drive-1200-v-300-a",
-      "version_id": 5819,
-      "semantic_version": "1.0.0",
-      "sha256": "b9aec7c12b9eeb6c6f72ae0ef04ebc9e27bc769e046a1f6526e72664dfa57d82",
-      "source": {
-        "biosphere": {
-          "family": "ecoinvent",
-          "version": "3.12"
-        },
-        "technosphere": {
-          "family": "ecoinvent",
-          "system_model": "cutoff",
-          "version": "3.12"
-        }
-      },
-      "target": {
-        "technosphere": {
-          "family": "uvek",
-          "version": "2026",
-          "system_model": "cutoff"
-        },
-        "biosphere": {
-          "family": "ecoinvent",
-          "version": "3.10"
-        }
-      },
-      "exchange": {
-        "amount": 0.0015895724050230488,
-        "comment": "SILICON IGBT DIE FABRICATION BOUNDARY, 2026-10-19. The selected FF300R12KT4 silicon IGBT module previously bought 1 g raw electronic-grade silicon without wafer fabrication. Replace only that die feed with the native GLO market for wafer, fabricated, for integrated circuit at 0.001/(2330*270e-6) = 0.00158957240502 square meter per module. This purchases FEOL/BEOL chemistry, process gases, lithography, doping, cleanroom utilities, upstream raw wafer and native fabrication yields once. No second complete module or packaged IC is purchased. Preserve every other module input, the 340 g unit, all consumer quantities, bulk ownership, lifetimes and EOL. The 1 g die mass is the EXISTING geometry assumption, not a newly recovered manufacturer BOM; 270 micrometres matches the native electronic wafer thickness, not a claim about this thinned IGBT4 die. A historical generic silicon IC fab is a process proxy for a power IGBT, not an exact qualified IGBT recipe. Illustrative 100/270/400 um thickness sensitivity is reported; it is not a measured distribution. The published PELCA IGBT model (https://doi.org/10.3390/su18052663) confirms why raw-wafer, device-processing and cleanroom boundaries are needed; its different 750 V ultrathin design is not silently copied as this 1200 V IGBT4. Manufacturer identity: https://www.infineon.com/part/FF300R12KT4 . Unknown module composition, actual die dimensions and power-device fabrication remain design sensitivities; this corrects an omitted manufacturing boundary without inventing new metal fractions. Actual SiC devices remain separate. Existing supplemental workbook only; no runtime, native, mapping or primary/secondary-share changes.",
-        "location": "GLO",
-        "name": "market for wafer, fabricated, for integrated circuit",
-        "reference product": "wafer, fabricated, for integrated circuit",
-        "type": "technosphere",
-        "unit": "square meter"
-      },
-      "original_exchange_index": 5,
-      "screening_only": true,
-      "deferred_rule_id": "bp-fb36b57c4751ac7d",
-      "deferred_candidate": {
-        "location": "GLO",
-        "name": "Wafer, fabricated, for integrated circuit, logic type, at plant",
-        "reference product": "Wafer, fabricated, for integrated circuit, logic type, at plant",
-        "unit": "square meter"
-      },
-      "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
-      "message": "SCREENING ONLY — deferred unresolved supplier bp-fb36b57c4751ac7d: 0.0015895724050230488 square meter of market for wafer, fabricated, for integrated circuit in pinned insulated-gate-bipolar-transistor-half-bridge-module-production-electrolysis-motor-drive-1200-v-300-a (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
-    },
-    {
       "id": "uvek-2026-screening-fc3ee282d0e21e35df15",
       "slug": "motor-drive-production-industrial-75-kw",
       "version_id": 5820,
