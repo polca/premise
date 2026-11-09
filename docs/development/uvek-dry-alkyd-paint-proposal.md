@@ -34,8 +34,8 @@ Prepare copied foreground processes with the following explicit changes:
    do not establish identical uncertainty.
 5. Retain every other native input and direct emission, including process
    wastes and infrastructure. Preserve all 14 source market freight entries
-   and their uncertainty. Freight correspondences still need verified evidence
-   before either market can be admitted.
+   and their uncertainty. Fresh evidence for these complete freight services is recorded below;
+   their quantities are not part of the paint-concentration scaling.
 
 This gives two geographic paint variants and one shared resin helper. Each
 paint variant uses 0.49 native resin-reference units per dry paint kg, compared
@@ -93,3 +93,21 @@ Private artifacts in the pilot evidence directory:
 `native_dry_paint_candidate_lci.json`, `draft_nitrate_dry_paint_proxy.py` and
 `check_native_dry_paint_candidate_lci.py`. Primary readback is retained in
 `nitrate_paint_basis_primary.private.json`.
+
+## Delivery evidence checkpoint
+
+Fresh read-only inspection verifies all fourteen original freight suppliers and
+ten native release-specific endpoints, for 24 complete records. Each source
+identity and inventory hash has a structured match in existing reviewed
+whole-service evidence. This includes the two light-commercial road services
+and the European barge service; their prior witnesses explicitly identify
+3.9 cut-off. The five modes use complete native rail, heavy-road, 3.5 t
+light-road, barge and container-ship services. Native 2025/2026 positive unit
+references and direct technosphere vectors match. Existing geography, fleet,
+fuel, loading, infrastructure and vintage warnings remain applicable.
+
+The original fourteen entries remain separate, with unchanged quantities and
+uncertainty. This inspection adds no standalone freight approval and does not
+resolve or relax the pending dry-paint scientific decision. Evidence:
+`dry_paint_delivery_primary.private.json`, `dry_paint_delivery_evidence.json`
+and `check_dry_paint_delivery_evidence.py`.

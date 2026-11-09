@@ -149,7 +149,9 @@ three private candidate helpers, an explicit carrier/processing-solvent boundary
 and two finite native-background component LCI checks. It retains the fourteen
 original market freight entries and their uncertainty. The source nitrogen
 purge difference is explicitly part of the requested decision. No paint
-correspondence is enabled pending approval and the remaining freight evidence.
+correspondence is enabled pending approval. Fresh read-only checks now bind all
+fourteen freight suppliers to existing complete-service evidence; no additional
+freight proxy or delivery omission is needed for this candidate.
 
 Detailed licensed inventories remain private in
 `nitrate_remaining_waste_full_evidence.private.json`,
