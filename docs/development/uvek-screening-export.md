@@ -184,3 +184,27 @@ retains all eight uncertain RoW freight legs with exact amount/loc/scale metadat
 all three restored caller service signs and five empty-terminal audits.
 Twenty-five of the original 42 CLIC exchanges are now restored; 17 remain deferred.
 Detailed evidence and final decisions are in the autonomous mapping decision log.
+
+## Delivered-gas restoration
+
+Three further CLIC fuel inputs are restored through two exact-profile helpers.
+Swiss 3.9 gas uses its documented 36 MJ net energy per source reference m3.
+The 3.6 European group lacks an audited NCV: it uses its declared fuel mass
+(0.842655842955148 kg/m3) and the published legacy generic 45.4 MJ/kg NCV as an
+explicit fuel-quality screening calibration, yielding 38.256575270163715 MJ/m3.
+The latter is not relabelled as a measured source property. Both use complete
+native high-pressure gas at consumer, retaining production, transport, distribution,
+compression, infrastructure and leakage. No equal-volume or state correction,
+extra burner/network or changed caller stack emissions are asserted.
+
+The published legacy property and its interpretation are linked in the packaged
+review and in `brightpath/docs/uvek-deferred-delivered-gas.md`. Fuel quality,
+carbon mass, origin mix, geography, vintage and score effects remain limitations.
+The full encrypted pilot exports to
+`premise-uvek-2026-remind-SSP2-NPi-2050-restored-delivered-gas`: 12,457 activities,
+complete retained links and finite LCI. All three gas amounts and uncertainty
+metadata match the actual source graph before IAM; normal later generator
+quantity changes are recorded separately in readback. Background signatures and
+the existing efficiency-unavailable warning count are unchanged. Tests: 21
+Brightpath and 10 Premise cases passed. Twenty-eight original exchanges are now
+restored; 14 remain deferred in the active decision ledger.
