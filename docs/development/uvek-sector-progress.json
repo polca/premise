@@ -730,74 +730,47 @@
     },
     {
       "sector": "heat",
-      "status": "energy_basis_implementation_in_progress_not_operational",
+      "status": "native_supplier_and_basis_preflight_implemented_public_integration_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "static_declarations_only",
+        "kind": "28exact_native_bindings_supplier_preflight_verified_not_full_sector_runtime",
         "files": [
           {
             "path": "premise/iam_variables_mapping/heat.yaml",
             "ecoinvent_role_count": 49,
-            "explicit_nonempty_uvek_role_count": 0,
+            "explicit_nonempty_uvek_role_count": 28,
             "missing_or_empty_uvek_roles": [
               "heat, buildings, from district heating",
-              "heat, buildings, from hydrogen boiler",
               "heat, buildings, from hydrogen fuel cell",
-              "heat, buildings, from natural gas boiler",
-              "heat, buildings, from biomethane boiler",
-              "heat, buildings, from LPG boiler",
               "heat, buildings, from biomass-based methanol boiler",
               "heat, buildings, from coal-based methanol boiler",
-              "heat, buildings, from coal stove",
-              "heat, buildings, from wood logs heater",
-              "heat, buildings, from wood pellets heater",
-              "heat, buildings, from heat pump",
-              "heat, buildings, from electric heater",
-              "heat, buildings, from light fuel oil boiler",
               "heat, buildings, residual",
-              "heat, industrial, from biomass boiler",
               "heat, industrial, from hydrogen boiler",
               "heat, industrial, from hydrogen fuel cell",
               "heat, industrial, from electric boiler",
-              "heat, industrial, from heat pump",
-              "heat, industrial, from natural gas boiler",
-              "heat, industrial, from biomethane boiler",
-              "heat, industrial, from coal furnace",
-              "heat, industrial, from light fuel oil boiler",
               "heat, industrial, from biofuel boiler",
               "heat, industrial, from solar thermal",
               "heat, industrial, from district heating",
-              "heat, secondary, from biomass",
-              "heat, secondary, from biomass CHP",
-              "heat, secondary, from biomass residual",
               "heat, secondary, from biomass with CCS",
-              "heat, secondary, from coal",
-              "heat, secondary, from coal CHP",
-              "heat, secondary, from coal residual",
               "heat, secondary, from coal with CCS",
               "heat, secondary, from coke",
               "heat, secondary, from coke with CCS",
-              "heat, secondary, from natural gas",
-              "heat, secondary, from natural gas CHP",
-              "heat, secondary, from natural gas residual",
               "heat, secondary, from natural gas with CCS",
-              "heat, secondary, from oil",
               "heat, secondary, from oil with CCS",
               "heat, secondary, from electricity",
-              "heat, secondary, from heat pump",
               "heat, secondary, from geothermal",
-              "heat, secondary, from nuclear",
               "heat, secondary, from solar thermal",
               "heat, secondary, residual"
             ],
-            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+            "interpretation": "28exact native aliases and16physical basis factors verified against installed native inventories and isolated wheels;21roles remain without native aliases. This is not sector update/export evidence."
           }
         ],
-        "runtime_verified": false
+        "runtime_verified": false,
+        "supplier_preflight_verified": true
       },
       "blockers": [
         {
@@ -830,12 +803,18 @@
           "decision": "Use explicit reviewed energy routes and actual production amounts for nominal heat/fuel conversion. Retain all source quantities and auxiliary inventories. Do not accept or clamp the special-project boiler anomaly above1.2.",
           "review": "docs/development/uvek-heat-preflight.json#energy_basis_stage",
           "authorization": "Standing autonomous approval; no new user prompt."
+        },
+        {
+          "decision": "Bind28exact native+1MJdelivered heat providers, preserve complete native inventories and declared geography/technology/allocation differences. Use reviewed energy routes only for16final-energy roles;12heat-output/allocated roles retain factor1.",
+          "review": "premise/data/heat/uvek2026_review.json",
+          "authorization": "Standing autonomous approval; explicit warnings remain required at rollout."
         }
       ],
       "implementation_commits": [],
       "tests": [
         "46 reference-basis plus existing heat tests passed.",
-        "Four read-only native factor replays match independently evaluated source quantities; source graphs unchanged."
+        "Four read-only native factor replays match independently evaluated source quantities; source graphs unchanged.",
+        "101focused/shared mapping, physical-basis, heat and CLIC requirements tests passed;38native tests plus28actual-source role replays passed from isolated installed wheels. Groups overlap."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -878,7 +857,18 @@
         "IAM_layers": 3,
         "non_unit_production_candidates": 4,
         "native_gate": "closed_pending_mapping_and_runtime_verification",
-        "energy_basis_stage": "Explicit route evaluator verified against4nativecases;20newtests/46includingexistingheat. Conversion anomaly is flagged, not accepted."
+        "energy_basis_stage": "Explicit route evaluator verified against4nativecases;20newtests/46includingexistingheat. Conversion anomaly is flagged, not accepted.",
+        "reviewed_native_aliases": 28,
+        "remaining_positive_REMIND2050_roles": [
+          "heat, buildings, from biomass-based methanol boiler",
+          "heat, buildings, from coal-based methanol boiler",
+          "heat, buildings, from district heating",
+          "heat, industrial, from biofuel boiler",
+          "heat, industrial, from district heating",
+          "heat, industrial, from electric boiler",
+          "heat, industrial, from hydrogen boiler"
+        ],
+        "public_runtime_updates_and_export": "not_implemented"
       }
     },
     {

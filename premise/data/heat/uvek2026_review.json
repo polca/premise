@@ -1,0 +1,1113 @@
+{
+  "schema_version": 1,
+  "status": "native_bindings_and_nominal_energy_routes_reviewed_sector_not_operational",
+  "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "authorization": "Standing autonomous approval; retain exact source identities and review limitations for later review.",
+  "scope": "28 native role bindings only. Public heat update remains gated. Missing roles, layered markets, consumer relinking, certification and export are unfinished.",
+  "reference_basis": "Actual positive1MJdelivered heat reference. Complete native inventories, allocation, source geography and uncertainty retained; no relocation, inferred mixture or inventory scaling. Nominal final-energy factors follow explicitly reviewed fuel-input combustion services, electricity or documented hydrogen LHV, with actual source quantities.",
+  "roles": [
+    {
+      "role": "heat, buildings, from hydrogen boiler",
+      "identity": {
+        "name": "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+        "reference product": "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "c58c4936b8ef61f8e7966e8117ab76b9636948d03e509e419d1931f857bb408f",
+      "metadata_sha256": "69d47dd53b90732c1e9763e1001b66c4dd5d65a8131e44911b6492bae041d0bb",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "reference product": "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+                "reference product": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+                "location": "CH",
+                "unit": "kilogram"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "reference product": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "MJ_per_unit": 120.0
+          }
+        ],
+        "basis": "Native boiler documentation states hydrogen LHV120MJ/kg; retain both original positive fuel and distribution-loss inputs.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, buildings, from natural gas boiler",
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating 50kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "8d69a3d463206e87361483dd69c2b0a7ca7b9170944fb7bde86a45fd45ad4543",
+      "metadata_sha256": "75d982abf66f0991ac77607e86761c3a08b87d678fb81b241cdc6b271e2613b8",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, natural gas, at boiler condensing modulating 50kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Natural gas, burned in boiler condensing modulating 50kW",
+                "reference product": "Natural gas, burned in boiler condensing modulating 50kW",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Natural gas, burned in boiler condensing modulating 50kW",
+              "reference product": "Natural gas, burned in boiler condensing modulating 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, buildings, from biomethane boiler",
+      "identity": {
+        "name": "Heat, biomethane, at boiler condensing modulating 50kW",
+        "reference product": "Heat, biomethane, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "78726a55bb803ebdfb55e99c0be12fbc1d20464d4f837912122922834dd97c7e",
+      "metadata_sha256": "da49892135db033af993d0e91715921f87898c18ab4c5c46f764a19f9950cf0e",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, biomethane, at boiler condensing modulating 50kW",
+              "reference product": "Heat, biomethane, at boiler condensing modulating 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Biomethane, burned in boiler condensing modulating 50kW",
+                "reference product": "Biomethane, burned in boiler condensing modulating 50kW",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Biomethane, burned in boiler condensing modulating 50kW",
+              "reference product": "Biomethane, burned in boiler condensing modulating 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, buildings, from LPG boiler",
+      "identity": {
+        "name": "Heat, propane/butane, at boiler condensing modulating 50kW",
+        "reference product": "Heat, propane/butane, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "676d2529afe6815db822310a6aaa19a47ffb75e6c280e35d0eb369cae4aa88e9",
+      "metadata_sha256": "0a137ff0172d5b4e4cdfb7e3f94777a15f6d6f20d48a0881635a15e527a4a6dd",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, propane/butane, at boiler condensing modulating 50kW",
+              "reference product": "Heat, propane/butane, at boiler condensing modulating 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Propane,butane, burned in boiler condensing modulating 50kW",
+                "reference product": "Propane,butane, burned in boiler condensing modulating 50kW",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Propane,butane, burned in boiler condensing modulating 50kW",
+              "reference product": "Propane,butane, burned in boiler condensing modulating 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native boiler comments incorrectly mention natural gas; actual linked fuel is propane/butane at refinery. Retain the actual LPG inventory and its uncertainty; no gas substitution is made."
+      ]
+    },
+    {
+      "role": "heat, buildings, from coal stove",
+      "identity": {
+        "name": "Heat, hard coal briquette, at stove 5-15kW",
+        "reference product": "Heat, hard coal briquette, at stove 5-15kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "6bb40049fcafb7d2c060694319bc44a6205402bb095820544b346822eb27f89b",
+      "metadata_sha256": "01a083fc83addc8d71d17284beed308567b1f8782198c55d10a5b4900ac21461",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, hard coal briquette, at stove 5-15kW",
+              "reference product": "Heat, hard coal briquette, at stove 5-15kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Hard coal briquette, burned in stove 5-15kW",
+                "reference product": "Hard coal briquette, burned in stove 5-15kW",
+                "location": "RER",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Hard coal briquette, burned in stove 5-15kW",
+              "reference product": "Hard coal briquette, burned in stove 5-15kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred."
+      ]
+    },
+    {
+      "role": "heat, buildings, from wood logs heater",
+      "identity": {
+        "name": "Heat, mixed logs, at wood heater 6kW",
+        "reference product": "Heat, mixed logs, at wood heater 6kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "e5339ebfb825906b54f5faf6555118b5b41c2fbde055a8ce94c29b35fb5c6112",
+      "metadata_sha256": "077529ddc99866919586c6ed42d093873186a087031543fbe9b7ca15cc18039e",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, mixed logs, at wood heater 6kW",
+              "reference product": "Heat, mixed logs, at wood heater 6kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Logs, mixed, burned in wood heater 6kW",
+                "reference product": "Logs, mixed, burned in wood heater 6kW",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Logs, mixed, burned in wood heater 6kW",
+              "reference product": "Logs, mixed, burned in wood heater 6kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, buildings, from wood pellets heater",
+      "identity": {
+        "name": "Heat, wood pellets, at furnace 15kW",
+        "reference product": "Heat, wood pellets, at furnace 15kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "f8f3b9136e1aea1befc91634bab3d01860cff28747314a95b650cc085f7afa33",
+      "metadata_sha256": "fd17118c92b474d8f482a622c8ed537ccc8a8ccbb2c51201e7aad33dafccd5aa",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, wood pellets, at furnace 15kW",
+              "reference product": "Heat, wood pellets, at furnace 15kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Pellets, mixed, burned in furnace 15kW",
+                "reference product": "Pellets, mixed, burned in furnace 15kW",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Pellets, mixed, burned in furnace 15kW",
+              "reference product": "Pellets, mixed, burned in furnace 15kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native15kWpellet furnace proxies the9kWrole; retain complete native pellet manufacture and furnace coefficients."
+      ]
+    },
+    {
+      "role": "heat, buildings, from heat pump",
+      "identity": {
+        "name": "Heat, at heat pump, air-water, 7kW, CH electricity, in new building",
+        "reference product": "Heat, at heat pump, air-water, 7kW, CH electricity, in new building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "1c0e298e9d314c98481f0f5b39cea46055bc7585e679332cfec0af865a2e39e2",
+      "metadata_sha256": "d112380e2b253fa929cc704427b462979d5c991d70d3faccdeb993ba043d5b0f",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "heat_pump",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, at heat pump, air-water, 7kW, CH electricity, in new building",
+              "reference product": "Heat, at heat pump, air-water, 7kW, CH electricity, in new building",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Electricity, low voltage, at grid",
+                "reference product": "Electricity, low voltage, at grid",
+                "location": "CH",
+                "unit": "kilowatt hour"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "MJ_per_unit": 3.6
+          }
+        ],
+        "basis": "Exact kWh-to-MJ electricity conversion; actual native electricity draw.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native7kWair-water new-building system proxies the10kWbuilding heat-pump role; retain actual seasonal performance and refrigerant/infrastructure inventories."
+      ]
+    },
+    {
+      "role": "heat, buildings, from electric heater",
+      "identity": {
+        "name": "Heat at electric storage heater, 5kW, CH electricity mix",
+        "reference product": "Heat at electric storage heater, 5kW, CH electricity mix",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "a5183d98d27be4d85a6199cdfdeab216a14f7adb668a41475bfcd088ab549962",
+      "metadata_sha256": "ad48c55a59cc5cb647351ad7d3bd5077155965cedfbc96e57978e11fb052a77c",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "electric_boiler",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat at electric storage heater, 5kW, CH electricity mix",
+              "reference product": "Heat at electric storage heater, 5kW, CH electricity mix",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Electricity, low voltage, at grid",
+                "reference product": "Electricity, low voltage, at grid",
+                "location": "CH",
+                "unit": "kilowatt hour"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "MJ_per_unit": 3.6
+          }
+        ],
+        "basis": "Exact kWh-to-MJ electricity conversion; actual native electricity draw.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, buildings, from light fuel oil boiler",
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+        "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "e5a60688ada3c06198591ebd2049cacd42d3ae7f0b7fce3bc65064b841ef1a8d",
+      "metadata_sha256": "9a5f182bcdbd1806d59dabd77276afe1ab7d656e1c81e280fe0ff35c9c1ec6bd",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Light fuel oil, burned in boiler 100kW condensing, non-modulating",
+                "reference product": "Light fuel oil, burned in boiler 100kW condensing, non-modulating",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Light fuel oil, burned in boiler 100kW condensing, non-modulating",
+              "reference product": "Light fuel oil, burned in boiler 100kW condensing, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, industrial, from biomass boiler",
+      "identity": {
+        "name": "Heat, softwood chips from forest, at furnace 1000kW",
+        "reference product": "Heat, softwood chips from forest, at furnace 1000kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "aa8b92039188c1d8af940a7700cc80ceded7d26eb81689614161f290e5e995d5",
+      "metadata_sha256": "1b447ce8a07a9d6a35f84cffe33ae5c9e8336c847e212fedcfd29cb71122e481",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, softwood chips from forest, at furnace 1000kW",
+              "reference product": "Heat, softwood chips from forest, at furnace 1000kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Wood chips, from forest, softwood, burned in furnace 1000kW",
+                "reference product": "Wood chips, from forest, softwood, burned in furnace 1000kW",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Wood chips, from forest, softwood, burned in furnace 1000kW",
+              "reference product": "Wood chips, from forest, softwood, burned in furnace 1000kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, industrial, from heat pump",
+      "identity": {
+        "name": "Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building",
+        "reference product": "Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "d3efb3256899e18e7d8907daa970f0b460eafa554a52874f096ed3e659bd9445",
+      "metadata_sha256": "a7fb545ea4319600359d32a1c730b7d40c6eaf91524f41f265c72cd58ae68c26",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "heat_pump",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building",
+              "reference product": "Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Electricity, low voltage, at grid",
+                "reference product": "Electricity, low voltage, at grid",
+                "location": "CH",
+                "unit": "kilowatt hour"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "MJ_per_unit": 3.6
+          }
+        ],
+        "basis": "Exact kWh-to-MJ electricity conversion; actual native electricity draw.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native groundwater/brine-water nominal50kW building-service process proxies the industrial100kWwater-water role. Capacity, temperature/application and source-water cycle differ; source prose also says15kW. Actual inventory and power-component evidence govern; no temperature, size or efficiency correction is guessed."
+      ]
+    },
+    {
+      "role": "heat, industrial, from natural gas boiler",
+      "identity": {
+        "name": "Heat, natural gas, at industrial furnace 1MW",
+        "reference product": "Heat, natural gas, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "829a47a25e671a9c8b118e0af959c60493d89daea0f0f1691dc000acf9a50f21",
+      "metadata_sha256": "b19ea07c94e8e8164375677fa858046e3483f23cf700fde9588dfe8687375196",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Natural gas, burned in industrial furnace 1MWth",
+                "reference product": "Natural gas, burned in industrial furnace 1MWth",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Natural gas, burned in industrial furnace 1MWth",
+              "reference product": "Natural gas, burned in industrial furnace 1MWth",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, industrial, from biomethane boiler",
+      "identity": {
+        "name": "Heat, biomethane, at industrial furnace 1MW",
+        "reference product": "Heat, biomethane, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "c4d037e74a9676a2da915e172181cfc7f7f2beddbab87bda9ffb28afc6eb9085",
+      "metadata_sha256": "09c70d3b8e61bf46ee934d20f861e4621389aaa05f5015babaabb06403716248",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, biomethane, at industrial furnace 1MW",
+              "reference product": "Heat, biomethane, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Biomethane, burned in industrial furnace 1MW",
+                "reference product": "Biomethane, burned in industrial furnace 1MW",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Biomethane, burned in industrial furnace 1MW",
+              "reference product": "Biomethane, burned in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, industrial, from coal furnace",
+      "identity": {
+        "name": "Heat, at hard coal industrial furnace 1-10MW",
+        "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "c7e76d2f9c3104f175e2f0f3795ce9c9777654586bb175b2785a0f4c3baeb3d7",
+      "metadata_sha256": "656de523beae8e05a7401c758a0b8d49b1453a9e84e036d4447b53fb3d4b60b3",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, at hard coal industrial furnace 1-10MW",
+              "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Hard coal, burned in industrial furnace 1-10MW",
+                "reference product": "Hard coal, burned in industrial furnace 1-10MW",
+                "location": "RER",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Hard coal, burned in industrial furnace 1-10MW",
+              "reference product": "Hard coal, burned in industrial furnace 1-10MW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred."
+      ]
+    },
+    {
+      "role": "heat, industrial, from light fuel oil boiler",
+      "identity": {
+        "name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "89948d61a6160f67d4f6049d509df9573e87a7a175c4b15a47fa4417da87d838",
+      "metadata_sha256": "d5df7f42b8916ff66021c638a5e6e51de04a4f05992b6b88a54abddf916ff234",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, light fuel oil, at industrial furnace 1MW",
+              "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+                "reference product": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+                "location": "CH",
+                "unit": "megajoule"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+              "reference product": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "MJ_per_unit": 1.0
+          }
+        ],
+        "basis": "Documented native one-MJ fuel-input combustion service, with actual positive+1MJproduction; do not infer kg LHV from fuel mass.",
+        "nominal_only": true
+      },
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, secondary, from biomass",
+      "identity": {
+        "name": "Heat, softwood chips from forest, at furnace 1000kW",
+        "reference product": "Heat, softwood chips from forest, at furnace 1000kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "aa8b92039188c1d8af940a7700cc80ceded7d26eb81689614161f290e5e995d5",
+      "metadata_sha256": "1b447ce8a07a9d6a35f84cffe33ae5c9e8336c847e212fedcfd29cb71122e481",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, secondary, from biomass CHP",
+      "identity": {
+        "name": "xx Heat, at cogen ORC 1400kWth, wood, emission control, allocation exergy",
+        "reference product": "xx Heat, at cogen ORC 1400kWth, wood, emission control, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "8049dd5801669dd8c2f342a001db43b154e66ac453ad5077c89af455c1cfecb9",
+      "metadata_sha256": "98101a61693571d65ae796c3864e0488be180189e513c6c2ad4b215ef7063d27",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion."
+      ]
+    },
+    {
+      "role": "heat, secondary, from biomass residual",
+      "identity": {
+        "name": "Heat, softwood chips from forest, at furnace 1000kW",
+        "reference product": "Heat, softwood chips from forest, at furnace 1000kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "aa8b92039188c1d8af940a7700cc80ceded7d26eb81689614161f290e5e995d5",
+      "metadata_sha256": "1b447ce8a07a9d6a35f84cffe33ae5c9e8336c847e212fedcfd29cb71122e481",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix."
+      ]
+    },
+    {
+      "role": "heat, secondary, from coal",
+      "identity": {
+        "name": "Heat, at hard coal industrial furnace 1-10MW",
+        "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "c7e76d2f9c3104f175e2f0f3795ce9c9777654586bb175b2785a0f4c3baeb3d7",
+      "metadata_sha256": "656de523beae8e05a7401c758a0b8d49b1453a9e84e036d4447b53fb3d4b60b3",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred."
+      ]
+    },
+    {
+      "role": "heat, secondary, from coal CHP",
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "f82d58f6842373d24e5c163d142fc6263a78ffdf851674f02cd75ef4b54e6251",
+      "metadata_sha256": "4805c7d36d522960928ad21191545f9cf00711b017bf5256bdf414ca9a9bdc84",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.",
+        "Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion."
+      ]
+    },
+    {
+      "role": "heat, secondary, from coal residual",
+      "identity": {
+        "name": "Heat, at hard coal industrial furnace 1-10MW",
+        "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "c7e76d2f9c3104f175e2f0f3795ce9c9777654586bb175b2785a0f4c3baeb3d7",
+      "metadata_sha256": "656de523beae8e05a7401c758a0b8d49b1453a9e84e036d4447b53fb3d4b60b3",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix.",
+        "Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred."
+      ]
+    },
+    {
+      "role": "heat, secondary, from natural gas",
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "23deab8895809147d0e487687fb4a83e58366c32e6dbf1e6e1583c64dd483f4c",
+      "metadata_sha256": "53c82f4ea306b5c8124eaaacbcced345fd5bed20c4f1babaa69f7fc39ec7b38e",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, secondary, from natural gas CHP",
+      "identity": {
+        "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "d00919ded0d24125074f9cb2f6027028a6e638f1d458ef4d3931abd37f049819",
+      "metadata_sha256": "8bbdaf7dc5aec1c85040eb9634246c4465624d8ce4dd59cd67ddfe8af57fd175",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion."
+      ]
+    },
+    {
+      "role": "heat, secondary, from natural gas residual",
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "23deab8895809147d0e487687fb4a83e58366c32e6dbf1e6e1583c64dd483f4c",
+      "metadata_sha256": "53c82f4ea306b5c8124eaaacbcced345fd5bed20c4f1babaa69f7fc39ec7b38e",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix."
+      ]
+    },
+    {
+      "role": "heat, secondary, from oil",
+      "identity": {
+        "name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "89948d61a6160f67d4f6049d509df9573e87a7a175c4b15a47fa4417da87d838",
+      "metadata_sha256": "d5df7f42b8916ff66021c638a5e6e51de04a4f05992b6b88a54abddf916ff234",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, secondary, from heat pump",
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity",
+        "reference product": "Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "566485b0d2955b66f19ac262bcf3884c506420934bc07c9e110397c5ed32cc83",
+      "metadata_sha256": "8417f06f0e6d5ce681de419c8835cd9602215b7d6efc337384362a19c028e6f6",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier."
+      ]
+    },
+    {
+      "role": "heat, secondary, from nuclear",
+      "identity": {
+        "name": "Heat, at nuclear power plant, allocation exergy",
+        "reference product": "Heat, at nuclear power plant, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "inventory_sha256": "f9e5f78bb313615dca8546167a6d57367f8eaea8cc6da8dc2de576b312f73e23",
+      "metadata_sha256": "77987efa4de5aaed9ab6b03d740165d9721afe01cf599cb3c6979dffd95c81ce",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "heat_output",
+      "conversion": "none",
+      "limitations": [
+        "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
+        "Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion."
+      ]
+    }
+  ],
+  "not_approved": [
+    "Special-project gas-boiler variant whose wrapper and burner imply nominal factor above1.2.",
+    "A physical fuel-cell efficiency inferred from allocated hydrogen draw; separate physical energy-basis review is required.",
+    "Fossil or synthetic methanol substituted for biomass-derived methanol without a separately reviewed supply and carbon-accounting reconstruction."
+  ],
+  "receipts": [
+    {
+      "name": "native_heat_curated_records.private.json",
+      "sha256": "99aeea22fc4bf37afd6d5e9757db8ff1aa75168b4a61fcd0378791461bee662c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_burner_frontiers.private.json",
+      "sha256": "e7763b6cb6d1d428933e9577f67c4d2a56c51274a42c27d4c4b35acf84dccd05",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_binding_source_records.private.json",
+      "sha256": "5e7547ec9311cbb82cc24a491be96c10b669fcd2ea9167a1bfa386270249260e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_bindings_basis_replay.private.json",
+      "sha256": "06524234a526394698749cab3a18937c27b6e610c6f3a25e298350063a3878ca",
+      "location": "private task workspace"
+    }
+  ]
+}

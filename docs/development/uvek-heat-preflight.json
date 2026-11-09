@@ -72,7 +72,6 @@
   },
   "positive_IAM_roles": 28,
   "existing_heat_YAML_roles": 49,
-  "reviewed_native_aliases": 0,
   "witnesses": [
     {
       "identity": {
@@ -234,6 +233,52 @@
       {
         "name": "native_heat_basis_shared_tests.log",
         "sha256": "f213990ea7c39923d609b50b19ee4b628b927cf36994f266c67b53c703ccc9fd",
+        "location": "private task workspace"
+      }
+    ]
+  },
+  "initial_reviewed_native_aliases": 0,
+  "native_bindings_stage": {
+    "status": "supplier_preflight_and_installed_resources_verified_sector_not_operational",
+    "review": "premise/data/heat/uvek2026_review.json",
+    "implementation": "premise/energy/uvek_heat_suppliers.py",
+    "native_role_bindings": 28,
+    "physical_final_energy_factors": 16,
+    "allocated_or_output_basis_roles": 12,
+    "positive_REMIND2050_roles_covered": 21,
+    "positive_REMIND2050_roles_remaining": [
+      "heat, buildings, from biomass-based methanol boiler",
+      "heat, buildings, from coal-based methanol boiler",
+      "heat, buildings, from district heating",
+      "heat, industrial, from biofuel boiler",
+      "heat, industrial, from district heating",
+      "heat, industrial, from electric boiler",
+      "heat, industrial, from hydrogen boiler"
+    ],
+    "all_other_YAML_metadata_unchanged": true,
+    "source_graph_unchanged": true,
+    "tests": "101focused/shared tests pass (includes the earlier46);38native basis/supplier tests pass from an isolated installed package.",
+    "installed_package_28_role_replay": "passed with actual source records; zero public sector-support claim",
+    "ownership": "Explicit CLIC/converted helpers cannot impersonate native providers. Missing/duplicate identities, country/product substitutions, changed references, inconsistent YAML/reviews and unphysical factors are refused.",
+    "receipts": [
+      {
+        "name": "native_heat_binding_tests.log",
+        "sha256": "b5fcb0464e3b5b8d1016950fcae341770b61d2e14198dd21ab7ca8386af015e4",
+        "location": "private task workspace"
+      },
+      {
+        "name": "native_heat_supplier_plan_replay.private.json",
+        "sha256": "63bd3a9f2781a6ad5bd76b21a66650da844963ea56a34c1c58ec02c8adce0521",
+        "location": "private task workspace"
+      },
+      {
+        "name": "native_heat_installed_package_checks.json",
+        "sha256": "9de7d7bdbc6360e82073c4c675ae717818c2113b067824517db723a1d1da1ac9",
+        "location": "private task workspace"
+      },
+      {
+        "name": "native_heat_installed_supplier_plan_replay.private.json",
+        "sha256": "63bd3a9f2781a6ad5bd76b21a66650da844963ea56a34c1c58ec02c8adce0521",
         "location": "private task workspace"
       }
     ]

@@ -27,6 +27,20 @@ heat, buildings, from district heating:
   supplier_type: secondary_market
 
 heat, buildings, from hydrogen boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+      reference product:
+      - Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -53,6 +67,20 @@ heat, buildings, from hydrogen fuel cell:
     message: Final Energy|Residential and Commercial|Hydrogen|Fuel Cell
 
 heat, buildings, from natural gas boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, natural gas, at boiler condensing modulating 50kW
+      reference product:
+      - Heat, natural gas, at boiler condensing modulating 50kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -70,6 +98,20 @@ heat, buildings, from natural gas boiler:
     message: Final Energy|Residential and Commercial|Gases|Gas
 
 heat, buildings, from biomethane boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, biomethane, at boiler condensing modulating 50kW
+      reference product:
+      - Heat, biomethane, at boiler condensing modulating 50kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -79,6 +121,21 @@ heat, buildings, from biomethane boiler:
     message: Final Energy|Residential and Commercial|Gases|Biomass
 
 heat, buildings, from LPG boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, propane/butane, at boiler condensing modulating 50kW
+      reference product:
+      - Heat, propane/butane, at boiler condensing modulating 50kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native boiler comments incorrectly mention natural gas; actual linked fuel is propane/butane at refinery. Retain the actual LPG inventory and its uncertainty; no gas substitution is made.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -115,6 +172,21 @@ heat, buildings, from coal-based methanol boiler:
   assumption: Coal-derived liquids use the existing coal methanol boiler proxy.
 
 heat, buildings, from coal stove:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, hard coal briquette, at stove 5-15kW
+      reference product:
+      - Heat, hard coal briquette, at stove 5-15kW
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -132,6 +204,20 @@ heat, buildings, from coal stove:
     message: Final Energy|Residential and Commercial|Solids|Coal
 
 heat, buildings, from wood logs heater:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, mixed logs, at wood heater 6kW
+      reference product:
+      - Heat, mixed logs, at wood heater 6kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -150,6 +236,21 @@ heat, buildings, from wood logs heater:
     message: Final Energy|Residential and Commercial|Solids|Biomass|Traditional
 
 heat, buildings, from wood pellets heater:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, wood pellets, at furnace 15kW
+      reference product:
+      - Heat, wood pellets, at furnace 15kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native15kWpellet furnace proxies the9kWrole; retain complete native pellet manufacture and furnace coefficients.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -167,6 +268,21 @@ heat, buildings, from wood pellets heater:
     message: Final Energy|Residential and Commercial|Solids|Biomass|Modern
 
 heat, buildings, from heat pump:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at heat pump, air-water, 7kW, CH electricity, in new building
+      reference product:
+      - Heat, at heat pump, air-water, 7kW, CH electricity, in new building
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native7kWair-water new-building system proxies the10kWbuilding heat-pump role; retain actual seasonal performance and refrigerant/infrastructure inventories.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: heat_pump
@@ -178,6 +294,20 @@ heat, buildings, from heat pump:
     message: Final Energy|Residential and Commercial|Electricity|Thermal|Heat Pumps
 
 heat, buildings, from electric heater:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat at electric storage heater, 5kW, CH electricity mix
+      reference product:
+      - Heat at electric storage heater, 5kW, CH electricity mix
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: electric_boiler
@@ -196,6 +326,20 @@ heat, buildings, from electric heater:
   assumption: IMAGE and GCAM unsplit building electricity retain resistance heating.
 
 heat, buildings, from light fuel oil boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, light fuel oil, at boiler 100kW condensing, non-modulating
+      reference product:
+      - Heat, light fuel oil, at boiler 100kW condensing, non-modulating
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -229,6 +373,20 @@ heat, buildings, residual:
 # ---------------------------------------------------------------------------
 
 heat, industrial, from biomass boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, softwood chips from forest, at furnace 1000kW
+      reference product:
+      - Heat, softwood chips from forest, at furnace 1000kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -286,6 +444,21 @@ heat, industrial, from electric boiler:
   assumption: REMIND mechanical-work and low-temperature electricity is treated fully as resistance heat.
 
 heat, industrial, from heat pump:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building
+      reference product:
+      - Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native groundwater/brine-water nominal50kW building-service process proxies the industrial100kWwater-water role. Capacity, temperature/application and source-water cycle differ; source prose also says15kW. Actual inventory and power-component evidence govern; no temperature, size or efficiency correction is guessed.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: heat_pump
@@ -298,6 +471,20 @@ heat, industrial, from heat pump:
   assumption: IMAGE unsplit industrial electricity retains the existing heat-pump assumption.
 
 heat, industrial, from natural gas boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, natural gas, at industrial furnace 1MW
+      reference product:
+      - Heat, natural gas, at industrial furnace 1MW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -311,6 +498,20 @@ heat, industrial, from natural gas boiler:
     remind-eu: FE|Industry|Gases|+|Fossil
 
 heat, industrial, from biomethane boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, biomethane, at industrial furnace 1MW
+      reference product:
+      - Heat, biomethane, at industrial furnace 1MW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -323,6 +524,21 @@ heat, industrial, from biomethane boiler:
   assumption: Industrial biomethane uses the available biomethane boiler proxy.
 
 heat, industrial, from coal furnace:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at hard coal industrial furnace 1-10MW
+      reference product:
+      - Heat, at hard coal industrial furnace 1-10MW
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -336,6 +552,20 @@ heat, industrial, from coal furnace:
     remind-eu: FE|Industry|Solids|+|Fossil
 
 heat, industrial, from light fuel oil boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, light fuel oil, at industrial furnace 1MW
+      reference product:
+      - Heat, light fuel oil, at industrial furnace 1MW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -389,6 +619,20 @@ heat, industrial, from district heating:
 # ---------------------------------------------------------------------------
 
 heat, secondary, from biomass:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, softwood chips from forest, at furnace 1000kW
+      reference product:
+      - Heat, softwood chips from forest, at furnace 1000kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -400,6 +644,21 @@ heat, secondary, from biomass:
     tiam-ucl: Secondary Energy|Heat|Biomass|Heat|w/o CCS
 
 heat, secondary, from biomass CHP:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - xx Heat, at cogen ORC 1400kWth, wood, emission control, allocation exergy
+      reference product:
+      - xx Heat, at cogen ORC 1400kWth, wood, emission control, allocation exergy
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -413,6 +672,21 @@ heat, secondary, from biomass CHP:
     remind-eu: SE|Heat|Biomass|+|Combined Heat and Power
 
 heat, secondary, from biomass residual:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, softwood chips from forest, at furnace 1000kW
+      reference product:
+      - Heat, softwood chips from forest, at furnace 1000kW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -441,6 +715,21 @@ heat, secondary, from biomass with CCS:
     tiam-ucl: Secondary Energy|Heat|Biomass|Heat|w CCS
 
 heat, secondary, from coal:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at hard coal industrial furnace 1-10MW
+      reference product:
+      - Heat, at hard coal industrial furnace 1-10MW
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -452,6 +741,22 @@ heat, secondary, from coal:
     tiam-ucl: Secondary Energy|Heat|Coal|Heat|w/o CCS
 
 heat, secondary, from coal CHP:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, hard coal, at cogen, allocation exergy
+      reference product:
+      - Heat, hard coal, at cogen, allocation exergy
+      location:
+      - DE
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
+    - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -464,6 +769,22 @@ heat, secondary, from coal CHP:
     remind-eu: SE|Heat|Coal|Combined Heat and Power
 
 heat, secondary, from coal residual:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at hard coal industrial furnace 1-10MW
+      reference product:
+      - Heat, at hard coal industrial furnace 1-10MW
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix.
+    - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -512,6 +833,20 @@ heat, secondary, from coke with CCS:
   assumption: TIAM-UCL coke with CCS uses the coal CHP with CCS proxy.
 
 heat, secondary, from natural gas:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, natural gas, at heat plant
+      reference product:
+      - Heat, natural gas, at heat plant
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -523,6 +858,21 @@ heat, secondary, from natural gas:
     tiam-ucl: Secondary Energy|Heat|Natural Gas|Heat|w/o CCS
 
 heat, secondary, from natural gas CHP:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at cogen 1MWth, natural gas, allocation exergy
+      reference product:
+      - Heat, at cogen 1MWth, natural gas, allocation exergy
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -535,6 +885,21 @@ heat, secondary, from natural gas CHP:
     remind-eu: SE|Heat|Gas|Combined Heat and Power
 
 heat, secondary, from natural gas residual:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, natural gas, at heat plant
+      reference product:
+      - Heat, natural gas, at heat plant
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -563,6 +928,20 @@ heat, secondary, from natural gas with CCS:
     tiam-ucl: Secondary Energy|Heat|Natural Gas|Heat|w CCS
 
 heat, secondary, from oil:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, light fuel oil, at industrial furnace 1MW
+      reference product:
+      - Heat, light fuel oil, at industrial furnace 1MW
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -592,6 +971,20 @@ heat, secondary, from electricity:
     message: Secondary Energy|Heat|Electricity
 
 heat, secondary, from heat pump:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity
+      reference product:
+      - Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -614,6 +1007,21 @@ heat, secondary, from geothermal:
     tiam-ucl: Secondary Energy|Heat|Geothermal|Heat
 
 heat, secondary, from nuclear:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at nuclear power plant, allocation exergy
+      reference product:
+      - Heat, at nuclear power plant, allocation exergy
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
