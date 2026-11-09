@@ -251,3 +251,46 @@ Goal status: 16 of the starting 20 exchanges fully restored, two partially
 represented with final unsupported branches, and titanium/electrical steel still
 pending. Across the original 42: 38 full, two partial and two pending. Final
 packaged-resource verification remains due.
+
+### Final unsupported electrical-steel input
+
+The pinned ecoinvent 3.12 cut-off transformer/rectifier foreground contains
+947.32 kg of finished grain-oriented 0.23 mm electrical-steel coil. Its supplier
+has an actual +1 kg reference, no technosphere inputs or process parameters, and
+2,747 aggregated biosphere exchanges. Its documented boundary includes 3.2% Si
+alloy, rolling, decarburization, Goss-texture annealing and finishing. It does not
+provide separable coefficients for reconstructing those operations.
+
+The full native catalogue has no electrical-grade coil counterpart. Inspected
+ordinary electric-furnace steel, reinforcing steel and sheet rolling lack the
+required alloy and texture/finishing boundary. A complete ICT transformer would
+duplicate other caller materials. Neither a guessed silicon/annealing recipe,
+an empty helper nor a copied complete licensed source biosphere vector is a
+valid native reconstruction. Under standing autonomous authorization, retain the
+exact omission and classify it **final unsupported**, with explicit warning,
+original pinned exchange, reference witnesses and rejected alternatives in
+`premise/data/clic/uvek_final_goes_review.json`. All other caller inputs remain.
+No credit or renormalization is added; score effects remain unquantified.
+
+Omission audits now carry optional final-resolution status and review hash into
+provenance/export metadata. Existing exact pin, quantity, uncertainty, ownership
+and target checks remain strict. For compatibility, `deferred_exchange_count`
+continues counting whole screening omissions; additive
+`final_unsupported_exchange_count` and `pending_exchange_count` distinguish final
+scientific limitations from remaining investigations. Final unsupported status
+still means screening, including when there are zero pending cases.
+
+Validation: 63 focused regression tests; Ruff and Black checks; public encrypted
+REMIND SSP2-NPi 2050 scenario/certification/export of 12,483 activities; two finite
+prospective LCIs and independent readback. The final GOES warning, original
+947.32 kg exchange, review path, final/pending counts and all previous 38 full and
+two partial mappings survive export. Source scientific signatures remain
+unchanged. Current-cohort pre-IAM/provenance checks pass; six obsolete owned cache
+entries were removed, freeing 15,809,790 bytes while retaining all five current
+cohorts. Receipts in the private task workspace: `final_goes_export_readback.json`,
+`final_goes_quantity_check.json`, `final_goes_regressions.log` and
+`cache_cleanup_after_final_goes.json`.
+
+Goal status: 16 starting exchanges fully restored, two partial with final
+unsupported branches, one final whole unsupported omission, and titanium pending.
+Final packaging and goal-wide completion audit remain due.

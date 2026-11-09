@@ -78,6 +78,9 @@ def prepare_approved_omissions(activities, versions, target):
                     "deferred_rule_id": decision.get("deferred_rule_id"),
                 },
             }
+            for key in ("resolution_status", "resolution_review"):
+                if key in decision:
+                    audit["details"][key] = copy.deepcopy(decision[key])
             audits.append(audit)
             del activity["exchanges"][index]
     return records, audits

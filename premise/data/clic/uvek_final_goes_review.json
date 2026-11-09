@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "rule_id": "bp-0baf74e5f1f09452",
+  "disposition": "final_unsupported",
+  "authorization": "Standing user autonomous goal and auto-approval permit evidence-based final unsupported omissions with explicit warnings.",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.12",
+    "system_model": "cutoff"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff"
+  },
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "source_witnesses": [
+    {
+      "identity": {
+        "location": "RER",
+        "name": "market for grain oriented electrical steel, 0.23 mm coil",
+        "reference product": "grain oriented electrical steel, 0.23 mm coil",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "a12911e218b6db5999941b01e03ca5795dc7d658699cea78e44642a7c8426038",
+      "metadata_sha256": "1d21a0d07e66b9317591168dd985734a3883ab33928cd4858905ad7eb2f3f33f"
+    },
+    {
+      "identity": {
+        "name": "grain oriented electrical steel production, 0.23 mm coil",
+        "reference product": "grain oriented electrical steel, 0.23 mm coil",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "4db1fd68e347906a4ebd5dfe9fc2f9f15ffbb833e64fa2b0b6db1e74e286aa84",
+      "metadata_sha256": "94c5b176760966a700ef9de14efdb71cee312a92327bc43f8fbe781f238b8214"
+    }
+  ],
+  "producer_reference": {
+    "amount": 1,
+    "unit": "kilogram",
+    "technosphere_exchanges": 0,
+    "biosphere_exchanges": 2747,
+    "parameters": 0
+  },
+  "source_boundary": "Finished grain-oriented0.23mm/3.2%Si steel coil, including alloy preparation, rolling, decarburization, Goss-texture annealing, coating and packaging; infrastructure excluded. Source data are aggregated, with no separable material or utility coefficients from which to reconstruct these operations.",
+  "native_search": {
+    "identity_count": 11947,
+    "terms": [
+      "grain oriented",
+      "grain-oriented",
+      "electrical steel",
+      "electrical sheet",
+      "silicon steel",
+      "silicon-steel",
+      "ferrosilicon",
+      "electroblech",
+      "magnetic steel",
+      "core steel",
+      "transformer steel"
+    ],
+    "exact_candidates": 0,
+    "catalog_path": "export/reference_catalogs/uvek__2026__cutoff.json",
+    "catalog_sha256": "56586af27833bc087bd8c71791f48e1851c53e8b4540dfc56a4b6b0752e01cea"
+  },
+  "rejected_native_witnesses": [
+    {
+      "identity": {
+        "name": "Transformer, low voltage use, at plant",
+        "reference product": "Transformer, low voltage use, at plant",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "a44f69304d6f695a916d0990d4ae257bae3b54f0ef7d598173ea3a09523f2003",
+      "metadata_sha256": "498675cb551134dc36a4712953e1c1ce936ea52904fb830b09f6c120dc642139",
+      "reason": "Complete low-voltage ICT transformer would duplicate caller copper, insulation and other assembly materials; it is not steel coil."
+    },
+    {
+      "identity": {
+        "name": "Sheet rolling, electric steel",
+        "reference product": "Sheet rolling, electric steel",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "eb869a28d6bec5b8a3d4a0fc0916abbda7ba3ff646ad90ca66db9e35effdac36",
+      "metadata_sha256": "43b7d0364acfc1125a286f752c34e83570e4d6bbd084c8518265e9c5be0b797c",
+      "reason": "Ordinary unalloyed/low-alloy sheet rolling lacks silicon-alloy preparation, texture annealing and electrical-grade finishing."
+    },
+    {
+      "identity": {
+        "name": "Steel, electric, unalloyed, at plant",
+        "reference product": "Steel, electric, unalloyed, at plant",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "f00c09ac70579992a25ba09542e5bbf212c16eba63b20b3e1d762aa958a30557",
+      "metadata_sha256": "b6a3c4c56fadaa10fb5ba09ec62f0edaa8d143fc9cbec3dcf3c4fd7078bfc0b7",
+      "reason": "Secondary unalloyed electric-furnace steel lacks required silicon content, texture and finishing."
+    },
+    {
+      "identity": {
+        "name": "Reinforcing steel, electric, at plant",
+        "reference product": "Reinforcing steel, electric, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "400bb553cf74f642b97d63f3959f7d2c0e45b0e988f49a4a4bc26904cfd2aec2",
+      "metadata_sha256": "8a816745f29f7ff32d87b9243432f4c128164c5322bbf8c827b9df59c29a8378",
+      "reason": "Reinforcing steel is a different product and cannot represent electrical sheet."
+    }
+  ],
+  "rejected_reconstructions": [
+    "No quantified source unit-process inputs or parameters; do not invent alloy/silicon, yields, energy or heat-treatment coefficients.",
+    "Do not publish the full licensed aggregated source biosphere vector as a native UVEK recipe.",
+    "Do not invent a zero-burden or empty recycling helper."
+  ],
+  "limitations": "Final unsupported omission of the pinned947.32kg GOES input only. All other caller materials and exchanges remain unchanged. The missing manufacturing and freight burdens have an unquantified effect; screening export is not impact-complete or an equivalent transformer score. No avoided burden or renormalization."
+}

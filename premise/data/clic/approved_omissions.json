@@ -136,7 +136,12 @@
         "unit": "kilogram"
       },
       "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
-      "message": "SCREENING ONLY — deferred unresolved supplier bp-0baf74e5f1f09452: 947.32 kilogram of market for grain oriented electrical steel, 0.23 mm coil in pinned power-conversion-system-production-electrolysis-transformer-and-rectifier-1-mw (1.0.0) is omitted, including any associated burden or credit. No established reviewed correspondence in this exact context; the proposed candidate is NOT approved. Original exchange, signed amount and uncertainty remain in the omission audit. Impact effect is unquantified; scores are scientifically incomplete pending restoration of this dependency. No renormalization, substitute credit or zero-burden supplier is added."
+      "message": "FINAL UNSUPPORTED SCREENING OMISSION: omit only the pinned947.32kg grain-oriented0.23mm electrical-steel coil input. No defensible native UVEK counterpart was found. The source producer is aggregated (2747biosphere exchanges, no technosphere inventory); ordinary steel, rolling and a complete transformer are not equivalent. Missing manufacturing and delivery burdens have an unquantified score effect. Retain all other caller inputs, no substitute credit or renormalization. See premise/data/clic/uvek_final_goes_review.json",
+      "resolution_status": "final_unsupported",
+      "resolution_review": {
+        "path": "premise/data/clic/uvek_final_goes_review.json",
+        "sha256": "f9484da604dd28610eb3ede3bd7a8bcdcc6a430ebba474acd732f177293d486a"
+      }
     }
   ]
 }

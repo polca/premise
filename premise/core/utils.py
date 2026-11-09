@@ -295,6 +295,18 @@ def scenario_metadata(
                 "decision_ids": [audit["details"]["decision_id"] for audit in deferred],
                 "impact_effect": "unquantified; omitted burdens or credits require restoration before complete score interpretation",
             }
+            final_unsupported = [
+                audit
+                for audit in deferred
+                if audit["details"].get("resolution_status") == "final_unsupported"
+            ]
+            if final_unsupported:
+                # Preserve the existing total-screening-omission field for consumers.
+                metadata["screening_limitations"].update(
+                    final_unsupported_exchange_count=len(final_unsupported),
+                    pending_exchange_count=len(deferred) - len(final_unsupported),
+                    impact_effect="unquantified; final unsupported omissions and any pending or partial inventories prevent impact-complete score interpretation",
+                )
             if partial:
                 metadata["screening_limitations"].update(
                     partial_mapping_count=len(partial),

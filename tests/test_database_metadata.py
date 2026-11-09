@@ -234,3 +234,41 @@ def test_partial_clic_mapping_is_screening_even_without_a_whole_exchange_omissio
         "omitted_branch_count"
     ] = 99
     assert scenario == before
+
+
+def test_final_unsupported_omissions_remain_screening_but_are_not_pending():
+    scenario = {
+        **SCENARIO,
+        "clic inventories": {
+            "approved_clic_omissions": [
+                {
+                    "details": {
+                        "screening_only": True,
+                        "decision_id": "final-goes",
+                        "resolution_status": "final_unsupported",
+                    }
+                },
+                {
+                    "details": {
+                        "screening_only": True,
+                        "decision_id": "pending-titanium",
+                    }
+                },
+                {"details": {"screening_only": False, "decision_id": "prior-omission"}},
+            ]
+        },
+    }
+    before = deepcopy(scenario)
+    metadata = scenario_metadata(scenario)
+    assert metadata["scientific_status"] == "screening_only"
+    limits = metadata["screening_limitations"]
+    assert limits["deferred_exchange_count"] == 2
+    assert limits["final_unsupported_exchange_count"] == 1
+    assert limits["pending_exchange_count"] == 1
+    assert "impact-complete" in limits["impact_effect"] and scenario == before
+    scenario["clic inventories"]["approved_clic_omissions"].pop(1)
+    limits = scenario_metadata(scenario)["screening_limitations"]
+    assert (
+        limits["pending_exchange_count"] == 0
+        and limits["final_unsupported_exchange_count"] == 1
+    )

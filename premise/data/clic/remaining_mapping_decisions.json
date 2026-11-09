@@ -6631,7 +6631,7 @@
     },
     {
       "decision_id": "uvek-2026-screening-0e2220f339c9d5ced47d",
-      "status": "pending",
+      "status": "final_unsupported",
       "original_deferral": {
         "id": "uvek-2026-screening-0e2220f339c9d5ced47d",
         "slug": "power-conversion-system-production-electrolysis-transformer-and-rectifier-1-mw",
@@ -6683,9 +6683,41 @@
       },
       "reference_basis": "Must be verified from the exact source and destination references before accepting a factor.",
       "rejected_prior_candidate_reason": "Reinforcing steel does not establish grain-oriented electrical-steel production or grade.",
-      "evidence": [],
-      "selected_disposition": null,
-      "validation": [],
+      "evidence": [
+        {
+          "review": {
+            "path": "premise/data/clic/uvek_final_goes_review.json",
+            "sha256": "f9484da604dd28610eb3ede3bd7a8bcdcc6a430ebba474acd732f177293d486a"
+          },
+          "private_source_witness": "special_material_sources.private.json",
+          "private_native_search": "final_native_disposal_steel_search.private.json"
+        },
+        {
+          "verification_receipts": [
+            "final_goes_export_readback.json",
+            "final_goes_quantity_check.json",
+            "final_goes_regressions.log",
+            "cache_cleanup_after_final_goes.json"
+          ],
+          "location": "private task workspace"
+        }
+      ],
+      "selected_disposition": {
+        "resolution_status": "final_unsupported",
+        "review": {
+          "path": "premise/data/clic/uvek_final_goes_review.json",
+          "sha256": "f9484da604dd28610eb3ede3bd7a8bcdcc6a430ebba474acd732f177293d486a"
+        },
+        "source_amount": 947.32,
+        "factor": null,
+        "reason": "Final unsupported omission of the pinned947.32kg GOES input only. All other caller materials and exchanges remain unchanged. The missing manufacturing and freight burdens have an unquantified effect; screening export is not impact-complete or an equivalent transformer score. No avoided burden or renormalization."
+      },
+      "validation": [
+        "63focused regression tests passed; Ruff and Black checks passed.",
+        "Public encrypted REMIND SSP2-NPi2050 constructor/update/certification/12483activity export passed.",
+        "Independent readback:947.32kg original omission, final-resolution warning/review/metadata and38full+2partial mappings retained;2finiteLCIs;source signatures unchanged.",
+        "Pre-IAM source graph unchanged and final audit retained in owned foreground provenance."
+      ],
       "commits": []
     }
   ],
@@ -6781,8 +6813,8 @@
   "progress": {
     "starting_deferred_exchanges": 20,
     "restored_in_this_goal": 16,
-    "final_unsupported_omissions": 0,
-    "pending_exchanges": 2,
+    "final_unsupported_omissions": 1,
+    "pending_exchanges": 1,
     "partially_restored_exchanges": 2,
     "final_unsupported_recipe_branches": 22
   }
