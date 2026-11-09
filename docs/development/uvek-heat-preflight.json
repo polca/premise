@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "status": "primary_preflight_complete_not_operational",
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "method": "Read-only SQLite source inventories and a real encrypted REMIND SSP2-NPi2050 constructor. Reference projects not selected or modified. Case-folded legacy name matching is candidate discovery only, not accepted mapping coverage.",
+  "source_candidates": 648,
+  "candidate_units": {
+    "megajoule": 560,
+    "unit": 36,
+    "square meter": 42,
+    "kilogram": 7,
+    "meter": 2,
+    "cubic meter": 1
+  },
+  "IAM_scenario": "REMIND SSP2-NPi2050",
+  "IAM_layers": {
+    "buildings_heat_end_use": {
+      "roles": 12,
+      "positive_roles": [
+        "heat, buildings, from district heating",
+        "heat, buildings, from hydrogen boiler",
+        "heat, buildings, from natural gas boiler",
+        "heat, buildings, from LPG boiler",
+        "heat, buildings, from biomass-based methanol boiler",
+        "heat, buildings, from coal-based methanol boiler",
+        "heat, buildings, from coal stove",
+        "heat, buildings, from wood logs heater",
+        "heat, buildings, from wood pellets heater",
+        "heat, buildings, from heat pump",
+        "heat, buildings, from electric heater",
+        "heat, buildings, from light fuel oil boiler"
+      ],
+      "region_count": 13,
+      "positive_cells": 114,
+      "zero_cells": 42,
+      "negative_cells": 0
+    },
+    "industrial_heat_end_use": {
+      "roles": 9,
+      "positive_roles": [
+        "heat, industrial, from biomass boiler",
+        "heat, industrial, from hydrogen boiler",
+        "heat, industrial, from electric boiler",
+        "heat, industrial, from natural gas boiler",
+        "heat, industrial, from biomethane boiler",
+        "heat, industrial, from coal furnace",
+        "heat, industrial, from light fuel oil boiler",
+        "heat, industrial, from biofuel boiler",
+        "heat, industrial, from district heating"
+      ],
+      "region_count": 13,
+      "positive_cells": 116,
+      "zero_cells": 1,
+      "negative_cells": 0
+    },
+    "secondary_heat_supply": {
+      "roles": 8,
+      "positive_roles": [
+        "heat, secondary, from biomass CHP",
+        "heat, secondary, from biomass residual",
+        "heat, secondary, from coal CHP",
+        "heat, secondary, from coal residual",
+        "heat, secondary, from natural gas CHP",
+        "heat, secondary, from natural gas residual",
+        "heat, secondary, from heat pump"
+      ],
+      "region_count": 13,
+      "positive_cells": 91,
+      "zero_cells": 13,
+      "negative_cells": 0
+    }
+  },
+  "positive_IAM_roles": 28,
+  "existing_heat_YAML_roles": 49,
+  "reviewed_native_aliases": 0,
+  "witnesses": [
+    {
+      "identity": {
+        "name": "Natural gas, burned in boiler modulating <100kW",
+        "reference product": "Natural gas, burned in boiler modulating <100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "inventory_sha256": "e7cdc8a746f80b00278b9e7ac019884fa01575060a245952f3fc75d2f809cae0",
+      "metadata_sha256": "16e3e04d89bf343d1d035a961e6a440534e6d2934e669de3a65c4d6f8e5f8ef9"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "inventory_sha256": "ebd1fee71f0850133f08324b42fd2eaec19758692e5426f20d84175f7589174d",
+      "metadata_sha256": "7c24e6bf76a279a10b0333b6479cc369d2849b7b8f7ebfc6f04a26f194b5a57f"
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 10kW, condensing, modulating",
+        "reference product": "Heat, light fuel oil, at boiler 10kW, condensing, modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "inventory_sha256": "40747896e7df6603f474fd68350576ca08a63fab47409cc2972c151d147b6887",
+      "metadata_sha256": "d2835bd336fcf62ec40c4cc1c58e545653c4ea5609431a846251c9fe726779d2"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump, air-water, 7kW, CH electricity, in new building",
+        "reference product": "Heat, at heat pump, air-water, 7kW, CH electricity, in new building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "inventory_sha256": "1c0e298e9d314c98481f0f5b39cea46055bc7585e679332cfec0af865a2e39e2",
+      "metadata_sha256": "d112380e2b253fa929cc704427b462979d5c991d70d3faccdeb993ba043d5b0f"
+    }
+  ],
+  "non_unit_reference_candidates": [
+    {
+      "identity": {
+        "name": "Propane, butane, burned in boiler condensing modulating 50kW (proj. 210)",
+        "reference product": "Propane, butane, burned in boiler condensing modulating 50kW (proj. 210)",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "production_amounts": [
+        1.08
+      ],
+      "inventory_sha256": "8878a74d48c776c6407e5932b71b20c66c57d60ded640c4f8487d89671b7e729",
+      "metadata_sha256": "d0829df5501f31262581bead3e97dc48fba8c66704f5adb9ba34cf1bbec1a98e"
+    },
+    {
+      "identity": {
+        "name": "Light fuel oil, burned in boiler 10kW, non-modulating (proj. 210)",
+        "reference product": "Light fuel oil, burned in boiler 10kW, non-modulating (proj. 210)",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "production_amounts": [
+        1.061
+      ],
+      "inventory_sha256": "b75e01181282eefb840f265cc480e33c0cc18947d47bf3bc8f8da0db7e128fea",
+      "metadata_sha256": "b0009a7c59f5fb0bd7b7a429480bdaa801064545b20e03a8f15af359329bf3c9"
+    },
+    {
+      "identity": {
+        "name": "Natural gas, burned in boiler condensing modulating 50kW (proj. 388)",
+        "reference product": "Natural gas, burned in boiler condensing modulating 50kW (proj. 388)",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "production_amounts": [
+        1.11
+      ],
+      "inventory_sha256": "b67c6c795bb9e9f3545408a8c7bcae197e7005f77f0b6c00bdf729067cefc2c5",
+      "metadata_sha256": "48c260cb2e48dc74a9f7386d05af36e1d0449764cbbebcee7256f9e6e1dcef58"
+    },
+    {
+      "identity": {
+        "name": "Biomethane, burned in boiler condensing modulating 50kW (proj. 210)",
+        "reference product": "Biomethane, burned in boiler condensing modulating 50kW (proj. 210)",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "production_amounts": [
+        1.11
+      ],
+      "inventory_sha256": "152118d185b29a9fc6bb58ae7547d8086f491f5ff4a54c353edc94be9dc43503",
+      "metadata_sha256": "e88032e83576ed9df0a66a29754ac3566822756a5797b57889f4a471a880bed2"
+    }
+  ],
+  "findings": [
+    "A native burned-in-boiler MJ service can represent fuel input, while a separate Heat process represents delivered output and includes an efficiency wrapper. Identical MJ labels are insufficient for interchangeability.",
+    "Four boiler candidates have production amounts different from one; preserve actual production quantity when deriving per-output energy factors. Do not rewrite their production to one without scaling all exchanges consistently.",
+    "A native heat pump includes direct electricity, refrigerants and equipment. Use its inspected delivered-heat reference and actual electricity draw; preserve complete nonenergy inventory and canonical biosphere links.",
+    "Three IAM layers are present; 28 technology roles have positive values. Secondary solar is present but zero in this particular scenario, so another valid scenario is needed to exercise it.",
+    "The existing Heat constructor defaults to ecoinvent InventorySet aliases and calls get_biosphere_code(self.version); passing2026would use the wrong axis. Existing market names, frozen residual supply and relinking targets are also ecoinvent-specific.",
+    "Default heat role matching finds no reviewed uvek_aliases. Partial heuristic candidates, IAM availability or a finite native source LCI do not demonstrate an operational heat sector."
+  ],
+  "next_actions": [
+    "Review and bind exact native delivered-heat counterparts for all positively used building, industrial and secondary roles. Trace nested burner/fuel services for source-derived final-energy conversion, excluding unrelated upstream energy and infrastructure.",
+    "Record complete functional proxy boundaries for absent technologies, fuel provenance, CHP allocation, distribution and frozen residual composition; never relabel a fossil/synthetic fuel as biomass.",
+    "Implement family-aware heat dispatch, mapping, canonical3.10biosphere and linked-supplier energy factors, with strict preflight and complete audits. Preserve native producer/scenario ownership and prevent recursive heat-market links.",
+    "Verify layered IAM quantity conversion, signed caller quantities and uncertainty, cold/warm equivalent suppliers, public combined update/certification/export and isolated package readback before opening the public heat gate."
+  ],
+  "receipts": [
+    {
+      "name": "native_heat_candidates.private.json",
+      "sha256": "e90006a29d25346c329d6d101fbd00e561e6063bc332f4c5c47cbf5d9e93d21a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_actual_iam_inspection.private.json",
+      "sha256": "01b1a71f5746ca69286b66c0229f6eee29f52d65fa61051e14881818f3f22dbd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_IAM_summary.private.json",
+      "sha256": "d59cd000df18f9281078cf6c2f451bc0ac6a4aceb9c3ce882ee1eeac9f8b9a33",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_role_candidates.private.json",
+      "sha256": "6c3702653154f7f87b1639651443c21ef27e7e238b676964de6a03937a2e836c",
+      "location": "private task workspace"
+    }
+  ]
+}

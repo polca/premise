@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "audited_not_operational",
+      "status": "native_and_real_IAM_preflight_complete_not_operational",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -819,6 +819,10 @@
           "code": "inventory_family_default",
           "path": "premise/energy/heat.py",
           "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        },
+        {
+          "code": "native_heat_reference_basis",
+          "finding": "Burner MJ and delivered-heat MJ have different physical meanings. Four native boiler references are not1; source-derived conversion factors and nested burner boundaries require explicit handling."
         }
       ],
       "decisions": [],
@@ -856,6 +860,15 @@
           "heat.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "native_reference_preflight": {
+        "review": "docs/development/uvek-heat-preflight.json",
+        "candidates": 648,
+        "MJ_candidates": 560,
+        "positive_IAM_roles": 28,
+        "IAM_layers": 3,
+        "non_unit_production_candidates": 4,
+        "native_gate": "closed_pending_mapping_and_runtime_verification"
       }
     },
     {
