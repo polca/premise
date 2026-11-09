@@ -745,3 +745,15 @@ remain warnings. See [boundaries and verification](uvek-hazardous-paint-routing-
 The required nitrate supplier set has 117 of 125 exact scopes, with all previous
 399 fingerprints unchanged. Full pilot mapping, scenario, certification and
 export gates remain open.
+
+### Wastewater routing checkpoint
+
+Four exact 3.9 cut-off wastewater markets preserve their treated fractions,
+rural/urban collection volumes and 172 original untreated-emission entries.
+The native municipal grid is separated from one shared copy of the native
+class-3 treatment inventory so collection is counted once at the original volume;
+no private residential network is added. The COD/load and capacity differences
+remain explicit screening limitations. See [boundaries and verification](uvek-wastewater-routing-findings.md).
+This adds four scopes while preserving the previous 405 fingerprints. The
+required nitrate supplier set now has 121 of 125 suppliers scoped; broader pilot
+mapping, scenario, certification and export gates remain open.
