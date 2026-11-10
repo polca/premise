@@ -58,7 +58,8 @@
     "activities_checked": 12622,
     "signed_finite_LCIs": 6,
     "fresh_build_export_and_optional_preview_executed_during_pause": false,
-    "distributed_notebook_has_saved_outputs": false
+    "distributed_notebook_has_saved_outputs": false,
+    "pdf_language": "plain English"
   },
   "evidence": [
     {
@@ -94,7 +95,7 @@
     },
     {
       "path": "docs/development/reviews/uvek-2026-11-10/uvek-review-summary.pdf",
-      "sha256": "1daddf2a125028971421e624b2f3454aa20668c3c856c315c866b79c1da6f507"
+      "sha256": "8c1eb3faee0ac4f87f77b619a0c7ea536be0d729c81cff7491ef8b3f0b8aeaae"
     },
     {
       "path": "docs/development/reviews/uvek-2026-11-10/README.md",
