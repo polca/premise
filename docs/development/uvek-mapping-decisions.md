@@ -493,3 +493,25 @@ The real supplementary preparation reports only compressed air as unapproved in
 the current 3.9 cohort. Matching pressure labels alone do not prove its reference
 volume or distribution boundary. This is not an enabled public heat update, and
 later cohorts may reveal additional gaps.
+
+### Delivered compressed air and the next heat cohort
+
+`export/uvek_heat_compressed_air_review.json` qualifies only ecoinvent 3.9 cut-off's
+RER market. Both original 0.5 supplier shares are retained in a helper using
+complete native UVEK average/optimised small-installation supply networks. This
+replaces the compressor-only heuristic with the matching delivered-service
+boundary. Preserve caller signed m³, formulas and supported uncertainty at +1;
+no physical-condition, pressure, density or guessed loss conversion is introduced.
+Native generation/loss, compressor, piping, electricity, delivery, internal
+uncertainty and vintage differ. Its unexplained native `xx` label remains literal
+and warned. No native supplier inventory is repaired or additional source energy
+counted on top. Score effects and exact reference-condition differences are
+unquantified. The review records primary source/native hashes, original XML
+witnesses and the common author-report lineage.
+
+One new helper and one shared review are added; all earlier recipes/reviews and
+461 approval fingerprints remain unchanged. The total is 462 exact scopes.
+The initial fourteen 3.9 cases are now qualified, but the next real preparation
+fails on 38 later 3.10 correspondences. Their read-only source/native evidence and
+categories are recorded in `uvek-heat-310-mapping-frontier.json`. No version-wide
+approval or public heat support follows from completing the earlier cohort.

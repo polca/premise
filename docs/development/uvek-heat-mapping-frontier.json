@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "thirteen_of_fourteen_observed_cases_qualified_one_pending_later_cohorts_unproven",
+  "status": "all_fourteen_observed3_9cases_qualified_later3_10cohort_pending",
   "context": "First blocked ecoinvent3.9cutoff cohort of the12-root heat-expanded graph. This is an observed frontier, not a bound on all remaining heat or sector mapping work.",
   "identified_cases": 14,
   "foreground_records": 76,
@@ -173,7 +173,7 @@
     },
     {
       "rule_id": "bp-9e802861048fdfa7",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -186,10 +186,7 @@
         "unit": "cubic meter"
       },
       "target_candidate": {
-        "location": "RER",
-        "name": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
-        "reference product": "Compressed air, average generation, <30kW, 10 bar gauge, at compressor",
-        "unit": "cubic meter"
+        "recipe_ref": "heat-air-network-market-53a3733f6c2f29d85f83"
       },
       "source_production_amounts": [
         1.0
@@ -203,7 +200,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Complete native average/optimised supply-network screening mix, with original50/50shares and explicit native model/reference-basis limitations.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -236,7 +233,16 @@
           "metadata_sha256": "0e5678a0a9a9f3e30ebc7d224eb962920d8f45bd433c037f296adc54546ee5c0"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_compressed_air_review.json",
+      "conversion_factor": 1,
+      "limitations": [
+        "Use two complete native RER10bar-gauge<30kW supply-network services in the source market's literal50/50average/optimised shares. Both native services include compressor generation, operating materials, infrastructure delivery and distribution piping/losses; the earlier compressor-only candidate lacks that delivered-service boundary. No market freight or extra generation burden is added.",
+        "Per signed declared m3 the caller factor is+1. Actual source and native references are+1m3;1000kPa gauge equals10bar gauge. Both inventory lineages cite Steiner/Frischknecht report23. Its chapter10tables use normalised-volume inputs and distinguish generation from consumer supply. This supports a common lineage-based volumetric screening basis, not proof of exact temperature/pressure-reference equivalence; those conditions are not individually stated in the installed metadata. No ideal-gas, pressure, density, Nm3 relabelling or energy-normalisation factor is invented.",
+        "Preserve complete native inventories without repairing their internal loss model. Native average/optimised networks draw1.5/1.05units of generation per output; the inspected source producers have different operational and compressor coefficients, including their distribution model. Generation, loss, piping-material supply, delivery, electricity sourcing, compressor service-life, internal uncertainty and vintage therefore differ. This is a functional screening proxy, not a source-inventory reconstruction or an LCIA-equivalence claim.",
+        "The average native service retains its literal xx-prefixed name in the original archive and both exact release catalogs. The original XML describes an ordinary product dataset with network/leakage scope and a+1m3reference; it provides no explicit meaning for that prefix. Do not remove the prefix or claim it certifies dataset quality. Its unexplained marking and native model quality remain an explicit screening limitation.",
+        "Preserve caller signed quantities, formulas, supported uncertainty, separate flows and foreground ownership. Source internal uncertainty is replaced by native supplier uncertainty; no caller quantity renormalisation, added recovery credit, or silent omission is introduced. Native biosphere exclusions remain visible. Score effects are unquantified. Only exact inspected ecoinvent3.9cutoff is qualified; other releases, reverse and cross-system-model requests cannot inherit this review."
+      ]
     },
     {
       "rule_id": "bp-508c267844c98459",
@@ -1059,7 +1065,9 @@
     }
   ],
   "initial_identified_cases": 14,
-  "qualified_cases": 13,
-  "pending_cases": 1,
-  "correction": "Previous frontier text incorrectly inferred an inherited+1 wastewater factor. Inspection of the actual rule and its original sign evidence confirms-1 already existed. Preserve it exactly once; independent proxy qualification was missing."
+  "qualified_cases": 14,
+  "pending_cases": 0,
+  "correction": "Previous frontier text incorrectly inferred an inherited+1 wastewater factor. Inspection of the actual rule and its original sign evidence confirms-1 already existed. Preserve it exactly once; independent proxy qualification was missing.",
+  "next_cohort_frontier": "docs/development/uvek-heat-310-mapping-frontier.json",
+  "limitation": "Zero pending refers only to the initial3.9cohort. The subsequent3.10cohort has38unapproved correspondences; later cohorts remain unproven."
 }

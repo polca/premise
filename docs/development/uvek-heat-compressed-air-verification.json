@@ -1,0 +1,98 @@
+{
+  "status": "initial14heat_correspondences_qualified_later38case3_10cohort_pending",
+  "qualification": "Exact3.9cutoff delivered-air market, original50/50average/optimised shares through complete native supply-network services. Source/native model differences and reference-condition limitations remain explicit.",
+  "prior461approval_fingerprints_unchanged": true,
+  "total_exact_scopes": 462,
+  "prior_recipes_and_shared_reviews_unchanged": true,
+  "new_recipes": 1,
+  "recipe_count": 3668,
+  "shared_review_count": 767,
+  "validation": {
+    "brightpath_tests_passed": 41,
+    "focused_premise_tests_passed": 9,
+    "finite_native_and_signed_mix_LCIs": 4,
+    "source_scientific_signatures_unchanged": true,
+    "generator_resource_replay_byte_identical": 2,
+    "installed_signed_demands": 2,
+    "installed_original_callers_checked": 41,
+    "isolated_public_default_export_activity_count": 12529,
+    "public_default_export": "passed biomass/electricity screening run and semantic certification",
+    "export_readback": "complete links, all55pins/9roots, original market vectors, pellet audits, omission/proxy metadata and3finiteLCIsverified",
+    "packaged_mapping_and_review_data": "equal worktrees; one normal runtime encryptedIAMdownload separately recorded"
+  },
+  "real_heat_preparation": "clears initial14case3.9cohort, then fails on38unapproved3.10correspondences",
+  "next_frontier": {
+    "path": "docs/development/uvek-heat-310-mapping-frontier.json",
+    "pending": 38,
+    "previously_scoped_rules": 16,
+    "initial_correspondence_rules": 22,
+    "source_records_inspected": 38,
+    "source_producers_inspected": 89,
+    "lookup_errors": 0,
+    "later_cohorts": "unproven"
+  },
+  "public_heat_gate": "closed; no public heat export claimed",
+  "cache_cleanup_bytes": 463134272,
+  "receipts": [
+    {
+      "name": "heat_air_scope_registration.json",
+      "sha256": "83fa1248a9297ebf53f1138e7f923e6fe8b6a826abb505a31fd6b3950e3ba1d3",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_tests.log",
+      "sha256": "786555ace1a854c72cfeaf15ce1e9bc9efe7284ea587922ac0a211fd83c0536d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_premise_tests.log",
+      "sha256": "3d18a53e26ea1d80a642bc2e1b264b53a8f16fcfd0793ee22080fc85aa7947bc",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_native_lci_checks.json",
+      "sha256": "4939a7561f05ddd8ada1aff499105ac2e0901c9304b4c7de177fc9071fe73c49",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_installed_checks.json",
+      "sha256": "32f88ea07dfcab5eb6a230acb95a9316080de2b93b7de00730a6eee153674d52",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_original_callers.json",
+      "sha256": "f3117f07ac8516fa3c58b10a5a9b93bfd9cb2d1a66b79418d6d6791002498abb",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_generator_replay.json",
+      "sha256": "660d4281355dee3038ab6b58a8148492f8ca4ede6cae75a1c825559744dd1f86",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_packaged_data.json",
+      "sha256": "9ae8f934fe2f4ccfdb408a658485d8470b8e5ee1099459db16394438d9e4d466",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_air_default_export_report.json",
+      "sha256": "bb7f585ade20e7c4b2c4410d4bb49801fadd6b9f5ddf215cd745736d3d9610f9",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_air_default_readback.json",
+      "sha256": "932efeb2d54dc795d33c262ecc944bc37def58fcae7f7e8eb10a31ba67bd6f18",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_air_original_readback.json",
+      "sha256": "37a4d0bd5611b3160cd61f93c23a301c11958113329cdf7a8e50d646832edefa",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_air.json",
+      "sha256": "eb55c938c315c3df473587b79c7f2b9137788537da89f09f1abac474c26f2556",
+      "location": "private task workspace"
+    }
+  ]
+}

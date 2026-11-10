@@ -317,6 +317,45 @@ def test_heat_profile_extension_keeps_exact_scope_and_review_on_cache_hits(
     assert resolved.activities == before
 
 
+def test_heat_delivered_air_keeps_both_native_networks_and_warning_on_cache_hits(
+    tmp_path,
+):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    row = json.loads(
+        (DATA_DIR / "export/uvek_heat_compressed_air_review.json").read_text()
+    )
+    resolved = graph(row["source"])
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        assert result.activities[0]["exchanges"][1]["amount"] == -2
+        helper = next(
+            a
+            for a in result.activities
+            if a.get("brightpath_conversion", {}).get("recipe_id") == row["recipe_ref"]
+        )
+        edges = [e for e in helper["exchanges"] if e["type"] == "technosphere"]
+        assert len(edges) == 2
+        for role in row["roles"]:
+            edge = next(e for e in edges if e["name"] == role["target"]["name"])
+            assert edge["amount"] == role["source_market_share"] == 0.5
+        diagnostics = [
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+        ]
+        assert diagnostics
+        assert any(
+            "unexplained" in str(d["details"]["limitations"]) for d in diagnostics
+        )
+    assert resolved.activities == before
+
+
 def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource

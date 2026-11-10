@@ -99,3 +99,23 @@ one epoxy raw-rule fingerprint migration is documented after verifying identical
 12-root preparation now reports only compressed air as unapproved in the current
 3.9 cohort. Its distribution and reference-volume boundary still needs review;
 later cohorts are unproven. The public heat gate remains closed.
+
+The delivered-air review completes the initial fourteen 3.9 correspondence
+qualifications. A new helper retains the market's two equal shares through
+complete native average/optimised supply networks, including piping and losses.
+Native generation draws, compressor coefficients and the literal unexplained
+`xx` label remain unchanged and explicitly limited. Shared report lineage supports
+a volumetric screening basis; exact physical reference conditions are not claimed
+and no pressure/density or loss multiplier is invented. Four native/mix LCIs are
+finite and the original scientific source signatures remain unchanged.
+
+The next preparation attempt clears that cohort and exposes 38 unapproved
+correspondences in a later 3.10 cohort. Sixteen have reviews in other releases;
+22 need initial correspondence review. All 38 source records, 89 source producers
+and available native counterparts were read from reference inventories, with no
+lookup failures. Their [new frontier](uvek-heat-310-mapping-frontier.json) separates
+profile extensions, incorrect materials, reference bases, treatment signs,
+metals, infrastructure, fuels, fleet and other product/service cases. These are
+pending reviews, not newly approved mappings. In particular, source sodium metal
+cannot map to sodium chloride, and KCl mass cannot silently inherit a K2O basis.
+The public heat gate remains closed.

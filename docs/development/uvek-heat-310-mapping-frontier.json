@@ -1,0 +1,2488 @@
+{
+  "schema_version": 1,
+  "status": "primary_evidence_collected_not_qualified",
+  "context": "Later3.10cohort exposed after all14initial3.9cases qualified; publicheatgate remains closed.",
+  "identified_cases": 38,
+  "previously_scoped_rules": 16,
+  "initial_correspondence_rules": 22,
+  "categories": {
+    "exact_profile_extension": 16,
+    "metal_grade_or_processing_boundary": 3,
+    "initial_product_or_manufacturing_review": 10,
+    "fuel_supply_boundary": 1,
+    "infrastructure_boundary": 4,
+    "waste_reference_coordinate": 1,
+    "fleet_technology_proxy": 1,
+    "reference_basis": 1,
+    "wrong_material_candidate": 1
+  },
+  "primary_evidence_receipt": {
+    "name": "heat_310_frontier_primary_evidence.private.json",
+    "sha256": "559c4de72a657faf39c9df3f3499434dadb576742d798a94df5178b6e83869c4",
+    "record_count": 38,
+    "producer_count": 89,
+    "lookup_errors": 0,
+    "location": "private task workspace; raw licensed inventories excluded from Git"
+  },
+  "cases": [
+    {
+      "rule_id": "bp-657f6ad4eabd8846",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market group for electricity, low voltage",
+        "reference product": "electricity, low voltage",
+        "unit": "kilowatt hour"
+      },
+      "target_candidate": {
+        "location": "GLO",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "25eb00cfc4afeb940bd115aae0fbdc8a64411dea0452442d7ef1418dfe1e9bef",
+          "metadata_sha256": "dae3c71faf731c634d93223866fe7b0721cf6e6cb2925d5cb3cb07a25431e228",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "GLO",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "7f673eecf84c44c36af1891d2edbeebc73e98ae9f2fe6117c036c3afa3215c1a",
+          "metadata_sha256": "22aa54b95ee2f20e8ed37f878f5edf528bbb126865e5d880d1816c1fe2119ad5",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "GLO",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "8bc7919677948af179e46dcfc389e2242cb14200288d04161187086396027bfd",
+          "metadata_sha256": "fddc263c0bd43e758d69050be28e641bc07cf7d0b9ada07e0d25dfc837a2c41e",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 9
+    },
+    {
+      "rule_id": "bp-0011da9202e829d4",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "Europe without Switzerland and Austria",
+        "name": "steel production, electric, low-alloyed",
+        "reference product": "steel, low-alloyed",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Steel, low-alloyed, at plant",
+        "reference product": "Steel, low-alloyed, at plant",
+        "unit": "kilogram"
+      },
+      "category": "metal_grade_or_processing_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect source primary/recycled route, alloy grade and refinery stage; current name similarity cannot establish a physically suitable supplier.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "Europe without Switzerland and Austria",
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0f42058e40b905d42939d4214e45a09ab84002cf71c364bcb25ecc678ca65041",
+          "metadata_sha256": "83e7538d5dbad10ef0c9d5a454049b6301c925606f556399d052546055eeada8",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Steel, low-alloyed, at plant",
+            "reference product": "Steel, low-alloyed, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "65f0c668a8afb2efd0dc2914cff81588503283cddebb4e40f2a2141dcb5b30dd",
+          "metadata_sha256": "eb35e086f911eddae104aef934074d0c48591c424581f21de6a42969303e55e7",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Steel, low-alloyed, at plant",
+            "reference product": "Steel, low-alloyed, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9d3714a3bdc23e8befa5eb27626f7765976c19b7b1537940b29ebee08a215a41",
+          "metadata_sha256": "dd3cb8238e7b1aab2d74634d0f713b5ccf9c87361d3343a5e65d4e2a17148af1",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 0
+    },
+    {
+      "rule_id": "bp-15ef78b8ed5991f1",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for metal working, average for steel product manufacturing",
+        "reference product": "metal working, average for steel product manufacturing",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Steel product manufacturing, average metal working",
+        "reference product": "Steel product manufacturing, average metal working",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for metal working, average for steel product manufacturing",
+            "reference product": "metal working, average for steel product manufacturing",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0a9134aba84af2437a69f136263e3344b49fe0d177772f16c497d450f4bfa466",
+          "metadata_sha256": "ee83917f7efbe901cd0c3a2b21c6d30fb0bf0edf00c967718ed3aabfd41de114",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Steel product manufacturing, average metal working",
+            "reference product": "Steel product manufacturing, average metal working",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e05572e771a650338290dbe75ae4a5bcd35c8907436dec217f293b6de53942db",
+          "metadata_sha256": "f5aa636d99b661c6954597817f129259df9ddf6aa5eaf16704c025987c508ee1",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Steel product manufacturing, average metal working",
+            "reference product": "Steel product manufacturing, average metal working",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "18d72e3a08355af9386008426a8dc24de7978e69232a0f3b5e5b5a4841b68ddf",
+          "metadata_sha256": "a0e3361139fe0c770acfcbf0167293e2eed5240b476430408a3cbbd6d1d00ac2",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-eae66c60e7256051",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for polyethylene, high density, granulate",
+        "reference product": "polyethylene, high density, granulate",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "recipe_ref": "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6b034d1107833bfb69a649587845631fcde60c5593ec615b59ccd65d39347463",
+          "metadata_sha256": "17fa0382ce998d5c3b640e5748b0c0e604802a87a4aca996c55b71d7a552fa28",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 6
+    },
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for steel, chromium steel 18/8",
+        "reference product": "steel, chromium steel 18/8",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Steel, electric, chromium steel 18/8, at plant",
+        "reference product": "Steel, electric, chromium steel 18/8, at plant",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.12"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for steel, chromium steel 18/8",
+            "reference product": "steel, chromium steel 18/8",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0197722c6ca8ceadc6a0d0ed71de0fde1e21141406817067b79763460321e30d",
+          "metadata_sha256": "366b01eca3f3f638a236a1cd5bccb58d8137ebf9287628224d274f3142882f91",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Steel, electric, chromium steel 18/8, at plant",
+            "reference product": "Steel, electric, chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "41b081e3b2e1820ba7b83892e03c520e70eb093b917b757e4013dc1ca11dc4cd",
+          "metadata_sha256": "5eca2f758625b1e6a6359665960a155ab2c649bde9fa833c7c0dd84853d41b3c",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Steel, electric, chromium steel 18/8, at plant",
+            "reference product": "Steel, electric, chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6f8b6d5d941e31966e60586ca169f96628466425f4afa960195a161ffa692c1c",
+          "metadata_sha256": "f9cc7fa20cf43e4d7daac459652e4b1b4f6da095907b67191a04314269a54e92",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-90d9ae3ee389f465",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for cast iron",
+        "reference product": "cast iron",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Cast iron, at plant",
+        "reference product": "Cast iron, at plant",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.6",
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for cast iron",
+            "reference product": "cast iron",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ebd1b7d7842d20a173587e3f375a4c5ff2249d7a726e318e0923e935aee5cb9d",
+          "metadata_sha256": "0fcfb2836b939393072eebb7f6b489a7f01c0c65b3ebe0b7cbba309087ee2822",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Cast iron, at plant",
+            "reference product": "Cast iron, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f1d060833f612e1fbe33d41277eece7c901f10d16bcf6dbab82690b5e81364fa",
+          "metadata_sha256": "d48bd3e753653d98b125dae31e468bda81dd780f8b24d4511f3fec0b7227c399",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Cast iron, at plant",
+            "reference product": "Cast iron, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7ad525c70adccad69422aeb17fd14f99937b73f57c9bf5ac71dbbe629117fe30",
+          "metadata_sha256": "dc0b5adbab190aab059ec9b617e7bc1b634828d1e3560ddeb26b5b08b01b4b62",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-4a9a4566f35ab410",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "IAI Area, EU27 & EFTA",
+        "name": "market for aluminium, primary, ingot",
+        "reference product": "aluminium, primary, ingot",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Aluminium, primary, at plant",
+        "reference product": "Aluminium, primary, at plant",
+        "unit": "kilogram"
+      },
+      "category": "metal_grade_or_processing_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect source primary/recycled route, alloy grade and refinery stage; current name similarity cannot establish a physically suitable supplier.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "IAI Area, EU27 & EFTA",
+            "name": "market for aluminium, primary, ingot",
+            "reference product": "aluminium, primary, ingot",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "38623e3cc6f18211b18b0907892683f697681cc44ff55484bd39c821bd100f10",
+          "metadata_sha256": "e5292d9fd74255dd4643b1788a9708fa2a2315f402607ea7ab512cbd9f8d1b82",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium, primary, at plant",
+            "reference product": "Aluminium, primary, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "53207f3ef6cc5a7c4c65c6f26ea8812a744a465065a953a9c25904a9613140a8",
+          "metadata_sha256": "9c2da65149859c157127c43de436593efcfa8f345ad68d300fa29877a2ab4946",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium, primary, at plant",
+            "reference product": "Aluminium, primary, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8b8bd682c15d8099c8e2969477a5675e13c8eb9aeefd1ed3263b30c5c209160e",
+          "metadata_sha256": "4873821f600ec055865f4f21e9bd76d0f774fa3ea1af041667b9420c62527f8a",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 8
+    },
+    {
+      "rule_id": "bp-c778372182af9cff",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for metal working, average for aluminium product manufacturing",
+        "reference product": "metal working, average for aluminium product manufacturing",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Aluminium product manufacturing, average metal working",
+        "reference product": "Aluminium product manufacturing, average metal working",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for metal working, average for aluminium product manufacturing",
+            "reference product": "metal working, average for aluminium product manufacturing",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f8112c55747052ce390d0ba82ee265529cdb3d337fe1332377e5619e779f20a9",
+          "metadata_sha256": "d616075e0bf24def1c56da59e6da529d5450b2c6d14a48620d28748297efd63e",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium product manufacturing, average metal working",
+            "reference product": "Aluminium product manufacturing, average metal working",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "961fd77211b7fddcd3a03f607bae6f0e323099e2a5c2c34d47d28d415cc4a903",
+          "metadata_sha256": "cf28cfb2d1166650c5565a4a0e01f49289098bacaa20d6fbf21d02cf157cc87a",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium product manufacturing, average metal working",
+            "reference product": "Aluminium product manufacturing, average metal working",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c23bff8c0e911b1024225e06c553638dbd37207741fa16cb3973b164b688cd98",
+          "metadata_sha256": "95d68e09cb58345c9a000e2168441c0bc3fd9abd2f71104b26e401fe36aa7f5e",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-02c0322dff7270a9",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for polypropylene, granulate",
+        "reference product": "polypropylene, granulate",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Polypropylene, granulate, at plant",
+        "reference product": "Polypropylene, granulate, at plant",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for polypropylene, granulate",
+            "reference product": "polypropylene, granulate",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c7e144e2c8f9623b39962c37db4eb97fbae6c59bfe05ac548ea834b70e62b91a",
+          "metadata_sha256": "65967f53288af78deac5fb133998a9892126f8024c7027c5b16e41b0754b67a9",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Polypropylene, granulate, at plant",
+            "reference product": "Polypropylene, granulate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "cc3b191801fca4661abae819d71a47b91df7117e6cd5433f66514f400712cd2a",
+          "metadata_sha256": "b5d9262bb3281712d6c5a5c39040aad32a13f4fd4e68fc0855a017fb624d8d4c",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Polypropylene, granulate, at plant",
+            "reference product": "Polypropylene, granulate, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "140ccf0cddfb247198a94e69eeb635c3d817fae06e861da251b650e6f75f946b",
+          "metadata_sha256": "9a3eb74ee8d4240173d85b01107302ab9008ab565f273d20b731a04e00ee8687",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-25c33488414236c6",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for glass fibre reinforced plastic, polyamide, injection moulded",
+        "reference product": "glass fibre reinforced plastic, polyamide, injection moulded",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+        "reference product": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for glass fibre reinforced plastic, polyamide, injection moulded",
+            "reference product": "glass fibre reinforced plastic, polyamide, injection moulded",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9a9bd1328ac33d9ef248c8cdbd0f86ce2d88c2fd95fc155995e2906354bdc344",
+          "metadata_sha256": "3be7f3b43a30d427ad90a3ab0246b2c4555873dd616c60340dc63cac21d16053",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+            "reference product": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "05ca3dd35a27b5d9865bd518f43104a6495297e045ef1fea24b40a6c9f0b65f2",
+          "metadata_sha256": "80695f9f0962a1c3efd4e74447f05aaa86957929234af7b470a8e053b77baa86",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+            "reference product": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "982ee29ced84e73baf1cbe4e131d6d086ecfca1222ea48cbc1a1ba2f3943034e",
+          "metadata_sha256": "6bd7af4c822bd5d8ebb0cba2be63e600b6f004a8cb830def30d331adc8be7126",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-1240bf1e5820731a",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for copper, anode",
+        "reference product": "copper, anode",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RLA",
+        "name": "Copper, primary, at refinery",
+        "reference product": "Copper, primary, at refinery",
+        "unit": "kilogram"
+      },
+      "category": "metal_grade_or_processing_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect source primary/recycled route, alloy grade and refinery stage; current name similarity cannot establish a physically suitable supplier.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for copper, anode",
+            "reference product": "copper, anode",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "2153b879973e66b002abddfeb3868fdbb0d69a23d8f5ec3af618a29e1722936a",
+          "metadata_sha256": "d88935b6a2c8ad033b0e6d9aeb914f2b06d60da388d8d007a9f8d8cde2c87d92",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RLA",
+            "name": "Copper, primary, at refinery",
+            "reference product": "Copper, primary, at refinery",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7ffc18fe4263f3548afb9267021af1b8e2da86db3cb70c24fd0112fa848d942a",
+          "metadata_sha256": "16382591e0cf2c6a4e952dcd6ddd4ab4c610e764daf27a2258b56024fd8158d0",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RLA",
+            "name": "Copper, primary, at refinery",
+            "reference product": "Copper, primary, at refinery",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ad29d5c916e2ecbc765e31df28fc329bd0b40124ac80f0dfc4879e9350a9e13e",
+          "metadata_sha256": "473066f43b58527ae00830e544f14afd1b8439231292b2896ab5f3ba292d0ff3",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 7
+    },
+    {
+      "rule_id": "bp-f5891204a3feaf32",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market group for electricity, low voltage",
+        "reference product": "electricity, low voltage",
+        "unit": "kilowatt hour"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.7",
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "776066507f7e8c48b75be628dcc9dd32711764d6fe34e5c42ce56a0d04fc0532",
+          "metadata_sha256": "d12e90aa2d59fed13bb4ee5fa0423b651634913e1d3ce328a0333fa73ca8526a",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "9918d53f738c649fd1efbe365b393c29136467f80c38f956eec026474ee675d5",
+          "metadata_sha256": "fdb68aea771258bd961a9ab22971908096acd391378886a1f6eead5612d741e3",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "8f7248a0a15d75d3ba4f79ec2a6b4682ccfd8a40b5b38f5d2c5a8d107d652eb1",
+          "metadata_sha256": "71c40c317115b22b01d441f1983b54847fc1355686150c0a0b0730bd25daed4c",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-29a5a345f9b595ed",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for silicone product",
+        "reference product": "silicone product",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Silicone product, at plant",
+        "reference product": "Silicone product, at plant",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.12",
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "market for silicone product",
+            "reference product": "silicone product",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "dedf8aff57c1a50822e25b5f953d6c11fecc8389edd89d2d056562dac22d5b93",
+          "metadata_sha256": "d67112719a9c467bd51a08ae80d368c5af9831f1a759c6003d9aafd6ae4c4793",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Silicone product, at plant",
+            "reference product": "Silicone product, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "2010687a59e7705278cabbbb9370552306f5a83f7ee6b052f08763c0e02cf5e2",
+          "metadata_sha256": "e2e7077d5a8a06d679a5df19ef30cae4df7e72dcc9d270a475ab7028900bbb4a",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Silicone product, at plant",
+            "reference product": "Silicone product, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7a54b6e45ed305e743901beebe477307da83baaa5aece28790f680d8e361653a",
+          "metadata_sha256": "131e685fdaed68fe01c7c2c82e3fa1d7ff1a10008233d844bab5d965c4469d13",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-1979ee200d36825e",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for platinum",
+        "reference product": "platinum",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Platinum, at regional storage",
+        "reference product": "Platinum, at regional storage",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for platinum",
+            "reference product": "platinum",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9eb07a42fe6b2260cdd840d22456f1bfecb9b193a986ee799819021870e66302",
+          "metadata_sha256": "e846212f5d83bbe0a162928f11b761659585cfdc2760a1ea1d244122847452f0",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Platinum, at regional storage",
+            "reference product": "Platinum, at regional storage",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e2225a78a578f4328b6bca6c3357bbaf55b318db9685e74f9ba3609fa031064b",
+          "metadata_sha256": "86fd7fb90a9835942d9ff8c04b33ad6114bd83f356efe797a26787789081240a",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Platinum, at regional storage",
+            "reference product": "Platinum, at regional storage",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0dfde4a000c6994b847d8e1fce04662539a8740aaacc72a45d5f689833baf663",
+          "metadata_sha256": "1f241477a5392d17fac72a9fa005c17d832dee9fe2785d6be78af2808f965146",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 4
+    },
+    {
+      "rule_id": "bp-c8d707ac24ebb7e4",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for carbon black",
+        "reference product": "carbon black",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "GLO",
+        "name": "Carbon black, at plant",
+        "reference product": "Carbon black, at plant",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.12",
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for carbon black",
+            "reference product": "carbon black",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "db5c07a1efa6159a77caa041027d6e1ee479be30cc405ab6f3f27896f66096a2",
+          "metadata_sha256": "8f1dacc91a271a244916d878e7c658123b32894e7be3e15dab2735acbc1d704c",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "GLO",
+            "name": "Carbon black, at plant",
+            "reference product": "Carbon black, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "daaa769228fd69f533492071959fec935d2e6dde79455c50b0c64f1dec2b0198",
+          "metadata_sha256": "5e63149fdc1ca27190ee4269f18975a12a1dcff7bb47621d62dbc02a09529246",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "GLO",
+            "name": "Carbon black, at plant",
+            "reference product": "Carbon black, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8614a6d2e799b6f5fbbcccdcd7059ef8e1aae8d52d19f7ac9815cffb0f63af28",
+          "metadata_sha256": "e66f7766d134cf04501be8c5d9b3a4853bca340213a86c05085f0a49ae871393",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-f1bc637c4fcf6060",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for water, deionised",
+        "reference product": "water, deionised",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Water, deionised, at plant",
+        "reference product": "Water, deionised, at plant",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for water, deionised",
+            "reference product": "water, deionised",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "645e24beb04b8bf3283b20c1a622acb3874e15de48e8e83ba5ee6bb1fae63602",
+          "metadata_sha256": "88d98b01d5d6bcbff629e93eb9a70fdf5a00191c54a9c8a8ce64fb40ffad4f7b",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+          "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "1d7fe7c87e6806833088deed8891fb9928f2bf7abfcf50c1bd3f3e794f707988",
+          "metadata_sha256": "be7c253619e026023bd1d16979cff690835a02863c07132bdb4ab4f069e33afd",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-8c0c3d9ada2ea3db",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "ethoxylated alcohol (AE7) production, petrochemical",
+        "reference product": "ethoxylated alcohol (AE7)",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+        "reference product": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "ethoxylated alcohol (AE7) production, petrochemical",
+            "reference product": "ethoxylated alcohol (AE7)",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "452b55ca3c3f4ff887d5b800a4f44eb1b80683954449317088039f4f5e119a3f",
+          "metadata_sha256": "e85af8af80e887dedd87507a72a658284afd3e35aec6e68a9c3061278612d0a3",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+            "reference product": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f2256c189be3678693cbe35e5c66edde133b54678497227ca202ce371f3ee4da",
+          "metadata_sha256": "4df567bbdeb83e335e6f04c48c15d3b2c0238ac7df3e1edca746cc72779a884f",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+            "reference product": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "46d6a51eb9adea83e8e2fc7f13f6c16a5b6a53b2de68be9c8c9a9a461b2685db",
+          "metadata_sha256": "ca6c0ef641b28ee0730ccaab8d6fa61089f37e2be7da54e1641c01c445d969f1",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 0
+    },
+    {
+      "rule_id": "bp-15b87e168609b72f",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "CH",
+        "name": "methanol production, biomass gasification",
+        "reference product": "methanol, from biomass",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Methanol, from biomass, at regional storage",
+        "reference product": "Methanol, from biomass, at regional storage",
+        "unit": "kilogram"
+      },
+      "category": "fuel_supply_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect actual biomass-to-methanol route, feedstock, energy/reference basis, allocation and regional-storage delivery boundary.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "CH",
+            "name": "methanol production, biomass gasification",
+            "reference product": "methanol, from biomass",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4357b4739721add4d02ea845414a900c3f1d684b189c4c8e6aee851ad7666790",
+          "metadata_sha256": "d99adf8dfe2d2df91bc594acf3d73015523b1446e1d843a76f062a1851b8fa63",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Methanol, from biomass, at regional storage",
+            "reference product": "Methanol, from biomass, at regional storage",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4c08139b530970f4a6cdc2273d7db049a95939f23b273fcf4f8b621d997f40a5",
+          "metadata_sha256": "1717edc1e9f2c32b235d3f975a74f7145e923a72c93cbf985df26239dd335efc",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Methanol, from biomass, at regional storage",
+            "reference product": "Methanol, from biomass, at regional storage",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "468643fa023b1b82a8a0e68921899890868176c94cfd019d8a801d94c03dcf8d",
+          "metadata_sha256": "ea6eb4e4c22a028dbb630e1a2bde5d62eccfa575d3472c6fa4a67a1aa39ae50f",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 0
+    },
+    {
+      "rule_id": "bp-7380dfd0ac332f4f",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for oil boiler, 10kW",
+        "reference product": "oil boiler, 10kW",
+        "unit": "unit"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Oil boiler 10kW",
+        "reference product": "Oil boiler 10kW",
+        "unit": "unit"
+      },
+      "category": "infrastructure_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect complete capacity, lifetime, material inventory and reference unit; do not infer capacities or exclude infrastructure by name.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for oil boiler, 10kW",
+            "reference product": "oil boiler, 10kW",
+            "unit": "unit"
+          },
+          "inventory_sha256": "7e40d55b26100805c93dd204f39377365d2fd802658a6a4917a1c7ffbc8edaaa",
+          "metadata_sha256": "a7c6597729315694a1112f3815bc522d12046d5f7b138611800eefc8d14e7070",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Oil boiler 10kW",
+            "reference product": "Oil boiler 10kW",
+            "unit": "unit"
+          },
+          "inventory_sha256": "cb3de2244be1ff7026fe9e4e1a7547f9fe2af73c30b878db48ee191a589ec705",
+          "metadata_sha256": "f4e739563da8c150f495d6f770de3436b74fdc072fc47ecd9c1d063021788c7a",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Oil boiler 10kW",
+            "reference product": "Oil boiler 10kW",
+            "unit": "unit"
+          },
+          "inventory_sha256": "2f34e2e592e3be9b6846f091aede61114ea4af26141990a85daae0141b022113",
+          "metadata_sha256": "6360f769344fdbbb0c22b04cd1c95bdd9b2c660d3a74848baadb06628b6c9df4",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-07216020d01485c5",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for oil storage, 3000l",
+        "reference product": "oil storage, 3000l",
+        "unit": "unit"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Oil storage 3000l",
+        "reference product": "Oil storage 3000l",
+        "unit": "unit"
+      },
+      "category": "infrastructure_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect complete capacity, lifetime, material inventory and reference unit; do not infer capacities or exclude infrastructure by name.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for oil storage, 3000l",
+            "reference product": "oil storage, 3000l",
+            "unit": "unit"
+          },
+          "inventory_sha256": "50c65452169b47a05c8b2389f75a1f793f99f40c0f763213b3999563113442b1",
+          "metadata_sha256": "d95bcadd2ab93829af36fd7c69ffac9fbdbf72ec747eb641619b890769538336",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Oil storage 3000l",
+            "reference product": "Oil storage 3000l",
+            "unit": "unit"
+          },
+          "inventory_sha256": "def043aa804b8d0ccf5e500068edc64714d342634afa84c4f7b13990a6197c31",
+          "metadata_sha256": "0f7d21386c7c2dd85376afbe02f6f7bb2f13e73f3bc0f9bbcd3d55f8d7cb9b78",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Oil storage 3000l",
+            "reference product": "Oil storage 3000l",
+            "unit": "unit"
+          },
+          "inventory_sha256": "951457b89ba4bca29e64fe73d2f15e8e59df96b5de45a9e0f9a72ce0868ce5af",
+          "metadata_sha256": "0f110fe254733a8f9c26067dd0419a103dc0db551f89e475139c6a4df3e55aed",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-a73848b70d94bf8a",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for chimney",
+        "reference product": "chimney",
+        "unit": "meter"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Chimney",
+        "reference product": "Chimney",
+        "unit": "meter"
+      },
+      "category": "infrastructure_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect complete capacity, lifetime, material inventory and reference unit; do not infer capacities or exclude infrastructure by name.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for chimney",
+            "reference product": "chimney",
+            "unit": "meter"
+          },
+          "inventory_sha256": "3547fee2ead9a3be5df0c2f54e1171a9ff1697070d143abcafffef02f310fd1a",
+          "metadata_sha256": "dc303877f009729125c1ee5c99c5caa100fad6631e28b2a43671219d1d1eae46",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Chimney",
+            "reference product": "Chimney",
+            "unit": "meter"
+          },
+          "inventory_sha256": "b21d59c25d1595ed5595648848047fb9e0a5dbab943c962881eef25ef3c9eb42",
+          "metadata_sha256": "72149fd3845d38cf82c2780dc14de0fe34d286b7d6a7dfaf76d2fcbba47b885e",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Chimney",
+            "reference product": "Chimney",
+            "unit": "meter"
+          },
+          "inventory_sha256": "bdbd4e6f2295f97149b897330aec01ad2658c50ef98c6ee90030a383335f46b4",
+          "metadata_sha256": "f27d09f37bc96860d03af7a843a8ae8bac5359102f08516b7075693475773361",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-a1c34b995d6289b2",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "market for condensate from light oil boiler",
+        "reference product": "condensate from light oil boiler",
+        "unit": "cubic meter"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+        "reference product": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+        "unit": "cubic meter"
+      },
+      "category": "waste_reference_coordinate",
+      "previously_approved_versions": [],
+      "required_review": "Actual source reference is-1m3 and native+1m3. Inspect treatment scope and inherited factor; preserve the correct reference conversion once, not blindly flip again.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RoW",
+            "name": "market for condensate from light oil boiler",
+            "reference product": "condensate from light oil boiler",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "1fb74bfe3ac3878be5e7560777d7c021e3f65c0e3090cd3cbdeea2e0d7ffafd5",
+          "metadata_sha256": "265685b9d87d8aae4b841167886dee0fa4ca959e85d20496b2569b87d1fe9699",
+          "production_amounts": [
+            -1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+            "reference product": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "12ff2da5e9a36cfc47fd86c73512918584e9c3c617c0329add522bbc00368bd7",
+          "metadata_sha256": "b78d9b86cfb15901c545738eeb739ba219553791eddd39dfe8dadd759260a8b1",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+            "reference product": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "03b2c1b1120583b34199b8dcd1e794d3ac46508b0558a24b4ed054a219936057",
+          "metadata_sha256": "8fc73daa5089ca49903da087f0b4bfabd16b7a51282e0a1117cd363024b9147e",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-e0c46eb6a6d0891b",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for hazardous waste, for incineration",
+        "reference product": "hazardous waste, for incineration",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "recipe_ref": "pilot-hazardous-paint-746492ada2404a1fffc6"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for hazardous waste, for incineration",
+            "reference product": "hazardous waste, for incineration",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "3a8aa6dbc3fb1457786be48db9b94923ddfe23c0c896b579cb4bc15556ff3d21",
+          "metadata_sha256": "7e76706b3a6c03f2d7bc6fd6356832d548481642359f2c33e7943c660b6aa3c4",
+          "production_amounts": [
+            -1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-9f7197c47047750a",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for heat, from steam, in chemical industry",
+        "reference product": "heat, from steam, in chemical industry",
+        "unit": "megajoule"
+      },
+      "target_candidate": {
+        "recipe_ref": "chemical-heat-water-1ced12d9ab9a80752fd2"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.8",
+        "3.9"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "market for heat, from steam, in chemical industry",
+            "reference product": "heat, from steam, in chemical industry",
+            "unit": "megajoule"
+          },
+          "inventory_sha256": "49533c675cc695bf3860c9c56e1de169b06346b43a0859f5e09c16b7b157bae8",
+          "metadata_sha256": "b2eb2eba971148cef1f42d842cfc29b370c377668ba2991487615de06829298f",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-3f19534eb7d97f64",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "ENTSO-E",
+        "name": "market group for electricity, low voltage",
+        "reference product": "electricity, low voltage",
+        "unit": "kilowatt hour"
+      },
+      "target_candidate": {
+        "location": "ENTSO-E",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.6"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "ENTSO-E",
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "1f51945065e3558e5869435c6eddea32f815756c067d757ad1612d1f824b2dc9",
+          "metadata_sha256": "f8f8d1b6243e08a3ef8fb2b7e209fb7c728ad9c79256cd13fadbe83ca4354acf",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "ENTSO-E",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "00aa2056d7170cb5b9dd46cb520804be911e8d7208eb7bc9ce0e4d00d15dec98",
+          "metadata_sha256": "85244ed9a1f747332e9e0e3333ff662ef9f352b60555332d262d808048248dbe",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "ENTSO-E",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "930ad58089c1e4ae1362e21fffdd7d4f1fbb90d2e2c698d72905ebd07ef7e2ca",
+          "metadata_sha256": "7e4bd3b41951a5ff9d0ae7ef874acbde8cab761b159b9e477adf9f78fb05c349",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 12
+    },
+    {
+      "rule_id": "bp-fa8c66186468f780",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "chemical factory construction, organics",
+        "reference product": "chemical factory, organics",
+        "unit": "unit"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Chemical plant, organics",
+        "reference product": "Chemical plant, organics",
+        "unit": "unit"
+      },
+      "category": "infrastructure_boundary",
+      "previously_approved_versions": [],
+      "required_review": "Inspect complete capacity, lifetime, material inventory and reference unit; do not infer capacities or exclude infrastructure by name.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "chemical factory construction, organics",
+            "reference product": "chemical factory, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "f808a0a5e2a32a6ae7f112ddab82b6ccc3651316c17baf5b4fa8aae211404a8f",
+          "metadata_sha256": "f6daad03d6eebd4b7a45305c0a1f607a963305b423ceaa1c95c46a7d97ebe8e5",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Chemical plant, organics",
+            "reference product": "Chemical plant, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "a3fb03d807728075a8272837a874f366990d35aef384d3030dd50dafc004266e",
+          "metadata_sha256": "37c3203255909050a9d0e8723887bcf18a0a09348c07c392fc305c369240a7c6",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Chemical plant, organics",
+            "reference product": "Chemical plant, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "51279bb8c3f63cae7189fcfbbefbd147f87e70db629bfbda44c451c280a03c8a",
+          "metadata_sha256": "f7c1e9fd56fba7a2bc076a14097ed4dc5c745d246f7e7f64d710111412bbaad8",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 0
+    },
+    {
+      "rule_id": "bp-a3a951644bd5ed9c",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Transport, freight, rail",
+        "reference product": "Transport, freight, rail",
+        "unit": "ton kilometer"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.6"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "7a1f977bd75cf73a4b67450bd5decaf58f76d0ee014e25b30657a863e9415700",
+          "metadata_sha256": "b259b5b1c2e649826943f8f9170c708ae63a10e1a3dcf3d66806c301bcf40345",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+          "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+          "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-af6afa89d820eabb",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry >32 metric ton, EURO4",
+        "reference product": "transport, freight, lorry >32 metric ton, EURO4",
+        "unit": "ton kilometer"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Transport, freight, lorry, fleet average",
+        "reference product": "Transport, freight, lorry, fleet average",
+        "unit": "ton kilometer"
+      },
+      "category": "fleet_technology_proxy",
+      "previously_approved_versions": [],
+      "required_review": "Inspect complete sourceEURO4lorry versus native fleet class; retain original signed ton-km with explicit fleet/technology warnings only after review.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "market for transport, freight, lorry >32 metric ton, EURO4",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO4",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "73f7fbc7cce7171e76e62bcfbd8bff6c7a400616976425ceba6361c9c8b4d9f6",
+          "metadata_sha256": "e930a67e7e95e4bb327844f9f001391e0a99a644f4c2e7206e06db8b40ef751b",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "0dcfbc7b3fad9bfa100696eda53f9c9fa6a7b004c05152938b41641339b51a65",
+          "metadata_sha256": "7da5249d00f42244612354a7970c6d47eef823d021de982935db8dd22b0f84b2",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "138a32d3fb62916f5921b4bd8cb583573d60be34aaaea2b925dd57c051eed258",
+          "metadata_sha256": "c078a9629ca5ad279a1457a9b4b49cd84f6ad2bf897a87d4fdd9132d84256839",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-89a9e0030212f423",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "CH",
+        "name": "treatment of hazardous waste, hazardous waste incineration",
+        "reference product": "hazardous waste, for incineration",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+        "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.6"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "CH",
+            "name": "treatment of hazardous waste, hazardous waste incineration",
+            "reference product": "hazardous waste, for incineration",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d513e955433a6004c6220e68a3cd2b4449bc56dc1269f1bb180f446662b2af38",
+          "metadata_sha256": "d9f3716be008a0b2cdebeb0bdb943c2ae189dbeed7a50ff3a9a75add466210a3",
+          "production_amounts": [
+            -1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+            "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "922dfd4770ecc72fba41e4782de0657e48f3a3103175254d36290f2df1a9dfe5",
+          "metadata_sha256": "c1ac950e93ef5993de72f0eeaad38d9747bae9190d4cda43ede02522ac623bf2",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+            "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a009e7bc82f287c0f30fd96784c264fa26e68cb88036cd47606d5793cfa27546",
+          "metadata_sha256": "4d023f8dfce471b011305a89ce6876adacbb5573e38371dbeac7788a13a318d3",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 0
+    },
+    {
+      "rule_id": "bp-8f861372e8eb370e",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for tetrafluoroethylene film, on glass",
+        "reference product": "tetrafluoroethylene film, on glass",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Tetrafluoroethylene film, on glass",
+        "reference product": "Tetrafluoroethylene film, on glass",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for tetrafluoroethylene film, on glass",
+            "reference product": "tetrafluoroethylene film, on glass",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ec78e128cd478ce0b77000c4ead1e8077d62413aecc3f63a0bde182ceb12efff",
+          "metadata_sha256": "819b509220ed85c2b718969770f4e9a4cf97dad373032527ba65cfae61db4438",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Tetrafluoroethylene film, on glass",
+            "reference product": "Tetrafluoroethylene film, on glass",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "915a115848cd51b1118af26c3aa8b42b04feea044d6da2f22c4e75c67bafde7e",
+          "metadata_sha256": "860d108534ae42327ca119c97610ec289875f26bff73397cceeaac1c767d6a8e",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Tetrafluoroethylene film, on glass",
+            "reference product": "Tetrafluoroethylene film, on glass",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "83293432de078de507c658613f199ac9cb073e635fa2d01f9f258b17ce39e50a",
+          "metadata_sha256": "3bd89ad77a8b399c75131b783c7ab9d0cac86db2344681aa12d16d3638f05a14",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-e1c5c137f358792d",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for acrylonitrile-butadiene-styrene copolymer",
+        "reference product": "acrylonitrile-butadiene-styrene copolymer",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+        "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+        "unit": "kilogram"
+      },
+      "category": "exact_profile_extension",
+      "previously_approved_versions": [
+        "3.12"
+      ],
+      "required_review": "Earlier approvals exist, but require independent source3.10inventory and any helper/profile selection review; do not copy fingerprints or silently broaden scope.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for acrylonitrile-butadiene-styrene copolymer",
+            "reference product": "acrylonitrile-butadiene-styrene copolymer",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7a281a9ff859e3280e84a1836db2689a35d34147a43dd3900aa113b76bfeceb1",
+          "metadata_sha256": "bf7506f9eb02c5b8a28f81cd2f92c51aa6b879404ca4f06653df32c933ea95fa",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+            "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "568f28b1cc79248f76eaf9aaed13302e524740ec230ae32579bf97a1083d4f46",
+          "metadata_sha256": "08a2f3cf7ee2dd6a8a94dc61790161b2f4c5d3f38015cb1898b8b65fa1942110",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+            "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a208c2610d35b021bfa2b8251704865a80e028828af9b18a4a40cf38565001e0",
+          "metadata_sha256": "f8d1fe4d0fa5d65ae274421796df7bbe33c0a42ea6bcd28dcb00ae135890a266",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-1e230d3b1905d774",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for styrene-acrylonitrile copolymer",
+        "reference product": "styrene-acrylonitrile copolymer",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Styrene-acrylonitrile copolymer, SAN, at plant",
+        "reference product": "Styrene-acrylonitrile copolymer, SAN, at plant",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for styrene-acrylonitrile copolymer",
+            "reference product": "styrene-acrylonitrile copolymer",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ea90c80340291fa85fe6ca8c42631053c78cb6c6ce347d2711568155bbb3bd7b",
+          "metadata_sha256": "90bd4e6de0dc7b3ca93e8d7891a241b13fb80d68c74e108793471894425eba53",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Styrene-acrylonitrile copolymer, SAN, at plant",
+            "reference product": "Styrene-acrylonitrile copolymer, SAN, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "bfc2f2583af00178eb6c48d7a2a52cd4cfbfca9d2da5492c46669e7c37a17e01",
+          "metadata_sha256": "0ed309b0a9c46752c09bb996ca0600f77eb897e785e951276f95a5196a3207ef",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Styrene-acrylonitrile copolymer, SAN, at plant",
+            "reference product": "Styrene-acrylonitrile copolymer, SAN, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9f033a50b2de649e1301df3d865d5f85cbe7a0e0cf4b0ca1d2a37cecf8dacee3",
+          "metadata_sha256": "94394b81bdc86757d989dd558d2f6cbacc51cc75a5d153198706cefaa34b5e2e",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-6e77604ebec532a8",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "market for ethylene vinyl acetate copolymer",
+        "reference product": "ethylene vinyl acetate copolymer",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Ethylene vinyl acetate copolymer, at plant",
+        "reference product": "Ethylene vinyl acetate copolymer, at plant",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RoW",
+            "name": "market for ethylene vinyl acetate copolymer",
+            "reference product": "ethylene vinyl acetate copolymer",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "439eca6845715eef5518fe1d52fe6ac482ad12b3fb5e43c69e2e42ccf53abb72",
+          "metadata_sha256": "15693d64c406ee97252f9c25239a02a67097b1d41917e1d94b8b1c2dd61e8108",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Ethylene vinyl acetate copolymer, at plant",
+            "reference product": "Ethylene vinyl acetate copolymer, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "b1f3f60964f4f1db8d8eb247b49200f12774b381537a97ebe43ca500be845a47",
+          "metadata_sha256": "7da0e23193a0efb4c11a821a804dd5e0ee5ecc41247943c51b0851cf82d46d4e",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Ethylene vinyl acetate copolymer, at plant",
+            "reference product": "Ethylene vinyl acetate copolymer, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "36b7cdf8e83400642d8408e48ce481457dfb4d0e4d0e64a6563a004f6e8b936d",
+          "metadata_sha256": "8c407db8631d016d6b845f05d5362fd13502033dbcc414a7c53c1a9e1e631089",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-15461c2576a89b0d",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for [sulfonyl]urea-compound",
+        "reference product": "[sulfonyl]urea-compound",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "[sulfonyl]urea-compounds, at regional storehouse",
+        "reference product": "[sulfonyl]urea-compounds, at regional storehouse",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for [sulfonyl]urea-compound",
+            "reference product": "[sulfonyl]urea-compound",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7aabdad8fc62cbf22419c859fe3ca5e0acb54fc948baf8c3f9656cd675f01f30",
+          "metadata_sha256": "7bc32534e8bb6b6b1382e79d25bfa7d0f81f3b5fef0cd11d4cc39c7a1268d9b5",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "[sulfonyl]urea-compounds, at regional storehouse",
+            "reference product": "[sulfonyl]urea-compounds, at regional storehouse",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "5f83bb78683290dd6c19bd96d218c4e45d4fa84cf7e8e1f6c0cf4276b9452c09",
+          "metadata_sha256": "14cb113c882c4631675eeb0b32cb8e80288889a2b091a7f55cdfd25bc8864883",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "[sulfonyl]urea-compounds, at regional storehouse",
+            "reference product": "[sulfonyl]urea-compounds, at regional storehouse",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "5a420d210e09893c2df6667874380a393da73cfe46ccd63fae212a05d8a08bb7",
+          "metadata_sha256": "8d1d764d07e3e709f7585f597486d2380ea496c844cf95b8fd9743950efe8f9c",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 2
+    },
+    {
+      "rule_id": "bp-f6a0fab057c2d5d9",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "thermoforming, with calendering",
+        "reference product": "thermoforming, with calendering",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Thermoforming, with calendering",
+        "reference product": "Thermoforming, with calendering",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "thermoforming, with calendering",
+            "reference product": "thermoforming, with calendering",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "79a1f6ec86a7a0c01a52e2df1e8b3a1b2c499126e563db63f2a476de72d8a2ef",
+          "metadata_sha256": "3c64e0664804c2000133a5bf2e1d2dc26e15a0ee7920431dfee898981aa8afb0",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Thermoforming, with calendering",
+            "reference product": "Thermoforming, with calendering",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "fca51d22097c044d0a9730488a4d405619e134d231fb9149886110fb40343602",
+          "metadata_sha256": "f8614214b5f3203a4c451efb4e0a0cb5ec3e655062672bd891166ac290c13cc6",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Thermoforming, with calendering",
+            "reference product": "Thermoforming, with calendering",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "310cd5bd855854f6579259bec2af03b91a9e912ed9cb312420988f2c8e0cbc24",
+          "metadata_sha256": "2ad6e870dc5f491e97a9c1154f35e964b88ec185745b9abd0306887088d1c764",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 0
+    },
+    {
+      "rule_id": "bp-495f5d0604658b3c",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for ammonia, anhydrous, liquid",
+        "reference product": "ammonia, anhydrous, liquid",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Ammonia, liquid, at regional storehouse",
+        "reference product": "Ammonia, liquid, at regional storehouse",
+        "unit": "kilogram"
+      },
+      "category": "initial_product_or_manufacturing_review",
+      "previously_approved_versions": [],
+      "required_review": "Inspect exact process, grade, reference basis, allocation and delivery before accepting a complete functional proxy.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "732cc43e0f4e3a50b443b5d212e9c017fb3927dcf20cd2a9a1b8ccd08675d5b4",
+          "metadata_sha256": "5a5433f92d04cfb716443321668399c349559560b7f19642b935b0180616db6e",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Ammonia, liquid, at regional storehouse",
+            "reference product": "Ammonia, liquid, at regional storehouse",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "fe9701ac984b524d76456eb20cfaec7988e60d7da657e54489722ddfaa1d0645",
+          "metadata_sha256": "d2942a2a4d9d4668e0609bbccd422b0aeb0d0dfe5739479ea4c20e0f500aa19d",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Ammonia, liquid, at regional storehouse",
+            "reference product": "Ammonia, liquid, at regional storehouse",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e5240c022f5dcff23ad8671c77812695ce6ac94dc668908851ea68a25e35045e",
+          "metadata_sha256": "b76a7b69224da0be67cf1744145daeb146bf2cfff626e8b07e1e40f4260b3e14",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 3
+    },
+    {
+      "rule_id": "bp-112e275f32033672",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for potassium chloride",
+        "reference product": "potassium chloride",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Potassium chloride, as K2O, at regional storehouse",
+        "reference product": "Potassium chloride, as K2O, at regional storehouse",
+        "unit": "kilogram"
+      },
+      "category": "reference_basis",
+      "previously_approved_versions": [],
+      "required_review": "Actual source is potassium chloride mass; candidate is expressed as K2O. Inspect actual native composition/reference basis or select a chemical-grade counterpart; no assumed fertiliser multiplier.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "market for potassium chloride",
+            "reference product": "potassium chloride",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e7f83d55b724f98c7d9d49706dced8e2eba840f48c2b3a5e6aea39f6468af488",
+          "metadata_sha256": "b24238f72e4d9281a0b81267e1281b389d06c0494007315f782c603aa64dbe09",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Potassium chloride, as K2O, at regional storehouse",
+            "reference product": "Potassium chloride, as K2O, at regional storehouse",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9c0edde5e02007e9c8f6c782c65746124329c1f99a8c2c42db596a245827d04d",
+          "metadata_sha256": "88a4508d93acbd4784923608140edf667631258ecea268f834bb8fafc001cb13",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Potassium chloride, as K2O, at regional storehouse",
+            "reference product": "Potassium chloride, as K2O, at regional storehouse",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "336461333f974eb10ba7fa7e48eb39a805d7084ba8113f2743350104a353bf73",
+          "metadata_sha256": "3bb29f8f8e736cca93ca1cd9fdc651f2815a517544144119cdcbb2b5b4150a4d",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 1
+    },
+    {
+      "rule_id": "bp-2a1ae0fa7f1d5caa",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "sodium production, sodium chloride electrolysis, molten salt cell",
+        "reference product": "sodium",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Sodium chloride, powder, at plant",
+        "reference product": "Sodium chloride, powder, at plant",
+        "unit": "kilogram"
+      },
+      "category": "wrong_material_candidate",
+      "previously_approved_versions": [],
+      "required_review": "Actual source is sodium metal; the inherited sodium-chloride candidate is chemically different and must be rejected.",
+      "primary_witnesses": {
+        "3.10": {
+          "identity": {
+            "location": "RER",
+            "name": "sodium production, sodium chloride electrolysis, molten salt cell",
+            "reference product": "sodium",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e79d42b47d2d420e5d0887e1ae0a01322933f9f184e868dd28e7b6b5eae8f4a2",
+          "metadata_sha256": "ce99a989154fa0e07f4eea81cf298d3040ac8d66f591451717571c9a402028e3",
+          "production_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Sodium chloride, powder, at plant",
+            "reference product": "Sodium chloride, powder, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "61dea0c85c784c619ccc9c0c00e15a10cdb7c67640415cfdc2dfb193e1e862d9",
+          "metadata_sha256": "15a8d258f1b40f9b24e4f056256a51c6d325734260ed0e33c5d0cb950f19d022",
+          "production_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Sodium chloride, powder, at plant",
+            "reference product": "Sodium chloride, powder, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0b290d12e0704d32565cd4ea9717cf837ee53892e60d9e3646218bd89a024740",
+          "metadata_sha256": "96d2ccac1c8037375eff48290d90e119ba4db712962aed3a7c1edf0d6c9bda0b",
+          "production_amounts": [
+            1.0
+          ]
+        }
+      },
+      "source_producer_witness_count": 0
+    }
+  ],
+  "later_cohorts": "unproven"
+}

@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "native_stages_verified_thirteen_supplemental_cases_qualified_compressed_air_pending_in_observed_cohort",
+      "status": "initial14mapping_cases_qualified_later38case3_10cohort_under_review_public_heat_gate_closed",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -828,6 +828,11 @@
           "decision": "Five exact3.9cutoff qualifications cover vehicle-grade gas, SCR, liquid nitrogen, chemical heat and liquid epoxy.455prior fingerprints unchanged; one epoxy structural migration preserves the previous3.12effective rule and recipe closures. Compressed air remains unapproved; later cohorts unproven. Public heat gate remains closed.",
           "review": "brightpath/data/export/uvek_heat_profile_extension_review.json",
           "authorization": "Standing autonomous modelling approval; retain exact profiles and all earlier effective decisions."
+        },
+        {
+          "decision": "Qualify exact3.9cutoff delivered-air market through complete native average/optimised supply-network services in original50/50shares. Preserve native1.5/1.05generation draws and literalxxlabel with warnings; no guessed physical-condition conversion.",
+          "review": "brightpath/data/export/uvek_heat_compressed_air_review.json",
+          "authorization": "Standing autonomous approval of coming modelling decisions and complete functional screening proxies, with evidence and warnings retained for later review."
         }
       ],
       "implementation_commits": [
@@ -913,12 +918,14 @@
         "resolution_roots": 12,
         "foreground_records": 76,
         "original55pins_unchanged": true,
-        "observed_pending3_9cases": 1,
+        "observed_pending3_9cases": 0,
         "review": "docs/development/uvek-heat-mapping-frontier.json",
         "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases",
         "initial_observed_pending3_9cases": 14,
-        "qualified3_9cases": 13,
-        "verification": "docs/development/uvek-heat-profile-batch-verification.json"
+        "qualified3_9cases": 14,
+        "verification": "docs/development/uvek-heat-compressed-air-verification.json",
+        "observed_pending3_10cases": 38,
+        "next_cohort_review": "docs/development/uvek-heat-310-mapping-frontier.json"
       }
     },
     {

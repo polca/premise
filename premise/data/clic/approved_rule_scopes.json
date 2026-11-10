@@ -121187,6 +121187,153 @@
           "fingerprint": "f15b108550cc9eaed5ad2d99a4b929a370a55310f1423b4f5c5ca18ac643bffe"
         }
       ]
+    },
+    {
+      "rule_id": "bp-9e802861048fdfa7",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_compressed_air_network_mix",
+      "review_path": "export/uvek_heat_compressed_air_review.json",
+      "review_sha256": "7e2cec0f4d0d05085f06017b0ace05fb8d86de45b23273005fc9d57717ccbe1b",
+      "authorization": "Standing autonomous approval of coming modelling decisions and complete functional screening proxies, with evidence and warnings retained for later review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for compressed air, 1000 kPa gauge",
+          "reference product": "compressed air, 1000 kPa gauge",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "39cfada1bf2db9dca90064be249de448af2fab6455c00014af206f1c57777dae",
+        "source_metadata_sha256": "55c2ff615c9526414dd448c3b2f1b5c67d1eddcd137d02a15c51263f5a05f5ac",
+        "roles": [
+          {
+            "role": "average",
+            "source_producer": {
+              "identity": {
+                "name": "compressed air production, 1000 kPa gauge, <30kW, average generation",
+                "reference product": "compressed air, 1000 kPa gauge",
+                "location": "RER",
+                "unit": "cubic meter"
+              },
+              "metadata_sha256": "ac37bab3dcb5a552f73d1724c2119e9581d55da9415af7e4ba2dc92f794a73db",
+              "inventory_sha256": "a1e8added9cecf8d17a03b3ad29920925155264ef2519d1d0c356025eaa9d023"
+            },
+            "source_market_share": 0.5,
+            "target": {
+              "name": "xx Compressed air, average installation, <30kW, 10 bar gauge, at supply network",
+              "reference product": "xx Compressed air, average installation, <30kW, 10 bar gauge, at supply network",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "native_references": {
+              "2025": {
+                "reference_amount": 1,
+                "identity": {
+                  "name": "xx Compressed air, average installation, <30kW, 10 bar gauge, at supply network",
+                  "reference product": "xx Compressed air, average installation, <30kW, 10 bar gauge, at supply network",
+                  "location": "RER",
+                  "unit": "cubic meter"
+                },
+                "metadata_sha256": "c34c4b62ef2b9a846abf4404737448f58767fa9711bcfed304ab166f8e8e492c",
+                "inventory_sha256": "845e4b612e75b3bc1a38bcd4179c0b2f0f449ac276391b97ffa93763ace7a200"
+              },
+              "2026": {
+                "reference_amount": 1,
+                "identity": {
+                  "name": "xx Compressed air, average installation, <30kW, 10 bar gauge, at supply network",
+                  "reference product": "xx Compressed air, average installation, <30kW, 10 bar gauge, at supply network",
+                  "location": "RER",
+                  "unit": "cubic meter"
+                },
+                "metadata_sha256": "bf2fd2e825e059b540a5008ec85f66098e4fff6782ca7b09f0bdb8cd24edeb9a",
+                "inventory_sha256": "c696a4ef0ad60bdea04109adc3bc12453707411ca7df0948837633770f5f2a5f"
+              }
+            },
+            "original_xml": {
+              "member": "ecoSpold files/process_8d56b89d-8281-351b-9536-1972434a6d1d.xml",
+              "sha256": "0c9286e9cf6a79d0d69f7d5154094eb0c410b02d2e13aaaa22444385e3cf3e18"
+            }
+          },
+          {
+            "role": "optimised",
+            "source_producer": {
+              "identity": {
+                "name": "compressed air production, 1000 kPa gauge, <30kW, optimised generation",
+                "reference product": "compressed air, 1000 kPa gauge",
+                "location": "RER",
+                "unit": "cubic meter"
+              },
+              "metadata_sha256": "57ea3ff996307a15fafc9d0b2ad1f868dbd2fb1d24640e888327c1dc1b1fbd7d",
+              "inventory_sha256": "dd759958e1cd51e6cf49b13da684823a89e1dc2635196123f4e3fa01c8b9d648"
+            },
+            "source_market_share": 0.5,
+            "target": {
+              "name": "Compressed air, optimised installation, <30kW, 10 bar gauge, at supply network",
+              "reference product": "Compressed air, optimised installation, <30kW, 10 bar gauge, at supply network",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "native_references": {
+              "2025": {
+                "reference_amount": 1,
+                "identity": {
+                  "name": "Compressed air, optimised installation, <30kW, 10 bar gauge, at supply network",
+                  "reference product": "Compressed air, optimised installation, <30kW, 10 bar gauge, at supply network",
+                  "location": "RER",
+                  "unit": "cubic meter"
+                },
+                "metadata_sha256": "5b0c5c6ed130635a1b7ad7ea445ace8f358b9f0ec0738693a3b65943e64721c9",
+                "inventory_sha256": "9bf210d65aaecf7cb6d144694e160c5d517006ec4a0190150be92adf38b6c327"
+              },
+              "2026": {
+                "reference_amount": 1,
+                "identity": {
+                  "name": "Compressed air, optimised installation, <30kW, 10 bar gauge, at supply network",
+                  "reference product": "Compressed air, optimised installation, <30kW, 10 bar gauge, at supply network",
+                  "location": "RER",
+                  "unit": "cubic meter"
+                },
+                "metadata_sha256": "91d986427ee712c94178faf22995c9186b1f8fac8af34104f89f50c819632f2e",
+                "inventory_sha256": "bad8222e41c180e6b4ea7ae7365361d1bfa3dd7e487b6878202074f424e42d6a"
+              }
+            },
+            "original_xml": {
+              "member": "ecoSpold files/process_3395239b-79fd-3fd6-86ae-60bb963638f5.xml",
+              "sha256": "dd82fe2c89999d35db250bfb3483b13a149fcc9fb520628bff0d404d14758bda"
+            }
+          }
+        ],
+        "recipe_ref": "heat-air-network-market-53a3733f6c2f29d85f83"
+      },
+      "limitations": [
+        "Use two complete native RER10bar-gauge<30kW supply-network services in the source market's literal50/50average/optimised shares. Both native services include compressor generation, operating materials, infrastructure delivery and distribution piping/losses; the earlier compressor-only candidate lacks that delivered-service boundary. No market freight or extra generation burden is added.",
+        "Per signed declared m3 the caller factor is+1. Actual source and native references are+1m3;1000kPa gauge equals10bar gauge. Both inventory lineages cite Steiner/Frischknecht report23. Its chapter10tables use normalised-volume inputs and distinguish generation from consumer supply. This supports a common lineage-based volumetric screening basis, not proof of exact temperature/pressure-reference equivalence; those conditions are not individually stated in the installed metadata. No ideal-gas, pressure, density, Nm3 relabelling or energy-normalisation factor is invented.",
+        "Preserve complete native inventories without repairing their internal loss model. Native average/optimised networks draw1.5/1.05units of generation per output; the inspected source producers have different operational and compressor coefficients, including their distribution model. Generation, loss, piping-material supply, delivery, electricity sourcing, compressor service-life, internal uncertainty and vintage therefore differ. This is a functional screening proxy, not a source-inventory reconstruction or an LCIA-equivalence claim.",
+        "The average native service retains its literal xx-prefixed name in the original archive and both exact release catalogs. The original XML describes an ordinary product dataset with network/leakage scope and a+1m3reference; it provides no explicit meaning for that prefix. Do not remove the prefix or claim it certifies dataset quality. Its unexplained marking and native model quality remain an explicit screening limitation.",
+        "Preserve caller signed quantities, formulas, supported uncertainty, separate flows and foreground ownership. Source internal uncertainty is replaced by native supplier uncertainty; no caller quantity renormalisation, added recovery credit, or silent omission is introduced. Native biosphere exclusions remain visible. Score effects are unquantified. Only exact inspected ecoinvent3.9cutoff is qualified; other releases, reverse and cross-system-model requests cannot inherit this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a5fc6b6f1c0ac72f2c62f06c3484c71d505dfdc35ec16f5aba593822530e6412"
+        }
+      ]
     }
   ]
 }
