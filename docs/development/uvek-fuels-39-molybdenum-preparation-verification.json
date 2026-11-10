@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-10",
+  "status": "licensed preparation accepts finished-oxide mapping; other fuel correspondences still block preparation",
+  "brightpath_commit": "3019e58b127cfc400e264410757ef3baeba6ec2e",
+  "review_sha256": "e4b99b5f90d4e0fda9f4ac81a542a760fa202763009fa43b1ecd87f02b9faf63",
+  "resource_sha256": "49953983ad61cff074fedcf90a5d9d9ea04a0afd3be43c266024febbf1bf0047",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_rules": [
+    "bp-ae3a127d0bb53da7",
+    "bp-da6fa8e08abc0952",
+    "bp-54fa038eaae8ff64"
+  ],
+  "new_helpers": 3,
+  "existing_approval_operations_unchanged": true,
+  "tests": {
+    "brightpath_molybdenum_and_silica": {
+      "passed": 58,
+      "seconds": 23.4
+    },
+    "full_frozen_resource_replay_and_historical_stage": {
+      "passed": 2,
+      "deselected": 731,
+      "seconds": 58.55
+    },
+    "premise_exact_scopes_fresh_and_cached_full_closure": {
+      "passed": 1,
+      "seconds": 16.46
+    }
+  },
+  "full_generator_byte_identical": true,
+  "wheel_contains_exact_review_resource_and_manifest": true,
+  "black_and_ruff_changed_replay_and_tests": "pass",
+  "runtime_python_changes": [],
+  "native_matrix": {
+    "date": "2026-11-10",
+    "recipe": "fuels-39-molybdenum-c0933806590a03077e7b",
+    "demand": 1,
+    "unit": "kilogram",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "native_leaf_demands": 8,
+    "direct_biosphere_identities": 1,
+    "expanded_recipe_identities": 3,
+    "native_inventory_finite": true,
+    "native_supply_finite": true,
+    "combined_inventory_finite": true,
+    "combined_inventory_identities": 1684,
+    "all_direct_biosphere_identities_match_installed_310": true,
+    "database_written": false,
+    "scope": "Linear expansion of the reviewed helper and all frozen children against the actual native BAFU matrix plus direct biosphere terms; not a prospective fuel update or export."
+  },
+  "limitations": [
+    "Stock-mass concentrate proxy: matching purity and contained-Mo basis not established.",
+    "Complete global native primary/co-product mining preserves source shares but changes geography, technology, allocation and vintage.",
+    "District heat and transport are explicit screening proxies.",
+    "Original rough roasting estimate retained without inventing sulfur-balance or recovery corrections.",
+    "Fuel transformation and export remain unqualified; the public fuel guard remains closed."
+  ],
+  "installed_commit_verified": "3019e58b127cfc400e264410757ef3baeba6ec2e",
+  "validated_approval_scopes": 582,
+  "verification_log_sha256": {
+    "fuels-39-molybdenum-tests.log": "7010233dde3e47ffbfe451058347277e0635563f490561792266ba1525f61f4e",
+    "fuels-39-molybdenum-full-replay-tests.log": "eea182d0a88dd61faa548628c57615ead4a9934a7d4cf04f0ec23d0eec92052b",
+    "fuels-39-molybdenum-premise-tests.log": "521fd0a3b3ff804c89ba3cb85bd94d63b2f776995207b6502290727fd698be5a",
+    "fuels-39-molybdenum-native-lci.log": "de6671b1733e03100e54b67f5bea3d8e413ae91da077b7d6f2047dbde95196f1",
+    "fuels-39-molybdenum-replay.log": "1fc07438000ff2e9a64f4348d6995b96ed01bec3edfaf76e24f9eb265247c7f3",
+    "fuels-39-molybdenum-wheel.log": "bc54afcc5f2bb0325ec63f5adfc691352a11f6b30f96bafdda3994b5ed317722",
+    "fuels-39-molybdenum-probe.log": "c9772ff55d5c59b68b2996f72f28f89afce0015c68cb19f2dbf11a629ff2d1eb"
+  },
+  "obsolete_generated_artifacts_removed_bytes": 122392317,
+  "licensed_preparation": {
+    "audit_file": "6b57637b34b8b7821292215f868e6fd2b02763885527f831baf5eeed73586bb1.audit.json.gz",
+    "audit_sha256": "3b537002ad860c2f8f19181e405d3019859b0de92e91830f795097928c94fb41",
+    "counts": {
+      "migration.unit_changes_require_factors": 1,
+      "migration.canonical_biosphere_identity": 2,
+      "migration.catalog_correspondence": 1,
+      "migration.scoped_compatibility_review": 2,
+      "migration.unapproved_correspondence": 29,
+      "migration.approved_correspondence": 99,
+      "clic.compatibility_proxy_limitations": 99
+    },
+    "accepted_current_cohort_rule": "bp-54fa038eaae8ff64",
+    "previous_unapproved_count": 30,
+    "remaining_unapproved_count": 29,
+    "nested_mineral_and_production_scopes": "verified separately by strict fresh/cached conversion; not separate current-cohort requests",
+    "source_activities_after": 11947,
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "prospective_fuel_update_run": false,
+    "database_exported": false
+  }
+}

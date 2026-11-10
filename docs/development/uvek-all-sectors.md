@@ -816,3 +816,52 @@ This is a reviewed implementation decision, not an accepted mapping, lower
 unresolved-case count or successful fuel-sector run. Next implement the exact
 ash closure alongside granular-carbon production/reactivation; independently
 reconstruct MoO3 roasting with its source molybdenite supply portfolio.
+
+### Finished molybdenum oxide: licensed fuel preparation advances to 29 cases
+
+Brightpath `3019e58` replaces the incorrect oxide-to-concentrate correspondences
+with three complete helper stages: source mineral market, roasting and delivered
+oxide market. Seven mineral producer rows retain the source primary/co-product
+shares, including 17.8813867% primary mining, rather than adopting the older
+native market split. Complete native main-product and copper co-production
+concentrates are explicit stock-mass screening proxies. Their purity and a
+contained-metal conversion are not established; no speculative Mo-content
+multiplier is introduced. All eight original freight rows across the two
+supply-chain stages remain separate.
+
+Roasting retains 1.112 kg mineral supply, 1.665232 MJ natural-gas heat,
+1.333e-11 blast-furnace capital units and 0.0623 kg direct sulfur dioxide per
+kg oxide. Native district heat has explicit utility-boundary/geographic
+limitations. The source is a rough estimate: no new theoretical sulfur balance,
+acid recovery, metal refining, extra fuel or omitted source-process correction
+is invented. Caller quantities, uncertainty and formulas survive.
+
+Three exact 3.9 cut-off scopes give **582 validated scopes**; every earlier
+approval operation remains unchanged. Other versions and consequential remain
+unapproved. No runtime Python modules change. Frozen review data, a maintainer
+replay, mapping resources, tests and installation/documentation pins accompany
+the change. Brightpath and the regular conda environment use the pushed Git
+revision; the colleague notebook remains unchanged.
+
+The new/adjacent Brightpath tests pass 58 checks, and two full frozen-resource /
+historical-stage replay checks pass. Complete generation is byte-identical,
+canonical biosphere unchanged, and wheel data match the review/resource/manifest.
+Premise's full helper fresh/cache check passes, validating all closed scopes and
+per-field quantity/uncertainty/formula retention. Black/Ruff pass for changed
+replay/tests. Native-matrix expansion includes three helpers, eight native leaf
+demands and one direct biosphere term; supply and combined LCI are finite.
+
+Actual licensed preparation accepts the finished-oxide rule, reducing the
+current cohort from **30 to 29** unapproved correspondences. The two nested
+production/mineral rules are verified separately in strict migration and cached
+preparation; they are not additional current-cohort requests. Other mappings
+still stop preparation: no prospective fuel update or export is qualified.
+The source remains at 11,947 activities and its unchanged September timestamp.
+Removed 116.7 MiB of verified obsolete generated wheel/replay files, retaining
+receipts, active caches and primary evidence. See the
+[molybdenum preparation receipt](uvek-fuels-39-molybdenum-preparation-verification.json).
+
+Next: implement granular activated-carbon production/reactivation and its full
+ash-service split, then the other 28 current-cohort cases, further preparation
+cohorts, shared fuel transformation/linking and all remaining sectors. The full
+goal and original Premise workflow requirements remain active.

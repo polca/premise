@@ -140226,6 +140226,961 @@
           "fingerprint": "656df48f9db58910d14d302f1b92c3d6e0c163f1f58ed110a399bad367ceddfd"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ae3a127d0bb53da7",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_molybdenum_dependency",
+      "review_path": "export/uvek_fuels_39_molybdenum_review.json",
+      "review_sha256": "e4b99b5f90d4e0fda9f4ac81a542a760fa202763009fa43b1ecd87f02b9faf63",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native proxies/reconstructions with warnings and recorded decisions. No new physical omission.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for molybdenite",
+            "reference product": "molybdenite",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "ef21c6c11df426b2eaf0a2c70e9096f0ac699e69d69ccaf177a45f29097726f7",
+          "metadata_sha256": "f3557027adc2ce6d8de81ca5a00bc7a2c190c10c8ddfa965ac9f643d9401acd1",
+          "nonproduction_counts": {
+            "technosphere": 11
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "copper mine operation and beneficiation, sulfide ore",
+              "reference product": "molybdenite",
+              "location": "RU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "fcf9acb826249ac34f06759c61bdd5acd1c78727808df5c1605ed4b86cadc6cf",
+            "metadata_sha256": "fc1053f2ca1bbf059d99ac4711f4193ea9456d8d51f99b30d826d5da7fdd938e",
+            "nonproduction_counts": {
+              "technosphere": 27,
+              "biosphere": 60
+            }
+          },
+          {
+            "identity": {
+              "name": "copper mine operation and beneficiation, sulfide ore",
+              "reference product": "molybdenite",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "3b9a3abf9cb1e319f945dfb692257545c6bd9cb7716775062e08ea7922dc48ee",
+            "metadata_sha256": "b1feac13f7cc69caf18c3f24207691369df71cf10a0a9103fd7451beeaaa9925",
+            "nonproduction_counts": {
+              "technosphere": 210,
+              "biosphere": 61
+            }
+          },
+          {
+            "identity": {
+              "name": "molybdenite mine operation",
+              "reference product": "molybdenite",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "1606690f0803b065aa7e79ae6129023ec41fca9a154efbde2e14ca6c9d7556b6",
+            "metadata_sha256": "5d98f6916b9df69d0e64c5bb5162f70eed000b5ebcb3236f4e8d010f51acdf2c",
+            "nonproduction_counts": {
+              "technosphere": 27,
+              "biosphere": 49
+            }
+          },
+          {
+            "identity": {
+              "name": "copper mine operation and beneficiation, sulfide ore",
+              "reference product": "molybdenite",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "707ce6ce93f6c04a6e01ea3c86e132d5257005f9139a9bc94d657347d66648e7",
+            "metadata_sha256": "bdc105b2757e345e82115b6c3287d97b999ab3654dff932e80989596654c77f9",
+            "nonproduction_counts": {
+              "technosphere": 23,
+              "biosphere": 61
+            }
+          },
+          {
+            "identity": {
+              "name": "copper mine operation and beneficiation, sulfide ore",
+              "reference product": "molybdenite",
+              "location": "CA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "7e24691445164446968a5825140f401c733d4e3c964f2147a0019aa6e8393bfa",
+            "metadata_sha256": "e1ed31a9b9c16749a3e719695dec9a32f044a5a57fc9e3648ed320ed20595b61",
+            "nonproduction_counts": {
+              "technosphere": 23,
+              "biosphere": 60
+            }
+          },
+          {
+            "identity": {
+              "name": "copper mine operation and beneficiation, sulfide ore",
+              "reference product": "molybdenite",
+              "location": "CL",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "b77025c890b9fbc907b61bf67da42dc5b33969eb1fd4a1e0c89158d9c7cefaa2",
+            "metadata_sha256": "06a0ce6e5ea6da1350505b63ca83af71a86ee5c8191ae9e08393c4047f27aa99",
+            "nonproduction_counts": {
+              "technosphere": 23,
+              "biosphere": 61
+            }
+          },
+          {
+            "identity": {
+              "name": "copper mine operation and beneficiation, sulfide ore",
+              "reference product": "molybdenite",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "d677f892516127c9f62af5df194949561678229bd205cad83a877a74d5fe3c06",
+            "metadata_sha256": "d70b6ab0538b6ac3adb923d74bac5e8fd3670cad9ae0c087374b591a40e354e0",
+            "nonproduction_counts": {
+              "technosphere": 23,
+              "biosphere": 61
+            }
+          }
+        ],
+        "basis": "Retain all seven original molybdenite producer entries and four freight rows without aggregation or renormalization. Source primary mining remains 0.178813867230228 kg/kg; six copper-mining co-product entries retain their individual country quantities and use complete native global copper co-production concentrate. Primary mining uses complete native main-product concentrate. Both source and native references are positive one-kg named mineral/concentrate stocks. Native original EcoSpold declarations do not establish a contained-Mo reference; no speculative 0.60 multiplier is applied. Factor +1 is a declared stock-mass screening proxy, not a claim of equal purity, ore grade, recovery, allocation or geographic technology. Do not replace this source portfolio by the native historical 42.1% primary / 57.9% copper-co-product mix. No extra metal refining or recovery credit is added.",
+        "conversion_factor": 1,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Molybdenum concentrate, couple production Cu",
+              "reference product": "Molybdenum concentrate, couple production Cu",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 62,
+            "metadata_sha256": "cc12c92ca2dc5965f93d6a4e6a2ddf54c1601e1e8ac59c55c5b329fcf77d96aa",
+            "inventory_sha256": "012f6f25fc7e9d5567f9578a78655de0c7f7e0f7997d24f7214ab42c34daee75",
+            "comment_sha256": "3d80cb831ee43e2f57f3d518622f9c35819bb64b0d0f36e3d9592477e2cb0d5f"
+          },
+          {
+            "identity": {
+              "name": "Molybdenum concentrate, main product",
+              "reference product": "Molybdenum concentrate, main product",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 62,
+            "metadata_sha256": "a8b43cd0cb78e5e28d35228ad1ef90e7f0836f3bb7e51205659d8ff56db5da05",
+            "inventory_sha256": "f97218c58bbfee5530636df98ef84dcca0e018bf8830ee6ef6b3ea3f6c72420f",
+            "comment_sha256": "b5253d04b884f3b46b1ae2b4e3e30c2f1f3fcadc492f2e6989d908d88d6290b7"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Blast furnace",
+              "reference product": "Blast furnace",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "metadata_sha256": "83db4248733c69ca6b7927e916a604c8c39fc3608d775245cfc34286cbdfd691",
+            "inventory_sha256": "e9ad34630611e449df7796eab1ac2fd04ca712a11ce7e5b5f8f2c3f97f3d68af",
+            "comment_sha256": "bd24cfd7ff452c4a854dc43f612e8c0be43a8e3b1bf2a18e3028e0ccba5dbca8"
+          },
+          {
+            "identity": {
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "16e6a5bc47aec4073173101c4ac809d73a339aafeadab5a9db85501bf918eae5",
+            "inventory_sha256": "4bae0a33eccda625182a2c77b2dfded3f7afc1584224984ba0b9d5982a768f0b",
+            "comment_sha256": "5113f9049657bb750c2451659a42a4ab2b4f59a816d2a6e68c07191654531592"
+          }
+        ],
+        "helper_recipe": "fuels-39-molybdenum-9a2dbd3f0d40e9d515b6",
+        "retention": {
+          "source_nonproduction_rows": 11,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "existing_recipe_dependencies": {},
+        "component_bindings": [
+          {
+            "rule_id": "bp-59f60997076df042",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "3574e35b63d6dd39404d77b595cc32d0d39099c3f652ed9cca183eeab6ec33cc",
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-999a70594224e212",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "7ad7839de01b6698d130618ce3832ac6a7a9d9c55e8cf8033ebb28c12fa2a890",
+            "target": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-c87d564423c75554",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "a280617efee2680dba0203140abd5ea8d631b7151ac13a3ef312af0a288d48d5",
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-55c88a17f0ffb64f",
+            "source": {
+              "location": "GLO",
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "25b2da939525f2bf7afa9d5196826880bb38d6045e58f5fd5575a6c43185cf73",
+            "target": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-1dc02dfd7e0c4f04",
+            "source": {
+              "location": "GLO",
+              "name": "market for blast furnace",
+              "reference product": "blast furnace",
+              "unit": "unit"
+            },
+            "selected_rule_sha256": "8856b439d365c9cf83ac336494517138f011e38c5c1deb56bb434b4b7c9bfbf9",
+            "target": {
+              "location": "RER",
+              "name": "Blast furnace",
+              "reference product": "Blast furnace",
+              "unit": "unit"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-5a3b5a4a13938317",
+            "source": {
+              "location": "GLO",
+              "name": "market group for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "unit": "megajoule"
+            },
+            "selected_rule_sha256": "c47a4a5ee939c372f5399c1eb97e2c519ead99f75c55cda0aa699e431d0ce5fd",
+            "target": {
+              "location": "CH",
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "unit": "megajoule"
+            },
+            "conversion_factor": 1
+          }
+        ]
+      },
+      "limitations": [
+        "Retain all seven original molybdenite producer entries and four freight rows without aggregation or renormalization. Source primary mining remains 0.178813867230228 kg/kg; six copper-mining co-product entries retain their individual country quantities and use complete native global copper co-production concentrate. Primary mining uses complete native main-product concentrate. Both source and native references are positive one-kg named mineral/concentrate stocks. Native original EcoSpold declarations do not establish a contained-Mo reference; no speculative 0.60 multiplier is applied. Factor +1 is a declared stock-mass screening proxy, not a claim of equal purity, ore grade, recovery, allocation or geographic technology. Do not replace this source portfolio by the native historical 42.1% primary / 57.9% copper-co-product mix. No extra metal refining or recovery credit is added.",
+        "Only the individually inspected ecoinvent 3.9 cut-off identities qualify. Preserve signed caller quantities, uncertainty, formulas, separate emissions and freight. Complete native historical inventories are screening proxies: mineral purity, recovery yield, ore grade, mining technology, allocation, utility and transport geography, delivery, vintage, internal uncertainty and biosphere coverage differ; score effects remain unquantified. No new recovery credit, contained-metal multiplier, stoichiometric emission correction, omission, cross-version extrapolation or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "14afc1100014037fdc94170b7461cb95ee03886b046c80fc6d3181719f471b6d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-da6fa8e08abc0952",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_molybdenum_dependency",
+      "review_path": "export/uvek_fuels_39_molybdenum_review.json",
+      "review_sha256": "e4b99b5f90d4e0fda9f4ac81a542a760fa202763009fa43b1ecd87f02b9faf63",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native proxies/reconstructions with warnings and recorded decisions. No new physical omission.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "molybdenum trioxide production",
+            "reference product": "molybdenum trioxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "b03a40e4fafbb7f5ae9da84fa69b45a8a88a3a58853f78fcce3a07ccbea781b7",
+          "metadata_sha256": "a44870c1f3037f32b6c264cd1c426439806b79d3dffb073d2f5c3e38b3a95c29",
+          "nonproduction_counts": {
+            "technosphere": 3,
+            "biosphere": 1
+          }
+        },
+        "source_producer_witnesses": [],
+        "basis": "Reconstruct one positive kg of molybdenum trioxide using the original 1.112 kg molybdenite market demand, 1.665232 MJ useful natural-gas heat, 1.333e-11 blast-furnace infrastructure units and 0.0623 kg direct sulfur dioxide. Preserve source order, uncertainty, formulas and parameters. Keep the mineral supply portfolio in its separate complete helper. Native delivered district heat substitutes for source industrial/district heat with an explicit network, technology and geography warning; complete native blast-furnace capital replaces the global infrastructure market. This source is explicitly a rough roasting estimate: retain its modeled SO2 rather than inventing a stoichiometric sulfur balance, acid recovery, abatement, oxygen, additional fuel or refining stages. Mineral purity, roasting recovery and omitted source processes are not established by this reconstruction. No extra metal-production process or Mo-content scaling is introduced.",
+        "conversion_factor": 1,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Molybdenum concentrate, couple production Cu",
+              "reference product": "Molybdenum concentrate, couple production Cu",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 62,
+            "metadata_sha256": "cc12c92ca2dc5965f93d6a4e6a2ddf54c1601e1e8ac59c55c5b329fcf77d96aa",
+            "inventory_sha256": "012f6f25fc7e9d5567f9578a78655de0c7f7e0f7997d24f7214ab42c34daee75",
+            "comment_sha256": "3d80cb831ee43e2f57f3d518622f9c35819bb64b0d0f36e3d9592477e2cb0d5f"
+          },
+          {
+            "identity": {
+              "name": "Molybdenum concentrate, main product",
+              "reference product": "Molybdenum concentrate, main product",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 62,
+            "metadata_sha256": "a8b43cd0cb78e5e28d35228ad1ef90e7f0836f3bb7e51205659d8ff56db5da05",
+            "inventory_sha256": "f97218c58bbfee5530636df98ef84dcca0e018bf8830ee6ef6b3ea3f6c72420f",
+            "comment_sha256": "b5253d04b884f3b46b1ae2b4e3e30c2f1f3fcadc492f2e6989d908d88d6290b7"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Blast furnace",
+              "reference product": "Blast furnace",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "metadata_sha256": "83db4248733c69ca6b7927e916a604c8c39fc3608d775245cfc34286cbdfd691",
+            "inventory_sha256": "e9ad34630611e449df7796eab1ac2fd04ca712a11ce7e5b5f8f2c3f97f3d68af",
+            "comment_sha256": "bd24cfd7ff452c4a854dc43f612e8c0be43a8e3b1bf2a18e3028e0ccba5dbca8"
+          },
+          {
+            "identity": {
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "16e6a5bc47aec4073173101c4ac809d73a339aafeadab5a9db85501bf918eae5",
+            "inventory_sha256": "4bae0a33eccda625182a2c77b2dfded3f7afc1584224984ba0b9d5982a768f0b",
+            "comment_sha256": "5113f9049657bb750c2451659a42a4ab2b4f59a816d2a6e68c07191654531592"
+          }
+        ],
+        "helper_recipe": "fuels-39-molybdenum-c21da5c1fd7c80a6b1ea",
+        "retention": {
+          "source_nonproduction_rows": 4,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "existing_recipe_dependencies": {},
+        "component_bindings": [
+          {
+            "rule_id": "bp-59f60997076df042",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "3574e35b63d6dd39404d77b595cc32d0d39099c3f652ed9cca183eeab6ec33cc",
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-999a70594224e212",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "7ad7839de01b6698d130618ce3832ac6a7a9d9c55e8cf8033ebb28c12fa2a890",
+            "target": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-c87d564423c75554",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "a280617efee2680dba0203140abd5ea8d631b7151ac13a3ef312af0a288d48d5",
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-55c88a17f0ffb64f",
+            "source": {
+              "location": "GLO",
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "25b2da939525f2bf7afa9d5196826880bb38d6045e58f5fd5575a6c43185cf73",
+            "target": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-1dc02dfd7e0c4f04",
+            "source": {
+              "location": "GLO",
+              "name": "market for blast furnace",
+              "reference product": "blast furnace",
+              "unit": "unit"
+            },
+            "selected_rule_sha256": "8856b439d365c9cf83ac336494517138f011e38c5c1deb56bb434b4b7c9bfbf9",
+            "target": {
+              "location": "RER",
+              "name": "Blast furnace",
+              "reference product": "Blast furnace",
+              "unit": "unit"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-5a3b5a4a13938317",
+            "source": {
+              "location": "GLO",
+              "name": "market group for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "unit": "megajoule"
+            },
+            "selected_rule_sha256": "c47a4a5ee939c372f5399c1eb97e2c519ead99f75c55cda0aa699e431d0ce5fd",
+            "target": {
+              "location": "CH",
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "unit": "megajoule"
+            },
+            "conversion_factor": 1
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct one positive kg of molybdenum trioxide using the original 1.112 kg molybdenite market demand, 1.665232 MJ useful natural-gas heat, 1.333e-11 blast-furnace infrastructure units and 0.0623 kg direct sulfur dioxide. Preserve source order, uncertainty, formulas and parameters. Keep the mineral supply portfolio in its separate complete helper. Native delivered district heat substitutes for source industrial/district heat with an explicit network, technology and geography warning; complete native blast-furnace capital replaces the global infrastructure market. This source is explicitly a rough roasting estimate: retain its modeled SO2 rather than inventing a stoichiometric sulfur balance, acid recovery, abatement, oxygen, additional fuel or refining stages. Mineral purity, roasting recovery and omitted source processes are not established by this reconstruction. No extra metal-production process or Mo-content scaling is introduced.",
+        "Only the individually inspected ecoinvent 3.9 cut-off identities qualify. Preserve signed caller quantities, uncertainty, formulas, separate emissions and freight. Complete native historical inventories are screening proxies: mineral purity, recovery yield, ore grade, mining technology, allocation, utility and transport geography, delivery, vintage, internal uncertainty and biosphere coverage differ; score effects remain unquantified. No new recovery credit, contained-metal multiplier, stoichiometric emission correction, omission, cross-version extrapolation or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8dba64b36d0a4a83a10991aaa8ac5025a9654a9e9fb2cd01d2aa1e97342be92c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-54fa038eaae8ff64",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_molybdenum_dependency",
+      "review_path": "export/uvek_fuels_39_molybdenum_review.json",
+      "review_sha256": "e4b99b5f90d4e0fda9f4ac81a542a760fa202763009fa43b1ecd87f02b9faf63",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native proxies/reconstructions with warnings and recorded decisions. No new physical omission.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for molybdenum trioxide",
+            "reference product": "molybdenum trioxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "9a837f28c477f379045fe0cec614de0847c2feac6ab9f877477d30dde534d6c3",
+          "metadata_sha256": "259e57e575400f0c23327eea74a8589699cc5fb9beff4d6d8e2cd23362644306",
+          "nonproduction_counts": {
+            "technosphere": 5
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "molybdenum trioxide production",
+              "reference product": "molybdenum trioxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "b03a40e4fafbb7f5ae9da84fa69b45a8a88a3a58853f78fcce3a07ccbea781b7",
+            "metadata_sha256": "a44870c1f3037f32b6c264cd1c426439806b79d3dffb073d2f5c3e38b3a95c29",
+            "nonproduction_counts": {
+              "technosphere": 3,
+              "biosphere": 1
+            }
+          }
+        ],
+        "basis": "Retain the full source molybdenum-trioxide market: one kg of the reconstructed finished-oxide production plus each of the four original rail, barge, heavy-lorry and container-sea freight rows at their original quantities and uncertainty. Keep upstream mineral-market freight separately; these are different source supply-chain stages. Do not substitute mineral concentrate directly for finished oxide, drop roasting, add metal refining, merge freight stages or renormalize quantities.",
+        "conversion_factor": 1,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Molybdenum concentrate, couple production Cu",
+              "reference product": "Molybdenum concentrate, couple production Cu",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 62,
+            "metadata_sha256": "cc12c92ca2dc5965f93d6a4e6a2ddf54c1601e1e8ac59c55c5b329fcf77d96aa",
+            "inventory_sha256": "012f6f25fc7e9d5567f9578a78655de0c7f7e0f7997d24f7214ab42c34daee75",
+            "comment_sha256": "3d80cb831ee43e2f57f3d518622f9c35819bb64b0d0f36e3d9592477e2cb0d5f"
+          },
+          {
+            "identity": {
+              "name": "Molybdenum concentrate, main product",
+              "reference product": "Molybdenum concentrate, main product",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 62,
+            "metadata_sha256": "a8b43cd0cb78e5e28d35228ad1ef90e7f0836f3bb7e51205659d8ff56db5da05",
+            "inventory_sha256": "f97218c58bbfee5530636df98ef84dcca0e018bf8830ee6ef6b3ea3f6c72420f",
+            "comment_sha256": "b5253d04b884f3b46b1ae2b4e3e30c2f1f3fcadc492f2e6989d908d88d6290b7"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Blast furnace",
+              "reference product": "Blast furnace",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "metadata_sha256": "83db4248733c69ca6b7927e916a604c8c39fc3608d775245cfc34286cbdfd691",
+            "inventory_sha256": "e9ad34630611e449df7796eab1ac2fd04ca712a11ce7e5b5f8f2c3f97f3d68af",
+            "comment_sha256": "bd24cfd7ff452c4a854dc43f612e8c0be43a8e3b1bf2a18e3028e0ccba5dbca8"
+          },
+          {
+            "identity": {
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "16e6a5bc47aec4073173101c4ac809d73a339aafeadab5a9db85501bf918eae5",
+            "inventory_sha256": "4bae0a33eccda625182a2c77b2dfded3f7afc1584224984ba0b9d5982a768f0b",
+            "comment_sha256": "5113f9049657bb750c2451659a42a4ab2b4f59a816d2a6e68c07191654531592"
+          }
+        ],
+        "helper_recipe": "fuels-39-molybdenum-c0933806590a03077e7b",
+        "retention": {
+          "source_nonproduction_rows": 5,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "existing_recipe_dependencies": {},
+        "component_bindings": [
+          {
+            "rule_id": "bp-59f60997076df042",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "3574e35b63d6dd39404d77b595cc32d0d39099c3f652ed9cca183eeab6ec33cc",
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-999a70594224e212",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "7ad7839de01b6698d130618ce3832ac6a7a9d9c55e8cf8033ebb28c12fa2a890",
+            "target": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-c87d564423c75554",
+            "source": {
+              "location": "GLO",
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "a280617efee2680dba0203140abd5ea8d631b7151ac13a3ef312af0a288d48d5",
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-55c88a17f0ffb64f",
+            "source": {
+              "location": "GLO",
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "unit": "ton kilometer"
+            },
+            "selected_rule_sha256": "25b2da939525f2bf7afa9d5196826880bb38d6045e58f5fd5575a6c43185cf73",
+            "target": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-1dc02dfd7e0c4f04",
+            "source": {
+              "location": "GLO",
+              "name": "market for blast furnace",
+              "reference product": "blast furnace",
+              "unit": "unit"
+            },
+            "selected_rule_sha256": "8856b439d365c9cf83ac336494517138f011e38c5c1deb56bb434b4b7c9bfbf9",
+            "target": {
+              "location": "RER",
+              "name": "Blast furnace",
+              "reference product": "Blast furnace",
+              "unit": "unit"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "rule_id": "bp-5a3b5a4a13938317",
+            "source": {
+              "location": "GLO",
+              "name": "market group for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "unit": "megajoule"
+            },
+            "selected_rule_sha256": "c47a4a5ee939c372f5399c1eb97e2c519ead99f75c55cda0aa699e431d0ce5fd",
+            "target": {
+              "location": "CH",
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "unit": "megajoule"
+            },
+            "conversion_factor": 1
+          }
+        ]
+      },
+      "limitations": [
+        "Retain the full source molybdenum-trioxide market: one kg of the reconstructed finished-oxide production plus each of the four original rail, barge, heavy-lorry and container-sea freight rows at their original quantities and uncertainty. Keep upstream mineral-market freight separately; these are different source supply-chain stages. Do not substitute mineral concentrate directly for finished oxide, drop roasting, add metal refining, merge freight stages or renormalize quantities.",
+        "Only the individually inspected ecoinvent 3.9 cut-off identities qualify. Preserve signed caller quantities, uncertainty, formulas, separate emissions and freight. Complete native historical inventories are screening proxies: mineral purity, recovery yield, ore grade, mining technology, allocation, utility and transport geography, delivery, vintage, internal uncertainty and biosphere coverage differ; score effects remain unquantified. No new recovery credit, contained-metal multiplier, stoichiometric emission correction, omission, cross-version extrapolation or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d48a7b98b816d4256ac321a73633f12526cadde265ba48e113717601befdaa10"
+        }
+      ]
     }
   ],
   "superseded_operations": [
