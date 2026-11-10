@@ -1,6 +1,6 @@
-# Native consumer aliases for the shared heat-market relinker.
-# Source boundaries: premise/data/heat/uvek2026_consumer_review.json.
-# Only reviewed useful-heat MJ suppliers; native energy inventories stay complete.
+# Native consumer aliases and delivery template for the shared heat workflow.
+# Source boundaries: premise/data/heat/uvek2026_consumer_review.json and
+# premise/data/heat/uvek2026_distribution_review.json.
 ecoinvent: {}
 uvek:
   protected_consumer_units:
@@ -189,3 +189,35 @@ uvek:
   - Native heat/electricity and combustion inventories and all CLIC/helper records stay complete. Native
     steam, environmental heat components and network-only supplies remain historical at this stage. No
     claim of complete heat decarbonization or LCIA equivalence.
+  delivery:
+    source:
+      exact: true
+      fltr:
+        name: District heat, at consumer, natural gas in industrial furnace 1MW
+        reference product: District heat, at consumer, natural gas in industrial furnace 1MW
+        location: CH
+        unit: megajoule
+    heat_input:
+      name: Heat, natural gas, at industrial furnace 1MW
+      reference product: Heat, natural gas, at industrial furnace 1MW
+      location: CH
+      unit: megajoule
+    target:
+      name: heat supply, district delivery
+      reference product: heat, district or industrial, at consumer
+      unit: megajoule
+    legacy_inputs:
+    - name: District heat, at consumer, natural gas in industrial furnace 1MW
+      reference product: District heat, at consumer, natural gas in industrial furnace 1MW
+    - name: District heat, at consumer, wood chips cogen 1MWth, allocation exergy
+      reference product: District heat, at consumer, wood chips cogen 1MWth, allocation exergy
+    limitations:
+    - The complete native Swiss district-delivery model proxies other IAM regions. Network density, pipe/infrastructure,
+      supply temperature, operating conditions, loss convention, vintage and geography remain native screening
+      assumptions; their score effects are unquantified.
+    - The original gas-plant identity describes the native prototype before its heat input is replaced
+      by the IAM generation mix. Copies receive explicit generic delivery names and source/target provenance.
+      No extra distribution, pumping or avoided-heat credit is added.
+    - The observed prose loss percentage is not a separately applicable divisor. Preserve the actual inventory
+      heat coefficient and the separate transport-network service once. No equivalence to a regional future
+      network is claimed.

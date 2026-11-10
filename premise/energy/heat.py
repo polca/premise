@@ -1052,6 +1052,69 @@ class Heat(BaseTransformation):
         else:
             print("No industrial heat scenario data available -- skipping")
 
+        if secondary_created:
+            self.create_heat_delivery_activities()
+
+    def create_heat_delivery_activities(self) -> None:
+        """Regionalize a mapped delivery service without altering its loss basis."""
+        definition = getattr(self, "market_mapping", {}).get("delivery")
+        if not definition:
+            return
+        sources = self.mapping.generate_map({"delivery": definition["source"]})[
+            "delivery"
+        ]
+        if len(sources) != 1:
+            raise ValueError(
+                "Heat delivery requires one exact reviewed source template."
+            )
+        target = definition["target"]
+        regions = [
+            region for region in self.regions if not self.is_in_index(target, region)
+        ]
+        if regions:
+            copies = self.fetch_proxies(
+                sources, regions=regions, relink=False, unlist=False
+            )
+            source_input = definition["heat_input"]
+            for dataset in copies.values():
+                matches = [
+                    edge
+                    for edge in ws.technosphere(dataset)
+                    if all(
+                        edge.get(key) == source_input[key] for key in ("name", "unit")
+                    )
+                    and edge.get("product") == source_input["reference product"]
+                ]
+                if len(matches) != 1:
+                    raise ValueError(
+                        "Heat delivery template lost its reviewed heat input."
+                    )
+                matches[0].update(
+                    name=SECONDARY_MARKET["name"],
+                    product=SECONDARY_MARKET["reference product"],
+                    location=dataset["location"],
+                )
+                matches[0].pop("input", None)
+                dataset.update(
+                    name=target["name"],
+                    **{"reference product": target["reference product"]},
+                )
+                for edge in ws.production(dataset):
+                    edge.update(
+                        name=target["name"], product=target["reference product"]
+                    )
+                dataset["heat delivery provenance"] = {
+                    "source": definition["source"]["fltr"],
+                    "limitations": definition["limitations"],
+                }
+                self.database.append(dataset)
+                self.add_to_index(dataset)
+                self.created_dataset_codes.add(dataset["code"])
+                self.write_log(dataset)
+        self.diagnostics["delivery limitations"] = definition["limitations"]
+        warnings.warn(" ".join(definition["limitations"]), UserWarning, stacklevel=2)
+        self.relink_heat_markets(definition["legacy_inputs"], target)
+
     def _legacy_heat_inputs(self, layer: str, defaults: list) -> list:
         """Use declared source-family supplier identities, or the original defaults."""
         return (

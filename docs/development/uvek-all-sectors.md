@@ -127,3 +127,39 @@ information, and is a generic correctness fix rather than a UVEK algorithm.
 Unrelated notebook, emissions-review and historical audit edits present at goal
 activation are preserved. The emissions draft is evidence to review later, not an
 automatic approval or an excuse to restore an alternative sector engine.
+
+
+## Heat: retain the delivered district boundary
+
+Checkpoint `57d0f9b8` fixes useful heat at the plant. The separate, previously
+approved district-delivery decision is now mapped in `heat_markets.yaml`:
+use the complete native Swiss delivery prototype, replace only its reviewed
+plant-heat input with the region's secondary heat market, and retain the native
+heat coefficient, network service, uncertainty and all other inputs. No extra
+loss multiplier, pumping burden or heat credit is introduced. Generic delivery
+names and source/limitation provenance make the changed generation basis explicit.
+
+The shared Heat class delegates copying to its existing `fetch_proxies` helper
+and uses the existing consumer relinker. The ecoinvent configuration is empty,
+so this optional delivery adaptation does not alter the original route. YAML
+alone cannot link a copied delivery service to IAM markets created at runtime.
+There is no standalone native-sector engine.
+
+An actual run exposed an existing helper bug: `fetch_proxies(relink=False)`
+constructed copies but returned an empty dictionary. Fix the return assignment
+so the documented flag disables upstream relinking, rather than discarding its
+outputs. The default `relink=True` behavior is unchanged; a regression exercises
+the real shared copier, not only a mocked delivery template.
+
+Verification: 82 focused tests pass. The actual notebook run exports 13,430
+activities, including 13 regional deliveries. All source heat/network quantities
+and checked uncertainty fields are retained, all technosphere links resolve
+inside the export, three material/service delivery inputs are relinked, and
+1 MJ of NEU delivered district heat has finite LCI. The 970 ordinary heat inputs
+and five representative heat/material LCIs were rechecked on this export.
+See [delivery receipt](uvek-shared-heat-delivery-verification.json).
+
+Remaining heat audit: preserve the independently documented conversion bases for
+allocated fuel-cell heat and the reviewed methanol/hydrogen supplements; do not
+infer physical efficiencies by inverting allocated inventory burdens or use a
+generic calorific value where the reviewed source states another basis.

@@ -1,0 +1,17 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-192331",
+  "delivery_copies": 13,
+  "native_heat_and_network_coefficients_retained": true,
+  "relinked_consumer_inputs": 3,
+  "finite_NEU_delivery_lci": true,
+  "all_technosphere_links_internal": true,
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "source_review": "premise/data/heat/uvek2026_distribution_review.json",
+  "tests": {
+    "focused_passed": 82
+  }
+}

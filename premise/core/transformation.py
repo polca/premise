@@ -1907,8 +1907,9 @@ class BaseTransformation:
                 else:
                     prod["production volume"] = 0.0
 
-            if relink:
-                d_act[region] = self.relink_technosphere_exchanges(dataset)
+            d_act[region] = (
+                self.relink_technosphere_exchanges(dataset) if relink else dataset
+            )
 
         if unlist:
             for dataset in datasets:
