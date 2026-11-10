@@ -107,6 +107,55 @@ def test_native_extraction_uses_selected_biosphere_instead_of_custom_labels(sour
     assert records[0]["exchanges"][2]["input"] == ("bio310", "flow")
 
 
+def test_exported_full_names_restore_activity_and_linked_labels_without_source_edits(
+    source,
+):
+    native, _, _ = source
+    activity = native[("native", "process")]
+    activity.update(
+        name="Hydrogen heat [0123456789]",
+        **{"reference product": "Hydrogen heat [0123456789]"},
+        comment="Full activity name: Hydrogen heat, PEM electrolysis from grid\nDetails",
+    )
+    before = deepcopy(native)
+    record = extract_uvek_source("native", "bio310")[0]
+    full_name = "Hydrogen heat, PEM electrolysis from grid"
+    assert record["name"] == record["reference product"] == full_name
+    assert record["premise original source labels"] == {
+        key: activity[key] for key in ("name", "reference product")
+    }
+    for edge in record["exchanges"][:2]:
+        assert edge["name"] == edge["product"] == full_name
+    assert record["exchanges"][1]["amount"] == -2
+    assert native == before
+
+
+@pytest.mark.parametrize(
+    "name,comment",
+    [
+        ("Native process", "Full activity name: Native process, extended"),
+        ("Native [0123456789]", "Full activity name: Different technology"),
+        ("Native [0123456789]", "Ordinary comment without original name"),
+    ],
+)
+def test_full_name_restoration_requires_documented_export_convention(
+    source, name, comment
+):
+    source[0][("native", "process")].update(name=name, comment=comment)
+    assert extract_uvek_source("native", "bio310")[0]["name"] == name
+
+
+def test_full_name_restoration_preserves_a_distinct_reference_product(source):
+    activity = source[0][("native", "process")]
+    activity.update(
+        name="Native [0123456789]",
+        comment="Full activity name: Native process, complete label",
+    )
+    record = extract_uvek_source("native", "bio310")[0]
+    assert record["name"] == "Native process, complete label"
+    assert record["reference product"] == "Native product"
+
+
 def test_native_extraction_refuses_supplier_outside_selected_biosphere(source):
     source[0][("native", "process")]["exchanges"][2]["input"] = ("other", "flow")
     with pytest.raises(ValueError, match="no supplier in the declared destination"):

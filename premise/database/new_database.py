@@ -955,7 +955,7 @@ class NewDatabase:
         inventory_label = "_inventories" if inventories else ""
         if getattr(self, "source_family", "ecoinvent") == "uvek" and not inventories:
             context = self.background.to_dict()
-            context["cache_representation"] = "complete-linked-native-v1"
+            context["cache_representation"] = "complete-linked-native-full-labels-v2"
             context["biosphere_database"] = self.biosphere_name
             context["provenance"] = getattr(self, "_background_provenance", {})
             context["source_modified"] = str(

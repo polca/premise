@@ -75,10 +75,16 @@ bundle has been imported locally with all 11,947 activities and 417,072 retained
 exchanges, and a source electricity LCI is finite.
 
 The UVEK source extractor reads complete Brightway records and resolves Wurst
-labels from their actual linked suppliers. It checks the source's declared
-family, release, system model and biosphere, and rejects exchanges outside the
-selected databases. Ecoinvent cleanup strategies are not applied. Formulae,
+labels from their actual linked suppliers. The constructor's explicit arguments
+declare the family, release, system model and biosphere; the extractor rejects
+exchanges outside the selected databases. Ecoinvent cleanup strategies are not applied. Formulae,
 signed uncertainty and native metadata survive extraction on owned copies.
+For the BAFU ecospold export's shortened names with identifier suffixes, the
+extractor restores the exact ``Full activity name:`` recorded in the first
+comment line, including matching reference-product labels and linked exchange
+labels. Imported labels remain in ``premise original source labels``; the
+Brightway source is unchanged. UVEK cache keys distinguish this representation
+from older extractions, so existing instances must be recreated after updating.
 Export normalization uses the explicit biosphere axis, and native database
 metadata, labels and report overviews distinguish UVEK 2026 from biosphere 3.10.
 Passing 2026 to an ecoinvent biosphere lookup now raises an explicit error.

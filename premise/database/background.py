@@ -5,6 +5,7 @@ from __future__ import annotations
 from copy import deepcopy
 from dataclasses import asdict, dataclass
 import math
+import re
 
 
 @dataclass(frozen=True)
@@ -66,11 +67,26 @@ def extract_uvek_source(source, biosphere_name, *, keep_uncertainty=True):
         raise ValueError(
             f"The selected UVEK biosphere {biosphere_name!r} is not installed."
         )
-    native = bd.Database(source).load()
+    native = deepcopy(bd.Database(source).load())
     biosphere = bd.Database(biosphere_name).load()
     if not native:
         raise ValueError(f"The UVEK source {source!r} is empty.")
-    records = deepcopy(list(native.values()))
+    records = list(native.values())
+    # The BAFU ecospold export shortens long labels but retains the exact name
+    # in its comment. Restore only that documented export convention, not fuzzy
+    # matches between technologies. Preserve the imported labels for provenance.
+    for activity in records:
+        shortened = re.fullmatch(r"(.+) \[[0-9a-f]{10}\]", activity["name"])
+        first_line = (activity.get("comment") or "").split("\n", 1)[0]
+        if shortened and first_line.startswith("Full activity name: "):
+            full_name = first_line.removeprefix("Full activity name: ").strip()
+            if full_name.startswith(shortened[1]):
+                activity["premise original source labels"] = {
+                    key: activity[key] for key in ("name", "reference product")
+                }
+                if activity["reference product"] == activity["name"]:
+                    activity["reference product"] = full_name
+                activity["name"] = full_name
     for activity in records:
         for edge in activity["exchanges"]:
             reference = tuple(edge.get("input", ()))
