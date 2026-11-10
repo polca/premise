@@ -183,5 +183,5 @@ and connect consumers directly or through the usual country-market handovers.
 This three-sector REMIND workflow has been checked through export and LCI.
 Other sectors remain outside the current UVEK qualification. Existing inventory
 proxies, explicit omissions and geographic/loss-weighting approximations remain
-screening limitations. See the :doc:`../development/uvek-standard-workflow`
-audit for the scope, assumptions and verification record.
+screening limitations. See the :download:`implementation audit <../development/uvek-standard-workflow.md>`
+for the scope, assumptions and verification record.

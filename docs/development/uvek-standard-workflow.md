@@ -212,7 +212,7 @@ The source database was not modified.
   ecoinvent route is covered by the offline regression; qualification of other
   IAM configurations and sectors remains separate.
 
-Initial geography corrections were committed as `b639a838`. The following
-implementation commit contains the shared-route adapters, mapping data,
+Initial geography corrections were committed as `b639a838`. Implementation
+commit `712ccac6` contains the shared-route adapters, mapping data,
 retirement of the alternative engines and corresponding regression tests.
 Brightpath files and unrelated working-tree edits are not part of this goal.
