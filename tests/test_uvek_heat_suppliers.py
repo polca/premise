@@ -168,6 +168,7 @@ def test_source_with_no_inventory_does_not_become_a_successful_supplier():
         plan(data)
 
 
-def test_heat_remains_gated_until_complete_sector_integration():
+def test_heat_admitted_while_unverified_sectors_stay_gated():
+    assert validate_uvek_scope("heat") == ["heat"]
     with pytest.raises(ValueError, match="unsupported sectors"):
-        validate_uvek_scope("heat")
+        validate_uvek_scope("cement")

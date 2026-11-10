@@ -176,14 +176,17 @@ def test_store_bridge_preserves_source_store_and_literal_audits(callback):
     assert any(a.get(AUDIT_FIELD) for a in get_scenario_inventory(scenario))
 
 
-def test_native_heat_still_refused_by_public_scope_gate():
+def test_native_heat_admitted_while_unverified_sectors_stay_guarded():
     from premise import NewDatabase
+    from premise.database.background import validate_uvek_scope
+
+    assert validate_uvek_scope("heat") == ["heat"]
 
     owner = object.__new__(NewDatabase)
     owner.source_family = "uvek"
     owner.prepare_inventories = Mock()
     with pytest.raises(ValueError, match="unsupported sectors"):
-        owner.update("heat")
+        owner.update("cement")
     owner.prepare_inventories.assert_not_called()
 
 

@@ -326,6 +326,5 @@ def plan_native_heat_consumers(
             "already_applied": already_applied,
             "geographic_proxies": geographic_proxies,
             "retained_counts": dict(Counter(row["reason"] for row in retained)),
-            "public_heat_gate": "closed; consumer integration/certification/export pending",
         },
     }

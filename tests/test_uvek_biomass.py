@@ -213,7 +213,7 @@ def test_public_scope_admits_native_biomass_but_refuses_unverified_sectors():
     from premise.database.background import validate_uvek_scope
 
     assert validate_uvek_scope("biomass") == ["biomass"]
-    with pytest.raises(ValueError, match="supports biomass and electricity"):
+    with pytest.raises(ValueError, match="supports biomass, electricity and heat"):
         validate_uvek_scope("cement")
 
 

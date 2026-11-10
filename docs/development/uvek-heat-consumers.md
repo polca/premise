@@ -1,5 +1,9 @@
 # Native UVEK heat consumers
 
+Current integration status: the normal UVEK heat update and export are available
+for reviewed roles; see [native heat](uvek-heat.md). Gate/unfinished-work wording
+below records this component's earlier development checkpoint.
+
 `plan_native_heat_consumers` returns replacement consumer copies and retained-input
 records without changing its database or market-plan arguments. It is an internal
 planning component; the public heat gate remains closed until callback,

@@ -160,8 +160,7 @@ def update_uvek_heat(
 ):
     """Plan, validate and commit native heat without invoking ecoinvent repairs.
 
-    This internal callback does not open the public sector gate. It preserves
-    literal consumer audits and separately records historical retained inputs,
+    Preserve literal consumer audits and separately record historical retained inputs,
     including inside protected generation, CLIC and migration inventories.
     """
     expected_context = dict(BACKGROUND_CONTEXT)

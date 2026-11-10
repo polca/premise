@@ -1,0 +1,119 @@
+{
+  "status": "public_default_biomass_electricity_heat_and_installed_automatic_export_verified",
+  "background": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere": "ecoinvent-3.10-biosphere"
+  },
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050,
+    "encrypted_input_sha256": "1720125d7890fc4dadda88cd3abc978b2421be764756b0a9624d6dac272f6aa4"
+  },
+  "public_API": {
+    "default_update_order": [
+      "biomass",
+      "electricity",
+      "heat"
+    ],
+    "private_scope_override": false,
+    "automatic_selection_without_inventory_recipe": true,
+    "explicit_locked_recipe_also_verified": true,
+    "normal_Brightway_export": true
+  },
+  "graph": {
+    "activities": 12622,
+    "roots": 12,
+    "source_versions": 76,
+    "original55_version_ID_hash_bindings_unchanged": true,
+    "modified_heat_consumers": 736,
+    "supplier_only_heat_changes": 962,
+    "heat_markets": 39,
+    "delivery_copies": 13,
+    "complete_links": true,
+    "source_scientific_contents_unchanged": true
+  },
+  "validation": {
+    "relevant_tests_passed": 347,
+    "checkout_locked_recipe_signed_finite_LCIs": 16,
+    "installed_locked_recipe_signed_finite_LCIs": 16,
+    "final_installed_automatic_signed_finite_LCIs": 16,
+    "literal_consumer_audits_retained": true,
+    "signed_negative_input_retained": true,
+    "installed_packaged_data_equal_checkout": {
+      "premise": 249,
+      "brightpath": 272
+    },
+    "source_cache_miss_hit_evidence": "uvek-native-source-cache-verification.json",
+    "numeric_scope": "Exact source quantities; only new computed electricity coefficients have the documented 16-epsilon relative comparison allowance. No bitwise or LCIA equivalence claim."
+  },
+  "original_scope_regression": {
+    "roots": 9,
+    "source_versions": 55,
+    "activities": 12529,
+    "explicit_sectors": [
+      "biomass",
+      "electricity"
+    ],
+    "complete_bulk_readback": true,
+    "finite_LCIs": 3
+  },
+  "selection_identity_rule": "Automatic provenance pinned=False is accepted only with the same reviewed slug, version, ID, checksum, source profile, reference and fuel basis. The flag records user selection, not scientific identity.",
+  "screening_limitations": {
+    "pending_electricity_exchanges": 0,
+    "final_unsupported_electricity_exchanges": 1,
+    "partial_mappings": 2,
+    "omitted_recipe_branches": 22,
+    "CSP_nitrate_reuse_credit_omission": "Separate approved omission retained in audit.",
+    "other_limitations": "Retained source steam/network/ambient/zero-allocated heat boundaries, geographic and technology proxies, upstream biosphere exclusions and unquantified score effects remain visible. No impact-completeness claim."
+  },
+  "remaining": {
+    "unqualified_heat_roles": 13,
+    "other_standard_sectors_not_operational": 16,
+    "all_models_and_technologies_qualified": false
+  },
+  "receipts": [
+    {
+      "name": "heat_public_final_export_readback.json",
+      "sha256": "af6b2ce13a977afd1011555adb70485d4bf44b073b0ff85c2d69dcf513770c67",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_public_final_automatic_export.json",
+      "sha256": "113f30b6ebe2a5bb02e8e62b47a5771adf701899ef2777117053fdfcb5054a65",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_public_final_packaged_data.json",
+      "sha256": "a8eb4ab47ebea661153c31f060a43122c89434e5efae3a5c6ddc8e6880768418",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_public_checkout_export_readback.json",
+      "sha256": "e86edab48190be43f10e86363256a14ac9600da7dfcdae0133f25e139348bddc",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_public_wheel_export_readback.json",
+      "sha256": "410f70acb6bf41313fee8d79b0a5617c75709d2ca3dbb2c9442c6b47a4ba7b14",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_original55_public_regression.json",
+      "sha256": "ccb96038663e23fd7f56bee030e3ed3f6a2efd05678576f7a5bbe05b8802073a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_public_automatic_roots.json",
+      "sha256": "c26010b58bf88184cec29c549bad6152d1a2637d28c38f9bf9bda6c4398b5cda",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_public_admission_tests.log",
+      "sha256": "8335b36ad5aecac4bb012f642258790c2f79eee00d410bdc97949c9c2439bd8b",
+      "location": "private task workspace"
+    }
+  ]
+}

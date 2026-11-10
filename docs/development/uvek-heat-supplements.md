@@ -1,5 +1,9 @@
 # Supplemental suppliers for native UVEK heat
 
+Current integration status: the normal UVEK heat update and export are available
+for reviewed roles; see [native heat](uvek-heat.md). Gate/unfinished-work wording
+below records this component's earlier development checkpoint.
+
 `plan_heat_supplements` is an internal, read-only supplier planner. It returns
 reviewed role bindings and an owned electric-boiler addition; it does not append
 them, alter source inventories or enable the public heat update. Native heat

@@ -1091,3 +1091,36 @@ equivalence. See `uvek-native-source-cache-verification.json`.
 Qualification still uses a private process-local scope override; the public heat
 gate remains closed until normal admission and API checks. Other16sectors and
 unqualified IAM heat roles remain unfinished.
+
+
+### Public heat admission and automatic source selection
+
+The public UVEK default now applies biomass, electricity and heat. Normal
+checkout and installed-wheel workflows complete CLIC preparation, update,
+certification, Brightway export and bulk readback without a private scope
+override. Automatic selection needs no lockfile: it resolves the reviewed
+12 roots and 76 source versions and preserves the original 55 version/ID/hash
+bindings. An explicit original nine-root recipe still works with the original
+two-sector selection, verified by its 12,529-activity export and three finite
+inventories. Explicit recipes retain their declared selection scope.
+
+Automatic provenance marks records `pinned=False`; this expresses selection
+mode, not inventory identity. The heat supplement guard now accepts either
+boolean flag while still requiring the exact reviewed slug, version, version
+ID, checksum, source profile, physical reference and fuel quantity. Regression
+checks reject changed hashes even in automatic mode. No inventory quantities
+or engineering efficiencies are inferred from that flag.
+
+The final installed automatic workflow exports 12,622 activities. Its complete
+readback verifies all source bindings, 962 literal exchange audits across 736
+modified consumers, preserved negative inputs and 16 finite signed inventories.
+Native source scientific signatures remain unchanged; 347 relevant tests pass.
+Package checks match all 249 Premise and 272 Brightpath data resources.
+See `uvek-heat-public-verification.json` for receipts and support limits.
+
+This admits the reviewed REMIND SSP2-NPi2050 heat roles for screening. Thirteen
+other heat roles and the other 16 standard sectors remain unfinished and are
+refused when selected. Existing steam, ambient/network-only and zero-allocated
+heat boundaries, upstream biosphere exclusions, approved proxies and explicit
+omissions retain their warnings and unquantified effects. Historical closed-gate
+qualification entries above describe earlier stages, not current admission.

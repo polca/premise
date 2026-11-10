@@ -1,8 +1,26 @@
 # Native heat development
 
-Heat remains outside the public UVEK update gate. Biomass and electricity are
-supported screening updates; native heat supplier preflight does not establish
-a working heat transformation or prospective export.
+Heat is available as a screening update for UVEK 2026 cut-off with the ecoinvent
+3.10 biosphere through the ordinary `NewDatabase` workflow. The UVEK default order
+is biomass, electricity, then heat. The encrypted REMIND SSP2-NPi 2050 case is
+verified through normal preparation, update, certification, export and Brightway
+readback. Other positive IAM technology selections still require reviewed roles;
+missing roles fail explicitly. This does not claim support for every heat model
+or complete heat decarbonization.
+
+No manual helper installation or Brightpath invocation is required. Automatic
+CLIC selection may use the exact reviewed source versions without a user lock;
+IDs, checksums, profiles, reference amounts and fuel quantities remain checked.
+Export the generated recipe for reproducibility. Explicit recipes retain their
+root-selection meaning: the original nine-root/55-record recipe still works for
+explicit biomass/electricity updates, while the verified heat case uses 12 roots
+and 76 source records. Historical steam, ambient/network-only services and
+zero-allocated MSWI heat remain unchanged and auditable. Scientific proxy,
+allocation, geography, vintage and impact-completeness limitations remain.
+
+The following sections retain the supplier-preflight and implementation history;
+statements about closed gates describe those earlier checkpoints. Current
+verification is recorded in `uvek-heat-public-verification.json`.
 
 The current batch adds 28 exact `uvek_aliases` alongside unchanged ecoinvent
 aliases in `heat.yaml`. Each binds a complete, inspected native process with a
@@ -644,3 +662,36 @@ equivalence. See `uvek-native-source-cache-verification.json`.
 Qualification still uses a private process-local scope override; the public heat
 gate remains closed until normal admission and API checks. Other16sectors and
 unqualified IAM heat roles remain unfinished.
+
+
+### Public heat admission and automatic source selection
+
+The public UVEK default now applies biomass, electricity and heat. Normal
+checkout and installed-wheel workflows complete CLIC preparation, update,
+certification, Brightway export and bulk readback without a private scope
+override. Automatic selection needs no lockfile: it resolves the reviewed
+12 roots and 76 source versions and preserves the original 55 version/ID/hash
+bindings. An explicit original nine-root recipe still works with the original
+two-sector selection, verified by its 12,529-activity export and three finite
+inventories. Explicit recipes retain their declared selection scope.
+
+Automatic provenance marks records `pinned=False`; this expresses selection
+mode, not inventory identity. The heat supplement guard now accepts either
+boolean flag while still requiring the exact reviewed slug, version, version
+ID, checksum, source profile, physical reference and fuel quantity. Regression
+checks reject changed hashes even in automatic mode. No inventory quantities
+or engineering efficiencies are inferred from that flag.
+
+The final installed automatic workflow exports 12,622 activities. Its complete
+readback verifies all source bindings, 962 literal exchange audits across 736
+modified consumers, preserved negative inputs and 16 finite signed inventories.
+Native source scientific signatures remain unchanged; 347 relevant tests pass.
+Package checks match all 249 Premise and 272 Brightpath data resources.
+See `uvek-heat-public-verification.json` for receipts and support limits.
+
+This admits the reviewed REMIND SSP2-NPi2050 heat roles for screening. Thirteen
+other heat roles and the other 16 standard sectors remain unfinished and are
+refused when selected. Existing steam, ambient/network-only and zero-allocated
+heat boundaries, upstream biosphere exclusions, approved proxies and explicit
+omissions retain their warnings and unquantified effects. Historical closed-gate
+qualification entries above describe earlier stages, not current admission.

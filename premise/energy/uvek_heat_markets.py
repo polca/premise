@@ -405,6 +405,5 @@ def plan_native_heat_markets(
             "market_counts": {k: len(v) for k, v in markets.items()},
             "native_delivery_copies": len(deliveries),
             "new_owned_activities": len(additions),
-            "public_heat_gate": "closed; consumer relinking/certification/export pending",
         },
     }

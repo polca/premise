@@ -114,8 +114,9 @@ def test_native_extraction_refuses_supplier_outside_selected_biosphere(source):
 
 
 def test_uvek_scope_defaults_to_pilot_and_refuses_unverified_sectors():
-    assert validate_uvek_scope(None) == ["biomass", "electricity"]
+    assert validate_uvek_scope(None) == ["biomass", "electricity", "heat"]
     assert validate_uvek_scope("electricity") == ["electricity"]
+    assert validate_uvek_scope("heat") == ["heat"]
     with pytest.raises(ValueError, match="unsupported sectors.*cement"):
         validate_uvek_scope(["electricity", "cement"])
 

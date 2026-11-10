@@ -130,7 +130,9 @@ def plan_heat_supplements(
 ):
     """Return reviewed role plans and owned additions; leave all inputs unchanged.
 
-    CLIC records must retain the exact published pin and declared fuel quantity.
+    CLIC records must retain the exact reviewed version and declared fuel quantity.
+    Automatic selection is valid when its ID/checksum match that review; the
+    provenance ``pinned`` flag describes user selection, not inventory identity.
     Nominal energy bases follow the original source descriptions/properties,
     rather than generic carrier defaults or copied efficiency claims. Complete
     supplier inventories and all auxiliary inputs remain unchanged.
@@ -192,7 +194,7 @@ def plan_heat_supplements(
             provenance = supplier.get("clic provenance", {})
             if (
                 supplier.get("brightpath_conversion")
-                or provenance.get("pinned") is not True
+                or not isinstance(provenance.get("pinned"), bool)
                 or provenance.get("slug") != pin["slug"]
                 or provenance.get("semantic_version") != pin["version"]
                 or provenance.get("version_id") != pin["version_id"]

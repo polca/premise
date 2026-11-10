@@ -1,5 +1,9 @@
 # Native three-layer heat-market planning
 
+Current integration status: the normal UVEK heat update and export are available
+for reviewed roles; see [native heat](uvek-heat.md). Gate/unfinished-work wording
+below records this component's earlier development checkpoint.
+
 `plan_native_heat_markets` builds owned secondary-supply, buildings-end-use and
 industrial-end-use mixes using the reviewed native and pinned supplemental
 suppliers. It plans records without appending them or altering source inventories

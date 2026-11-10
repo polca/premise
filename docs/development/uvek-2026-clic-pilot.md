@@ -2,8 +2,11 @@
 
 This document retains the original pilot scope and implementation history. The
 active [operationalization goal](uvek-operationalization-goal.md) now also covers
-all 18 other standard sector updates. [Biomass](uvek-biomass.md) and electricity
-are operational screening updates; the other 17 remain gated pending verification.
+all 18 other standard sector updates. [Biomass](uvek-biomass.md), electricity and
+[heat](uvek-heat.md) are available as screening updates for their reviewed roles;
+the other 16 remain gated pending implementation and verification. The default
+UVEK update order is biomass, electricity, then heat. The original scope below is
+historical; it does not narrow the expanded active goal.
 New modelling decisions use the user’s standing autonomous approval and are logged
 for later review; historical approval wording below does not require new prompts.
 

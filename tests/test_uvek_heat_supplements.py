@@ -102,7 +102,7 @@ def test_electric_boiler_is_added_once_for_final_energy_and_heat_output_roles():
 @pytest.mark.parametrize(
     "field,value",
     [
-        ("pinned", False),
+        ("pinned", None),
         ("slug", "wrong"),
         ("semantic_version", "9.0"),
         ("sha256", "0" * 64),
@@ -118,6 +118,19 @@ def test_pinned_source_cannot_be_replaced_by_a_similarly_named_record(field, val
     with pytest.raises(ValueError, match="pin or ownership"):
         supplements.plan_heat_supplements(data, row["roles"], model=None)
     assert data == before
+
+
+@pytest.mark.parametrize("row", REVIEW["records"][:3], ids=lambda r: r["pin"]["slug"])
+def test_automatic_selection_accepts_only_the_exact_reviewed_source_version(row):
+    data = source(row)
+    data[-1]["clic provenance"]["pinned"] = False
+    before = copy.deepcopy(data)
+    result = supplements.plan_heat_supplements(data, row["roles"], model=None)
+    assert data == before
+    assert all(p["supplier"] is data[-1] for p in result["suppliers"].values())
+    data[-1]["clic provenance"]["sha256"] = "0" * 64
+    with pytest.raises(ValueError, match="pin or ownership"):
+        supplements.plan_heat_supplements(data, row["roles"], model=None)
 
 
 @pytest.mark.parametrize("row", REVIEW["records"][:3], ids=lambda r: r["pin"]["slug"])
