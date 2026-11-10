@@ -11,6 +11,14 @@ Archive downloads show byte progress, transfer speed and an estimated remaining
 time. The selected archive version and date are displayed on download and cached
 reuse; the date is its creation timestamp, or its publication date when available.
 
+Approved CLIC exchange omissions match the owning dataset and exchange by name,
+reference product and location. Source and target background scope still apply;
+duplicate matching exchanges are rejected. Historical version IDs and hashes
+in the approval are evidence only and do not block later matching versions or
+metadata corrections. Each warning and audit records the actual omitted quantity
+and source exchange, alongside the original approved exchange. This policy does
+not change archive checksums or explicit recipe/lockfile verification.
+
 CLIC is the standard inventory provider. The target range starts at ecoinvent **3.7**;
 3.5 and 3.6 background builds are rejected before downloading inventories.
 Older native inventory sources remain supported for migration into newer

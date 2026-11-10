@@ -37,7 +37,12 @@
         "type": "technosphere",
         "unit": "kilogram"
       },
-      "message": "Approved scoped UVEK 2026 CSP omission: the pinned 110 MW plant decommissioning inventory's -23,000,000 kg used-nitrate-salt reuse credit is omitted. Its ecoinvent 3.9 market supplies a reusable product carrying allocated storage-construction burdens; no equivalent UVEK supplier is established. Printer toner is an incorrect match. The foregone reuse credit and its score effect are unquantified. Plant, virgin salt production, storage construction and other decommissioning exchanges are retained; no replacement credit or zero-burden supplier is added."
+      "message": "Approved scoped UVEK 2026 CSP omission: the 110 MW plant decommissioning inventory's matching used-nitrate-salt reuse credit is omitted at its current source quantity. Its ecoinvent 3.9 market supplies a reusable product carrying allocated storage-construction burdens; no equivalent UVEK supplier is established. Printer toner is an incorrect match. The foregone reuse credit and its score effect are unquantified. Plant, virgin salt production, storage construction and other decommissioning exchanges are retained; no replacement credit or zero-burden supplier is added.",
+      "activity": {
+        "name": "treatment of concentrating solar power plant, 110 MW",
+        "reference product": "concentrating power plant, 110 MW",
+        "location": "CH"
+      }
     },
     {
       "id": "uvek-2026-screening-0e2220f339c9d5ced47d",
@@ -86,11 +91,16 @@
         "unit": "kilogram"
       },
       "authorization": "User requested prioritizing a successful screening scenario/export and deferring remaining scientific refinements; auto-approval of coming decisions. No claim of impact completeness.",
-      "message": "FINAL UNSUPPORTED SCREENING OMISSION: omit only the pinned947.32kg grain-oriented0.23mm electrical-steel coil input. No defensible native UVEK counterpart was found. The source producer is aggregated (2747biosphere exchanges, no technosphere inventory); ordinary steel, rolling and a complete transformer are not equivalent. Missing manufacturing and delivery burdens have an unquantified score effect. Retain all other caller inputs, no substitute credit or renormalization. See premise/data/clic/uvek_final_goes_review.json",
+      "message": "FINAL UNSUPPORTED SCREENING OMISSION: omit only the matching grain-oriented 0.23 mm electrical-steel coil input at its current source quantity. No defensible native UVEK counterpart was found. The source producer is aggregated (2747biosphere exchanges, no technosphere inventory); ordinary steel, rolling and a complete transformer are not equivalent. Missing manufacturing and delivery burdens have an unquantified score effect. Retain all other caller inputs, no substitute credit or renormalization. See premise/data/clic/uvek_final_goes_review.json",
       "resolution_status": "final_unsupported",
       "resolution_review": {
         "path": "premise/data/clic/uvek_final_goes_review.json",
         "sha256": "f9484da604dd28610eb3ede3bd7a8bcdcc6a430ebba474acd732f177293d486a"
+      },
+      "activity": {
+        "name": "power conversion system production, electrolysis, transformer and rectifier, 1 mw",
+        "reference product": "power conversion system, electrolysis, transformer and rectifier, 1 MW",
+        "location": "GLO"
       }
     }
   ]

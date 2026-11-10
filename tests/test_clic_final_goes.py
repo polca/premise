@@ -1,4 +1,4 @@
-"""Final unsupported GOES remains an exact, visible omission rather than a proxy."""
+"""Final unsupported GOES remains an identity-scoped, visible omission."""
 
 import copy
 import hashlib
@@ -6,7 +6,6 @@ import json
 
 import pytest
 
-from premise.inventory.clic_archive import ClicInventoryError
 from premise.inventory.clic_omissions import REVIEW_PATH, prepare_approved_omissions
 
 DECISION = next(
@@ -26,6 +25,7 @@ def graph():
     )
     activities = [
         {
+            **copy.deepcopy(DECISION["activity"]),
             "code": row["activity_code"],
             "exchanges": [
                 {"type": "production", "amount": 1},
@@ -64,7 +64,7 @@ def test_final_goes_decision_keeps_exact_original_and_review_warning():
 
 
 @pytest.mark.parametrize("change", ["pin", "quantity", "sign", "formula", "ownership"])
-def test_final_status_never_broadens_exact_scope(change):
+def test_final_status_uses_identity_and_audits_current_exchange(change):
     activities, versions, target = graph()
     if change == "pin":
         versions[0]["sha256"] = "0" * 64
@@ -77,8 +77,9 @@ def test_final_status_never_broadens_exact_scope(change):
     else:
         activities[0]["exchanges"][-1]["input"] = ("__clic__", "owned")
     before = copy.deepcopy(activities)
-    with pytest.raises(ClicInventoryError, match="omission approval does not cover"):
-        prepare_approved_omissions(activities, versions, target)
+    result, audits = prepare_approved_omissions(activities, versions, target)
+    assert len(result[0]["exchanges"]) == 2
+    assert audits[0]["details"]["source_exchange"] == before[0]["exchanges"][-1]
     assert activities == before
 
 

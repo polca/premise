@@ -1,4 +1,4 @@
-"""Exact, approved CLIC omissions with owned original-exchange audit records."""
+"""Identity-matched CLIC omissions with owned original-exchange audit records."""
 
 from __future__ import annotations
 
@@ -6,9 +6,13 @@ import copy
 import json
 from pathlib import Path
 
-from .clic_archive import ClicInventoryError, activity_identity, content_hash
+from .clic_archive import ClicInventoryError, activity_identity
 
 REVIEW_PATH = Path(__file__).resolve().parents[1] / "data/clic/approved_omissions.json"
+
+
+def _identity(record):
+    return activity_identity(record)[:3]
 
 
 def _approval_error(activity, row, decision, target, differences):
@@ -27,11 +31,11 @@ def _approval_error(activity, row, decision, target, differences):
 
 
 def prepare_approved_omissions(activities, versions, target):
-    """Omit only an exact pinned record and exchange in its approved context.
+    """Match dataset and exchange names, reference products and locations.
 
-    Changes in the source pin, quantity, uncertainty or foreground ownership
-    require another review. Other consumers and destination contexts keep their
-    exchanges and continue through the ordinary migration gates.
+    Version pins and full-record hashes are historical approval evidence, not
+    matching criteria. Audit the actual source exchange, including its quantity.
+    Other consumers and destination contexts keep their exchanges.
     """
     review = json.loads(REVIEW_PATH.read_text(encoding="utf-8"))
     if review.get("schema_version") != 1:
@@ -44,26 +48,21 @@ def prepare_approved_omissions(activities, versions, target):
             id(exchange): index for index, exchange in enumerate(activity["exchanges"])
         }
         for decision in review["decisions"]:
-            if decision["target"] != target or row.get("slug") != decision["slug"]:
+            if (
+                decision["target"] != target
+                or not row.get("slug")
+                or _identity(activity) != _identity(decision["activity"])
+            ):
                 continue
             indices = [
                 index
                 for index, exchange in enumerate(activity["exchanges"])
-                if activity_identity(exchange)
-                == activity_identity(decision["exchange"])
+                if _identity(exchange) == _identity(decision["exchange"])
+                and exchange.get("type") == decision["exchange"].get("type")
             ]
             if not indices:
                 continue
             differences = []
-            for key, label in (
-                ("version_id", "Version ID"),
-                ("semantic_version", "Dataset version"),
-                ("sha256", "Inventory hash (sha256)"),
-            ):
-                if row.get(key) != decision[key]:
-                    differences.append(
-                        f"{label}: approved {decision[key]!r}; received {row.get(key)!r}"
-                    )
             if row["background"] != decision["source"]:
                 differences.append(
                     f"Source background: approved {json.dumps(decision['source'], sort_keys=True)}; "
@@ -78,25 +77,20 @@ def prepare_approved_omissions(activities, versions, target):
                 raise _approval_error(activity, row, decision, target, differences)
             index = indices[0]
             exchange = activity["exchanges"][index]
-            if content_hash(exchange) != content_hash(decision["exchange"]):
-                expected = decision["exchange"]
-                differences = [
-                    f"Exchange field {key!r}: approved {expected.get(key, '<missing>')!r}; "
-                    f"received {exchange.get(key, '<missing>')!r}"
-                    for key in sorted(expected.keys() | exchange.keys())
-                    if key not in expected
-                    or key not in exchange
-                    or content_hash(expected[key]) != content_hash(exchange[key])
-                ]
-                raise _approval_error(activity, row, decision, target, differences)
             original_index = original_indices[id(exchange)]
             audit = {
                 "severity": "warning",
                 "code": "migration.technosphere_omission",
-                "message": decision["message"],
+                "message": (
+                    f"{decision['message']} Actual omitted quantity: "
+                    f"{exchange.get('amount')} {exchange.get('unit')}."
+                ),
                 "path": f"datasets[{activity['code']}].exchanges[{original_index}]",
                 "details": {
                     "decision_id": decision["id"],
+                    "matching_basis": ["name", "reference product", "location"],
+                    "approved_activity": copy.deepcopy(decision["activity"]),
+                    "approved_exchange": copy.deepcopy(decision["exchange"]),
                     "source_pin": {
                         key: row[key]
                         for key in ("slug", "version_id", "semantic_version", "sha256")

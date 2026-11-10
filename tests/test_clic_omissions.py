@@ -1,4 +1,4 @@
-"""Approved exchange omissions retain exact pins, original data and warnings."""
+"""Identity-matched omissions retain original data and visible warnings."""
 
 import copy
 import gzip
@@ -41,9 +41,7 @@ def fixture():
         "uncertainty type": 0,
     }
     activity = {
-        "name": "CSP decommissioning",
-        "reference product": "decommissioning",
-        "location": "GLO",
+        **copy.deepcopy(DECISION["activity"]),
         "unit": "unit",
         "code": row["activity_code"],
         "database": "__clic__",
@@ -68,35 +66,11 @@ def test_exact_omission_keeps_owned_original_exchange_and_other_inventory():
     assert activities == before
 
 
-@pytest.mark.parametrize(
-    "change,label",
-    [
-        ("pin", "Inventory hash (sha256)"),
-        ("version", "Dataset version"),
-        ("version_id", "Version ID"),
-        ("source", "Source background"),
-        ("amount", "Exchange field 'amount'"),
-        ("uncertainty", "Exchange field 'formula'"),
-        ("foreground", "Exchange field 'input'"),
-        ("duplicate", "Matching exchanges: approved 1; received 2"),
-    ],
-)
-def test_changed_approval_scope_fails_without_mutation(change, label):
+@pytest.mark.parametrize("change", ["source", "duplicate"])
+def test_changed_approval_context_fails_without_mutation(change):
     activities, versions, target = fixture()
-    if change == "pin":
-        versions[0]["sha256"] = "0" * 64
-    elif change == "version":
-        versions[0]["semantic_version"] = "99.0.0"
-    elif change == "version_id":
-        versions[0]["version_id"] = -1
-    elif change == "source":
+    if change == "source":
         versions[0]["background"]["technosphere"]["version"] = "3.10"
-    elif change == "amount":
-        activities[0]["exchanges"][1]["amount"] *= -1
-    elif change == "uncertainty":
-        activities[0]["exchanges"][1]["formula"] = "salt_mass"
-    elif change == "foreground":
-        activities[0]["exchanges"][1]["input"] = ("__clic__", "salt")
     else:
         activities[0]["exchanges"].append(copy.deepcopy(activities[0]["exchanges"][1]))
     before = copy.deepcopy(activities)
@@ -105,21 +79,47 @@ def test_changed_approval_scope_fails_without_mutation(change, label):
     ) as error:
         prepare_approved_omissions(activities, versions, target)
     message = str(error.value)
-    assert "Dataset: CSP decommissioning" in message
+    assert f"Dataset: {DECISION['activity']['name']}" in message
     assert DECISION["slug"] in message
     assert f"Approval: {DECISION['id']}" in message
     assert f"Exchange: {DECISION['exchange']['name']}" in message
-    assert label in message
+    assert (
+        "Source background" if change == "source" else "Matching exchanges"
+    ) in message
     assert "approved " in message and "received " in message
     assert f"Approval file: {REVIEW_PATH}" in message
-    assert "Conversion stopped" in message
-    if change == "pin":
-        assert DECISION["sha256"] in message
-        assert "0" * 64 in message
-    elif change == "amount":
-        assert repr(DECISION["exchange"]["amount"]) in message
-        assert repr(-DECISION["exchange"]["amount"]) in message
     assert activities == before
+
+
+def test_matching_uses_identities_instead_of_hashes_or_versions():
+    activities, versions, target = fixture()
+    versions[0].update(
+        sha256="0" * 64, semantic_version="99.0.0", version_id=-1, slug="renamed-slug"
+    )
+    exchange = activities[0]["exchanges"][1]
+    exchange.update(amount=-15, comment="Updated metadata", formula="salt_mass")
+    before = copy.deepcopy(activities)
+    result, audits = prepare_approved_omissions(activities, versions, target)
+    assert len(result[0]["exchanges"]) == 2
+    assert activities == before
+    details = audits[0]["details"]
+    assert details["source_pin"]["version_id"] == -1
+    assert details["matching_basis"] == ["name", "reference product", "location"]
+    assert details["source_exchange"] == before[0]["exchanges"][1]
+    assert details["approved_exchange"] == DECISION["exchange"]
+    assert "Actual omitted quantity: -15 kilogram" in audits[0]["message"]
+
+
+@pytest.mark.parametrize("owner", [True, False])
+@pytest.mark.parametrize("field", ["name", "reference product", "location"])
+def test_different_identity_is_not_omitted(owner, field):
+    activities, versions, target = fixture()
+    record = activities[0] if owner else activities[0]["exchanges"][1]
+    record[field] = "another identity"
+    before = copy.deepcopy(activities)
+    result, audits = prepare_approved_omissions(activities, versions, target)
+    assert result == activities == before
+    assert not audits
 
 
 @pytest.mark.parametrize("change", ["target", "other owner", "workbook"])
@@ -132,7 +132,7 @@ def test_other_contexts_keep_used_salt_exchange(change):
             "system_model": "cutoff",
         }
     elif change == "other owner":
-        versions[0]["slug"] = "other-csp"
+        activities[0]["name"] = "other-csp"
     else:
         versions[0].pop("slug")
     before = copy.deepcopy(activities)
