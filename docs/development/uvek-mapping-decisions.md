@@ -439,7 +439,31 @@ This corrects one heat dependency, not the full sector. Adding the three require
 CLIC heat roots resolves a 76-record foreground graph while retaining every one
 of the original 55 pins. Preparation then identifies 14 unapproved correspondences
 in its ecoinvent 3.9 cohort. Further cohorts may reveal additional work. One is
-wastewater treatment with source production -1 m³ and native +1 m³: the old +1
-mapping must not be approved; the sign-coordinate conversion requires its own
-review. The public heat gate stays closed while these and the layered update,
+wastewater treatment with source production -1 m³ and native +1 m³. Correction:
+the actual inherited rule already has factor -1; the initial frontier note
+incorrectly inferred +1. Preserve the existing conversion once and independently
+qualify the treatment proxy. The public heat gate stays closed while these and the layered update,
 consumer relinking and export are completed.
+
+
+### Heat dependencies: seven products and generic wastewater
+
+The source 3.9 cut-off producers and native 2025/2026 reference inventories were
+inspected for acrylonitrile, acrylic acid, dimethyl sulfoxide, methyl acrylate,
+potassium permanganate, deionised water and ammonium bicarbonate. The selected
+complete native producers retain their original process/allocation boundaries.
+Caller kg, formulas and uncertainty remain unchanged; source market supplier
+mixes and final delivery are not reconstructed. Weak native process emissions,
+coproduct treatment, geography and vintage differences remain warnings.
+
+The Swiss generic wastewater service uses a volume-based screening proxy, with
+source COD 0.42534 kg/m³ versus native 0.1556 kg/m³ and different plant capacity,
+sewer/sludge and emission boundaries. No COD-ratio scaling, reuse credit or
+invented removal efficiency is introduced. The existing -1 reference conversion
+is retained exactly once, including signed normal/lognormal uncertainty and
+credits. The earlier frontier claim of an inherited +1 factor was incorrect.
+
+Evidence is in `export/uvek_heat_dependency_batch_review.json`. Eight exact scopes
+are added, bringing the count to 456 with all 448 prior fingerprints unchanged.
+The observed blocked cohort falls from 14 to six correspondences. Heat remains
+outside the public update gate pending the rest of its mappings and integration.

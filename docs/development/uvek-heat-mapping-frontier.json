@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "status": "pending_scientific_review_not_approved",
+  "status": "eight_qualified_six_pending_in_observed_cohort",
   "context": "First blocked ecoinvent3.9cutoff cohort of the12-root heat-expanded graph. This is an observed frontier, not a bound on all remaining heat or sector mapping work.",
   "identified_cases": 14,
   "foreground_records": 76,
   "root_count": 12,
   "original55pins_unchanged": true,
   "categories": {
-    "requires_initial_correspondence_review": 9,
+    "requires_initial_correspondence_review": 2,
     "requires_exact_profile_extension": 4,
-    "requires_signed_treatment_review": 1
+    "qualified_exact_profile_proxy": 8
   },
   "primary_evidence_receipt": {
     "name": "heat_pending_scope_primary_evidence.private.json",
@@ -226,7 +226,7 @@
     },
     {
       "rule_id": "bp-508c267844c98459",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -256,7 +256,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -289,11 +289,20 @@
           "metadata_sha256": "e4580c02945b2bd1dc5e395d0fc9b68bf8153f7e30228780766b866e8a9e2249"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": 1,
+      "observed_inherited_conversion_factor": 1,
+      "limitations": [
+        "Same acrylonitrile monomer and Sohio propylene ammoxidation function; native mass allocation to acrylonitrile/hydrogen cyanide/acetonitrile remains. Source market shares and final delivery are not reconstructed.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     },
     {
       "rule_id": "bp-c48d784ebf2f5852",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -323,7 +332,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -356,11 +365,20 @@
           "metadata_sha256": "d8378430b76786e391a8be0618362a293b2356e709889ee02938479bd14617e1"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": 1,
+      "observed_inherited_conversion_factor": 1,
+      "limitations": [
+        "Both inventories reference one kg liquid acrylic acid, not an acid solution. Native process emissions are weak/estimated and solid wastes omitted in its documentation; retain this limitation without a concentration, density or yield correction.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     },
     {
       "rule_id": "bp-1b705d854d098ad0",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -390,7 +408,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -423,11 +441,20 @@
           "metadata_sha256": "6ee4b5c633a7fd89fcadedcc487495de43046815412bdf409cbcdb96ea5d128a"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": 1,
+      "observed_inherited_conversion_factor": 1,
+      "limitations": [
+        "Same dimethyl sulfoxide product from methanol and hydrogen sulfide. Native stoichiometric raw-material assumptions and estimated utilities/emissions/infrastructure remain; no chemistry repair or extra solvent burden is invented.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     },
     {
       "rule_id": "bp-58894aa1e29f0229",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -457,7 +484,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -490,7 +517,16 @@
           "metadata_sha256": "6be45550e2814666c57f0c215cb9c070bb4332374a3458f4d313bad439a924ce"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": 1,
+      "observed_inherited_conversion_factor": 1,
+      "limitations": [
+        "Same methyl acrylate product, source explicitly100%, made by esterifying acrylic acid. Preserve whole kg; native estimated energy/emissions and standard infrastructure/transports remain, with no dilution correction.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     },
     {
       "rule_id": "bp-412f090ea47af121",
@@ -610,7 +646,7 @@
     },
     {
       "rule_id": "bp-667e1179d41e1bd5",
-      "status": "requires_signed_treatment_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -640,7 +676,7 @@
         ]
       },
       "required_reference_sign_factor": -1,
-      "warning": "Do not approve inherited factor+1 for this negative source treatment reference.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -673,11 +709,21 @@
           "metadata_sha256": "91d590ed22f26bc2c16fb58ae87dae12ab2bd736340e23dbffa25976d5957856"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": -1,
+      "observed_inherited_conversion_factor": -1,
+      "limitations": [
+        "Source is generic at-gate wastewater treatment per m3 with negative reference; native class1is a complete positive treatment service for one m3,233000person-equivalents. Source COD0.42534kg/m3 versus native0.1556kg/m3 is a substantial load difference. Use a volume-based screening proxy, not pollutant-load equivalence; no COD-ratio rescaling, guessed removal efficiency, treated-water reuse or avoided-emission credit.",
+        "The inherited Brightpath rule already has factor-1. Preserve that coordinate conversion exactly once: negative wastewater demand becomes positive service demand and a positive source credit becomes a negative service credit. Preserve volume and signed uncertainty; never use absolute values or flip twice.",
+        "Source at-gate boundary excludes collection/sewers; native treatment includes its own sewer infrastructure, three-stage purification, sludge handling and different water/carbon/emission modelling. Keep the complete native boundary and warn about these differences; add no residential sewage wrapper or second sewer stage.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     },
     {
       "rule_id": "bp-943f69ba68d96deb",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -707,7 +753,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -740,11 +786,20 @@
           "metadata_sha256": "ce82ec8a81ab6ba93821cc8550cdf8d7771d0772d5f68b9c5e1888d10ffc788d"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": 1,
+      "observed_inherited_conversion_factor": 1,
+      "limitations": [
+        "Same potassium permanganate product and manganese-dioxide oxidation function. Source discusses potassium-carbonate coproduct and omitted hydrogen; native documentation names hydrogen coproduct allocation. Retain native allocation with an explicit difference; add no hydrogen or carbonate credit.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     },
     {
       "rule_id": "bp-f1bc637c4fcf6060",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -774,7 +829,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -807,7 +862,16 @@
           "metadata_sha256": "be7c253619e026023bd1d16979cff690835a02863c07132bdb4ab4f069e33afd"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": 1,
+      "observed_inherited_conversion_factor": 1,
+      "limitations": [
+        "Same kg deionised/demineralised water service by ion exchange. Raw-water quality, regeneration chemicals, unit capacity, purity and delivery differ. Native excludes very small cartridges and very large power-station units; no kg-to-m3/density or extra loss multiplier is used.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     },
     {
       "rule_id": "bp-08f2432b62895931",
@@ -884,7 +948,7 @@
     },
     {
       "rule_id": "bp-a0067903079f6814",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -914,7 +978,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Reference-coordinate conversion and functional-proxy limitations are both required; this is not LCIA equivalence.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -947,7 +1011,20 @@
           "metadata_sha256": "fe5fbc3e137b4a3e3d3f12ee7902d38b8184b8008352c1c0b1d461404e2195cb"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+      "conversion_factor": 1,
+      "observed_inherited_conversion_factor": 1,
+      "limitations": [
+        "Both inventories state one kg100%ammonium bicarbonate, a solid product. Native documentation lacks auxiliary/solid-waste and most air/water-emission inventories; final transport/storage is absent. No hidden zero-impact claim, concentration conversion or extra delivery burden is introduced.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ]
     }
-  ]
+  ],
+  "initial_identified_cases": 14,
+  "qualified_cases": 8,
+  "pending_cases": 6,
+  "correction": "Previous frontier text incorrectly inferred an inherited+1 wastewater factor. Inspection of the actual rule and its original sign evidence confirms-1 already existed. Preserve it exactly once; independent proxy qualification was missing."
 }

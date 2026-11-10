@@ -120131,6 +120131,623 @@
           "fingerprint": "0e83dd28f1ceea4f24c1ca0fc37bad4a81782a75d49e7e0059b2b25a546e0e22"
         }
       ]
+    },
+    {
+      "rule_id": "bp-508c267844c98459",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for acrylonitrile",
+          "reference product": "acrylonitrile",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Acrylonitrile from Sohio process, at plant",
+          "reference product": "Acrylonitrile from Sohio process, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "d3b44acb8246b41be9761d057dd747ae87dd93117621fe208d2ae915130f499d",
+        "source_metadata_sha256": "12772e8d529d54e0017d24aa471b8a4aaf7045a3b0a4c087214ac763cd634928",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "RER",
+              "name": "Acrylonitrile from Sohio process, at plant",
+              "reference product": "Acrylonitrile from Sohio process, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "18c8421cbe5e8139f457a275e177155ea3717b429e67419bbb53a99e6f4b82c7",
+            "metadata_sha256": "fe51ac05fed6060369c68d4c77918c6070deafe7d82679bc96829f2f149f5b9a"
+          },
+          "2026": {
+            "identity": {
+              "location": "RER",
+              "name": "Acrylonitrile from Sohio process, at plant",
+              "reference product": "Acrylonitrile from Sohio process, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "8926b60e54e63316354c8182d473b43d15d2e4cf4c55c7a5950e04da15e7cb2f",
+            "metadata_sha256": "e4580c02945b2bd1dc5e395d0fc9b68bf8153f7e30228780766b866e8a9e2249"
+          }
+        }
+      },
+      "limitations": [
+        "Same acrylonitrile monomer and Sohio propylene ammoxidation function; native mass allocation to acrylonitrile/hydrogen cyanide/acetonitrile remains. Source market shares and final delivery are not reconstructed.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "24dff4d47f7a6f49a64808a1a66385603659297fea6b66d524b568f82ad1ba75"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c48d784ebf2f5852",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for acrylic acid",
+          "reference product": "acrylic acid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Acrylic acid, at plant",
+          "reference product": "Acrylic acid, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "fbe8ad39b8101cfe15c0e0ff5da17df801b3d21e8fd61e7500dfaff9d785d2ce",
+        "source_metadata_sha256": "5b7f99d09771326f5509612978aee580a3d873d19da5777f3c47d287da985125",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "RER",
+              "name": "Acrylic acid, at plant",
+              "reference product": "Acrylic acid, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "5cb7f711cee1cbd6fa4642038a691d22280936cfa279429681444053fa76872f",
+            "metadata_sha256": "4e05a5f1c4e45154dfcf2ca892a2c4dda561bd02a75bf274b43eb4d0218415f0"
+          },
+          "2026": {
+            "identity": {
+              "location": "RER",
+              "name": "Acrylic acid, at plant",
+              "reference product": "Acrylic acid, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "04192bb1ddd9b49eaafd6db6af84a4ff0449a30324b82c57723bfdfdd1d4f61d",
+            "metadata_sha256": "d8378430b76786e391a8be0618362a293b2356e709889ee02938479bd14617e1"
+          }
+        }
+      },
+      "limitations": [
+        "Both inventories reference one kg liquid acrylic acid, not an acid solution. Native process emissions are weak/estimated and solid wastes omitted in its documentation; retain this limitation without a concentration, density or yield correction.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5c66452f0bc1d3762b216f1783cd6a9b5be9e5ac6fbb6a7dbf75739f5e12c7ee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1b705d854d098ad0",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for dimethyl sulfoxide",
+          "reference product": "dimethyl sulfoxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Dimethyl sulfoxide, at plant",
+          "reference product": "Dimethyl sulfoxide, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "d77f4f8eb8e0fe7e4a3ec72f7fbd9cc8c102f1cc3374a3ce07842a0d00df4097",
+        "source_metadata_sha256": "ac4e39dd54739a41f21fea54114b468ff9413c719d334da2f29e9f5fb0880ca9",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "RER",
+              "name": "Dimethyl sulfoxide, at plant",
+              "reference product": "Dimethyl sulfoxide, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "2a5561d2c71eba9cf77bbc9bf047ec3e0b68b515bb992223a3adec5e2677b86c",
+            "metadata_sha256": "b60b5a1e4d7653c1bdfa2b9eb471bbd9183054f0a731a65197ad196dba0aca71"
+          },
+          "2026": {
+            "identity": {
+              "location": "RER",
+              "name": "Dimethyl sulfoxide, at plant",
+              "reference product": "Dimethyl sulfoxide, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "c3c79bfe55cf97fa3ef046cd7c4e4e16068ca35488ca9144546f525c7698bc88",
+            "metadata_sha256": "6ee4b5c633a7fd89fcadedcc487495de43046815412bdf409cbcdb96ea5d128a"
+          }
+        }
+      },
+      "limitations": [
+        "Same dimethyl sulfoxide product from methanol and hydrogen sulfide. Native stoichiometric raw-material assumptions and estimated utilities/emissions/infrastructure remain; no chemistry repair or extra solvent burden is invented.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a1524cff9fc7344d8fdc6c63675111e748b444a465dc3a65ddc6066117c34135"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-58894aa1e29f0229",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for methyl acrylate",
+          "reference product": "methyl acrylate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Methyl acrylate, at plant",
+          "reference product": "Methyl acrylate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "01aad9be7361589dd278f7b148e179416644b56b56fc3083d02b252571337491",
+        "source_metadata_sha256": "add3b586b96505d8a4a7fe1557238c7b2742077f76bb9efb2f754eedc90fa3fb",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "GLO",
+              "name": "Methyl acrylate, at plant",
+              "reference product": "Methyl acrylate, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "63b5c3db5c4cd57776a93f47be6efc1cb3604612acf73ee79dec4ad20952fa8a",
+            "metadata_sha256": "f3aae9ffb4f1877ca2f2482f0483b1379d2d7f89740c2a3c3271bdee6c7aa55a"
+          },
+          "2026": {
+            "identity": {
+              "location": "GLO",
+              "name": "Methyl acrylate, at plant",
+              "reference product": "Methyl acrylate, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "52786588e0397e29eb2e7bab350074e30463a681ae6c60d749cc56dd0abb8b41",
+            "metadata_sha256": "6be45550e2814666c57f0c215cb9c070bb4332374a3458f4d313bad439a924ce"
+          }
+        }
+      },
+      "limitations": [
+        "Same methyl acrylate product, source explicitly100%, made by esterifying acrylic acid. Preserve whole kg; native estimated energy/emissions and standard infrastructure/transports remain, with no dilution correction.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0814a2b612b103be457ad5c9a7410a0a63fb91dc4276ea51b42aeca94ce85e2c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-667e1179d41e1bd5",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "treatment of wastewater, average, wastewater treatment",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Treatment, sewage, to wastewater treatment, class 1",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "target_reference_amount": 1,
+        "conversion_factor": -1,
+        "source_inventory_sha256": "6c51ee5a5bc54015fad241fe19c29fc33b12b27872c179c64c53dae62360efe0",
+        "source_metadata_sha256": "6d76a9335fbe78adc825dd685050673f14de06f07709717f8263c7410aa3f496",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "CH",
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "325deffc585f7e9186114d29a52ef831e90c393a5246ccdba4d7b8fe699ba1e2",
+            "metadata_sha256": "9f594f4139d789ec83bb14819ba02dd891f77e2259a819508c2fa490a2f9da37"
+          },
+          "2026": {
+            "identity": {
+              "location": "CH",
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "f5e2d9baac53590add03c8d761ebf71d4ba3cc616563a7754f0bed7c31459b68",
+            "metadata_sha256": "91d590ed22f26bc2c16fb58ae87dae12ab2bd736340e23dbffa25976d5957856"
+          }
+        }
+      },
+      "limitations": [
+        "Source is generic at-gate wastewater treatment per m3 with negative reference; native class1is a complete positive treatment service for one m3,233000person-equivalents. Source COD0.42534kg/m3 versus native0.1556kg/m3 is a substantial load difference. Use a volume-based screening proxy, not pollutant-load equivalence; no COD-ratio rescaling, guessed removal efficiency, treated-water reuse or avoided-emission credit.",
+        "The inherited Brightpath rule already has factor-1. Preserve that coordinate conversion exactly once: negative wastewater demand becomes positive service demand and a positive source credit becomes a negative service credit. Preserve volume and signed uncertainty; never use absolute values or flip twice.",
+        "Source at-gate boundary excludes collection/sewers; native treatment includes its own sewer infrastructure, three-stage purification, sludge handling and different water/carbon/emission modelling. Keep the complete native boundary and warn about these differences; add no residential sewage wrapper or second sewer stage.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d219aa4f4fb7602b8ff913ade402483db199a7803a6ca652f2b36a1664cb85d4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-943f69ba68d96deb",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for potassium permanganate",
+          "reference product": "potassium permanganate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Potassium permanganate, at plant",
+          "reference product": "Potassium permanganate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "77de43026979f52a56c4b76c8acda33632ff61c041a70b5402748c7ffc604031",
+        "source_metadata_sha256": "ab55fcc2f577eea27caaf010d92fc6a6d17363f4dc8260c9a63480f3c9ebafe6",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "RER",
+              "name": "Potassium permanganate, at plant",
+              "reference product": "Potassium permanganate, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "01f48cb9eb7a543b104c606c553ae367ea709b11a86fc2666e9dc7bd8af9258b",
+            "metadata_sha256": "8c4dfc588ef7563de4143f38f90e9185ae0fed525ad93e300daca978892e7393"
+          },
+          "2026": {
+            "identity": {
+              "location": "RER",
+              "name": "Potassium permanganate, at plant",
+              "reference product": "Potassium permanganate, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "7f1c23f2c2f9d493ce5ad76f29ee50d5d867b35991e10a27dcec8633fc2215b7",
+            "metadata_sha256": "ce82ec8a81ab6ba93821cc8550cdf8d7771d0772d5f68b9c5e1888d10ffc788d"
+          }
+        }
+      },
+      "limitations": [
+        "Same potassium permanganate product and manganese-dioxide oxidation function. Source discusses potassium-carbonate coproduct and omitted hydrogen; native documentation names hydrogen coproduct allocation. Retain native allocation with an explicit difference; add no hydrogen or carbonate credit.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8e8ab3abd1511d8cb56fac331095889d27d779741bf05255d669527baca48920"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f1bc637c4fcf6060",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for water, deionised",
+          "reference product": "water, deionised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Water, deionised, at plant",
+          "reference product": "Water, deionised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "8126b5538932eb92a3da430bf7c22b5afddf1837b19313d7039b790efad1365e",
+        "source_metadata_sha256": "99789af6f899658788d58cca6eca9cc6fa22863a34c5ea6d97d6f6849202f4f0",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "CH",
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+            "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944"
+          },
+          "2026": {
+            "identity": {
+              "location": "CH",
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "1d7fe7c87e6806833088deed8891fb9928f2bf7abfcf50c1bd3f3e794f707988",
+            "metadata_sha256": "be7c253619e026023bd1d16979cff690835a02863c07132bdb4ab4f069e33afd"
+          }
+        }
+      },
+      "limitations": [
+        "Same kg deionised/demineralised water service by ion exchange. Raw-water quality, regeneration chemicals, unit capacity, purity and delivery differ. Native excludes very small cartridges and very large power-station units; no kg-to-m3/density or extra loss multiplier is used.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "941d1ce691ec1dcfa3548627679d1e69c074ca2c658bf5b157362073076c41eb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a0067903079f6814",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_dependency_batch_review.json",
+      "review_sha256": "4bfa4bc348a48d2e961b58f03b1b6c69fdfa7860f591fa0570a7723e212edac5",
+      "authorization": "Standing autonomous modelling approval and prior auto-approval of similar whole-product/service screening proxies; independently inspect exact source/native identities and reference quantities, preserve caller ownership and log material limitations.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for ammonium bicarbonate",
+          "reference product": "ammonium bicarbonate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Ammonium bicarbonate, at plant",
+          "reference product": "Ammonium bicarbonate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "576f707138d733a8ba8a0a7834bcbc7affb41667748a26370a8e883b7d030c4b",
+        "source_metadata_sha256": "14e6c7770080a7ef067ebe73d771f1b86e2faef102b65c02cd25eeefb6906884",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "RER",
+              "name": "Ammonium bicarbonate, at plant",
+              "reference product": "Ammonium bicarbonate, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "23d261fb6c122fa0010fb001849c87e9bfa62989f27ef489e2f087a60dd13434",
+            "metadata_sha256": "9ab15e37ede13974bb87f34fa09776835602c68436b5077f57f664658d653ddd"
+          },
+          "2026": {
+            "identity": {
+              "location": "RER",
+              "name": "Ammonium bicarbonate, at plant",
+              "reference product": "Ammonium bicarbonate, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "4c62b2fc48da389a8100159b156270e8b9e8248a9e5441ecb357dfcee964d9c8",
+            "metadata_sha256": "fe5fbc3e137b4a3e3d3f12ee7902d38b8184b8008352c1c0b1d461404e2195cb"
+          }
+        }
+      },
+      "limitations": [
+        "Both inventories state one kg100%ammonium bicarbonate, a solid product. Native documentation lacks auxiliary/solid-waste and most air/water-emission inventories; final transport/storage is absent. No hidden zero-impact claim, concentration conversion or extra delivery burden is introduced.",
+        "The source market is replaced by the complete native at-plant producer as a screening proxy. Its regional producer weights and internal final-delivery burdens are not retained. Do not silently call this a market reconstruction or add an invented freight route.",
+        "Retain the complete installed native inventory once, including its original background, geography, allocation and vintage. Caller exchanges, formulas, quantities, supported uncertainty, separate transport and emissions remain unchanged apart from the reviewed reference-coordinate sign. Effects are unquantified; no LCIA equivalence or impact completeness is claimed.",
+        "Only inspected ecoinvent3.9cutoff is qualified. Other releases, inverse and cross-system-model requests cannot borrow this approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2fdbd1dfb90e4157de68ff63eb200c9cf6bfdcb04749cbc5fda074305c2f9109"
+        }
+      ]
     }
   ]
 }

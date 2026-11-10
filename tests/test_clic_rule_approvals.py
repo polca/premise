@@ -253,6 +253,32 @@ def test_heat_hydrogen_proxy_preserves_exact_scope_limits_and_cache(tmp_path):
     assert resolved.activities == before
 
 
+@pytest.mark.parametrize("index", range(8))
+def test_heat_dependency_batch_keeps_coordinate_and_warnings_in_cache(tmp_path, index):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_dependency_batch_review.json").read_text()
+    )
+    row = review["records"][index]
+    resolved = graph(row["source"])
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2 * row["conversion_factor"]
+        assert all(edge[k] == v for k, v in row["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and row["rule_id"] in str(d["details"])
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
 def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource

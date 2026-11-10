@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "scope": "Eight exact ecoinvent3.9cutoff-to-UVEK2026/biosphere3.10 qualifications in the observed heat cohort; heat remains gated.",
+  "qualified_cases": 8,
+  "pending_in_observed_cohort": 6,
+  "other_cohorts_not_claimed_complete": true,
+  "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+  "correction": "Inherited wastewater factor was already-1. Earlier frontier notes incorrectly inferred+1. This batch retains the factor once, and independently qualifies the differing volume-based treatment proxy.",
+  "coordinate_preservation": "Source amount/source production equals target amount/target production; positive and negative quantities, formulas and supported normal/lognormal uncertainty are tested.",
+  "limitations": [
+    "Seven plant proxies do not reconstruct source market producer mixes/final delivery; source kg and separately listed caller flows are retained. Native allocation, geography, vintage and weak/missing emissions remain explicit.",
+    "Wastewater source COD0.42534kg/m3 differs from native0.1556kg/m3; capacity, sewer, sludge and emission models differ. No COD-ratio rescaling or invented reuse/avoided-emission credit.",
+    "Native background retains its original2991upstream biosphere exclusions. No impact completeness or LCIA equivalence is claimed."
+  ],
+  "Brightpath_tests": 58,
+  "Premise_focused_tests": 17,
+  "installed_signed_demand_checks": 16,
+  "exact_scopes": 456,
+  "prior448fingerprints_unchanged": true,
+  "original_installed_caller_checks": 41,
+  "original_public_default_export": {
+    "activities": 12529,
+    "roots": 9,
+    "pins": 55,
+    "certification_export_and_readback": "passed from isolated packages",
+    "biomass_markets": 13,
+    "literal_pellet_audits": 5,
+    "finite_biomass_LCIs": 3,
+    "source_signatures_unchanged": true,
+    "complete_links": true
+  },
+  "wheels": {
+    "premise-2.6.0-py3-none-any.whl": "ce8c41f01c5fbbe46715820f2fd87faa2e134f7c2b04b8c19d0d081dbd3fe13c",
+    "brightpath-1.0.0a14-py3-none-any.whl": "1749a556e23ef89f264df5d37ac8cb7654415c3ff0dcbe51854aac73a5937bee"
+  },
+  "receipts": [
+    {
+      "name": "heat_dependency_batch_tests.log",
+      "sha256": "ed2c08f75b281138b57b7daec1af569c8f30b0ea085daeb1198d98054b0f91ed",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_dependency_batch_premise_tests.log",
+      "sha256": "27477b434d22c945298ccb09bf15aa86d38e397af7ed526c8c165435c33ffdd4",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_dependency_batch_scope_registration.json",
+      "sha256": "d4eba9dac46f85fe8eb537eebe1ab961a9c01d7fcf92b7d32e56ef79c5b2d382",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_dependency_batch_installed_checks.json",
+      "sha256": "8bb1e45b184224fea7c7a1ab4d08273600183364b6ee3cf69244e6e4d69df839",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_dependency_batch_original_callers.json",
+      "sha256": "17f4d44b5e4838e81e02e11330544fc889cb2243093fb13b90130ec3795870ba",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_dependency_batch_default_export_report.json",
+      "sha256": "d4e1c900e0fc249c3d9644febba2e9ff8c189cf7543a9b3f6240c022c6f426bd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_dependency_batch_default_readback.json",
+      "sha256": "d0916fbb87ec700934400a4f9514655160d314adbcb905eb1b4951d6f1c81edd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_dependency_batch_original_readback.json",
+      "sha256": "e6c0d208167ce0f16557146814cdbe66c1e9b0fb426fab206843450911a226ea",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_dependency_batch_remaining_scope_ids.json",
+      "sha256": "de32daa96811659e906aa0b8dd7dd131ee7a259ecd755829831cdc2761c74984",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_dependency_batch.json",
+      "sha256": "d546fa7939b749b0d1e693e29a59bbeeb21d81ec38ce20049eb26ae9316516be",
+      "location": "private task workspace"
+    }
+  ]
+}

@@ -67,7 +67,7 @@
     "District copies retain native Swiss loss/network assumptions; geography, temperature, technology, density, vintage and unquantified score effects remain.",
     "The pinned native background retains2991upstream biosphere exclusions from its original import; this stage does not repair or quantify them.",
     "No LCIA equivalence, impact completeness or full heat operationalization is claimed. End-use mappings, updates/relinking, certification and export remain required before opening heat.",
-    "One pending wastewater correspondence has source reference-1m3 and native+1m3; its inherited+1factor must not be approved."
+    "Correction: wastewater already had factor-1; the earlier inherited+1claim was incorrect. Its source-1m3/native+1m3 coordinate must not be flipped twice. Functional proxy review was pending at this checkpoint."
   ],
   "commits": {
     "Brightpath_hydrogen": "ab1d4f6",
@@ -145,5 +145,6 @@
       "sha256": "8477fc4bb0b5bb43edca9067114f291e61400a5bd37e12dc036a10246525c42e",
       "location": "private task workspace"
     }
-  ]
+  ],
+  "verification_snapshot": "Historical distribution/H2 milestone at448scopes. Current mapping qualifications are tracked separately in uvek-heat-mapping-frontier.json."
 }

@@ -69,6 +69,17 @@ screening proxy instead of electrolysis, with mass/pressure, refinery-allocation
 geography and vintage limitations. Preparation then stops on 14 unreviewed
 correspondences in the observed3.9cohort; later cohorts may expose more. The
 [mapping frontier](uvek-heat-mapping-frontier.json) records primary references.
-One wastewater case has source production-1m³ and native+1m³; approving its old
-+1factor would reproduce the treatment-sign error. It remains gated pending
-signed-service review.
+Correction to the initial frontier note: the wastewater correspondence already
+has factor -1, consistent with source production -1 m³ and native +1 m³. Its
+blocker was independent treatment-proxy qualification, not a missing sign flip.
+
+
+The next batch qualifies eight exact 3.9 cut-off correspondences: seven complete
+native chemical/water production proxies and the generic wastewater service.
+Producer references and product boundaries were inspected; only caller mass or
+volume and the reference-coordinate sign are preserved, without invented purity,
+density, yield or COD-load factors. Source market producer mixes/final delivery
+are not reconstructed by the plant proxies and their effects remain unquantified.
+Wastewater keeps its existing -1 factor once, while the large COD, capacity,
+sewer, sludge and emission-model differences remain explicit. Six correspondence
+reviews remain in the observed cohort; later cohorts may reveal more work.

@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "native_supplier_and_distribution_stages_verified_supplemental_mappings_and_public_rollout_pending",
+      "status": "native_stages_verified_eight_supplemental_cases_qualified_six_pending_in_observed_cohort",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -818,6 +818,11 @@
           "decision": "Reject inherited electrolysis match for refinery hydrogen; use complete native fossil SMR as a limited+1kgproxy for source3.9cutoff.",
           "review": "brightpath/data/export/uvek_heat_hydrogen_market_review.json",
           "authorization": "Standing autonomous approval."
+        },
+        {
+          "decision": "Qualify7wholekgplant proxies and1volume-based wastewater service, with explicit market/COD/boundary limitations. Wastewater factor-1wasalreadycorrect; preserve it once and correct earlier frontier claim.",
+          "review": "brightpath/data/export/uvek_heat_dependency_batch_review.json",
+          "authorization": "Standing autonomous approval; no uninspected profile approval."
         }
       ],
       "implementation_commits": [
@@ -832,7 +837,9 @@
         "101focused/shared mapping, physical-basis, heat and CLIC requirements tests passed;38native tests plus28actual-source role replays passed from isolated installed wheels. Groups overlap.",
         "84native distribution/supplier/basis and existing heat tests passed;58native tests passed from isolated installed wheels. Groups overlap.",
         "Installed real-IAM secondary/delivery stage has13mixes,13delivery copies,3finiteLCIs, complete links and unchanged original scientific signatures.",
-        "New fossil-H2scope:41Brightpath and10focusedPremise checks passed; old447fingerprints unchanged, total448. Original installed default biomass/electricity workflow and41restored callers still pass."
+        "New fossil-H2scope:41Brightpath and10focusedPremise checks passed; old447fingerprints unchanged, total448. Original installed default biomass/electricity workflow and41restored callers still pass.",
+        "58Brightpath and17focusedPremise checks pass for the8-case batch; all448earlier fingerprints unchanged, total456.",
+        "Isolated installed packages verify16signed demands,41original restored callers, and the original12529-activity public export/readback with55pins/9roots and unchanged source signatures."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -901,9 +908,12 @@
         "resolution_roots": 12,
         "foreground_records": 76,
         "original55pins_unchanged": true,
-        "observed_pending3_9cases": 14,
+        "observed_pending3_9cases": 6,
         "review": "docs/development/uvek-heat-mapping-frontier.json",
-        "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases"
+        "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases",
+        "initial_observed_pending3_9cases": 14,
+        "qualified3_9cases": 8,
+        "verification": "docs/development/uvek-heat-dependency-batch-verification.json"
       }
     },
     {
