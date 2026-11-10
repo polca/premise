@@ -1,3 +1,6 @@
+# Native aliases identify caller pools. Reviewed supplier-input pairs assign
+# combustion sectors; one activity can contain several fuel-specific roles.
+# Use uvek_combustion planning rather than a single sector per native activity.
 CHEMBULK:
   ecoinvent_aliases:
     fltr:
@@ -795,6 +798,212 @@ End_Use_Industry_NatGas:
     - market
   gains_aliases_IAM: End_Use_Industry_NatGas
 End_Use_Industry_LLF:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - 1-butanol, propylene hydroformylation, at plant
+      - 1-pentanol, at plant
+      - 2-methyl-2-butanol, at plant
+      - 3-methyl-1-butanol, at plant
+      - Acetic anhydride from ketene, at plant
+      - Air distribution housing, steel, 120 m3/h, at plant
+      - Air filter, central unit, 600 m3/h, at plant
+      - Air filter, decentralized unit, 180-250 m3/h, at plant
+      - Air filter, in exhaust air valve, at plant
+      - Aircraft, long haul
+      - Aircraft, medium haul
+      - Assembly, generator and motor, Mini CHP plant
+      - Assembly, generator and motor, cogen unit 160kWe
+      - Assembly, module cogen unit 160kWe
+      - Basalt, at mine
+      - Bicycle, at regional storage
+      - Bus
+      - Cogen unit 200kWe diesel SCR, common components for heat+electricity
+      - Compressor Bitzer
+      - Concrete sleeper, at regional storage
+      - Concrete, exacting, at plant
+      - Concrete, exacting, with de-icing salt contact, at plant
+      - Concrete, normal, at plant
+      - Concrete, sole plate and foundation, at plant
+      - Connection piece, steel, 100x50 mm, at plant
+      - Construction work, cogen unit 160kWe
+      - Control and wiring, central unit, at plant
+      - Control and wiring, decentralized unit, at plant
+      - Control cabinet cogen unit 160kWe
+      - Copper telluride cement, from copper production
+      - Corrugated board, mixed fibre, single wall, at plant
+      - Corrugated board, recycling fibre, double wall, at plant
+      - "Elbow 90\xB0, steel, 100x50 mm, at plant"
+      - Electric bicycle, LiNCM battery, at regional storage
+      - Electric bicycle, at regional storage
+      - Electric parts of Mini CHP plant
+      - Electric parts of cogen unit 160kWe
+      - Electric scooter, at regional storage
+      - Exhaust air outlet, steel/aluminum, 85x365 mm, at plant
+      - Exhaust air roof hood, steel, DN 400, at plant
+      - Exhaust air valve, in-wall housing, plastic/steel, DN 125, at plant
+      - Expanded perlite, at plant
+      - Expanded vermiculite, at plant
+      - Expansion vessel 25l, at plant
+      - Expansion vessel 80l, at plant
+      - Fibre cement corrugated slab, at plant
+      - Fibre cement roof slate, at plant
+      - Fleece production, polyethylene terephthalate
+      - Flexible duct, aluminum/PET, DN of 125, at plant
+      - Foaming, expanding
+      - Gas motor 206kW
+      - Gas motor Mini CHP plant
+      - Generator 200kWe
+      - Generator Mini CHP plant
+      - Glass production site
+      - Glass tube, borosilicate, at plant
+      - Glued laminated timber, average glue mix, at plant
+      - Glued solid timber, average glue mix, at plant
+      - Gold, secondary, at precious metal refinery
+      - Goods wagon
+      - Grain drying, high temperature
+      - Grain drying, low temperature
+      - Ground heat exchanger, PE, DN 200, at plant
+      - Gypsum fibre board, at plant
+      - Heat pump, air-water, 15kW
+      - Heat pump, air-water, 50kW
+      - Heat pump, air-water, 7kW
+      - Heat pump, brine-water, 15kW
+      - Heat pump, brine-water, 50kW
+      - Heat pump, brine-water, 7kW
+      - Heat, light fuel oil, at industrial furnace 1MW
+      - Heat, unspecific, in chemical plant
+      - Heating, sanitary equipment Mini CHP plant
+      - Heating, sanitary equipment cogen unit 160kWe
+      - Industrial furnace 1MW, oil
+      - Insulation spiral-seam duct, rockwool, DN 400, 30 mm, at plant
+      - Inverter, 10 kW, average, at plant
+      - Inverter, 2.5 kW, average, at plant
+      - Inverter, 20 kW, average, at plant
+      - Inverter, 5 kW,  average, at plant
+      - Isobutanol, at plant
+      - Kraft paper, bleached, at plant
+      - Locomotive
+      - Lorry 16t
+      - Lorry 28t
+      - Lorry 40t
+      - MOX fuel element for LWR, at nuclear fuel fabrication plant
+      - Maintenance, bus
+      - Maintenance, cogen unit 160kWe
+      - Maintenance, goods wagon
+      - Maintenance, locomotive
+      - Maintenance, lorry 16t
+      - Maintenance, lorry 28t
+      - Maintenance, lorry 40t
+      - Maintenance, tram
+      - Maize drying
+      - Metal working factory operation, average heat energy
+      - Metal working machine operation, average process heat
+      - Nuclear power plant, boiling water reactor 1000MW
+      - Nuclear power plant, pressure water reactor 1000MW
+      - Oil boiler 100kW
+      - Oil boiler 10kW
+      - Operation, maintenance, airport
+      - Outside air intake, stainless steel, DN 370, at plant
+      - Overflow element, steel, approx. 40 m3/h
+      - Packaging, corrugated board, mixed fibre, single wall, at plant
+      - Paper machine, at paper mill
+      - Paper, recycling, average, at plant
+      - Paper, recycling, with deinking, at plant
+      - Passenger car
+      - Passenger car, diesel, EURO5, city car, at plant
+      - Perlite, at mine
+      - Photovoltaic cell, multi-Si, at plant
+      - Photovoltaic cell, ribbon-Si, at plant
+      - Photovoltaic laminate, a-Si, at plant
+      - Photovoltaic panel, CIS, Sto, Ventec Artline inlay, at plant
+      - Photovoltaic panel, CIS, Sto, Ventec Artline invisible, at plant
+      - Photovoltaic panel, CIS, at plant
+      - Phthalic anhydride, at plant
+      - Planning, cogen unit 160kWe
+      - Planning, cogen unit Mini CHP plant
+      - Plywood, hardwood veneer, UF-bonded, at plant
+      - Polyester resin, unsaturated, at plant
+      - Polylactide, granulate, at plant
+      - Poor concrete, at plant
+      - Propanal, at plant
+      - Rail, at regional storage
+      - Range extender, for hybrid passenger car
+      - Refinery
+      - Render carrier board, resin bound, at plant
+      - Scooter, ICE, at regional storage
+      - Sealing tape, aluminum/PE, 50 mm wide, at plant
+      - Section bar extrusion, aluminium
+      - Selective coating, aluminium sheet, nickel pigmented aluminium oxide
+      - Sheet rolling, aluminium
+      - Sheet rolling, copper
+      - Silencer, steel, DN 125, at plant
+      - Silencer, steel, DN 315, 50 mm, at plant
+      - Silver, from copper production, at refinery
+      - Silver, secondary, at precious metal refinery
+      - Sodium sulphate, from natural sources, at plant
+      - Soya oil, at plant
+      - Spiral-seam duct, steel, DN 125, at plant
+      - Spiral-seam duct, steel, DN 400, at plant
+      - Structural timber, average glue mix, at plant
+      - Supply air inlet, steel, SS, DN 75, at plant
+      - Supply air input/spent air output cogen unit 160kWe
+      - Tetrahydrofuran, at plant
+      - Thermo-mechanical pulp, at plant
+      - Three- and five-layered board, at plant
+      - Tram
+      - Tubular particleboard, at plant
+      - U enriched 3.0%, in fuel element for LWR, at nuclear fuel fabrication plant
+      - U enriched 3.8%, in fuel element for LWR, at nuclear fuel fabrication plant
+      - U enriched 3.9%, in fuel element for LWR, at nuclear fuel fabrication plant
+      - U enriched 4.0%, in fuel element for LWR, at nuclear fuel fabrication plant
+      - U enriched 4.2%, centrifugal enrichment, at nuclear fuel fabrication plant
+      - U enriched 4.2%, in fuel element for LWR, at nuclear fuel fabrication plant
+      - U enriched 4.43%, in fuel element for LWR, at nuclear fuel fabrication plant
+      - U enriched 4.75%, in fuel element for LWR, at nuclear fuel fabrication plant
+      - Uranium, enriched 3.0%, at USEC enrichment plant
+      - Uranium, enriched 3.8%, at USEC enrichment plant
+      - Uranium, enriched 3.9%, at USEC enrichment plant
+      - Uranium, enriched 4.0%, at USEC enrichment plant
+      - Uranium, enriched 4.2%, at USEC enrichment plant
+      - Uranium, enriched 4.43%, at USEC enrichment plant
+      - Uranium, enriched 4.75%, at USEC enrichment plant
+      - Van <3.5t
+      - Ventilation duct, PE corrugated tube, DN 75, at plant
+      - Ventilation duct, steel, 100x50 mm, at plant
+      - Ventilation equipment, Avent E 97, at plant
+      - Ventilation equipment, GE 250 RH, at plant
+      - Ventilation equipment, KWL 250, at plant
+      - Ventilation equipment, Twl-700, at plant
+      - Ventilation equipment, central, 600-1200 m3/h, at plant
+      - Ventilation equipment, decentralized, 180-250 m3/h, at plant
+      - Vermiculite, at mine
+      - Wire drawing, copper
+      - Wire drawing, steel
+      - xx 2-methyl-1-butanol, at plant
+      - xx Air filter, decentralized unit, 250 m3/h, at plant
+      - xx Aircraft, freight
+      - xx Aircraft, passenger
+      - xx Corrugated board, fresh fibre, single wall, at plant
+      - xx Corrugated board, recycling fibre, single wall, at plant
+      - xx Cyclohexanone, at plant
+      - xx Grass drying
+      - xx Gypsum plaster board, at plant
+      - xx Metal working factory operation, heat energy from light fuel oil
+      - xx Metal working machine operation, process heat from light fuel oil
+      - xx Nuclear power plant, boiling water reactor 1000MW
+      - xx Nuclear power plant, pressure water reactor 1000MW
+      - xx Palladium, secondary, at precious metal refinery
+      - xx Production of carton board boxes, gravure printing, at plant
+      - xx Production of carton board boxes, offset printing, at plant
+      - xx Soya scrap, at plant
+      - xx Sulphite pulp, bleached, at plant
+      - xx Ventilation equipment, KWLC 1200, at plant
+      - xx Ventilation equipment, Storkair G 90, at plant
+      - xxx Particle board, outdoor use, at plant
+      - xxx Polylactide, granulate, NatureWorks Nebraska
   ecoinvent_aliases:
     fltr:
     - heat production, light fuel oil
@@ -804,6 +1013,119 @@ End_Use_Industry_LLF:
     - market
   gains_aliases_IAM: End_Use_Industry_LLF
 End_Use_Industry_HLF:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Aluminium oxide, at plant
+      - Aluminium scrap, old, at plant
+      - Aluminium, primary, at plant
+      - Aluminium, secondary, from new scrap, at plant
+      - Aluminium, secondary, from old scrap, at plant
+      - Anode, aluminium electrolysis
+      - Antimony, at refinery
+      - Avoided burden from recycling, CdTe PV module
+      - Avoided burden from recycling, c-Si PV module
+      - Barge
+      - Barge tanker
+      - Bauxite, at mine
+      - Bentonite, at mine
+      - Blast furnace slag cement, at plant
+      - CEM II, A cement, GGBFS with burdens, at plant
+      - CEM II, A cement, at plant
+      - CEM III, A cement, GGBFS with burdens, at plant
+      - CEM III, A cement, at plant
+      - CEM III, B cement, GGBFS with burdens, at plant
+      - CEM III, B cement, at plant
+      - Cathode, lithium-ion battery, NCM, at plant
+      - Cerium concentrate, 60% cerium oxide, at plant
+      - Concrete, exacting, at plant
+      - Concrete, exacting, with de-icing salt contact, at plant
+      - Concrete, normal, at plant
+      - Concrete, sole plate and foundation, at plant
+      - Copper, blister-copper, at primary smelter
+      - Copper, from combined metal production, at beneficiation
+      - Copper, from imported concentrates, at refinery
+      - Copper, primary, at refinery
+      - Copper, secondary, at refinery
+      - Corrugated board, mixed fibre, single wall, at plant
+      - Corrugated board, recycling fibre, double wall, at plant
+      - Crude oil, at production offshore
+      - Crude oil, at production onshore
+      - Ferronickel, 25% Ni, at plant
+      - Fibreboard soft, at plant (u=7%)
+      - Fluorspar, 97%, at plant
+      - Foaming, expanding
+      - Folding boxboard, FBB, at plant
+      - Gas combined cycle power plant, 400MWe
+      - Gas power plant, 100MWe
+      - Gas power plant, 300MWe
+      - Gas turbine, 10MWe, at production plant
+      - Gold, at refinery
+      - Gold, from combined gold-silver production, at refinery
+      - Gold, from combined metal production, at beneficiation
+      - Gold, from combined metal production, at refinery
+      - Heat, heavy fuel oil, at industrial furnace 1MW
+      - Hydrochloric acid, from Mannheim process, at plant
+      - Lanthanum oxide, at plant
+      - Lead, from combined metal production, at beneficiation
+      - Lead, primary, at plant
+      - Metal working factory operation, average heat energy
+      - Metal working machine operation, average process heat
+      - Natural gas, at production offshore
+      - Natural gas, at production onshore
+      - Neodymium oxide, at plant
+      - Nickel, 99.5%, at plant
+      - Nuclear spent fuel, in reprocessing, at plant
+      - Oil power plant 500MW
+      - Packaging, corrugated board, mixed fibre, single wall, at plant
+      - Paper, recycling, with deinking, at plant
+      - Paper, woodcontaining, LWC, at plant
+      - Paper, woodcontaining, supercalendred (SC), at plant
+      - Paper, woodfree, coated, at non-integrated mill
+      - Parkes process crust, from desilverising of lead
+      - Phthalic anhydride, at plant
+      - Polyester resin, unsaturated, at plant
+      - Poor concrete, at plant
+      - Portland slag sand cement, at plant
+      - Production of liquid packaging board containers, at plant
+      - Rare earth concentrate, 70% REO, from bastnasite, at beneficiation
+      - Rutile, 95% titanium dioxide, at plant
+      - Silicone product, at plant
+      - Silver, from combined gold-silver production, at refinery
+      - Silver, from combined metal production, at beneficiation
+      - Silver, from combined metal production, at refinery
+      - Sodium sulphate, from Mannheim process, at plant
+      - Steam, for chemical processes, at plant
+      - Stone groundwood pulp, SGW, at plant
+      - Thermo-mechanical pulp, at plant
+      - Transoceanic freight ship
+      - Transoceanic tanker
+      - Tubular particleboard, at plant
+      - Uranium natural, at open pit mine
+      - Uranium natural, in yellowcake, at mill
+      - Uranium natural, in yellowcake, at mill plant
+      - Wood preservative, creosote, at plant
+      - Zinc, from combined metal production, at beneficiation
+      - Zinc, from combined metal production, at refinery
+      - Zircon, 50% zirconium, at plant
+      - xx Chemi-thermomechanical pulp, at plant
+      - xx Copper, from combined metal production, at refinery
+      - xx Copper, primary, at refinery
+      - xx Copper, primary, couple production nickel
+      - xx Corrugated board, fresh fibre, single wall, at plant
+      - xx Corrugated board, recycling fibre, single wall, at plant
+      - xx Ilmenite, 54% titanium dioxide, at plant
+      - xx Lead, from combined metal production, at refinery
+      - xx Metal working factory operation, heat energy from heavy fuel oil
+      - xx Metal working machine operation, process heat from heavy fuel oil
+      - xx Praseodymium oxide, at plant
+      - xx Samarium europium gadolinium concentrate, 94% rare earth oxide, at plant
+      - xx Sulphite pulp, bleached, at plant
+      - xxx Fibreboard soft, latex bonded, at plant (u=7%)
+      - xxx Fibreboard soft, without adhesives, at plant (u=7%)
+      - xxx Particle board, outdoor use, at plant
   ecoinvent_aliases:
     fltr:
     - heat production, heavy fuel oil
@@ -811,6 +1133,58 @@ End_Use_Industry_HLF:
     - market
   gains_aliases_IAM: End_Use_Industry_HLF
 End_Use_Industry_Coal:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Acetaldehyde, at plant
+      - Acrylic binder, 34% in H2O, at plant
+      - Agricultural machinery, general, production
+      - Agricultural machinery, tillage, production
+      - Antimony, at refinery
+      - Butyl acrylate, at plant
+      - Copper, from combined metal production, at beneficiation
+      - Copper, primary, at refinery
+      - Copper, secondary, at refinery
+      - Ferrochromium, high-carbon, 68% Cr, at plant
+      - Ferromanganese, high-coal, 74.5% Mn, at regional storage
+      - Ferronickel, 25% Ni, at plant
+      - Folding boxboard, FBB, at plant
+      - Gold, from combined metal production, at beneficiation
+      - Gold, from combined metal production, at refinery
+      - Harvester, production
+      - Heat, at hard coal industrial furnace 1-10MW
+      - Heat, unspecific, in chemical plant
+      - Leaching residues, indium rich, from zinc circuit, at smelter
+      - Lead, from combined metal production, at beneficiation
+      - Lead, primary, at plant
+      - Maintenance, goods wagon
+      - Maintenance, locomotive
+      - Melamine formaldehyde resin, at plant
+      - Paper, recycling, with deinking, at plant
+      - Paper, woodcontaining, LWC, at plant
+      - Paper, woodcontaining, supercalendred (SC), at plant
+      - Parkes process crust, from desilverising of lead
+      - Phthalic anhydride, at plant
+      - Polyester resin, unsaturated, at plant
+      - Rutile, 95% titanium dioxide, at plant
+      - Silver, from combined metal production, at beneficiation
+      - Silver, from combined metal production, at refinery
+      - Slurry tanker, production
+      - Thermo-mechanical pulp, at plant
+      - Tractor, production
+      - Trailer, production
+      - Urea formaldehyde resin, at plant
+      - Zinc, from combined metal production, at beneficiation
+      - Zinc, primary, at regional storage
+      - Zircon, 50% zirconium, at plant
+      - xx Copper, primary, at refinery
+      - xx Ilmenite, 54% titanium dioxide, at plant
+      - xx Metal working factory operation, heat energy from hard coal
+      - xx Metal working machine operation, process heat from hard coal
+      - xxx Butanol, 1-, at plant
+      - xxx Zinc , from Imperial smelting furnace
   ecoinvent_aliases:
     fltr:
     - treatment of coal tar, in industrial
@@ -832,6 +1206,86 @@ PAPER:
     - market
   gains_aliases_IAM: PAPER
 End_Use_Industry_Bio_Trad:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Chlorodifluoromethane, at plant
+      - Cork slab, at plant
+      - Door leaf, functional, inner, wood, at plant
+      - Door leaf, outer, wood, at plant
+      - Door leaf, outer, wood-glass, at plant
+      - Door leaf, room, inner, wood, at plant
+      - Door leaf, room, inner, wood-glass, at plant
+      - Fibreboard soft, at plant (u=7%)
+      - Folding boxboard, FBB, at plant
+      - Frame extension, PVC, at plant
+      - Frame extension, PVC, at plant, with resource correction
+      - Frame extension, particle board, at plant
+      - Frame extension, particle board, at plant, with resource correction
+      - Glued laminated timber, average glue mix, at plant
+      - Glued solid timber, average glue mix, at plant
+      - Heat storage 2000l, at plant
+      - Heat, hardwood chips from forest, at furnace 1000kW
+      - Heat, hardwood chips from forest, at furnace 300kW
+      - Heat, hardwood chips from forest, at furnace 5000kW
+      - Heat, hardwood chips from industry, at furnace 1000kW
+      - Heat, hardwood chips from industry, at furnace 300kW
+      - Heat, hardwood chips from industry, at furnace 5000kW
+      - Heat, mixed chips from forest, at furnace 1000kW
+      - Heat, mixed chips from forest, at furnace 300kW
+      - Heat, mixed chips from forest, at furnace 5000kW
+      - Heat, mixed chips from industry, at furnace 1000kW
+      - Heat, mixed chips from industry, at furnace 300kW
+      - Heat, mixed chips from industry, at furnace 5000kW
+      - Heat, softwood chips from forest, at furnace 1000kW
+      - Heat, softwood chips from forest, at furnace 300kW
+      - Heat, softwood chips from forest, at furnace 5000kW
+      - Heat, softwood chips from industry, at furnace 1000kW
+      - Heat, softwood chips from industry, at furnace 300kW
+      - Heat, softwood chips from industry, at furnace 5000kW
+      - Hot water tank 600l, at plant
+      - Kraft paper, bleached, at plant
+      - Paper, woodcontaining, LWC, at plant
+      - Paper, woodcontaining, supercalendred (SC), at plant
+      - "Sawn timber, paran\xE1 pine (SFM), kiln dried, u=15%, at sawmill"
+      - Scantling, softwood, laminated, CCC, at plant
+      - Scantling, softwood, laminated, CCF, at plant
+      - Scantling, softwood, laminated, CFC, at plant
+      - Scantling, softwood, laminated, FFF, at plant
+      - Scantling, softwood, solid wood, finger-jointed, at plant
+      - Scantling, softwood, solid wood, massive, at plant
+      - Stone groundwood pulp, SGW, at plant
+      - Structural timber, average glue mix, at plant
+      - Sulphuric acid from viscose production, at plant
+      - Tetrafluoroethylene, at plant
+      - Thermo-mechanical pulp, at plant
+      - Three- and five-layered board, at plant
+      - Viscose fibres, at plant
+      - Window frame, wood, w/o surface treatment, m2 visible, at plant
+      - Window frame, wood, w/o surface treatment, wall opening, at plant
+      - Window frame, wood-metal, w/o surface treatment, m2 visible, at plant
+      - Window frame, wood-metal, w/o surface treatment, wall opening, at plant
+      - xx Chemi-thermomechanical pulp, at plant
+      - "xx Industrial residual wood, paran\xE1 pine (SFM), u=15%, at sawmill"
+      - xx Sodium sulphat from viscose production, at plant
+      - xx Sulphite pulp, bleached, at plant
+      - xxx Door, inner, glass-wood, at plant
+      - xxx Door, inner, wood, at plant
+      - xxx Fibreboard soft, latex bonded, at plant (u=7%)
+      - xxx Fibreboard soft, without adhesives, at plant (u=7%)
+      - xxx Glued laminated timber, outdoor use, at plant
+      - xxx Industrial residue wood, 3-layered LB production, softwood, u=20%, at plant
+      - xxx Medium density fibreboard, at plant
+      - xxx Oriented strand board, at plant
+      - xxx Particle board, indoor use, at plant
+      - xxx Particle board, outdoor use, at plant
+      - xxx Sawn timber, hardwood, raw, air / kiln dried, u=10%, at plant
+      - xxx Sawn timber, hardwood, raw, kiln dried, u=10%, at plant
+      - xxx Sawn timber, softwood, raw, kiln dried, u=10%, at plant
+      - xxx Sawn timber, softwood, raw, kiln dried, u=20%, at plant
+      - xxx Three layered laminated board, at plant
   ecoinvent_aliases:
     fltr:
     - heat production, softwood chips
@@ -1008,6 +1462,12 @@ Power_Gen_NatGas:
     - market
   gains_aliases_IAM: Power_Gen_NatGas
 Power_Gen_HLF:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Electricity, oil, at power plant
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction
@@ -1024,6 +1484,13 @@ Power_Gen_HLF:
     - market
   gains_aliases_IAM: Power_Gen_HLF
 Power_Gen_Coal_Old:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Electricity, peat, at power plant
+      - Heat, peat, at cogen, allocation exergy
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal
@@ -1076,6 +1543,16 @@ Power_Gen_Coal_IGCC_CCS:
     - market
   gains_aliases_IAM: Power_Gen_Coal_IGCC_CCS
 Power_Gen_Coal_New:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Electricity, hard coal, at power plant
+      - Electricity, lignite, at power plant
+      - Heat, hard coal, at cogen, allocation exergy
+      - Heat, lignite, at cogen, allocation exergy
+      - Paper, recycling, average, at plant
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal

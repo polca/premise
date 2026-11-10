@@ -2382,21 +2382,25 @@
     },
     {
       "sector": "emissions",
-      "status": "reviewed_native_gas_caller_planner_verified_full_emissions_integration_pending",
+      "status": "reviewed_native_multi_fuel_caller_planner_verified_full_emissions_integration_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "reviewed_native_gas_caller_bindings_planner_only",
+        "kind": "reviewed_native_multi_fuel_caller_bindings_planner_only",
         "files": [
           {
             "path": "premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml",
             "legacy_role_count": 55,
-            "explicit_native_role_count": 2,
+            "explicit_native_role_count": 9,
             "review": "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
-            "reviewed_caller_inputs": 127
+            "reviewed_caller_inputs": 873,
+            "reviews": [
+              "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
+              "premise/data/GAINS_emission_factors/uvek2026_ordinary_combustion_review.json"
+            ]
           }
         ],
         "runtime_verified": false,
@@ -2435,10 +2439,14 @@
       "decisions": [
         "Reviewed complete native gas forks per exact caller sector and emitting supplier geography; retain signed caller quantities and upstream/production inventories. Only reviewed gaseous air reductions change."
       ],
-      "implementation_commits": [],
+      "implementation_commits": [
+        "f1b9f01d",
+        "f256c569"
+      ],
       "tests": [
         "35 native factor and existing emissions tests passed; real encrypted REMIND GAINS arrays replay without mutation. This is preflight, not a runtime sector update.",
-        "46 native emissions and existing emissions checks pass; installed real graph reproduces65variants,127callerlinks,159air changes and16signedLCIs. Full sector integration/export remains pending."
+        "46 native emissions and existing emissions checks pass; installed real graph reproduces65variants,127callerlinks,159air changes and16signedLCIs. Full sector integration/export remains pending.",
+        "47 native/legacy emissions checks pass; combined real multi-fuel virtual graph and installed packages verify873callerinputs,149variants,281gaseousair changes and22signedLCIs. Emissions public integration remains pending."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -2479,6 +2487,17 @@
         "signed_finite_LCIs": 16,
         "installed_graph_equals_checkout": true,
         "complete_public_sector_update_verified": false
+      },
+      "native_ordinary_combustion_stage": {
+        "verification": "docs/development/uvek-emissions-ordinary-combustion-verification.json",
+        "new_caller_pairs": 746,
+        "combined_caller_pairs": 873,
+        "modified_callers": 803,
+        "variants": 149,
+        "gaseous_air_changes": 281,
+        "tests_passed": 47,
+        "signed_finite_LCIs_checkout_and_installed": 22,
+        "public_update_or_export_verified": false
       }
     }
   ],

@@ -1263,3 +1263,45 @@ This is the native gas planning component, not a complete public emissions
 update or Brightway export. Other fuels/processes, prepared foregrounds,
 particulate/aggregate-VOC definitions, callback/provenance integration and
 combined/default public export remain required. Emissions stays gated.
+
+
+### Coal, oil and industrial wood combustion: merge all caller inputs
+
+The second emissions cohort adds 746 exact ordinary-combustion caller pairs
+across seven more GAINS roles. Together with gas, the planner handles 873 inputs
+in 803 native callers. Fifty-nine callers contain multiple reviewed fuel inputs;
+one combined plan preserves all supplier changes and their literal audits.
+Existing ecoinvent aliases and all 55 legacy role definitions stay unchanged.
+
+Industrial 1 MW oil and 1–10 MW coal combustion retains its documented furnace
+role in manufacturing. Allocated coal/peat CHP heat remains in its power role;
+the paper mill's documented onsite power-plant utility inputs also retain that
+technology correspondence. Conventional coal uses the shipped new-coal fleet
+role as an explicit screening classification, not a physical plant upgrade.
+Automatic 300–5,000 kW wood furnaces use the industrial biomass role as a sector
+proxy; institutional/district end use and fleet shares remain uncertain. All
+fuel, ash, infrastructure, production references, allocation and source geography
+remain physically unchanged. Negative fuel inputs and avoided-recycling burdens
+retain their signs, quantities, formulas and supported uncertainty.
+
+Eight exact native coal-inventory NERC labels use a reviewed US GAINS lookup: the
+source documentation explicitly describes US station/EPA/DOE data. The shared
+mapper cannot resolve ERCOT, assigns MRO/NPCC to World, and resolves US-SPP to NEU.
+This correction is local to the inspected inventories; source labels remain
+unchanged, no US/Canada fleet weights are invented, and shared ecoinvent geography
+behavior is untouched. Lookup provenance is retained on the owned variants.
+
+Ten caller pairs remain explicit retained cases: nine use a special wood
+inventory without fuel input, and one is a disaggregated epoxy methodological
+comparison whose documentation excludes background use. No exchange is omitted
+or rewritten for these cases. Further boundary work is still required.
+
+The actual native/prepared graph has 12,702 activities, including 149 owned
+variants, 873 supplier-only input changes and 281 gaseous-air changes. Independent
+checks retain all 766 non-air and 975 upstream coordinates in those variants.
+Twenty-two signed LCIs are finite; source database scientific signatures are
+unchanged. All 47 relevant checks pass; installed packages reproduce the graph
+and match 281 wheel-declared resources. See
+`uvek-emissions-ordinary-combustion-verification.json`. This remains component
+qualification: direct/other combustion emissions, foregrounds, particulate/VOC
+correspondence and public callback/certification/export are unfinished.

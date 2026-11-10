@@ -1,0 +1,87 @@
+{
+  "status": "native_multi_fuel_caller_planner_real_graph_and_installed_packages_verified_not_public_update",
+  "scenario": "encrypted REMIND SSP2-NPi2050 CLE",
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "new_ordinary_caller_bindings": 746,
+  "combined_with_previous_gas_caller_bindings": 873,
+  "native_GAINS_alias_roles": 9,
+  "graph": {
+    "activities": 12702,
+    "new_variants": 149,
+    "modified_callers": 803,
+    "supplier_only_caller_changes": 873,
+    "gaseous_air_exchange_checks": 281,
+    "retained_non_air_exchange_checks": 766,
+    "unchanged_upstream_input_checks": 975,
+    "complete_links_and_canonical_biosphere": true,
+    "literal_audits_and_JSON_idempotence_verified": true,
+    "source_scientific_contents_unchanged": true
+  },
+  "multi_input_callers": 59,
+  "tests_passed": 47,
+  "signed_finite_LCIs_checkout": 22,
+  "signed_finite_LCIs_installed": 22,
+  "all281wheel_declared_resources_equal_checkout": true,
+  "all55legacy_GAINS_definitions_and_previous_gas_aliases_unchanged": true,
+  "reviewed_lookup_geography": {
+    "labels": [
+      "ERCOT",
+      "MRO",
+      "NPCC",
+      "US-FRCC",
+      "US-RFC",
+      "US-SERC",
+      "US-SPP",
+      "WECC"
+    ],
+    "GAINS_lookup_country": "US",
+    "basis": "The exact reviewed coal inventories explicitly describe US power-station/EPA/DOE data; no general NERC grid equivalence or invented US/Canada split.",
+    "original_location_labels_preserved": true,
+    "shared_ecoinvent_Geomap_unchanged": true,
+    "incorrect_or_missing_shared_lookups_observed": [
+      "ERCOT missing",
+      "MRO/NPCC World",
+      "US-SPP NEU"
+    ]
+  },
+  "retained_cases": {
+    "caller_supplier_pairs": 10,
+    "reason_groups": [
+      "Nine pairs use the special wood inventory without fuel input; separate boundary review remains.",
+      "One disaggregated epoxy comparison explicitly says not to use it as background data. Its original record remains unchanged."
+    ],
+    "no_new_exchange_omission": true
+  },
+  "remaining": [
+    "Other combustion classes, direct process emissions, prepared foregrounds, particulate/aggregate-VOC definitions and the special wood boundary remain under review.",
+    "Native public callback, sector validation/provenance/warnings, full combined/default integration and Brightway export still need implementation/verification.",
+    "Emissions stays gated; the full goal remains active."
+  ],
+  "receipts": [
+    {
+      "name": "uvek_ordinary_combustion_checkout_graph_verification.json",
+      "sha256": "cf36495b839a21614f872ac7162bc3cf7a0234127c7e65ff313cf7676f95101e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_ordinary_combustion_installed_graph_verification.json",
+      "sha256": "cf36495b839a21614f872ac7162bc3cf7a0234127c7e65ff313cf7676f95101e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_ordinary_combustion_installed_resources.json",
+      "sha256": "f3e31852e3ada4707a8c8203f35bda3557c414c17a221f791ab5f4a90d4a6914",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_ordinary_combustion_alias_regression.json",
+      "sha256": "b1bffa4fcb6c983dce3888622762c2a10175b31f43c20ef8c562c409d266783d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_ordinary_combustion_tests.log",
+      "sha256": "787d8d2cb236442e3b196148a921430acc61ada057455a86aaabebfae6dc7c7f",
+      "location": "private task workspace"
+    }
+  ]
+}

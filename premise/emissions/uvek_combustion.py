@@ -16,6 +16,9 @@ from ..inventory.profiles import identity
 VARIANT = "premise emissions variant"
 CALLER = "premise emissions caller"
 REVIEW_PATH = DATA_DIR / "GAINS_emission_factors" / "uvek2026_gas_review.json"
+ORDINARY_REVIEW_PATH = (
+    DATA_DIR / "GAINS_emission_factors" / "uvek2026_ordinary_combustion_review.json"
+)
 GASES = {
     "Nitrogen oxides": "NOx",
     "Sulfur dioxide": "SO2",
@@ -183,6 +186,10 @@ def plan_native_combustion_variants(
             scenario,
             biosphere_name,
         )
+        if binding.get("geography_proxy"):
+            variant[VARIANT]["geography_proxy"] = copy.deepcopy(
+                binding["geography_proxy"]
+            )
         target_key = (variant["database"], variant["code"])
         existing = by_key.get(target_key)
         if existing is not None and not _same(existing, variant):
@@ -277,18 +284,44 @@ def plan_reviewed_gas_combustion(
     assign electricity projections to standalone heat or manufacturing use.
     Other native technologies and foreground services require their own reviews.
     """
-    review = json.loads(REVIEW_PATH.read_text())
-    if review.get("schema_version") != 1 or not review.get("bindings"):
-        raise ValueError("Invalid reviewed native gas combustion bindings.")
+    return _plan_reviews(
+        database,
+        factors,
+        scenario,
+        location_mapper,
+        biosphere_name=biosphere_name,
+        paths=(REVIEW_PATH,),
+    )
+
+
+def plan_reviewed_native_combustion(
+    database, factors, scenario, location_mapper, *, biosphere_name
+):
+    """Plan all reviewed fuels together so multiple inputs on one caller survive."""
+    return _plan_reviews(
+        database,
+        factors,
+        scenario,
+        location_mapper,
+        biosphere_name=biosphere_name,
+        paths=(REVIEW_PATH, ORDINARY_REVIEW_PATH),
+    )
+
+
+def _plan_reviews(
+    database, factors, scenario, location_mapper, *, biosphere_name, paths
+):
+    reviews = [json.loads(path.read_text()) for path in paths]
+    if any(
+        row.get("schema_version") != 1 or not row.get("bindings") for row in reviews
+    ):
+        raise ValueError("Invalid reviewed native combustion bindings.")
+    records = [row for review in reviews for row in review["bindings"]]
     aliases = get_mapping(GAINS_MAPPING, "uvek_aliases")
-    sectors = {row["sector"] for row in review["bindings"]}
+    sectors = {row["sector"] for row in records}
     for sector in sectors:
         names = sorted(
-            {
-                row["caller"]["name"]
-                for row in review["bindings"]
-                if row["sector"] == sector
-            }
+            {row["caller"]["name"] for row in records if row["sector"] == sector}
         )
         definition = aliases.get(sector, {})
         if (
@@ -300,13 +333,35 @@ def plan_reviewed_gas_combustion(
             raise ValueError(
                 "Native GAINS aliases disagree with the exact caller review."
             )
-    bindings = [
-        {**row, "region": location_mapper(row["supplier"]["location"])}
-        for row in review["bindings"]
-    ]
+    geography = {}
+    for review in reviews:
+        for location, proxy in review.get("emitting_location_aliases", {}).items():
+            if location in geography and geography[location] != proxy:
+                raise ValueError("Conflicting reviewed combustion geography proxies.")
+            geography[location] = proxy
+    bindings = []
+    for row in records:
+        location = row["supplier"]["location"]
+        proxy = geography.get(location)
+        binding = {
+            **row,
+            "region": location_mapper(proxy["mapping_location"] if proxy else location),
+        }
+        if proxy:
+            binding["geography_proxy"] = {"source_location": location, **proxy}
+        bindings.append(binding)
     result = plan_native_combustion_variants(
         database, bindings, factors, scenario, biosphere_name=biosphere_name
     )
-    result["diagnostics"]["review"] = "GAINS_emission_factors/uvek2026_gas_review.json"
-    result["diagnostics"]["limitations"] = review["limitations"]
+    result["diagnostics"]["reviews"] = [
+        str(path.relative_to(DATA_DIR)) if path.is_relative_to(DATA_DIR) else path.name
+        for path in paths
+    ]
+    result["diagnostics"]["limitations"] = list(
+        dict.fromkeys(text for review in reviews for text in review["limitations"])
+    )
+    result["diagnostics"]["retained_reviewed_cases"] = [
+        row for review in reviews for row in review.get("retained_cases", [])
+    ]
+    result["diagnostics"]["emitting_location_aliases"] = geography
     return result

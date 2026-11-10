@@ -222,6 +222,49 @@ def test_duplicate_product_metadata_is_retained_on_owned_inventory(case):
     assert all(a["product"] == case[0][1]["product"] for a in result["activities"])
 
 
+def test_several_fuels_on_one_caller_keep_all_supplier_changes_and_replay(case):
+    data, bindings, *_ = case
+    other = copy.deepcopy(data[1])
+    other.update(
+        name="Second combustion",
+        **{"reference product": "Second combustion"},
+        code="second",
+    )
+    other["exchanges"][0].update(
+        name="Second combustion",
+        product="Second combustion",
+        input=("native", "second"),
+    )
+    data.append(other)
+    data[2]["exchanges"].append(edge(other, -3))
+    data[2]["exchanges"][-1].update(
+        formula="second_signed_fuel", **{"uncertainty type": 3, "loc": -3, "scale": 0.2}
+    )
+    bindings.append(
+        {
+            "caller": ident(data[2]),
+            "supplier": ident(other),
+            "sector": "heat",
+            "region": "EUR",
+        }
+    )
+    before = copy.deepcopy(data)
+    result = plan(case)
+    power = next(
+        row["activity"]
+        for row in result["replacements"]
+        if row["activity"]["name"] == "Power"
+    )
+    assert len(power[CALLER]) == 2
+    assert power["exchanges"][1]["input"] != power["exchanges"][2]["input"]
+    assert power["exchanges"][2]["amount"] == -3
+    assert power["exchanges"][2]["formula"] == "second_signed_fuel"
+    assert data == before
+    replay = plan((json.loads(json.dumps(materialize(case, result))), *case[1:]))
+    assert replay["activities"] == replay["replacements"] == []
+    assert replay["diagnostics"]["already_applied"] == 3
+
+
 def test_reviewed_caller_wrapper_checks_aliases_and_maps_emitter_location(
     case, monkeypatch, tmp_path
 ):
@@ -254,6 +297,20 @@ def test_reviewed_caller_wrapper_checks_aliases_and_maps_emitter_location(
     )
     assert locations == ["CH", "CH"]
     assert result["diagnostics"]["limitations"] == ["reviewed scope"]
+    review["emitting_location_aliases"] = {
+        "CH": {"mapping_location": "US", "basis": "synthetic reviewed proxy"}
+    }
+    path.write_text(json.dumps(review))
+    locations.clear()
+    result = combustion.plan_reviewed_gas_combustion(
+        data, factors, scenario, mapper, biosphere_name="bio310"
+    )
+    assert locations == ["US", "US"]
+    assert all(a["location"] == "CH" for a in result["activities"])
+    assert all(
+        a[VARIANT]["geography_proxy"]["source_location"] == "CH"
+        for a in result["activities"]
+    )
     definitions["power"]["mask"] = ["Power"]
     with pytest.raises(ValueError, match="aliases disagree"):
         combustion.plan_reviewed_gas_combustion(
