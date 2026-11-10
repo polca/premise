@@ -52,14 +52,19 @@
   },
   "deliverable_checks": {
     "pdf_pages": 2,
+    "pdf_language": "plain English",
     "pdf_pages_visually_inspected": true,
+    "notebook_code_cells": 4,
     "notebook_schema_syntax_and_API_signatures_valid": true,
-    "notebook_default_mode_executed": "existing_verified_export_readback_only",
-    "activities_checked": 12622,
-    "signed_finite_LCIs": 6,
-    "fresh_build_export_and_optional_preview_executed_during_pause": false,
-    "distributed_notebook_has_saved_outputs": false,
-    "pdf_language": "plain English"
+    "notebook_lint": "passed",
+    "notebook_setup_executed_in_regular_Brightway_directory": true,
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source_database": "BAFU:2026-reimported",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "fresh_build_and_export_executed": false,
+    "explicit_notebook_validation_cells": false,
+    "temporary_directory_or_frozen_package_configuration": false,
+    "distributed_notebook_has_saved_outputs": false
   },
   "evidence": [
     {
@@ -87,19 +92,30 @@
       "sha256": "d3fa510492bff70b944eade16c38f76ef6d175661cde1b9b3d824f1d6b36b80d"
     }
   ],
-  "notebook_run_receipt_sha256": "37138ef89df29a98efc7fae3a89f6d9e45e2c7a960c0c308f4d31e6134953286",
   "artifacts": [
     {
       "path": "examples/uvek_2026_review_workflow.ipynb",
-      "sha256": "2ba2a078dc52be4eceab2981308172f8b04081a308a57841dbda1ee6c7447bdd"
+      "sha256": "1171ae2718051ff0ba75667bd42b2c67cac15c8245c6cd816ec38fc9f67e4760"
     },
     {
       "path": "docs/development/reviews/uvek-2026-11-10/uvek-review-summary.pdf",
-      "sha256": "8c1eb3faee0ac4f87f77b619a0c7ea536be0d729c81cff7491ef8b3f0b8aeaae"
+      "sha256": "66d5874d447e50f6903eff975c7433b24775b12c93b630742bd09d4c0d90c042"
     },
     {
       "path": "docs/development/reviews/uvek-2026-11-10/README.md",
-      "sha256": "b2173790089992136ec9112f62d9f149b1ee313791078dd896ff6f8afa915a91"
+      "sha256": "86c44536448b5c51c90cf409c9c34ccaa839dfb4dd63aa50d478f9160057faff"
     }
-  ]
+  ],
+  "historical_read_only_notebook_validation": {
+    "pdf_pages": 2,
+    "pdf_pages_visually_inspected": true,
+    "notebook_schema_syntax_and_API_signatures_valid": true,
+    "notebook_default_mode_executed": "existing_verified_export_readback_only",
+    "activities_checked": 12622,
+    "signed_finite_LCIs": 6,
+    "fresh_build_export_and_optional_preview_executed_during_pause": false,
+    "distributed_notebook_has_saved_outputs": false,
+    "pdf_language": "plain English"
+  },
+  "historical_notebook_run_receipt_sha256": "37138ef89df29a98efc7fae3a89f6d9e45e2c7a960c0c308f4d31e6134953286"
 }

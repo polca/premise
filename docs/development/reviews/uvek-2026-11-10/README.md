@@ -1,41 +1,34 @@
 # UVEK review material — 10 November 2026
 
-The development goal is **paused**. These materials document the last verified baseline and the unfinished work; they do not resume mapping development or qualify the full 19-sector scope.
+The mapping-development goal remains **paused**.
 
-- [Two-page PDF summary](uvek-review-summary.pdf)
+- [Two-page plain-English PDF](uvek-review-summary.pdf)
 - [Workflow notebook](../../../../examples/uvek_2026_review_workflow.ipynb)
-- [Review snapshot and evidence hashes](review_snapshot.json)
+- [Review snapshot and evidence](review_snapshot.json)
 
 ## Run the notebook
 
-Open `examples/uvek_2026_review_workflow.ipynb` in JupyterLab or your notebook editor and select **Premise UVEK review (Python 3.12)**. That kernel has been registered locally using `/private/tmp/premise-uvek-2026-venv/bin/python`.
+Open `examples/uvek_2026_review_workflow.ipynb` using your usual Python environment with Premise and Brightway installed. Restart the kernel if you ran the older notebook version with a different Brightway directory.
 
-Run the cells in order. The default reads the existing verified Brightway export, validates package integrity and complete links, and calculates six signed inventories. It does not rebuild a scenario, request a decryption key or write a database.
+The notebook uses the regular Brightway directory and this existing project:
 
-The configuration cell exposes three independent switches:
+- Project: `bafu-2026-ecospold2-biosphere-310`
+- Source database: `BAFU:2026-reimported`
+- Biosphere: `ecoinvent-3.10-biosphere`
 
-| Switch | Action |
-| --- | --- |
-| `RUN_BUILD` | Build REMIND SSP2-NPi 2050 through normal `NewDatabase`, apply biomass/electricity/heat, and obtain an exhaustive validation report. |
-| `WRITE_BRIGHTWAY` | With a successful fresh build, write and inspect a new uniquely named database. Existing names are refused. |
-| `RUN_EMISSIONS_PREVIEW` | Run the committed internal callback on a separate graph copy. This neither opens the public emissions gate nor exports a four-sector database. |
+Run its four code cells in order:
 
-A fresh build requires the preserved encrypted IAM file, its valid decryption key, and the pinned CLIC cache/archive. The notebook checks the IAM checksum before requesting the key with `getpass`; no credentials are embedded or saved. The optional preview without a fresh build requires the preserved, hash-checked GAINS array derived from that encrypted scenario.
+1. Import Premise and Brightway, and select the project.
+2. Prepare REMIND SSP2-NPi for 2050, entering your IAM key when prompted.
+3. Apply biomass, electricity and heat updates.
+4. Export the result to Brightway.
 
-The local paths in the first cell can be adjusted if task artifacts move. The default frozen installation is `/private/tmp/premise-uvek-2026/emissions-gas-supply-final-wheel-install`, checked against its archived wheel. Both are deliberately retained. This isolates execution from the unqualified mappings currently in the checkout. The native source project/databases must already exist; the notebook does not import new backgrounds, select reference projects or overwrite source databases.
+There are no temporary-directory settings, frozen-package requirements, manual validation cells, calculation checks, review receipts or internal emissions previews. The notebook uses the standard Premise build and export methods. It does not store your key.
 
-## Baseline and unfinished work
+## Review context
 
-Premise mapping baseline: **2528051f**. The public three-sector export contains 12,622 activities. The verified internal emissions component covers 3,487 input coordinates but remains unavailable as a public sector update.
+The PDF describes the verified mapping baseline at commit `2528051f` and the unfinished work at the pause. The three-sector export and internal emissions results described there are historical verification evidence; they are not a claim that the newly simplified notebook has been run through a fresh build in your regular project.
 
-The paused, uncommitted draft changes four mapping files and proposes 137 additional inputs across 25 source inventories. Its 61 focused tests pass, but the broader signed-inventory run failed the absolute numerical-residual criterion. The cause remains undiagnosed. These draft changes are excluded from the notebook's frozen package. Two additional lean-burn cases are retained unchanged because source methane combines combustion and distribution leakage.
+The paused generator/CHP draft remains uncommitted in four mapping files. It proposes 137 additional input entries across 25 inventories. Its focused tests pass, but a broader calculation failed its numerical-accuracy requirement; the cause remains undiagnosed. Two further lean-burn cases retain their original emissions because combustion methane and distribution leakage are combined.
 
-The source mappings have been left in place, with a private patch checkpoint under `/private/tmp/premise-uvek-2026/paused_generation_mapping_draft.patch`. No unfinished mapping changes are part of the review-material commit.
-
-## Validation of the deliverables
-
-The PDF was checked to contain exactly two pages and both pages were visually inspected. The notebook was executed top to bottom in default **existing-export read-only mode**: 12,622 activities, complete supplier/biosphere links and six finite signed LCI calculations. Source activity counts remained unchanged. The executed notebook and run receipt stay in the private task workspace; the distributed notebook has no saved outputs.
-
-Fresh build/export and optional internal-preview branches are supplied for use but were **not executed during this pause**. Their public build/export method keywords were checked against the frozen installed API. Earlier scientific/public-export qualification is recorded in the repository verification reports; notebook readback is not a fresh public-build qualification.
-
-No `.py` implementation files, licensed inventories, decryption keys or full inventory results are included in these materials. Numeric LCI checks do not demonstrate LCIA equivalence or impact completeness. Nothing was pushed.
+The simplified notebook's setup was run successfully against the regular Brightway project, and its syntax and public method signatures were checked. A fresh build and export were not run while preparing this revision. The earlier read-only notebook's calculation checks remain historical evidence in the private task workspace.
