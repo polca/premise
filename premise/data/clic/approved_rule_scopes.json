@@ -138782,6 +138782,1450 @@
           "fingerprint": "ac1737bba33b8042601ff4953716424d3538ae7b18b52c1ef2c623e33dc8c323"
         }
       ]
+    },
+    {
+      "rule_id": "bp-14686a5e16256499",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_silica_dependency",
+      "review_path": "export/uvek_fuels_39_silica_review.json",
+      "review_sha256": "b88de24792279ea5f7fca98fa3834b759e55d5eb6e4321aa05525081277b7d60",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native proxies/reconstructions with warnings and recorded decisions. No new physical omission.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium silicate, solid",
+            "reference product": "sodium silicate, solid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "547fca80ddc5bac179021ff6aa3aabcf8af8dfa4c79d8b909ede51d57b723669",
+          "enriched_inventory_sha256": "42dde6d290ba96ffb2b852221097f80d8b71eb036875b022463415456afb6aec",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "comment_sha256": "9c0ffa6bf02ea10c4b140cdaa8a46b4062ac5cd781c1104a9d280a7dba0db6fc",
+          "product_information_sha256": "6cc088fcaa2feceb69947bca8006e1a817e0c29e517f97c0e1c63efa6f8c311a"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "sodium silicate production, furnace process, solid product",
+              "reference product": "sodium silicate, solid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e5ac0d37a044b27873b7fc4654f3068374668c7f5e5d91a6480b527cf289d5a8",
+            "enriched_inventory_sha256": "77b42dca593ac3f87c035c23a331f9fe53978565e9194fa804319df749ebf2c9",
+            "nonproduction_counts": {
+              "technosphere": 9,
+              "biosphere": 10
+            },
+            "comment_sha256": "dbafc6e525d1aa5588281deb751a7732837e656e192bb17f5cab049a63cddc85",
+            "product_information_sha256": "6cc088fcaa2feceb69947bca8006e1a817e0c29e517f97c0e1c63efa6f8c311a"
+          }
+        ],
+        "basis": "Complete solid furnace-process sodium silicate per kg, not 80% spray powder, hydrothermal liquor, metasilicate reagent or sodium phosphate. Actual 3.9 RER producer and native solid furnace inventories agree on sand, soda and steam quantities per positive one-kg reference. The shared erroneous phosphate prose and generic formula/CAS metadata do not justify a concentration, hydrate, drying, solvent or stoichiometric multiplier. Retain factor +1; native historical producer, geography, energy, allocation, delivery, internal uncertainty and biosphere coverage differ from the source RER market and are explicit screening limitations.",
+        "conversion_factor": 1,
+        "native_2026": {
+          "identity": {
+            "name": "Sodium silicate, furnace process, pieces, at plant",
+            "reference product": "Sodium silicate, furnace process, pieces, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 20,
+          "metadata_sha256": "c616f2b9f8139b45dc4134460e89e4c537462a3a47cc09deb4c7deab132b107e",
+          "inventory_sha256": "9f6fdae4cf9f63e21216f660a04e08e9eb9e737953d65e1d018970cad944a727",
+          "comment_sha256": "b75a6edb344a410d8ad5723404bb37d988387b994e790933a53b1f2617c74ac0"
+        },
+        "basis_comparison": {
+          "source_producer_enriched_inventory_sha256": "77b42dca593ac3f87c035c23a331f9fe53978565e9194fa804319df749ebf2c9",
+          "native_inventory_sha256": "9f6fdae4cf9f63e21216f660a04e08e9eb9e737953d65e1d018970cad944a727",
+          "matches": [
+            {
+              "source_name": "market for silica sand",
+              "native_name": "Silica sand, at plant",
+              "same_amount_and_unit": true
+            },
+            {
+              "source_name": "market for soda ash, light",
+              "native_name": "Soda, powder, at plant",
+              "same_amount_and_unit": true
+            },
+            {
+              "source_name": "market for steam, in chemical industry",
+              "native_name": "Steam, for chemical processes, at plant",
+              "same_amount_and_unit": true
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Complete solid furnace-process sodium silicate per kg, not 80% spray powder, hydrothermal liquor, metasilicate reagent or sodium phosphate. Actual 3.9 RER producer and native solid furnace inventories agree on sand, soda and steam quantities per positive one-kg reference. The shared erroneous phosphate prose and generic formula/CAS metadata do not justify a concentration, hydrate, drying, solvent or stoichiometric multiplier. Retain factor +1; native historical producer, geography, energy, allocation, delivery, internal uncertainty and biosphere coverage differ from the source RER market and are explicit screening limitations.",
+        "Only the independently inspected ecoinvent 3.9 cut-off identity qualifies. Preserve signed caller quantities, uncertainty, formulas, separate emissions/freight and the complete recorded helper closure. Native technology, geography, allocation, vintage, delivery, internal uncertainty and biosphere coverage differ with unquantified score effects. No hidden omission, recovery credit, release extrapolation, cross-system-model or inverse mapping is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "70f3f5fdbbc9338f3255d0887f7654635cd286303083bdc8618ccdb72c90af25"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5b8c937d3fb21468",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_silica_dependency",
+      "review_path": "export/uvek_fuels_39_silica_review.json",
+      "review_sha256": "b88de24792279ea5f7fca98fa3834b759e55d5eb6e4321aa05525081277b7d60",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native proxies/reconstructions with warnings and recorded decisions. No new physical omission.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for chemical factory, organics",
+            "reference product": "chemical factory, organics",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "6d20a88f766be03522e728d6016a212ee80558198e163a04f56ae959e45b587c",
+          "inventory_sha256": "07a756b7bd7135f4bad90f29daf5a597277a72c6ea142e724258ac0d0ee6d636",
+          "nonproduction_counts": {
+            "technosphere": 2
+          },
+          "comment_sha256": "8b27c016646954e5b9874f5f83f6996810f5ec1bba304a634bb27327c28243a9",
+          "product_information_sha256": "a9b4d2687dd41ed638fee024b296dddde96a0fbc40c44c519941f8bc7c216e10"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "chemical factory construction, organics",
+              "reference product": "chemical factory, organics",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1e498770d24617edcbd5584fd0ecaea9d9a0a9f2929610e40e25d977004949b7",
+            "inventory_sha256": "6279ca4d50eb5d356ef39752c77d207b1cef0ab9ddfdf93bc21d4071750a12aa",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 4
+            },
+            "comment_sha256": "0eb177cda6488e892f8c018696cbd51c1da1ad569bf100f759cada0f9d7cb990",
+            "product_information_sha256": "a9b4d2687dd41ed638fee024b296dddde96a0fbc40c44c519941f8bc7c216e10"
+          },
+          {
+            "identity": {
+              "name": "chemical factory construction, organics",
+              "reference product": "chemical factory, organics",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e23ff8e4041a50f6b636d975e512036a349494885e0f8508bca1c9702d6c61ab",
+            "inventory_sha256": "a7ac064f1cd156101cbed3a7e6808a2afedcb6cdb15c143654b2c6cfd4e092e0",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 4
+            },
+            "comment_sha256": "0eb177cda6488e892f8c018696cbd51c1da1ad569bf100f759cada0f9d7cb990",
+            "product_information_sha256": "a9b4d2687dd41ed638fee024b296dddde96a0fbc40c44c519941f8bc7c216e10"
+          }
+        ],
+        "basis": "One complete organic chemical plant infrastructure unit. Actual source producers and native process describe land use, buildings/facilities and dismantling using estimates from two German sites, with a 50-year source lifetime. Retain native infrastructure once at factor +1 per unit; do not divide by lifetime, annual chemical output or capacity. Native RER infrastructure replaces the global market portfolio; construction/disposal, geography, vintage, allocation and internal uncertainty remain screening differences. This is not a kg of chemical or an operating plant-year.",
+        "conversion_factor": 1,
+        "native_2026": {
+          "identity": {
+            "name": "Chemical plant, organics",
+            "reference product": "Chemical plant, organics",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 10,
+          "metadata_sha256": "55dbec9be92411ecc4e07c3ec81be1f92d4b12b6727930f4be4120aeda93be47",
+          "inventory_sha256": "6af55f901e1f9a39912315b633873cff639c255c8c345a590435aa302982f7fb",
+          "comment_sha256": "69ac7ae680251cb24912a8fca18afb0e6afb746db112269c89f11245c809e11c"
+        }
+      },
+      "limitations": [
+        "One complete organic chemical plant infrastructure unit. Actual source producers and native process describe land use, buildings/facilities and dismantling using estimates from two German sites, with a 50-year source lifetime. Retain native infrastructure once at factor +1 per unit; do not divide by lifetime, annual chemical output or capacity. Native RER infrastructure replaces the global market portfolio; construction/disposal, geography, vintage, allocation and internal uncertainty remain screening differences. This is not a kg of chemical or an operating plant-year.",
+        "Only the independently inspected ecoinvent 3.9 cut-off identity qualifies. Preserve signed caller quantities, uncertainty, formulas, separate emissions/freight and the complete recorded helper closure. Native technology, geography, allocation, vintage, delivery, internal uncertainty and biosphere coverage differ with unquantified score effects. No hidden omission, recovery credit, release extrapolation, cross-system-model or inverse mapping is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "616d6fde98cfe5573545399edbfab9d1f0d57d7b655ff62a2068330312ad6759"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7532c17fac15ff33",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_silica_dependency",
+      "review_path": "export/uvek_fuels_39_silica_review.json",
+      "review_sha256": "b88de24792279ea5f7fca98fa3834b759e55d5eb6e4321aa05525081277b7d60",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native proxies/reconstructions with warnings and recorded decisions. No new physical omission.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sulfuric acid",
+            "reference product": "sulfuric acid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "fdfaa82bde7f3f0edb278fa61316ebbc209d0b172f05cd7800b8e1827a5aab23",
+          "inventory_sha256": "007f7f24b47ce3174f6da0941cad948251718243ba14077fa1354e9df1409742",
+          "nonproduction_counts": {
+            "technosphere": 26
+          },
+          "comment_sha256": "89689d898b8c5735919ea687b56fbf8f225a22b9785006e3a9a7f91662ba3670",
+          "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "fibre production, viscose",
+              "reference product": "sulfuric acid",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c6095f07a7ba6d3df0d742d7eb861053ec8457978b8d05c9c95f31d539840d43",
+            "inventory_sha256": "dc8e88a334d4097a98c886fe030092f7e4e96cd2b2c6ab3e62c93055beae89f2",
+            "nonproduction_counts": {
+              "technosphere": 36,
+              "biosphere": 3
+            },
+            "comment_sha256": "caadbef4944ca4ee9d412687244bf471b18c196330c76d429c4476acfbc4c4a1",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "primary zinc production from concentrate",
+              "reference product": "sulfuric acid",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7ab2fa40a387f6c2dd096425fe819d2b525f4db81edf6df4000bdd0e5bf1a428",
+            "inventory_sha256": "c372ad479770f19f1d3a06a51ff79fad50a3b5c4e6c00eb3b6b7cd9a15039035",
+            "nonproduction_counts": {
+              "technosphere": 49,
+              "biosphere": 33
+            },
+            "comment_sha256": "822f6dd5f5ca225bb0e3b8da4fa20129e03480a106055378699b9e52be8bb6a5",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "cobalt production",
+              "reference product": "sulfuric acid",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f949130a9275eef8437f72242918b0483c0501b514ba5130e86aed01b076376c",
+            "inventory_sha256": "ec965ce6241e0417ee0d19a8811d98680b816059d132d5aaebd3d9cc9573f41c",
+            "nonproduction_counts": {
+              "technosphere": 207,
+              "biosphere": 83
+            },
+            "comment_sha256": "efce730b35d8cf62b817658de2cf9952933c32ab14e9366e999abd2c4fccc8c5",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "sulfuric acid",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f73a8035d5f848c8c78c56ef11acd1c5d7a9caaf0409941333444c032aa44427",
+            "inventory_sha256": "7b19180ab714153cecaec737ed98f054511ed82aab706985d66340bf0252ae0d",
+            "nonproduction_counts": {
+              "technosphere": 12,
+              "biosphere": 32
+            },
+            "comment_sha256": "7285b1e0bbad4ee201877beee840fbdd8322afb3cf8f539914512459341a7fb2",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "sulfuric acid production",
+              "reference product": "sulfuric acid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "533792f323e773d06e790ddc645c9926926a0cdb052905cfc1ddd17818dfa287",
+            "inventory_sha256": "db8e11f67013cd6ae4dee8767b9c5e517d82f1cd0406dc6121965b1415927cef",
+            "nonproduction_counts": {
+              "technosphere": 19,
+              "biosphere": 8
+            },
+            "comment_sha256": "c3ccb1f225575fab93b4cbe01aef8dfe5ca265d90945c26b6e5b1dddc24e814a",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "smelting and refining of nickel concentrate, 16% Ni",
+              "reference product": "sulfuric acid",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "75b8c362b7dcaf7406778cd0210a3aa8f2a5cf5c67bccefa4a737b8bbb61151a",
+            "inventory_sha256": "9a9a2a2bdfecd632062604842b18162540b437307bf659e1d0f0d7c7176131b5",
+            "nonproduction_counts": {
+              "technosphere": 24,
+              "biosphere": 27
+            },
+            "comment_sha256": "6f6cf7a567b431875a5422e3534a2332cf0331af782183e58e900dc98550a6b2",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "copper production, cathode, solvent extraction and electrowinning process",
+              "reference product": "sulfuric acid",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "76b7e660d5292b6cd05a0f1511fd90f71dc6bb1b49bd6fc62219b42b2587c4bb",
+            "inventory_sha256": "f021eaf6afb4a76936ee554549d03c4a68141b2403bc811ba1812141053a1762",
+            "nonproduction_counts": {
+              "technosphere": 29,
+              "biosphere": 7
+            },
+            "comment_sha256": "2ecad89276cfca01e5e5808b00ff6cc7686555e689e300678e108abb8b8855d7",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "zinc sulfide production",
+              "reference product": "sulfuric acid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "98e938696c070d7704bbf1aa84c47a15397d91bf4323f4dc6f4f2c037ef08634",
+            "inventory_sha256": "c410f97a84972adcd6ae571910f50503a6cf6e881f2939669a6359a37bedf68d",
+            "nonproduction_counts": {
+              "technosphere": 21,
+              "biosphere": 8
+            },
+            "comment_sha256": "a769d3dee4f47dceedec95c21d6aa748850c077fe0d6effb95bc3dd0defb6326",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "sulfuric acid",
+              "location": "CL",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b91d6d63e9d7a81c2cad35cd8fe54d89bd88585e32b9bd1d7d81f70560044d79",
+            "inventory_sha256": "814fdc670b4c777e195471aec1396ac7be831437a31234ca158905724e210933",
+            "nonproduction_counts": {
+              "technosphere": 12,
+              "biosphere": 32
+            },
+            "comment_sha256": "01ded04bfe1b976283feb507cbbf47c02158bca732f06d9ef320e0e415fec671",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "treatment of non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical processing",
+              "reference product": "sulfuric acid",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9e34c0c9a79ac9bdb383de2817674d8b75a2a681b4e8d91ea2865f1fc51854ce",
+            "inventory_sha256": "66960977eed9111efb78abd638c5cccf0a67d5e240453883380cabd58c27b87d",
+            "nonproduction_counts": {},
+            "comment_sha256": "69961c762ec793de911d7a78eab623f52c0e9b2bdfdd865c26a888cfb0be9a8a",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "sulfuric acid",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "2ec5a963b00e13a8913fdd4a4e7f284122e3edd3d00aab54cb058257542243bb",
+            "inventory_sha256": "8575690893751c5882fa937f624e04129b6bfad5d9933c75d5853e19d876b648",
+            "nonproduction_counts": {
+              "technosphere": 12,
+              "biosphere": 32
+            },
+            "comment_sha256": "49dbc998405ca6ac669f73d776103aa61a19ad7eeff036a02de95812adec1dca",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "primary zinc production from concentrate",
+              "reference product": "sulfuric acid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d752663e57fb7e7e092ed1a0ee8b832dfe026bb5af41c956a95f543e8d80f2e1",
+            "inventory_sha256": "ffaa780c8b2d199ef4c0e1b5d1edf16480e2f4160273cdd20d60b2b522709745",
+            "nonproduction_counts": {
+              "technosphere": 291,
+              "biosphere": 92
+            },
+            "comment_sha256": "553109b8267ecebad623ec570a82c9978bb33b8669084e03e2d0ce0390113c38",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "sulfuric acid",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b7c99b3be975810ce759a8f8c8f76c3b463c2e916e1c7acb7f64a0c65cd08272",
+            "inventory_sha256": "c8ee949dd6a9cbceff5761c6e00293370a40ac8ac44eecc20dc4298f2533ddbe",
+            "nonproduction_counts": {
+              "technosphere": 12,
+              "biosphere": 32
+            },
+            "comment_sha256": "9028454718f8162efcdd57fbc8504452bdedc1837f7d4ae891e55cb6f3002e8c",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "sulfuric acid",
+              "location": "RU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4828e4cf6e0e7288e922be7126d7715ebfe61e6a1843655b5863fb1f20e6ceed",
+            "inventory_sha256": "3bf7152656b5f3d5c639932617b0424cd4aa71e9bc71c4625fcfb8e08cdd334e",
+            "nonproduction_counts": {
+              "technosphere": 17,
+              "biosphere": 32
+            },
+            "comment_sha256": "f0bc0564a802fcbc30f50a86f0fc38a304826388cebd91c6d50e97668235cce3",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "primary lead production from concentrate",
+              "reference product": "sulfuric acid",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ca2a8999c4911b72284e9f03a0c7810fb488d47d2fc3b7cc44931fe3db2ef8a5",
+            "inventory_sha256": "7379efd68aa05677c2ba3ec23e0972b622560cd98382b411d82383d1c1db1c44",
+            "nonproduction_counts": {
+              "technosphere": 14,
+              "biosphere": 20
+            },
+            "comment_sha256": "8b0d3be4083037036b6b5e8b9acff18111943521c84fca163d8ca5e5ef991215",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "sulfuric acid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "be7fdacda82bde8bc13f9ba0a738cd613a63ae47e459ebce9166f8268ac2ea91",
+            "inventory_sha256": "f03c00b4038c49dd4aa2dcd48e5d740c7bbc1f1fee1c87188453b86fd3d00699",
+            "nonproduction_counts": {
+              "technosphere": 83,
+              "biosphere": 32
+            },
+            "comment_sha256": "d0a8931253a95473ff78cf9a2fbe40292f240fb9744c139e8fe21580afeb8022",
+            "product_information_sha256": "6bf18e4c52acd06e500857e1b2b021c8d9f18478a3f45f643a7d7ace21e47390"
+          }
+        ],
+        "basis": "Sulfuric acid per kg pure/100% active substance. Actual source product information explicitly models the pure substance and native documentation explicitly references 1 kg 100% sulphuric acid, despite the liquid title. Retain factor +1 without solution, water, hydrate or concentration scaling. Complete native European stable-operation acid production replaces the RoW market portfolio, including its recovered viscose-fibre/co-product supplies; feedstocks, allocation, recovery, energy, delivery, geography, vintage and native emission coverage differ. No recovered-material credit, repeated allocation, extra solvent or correction to separate caller emissions is inferred.",
+        "conversion_factor": 1,
+        "native_2026": {
+          "identity": {
+            "name": "Sulphuric acid, liquid, at plant",
+            "reference product": "Sulphuric acid, liquid, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 19,
+          "metadata_sha256": "1b0de5160af823315d277dd77b6c10067f7b5eb8eb793654fffc410df1469d65",
+          "inventory_sha256": "81caa78478dbad5e190325e78db6e9e0767797d4efbdc472f89b990cc9a096b7",
+          "comment_sha256": "7d9fa8b7a92d1bd718946f0a4c8fabd4dfb02ce0b5ba994c0b91010782949de9"
+        }
+      },
+      "limitations": [
+        "Sulfuric acid per kg pure/100% active substance. Actual source product information explicitly models the pure substance and native documentation explicitly references 1 kg 100% sulphuric acid, despite the liquid title. Retain factor +1 without solution, water, hydrate or concentration scaling. Complete native European stable-operation acid production replaces the RoW market portfolio, including its recovered viscose-fibre/co-product supplies; feedstocks, allocation, recovery, energy, delivery, geography, vintage and native emission coverage differ. No recovered-material credit, repeated allocation, extra solvent or correction to separate caller emissions is inferred.",
+        "Only the independently inspected ecoinvent 3.9 cut-off identity qualifies. Preserve signed caller quantities, uncertainty, formulas, separate emissions/freight and the complete recorded helper closure. Native technology, geography, allocation, vintage, delivery, internal uncertainty and biosphere coverage differ with unquantified score effects. No hidden omission, recovery credit, release extrapolation, cross-system-model or inverse mapping is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "32862a0bfbd1f20ebc1e305d0d131a565fe4cb8800be9598fec8dd9bc9abb922"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c6828ba55cd05f7d",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_silica_dependency",
+      "review_path": "export/uvek_fuels_39_silica_review.json",
+      "review_sha256": "b88de24792279ea5f7fca98fa3834b759e55d5eb6e4321aa05525081277b7d60",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native proxies/reconstructions with warnings and recorded decisions. No new physical omission.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "activated silica production",
+            "reference product": "activated silica",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "008814690c65e41c9fd4fb7b225392afb9dd3ae29bc816dba703d206f1989bb8",
+          "inventory_sha256": "f31cdca4b9d4ed1d4a0aa762a1f42ee8c2c2eeda7e18c2709b7a09802af6fac6",
+          "nonproduction_counts": {
+            "technosphere": 14,
+            "biosphere": 5
+          },
+          "comment_sha256": "00e289598a18d9b03b1bccf68f2738dc9ec092c20d5c331d9293a18edab107c8",
+          "product_information_sha256": "2a20624e840e0d27be76018815b1d56a9f129be27eb32419af0ddb9126b01e7a"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Reconstruct one kg of dry activated/precipitated silica rather than substituting mined sand. Retain all 14 original input rows in their source order, all five direct water emissions/resources with their exact canonical 3.10 publisher UUIDs and signed quantities, all 19 lognormal distributions, and four local parameters. Use complete native solid-furnace silicate for both separate RER/RoW ingredient rows; do not aggregate or renormalize the source coefficients. Retain acid, electricity, heat, infrastructure, water and both reviewed chemical-steam supplies. Four negative source wastewater demands become positive complete wastewater-service helper inputs using their reviewed factor -1, with uncertainty/sign flags scaled consistently. Existing complete steam/wastewater helper closures and limitations are frozen; their documented zero-burden native waste-electricity/heat co-products retains the 100%-to-disposal allocation without assigning it invented generation burdens; do not infer a second treatment, water balance, dry-mass yield, neutralisation, recovered-salt or energy credit. Native global/Swiss/RER utility geography, district-versus-industrial heat infrastructure, source-market delivery, chemical grade/modulus, allocation, vintage, internal uncertainty and mapped biosphere exclusions remain screening differences; preserving the source coefficients and parameters is not a new stoichiometric or LCIA-equivalence claim.",
+        "conversion_factor": 1,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Sodium silicate, furnace process, pieces, at plant",
+              "reference product": "Sodium silicate, furnace process, pieces, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "c616f2b9f8139b45dc4134460e89e4c537462a3a47cc09deb4c7deab132b107e",
+            "inventory_sha256": "9f6fdae4cf9f63e21216f660a04e08e9eb9e737953d65e1d018970cad944a727",
+            "comment_sha256": "b75a6edb344a410d8ad5723404bb37d988387b994e790933a53b1f2617c74ac0"
+          },
+          {
+            "identity": {
+              "name": "Chemical plant, organics",
+              "reference product": "Chemical plant, organics",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "metadata_sha256": "55dbec9be92411ecc4e07c3ec81be1f92d4b12b6727930f4be4120aeda93be47",
+            "inventory_sha256": "6af55f901e1f9a39912315b633873cff639c255c8c345a590435aa302982f7fb",
+            "comment_sha256": "69ac7ae680251cb24912a8fca18afb0e6afb746db112269c89f11245c809e11c"
+          },
+          {
+            "identity": {
+              "name": "Sulphuric acid, liquid, at plant",
+              "reference product": "Sulphuric acid, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 19,
+            "metadata_sha256": "1b0de5160af823315d277dd77b6c10067f7b5eb8eb793654fffc410df1469d65",
+            "inventory_sha256": "81caa78478dbad5e190325e78db6e9e0767797d4efbdc472f89b990cc9a096b7",
+            "comment_sha256": "7d9fa8b7a92d1bd718946f0a4c8fabd4dfb02ce0b5ba994c0b91010782949de9"
+          },
+          {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "792fc854c1303602dc86c58e97fb15fe71da12f18d41b156a29603ce7ed5d333",
+            "inventory_sha256": "f63c3dc89db57f50c6b5ed0aa389a8e238a61b30369651eb0e9da913de3d1906",
+            "comment_sha256": "636195f1ff887a418421be1b9d2d560d1c6d059c465df7bdd1def04471b6ee97"
+          },
+          {
+            "identity": {
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "16e6a5bc47aec4073173101c4ac809d73a339aafeadab5a9db85501bf918eae5",
+            "inventory_sha256": "4bae0a33eccda625182a2c77b2dfded3f7afc1584224984ba0b9d5982a768f0b",
+            "comment_sha256": "5113f9049657bb750c2451659a42a4ab2b4f59a816d2a6e68c07191654531592"
+          },
+          {
+            "identity": {
+              "name": "Heat, unspecific, in chemical plant",
+              "reference product": "Heat, unspecific, in chemical plant",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "c05f9343f31d4eebcf923377ca5325d71e93f5d530e049dfcc815651868c10f6",
+            "inventory_sha256": "8f0c0cb959220d3115545e2af0c4fcdf68c29ac0ce6c7e8aa6fe88a461f1aa80",
+            "comment_sha256": "d4baf4e5fef8102c25d6790052c3f14b7e4ba4a0e29958cf5260441c6d607bf9"
+          },
+          {
+            "identity": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 23,
+            "metadata_sha256": "65459ef609ec5a6a1eb435aced7a7894696132937c2829e38a9170f4591f1cb5",
+            "inventory_sha256": "d8d72fe31f9cf3081063ba91ae39a0b356ae9c8627a3a652154ef6df4cbf298a",
+            "comment_sha256": "567d6cde5eb8e60e861af5a3eeda4d6fbceea4c2de3d6a587f3e41e3d2bf5466"
+          },
+          {
+            "identity": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 23,
+            "metadata_sha256": "be7ecc957ca4afbf7e4bf1c3622282158633de71c9cb6cb4691e4a7e477ce6ba",
+            "inventory_sha256": "a3d2cbb799666e6ace8cf8bed199d08508fa3ef9cfdb44bd84f65bbe24eefa54",
+            "comment_sha256": "508f8af6ec31ef58ade2a4ea0a8d4ca8c06885eaa64896f0986f4a5fb5d419be"
+          },
+          {
+            "identity": {
+              "name": "Sewer grid, class 3",
+              "reference product": "Sewer grid, class 3",
+              "location": "CH",
+              "unit": "kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 22,
+            "metadata_sha256": "1d2e6da60aec36264a97317485374bee433be8a7aa01c8085b8a7378dbc8999c",
+            "inventory_sha256": "3b8b254d1c2c86c66613bf5121d02d05e05bca915575b649cd5c03eac15d7b42",
+            "comment_sha256": "4de92dff21a43db118a225ac40fb5a7e469d3eb9a156c7ec0ed9288be787d8a6"
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, slag compartment",
+              "reference product": "Process-specific burdens, slag compartment",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 13,
+            "metadata_sha256": "7efcfd346f526ffb94735c569de48a561d2b1ffc6cbbc26a772175f4174aa8ad",
+            "inventory_sha256": "25c584f9102d86cfca94a09969bda7daeb00d1d1d8ba3298cc209e19c5994223",
+            "comment_sha256": "66890cf8152071810e08ea2dc9c5b1b8387d6c8916dc9d849f4a6ef43cf847dc"
+          },
+          {
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "1b93330d4f6254ffe36fbe73f4833f073429d28f30ca000cfa353e7bfb2078ad",
+            "inventory_sha256": "7f8d71c3deee07fd8ebd2100eb15f39b678ca94246f78d4c6f78a8e43aac580f",
+            "comment_sha256": "2801423ae61b28be5ca531b6fe4f337d7c63b0e0f66e63b02ca7081c099b8362"
+          },
+          {
+            "identity": {
+              "name": "Hydrochloric acid, 30% in H2O, at plant",
+              "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "4e08435fa0bac2af907603596b3b00a82f0b092fbbc8fab52a5dc108bff27f7f",
+            "inventory_sha256": "c309359df8889b1afec29aea954e5c39a139bc1d3be5bc1a1c9f6f2b7a649c0f",
+            "comment_sha256": "1bc8d4d007d29c7819eccafc38e46bb8db7f6dd9dbfe94cced0f2635ea8199be"
+          },
+          {
+            "identity": {
+              "name": "Iron (III) chloride, 40% in H2O, at plant",
+              "reference product": "Iron (III) chloride, 40% in H2O, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "b74f32d4ed337d6663df34622c01d15b74085c7e69ef88109e67dcf5e3bb1b6f",
+            "inventory_sha256": "c221a637e3734d06cf11bcb36807abea16bff5d8a9e69c89d139edecf8449d90",
+            "comment_sha256": "3718276a3ead67d999779bdc629e6cd90dc203ec06c58a897478c68963992847"
+          },
+          {
+            "identity": {
+              "name": "Chemicals inorganic, at plant",
+              "reference product": "Chemicals inorganic, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "1525dd09efcec4d2b4321d8c341eb3d979a8dd267596329305b070f124191071",
+            "inventory_sha256": "1efbe3979e119e969385c0b25afa32ae13eebae5d77635892e5378e4e0f20fc1",
+            "comment_sha256": "3255f67802ffb552c591748690c75db6cae5933e69f5bfe10ee8f66d4d7fb8d2"
+          },
+          {
+            "identity": {
+              "name": "Quicklime, milled, packed, at plant",
+              "reference product": "Quicklime, milled, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "metadata_sha256": "42e8b96dd85eedf08363ab0c0661cc495b04ef5346203c01bbd711e5a8ae08d5",
+            "inventory_sha256": "36c85d897507e1d70b644efe6cc2059eae33b5d2e8d3066996490e60b86b854d",
+            "comment_sha256": "6b605615a2ba7434550dec1bce2f59612bc804cbf45dcf57d055bfb6aae5e8bc"
+          },
+          {
+            "identity": {
+              "name": "Municipal waste incineration plant",
+              "reference product": "Municipal waste incineration plant",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "140a96096feb85893a231cb614253767e795936c623085bd5539be9a72c4aede",
+            "inventory_sha256": "a09fc0929f7aa43ad08ccaf3305f884ae77808ee11643b261f37e41dff97867d",
+            "comment_sha256": "1ac870293048054a30cee689af9d6a65f3543b1bd9816dccdf45e446a4e3e0f1"
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "f1e8b75a710d0840f6f3f25da768495fb676de5c74c27f7e283740f98de2053d",
+            "inventory_sha256": "2481b3a694f1b83ee8aaf17ce4d294bcd60b65b9122c8b506ec320fe9a9d0d1a",
+            "comment_sha256": "0605016ffa3f524eb84832668d0db26c8e6d8dee9d9680b74dabc5052ec8084e"
+          },
+          {
+            "identity": {
+              "name": "Chemicals organic, at plant",
+              "reference product": "Chemicals organic, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "6062fce9742099cdde861d0ffd2c30382689c7a22946b8be0bbfbe7d71cfdebf",
+            "inventory_sha256": "1c9e7a935cc7c6539b1631f12489cf2defced0f675012616fcd31e24b2621cd8",
+            "comment_sha256": "cec577d261a6df55094c2d4b5053ccbf0045e2463e0308eb1dd99d7f0618e686"
+          },
+          {
+            "identity": {
+              "name": "Electricity from waste, at municipal waste incineration plant",
+              "reference product": "Electricity from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "df0cbe4d1894a1400c4d095ac612cd73c38b4db0d76949743eb4a6f0c103a624",
+            "inventory_sha256": "e4918386892f131fa803b4e2b18cc45aad34832d4f14f87ce890579c112517ef",
+            "comment_sha256": "8608f5384c857e610729ea9915466eb0d761fe495f5f3fffa5cddad8cb03f536",
+            "frozen_zero_burden_dependency": "pilot-wastewater-native-plant-only-13e44131b50b181f4131",
+            "basis": "Native waste-energy co-product has documented 100% disposal / 0% energy allocation. Retained only inside the unchanged frozen native wastewater-plant helper, not a newly proposed zero-inventory supply."
+          },
+          {
+            "identity": {
+              "name": "Residual material landfill facility",
+              "reference product": "Residual material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 13,
+            "metadata_sha256": "fec504d1c640515bc4e3340e97b7b41fb0d1e6ba95ba519d594f0aeb26735460",
+            "inventory_sha256": "cd6d2274e3a9e424a4661ee3b1792b263956b0c9a4af555e36fa1ec71a05954b",
+            "comment_sha256": "7209bc90bd5d8f5e71bc63c6f9e9f930dda241231877eea3a863e7e3662b423f"
+          },
+          {
+            "identity": {
+              "name": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "reference product": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 127,
+            "metadata_sha256": "60d7230f342850219a0e5092cffd4545acc09f95316f6c4b2cab53119d16a6d4",
+            "inventory_sha256": "717a7d16af015f20299513bef0138631f09fcf90b2af6f28d9d6c80f097d8fe5",
+            "comment_sha256": "064cafb8f19aa377c881caab5d003a02051b2caec59e9eef3010fc0d0f85705e"
+          },
+          {
+            "identity": {
+              "name": "Natural gas, burned in industrial furnace 1MW",
+              "reference product": "Natural gas, burned in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 28,
+            "metadata_sha256": "8d01196d575600c5a80e0dfb035ab18d76fd4d0cb92cc74b956e830c216e1984",
+            "inventory_sha256": "1b47db29c3baa2ba737d08e991315515fd4a0cde807541e9547c6d380e280a34",
+            "comment_sha256": "46cba20b6d98210e41a240239beff02e3b27927e24872635dc1d4f0e503b4fdf"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Slurry spreading, by vacuum tanker",
+              "reference product": "Slurry spreading, by vacuum tanker",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 26,
+            "metadata_sha256": "9257a848231161ea90c0fac23a74b95fc41023d2012a517dad77c84a5160e81f",
+            "inventory_sha256": "271024a51cc52628369f25b19414c70aee6f05286ddfb7cd503c4879b15ffce2",
+            "comment_sha256": "1d6940da0bb13321f6bf1aedf0f4d3bcc4249ce56e10376768dc52671a9aed04"
+          },
+          {
+            "identity": {
+              "name": "Chromium oxide, flakes, at plant",
+              "reference product": "Chromium oxide, flakes, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "metadata_sha256": "5e4f98a9656b9caae42ee8b8ca1304bbb765210f2a775a90ae4391b181a94bee",
+            "inventory_sha256": "d274813dea60068790a182db5d1f25dfeba88fa64b78d2c250a292ce9aec8855",
+            "comment_sha256": "8ee4cba5992e262aa91188893a794760ab961605461ce1059cd71d079cf09c3b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "frozen_zero_burden_dependency": "pilot-wastewater-native-plant-only-13e44131b50b181f4131",
+            "basis": "Native waste-energy co-product has documented 100% disposal / 0% energy allocation. Retained only inside the unchanged frozen native wastewater-plant helper, not a newly proposed zero-inventory supply."
+          },
+          {
+            "identity": {
+              "name": "Wastewater treatment plant, class 3",
+              "reference product": "Wastewater treatment plant, class 3",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 31,
+            "metadata_sha256": "b1adc3a0e305474ae74a74e1e268d6f5a9ef52d5252fa1c54ef69af00fcdce37",
+            "inventory_sha256": "63031f955799e49715340b2416dca1b8894f93af435c3336aa54fb042b05ed09",
+            "comment_sha256": "f6a54aef642a99a186b8728e043d0517519a0c64b4855a4f2ec9842659c519b1"
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, residual material landfill",
+              "reference product": "Process-specific burdens, residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 13,
+            "metadata_sha256": "33939def3c0a81f99b8cc1c06357c8802a87d9c2835811dd29413a1c22ca052a",
+            "inventory_sha256": "d25d5ae1db457e49a5870abd67bc4444b16cbd8ff045c53b7ddef682675776b5",
+            "comment_sha256": "b8d7910f0653e29dc39303fb1e4ea65f5598d56ae12209df089099b85667486d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "reference product": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 44,
+            "metadata_sha256": "56583aa0ef71cc422fdeedbd9e89c1950e6f2a868c59486d1fdb84d8570a7723",
+            "inventory_sha256": "87280176b5963951f0bf0d47415703453b5fa42ea8044465caad14d7b78ade8b",
+            "comment_sha256": "34d356ff56237da1aa59006038764246eecf1eb84cf85c945fb8562bc41af743"
+          },
+          {
+            "identity": {
+              "name": "Slag compartment",
+              "reference product": "Slag compartment",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 21,
+            "metadata_sha256": "bff612ada53d0f72084b658a7a50e3968fa9c8323ba6dc93d84b45b221228485",
+            "inventory_sha256": "8074974ad67de5d76e502e72dbc7d3830877f1bff48854b17de2ca5686a5911c",
+            "comment_sha256": "432940a009a1ff577c7f1517670b28c0cadc73cb1d5b2131a1f84ae7259259dd"
+          },
+          {
+            "identity": {
+              "name": "Disposal, paper, 11.2% water, to municipal incineration",
+              "reference product": "Disposal, paper, 11.2% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 140,
+            "metadata_sha256": "d7f3eeb314b6b7e97e1190aeb7751901f6d008aca49811e25dfc9b6f2e419914",
+            "inventory_sha256": "60ece1c43351e7868b6255bc0bbdc2bc47d2d208a59ed2cc168e7dcf96f34619",
+            "comment_sha256": "a6b830939105024b85a71532c192c6b3db501da0b3a33f35523874853a38a7b9"
+          },
+          {
+            "identity": {
+              "name": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+              "reference product": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "metadata_sha256": "d4a7b62949e90d9971dc89b952996f9d9bfa12482522f58ac9561d459f545562",
+            "inventory_sha256": "14c546182676b06407c8d98f019f038ce337739382581b83802c5a3aa4f02dce",
+            "comment_sha256": "9c0a40d6b3d24427ab256a2cc1617d7406ddf8a4c5946048921c05abaf307bf5"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "b19cfdc5ae91e0f7e58abd73a5827d724f1fc5da49afc11d489aba67872688cc",
+            "inventory_sha256": "5991ca18bb93e6d9c89b7008138aa96e2c8b55c1187b3e1d2cf8e9404cc65cab",
+            "comment_sha256": "e78bd24873ab081049b2259a8aed8a850d784fac68070ff8567fc59c82fec143"
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, municipal waste incineration",
+              "reference product": "Process-specific burdens, municipal waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 19,
+            "metadata_sha256": "f9e5268e3b7b4c37419d28a34fbc5cc7a20c588dc3151b85b3506e4a5b5f86f8",
+            "inventory_sha256": "da26f00be115cb195a83b75195dab56d4e76c47981a2edf9acb27a399b8700fb",
+            "comment_sha256": "051ce638ec6133a306999ba3186b5d0b52f1064d80ce8a2273211ab71e5fc9bf"
+          },
+          {
+            "identity": {
+              "name": "Titanium dioxide, production mix, at plant",
+              "reference product": "Titanium dioxide, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "03a9d8ac06fee04c72591eda594cf016d190afbfd335d1159e7e5fe53ac5d7b0",
+            "inventory_sha256": "135327e092905d01c37ccd48466ae768c04adf47597deb557ec167f439277bf1",
+            "comment_sha256": "e8efc219d488a8b3f0b8fb3933efb522d940d9771bb2c7e965ffbc202eabd6d8"
+          },
+          {
+            "identity": {
+              "name": "Aluminium sulphate, powder, at plant",
+              "reference product": "Aluminium sulphate, powder, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "8be3f01ec649e03daed644537e573dddc280b986f4cf86ecadd0482073d72299",
+            "inventory_sha256": "d835d6e422e9541d71c4a6305cded24f9960cdaa27be5870c9129ed15ccba660",
+            "comment_sha256": "3500cd1f68bd2fbb48617f010fc1aef11758ded31d4a69e747d2b87fe8f47282"
+          },
+          {
+            "identity": {
+              "name": "Iron sulphate, at plant",
+              "reference product": "Iron sulphate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "metadata_sha256": "e36c0804f84d761fe0eb67765cfb01432e83a161ec636f3ffb11d7ae4f7c60f0",
+            "inventory_sha256": "1720fb82d45d5accaebe8a032c6cfbab7e0b2760a614b4817ee611df1aff54a7",
+            "comment_sha256": "bb07baaf6a819fba46c09c459d84fa0a6f8f2e6fecb7f843be274d91d0ab5133"
+          },
+          {
+            "identity": {
+              "name": "Cement, unspecified, at plant",
+              "reference product": "Cement, unspecified, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "1fae1b67a546ebb11a3b1616b49f339c91b4d68aadddbf5fc65f218c6f0f77cc",
+            "inventory_sha256": "aa9da6e9e7db50739da5b70670360f2421801a45169df072c477647cb9b76656",
+            "comment_sha256": "69345fc4a36a051bcd4b1ce2a6f0e0a693cfa31ad3cd2f7ca4b6968562a4253a"
+          }
+        ],
+        "helper_recipe": "fuels-39-silica-93071f822fe339144e72",
+        "retention": {
+          "technosphere_rows": 14,
+          "direct_biosphere_rows": 5,
+          "lognormal_rows": 19,
+          "local_parameters": 4,
+          "source_order_preserved": true,
+          "biosphere_identity_checks": [
+            {
+              "name": "Water",
+              "categories": [
+                "air"
+              ],
+              "unit": "cubic meter",
+              "same_publisher_uuid": true,
+              "signed_quantity_retained": true
+            },
+            {
+              "name": "Water",
+              "categories": [
+                "water"
+              ],
+              "unit": "cubic meter",
+              "same_publisher_uuid": true,
+              "signed_quantity_retained": true
+            },
+            {
+              "name": "Water, cooling, unspecified natural origin",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "same_publisher_uuid": true,
+              "signed_quantity_retained": true
+            },
+            {
+              "name": "Water, river",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "same_publisher_uuid": true,
+              "signed_quantity_retained": true
+            },
+            {
+              "name": "Water, well, in ground",
+              "categories": [
+                "natural resource",
+                "in water"
+              ],
+              "unit": "cubic meter",
+              "same_publisher_uuid": true,
+              "signed_quantity_retained": true
+            }
+          ],
+          "wastewater_sign_reversals": 4,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "existing_recipe_dependencies": {
+          "chemical-heat-water-8853f63bfa46fbcdc1e2": "ac271cc355b9c2b83f3bbc1ca15f26734526aebf9fc61e271f2228df2ea33aa1",
+          "chemical-heat-water-1ced12d9ab9a80752fd2": "8d5c315e9fce3aa96cfbeae9525bebc470f821bed4aa8a5bbc23d533e256f67d",
+          "pilot-wastewater-routes-d842e2a4b036631ca64a": "700109c26f021e85bb8d2f64c60f1517022508eec41ef4dc225a3d26e408dc9e",
+          "pilot-wastewater-routes-e4001c3975d57642d229": "6aa7be5cc8f43340e807f20c8899148d989bb8f52e6e66d9c06c1a5b30e59fe8",
+          "pilot-wastewater-routes-997a7bcd8a81ffa6ee79": "60c89b2b1a72fae4475fa3bb54cf5dac141a1a7fb2525055be0193e07b6b5e94",
+          "pilot-wastewater-routes-9931675e08e4f23932b2": "2463d141fead692835378c78f441f96a2910b67cd64e4f43c3e910369fcc1ce8",
+          "pilot-wastewater-native-plant-only-13e44131b50b181f4131": "76f237a6467f5b7d04eb78f4d020ae3a4d5a7f399059a97eaded9cb05afe59aa",
+          "pilot-wastewater-routes-39cbd83822dc810e03e3": "52353fcc932d03350d2ac1d153f1973294a1d33bd7ca0d092a427334cb836487",
+          "pilot-wastewater-routes-29ebb2064bdb50293c1f": "7f325a2852f147ed5b00821307feb8b484352009a9d6d7503a2351d98d7230bd",
+          "pilot-wastewater-routes-eff76270716fb3e521c0": "033ab6bfa94790c3aa20d5fbeb23df2bfeae65bcc004b5171c3f72b123a128ca",
+          "pilot-wastewater-routes-994071bdc70226a1f893": "d27ecade96df06a41eea0cbaf1547245c8abe5b7cc4a8be66f842f8d771135e3",
+          "pilot-wastewater-routes-bd88b9549e9e5edabb3e": "5d4ccabfa4dc70ded214d97a376e073da30aa1d030f0ffd36a0360635d48bcee",
+          "pilot-wastewater-routes-925e10d1da0e457f8cfc": "44340b311629016875179d9a845d01a9f62cd4c3244fb140768179e6e456171a"
+        },
+        "component_bindings": [
+          {
+            "source": {
+              "name": "market for chemical factory, organics",
+              "reference product": "chemical factory, organics",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "rule_id": "bp-5b8c937d3fb21468",
+            "selected_rule_sha256": "eff2d65801525f9d4b7c898cb5ad06c7322c106e4e5120a728fdb24c8f028542",
+            "target": {
+              "name": "Chemical plant, organics",
+              "reference product": "Chemical plant, organics",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "rule_id": "bp-61babdae6914f05a",
+            "selected_rule_sha256": "6f2794d3aab02a87f6e95eea75f1c934fee89e2078e74d9d12b38822b7b33faa",
+            "target": {
+              "location": "GLO",
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market group for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "rule_id": "bp-5a3b5a4a13938317",
+            "selected_rule_sha256": "c47a4a5ee939c372f5399c1eb97e2c519ead99f75c55cda0aa699e431d0ce5fd",
+            "target": {
+              "location": "CH",
+              "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+              "unit": "megajoule"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market for heat, from steam, in chemical industry",
+              "reference product": "heat, from steam, in chemical industry",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "rule_id": "bp-05200779ee64a17f",
+            "selected_rule_sha256": "f4222f103d6592dec2656bc515232ea979343cc6bbb873581d17e8c2287709c9",
+            "target": {
+              "recipe_ref": "chemical-heat-water-8853f63bfa46fbcdc1e2"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market for heat, from steam, in chemical industry",
+              "reference product": "heat, from steam, in chemical industry",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "rule_id": "bp-9f7197c47047750a",
+            "selected_rule_sha256": "691bdf86f72a3b2a6deeec4be659c60a08506f508edd6ae4ead0526cdd0ffbce",
+            "target": {
+              "recipe_ref": "chemical-heat-water-1ced12d9ab9a80752fd2"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market for sodium silicate, solid",
+              "reference product": "sodium silicate, solid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "rule_id": "bp-2b86a55ab1009223",
+            "selected_rule_sha256": "a7da12601fc18035f3082fa9bc914c3d081a96aad047a4698716a54f4d698ec5",
+            "target": {
+              "location": "RER",
+              "name": "Sodium silicate, furnace process, pieces, at plant",
+              "reference product": "Sodium silicate, furnace process, pieces, at plant",
+              "unit": "kilogram"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market for sodium silicate, solid",
+              "reference product": "sodium silicate, solid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "rule_id": "bp-14686a5e16256499",
+            "selected_rule_sha256": "0bfa3691bcc1a4c747a59b95bd6eb34d1e496115460e04d795af01418499a567",
+            "target": {
+              "name": "Sodium silicate, furnace process, pieces, at plant",
+              "reference product": "Sodium silicate, furnace process, pieces, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market for sulfuric acid",
+              "reference product": "sulfuric acid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "rule_id": "bp-7740a48a01851669",
+            "selected_rule_sha256": "94357420e66139f57aa892d6ae497169502832d0dea086f3b50340404c8e99ea",
+            "target": {
+              "location": "RER",
+              "name": "Sulphuric acid, liquid, at plant",
+              "reference product": "Sulphuric acid, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market for sulfuric acid",
+              "reference product": "sulfuric acid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "rule_id": "bp-7532c17fac15ff33",
+            "selected_rule_sha256": "5647ea291c479104ad23e39229be126ee081b6189069fa9c3b8fe647aeb47fca",
+            "target": {
+              "name": "Sulphuric acid, liquid, at plant",
+              "reference product": "Sulphuric acid, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market group for tap water",
+              "reference product": "tap water",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "rule_id": "bp-15a5350bb1bcdb67",
+            "selected_rule_sha256": "1d61f300da8bb89a8024bd0ba0502d9d1f4a6bcf0a532b3c433ce65efadec05a",
+            "target": {
+              "location": "CH",
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "unit": "kilogram"
+            },
+            "conversion_factor": 1
+          },
+          {
+            "source": {
+              "name": "market for wastewater, average",
+              "reference product": "wastewater, average",
+              "location": "RoW",
+              "unit": "cubic meter"
+            },
+            "rule_id": "bp-3c10f9aaee8ffe42",
+            "selected_rule_sha256": "1376b5c0ecf0a79fcbb487a9104c3d3bf20a5686c0128a11d03dc8a64a089abc",
+            "target": {
+              "recipe_ref": "pilot-wastewater-routes-d842e2a4b036631ca64a"
+            },
+            "conversion_factor": -1
+          },
+          {
+            "source": {
+              "name": "market for wastewater, average",
+              "reference product": "wastewater, average",
+              "location": "CA-QC",
+              "unit": "cubic meter"
+            },
+            "rule_id": "bp-50d00531fead75d6",
+            "selected_rule_sha256": "75543bf239231b5e933e4078c49192e6d414bd280bfce99d51a78f256b0a67dc",
+            "target": {
+              "recipe_ref": "pilot-wastewater-routes-39cbd83822dc810e03e3"
+            },
+            "conversion_factor": -1
+          },
+          {
+            "source": {
+              "name": "market for wastewater, average",
+              "reference product": "wastewater, average",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "rule_id": "bp-1338a8724acf99de",
+            "selected_rule_sha256": "26b5b929670e28cc8a5c33564c49c0dc9ce47af5ca6ab64630a97b5355ca6d31",
+            "target": {
+              "recipe_ref": "pilot-wastewater-routes-eff76270716fb3e521c0"
+            },
+            "conversion_factor": -1
+          },
+          {
+            "source": {
+              "name": "market for wastewater, average",
+              "reference product": "wastewater, average",
+              "location": "Europe without Switzerland",
+              "unit": "cubic meter"
+            },
+            "rule_id": "bp-abc1d07ff55a5bbe",
+            "selected_rule_sha256": "d7bac85d5850fd7ecf7148ef833fd2677752e77c0a70f5d4abd21ebd025a0555",
+            "target": {
+              "recipe_ref": "pilot-wastewater-routes-bd88b9549e9e5edabb3e"
+            },
+            "conversion_factor": -1
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct one kg of dry activated/precipitated silica rather than substituting mined sand. Retain all 14 original input rows in their source order, all five direct water emissions/resources with their exact canonical 3.10 publisher UUIDs and signed quantities, all 19 lognormal distributions, and four local parameters. Use complete native solid-furnace silicate for both separate RER/RoW ingredient rows; do not aggregate or renormalize the source coefficients. Retain acid, electricity, heat, infrastructure, water and both reviewed chemical-steam supplies. Four negative source wastewater demands become positive complete wastewater-service helper inputs using their reviewed factor -1, with uncertainty/sign flags scaled consistently. Existing complete steam/wastewater helper closures and limitations are frozen; their documented zero-burden native waste-electricity/heat co-products retains the 100%-to-disposal allocation without assigning it invented generation burdens; do not infer a second treatment, water balance, dry-mass yield, neutralisation, recovered-salt or energy credit. Native global/Swiss/RER utility geography, district-versus-industrial heat infrastructure, source-market delivery, chemical grade/modulus, allocation, vintage, internal uncertainty and mapped biosphere exclusions remain screening differences; preserving the source coefficients and parameters is not a new stoichiometric or LCIA-equivalence claim.",
+        "Only the independently inspected ecoinvent 3.9 cut-off identity qualifies. Preserve signed caller quantities, uncertainty, formulas, separate emissions/freight and the complete recorded helper closure. Native technology, geography, allocation, vintage, delivery, internal uncertainty and biosphere coverage differ with unquantified score effects. No hidden omission, recovery credit, release extrapolation, cross-system-model or inverse mapping is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "656df48f9db58910d14d302f1b92c3d6e0c163f1f58ed110a399bad367ceddfd"
+        }
+      ]
     }
   ],
   "superseded_operations": [

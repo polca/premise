@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-10",
+  "purpose": "Complete one kg activated-silica reconstruction plus three reviewed ingredient correspondences; not a qualified prospective fuel update.",
+  "brightpath_revision": "09b84e99e05f6c665b4ba128dcda907bf26da4c0",
+  "mapping_revision": "5a14c2c2b946e6e0eb761d534ad8e4f34f4b1328",
+  "review_sha256": "b88de24792279ea5f7fca98fa3834b759e55d5eb6e4321aa05525081277b7d60",
+  "technosphere_sha256": "77b68f21542e4d9c701ed3e9cdd44e2d6089f81fa6dc7a4cbd8d0fb8a2f09446",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "new_rule_scopes": [
+    "bp-14686a5e16256499",
+    "bp-5b8c937d3fb21468",
+    "bp-7532c17fac15ff33",
+    "bp-c6828ba55cd05f7d"
+  ],
+  "old_approval_operations_retained_exactly": true,
+  "existing_scopes_retained": 575,
+  "validated_unique_scopes": 579,
+  "helper": {
+    "recipe_id": "fuels-39-silica-93071f822fe339144e72",
+    "new_recipes": 1,
+    "existing_recipes_retained_exactly": 13,
+    "technosphere_rows": 14,
+    "direct_biosphere_rows": 5,
+    "lognormal_rows": 19,
+    "local_parameters": 4,
+    "wastewater_sign_reversals": 4,
+    "physical_omissions": 0,
+    "coefficient_renormalization": false,
+    "native_leaf_witnesses": 38,
+    "existing_zero_allocated_waste_energy_leaves": 2,
+    "zero_allocation_scope": "Only the unchanged fingerprinted native wastewater-plant helper; documented 100% disposal and 0% energy allocation. No newly empty helper or added recovery credit."
+  },
+  "tests": {
+    "brightpath_silica_endpoints_storage": {
+      "passed": 65,
+      "seconds": 59.99
+    },
+    "brightpath_strict_source_target_closure": {
+      "passed": 1,
+      "seconds": 16.37
+    },
+    "premise_fuels_scopes_cache_uncertainty": {
+      "passed": 41,
+      "warnings": 1,
+      "seconds": 133.02
+    },
+    "additional_full_19_row_statistics_checks": {
+      "brightpath_passed": 1,
+      "premise_passed": 1,
+      "note": "Reruns with stronger per-field assertions, not additional unique-test totals."
+    },
+    "brightpath_reference_sign_regression": {
+      "passed": 733,
+      "seconds": 217.13,
+      "previous_stale_count_failure_fixed": true,
+      "historical_stage_profile_count": 996,
+      "historical_count_sign_quantity_assertions_unchanged": true,
+      "new_complete_current_runtime_resource_replay": true,
+      "test_waiver_or_relaxed_validation": false
+    }
+  },
+  "native_lci": {
+    "date": "2026-11-10",
+    "recipe": "fuels-39-silica-93071f822fe339144e72",
+    "demand": 1,
+    "unit": "kilogram",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "native_leaf_demands": 38,
+    "direct_biosphere_identities": 130,
+    "expanded_recipe_identities": 14,
+    "native_inventory_finite": true,
+    "native_supply_finite": true,
+    "combined_inventory_finite": true,
+    "combined_inventory_identities": 1687,
+    "all_direct_biosphere_identities_match_installed_310": true,
+    "database_written": false,
+    "scope": "Linear expansion of the reviewed helper and all frozen children against the actual native BAFU matrix plus direct biosphere terms; not a prospective fuel update or export."
+  },
+  "source_after_licensed_preparation": {
+    "activities": 11947,
+    "modified_after_preparation": "2026-09-22T10:55:01.512934"
+  },
+  "installed_check": {
+    "installed_revision": "09b84e99e05f6c665b4ba128dcda907bf26da4c0",
+    "mapping_revision": "5a14c2c2b946e6e0eb761d534ad8e4f34f4b1328",
+    "validated_unique_scopes": 579,
+    "resource_sha256": "77b68f21542e4d9c701ed3e9cdd44e2d6089f81fa6dc7a4cbd8d0fb8a2f09446",
+    "mapping_to_final_changed_paths": [
+      "docs/uvek-fuels-39-silica.rst",
+      "tests/test_uvek_reference_signs.py"
+    ],
+    "runtime_and_data_unchanged_between_revisions": true
+  },
+  "reproducibility": {
+    "full_generator_byte_identical": true,
+    "canonical_biosphere_unchanged": true,
+    "wheel_review_resource_manifest_exact": true
+  },
+  "licensed_preparation": {
+    "success": false,
+    "diagnostic_public_scope_guard_bypass": true,
+    "prospective_transform_or_export_run": false,
+    "archive_version": "20261110T030235Z-613ea498808a",
+    "archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "probe_revision": "5a14c2c2b946e6e0eb761d534ad8e4f34f4b1328",
+    "final_revision_runtime_and_data_identical": true,
+    "unapproved_39_correspondences_before": 33,
+    "unapproved_39_correspondences_after": 30,
+    "audit_sha256": "5885aacc1c22ecf6f85c602b8bbe2485b2fee35a99831c36d1a20d939f1a135f",
+    "issue_counts": {
+      "migration.unit_changes_require_factors": 1,
+      "migration.canonical_biosphere_identity": 2,
+      "migration.catalog_correspondence": 1,
+      "migration.scoped_compatibility_review": 2,
+      "migration.unapproved_correspondence": 30,
+      "migration.approved_correspondence": 98,
+      "clic.compatibility_proxy_limitations": 98
+    },
+    "new_current_cohort_scopes_accepted": [
+      "bp-5b8c937d3fb21468",
+      "bp-7532c17fac15ff33",
+      "bp-c6828ba55cd05f7d"
+    ],
+    "additional_ingredient_scope_verified_in_migration_and_helper_tests": "bp-14686a5e16256499"
+  },
+  "checks": {
+    "black": true,
+    "ruff_new_replay_and_tests": true,
+    "ruff_reference_fixture_repair": true,
+    "generator_existing_import_order_findings_before": 2,
+    "generator_existing_import_order_findings_after": 2,
+    "new_runtime_python_changes": false
+  },
+  "cleanup": {
+    "obsolete_verified_wheel_replay_removed_mib": 116.7,
+    "active_caches_primary_inspections_and_brightway_databases_retained": true
+  },
+  "remaining": [
+    "30 unresolved first-cohort fuel correspondences; further cohorts are not counted by this number.",
+    "Granular activated carbon and molybdenum trioxide still need correct physical inventories.",
+    "Successful shared fuel update, filter and regional market linking audits, validation and Brightway export remain required.",
+    "Remaining registered sectors stay in scope; the public qualified scope remains biomass, electricity, heat and cement."
+  ]
+}

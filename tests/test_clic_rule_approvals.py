@@ -3359,6 +3359,9 @@ def test_fuels_312_corrected_dependencies_keep_complete_targets_and_cache(
         ("bp-17d4104946dac764", 1),
         ("bp-2b86a55ab1009223", 1),
         ("bp-cd3492574a089af6", -1),
+        ("bp-14686a5e16256499", 1),
+        ("bp-5b8c937d3fb21468", 1),
+        ("bp-7532c17fac15ff33", 1),
     ],
 )
 def test_fuels_39_material_reviews_preserve_signed_basis_and_exact_profile(
@@ -3411,6 +3414,97 @@ def test_fuels_39_material_reviews_preserve_signed_basis_and_exact_profile(
         assert any(
             d["code"] == "clic.compatibility_proxy_limitations"
             and d["details"]["rule_id"] == rule_id
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
+def test_fuels_39_silica_reconstruction_keeps_water_uncertainty_and_cached_services(
+    tmp_path,
+):
+    from brightpath import DATA_DIR, TechnosphereProfile
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_fuels_39_silica_review.json").read_text()
+    )
+    row = next(r for r in review["records"] if r["rule_id"] == "bp-c6828ba55cd05f7d")
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == row["rule_id"])
+    scopes = approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+    bridge = TechnosphereProfile("uvek", "2025", "cutoff")
+    for version, model, approved in [
+        ("3.9", "cutoff", True),
+        ("3.10", "cutoff", False),
+        ("3.9", "consequential", False),
+    ]:
+        fingerprint = compatibility_rule_fingerprint(
+            resource,
+            "replace",
+            rule,
+            TechnosphereProfile("ecoinvent", version, model),
+            bridge,
+        )
+        assert (fingerprint in scopes) is approved
+    resolved = graph(rule["source"], version="3.9")
+    incoming = resolved.activities[0]["exchanges"][1]
+    incoming.update(
+        amount=-2.5,
+        formula="signed_input",
+        **{"uncertainty type": 3, "loc": -2.5, "scale": 0.3},
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for cached in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is cached
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == edge["loc"] == -2.5
+        assert edge["scale"] == 0.3 and edge["formula"] == "signed_input"
+        ds = next(a for a in result.activities if a["code"] == edge["input"][1])
+        tech = [e for e in ds["exchanges"] if e["type"] == "technosphere"]
+        bio = [e for e in ds["exchanges"] if e["type"] == "biosphere"]
+        assert len(tech) == 14 and len(bio) == 5 and len(ds["parameters"]) == 4
+        recipe = review["recipes"][row["new_recipe_id"]]
+        assert ds["parameters"] == recipe["parameters"]
+        inputs = [e for e in ds["exchanges"] if e["type"] != "production"]
+        for actual, expected in zip(inputs, recipe["inputs"], strict=True):
+            for key in (
+                "amount",
+                "uncertainty type",
+                "loc",
+                "scale",
+                "negative",
+                "minimum",
+                "maximum",
+                "pedigree",
+                "scale without pedigree",
+                "formula",
+            ):
+                if key in expected:
+                    assert actual[key] == expected[key]
+        assert all(e["uncertainty type"] == 2 for e in tech + bio)
+        wastewater = [e for e in tech if "wastewater" in e["name"].lower()]
+        assert len(wastewater) == 4
+        assert all(e["amount"] > 0 and e["negative"] is False for e in wastewater)
+        assert (
+            len(
+                [
+                    e
+                    for e in tech
+                    if e["name"] == "Sodium silicate, furnace process, pieces, at plant"
+                ]
+            )
+            == 2
+        )
+        assert all("spray powder" not in e["name"] for e in tech)
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
             for d in result.diagnostics
         )
     assert resolved.activities == before

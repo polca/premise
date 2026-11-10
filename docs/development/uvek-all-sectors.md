@@ -710,3 +710,72 @@ cohorts, fuel/IAM market linking and remaining registered sectors stay in scope.
 Removed 116.6 MiB of obsolete private wheel/generator-replay artifacts after
 verification; active caches, primary inspection evidence and Brightway databases
 are retained.
+
+
+### Activated silica, three ingredients and sign-test repair (10 November 2026)
+
+Brightpath mapping commit `5a14c2c` replaces activated silica -> mined sand with
+one explicit kg-based reconstruction. All 14 original input rows, five direct
+water-related biosphere exchanges, 19 lognormal distributions and four local
+parameters survive. Both separate silicate purchases use the complete solid
+furnace product; no shares or coefficients are renormalised. Four negative
+wastewater demands become positive treatment-service inputs through their
+reviewed factor -1, preserving uncertainty. Thirteen existing steam/wastewater
+helper recipes and their complete closures remain unchanged. Two native
+waste-energy co-products inside the frozen wastewater plant are intentionally
+empty under its documented 100%-disposal / 0%-energy allocation. They are neither
+new zero-inventory substitutes nor extra recovery credits.
+
+The RER solid-silicate market is independently corrected from 80% spray powder
+to furnace-process solid product, based on matching primary sand/soda/steam
+quantities. The global chemical-factory market uses a complete plant unit with
+no lifetime or annual-output scaling. RoW sulfuric acid uses complete native
+100%-active acid per kg, replacing a source portfolio that includes recovered
+co-product acid. No concentration/hydrate multiplier, extra solvent, dry yield,
+neutralisation, water balance or new allocation/recovery correction is inferred.
+Native heat-network/industrial-heat boundaries, geography, grade, allocation,
+delivery, vintage, internal uncertainty and biosphere differences remain
+explicit screening limitations with unquantified score effects. Ingredient
+bindings inside this closed helper do not approve unrelated source inventories.
+
+All previous 575 scopes and complete approval operations are unchanged; four
+additions give **579 validated scopes**. No runtime Python module changes occur
+in either checkout. One maintainer-only replay stage and tests accompany the
+frozen mapping/reconstruction data. Full generation is byte-identical, the
+canonical biosphere is unchanged and the wheel contains exact evidence, mapping
+and manifest. Black and Ruff pass for changed replay/tests; the generator's two
+existing import-order findings are unchanged by its three added stage lines.
+
+The focused Brightpath group passes 65 tests, with an additional strict-target
+closure check passing. Premise passes 41 fuel-mapping/scope/cache checks. Stronger
+per-field comparisons independently confirm all 19 rows' amounts, uncertainty,
+pedigree fields and caller formulas, plus all parameter values, through fresh
+and cached conversion. The broader **733-test reference-sign suite now passes**. Its old
+count failure is repaired by replaying the original 996-rule authoring stage
+without changing the count, sign or quantity assertions, while a new full replay
+compares the complete current runtime resource to every frozen authoring stage.
+This preserves current coverage rather than waiving validation or raising a
+historical expected count. The test-only repair is Brightpath `09b84e9`; its
+runtime and data are exactly those of the licensed probe's `5a14c2c` revision.
+
+A native-matrix check expands the root and 13 child recipes into 38 native
+supplier demands plus 130 distinct direct biosphere identities, all matching
+the installed 3.10 biosphere. Supply and combined inventory are finite for 1 kg.
+No database is written. After actual licensed preparation, the source still
+has 11,947 activities and the unchanged 22 September modified timestamp.
+
+The licensed preflight accepts the three previously blocked current-cohort
+rules, reducing this cohort from **33 to 30** unresolved correspondences. The
+additional RER ingredient scope is verified separately in direct fresh/cache
+migrations and strict helper validation. It remains a diagnostic
+preparation run, not a successful prospective fuel transformation or export.
+Premise pins and the regular conda environment use companion `09b84e9`, whose
+Git provenance, resource digest and all 579 scopes are checked. Only tests/docs
+differ from the probe revision, so its runtime/data results carry unchanged.
+Removed 116.7 MiB of obsolete private wheel/replay artifacts; active caches,
+primary source evidence and Brightway databases remain. See the
+[silica preparation receipt](uvek-fuels-39-silica-preparation-verification.json).
+
+Next: granular activated carbon and molybdenum trioxide, plus the other 28
+current-cohort identities, further preparation cohorts, shared fuel/IAM linking
+and the remaining registered sector updates. The full goal remains active.
