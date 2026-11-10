@@ -1082,6 +1082,7 @@ class NewDatabase:
         inventory_label = "_inventories" if inventories else ""
         if getattr(self, "source_family", "ecoinvent") == "uvek" and not inventories:
             context = self.background.to_dict()
+            context["cache_representation"] = "complete-linked-native-v1"
             context["biosphere_database"] = self.biosphere_name
             context["provenance"] = getattr(self, "_background_provenance", {})
             context["source_modified"] = str(
@@ -1344,7 +1345,14 @@ class NewDatabase:
         print("Cannot find cached database. Will create one now for next time...")
         clear_existing_cache()
         database = self.__clean_database()
-        database, metadata_cache_filepath = create_cache(database, file_name)
+        cache_options = (
+            {"preserve_inventory": True}
+            if getattr(self, "source_family", "ecoinvent") == "uvek"
+            else {}
+        )
+        database, metadata_cache_filepath = create_cache(
+            database, file_name, **cache_options
+        )
         self.database_cache_filepath = resolve_cache_ref(file_name)
         self.database_metadata_cache_filepath = metadata_cache_filepath
         self._reload_original_database_from_cache_for_update = True

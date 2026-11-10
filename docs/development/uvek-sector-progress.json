@@ -851,7 +851,8 @@
         "d1149c50",
         "405dcbf1",
         "63e7fd77",
-        "b3c04fa0"
+        "b3c04fa0",
+        "3359e6fc"
       ],
       "tests": [
         "46 reference-basis plus existing heat tests passed.",
@@ -1116,6 +1117,16 @@
           "Enable public heat/default selection only after qualification, then verify unchanged normal API without private override.",
           "Complete remaining16sector operationalization; full goal remains active."
         ]
+      },
+      "lossless_source_cache_qualification": {
+        "status": "native_lossless_source_cache_and_installed_combined_export_verified",
+        "verification": "docs/development/uvek-native-source-cache-verification.json",
+        "actual_cache_miss_and_hit_observed": true,
+        "installed_combined_export_activities": 12622,
+        "signed_finite_Brightway_LCIs": 16,
+        "cold_cache_source_quantities_and_uncertainty_exact": true,
+        "computed_electricity_mix_roundoff_within_16_machine_epsilon": true,
+        "public_heat_gate": "closed"
       }
     },
     {

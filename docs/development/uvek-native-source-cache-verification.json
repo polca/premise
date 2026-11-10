@@ -1,0 +1,72 @@
+{
+  "status": "native_lossless_source_cache_and_installed_combined_export_verified",
+  "problem": "The legacy source-cache trimmer removes activity database/code and exchange ownership fields; UVEK native planners require the complete linked graph. Cache-enabled construction failed in native biomass before heat.",
+  "implementation": {
+    "core_option": "create_cache(..., preserve_inventory=True)",
+    "selection": "UVEK source cache only; legacy ecoinvent defaults unchanged",
+    "cache_key_representation": "complete-linked-native-v1",
+    "old_incomplete_cache_reused": false
+  },
+  "tests_passed": 61,
+  "installed_packaged_data_matches_worktrees": {
+    "premise": 249,
+    "brightpath": 272
+  },
+  "actual_source_cache_miss_and_hit_observed": true,
+  "combined_export_activities": 12622,
+  "original55pins_and_all76_locked_versions_verified": true,
+  "readback_quantity_audits": 962,
+  "signed_finite_Brightway_LCIs": 16,
+  "source_native_scientific_contents_unchanged": true,
+  "cold_cache_comparison": {
+    "exact_activities": 12460,
+    "newly_computed_native_electricity_mix_roundoff_activities": 162,
+    "maximum_relative_difference_seed": 1.6244732888096266e-15,
+    "maximum_relative_difference_hit": 1.5182280174267613e-15,
+    "allowed_relative_bound": 3.552713678800501e-15,
+    "absolute_bound": 0,
+    "all_other_quantities_formulas_uncertainty_parameters_references_and_supplier_multiplicities_exact": true,
+    "no_values_rounded_or_modified": true,
+    "strict_bitwise_comparison_failure_retained": true,
+    "interpretation": "Floating reduction-order differences in newly calculated IAM electricity mixes; numerical equivalence, not bitwise identity or LCIA equivalence."
+  },
+  "public_heat_gate": "closed; qualification used only a private scope override",
+  "remaining": "Enable qualified public heat scope/defaults and verify normal API without override; remaining16sectors and unqualified heat IAM roles stay unfinished.",
+  "receipts": [
+    {
+      "name": "uvek_lossless_source_cache_tests.log",
+      "sha256": "6c211581318002aed2e8f29c46597e77e2c62eea4c0f19217b2d9837498c8b61",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_lossless_cache_packaged_data.json",
+      "sha256": "0752850a7166b0d15c40c17b2373e44f92a5566c86e06a0124131e7917b82d8c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_normal_cache_seed_wheel_export_qualification.json",
+      "sha256": "2b1da4f4a1a6ef2750cfc44f3bb25be7dd8b858dc73ab3d6e00d3a83ec9d395c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_normal_cache_hit_wheel_export_qualification.json",
+      "sha256": "703ada901a0be2a1e470b788c0ea3f2d931fbd355ad78455c706600b040348eb",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_cold_cache_seed_numerical_comparison.json",
+      "sha256": "f0c1ec9fdd462c19b9fd225634c11c4fac938b874bb6c760d6e687fbe5cb8d6f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_cold_cache_hit_numerical_comparison.json",
+      "sha256": "35d1a0226b0a5b72762413122bff0c1268a1aca21bf38b43a2c9e8e8278ac7ee",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_normal_cache_hit_wheel_export_readback.json",
+      "sha256": "c64478487cda0ee4945fe707724a49d7b9e46506aa2386255d19b005a1851355",
+      "location": "private task workspace"
+    }
+  ]
+}

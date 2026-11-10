@@ -1587,7 +1587,7 @@ def _write_cache_shards(
 
 
 def create_cache(
-    database: List[Dict[str, Any]], file_name: Path
+    database: List[Dict[str, Any]], file_name: Path, *, preserve_inventory: bool = False
 ) -> Tuple[List[Dict[str, Any]], Path]:
     """Persist a database and its metadata into cache files.
 
@@ -1595,6 +1595,8 @@ def create_cache(
     :type database: list
     :param file_name: Target file that will store the database pickle.
     :type file_name: pathlib.Path
+    :param preserve_inventory: Retain the complete linked runtime payload instead
+        of applying legacy field trimming. Used for native background inventories.
     :return: Tuple with the trimmed database and the metadata cache path.
     :rtype: tuple
     """
@@ -1612,7 +1614,8 @@ def create_cache(
         if metadata:
             metadata_chunk[key] = metadata
 
-        _trim_cache_dataset_in_place(dataset)
+        if not preserve_inventory:
+            _trim_cache_dataset_in_place(dataset)
 
         if len(metadata_chunk) >= metadata_chunk_size:
             shard_path = metadata_cache_file.with_name(

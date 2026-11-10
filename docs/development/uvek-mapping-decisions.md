@@ -1061,3 +1061,33 @@ unchanged. Screening metadata retains zero pending electricity omissions, one
 final unsupported omission and two partial mappings (22 recipe branches), with
 unquantified effects and no impact-completeness claim. See
 `uvek-heat-export-qualification.json` for evidence and remaining work.
+
+
+### Lossless native source-cache qualification
+
+Installed cache-enabled construction exposed the legacy cache trimmer dropping
+native activity database/code and linked exchange fields. UVEK source caches now
+retain the complete runtime payload through an opt-in core cache option. Their
+fingerprint includes `complete-linked-native-v1`, preventing reuse of incomplete
+older caches. Ecoinvent's existing trimming default is unchanged. Tests verify
+miss/hit equivalence, exact signed quantities/formulas/uncertainty/references and
+unchanged legacy behavior; 61 relevant tests pass.
+
+Both installed cache population and a confirmed subsequent cache hit complete
+normal CLIC preparation, combined biomass/electricity/heat update, certification
+and Brightway export. The 12,622-activity readback preserves all 76 version/ID/hash
+bindings, original 55 pins and 962 literal exchange audits; 16 signed inventories
+are finite and native source scientific contents remain unchanged.
+
+Cold/cache comparisons are exact for 12,460 activities. The 162 newly calculated
+electricity mixes differ only in technosphere coefficients by floating reduction
+order: maximum relative differences 1.6245e-15 (cache population) and 1.5183e-15
+(hit), below the declared 16-machine-epsilon bound, with zero absolute tolerance.
+All other fields, supplier identities and exchange multiplicities are exact. No
+values were rounded or modified to pass; the initial strict comparison failure
+is retained. This establishes numerical equivalence, not bitwise or LCIA
+equivalence. See `uvek-native-source-cache-verification.json`.
+
+Qualification still uses a private process-local scope override; the public heat
+gate remains closed until normal admission and API checks. Other16sectors and
+unqualified IAM heat roles remain unfinished.
