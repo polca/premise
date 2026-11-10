@@ -124041,6 +124041,944 @@
           "fingerprint": "a0b6374c116ed03e14c078bcc8b58f52d93754b989555c2a79b64cef6da09fa5"
         }
       ]
+    },
+    {
+      "rule_id": "bp-15ef78b8ed5991f1",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for metal working, average for steel product manufacturing",
+          "reference product": "metal working, average for steel product manufacturing",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel product manufacturing, average metal working",
+          "reference product": "Steel product manufacturing, average metal working",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "0a9134aba84af2437a69f136263e3344b49fe0d177772f16c497d450f4bfa466",
+        "source_metadata_sha256": "ee83917f7efbe901cd0c3a2b21c6d30fb0bf0edf00c967718ed3aabfd41de114",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "metal working, average for steel product manufacturing",
+              "reference product": "metal working, average for steel product manufacturing",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "26883576587b5872777a75f37b01d635f4d10be2b5fb7cfb05caaa283912e733",
+            "metadata_sha256": "3c2647e96d9ad9e4b106aeeac2eda2a73ad107d141d08af72584352ded94f4e9"
+          },
+          {
+            "identity": {
+              "name": "metal working, average for steel product manufacturing",
+              "reference product": "metal working, average for steel product manufacturing",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6089be16eaf3d61426b88a2873e032fe139d53c442bf494c949e0591226787b5",
+            "metadata_sha256": "6d5495aba2daf0b6ef1adcd26c4b4b458e28e78b22014e729a60d4c246bec557"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Steel product manufacturing, average metal working",
+              "reference product": "Steel product manufacturing, average metal working",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e05572e771a650338290dbe75ae4a5bcd35c8907436dec217f293b6de53942db",
+            "metadata_sha256": "f5aa636d99b661c6954597817f129259df9ddf6aa5eaf16704c025987c508ee1"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Steel product manufacturing, average metal working",
+              "reference product": "Steel product manufacturing, average metal working",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "18d72e3a08355af9386008426a8dc24de7978e69232a0f3b5e5b5a4841b68ddf",
+            "metadata_sha256": "a0e3361139fe0c770acfcbf0167293e2eed5240b476430408a3cbbd6d1d00ac2"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are a kilogram of average steel-product manufacturing service, not a kilogram of supplied finished steel. Main steel input and degreasing are excluded in both. Actual source and native include0.227kg extra steel for processing losses, machinery3.95e-5units, factory4.58e-10units and separate machine/factory operation services. Keep that complete native processing service once and preserve the caller's separate main material and degreasing inputs; do not add another loss factor, factory or machine.",
+        "Source exports0.227kg unsorted scrap to a cut-off handover while the native complete service has no separate scrap output. Native steel supply route, rolled-product boundary, operation heat and allocation differ. The complete processing proxy replaces the source service; it does not model an extra scrap recovery credit or claim equivalent waste fate.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "862e510faf6b38f8304c93cf2cc430bcec6c0329936bbc0ced9ada6dc0b10c45"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c778372182af9cff",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for metal working, average for aluminium product manufacturing",
+          "reference product": "metal working, average for aluminium product manufacturing",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium product manufacturing, average metal working",
+          "reference product": "Aluminium product manufacturing, average metal working",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "f8112c55747052ce390d0ba82ee265529cdb3d337fe1332377e5619e779f20a9",
+        "source_metadata_sha256": "d616075e0bf24def1c56da59e6da529d5450b2c6d14a48620d28748297efd63e",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "metal working, average for aluminium product manufacturing",
+              "reference product": "metal working, average for aluminium product manufacturing",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6bc3383bbfa8a0ef6423a8f1799c800f1daf6f685ac4aa02dd72413275722626",
+            "metadata_sha256": "82447c335d4c03efc90a43fb0391151927648842084e240a10b64bf32ca43dea"
+          },
+          {
+            "identity": {
+              "name": "metal working, average for aluminium product manufacturing",
+              "reference product": "metal working, average for aluminium product manufacturing",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "557e36fabc8aea744fcb1946b25c7ea7430b751b9a0cf9be3f7311c6621de2a9",
+            "metadata_sha256": "ea98b90bacc513559d52c52dd2657d3a4b7e6cc27d3fd29538a0a95fa8b0e6b0"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "961fd77211b7fddcd3a03f607bae6f0e323099e2a5c2c34d47d28d415cc4a903",
+            "metadata_sha256": "cf28cfb2d1166650c5565a4a0e01f49289098bacaa20d6fbf21d02cf157cc87a"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c23bff8c0e911b1024225e06c553638dbd37207741fa16cb3973b164b688cd98",
+            "metadata_sha256": "95d68e09cb58345c9a000e2168441c0bc3fd9abd2f71104b26e401fe36aa7f5e"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are a kilogram of average aluminium-product manufacturing service. Main aluminium input and degreasing are excluded. Both include0.227kg additional aluminium for processing loss, machinery3.95e-5units and factory4.58e-10units with operation services. The source splits loss material into0.07264kgcast and0.15436kgwrought alloy; native uses its complete production-mix supplier. Retain the caller's separate main material and degreasing; do not add a yield correction or another factory/machine.",
+        "Source sends0.227kgnew scrap to a cut-off handover; native has no separate scrap output. Alloy mix, material grade, rolling, operation energy, allocation and end-of-life differ. No recovery credit or main product mass is introduced by this complete-service proxy.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7ff5aa0b0e35c7f8d47466878cd54bb10ac4ca1d2e2200e995a2954300942cd5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-25c33488414236c6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for glass fibre reinforced plastic, polyamide, injection moulded",
+          "reference product": "glass fibre reinforced plastic, polyamide, injection moulded",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+          "reference product": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "9a9bd1328ac33d9ef248c8cdbd0f86ce2d88c2fd95fc155995e2906354bdc344",
+        "source_metadata_sha256": "3be7f3b43a30d427ad90a3ab0246b2c4555873dd616c60340dc63cac21d16053",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "glass fibre reinforced plastic production, polyamide, injection moulded",
+              "reference product": "glass fibre reinforced plastic, polyamide, injection moulded",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "92e4fc2b3b2df9c32e0fd900e6cceda756d349836881a0a0c20466281ca849dd",
+            "metadata_sha256": "d9d376a953dd1710bb97a1e5643a54acb4ac6d3ee2ff23f05b7472b7fab4dc69"
+          },
+          {
+            "identity": {
+              "name": "glass fibre reinforced plastic production, polyamide, injection moulded",
+              "reference product": "glass fibre reinforced plastic, polyamide, injection moulded",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "39c359c7e38680964cb6b0c30e95aad53d38e7189b2d7605faa49f6bb4ac0daf",
+            "metadata_sha256": "bc26e987ac3353c787a49db9cc48c5a54c39d2a5974c4e44840b5e314d2959af"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+              "reference product": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "05ca3dd35a27b5d9865bd518f43104a6495297e045ef1fea24b40a6c9f0b65f2",
+            "metadata_sha256": "80695f9f0962a1c3efd4e74447f05aaa86957929234af7b470a8e053b77baa86"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+              "reference product": "Glass fibre reinforced plastic, polyamide, injection moulding, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "982ee29ced84e73baf1cbe4e131d6d086ecfca1222ea48cbc1a1ba2f3943034e",
+            "metadata_sha256": "6bd7af4c822bd5d8ebb0cba2be63e600b6f004a8cb830def30d331adc8be7126"
+          }
+        }
+      },
+      "limitations": [
+        "Actual source and native complete injection-moulded glass-filled polyamide product inventories each consume1.05kg glass-filled Nylon66,1unit injection-moulding service and0.025kgorganic chemicals per kg product, with0.368kgmineral-wool waste. They supply a product including resin and moulding, not a moulding-only service; add no separate resin, glass fibre, moulding or yield multiplier.",
+        "Native product prose mentions replacing unavailable polyamide with melamine-formaldehyde. The actual linked supplier, independently inspected in both native releases, is Nylon66glass-filled: its documentation specifies hexamethylene diamine/adipic acid and glass fibres. Retain the actual linked inventory, disclose that prose inconsistency, and do not silently substitute melamine. Source specifies30%glass fibre; exact native glass fraction is not independently established, so grade/fibre fraction, resin eco-profile omissions, waste treatment and source market delivery differences remain screening limitations.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "feabc2c3ac0b6595b9c054696273c7e581cf6c606ffe7a60478702439b376570"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8c0c3d9ada2ea3db",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "ethoxylated alcohol (AE7) production, petrochemical",
+          "reference product": "ethoxylated alcohol (AE7)",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+          "reference product": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "452b55ca3c3f4ff887d5b800a4f44eb1b80683954449317088039f4f5e119a3f",
+        "source_metadata_sha256": "e85af8af80e887dedd87507a72a658284afd3e35aec6e68a9c3061278612d0a3",
+        "source_producer_witnesses": [],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+              "reference product": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f2256c189be3678693cbe35e5c66edde133b54678497227ca202ce371f3ee4da",
+            "metadata_sha256": "4df567bbdeb83e335e6f04c48c15d3b2c0238ac7df3e1edca746cc72779a884f"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+              "reference product": "Ethoxylated alcohols (AE7), petrochemical, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "46d6a51eb9adea83e8e2fc7f13f6c16a5b6a53b2de68be9c8c9a9a461b2685db",
+            "metadata_sha256": "ca6c0ef641b28ee0730ccaab8d6fa61089f37e2be7da54e1641c01c445d969f1"
+          }
+        }
+      },
+      "limitations": [
+        "Both provide1kgpetrochemical alcohol ethoxylate with seven polyether units, not an arbitrary surfactant or aqueous detergent. Actual fatty alcohol0.416kg, ethylene oxide0.556kg and nitrogen0.019kg per reference kg match. Use the complete native ECOSOL-derived product once; do not add fatty alcohol or ethoxylation again, switch to biogenic feedstock, or infer a dilution factor.",
+        "Source estimates process water using a2016chemical-plant model; native documentation explicitly excludes water consumption. Energy, infrastructure, emissions, mass-based multioutput allocation, transport and mid1990sdata differ. Retain and warn about the native water/data gap instead of inventing water consumption or claiming impact completeness.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a414d4355808680dca90c7ed5753c86d05c09e3a761423f36787e2ca0a51a04e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8f861372e8eb370e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for tetrafluoroethylene film, on glass",
+          "reference product": "tetrafluoroethylene film, on glass",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Tetrafluoroethylene film, on glass",
+          "reference product": "Tetrafluoroethylene film, on glass",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "ec78e128cd478ce0b77000c4ead1e8077d62413aecc3f63a0bde182ceb12efff",
+        "source_metadata_sha256": "819b509220ed85c2b718969770f4e9a4cf97dad373032527ba65cfae61db4438",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "tetrafluoroethylene film production, on glass",
+              "reference product": "tetrafluoroethylene film, on glass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "99b438da6c8b8f0663d546f74bf89c0c9deed787a220a614e01904c6ef1c1497",
+            "metadata_sha256": "a54beb2df9c26d0760041797a36b7f2fc5664eb2a064b9dbd632ac29fbc7095f"
+          },
+          {
+            "identity": {
+              "name": "tetrafluoroethylene film production, on glass",
+              "reference product": "tetrafluoroethylene film, on glass",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "667378117c4c230993a2538eb882d2570864f1715f06d1450ad45600d42ff443",
+            "metadata_sha256": "a858ffbe0ef515fd8137258a59109c39f222e9ca870c09840c896f3fa091a4b6"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Tetrafluoroethylene film, on glass",
+              "reference product": "Tetrafluoroethylene film, on glass",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "915a115848cd51b1118af26c3aa8b42b04feea044d6da2f22c4e75c67bafde7e",
+            "metadata_sha256": "860d108534ae42327ca119c97610ec289875f26bff73397cceeaac1c767d6a8e"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Tetrafluoroethylene film, on glass",
+              "reference product": "Tetrafluoroethylene film, on glass",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "83293432de078de507c658613f199ac9cb073e635fa2d01f9f258b17ce39e50a",
+            "metadata_sha256": "3bd89ad77a8b399c75131b783c7ab9d0cac86db2344681aa12d16d3638f05a14"
+          }
+        }
+      },
+      "limitations": [
+        "Both provide a kilogram of the named tetrafluoroethylene/PTFE film-on-glass product, with1.05kg tetrafluoroethylene input,0.001kg each methanol/isopropanol and2.11e-5kg silicone. Keep the complete native product including its internal feedstock, processing energy, infrastructure and freight once. Do not treat the reference as glass mass or film area, infer coating thickness, add an invented glass substrate or another polymerisation process.",
+        "Source uses4.75MJdelivered natural-gas heat; native uses5MJburned gas, with its own fuel/heat boundary. Native film data include estimated infrastructure and old production assumptions. These differences, actual reference semantics and unquantified score effects remain explicit; no heat-efficiency conversion is applied to the caller product kg.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9f0eebef45998d53cbbec7a28eb5229f8c67aab8499925ace007eb520fe20e63"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1e230d3b1905d774",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for styrene-acrylonitrile copolymer",
+          "reference product": "styrene-acrylonitrile copolymer",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Styrene-acrylonitrile copolymer, SAN, at plant",
+          "reference product": "Styrene-acrylonitrile copolymer, SAN, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "ea90c80340291fa85fe6ca8c42631053c78cb6c6ce347d2711568155bbb3bd7b",
+        "source_metadata_sha256": "90bd4e6de0dc7b3ca93e8d7891a241b13fb80d68c74e108793471894425eba53",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "styrene-acrylonitrile copolymer production",
+              "reference product": "styrene-acrylonitrile copolymer",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "ce1701bca4cf940748f4d081e7b1bb2e0b32a67648139764b378b0bfe1b70242",
+            "metadata_sha256": "8a5d9de759cedd5df6fd75000467f9ab554d8d737203d5462d2be883499d6512"
+          },
+          {
+            "identity": {
+              "name": "styrene-acrylonitrile copolymer production",
+              "reference product": "styrene-acrylonitrile copolymer",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "dad5bd335194531ce0547f0668b70e8d9ce5757fcab349f0b8d43059162592c6",
+            "metadata_sha256": "2725b6234e8cf5940c8436a1e3f7293a1b449cb08baac413df10ebfb5e1cd7d2"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Styrene-acrylonitrile copolymer, SAN, at plant",
+              "reference product": "Styrene-acrylonitrile copolymer, SAN, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "bfc2f2583af00178eb6c48d7a2a52cd4cfbfca9d2da5492c46669e7c37a17e01",
+            "metadata_sha256": "0ed309b0a9c46752c09bb996ca0600f77eb897e785e951276f95a5196a3207ef"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Styrene-acrylonitrile copolymer, SAN, at plant",
+              "reference product": "Styrene-acrylonitrile copolymer, SAN, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9f033a50b2de649e1301df3d865d5f85cbe7a0e0cf4b0ca1d2a37cecf8dacee3",
+            "metadata_sha256": "94394b81bdc86757d989dd558d2f6cbacc51cc75a5d153198706cefaa34b5e2e"
+          }
+        }
+      },
+      "limitations": [
+        "Both provide1kgsolid styrene-acrylonitrile copolymer with PlasticsEurope aggregate eco-profile lineage, including upstream extraction and polymerisation. This is a complete resin product; no added monomers, polymerisation, purity factor or recycling credit.",
+        "Both documentation sets exclude recyclable wastes, several unspecified elementary emissions and air/N2/O2consumption entries. Native retains its complete installed residue treatment and resource/emission profile; source global market mix/final freight, upstream energy, waste allocation, vintage and uncertainty differ. The known omissions remain limitations, not grounds for an impact-completeness claim.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2af2249eb085e6f171f1b0360715bd915c13f2adbe4d5964e19874de56809de2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6e77604ebec532a8",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for ethylene vinyl acetate copolymer",
+          "reference product": "ethylene vinyl acetate copolymer",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Ethylene vinyl acetate copolymer, at plant",
+          "reference product": "Ethylene vinyl acetate copolymer, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "439eca6845715eef5518fe1d52fe6ac482ad12b3fb5e43c69e2e42ccf53abb72",
+        "source_metadata_sha256": "15693d64c406ee97252f9c25239a02a67097b1d41917e1d94b8b1c2dd61e8108",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ethylene vinyl acetate copolymer production",
+              "reference product": "ethylene vinyl acetate copolymer",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "51577bf46568292d685233e4796e3efcb57c440851c3d55954e0cbf85d05d075",
+            "metadata_sha256": "82cc4288b1d3fc9a5da61e31d4585f72b001a60ccd961408456fda013e940835"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Ethylene vinyl acetate copolymer, at plant",
+              "reference product": "Ethylene vinyl acetate copolymer, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b1f3f60964f4f1db8d8eb247b49200f12774b381537a97ebe43ca500be845a47",
+            "metadata_sha256": "7da0e23193a0efb4c11a821a804dd5e0ee5ecc41247943c51b0851cf82d46d4e"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Ethylene vinyl acetate copolymer, at plant",
+              "reference product": "Ethylene vinyl acetate copolymer, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "36b7cdf8e83400642d8408e48ce481457dfb4d0e4d0e64a6563a004f6e8b936d",
+            "metadata_sha256": "8c407db8631d016d6b845f05d5362fd13502033dbcc414a7c53c1a9e1e631089"
+          }
+        }
+      },
+      "limitations": [
+        "Both provide1kgsolid ethylene-vinyl-acetate copolymer from ethylene/vinyl acetate. Actual source and native monomer totals0.84237kgethylene and0.21034kgvinyl acetate, plus0.0052584kgstarch, match. Native documents95%polymerisation yield already embedded in its complete product. Apply no second yield, vinyl-acetate-content or dilution multiplier and add no separate monomer/polymerisation inventory.",
+        "Native stoichiometric/emission estimates are weak; air/water emissions are incomplete and solid wastes omitted. Source changes utilities, electricity, steam and wastewater treatment. Native process energy, internal uncertainty, omissions, freight, vintage and source market portfolio remain explicit differences with unquantified effects.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8922d640e5834815b16093f25c7665699feee42b80d6b21821036d3214faefa6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-15461c2576a89b0d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for [sulfonyl]urea-compound",
+          "reference product": "[sulfonyl]urea-compound",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "[sulfonyl]urea-compounds, at regional storehouse",
+          "reference product": "[sulfonyl]urea-compounds, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "7aabdad8fc62cbf22419c859fe3ca5e0acb54fc948baf8c3f9656cd675f01f30",
+        "source_metadata_sha256": "7bc32534e8bb6b6b1382e79d25bfa7d0f81f3b5fef0cd11d4cc39c7a1268d9b5",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "[sulfonyl]urea-compound production",
+              "reference product": "[sulfonyl]urea-compound",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "fd61cfe90d9cf19d06bd8b02e47c79780fb8708d044a48db8a27989a5017c6cf",
+            "metadata_sha256": "5719574ecd022ff34156cb888c87d2744ff069ed1b5442dce17d48516477550d"
+          },
+          {
+            "identity": {
+              "name": "[sulfonyl]urea-compound production",
+              "reference product": "[sulfonyl]urea-compound",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "0116943dc55273737d7086849c28805abdb0c093350d757441e2347290b10bee",
+            "metadata_sha256": "e447ebeaf8b74f01ebaf979c2735e1ca932e91ed2e2d3ec2ac3409c242953889"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "[sulfonyl]urea-compounds, at regional storehouse",
+              "reference product": "[sulfonyl]urea-compounds, at regional storehouse",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5f83bb78683290dd6c19bd96d218c4e45d4fa84cf7e8e1f6c0cf4276b9452c09",
+            "metadata_sha256": "14cb113c882c4631675eeb0b32cb8e80288889a2b091a7f55cdfd25bc8864883"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "[sulfonyl]urea-compounds, at regional storehouse",
+              "reference product": "[sulfonyl]urea-compounds, at regional storehouse",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5a420d210e09893c2df6667874380a393da73cfe46ccd63fae212a05d8a08bb7",
+            "metadata_sha256": "8d1d764d07e3e709f7585f597486d2380ea496c844cf95b8fd9743950efe8f9c"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are a kilogram of generic sulfonylurea compounds, representing an active chemical family, not a commercial diluted pesticide formulation or a particular herbicide species. Shared actual reagent quantities include0.72929kgchlorine,0.37476kgphosgene,0.1199kgacetic anhydride and0.11563kgacetonitrile per kg. Use the complete native generic compound inventory once; no application dose, solvent, concentration, potency or molecule-specific correction is established.",
+        "Source uses an arithmetic/generic synthesis model and changes upstream chemicals and energy. Native regional-storehouse process contains production rather than merely storage. Its own internal aqueous reagent references, hydrogen state, energy, emissions and freight differ from the source, including solvent-free versus mixture acid/alkali bases. Do not rescale those embedded inputs or add source synthesis on top. Those scientific differences, broad family representativeness and unquantified effects remain warnings.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "502d2ce471d78d1055ce04e7b764cfa43f10d9ff1354d1323db6408a5bc88936"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f6a0fab057c2d5d9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "thermoforming, with calendering",
+          "reference product": "thermoforming, with calendering",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Thermoforming, with calendering",
+          "reference product": "Thermoforming, with calendering",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "79a1f6ec86a7a0c01a52e2df1e8b3a1b2c499126e563db63f2a476de72d8a2ef",
+        "source_metadata_sha256": "3c64e0664804c2000133a5bf2e1d2dc26e15a0ee7920431dfee898981aa8afb0",
+        "source_producer_witnesses": [],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Thermoforming, with calendering",
+              "reference product": "Thermoforming, with calendering",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "fca51d22097c044d0a9730488a4d405619e134d231fb9149886110fb40343602",
+            "metadata_sha256": "f8614214b5f3203a4c451efb4e0a0cb5ec3e655062672bd891166ac290c13cc6"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Thermoforming, with calendering",
+              "reference product": "Thermoforming, with calendering",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "310cd5bd855854f6579259bec2af03b91a9e912ed9cb312420988f2c8e0cbc24",
+            "metadata_sha256": "2ad6e870dc5f491e97a9c1154f35e964b88ec185745b9abd0306887088d1c764"
+          }
+        }
+      },
+      "limitations": [
+        "Both references are1kgof thermoforming-with-calendering service for0.977kgof formed plastic sheets; the main converted polymer is excluded. Keep the caller's separately listed polymer and the unchanged processing-service kg. The0.977output statement appears in both and does not require a1/0.977conversion. Add no extra polymer, calender, thermoformer or lost-product correction.",
+        "Actual electricity0.995kWh, LDPEpackaging0.0318kg, steam0.0851kg, lubricating oil0.000618kg and waste plastic0.0233kg match. Native retains its own paper, board, pallet, heat, plant and freight inventories; source energy, waste allocation, packaging supply, market boundaries and uncertainty differ. Processing auxiliaries already inside the complete service remain included once.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "88adacbd84f52207bd6fb92d134c1a71c5d26f7cfd88067d3c2be57ec2cd3583"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-495f5d0604658b3c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval of upcoming modelling decisions, recorded with explicit complete-process proxy limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Ammonia, liquid, at regional storehouse",
+          "reference product": "Ammonia, liquid, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "732cc43e0f4e3a50b443b5d212e9c017fb3927dcf20cd2a9a1b8ccd08675d5b4",
+        "source_metadata_sha256": "5a5433f92d04cfb716443321668399c349559560b7f19642b935b0180616db6e",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ammonia production, steam reforming, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER w/o RU",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7a12b27f73cb0b8877075d49b0f9169b74e6fc3b73d1d5dba69127dddc1eaaf7",
+            "metadata_sha256": "ea75cec080ca9a43414bae1c084268f84a48555e10e84537eaef9e76a0fd5ae7"
+          },
+          {
+            "identity": {
+              "name": "ammonia production, steam reforming, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RU",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b4abb5bb4ea4dbacc5927e6d7a7064b9b9d7c997ae19cd5a45f894c089efd151",
+            "metadata_sha256": "3e7986eadfb5196ccc719da24c5a2a59572671074e240363f71c0cad2fb24257"
+          },
+          {
+            "identity": {
+              "name": "cocamide diethanolamine production",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2b744e21e93975f60b730c2cf37e26855e359b8f8fd09f463a169486a4d839ad",
+            "metadata_sha256": "bc1d7a23655009d4baac4c3b949f3d260407873de0221dc0157e543970b7d01a"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "fe9701ac984b524d76456eb20cfaec7988e60d7da657e54489722ddfaa1d0645",
+            "metadata_sha256": "d2942a2a4d9d4668e0609bbccd422b0aeb0d0dfe5739479ea4c20e0f500aa19d"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e5240c022f5dcff23ad8671c77812695ce6ac94dc668908851ea68a25e35045e",
+            "metadata_sha256": "b76a7b69224da0be67cf1744145daeb146bf2cfff626e8b07e1e40f4260b3e14"
+          }
+        }
+      },
+      "limitations": [
+        "Both deliver1kganhydrous liquid ammonia; source explicitly references100%NH3. Native complete regional-storehouse supply consists of0.85kgsteam-reformed and0.15kgpartial-oxidation ammonia plus its own0.1road and0.6rail tonne-km. Keep that complete delivered product once, with no ammonia-solution, nitrogen-content, gas-volume or purity multiplier.",
+        "Source European market has two steam-reforming supplier identities and allocated ammonia from cocamide-diethanolamine production; it is not the same85/15production portfolio. Native route/feedstock shares, newer source technology, CO2allocation, energy, emissions, catalyst/sulfur-control gaps, state/handling, delivery and uncertainty differ. Source market shares are replaced by the native complete consumer mix; add no extra supply, avoided CO2or fertiliser credit.",
+        "Only exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 is qualified through the existing UVEK2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Source market supplier weights and final-delivery structure are not reconstructed. Geographic, technology, allocation, vintage and internal-uncertainty differences and native upstream biosphere exclusions remain visible. Score effects are unquantified: no LCIA equivalence, impact completeness, inverse, other-release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "feb46bce2738dd56916e3d972bff056ed33bd96fd3aa45fff67d5c90e211cbb1"
+        }
+      ]
     }
   ]
 }

@@ -178,3 +178,22 @@ signed demands and three finite native LCIs passed. Real preparation now reports
 16 pending cases in the current cohort, with 22 of 38 qualified. Later cohorts
 and public heat integration remain unproven. Verification:
 `docs/development/uvek-heat-310-infrastructure-verification.json`.
+
+
+Ten exact 3.10 complete product/processing proxies qualify steel and aluminium
+metal working, glass-filled polyamide, petrochemical AE7, film-on-glass PTFE, SAN,
+EVA, generic sulfonylurea, thermoforming/calendering and anhydrous liquid ammonia.
+Each review pins actual source market/producer and native reference evidence.
+The native polyamide prose contains a stale melamine substitution statement; actual
+links and inspected upstream data use glass-filled Nylon 66. AE7 water omissions,
+EVA emission gaps, broad sulfonylurea chemistry and embedded solution bases,
+processing scrap allocation, polymer reference yields and ammonia route differences
+remain explicit screening warnings with unquantified score effects. Caller material,
+processing-service amounts, formulas, signs and uncertainty remain unchanged.
+
+No underlying migration rule, recipe, shared review or native inventory changes.
+All 486 prior fingerprints remain unchanged; ten scopes bring the ledger to 496.
+61 Brightpath tests, 14 Premise cache/drift tests, 20 installed signed demands
+and ten finite native LCIs passed. Real preparation reports six pending cases,
+with 32 of the current 38 qualified. Later cohorts and public heat integration
+remain unproven. Verification: `docs/development/uvek-heat-310-products-verification.json`.
