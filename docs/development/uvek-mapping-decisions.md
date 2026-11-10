@@ -1174,3 +1174,23 @@ Python files). Both bindings replay after prior export owner/metadata cleanup.
 This is controlled conversion qualification, not a full real MESSAGE scenario
 or new MESSAGE Brightway export. Eleven heat roles still lack reviewed bindings;
 the other 16 sectors remain unfinished. See `uvek-heat-fuel-cell-verification.json`.
+
+
+### CSP heat reference: MJ label does not establish delivered thermal output
+
+The dedicated published CLIC heat root (version 1.0.0, ID 1838) has six
+non-production coordinates. Every one equals the corresponding CSP electricity
+root coordinate (ID 1837) divided by 3.6: five technosphere inputs and the solar
+resource flow. Both records describe electricity generation. This supports an
+electrical-energy conversion interpretation; an independently established
+useful thermal output or heat allocation was not found in these snapshots.
+
+Do not treat the MJ-labelled record as an established useful-heat supplier, or
+infer annual thermal output from the receiver/electrical nameplate power ratio.
+The verified CSP electricity mapping and original source pins stay unchanged.
+Inspect original thermal-output evidence or an explicitly qualified useful-solar-
+heat proxy next. Native standalone collector heat excludes auxiliary fuel, but
+its hot-water grade, residential scale and Swiss climate need separate review
+for industrial/district heat. Positive IAM solar heat remains explicitly refused
+until a defensible binding exists. See `uvek-heat-csp-reference-review.json`;
+no new omission or solar-role admission is made here.

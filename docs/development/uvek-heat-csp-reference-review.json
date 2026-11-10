@@ -1,0 +1,38 @@
+{
+  "status": "published_CSP_heat_reference_boundary_requires_review_before_UVEK_binding",
+  "source": "verified local CLIC archive, ecoinvent3.9cutoff snapshots",
+  "heat_record": {
+    "slug": "heat-production-at-110-mw-concentrating-solar-power-plant-with-thermal-energy-storage",
+    "version": "1.0.0",
+    "version_id": 1838,
+    "reference": "1MJ heat"
+  },
+  "electricity_record": {
+    "version": "1.0.0",
+    "version_id": 1837,
+    "reference": "1kWh electricity"
+  },
+  "observations": {
+    "nonproduction_coordinates_compared": 6,
+    "technosphere_coordinates": 5,
+    "biosphere_coordinates": 1,
+    "all_heat_coordinates_are_electricity_coordinates_divided_by_3_6": true,
+    "source_documentation_describes_electricity_generation_and_electrical_power": true,
+    "independent_delivered_thermal_output_or_allocation_not_established": true
+  },
+  "interpretation": "The exact coefficient relationship and shared electricity-production documentation indicate an electrical-energy unit conversion, rather than demonstrated useful thermal output. This is an inference from the published snapshots, not a claim about the source paper beyond its supplied metadata.",
+  "decisions": [
+    "Do not bind the published MJ-labelled record as an established useful-heat counterpart solely because the unit says MJ.",
+    "Do not infer annual delivered thermal output or thermal efficiency from receiver power divided by rated electrical power.",
+    "Keep the verified CSP electricity mapping and original source pins unchanged.",
+    "Inspect original thermal-production evidence or a complete native useful-solar-heat screening proxy with explicit heat-grade and technology limitations before enabling the two solar roles. No positive IAM volume may be silently discarded."
+  ],
+  "native_frontier": "Several native standalone flat-plate collector processes provide useful hot-water heat without auxiliary fuel, unlike combined solar/fuel or PVT regeneration systems. Their hot-water grade, residential scale and Swiss climate require explicit review before industrial/district use.",
+  "new_runtime_roles_admitted": 0,
+  "source_inventory_coefficients_published": false,
+  "primary_evidence": {
+    "name": "csp_heat_electricity_primary_comparison.private.json",
+    "sha256": "00f6cbab084b22a70024429d576a876b69578e4b270a4d9000ade611a5876bd7",
+    "location": "private task workspace"
+  }
+}
