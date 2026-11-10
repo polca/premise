@@ -3242,3 +3242,97 @@ def test_fuels_312_supply_reviews_preserve_basis_and_only_extend_exact_scope(
             for d in result.diagnostics
         )
     assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "rule_id",
+    [
+        "bp-7fe8308839f735bb",
+        "bp-76fe8c58029110f6",
+        "bp-fe711136ab4271bf",
+        "bp-abc1d07ff55a5bbe",
+        "bp-92c5d186d8e2543e",
+        "bp-9ff26f9cc56aec97",
+        "bp-cf83bb724223e5b7",
+    ],
+)
+def test_fuels_312_corrected_dependencies_keep_complete_targets_and_cache(
+    tmp_path, rule_id
+):
+    from brightpath import DATA_DIR, TechnosphereProfile
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_fuels_312_dependencies_review.json").read_text()
+    )
+    record = next(r for r in review["records"] if r["rule_id"] == rule_id)
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == rule_id)
+    scopes = approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+    bridge = TechnosphereProfile("uvek", "2025", "cutoff")
+    for version, model, approved in [
+        ("3.12", "cutoff", True),
+        ("3.11", "cutoff", False),
+        ("3.12", "consequential", False),
+    ]:
+        fingerprint = compatibility_rule_fingerprint(
+            resource,
+            "replace",
+            rule,
+            TechnosphereProfile("ecoinvent", version, model),
+            bridge,
+        )
+        assert (fingerprint in scopes) is approved
+    for profile in record["previous_profiles_preserved"]:
+        assert (
+            compatibility_rule_fingerprint(
+                resource,
+                "replace",
+                rule,
+                TechnosphereProfile(**profile["source_profile"]),
+                bridge,
+            )
+            in scopes
+        )
+    resolved = graph(rule["source"], version="3.12")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    selected = rule["reference_flow_sign_review"]["profiles"][-1]
+    for cached in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is cached
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2 * selected["conversion_factor"]
+        if record["new_recipe_id"]:
+            target = next(a for a in result.activities if a["code"] == edge["input"][1])
+            expected = review["recipes"][record["new_recipe_id"]]
+            assert target["unit"] == expected["unit"]
+            if rule_id in {"bp-7fe8308839f735bb", "bp-76fe8c58029110f6"}:
+                inputs = [e for e in target["exchanges"] if e["type"] != "production"]
+                assert (
+                    len(inputs) == 1
+                    and inputs[0]["amount"] == 36
+                    and inputs[0]["unit"] == "megajoule"
+                )
+            if rule_id == "bp-abc1d07ff55a5bbe":
+                assert (
+                    len([e for e in target["exchanges"] if e["type"] == "biosphere"])
+                    == 43
+                )
+            if rule_id == "bp-92c5d186d8e2543e":
+                assert (
+                    len([e for e in target["exchanges"] if e["type"] == "technosphere"])
+                    == 6
+                )
+        else:
+            assert edge["name"] == "Zinc, primary, at regional storage"
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before

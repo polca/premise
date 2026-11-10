@@ -1,0 +1,46 @@
+{
+  "source": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10",
+    "database": "BAFU:2026-reimported"
+  },
+  "companion_revision": "6d24057f6b06aa8150b8fb5e2c0925e1d21a1e5d",
+  "fuels_preparation": {
+    "newly_approved_312_correspondences": 15,
+    "cohort_312_cleared": true,
+    "next_source_cohort": "ecoinvent 3.9 cutoff",
+    "remaining_correspondences_in_next_cohort": 51,
+    "qualified_sector_update": false
+  },
+  "unique_closed_scopes": 557,
+  "prior_scope_refreshes": {
+    "count": 3,
+    "proof": "Selected targets, conversion factors, reference reviews and all dependent helper bodies are unchanged; original review cards retained in frozen evidence."
+  },
+  "tests": {
+    "premise_fuels_scope_sign_cache": 15,
+    "companion_dependency_and_storage": 44,
+    "earlier_authoring_stage": 14,
+    "full_generator": "Byte-identical replay of technosphere and canonical biosphere resources",
+    "wheel": "Exact review, resource and manifest bytes verified",
+    "black": "pass",
+    "ruff_changed_files": "pass"
+  },
+  "existing_four_sector_regression": {
+    "companion_revision": "6d24057f6b06aa8150b8fb5e2c0925e1d21a1e5d",
+    "counts": {
+      "activities": 13695,
+      "clinker_markets": 13,
+      "electricity_markets": 39
+    },
+    "validation_issues_by_severity": {
+      "warning": 14
+    },
+    "public_scope_guard_bypassed": false,
+    "export_created": false
+  },
+  "limitation": "Preparation and mappings only. Fuels constructor family/biosphere axes, market-interface relinking, later mapping cohorts, sector validation and export remain unfinished."
+}

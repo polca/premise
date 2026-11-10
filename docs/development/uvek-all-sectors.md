@@ -487,3 +487,70 @@ for 3.11 or consequential. Ruff and diff checks pass. No runtime Python or
 Brightpath mapping changes are needed for this batch. Seven other operations in
 this fuels cohort remain unfinished, including profile-specific utility helpers,
 product/delivery corrections and the market-average hydrogen boundary.
+
+## Fuels 3.12: corrected delivery, product and market interfaces
+
+Brightpath `6d24057f6b06aa8150b8fb5e2c0925e1d21a1e5d` supplies seven exact-profile
+decisions in frozen migration/review data. No Brightpath runtime module or
+Premise sector Python file changes are needed for this preparation batch.
+
+- High- and low-pressure gas retain the original cubic-metre caller basis using
+  **36 MJ** of the corresponding complete native gas-at-consumer service. Actual
+  3.12 product information explicitly supplies that NCV at 15 C/1013 mbar. Do not
+  reuse the 3.6 legacy 38.256575270163715-MJ calibration, infer equal Sm3/Nm3
+  states or select production-gate gas for a delivered low-pressure purchase.
+- European water retains its actual non-CH/CH shares and source order. Wastewater
+  retains all three route coefficients and 43 direct emissions. The only changed
+  outer-vector label relative to 3.9 is Strontium -> Strontium II with the same
+  publisher UUID, kg, surface-water compartment and quantity; the existing
+  helper already uses that canonical 3.10 definition. Complete volume-based
+  sewer/treatment proxies retain their known model limitations.
+- AE7 retains its three coconut/palm-kernel/petrochemical shares and all three
+  barge/lorry/train freight quantities through the corresponding native services.
+  A coconut-only factory does not represent that portfolio. Zinc metal now uses
+  complete primary SHG zinc, including refining, instead of concentrate.
+- Hydrogen receives an explicit kilogram-based market helper. Native Swiss
+  25-bar SMR is its disclosed baseline screening proxy for a source portfolio
+  containing 88.65867411151911% SMR and the remainder industrial/refinery
+  co-product hydrogen. Pressure, allocation and geography differ; no new
+  compressor, liquefaction, heat or avoided-production credit is inferred.
+  **This interface must still follow the ordinary future IAM hydrogen market.**
+  Preparing the helper alone does not establish that link or qualify Fuels.
+
+Earlier selected 3.6 gas and 3.9 water/wastewater targets, factors, reference
+reviews and complete helper closures are proven unchanged before refreshing
+only their three closed parent fingerprints. Seven new 3.12 approvals bring the
+validated unique scope count to 557. Their separate ledger entries cite the new
+packaged review; no old authority is broadened implicitly. Uninspected releases,
+consequential and inverse routes remain refused. Native model, country mix,
+allocation, vintage and biosphere differences remain warnings, without claimed
+LCIA equivalence or new physical omissions.
+
+The new dependency/storage group passes 44 tests, and 15 Premise scope/sign/cache
+cases pass. The earlier water/wastewater/gas runtime checks pass; their replay
+fixtures now use the correct historical stage, including three component rules
+already superseded by older heat/steel reviews before this fuel work. Fourteen
+focused authoring/staging checks pass. Source rules and review cards are restored
+from their frozen evidence for these tests, not waived or rewritten in runtime
+resources. The obsolete gas review card remains in the frozen evidence and is
+removed only from the active runtime index when unreferenced. Full generation
+replays byte-identically, canonical biosphere data remain unchanged, the wheel
+contains exact evidence/resources/manifest, and Black/Ruff checks pass.
+
+Actual fuels preparation clears this 3.12 cohort and reaches **51 independently
+unapproved 3.9 correspondences**. These include new material/function checks and
+version extensions; molybdenum trioxide -> concentrate is a visible boundary
+mismatch requiring correction. This is not a fuel-sector success. The shared
+Fuels constructor also reproduces a version-axis error even when explicitly
+supplied `family="uvek", biosphere_version="3.10"`, because its own lookup still
+uses technosphere release 2026. Family/filter and biosphere forwarding hooks,
+market-helper relinking, subsequent cohorts, normal validation and export remain
+unfinished work. The public qualified scope remains the four existing sectors.
+
+The pinned companion is installed in the regular premise environment and all
+557 closed scopes validate. An actual public four-sector rebuild with the new
+resources still has 13,695 activities, 13 clinker markets and 39 electricity
+markets, with no validation errors and the same 14 existing IGCC warnings. No
+additional export is created for this regression. See [fuel preparation receipt]
+(uvek-fuels-312-preparation-verification.json). The earlier full export/LCI
+qualification remains the separate cement receipt.
