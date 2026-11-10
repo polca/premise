@@ -199,3 +199,27 @@ Heat is qualified for the current shared three-sector REMIND workflow. Steam,
 ambient components and network-only services retain their explicitly distinct
 physical boundaries; they are not silently mapped to useful heat. Final
 qualification alongside the remaining sector updates is still part of this goal.
+
+## Cement preparation: monoethanolamine 3.9
+
+The first preparation refusal (`bp-a50439c1a11df652`) is an existing reviewed
+whole-monoethanolamine correspondence whose Premise approval covered only cut-off
+3.6. Inspect the actual cut-off 3.9 GLO market and both RER/RoW ethanolamine
+producers: all have positive 1 kg references, and producer product information
+explicitly describes pure monoethanolamine. The native RER factory also has a
+positive 1 kg reference and the previously reviewed mass-allocated product basis.
+
+Extend only this operation's approval ledger with the inspected 3.9 profile,
+primary metadata/inventory hashes, target reference check and exact rule/helper
+fingerprint. Retain factor +1 and all existing allocation, market-to-factory,
+geography, omitted native solid-waste and incomplete-emission warnings. Do not
+repeat allocation, infer dilution, rescale yield or reconstruct market freight.
+No runtime Python or Brightpath rule change is needed. The standing auto-approval
+for analogous reviewed product/reference-basis cases applies; the evidence is
+recorded in the ledger for later review.
+
+Two focused checks pass, including fresh/cache harmonization, unchanged signed
+amount/formula/uncertainty, non-mutation, and refusal to inherit this approval for
+3.9.1 or consequential profiles. Cement preparation advances to a different,
+still-unreviewed natural-gas heat correspondence (`bp-e4e35c0ff2032249`). Cement
+is not operational yet; its shared family/biosphere routing also remains pending.

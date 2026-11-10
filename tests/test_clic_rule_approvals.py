@@ -2934,3 +2934,54 @@ def test_heat_312_markets_preserve_service_and_delivery_through_cache(tmp_path, 
             for d in result.diagnostics
         )
     assert resolved.activities == before
+
+
+def test_cement_monoethanolamine_extension_is_limited_to_inspected_39_cutoff(tmp_path):
+    from brightpath import TechnosphereProfile
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(
+        row for row in resource["replace"] if row["id"] == "bp-a50439c1a11df652"
+    )
+    scopes = approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+    target = TechnosphereProfile("uvek", "2025", "cutoff")
+    for version, model, approved in [
+        ("3.9", "cutoff", True),
+        ("3.9.1", "cutoff", False),
+        ("3.9", "consequential", False),
+    ]:
+        fingerprint = compatibility_rule_fingerprint(
+            resource,
+            "replace",
+            rule,
+            TechnosphereProfile("ecoinvent", version, model),
+            target,
+        )
+        assert (fingerprint in scopes) is approved
+
+    resolved = graph(rule["source"], version="3.9")
+    exchange = resolved.activities[0]["exchanges"][1]
+    exchange.update(
+        amount=-2.5,
+        formula="mea_input",
+        **{"uncertainty type": 3, "loc": -2.5, "scale": 0.3},
+    )
+    original = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for cached in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is cached
+        migrated = result.activities[0]["exchanges"][1]
+        for key in ("amount", "formula", "uncertainty type", "loc", "scale"):
+            assert migrated[key] == exchange[key]
+        assert all(migrated[key] == value for key, value in rule["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            for d in result.diagnostics
+        )
+    assert resolved.activities == original

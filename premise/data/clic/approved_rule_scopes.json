@@ -11439,6 +11439,56 @@
                 "comment_sha256": "20b4fbf527be8f2e5b838a7dc67c50feb8a0a03fb3a26f7f2311e43b3dbd8433"
               }
             ]
+          },
+          {
+            "identity": {
+              "name": "market for monoethanolamine",
+              "reference product": "monoethanolamine",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "metadata_sha256": "2068c6fdab6820511d88f6ab8dbd690e93899059dc7c622fbade7f2946cf0c32",
+            "inventory_sha256": "19ef8b9ce8388c7d108d4e6d9593d233832fdec36325086859f2e1e90b154e3e",
+            "activity_comment_sha256": "ab10524cc4d534fb0ad1a3fcddffa6f670f5aa485988c64d20ebedb10aae0791",
+            "product_information_sha256": "dd5cd61a10d65269d745a890faea5720e6f6e5f9d165887340773439f072571c",
+            "inspected_producers": [
+              {
+                "identity": {
+                  "name": "ethanolamine production",
+                  "reference product": "monoethanolamine",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1.0,
+                "metadata_sha256": "a507a5e173b52a9ff4924c4691f8db1cb8c0e40afc740347b88b930397411f7c",
+                "inventory_sha256": "2b5a5dcdda8c5d5ffb3930344dc5ae4e07cde0520bde29fa458dc54a4acada16",
+                "activity_comment_sha256": "41e7219db8f0a36dbed09937bd861d7f01c57c93d4c88bf4f74bdb6b7eb5dfc8",
+                "product_information_sha256": "dd5cd61a10d65269d745a890faea5720e6f6e5f9d165887340773439f072571c",
+                "role": "complete allocated monoethanolamine producer",
+                "has_product_information": true
+              },
+              {
+                "identity": {
+                  "name": "ethanolamine production",
+                  "reference product": "monoethanolamine",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amount": 1.0,
+                "metadata_sha256": "e503fbd5cbcf17ef43dddea101d7730a706eb7c3b4fe79c1d798f36b51053085",
+                "inventory_sha256": "8ea931fa496d4cb8f9e04584c1ac558b9f1b9784b99e4603283cb4177c296933",
+                "activity_comment_sha256": "41e7219db8f0a36dbed09937bd861d7f01c57c93d4c88bf4f74bdb6b7eb5dfc8",
+                "product_information_sha256": "dd5cd61a10d65269d745a890faea5720e6f6e5f9d165887340773439f072571c",
+                "role": "complete allocated monoethanolamine producer",
+                "has_product_information": true
+              }
+            ],
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            }
           }
         ],
         "native_references": {
@@ -11459,7 +11509,28 @@
         },
         "conversion_factor": 1,
         "native_direct_technosphere_coordinates_match": true,
-        "boundary": "Same monoethanolamine product per kg, not diethanolamine, triethanolamine or a diluted amine solution. Source and native document ethylene-oxide/ammonia production with estimated 95% process yield, but native allocated precursor quantities differ substantially from the newer source inventory. Retain the complete native mass-allocated ethanolamine inventory once; do not repair stoichiometry, rescale by yield, repeat the 40/40/20 allocation or add another coproduct burden/credit. Estimated/incomplete emissions and omitted solid wastes are native data limitations. Allocation, feed quantities, utilities, geography, vintage and source-market delivery differences remain explicit, with unquantified score effects."
+        "boundary": "Same monoethanolamine product per kg, not diethanolamine, triethanolamine or a diluted amine solution. Source and native document ethylene-oxide/ammonia production with estimated 95% process yield, but native allocated precursor quantities differ substantially from the newer source inventory. Retain the complete native mass-allocated ethanolamine inventory once; do not repair stoichiometry, rescale by yield, repeat the 40/40/20 allocation or add another coproduct burden/credit. Estimated/incomplete emissions and omitted solid wastes are native data limitations. Allocation, feed quantities, utilities, geography, vintage and source-market delivery differences remain explicit, with unquantified score effects.",
+        "additional_profile_reviews": {
+          "3.9": {
+            "date": "2026-11-10",
+            "native_2026_reference": {
+              "identity": {
+                "name": "Monoethanolamine, at plant",
+                "reference product": "Monoethanolamine, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "metadata_sha256": "c6498c7dc3223b50d373040de8907aa5d1de1d73e54aa53a0a89384aad2d4549",
+              "inventory_sha256": "8018b7f9b22cc730a2264a8a083cb5c582ab605d8f551c45b55644c2fe622c11",
+              "activity_comment_sha256": "be8b87636bf946c9884c9869930e6376ac824f3d90e6495dd8ba6c06904583bd",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "basis": "Inspected positive one-kg pure monoethanolamine references in the GLO market, both RER/RoW allocated ethanolamine producers and the complete native RER producer. Source product information identifies pure C2H7NO, not a solution or another ethanolamine. Reuse the independently approved whole-material screening correspondence and its allocation, geography, delivery and incomplete-emission limitations; no quantity multiplier or chemistry reconstruction.",
+            "authorization": "Standing auto-approval for analogous reviewed product/function and reference-basis cases, reaffirmed by the active all-sector integration goal.",
+            "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment and product-information SHA256. Inventory coefficients stay private."
+          }
+        }
       },
       "limitations": [
         "Same monoethanolamine product per kg, not diethanolamine, triethanolamine or a diluted amine solution. Source and native document ethylene-oxide/ammonia production with estimated 95% process yield, but native allocated precursor quantities differ substantially from the newer source inventory. Retain the complete native mass-allocated ethanolamine inventory once; do not repair stoichiometry, rescale by yield, repeat the 40/40/20 allocation or add another coproduct burden/credit. Estimated/incomplete emissions and omitted solid wastes are native data limitations. Allocation, feed quantities, utilities, geography, vintage and source-market delivery differences remain explicit, with unquantified score effects.",
@@ -11480,6 +11551,19 @@
             "system_model": "cutoff"
           },
           "fingerprint": "9ee53bb43c3dea8caf14eeb76f2a5b00b8bd9712c30ab8528011e6f5eb7ccd4a"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ae64086552f4f6d42c6423a21a7181db44b8ed8fff049ca381bf95899b2634e5"
         }
       ]
     },
