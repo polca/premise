@@ -129,3 +129,19 @@ inconsistency and native grade/delivery differences disclosed. All 462 earlier
 fingerprints remain unchanged. There are 468 exact scopes in total, and real
 preparation reports 34 pending correspondences in the current cohort. The public
 heat gate stays closed.
+
+Twelve further exact 3.10 qualifications cover three regional low-voltage grids,
+stainless steel, cast iron, polypropylene, silicone product, platinum, carbon
+black, deionised water, rail freight and ABS. Actual references and producer
+inventories were inspected. Stainless source prose mentions pig iron, but actual
+exchanges use scrap and match the native electric process's alloy inputs; the
+inspected converter alternative is less suitable. Native complete boundaries,
+market/delivery differences, excluded emissions, vintage and unquantified effects
+remain warnings. Signed caller quantities, formulas and uncertainty stay unchanged.
+
+Two raw profile lists gain 3.10 evidence. All earlier effective decisions and
+shared reviews/recipes remain identical; two structural fingerprint migrations
+are explicitly qualified, while 466 earlier fingerprints stay unchanged. Twelve
+new permissions bring the ledger to 480 scopes. Real preparation now reports 22
+pending cases in the later cohort, with 16 of its original 38 qualified. The
+public heat gate remains closed; later cohorts and integration remain unproven.

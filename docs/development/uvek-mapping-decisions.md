@@ -541,3 +541,27 @@ scopes bring the total to 468. Four of the observed 38 cases are qualified and
 two additional sodium-input correspondences are reviewed. Real preparation now
 reports 34 pending cases in this cohort. Later cohorts and the public heat update
 remain unproven.
+
+### Twelve exact 3.10 utility and material qualifications
+
+Three regional low-voltage grids and nine material/service correspondences were
+independently inspected from actual source/native references and source producers.
+The complete native suppliers retain their own topology, allocation, uncertainty
+and vintage. Source producer mixes and delivery are screening differences; no
+extra grid losses, purity/concentration factors or recovery credits are invented.
+Virgin polymer eco-profile exclusions, weak carbon-black emissions, generic
+silicone formulation, platinum PGM allocation, water quality/plant-size and rail
+net-versus-gross allocation limitations remain explicit.
+
+For stainless 18/8, actual source scrap and alloy inputs support the native electric
+process: source prose's pig-iron description is not reflected in its exchanges.
+The separately inspected native converter uses pig iron and is not the closer
+route. Do not select the converter from generic prose alone.
+
+`export/uvek_heat_310_utilities_materials_review.json` adds twelve exact scopes.
+Only stainless and deionised-water raw rules gain profile entries. Their former
+3.12 and 3.9 effective decisions remain identical, with unchanged factors, methods,
+shared reviews and recipe closures. Two structural fingerprint migrations are
+logged explicitly; the other 466 prior fingerprints stay unchanged. The ledger
+now has 480 scopes. Current preparation reports 22 pending correspondences,
+down from 34; public heat support and later cohorts remain unproven.

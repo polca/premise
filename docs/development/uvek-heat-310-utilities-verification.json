@@ -1,0 +1,82 @@
+{
+  "status": "twelve_exact3_10qualifications_verified_twenty_two_current_cohort_cases_pending_heat_gate_closed",
+  "scope": "Twelve complete native utility/material correspondences with positive1references in matching declared units, preserving signed caller quantities, formulas and supported uncertainty.",
+  "approval_scopes": 480,
+  "earlier_effective_profiles_unchanged": true,
+  "prior466fingerprints_unchanged": true,
+  "qualified_structural_fingerprint_migrations": 2,
+  "prior_recipes_and_shared_reviews_unchanged": true,
+  "recipe_count": 3669,
+  "shared_review_count": 769,
+  "stainless_alternative_review": "Actual source3.10inputs use iron scrap, with matching ferrochromium/ferronickel quantities. Generic pig-iron prose does not reflect actual exchanges. Native electric18/8process retained; inspected converter alternative consumes pig iron. Refining, feed draw, composition, residues and delivery remain screening differences.",
+  "validation": {
+    "brightpath_tests": 74,
+    "focused_premise_tests": 29,
+    "finite_native_supplier_LCIs": 12,
+    "source_scientific_signatures_unchanged": true,
+    "installed_signed_demands": 24,
+    "installed_original_caller_checks": 41,
+    "generator_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 262,
+      "premise": 247
+    },
+    "lint": "Changed modules passRuff/Black; generator passesBlack andRuff except its two pre-existingI001import-order findings. Premise references checked."
+  },
+  "real_heat_preparation": "Current3.10cohort now22pending, downfrom34;16oforiginal38qualified. Latercohorts unproven.",
+  "public_heat_gate": "closed; no public heat export claimed",
+  "public_electricity_biomass_export": "Prior committed7cd5279acheckpoint passed12529activity export/readback. No fresh export this batch; earlier effective mappings/closures and41installed caller regressions verified.",
+  "cache_cleanup_bytes": 463263614,
+  "receipts": [
+    {
+      "name": "heat_310_utilities_registration.json",
+      "sha256": "06ddb72ae7192385f1c91b049f50a49129001298a36128000bdef00642320c82",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_tests.log",
+      "sha256": "8db2bd957666f23d3b8b95df27a63cf0370ea6fbfa7912fa8e76691b77933db1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_premise_tests.log",
+      "sha256": "0a599d07e93cff29d0d6428182f090d768c4b3928af8aafee3f56fb266086fe1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_native_lci.json",
+      "sha256": "fb428dc365e6af2bdc6f4e5f35b57972f5c709c16dc83c64e676096a100b6aab",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_installed_checks.json",
+      "sha256": "a300357efec13c3e967cd2d938b1942d4cea80c3a2ae7d8e81cd507e0e6657ec",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_original_callers.json",
+      "sha256": "805f64a405ee7c76cfebeeab823e90c7c5a1f888f4745651f41ec0a3ab1a7734",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_generator_replay.json",
+      "sha256": "e5113bd8ed1fedab5bc99aea0d5c9fc09e3473848e30fc19f1c82207a7e60727",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_packaged_data.json",
+      "sha256": "9ca1440ebda62b061c6741e3ea3cde51f121cde4ca1f17bd9a6fcd23fb47e898",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_utilities_remaining_audit_receipt.json",
+      "sha256": "0c4e868c6358e97f379bfe4563798e7e8cd477ebba531188878d046932effe38",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_310_utilities.json",
+      "sha256": "4c8b2ced35152f18c28d2f16647a3104ac755f638c1a41a54f8a8d38c2646c69",
+      "location": "private task workspace"
+    }
+  ]
+}

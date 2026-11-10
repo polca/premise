@@ -19814,7 +19814,22 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "367018d980eb2530db21ee352af71a997c288f60ae83c74596870efdbf2d0ce9"
+          "fingerprint": "cba5dd07be8a3c55788da77a7d91d08788b33c4a6a6bf3de8a04e94e810f99a4"
+        }
+      ],
+      "fingerprint_migrations": [
+        {
+          "rule_id": "bp-4529f104ab14ba19",
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "previous_fingerprint": "367018d980eb2530db21ee352af71a997c288f60ae83c74596870efdbf2d0ce9",
+          "fingerprint": "cba5dd07be8a3c55788da77a7d91d08788b33c4a6a6bf3de8a04e94e810f99a4",
+          "reason": "The raw rule gains independently inspected3.10cutoff reference evidence. Earlier effective profile, target, factor, method, shared reviews and all recipe closures are unchanged. This is a qualified structural fingerprint migration, not a new earlier-profile modelling decision.",
+          "evidence_review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+          "effective_projection_sha256": "ff56ff26d0fb0a1bb7006000d4095c6d46f26b08c8b91e584fc0f5539ea258da"
         }
       ]
     },
@@ -120683,7 +120698,22 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "941d1ce691ec1dcfa3548627679d1e69c074ca2c658bf5b157362073076c41eb"
+          "fingerprint": "0f4f5b899f433909647aeb273f11094dae24718906e2346a0552bb56632b40c0"
+        }
+      ],
+      "fingerprint_migrations": [
+        {
+          "rule_id": "bp-f1bc637c4fcf6060",
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "previous_fingerprint": "941d1ce691ec1dcfa3548627679d1e69c074ca2c658bf5b157362073076c41eb",
+          "fingerprint": "0f4f5b899f433909647aeb273f11094dae24718906e2346a0552bb56632b40c0",
+          "reason": "The raw rule gains independently inspected3.10cutoff reference evidence. Earlier effective profile, target, factor, method, shared reviews and all recipe closures are unchanged. This is a qualified structural fingerprint migration, not a new earlier-profile modelling decision.",
+          "evidence_review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+          "effective_projection_sha256": "4b5aa7460e911ab1bc6875525bda96b1c37250d5ade4a425f2fa606376c839c2"
         }
       ]
     },
@@ -121634,6 +121664,1334 @@
             "system_model": "cutoff"
           },
           "fingerprint": "a60ca07b688f3111af3786a787ac31926bbcc5b2675f72522e60aea07bcc8b6a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-657f6ad4eabd8846",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "25eb00cfc4afeb940bd115aae0fbdc8a64411dea0452442d7ef1418dfe1e9bef",
+        "source_metadata_sha256": "dae3c71faf731c634d93223866fe7b0721cf6e6cb2925d5cb3cb07a25431e228",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CI",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "c16ea536cb03cb487240ddba2d6334ff4f359480f534cf82c423747aa2231236",
+            "metadata_sha256": "0956c689861986b5b2aff6cc78c07a10efaecb84d25fe22d2c11739d2912c048"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RU",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "da61ace08b86c180b4090953c4f16602ddb24e89c79d72793a9719cc8045be34",
+            "metadata_sha256": "e4767355c37a68a86bd15be5fa43156ebf7ece8ed12e3e2948a261fc7d88cafd"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RAF",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "5c03d9b8ca57880f28abfee23fc31b7b6dc362f6492802ed59ea4a29e00c8a61",
+            "metadata_sha256": "5238c5b90cc3639936c5cb4d55504c9b070fb92e20aae3b38fd24c9c4bf43c7f"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "AU",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "91bf9e071a6157e61b867184808ae1f8e07f4b54f259b6a5214a5e028524b2e7",
+            "metadata_sha256": "078869c4d7be0f24b33ec11cadadd17514fd3d2054ae3ccee72a63d81d24bb90"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RAS",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "cba1219b9699eef17f5e32e8efe59d52d24d7cbda37019077b66497219b0bd0b",
+            "metadata_sha256": "14d659aa931e981e19a441411e590a4ec41b9f031d124220f07fe533b0524d1e"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "NZ",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "c9c3457ed8f6b58680d3306a927074fc2512189f3d85b47a81ca35c341cab281",
+            "metadata_sha256": "ec17ac8a623a747495cfcedbf4bc0ab71054a4ba864828ceb4f45e9e79deecf0"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RNA",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "96925a305215237f1b7b3ec77f75bbc4c986ccb821279bd9a4820fe1c001bd90",
+            "metadata_sha256": "96b36ea7ba82ad2e7df16d598de469f8e9d7f4d497f95e2e48119dc8d1183930"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RLA",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "7d925bcaad57c398a1da47c9ef624b69e110549ff6d0116aedbad6a6acc5c5bc",
+            "metadata_sha256": "45cc8f15d9627da5b367e0fe8022e396cdfc9c43df95fac0388831825c4d57ef"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "776066507f7e8c48b75be628dcc9dd32711764d6fe34e5c42ce56a0d04fc0532",
+            "metadata_sha256": "d12e90aa2d59fed13bb4ee5fa0423b651634913e1d3ce328a0333fa73ca8526a"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "GLO",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "7f673eecf84c44c36af1891d2edbeebc73e98ae9f2fe6117c036c3afa3215c1a",
+            "metadata_sha256": "22aa54b95ee2f20e8ed37f878f5edf528bbb126865e5d880d1816c1fe2119ad5"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "GLO",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "8bc7919677948af179e46dcfc389e2242cb14200288d04161187086396027bfd",
+            "metadata_sha256": "fddc263c0bd43e758d69050be28e641bc07cf7d0b9ada07e0d25dfc837a2c41e"
+          }
+        }
+      },
+      "limitations": [
+        "The actual sourceGLOmarket group supplies low-voltage electricity through regional market services. Native supplies+1kWhlow-voltage electricity at the same declared regional label through its complete installed grid. Use that complete grid once, including its actual generation, voltage transformation, losses, infrastructure and direct emissions. Source and native regional portfolios, trade treatment, loss allocations and vintage differ; source market shares are not reconstructed.",
+        "Native prose contains conflicting generation-only versus distribution/loss descriptions; retain the actual inventory topology rather than infer a loss multiplier from prose. Signed native exchanges are preserved. No extra voltage-conversion, grid infrastructure, generation mix or avoided-electricity credit is added by this correspondence.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "90a88c4608ced96e580388af21420805dc150c2c91be076d9820e8d406c71820"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, chromium steel 18/8",
+          "reference product": "steel, chromium steel 18/8",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, electric, chromium steel 18/8, at plant",
+          "reference product": "Steel, electric, chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "0197722c6ca8ceadc6a0d0ed71de0fde1e21141406817067b79763460321e30d",
+        "source_metadata_sha256": "366b01eca3f3f638a236a1cd5bccb58d8137ebf9287628224d274f3142882f91",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "steel production, electric, chromium steel 18/8",
+              "reference product": "steel, chromium steel 18/8",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1c0d8f0cf2697ccca3f39d57af8cfac1b614e9523eab803b7032fe59f0f3b72a",
+            "metadata_sha256": "895e9d6e97b0f653d333700c1ee45710cd6a3be7eff6d3834c6a83aefcaf76f3"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, chromium steel 18/8",
+              "reference product": "steel, chromium steel 18/8",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "bc6a2c289cd0325d0cc4840e3566293017ab524a43a6f8d2f56207981a2cc7ff",
+            "metadata_sha256": "d9ec1e66eab55fb053f0ed0078c96adbdb3d07d8250d24fe1b6a0364b60ebb49"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Steel, electric, chromium steel 18/8, at plant",
+              "reference product": "Steel, electric, chromium steel 18/8, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "41b081e3b2e1820ba7b83892e03c520e70eb093b917b757e4013dc1ca11dc4cd",
+            "metadata_sha256": "5eca2f758625b1e6a6359665960a155ab2c649bde9fa833c7c0dd84853d41b3c"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Steel, electric, chromium steel 18/8, at plant",
+              "reference product": "Steel, electric, chromium steel 18/8, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6f8b6d5d941e31966e60586ca169f96628466425f4afa960195a161ffa692c1c",
+            "metadata_sha256": "f9cc7fa20cf43e4d7daac459652e4b1b4f6da095907b67191a04314269a54e92"
+          }
+        }
+      },
+      "limitations": [
+        "Both actual3.10steel producers use iron scrap as the iron-bearing input, with ferrochromium0.26471kg and ferronickel0.32kg per reference kg, matching the native electric18/8service alloy inputs. The source generic prose mentions pig iron but no pig-iron exchange exists. Retain the electric scrap-based native process; the inspected native converter alternative consumes pig iron and is not the closer material-route match.",
+        "Both provide nominal18/8stainless steel, but source scrap draw, EAF/AOD refining, alloy composition, residue treatment, energy, allocation, geography and vintage differ. Use the complete native electric18/8producer once. Source market weights and final freight are not reconstructed; no alloy/purity multiplier or invented primary-metal credit is added. Preserve the earlier3.12effective approval and shared warning exactly.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d1aa298ade3ba5d76f29a116f2e2d0a56046da2cf7a5652a15dec1fc43ae19f4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-90d9ae3ee389f465",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for cast iron",
+          "reference product": "cast iron",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Cast iron, at plant",
+          "reference product": "Cast iron, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "ebd1b7d7842d20a173587e3f375a4c5ff2249d7a726e318e0923e935aee5cb9d",
+        "source_metadata_sha256": "0fcfb2836b939393072eebb7f6b489a7f01c0c65b3ebe0b7cbba309087ee2822",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cast iron production",
+              "reference product": "cast iron",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "31e297d4780fb0d7bf2d9a2ab2b5b2ca5e32ff1222076fbc3395da3eba09256d",
+            "metadata_sha256": "9652d1823c17665b28f5e55fae8b1a4eb691d2b3be579f2f3dfa27742a6e4c44"
+          },
+          {
+            "identity": {
+              "name": "cast iron production",
+              "reference product": "cast iron",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c2aa498a2e30a9ffdc67fd7f8dea16f4410ea5b2997a59a7e1025f1d41d211ad",
+            "metadata_sha256": "79722fe81e4b8106289c85182824743b52ba196d24b26a61e95ca7e779044821"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Cast iron, at plant",
+              "reference product": "Cast iron, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f1d060833f612e1fbe33d41277eece7c901f10d16bcf6dbab82690b5e81364fa",
+            "metadata_sha256": "d48bd3e753653d98b125dae31e468bda81dd780f8b24d4511f3fec0b7227c399"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Cast iron, at plant",
+              "reference product": "Cast iron, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7ad525c70adccad69422aeb17fd14f99937b73f57c9bf5ac71dbbe629117fe30",
+            "metadata_sha256": "dc0b5adbab190aab059ec9b617e7bc1b634828d1e3560ddeb26b5b08b01b4b62"
+          }
+        }
+      },
+      "limitations": [
+        "The source cast-iron producers and native EUelectric-furnace casting service describe35%scrap and65%pig iron as iron feed. Actual references are+1kgcast iron. Use the complete native casting inventory without rebalancing melt feed or forcing a yield factor. Source market shares/final delivery are not reconstructed; source/native yields, emissions, electricity, allocation, vintage and uncertainty differ.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "69be708845e07776e55e97f79a37b26416b7dc42721d8bb8fad43c8454f70749"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-02c0322dff7270a9",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for polypropylene, granulate",
+          "reference product": "polypropylene, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polypropylene, granulate, at plant",
+          "reference product": "Polypropylene, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "c7e144e2c8f9623b39962c37db4eb97fbae6c59bfe05ac548ea834b70e62b91a",
+        "source_metadata_sha256": "65967f53288af78deac5fb133998a9892126f8024c7027c5b16e41b0754b67a9",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "polypropylene production, granulate",
+              "reference product": "polypropylene, granulate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e8b0a91b98f99cb4f79b295b385704125a59ee3c39cf6f74a64c2c949642d9be",
+            "metadata_sha256": "59cd85d91c34825c1fd7daba2597372d5d0583f9dd3aab73299dfd2574a0c4fe"
+          },
+          {
+            "identity": {
+              "name": "polypropylene production, granulate",
+              "reference product": "polypropylene, granulate",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "33a76830651bcf18fc04c147397d7e4fedb0886923f43194540154c98505ea47",
+            "metadata_sha256": "1d4e548fd9d99b9e87a7580ae2b51c8455d4af37bea2d9353e2f8f0f474a04d5"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Polypropylene, granulate, at plant",
+              "reference product": "Polypropylene, granulate, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "cc3b191801fca4661abae819d71a47b91df7117e6cd5433f66514f400712cd2a",
+            "metadata_sha256": "b5d9262bb3281712d6c5a5c39040aad32a13f4fd4e68fc0855a017fb624d8d4c"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Polypropylene, granulate, at plant",
+              "reference product": "Polypropylene, granulate, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "140ccf0cddfb247198a94e69eeb635c3d817fae06e861da251b650e6f75f946b",
+            "metadata_sha256": "9a3eb74ee8d4240173d85b01107302ab9008ab565f273d20b731a04e00ee8687"
+          }
+        }
+      },
+      "limitations": [
+        "Source market supplies virgin polypropylene granulate; the inspected native EUproduction-mix eco-profile supplies the same nominal virgin polymer per kg, including propylene, energy, feedstock transport and waste treatment. Native2026retains its2023methane-emission update. Source global producer/final-delivery shares, technology weights, vintage, internal uncertainty and emissions differ. Do not add polymerisation, a recycled-content credit or a purity factor on top of the complete native product.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "365837a4d3d63c79b1e9b6c5f129500cdbdae5100672eb036056ef284595f023"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f5891204a3feaf32",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "776066507f7e8c48b75be628dcc9dd32711764d6fe34e5c42ce56a0d04fc0532",
+        "source_metadata_sha256": "d12e90aa2d59fed13bb4ee5fa0423b651634913e1d3ce328a0333fa73ca8526a",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "e40b13bba84ad2206ce4b82defc920f35a10419a398149ea8ae7093698ea9ffd",
+            "metadata_sha256": "77fc1f93b8e41757a53b015f120b2a64c9b520f89fb83b1c2dd347133bd7b127"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "Europe without Switzerland",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "1a3300c0476783cab9d64e783708b1b1ba26fa3cfdbb32c51f97930322e50c55",
+            "metadata_sha256": "ffa65774588a1e99543ae77fcc5cbaddf4c307f9544aecd2f9713d79337125df"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "9918d53f738c649fd1efbe365b393c29136467f80c38f956eec026474ee675d5",
+            "metadata_sha256": "fdb68aea771258bd961a9ab22971908096acd391378886a1f6eead5612d741e3"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "8f7248a0a15d75d3ba4f79ec2a6b4682ccfd8a40b5b38f5d2c5a8d107d652eb1",
+            "metadata_sha256": "71c40c317115b22b01d441f1983b54847fc1355686150c0a0b0730bd25daed4c"
+          }
+        }
+      },
+      "limitations": [
+        "The actual sourceRERmarket group supplies low-voltage electricity through regional market services. Native supplies+1kWhlow-voltage electricity at the same declared regional label through its complete installed grid. Use that complete grid once, including its actual generation, voltage transformation, losses, infrastructure and direct emissions. Source and native regional portfolios, trade treatment, loss allocations and vintage differ; source market shares are not reconstructed.",
+        "Native prose contains conflicting generation-only versus distribution/loss descriptions; retain the actual inventory topology rather than infer a loss multiplier from prose. Signed native exchanges are preserved. No extra voltage-conversion, grid infrastructure, generation mix or avoided-electricity credit is added by this correspondence.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7761d8ed9caf4757a17c7551bd003930b762df5caa7c91e0fe0d55c7a85851f3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-29a5a345f9b595ed",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for silicone product",
+          "reference product": "silicone product",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Silicone product, at plant",
+          "reference product": "Silicone product, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "dedf8aff57c1a50822e25b5f953d6c11fecc8389edd89d2d056562dac22d5b93",
+        "source_metadata_sha256": "d67112719a9c467bd51a08ae80d368c5af9831f1a759c6003d9aafd6ae4c4793",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "silicone product production",
+              "reference product": "silicone product",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5d09b8cf63f845d6e71eba8f2c2ba8b931b81ed2dfb354f68045f4f01a589390",
+            "metadata_sha256": "d56097a8ce144234fedec0bbdb8d848aeadf3f1cf914b2bff9dc6cb191c4a836"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Silicone product, at plant",
+              "reference product": "Silicone product, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2010687a59e7705278cabbbb9370552306f5a83f7ee6b052f08763c0e02cf5e2",
+            "metadata_sha256": "e2e7077d5a8a06d679a5df19ef30cae4df7e72dcc9d270a475ab7028900bbb4a"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Silicone product, at plant",
+              "reference product": "Silicone product, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7a54b6e45ed305e743901beebe477307da83baaa5aece28790f680d8e361653a",
+            "metadata_sha256": "131e685fdaed68fe01c7c2c82e3fa1d7ff1a10008233d844bab5d965c4469d13"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native silicone-product inventories both describe an average of about2000products derived from two integrated production sites. This is the same broad generic product function, not an exact silicone formulation. Keep the complete installed generic inventory per kg without inventing monomer, filler or concentration corrections. Source market freight, plant weighting, geography, upstream supply, allocation, grade, vintage and internal uncertainty remain differences.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "154766a1c2b6dd07a234361bf49b7911651a36a884a04f6869a6b943e6832088"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1979ee200d36825e",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for platinum",
+          "reference product": "platinum",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Platinum, at regional storage",
+          "reference product": "Platinum, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "9eb07a42fe6b2260cdd840d22456f1bfecb9b193a986ee799819021870e66302",
+        "source_metadata_sha256": "e846212f5d83bbe0a162928f11b761659585cfdc2760a1ea1d244122847452f0",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "platinum group metal, extraction and refinery operations",
+              "reference product": "platinum",
+              "location": "ZA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "bc8df25e7318c4dc769cf11bec8023bf07c77bb9eb746e155682342588a10257",
+            "metadata_sha256": "268424094d80a5551f0ca5d267f2fc8645a8b97be25e2f1b888dc118346eefff"
+          },
+          {
+            "identity": {
+              "name": "treatment of automobile catalyst",
+              "reference product": "platinum",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5639237460cc16b4333cb706482c78c86f966bd8d81cf1b9286ad07c2594f3a7",
+            "metadata_sha256": "beb3a45d47cc1a301ac2e236d848b4693aee2e7a2d1dcd0987a2f8ac18fb16ff"
+          },
+          {
+            "identity": {
+              "name": "treatment of automobile catalyst",
+              "reference product": "platinum",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "beac5503e73c3e63eb813b883e416b36ed2a7f56cdc959576160816f99c33a7f",
+            "metadata_sha256": "123a10c579e37a8e6256390676d88cb6729a9a8d2fedd262a4f0a51b23149ab8"
+          },
+          {
+            "identity": {
+              "name": "platinum group metal mine operation, ore with high palladium content",
+              "reference product": "platinum",
+              "location": "RU",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1eda232fd61eec8849560f8ddedf83cb7c188347e047df75b4b2d3412986e6d4",
+            "metadata_sha256": "7bffde79df32ceb3e3cce026dfeef7e49af3a6d8db00e9d594e038cbeb69f7ae"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Platinum, at regional storage",
+              "reference product": "Platinum, at regional storage",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e2225a78a578f4328b6bca6c3357bbaf55b318db9685e74f9ba3609fa031064b",
+            "metadata_sha256": "86fd7fb90a9835942d9ff8c04b33ad6114bd83f356efe797a26787789081240a"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Platinum, at regional storage",
+              "reference product": "Platinum, at regional storage",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "0dfde4a000c6994b847d8e1fce04662539a8740aaacc72a45d5f689833baf663",
+            "metadata_sha256": "1f241477a5392d17fac72a9fa005c17d832dee9fe2785d6be78af2808f965146"
+          }
+        }
+      },
+      "limitations": [
+        "The actual source market combines refined platinum from South African and Russian primary routes and recovered European catalyst platinum. Native provides a complete European regional-storage mix of primary platinum fromZA/RUand secondaryRERmetal, based on older market shares. Both reference+1kgplatinum, but source/native primary-secondary shares, PGMco-production allocation, refinery/purity boundaries, transport, geography, vintage and uncertainty differ. Keep the complete native consumer mix once; do not reconstruct source shares, apply a purity factor or add an avoided-mining/recycling credit.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5612f02024929640b636f298e73b822087e74af4d345984484c6e7b5880f219a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c8d707ac24ebb7e4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for carbon black",
+          "reference product": "carbon black",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Carbon black, at plant",
+          "reference product": "Carbon black, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "db5c07a1efa6159a77caa041027d6e1ee479be30cc405ab6f3f27896f66096a2",
+        "source_metadata_sha256": "8f1dacc91a271a244916d878e7c658123b32894e7be3e15dab2735acbc1d704c",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "carbon black production",
+              "reference product": "carbon black",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "72be0c87aa14a3ad977c4ad8bcdc462490690e50bf1ea764e30b610805d7c553",
+            "metadata_sha256": "7f2edfdc27213650f5773954395abe0f73badf04a5316a5c5efcd0de0d811bbd"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "GLO",
+              "name": "Carbon black, at plant",
+              "reference product": "Carbon black, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "daaa769228fd69f533492071959fec935d2e6dde79455c50b0c64f1dec2b0198",
+            "metadata_sha256": "5e63149fdc1ca27190ee4269f18975a12a1dcff7bb47621d62dbc02a09529246"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "GLO",
+              "name": "Carbon black, at plant",
+              "reference product": "Carbon black, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8614a6d2e799b6f5fbbcccdcd7059ef8e1aae8d52d19f7ac9815cffb0f63af28",
+            "metadata_sha256": "e66f7766d134cf04501be8c5d9b3a4853bca340213a86c05085f0a49ae871393"
+          }
+        }
+      },
+      "limitations": [
+        "Source producer and native each provide+1kgsolid carbon black from an oil-furnace route. Both retain substantial estimated operating/emission data; native explicitly has incomplete air/water emissions and omits solid wastes. Source Gendorf2016model versus older native process estimates, utilities, feedstock yield, market delivery, internal uncertainty and vintage differ. Do not repair native yield, add unspecified missing wastes or claim a complete score.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "88b673acd3354f1540b302e3f879835645b911d98b0f81143d7da6fd831b54c8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f1bc637c4fcf6060",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for water, deionised",
+          "reference product": "water, deionised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Water, deionised, at plant",
+          "reference product": "Water, deionised, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "645e24beb04b8bf3283b20c1a622acb3874e15de48e8e83ba5ee6bb1fae63602",
+        "source_metadata_sha256": "88d98b01d5d6bcbff629e93eb9a70fdf5a00191c54a9c8a8ce64fb40ffad4f7b",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "water production, deionised",
+              "reference product": "water, deionised",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f43e11bbb2f98be715557334adc9e3c8acfd1ed28428ba0031c13ddf96805466",
+            "metadata_sha256": "3063e09a6ce46ab5adac7a7b62cfbb3e639b674252e6ed12d8970d43533db6d6"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+            "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1d7fe7c87e6806833088deed8891fb9928f2bf7abfcf50c1bd3f3e794f707988",
+            "metadata_sha256": "be7c253619e026023bd1d16979cff690835a02863c07132bdb4ab4f069e33afd"
+          }
+        }
+      },
+      "limitations": [
+        "The actual3.10market producer delivers+1kgdeionised water by ion exchange. Native uses cation/anion exchangers and regeneration at a stated quality near1uS/cm, with specified raw-water quality and plant-size limits. Use the complete native process per signed kg without a density or purity conversion. Feedwater, regeneration, conductivity, process size, geography, delivery, internal uncertainty and vintage remain screening differences. Reverse osmosis, distillation or ultrapure-specific performance is not inferred. Preserve the earlier3.9effective decision and shared review exactly.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e9d3f0ed97ea24b063dcc1c94b72d54aacaf019baef65ab10018055128b944b5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3f19534eb7d97f64",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "ENTSO-E",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "ENTSO-E",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "1f51945065e3558e5869435c6eddea32f815756c067d757ad1612d1f824b2dc9",
+        "source_metadata_sha256": "f8f8d1b6243e08a3ef8fb2b7e209fb7c728ad9c79256cd13fadbe83ca4354acf",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "IE",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "5bc0a600c26a259aff75b4e3d800d6dfc6aa3de411214498598254ee8a52c143",
+            "metadata_sha256": "a66b708ffa3e17dd2afac51a9aff8cddb5c7ec177c41ee93c1906b8f26dab72e"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "LV",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "0ef97dbc9e2611c21a7d7034f0eb077f0072374752a0c8cfb523d6f6cbd2545c",
+            "metadata_sha256": "0358d9ed03f6053fa53cf2f35c4bc35e708827267a591a74667fa96b33e8aa51"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "EE",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "a9c592a4830a53b57b66efa76f08bd3e5fa5a44bec3a9a63accd11ed35809f7b",
+            "metadata_sha256": "332e5433e41be0840f605fc11f154c5b1d0a8f6b75930f2a8ce858232343c4fd"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "FI",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "9f561686f5ebcc07500cbf12ac6ecf2f9e204e105b02892a2bea79c4233b25c3",
+            "metadata_sha256": "5ba0e209411286ca0894700a38cce30bc124ac0548e5fe0c11d537cee9719337"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "SE",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "5ec96e3601571e90f4c78745560dcd516a8e9415d2f56292424c8b86d0d2bfb3",
+            "metadata_sha256": "884bb9bd94a87060fe86f77037da3c4ebde11ca79789daf7c75cadf06073edf1"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "GB",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "5ac08714d945236104be8b06de0c00ff28c0c0ba92e5db7decc5899b0dea6af6",
+            "metadata_sha256": "4e9b79c02556df96fc8250b8357f1abdb36e3845b14ae4b6cfd59cfddc9d0d11"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "IS",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "a01581dac7e1052157ef75c718768e53f991003949d71fea0d633ea4b9d7de77",
+            "metadata_sha256": "5018a51616a5ac64a1cd46a4d964a8caf75e71095517a0b59713bd50d9d3d071"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "LT",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "7ca8446adbd1c436fe6d1e0fdd913a14944353c7dc734353f3efe41801bc4ea9",
+            "metadata_sha256": "c99dc892cda1ca44a6cdd7f2129123af70a969d3dcebe7c4abbc3190675df2b1"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "MT",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "051581967456cc75be7ff6ce5696ba4bdccb4b27723d4fb3454f94cee5e7059b",
+            "metadata_sha256": "9e8012ce983c3ce3652146adca803a66cec808a5dfc6f11968db6a1d47b9b57c"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "NO",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "beaad78aafc23dbdbf2c6fc65e5e9da0bcec593dda5d4273d295ea349d039283",
+            "metadata_sha256": "8f4212ddaa388be1761f87bc6152a5f283483f4b1c51c10a51e56f93c3f6ef49"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "UCTE",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "38d60d6f4d1077685c07c04aae526d06cc5bee319dd811a14f6f8cd4bce7b17a",
+            "metadata_sha256": "12c09746b01ce6364a14416c4aa8ea305c3738a99b57ad21b704ecf4d7ed356a"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "DK",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "b0d528600188ebcf6bd1be745086fbb992152dca7933ca443b8f3670aa4d1ab4",
+            "metadata_sha256": "b1a8627cca2a50863fa877deb1fc7f79232a452c55f03aa69dd6b694c3fbc5cb"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "ENTSO-E",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "00aa2056d7170cb5b9dd46cb520804be911e8d7208eb7bc9ce0e4d00d15dec98",
+            "metadata_sha256": "85244ed9a1f747332e9e0e3333ff662ef9f352b60555332d262d808048248dbe"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "ENTSO-E",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "930ad58089c1e4ae1362e21fffdd7d4f1fbb90d2e2c698d72905ebd07ef7e2ca",
+            "metadata_sha256": "7e4bd3b41951a5ff9d0ae7ef874acbde8cab761b159b9e477adf9f78fb05c349"
+          }
+        }
+      },
+      "limitations": [
+        "The actual sourceENTSO-Emarket group supplies low-voltage electricity through regional market services. Native supplies+1kWhlow-voltage electricity at the same declared regional label through its complete installed grid. Use that complete grid once, including its actual generation, voltage transformation, losses, infrastructure and direct emissions. Source and native regional portfolios, trade treatment, loss allocations and vintage differ; source market shares are not reconstructed.",
+        "Native prose contains conflicting generation-only versus distribution/loss descriptions; retain the actual inventory topology rather than infer a loss multiplier from prose. Signed native exchanges are preserved. No extra voltage-conversion, grid infrastructure, generation mix or avoided-electricity credit is added by this correspondence.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "703819444ce44e86fbf527bf597b1dc5439546bb36ef1d56624453f2ee80b5d5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a3a951644bd5ed9c",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "7a1f977bd75cf73a4b67450bd5decaf58f76d0ee014e25b30657a863e9415700",
+        "source_metadata_sha256": "b259b5b1c2e649826943f8f9170c708ae63a10e1a3dcf3d66806c301bcf40345",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight train, electricity",
+              "reference product": "transport, freight train",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "1f022cd3608d7c6c97692bddb600e59976dc92fe9408f5fd00edd708e755cb23",
+            "metadata_sha256": "8f556d98f2723b33214d5969babb65e7d7c6d45ba25674c59e95ea44eef13846"
+          },
+          {
+            "identity": {
+              "name": "transport, freight train, diesel",
+              "reference product": "transport, freight train",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "87feb36ba4a74c28de247008054df428d17a1d97beeac4bf82595ce138ba78d3",
+            "metadata_sha256": "c90a5ae36b9f7dacef0fe6467adc95aef44846f29860ba75ad96041e4f78fb1a"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+            "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad"
+          }
+        }
+      },
+      "limitations": [
+        "Source market provides one net tonne-kilometre of European goods transport using electric and diesel rail services. Native includes complete average electric/diesel freight operation, shunting, vehicles and track infrastructure. Use factor+1per declared tonne-kilometre; infrastructure gross-tonne-kilometre allocation is internal and does not imply a caller net/gross mass conversion. Source traction shares, loading, routing, final service mix, geography, infrastructure allocation, energy, vintage and uncertainty differ. Do not add an extra train, track or shunting inventory.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1ddc555acdd1137edc2b42b72cc44a752e7a383d5d7a5beb4d57f605432e8db8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e1c5c137f358792d",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_utilities_materials_review.json",
+      "review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for acrylonitrile-butadiene-styrene copolymer",
+          "reference product": "acrylonitrile-butadiene-styrene copolymer",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+          "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "7a281a9ff859e3280e84a1836db2689a35d34147a43dd3900aa113b76bfeceb1",
+        "source_metadata_sha256": "bf7506f9eb02c5b8a28f81cd2f92c51aa6b879404ca4f06653df32c933ea95fa",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "acrylonitrile-butadiene-styrene copolymer production",
+              "reference product": "acrylonitrile-butadiene-styrene copolymer",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "de750a829d86d5c4604cc290270bbdcfe84f938aa958c4ea5c2db49a5b7fce42",
+            "metadata_sha256": "c7b848f1f6e37ae8013ae09c17c0fc074793dbb708ad7f49c0f17d63dcefd1fc"
+          },
+          {
+            "identity": {
+              "name": "acrylonitrile-butadiene-styrene copolymer production",
+              "reference product": "acrylonitrile-butadiene-styrene copolymer",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "117a1e93a762385dd15c23d9644686993d9d3b3e131c75f88bbf5c20516583f2",
+            "metadata_sha256": "7c1f9454cafa9eaae13958eeb9373b5a177dc51ef37c93cc9268db0afeda15f9"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "568f28b1cc79248f76eaf9aaed13302e524740ec230ae32579bf97a1083d4f46",
+            "metadata_sha256": "08a2f3cf7ee2dd6a8a94dc61790161b2f4c5d3f38015cb1898b8b65fa1942110"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a208c2610d35b021bfa2b8251704865a80e028828af9b18a4a40cf38565001e0",
+            "metadata_sha256": "f8d1fe4d0fa5d65ae274421796df7bbe33c0a42ea6bcd28dcb00ae135890a266"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native provide+1kgvirginABSresin, with the same three-monomer emulsion-polymerisation eco-profile lineage. Native is a complete aggregated industry profile from seven European sites; it explicitly excludes recyclable-waste and several unspecified elementary-flow entries. Source global market weights/final delivery, geography, vintage, internal uncertainty and omissions differ. Do not add monomer production or infer recycling, purity or polymer-composition credits.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "93eaa81b6ae4c53f5af660000cf3a59652edba03334ad6a82bf6ee6aa4a96640"
         }
       ]
     }

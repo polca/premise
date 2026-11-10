@@ -395,6 +395,39 @@ def test_heat_salts_keep_reviewed_reference_basis_and_warnings_in_cache(
     assert resolved.activities == before
 
 
+@pytest.mark.parametrize("index", range(12))
+def test_heat_310_utility_material_scope_and_limitations_survive_cache(tmp_path, index):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_310_utilities_materials_review.json").read_text()
+    )
+    row = review["records"][index]
+    resolved = graph(row["source"], version="3.10")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2
+        assert all(edge[k] == v for k, v in row["target"].items())
+        diagnostics = [
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+            and d["details"]["review_path"]
+            == "export/uvek_heat_310_utilities_materials_review.json"
+        ]
+        assert diagnostics
+        assert all(
+            d["details"]["limitations"] == row["limitations"] for d in diagnostics
+        )
+    assert resolved.activities == before
+
+
 def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource

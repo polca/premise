@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "four_of_thirty_eight_observed3_10cases_qualified_thirty_four_pending",
+  "status": "sixteen_of_thirty_eight_observed3_10cases_qualified_twenty_two_pending",
   "context": "Later3.10cohort exposed after all14initial3.9cases qualified; publicheatgate remains closed.",
   "identified_cases": 38,
   "previously_scoped_rules": 16,
@@ -27,7 +27,7 @@
   "cases": [
     {
       "rule_id": "bp-657f6ad4eabd8846",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -91,7 +91,20 @@
           ]
         }
       },
-      "source_producer_witness_count": 9
+      "source_producer_witness_count": 9,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "GLO",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "limitations": [
+        "The actual sourceGLOmarket group supplies low-voltage electricity through regional market services. Native supplies+1kWhlow-voltage electricity at the same declared regional label through its complete installed grid. Use that complete grid once, including its actual generation, voltage transformation, losses, infrastructure and direct emissions. Source and native regional portfolios, trade treatment, loss allocations and vintage differ; source market shares are not reconstructed.",
+        "Native prose contains conflicting generation-only versus distribution/loss descriptions; retain the actual inventory topology rather than infer a loss multiplier from prose. Signed native exchanges are preserved. No extra voltage-conversion, grid infrastructure, generation mix or avoided-electricity credit is added by this correspondence.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-0011da9202e829d4",
@@ -266,7 +279,7 @@
     },
     {
       "rule_id": "bp-4529f104ab14ba19",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -330,11 +343,24 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Steel, electric, chromium steel 18/8, at plant",
+        "reference product": "Steel, electric, chromium steel 18/8, at plant",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "Both actual3.10steel producers use iron scrap as the iron-bearing input, with ferrochromium0.26471kg and ferronickel0.32kg per reference kg, matching the native electric18/8service alloy inputs. The source generic prose mentions pig iron but no pig-iron exchange exists. Retain the electric scrap-based native process; the inspected native converter alternative consumes pig iron and is not the closer material-route match.",
+        "Both provide nominal18/8stainless steel, but source scrap draw, EAF/AOD refining, alloy composition, residue treatment, energy, allocation, geography and vintage differ. Use the complete native electric18/8producer once. Source market weights and final freight are not reconstructed; no alloy/purity multiplier or invented primary-metal credit is added. Preserve the earlier3.12effective approval and shared warning exactly.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-90d9ae3ee389f465",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -399,7 +425,19 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Cast iron, at plant",
+        "reference product": "Cast iron, at plant",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "The source cast-iron producers and native EUelectric-furnace casting service describe35%scrap and65%pig iron as iron feed. Actual references are+1kgcast iron. Use the complete native casting inventory without rebalancing melt feed or forcing a yield factor. Source market shares/final delivery are not reconstructed; source/native yields, emissions, electricity, allocation, vintage and uncertainty differ.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-4a9a4566f35ab410",
@@ -535,7 +573,7 @@
     },
     {
       "rule_id": "bp-02c0322dff7270a9",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -599,7 +637,19 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Polypropylene, granulate, at plant",
+        "reference product": "Polypropylene, granulate, at plant",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "Source market supplies virgin polypropylene granulate; the inspected native EUproduction-mix eco-profile supplies the same nominal virgin polymer per kg, including propylene, energy, feedstock transport and waste treatment. Native2026retains its2023methane-emission update. Source global producer/final-delivery shares, technology weights, vintage, internal uncertainty and emissions differ. Do not add polymerisation, a recycled-content credit or a purity factor on top of the complete native product.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-25c33488414236c6",
@@ -735,7 +785,7 @@
     },
     {
       "rule_id": "bp-f5891204a3feaf32",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -800,11 +850,24 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "limitations": [
+        "The actual sourceRERmarket group supplies low-voltage electricity through regional market services. Native supplies+1kWhlow-voltage electricity at the same declared regional label through its complete installed grid. Use that complete grid once, including its actual generation, voltage transformation, losses, infrastructure and direct emissions. Source and native regional portfolios, trade treatment, loss allocations and vintage differ; source market shares are not reconstructed.",
+        "Native prose contains conflicting generation-only versus distribution/loss descriptions; retain the actual inventory topology rather than infer a loss multiplier from prose. Signed native exchanges are preserved. No extra voltage-conversion, grid infrastructure, generation mix or avoided-electricity credit is added by this correspondence.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-29a5a345f9b595ed",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -869,11 +932,23 @@
           ]
         }
       },
-      "source_producer_witness_count": 1
+      "source_producer_witness_count": 1,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Silicone product, at plant",
+        "reference product": "Silicone product, at plant",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "Source and native silicone-product inventories both describe an average of about2000products derived from two integrated production sites. This is the same broad generic product function, not an exact silicone formulation. Keep the complete installed generic inventory per kg without inventing monomer, filler or concentration corrections. Source market freight, plant weighting, geography, upstream supply, allocation, grade, vintage and internal uncertainty remain differences.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-1979ee200d36825e",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -937,11 +1012,23 @@
           ]
         }
       },
-      "source_producer_witness_count": 4
+      "source_producer_witness_count": 4,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Platinum, at regional storage",
+        "reference product": "Platinum, at regional storage",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "The actual source market combines refined platinum from South African and Russian primary routes and recovered European catalyst platinum. Native provides a complete European regional-storage mix of primary platinum fromZA/RUand secondaryRERmetal, based on older market shares. Both reference+1kgplatinum, but source/native primary-secondary shares, PGMco-production allocation, refinery/purity boundaries, transport, geography, vintage and uncertainty differ. Keep the complete native consumer mix once; do not reconstruct source shares, apply a purity factor or add an avoided-mining/recycling credit.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-c8d707ac24ebb7e4",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1006,11 +1093,23 @@
           ]
         }
       },
-      "source_producer_witness_count": 1
+      "source_producer_witness_count": 1,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "GLO",
+        "name": "Carbon black, at plant",
+        "reference product": "Carbon black, at plant",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "Source producer and native each provide+1kgsolid carbon black from an oil-furnace route. Both retain substantial estimated operating/emission data; native explicitly has incomplete air/water emissions and omits solid wastes. Source Gendorf2016model versus older native process estimates, utilities, feedstock yield, market delivery, internal uncertainty and vintage differ. Do not repair native yield, add unspecified missing wastes or claim a complete score.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-f1bc637c4fcf6060",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1074,7 +1173,19 @@
           ]
         }
       },
-      "source_producer_witness_count": 1
+      "source_producer_witness_count": 1,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "CH",
+        "name": "Water, deionised, at plant",
+        "reference product": "Water, deionised, at plant",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "The actual3.10market producer delivers+1kgdeionised water by ion exchange. Native uses cation/anion exchangers and regeneration at a stated quality near1uS/cm, with specified raw-water quality and plant-size limits. Use the complete native process per signed kg without a density or purity conversion. Feedwater, regeneration, conductivity, process size, geography, delivery, internal uncertainty and vintage remain screening differences. Reverse osmosis, distillation or ultrapure-specific performance is not inferred. Preserve the earlier3.9effective decision and shared review exactly.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-8c0c3d9ada2ea3db",
@@ -1562,7 +1673,7 @@
     },
     {
       "rule_id": "bp-3f19534eb7d97f64",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1626,7 +1737,20 @@
           ]
         }
       },
-      "source_producer_witness_count": 12
+      "source_producer_witness_count": 12,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "ENTSO-E",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "limitations": [
+        "The actual sourceENTSO-Emarket group supplies low-voltage electricity through regional market services. Native supplies+1kWhlow-voltage electricity at the same declared regional label through its complete installed grid. Use that complete grid once, including its actual generation, voltage transformation, losses, infrastructure and direct emissions. Source and native regional portfolios, trade treatment, loss allocations and vintage differ; source market shares are not reconstructed.",
+        "Native prose contains conflicting generation-only versus distribution/loss descriptions; retain the actual inventory topology rather than infer a loss multiplier from prose. Signed native exchanges are preserved. No extra voltage-conversion, grid infrastructure, generation mix or avoided-electricity credit is added by this correspondence.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-fa8c66186468f780",
@@ -1708,7 +1832,7 @@
     },
     {
       "rule_id": "bp-a3a951644bd5ed9c",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1772,7 +1896,19 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Transport, freight, rail",
+        "reference product": "Transport, freight, rail",
+        "unit": "ton kilometer"
+      },
+      "limitations": [
+        "Source market provides one net tonne-kilometre of European goods transport using electric and diesel rail services. Native includes complete average electric/diesel freight operation, shunting, vehicles and track infrastructure. Use factor+1per declared tonne-kilometre; infrastructure gross-tonne-kilometre allocation is internal and does not imply a caller net/gross mass conversion. Source traction shares, loading, routing, final service mix, geography, infrastructure allocation, energy, vintage and uncertainty differ. Do not add an extra train, track or shunting inventory.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-af6afa89d820eabb",
@@ -1976,7 +2112,7 @@
     },
     {
       "rule_id": "bp-e1c5c137f358792d",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -2040,7 +2176,19 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+        "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "Source and native provide+1kgvirginABSresin, with the same three-monomer emulsion-polymerisation eco-profile lineage. Native is a complete aggregated industry profile from seven European sites; it explicitly excludes recyclable-waste and several unspecified elementary-flow entries. Source global market weights/final delivery, geography, vintage, internal uncertainty and omissions differ. Do not add monomer production or infer recycling, purity or polymer-composition credits.",
+        "Only exact independently inspected ecoinvent3.10cutoff is added. Preserve signed caller quantities, formulas, supported uncertainty, separate exchanges and ownership at factor+1 in the same declared unit. Complete native supplier inventories remain unchanged. Native upstream biosphere exclusions remain explicit; score effects are unquantified and no LCIA equivalence or impact completeness is claimed. No other-release, inverse or cross-system-model approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-1e230d3b1905d774",
@@ -2529,8 +2677,8 @@
     }
   ],
   "later_cohorts": "unproven",
-  "qualified_cases": 4,
-  "pending_cases": 34,
+  "qualified_cases": 16,
+  "pending_cases": 22,
   "additional_helper_input_qualifications": 2,
-  "verification": "docs/development/uvek-heat-salts-verification.json"
+  "verification": "docs/development/uvek-heat-310-utilities-verification.json"
 }
