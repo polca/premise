@@ -442,3 +442,12 @@ from a reference sign, confidence or product-name similarity. First isolate the
 fuels dependency subset, review common materials/services by physical category,
 and correct the wrong matches in Brightpath data. The already qualified sectors
 must retain their closed approvals and regression evidence.
+
+The isolated fuels preparation narrows its first refusal to **15 operations in
+the 3.12 cut-off cohort**, rather than the all-sector cohort above. Review these
+as product/reference-basis, utility delivery, waste-service and metal-boundary
+groups. In particular, pure zinc must not silently become zinc concentrate, and
+low-pressure delivered gas must not silently become gas at production. Existing
+reviewed gas/water/wastewater helpers may be reusable only after confirming their
+actual profile and inventory scope. Fuels preparation has not succeeded yet;
+its shared constructor's family/biosphere routing also remains pending.
