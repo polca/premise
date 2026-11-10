@@ -58,7 +58,6 @@ def test_brightway():
         key=key,
         system_model="EN15804",
         biosphere_name=bio_db,
-        inventory_backend="compact",
     )
 
     ndb.update()

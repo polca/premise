@@ -5,8 +5,8 @@ Inspecting and modifying inventories
    :local:
    :depth: 1
 
-The examples below use ``inventory_backend="compact"`` when creating
-``NewDatabase``. Use this backend for the transaction example.
+``NewDatabase`` always uses compact storage and CLIC inventories. There are no
+constructor arguments for selecting another backend or inventory provider.
 
 Premise 2.5 stores inventories in ``InventoryStore``. Mutable inventory lists
 are no longer exposed on ``NewDatabase`` or retained in active scenario
@@ -70,9 +70,9 @@ The bundle contains:
 
 Checkpoint writes use a sibling temporary directory and replacement; every
 file is verified before a bundle is opened. Store schema versions are
-independent from the historical pickle cache schema. Existing
-``inventory_backend="legacy"`` and ``inventory_backend="compact"`` calls remain
-accepted. Both backends apply the same validation rules.
+independent from the historical pickle cache schema. ``NewDatabase`` always
+creates compact stores; the low-level legacy store remains available for
+compatibility checks.
 
 
 Automatic scenario cache expiry

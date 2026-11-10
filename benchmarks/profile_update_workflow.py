@@ -101,9 +101,6 @@ def main():
     parser.add_argument("--export", action="store_true")
     parser.add_argument("--capture", action="store_true")
     parser.add_argument("--scenario", action="append", metavar="MODEL:PATHWAY:YEAR")
-    parser.add_argument(
-        "--inventory-backend", choices=("legacy", "compact"), default="legacy"
-    )
     args = parser.parse_args()
     specs = args.scenario or [
         "image:SSP2-M:2030",
@@ -126,7 +123,7 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     configuration = {
         "scenarios": scenarios,
-        "inventory_backend": args.inventory_backend,
+        "inventory_backend": "compact",
         "source": "ecoinvent-3.12-cutoff",
         "biosphere": "ecoinvent-3.12-biosphere",
         "keep_imports_uncertainty": True,
@@ -160,7 +157,6 @@ def main():
                     source_version="3.12",
                     biosphere_name="ecoinvent-3.12-biosphere",
                     key=key,
-                    inventory_backend=args.inventory_backend,
                     keep_imports_uncertainty=True,
                     keep_source_db_uncertainty=False,
                     generate_reports=True,

@@ -37,7 +37,6 @@ indicate the database name in `source_db` and its version in `source_version`:
         source_db="ecoinvent-3.12-cutoff",
         source_version="3.12",
         system_model="cutoff",
-        inventory_backend="compact",
         biosphere_name=os.environ["PREMISE_BIOSPHERE"],
         key=os.environ["PREMISE_KEY"],
         keep_imports_uncertainty=True, # True by default, set to False to drop uncertainty in additional inventories
@@ -149,7 +148,6 @@ those files in `source_file_path`, as well as indicate the database format in
         source_file_path=r"C:\file\path\to\ecoinvent 3.12_cutoff_ecoSpold02\datasets",
         source_version="3.12",
         system_model="cutoff",
-        inventory_backend="compact",
         biosphere_name=os.environ["PREMISE_BIOSPHERE"],
     )
 

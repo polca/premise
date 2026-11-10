@@ -49,7 +49,6 @@ def test_update_with_interpolated_iam_year():
         system_model=system_model,
         biosphere_name=bio_db,
         generate_reports=False,
-        inventory_backend="compact",
     )
 
     try:

@@ -109,7 +109,6 @@ gates.
 ```console
 PYTHONHASHSEED=0 python benchmarks/profile_new_database.py \
   --model remind --pathway SSP1-NPi \
-  --inventory-backend compact \
   --output /tmp/premise-profile.json
 ```
 
@@ -121,7 +120,7 @@ capture. RSS is sampled every 50 ms with `psutil` and cross-checked against
 
 ### Compact InventoryStore pass
 
-The IMAGE SSP2-M 2050 diagnostic uses `inventory_backend="compact"`, fixes
+The IMAGE SSP2-M 2050 diagnostic uses compact storage, fixes
 `PYTHONHASHSEED=0`, and includes the full all-sector update and compact
 checkpoint write. The table below is retained as the historical
 compact-versus-legacy migration measurement.
@@ -470,7 +469,6 @@ database names):
 PYTHONHASHSEED=0 PREMISE_KEY=... python benchmarks/compare_build_outputs.py build \
   --output-dir /tmp/equivalence/baseline \
   --label baseline --revision 691ec672 \
-  --inventory-backend compact \
   --database-name premise-equivalence-baseline
 
 python benchmarks/compare_build_outputs.py compare \

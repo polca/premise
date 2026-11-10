@@ -240,9 +240,6 @@ def parse_args():
     parser.add_argument("--biosphere", default="ecoinvent-3.12-biosphere")
     parser.add_argument("--system-model", default="cutoff")
     parser.add_argument(
-        "--inventory-backend", choices=["legacy", "compact"], default="legacy"
-    )
-    parser.add_argument(
         "--scenario",
         action="append",
         metavar="MODEL:PATHWAY:YEAR",
@@ -338,7 +335,6 @@ def main():
                     system_model=args.system_model,
                     biosphere_name=args.biosphere,
                     key=key,
-                    inventory_backend=args.inventory_backend,
                     use_cached_database=args.use_cached_database,
                     use_cached_inventories=args.use_cached_inventories,
                     generate_reports=True,

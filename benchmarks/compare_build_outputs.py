@@ -111,9 +111,6 @@ def parse_args() -> argparse.Namespace:
     build.add_argument("--model", default="image")
     build.add_argument("--pathway", default="SSP2-M")
     build.add_argument("--year", type=int, default=2050)
-    build.add_argument(
-        "--inventory-backend", choices=("compact", "legacy"), default="compact"
-    )
     build.add_argument("--database-name")
     build.add_argument("--sample-details", action="store_true")
 
@@ -450,7 +447,6 @@ def build_snapshot(args: argparse.Namespace) -> None:
         keep_source_db_uncertainty=False,
         generate_reports=False,
         quiet=True,
-        inventory_backend=args.inventory_backend,
     )
     ndb.update()
     scenario_database = ndb.materialize_inventory(restore_metadata=True)
@@ -490,7 +486,7 @@ def build_snapshot(args: argparse.Namespace) -> None:
             "model": args.model,
             "pathway": args.pathway,
             "year": args.year,
-            "inventory_backend": args.inventory_backend,
+            "inventory_backend": "compact",
         },
         "environment": {
             "python": sys.version,

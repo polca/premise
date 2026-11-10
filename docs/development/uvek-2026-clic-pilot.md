@@ -100,9 +100,9 @@ inherit ecoinvent filters. This does not establish sector support by itself:
 several non-pilot IAM technologies and native nuclear fuel specifications still
 lack reviewed definitions.
 
-The public constructor accepts `source_family="uvek"`, `source_version="2026"`,
-`inventory_source="clic"` and the installed canonical `biosphere_name`. It
-validates these axes independently, preserves bundle provenance and distinguishes
+The public constructor accepts `source_family="uvek"`, `source_version="2026"` and
+the installed canonical `biosphere_name`. CLIC inventories and compact
+storage are selected automatically. It validates these axes independently, preserves bundle provenance and distinguishes
 source-template selection (the reviewed ecoinvent 3.12 ledger) from conversion's
 actual destination. Source caches include family, biosphere and source revision;
 retained/user cohorts retain their policy and portable audit references. Other

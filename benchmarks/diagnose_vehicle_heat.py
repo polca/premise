@@ -205,7 +205,6 @@ def main():
                     source_version="3.12",
                     biosphere_name="ecoinvent-3.12-biosphere",
                     key=key,
-                    inventory_backend="legacy",
                     generate_reports=False,
                     keep_imports_uncertainty=True,
                     keep_source_db_uncertainty=False,

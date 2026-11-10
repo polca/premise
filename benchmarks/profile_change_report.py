@@ -37,9 +37,6 @@ def main():
     parser.add_argument("--read-only-checkpoints", action="store_true")
     parser.add_argument("--scenarios-file", type=Path)
     parser.add_argument("--biosphere", default="ecoinvent-3.12-biosphere")
-    parser.add_argument(
-        "--inventory-backend", choices=("legacy", "compact"), default="compact"
-    )
     args = parser.parse_args()
     import premise
     from premise.inventory_store import InventoryStore, ReadOnlyInventoryStore
@@ -66,7 +63,6 @@ def main():
             source_version="3.12",
             biosphere_name=args.biosphere,
             key=key.encode(),
-            inventory_backend=args.inventory_backend,
             generate_reports=False,
             quiet=True,
         )

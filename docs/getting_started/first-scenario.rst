@@ -8,8 +8,8 @@ Before running
 ----------------
 
 Complete :doc:`preparation` first, including the preflight checks.
-This is an executable example requiring licensed inputs. It uses
-``inventory_backend="compact"``; the constructor default remains ``legacy``.
+This is an executable example requiring licensed inputs. ``NewDatabase`` always
+uses compact storage and selects CLIC inventories for the requested updates.
 
 Install :doc:`installation`. Prepare a Brightway project containing the
 source database and its biosphere. Obtain the encrypted IAM file and its key.

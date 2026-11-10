@@ -67,9 +67,6 @@ def main():
     parser.add_argument("--source-version", default="3.12")
     parser.add_argument("--biosphere", default="biosphere")
     parser.add_argument(
-        "--inventory-backend", choices=("legacy", "compact"), default="legacy"
-    )
-    parser.add_argument(
         "--output",
         type=Path,
         default=ROOT
@@ -105,7 +102,7 @@ def main():
         "profiled": args.profile,
         "keep_imports_uncertainty": True,
         "keep_source_db_uncertainty": True,
-        "inventory_backend": args.inventory_backend,
+        "inventory_backend": "compact",
         "stages": [],
     }
 
@@ -144,7 +141,6 @@ def main():
         key=key,
         keep_imports_uncertainty=True,
         keep_source_db_uncertainty=True,
-        inventory_backend=args.inventory_backend,
         generate_reports=False,
     )
     timed("update", ndb.update)

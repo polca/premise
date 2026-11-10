@@ -1,3 +1,9 @@
+.. note::
+
+   Commands and backend selections below record historical measurements.
+   The current ``NewDatabase`` always uses compact storage and CLIC inventories;
+   ``inventory_backend`` and ``inventory_source`` are no longer constructor arguments.
+
 
 Runtime and resident-memory optimization
 ==========================================

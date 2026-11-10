@@ -253,7 +253,7 @@ def test_ecospold_constructor_does_not_check_biosphere_database(
     assert obj.system_model == system_model
 
 
-def test_constructor_clears_importer_state_after_inventory_cache_miss(monkeypatch):
+def test_constructor_defers_clic_inventory_import(monkeypatch):
     calls = {"clear_inventory_importer_state": 0}
 
     def fake_find_cached_db(self, db_name):
@@ -294,7 +294,7 @@ def test_constructor_clears_importer_state_after_inventory_cache_miss(monkeypatc
         staticmethod(fake_clear_inventory_importer_state),
     )
 
-    NewDatabase(
+    obj = NewDatabase(
         scenarios=[
             {
                 "model": "image",
@@ -309,7 +309,11 @@ def test_constructor_clears_importer_state_after_inventory_cache_miss(monkeypatc
         quiet=True,
     )
 
-    assert calls["clear_inventory_importer_state"] == 1
+    assert calls["clear_inventory_importer_state"] == 0
+    assert obj.inventory_source == "clic"
+    assert obj._clic_provider is not None
+    assert obj._clic_loaded_sectors == set()
+    assert obj._source_inventory_store.backend_name == "compact"
 
 
 def test_check_presence_biosphere_database_is_noninteractive(monkeypatch):
@@ -1092,7 +1096,7 @@ def test_compact_source_checkpoint_is_invalidated_with_underlying_caches(
     assert obj._find_compact_source_checkpoint("source-db") is None
 
 
-def test_constructor_marks_database_complete_after_inventory_cache_miss(monkeypatch):
+def test_constructor_keeps_compact_source_without_eager_workbook_import(monkeypatch):
     def fake_find_cached_db(self, db_name):
         self.database_cache_filepath = Path("db-cache.pickle")
         self.database_metadata_cache_filepath = Path("db-metadata.pickle")
@@ -1142,10 +1146,9 @@ def test_constructor_marks_database_complete_after_inventory_cache_miss(monkeypa
     )
 
     assert obj._database_is_complete is True
-    assert obj._can_reload_original_database() is True
+    assert obj._can_reload_original_database() is False
     assert obj.materialize_inventory() == [
         {"name": "base", "exchanges": []},
-        {"name": "inventory", "exchanges": []},
     ]
     with pytest.raises(AttributeError, match="NewDatabase.database was removed"):
         _ = obj.database

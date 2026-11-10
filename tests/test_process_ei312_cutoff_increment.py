@@ -54,7 +54,6 @@ def test_increment():
         key=key,
         system_model=system_model,
         biosphere_name=bio_db,
-        inventory_backend="compact",
     )
 
     sectors = {

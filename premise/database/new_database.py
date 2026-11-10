@@ -699,15 +699,13 @@ class NewDatabase:
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
-        inventory_backend: Literal["compact", "legacy"] = "legacy",
         cleanup_expired_caches: bool = True,
-        inventory_source: Literal["workbooks", "clic"] = "workbooks",
         inventory_recipe=None,
         clic_options=None,
         source_family: Literal["ecoinvent", "uvek"] = "ecoinvent",
     ) -> None:
         """
-        Initialize the NewDatabase class.
+        Initialize a compact inventory store with lazily selected CLIC inventories.
 
         :param scenarios: list of IAM scenarios to use.
         :param source_version: ecoinvent database version. Default is "3.12".
@@ -730,14 +728,9 @@ class NewDatabase:
             It must match a biosphere database in the current Brightway project
             only when exporting to Brightway. Default is "biosphere3".
         :param generate_reports: whether to generate change and summary reports. Default is True.
-        :param inventory_backend: inventory storage implementation. ``"compact"``
-            is the production and certification-performance path; ``"legacy"``
-            remains available as a compatibility and differential-testing oracle.
         :param cleanup_expired_caches: Remove managed scenario checkpoints unused
             for more than 24 hours at startup, only when no other NewDatabase
             instance is alive. Unmarked legacy caches are never expired.
-        :param inventory_source: ``"clic"`` lazily selects required CLIC inventories
-            when sectors are updated; ``"workbooks"`` uses the legacy bundled provider.
         :param inventory_recipe: Optional JSON/YAML CLIC version recipe or lockfile.
         :param clic_options: CLIC archive, cache, freshness, and migration options.
         :param source_family: Background publisher. UVEK requires release 2026,
@@ -746,15 +739,7 @@ class NewDatabase:
         self._inventory_api_active = False
         self.sector_update_methods = None
         self.source = source_db
-        if inventory_source not in {"workbooks", "clic"}:
-            raise ValueError("inventory_source must be 'workbooks' or 'clic'.")
-        if inventory_source != "clic" and (
-            inventory_recipe is not None or clic_options is not None
-        ):
-            raise ValueError(
-                "inventory_recipe and clic_options require inventory_source='clic'."
-            )
-        self.inventory_source = inventory_source
+        self.inventory_source = "clic"
         self._clic_provider = None
         self._clic_manifest = None
         self._clic_lockfile = None
@@ -763,12 +748,11 @@ class NewDatabase:
         self._clic_semantic_fingerprint = None
         self._clic_source_store_fingerprint = None
         self._clic_use_cache = use_cached_inventories
-        if inventory_source == "clic":
-            from ..inventory.clic import ClicInventoryProvider
+        from ..inventory.clic import ClicInventoryProvider
 
-            self._clic_provider = ClicInventoryProvider(
-                recipe=inventory_recipe, options=clic_options
-            )
+        self._clic_provider = ClicInventoryProvider(
+            recipe=inventory_recipe, options=clic_options
+        )
         from .background import resolve_source_background
 
         self.background = resolve_source_background(
@@ -778,10 +762,9 @@ class NewDatabase:
         self.biosphere_version = self.background.biosphere_version
         self.version = self.background.version
         if self.source_family == "uvek":
-            if inventory_source != "clic" or source_type != "brightway":
+            if source_type != "brightway":
                 raise ValueError(
-                    "The UVEK 2026 pilot requires inventory_source='clic' and "
-                    "source_type='brightway'."
+                    "The UVEK 2026 pilot requires source_type='brightway'."
                 )
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
@@ -811,12 +794,8 @@ class NewDatabase:
         self._change_report_cache: ChangeReportCacheEntry | None = None
         self._last_change_report_artifacts: ChangeReportArtifacts | None = None
         self._automatic_report_in_progress = False
-        if inventory_backend not in {"compact", "legacy"}:
-            raise ValueError("inventory_backend must be either 'compact' or 'legacy'.")
-        self.inventory_backend = inventory_backend
-        # Critical methodological certification has no public off switch. The
-        # compact backend is the production/performance path; legacy remains a
-        # compatibility and output-equivalence oracle under the same contract.
+        self.inventory_backend = "compact"
+        # Critical methodological certification has no public off switch.
         self._validation_enabled = True
         self._validation_reports = {}
         self._validation_iam_fingerprints = {}
@@ -900,138 +879,32 @@ class NewDatabase:
                     scenario["external scenarios"]
                 )
 
-        compact_cache_hit = None
-        compact_cache_eligible = (
-            self.inventory_backend == "compact"
-            and self.inventory_source == "workbooks"
-            and use_cached_database
-            and use_cached_inventories
-            and self.additional_inventories is None
-        )
-        if compact_cache_eligible:
-            compact_cache_hit = self._find_compact_source_checkpoint(source_db)
-
-        imported_inventory_data = False
-        if compact_cache_hit is not None:
-            checkpoint, cache_refs = compact_cache_hit
-            print("- Opening compact source database")
-            self.database_cache_filepath = cache_refs["source"]
-            self.database_metadata_cache_filepath = cache_refs["source_metadata"]
-            self.inventories_cache_filepath = cache_refs["inventories"]
-            self.inventories_metadata_cache_filepath = cache_refs[
-                "inventories_metadata"
-            ]
+        print("- Extracting source database")
+        if use_cached_database:
+            self._database = self.__find_cached_db(source_db)
             for scenario in self.scenarios:
                 scenario["database metadata cache filepath"] = (
                     self.database_metadata_cache_filepath
                 )
-                scenario["inventories metadata cache filepath"] = (
-                    self.inventories_metadata_cache_filepath
-                )
-            self._database = None
-            self._database_is_complete = True
-            self._compact_source_checkpoint = checkpoint
         else:
-            print("- Extracting source database")
-            if use_cached_database:
-                self._database = self.__find_cached_db(source_db)
-                for scenario in self.scenarios:
-                    scenario["database metadata cache filepath"] = (
-                        self.database_metadata_cache_filepath
-                    )
-            else:
-                self._database = self.__clean_database()
+            self._database = self.__clean_database()
 
-            print("- Extracting inventories")
-            if self.inventory_source == "clic":
-                # Sector requirements are known at update(), before any scenario
-                # fork or baseline certification. Never eagerly import a catalog.
-                self._database_is_complete = True
-            elif use_cached_inventories:
-                data = self.__find_cached_inventories(source_db)
-                for scenario in self.scenarios:
-                    scenario["inventories metadata cache filepath"] = (
-                        self.inventories_metadata_cache_filepath
-                    )
-                if data is not None:
-                    self._database.extend(data)
-                else:
-                    imported_inventory_data = True
-                # A cache miss imports inventories directly into ``self._database``
-                # before replacing the imported tail with the trimmed cached
-                # representation, so the inventory coverage is complete in both the
-                # hit and miss cases here and the original form can be reloaded from
-                # cache when needed.
-                self._database_is_complete = True
-            else:
-                self.__import_inventories()
-                imported_inventory_data = True
-                self._database_is_complete = True
-
-        if self.additional_inventories and self.inventory_source == "workbooks":
-            print("- Importing additional inventories")
-            data = self.__import_additional_inventories(self.additional_inventories)
-            self._database.extend(data)
-            imported_inventory_data = True
-
-        if imported_inventory_data:
-            self._clear_inventory_importer_state()
+        # CLIC resolves the requested sector inventories at update(), before
+        # scenario forks. Additional inventories join that same preparation.
+        self._database_is_complete = True
 
         print("- Fetching IAM data")
         for scenario in self.scenarios:
             _fetch_iam_data(scenario)
 
-        if self._compact_source_checkpoint is not None:
-            try:
-                self._source_inventory_store = InventoryStore.open(
-                    self._compact_source_checkpoint
-                )
-            except (InventoryStoreCorruptionError, InventoryStoreVersionError):
-                # The versioned pickle caches remain the source of truth. A
-                # partial or corrupt compact derivative is rebuilt wholesale.
-                if compact_cache_hit is None:  # pragma: no cover - invariant guard
-                    raise InventoryStoreError(
-                        "A compact checkpoint was selected without cache references."
-                    )
-                _, cache_refs = compact_cache_hit
-                self._database = self._load_compact_source_cache_payload(cache_refs)
-                _normalize_inventory_before_certification(self._database)
-                self._source_inventory_store = create_inventory_store(
-                    self._database,
-                    backend="compact",
-                    scenario_identity="source",
-                    take_ownership=True,
-                    compute_fingerprints=True,
-                )
-                self._compact_source_checkpoint = self._write_compact_source_checkpoint(
-                    source_db, self._source_inventory_store
-                )
-                self._source_inventory_store = None
-                self._database = None
-                gc.collect()
-                self._source_inventory_store = InventoryStore.open(
-                    self._compact_source_checkpoint
-                )
-        else:
-            _normalize_inventory_before_certification(self._database)
-            self._source_inventory_store = create_inventory_store(
-                self._database,
-                backend=self.inventory_backend,
-                scenario_identity="source",
-                take_ownership=True,
-                compute_fingerprints=True,
-            )
-            if compact_cache_eligible:
-                self._compact_source_checkpoint = self._write_compact_source_checkpoint(
-                    source_db, self._source_inventory_store
-                )
-                if self._compact_source_checkpoint is not None:
-                    self._source_inventory_store = None
-                    self._database = None
-                    gc.collect()
-                    self._source_inventory_store = InventoryStore.open(
-                        self._compact_source_checkpoint
-                    )
+        _normalize_inventory_before_certification(self._database)
+        self._source_inventory_store = create_inventory_store(
+            self._database,
+            backend="compact",
+            scenario_identity="source",
+            take_ownership=True,
+            compute_fingerprints=True,
+        )
         # The mutable extraction list is an implementation detail only.  From
         # this point onward all scenario ownership goes through InventoryStore.
         self._database = None

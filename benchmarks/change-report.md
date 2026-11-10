@@ -40,8 +40,8 @@ checkpoint data is identical for both implementations.
 
 The benchmark defaults to `PYTHONHASHSEED=0` in a fresh interpreter. This also
 makes the reference implementation's floating-point sums over sets reproducible.
-Use `--scenarios-file` with a JSON array of scenario dictionaries and
-`--inventory-backend legacy` when capturing the four-scenario export workload.
+Use `--scenarios-file` with a JSON array of scenario dictionaries when capturing
+the four-scenario export workload. Storage is always compact.
 `profile_simapro_workflow.py` measures the complete build and SimaPro workflow.
 
 Worker profiles are saved separately under `workers/` when `--profile` is used.

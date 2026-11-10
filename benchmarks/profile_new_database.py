@@ -8,7 +8,6 @@ project.
 Example
 -------
 PREMISE_KEY=... python benchmarks/profile_new_database.py \
-    --inventory-backend compact \
     --output /tmp/premise-profile.json \
     --pstats /tmp/premise-profile.pstats
 """
@@ -264,9 +263,6 @@ def parse_args() -> argparse.Namespace:
         help="Repeat to benchmark multiple scenarios sharing one source build.",
     )
     parser.add_argument(
-        "--inventory-backend", choices=("compact", "legacy"), default="compact"
-    )
-    parser.add_argument(
         "--sectors",
         nargs="+",
         help="Sector labels accepted by NewDatabase.update; default is all sectors.",
@@ -369,7 +365,6 @@ def main() -> None:
                 keep_source_db_uncertainty=False,
                 generate_reports=False,
                 quiet=True,
-                inventory_backend=args.inventory_backend,
             )
 
         _trace_sector_functions(
@@ -435,7 +430,7 @@ def main() -> None:
             "pathway": args.pathway,
             "year": args.year,
             "scenarios": scenario_configuration,
-            "inventory_backend": args.inventory_backend,
+            "inventory_backend": "compact",
             "sectors": args.sectors or "all",
             "keep_imports_uncertainty": args.keep_imports_uncertainty,
             "use_cached_database": args.use_cached_database,

@@ -5,10 +5,10 @@ CLIC records. Workbooks containing licensed ecoinvent-derived recipes remain
 bundled and continue through premise's existing source profiles, migration,
 gap filling and linking. User-supplied inventories are also preserved.
 
-**Rollout is pending.** The target range now starts at ecoinvent **3.7**;
+CLIC is the standard inventory provider. The target range starts at ecoinvent **3.7**;
 3.5 and 3.6 background builds are rejected before downloading inventories.
 Older native inventory sources remain supported for migration into newer
-backgrounds. CLIC mode does not fall back to public workbook replacements.
+backgrounds. CLIC does not fall back to public workbook replacements.
 
 ## Current interface
 
@@ -18,7 +18,6 @@ from premise import NewDatabase
 database = NewDatabase(
     # Existing scenario, source database, biosphere and explicit IAM key arguments
     **build_arguments,
-    inventory_source="clic",
     clic_options={
         "cache_dir": "/path/to/private/premise-clic-cache",
         "migration_policy": "pragmatic",  # Default; all warnings are recorded.
@@ -31,8 +30,10 @@ database.write_inventory_recipe("inventory-recipe.json")
 `update` prepares inventories lazily, before the scenario is forked or certified.
 `prepare_inventories(sectors)` can prepare the same scope explicitly. Multiple
 calls expand the union of required sectors without changing canonical names.
-The legacy `inventory_source="workbooks"` default remains in place during
-development; it is not an automatic compatibility fallback inside CLIC mode.
+`NewDatabase` always uses CLIC inventories and compact storage. The
+`inventory_source` and `inventory_backend` constructor arguments have been
+removed. There is no automatic fallback to the legacy workbook provider;
+reviewed retained workbooks may still be part of the CLIC dependency plan.
 
 Pragmatic migration accepts inferred reverse routes, their aggregation/proxy
 losses, overlapping packaged rules using the engine's deterministic last-rule

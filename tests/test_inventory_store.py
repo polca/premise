@@ -1153,12 +1153,22 @@ def test_new_database_public_store_api_and_removed_database_attribute(inventory)
     assert obj._source_inventory_store.materialize()[0]["location"] == "CH"
 
 
-def test_inventory_backend_selector_remains_publicly_compatible():
+def test_inventory_implementation_selectors_are_not_public_arguments():
     import inspect
 
-    parameter = inspect.signature(NewDatabase).parameters["inventory_backend"]
-    assert parameter.default == "legacy"
+    parameters = inspect.signature(NewDatabase).parameters
+    assert "inventory_backend" not in parameters
+    assert "inventory_source" not in parameters
     assert LegacyInventoryStore([]).backend_name == "legacy"
+
+
+@pytest.mark.parametrize(
+    "removed_argument,value",
+    [("inventory_backend", "legacy"), ("inventory_source", "workbooks")],
+)
+def test_removed_inventory_selectors_are_rejected(removed_argument, value):
+    with pytest.raises(TypeError, match="unexpected keyword argument"):
+        NewDatabase([], **{removed_argument: value})
 
 
 def test_new_database_runtime_materialization_is_not_attached_to_scenario(inventory):

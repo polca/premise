@@ -21,9 +21,11 @@
 
 ## CLIC inventory development
 
-- The default remains `inventory_source="workbooks"`. The opt-in `"clic"` provider
-  prepares the selected sector dependency graph lazily before scenario forks and
-  certification. Do not silently replace failed CLIC resolution with public workbooks.
+- `NewDatabase` always uses compact storage and CLIC inventories. Do not
+  reintroduce `inventory_backend` or `inventory_source` constructor selectors.
+  The provider prepares the selected sector dependency graph lazily before
+  scenario forks and certification. Do not silently replace failed CLIC
+  resolution with public workbooks.
 - Read `docs/development/clic-inventory-pipeline.md` for architecture, recipes,
   measured development results and outstanding rollout gates. Historical results
   in that document do not substitute for validating a new change.

@@ -1,7 +1,7 @@
 """Generate drift-checked reference tables from source, without licensed inputs.
 
-Use --check in CI. The inventory table describes constructor selection, not
-post-import filtering or successful availability in a built database.
+Use --check in CI. The inventory table describes retained-workbook candidates
+for CLIC planning, not eager imports or successful availability in a build.
 """
 
 import argparse
@@ -113,7 +113,6 @@ def generate():
     names = [
         "source_version",
         "system_model",
-        "inventory_backend",
         "use_absolute_efficiency",
         "gains_scenario",
         "keep_source_db_uncertainty",

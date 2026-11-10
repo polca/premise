@@ -12,11 +12,11 @@ python benchmarks/profile_simapro_workflow.py \
 ```
 
 Defaults are ecoinvent 3.12 cutoff, its `ecoinvent-3.12-biosphere` database,
-IMAGE SSP2-M at 2030, 2040 and 2050 plus SSP2-L at 2030, all sectors, the `legacy` inventory
-backend, automatic reports enabled, import uncertainty retained, source
+IMAGE SSP2-M at 2030, 2040 and 2050 plus SSP2-L at 2030, all sectors, compact storage
+and CLIC inventories, automatic reports enabled, import uncertainty retained, source
 uncertainty removed, and caches enabled. These match the current constructor
 behavior except for the explicitly selected source and scenarios. Override
-`--project`, `--source-db`, `--biosphere`, or `--inventory-backend` as needed.
+`--project`, `--source-db`, or `--biosphere` as needed.
 Use four `--scenario MODEL:PATHWAY:YEAR` arguments to change the scenario set.
 
 The script calls `NewDatabase(...)`, `ndb.update()`, then

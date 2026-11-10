@@ -25,7 +25,6 @@ def main():
         source_db=source,
         source_version="3.12",
         system_model="cutoff",
-        inventory_backend="compact",
         biosphere_name=biosphere,
         key=os.environ["PREMISE_KEY"],
     )

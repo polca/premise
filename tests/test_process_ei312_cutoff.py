@@ -64,7 +64,6 @@ def updated_ei312_cutoff():
         system_model=system_model,
         biosphere_name=bio_db,
         generate_reports=False,
-        inventory_backend="compact",
     )
 
     ndb.update(persist=True)

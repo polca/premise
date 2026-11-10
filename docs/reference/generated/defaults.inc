@@ -7,8 +7,6 @@
      - ``'3.12'``
    * - ``system_model``
      - ``'cutoff'``
-   * - ``inventory_backend``
-     - ``'legacy'``
    * - ``use_absolute_efficiency``
      - ``False``
    * - ``gains_scenario``

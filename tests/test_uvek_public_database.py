@@ -18,11 +18,13 @@ def test_public_update_refuses_unverified_sector_before_mutation():
     owner.prepare_inventories.assert_not_called()
 
 
-def test_uvek_constructor_requires_the_supported_inventory_provider():
+def test_uvek_constructor_requires_brightway_source():
     from premise import NewDatabase
 
-    with pytest.raises(ValueError, match="requires inventory_source='clic'"):
-        NewDatabase([], source_family="uvek", source_version="2026")
+    with pytest.raises(ValueError, match="requires source_type='brightway'"):
+        NewDatabase(
+            [], source_family="uvek", source_version="2026", source_type="ecospold"
+        )
 
 
 def test_uvek_cache_separates_biosphere_database_and_source_revision(monkeypatch):
