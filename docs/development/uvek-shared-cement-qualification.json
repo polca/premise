@@ -174,5 +174,20 @@
     "black": "pass for changed files",
     "documentation_reference": "pass",
     "lint": "No new Ruff findings in changed code. Shared transformation and validation each retain four proven pre-existing findings; no unrelated cleanup."
+  },
+  "real_ecoinvent_regression": {
+    "source": "ecoinvent-3.10-cutoff",
+    "scenario": {
+      "model": "remind",
+      "pathway": "SSP2-NPi",
+      "year": 2050
+    },
+    "sectors": [
+      "cement"
+    ],
+    "update_completed": true,
+    "source_family_argument": "omitted; original ecoinvent default",
+    "validation_issues_by_severity": {},
+    "export_or_lci_claimed": false
   }
 }

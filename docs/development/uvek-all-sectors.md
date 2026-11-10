@@ -419,3 +419,8 @@ Black and documentation-reference checks pass. No new Ruff findings: the
 transformation and validation modules each retain their four committed baseline
 findings. The BAFU source still contains 11,947 records and retains modification
 time `2026-09-22T10:55:01.512934`.
+
+An additional actual licensed ecoinvent 3.10 cut-off REMIND SSP2-NPi 2050
+cement update succeeds with the original public API and default ecoinvent family.
+Its recorded cement and contract phases have no findings. This is an update
+regression, not an additional ecoinvent export/LCI certification.
