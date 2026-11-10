@@ -2382,16 +2382,25 @@
     },
     {
       "sector": "emissions",
-      "status": "native_boundary_and_real_GAINS_factor_preflight_verified_not_operational",
+      "status": "reviewed_native_gas_caller_planner_verified_full_emissions_integration_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "static_declarations_only",
-        "files": [],
-        "runtime_verified": false
+        "kind": "reviewed_native_gas_caller_bindings_planner_only",
+        "files": [
+          {
+            "path": "premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml",
+            "legacy_role_count": 55,
+            "explicit_native_role_count": 2,
+            "review": "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
+            "reviewed_caller_inputs": 127
+          }
+        ],
+        "runtime_verified": false,
+        "planner_actual_source_and_real_GAINS_verified": true
       },
       "blockers": [
         {
@@ -2423,10 +2432,13 @@
           "finding": "199 named-pollutant water/soil exchanges must remain outside the native air update. Particulate/VOC definitions need explicit review; source file names do not justify invented size bins or absolute-emission subtraction."
         }
       ],
-      "decisions": [],
+      "decisions": [
+        "Reviewed complete native gas forks per exact caller sector and emitting supplier geography; retain signed caller quantities and upstream/production inventories. Only reviewed gaseous air reductions change."
+      ],
       "implementation_commits": [],
       "tests": [
-        "35 native factor and existing emissions tests passed; real encrypted REMIND GAINS arrays replay without mutation. This is preflight, not a runtime sector update."
+        "35 native factor and existing emissions tests passed; real encrypted REMIND GAINS arrays replay without mutation. This is preflight, not a runtime sector update.",
+        "46 native emissions and existing emissions checks pass; installed real graph reproduces65variants,127callerlinks,159air changes and16signedLCIs. Full sector integration/export remains pending."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -2457,6 +2469,16 @@
         "tests_passed": 35,
         "inventory_updated": false,
         "full_public_update_or_export_verified": false
+      },
+      "native_gas_combustion_stage": {
+        "verification": "docs/development/uvek-emissions-gas-combustion-verification.json",
+        "variants": 65,
+        "modified_native_callers": 127,
+        "gaseous_air_changes": 159,
+        "tests_passed": 46,
+        "signed_finite_LCIs": 16,
+        "installed_graph_equals_checkout": true,
+        "complete_public_sector_update_verified": false
       }
     }
   ],

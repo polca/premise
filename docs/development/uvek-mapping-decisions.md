@@ -1227,3 +1227,39 @@ units. Do not infer new bin correspondences or subtract series without source
 evidence. Species/compartment and exact native GAINS sector bindings, controlled
 changes, audit/uncertainty handling and real public/installed export remain
 required. Emissions stays gated. See `uvek-emissions-preflight.json`.
+
+
+### Caller-specific native natural-gas combustion planning
+
+The new read-only combustion planner binds 127 inspected native caller inputs
+to 65 complete owned burner variants. Exact `uvek_aliases` now accompany the
+existing Power_Gen_NatGas and End_Use_Industry_NatGas definitions; all 55 legacy
+role definitions are unchanged. Electricity and allocated CHP outputs select
+power-generation factors; standalone heat plants and direct inverter-factory
+combustion select industrial-gas factors. The emitting burner's source geography
+defines the IAM region. Four RER inverter records retain their German burner
+without relocating the source inventory.
+
+Only reviewed gaseous air releases in kilograms receive positive GAINS
+reductions. Signed caller quantities, formulas and uncertainty remain literal;
+negative emission credits retain their signs. Complete upstream fuel and
+infrastructure inputs, production references, native allocation, water/soil,
+CO2, particulates, aggregate VOC and other unreviewed species remain unchanged.
+Original burners remain available to unreviewed callers and prepared CLIC/helpers.
+Literal exchange audits and source/factor checks make JSON replay idempotent;
+changed owned variants, links, aliases or audits fail before mutation.
+
+Using actual native/prepared inventories and the encrypted REMIND2050 CLE data,
+the complete virtual graph has 12,618 activities: 65 variants, 127 supplier-only
+caller changes and 159 gaseous-air changes. Independent checks retain all 199
+upstream coordinates in the variants, every original burner and all prepared records.
+Sixteen signed inventories are finite with complete links and the canonical
+biosphere; original database scientific signatures remain unchanged.
+All 46 relevant tests pass. Installed packages reproduce the complete graph
+checks and match all 280 wheel-declared resources. See
+`uvek-emissions-gas-combustion-verification.json`.
+
+This is the native gas planning component, not a complete public emissions
+update or Brightway export. Other fuels/processes, prepared foregrounds,
+particulate/aggregate-VOC definitions, callback/provenance integration and
+combined/default public export remain required. Emissions stays gated.

@@ -1,0 +1,1926 @@
+{
+  "schema_version": 1,
+  "status": "reviewed_exact_native_gas_caller_pairs_initial_component_not_full_emissions",
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "authorization": "Standing autonomous modelling approval; log decisions and preserve scientific limitations for later review.",
+  "sector_boundary_evidence": "Inspected linked native sources distinguish Electricity/Heat at CHP power plant and Electricity at power plant from standalone Heat at heat plant and inverter manufacturing. The shipped ecoinvent GAINS precedence assigns conventional natural-gas CHP to Power_Gen_NatGas. Gas burned directly in manufacturing follows End_Use_Industry_NatGas.",
+  "limitations": [
+    "Initial native natural-gas combustion planning only; other fuels, direct emissions, prepared CLIC/helpers and unreviewed callers are not updated by this component. This is not a complete emissions-sector update.",
+    "The emitting burner retains its original geography, complete fuel/infrastructure inventory and allocation. The caller function determines the GAINS sector: electricity and allocated CHP outputs use power generation; standalone heat and direct inverter-manufacturing combustion use industrial natural gas. The four RER inverter records retain the German burner geography; no relocation or new heat credit.",
+    "Apply only reviewed gaseous air reductions relative to the exact2020GAINSbase, preserving signed amounts and supported uncertainty. Water/soil, CO2, particulates, aggregate VOC and unreviewed species remain unchanged. Missing observations, zero baselines, zero targets and increases remain explicit dispositions rather than invented unity factors. Upstream technology/vintage/allocation and unquantified score limitations remain."
+  ],
+  "bindings": [
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "IN",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IN",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "IE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "LV",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "RO",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "TW",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "TW",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "CN",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CN",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "BE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "GR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "MT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "MT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "AT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "AT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "RO",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "IE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "FI",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "GB",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "FR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "LT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "US",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "US",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "JP",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "JP",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "ES",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "ES",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "BE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "RU",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "RME",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RME",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "CN",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CN",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "HR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Inverter, 5 kW,  average, at plant",
+        "reference product": "Inverter, 5 kW,  average, at plant",
+        "location": "RER",
+        "unit": "unit"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "HU",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "ENTSO-E",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "SK",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CN",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CN",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "IT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "US",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "US",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "PT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "PT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Inverter, 2.5 kW, average, at plant",
+        "reference product": "Inverter, 2.5 kW, average, at plant",
+        "location": "RER",
+        "unit": "unit"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "RU",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "TW",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "TW",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "TW",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "TW",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "KR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Inverter, 20 kW, average, at plant",
+        "reference product": "Inverter, 20 kW, average, at plant",
+        "location": "RER",
+        "unit": "unit"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "CZ",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Inverter, 10 kW, average, at plant",
+        "reference product": "Inverter, 10 kW, average, at plant",
+        "location": "RER",
+        "unit": "unit"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "JP",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "JP",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "DK",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "SI",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "EE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "PL",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "FI",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "NL",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "KR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "IE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "PT",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "PT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "LU",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "SK",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "DE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "DE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "CZ",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "MY",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "MY",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "US",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "US",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "SI",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "ES",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "ES",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "BG",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "HU",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "NL",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "HR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "SE",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "PT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "PT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "FR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "GR",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "ES",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "ES",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "IT",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at power plant",
+        "reference product": "Electricity, natural gas, at power plant",
+        "location": "GB",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "JP",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "JP",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at CHP power plant",
+        "reference product": "Electricity, natural gas, at CHP power plant",
+        "location": "BG",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    }
+  ],
+  "receipts": [
+    {
+      "name": "uvek_emissions_shared_burner_primary.private.json",
+      "sha256": "89d2885a0d352099f3b3bb3a8202fb01aef736e07fd20d0d61edcebf7c3a1567",
+      "location": "private task workspace"
+    }
+  ]
+}

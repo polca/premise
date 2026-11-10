@@ -773,6 +773,16 @@ Waste_Solid_Industrial:
     - market
   gains_aliases_IAM: Waste_Solid_Industrial
 End_Use_Industry_NatGas:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, natural gas, at heat plant
+      - Inverter, 10 kW, average, at plant
+      - Inverter, 2.5 kW, average, at plant
+      - Inverter, 20 kW, average, at plant
+      - Inverter, 5 kW,  average, at plant
   ecoinvent_aliases:
     fltr:
     - heat production, natural gas
@@ -960,6 +970,14 @@ Waste_Solid_Municipal:
     - market
   gains_aliases_IAM: Waste_Solid_Municipal
 Power_Gen_NatGas:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Electricity, natural gas, at CHP power plant
+      - Electricity, natural gas, at power plant
+      - Heat, natural gas, at CHP power plant
   ecoinvent_aliases:
     fltr:
     - natural gas, burned in solid oxide fuel cell 125kWe, future

@@ -1,0 +1,78 @@
+{
+  "status": "reviewed_native_gas_caller_planning_verified_not_public_emissions_update",
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "scenario": "real encrypted REMIND SSP2-NPi2050 CLE",
+  "implementation": "premise/emissions/uvek_combustion.py",
+  "review": "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
+  "native_GAINS_alias_roles": [
+    "Power_Gen_NatGas",
+    "End_Use_Industry_NatGas"
+  ],
+  "reviewed_gaseous_air_species": [
+    "NOx",
+    "SO2",
+    "NH3",
+    "N2O",
+    "CH4",
+    "NMVOC"
+  ],
+  "graph": {
+    "activities": 12618,
+    "new_variants": 65,
+    "modified_callers": 127,
+    "supplier_only_caller_changes": 127,
+    "gaseous_air_exchange_checks": 159,
+    "unchanged_upstream_input_checks": 199,
+    "literal_audits_and_JSON_idempotence_verified": true,
+    "complete_links_and_canonical_biosphere": true,
+    "source_scientific_contents_unchanged": true
+  },
+  "validation": {
+    "tests_passed": 46,
+    "signed_finite_LCIs_checkout": 16,
+    "signed_finite_LCIs_installed": 16,
+    "installed_and_checkout_graph_checks_identical": true,
+    "all280wheel_declared_resources_equal_checkout": true,
+    "all55existing_GAINS_legacy_role_definitions_unchanged": true,
+    "original_native_burners_and_prepared_foreground_unchanged": true
+  },
+  "decisions": [
+    "Select sector from exact reviewed caller function, retaining native CHP allocation. Standalone heat and direct inverter manufacturing use industrial gas factors; electricity and allocated CHP outputs use power-generation factors.",
+    "Use the emitting burner source geography for GAINS regions. Four RER inverter callers retain their DE burner; no physical relocation.",
+    "Fork complete source combustion inventories per sector/region; retain original production reference, upstream inputs and unreviewed uses. Relink only signed caller supplier fields.",
+    "Rescale only reviewed kilogram gaseous air emissions with positive reduction factors, preserving compatible uncertainty and literal original audits. Non-air releases, CO2, particulates, aggregate VOC and unreviewed species remain unchanged.",
+    "Validate JSON replays against source/factors, audits and existing variants; never apply a reduction twice."
+  ],
+  "remaining": [
+    "Other native fuels and process sectors, prepared CLIC/helper emissions and exact particulate/aggregate-VOC correspondences need independent review.",
+    "Integrate the family-aware native callback, sector contracts, provenance/warnings, normal public update/certification/export and combined/default installed workflow.",
+    "Public emissions gate remains closed; this component does not operationalize the complete sector."
+  ],
+  "receipts": [
+    {
+      "name": "uvek_gas_combustion_checkout_graph_verification.json",
+      "sha256": "50a6c979fe7f5b4904a02b0d6645d3071483d4e4d2137155a28a933e8f3fd03d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_gas_combustion_installed_graph_verification.json",
+      "sha256": "50a6c979fe7f5b4904a02b0d6645d3071483d4e4d2137155a28a933e8f3fd03d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_gas_combustion_installed_resources.json",
+      "sha256": "f580f4402dc4a3c9c3c751621197103eb817c75a91cc5d50f9f34468ca1dbe6f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_gas_combustion_alias_regression.json",
+      "sha256": "56939280c948ac70ef4c2a7258810046f68a1c40a2e74d91988f07e0f8a9d29a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_combustion_tests.log",
+      "sha256": "89c228b53a3ef6dd7cffad87d23027e44a3a160d7ab7e0ca04de69c648779761",
+      "location": "private task workspace"
+    }
+  ]
+}
