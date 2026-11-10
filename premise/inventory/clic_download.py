@@ -13,6 +13,7 @@ from urllib.parse import quote
 import portalocker
 import requests
 from requests.adapters import HTTPAdapter
+from tqdm.auto import tqdm
 from urllib3.util.retry import Retry
 
 from .clic_archive import ClicArchive, ClicArchiveError, ClicInventoryError
@@ -127,6 +128,7 @@ class ClicArchiveStore:
                 "record_id": record["id"],
                 "doi": record["metadata"].get("doi"),
                 "record_version": record["metadata"].get("version"),
+                "publication_date": record["metadata"].get("publication_date"),
             }
             if (
                 destination.exists()
@@ -146,12 +148,22 @@ class ClicArchiveStore:
                         response.raise_for_status()
                         digest = hashlib.sha256()
                         size = 0
-                        with temporary.open("wb") as stream:
+                        with (
+                            temporary.open("wb") as stream,
+                            tqdm(
+                                total=archive_file["size"],
+                                desc="Downloading CLIC archive",
+                                unit="B",
+                                unit_scale=True,
+                                unit_divisor=1024,
+                            ) as progress,
+                        ):
                             for block in response.iter_content(chunk_size=1024 * 1024):
                                 if block:
                                     stream.write(block)
                                     digest.update(block)
                                     size += len(block)
+                                    progress.update(len(block))
                         if (
                             digest.hexdigest() != expected_sha
                             or size != archive_file["size"]
@@ -185,6 +197,9 @@ class ClicArchiveStore:
             doi=saved.get("doi"),
             record_version=saved.get("record_version"),
         )
+        version = saved.get("record_version") or f"Zenodo record {saved['record_id']}"
+        date = archive.manifest.get("created_at") or saved.get("publication_date")
+        tqdm.write(f"CLIC archive: version {version}; date: {date or 'unavailable'}")
         return archive
 
 

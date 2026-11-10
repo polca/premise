@@ -5,6 +5,12 @@ CLIC records. Workbooks containing licensed ecoinvent-derived recipes remain
 bundled and continue through premise's existing source profiles, migration,
 gap filling and linking. User-supplied inventories are also preserved.
 
+Online builds discover the latest Zenodo release, even when an older archive is
+cached. Explicit lockfiles and offline replay retain their selected snapshot.
+Archive downloads show byte progress, transfer speed and an estimated remaining
+time. The selected archive version and date are displayed on download and cached
+reuse; the date is its creation timestamp, or its publication date when available.
+
 CLIC is the standard inventory provider. The target range starts at ecoinvent **3.7**;
 3.5 and 3.6 background builds are rejected before downloading inventories.
 Older native inventory sources remain supported for migration into newer

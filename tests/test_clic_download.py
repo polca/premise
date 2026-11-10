@@ -50,7 +50,11 @@ def remote(tmp_path):
     payload = write_archive(tmp_path / "source.zip").read_bytes()
     record = {
         "id": 42,
-        "metadata": {"doi": "10.5281/zenodo.42", "version": "today"},
+        "metadata": {
+            "doi": "10.5281/zenodo.42",
+            "version": "today",
+            "publication_date": "2026-11-10",
+        },
         "files": [
             {
                 "key": "inventory-archive.zip",
@@ -85,12 +89,96 @@ def test_freshness_checks_do_not_repeat_archive_download(tmp_path, remote):
     assert store.get(42, offline=True).datasets[1]["slug"] == "dataset-1"
 
 
+def test_download_progress_and_archive_details_on_cached_reuse(
+    tmp_path, remote, monkeypatch, capsys
+):
+    from premise.inventory import clic_download
+
+    transfers = []
+
+    class Progress:
+        def __init__(self, **kwargs):
+            self.options = kwargs
+            self.bytes = 0
+            self.closed = False
+            transfers.append(self)
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            self.closed = True
+
+        def update(self, count):
+            self.bytes += count
+
+        @staticmethod
+        def write(message):
+            print(message)
+
+    monkeypatch.setattr(clic_download, "tqdm", Progress)
+    store = ClicArchiveStore(tmp_path / "cache", session=remote)
+    store.get(42)
+    store.get(42)
+    remote.responses.clear()
+    store.get(42, offline=True)
+
+    assert len(transfers) == 1
+    progress = transfers[0]
+    assert progress.bytes == progress.options["total"] > 0
+    assert progress.options["desc"] == "Downloading CLIC archive"
+    assert progress.options["unit"] == "B"
+    assert progress.closed
+    assert (
+        capsys.readouterr().out.count("CLIC archive: version today; date: 2026-11-10")
+        == 3
+    )
+
+
 def test_public_archive_requests_suppress_shared_client_credentials(tmp_path, remote):
     ClicArchiveStore(tmp_path / "cache", session=remote).get(42)
     assert all(
         kwargs["headers"]["Authorization"] is None and kwargs["auth"] == ()
         for _, kwargs in remote.calls
     )
+
+
+def test_old_cached_pointer_without_release_metadata(tmp_path, remote, capsys):
+    store = ClicArchiveStore(tmp_path / "cache", session=remote)
+    store.get(42)
+    pointer = store.cache_dir / "record-42-latest.json"
+    saved = json.loads(pointer.read_text())
+    saved.pop("publication_date")
+    saved.pop("record_version")
+    pointer.write_text(json.dumps(saved))
+    remote.responses.clear()
+    capsys.readouterr()
+
+    store.get(42, offline=True)
+
+    assert "CLIC archive: version Zenodo record 42; date: unavailable" in (
+        capsys.readouterr().out
+    )
+
+
+def test_latest_discovery_replaces_cached_release_metadata(tmp_path, remote, capsys):
+    store = ClicArchiveStore(tmp_path / "cache", session=remote)
+    assert store.get(42).manifest["record_id"] == 42
+    record = remote.responses["https://zenodo.org/api/records/42/versions/latest"]
+    record["id"] = 43
+    record["metadata"].update(version="tomorrow", publication_date="2026-11-11")
+    capsys.readouterr()
+
+    archive = store.get(42)
+
+    assert archive.manifest["record_id"] == 43
+    assert archive.manifest["record_version"] == "tomorrow"
+    assert "CLIC archive: version tomorrow; date: 2026-11-11" in (
+        capsys.readouterr().out
+    )
+    assert [url for url, _ in remote.calls].count(
+        "https://zenodo.org/api/records/42/versions/latest"
+    ) == 2
 
 
 def test_latest_download_is_available_by_its_pinned_record_offline(tmp_path, remote):
