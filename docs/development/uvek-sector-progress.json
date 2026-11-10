@@ -2382,7 +2382,7 @@
     },
     {
       "sector": "emissions",
-      "status": "reviewed_native_multi_fuel_caller_planner_verified_full_emissions_integration_pending",
+      "status": "internal_native_callback_verified_remaining_mapping_and_public_integration_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2415,17 +2415,17 @@
         {
           "code": "family_dispatch",
           "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+          "finding": "Native emissions family/biosphere dispatch and internal callback now verified. Full public sector support remains gated pending remaining mappings and complete normal API/export qualification."
         },
         {
           "code": "sector_implementation_and_integration",
           "path": "premise/emissions/emissions.py:50",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+          "finding": "Native callback, independent checks and installed virtual integration now verified; remaining native/direct/foreground mappings and complete normal public update/certification/export are still pending."
         },
         {
-          "code": "inventory_family_default",
-          "path": "premise/emissions/emissions.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          "code": "native_mapping_frontier",
+          "path": "premise/emissions/uvek_emissions.py",
+          "finding": "Native dispatch bypasses the ecoinvent-only Emissions class. The current native planner has9reviewed combustion roles; remaining classes/direct processes/foreground emissions require explicit native review."
         },
         {
           "code": "shared_combustion_sector_boundary",
@@ -2441,35 +2441,40 @@
       ],
       "implementation_commits": [
         "f1b9f01d",
-        "f256c569"
+        "f256c569",
+        "91ec8f91"
       ],
       "tests": [
         "35 native factor and existing emissions tests passed; real encrypted REMIND GAINS arrays replay without mutation. This is preflight, not a runtime sector update.",
         "46 native emissions and existing emissions checks pass; installed real graph reproduces65variants,127callerlinks,159air changes and16signedLCIs. Full sector integration/export remains pending.",
-        "47 native/legacy emissions checks pass; combined real multi-fuel virtual graph and installed packages verify873callerinputs,149variants,281gaseousair changes and22signedLCIs. Emissions public integration remains pending."
+        "47 native/legacy emissions checks pass; combined real multi-fuel virtual graph and installed packages verify873callerinputs,149variants,281gaseousair changes and22signedLCIs. Emissions public integration remains pending.",
+        "71focused and34shared checks pass for native callback atomicity, exact coverage, independently calculated air factors, literal audits, replay, provenance, metadata and both stores. Installed callback reproduces952events and22signedLCIs; the prior three-sector graph integrates to12771activities, but full public emissions export remains unverified."
       ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_emissions",
         "module": "premise/emissions/emissions.py",
-        "module_sha256": "42bd285e77b503342f2be5edbf3f5ffe3762d500111bec67cb929b369303d454",
+        "module_sha256": "4bc1329580af55a31879ffed56ee1b2de52d8e13c8e54dc9c1f659aa297dcc59",
         "update_function_line": 50,
         "declared_arguments": [
           "scenario",
           "version",
           "system_model",
-          "gains_scenario"
+          "gains_scenario",
+          "family",
+          "biosphere_version"
         ],
         "inventory_set_calls": [
           {
-            "line": 133,
+            "line": 153,
             "family_keyword_supplied": false
           }
         ],
         "biosphere_dictionary_calls": [],
         "version_assumption_lines_to_review": [],
         "role_files": [],
-        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+        "limitation": "Static declarations are not runtime support evidence; see native callback and mapping-stage receipts for the verified bounded scope. Full public emissions support remains gated.",
+        "native_family_dispatch": "premise/emissions/uvek_emissions.py; legacy Emissions class remains ecoinvent-only"
       },
       "factor_preflight": {
         "verification": "docs/development/uvek-emissions-preflight.json",
@@ -2498,6 +2503,18 @@
         "tests_passed": 47,
         "signed_finite_LCIs_checkout_and_installed": 22,
         "public_update_or_export_verified": false
+      },
+      "native_callback_stage": {
+        "verification": "docs/development/uvek-emissions-callback-verification.json",
+        "implementation": "premise/emissions/uvek_emissions.py",
+        "focused_tests": 71,
+        "shared_tests": 34,
+        "provenance_events": 952,
+        "independent_reviewed_inputs": 873,
+        "normal_wrapper_family_dispatch": true,
+        "installed_after_three_sector_graph_activities": 12771,
+        "signed_finite_LCIs": 22,
+        "public_gate": "closed"
       }
     }
   ],

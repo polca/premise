@@ -47,7 +47,27 @@ def fetch_mapping(filepath: str) -> dict:
     return mapping
 
 
-def _update_emissions(scenario, version, system_model, gains_scenario):
+def _update_emissions(
+    scenario,
+    version,
+    system_model,
+    gains_scenario,
+    family="ecoinvent",
+    biosphere_version=None,
+):
+    if family == "uvek":
+        from .uvek_emissions import update_uvek_emissions
+
+        return update_uvek_emissions(
+            scenario,
+            version,
+            system_model,
+            gains_scenario,
+            family=family,
+            biosphere_version=biosphere_version,
+        )
+    if family != "ecoinvent":
+        raise ValueError(f"Unsupported emissions background family: {family!r}.")
     from ..transport.vehicle_energy_use import refresh_vehicle_energy_emissions
 
     if scenario["iam data"].gains_data_IAM is None:

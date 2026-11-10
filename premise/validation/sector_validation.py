@@ -129,9 +129,9 @@ def _static_targets(
 
 def _sector_applicable(scenario: Mapping[str, Any], sector: str) -> bool:
     if (
-        sector == "heat"
+        sector in {"heat", "emissions"}
         and scenario.get("background context", {}).get("family") == "uvek"
-        and scenario.get("heat diagnostics", {}).get("applicability")
+        and scenario.get(f"{sector} diagnostics", {}).get("applicability")
         == "not_applicable"
     ):
         return False

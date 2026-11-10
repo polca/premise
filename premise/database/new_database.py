@@ -2982,7 +2982,7 @@ class NewDatabase:
             },
         }
         if getattr(self, "source_family", "ecoinvent") == "uvek":
-            for sector in ("biomass", "electricity", "heat"):
+            for sector in ("biomass", "electricity", "heat", "emissions"):
                 self.sector_update_methods[sector]["args"] += (
                     self.source_family,
                     self.biosphere_version,

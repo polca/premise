@@ -1305,3 +1305,46 @@ and match 281 wheel-declared resources. See
 `uvek-emissions-ordinary-combustion-verification.json`. This remains component
 qualification: direct/other combustion emissions, foregrounds, particulate/VOC
 correspondence and public callback/certification/export are unfinished.
+
+
+### Native emissions callback: atomic coverage, audits and provenance
+
+The ordinary sector wrapper now dispatches UVEK 2026 cut-off/biosphere 3.10 to
+the native emissions callback. NewDatabase supplies family/biosphere context;
+the callback uses the single actual biosphere database name in the source graph.
+The public emissions gate stays closed. Ecoinvent's existing branch and default
+arguments are preserved. No manual helper installation is introduced.
+
+Before committing a scenario inventory, independent checks require every
+reviewed caller input to reach its declared sector and region, compare literal
+originals and every field outside supplier identities, recompute GAINS air
+factors/uncertainty, and validate production ownership, original references and
+complete links. Dropped caller scopes and empty plans fail rather than become
+false success. Missing GAINS and no reviewed positive reductions are explicit
+non-applicability. NumPy cache scalars compare with exact JSON values without
+rounding; signed caller quantities/formulas and original uncertainty remain.
+
+Scenario-store replacement follows validation, invalidates stale provider caches
+and records exact added/relinked targets. Native audits and incomplete-scope
+limitations survive export metadata. Provenance records 149 owned variants and
+803 changed callers: 952 events. Replay adds no records, corrections or events.
+The common contract validates this declared component scope; it is not evidence
+that all sector mappings are complete.
+
+All 71 focused and 34 shared checks pass, including corruption/refusal paths and
+legacy/compact ownership. The real source/prepared graph equals the independent
+12,702-activity plan and has 22 finite signed LCIs. Installed packages match all
+281 resources and five changed modules, all graph checks, export metadata and
+952 events. Applying the installed internal callback after the previously
+verified public biomass/electricity/heat graph yields 12,771 activities, retains
+873 reviewed inputs and 281 air changes, and passes another 22 signed LCIs.
+Original database scientific signatures remain unchanged. See
+`uvek-emissions-callback-verification.json`. This is not a normal public
+four-sector update or a new Brightway export.
+
+Remaining combustion/direct-process/foreground mappings and particle/VOC
+correspondences still need review. Direct updates must protect original
+combustion sources and owned variants against double scaling. Full public
+certification/export and combined/default qualification remain required before
+opening emissions. Sixteen sectors, including emissions, remain unqualified end
+to end; remaining heat roles stay in the goal.

@@ -8,6 +8,8 @@ import json
 import math
 from collections import Counter
 
+import numpy as np
+
 from ..core.filesystem_constants import DATA_DIR
 from ..core.utils import rescale_exchange
 from ..inventory.activity_maps import GAINS_MAPPING, get_mapping
@@ -31,9 +33,14 @@ GASES = {
 
 
 def _same(left, right):
-    return json.dumps(left, sort_keys=True, allow_nan=False) == json.dumps(
-        right, sort_keys=True, allow_nan=False
-    )
+    def scalar(value):
+        if isinstance(value, np.generic):
+            return value.item()
+        raise TypeError(f"Unsupported emissions-audit value: {type(value).__name__}.")
+
+    return json.dumps(
+        left, sort_keys=True, allow_nan=False, default=scalar
+    ) == json.dumps(right, sort_keys=True, allow_nan=False, default=scalar)
 
 
 def _variant(source, sector, region, factors, scenario, biosphere_name):

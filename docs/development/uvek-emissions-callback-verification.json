@@ -1,0 +1,97 @@
+{
+  "status": "internal_native_emissions_callback_independent_checks_and_installed_integration_verified_public_gate_closed",
+  "implementation": "premise/emissions/uvek_emissions.py",
+  "normal_sector_wrapper": "premise/emissions/emissions.py:_update_emissions",
+  "family_dispatch_and_selected_biosphere": "NewDatabase supplies native family and biosphere version. Infer the single actual biosphere database name from constructor-validated source links; do not assume a database label.",
+  "native_arguments": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "validation": {
+    "focused_native_and_legacy_tests_passed": 71,
+    "shared_contract_metadata_background_tests_passed": 34,
+    "complete_graph_activities": 12702,
+    "independent_checks": {
+      "caller_inputs": 873,
+      "reviewed_input_coverage": 873,
+      "gaseous_air_changes": 281,
+      "links": 434660,
+      "applicability": "applicable",
+      "full_sector_mapping_complete": false
+    },
+    "owned_variants": 149,
+    "modified_callers": 803,
+    "provenance_events": 952,
+    "common_sector_contract_valid_for_declared_scope": true,
+    "JSON_replay_changes_no_inventories_or_events": true,
+    "signed_finite_LCIs_checkout_and_installed": 22,
+    "installed_graph_metadata_and_all_events_equal_checkout": true,
+    "all281wheel_declared_resources_and5changed_modules_match_checkout": true,
+    "original_source_database_scientific_contents_unchanged": true
+  },
+  "integration_after_prior_public_default_three_sector_graph": {
+    "prior_workflow": "Verified ordinary biomass/electricity/heat build, captured before export.",
+    "installed_internal_callback_applied": true,
+    "activities": 12771,
+    "caller_inputs": 873,
+    "gaseous_air_changes": 281,
+    "provenance_events": 952,
+    "common_contract_valid": true,
+    "signed_finite_LCIs": 22,
+    "not_normal_public_four_sector_update_or_new_Brightway_export": true
+  },
+  "atomic_checks": [
+    "Every reviewed caller/supplier scope must reach its declared sector/region/context; no silently dropped or empty plans.",
+    "Literal caller originals, signed amount, formula, uncertainty and all fields outside supplier identities remain exact.",
+    "Independently select each GAINS factor from the real array and recompute allowed air quantity/uncertainty updates. No unmarked or unreviewed coordinate changes.",
+    "Production references/ownership, complete supplier links, original biosphere identities and unchanged records are validated before committing the scenario store.",
+    "Absent GAINS and no reviewed positive reductions are explicit non-applicability, not a successful unchanged transformation.",
+    "Preserve partial-scope audits/limitations in export metadata and source/cache ownership through legacy and compact stores."
+  ],
+  "remaining": [
+    "Review remaining combustion classes, direct process emissions, prepared foregrounds, particle/aggregate-VOC definitions and special retained boundaries.",
+    "Protect original combustion sources and owned variants when adding direct-emission transformations; avoid scaling an emission twice.",
+    "Run complete public update/certification/export and installed combined/default regression before opening the emissions gate.",
+    "Sixteen standard sectors, including emissions, remain unfinished end to end; eleven heat binding gaps also remain."
+  ],
+  "public_emissions_gate": "closed; internal component verification does not establish full sector mapping",
+  "receipts": [
+    {
+      "name": "uvek_emissions_callback_checkout_verification.json",
+      "sha256": "dcb3fb4ca0c506d8a58a9ef14c9e1420a062b98e03e6b3805ce4545cbfb8cdab",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_callback_installed_verification.json",
+      "sha256": "dcb3fb4ca0c506d8a58a9ef14c9e1420a062b98e03e6b3805ce4545cbfb8cdab",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_callback_installed_comparison.json",
+      "sha256": "bb721524d5eaa7cd3f47d477188b9411cd3effbf449dbd6090ac2ac53e7e051e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_callback_installed_resources.json",
+      "sha256": "c24d38912e52310f521d0f1980c3003b48ee5607f32b385d9d90a5faec40ca2a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_callback_tests.log",
+      "sha256": "d8da5abfe15d92620eba2a95fc229ae6e004ddee0630703dabdde433c3417842",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_callback_shared_tests.log",
+      "sha256": "5caa046fdc2de6b602b049efea047185976eae3cfd18dc9267e26a093a6e7dfd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_combined_callback_verification.json",
+      "sha256": "c5ec60c7f28282022ee0d1b603732900fc73c86aef0c2079cbac93d64283040d",
+      "location": "private task workspace"
+    }
+  ]
+}
