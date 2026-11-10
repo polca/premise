@@ -4407,7 +4407,96 @@
         },
         "conversion_factor": 1,
         "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
-        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established.",
+        "additional_profile_reviews": {
+          "3.12": {
+            "date": "2026-11-10",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "identity": {
+                "name": "market group for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": "RER",
+                "unit": "kilowatt hour"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "195f7ea308387a15df3e2290844dd8d8639dbc1976a11326dd289895acee89a5",
+              "inventory_sha256": "32dd8196b15aca1da8b0395859193e8a5f39798afcd6ac7dbdd1a3d0a4899465",
+              "nonproduction_counts": {
+                "technosphere": 2
+              },
+              "comment_sha256": "0bc242ac474ccb58b54a1917f3913de2ada9eb794f9ff15438037dbc9035f8df",
+              "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+            },
+            "native_2026": {
+              "identity": {
+                "name": "Electricity, low voltage, at grid",
+                "reference product": "Electricity, low voltage, at grid",
+                "location": "RER",
+                "unit": "kilowatt hour"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "65a9b09f4ad301421facbea5f2d5b0e78532679c411f786b77ef9dd6a7a2988f",
+              "inventory_sha256": "75abb47fb45263c9995f8a33c034c56a33e69551f83f7375256ecc6fd06635c4",
+              "nonproduction_counts": {
+                "technosphere": 3,
+                "biosphere": 3
+              },
+              "comment_sha256": "b3bc29b6a49467f456ed2e414731a3a8349a959ea5203385f8a4cfc769f126c3",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "source_producer_witnesses": [
+              {
+                "identity": {
+                  "name": "market for electricity, low voltage",
+                  "reference product": "electricity, low voltage",
+                  "location": "CH",
+                  "unit": "kilowatt hour"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "abcaaae813f6f96644803d2522243ebaa0c9fabfd7a327c3069dae349ffc40fb",
+                "inventory_sha256": "a672f5a5c702c3540fbbdba0594a3d9964cda27bafcc209d10e7ed251c991673",
+                "nonproduction_counts": {
+                  "technosphere": 21,
+                  "biosphere": 1
+                },
+                "comment_sha256": "bec58c508e424085cb8fc2dfd6f2f051ebf940eb83c8486b1cf47ea5c132f2af",
+                "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+              },
+              {
+                "identity": {
+                  "name": "market group for electricity, low voltage",
+                  "reference product": "electricity, low voltage",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilowatt hour"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "88122c889cbad344d6c33a245a58f2c05ee9f73bde74c4e54ce77db317260b83",
+                "inventory_sha256": "e96b3ef08e8fea441f44ef443802560527529a81b35d703eabbd4a911983abd4",
+                "nonproduction_counts": {
+                  "technosphere": 39
+                },
+                "comment_sha256": "78547b90a8c65a4b576bb0b160a385e5fc7cf10d144bc5ae5500946b3e208671",
+                "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+              }
+            ],
+            "basis": "Complete European delivered low-voltage electricity service per signed kWh. Actual 3.12 RER market group and native RER grid each reference +1 kWh. Extend only the already independently approved exact grid correspondence to 3.12. Retain native generation/network/transformer/loss model once; no additional loss multiplier or medium/high-voltage substitution. Internal country/generation mix, vintage, allocation and source uncertainty differ; native topology and future Premise IAM handovers follow the qualified shared electricity workflow. Score differences remain unquantified.",
+            "conversion_factor": 1,
+            "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+          }
+        }
       },
       "limitations": [
         "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
@@ -4438,6 +4527,19 @@
             "system_model": "cutoff"
           },
           "fingerprint": "ac8ef5eb04ba2961e160deb7645a768b969c9cf39885a413692ca0ca80f70e3f"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "25afc648b04d64b27de5090e3a64f68e30ca00b7e409a40a33258cbbdb0a9fd1"
         }
       ]
     },
@@ -4647,7 +4749,96 @@
         },
         "conversion_factor": 1,
         "authorization": "Reuse the explicitly approved native UVEK electricity topology for matching declared territory, voltage and positive delivered-kWh coordinates. No different-geography fallback or new supplier-share rule is approved.",
-        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
+        "boundary": "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established.",
+        "additional_profile_reviews": {
+          "3.12": {
+            "date": "2026-11-10",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "identity": {
+                "name": "market group for electricity, medium voltage",
+                "reference product": "electricity, medium voltage",
+                "location": "RER",
+                "unit": "kilowatt hour"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "662748a1229d9401ab0842d3f18161f8fbe119043f3d35b1a3f3cc1c0eaad79a",
+              "inventory_sha256": "74b2bbdf1deb41ea75faade103f20b0b7f405ef1f9da1562154369a278e09718",
+              "nonproduction_counts": {
+                "technosphere": 2
+              },
+              "comment_sha256": "ce00142f598013f35ec128675789789c1a55da2f307dac3568d9c89b978dc79d",
+              "product_information_sha256": "5e49b8e40b1f1d56d0d565246998394fd12d3368c82481820483bde6cbe51539"
+            },
+            "native_2026": {
+              "identity": {
+                "name": "Electricity, medium voltage, at grid",
+                "reference product": "Electricity, medium voltage, at grid",
+                "location": "RER",
+                "unit": "kilowatt hour"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "76c9d03d79db9d3b8ec8b549626e4fe0ff0acc5cf18b91cf74d48f7ffbc6d8ff",
+              "inventory_sha256": "e68092555e6127a442fb124fe3847f156ae08846f49a325a8af15e86a0aee0a2",
+              "nonproduction_counts": {
+                "technosphere": 3,
+                "biosphere": 3
+              },
+              "comment_sha256": "e3d907f71b89698f79a1f9f6a6efa2709941138d9f6756d47520d69e489a4285",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "source_producer_witnesses": [
+              {
+                "identity": {
+                  "name": "market group for electricity, medium voltage",
+                  "reference product": "electricity, medium voltage",
+                  "location": "Europe without Switzerland",
+                  "unit": "kilowatt hour"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "93e14c2ec6f3eed377a7677dfca227dca014e6e87adb190cc4caa1f8fd109bda",
+                "inventory_sha256": "8d63d9ab801836f112159351b00adcdff048317accae7670cb15170917289573",
+                "nonproduction_counts": {
+                  "technosphere": 39
+                },
+                "comment_sha256": "a2059d76b311e260cd616fc616dccaa8b660fa345e3bcba37fcc09c8cd706f03",
+                "product_information_sha256": "5e49b8e40b1f1d56d0d565246998394fd12d3368c82481820483bde6cbe51539"
+              },
+              {
+                "identity": {
+                  "name": "market for electricity, medium voltage",
+                  "reference product": "electricity, medium voltage",
+                  "location": "CH",
+                  "unit": "kilowatt hour"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "6d31f1a7e597c277f1bc37ae95d8ea567b0ffb1fc29c35cdfcd1860d53e7a005",
+                "inventory_sha256": "6f8836be9e3f0fe3a71741d4f4a94696c5d69ad8a4e68fe588e8786ac7d56092",
+                "nonproduction_counts": {
+                  "technosphere": 5,
+                  "biosphere": 1
+                },
+                "comment_sha256": "c7fdaf33b31d46377cb3d008345ef5b21a129f4e9c3400e3e28e73c7896d214c",
+                "product_information_sha256": "5e49b8e40b1f1d56d0d565246998394fd12d3368c82481820483bde6cbe51539"
+              }
+            ],
+            "basis": "Complete European delivered medium-voltage electricity service per signed kWh. Actual 3.12 RER market group and native RER grid each reference +1 kWh. Extend only the already independently approved exact grid correspondence to 3.12. Retain native generation/network/transformer/loss model once; no additional loss multiplier or low/high-voltage substitution. Internal country/generation mix, vintage, allocation and source uncertainty differ; native topology and future Premise IAM handovers follow the qualified shared electricity workflow. Score differences remain unquantified.",
+            "conversion_factor": 1,
+            "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+          }
+        }
       },
       "limitations": [
         "Use the complete native UVEK grid at the same declared country/region and voltage, per delivered kWh. This reuses the user-approved native voltage topology and upstream IAM-generation approach. Preserve native losses, infrastructure, trade/import inventories and direct emissions; add no second grid, loss compensation, busbar-only substitution or quantity rescaling. Historical generation/trade weights, region membership, grid assumptions and vintage differ across background families; no source/native inventory or LCIA equivalence is established."
@@ -4665,6 +4856,19 @@
             "system_model": "cutoff"
           },
           "fingerprint": "8527d4d8420e038ccb70e9e9c8d107a8cd9c9a416171837ac64cb950262851d4"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "bc60b32b2850275b2e057aa1941e0ac9ec7509159c7fdcc5edc670e0787f440c"
         }
       ]
     },
@@ -134180,6 +134384,676 @@
             "system_model": "cutoff"
           },
           "fingerprint": "29a2e6f15551e9416c64da61af64cad0dc2e8bed934a67c5003d296735cc2bf4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-875a13c9939e13a7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged sign evidence alone does not establish product equivalence; exact 3.12 primary inspection and limitations are recorded here.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for aluminium, primary, ingot",
+            "reference product": "aluminium, primary, ingot",
+            "location": "IAI Area, Western and Central Europe",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "a82df466809f42765eca1d4fe69e4624c4e9acafef6608c65b9cc6e1306474ec",
+          "inventory_sha256": "9f095f54e4fde96f0afe72f3a430611048da3bdf21750df71bc24e660226e273",
+          "nonproduction_counts": {
+            "technosphere": 12
+          },
+          "comment_sha256": "a12ad24f28d97280a75d180ee15f5082f2e6c8e68e94b9fc6600aa3f995279b6",
+          "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Aluminium, primary, at plant",
+            "reference product": "Aluminium, primary, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0323b0e5abbee31c3b35d58b47ff6ad67ff7b12490b33c7d4b3c51402b8552ef",
+          "inventory_sha256": "dfa283683364d88497f2235c80a83ef0bcad12ff92d0c6ee39c33a23f06cfd37",
+          "nonproduction_counts": {
+            "technosphere": 17,
+            "biosphere": 8
+          },
+          "comment_sha256": "540fca24440abafdee4a28f3d3fd849608530bc4ee340cc6d6034ea929e04cbd",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "20fc8b99c2ae79d1ed7f1005e55bb7717d830d1f293d773f25b84c13a8410b3d",
+            "inventory_sha256": "2a3594de63bfae8c8ceadf58943a4272c8afa52824f27257b104fec6f382bb89",
+            "nonproduction_counts": {
+              "technosphere": 27,
+              "biosphere": 14
+            },
+            "comment_sha256": "16591b66f7ddcb5f1b71dd28fcfb4b694cd68ff4ef8c7ea14a705b2bff7a9d01",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, Gulf Cooperation Council",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "96514ee6cf4b919b185ad0e3737c1f6f12b2cb71956db146b6a5e072e61a6240",
+            "inventory_sha256": "4ec1ea8fb17c5746bfcd688ae42483663fd7f5fd0f258209a6589b384081b48f",
+            "nonproduction_counts": {
+              "technosphere": 16,
+              "biosphere": 14
+            },
+            "comment_sha256": "2fea4e986080a03142f2791f9cf0487cde18692715170714306eee63841c2d8f",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "88fbbc2dd723e5ca3db223a8c467f854ed5d534ffdf67e6d16e0611ea1696762",
+            "inventory_sha256": "51e0146c0eb55faab7fb1be49c6d9b31c514ac6af6e1eea1bc54379b1acac837",
+            "nonproduction_counts": {
+              "technosphere": 19,
+              "biosphere": 14
+            },
+            "comment_sha256": "e7d75e0055a5fb51c026a0cedc0f61baf4db718fea7ef6673ec1b759965e8306",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, South America",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "fe997064935412c84fc820bfa199c218563d3e27b974bab484a7fef7928a262e",
+            "inventory_sha256": "567feb6d0e25af55b5081a276d9aa9fda94439b9d999700d6fe093526e664de7",
+            "nonproduction_counts": {
+              "technosphere": 18,
+              "biosphere": 9
+            },
+            "comment_sha256": "ac809528d269d1a28789788dbff8e443888fc7a01e53875a33962d7dcdbe307a",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "CA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d82408579d9e014d012bfa004c07e12c436c34d4e482447cfc3d1d9156409f46",
+            "inventory_sha256": "f1af81f6268d0ffaf7a7d5e16098cfee53340cd41b52c33fe86095424d13b37b",
+            "nonproduction_counts": {
+              "technosphere": 18,
+              "biosphere": 10
+            },
+            "comment_sha256": "a74e78b88efceaca00f0cf0be948b42113cac8afc78b7dd9e42216cacefccd66",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "UN-OCEANIA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b920f5ad5e865221f0faac0602a25957be366d4177df69fe44dc59869991e406",
+            "inventory_sha256": "67d44bc02a2ea55e65ce700a1b6fb961bd0cfac8444c5b84c6ace7429bf24ec0",
+            "nonproduction_counts": {
+              "technosphere": 15,
+              "biosphere": 4
+            },
+            "comment_sha256": "e8fc057581cf1e331363f17e0a26699e59f2d61c1717821f5440070d3581034b",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, Asia, without China and GCC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0c02ed6a8ae16fad71cf861414fb449723fb5e678736f64d1c94fb2bda2e0d05",
+            "inventory_sha256": "2468eadd4a1dd3d23464d832bad2d908e27542dc76fa4f8e937023d0e4f74224",
+            "nonproduction_counts": {
+              "technosphere": 18,
+              "biosphere": 9
+            },
+            "comment_sha256": "b10c5c5f6ff699b7d5313db690e5c407a9989d76ef02fffca454967145e1397c",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, Western and Central Europe",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c7687b565cd4d1a29cfd5e537db553f1533b51631be5660a922707da9f284a3c",
+            "inventory_sha256": "64ba36e75deaa9cd55728f09a57b35c6a6ceda942f790f52e8ae7c59bb867abf",
+            "nonproduction_counts": {
+              "technosphere": 20,
+              "biosphere": 12
+            },
+            "comment_sha256": "670f363d43da39cb172cd7d76d7a4c8650418881177183cd8a7c46d8a49c2070",
+            "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+          }
+        ],
+        "basis": "Primary unalloyed aluminium per kg. Retain the complete native European primary-metal process, based on the EAA 2013 report for 2010, as a screening proxy for the Western/Central European primary-ingot market. Neither alumina nor scrap nor a fabricated aluminium product is substituted. Source smelter/electricity mix, casting/product-form detail, market delivery, allocation, vintage and internal uncertainty differ and are not reconstructed; no metal, recycling or yield correction is inferred.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Primary unalloyed aluminium per kg. Retain the complete native European primary-metal process, based on the EAA 2013 report for 2010, as a screening proxy for the Western/Central European primary-ingot market. Neither alumina nor scrap nor a fabricated aluminium product is substituted. Source smelter/electricity mix, casting/product-form detail, market delivery, allocation, vintage and internal uncertainty differ and are not reconstructed; no metal, recycling or yield correction is inferred.",
+        "Preserve every signed caller coefficient, formula, uncertainty, separate transport, water and emissions. Retain the complete native inventory and its allocated basis. Only this inspected 3.12 cut-off identity is admitted; no uninspected release, consequential or inverse correspondence is inferred. Native mapped-export exclusions and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c9b8f7da35f1a90e91ae4987dc58922c9bcf74b140d601a2a3aab2aeb7c17fc8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-298d4a1db293e750",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pilot_active_chemical_review.json",
+      "review_sha256": "6f1700632c391c5a311461775e95bd733ef21a48bbf7b0825ce6bc79f2b03592",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged sign evidence alone does not establish product equivalence; exact 3.12 primary inspection and limitations are recorded here.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium hydroxide, without water, in 50% solution state",
+            "reference product": "sodium hydroxide, without water, in 50% solution state",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ca82850eafba29a2cb2f658f995c3a00050b76fc09716bebd235aeed995aab7a",
+          "inventory_sha256": "9da37933865048c07d076ab3bc9a6a9c6a89cf39fd85ca3ee0f7b556831ef4da",
+          "nonproduction_counts": {
+            "technosphere": 3
+          },
+          "comment_sha256": "bbc03d377526970055dc6ac9aecee7924b787c94962db1a4feb404f5e75f1e75",
+          "product_information_sha256": "8a4a14cddb2e15f7380b40250a2bc0be4c34b0e38fbe3fa0ea5d818c00146179"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+            "reference product": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "d4a7b62949e90d9971dc89b952996f9d9bfa12482522f58ac9561d459f545562",
+          "inventory_sha256": "14c546182676b06407c8d98f019f038ce337739382581b83802c5a3aa4f02dce",
+          "nonproduction_counts": {
+            "technosphere": 3
+          },
+          "comment_sha256": "9c0a40d6b3d24427ab256a2cc1617d7406ddf8a4c5946048921c05abaf307bf5",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "chlor-alkali electrolysis, average production",
+              "reference product": "sodium hydroxide, without water, in 50% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "eaf3585d3a2cd6802d8acc3a76b5927f302c8cc51cddb59e3d47cf5320d39ee9",
+            "inventory_sha256": "1f774de186ef6cbfde2ce5b90c521342f23dbdc061f57a1e4c37120c94b8cae0",
+            "nonproduction_counts": {
+              "technosphere": 56,
+              "biosphere": 60
+            },
+            "comment_sha256": "a17d3e2200288f334db5078a223eec3c65b666f2cb9fa8ee7a59236063a484f0",
+            "product_information_sha256": "8a4a14cddb2e15f7380b40250a2bc0be4c34b0e38fbe3fa0ea5d818c00146179"
+          }
+        ],
+        "basis": "Preserve one kg active NaOH, factor +1. The actual 3.12 RER market/producer explicitly references sodium hydroxide without water. The independently verified native chlor-alkali coproduct/active basis in uvek_pilot_active_chemical_review.json applies to this exact native production mix and its three constituent cells. Its 50%-solution title is not a 0.5-kg active reference. Retain the complete allocated native mix without doubling, dilution, a new solvent or repeated allocation. The modern source cell mix (predominantly membrane) differs substantially from native 23.5% diaphragm, 21.4% membrane and 55.1% mercury; technology, allocation, delivery, geography, vintage and native emission coverage remain explicit screening limitations.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Preserve one kg active NaOH, factor +1. The actual 3.12 RER market/producer explicitly references sodium hydroxide without water. The independently verified native chlor-alkali coproduct/active basis in uvek_pilot_active_chemical_review.json applies to this exact native production mix and its three constituent cells. Its 50%-solution title is not a 0.5-kg active reference. Retain the complete allocated native mix without doubling, dilution, a new solvent or repeated allocation. The modern source cell mix (predominantly membrane) differs substantially from native 23.5% diaphragm, 21.4% membrane and 55.1% mercury; technology, allocation, delivery, geography, vintage and native emission coverage remain explicit screening limitations.",
+        "Preserve every signed caller coefficient, formula, uncertainty, separate transport, water and emissions. Retain the complete native inventory and its allocated basis. Only this inspected 3.12 cut-off identity is admitted; no uninspected release, consequential or inverse correspondence is inferred. Native mapped-export exclusions and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ac2cbfc2d97f29f86a55696185d4fad2a435499b4b2d89b2ef3da15a4db938f5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-efbb41b821c6445a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged sign evidence alone does not establish product equivalence; exact 3.12 primary inspection and limitations are recorded here.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for trisodium phosphate",
+            "reference product": "trisodium phosphate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "386915c69c245309ec20a1d968f3b3f170493be83b0e50a7a521c2fc35b48508",
+          "inventory_sha256": "59655862d2a2bc092cef87e328821a43d57a4ae6c47153bf818792f1003554d8",
+          "nonproduction_counts": {
+            "technosphere": 5
+          },
+          "comment_sha256": "23191404e31e13b7280c1e473cf35c5457a428a96c25cffeb2fc72733fa4b092",
+          "product_information_sha256": "9bd5bd7b958060e9d03c41ac78a77640163a6f1ab5d19f8f146face6dd020489"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Sodium phosphate, at plant",
+            "reference product": "Sodium phosphate, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0230309b9ce92fbd3ede4718a83178f2192873a9792dd7b53d9250c0f9093970",
+          "inventory_sha256": "d973ca29c964254fe869385d50a0e25e740da44ae6d8348f1862ecf7cbcb7714",
+          "nonproduction_counts": {
+            "technosphere": 8,
+            "biosphere": 3
+          },
+          "comment_sha256": "83b2388d2980bdd93b80edbcec64100a0b1e5815fe16b566a40fb30885668100",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "trisodium phosphate production",
+              "reference product": "trisodium phosphate",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "08619b9269d5445dcbab9a988db4abd7551cd4d5e65b6635c30c81a49489e513",
+            "inventory_sha256": "86c243b4c7c2e38181928126fc6d4fff031e8f5063bec314ec3968505fee7751",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 9
+            },
+            "comment_sha256": "3125936aedbf9e256fec42895f85a5f1caae37da1f0aee2c02492d8f154c9f9f",
+            "product_information_sha256": "9bd5bd7b958060e9d03c41ac78a77640163a6f1ab5d19f8f146face6dd020489"
+          }
+        ],
+        "basis": "Both actual producer descriptions specify 100% active trisodium phosphate, Na3O4P, CAS 7601-54-9. Native documentation mentions a 56% solution but explicitly says all data refer to 100% acting substance; source production also explicitly represents 100% active substance despite common commercial dodecahydrate. Retain factor +1 per active kg. No hydrate molecular-weight, 1/0.56 solution, drying, solvent or water-balance correction is inferred. Retain complete native processing; source global delivery, geography, recipe, allocation, internal uncertainty, missing native water emissions and vintage differences have unquantified score effects.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Both actual producer descriptions specify 100% active trisodium phosphate, Na3O4P, CAS 7601-54-9. Native documentation mentions a 56% solution but explicitly says all data refer to 100% acting substance; source production also explicitly represents 100% active substance despite common commercial dodecahydrate. Retain factor +1 per active kg. No hydrate molecular-weight, 1/0.56 solution, drying, solvent or water-balance correction is inferred. Retain complete native processing; source global delivery, geography, recipe, allocation, internal uncertainty, missing native water emissions and vintage differences have unquantified score effects.",
+        "Preserve every signed caller coefficient, formula, uncertainty, separate transport, water and emissions. Retain the complete native inventory and its allocated basis. Only this inspected 3.12 cut-off identity is admitted; no uninspected release, consequential or inverse correspondence is inferred. Native mapped-export exclusions and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9734a036cbd17ed0fcd290cefd4c69b1d9fcfffcfef5320bf9e435dd643f2439"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fa83088d5d2b33b6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged sign evidence alone does not establish product equivalence; exact 3.12 primary inspection and limitations are recorded here.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "polyethylene production, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "020b923ee018bd46d4bd2820b0e8a2d68434904a59549b94e76af6c11890e4aa",
+          "inventory_sha256": "2580a7681c6273f6e8e0b8750ab8e5d651848d6d36f2b24035d87f3815fbd47b",
+          "nonproduction_counts": {
+            "technosphere": 23,
+            "biosphere": 29
+          },
+          "comment_sha256": "011bb3eeb27e73cc4efe1abdb0aa741a8cf0fa6cdcf94f39c50f343d51b7d871",
+          "product_information_sha256": "326a6ec1734920fe0c8ea7c8a0a7ecc4b94d71376a9a2a9e541291a3c65b6dce"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Polyethylene, HDPE, granulate, at plant",
+            "reference product": "Polyethylene, HDPE, granulate, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "f4b5cd694a50b0f7259d4f9d3123bb99049241f615f79ff3097eb53d2b2bd595",
+          "inventory_sha256": "e81744e0e1da1b6fb4c183a9aed47d0dbd44916af24413616f099429080f47e6",
+          "nonproduction_counts": {
+            "technosphere": 17,
+            "biosphere": 395
+          },
+          "comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Virgin high-density polyethylene granulate production per kg, not recycled PE, low-density PE, plastic film or extrusion. Retain the complete European native HDPE producer, including its upstream processes and process-waste treatment, without an extra virgin-resin burden or yield multiplier. Source polymerisation/catalyst mix, producer coverage, allocation, vintage, methane update, biosphere representation and internal uncertainty differ; no LCIA equivalence is claimed.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Virgin high-density polyethylene granulate production per kg, not recycled PE, low-density PE, plastic film or extrusion. Retain the complete European native HDPE producer, including its upstream processes and process-waste treatment, without an extra virgin-resin burden or yield multiplier. Source polymerisation/catalyst mix, producer coverage, allocation, vintage, methane update, biosphere representation and internal uncertainty differ; no LCIA equivalence is claimed.",
+        "Preserve every signed caller coefficient, formula, uncertainty, separate transport, water and emissions. Retain the complete native inventory and its allocated basis. Only this inspected 3.12 cut-off identity is admitted; no uninspected release, consequential or inverse correspondence is inferred. Native mapped-export exclusions and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3537cff6bddd47374c5fcdde0dd3286a8b57c83592496bdd511bcf5199d6bbac"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a55ec6500f17f92f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged sign evidence alone does not establish product equivalence; exact 3.12 primary inspection and limitations are recorded here.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "extrusion, plastic film",
+            "reference product": "extrusion, plastic film",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2810949d4e178f552a7128cfabd1f15d974860e55f2e4c94b0c84ae18cf6c1e3",
+          "inventory_sha256": "d3e3bf431ea022c76045db5683601dd8e22959ef7b01040f5a8f838c9af2a215",
+          "nonproduction_counts": {
+            "technosphere": 14,
+            "biosphere": 3
+          },
+          "comment_sha256": "3293d17048179abdd35a00d1b92981d3ac548e8b4a59e8edd12fa1502da586a1",
+          "product_information_sha256": "dd9e4fec3821ab9b67885c2d45795badfa7c3e90a8e2fe9b7ae0216621cc2d9b"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Extrusion, plastic film",
+            "reference product": "Extrusion, plastic film",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "8810ab46c047f7cc4828310d872f3aef54a2a0b63b0f2403e63b8c1e664f2efa",
+          "inventory_sha256": "46585d03840a9ea64823428878d1cb8a018402e023e0262bfb0155a134e94ea1",
+          "nonproduction_counts": {
+            "technosphere": 16,
+            "biosphere": 3
+          },
+          "comment_sha256": "5e951f5f8b1d072c704fbacbf5335612eef368f1bdcb46c1545a12775029a175",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Plastic-film extrusion service per kg processed; both actual descriptions state that 1 kg service produces 0.976 kg film and excludes the converted resin itself. Retain the complete native conversion service at factor +1. Do not substitute resin, add resin twice, or rescale to 1 kg finished film. Source/native process energy, auxiliaries, equipment, geography, vintage and upstream differences remain screening limitations; separate caller resin and freight remain unchanged.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Plastic-film extrusion service per kg processed; both actual descriptions state that 1 kg service produces 0.976 kg film and excludes the converted resin itself. Retain the complete native conversion service at factor +1. Do not substitute resin, add resin twice, or rescale to 1 kg finished film. Source/native process energy, auxiliaries, equipment, geography, vintage and upstream differences remain screening limitations; separate caller resin and freight remain unchanged.",
+        "Preserve every signed caller coefficient, formula, uncertainty, separate transport, water and emissions. Retain the complete native inventory and its allocated basis. Only this inspected 3.12 cut-off identity is admitted; no uninspected release, consequential or inverse correspondence is inferred. Native mapped-export exclusions and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7d163dc21eff86a21dac826ff090ae0566a6eddcfe5d796c237eb0ca54c9e8ce"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-86d40fed1e499150",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged sign evidence alone does not establish product equivalence; exact 3.12 primary inspection and limitations are recorded here.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hazardous waste, for underground deposit",
+            "reference product": "hazardous waste, for underground deposit",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "28737cdb2cac8b378e5a9a34be85d22f676b05ae7bcaded83e5331f38324ef47",
+          "inventory_sha256": "50c5bf49f654e2da4a593b9b5e6ec0e95cb6cd9c210775fa00ac3a4d31396ca6",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "comment_sha256": "5008fcd18624abbb8c54571662136f983b4a27d3163d696283ac60e483a8423c",
+          "product_information_sha256": "8b6b342b3141063d8ae4a899b7d015b6486e564d123878de12f03ec60fc83282"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Disposal, hazardous waste, 0% water, to underground deposit",
+            "reference product": "Disposal, hazardous waste, 0% water, to underground deposit",
+            "location": "DE",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "5fd506d141289babe7c86c76f36343f66d72d03bbc427a4f70c5faa2224eb149",
+          "inventory_sha256": "8f4da27b6eef8550c85c4c77b52674c9cc15c4efca521be1da5e68cfc8bf223f",
+          "nonproduction_counts": {
+            "technosphere": 13,
+            "biosphere": 2
+          },
+          "comment_sha256": "eca71a545649b9312dd35ddc0582c496363afbaf0ebc10a97fc35639af443a37",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of hazardous waste, underground deposit",
+              "reference product": "hazardous waste, for underground deposit",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "metadata_sha256": "e09607a223efa56f747438aa10522a55606880751b3caa179ad6549d8c822c7f",
+            "inventory_sha256": "d046602995bad831b38d8c1d9d0ce782f35bfc7b4cc2f04648d3190c6e10a1b0",
+            "nonproduction_counts": {
+              "technosphere": 11,
+              "biosphere": 2
+            },
+            "comment_sha256": "2fbd0b6cc373ca2c9fea949231fc10978b32f8da2fb538e0e9940a914c8743e8",
+            "product_information_sha256": "8b6b342b3141063d8ae4a899b7d015b6486e564d123878de12f03ec60fc83282"
+          }
+        ],
+        "basis": "Dry hazardous-waste underground deposition service in the German salt-mine model, not landfill, incineration, recycling or an empty handover. Actual 3.12 source treatment and native descriptions both identify Herfa-Neurode packaging, materials/energy, ordered/retrievable deposition and no inventoried material-release emissions; this does not prove zero flooding risk. Retain the complete native service once. The source market reference is -1 kg and native treatment +1 kg, so use factor -1 independent of caller sign. Source-market freight, supplier/background mix, vintage, uncertainty and excluded native emissions differ and are not reconstructed. Do not add an avoided-disposal credit or infer long-term environmental equivalence.",
+        "conversion_factor": -1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Dry hazardous-waste underground deposition service in the German salt-mine model, not landfill, incineration, recycling or an empty handover. Actual 3.12 source treatment and native descriptions both identify Herfa-Neurode packaging, materials/energy, ordered/retrievable deposition and no inventoried material-release emissions; this does not prove zero flooding risk. Retain the complete native service once. The source market reference is -1 kg and native treatment +1 kg, so use factor -1 independent of caller sign. Source-market freight, supplier/background mix, vintage, uncertainty and excluded native emissions differ and are not reconstructed. Do not add an avoided-disposal credit or infer long-term environmental equivalence.",
+        "Preserve every signed caller coefficient, formula, uncertainty, separate transport, water and emissions. Retain the complete native inventory and its allocated basis. Only this inspected 3.12 cut-off identity is admitted; no uninspected release, consequential or inverse correspondence is inferred. Native mapped-export exclusions and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "565c771dcfee5316aaed9c11879f5ae71190c2c3a4953e513069c84719ba2d82"
         }
       ]
     }

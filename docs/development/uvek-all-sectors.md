@@ -451,3 +451,39 @@ low-pressure delivered gas must not silently become gas at production. Existing
 reviewed gas/water/wastewater helpers may be reusable only after confirming their
 actual profile and inventory scope. Fuels preparation has not succeeded yet;
 its shared constructor's family/biosphere routing also remains pending.
+
+## Fuels 3.12: eight inspected existing correspondences
+
+Inspect exact 3.12 source references/market producers and native 2026 references
+before adding eight scopes: European primary aluminium, active NaOH, active
+trisodium phosphate, virgin HDPE granulate production, film-extrusion service,
+hazardous-waste underground deposition, and European medium/low-voltage grids.
+Every selected native endpoint is nonempty with a positive unit reference.
+
+The chemical names do not justify dilution factors. Source NaOH is explicitly
+without water; the prior independent native chlor-alkali coproduct inspection
+establishes an active-product basis despite the native 50%-solution title.
+Source trisodium-phosphate production explicitly describes 100% active substance;
+the native description also says all data refer to 100% acting substance despite
+mentioning a 56% solution. Preserve factor +1 for both, not 2 or 1/0.56. Keep
+source/native allocation and process differences explicit; the source caustic
+mix is predominantly membrane, while native uses 55.1% mercury cells. No new
+solvent, water-balance, hydration or repeated-allocation correction is invented.
+
+Both film-extrusion descriptions define one kg of processing for 0.976 kg film
+and exclude the converted resin. Retain factor +1 for the service and preserve
+caller resin separately. The underground-deposit market has a negative source
+reference while native Herfa-Neurode treatment is positive; factor -1 follows
+those references, not the caller sign. Native long-term safety assumptions are
+not proof of zero flooding risk. Market-to-factory, delivery, generation mix,
+technology, allocation, geography, internal uncertainty, vintage and native
+emission-coverage differences remain visible screening limitations.
+
+The existing utility authority receives the two new 3.12 scopes; earlier
+version-specific reviews and all prior closed scopes remain unchanged. Eight
+fresh/cache harmonization checks pass, including signed amount/formula/normal
+uncertainty, exact target, non-mutation and refusal to inherit these additions
+for 3.11 or consequential. Ruff and diff checks pass. No runtime Python or
+Brightpath mapping changes are needed for this batch. Seven other operations in
+this fuels cohort remain unfinished, including profile-specific utility helpers,
+product/delivery corrections and the market-average hydrogen boundary.
