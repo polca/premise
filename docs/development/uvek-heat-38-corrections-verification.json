@@ -1,0 +1,141 @@
+{
+  "status": "four3_8cases_and_five_earlier_lime_profiles_corrected_twelve_current_cases_pending_heat_gate_closed",
+  "review": "export/uvek_heat_38_corrections_review.json",
+  "review_sha256": "b983a796ca3aac61a326d1bdeee56c9ac9ba33e311090cf9eb08391523575132",
+  "approval_scopes": 514,
+  "prior_fingerprints_unchanged": 505,
+  "scientifically_superseded_prior_scopes": 5,
+  "superseded_history_retained_and_inactive": true,
+  "new_active_scopes": 9,
+  "net_new_scopes": 4,
+  "structural_fingerprint_migration_claimed": false,
+  "new_recipes": 0,
+  "new_shared_reviews": 5,
+  "recipe_count": 3674,
+  "shared_review_count": 779,
+  "all_other_rules_and_all_prior_recipes_reviews_unchanged": true,
+  "scientific_correction": "Earlier loose-milled-lime to quicklime match was wrong: actual grinding chains and later explicit source limestone/quicklime distinction establish uncalcined limestone. Correct five3.6-3.10CHprofiles while keeping original approval/review bytes in inactive history. Correct3.8packedlimestone, deliveredcoal and two class4WWTcounterparts.",
+  "validation": {
+    "brightpath_tests_including_earlier_material_cases": 206,
+    "premise_cache_history_and_drift_tests": 14,
+    "signed_foreground_composed_finite_LCIs": 18,
+    "installed_signed_demands": 18,
+    "installed_original_caller_regressions": 41,
+    "generated_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 269,
+      "premise": 247
+    },
+    "source_scientific_signatures_unchanged": true
+  },
+  "public_default_run": {
+    "scenario": "REMIND SSP2-NPi2050, archived encrypted input3a9f77641a1cf2874e2d92a3494c86e90259299ffde34915a01a8bd2ec7ff898",
+    "updates": [
+      "biomass",
+      "electricity"
+    ],
+    "installed_wheel_public_constructor_update_certification_export": "passed",
+    "exported_activities": 12529,
+    "source_pins": 55,
+    "source_roots": 9,
+    "regional_biomass_markets": 13,
+    "literal_pellet_audits": 5,
+    "readback_complete_links_and_canonical_biosphere": "passed",
+    "original39full_and2partial_caller_history_GOES_CSP_and113Tihelpers": "passed",
+    "affected_lime_links": 4,
+    "all4physical_lime_amounts_bit_identical": true,
+    "target_change": "Quicklime,milled,loose,atplant -> Limestone,milled,loose,atplant",
+    "source_scientific_signatures_unchanged": true,
+    "LCIA_or_equal_score_claimed": false
+  },
+  "real_heat_preparation": "12remaininginobserved3.8cohort,downfrom16. Fivepreviouslyapprovedlimeprofilescorrectedseparately;notcountedasfiveadditionalcohortclosures. Furthercohorts unproven.",
+  "public_heat_gate": "closed; no public heat/all-sector export claimed",
+  "cache_cleanup_bytes": 460114141,
+  "receipts": [
+    {
+      "name": "heat_38_corrections_registration.json",
+      "sha256": "e705097faac5069d528001f44fb633b1d5f5a799a1f6f1bb3f3361ad233c841c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_resource_comparison.json",
+      "sha256": "4eb2ab84d0e7276692820dc7986e7e348670839a1a17c989be2de4b19c815943",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_tests.log",
+      "sha256": "0326310370ece3ea0875882a33b451131a1afc34f22abeb1bb334c322f21e3cb",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_premise_tests.log",
+      "sha256": "416fa69faadb8e27b79f1952ef6adc67105c2e84d6591c617dab3a22fc034201",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_native_lci_checks.json",
+      "sha256": "534924532834ac8ed23df04fa35224c6335d5d2c353146d2b49c032fa8691bbd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_installed_checks.json",
+      "sha256": "449c01bcf6fd6deaaccaa146463aeb16d8c50bfc87030f7edaeb04560dbe766f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_original_callers.json",
+      "sha256": "036fd82d54550a51395d355c3a58d7b9d32abae7903e97ae21860300cee7b138",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_packaged_data.json",
+      "sha256": "4ed1b30b05ffeacc258b9a1d0d930e532657b4f45bf6bb72426669738ae42c3b",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_generator_replay.json",
+      "sha256": "0ddd93513df35fe5cac6a783993eaa6c766a10c8859f19a16677cd5409946f5d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_remaining_audit_receipt.json",
+      "sha256": "1b084ff598e6298ae084daf640007d7699e36bd1ba2229e29ba5d2348642fbb0",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_38_corrections_default_export_report.json",
+      "sha256": "69a72df84b95d5fc4d18e8a170764f8e04339ba5724cd704e803addb6fb04aaa",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_38_corrections_default_readback.json",
+      "sha256": "7f1c0f51f97fbc05fb82bd98b0a894a55473ab467940576244fb1fc8fb11c806",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_original_readback.json",
+      "sha256": "b6ac671a64f98db505a5c2a9888000196bee53e7a49347b0a911c801ec0688e9",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_corrections_lime_export_comparison.json",
+      "sha256": "e41ebc6cc745c436ac499089ad69f33bda8c34241e2869c0b3922b00600b335f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_lime_correction_primary_receipt.json",
+      "sha256": "92f25d9bd0cd36cafa8b3bfc1651e6f48f132399545b9c7af12bdb6a57d76898",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_lime_chain_receipt.json",
+      "sha256": "d46d96ef8c6484299e1024066ffb328edd8403ef81969fa549096aa73f099b15",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_38_corrections.json",
+      "sha256": "9fe42a07e18e0d2d8a4c1a2e1f058cf6f38549b04897d895cf5c9211b213a377",
+      "location": "private task workspace"
+    }
+  ]
+}

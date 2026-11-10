@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "status": "eight_of_twenty_four_observed3_8cases_qualified_sixteen_pending",
+  "status": "twelve_of_twenty_four_observed3_8cases_qualified_twelve_pending",
   "context": "New cohort reached after all38previously observed3.10cases clear strict preparation. Publicheatgate remains closed; no automatic version-wide approvals.",
   "identified_cases": 24,
-  "qualified_cases": 8,
-  "pending_cases": 16,
+  "qualified_cases": 12,
+  "pending_cases": 12,
   "categories": {
     "barge_transport_boundary": 1,
     "reviewed_correspondence_new_exact_profile": 8,
@@ -233,7 +233,7 @@
     },
     {
       "rule_id": "bp-aaa1b2617895fc58",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_corrected_inventory_boundary",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -295,7 +295,15 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "qualified_target": {
+        "name": "Treatment, sewage, to wastewater treatment, class 4",
+        "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+        "location": "CH",
+        "unit": "cubic meter"
+      },
+      "verification": "docs/development/uvek-heat-38-corrections-verification.json",
+      "review_path": "export/uvek_heat_38_corrections_review.json"
     },
     {
       "rule_id": "bp-b53187b24a160299",
@@ -431,7 +439,7 @@
     },
     {
       "rule_id": "bp-cc95e6fdfe8919b8",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_corrected_inventory_boundary",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -493,7 +501,15 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "qualified_target": {
+        "name": "Limestone, milled, packed, at plant",
+        "reference product": "Limestone, milled, packed, at plant",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "verification": "docs/development/uvek-heat-38-corrections-verification.json",
+      "review_path": "export/uvek_heat_38_corrections_review.json"
     },
     {
       "rule_id": "bp-95da75538a86123f",
@@ -563,7 +579,7 @@
     },
     {
       "rule_id": "bp-5ede2be860ad337d",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_corrected_inventory_boundary",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -646,7 +662,15 @@
           "inventory_sha256": "eac63eff7951b3fe6daf059608d35cbcfd414307416f01947f9b2880f81a47a4",
           "metadata_sha256": "cd0dc73e1e7f739fd63a58a4ea3d5ecba09cb6fcf3884e7721c072f82b13f816"
         }
-      ]
+      ],
+      "qualified_target": {
+        "name": "Hard coal mix, at regional storage",
+        "reference product": "Hard coal mix, at regional storage",
+        "location": "UCTE",
+        "unit": "kilogram"
+      },
+      "verification": "docs/development/uvek-heat-38-corrections-verification.json",
+      "review_path": "export/uvek_heat_38_corrections_review.json"
     },
     {
       "rule_id": "bp-b25755fd394b9346",
@@ -2119,7 +2143,7 @@
     },
     {
       "rule_id": "bp-725eff919d0ce812",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_corrected_inventory_boundary",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -2181,19 +2205,24 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "qualified_target": {
+        "name": "Treatment, sewage, to wastewater treatment, class 4",
+        "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+        "location": "CH",
+        "unit": "cubic meter"
+      },
+      "verification": "docs/development/uvek-heat-38-corrections-verification.json",
+      "review_path": "export/uvek_heat_38_corrections_review.json"
     }
   ],
   "later_cohorts": "unproven",
-  "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+  "verification": "docs/development/uvek-heat-38-corrections-verification.json",
   "remaining_categories": {
     "barge_transport_boundary": 1,
     "waste_moisture_and_landfill_boundary": 1,
-    "wastewater_composition_and_capacity": 2,
     "deionised_water_service": 1,
     "infrastructure_capacity_and_reference": 3,
-    "wrong_lime_chemical_candidate": 1,
-    "fuel_market_versus_mine_boundary": 1,
     "mineral_or_chemical_product_boundary": 5,
     "chemical_heat_and_water_boundary": 1
   }

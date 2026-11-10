@@ -2,81 +2,6 @@
   "schema_version": 1,
   "operations": [
     {
-      "rule_id": "bp-56229a990a6a39be",
-      "operation": "replace",
-      "mapping_method": "reviewed_pilot_material",
-      "review_path": "export/uvek_pilot_material_review.json",
-      "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
-      "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
-      "scopes": [
-        {
-          "source": {
-            "family": "ecoinvent",
-            "system_model": "cutoff",
-            "version": "3.8"
-          },
-          "target": {
-            "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
-          },
-          "fingerprint": "bed88d9451d72df41b25e1101e155ad6e61e8198eb3e471db63b575fe5c8ae38"
-        },
-        {
-          "source": {
-            "family": "ecoinvent",
-            "system_model": "cutoff",
-            "version": "3.9"
-          },
-          "target": {
-            "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
-          },
-          "fingerprint": "977674390c68daab766a0cfa8d67190b05949432b32a4ca6315118b355e3b6be"
-        },
-        {
-          "source": {
-            "family": "ecoinvent",
-            "system_model": "cutoff",
-            "version": "3.10"
-          },
-          "target": {
-            "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
-          },
-          "fingerprint": "b232b1fd6d9b8d50bf8b13bba3f50a0d665bdc6559b8bb7f810b7d718ff32afe"
-        },
-        {
-          "source": {
-            "family": "ecoinvent",
-            "system_model": "cutoff",
-            "version": "3.6"
-          },
-          "target": {
-            "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
-          },
-          "fingerprint": "e3de2ccdb93005f87ec557892331856824fe85e7f3c2230238e815fb5a8146af"
-        },
-        {
-          "source": {
-            "family": "ecoinvent",
-            "system_model": "cutoff",
-            "version": "3.7"
-          },
-          "target": {
-            "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
-          },
-          "fingerprint": "72022284110984ff89602c7c8ca353d893c791535ccab294f8e13752ae565099"
-        }
-      ]
-    },
-    {
       "rule_id": "bp-3f0c7b40c4645ba2",
       "operation": "replace",
       "mapping_method": "reviewed_pilot_material",
@@ -128843,6 +128768,955 @@
           "fingerprint": "d3ffc93c14ae63dc5f88b0fba53fd173801bd131ec2f11d891c3883f363a1b62"
         }
       ]
+    },
+    {
+      "rule_id": "bp-cc95e6fdfe8919b8",
+      "operation": "replace",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_heat_38_corrections_review.json",
+      "review_sha256": "b983a796ca3aac61a326d1bdeee56c9ac9ba33e311090cf9eb08391523575132",
+      "authorization": "Standing autonomous approval of scientifically evidenced corrections, with explicit warnings and reviewable supersession history.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "lime production, milled, packed",
+          "reference product": "lime, packed",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Limestone, milled, packed, at plant",
+          "reference product": "Limestone, milled, packed, at plant",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "RoW",
+              "name": "lime production, milled, packed",
+              "reference product": "lime, packed",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e2b28435f2d1a2ab9ff81efd87423246c8487059e9718d94fbbad64c26f75b05",
+            "metadata_sha256": "1f4a43b4fd136446b373aeb4aa3841c0747f510fca543aef13e1905dcaad5b6d"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Limestone, milled, packed, at plant",
+              "reference product": "Limestone, milled, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d381dc76e58a201b9f78ccce842636929ee34a733ee5c7333b84e490b13be82e",
+            "metadata_sha256": "747611fa8a2da0c29f785c5cff90fa3c8e8acdbe342d6a0691d35de707be99fe"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Limestone, milled, packed, at plant",
+              "reference product": "Limestone, milled, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "78381da41e15f6d031185090d7d543422f3a76f14b7a1f4e25bde84b79ad48a6",
+            "metadata_sha256": "6ab54b81d4c50f001638ab1f4eb095bf2b3f9fdf8c083baad75f040dee9ed921"
+          }
+        },
+        "lime_chain_witnesses": [
+          {
+            "version": "2025",
+            "depth": 0,
+            "identity": {
+              "name": "Quicklime, milled, packed, at plant",
+              "reference product": "Quicklime, milled, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f6f5054626ccd619421acf41e02d1ca2c8eb8da919c9248fbeee44fa373e367d",
+            "metadata_sha256": "95bc7b1e5dafe33bcb4f7a259d85fb6e13edf323ea902691709af88556398a13"
+          },
+          {
+            "version": "2025",
+            "depth": 1,
+            "identity": {
+              "name": "Quicklime, milled, loose, at plant",
+              "reference product": "Quicklime, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6c3e45cf13d57672732d6b06a93c33a4eb0e0d46e4fc2c914d57ed5b2b2f66da",
+            "metadata_sha256": "48c189f1eb41902532f583016b94aa0b83b674a7336b0433142f31e7e38ab207"
+          },
+          {
+            "version": "2025",
+            "depth": 2,
+            "identity": {
+              "name": "Quicklime, in pieces, loose, at plant",
+              "reference product": "Quicklime, in pieces, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a7b6ea6c17eeee0cd6509fb03048954ab233e8b17212a949f13a4d0afa218974",
+            "metadata_sha256": "87b6c636b5abf86e9912d5709ede43bcece858d45b268d79d4ce53ee91fac8fd"
+          },
+          {
+            "version": "2025",
+            "depth": 3,
+            "identity": {
+              "name": "Limestone, crushed, washed",
+              "reference product": "Limestone, crushed, washed",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "346e711fc8e24e59ef089d713413b5507294b3308417cb13f5da78113e90513d",
+            "metadata_sha256": "dea59603f88395a207bd71801a32f05c36e0be8a4fe0f052f28a070b183e45c1"
+          },
+          {
+            "version": "2025",
+            "depth": 4,
+            "identity": {
+              "name": "Limestone, at mine",
+              "reference product": "Limestone, at mine",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "be5d4f2ca169d3dcccb39ce08395ed1476aea35e7d9fb277a89930f5e2dbcfc4",
+            "metadata_sha256": "25a5e29daa43dee6cc838bde6505a6f682f3dd2c589829cd92794cbdd8029965"
+          },
+          {
+            "version": "2026",
+            "depth": 0,
+            "identity": {
+              "name": "Quicklime, milled, packed, at plant",
+              "reference product": "Quicklime, milled, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "800d0fb303b22000d8e13722b81da8c4a14f8741ee892115640b05c9408ef26f",
+            "metadata_sha256": "6f5c4bbe26364c695d6aa9cf96fd0ff5f10a41bbd3b59b1dd03e9e11fcf25ac8"
+          },
+          {
+            "version": "2026",
+            "depth": 1,
+            "identity": {
+              "name": "Quicklime, milled, loose, at plant",
+              "reference product": "Quicklime, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "ed4491a6f057308e1ee82f52b4bdef424c3ca750b08a5b2c6b0994e74d23c697",
+            "metadata_sha256": "1d0f14aadabd1e1fb83396187e47cd4606134bab0318b6f787b322db541a4f79"
+          },
+          {
+            "version": "2026",
+            "depth": 2,
+            "identity": {
+              "name": "Quicklime, in pieces, loose, at plant",
+              "reference product": "Quicklime, in pieces, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "251a64279acb38f36c17034f99b6e9c73693a56294fadc31422eab02fe9ae05f",
+            "metadata_sha256": "c92b7a1f036d552b1b2bafcd45b0fc5dc2d3d2e5656b99705aafbc388df07f17"
+          },
+          {
+            "version": "2026",
+            "depth": 3,
+            "identity": {
+              "name": "Limestone, crushed, washed",
+              "reference product": "Limestone, crushed, washed",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9db448421df8ae1a97e5762cdbba0ab598cffb635fb1341c5108447899070d7a",
+            "metadata_sha256": "933aaf66a4aefaf98bb0889024aa852e2a012d8dcc2bf758f50fe8cf7b5d8fde"
+          },
+          {
+            "version": "2026",
+            "depth": 4,
+            "identity": {
+              "name": "Limestone, at mine",
+              "reference product": "Limestone, at mine",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "239288c5611813cd13ef48779ebb98352ae38cbabc8042942faad31a898efc3c",
+            "metadata_sha256": "09936f5c77c030460c39629d3f83b1e536a1c8338f200357c65a458a55b556f6"
+          },
+          {
+            "version": "3.8",
+            "depth": 0,
+            "identity": {
+              "name": "lime production, milled, packed",
+              "reference product": "lime, packed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e2b28435f2d1a2ab9ff81efd87423246c8487059e9718d94fbbad64c26f75b05",
+            "metadata_sha256": "1f4a43b4fd136446b373aeb4aa3841c0747f510fca543aef13e1905dcaad5b6d"
+          },
+          {
+            "version": "3.8",
+            "depth": 1,
+            "identity": {
+              "name": "market for lime",
+              "reference product": "lime",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "020ca57a61ae5a18011c8f5ae2f327894847d59da5a2b168cf22bf015487534b",
+            "metadata_sha256": "66a153cffea7819efcebe928a608ae05cb032576ec738818f8c900020309a496"
+          },
+          {
+            "version": "3.8",
+            "depth": 2,
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9ef3aeb6e9e6c669051da443012735419276ee2af6e6d16526a4575acbe78728",
+            "metadata_sha256": "6ff30ce38f9814c224fa84adfd0419229f6a78bfafac54db242a7e9dd8f3a9fa"
+          },
+          {
+            "version": "3.8",
+            "depth": 3,
+            "identity": {
+              "name": "limestone production, crushed, for mill",
+              "reference product": "limestone, crushed, for mill",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8452e04dd68e13ff11b90b239f78f1937a7bdc9c7f7318d596d506f44210545c",
+            "metadata_sha256": "23a7747a847dc94cfc383f6a14c31bb7254d8ddfa3dc5027f73671863a27d6be"
+          },
+          {
+            "version": "3.8",
+            "depth": 4,
+            "identity": {
+              "name": "limestone quarry operation",
+              "reference product": "limestone, unprocessed",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5b08538e692e3178a458ef8e81b23e5fd2a943203b1372721fcc5c276b702698",
+            "metadata_sha256": "f4e516db76e08e52a8c8ad101c56ca6f26807fc05fe0d6ea64077c4a3e8a7705"
+          },
+          {
+            "version": "3.8",
+            "depth": 2,
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6c615c32db40fb84c56ceb870ba6e135b691ccf4b70326fdf71c3efebc581757",
+            "metadata_sha256": "7faff8802ff971bf1346c3e17d0429b8ee2eb596ce7a13669f3b107d398dbda9"
+          },
+          {
+            "version": "3.8",
+            "depth": 3,
+            "identity": {
+              "name": "market for limestone, crushed, for mill",
+              "reference product": "limestone, crushed, for mill",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "cee1ca1e4d181c7b4a480f06c24f0a4b014a3c50f84a8c7839c87568eee1d9b8",
+            "metadata_sha256": "c1343e8a89e99aceb87a19d7724bec33a36b6dced3aef96923da0f7824dc5829"
+          },
+          {
+            "version": "3.8",
+            "depth": 4,
+            "identity": {
+              "name": "limestone production, crushed, for mill",
+              "reference product": "limestone, crushed, for mill",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "099c469f0509837a831b396a8054fe78040eaa7a89dc2d353d8f6b2de05df1bc",
+            "metadata_sha256": "495d96246aabf54a0576ff4eeafc3546069c90b7cc6f316aec8bab67ecc1d409"
+          }
+        ]
+      },
+      "limitations": [
+        "The source3.8packed-lime process consumes one kgof its lime market and one packing service. The market description says quicklime, but its actual dominant suppliers mill uncalcined crushed limestone; Quebec documentation explicitly excludes quicklime production. Native milled packed limestone is therefore the inventory-consistent counterpart. Reject both the old hydrated-lime candidate and a quicklime-name substitution: native quicklime includes kiln calcination and1.079kgdirectCO2at its in-pieces step, absent from the source grinding chain.",
+        "Retain the source legacy name/CAS/product-description inconsistency as provenance, rather than pretending it was an unambiguous chemical declaration. Native complete packed limestone includes its own quarry, crushing, grinding, packing, heating and transport boundary. Source mine-co-product share, upstream sourcing, final delivery, packing, energy and internal uncertainty differ. Preserve kgwithout inventing CaCO3/CaO/Ca(OH)2stoichiometric, purity or yield factors.",
+        "Exact independently inspected cut-off profiles only, to nativeUVEK2026 via the existing2025edge. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separately listed emissions. Keep complete native supplier inventories unchanged; add no extra production, disposal or recovery credit. Native biosphere exclusions, geography, vintage, internal uncertainty and unquantified score differences remain explicit. No LCIA equivalence, impact completeness, purity/density/LHV/capacity factor, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "44579e9b059d123167792a8c90ab57a962f4964c8f0aa80a98e854aecb2fa90e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5ede2be860ad337d",
+      "operation": "replace",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_heat_38_corrections_review.json",
+      "review_sha256": "b983a796ca3aac61a326d1bdeee56c9ac9ba33e311090cf9eb08391523575132",
+      "authorization": "Standing autonomous approval of scientifically evidenced corrections, with explicit warnings and reviewable supersession history.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Hard coal mix, at regional storage",
+          "reference product": "Hard coal mix, at regional storage",
+          "location": "UCTE",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "RoW",
+              "name": "market for hard coal",
+              "reference product": "hard coal",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8c9681c9ced3a16e2dfe5a49638807e9aceea99f8a032c595dd120ea8ff9ed75",
+            "metadata_sha256": "46ad5ff23da013e740cbb3e4a0cbbaeeeb8d745d3a82d27ceaf83bb1bd64b094"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Hard coal mix, at regional storage",
+              "reference product": "Hard coal mix, at regional storage",
+              "location": "UCTE",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1968309706ff8f4f3a93d97f4b498b5add4e9b941cd46c46ec65bd1655a12643",
+            "metadata_sha256": "8f34f12ffca0b02d10076cf59bca0d8f8d112f15f53929dd07e906d61110ab4e"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Hard coal mix, at regional storage",
+              "reference product": "Hard coal mix, at regional storage",
+              "location": "UCTE",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "debda988953cf930ae593cf74b5fa683c11966ad45743386b6794b6097416ce9",
+            "metadata_sha256": "ecf3a0debad26c37297cbbd1eaf6ebc1ea20c32c17eb929ba68d3a71ddd053ce"
+          }
+        }
+      },
+      "limitations": [
+        "The source RoWhard-coal market includes prepared coal, transport, losses, handling dust and storage emissions. Replace its Australian mine-gate candidate with the complete nativeUCTEregional-storage supply mix, which includes regional coal supplies and import rail/sea/road transport, losses and storage. It is a delivered-fuel geographic/portfolio proxy, not a matched global coal market.",
+        "Native updated2022regional/import shares, mine methane, coal quality/energy content, routes, distances, handling, losses and storage differ from the source. Preserve signed kgas physical mass: do not convert to an energy-equivalent mass from a genericLHV, normalize regional shares, add source freight to native delivery, or claim an equal heating service. Retain actual native quantities and allocation once.",
+        "Exact independently inspected cut-off profiles only, to nativeUVEK2026 via the existing2025edge. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separately listed emissions. Keep complete native supplier inventories unchanged; add no extra production, disposal or recovery credit. Native biosphere exclusions, geography, vintage, internal uncertainty and unquantified score differences remain explicit. No LCIA equivalence, impact completeness, purity/density/LHV/capacity factor, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2a2240e4d846e9e8844f718456a8d2120fe4ad546bcc9a6ccf7219132a6a1898"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aaa1b2617895fc58",
+      "operation": "replace",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_heat_38_corrections_review.json",
+      "review_sha256": "b983a796ca3aac61a326d1bdeee56c9ac9ba33e311090cf9eb08391523575132",
+      "authorization": "Standing autonomous approval of scientifically evidenced corrections, with explicit warnings and reviewable supersession history.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "treatment of wastewater, average, capacity 1E9l/year",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "name": "Treatment, sewage, to wastewater treatment, class 4",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "conversion_factor": -1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "RoW",
+              "name": "treatment of wastewater, average, capacity 1E9l/year",
+              "reference product": "wastewater, average",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "408310b2d8611c36c3e3dc428e3f56947de0c19842d398779735a33a4d194f93",
+            "metadata_sha256": "dde5a6df9bc07a74a4c5664d042f26d7ef92931e174d35b9be797c37f0cf81a4"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 4",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "1b5a504f3e89e881c33da6d476089e2c4d7802a2ad9352c92634b21a449906ad",
+            "metadata_sha256": "78238abc62ac8ef6a9366087c3ef4eb0e70e2f3d9d0d59594a7244cc30d261b3"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 4",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "dbd5ffa4d62677f6b3ab3a83167b915bb8c14c2ded0a47b1b4767ee22cb22d9e",
+            "metadata_sha256": "946b99433b203aff00c4029fb8b0203cb079d07b504846664d46dd19f529d83b"
+          }
+        }
+      },
+      "limitations": [
+        "The source RoWwastewater treatment explicitly describes class4,5320PCEand0.1556kgCOD/m3. Native class4has the same documented capacity class/meanPCEandCODbasis. Replace the previous233000PCEclass1candidate with complete native class4treatment per m3, including its own sewage collection and plant infrastructure, operation, sludge and emission model.",
+        "Nominal capacity/CODmatch is not proof of identical full influent composition or treatment performance. Native Swiss technology, other pollutant/fate, chemical solution bases, sludge spreading/incineration, energy, water returns, geographic background and uncertainty differ. Retain the existing source-1m3/native+1m3factor-1once; do not multiply by population/capacity or add source sewers, residues, emissions or avoided-energy credits on top.",
+        "Exact independently inspected cut-off profiles only, to nativeUVEK2026 via the existing2025edge. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separately listed emissions. Keep complete native supplier inventories unchanged; add no extra production, disposal or recovery credit. Native biosphere exclusions, geography, vintage, internal uncertainty and unquantified score differences remain explicit. No LCIA equivalence, impact completeness, purity/density/LHV/capacity factor, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c51d4f88c38dd35b9218d4889ecfc34a6668bf63d23fce5e12bf1f4107ed6334"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-725eff919d0ce812",
+      "operation": "replace",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_heat_38_corrections_review.json",
+      "review_sha256": "b983a796ca3aac61a326d1bdeee56c9ac9ba33e311090cf9eb08391523575132",
+      "authorization": "Standing autonomous approval of scientifically evidenced corrections, with explicit warnings and reviewable supersession history.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of wastewater, average, capacity 1E9l/year",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "name": "Treatment, sewage, to wastewater treatment, class 4",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "conversion_factor": -1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "Europe without Switzerland",
+              "name": "treatment of wastewater, average, capacity 1E9l/year",
+              "reference product": "wastewater, average",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "7286eedad3b9f94be1d10726ffb5bc04e20fcfd62aac6fb04571d0e3c0e876f5",
+            "metadata_sha256": "d31f5f62da36322a07cef5d31d1b95b38b3aedfbaf1ab61a143573828e3c52d4"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 4",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "1b5a504f3e89e881c33da6d476089e2c4d7802a2ad9352c92634b21a449906ad",
+            "metadata_sha256": "78238abc62ac8ef6a9366087c3ef4eb0e70e2f3d9d0d59594a7244cc30d261b3"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 4",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "dbd5ffa4d62677f6b3ab3a83167b915bb8c14c2ded0a47b1b4767ee22cb22d9e",
+            "metadata_sha256": "946b99433b203aff00c4029fb8b0203cb079d07b504846664d46dd19f529d83b"
+          }
+        }
+      },
+      "limitations": [
+        "The source European-without-Switzerland wastewater treatment describes class4,5320PCEand0.1556kgCOD/m3. Native class4matches that nominal class and CODbasis. Replace the previous71100PCEclass2residential candidate with the complete native class4service per m3. The separately inspected whey-digestion class4process is not the same wastewater and is excluded.",
+        "Retain the existing-1reference-sign conversion once. Swiss geography, full influent composition, actual removal, chemical forms, sludge fate, energy, sewage collection, infrastructure, direct/long-term emissions, vintage and uncertainty remain screening differences. Do not infer a PCE/annual-capacity scaling, retain source operating inventories in addition to native treatment, or add a sludge/energy recovery credit.",
+        "Exact independently inspected cut-off profiles only, to nativeUVEK2026 via the existing2025edge. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separately listed emissions. Keep complete native supplier inventories unchanged; add no extra production, disposal or recovery credit. Native biosphere exclusions, geography, vintage, internal uncertainty and unquantified score differences remain explicit. No LCIA equivalence, impact completeness, purity/density/LHV/capacity factor, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1790705694a6bd995caab4e3efd3de135262dd47ca026ba66f88ec77bedd3171"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-56229a990a6a39be",
+      "operation": "replace",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_heat_38_corrections_review.json",
+      "review_sha256": "b983a796ca3aac61a326d1bdeee56c9ac9ba33e311090cf9eb08391523575132",
+      "authorization": "Standing autonomous approval of scientifically evidenced corrections, with explicit warnings and reviewable supersession history.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "lime production, milled, loose",
+          "reference product": "lime",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Limestone, milled, loose, at plant",
+          "reference product": "Limestone, milled, loose, at plant",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6e02fb36b4cbefae9b92144d66319e23e5879c1d625be16ad8949a1196d3efe4",
+            "metadata_sha256": "eec37921f61251346b784ecf51fa4137de94bc8f75fa1c7f8347e30bd18c930d"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.7",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "09865521f240391ba8a517b95697cc2f91203c78dbfed252d48878a082362e95",
+            "metadata_sha256": "e615ba29901c8b91307d132605e0b5efe1c79389606ae9a404d54f9d69964ca1"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d9526e892d6bb04db7879d0a1ab5b9028cafa13936367c004f878332fcd03d10",
+            "metadata_sha256": "3f7171593304bdaeab279c0b1a2aae0772556ffa9721260905bcce9b5cad8e70"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7002eb00472fa0d3dfc28267ea6e571f4b290f4f91691493f010b6c258b32171",
+            "metadata_sha256": "78dc7c375ed3dd951ae1cbc875ae758955db56e9449d450c57036361979c97d9"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "73a6f957c0717c5a07718f7c103a96ff5e123230c147b1d80f82e1a99f1c2a09",
+            "metadata_sha256": "20fb945aab537e9c4da68e710dbd90acabe2f5694706aa0acb15f6f2d82b44a8"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Limestone, milled, loose, at plant",
+              "reference product": "Limestone, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "12b10e56d3f26c30052e037e6fd97857d5383e0748b2e89ae518912e33b1e31e",
+            "metadata_sha256": "e52ee82e48f0f313b636422f736f3a102b724872643f95e9bcef51f6fa6fcfe6"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Limestone, milled, loose, at plant",
+              "reference product": "Limestone, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b6e64e332f580dab44bde55abdb9ffe2208d3a95e5887d8c7c9c5d2a92875ac1",
+            "metadata_sha256": "b8a4cd11123c93659176200bc6ede0029210553cd599cab8bf410a3133610f4a"
+          }
+        },
+        "later_release_witnesses": [
+          {
+            "kind": "later_ecoinvent_limestone",
+            "identity": {
+              "name": "limestone production, milled, loose",
+              "reference product": "limestone, milled, loose",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "281a51c1647e2bfab8fa299635648d73371d2bcaa3ff7989b6fff47452a97d2f",
+            "metadata_sha256": "757b2becd0e9a3ad6eeb306bc02122ae274614f1184b6f667ecbb4afee9b0246"
+          },
+          {
+            "kind": "later_ecoinvent_quicklime",
+            "identity": {
+              "name": "quicklime production, milled, loose",
+              "reference product": "quicklime, milled, loose",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "aae922791d51d5b61ddb54c0c2c72c2acbd4defb5bf79f80ea3292a714ffc552",
+            "metadata_sha256": "a4c3893d121a52cbb4cebe229a46b0810f2b1ec8202a059206e48011debd721f"
+          }
+        ],
+        "superseded_review": {
+          "path": "export/uvek_pilot_material_review.json",
+          "sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+          "scientific_disposition": "Earlier quicklime substitution is incorrect for the inspected uncalcined limestone-grinding inventories. Replace the active approvals, retaining the entire earlier decision as superseded history."
+        }
+      },
+      "limitations": [
+        "The earlier nativeQuicklime,milled,loosematch was wrong. All five inspected sourceCHinventories consume1kgcrushed limestone plus grinding energy/infrastructure and no calcination step. Native milled loose limestone shares the characteristic1kgcrushed-limestone,0.016kWhgrid,0.016kWhhydro,0.000225machine and0.0898MJindustrial-oil-heat coordinates; it supplies the complete grinding product without a kiln. Ecoinvent3.12explicitly identifies this same grinding inventory as limestone and separately models quicklime with an upstream calcination process.",
+        "Legacy product descriptions/CASsay quicklime despite these actual inventories. This correction follows the independently traced inventory and later explicit product distinction; retain that semantic inconsistency in warnings. Do not equate limestone with CaO/Ca(OH)2or infer a stoichiometric/purity multiplier. Preserve signed kgatfactor+1and native complete milling/quarry/infrastructure/energy once, with its actual coefficient and geographic/vintage differences.",
+        "This is a scientific correction of five earlier approved scopes, not a structural fingerprint refresh. Retain the old approval and its original review bytes in superseded audit history; replace only the active correspondence. Genuine named quicklime production/markets and their calcination remain unchanged. Downstream scores may change; effects are not characterized here.",
+        "Exact independently inspected cut-off profiles only, to nativeUVEK2026 via the existing2025edge. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separately listed emissions. Keep complete native supplier inventories unchanged; add no extra production, disposal or recovery credit. Native biosphere exclusions, geography, vintage, internal uncertainty and unquantified score differences remain explicit. No LCIA equivalence, impact completeness, purity/density/LHV/capacity factor, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "72a25003431cfd1e2d6469b4ff20691706d66c613facdb4326c2d15e157b222b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d9820de2b3e61fc831e239ef21937e81f4736b2c95d8483d732e420052ed4e05"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6cd0aadeca5e1a00fafbff21871d57f7ea87d5547c614e4fe4ec76cc198645c1"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dd2f9db63f27a58d7a890243ea8777a655be1e6ed7feb60d9fc9078a889914a3"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "06531ca184018d10deecdd5396822600915ec6e88f814e5a2a7967b0afe57871"
+        }
+      ]
+    }
+  ],
+  "superseded_operations": [
+    {
+      "decision": {
+        "rule_id": "bp-56229a990a6a39be",
+        "operation": "replace",
+        "mapping_method": "reviewed_pilot_material",
+        "review_path": "export/uvek_pilot_material_review.json",
+        "review_sha256": "3dab2783feae4db513e39c9ec0cc6f65da73785619c2fda3270a244b47b13245",
+        "authorization": "User approved four pilot material corrections with warnings and separately approved +1/0.60 wet/dry-basis scaling for water-based paint. Independently inspected source and target references are positive. Only exact inspected ecoinvent cut-off profiles are authorized; no consequential or uninspected patch fallback. User additionally approved correcting the desktop-PC PSU fan from a printed circuit board to the documented native fan and the corrugated box from base paper to complete mixed-fibre single-wall packaging, with their assembly, configuration, market-boundary and vintage warnings. Positive native references were verified for both UVEK releases used by the forward route.",
+        "scopes": [
+          {
+            "source": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.8"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "bed88d9451d72df41b25e1101e155ad6e61e8198eb3e471db63b575fe5c8ae38"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "977674390c68daab766a0cfa8d67190b05949432b32a4ca6315118b355e3b6be"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.10"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "b232b1fd6d9b8d50bf8b13bba3f50a0d665bdc6559b8bb7f810b7d718ff32afe"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.6"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "e3de2ccdb93005f87ec557892331856824fe85e7f3c2230238e815fb5a8146af"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.7"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "72022284110984ff89602c7c8ca353d893c791535ccab294f8e13752ae565099"
+          }
+        ]
+      },
+      "superseded_by": {
+        "review_path": "export/uvek_heat_38_corrections_review.json",
+        "review_sha256": "b983a796ca3aac61a326d1bdeee56c9ac9ba33e311090cf9eb08391523575132",
+        "scopes": [
+          {
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "72a25003431cfd1e2d6469b4ff20691706d66c613facdb4326c2d15e157b222b"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.7",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "d9820de2b3e61fc831e239ef21937e81f4736b2c95d8483d732e420052ed4e05"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "6cd0aadeca5e1a00fafbff21871d57f7ea87d5547c614e4fe4ec76cc198645c1"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "dd2f9db63f27a58d7a890243ea8777a655be1e6ed7feb60d9fc9078a889914a3"
+          },
+          {
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "06531ca184018d10deecdd5396822600915ec6e88f814e5a2a7967b0afe57871"
+          }
+        ]
+      },
+      "reason": "Scientific correction: actual legacymilledlime inventories are uncalcinedlimestone grinding, explicitly distinguished from quicklime by later source data. The previous CaOmatch is wrong. Original approval/review/fingerprints retained here as inactive history; do not grant them as active permissions."
     }
   ]
 }

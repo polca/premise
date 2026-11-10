@@ -275,3 +275,39 @@ scientific signatures are unchanged. Real preparation now reports 16 pending
 unproven. Source/upstream candidate evidence for quicklime, delivered coal and
 class-4 sewage treatment has been collected; those corrections are not yet
 qualified. Verification: `docs/development/uvek-heat-38-profiles-verification.json`.
+
+
+Four 3.8 cases are corrected: packed milled lime uses native packed limestone,
+coal supply uses a complete regional-storage mix instead of mine-gate coal,
+and both nominal class-4 wastewater services use native class 4 rather than
+class 1 or class 2. Existing wastewater -1 reference factors remain unchanged;
+no capacity, heating-value, density, purity or stoichiometric scaling is introduced.
+Source/native geography, quality, treatment/fate, delivery and uncertainty differences
+remain explicit screening limitations.
+
+The lime investigation also found an earlier scientific mistake: five approved
+Swiss loose-milled-lime profiles (3.6–3.10) had been linked to calcined quicklime.
+Their actual inventories grind uncalcined limestone; source 3.12 explicitly names
+this same inventory limestone and separately models quicklime. These five active
+approvals are replaced with inventory-consistent native milled limestone. Original
+approval/review bytes and fingerprints remain in inactive `superseded_operations`
+history. This is a scientific supersession, not a structural fingerprint refresh.
+Genuine quicklime rules, all native inventories, all 3674 recipes and all 774 prior
+shared reviews remain unchanged. There are 514 active scopes (505 prior unchanged,
+five superseded, nine new active) and 779 shared reviews in total.
+
+206 Brightpath tests, 14 Premise cache/history/drift tests, 18 signed finite LCIs,
+18 installed signed demands, 41 original caller regressions and byte-identical
+replay of both generated resources pass. Because earlier pilot mappings changed,
+a fresh installed-wheel public default biomass/electricity run was certified,
+exported and read back: 12529 activities, 55 original source pins, nine roots,
+13 biomass mixes, five pellet audits, complete canonical biosphere links and the
+original omission/restoration history remain intact. Four foreground links change
+from quicklime to limestone with bit-identical physical amounts. Source scientific
+signatures remain unchanged. Scores can change; no LCIA equivalence or characterized
+impact difference is claimed.
+
+Strict heat preparation now has 12 pending cases in the observed 3.8 cohort,
+down from 16. These counts do not count the five repaired earlier approvals as
+additional cohort closures. Further cohorts and public heat integration remain
+unproven. Verification: `docs/development/uvek-heat-38-corrections-verification.json`.

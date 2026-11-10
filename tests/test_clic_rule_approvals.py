@@ -2740,3 +2740,60 @@ def test_heat_38_profiles_scope_and_limitations_survive_cache(tmp_path, index):
             d["details"]["limitations"] == row["limitations"] for d in diagnostics
         )
     assert resolved.activities == before
+
+
+@pytest.mark.parametrize(
+    "row_index,profile_index",
+    [(0, 0), (1, 0), (2, 0), (3, 0), *[(4, i) for i in range(5)]],
+)
+def test_heat_38_boundary_corrections_survive_cache(tmp_path, row_index, profile_index):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_38_corrections_review.json").read_text()
+    )
+    row = review["records"][row_index]
+    profile = row["profiles"][profile_index]
+    resolved = graph(row["source"], version=profile["source_profile"]["version"])
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2 * row["conversion_factor"]
+        assert all(edge[k] == v for k, v in row["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+            and d["details"]["review_path"]
+            == "export/uvek_heat_38_corrections_review.json"
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
+def test_superseded_lime_fingerprints_are_inactive_and_history_retained():
+    from premise.inventory.clic_rule_approvals import _approval_ledger
+
+    ledger = _approval_ledger()
+    history = [
+        h
+        for h in ledger["superseded_operations"]
+        if h["decision"]["rule_id"] == "bp-56229a990a6a39be"
+    ]
+    assert len(history) == 1
+    old = {s["fingerprint"] for s in history[0]["decision"]["scopes"]}
+    active = set(
+        approved_compatibility_rule_scopes(
+            resolve_inventory_target("2026", family="uvek")
+        )
+    )
+    assert len(old) == 5 and not old & active
+    current = [d for d in ledger["operations"] if d["rule_id"] == "bp-56229a990a6a39be"]
+    assert len(current) == 1 and len(current[0]["scopes"]) == 5
+    assert (
+        current[0]["inspection"]["target"]["name"]
+        == "Limestone, milled, loose, at plant"
+    )
