@@ -3040,3 +3040,74 @@ def test_cement_european_heat_is_scoped_and_excludes_district_delivery(tmp_path)
             for d in result.diagnostics
         )
     assert resolved.activities == original
+
+
+@pytest.mark.parametrize(
+    "rule_id,factor",
+    [
+        ("bp-15a5350bb1bcdb67", 1),
+        ("bp-991e69e1c1605ac3", -1),
+        ("bp-5145a4f6283a9803", 1),
+        ("bp-4b0a37360c755ca6", 1),
+        ("bp-f16b1aa32024d3a7", -1),
+        ("bp-0f1b581ce5b09834", -1),
+        ("bp-b441603c090f0014", -1),
+        ("bp-72e073827ada5981", 1),
+        ("bp-ba1a9e6cebace884", 1),
+    ],
+)
+def test_cement_inspected_39_supplies_keep_reference_sign_and_scope(
+    tmp_path, rule_id, factor
+):
+    from brightpath import TechnosphereProfile
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    resource = load_uvek_technosphere_resource()
+    rule = next(row for row in resource["replace"] if row["id"] == rule_id)
+    scopes = approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+    bridge = TechnosphereProfile("uvek", "2025", "cutoff")
+    for version, model, approved in [
+        ("3.9", "cutoff", True),
+        ("3.9.1", "cutoff", False),
+        ("3.9", "consequential", False),
+    ]:
+        fingerprint = compatibility_rule_fingerprint(
+            resource,
+            "replace",
+            rule,
+            TechnosphereProfile("ecoinvent", version, model),
+            bridge,
+        )
+        assert (fingerprint in scopes) is approved
+
+    resolved = graph(rule["source"], version="3.9")
+    exchange = resolved.activities[0]["exchanges"][1]
+    exchange.update(
+        amount=-2.5,
+        formula="signed_input",
+        **{"uncertainty type": 3, "loc": -2.5, "scale": 0.3},
+    )
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for cached in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is cached
+        mapped = result.activities[0]["exchanges"][1]
+        assert mapped["amount"] == -2.5 * factor
+        assert mapped["loc"] == -2.5 * factor
+        assert mapped["scale"] == 0.3
+        assert mapped["formula"] == (
+            exchange["formula"] if factor == 1 else "(signed_input) * (-1.0)"
+        )
+        assert mapped["uncertainty type"] == 3
+        assert all(mapped[key] == value for key, value in rule["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule_id
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before

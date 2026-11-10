@@ -255,3 +255,46 @@ Cement is still pending. The next failed audit lists 11 remaining correspondence
 in one cohort. Review those together by physical category rather than repeatedly
 running the full preparation to reveal one refusal at a time. This does not relax
 any gate: the audit already enumerates the unapproved operations.
+
+## Cement preparation: eight supplies and onshore well construction
+
+Inspect the actual 3.9 cut-off source references, market producers and native
+2026 endpoints before admitting nine existing correspondences. All native
+endpoints are nonempty positive-unit products/services. Pure liquid oxygen,
+manufactured bitumen sealing and delivered tap water retain their kg basis;
+the 10 MW diesel generator retains its fuel-input MJ basis. The latter uses
+0.0234 kg diesel in the source versus 0.02336 kg in the complete native service;
+this does not justify the factor previously reviewed for a different small
+power generator. Market-to-factory and Swiss/European geographic approximations,
+internal uncertainty replacement and unquantified score differences are explicit.
+
+Solvent hazardous incineration, copper municipal incineration and bitumen
+sanitary landfill match the documented material, wet composition and treatment
+function. Reinforcement-steel dismantling has exactly 0.626 MJ of building-machine
+diesel on both sides. These four negative source references become positive
+native treatment-service references with factor -1. Do not add an energy or
+metal recovery credit, or mistake dismantling for secondary-steel production.
+The solvent descriptions interchange net heat/electric labels; no credit is
+inferred from that inconsistent prose.
+
+Onshore well construction keeps one metre, not a whole well. Despite inconsistent
+prose about energy coverage, actual source/native inputs both contain 31.6 kg of
+drilling-test petroleum, 200 kg cement, 210 kg reinforcing steel, 270 kg barite,
+20 kg bentonite and 60 kg lubricating oil per metre. Keep the complete native
+construction service and warn about waste fates, freight, cement grade, geology
+and vintage; do not add ongoing field-operation energy, venting or flaring.
+
+The Premise approval ledger records identities, complete inventory/metadata
+hashes, reference checks, producer witnesses, decisions and warnings. Approvals
+cover only the inspected 3.9 cut-off profile, not patch releases, consequential
+or reverse conversions. No runtime Python or Brightpath mapping change is
+needed for these nine cases. Eleven focused tests pass, covering their exact
+scopes, fresh/cache conversion, signed amounts, formulas, uncertainty and
+caller non-mutation, together with the two earlier cement decisions. Black and
+Ruff pass for the test file.
+
+Two cases remain in this cohort: extend the dedicated polyethylene endpoint's
+reference review after verifying its actual 3.9 composition; replace the empty
+concrete-disposal marker with complete inert-landfill operation and facility
+services. Neither is approved by this batch. Cement preparation and the shared
+sector update remain unfinished.

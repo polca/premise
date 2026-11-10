@@ -133037,6 +133037,962 @@
           "fingerprint": "2e78355d810f0c26100386dbcb338c4da99930f70a11366d9e067a810f42cd66"
         }
       ]
+    },
+    {
+      "rule_id": "bp-15a5350bb1bcdb67",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for tap water",
+            "reference product": "tap water",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0fceddf7460efecdce92777fa73852ed8f4bdedbcf4e42e4dfe0cc6cf3097197",
+          "inventory_sha256": "d1e378a52b2c101b6d2d56cdcbe1f11b7bc265ecf69019d176ed4e2acf04670a",
+          "comment_sha256": "245c800c4b0ad132d12b665045dddc6cbc2afd668c68dea99f36b759a63dc80a",
+          "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+          "nonproduction_counts": {
+            "technosphere": 8
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "65459ef609ec5a6a1eb435aced7a7894696132937c2829e38a9170f4591f1cb5",
+          "inventory_sha256": "d8d72fe31f9cf3081063ba91ae39a0b356ae9c8627a3a652154ef6df4cbf298a",
+          "comment_sha256": "567d6cde5eb8e60e861af5a3eeda4d6fbceea4c2de3d6a587f3e41e3d2bf5466",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 14,
+            "biosphere": 9
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8310a635ab7d87e2fbd35c44c573f2abb772147826e35313eba4d7bc03524fce",
+            "inventory_sha256": "8d6dda815d3b501cdcb056fdf8428652ea91a1634cfe3aaa88ce1fe69664e69f",
+            "comment_sha256": "aa89b30caa0ca27dbf2bfcb6744fce23ccd77fb5fdc64e01626affb750f723d5",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "ZA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4b5898781afb9516b535370c6f15832a7edb89e58d092386c429cd7d8a9b7c46",
+            "inventory_sha256": "d2a9a86f0b04a8f35abe771d87bd7cee5cf2acfb92a3455082fde497a7c9f002",
+            "comment_sha256": "cecf74822cce94ddac7291617ebadcb279af09bea27395d73ff9a657afd08d3b",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0c1e935bbfcc7a46a44e39fe4b9ff33a7b1e77341c8615b456c353d6d9fedbfd",
+            "inventory_sha256": "36e8a030598cc546520c0201571844bddcaa375e7c1e8f88d778386b4b89f557",
+            "comment_sha256": "1975881ed0ad046d977bbda8148f3176f9cc812dc7c9401183c8e88982331f8c",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 17,
+              "biosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "market group for tap water",
+              "reference product": "tap water",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ed9e7f27206c65e78f93b0da751ee35607e10027df231919a87e3f5de3705d1a",
+            "inventory_sha256": "7f9a7347a598335e0749bed696cb0bcaeaa037df5eb5329030d0d3568cc72234",
+            "comment_sha256": "353a0938b63ccaff3c41d493e73a517246f698316ee3348f491e308ae7cbfe90",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "272c23a6f097ab93e59dc1d00ebb78c41187c901aba608d9e7a38240b9a8df51",
+            "inventory_sha256": "b45f04f79ff52174d547a50b8433d539126893f1dd417fec23b31ca20556ee26",
+            "comment_sha256": "6220a15938639e6e347131276e6077ab9cf7a5ae38afde1e5c8628ab10c80cc0",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 5,
+              "biosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c7e66adfeb5db6da6c3e041bd44e0f52abe87b376d9fe166115a4c1d201127fb",
+            "inventory_sha256": "c7c12836b043e5a2b703ad177d3b762d3f5426e9e6fc38ef9f7884c2c6bc2231",
+            "comment_sha256": "1eb558710990e8ea1ec8eea02cc8c9dee22f6e04968fb61ecaddfb252ffa3ccb",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 11,
+              "biosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "CO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "66dc109e5ddfc4856f888fb5f7f7624f5458d6cff949423eed71356448f05437",
+            "inventory_sha256": "67d504cdda064f653ade6f19f01e8b9c017e71ec4061d730816250107abe3710",
+            "comment_sha256": "ff96884b0d48b83497dfb7486b62c8951c65eca3f83b2a76718c9dcb4cb522b6",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "PE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "3c6efb3c883e87a252eaec72cddb07e36d15f1a56f224f0bfcc8013e157dd062",
+            "inventory_sha256": "6255c85d49536442c77e81196d75119a45bee95ca81928413dcf48f45739073a",
+            "comment_sha256": "a3c9abd744bdbd2af2086adcc77de654e542dda01fa77fff7492472756c54c73",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 1
+            }
+          }
+        ],
+        "basis": "Complete native delivered potable tap water per kg, not untreated water or a treatment plant. Use the Swiss supply as an explicit global screening proxy. Source-country treatment shares, network, losses, water returns and internal uncertainty are replaced by the native service; no extra loss multiplier or water-balance correction. Native construction work is excluded. Geography, treatment mix, infrastructure and vintage differences have unquantified score effects.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Complete native delivered potable tap water per kg, not untreated water or a treatment plant. Use the Swiss supply as an explicit global screening proxy. Source-country treatment shares, network, losses, water returns and internal uncertainty are replaced by the native service; no extra loss multiplier or water-balance correction. Native construction work is excluded. Geography, treatment mix, infrastructure and vintage differences have unquantified score effects.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ae8b018b351cfa81b8fa592b4f8286e7b640ea125b6f22c27edbe395251eb5a4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-991e69e1c1605ac3",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of spent solvent mixture, hazardous waste incineration",
+            "reference product": "spent solvent mixture",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "2328bcaaf7d0acc434e7f39d4776c743d81d3d93b5e6efb9593da8fd785e6ade",
+          "inventory_sha256": "455d3d01dcc09307c37bece0971ba8d1e81baae6bbc94939bb4c4028105a5060",
+          "comment_sha256": "d9a4a876682774147355ef1ce3b09787cc5cbc1b9f5cbbdf00cd9da71bab04bc",
+          "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc",
+          "nonproduction_counts": {
+            "technosphere": 18,
+            "biosphere": 51
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+            "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "22ad0042e11d066973bbc28968f4cf4b7ea3dbdcf8bd796ab77f7128c4e0e189",
+          "inventory_sha256": "6cf35a35567438eace21dae9419bcaeb5ea03b3c81fca58e8ea61ae873b74d7c",
+          "comment_sha256": "90e6290de4b5a6a3b8e989183928bb0c123b0af80da124ae362929898339d850",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 20,
+            "biosphere": 53
+          }
+        },
+        "source_producer_witnesses": [],
+        "basis": "Spent-solvent hazardous incineration per wet kg: both descriptions specify 16.5% water, 23.68 MJ/kg higher heating value and the same listed wet elemental composition. Retain the complete native incinerator and residue treatment once. Source and target descriptions interchange their labels for net heat/electric energy quantities; do not infer an energy credit from that textual inconsistency. No collection transport or avoided energy is added. Regional background, emissions and vintage differences remain.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Spent-solvent hazardous incineration per wet kg: both descriptions specify 16.5% water, 23.68 MJ/kg higher heating value and the same listed wet elemental composition. Retain the complete native incinerator and residue treatment once. Source and target descriptions interchange their labels for net heat/electric energy quantities; do not infer an energy credit from that textual inconsistency. No collection transport or avoided energy is added. Regional background, emissions and vintage differences remain.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "81ba3c1cbb49cb49e6cd096d6816a22d4ee1258253fcd3854fccc79eec99f5da"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5145a4f6283a9803",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for oxygen, liquid",
+            "reference product": "oxygen, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "b0ad1bd89739a71b83b8c807d8e67e214c80ffdf2fd15eb92cfe556ebcff5870",
+          "inventory_sha256": "65c878a0c285cc919ba7e8e21098cf394a07f174cfb7699165910a03da6ef2c6",
+          "comment_sha256": "3dbf374180403aed0aa0ff2e76c8c420c01fa135b88f628bc11f03fe4e1149dc",
+          "product_information_sha256": "23faf25c2f91fe98a45fa3f65f6c7c8f2771834690df2426dc0b47185c0bd2ad",
+          "nonproduction_counts": {
+            "technosphere": 10
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Oxygen, liquid, at plant",
+            "reference product": "Oxygen, liquid, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "f2d073764e1ba850ada231b2e41f7b5c157605bdcf20c64771061438fb8bd630",
+          "inventory_sha256": "4da1b31b7c2c78499b586cd374debfcfe849eec0bbec7abd8ad0f64332135dbc",
+          "comment_sha256": "345fb0a6b226364f7b92178e30f52ecc11f56f865094eb818b523259819d395a",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 3,
+            "biosphere": 3
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "oxygen, liquid",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f925101b49f5312b5514249ad6ac2ce49bacdd5853ce4a723dde7bda94d9220c",
+            "inventory_sha256": "8111a340ca75b249ac910f7900eb61c509b5ec6cc89c5854795e9997d2c9f479",
+            "comment_sha256": "f71fad60c39b5be357a8babfe2ae6195b7fbd60df7a57a125e9be97d0a0cb654",
+            "product_information_sha256": "23faf25c2f91fe98a45fa3f65f6c7c8f2771834690df2426dc0b47185c0bd2ad",
+            "nonproduction_counts": {
+              "technosphere": 2,
+              "biosphere": 6
+            }
+          },
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "oxygen, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "2619c55edc9a912144499bc009cd3f3cd7aa1e15c7ed2812aae67a5d9c837dd4",
+            "inventory_sha256": "d50024d1938a27ed68d77348a97e95c2032ddb8a9e46efdead9754f3ea223d7d",
+            "comment_sha256": "434e8b334759c1174875099698a1d075589a2d81db9b9f8445c48d9ba07be457",
+            "product_information_sha256": "23faf25c2f91fe98a45fa3f65f6c7c8f2771834690df2426dc0b47185c0bd2ad",
+            "nonproduction_counts": {
+              "technosphere": 8,
+              "biosphere": 6
+            }
+          }
+        ],
+        "basis": "Pure liquid oxygen per kg, produced by cryogenic air separation. Retain the native allocated liquid-product inventory; no gaseous-oxygen substitution, solvent, phase conversion or repeat allocation. The RoW market becomes a complete European factory screening proxy. Source delivery freight, regional producer mix, source allocation and internal uncertainty are not reconstructed; score effects remain unquantified.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Pure liquid oxygen per kg, produced by cryogenic air separation. Retain the native allocated liquid-product inventory; no gaseous-oxygen substitution, solvent, phase conversion or repeat allocation. The RoW market becomes a complete European factory screening proxy. Source delivery freight, regional producer mix, source allocation and internal uncertainty are not reconstructed; score effects remain unquantified.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6cfc7e7a11b4b091c35e266866fadd3f402a052974121213a541340b618f320d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4b0a37360c755ca6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for bitumen seal",
+            "reference product": "bitumen seal",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ad14364e061fb2bf384dca1ab9701324eb82102e660531329d6fea23c2de2c6e",
+          "inventory_sha256": "9e2663eccb6efb6bb749b124e05423f17ee2c73a83fc1a4485b581accef7e640",
+          "comment_sha256": "bdb712e91245f0aab1f187a8736a55681542765e96fccfba69beb7ad74a3da74",
+          "product_information_sha256": "347c0660314d4da677d7c8343535f065a9fac8c1d98540f7642c8e9c83cc027a",
+          "nonproduction_counts": {
+            "technosphere": 6
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Bitumen sealing, at plant",
+            "reference product": "Bitumen sealing, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ad1dbe548659cc07cb5238c1427de63c8d263397c0c6717c584331c36ce02c4e",
+          "inventory_sha256": "603bb6aaec27bafeb9958fedd674cc8ee3d1e4285e78561c5da951459056cf3e",
+          "comment_sha256": "8ed57e5e5954663903e2e99787e0869974c75125ab52f59e8acb90c7b903da16",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 18,
+            "biosphere": 3
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "bitumen seal production",
+              "reference product": "bitumen seal",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1d47cb93ea6017ecea9c25dce91e4f581bf5c7279c2d23e6a36e1215e4c663fc",
+            "inventory_sha256": "3fba3609253efeb6e3bff77cfa6f0aa82556fab629e38fa05f86fffbfcaec9a0",
+            "comment_sha256": "9f2cb57d8e5860bdf4158aaa7766730286df887c54515f27e03189b64809a089",
+            "product_information_sha256": "347c0660314d4da677d7c8343535f065a9fac8c1d98540f7642c8e9c83cc027a",
+            "nonproduction_counts": {
+              "technosphere": 18,
+              "biosphere": 3
+            }
+          },
+          {
+            "identity": {
+              "name": "bitumen seal production",
+              "reference product": "bitumen seal",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "162c6bfcfcea25bb5f5be1cc9ebbea0b23df952b4a3c8dc97be4d55630d1108b",
+            "inventory_sha256": "516e19b50e2105ed7c453f5195c801c0295ec307c2308c96683026507a5bc955",
+            "comment_sha256": "9f2cb57d8e5860bdf4158aaa7766730286df887c54515f27e03189b64809a089",
+            "product_information_sha256": "347c0660314d4da677d7c8343535f065a9fac8c1d98540f7642c8e9c83cc027a",
+            "nonproduction_counts": {
+              "technosphere": 31,
+              "biosphere": 3
+            }
+          }
+        ],
+        "basis": "Manufactured bitumen sealing per kg, not raw bitumen or square metres of installed roof. Native documentation explicitly states a one-kg sealing functional unit. Retain the complete native product and its processing. Source reinforcement/product grades, producer mix, delivery, allocation and internal uncertainty are replaced by the older European manufacturing model; no thickness, density or area conversion is inferred.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Manufactured bitumen sealing per kg, not raw bitumen or square metres of installed roof. Native documentation explicitly states a one-kg sealing functional unit. Retain the complete native product and its processing. Source reinforcement/product grades, producer mix, delivery, allocation and internal uncertainty are replaced by the older European manufacturing model; no thickness, density or area conversion is inferred.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "db2fcb7d634d08ed06b910e669bc04644f5db5848b0caa85d26e3074600b1e4a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f16b1aa32024d3a7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste reinforcement steel, recycling",
+            "reference product": "waste reinforcement steel",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "bfb1b060cbe63dd3ecd2c6e470e69e875c007052e89c2600a3a2d4d01aaa7955",
+          "inventory_sha256": "269eb856d66a9d2c0bc74492c0e1e97be7f68e49e562570dcb97974bf5746673",
+          "comment_sha256": "acf82a052f52f3e150bb8d483ca0c13dfc5812dd8e262014ccf590c323494bcf",
+          "product_information_sha256": "8c80b11d9ee5753823167da8f5b2e63771b8b96c213c87d3c6b740e069054008",
+          "nonproduction_counts": {
+            "technosphere": 1
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Disposal, building, reinforcement steel, to recycling",
+            "reference product": "Disposal, building, reinforcement steel, to recycling",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "38967f5f76e0c82135110cf7b6dcc0c2cd4455cdda660ad25da795173ccb2a29",
+          "inventory_sha256": "07c14588faa629eb6c6d086facb6e0dbf8fe61669d78def9fcc70435bf346673",
+          "comment_sha256": "aa7dde0f19177255b963c38519d3d1ac72f50cbe1b99d452a5c3043c0dd8d9d0",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 1
+          }
+        },
+        "source_producer_witnesses": [],
+        "basis": "Building reinforcement-steel dismantling for recycling, not production of secondary steel or an empty recycling handover. Both actual inventories contain exactly one 0.626 MJ diesel-building-machine input per kg. Keep that processing once using the complete native diesel service; no avoided virgin steel, recycling yield or metal-recovery credit. Fuel background, emissions and vintage differences remain.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Building reinforcement-steel dismantling for recycling, not production of secondary steel or an empty recycling handover. Both actual inventories contain exactly one 0.626 MJ diesel-building-machine input per kg. Keep that processing once using the complete native diesel service; no avoided virgin steel, recycling yield or metal-recovery credit. Fuel background, emissions and vintage differences remain.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d9a813bc1bb1cc056b39f3b2723a4f1d7324d2c992f41c7a1eddf0a01169f594"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0f1b581ce5b09834",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of scrap copper, municipal incineration",
+            "reference product": "scrap copper",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "893703061ac3ca56c4ef0ea2fd2c24d67577ff5d285ada0575a878c40981cc5c",
+          "inventory_sha256": "5e8bb2c4d8d2238aeb24bbaa7a6700b742f6cb62972de8dc3a07452a4bcef631",
+          "comment_sha256": "508121995390e303dc03a40839e48e338d8e76afb914be569e90d342d4d3c9a2",
+          "product_information_sha256": "0380b9d53dd593cd0711a82734a3973d2474c7cea273ad50745f635d4cacdc7b",
+          "nonproduction_counts": {
+            "technosphere": 24,
+            "biosphere": 20
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Disposal, copper, 0% water, to municipal incineration",
+            "reference product": "Disposal, copper, 0% water, to municipal incineration",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "1785b20c145da7c8ff6a8c9788d3afeaf3842d2eca82309979d0e5554c7d778d",
+          "inventory_sha256": "5c650fa1680bec384abac143056b7c5550e7f8b121389aedfcec7f4de5f7e1ca",
+          "comment_sha256": "66ed0a2e4451ccf9c542f8f8ff23f6bf49803328c88f6d047168453b0ebddfd4",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 5,
+            "biosphere": 18
+          }
+        },
+        "source_producer_witnesses": [],
+        "basis": "Bulky copper disposal as part of mixed municipal incineration, not copper smelting or an isolated scrap-recycling service. Both descriptions specify dry pure copper, no heating value, 0.8298 kg slag and 310 g recovered copper per kg waste. Preserve the complete native incinerator and its existing allocation/recovery model; no second recovery credit. Source collection is outside this treatment. Regional background, emissions and vintage differences remain.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Bulky copper disposal as part of mixed municipal incineration, not copper smelting or an isolated scrap-recycling service. Both descriptions specify dry pure copper, no heating value, 0.8298 kg slag and 310 g recovered copper per kg waste. Preserve the complete native incinerator and its existing allocation/recovery model; no second recovery credit. Source collection is outside this treatment. Regional background, emissions and vintage differences remain.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a7e8920717b6b01f920330ef8a6949b192faf8b34cbcc26f851c00a26564194b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b441603c090f0014",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste bitumen, sanitary landfill",
+            "reference product": "waste bitumen",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "e1aa9232249aff5a990f7c1d70d2b94cbb10b286b0b6a68df7d0da29ae634c79",
+          "inventory_sha256": "952363ad1641587aa6bd6f42bef580eef94b851b7364d1e0af91d1eea72732ba",
+          "comment_sha256": "f024c84dc334999e06d8ba1192350e2c193c19de95a0bd2d472d2420f9d8c601",
+          "product_information_sha256": "6804a3bd6410127f81e06e97f6bd25303a1f9c97765517f5169489af21acb13a",
+          "nonproduction_counts": {
+            "technosphere": 30,
+            "biosphere": 102
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Disposal, bitumen, 1.4% water, to sanitary landfill",
+            "reference product": "Disposal, bitumen, 1.4% water, to sanitary landfill",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "c436304f14a9ed9368408ff3e5c03272c9455272c031290d27a88949417c7801",
+          "inventory_sha256": "9f044c30baa3292e4adaaaaf5468c9fb2ac8e2a7d21245ecc196351f234338f1",
+          "comment_sha256": "14dd5657d57c03c42ca58936635c83829970160ab9ce2f30324cc85cc269fcf5",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 33,
+            "biosphere": 107
+          }
+        },
+        "source_producer_witnesses": [],
+        "basis": "Bitumen-specific sanitary landfill, not inert/construction landfill or combustion. Both descriptions specify 1.4% water (13560 ppm), 41.39/39.38 MJ/kg heating values, matching listed wet elemental composition and 1% degradability over 100 years. Retain complete native waste-specific landfill inventory once. No moisture, heat, density or recovery correction. Regional background, emissions and vintage differences remain.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Bitumen-specific sanitary landfill, not inert/construction landfill or combustion. Both descriptions specify 1.4% water (13560 ppm), 41.39/39.38 MJ/kg heating values, matching listed wet elemental composition and 1% degradability over 100 years. Retain complete native waste-specific landfill inventory once. No moisture, heat, density or recovery correction. Regional background, emissions and vintage differences remain.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6d878988f5b84e901a5e3c97eec4ed1374590a5522d1566bc5f660f0ea6e80ea"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-72e073827ada5981",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for diesel, burned in diesel-electric generating set, 10MW",
+            "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2ff9514cf1b932843979153f84412729a124f89908f52bc86a15376feb9e3743",
+          "inventory_sha256": "98601e7077cfb11425e0ac84016ab6db55e1895696f2d96f2f791b7c65e833f7",
+          "comment_sha256": "50f72e2be4570535a631c3eee21bab8b9e59e78ad4730d46c3dc083725e93dc0",
+          "product_information_sha256": "bbfb3ef0677cb59ea4c246eec840c6ddaeaaa7c330282e69d077b8e785fe657a",
+          "nonproduction_counts": {
+            "technosphere": 1
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Diesel, burned in diesel-electric generating set",
+            "reference product": "Diesel, burned in diesel-electric generating set",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "3abe581e2d94b12296465d707649659af04214bbc3b39a8743f04f8e925dcfb8",
+          "inventory_sha256": "949a829010ba1cd52cb523348689fb6a792269cfde6426da08934f378c041944",
+          "comment_sha256": "cb982e69048e44f714b05f824f29ac83116e865bb1828702d8f3752a3b1293ff",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 4,
+            "biosphere": 18
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "diesel, burned in diesel-electric generating set, 10MW",
+              "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "885f5c26b8eb1688c26b5baf175685bf8a3cd18f253cff4f991db943e86e27ed",
+            "inventory_sha256": "2a8253e8c7bb54a1a1c0bc2521f91e7207111188cabed3aa396104f760082577",
+            "comment_sha256": "73a4ed84662256ddebfdb453e7fb5f20c70ec1745a6d81a71d69a7abe0b4478f",
+            "product_information_sha256": "bbfb3ef0677cb59ea4c246eec840c6ddaeaaa7c330282e69d077b8e785fe657a",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 18
+            }
+          }
+        ],
+        "basis": "Fuel-input combustion service in a 10 MW diesel-electric generator per MJ, not delivered electrical MJ. Actual source producer uses 0.0234 kg diesel/MJ; native uses 0.02336 kg/MJ and includes the 10 MW generator. This is a complete same-function screening proxy at factor +1, retaining the small native fuel-intensity difference. Do not reuse the unrelated small-generator factor 2.8538813, introduce electrical efficiency, add a generator twice or add a heat credit. Fuel supply, lubricant, disposal, emissions and vintage differences remain.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Fuel-input combustion service in a 10 MW diesel-electric generator per MJ, not delivered electrical MJ. Actual source producer uses 0.0234 kg diesel/MJ; native uses 0.02336 kg/MJ and includes the 10 MW generator. This is a complete same-function screening proxy at factor +1, retaining the small native fuel-intensity difference. Do not reuse the unrelated small-generator factor 2.8538813, introduce electrical efficiency, add a generator twice or add a heat credit. Fuel supply, lubricant, disposal, emissions and vintage differences remain.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "27a9772175d67f38c5d1dc202b3806b321af10a709cb4025f6fc6f5d693e5ab6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ba1a9e6cebace884",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active all-sector UVEK integration goal and standing auto-approval for reviewed functional/reference-basis and geographic screening proxies. Primary inspection and limitations below qualify only the actual 3.9 cut-off source; the packaged reference-flow review alone is not evidence of product equivalence.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for onshore well, oil/gas",
+            "reference product": "onshore well, oil/gas",
+            "location": "GLO",
+            "unit": "meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "3876034977d00732fc166995b012a7d5d9fa54cd1780b9f5b7c7d5d5986a8de0",
+          "inventory_sha256": "e8c3b276e1df754aa8c951a3e69fb291332420102c1320543d99698d80cb39d1",
+          "comment_sha256": "fccc5aa61c6890ea861cdb62026482100421d214c250f3be21ad939377f2a3bd",
+          "product_information_sha256": "cbf7a9f00944541b8513902681ac35797dc03de376607b3b1be7b406eb5acd99",
+          "nonproduction_counts": {
+            "technosphere": 1
+          }
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Well for exploration and production, onshore",
+            "reference product": "Well for exploration and production, onshore",
+            "location": "GLO",
+            "unit": "meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2c972ed38644b3463bf84d3639aa0674f08d2861f230ba2b93d36a4c8f0bbf9b",
+          "inventory_sha256": "23718a4b186f3038d8899625912e8132215cb824d64736569f1cc0c37ebfd350",
+          "comment_sha256": "51c97d3e111ac3639e0c3a32127411d10af9678342898d7c02eb41b73f30a194",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "nonproduction_counts": {
+            "technosphere": 14,
+            "biosphere": 30
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "onshore well production, oil/gas",
+              "reference product": "onshore well, oil/gas",
+              "location": "GLO",
+              "unit": "meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "001fe4082147820b9aae232148d89f344b60dbc01872de09982f1b557bde71a4",
+            "inventory_sha256": "51d2055b93d11d9875b9b83101cd7c6153b7c3ad11e524b499d67a517c0e68c2",
+            "comment_sha256": "c327e5c535138fd77ea370bc136ec424006c62849276221cfdeeff723e51002d",
+            "product_information_sha256": "cbf7a9f00944541b8513902681ac35797dc03de376607b3b1be7b406eb5acd99",
+            "nonproduction_counts": {
+              "technosphere": 24,
+              "biosphere": 32
+            }
+          }
+        ],
+        "basis": "Onshore exploration/production well construction per metre of drilling, not one whole well, offshore drilling, or ongoing field operation. The source producer and native inventory both include 31.6 kg petroleum/crude-oil drilling tests, 200 kg Portland cement, 210 kg reinforcing steel, 270 kg barite, 20 kg bentonite and 60 kg lubricating oil per metre. These actual inputs qualify the correspondence despite inconsistent prose about energy coverage. Retain the complete native construction model; operational energy, venting and flaring are not added. Native drilling-waste fates, freight, cement grade, geology, geography, vintage and internal uncertainty differ; score effects remain unquantified.",
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; separate comment/product-information hashes. Original inventory data remain private.",
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Onshore exploration/production well construction per metre of drilling, not one whole well, offshore drilling, or ongoing field operation. The source producer and native inventory both include 31.6 kg petroleum/crude-oil drilling tests, 200 kg Portland cement, 210 kg reinforcing steel, 270 kg barite, 20 kg bentonite and 60 kg lubricating oil per metre. These actual inputs qualify the correspondence despite inconsistent prose about energy coverage. Retain the complete native construction model; operational energy, venting and flaring are not added. Native drilling-waste fates, freight, cement grade, geology, geography, vintage and internal uncertainty differ; score effects remain unquantified.",
+        "Preserve signed caller quantities, formulas, uncertainty, separate emissions and separate transport. The treatment factor -1 follows the inspected negative source and positive native reference, not the sign of the caller. Only the exact inspected ecoinvent 3.9 cut-off identity is approved; no other version, consequential or reverse route is inferred. Native mapped-export limitations and unquantified score differences remain."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a5c92de824474677e559415f5eac7cc338c321e9481cf86aa966d087907daafb"
+        }
+      ]
     }
   ],
   "superseded_operations": [
