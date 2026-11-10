@@ -57,25 +57,11 @@ def extract_uvek_source(source, biosphere_name, *, keep_uncertainty=True):
 
     Labels needed by Wurst come from the linked suppliers, never a version-based
     fallback table. Copies retain original coefficients, formulae and metadata.
-    The installed databases are read only.
+    Background axes come from NewDatabase arguments, not custom Brightway
+    metadata labels. The installed databases are read only.
     """
     import bw2data as bd
 
-    expected = resolve_source_background("2026", family="uvek").to_dict()
-    metadata = bd.databases.get(source, {})
-    fields = {
-        "family": "background_family",
-        "version": "background_version",
-        "system_model": "system_model",
-        "biosphere_family": "biosphere_family",
-        "biosphere_version": "biosphere_version",
-    }
-    for axis, key in fields.items():
-        if metadata.get(key) != expected[axis]:
-            raise ValueError(
-                f"UVEK source {source!r} must declare {key}={expected[axis]!r}; "
-                f"found {metadata.get(key)!r}."
-            )
     if biosphere_name not in bd.databases:
         raise ValueError(
             f"The selected UVEK biosphere {biosphere_name!r} is not installed."

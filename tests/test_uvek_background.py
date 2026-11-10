@@ -46,13 +46,7 @@ def source(monkeypatch):
             "unit": "kilogram",
         }
     }
-    metadata = {
-        "background_family": "uvek",
-        "background_version": "2026",
-        "system_model": "cutoff",
-        "biosphere_family": "ecoinvent",
-        "biosphere_version": "3.10",
-    }
+    metadata = {"format": "Ecospold2", "depends": ["bio310"]}
     native = {("native", "process"): activity}
     monkeypatch.setattr(bd, "databases", {"native": metadata, "bio310": {}})
     monkeypatch.setattr(
@@ -101,10 +95,16 @@ def test_native_extraction_resolves_labels_without_changing_source(source):
     assert native[("native", "process")]["parameters"]["dose"] == -2
 
 
-def test_native_extraction_refuses_wrong_declared_biosphere(source):
-    source[2]["biosphere_version"] = "3.12"
-    with pytest.raises(ValueError, match="biosphere_version='3.10'"):
-        extract_uvek_source("native", "bio310")
+def test_native_extraction_uses_selected_biosphere_instead_of_custom_labels(source):
+    source[2].update(
+        background_family="other",
+        background_version="old",
+        system_model="other",
+        biosphere_family="other",
+        biosphere_version="3.12",
+    )
+    records = extract_uvek_source("native", "bio310")
+    assert records[0]["exchanges"][2]["input"] == ("bio310", "flow")
 
 
 def test_native_extraction_refuses_supplier_outside_selected_biosphere(source):
