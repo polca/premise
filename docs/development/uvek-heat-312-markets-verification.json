@@ -1,0 +1,117 @@
+{
+  "status": "three3_12markets_qualified_full_selected_heat_supplement_preparation_verified_public_heat_gate_closed",
+  "review": "export/uvek_heat_312_markets_review.json",
+  "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+  "approval_scopes": 529,
+  "prior_fingerprints_unchanged": 526,
+  "new_exact_scopes": 3,
+  "new_helpers": 3,
+  "retained_source_market_exchanges": 13,
+  "recipe_count": 3685,
+  "shared_review_count": 793,
+  "all_other_rules_prior_recipes_reviews_superseded_history_unchanged": true,
+  "validation": {
+    "brightpath_tests": 22,
+    "premise_cache_and_drift_tests": 8,
+    "signed_finite_LCIs": 6,
+    "installed_signed_demands": 6,
+    "installed_original_callers": 41,
+    "generated_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 272,
+      "premise": 247
+    },
+    "native_scientific_contents_unchanged": true
+  },
+  "full_selected_preparation": {
+    "roots": 12,
+    "source_records": 76,
+    "helpers": 530,
+    "prepared_activities": 606,
+    "original55pins_unchanged": true,
+    "all76version_id_sha256_bindings_match_captured_lock": true,
+    "explicit_request_pin_flags": 58,
+    "auto_dependencies_captured_in_full_lock": 18,
+    "pin_flag_interpretation": "Initialcheckincorrectlyassumed76explicitflags;actual58explicitrequestsplus18autodependencies. All76versions/IDs/SHA256matchcapturedfullrecipe;alloriginal55retainexplicitpinflags. Retainedinitialcheckfailurelog;no provenance flags rewritten.",
+    "all_reference_keys_and_supplier_identities_verified": true,
+    "canonical_biosphere": "ecoinvent-3.10-biosphere",
+    "production_reference_counts": {
+      "1": 600,
+      "-1": 6
+    },
+    "exchange_counts": {
+      "biosphere": 5550,
+      "production": 606,
+      "technosphere": 3731
+    },
+    "new_heat_root_signed_finite_combined_inventories": 6,
+    "native_scientific_contents_unchanged": true,
+    "no_database_write": true
+  },
+  "public_heat_gate": "closed; successful preparation/baselineLCIs do not establish three-layerIAMheat transformation, relinking or export",
+  "scientific_limitations": [
+    "Complete native amorphousPETproduction,filmextrusionservice andmetaladhesive are disclosed geography/background/vintage/uncertainty proxies.",
+    "PETmarket retains all3producers and3freight modes;native productionupstream freight remains distinct.",
+    "Filmextrusion keeps1kgservice/0.976kgfilmbasis on bothsides,excludesconvertedpolymer,addsno additional yield factor or polymerinput.",
+    "Adhesive keeps completecompound anddocumented missingprocessenergy;no dryresinconversion,curingenergy or ingredient normalization.",
+    "Native freightfleet/geography,emissions,sourceBIOexclusions andunquantified scoreeffects remainwarnings. No LCIAequivalence/impactcompleteness."
+  ],
+  "cache_cleanup_bytes": 929095016,
+  "receipts": [
+    {
+      "name": "heat_312_markets_registration.json",
+      "sha256": "c02c8c50c9ac2b8374ef3c7429782a53f9cb13d6460479680e9c90a7b16ba657",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_markets_tests.log",
+      "sha256": "f30d8d6551b7a93ff532f227d49f8751c010ab0b9873889b1575e7120304751a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_markets_premise_tests.log",
+      "sha256": "603c2f705c18e5abcef1f24eab09fbe0faae923d4d120f225cbadc5fe477f99d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_markets_native_lci_checks.json",
+      "sha256": "415e46fed611bed6cbdad8d1a272e72524bd1a97c3350f1664a6d29f219e5ba6",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_markets_installed_checks.json",
+      "sha256": "99ec713c31bb490c1cb1785dcc5e01d789fc29c300e97ab8796abed1ba2ba625",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_markets_original_callers.json",
+      "sha256": "6fa8038f682e26b7ddb89322b4229cd48fd63278ac2426a5041d7c3849b78cf9",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_markets_generator_replay.json",
+      "sha256": "ac1572a7d875313c62a5d5f1ddf38c489c554b3f97fc6b7ef1c8d1539799c5f4",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_markets_packaged_data.json",
+      "sha256": "a3a47b34fc4601b84f72477589762f50159e2a21ecb0d2ae90e59098547b2596",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplemental_preparation_report.json",
+      "sha256": "51359c74419b87c0487ee51e7e73bf3f04e12e004cb5a9dbbaafd9372fe5a297",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplemental_prepared_graph_checks.json",
+      "sha256": "ec1fe0f15168009d966432c736d00b4f24e782a0a7ecb41181873a82a59f05e4",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_312_markets.json",
+      "sha256": "0939277f37e9d1a5239cd540707da2d0dea09a2f20820fb593cee3abbfb2fa37",
+      "location": "private task workspace"
+    }
+  ]
+}

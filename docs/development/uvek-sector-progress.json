@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "all24_observed3_8qualified_three_observed3_12pending_public_heat_gate_closed",
+      "status": "selected_supplemental_graph_prepared_all_observed_mapping_cases_qualified_public_heat_gate_closed",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -935,18 +935,38 @@
         "original55pins_unchanged": true,
         "observed_pending3_9cases": 0,
         "review": "docs/development/uvek-heat-mapping-frontier.json",
-        "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases",
+        "total_remaining_heat_case_count": "0pending in selected12root76recordpreparation. Fullsector integration and other selections still require verification.",
         "initial_observed_pending3_9cases": 14,
         "qualified3_9cases": 14,
-        "verification": "docs/development/uvek-heat-38-closure-verification.json",
+        "verification": "docs/development/uvek-heat-312-markets-verification.json",
         "observed_pending3_10cases": 0,
         "next_cohort_review": "docs/development/uvek-heat-312-mapping-frontier.json",
         "qualified3_10cases": 38,
         "observed_pending3_8cases": 0,
         "qualified3_8cases": 24,
         "previous_cohort_review": "docs/development/uvek-heat-310-mapping-frontier.json",
-        "observed_pending3_12cases": 3,
-        "qualified3_12cases": 0
+        "observed_pending3_12cases": 0,
+        "qualified3_12cases": 3
+      },
+      "supplemental_preparation": {
+        "status": "full_selected_graph_prepared_links_and_baselineLCI_verified_not_public_heat_update",
+        "roots": 12,
+        "source_records": 76,
+        "prepared_activities": 606,
+        "helpers": 530,
+        "all_source_versions_ids_hashes_match_captured_lock": true,
+        "original55pins_unchanged": true,
+        "explicit_requested_pin_flags": 58,
+        "automatically_resolved_dependencies_captured_in_lock": 18,
+        "complete_links_canonical_biosphere": true,
+        "signed_new_root_LCI_demands": 6,
+        "native_scientific_contents_unchanged": true,
+        "verification": "docs/development/uvek-heat-312-markets-verification.json",
+        "next_actions": [
+          "Integrate seven missing positiveREMINDheat roles, using CLICsupplements/retained electricboiler and purchased-heat layer routing with reviewed physical bases.",
+          "Implement allthreeheat layers and native consumer classification/relinking; preserve source quantities and originalUX.",
+          "Verify real public update, cold/warm caches, combined/default certification, installed packages and Brightway export before opening heat gate."
+        ]
       }
     },
     {

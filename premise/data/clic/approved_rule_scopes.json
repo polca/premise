@@ -132224,6 +132224,630 @@
           "fingerprint": "f99132bb35ccd03faa2d75f051217d201317b96ba2a9d71c844282027b22c6eb"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ca080a54d1c79f8d",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_312_market_composition",
+      "review_path": "export/uvek_heat_312_markets_review.json",
+      "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+      "authorization": "Standing autonomous modelling approval; exact independently inspected source/service bases and complete native proxies with warnings.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for polyethylene terephthalate, granulate, amorphous",
+          "reference product": "polyethylene terephthalate, granulate, amorphous",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "heat-312-market-0cb14b47d25bc155b877"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+        "source_metadata_sha256": "489cdfd8e60288a457d14af692e705fc7287cf18edca3e84b9645e0b094bdea3",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "00feef314f558dcf642eb23438b57a51d57026a2a4b1cfd52570fd39322e299b",
+            "metadata_sha256": "9aea859916b1ba87b68e93a7742ea610f85a57e5cf916521ff06087aa5512298"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a7e60a0f666c0a61edbb76ac6de1cda368905b9b39f164735e12fee3ade9e515",
+            "metadata_sha256": "5665813c03311124d6a0b515c9ef0f8dad2c2abd772a680e404aa44b44db9324"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "164cc64e9c2e46e3d2224471b2997a8cb206f4a39cf8bc773dac25dcac12a983",
+            "metadata_sha256": "7d15fc39eb435af0f9409ecf64721c8d2627592707462762f3fcaa5f279f39bf"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for polyethylene terephthalate, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+            "original_index": 1,
+            "kind": "complete_production_or_service_proxy",
+            "source_identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.3305923516393028,
+              "uncertainty type": 0,
+              "loc": 0.3305923516393028,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for polyethylene terephthalate, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+            "original_index": 2,
+            "kind": "complete_production_or_service_proxy",
+            "source_identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.004442857142857153,
+              "uncertainty type": 0,
+              "loc": 0.004442857142857153,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for polyethylene terephthalate, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+            "original_index": 3,
+            "kind": "complete_production_or_service_proxy",
+            "source_identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.6649647912178401,
+              "uncertainty type": 0,
+              "loc": 0.6649647912178401,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for polyethylene terephthalate, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+            "original_index": 4,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight, lorry, diesel, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.4504,
+              "uncertainty type": 2,
+              "loc": -0.7976192021566564,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for polyethylene terephthalate, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+            "original_index": 5,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship, heavy fuel oil",
+              "reference product": "transport, freight, sea, container ship, heavy fuel oil",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.5248,
+              "uncertainty type": 2,
+              "loc": -0.6447380413522577,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for polyethylene terephthalate, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+            "original_index": 6,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight, train, fleet average",
+              "reference product": "transport, freight, train, fleet average",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2887,
+              "uncertainty type": 2,
+              "loc": -1.2423671923132475,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the global amorphousPETgranulate market with its three originalRER/Quebec/RoWvirgin-production shares and all three road/ocean/rail finished-resin delivery entries unchanged. Use complete native European amorphousPETgranulate fromPTAandethylene glycol per source kg. Do not substitute crystallinePET, recycledPET, sheet/film or extrusion service; do not add native conversion processing to a resin market.",
+        "Source and native derive from European-plastics eco-profiles, but region, energy/chemical supply, wastewater, air/water emissions, estimatedDOC/TOC, infrastructure, upstream transport, allocation, vintage and internal uncertainty differ. Native production includes the entire resin inventory; source market delivery remains additional. No crystallinity, purity, density, polymerization-yield or recycled-content correction is inferred.",
+        "Complete native ocean-container, European rail/traction/shunting, European lorry-fleet and Rhine-barge services are geographic/fleet/vintage proxies per tonne-km. NativeRERlorry fleet derives from Swiss2020shares. Port/canal/road/infrastructure, load, fuel, emissions and allocation differ, including no separate native barge bilge-oil treatment exchange. Source finished-product market delivery remains distinct from native upstream raw-material/production transport. No fuel/load/distance or fleet-share multiplier or extra source production emissions is added.",
+        "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3e8e82c94e220079245c6d86e310e778bf11969a008275f81b51c44626f7378d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7e5fcabe5aabe23c",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_312_market_composition",
+      "review_path": "export/uvek_heat_312_markets_review.json",
+      "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+      "authorization": "Standing autonomous modelling approval; exact independently inspected source/service bases and complete native proxies with warnings.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for extrusion, plastic film",
+          "reference product": "extrusion, plastic film",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "heat-312-market-a968a6156ac00871f1d3"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+        "source_metadata_sha256": "dc2c0612bf5fe374dd9cbe082a75c1103023b1264b1e8052d409f2a5335bdde1",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "ab59f53a6cc35bd09347734b0bbbab5232e6f0597cf54e210e022cc4a5a4dcc8",
+            "metadata_sha256": "214895ec58de38ff9d514d1226b6bbe4859ab6aab4a13d2218ddfb76c7eb745e"
+          },
+          {
+            "identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "eaa67abfedbd9f41168eda083881d7ed488c36d1b69dff97f5957de62ed8f190",
+            "metadata_sha256": "04db803235b5ac87489ebd102b94998d3deabcfb7dbbac9a10185a2d46cd378f"
+          },
+          {
+            "identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "83e6de803b560d2d67ef091a15d83226c13f7c3d7a7360c19305c49897d20d16",
+            "metadata_sha256": "cf3f9cbc5133641bb966607582a45bb73bce214c07b72e7dffa1a8b2eec64731"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+            "original_index": 1,
+            "kind": "complete_production_or_service_proxy",
+            "source_identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.00444285714285715,
+              "uncertainty type": 0,
+              "loc": 0.00444285714285715,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Extrusion, plastic film",
+              "reference product": "Extrusion, plastic film",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+            "original_index": 2,
+            "kind": "complete_production_or_service_proxy",
+            "source_identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.330592351639303,
+              "uncertainty type": 0,
+              "loc": 0.330592351639303,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Extrusion, plastic film",
+              "reference product": "Extrusion, plastic film",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+            "original_index": 3,
+            "kind": "complete_production_or_service_proxy",
+            "source_identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.66496479121784,
+              "uncertainty type": 0,
+              "loc": 0.66496479121784,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Extrusion, plastic film",
+              "reference product": "Extrusion, plastic film",
+              "unit": "kilogram"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the global film-extrusion service market retaining all three sourceproducer shares separately, without adding market freight or losses absent from its actual inventory. Source and native both explicitly define1kgservice as0.976kgextruded film and exclude the converted polymer. Map each regional service to complete native European film extrusion at factor+1kgservice/kgservice; retain the callers separate polymer inventory.",
+        "No0.976or1/0.976yield factor, extra1kgpolymer input, generic plastic product or film-mass/density/thickness conversion is added. Native auxiliary plastics/packaging, process electricity, steam/heat, waste-plastics incineration, lubricants, transport/infrastructure, geographicbackground and internal uncertainty differ and remain complete once. Native small auxiliary polymer inputs are not the callers converted polymer.",
+        "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d4add1b4dc75c84d9e38a3458ae7cd775fdaef02eefc1ca4077fea3695969aa2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1000a6cd16a9b940",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_312_market_composition",
+      "review_path": "export/uvek_heat_312_markets_review.json",
+      "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+      "authorization": "Standing autonomous modelling approval; exact independently inspected source/service bases and complete native proxies with warnings.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for adhesive, for metal",
+          "reference product": "adhesive, for metal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "heat-312-market-a8b12b6c772427b7a07d"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "d1a23b54379f92c0186e69391cbb89acf0530f487274e611979d9df1d335c3b1",
+        "source_metadata_sha256": "43a329e49f1893217f7a1fee7d1f501286b1d846520cdc6d40bd721e1dc5e56d",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "adhesive production, for metal",
+              "reference product": "adhesive, for metal",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "eac149c7148285ac52b0f81ceda4f10f172b5ece2d3d6f9ad17b6625d83a88e8",
+            "metadata_sha256": "84cd902034dfc69580ebc834a0e4a2ddb21397c7093e8a7632c6f1268e7d63c3"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "RER",
+              "name": "market for adhesive, for metal",
+              "reference product": "adhesive, for metal",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "d1a23b54379f92c0186e69391cbb89acf0530f487274e611979d9df1d335c3b1",
+            "original_index": 1,
+            "kind": "complete_production_or_service_proxy",
+            "source_identity": {
+              "name": "adhesive production, for metal",
+              "reference product": "adhesive, for metal",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0,
+              "type": "technosphere",
+              "location": "DE",
+              "name": "Adhesive for metals, at plant",
+              "reference product": "Adhesive for metals, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RER",
+              "name": "market for adhesive, for metal",
+              "reference product": "adhesive, for metal",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "d1a23b54379f92c0186e69391cbb89acf0530f487274e611979d9df1d335c3b1",
+            "original_index": 2,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, inland waterways, barge, diesel",
+              "reference product": "transport, freight, inland waterways, barge, diesel",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.0219,
+              "uncertainty type": 2,
+              "loc": -3.8212686421596818,
+              "scale": 0.41472882706655445,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RER",
+              "name": "market for adhesive, for metal",
+              "reference product": "adhesive, for metal",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "d1a23b54379f92c0186e69391cbb89acf0530f487274e611979d9df1d335c3b1",
+            "original_index": 3,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.1713,
+              "uncertainty type": 2,
+              "loc": -1.7643388736520629,
+              "scale": 0.41472882706655445,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RER",
+              "name": "market for adhesive, for metal",
+              "reference product": "adhesive, for metal",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "d1a23b54379f92c0186e69391cbb89acf0530f487274e611979d9df1d335c3b1",
+            "original_index": 4,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight, train, fleet average",
+              "reference product": "transport, freight, train, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.0438,
+              "uncertainty type": 2,
+              "loc": -3.128121461599737,
+              "scale": 0.41472882706655445,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the European metal-adhesive market with its one German production share and all three source barge/road/rail delivery entries unchanged. Native German metal-adhesive production describes the same epoxy-resin/hydrated-lime/silica/organic-chemical mixture and the same0.616/0.274/0.0685/0.0411kgcoordinates. This is complete adhesive compound, not neat epoxy resin, a dry-resin basis or a curing/application service.",
+        "Both source and native production explicitly omit process energy and use an estimated chemical-plant infrastructure. Do not invent curing energy, water/solvent removal, pure-resin scaling or normalize the rounded ingredient sum to1kg. Source/native upstream chemical/epoxy/lime/sand supply, geography, allocation, vintage and uncertainty differ; native complete upstream freight remains while source finished-adhesive market delivery is retained separately.",
+        "Complete native ocean-container, European rail/traction/shunting, European lorry-fleet and Rhine-barge services are geographic/fleet/vintage proxies per tonne-km. NativeRERlorry fleet derives from Swiss2020shares. Port/canal/road/infrastructure, load, fuel, emissions and allocation differ, including no separate native barge bilge-oil treatment exchange. Source finished-product market delivery remains distinct from native upstream raw-material/production transport. No fuel/load/distance or fleet-share multiplier or extra source production emissions is added.",
+        "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b0880c08f04bbdd5f32f43ca2037de81c31a8ce18ed8c764f86566a3af581e06"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -384,3 +384,46 @@ Evidence: Brightpath `export/uvek_heat_38_closure_review.json`, Premise
 `docs/development/uvek-heat-38-closure-verification.json` and the new
 `docs/development/uvek-heat-312-mapping-frontier.json`. Standing autonomous
 modelling authorization applies; scientific limitations remain visible.
+
+
+### Three 3.12 markets qualified; full selected heat preparation succeeds
+
+Qualified the exact 3.12 amorphous-PET, film-extrusion and metal-adhesive markets
+using three new helpers retaining all 13 original market exchanges, producer
+shares, delivery coefficients and supported uncertainty. Complete native production
+or processing inventories remain disclosed proxies. Film extrusion retains the
+shared 1 kg service / 0.976 kg film basis and excludes the converted polymer; no
+extra polymer or yield factor is added. Adhesive retains the full compound and
+its documented lack of production energy, without invented curing or dry-resin
+conversion. Finished-product market freight stays separate from native upstream
+production transport. Geography, vintage, uncertainty, native biosphere exclusions
+and unquantified score effects remain explicit limitations.
+
+Validation: 22 Brightpath tests, eight Premise cache/drift checks, six signed finite
+LCIs, six installed demands, 41 original caller regressions, byte-identical replay
+of both resources and matching packaged data. All 526 prior approval fingerprints,
+old recipes/reviews and inactive superseded-lime history remain unchanged. Three
+scopes bring approvals to 529; recipes total 3,685 and shared reviews 793.
+
+The real selected 12-root supplement preparation now succeeds with 606 activities:
+76 source records and 530 helpers. Every production/internal/native/biosphere
+reference and supplier identity is checked, with canonical ecoinvent 3.10 biosphere.
+All 76 versions, IDs and hashes match the captured full lock, and the original 55
+pins remain unchanged. Provenance correctly records 58 explicitly requested pins
+and 18 automatically resolved dependencies captured in that lock. An initial
+checker incorrectly expected all 76 explicit-pin flags to be true; its failure is
+retained, the flag interpretation is corrected, and no provenance is rewritten.
+
+Six signed demands across the three new heat roots have finite prepared supply
+and combined native/direct inventories, with unchanged native scientific contents.
+No Brightway database is written by these preparation checks. Public heat remains
+closed: missing-role integration, all three IAM heat layers, native consumer
+relinking, combined/default certification and public export still need completion.
+Other IAM selections/sectors may require additional roles. The mapping milestone
+is not a public heat update or a claim of LCIA equivalence/impact completeness.
+
+Evidence: Brightpath `export/uvek_heat_312_markets_review.json` and Premise
+`docs/development/uvek-heat-312-markets-verification.json`. Standing autonomous
+modelling authorization applies. Two obsolete isolated installations were removed
+after wheel-hash verification, reclaiming 929 MB; wheels, archives, databases,
+exports and evidence remain intact.

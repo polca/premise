@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "status": "three_observed3_12cases_pending_independent_review",
+  "status": "all_three_observed3_12cases_qualified_full_selected_preparation_succeeds",
   "identified_cases": 3,
-  "qualified_cases": 0,
-  "pending_cases": 3,
+  "qualified_cases": 3,
+  "pending_cases": 0,
   "context": "Reached by real strict12root76recordheat preparation after all24observed3.8cases clear. Exact cut-off profiles only; publicheatgate remains closed.",
   "primary_evidence_receipt": {
     "name": "heat_312_frontier_primary.private.json",
@@ -15,7 +15,7 @@
   "cases": [
     {
       "rule_id": "bp-ca080a54d1c79f8d",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_12_source_market_reconstruction",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.12",
@@ -106,11 +106,13 @@
           "metadata_sha256": "7d15fc39eb435af0f9409ecf64721c8d2627592707462762f3fcaa5f279f39bf"
         }
       ],
-      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval."
+      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval.",
+      "verification": "docs/development/uvek-heat-312-markets-verification.json",
+      "review_path": "export/uvek_heat_312_markets_review.json"
     },
     {
       "rule_id": "bp-7e5fcabe5aabe23c",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_12_source_market_reconstruction",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.12",
@@ -201,11 +203,13 @@
           "metadata_sha256": "cf3f9cbc5133641bb966607582a45bb73bce214c07b72e7dffa1a8b2eec64731"
         }
       ],
-      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval."
+      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval.",
+      "verification": "docs/development/uvek-heat-312-markets-verification.json",
+      "review_path": "export/uvek_heat_312_markets_review.json"
     },
     {
       "rule_id": "bp-1000a6cd16a9b940",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_12_source_market_reconstruction",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.12",
@@ -276,8 +280,11 @@
           "metadata_sha256": "84cd902034dfc69580ebc834a0e4a2ddb21397c7093e8a7632c6f1268e7d63c3"
         }
       ],
-      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval."
+      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval.",
+      "verification": "docs/development/uvek-heat-312-markets-verification.json",
+      "review_path": "export/uvek_heat_312_markets_review.json"
     }
   ],
-  "later_cohorts": "unproven"
+  "later_cohorts": "None pending in the selected12root76source-record preparation:606preparedactivities verified. Sector integration and otherIAM/sector selections may require additional roles/inputs; publicheatgate remains closed.",
+  "verification": "docs/development/uvek-heat-312-markets-verification.json"
 }
