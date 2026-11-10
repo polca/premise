@@ -551,6 +551,6 @@ The pinned companion is installed in the regular premise environment and all
 557 closed scopes validate. An actual public four-sector rebuild with the new
 resources still has 13,695 activities, 13 clinker markets and 39 electricity
 markets, with no validation errors and the same 14 existing IGCC warnings. No
-additional export is created for this regression. See [fuel preparation receipt]
-(uvek-fuels-312-preparation-verification.json). The earlier full export/LCI
+additional export is created for this regression. See the
+[fuel preparation receipt](uvek-fuels-312-preparation-verification.json). The earlier full export/LCI
 qualification remains the separate cement receipt.
