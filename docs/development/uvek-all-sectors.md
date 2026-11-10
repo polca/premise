@@ -779,3 +779,40 @@ primary source evidence and Brightway databases remain. See the
 Next: granular activated carbon and molybdenum trioxide, plus the other 28
 current-cohort identities, further preparation cohorts, shared fuel/IAM linking
 and the remaining registered sector updates. The full goal remains active.
+
+### Ash dependency review for granular activated carbon
+
+Primary inspection of the two ecoinvent 3.9 cut-off ash markets distinguishes
+allocation-empty receivers from actual disposal. The Swiss market sends
+46.9906787% to five empty cement receivers and 53.0093213% to incineration with
+fly-ash extraction. The RoW market sends 21.1641095% to 46 empty cement,
+concrete and brick receivers, 77.9874560% to residual-material landfills,
+0.6408694% to sanitary landfill and 0.2075652% to incineration. These are
+source fractions, not a new normalized disposal mix. Both markets have -1 kg
+references; all 51 empty receiving inventories also have -1 kg references,
+zero price and no nonproduction exchanges. Sixteen other receiving inventories
+have actual disposal burdens. The two market inventories contain eleven
+freight rows in total, which must remain separate.
+
+The existing three-fate RoW candidate is not a complete source-market
+reconstruction and must not be used as one. Preserve the original disposal
+fractions and freight. The standing autonomous-review authorization permits
+an explicitly audited omission of each proven empty receiving inventory:
+this preserves its zero source LCI without inventing a native treatment,
+recovery credit or positive-reference recycled stock. Retain its identity,
+quantity and primary inventory hash in the eventual conversion audit. This
+avoids broadening Brightpath's positive-reference zero-stock validation to
+negative-reference services. Nonempty disposal branches still require complete
+native suppliers and explicit technology/geography warnings, including the
+Swiss fly-ash-extraction difference. No new runtime change is justified by
+these findings.
+
+The [primary-source receipt](uvek-fuels-39-ash-investigation.json) records the
+51 independently checked empty receiver identities and hashes, market hashes,
+signed group totals and row counts. Its generation asserts reference signs,
+zero prices, strictly empty nonproduction inventories, positive freight and
+one-kg market balances. Raw licensed inventories remain outside the repository.
+This is a reviewed implementation decision, not an accepted mapping, lower
+unresolved-case count or successful fuel-sector run. Next implement the exact
+ash closure alongside granular-carbon production/reactivation; independently
+reconstruct MoO3 roasting with its source molybdenite supply portfolio.

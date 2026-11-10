@@ -1,0 +1,691 @@
+{
+  "status": "primary-source investigation; not an implemented mapping or fuel qualification",
+  "evidence_sha256": "016d0e99e2c6b79a03253a963a926a3a86062ad0acf40eeabac9e39f32d255b3",
+  "source": "Installed licensed ecoinvent 3.9 cut-off; private extraction retained outside repository",
+  "findings": [
+    "51 distinct receiving inventories contain only a negative production reference and have zero source price. They are allocation-empty receiving services, not positive-reference recycled stocks.",
+    "16 distinct receiving inventories model nonempty disposal burdens. All original freight rows must survive.",
+    "The current three-fate RoW candidate does not preserve the whole source market. Its renormalized disposal shares must not replace the full source fate split."
+  ],
+  "implementation_decision": {
+    "empty_receivers": "Retain each identity, source inventory hash and signed quantity in a scoped audit. An explicitly warned omission of these independently verified empty inventories can preserve the source LCI without inventing a native treatment or changing the positive-reference zero-stock schema. No recovery credit is created.",
+    "nonempty_receivers": "Bind complete reviewed disposal processes at their original quantities; keep landfill and incineration technologies distinct. Swiss fly-ash extraction remains a separately warned technology proxy if no matching native process exists.",
+    "freight": "Preserve every source row, signed quantity, uncertainty and unit using reviewed native transport correspondences; do not renormalize disposal shares.",
+    "signs": "The source market and receivers have -1 kg references. A +1 kg target treatment service needs a reviewed sign conversion; do not derive it from the word treatment alone.",
+    "qualification": "Not yet implemented. Verify fresh/cached conversion, complete recipe closure and finite native LCI before accepting this dependency for activated-carbon production."
+  },
+  "markets": [
+    {
+      "rule_id": "bp-daed85adc1fa3b47",
+      "source_identity": {
+        "name": "market for hard coal ash",
+        "reference product": "hard coal ash",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "inventory_sha256": "93624f4549b2900c5a656b72348834dcf82d9f462fa1bca3b8912c7c4dc278d1",
+      "source_reference_amount": -1,
+      "signed_source_group_totals": {
+        "empty_cutoff_receiver_kg": -0.46990678703877464,
+        "treatment of hard coal ash, municipal incineration with fly ash extraction": -0.5300932129612254,
+        "freight_tkm": 0.029330000000000002
+      },
+      "source_group_row_counts": {
+        "empty_cutoff_receiver_kg": 5,
+        "treatment of hard coal ash, municipal incineration with fly ash extraction": 1,
+        "freight_tkm": 2
+      },
+      "empty_receivers": [
+        {
+          "identity": {
+            "name": "cement production, CEM IV/B",
+            "reference product": "hard coal ash",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a54ce2d262711949de5c16103066ff3413d7368d2dce3ba3f458b979e0d491b9",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM V/B",
+            "reference product": "hard coal ash",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "753e8cf49ab6ea6fc093729346f12fabebd02ecb3c2c3c8619611b280d640bac",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM IV/A",
+            "reference product": "hard coal ash",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "fa48ed828037478af37a7fb034cff9b1b684699d74f3c1724d1048b20d00f347",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM V/A",
+            "reference product": "hard coal ash",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "55644ca34a35a1ce64e9940247df49f3dce33cebe50b389e1f88a44dfe5bb880",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM II/B",
+            "reference product": "hard coal ash",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9954a78b2279b3e70744f95b3abc534133d7b8c85304adf6034f621166ba00cd",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-016903afcf2e9b33",
+      "source_identity": {
+        "name": "market for hard coal ash",
+        "reference product": "hard coal ash",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "inventory_sha256": "5a1e6a20cfdb62bbb43f4a7e02fde04848c976a0000c340bf401cdb2be1af843",
+      "source_reference_amount": -1,
+      "signed_source_group_totals": {
+        "empty_cutoff_receiver_kg": -0.21164109486507468,
+        "treatment of hard coal ash, residual material landfill": -0.779874559507374,
+        "treatment of hard coal ash, sanitary landfill": -0.006408693991497805,
+        "treatment of hard coal ash, municipal incineration": -0.002075651636053413,
+        "freight_tkm": 0.03052
+      },
+      "source_group_row_counts": {
+        "empty_cutoff_receiver_kg": 46,
+        "treatment of hard coal ash, residual material landfill": 13,
+        "treatment of hard coal ash, sanitary landfill": 1,
+        "treatment of hard coal ash, municipal incineration": 1,
+        "freight_tkm": 9
+      },
+      "empty_receivers": [
+        {
+          "identity": {
+            "name": "concrete production, 25MPa, for building construction, exposure class XC1, with cement, unspecified",
+            "reference product": "hard coal ash",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "431a984c78ec925a3f4d10c3505d7f020cd26ac9e5e859ab1fb554276bf09c93",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, type IP/P",
+            "reference product": "hard coal ash",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "bebc3b4dfa85a8d5d3c991822654823b131c4632e68551aa8f83989985b1b85b",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "flyash brick production",
+            "reference product": "hard coal ash",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0ddf3d20645d8cd52a2c4a28b08c8803006069be81876007af2bf8465024e962",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM II/B-V",
+            "reference product": "hard coal ash",
+            "location": "ZA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "3841c22a0acff587dc4b62d28ffcc2310d0ac2aa93a85ad5d5d71002b2b46a31",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM IV/A",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "5ce5ef85b08d8acaba37561fdd63ddff0eaa1a235dcc8885bda25ce77d41165c",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, type ICo",
+            "reference product": "hard coal ash",
+            "location": "PE",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7317d3603a514a36015b3d61823635784e91abb67a212e9ea1b0d0d56099a189",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM IV/A",
+            "reference product": "hard coal ash",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "518fe73bc566d3c54fb27a88e3b64524e6408da5bec1a6e032b92ec0a7a5fa06",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 25MPa, for building construction, for interior use, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "b23a2c6f942167255b18dc44f64747070be51e7938a79011f2d9bdf368a1a2da",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM II/B",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6402a99508d1825d671fe120d4f2affcfdcc1837860d79881f63115a274d2e14",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 25MPa, for building construction, for interior use, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e4fa1319729fe98ecd556a3c15f5e361cc56fff27b17ca30af16e888f7cd6c03",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 25MPa, for building construction, exposure class XC2, with cement, unspecified",
+            "reference product": "hard coal ash",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "dc2726ec9014c0c996c4f2a303f2ae515bac7ca426300ee8ca85753177f5b7a0",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 20MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f1879e9c4326e3c8a487aeca8e7e1382788da4f8f9ba17defdb982cdd0da41d1",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM II/A",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ba2d55e3d7b586a834f294f874b14a67046248d719a0cf85323c27c66468acea",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 30-32MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "North America without Quebec",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "57b60ac86b7ce0347459171e3f22b886dd57218363db74c9efd216c9bbf06537",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 35MPa, for civil engineering, for exterior use, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "50f7cb6d72aa08bfd644e5e3e13ee1929605fc1b44ced276d1ee06f121e44bd2",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 35MPa, for civil engineering, for exterior use, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "North America without Quebec",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "49dece3d2fb5098072d49c0d1349e09b2f65fd3e84ebcdeb8beb6d672fd59c9b",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "flyash brick production",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "520830dc60010f5de7041df34a8ed6e4d6beec8e6cba33697ede9ae031d690ce",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 20MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "North America without Quebec",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c1ba07ddf995d07c7d8a9d292b9665274afaa140640b3a20e9bab3e49c5ddf72",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM II/A-V",
+            "reference product": "hard coal ash",
+            "location": "ZA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8032980ca1094893edf6d131abe030807d449012c01127845f866c5759c94ef0",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 30-32MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "afc0eaef4a8c4b3697e707b756cf1dc12fbc010f697a68c5bf47f80c6d47efb5",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 50MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "467b69856509ae85f1861d5e858c44bda3efc533dd0134cf626b517c72ed12ab",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 25MPa, for building construction, for interior use, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "North America without Quebec",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "36b9e57de16437485c0be3ce193287fdba5ca7af15bb1a45ff2d3cb33dfe1e3d",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM V/A",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c34d949723b029b92e8a81d6cb33feb3e4317264852d3242c9e8f001077d0184",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM V/B",
+            "reference product": "hard coal ash",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7a4478553e86940ca1d9a75837b604433a7d508f3715b3c41266635d7c911e76",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, ART",
+            "reference product": "hard coal ash",
+            "location": "CO",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "fce02b882b62c25fb973711adf12d798f2e7c4a60acfaab418137513884e0901",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CP IV",
+            "reference product": "hard coal ash",
+            "location": "BR",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "89c874b934cc467c2c29cf382d639a6d16d1c742be36a3fa1d48e642af3627a6",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "clinker production",
+            "reference product": "hard coal ash",
+            "location": "BR",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "36a63e6bbea00f402790a8dc8a2444c76ab0d555af61c08306a4cae5d8683c99",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 30MPa, for building construction, exposure class XC3, with cement, unspecified",
+            "reference product": "hard coal ash",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "cda4980fa37763b8a587e3adec958accc3ce70dd89463215f1000d156cb2fd18",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM IV/B",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "32dc8413ce2f161a7d045eb933b2f36b8f6a75b108834d91566249b2df988f29",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM V/B",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ef1d389ed46172eadf9bedc2f05c0cfc1e84bdf4f7ce618aef273e75743586d7",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM II/A",
+            "reference product": "hard coal ash",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f00e38fdf2fa6709012fb17a973f4110e5d5a9b7dc2623b2e5fad01ec2064785",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 50MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "48536096e86b45a0fd3abcceb1b694e2530c05120414df50b6cd4ea85faf3583",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM IV/B",
+            "reference product": "hard coal ash",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "3e47663ec0d74d732daa38867d8d8bc6c07aa6cf0cfc6feb9c6d3fee575db673",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, Pozzolana Portland",
+            "reference product": "hard coal ash",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d33302bdd1f90eda6cd074c785ab54b84d1387202b4e816dfcc3711d0c37d79e",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 30MPa, exposure classes XC3/XD2/XF1/XA1, with cement, unspecified",
+            "reference product": "hard coal ash",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "bc78936fdba94dd338127170db60675892e492247b9e682016ca7dd6d4914822",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "clinker production",
+            "reference product": "hard coal ash",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8c164d747fc17a25d539110e530a1987a771c1de9aa7cf501be350f50cd5db0c",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 35MPa, for civil engineering, for exterior use, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4449a766e0770cafea25925d8483bb531406c56b838efac721036de04904de9f",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CP II-Z",
+            "reference product": "hard coal ash",
+            "location": "BR",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ea175a98ca5a5aab4f010dfe92f10c0febe3ad243f5449e03f0ba3fe0cd88a7c",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM II/B",
+            "reference product": "hard coal ash",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "17d59d4a5637519bb9027839f8525b220ba5ed9d9edb774d6276f96b1954d52f",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CEM V/A",
+            "reference product": "hard coal ash",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "11b4ec80639f8d00ef202715573b463bdf0d960dd88157bc694c6eb99cec75c6",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "autoclaved aerated concrete block production",
+            "reference product": "hard coal ash",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ff14075c1f3d379599c7f68a259b6a2ca166a385aa1e1d24dca85d86ba18aea4",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 50MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "North America without Quebec",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f3c4f3b55a71ba9547ad8bd71da3c7737a5f34dd86034e813eb0c341fa4a7bdf",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, type I-PM",
+            "reference product": "hard coal ash",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e348b773dd966e3de46942cb743ead882b6b4eaf514a9c0bf53559da307e9278",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "concrete production, 20MPa, with cement, Portland",
+            "reference product": "hard coal ash",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c4d2eed2b5828ea01a610750654e5fd1a76fde587b6b20aea58cdeccca94a894",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, type general use",
+            "reference product": "hard coal ash",
+            "location": "CO",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6e18263933d8b97519909226657e5ebe331284be83973bcf8ec24f5dff91992d",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        },
+        {
+          "identity": {
+            "name": "cement production, CP V RS",
+            "reference product": "hard coal ash",
+            "location": "BR",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6e8522c25804f8df941d54d49e713fec600fc4054c45088d64c2c3a437d79531",
+          "reference_amount": -1,
+          "nonproduction_count": 0,
+          "source_price": 0
+        }
+      ]
+    }
+  ]
+}
