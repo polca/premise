@@ -2985,3 +2985,58 @@ def test_cement_monoethanolamine_extension_is_limited_to_inspected_39_cutoff(tmp
             for d in result.diagnostics
         )
     assert resolved.activities == original
+
+
+def test_cement_european_heat_is_scoped_and_excludes_district_delivery(tmp_path):
+    from brightpath import DATA_DIR, TechnosphereProfile
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_cement_european_ng_heat_review.json").read_text()
+    )
+    resource = load_uvek_technosphere_resource()
+    rule = next(
+        row for row in resource["replace"] if row["id"] == review["compiled_rule"]["id"]
+    )
+    scopes = approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+    target = TechnosphereProfile("uvek", "2025", "cutoff")
+    for version, approved in [("3.9", True), ("3.9.1", False), ("3.10", False)]:
+        fingerprint = compatibility_rule_fingerprint(
+            resource,
+            "replace",
+            rule,
+            TechnosphereProfile("ecoinvent", version, "cutoff"),
+            target,
+        )
+        assert (fingerprint in scopes) is approved
+    resolved = graph(rule["source"], version="3.9")
+    original = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    expected = next(iter(review["decision"]["recipes"].values()))["inputs"]
+    for cached in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is cached
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2
+        helper = next(
+            row for row in result.activities if row["code"] == edge["input"][1]
+        )
+        inputs = [row for row in helper["exchanges"] if row["type"] != "production"]
+        assert len(inputs) == 4
+        assert sum(row["amount"] for row in inputs) == pytest.approx(
+            review["source_quantity_sum"], abs=1e-14
+        )
+        for actual, wanted in zip(inputs, expected, strict=True):
+            assert all(actual[key] == value for key, value in wanted.items())
+        assert not any(
+            row["name"].startswith(("District heat,", "Natural gas,")) for row in inputs
+        )
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            for d in result.diagnostics
+        )
+    assert resolved.activities == original

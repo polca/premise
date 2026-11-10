@@ -223,3 +223,35 @@ amount/formula/uncertainty, non-mutation, and refusal to inherit this approval f
 3.9.1 or consequential profiles. Cement preparation advances to a different,
 still-unreviewed natural-gas heat correspondence (`bp-e4e35c0ff2032249`). Cement
 is not operational yet; its shared family/biosphere routing also remains pending.
+
+
+## Cement preparation: European natural-gas heat
+
+The next rule (`bp-e4e35c0ff2032249`) incorrectly selected delivered district
+heat for a plant-gate heat market. Inspect the actual 3.9 cut-off source: 54
+positive one-MJ producer references, with no direct biosphere or ancillary inputs.
+Compose its aggregate technology quantities from four previously reviewed native
+heat-output services, retaining complete inventories and adding no district
+network, loss correction, fuel-energy substitution or co-product credit.
+Country mix, capacity/cycle, heat grade and allocation differences remain explicit
+screening limitations. Only the inspected 3.9 cut-off profile is admitted.
+
+Brightpath commit `4c0fddb439d944ca44624205f3f7b5214381085b` contains the frozen
+mapping/review data, maintainer replay step and tests. No Brightpath runtime Python
+module changes. New/existing gas-heat tests pass (36), resource/schema/manifest
+regressions pass (101), full generation replays byte-identically and the wheel
+contains the matching resource/evidence/manifest. All 530 prior Premise closure
+fingerprints remain valid. Premise independently approves this new rule/recipe
+only for 3.9 cut-off and pins the published Brightpath revision. Its two focused
+Cement scope/cache checks pass; installed GitHub provenance and 531 total validated
+scopes were checked in the user's regular environment.
+
+The unchanged Brightpath alpha version caused pip to retain the older revision
+on a normal upgrade. A targeted force reinstall fixes the existing environment;
+clean installations already fetch the exact requirement. The colleague setup
+and source guide now include this upgrade case. Restart kernels after replacement.
+
+Cement is still pending. The next failed audit lists 11 remaining correspondences
+in one cohort. Review those together by physical category rather than repeatedly
+running the full preparation to reveal one refusal at a time. This does not relax
+any gate: the audit already enumerates the unapproved operations.

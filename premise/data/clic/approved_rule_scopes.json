@@ -132932,6 +132932,111 @@
           "fingerprint": "b0880c08f04bbdd5f32f43ca2037de81c31a8ce18ed8c764f86566a3af581e06"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e4e35c0ff2032249",
+      "operation": "replace",
+      "mapping_method": "reviewed_cement_ng_heat_market",
+      "review_path": "export/uvek_cement_european_ng_heat_review.json",
+      "review_sha256": "ae949fc3271ca84559456061b8c707d87b1522542b505d924a23a68e34ecffdd",
+      "authorization": "Active UVEK all-sector goal and standing auto-approval for analogous reviewed useful-heat/function, quantity-basis and geographic proxy cases. Record exact source/target evidence and limitations for later review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for heat, district or industrial, natural gas",
+          "reference product": "heat, district or industrial, natural gas",
+          "unit": "megajoule"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_supplier_count": 54,
+        "source_witness": {
+          "metadata_sha256": "e48c35e1832b73da636c9296e588000f8ebab299550bbb58fafbe8f90d6803bb",
+          "inventory_sha256": "c4d25722a5c71f2cdba76805b24d024424a44af7761f046dfe2add963dfaac1c",
+          "reference_amount": 1
+        },
+        "native_references": [
+          {
+            "version": "2026",
+            "identity": {
+              "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+              "reference product": "Heat, at cogen 1MWe lean burn, allocation exergy",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c415c98eaf931601df947ec908ffda1e76ac1bf940efb908e85e4d2b25a3874f",
+            "inventory_sha256": "7d1086cde4f6fba3751e77e86952fa6baed077d4ec8732aed957b4978b22a7d4"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "060d02318a0dd9aa0769ecb0775626a28423d4ce893e384926c3c35e5c61d84a",
+            "inventory_sha256": "8103d936e504298232f3ee5e6a969288e62279019ea5b612a2f594f1441ba817"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "2c747ce25ba8e1d3347aafac06055ddb52c2aa454769ccc679a91a77ee75048b",
+            "inventory_sha256": "7f047569e5853d72a57a0eda57240a47ade3ee767b06b05a4d4404aa6cf0398b"
+          },
+          {
+            "version": "2026",
+            "identity": {
+              "name": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "2eea74cc58877a267315ee8066e835f1dd681fc2ba40b74d0c833748b9b0cf8b",
+            "inventory_sha256": "7e18beebf9f3bce6451485ed70971bc92ff44b562077feff1ae644b465dc6dd2"
+          }
+        ],
+        "target_recipe": {
+          "recipe_ref": "cement-european-ng-heat-05ebf6cef3f8f1fff049"
+        },
+        "aggregate_technology_quantities_retained": true,
+        "district_network_added": false,
+        "extra_efficiency_factor": false
+      },
+      "limitations": [
+        "The inspected ecoinvent 3.9 cut-off European gas-heat market supplies useful heat at the plant: 54 positive one-MJ supplier references and no direct biosphere or ancillary inputs. Preserve its technology-level heat quantities without renormalization; aggregate only entries selecting the same native service. No district network, heat-delivery loss, fuel-input substitution, deallocation or additional electricity/heat credit is added.",
+        "Conventional and combined-cycle large CHP use the complete native ENTSO-E gas-CHP heat-output process as an explicit European screening proxy. The 1 MWe lean-burn engine, low-NOx furnace and industrial furnace use the corresponding already reviewed native heat-output services. Technology, capacity, heat grade/pressure, allocation, source-country composition, metadata, vintage and native inventory limitations remain; score effects are unquantified.",
+        "The mapped aggregate retains each native allocated inventory once per useful-heat MJ. Native allocated fuel draw is not an engineering efficiency and is not inverted or corrected. Original country distinctions and internal source parameters/uncertainty are not reconstructed. The external caller signed quantity, formula, uncertainty, separate transport and separate emissions remain unchanged.",
+        "Only ecoinvent 3.9 cut-off is inspected. No other release, consequential direction, reverse route, water balance correction or inferred treatment correspondence is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2e78355d810f0c26100386dbcb338c4da99930f70a11366d9e067a810f42cd66"
+        }
+      ]
     }
   ],
   "superseded_operations": [
