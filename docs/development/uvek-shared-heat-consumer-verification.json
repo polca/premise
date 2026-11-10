@@ -1,0 +1,67 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-191457",
+  "checks": {
+    "industrial_end_use": 870,
+    "uncertainty_rows_retained": 940,
+    "buildings_end_use": 100,
+    "consumers": 746
+  },
+  "finite_eur_electricity_lci": true,
+  "lci_checks": [
+    {
+      "name": "market for heat, for buildings",
+      "location": "EUR",
+      "amount": 1,
+      "unit": "megajoule",
+      "finite": true
+    },
+    {
+      "name": "market for heat, district or industrial",
+      "location": "EUR",
+      "amount": 1,
+      "unit": "megajoule",
+      "finite": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EUR",
+      "amount": 1,
+      "unit": "megajoule",
+      "finite": true
+    },
+    {
+      "name": "Battery cell, NCA",
+      "location": "GLO",
+      "amount": 1,
+      "unit": "kilogram",
+      "finite": true
+    },
+    {
+      "name": "Viscose fibres, at plant",
+      "location": "GLO",
+      "amount": 1,
+      "unit": "kilogram",
+      "finite": true
+    }
+  ],
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "source": {
+    "family": "uvek",
+    "version": "2026",
+    "biosphere": "ecoinvent 3.10"
+  },
+  "stage": "shared_useful_heat_consumer_relinking",
+  "remaining_heat_boundaries": [
+    "delivered district-heat service",
+    "allocated heat conversion bases across active technologies"
+  ],
+  "tests": {
+    "broad_regression_passed": 3425,
+    "broad_regression_skipped": 4,
+    "final_consumer_regressions_passed": 11
+  }
+}

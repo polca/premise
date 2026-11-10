@@ -1,0 +1,191 @@
+# Native consumer aliases for the shared heat-market relinker.
+# Source boundaries: premise/data/heat/uvek2026_consumer_review.json.
+# Only reviewed useful-heat MJ suppliers; native energy inventories stay complete.
+ecoinvent: {}
+uvek:
+  protected_consumer_units:
+  - megajoule
+  - kilowatt hour
+  protected_consumer_metadata:
+  - clic provenance
+  - brightpath_conversion
+  legacy_inputs:
+    buildings_end_use:
+    - name: Heat, at air-water heat pump 10kW
+      reference product: Heat, at air-water heat pump 10kW
+    - name: Heat, at borehole heat pump, brine-water, 15kW, CH electricity, in old building
+      reference product: Heat, at borehole heat pump, brine-water, 15kW, CH electricity, in old building
+    - name: Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building
+      reference product: Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building
+    - name: Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity
+      reference product: Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity
+    - name: Heat, at groundwater heat pump, brine-water, 50kW, for district heating, CH electr.
+      reference product: Heat, at groundwater heat pump, brine-water, 50kW, for district heating, CH electr.
+    - name: Heat, at heat pump 30kW, allocation electricity
+      reference product: Heat, at heat pump 30kW, allocation electricity
+    - name: Heat, at heat pump 30kW, allocation energy
+      reference product: Heat, at heat pump 30kW, allocation energy
+    - name: Heat, at heat pump 30kW, allocation exergy
+      reference product: Heat, at heat pump 30kW, allocation exergy
+    - name: Heat, at heat pump 30kW, allocation heat
+      reference product: Heat, at heat pump 30kW, allocation heat
+    - name: Heat, at heat pump 30kW, allocation price
+      reference product: Heat, at heat pump 30kW, allocation price
+    - name: Heat, at heat pump, air-water, 15kW, CH electricity, in old building
+      reference product: Heat, at heat pump, air-water, 15kW, CH electricity, in old building
+    - name: Heat, at heat pump, air-water, 50kW, CH electricity, in old building
+      reference product: Heat, at heat pump, air-water, 50kW, CH electricity, in old building
+    - name: Heat, coffee ground pellets, in wood furnace 25kW
+      reference product: Heat, coffee ground pellets, in wood furnace 25kW
+    - name: Heat, hard coal coke, at stove 5-15kW
+      reference product: Heat, hard coal coke, at stove 5-15kW
+    - name: Heat, hardwood chips from industry, at furnace 50kW
+      reference product: Heat, hardwood chips from industry, at furnace 50kW
+    - name: Heat, light fuel oil, at boiler 100kW condensing, non-modulating
+      reference product: Heat, light fuel oil, at boiler 100kW condensing, non-modulating
+    - name: Heat, light fuel oil, at boiler 100kW, non-modulating
+      reference product: Heat, light fuel oil, at boiler 100kW, non-modulating
+    - name: Heat, light fuel oil, at boiler 10kW, non-modulating
+      reference product: Heat, light fuel oil, at boiler 10kW, non-modulating
+    - name: Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future
+      reference product: Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future
+    - name: Heat, natural gas, at boiler condensing modulating 300kW
+      reference product: Heat, natural gas, at boiler condensing modulating 300kW
+    - name: Heat, natural gas, at boiler condensing modulating 50kW
+      reference product: Heat, natural gas, at boiler condensing modulating 50kW
+    - name: Heat, natural gas, at boiler condensing modulating >100kW
+      reference product: Heat, natural gas, at boiler condensing modulating >100kW
+    - name: Heat, propane/butane, at boiler condensing modulating 50kW
+      reference product: Heat, propane/butane, at boiler condensing modulating 50kW
+    - name: Heat, softwood chips from forest, at furnace 50kW
+      reference product: Heat, softwood chips from forest, at furnace 50kW
+    - name: Heat, wood pellets, at furnace 50kW
+      reference product: Heat, wood pellets, at furnace 50kW
+    - name: xx Heat, natural gas, at boiler modulating >100kW
+      reference product: xx Heat, natural gas, at boiler modulating >100kW
+    industrial_end_use:
+    - name: Heat, at cogen 160kWe Jakobsberg, allocation electricity
+      reference product: Heat, at cogen 160kWe Jakobsberg, allocation electricity
+    - name: Heat, at cogen 160kWe Jakobsberg, allocation energy
+      reference product: Heat, at cogen 160kWe Jakobsberg, allocation energy
+    - name: Heat, at cogen 160kWe Jakobsberg, allocation exergy
+      reference product: Heat, at cogen 160kWe Jakobsberg, allocation exergy
+    - name: Heat, at cogen 160kWe Jakobsberg, allocation heat
+      reference product: Heat, at cogen 160kWe Jakobsberg, allocation heat
+    - name: Heat, at cogen 160kWe Jakobsberg, allocation price
+      reference product: Heat, at cogen 160kWe Jakobsberg, allocation price
+    - name: Heat, at cogen 160kWe lambda=1, allocation exergy
+      reference product: Heat, at cogen 160kWe lambda=1, allocation exergy
+    - name: Heat, at cogen 1MWe lean burn, allocation exergy
+      reference product: Heat, at cogen 1MWe lean burn, allocation exergy
+    - name: Heat, at cogen 1MWe lean burn, allocation heat
+      reference product: Heat, at cogen 1MWe lean burn, allocation heat
+    - name: Heat, at cogen 1MWth, biomethane, allocation exergy
+      reference product: Heat, at cogen 1MWth, biomethane, allocation exergy
+    - name: Heat, at cogen 1MWth, biomethane, economic allocation
+      reference product: Heat, at cogen 1MWth, biomethane, economic allocation
+    - name: Heat, at cogen 1MWth, diesel, allocation exergy
+      reference product: Heat, at cogen 1MWth, diesel, allocation exergy
+    - name: Heat, at cogen 1MWth, diesel, economic allocation
+      reference product: Heat, at cogen 1MWth, diesel, economic allocation
+    - name: Heat, at cogen 1MWth, natural gas, allocation exergy
+      reference product: Heat, at cogen 1MWth, natural gas, allocation exergy
+    - name: Heat, at cogen 1MWth, natural gas, economic allocation
+      reference product: Heat, at cogen 1MWth, natural gas, economic allocation
+    - name: Heat, at cogen 1MWth, wood chips, allocation exergy
+      reference product: Heat, at cogen 1MWth, wood chips, allocation exergy
+    - name: Heat, at cogen 1MWth, wood chips, economic allocation
+      reference product: Heat, at cogen 1MWth, wood chips, economic allocation
+    - name: Heat, at cogen with biogas engine, agricultural covered, allocation exergy
+      reference product: Heat, at cogen with biogas engine, agricultural covered, allocation exergy
+    - name: Heat, at cogen with biogas engine, agricultural, allocation exergy
+      reference product: Heat, at cogen with biogas engine, agricultural, allocation exergy
+    - name: Heat, at cogen with biogas engine, allocation exergy
+      reference product: Heat, at cogen with biogas engine, allocation exergy
+    - name: Heat, at cogen with ignition biogas engine, agricultural covered, alloc. exergy
+      reference product: Heat, at cogen with ignition biogas engine, agricultural covered, alloc. exergy
+    - name: Heat, at cogen with ignition biogas engine, allocation exergy
+      reference product: Heat, at cogen with ignition biogas engine, allocation exergy
+    - name: Heat, at hard coal industrial furnace 1-10MW
+      reference product: Heat, at hard coal industrial furnace 1-10MW
+    - name: Heat, at module cogen 160kWe Jakobsberg, allocation electricity
+      reference product: Heat, at module cogen 160kWe Jakobsberg, allocation electricity
+    - name: Heat, at module cogen 160kWe Jakobsberg, allocation energy
+      reference product: Heat, at module cogen 160kWe Jakobsberg, allocation energy
+    - name: Heat, at module cogen 160kWe Jakobsberg, allocation exergy
+      reference product: Heat, at module cogen 160kWe Jakobsberg, allocation exergy
+    - name: Heat, at module cogen 160kWe Jakobsberg, allocation heat
+      reference product: Heat, at module cogen 160kWe Jakobsberg, allocation heat
+    - name: Heat, at module cogen 160kWe Jakobsberg, allocation price
+      reference product: Heat, at module cogen 160kWe Jakobsberg, allocation price
+    - name: Heat, at nuclear power plant, allocation exergy
+      reference product: Heat, at nuclear power plant, allocation exergy
+    - name: Heat, at nuclear power plant, economic allocation
+      reference product: Heat, at nuclear power plant, economic allocation
+    - name: Heat, at system cogen 160kWe Jakobsberg, allocation electricity
+      reference product: Heat, at system cogen 160kWe Jakobsberg, allocation electricity
+    - name: Heat, at system cogen 160kWe Jakobsberg, allocation energy
+      reference product: Heat, at system cogen 160kWe Jakobsberg, allocation energy
+    - name: Heat, at system cogen 160kWe Jakobsberg, allocation exergy
+      reference product: Heat, at system cogen 160kWe Jakobsberg, allocation exergy
+    - name: Heat, at system cogen 160kWe Jakobsberg, allocation heat
+      reference product: Heat, at system cogen 160kWe Jakobsberg, allocation heat
+    - name: Heat, at system cogen 160kWe Jakobsberg, allocation price
+      reference product: Heat, at system cogen 160kWe Jakobsberg, allocation price
+    - name: Heat, biogas from beet residues, at cogen
+      reference product: Heat, biogas from beet residues, at cogen
+    - name: Heat, biogas from fodder beet, at cogen
+      reference product: Heat, biogas from fodder beet, at cogen
+    - name: Heat, biogas from glycerine, at cogen
+      reference product: Heat, biogas from glycerine, at cogen
+    - name: Heat, biogas from glycerine, at cogen, scenario vegetable oil
+      reference product: Heat, biogas from glycerine, at cogen, scenario vegetable oil
+    - name: Heat, biogas from maize silage, at cogen
+      reference product: Heat, biogas from maize silage, at cogen
+    - name: Heat, biogas from molasses, at cogen
+      reference product: Heat, biogas from molasses, at cogen
+    - name: Heat, biogas from sugar beet, at cogen
+      reference product: Heat, biogas from sugar beet, at cogen
+    - name: Heat, biomethane, at industrial furnace 1MW
+      reference product: Heat, biomethane, at industrial furnace 1MW
+    - name: Heat, digester sludge, at incineration plant, future, allocation price
+      reference product: Heat, digester sludge, at incineration plant, future, allocation price
+    - name: Heat, from natural gas
+      reference product: Heat, from natural gas
+    - name: Heat, hard coal, at cogen, allocation exergy
+      reference product: Heat, hard coal, at cogen, allocation exergy
+    - name: Heat, hardwood chips from industry, at furnace 300kW
+      reference product: Heat, hardwood chips from industry, at furnace 300kW
+    - name: Heat, heavy fuel oil, at industrial furnace 1MW
+      reference product: Heat, heavy fuel oil, at industrial furnace 1MW
+    - name: Heat, light fuel oil, at industrial furnace 1MW
+      reference product: Heat, light fuel oil, at industrial furnace 1MW
+    - name: Heat, lignite, at cogen, allocation exergy
+      reference product: Heat, lignite, at cogen, allocation exergy
+    - name: Heat, mixed chips from forest, at furnace 1000kW
+      reference product: Heat, mixed chips from forest, at furnace 1000kW
+    - name: Heat, natural gas, at CHP power plant
+      reference product: Heat, natural gas, at CHP power plant
+    - name: Heat, natural gas, at heat plant
+      reference product: Heat, natural gas, at heat plant
+    - name: Heat, natural gas, at industrial furnace 1MW
+      reference product: Heat, natural gas, at industrial furnace 1MW
+    - name: Heat, olive pomace, at boiler furnace, in oil mill
+      reference product: Heat, olive pomace, at boiler furnace, in oil mill
+    - name: Heat, poultry litter pellets, in rotating grate furnace 250-350kW
+      reference product: Heat, poultry litter pellets, in rotating grate furnace 250-350kW
+    - name: Heat, softwood chips from industry, at furnace 300kW
+      reference product: Heat, softwood chips from industry, at furnace 300kW
+    - name: Heat, unspecific, in chemical plant
+      reference product: Heat, unspecific, in chemical plant
+    - name: xxx Heat, natural gas, at industrial furnace low-NOx >100kW
+      reference product: xxx Heat, natural gas, at industrial furnace low-NOx >100kW
+  limitations:
+  - Heat grade, temperature, pressure, quality, technology class, on-site/purchased boundary, source geography,
+    vintage, coproduct allocation and internal uncertainty differ. IAM role assumptions and supplier limitations
+    remain; score effects are unquantified.
+  - Replacing recovered or allocated heat inputs with an IAM mix changes the credit/supply basis. Preserve
+    every signed caller quantity; do not alter treatment inputs, emissions or add avoided-emission credits.
+  - Native heat/electricity and combustion inventories and all CLIC/helper records stay complete. Native
+    steam, environmental heat components and network-only supplies remain historical at this stage. No
+    claim of complete heat decarbonization or LCIA equivalence.

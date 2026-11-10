@@ -4,6 +4,7 @@ Integrates projections regarding heat production and supply.
 
 import copy
 import uuid
+import warnings
 
 import xarray as xr
 
@@ -323,9 +324,21 @@ class Heat(BaseTransformation):
         self.heat_metadata = load_heat_mapping(VARIABLES_DIR / "heat.yaml", self.model)
         self.heat_techs = self.mapping.generate_heat_map(model=self.model)
         self.biosphere_flows = get_biosphere_code(self.biosphere_version)
+        from ..core.runtime_cache import load_yaml_cached
+
+        self.market_mapping = load_yaml_cached(VARIABLES_DIR / "heat_markets.yaml").get(
+            self.family, {}
+        )
         self.created_dataset_codes = set()
         self.frozen_suppliers = {}
         self.diagnostics = copy.deepcopy(getattr(self.iam_data, "heat_diagnostics", {}))
+        if self.market_mapping.get("limitations"):
+            self.diagnostics["consumer mapping limitations"] = self.market_mapping[
+                "limitations"
+            ]
+            warnings.warn(
+                " ".join(self.market_mapping["limitations"]), UserWarning, stacklevel=2
+            )
 
         fuel_mapping = InventorySet(
             self.database, version=self.version, model=self.model, family=self.family
@@ -1005,7 +1018,10 @@ class Heat(BaseTransformation):
                 "buildings_end_use",
                 BUILDINGS_MARKET,
             )
-            self.relink_heat_markets(BUILDING_LEGACY_INPUTS, BUILDINGS_MARKET)
+            self.relink_heat_markets(
+                self._legacy_heat_inputs("buildings_end_use", BUILDING_LEGACY_INPUTS),
+                BUILDINGS_MARKET,
+            )
         else:
             print("No buildings heat scenario data available -- skipping")
 
@@ -1018,13 +1034,31 @@ class Heat(BaseTransformation):
                 "industrial_end_use",
                 INDUSTRIAL_MARKET,
             )
-            self.relink_heat_markets(INDUSTRIAL_LEGACY_INPUTS, INDUSTRIAL_MARKET)
+            self.relink_heat_markets(
+                self._legacy_heat_inputs(
+                    "industrial_end_use", INDUSTRIAL_LEGACY_INPUTS
+                ),
+                INDUSTRIAL_MARKET,
+            )
         elif secondary_created:
             # Supply-only IAMs (currently TIAM-UCL) update purchased/district
             # heat links but leave onsite building and industrial fuel use alone.
-            self.relink_heat_markets(INDUSTRIAL_LEGACY_INPUTS, SECONDARY_MARKET)
+            self.relink_heat_markets(
+                self._legacy_heat_inputs(
+                    "industrial_end_use", INDUSTRIAL_LEGACY_INPUTS
+                ),
+                SECONDARY_MARKET,
+            )
         else:
             print("No industrial heat scenario data available -- skipping")
+
+    def _legacy_heat_inputs(self, layer: str, defaults: list) -> list:
+        """Use declared source-family supplier identities, or the original defaults."""
+        return (
+            getattr(self, "market_mapping", {})
+            .get("legacy_inputs", {})
+            .get(layer, defaults)
+        )
 
     def _target_location(self, dataset: dict, new_input: dict) -> str | None:
         region = (
@@ -1046,10 +1080,19 @@ class Heat(BaseTransformation):
     def relink_heat_markets(self, current_input: list, new_input: dict) -> None:
         """Rewrite legacy heat consumers, excluding every newly created dataset."""
 
-        names = {item["name"] for item in current_input}
-        products = {item["reference product"] for item in current_input}
+        identities = {
+            (item["name"], item["reference product"]) for item in current_input
+        }
+        mapping = getattr(self, "market_mapping", {})
         for dataset in self.database:
-            if dataset.get("code") in self.created_dataset_codes:
+            if (
+                dataset.get("code") in self.created_dataset_codes
+                or dataset.get("unit") in mapping.get("protected_consumer_units", ())
+                or any(
+                    dataset.get(key)
+                    for key in mapping.get("protected_consumer_metadata", ())
+                )
+            ):
                 continue
             target_location = self._target_location(dataset, new_input)
             if target_location is None:
@@ -1057,9 +1100,9 @@ class Heat(BaseTransformation):
             changed = False
             for exchange in ws.technosphere(dataset):
                 if (
-                    exchange.get("name") not in names
-                    or exchange.get("product") not in products
-                ):
+                    exchange.get("name"),
+                    exchange.get("product"),
+                ) not in identities or exchange.get("unit") != "megajoule":
                     continue
                 exchange["name"] = new_input["name"]
                 exchange["product"] = new_input["reference product"]

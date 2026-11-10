@@ -1497,18 +1497,23 @@ class BaseTransformation:
     @staticmethod
     def summarize_market_exchanges(exchanges: List[dict]) -> List[dict]:
         """
-        Sum duplicate technosphere exchanges in generated market datasets.
+        Sum deterministic duplicate technosphere exchanges in market datasets.
 
-        This keeps the market matrix compact when several IAM technologies map to
-        the same supplier dataset, while preserving production exchanges as
-        separate rows.
+        Independent uncertainty distributions and formula-bound exchanges must
+        remain separate; summing their amounts while retaining the first row's
+        parameters would misrepresent the aggregate. Production rows also remain
+        separate.
         """
 
         summarized = []
         technosphere_by_key = {}
 
         for exchange in exchanges:
-            if exchange.get("type") != "technosphere":
+            if (
+                exchange.get("type") != "technosphere"
+                or exchange.get("uncertainty type", 0) > 1
+                or exchange.get("formula")
+            ):
                 summarized.append(exchange)
                 continue
 
