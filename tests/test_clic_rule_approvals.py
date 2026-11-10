@@ -428,6 +428,90 @@ def test_heat_310_utility_material_scope_and_limitations_survive_cache(tmp_path,
     assert resolved.activities == before
 
 
+@pytest.mark.parametrize("index", range(3))
+def test_heat_310_waste_retains_signs_freight_and_fresh_omission_audits(
+    tmp_path, index
+):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_310_waste_review.json").read_text()
+    )
+    row = review["records"][index]
+    resolved = graph(row["source"], version="3.10")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        assert (
+            result.activities[0]["exchanges"][1]["amount"]
+            == -2 * row["conversion_factor"]
+        )
+        if row["new_recipes"]:
+            rid = row["target"]["recipe_ref"]
+            helper = next(
+                a
+                for a in result.activities
+                if a.get("brightpath_conversion", {}).get("recipe_id") == rid
+            )
+            inputs = [e for e in helper["exchanges"] if e["type"] == "technosphere"]
+            for actual, expected in zip(
+                inputs, row["new_recipes"][rid]["inputs"], strict=True
+            ):
+                assert actual["amount"] == expected["amount"]
+                if actual["unit"] == "ton kilometer":
+                    assert actual["scale"] == expected["scale"] == 0.44944410108488464
+            if row.get("approved_recipe_source_omissions"):
+                assert (
+                    helper["brightpath_conversion"]["source_input_omissions"]
+                    == row["approved_recipe_source_omissions"][rid]
+                )
+                assert all(
+                    o["source_profile"]["version"] == "3.10"
+                    for o in helper["brightpath_conversion"]["source_input_omissions"]
+                )
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+            and d["details"]["review_path"] == "export/uvek_heat_310_waste_review.json"
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
+def test_heat_310_omissions_cannot_borrow_old_profile_audits(tmp_path, monkeypatch):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+    import premise.inventory.clic_rule_approvals as approvals
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_310_waste_review.json").read_text()
+    )
+    row = review["records"][0]
+    ledger = approvals._approval_ledger()
+    decision = next(
+        d
+        for d in ledger["operations"]
+        if d["rule_id"] == row["rule_id"]
+        and d["inspection"].get("source_profile", {}).get("version") == "3.10"
+    )
+    for omissions in decision["inspection"][
+        "approved_recipe_source_omissions"
+    ].values():
+        for omission in omissions:
+            omission["source_profile"]["version"] = "3.9"
+    monkeypatch.setattr(approvals, "_approval_ledger", lambda: ledger)
+    resolved = graph(row["source"], version="3.10")
+    before = copy.deepcopy(resolved.activities)
+    with pytest.raises(ClicInventoryError):
+        ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider()).harmonize(
+            resolved, version="2026", family="uvek"
+        )
+    assert resolved.activities == before
+
+
 def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource

@@ -565,3 +565,31 @@ shared reviews and recipe closures. Two structural fingerprint migrations are
 logged explicitly; the other 466 prior fingerprints stay unchanged. The ledger
 now has 480 scopes. Current preparation reports 22 pending correspondences,
 down from 34; public heat support and later cohorts remain unproven.
+
+### Fresh 3.10 hazardous-waste and HDPE helpers
+
+Independent source inspection supports three new exact-profile permissions:
+HDPE market, European hazardous-waste market and direct Swiss hazardous treatment.
+New helpers preserve the original two virgin HDPE shares and the two separate
+hazardous operator shares, respectively, plus all original freight. Actual 3.10
+freight scales differ from 3.9 despite matching amounts; current uncertainty
+fields are retained instead of copying the older helpers.
+
+Four positive HDPE recyclate supplies, totalling 1.173141240030732e-13 kg/kg,
+are explicitly omitted under standing approval of independently inspected similar
+cases. Their nonempty upstream supplies preclude an empty recycling substitute.
+Fresh literal 3.10 audits bind source exchanges, indices, profile and inventory
+hash. There is no general trace threshold, renormalisation or zero-score claim.
+The hazardous services keep their already-correct -1 factor exactly once. Matching
+wet composition and disposal allocation support complete native treatment proxies;
+source/native auxiliary, residue, energy-label, emission, infrastructure, geography
+and uncertainty differences remain explicit. No energy credit or extra source
+plant burden is added.
+
+Two raw profile lists gain target overrides while earlier 3.9 effective mappings,
+recipes and omission audits remain identical. Two structural fingerprint migrations
+are qualified and recorded; 478 earlier fingerprints remain unchanged. Three new
+scopes bring the total to 483. Real preparation reports 19 pending cases in this
+cohort. Authoring replay recognises only the exact hash-bound extensions. An older
+hazardous/paint replay fixture now restores the exact earlier-stage RoW heat rules
+from immutable later-review witnesses; production guards are not relaxed.

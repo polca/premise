@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "sixteen_of_thirty_eight_observed3_10cases_qualified_twenty_two_pending",
+  "status": "nineteen_of_thirty_eight_observed3_10cases_qualified_nineteen_pending",
   "context": "Later3.10cohort exposed after all14initial3.9cases qualified; publicheatgate remains closed.",
   "identified_cases": 38,
   "previously_scoped_rules": 16,
@@ -240,7 +240,7 @@
     },
     {
       "rule_id": "bp-eae66c60e7256051",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -275,7 +275,18 @@
           ]
         }
       },
-      "source_producer_witness_count": 6
+      "source_producer_witness_count": 6,
+      "review": "brightpath/data/export/uvek_heat_310_waste_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "recipe_ref": "heat-310-waste-57bf3348f28eb377601d"
+      },
+      "limitations": [
+        "Retain the two original positive virginHDPEproducer shares separately and all three freight entries with their original quantities and uncertainty. Both complete virgin product proxies use native EuropeanHDPEgranulate. Do not renormalise the retained mass, aggregate producer entries, infer recycled content or introduce density/purity factors. Native geographic, production, emission, vintage, allocation and internal-uncertainty differences remain screening limitations.",
+        "Explicit independently reviewed3.10omission: omit exactly four positive recycled-to-genericHDPEsupplies, each2.93285310007683e-14kg per sourcekg, total1.173141240030732e-13kg/kg. Their actual3.10suppliers each have a nonempty upstream technosphere exchange, so they are not zero-burden handovers and cannot use an empty native recycling inventory. Each literal portable source exchange, input index, source3.10profile and current inventory hash is retained in a fresh helper audit. Effects are unquantified, not asserted zero. No other omission or source3.9audit is inherited.",
+        "The actual3.10freight uncertainty scale and scale-without-pedigree differ from3.9. Fresh3.10helpers retain the current source uncertainty fields rather than borrowing the older parameters.",
+        "Only the exact independently inspected ecoinvent3.10cutoff profile is newly qualified. Preserve caller ownership, signed quantities, formulas, supported uncertainty, separate emissions and purchases. Complete native upstream inventories, geography/vintage/allocation differences and native biosphere exclusions remain explicit. Score effects are unquantified; no LCIA equivalence, generic trace threshold, reverse or cross-system-model approval is claimed."
+      ]
     },
     {
       "rule_id": "bp-4529f104ab14ba19",
@@ -1585,7 +1596,7 @@
     },
     {
       "rule_id": "bp-e0c46eb6a6d0891b",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1620,7 +1631,19 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "review": "brightpath/data/export/uvek_heat_310_waste_review.json",
+      "conversion_factor": -1,
+      "qualified_target": {
+        "recipe_ref": "heat-310-waste-63faf0ea1e3bda4eabc2"
+      },
+      "limitations": [
+        "Retain the original two hazardous-incineration operator entries at half a kg each, separately, plus all four original freight quantities and supported uncertainty. The actual3.10operators have negative1kgwaste references,25%wet-water content and17MJ/kgLHV, matching the documented native waste composition per positive1kgservice. The parent source reference is-1kg; retain conversion_factor-1once. No moisture, dry-mass, carbon, heating-value or density factor is introduced.",
+        "Use the complete native Swiss hazardous-incineration inventory for each operator share as a functional screening proxy. Source without/with-energy-recovery operator inventories are not identical, despite equal shares. Source/native documentation allocates100%burdens to waste disposal with no substitution. Actual source operators have one waste production reference and no heat/electricity credits; native energy prose reverses the thermal/electric labels relative to source. Preserve that inconsistency and actual native model without inventing energy outputs or avoided-energy credits.",
+        "The native complete service replaces source operating inputs, waste-cement/residue routing, emissions, infrastructure and internal uncertainty. Do not add source cement, landfill burdens, plant emissions or power on top. Auxiliary/residue/technology, allocation, geography and vintage differences remain warned. Generic rail, road, barge and container-ship services retain originalton-kmwithout distance/payload/fleet multipliers or added infrastructure.",
+        "The actual3.10freight uncertainty scale and scale-without-pedigree differ from3.9. Fresh3.10helpers retain the current source uncertainty fields rather than borrowing the older parameters.",
+        "Only the exact independently inspected ecoinvent3.10cutoff profile is newly qualified. Preserve caller ownership, signed quantities, formulas, supported uncertainty, separate emissions and purchases. Complete native upstream inventories, geography/vintage/allocation differences and native biosphere exclusions remain explicit. Score effects are unquantified; no LCIA equivalence, generic trace threshold, reverse or cross-system-model approval is claimed."
+      ]
     },
     {
       "rule_id": "bp-9f7197c47047750a",
@@ -1978,7 +2001,7 @@
     },
     {
       "rule_id": "bp-89a9e0030212f423",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -2042,7 +2065,21 @@
           ]
         }
       },
-      "source_producer_witness_count": 0
+      "source_producer_witness_count": 0,
+      "review": "brightpath/data/export/uvek_heat_310_waste_review.json",
+      "conversion_factor": -1,
+      "qualified_target": {
+        "location": "CH",
+        "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+        "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "The actual3.10Swiss source and native service specify the same hazardous-waste wet composition:25%water and17MJ/kgLHV, with100%burdens allocated to disposal and no energy substitution. Source output is-1kgwaste, native+1kgservice. Keep the existing factor-1exactly once, preserving signed normal/lognormal uncertainty and formulas. Do not correct it a second time or rescale wet mass.",
+        "Use the complete native hazardous incinerator with its residue, auxiliary, emission and infrastructure model. Source process-specific and waste-cement routing is replaced by that whole service, not added again. Source and native energy-label inconsistency, technology, allocation, internal uncertainty and vintage remain warnings. Do not add an energy/co-product credit or change separately listed caller emissions.",
+        "The independently inspected3.10source service is qualified without changing the earlier3.6effective correspondence.",
+        "Only the exact independently inspected ecoinvent3.10cutoff profile is newly qualified. Preserve caller ownership, signed quantities, formulas, supported uncertainty, separate emissions and purchases. Complete native upstream inventories, geography/vintage/allocation differences and native biosphere exclusions remain explicit. Score effects are unquantified; no LCIA equivalence, generic trace threshold, reverse or cross-system-model approval is claimed."
+      ]
     },
     {
       "rule_id": "bp-8f861372e8eb370e",
@@ -2677,8 +2714,8 @@
     }
   ],
   "later_cohorts": "unproven",
-  "qualified_cases": 16,
-  "pending_cases": 22,
+  "qualified_cases": 19,
+  "pending_cases": 19,
   "additional_helper_input_qualifications": 2,
-  "verification": "docs/development/uvek-heat-310-utilities-verification.json"
+  "verification": "docs/development/uvek-heat-310-waste-verification.json"
 }

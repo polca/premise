@@ -1,0 +1,123 @@
+{
+  "status": "three_exact3_10waste_qualifications_verified_nineteen_current_cases_pending_heat_gate_closed",
+  "scope": "HDPE market, European hazardous-waste market and direct Swiss hazardous incineration.",
+  "approval_scopes": 483,
+  "prior478fingerprints_unchanged": true,
+  "qualified_structural_fingerprint_migrations": 2,
+  "older_effective_mappings_and_omission_audits_unchanged": true,
+  "all_prior_recipes_and_shared_reviews_unchanged": true,
+  "new_recipes": 2,
+  "recipe_count": 3671,
+  "shared_review_count": 769,
+  "physical_omissions": "Four positive trace3.10recyclate supplies retain fresh literal3.10audits. Nonempty source upstream inventories are not represented by empty recycling. No renormalisation or general trace threshold. Score effects unquantified.",
+  "reference_signs": "Hazardous references already had factor-1; preserve exactly once. Wet mass basis retained without moisture/energy rescaling or energy credits.",
+  "uncertainty": "All7freight exchanges retain actual3.10scale0.44944410108488464andscale-without-pedigree0.34641016151377546;older3.9valuesnotborrowed.",
+  "validation": {
+    "brightpath_tests": 88,
+    "focused_premise_tests": 15,
+    "signed_foreground_composed_finite_LCIs": 6,
+    "installed_signed_demands": 6,
+    "installed_original_caller_checks": 41,
+    "generator_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 263,
+      "premise": 247
+    },
+    "fresh_public_default_export_activity_count": 12529,
+    "fresh_public_default_export": "passed biomass/electricity public update, semantic certification and export",
+    "export_readback": "complete links, canonicalexternalBIO,all55pins/9roots,13biomassmarkets,5pelletaudits,originalomission/proxymetadataand3finiteLCIsverified",
+    "source_scientific_signatures_unchanged": true,
+    "baseline_comparison": {
+      "activities_compared": 12529,
+      "bit_identical": false,
+      "changed_activities": 162,
+      "structural_and_other_uncertainty_fields_identical": true,
+      "max_amount_loc_difference_ULPs": 7.0,
+      "max_absolute_coefficient_difference": 1.1102230246251565e-16,
+      "unit_demand_LCI_relative_L2_difference": 1.1659229959178196e-11,
+      "unit_demand_LCI_max_absolute_difference": 1.7195844748130185e-10,
+      "interpretation": "Bounded last-bit IAMmix coefficient differences and numerical solver variation; no added coverage or LCIA-equivalence claim."
+    }
+  },
+  "authoring_fixture_correction": "TwoRoWheatcomponentbindings had already changed before this batch in later generator stages. Earlier-stage tests now restore the exact immutable earlier rules from later qualified review witnesses; component hash guards remain strict. Known new profile extensions are accepted only by complete content-bound validation. Arbitrary profiles or changed fresh helpers are refused.",
+  "real_heat_preparation": "Current3.10cohort19pending,downfrom22;19oforiginal38qualified. Latercohorts unproven.",
+  "public_heat_gate": "closed; no public heat export claimed",
+  "cache_cleanup_bytes": 463412792,
+  "receipts": [
+    {
+      "name": "heat_310_waste_registration.json",
+      "sha256": "eed6bee4361bdecba358cbff929e6678dcac93eac9a57e70598b9174b0b34fbb",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_tests.log",
+      "sha256": "4291deeb4b0586377fe159759e9ed0cdd489d5d7a4dacbaa24caa7b6ac73f035",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_premise_tests.log",
+      "sha256": "bc2c31ff1b03d406abb3aaa7248bb9db972f51d423299dda15906cd356d59aa2",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_native_lci_checks.json",
+      "sha256": "0f2cf8709e14cd197bc5b88b43eb415a019d676ae3b96c755b657645eafa2fd1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_installed_checks.json",
+      "sha256": "2b957328d81ba5af55b87b4bf30024ba2504bc1efc0f3714863272fc7fa36762",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_original_callers.json",
+      "sha256": "f78077ee2e1a6b2f509c93b5f2c879e2d1312d257d770e46737cf9118f082757",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_generator_replay.json",
+      "sha256": "3615ab3c2985453cbc819be35395d7548096d54b6ae047b9c8de66117f59437a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_packaged_data.json",
+      "sha256": "95c2c5923ab287aae27762e36bc4ee04829ca0aaf5029c9c6b77e59303885a8e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_remaining_audit_receipt.json",
+      "sha256": "a0d1cf67201088bdec684b7be1562647601d7371c974100fc5278df5efa68e20",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_310_waste_default_export_report.json",
+      "sha256": "24aa14b27f9a2214ed369f9cbda4ca5f474e61c60eb9a014700c0efe3dc35f16",
+      "location": "private task workspace"
+    },
+    {
+      "name": "native_heat_310_waste_default_readback.json",
+      "sha256": "2efd92488207b1371e4ecc684e200e38962d88400a5b55c5152c9bcd1ec4f5a5",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_original_readback.json",
+      "sha256": "1971dfce717beb2ec4c0f07fa816e88f92cd0416ed391c9731f694f19c1922d3",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_default_scientific_comparison.json",
+      "sha256": "067c8d448cc86d669797eb7ae5b1c7d86b45a79b515518469bff3ac52af10e3f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_waste_lci_reproducibility.json",
+      "sha256": "e7588bc4c47b0c8c6e65e49ce83c606503a04fb29269726880cbcd9ede0466a4",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_310_waste.json",
+      "sha256": "8a547f1cddb742d11a7c62b84282a9e68fbc1a609c6f9a9f850e1f45225c1a1d",
+      "location": "private task workspace"
+    }
+  ]
+}

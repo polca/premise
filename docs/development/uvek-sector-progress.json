@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "initial14cases_and_sixteen_later3_10cases_qualified_twenty_two_pending_public_heat_gate_closed",
+      "status": "initial14cases_and_nineteen_later3_10cases_qualified_nineteen_pending_public_heat_gate_closed",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -843,6 +843,11 @@
           "decision": "Qualify12exact3.10utility/material cases atfactor+1. Preserve complete native boundaries and source/native differences. Actual source stainless inputs use scrap, supporting the native electric route over the inspected pig-iron converter alternative. Two added profile lists preserve previous effective mappings and all shared reviews/recipes.",
           "review": "brightpath/data/export/uvek_heat_310_utilities_materials_review.json",
           "authorization": "Standing autonomous approval of coming modelling decisions and exact inspected complete product/service screening proxies, with scientific differences and scope retained for review."
+        },
+        {
+          "decision": "Qualify exact3.10HDPEandhazardousmarket/helpers plusSwisshazardousservice. Preserve virgin/treatment shares, allfreight and actual3.10uncertainty. Four positive trace recyclate omissions have fresh literal3.10audits; no renormalisation or zero-burden substitution. Hazardousfactor-1wasalreadycorrect; keepitonce. Older effective3.9helpers/audits remain unchanged under qualified structural fingerprint migrations.",
+          "review": "brightpath/data/export/uvek_heat_310_waste_review.json",
+          "authorization": "Standing autonomous modelling approval, including auto-approval of independently inspected similar omissions with warnings. Qualify exact3.10cutoff inventories; preserve separate shares, original freight, signed reference coordinates and literal omission audits. No general trace or other-profile approval."
         }
       ],
       "implementation_commits": [
@@ -933,10 +938,10 @@
         "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases",
         "initial_observed_pending3_9cases": 14,
         "qualified3_9cases": 14,
-        "verification": "docs/development/uvek-heat-310-utilities-verification.json",
-        "observed_pending3_10cases": 22,
+        "verification": "docs/development/uvek-heat-310-waste-verification.json",
+        "observed_pending3_10cases": 19,
         "next_cohort_review": "docs/development/uvek-heat-310-mapping-frontier.json",
-        "qualified3_10cases": 16
+        "qualified3_10cases": 19
       }
     },
     {

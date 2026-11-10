@@ -145,3 +145,19 @@ are explicitly qualified, while 466 earlier fingerprints stay unchanged. Twelve
 new permissions bring the ledger to 480 scopes. Real preparation now reports 22
 pending cases in the later cohort, with 16 of its original 38 qualified. The
 public heat gate remains closed; later cohorts and integration remain unproven.
+
+Three exact 3.10 waste/polymer qualifications retain the two virgin HDPE shares,
+two hazardous-treatment shares and all seven freight entries. Quantities match
+the earlier helpers, but actual 3.10 freight uncertainty differs, so new helpers
+retain the current source fields. Four positive trace recyclate supplies have
+fresh 3.10 omission audits and an unquantified physical score effect; nonempty
+recycling inventories are not replaced by empty cut-off handovers. No mass or
+freight renormalisation is introduced.
+
+The hazardous market and direct Swiss service keep the existing -1 factor once,
+consistent with source negative waste references and native positive service
+references. Wet composition matches; source/native internal treatment, energy,
+residue and emission differences remain warnings. No energy credit is invented.
+Earlier helpers, shared reviews and omission audits remain unchanged. There are
+483 exact scopes and 19 pending cases in the current cohort, with 19 of its
+original 38 qualified. The public heat gate remains closed.
