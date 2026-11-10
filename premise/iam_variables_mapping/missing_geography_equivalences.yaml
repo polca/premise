@@ -1440,3 +1440,16 @@ Europe_Eastern:
   tiam-ucl: EEU
   gcam: EU-12
   witch: te
+# UVEK 2026 legacy/export geography labels, used by the shared mapper.
+# ERCOT is the Texas electricity region, wholly within REMIND's USA.
+ERCOT:
+  remind: USA
+# Deterministic BAFU ecospold export alias for Europe without Switzerland.
+# Same representative IAM equivalence as the unabbreviated label above.
+LBFAC32:
+  remind: EUR
+# Legacy ecoinvent-2 region "Centrally Planned Asia and China". CHA is a
+# representative screening region, not an assertion of identical boundaries.
+# See docs/development/uvek-standard-workflow.md for the retained limitation.
+CPA:
+  remind: CHA
