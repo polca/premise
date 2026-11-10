@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "status": "twelve_of_twenty_four_observed3_8cases_qualified_twelve_pending",
+  "status": "sixteen_of_twenty_four_observed3_8cases_qualified_eight_pending",
   "context": "New cohort reached after all38previously observed3.10cases clear strict preparation. Publicheatgate remains closed; no automatic version-wide approvals.",
   "identified_cases": 24,
-  "qualified_cases": 12,
-  "pending_cases": 12,
+  "qualified_cases": 16,
+  "pending_cases": 8,
   "categories": {
     "barge_transport_boundary": 1,
     "reviewed_correspondence_new_exact_profile": 8,
@@ -27,7 +27,7 @@
   "cases": [
     {
       "rule_id": "bp-48860f9f90dd62eb",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_service_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -89,7 +89,9 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "verification": "docs/development/uvek-heat-38-services-verification.json",
+      "review_path": "export/uvek_heat_38_services_review.json"
     },
     {
       "rule_id": "bp-8c3b3ceb3e9c8bef",
@@ -307,7 +309,7 @@
     },
     {
       "rule_id": "bp-b53187b24a160299",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_service_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -369,11 +371,13 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "verification": "docs/development/uvek-heat-38-services-verification.json",
+      "review_path": "export/uvek_heat_38_services_review.json"
     },
     {
       "rule_id": "bp-32d329d5cd56c9d8",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_service_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -435,7 +439,9 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "verification": "docs/development/uvek-heat-38-services-verification.json",
+      "review_path": "export/uvek_heat_38_services_review.json"
     },
     {
       "rule_id": "bp-cc95e6fdfe8919b8",
@@ -513,7 +519,7 @@
     },
     {
       "rule_id": "bp-95da75538a86123f",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_service_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -575,7 +581,9 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "verification": "docs/development/uvek-heat-38-services-verification.json",
+      "review_path": "export/uvek_heat_38_services_review.json"
     },
     {
       "rule_id": "bp-5ede2be860ad337d",
@@ -2217,13 +2225,11 @@
     }
   ],
   "later_cohorts": "unproven",
-  "verification": "docs/development/uvek-heat-38-corrections-verification.json",
+  "verification": "docs/development/uvek-heat-38-services-verification.json",
   "remaining_categories": {
-    "barge_transport_boundary": 1,
     "waste_moisture_and_landfill_boundary": 1,
-    "deionised_water_service": 1,
-    "infrastructure_capacity_and_reference": 3,
     "mineral_or_chemical_product_boundary": 5,
-    "chemical_heat_and_water_boundary": 1
+    "chemical_heat_and_water_boundary": 1,
+    "infrastructure_capacity_and_reference": 1
   }
 }

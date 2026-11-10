@@ -743,3 +743,36 @@ Strict heat preparation now has 12 pending cases in the observed 3.8 cohort,
 down from 16. These counts do not count the five repaired earlier approvals as
 additional cohort closures. Further cohorts and public heat integration remain
 unproven. Verification: `docs/development/uvek-heat-38-corrections-verification.json`.
+
+
+### Four complete service proxies in the 3.8 heat cohort
+
+Independently inspected and qualified inland diesel barge transport, ion-exchange
+water, an organic chemical plant and the complete four-tank liquid-storage unit.
+All four source/native references are +1 in the same physical unit; signed caller
+amounts, formulas and supported uncertainty remain unchanged. These are exact
+3.8 cut-off approvals, with complete native inventories and no added helpers.
+
+Warnings retain the different barge fleet/infrastructure/emissions and lack of a
+separate native bilge-oil treatment exchange; the DI-water abstraction, tap-water,
+regeneration and wastewater boundaries; the chemical plant's land-class/background
+model; and the tank coating's known without-solvent versus 60% solvent-mixture
+basis. The complete tank-unit proxy does not claim equal dry coating mass. No
+invented fuel, payload, water-balance, purity, lifetime, capacity, tank-count or
+paint multiplier is applied. Geography, vintage, internal uncertainty, native
+biosphere exclusions and unquantified score differences remain explicit.
+
+Validation: 26 Brightpath tests, nine Premise cache/history/drift checks, eight
+signed finite LCIs, eight installed signed demands, 41 installed original caller
+regressions, byte-identical replay of both generated resources and matching
+packaged data. All 514 prior approval fingerprints and superseded lime history
+remain unchanged; four new scopes bring the total to 518. All 3,674 recipes and
+prior reviews are retained; four new shared reviews bring the total to 783.
+Actual 12-root/76-record preparation reaches eight pending cases in this observed
+3.8 cohort, down from 12. Further cohorts remain unproven. Public heat remains
+closed pending the rest of mapping, transformation/relinking and export checks.
+The last verified public export still covers biomass/electricity only.
+
+Evidence: `export/uvek_heat_38_services_review.json` in Brightpath and
+`docs/development/uvek-heat-38-services-verification.json` in Premise. Standing
+autonomous modelling authorization applies; no LCIA equivalence is claimed.

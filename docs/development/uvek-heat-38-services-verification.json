@@ -1,0 +1,89 @@
+{
+  "status": "four_complete_native_services_qualified_eight_current3_8cases_pending_heat_gate_closed",
+  "review": "export/uvek_heat_38_services_review.json",
+  "review_sha256": "04d7574358a2e7f212725d66847a6665f60d84e890b251c04c54147321f0fdaf",
+  "approval_scopes": 518,
+  "prior_fingerprints_unchanged": 514,
+  "new_exact_scopes": 4,
+  "new_helpers": 0,
+  "recipe_count": 3674,
+  "shared_review_count": 783,
+  "all_other_rules_prior_recipes_reviews_superseded_history_unchanged": true,
+  "validation": {
+    "brightpath_tests": 26,
+    "premise_cache_and_drift_tests": 9,
+    "signed_finite_LCIs": 8,
+    "installed_signed_demands": 8,
+    "installed_original_callers": 41,
+    "generated_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 270,
+      "premise": 247
+    },
+    "native_scientific_contents_unchanged": true
+  },
+  "real_preparation": {
+    "roots": 12,
+    "foreground_records": 76,
+    "original_pins": 55,
+    "current_cohort_qualified": 16,
+    "current_cohort_pending": 8,
+    "further_cohorts": "unproven"
+  },
+  "public_heat_gate": "closed; no new heat export claimed",
+  "last_public_default_export": "docs/development/uvek-heat-38-corrections-verification.json;12529activities,biomass/electricity only. All514priorapproved fingerprints unchanged by this batch; current signed/caller/package regressions verified.",
+  "scientific_limitations": [
+    "Barge fleet/infrastructure/emissions differ; native has no separately listed bilge-oil treatment.",
+    "DIwater native tap-water/regeneration boundary replaces source direct abstraction/wastewater/sludge boundary.",
+    "Chemical plant native industrial land classes and background inventories differ.",
+    "Tank4000kgsourcewithout-solventpaint versus4000kgnative60%solventmixture; complete-unit proxy does not claim equal drypaint.",
+    "Native biosphere exclusions, geography, vintage, internal uncertainty and unquantified score differences remain warnings. No LCIAequivalence or impactcompleteness."
+  ],
+  "receipts": [
+    {
+      "name": "heat_38_services_registration.json",
+      "sha256": "8309ffdc5bfe83dbcfede1db7057bb2f625199e9bbf7a615c08ed88b4723f2e1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_tests.log",
+      "sha256": "4559924ce606b0eecb64b80e028a937e218026e2fa70eb32a454faa9d4312361",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_premise_tests.log",
+      "sha256": "5963010f1998a6943e9b9909c34cf17fe5d454e82c67d3969da54c5ad4979edd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_native_lci_checks.json",
+      "sha256": "0f91c003b63f3bb231ee5bf7913f3d0bcfd126d72860de3e1e0c25efae8042c7",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_installed_checks.json",
+      "sha256": "cb38acf21e6919132868ce122645cbf3b61123cb789f42b012c6582f123bade4",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_original_callers.json",
+      "sha256": "3b6c619c8c6e2fc622821eb9807ac9aae80ac7feee8cbb7d778c0636576833a7",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_generator_replay.json",
+      "sha256": "a8e64895eefb9d391125d9730f0e3be515e73388f4a95df28a31b84cb9b43aac",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_packaged_data.json",
+      "sha256": "a803270b0848a8c72240baf35c943a1270a55cd218843dd041fe6f7521d6bd87",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_services_remaining_audit_receipt.json",
+      "sha256": "5c5b8a7055fab2580d16b42e9044b9a05c97c06de9c5e4caa384459a204b699d",
+      "location": "private task workspace"
+    }
+  ]
+}

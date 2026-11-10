@@ -129566,6 +129566,350 @@
           "fingerprint": "06531ca184018d10deecdd5396822600915ec6e88f814e5a2a7967b0afe57871"
         }
       ]
+    },
+    {
+      "rule_id": "bp-48860f9f90dd62eb",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_service_proxy",
+      "review_path": "export/uvek_heat_38_services_review.json",
+      "review_sha256": "04d7574358a2e7f212725d66847a6665f60d84e890b251c04c54147321f0fdaf",
+      "authorization": "Standing autonomous approval; complete functional screening proxies with explicit warnings and recorded alternatives/boundaries.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "transport, freight, inland waterways, barge",
+          "reference product": "transport, freight, inland waterways, barge",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, barge",
+          "reference product": "Transport, barge",
+          "unit": "ton kilometer"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "RoW",
+              "name": "transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "87b0f809080fd998848c9286d06d9159c3365a68ec49fd5c46b9488dbdeb223d",
+            "metadata_sha256": "13a66d4373d0fc918fcb48fc113186e3f93a6c0b61d60a7c613b7f162dd07830"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+            "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "ede9a55f91db61662b4a9ccb437cf4b8393ce59af94809c37cd3e06c72071b82",
+            "metadata_sha256": "671108054c8945359d4378e0d7679b1de893d973b4dece3e0d629e42a6d103fb"
+          }
+        }
+      },
+      "limitations": [
+        "Use complete native European diesel barge transport per signed tonne-km as an explicit geographic, fleet and infrastructure screening proxy for the source RoW inland-waterway service. Both inventories provide +1tonne-km and include vessel, fuel/operation, port and canal services; no vehicle-count, payload, distance, fuel-demand or lifetime multiplier is applied.",
+        "The source is extrapolated from the European Rhine fleet and documents an average852tonne load and32.5year life, while the native inventory uses a1978tonne reference and45year vessel-life assumptions. Native vessel/maintenance, port throughput, canal allocation, diesel consumption, exhaust speciation and bilge-oil treatment boundary differ. The source explicitly treats bilge oil; the native complete transport has no separately listed bilge-oil treatment exchange. Retain this missing/changed waste boundary and all internal uncertainty as a warning; do not silently add a made-up treatment or duplicate source diesel/emissions on top of complete native transport.",
+        "Only this independently inspected ecoinvent3.8cut-off correspondence is qualified. Preserve signed caller physical quantities, formulas, supported uncertainty and foreground ownership; do not touch native inventories or separately listed caller emissions. Native biosphere exclusions and unquantified environmental-score differences remain limitations. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1d95dc14e950969baef36ace7c6b5ecb84c29ce34a084725847aecc787dcb9ca"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b53187b24a160299",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_service_proxy",
+      "review_path": "export/uvek_heat_38_services_review.json",
+      "review_sha256": "04d7574358a2e7f212725d66847a6665f60d84e890b251c04c54147321f0fdaf",
+      "authorization": "Standing autonomous approval; complete functional screening proxies with explicit warnings and recorded alternatives/boundaries.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "water production, deionised",
+          "reference product": "water, deionised",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Water, deionised, at plant",
+          "reference product": "Water, deionised, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "RoW",
+              "name": "water production, deionised",
+              "reference product": "water, deionised",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d990126377ef82b0328f818ad26b16f5ca40e0f3441267164566e8b379c9d405",
+            "metadata_sha256": "f1e296573b760c294e1cad2572eb7890a911cded83b4cc1efa0ff521fba7cb25"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+            "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1d7fe7c87e6806833088deed8891fb9928f2bf7abfcf50c1bd3f3e794f707988",
+            "metadata_sha256": "be7c253619e026023bd1d16979cff690835a02863c07132bdb4ab4f069e33afd"
+          }
+        }
+      },
+      "limitations": [
+        "Use complete native Swiss deionised water per signed kg as an ion-exchange-service screening proxy. Source and native descriptions exclude reverse osmosis/distillation and very small cartridges or very large power-station units. Source quality is about1-0.1uS/cm and5-25ug/l silica; native documents about1uS/cm and the same silica range, using counterflow cation/anion regeneration and the same nominal feed-water hardness. This is not approval for ultrapure electronic-grade water or another treatment technology.",
+        "The source models raw groundwater/river abstraction, wastewater/sludge and regeneration releases directly, while native supplies1.11kgdelivered tap water with its own treatment/transport boundary. Native electricity, hydrochloric/caustic solution quantities, resin/plant, other regenerants, steam, pollutant fate, water losses/returns, geography, vintage and uncertainty differ. Replace the entire service once, retaining caller kgwithout a guessed density, purity, chemical-basis or water-balance factor. Add no source tap-water, chemical, wastewater, emission or regeneration exchanges on top.",
+        "Only this independently inspected ecoinvent3.8cut-off correspondence is qualified. Preserve signed caller physical quantities, formulas, supported uncertainty and foreground ownership; do not touch native inventories or separately listed caller emissions. Native biosphere exclusions and unquantified environmental-score differences remain limitations. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "77126b8fd7b4090b6f86a7e6780c0b34732369b2110289c31a004d422a5161ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-32d329d5cd56c9d8",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_service_proxy",
+      "review_path": "export/uvek_heat_38_services_review.json",
+      "review_sha256": "04d7574358a2e7f212725d66847a6665f60d84e890b251c04c54147321f0fdaf",
+      "authorization": "Standing autonomous approval; complete functional screening proxies with explicit warnings and recorded alternatives/boundaries.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "chemical factory construction, organics",
+          "reference product": "chemical factory, organics",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chemical plant, organics",
+          "reference product": "Chemical plant, organics",
+          "unit": "unit"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "RoW",
+              "name": "chemical factory construction, organics",
+              "reference product": "chemical factory, organics",
+              "unit": "unit"
+            },
+            "inventory_sha256": "85f9332bb44b10b184b1042ddab3c105ec6905ada0521680f8efceed697caed5",
+            "metadata_sha256": "1f1fa6e8f863b13f2b5c672b8a73d565b375f3fb9ed0b1f9cf646db0a65ff3fb"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Chemical plant, organics",
+              "reference product": "Chemical plant, organics",
+              "unit": "unit"
+            },
+            "inventory_sha256": "a3fb03d807728075a8272837a874f366990d35aef384d3030dd50dafc004266e",
+            "metadata_sha256": "37c3203255909050a9d0e8723887bcf18a0a09348c07c392fc305c369240a7c6"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Chemical plant, organics",
+              "reference product": "Chemical plant, organics",
+              "unit": "unit"
+            },
+            "inventory_sha256": "51279bb8c3f63cae7189fcfbbefbd147f87e70db629bfbda44c451c280a03c8a",
+            "metadata_sha256": "f7c1e9fd56fba7a2bc076a14097ed4dc5c745d246f7e7f64d710111412bbaad8"
+          }
+        }
+      },
+      "limitations": [
+        "Use the complete native European organic chemical plant per signed reference unit as a geographic/background screening proxy for the source RoW chemical factory. Both contain158000m3multi-storey buildings,10500m2steel halls and12600000kgfacilities with decommissioning. Both rely on the same documented two German sites. This is the complete plant reference, not one kgof machinery and not one unit of annual chemical output.",
+        "Source and native land inventories both total54500m2transformation,2725000m2yearindustrial occupation and84000m2yearconstruction occupation, but native separates industrial land classes. Retain those native classes, complete materials, disposal and background supplies once. Source documentation assumes50years; do not invent another lifetime or production-capacity normalization. Geographic market/background, building/steel supply, disposal/allocation, land-class definitions, vintage, original estimate uncertainty and unquantified score differences remain explicit.",
+        "Only this independently inspected ecoinvent3.8cut-off correspondence is qualified. Preserve signed caller physical quantities, formulas, supported uncertainty and foreground ownership; do not touch native inventories or separately listed caller emissions. Native biosphere exclusions and unquantified environmental-score differences remain limitations. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3edcc580d763cefae274ead4d15d9552d567e6da74d6c0e26cd784f115234915"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-95da75538a86123f",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_service_proxy",
+      "review_path": "export/uvek_heat_38_services_review.json",
+      "review_sha256": "04d7574358a2e7f212725d66847a6665f60d84e890b251c04c54147321f0fdaf",
+      "authorization": "Standing autonomous approval; complete functional screening proxies with explicit warnings and recorded alternatives/boundaries.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "liquid storage tank production, chemicals, organics",
+          "reference product": "liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Liquid storage tank, chemicals, organics",
+          "reference product": "Liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "conversion_factor": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": 1,
+            "target_reference_amount": 1,
+            "identity": {
+              "location": "RoW",
+              "name": "liquid storage tank production, chemicals, organics",
+              "reference product": "liquid storage tank, chemicals, organics",
+              "unit": "unit"
+            },
+            "inventory_sha256": "36f414380c3171f05c182bb4dfb81e431993bceafd8f79d6651d595e3d05569d",
+            "metadata_sha256": "9e57a6dec83728cf211de86e267ad5d997e8601e285d95c1d2c20be564172c67"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Liquid storage tank, chemicals, organics",
+              "reference product": "Liquid storage tank, chemicals, organics",
+              "unit": "unit"
+            },
+            "inventory_sha256": "d7b69f5056dd46c477a9e6add3467f823e0f0ffcc2e367fe8544b4d54e3658fe",
+            "metadata_sha256": "be4472ba08051a2ebcb6b3da219618edd9e37303a8f64b66fa92b8a647afd20b"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Liquid storage tank, chemicals, organics",
+              "reference product": "Liquid storage tank, chemicals, organics",
+              "unit": "unit"
+            },
+            "inventory_sha256": "e6c053efd1758971dd12e8446ffdd3f84ba2dfb7ac9409d827a664949c138402",
+            "metadata_sha256": "4ba2dd5d2df744148b00cfa7c285348e0e338d4ce50c67255b9458a91cdee351"
+          }
+        }
+      },
+      "limitations": [
+        "Use the complete native Swiss organic-chemical liquid-storage installation per signed reference unit as a geographic/background screening proxy. Both documented units represent four4000m3tanks,16000m3total, with50yearlife, land use, construction materials and decommissioning; both exclude construction energy and assume no disposal contamination. Preserve the complete installation unit: do not divide by four, volume, lifetime, throughput or density.",
+        "Actual source/native steel, reinforcing steel, concrete and decommissioned material totals agree, but the source has4000kgpaint on a without-solvent reference whereas native has4000kgof60%solvent mixture. This known coating-basis difference is retained as a complete-installation screening limitation; do not claim equal dry coating mass or reuse the separate water-based paint correction. Source pitch portfolio versus native refinery bitumen, explicit native freight versus source material markets, waste-treatment routes, geography, land/air flow definitions, background allocation and high original infrastructure uncertainty also differ. Keep the complete native inventory unchanged once; no invented paint/solvent multiplier, added freight/disposal or recovery credit.",
+        "Only this independently inspected ecoinvent3.8cut-off correspondence is qualified. Preserve signed caller physical quantities, formulas, supported uncertainty and foreground ownership; do not touch native inventories or separately listed caller emissions. Native biosphere exclusions and unquantified environmental-score differences remain limitations. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9a40e94aee716725f937858e49a9bd17aa58aa9d43a27ab0b6ac242989919fe3"
+        }
+      ]
     }
   ],
   "superseded_operations": [

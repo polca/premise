@@ -2797,3 +2797,31 @@ def test_superseded_lime_fingerprints_are_inactive_and_history_retained():
         current[0]["inspection"]["target"]["name"]
         == "Limestone, milled, loose, at plant"
     )
+
+
+@pytest.mark.parametrize("row_index", range(4))
+def test_heat_38_complete_services_survive_cache(tmp_path, row_index):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    row = json.loads(
+        (DATA_DIR / "export/uvek_heat_38_services_review.json").read_text()
+    )["records"][row_index]
+    resolved = graph(row["source"], version="3.8")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2
+        assert all(edge[k] == v for k, v in row["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+            and d["details"]["review_path"]
+            == "export/uvek_heat_38_services_review.json"
+            and d["details"]["limitations"] == row["limitations"]
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
