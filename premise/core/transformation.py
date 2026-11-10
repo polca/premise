@@ -2056,6 +2056,23 @@ class BaseTransformation:
                         "minimum": exc.get("minimum", 0),
                         "maximum": exc.get("maximum", 0),
                     }
+                    # A cached handover can rename the supplier (for example
+                    # a country grid becomes an IAM market). Restore consumer
+                    # uncertainty under that exact target identity as well.
+                    entries = (
+                        self.cache.get(act["location"], {})
+                        .get(self.model, {})
+                        .get((name, effective_product, _location, unit), ())
+                    )
+                    if isinstance(entries, tuple) and entries:
+                        entries = [entries]
+                    for entry in entries:
+                        old_uncertainty.setdefault(
+                            (entry[0], entry[1], entry[3], exc.get("comment")),
+                            old_uncertainty[
+                                (name, effective_product, unit, exc.get("comment"))
+                            ],
+                        )
 
             # make a dictionary with the names and amounts
             # of the technosphere exchanges to relink

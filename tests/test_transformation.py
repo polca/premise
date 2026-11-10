@@ -1240,3 +1240,47 @@ def test_market_uses_explicit_technology_shares_and_keeps_absolute_volume(
         ]
         == "diesel"
     )
+
+
+@pytest.mark.parametrize("amount", [-2.0, 2.0])
+@pytest.mark.parametrize("uncertainty_type", [2, 3])
+def test_cached_supplier_rename_keeps_consumer_uncertainty(amount, uncertainty_type):
+    transformation = object.__new__(BaseTransformation)
+    transformation.model = "remind"
+    product = "electricity, medium voltage"
+    old_name = "Electricity, medium voltage, at grid"
+    new_name = "market group for electricity, medium voltage"
+    exchange = {
+        "name": old_name,
+        "product": product,
+        "location": "CH",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+        "amount": amount,
+        "uncertainty type": uncertainty_type,
+        "loc": np.log(abs(amount)) if uncertainty_type == 2 else amount,
+        "scale": 0.2,
+        "comment": "electricity for cement grinding",
+    }
+    consumer = {"name": "cement producer", "location": "CH", "exchanges": [exchange]}
+    transformation.database = [consumer]
+    transformation._validation_relinked_targets = {}
+    transformation._get_provider_semantic_index = lambda: {}
+    transformation.cache = {
+        "CH": {
+            "remind": {
+                (old_name, product, "CH", "kilowatt hour"): [
+                    (new_name, product, "NEU", "kilowatt hour", 1.0)
+                ]
+            }
+        }
+    }
+    transformation.relink_datasets()
+    (mapped,) = consumer["exchanges"]
+    assert mapped["name"] == new_name and mapped["location"] == "NEU"
+    assert mapped["amount"] == amount
+    assert mapped["uncertainty type"] == uncertainty_type
+    assert mapped["loc"] == exchange["loc"]
+    assert mapped["scale"] == exchange["scale"]
+    assert bool(mapped.get("negative")) is (amount < 0)
+    assert mapped["comment"] == exchange["comment"]

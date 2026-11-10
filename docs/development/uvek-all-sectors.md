@@ -342,3 +342,27 @@ ordinary sector validation and a combined build. The public UVEK guard still
 admits biomass, electricity and heat only. Existing three-sector notebook behavior
 is unchanged. Premise pins the published Brightpath revision; existing kernels
 must restart after replacement of the installed same-version alpha package.
+
+## Shared cached handovers: retain consumer uncertainty
+
+The combined cement audit reproduced an existing shared relinking defect.
+Electricity updates cache a handover from the native country supplier to a
+renamed IAM market. `relink_datasets()` looked up consumer uncertainty only under
+the old name, so the new electricity input lost its distribution before Cement
+started. A private stage trace confirmed the loss already at Cement construction;
+no cement recipe or geographic split caused it.
+
+A 17-line generic correction also indexes the original uncertainty under the
+exact cached target identity. It changes no provider selection, signed amount,
+share or market topology. Four normal/lognormal positive/negative reproductions
+fail before the correction and pass after it; the related shared transformation,
+heat-consumer and native cement group passes 61 checks. The corrected actual
+four-sector export retains aggregate recipe quantities and the corresponding
+scaled uncertainty. No new statistical correlation model is inferred when the
+ordinary algorithm splits a supplier geographically.
+
+This source change is necessary because a YAML alias cannot restore a lost
+consumer distribution. It belongs to the existing shared transformation;
+there is no UVEK-specific relinking engine. The four pre-existing Ruff findings
+in that module remain identical to its committed baseline. The final broader
+suite and combined graph evidence are recorded with the cement qualification.
