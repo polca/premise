@@ -730,29 +730,24 @@
     },
     {
       "sector": "heat",
-      "status": "selected_supplemental_graph_prepared_all_observed_mapping_cases_qualified_public_heat_gate_closed",
+      "status": "all_positive_REMIND_physical_suppliers_planned_three_layer_markets_and_relinking_pending_public_gate_closed",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "28exact_native_bindings_supplier_preflight_verified_not_full_sector_runtime",
+        "kind": "28native_plus6supplemental_aliases_supplier_preflight_verified_not_full_sector_runtime",
         "files": [
           {
             "path": "premise/iam_variables_mapping/heat.yaml",
             "ecoinvent_role_count": 49,
-            "explicit_nonempty_uvek_role_count": 28,
+            "explicit_nonempty_uvek_role_count": 34,
             "missing_or_empty_uvek_roles": [
               "heat, buildings, from district heating",
               "heat, buildings, from hydrogen fuel cell",
-              "heat, buildings, from biomass-based methanol boiler",
-              "heat, buildings, from coal-based methanol boiler",
               "heat, buildings, residual",
-              "heat, industrial, from hydrogen boiler",
               "heat, industrial, from hydrogen fuel cell",
-              "heat, industrial, from electric boiler",
-              "heat, industrial, from biofuel boiler",
               "heat, industrial, from solar thermal",
               "heat, industrial, from district heating",
               "heat, secondary, from biomass with CCS",
@@ -761,12 +756,11 @@
               "heat, secondary, from coke with CCS",
               "heat, secondary, from natural gas with CCS",
               "heat, secondary, from oil with CCS",
-              "heat, secondary, from electricity",
               "heat, secondary, from geothermal",
               "heat, secondary, from solar thermal",
               "heat, secondary, residual"
             ],
-            "interpretation": "28exact native aliases and16physical basis factors verified against installed native inventories and isolated wheels;21roles remain without native aliases. This is not sector update/export evidence."
+            "interpretation": "28nativeand6supplementalaliases;source-planningverifiedforactualpositiveREMIND26physicalroles. Two purchasedrolesawaitnative delivery layer. OtherIAMmissingrolesstillneedexplicitreview. No sectorupdate/exportclaimed."
           }
         ],
         "runtime_verified": false,
@@ -967,6 +961,47 @@
           "Implement allthreeheat layers and native consumer classification/relinking; preserve source quantities and originalUX.",
           "Verify real public update, cold/warm caches, combined/default certification, installed packages and Brightway export before opening heat gate."
         ]
+      },
+      "supplemental_supplier_stage": {
+        "status": "reviewed_source_energy_bases_and_real_IAM_positive_physical_roles_verified",
+        "implementation": "premise/energy/uvek_heat_supplements.py",
+        "review": "premise/data/heat/uvek2026_supplement_review.json",
+        "documentation": "docs/development/uvek-heat-supplements.md",
+        "CLIC_source_pins": 3,
+        "supplemental_aliases": 6,
+        "positive_REMIND_roles": 28,
+        "positive_native_supplier_roles": 21,
+        "positive_supplemental_supplier_roles": 5,
+        "purchased_roles_awaiting_layer_routing": [
+          "heat, buildings, from district heating",
+          "heat, industrial, from district heating"
+        ],
+        "source_MJ_per_kg": {
+          "methanol": 20,
+          "hydrogen": 120.21
+        },
+        "nominal_final_energy_factors": {
+          "methanol": 0.9,
+          "hydrogen": 0.9297454944044002,
+          "electric_boiler": 0.99
+        },
+        "retained_boiler_electricity_kWh_per_MJ": 0.2805836139169472,
+        "source_graph_unchanged": true,
+        "tests": {
+          "focused_supplier_basis_distribution_and_root_selection": 119,
+          "shared_heat_IAM_activity_mapping_and_profiles": 116,
+          "CLIC_hybrid_and_provider": 12
+        },
+        "installed_role_replay": 6,
+        "installed_packaged_data_equal_worktrees": {
+          "premise": 248,
+          "brightpath": 272
+        },
+        "finite_retained_electric_boiler_LCI": true,
+        "verification": "docs/development/uvek-heat-supplement-suppliers-verification.json",
+        "public_heat_gate": "closed",
+        "standard_CLIC_namespaces_and_JSON_cache_replay_verified": true,
+        "additional_foreground_fuel_pin": 1
       }
     },
     {

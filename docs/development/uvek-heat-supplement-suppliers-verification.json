@@ -1,0 +1,93 @@
+{
+  "status": "supplemental_supplier_planning_verified_public_heat_gate_closed",
+  "source_review": "premise/data/heat/uvek2026_supplement_review.json",
+  "review_sha256": "8147ee344b9e08da47f7d089c112c5cb5af5b77c4324d761519afb327c284821",
+  "new_source_suppliers": 3,
+  "new_retained_electric_boilers": 1,
+  "new_supplement_aliases": 6,
+  "all_non_UVEK_mapping_fields_unchanged": true,
+  "automatic_CLIC_role_root_selection_verified": true,
+  "explicit_user_lockfile_root_semantics_unchanged": true,
+  "actual_encrypted_REMIND_SSP2_NPi_2050": {
+    "positive_roles": 28,
+    "native_supplier_roles": 21,
+    "supplement_supplier_roles": 5,
+    "purchased_heat_roles_waiting_for_delivery_layer": 2,
+    "all_positive_physical_roles_have_reviewed_plans": true,
+    "source_graph_unchanged": true
+  },
+  "verification": {
+    "focused_tests": 119,
+    "shared_regressions": 116,
+    "CLIC_pipeline_regressions": 12,
+    "installed_role_replays": 6,
+    "installed_packaged_data_equal_worktrees": {
+      "premise": 248,
+      "brightpath": 272
+    },
+    "retained_boiler_finite_LCI": true,
+    "no_database_written": true
+  },
+  "scientific_limitations": [
+    "Source20MJ/kgmethanolreplaces generic19.9default only inside newnative heat planning;existingecoinventbehavior unchanged.",
+    "H2source net heatingproperty120.21MJ/kgand actualfuel0.008947368421052631kg/MJgive nominal0.9297454944044002;95%HHV/LHVproseconflict remains explicit, without another loss or inventoryrescaling. No validatedturbine/CHPefficiency or reconstructedengineeringheat/powerbalance is claimed.",
+    "Industrialbioliquids use retainedresidentialmethanolboiler asscale/applicationproxy. IndustrialH2boiler usesretainedturbineheat inventoryastechnology/scaleproxy.",
+    "Electricboiler keeps source0.2805836139169472kWh/MJ,owneddeterministicrecord andnativeCHMVgrid;sourceomittedinfrastructure remainswarning. Secondaryheat-outputrole usesfactor1.",
+    "CLICsourcepins,originalfuel/auxiliaryinputs,formula/uncertainty,ownership andupstreammappinglimitations remain. Geography,vintage,nativeBIOexclusions,scoreeffects unquantified. NoLCIAequivalence/impactcompleteness."
+  ],
+  "remaining_heat_work": [
+    "Constructall3IAMheatlayersandnative deliveryrouting.",
+    "Reviewandimplementnativeconsumerclassification/relinkingwithcycle/physicalquantityguards.",
+    "Integratepubliccallback/inventorypreparation andvalidation;verifycold/warmcombined/defaultinstalledscenario certificationandBrightwayexportbeforeopeningheatgate."
+  ],
+  "receipts": [
+    {
+      "name": "heat_supplement_supplier_tests.log",
+      "sha256": "114b393a98589cfed724343a371031f28f7ae1900147e4b066cce5fb56624bc6",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplement_shared_tests.log",
+      "sha256": "2c8ac0090c1a3011804a9b3706ccabef3f43d19ca923dc31a7851162cd4dbede",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplement_clic_pipeline_tests.log",
+      "sha256": "37de4bb99dfb4b8303761f4953bf46a9b8b78b6b61c926f158b50fa49ca5087d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplement_supplier_installed_replay.json",
+      "sha256": "3c00f46a2d255fc6854a7cf2e75f25aa44a786f9369fcc504ddeb94f0eec5943",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplement_suppliers_packaged_data.json",
+      "sha256": "e42b5c2ca2399da095d98a8a2fc394b5884cbcb904020a69c76bb229ddc22c7f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplement_electric_boiler_lci.json",
+      "sha256": "77ad4022310a65a16f74ddc329b6beb0435a854cbf897593f5da9a6a7678cd44",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_all_supplier_real_IAM_preflight.json",
+      "sha256": "0706f284dc3239ae33bec0a9df3e0445920b0f79a434741f432ba8d5e6a294ce",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_supplement_alias_comparison.json",
+      "sha256": "308fc47e28b1cb6f213dd5a16b74f754d94a423f5607e0a8aeb9e0bcd0cd0612",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_supplier_plans.json",
+      "sha256": "b5f67ca7782082a26cd48f9ee3a486137f7a973b701c5ef0060d83335b4ce82d",
+      "location": "private task workspace"
+    }
+  ],
+  "standard_CLIC_namespace_supported_for_locked_heat_and_fuel_records": true,
+  "JSON_cache_roundtrip_reuses_owned_boiler": true,
+  "additional_locked_foreground_fuel_sources": 1
+}

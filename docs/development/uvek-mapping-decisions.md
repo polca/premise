@@ -874,3 +874,54 @@ Evidence: Brightpath `export/uvek_heat_312_markets_review.json` and Premise
 modelling authorization applies. Two obsolete isolated installations were removed
 after wheel-hash verification, reclaiming 929 MB; wheels, archives, databases,
 exports and evidence remain intact.
+
+
+### Supplemental heat suppliers: source energy bases and positive IAM coverage
+
+Added six exact UVEK aliases for four supplemental supplier records. Three are
+pinned CLIC sources; the retained electric boiler is created as one owned record
+on the native CH medium-voltage grid. Positive CLIC heat roles use the existing
+automatic family-override root selection, without legacy workbook matching or
+manual helper installation; explicit user lockfile roots keep their existing
+meaning. All non-UVEK YAML fields remain unchanged.
+
+Methanol conversion follows its explicit source 20 MJ/kg and original fuel draw,
+giving nominal factor 0.90. Hydrogen follows the original 3.9 fuel reference's
+120.21 MJ/kg and original 0.008947368421052631 kg/MJ, giving 0.9297454944044002.
+The heat record's conflicting 95% HHV/LHV descriptions remain warnings; no generic
+120 MJ/kg, forced 0.95 factor or extra loss is introduced. This is an inventory-
+derived nominal proxy, not validated turbine/CHP efficiency or a reconstructed
+heat/power balance. Industrial hydrogen/bio-liquid roles retain their disclosed
+technology/scale proxies. Complete source inventories remain unchanged.
+
+The retained electric boiler preserves its exact 0.2805836139169472 kWh/MJ draw,
+nominal 99% conversion and explicit missing-infrastructure limitation. Its final-
+energy role uses factor 0.99, while the secondary heat-output role uses factor 1.
+Repeated planning creates no duplicate boiler; changed pins, quantities,
+references, aliases, ownership, model roles or background axes fail read-only.
+
+Validation: 119 focused supplier/basis/distribution/root-selection checks, 116
+shared heat/IAM/activity-map/profile regressions and 12 CLIC hybrid/provider checks
+pass. Isolated packages replay all six supplementary roles against the actual
+11,947-native + 606-prepared graph without mutation. Packaged data/code match the
+worktree, and the retained boiler's real native-grid LCI is finite. Actual
+encrypted REMIND SSP2-NPi 2050 preflight now covers 28 positive roles: 21 native
+and five supplemental physical suppliers, plus two purchased-heat roles awaiting
+the district-delivery layer. Source inventories remain unchanged.
+
+Public heat remains gated. Three-layer markets, native consumer classification/
+relinking, callback/certification and combined/default installed Brightway export
+still require completion. No public heat update or LCIA equivalence is claimed.
+See `uvek-heat-supplements.md` and
+`uvek-heat-supplement-suppliers-verification.json`. An obsolete isolated install
+was removed after retained-wheel hash verification, reclaiming about 465 MB;
+archives, databases, exports and evidence remain intact.
+
+
+Supplemental heat matching also accepts the existing `[CLIC slug]` collision
+suffix, scoped to the exact locked heat source or locked foreground fuel.
+Unrelated plain-name suppliers cannot capture those roles, and native matching
+remains exact. The coal-methanol foreground fuel has its own captured version/ID/
+hash pin, including when resolved as an automatic dependency. Retained boiler
+reuse survives JSON tuple/list round trips without duplicate creation or source
+mutation. These cases are included in the 119 focused checks above.

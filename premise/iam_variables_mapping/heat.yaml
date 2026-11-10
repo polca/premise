@@ -148,6 +148,39 @@ heat, buildings, from LPG boiler:
   assumption: Ambiguous gas-derived liquids retain the existing LPG boiler proxy.
 
 heat, buildings, from biomass-based methanol boiler:
+  uvek_aliases:
+    clic_slugs:
+    - heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass
+    clic_unit: megajoule
+    clic_reference_amount: 1
+    clic_limitations:
+    - Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity,
+      infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA
+      equivalence. Upstream mappings retain their own recorded scientific limitations.
+    - Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the unrelated
+      generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion boundary.
+      The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler as
+      a scale/application proxy.
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+      reference product:
+      - heat, from residential heating system
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    supplement_kind: clic
+    native_limitations:
+    - Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity,
+      infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA
+      equivalence. Upstream mappings retain their own recorded scientific limitations.
+    - Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the
+      unrelated generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion
+      boundary. The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler
+      as a scale/application proxy.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -160,6 +193,39 @@ heat, buildings, from biomass-based methanol boiler:
   assumption: Biomass-derived liquids use the existing biomass methanol boiler proxy.
 
 heat, buildings, from coal-based methanol boiler:
+  uvek_aliases:
+    clic_slugs:
+    - heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-coal
+    clic_unit: megajoule
+    clic_reference_amount: 1
+    clic_limitations:
+    - Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity,
+      infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA
+      equivalence. Upstream mappings retain their own recorded scientific limitations.
+    - Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the unrelated
+      generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion boundary.
+      The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler as
+      a scale/application proxy.
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
+      reference product:
+      - heat, from residential heating system
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    supplement_kind: clic
+    native_limitations:
+    - Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity,
+      infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA
+      equivalence. Upstream mappings retain their own recorded scientific limitations.
+    - Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the
+      unrelated generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion
+      boundary. The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler
+      as a scale/application proxy.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -400,6 +466,37 @@ heat, industrial, from biomass boiler:
     remind-eu: FE|Industry|Solids|+|Biomass
 
 heat, industrial, from hydrogen boiler:
+  uvek_aliases:
+    clic_slugs:
+    - heat-production-from-hydrogen-fired-one-gigawatt-gas-turbine
+    clic_unit: megajoule
+    clic_reference_amount: 1
+    clic_limitations: &id001
+    - Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity,
+      infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA
+      equivalence. Upstream mappings retain their own recorded scientific limitations.
+    - 'Industrial hydrogen-boiler role uses the existing pinned1GWturbine-heat inventory as an explicit technology/scale proxy. It is not an exergy-allocated
+      CHP fuel-efficiency inference: this single heat record supplies+1MJand lists a positive H2input, with no electricity co-product or recovery
+      credit. Retain the complete inventory and SMRhydrogen screening correspondence.'
+    - Source prose states95%HHVwhile its fuel-exchange comment states95%LHVplus0.5%loss. Actual0.008947368421052631kg/MJand source supplier net
+      heating value120.21MJ/kggive nominalfactor1/(q*120.21), not either claimed95%efficiency. Preserve that inconsistency and the existing fuel/loss
+      quantity; do not add another loss, force0.95, adopt a generic120MJ/kgor change the inventory. This is an inventory-derived nominal final-energy
+      factor; upstream technology/pressure/allocation and score effects remain qualified.
+    - The resulting factor is a nominal inventory-derived final-energy proxy, not a validated turbine or CHP efficiency. The retained source does
+      not establish a consistent engineering heat/power balance; no separate co-production allocation or electricity credit is reconstructed.
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat production, from hydrogen-fired one gigawatt gas turbine
+      reference product:
+      - heat
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    supplement_kind: clic
+    native_limitations: *id001
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -424,6 +521,26 @@ heat, industrial, from hydrogen fuel cell:
   assumption: Industrial hydrogen fuel cells use the residential exergy-allocated proxy.
 
 heat, industrial, from electric boiler:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat production, electric boiler, industrial, native UVEK electricity
+      reference product:
+      - heat, district or industrial
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    supplement_kind: retained_electric_boiler
+    native_limitations:
+    - Use the retained workbook's complete1MJelectric-boiler service and exact0.2805836139169472kWhdraw, on native Swiss medium-voltage electricity.
+      The stated99%efficiency defines the source quantity; no extraefficiency factor is applied to its LCI. Native electricity, geography and vintage
+      remain explicit proxies.
+    - The retained workbook omits infrastructure because it has no process-material inventory. Preserve that limitation; do not invent a plant,
+      lifetime, capacity, heat credit or extra loss. IAMfinal-electricity converts to delivered heat using the actual electricity draw*3.6MJ/kWh;
+      heat-output secondary roles use factor1. No LCIAequivalence or impactcompleteness is claimed.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: electric_boiler
@@ -579,6 +696,39 @@ heat, industrial, from light fuel oil boiler:
     remind-eu: FE|Industry|Liquids|+|Fossil
 
 heat, industrial, from biofuel boiler:
+  uvek_aliases:
+    clic_slugs:
+    - heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass
+    clic_unit: megajoule
+    clic_reference_amount: 1
+    clic_limitations:
+    - Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity,
+      infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA
+      equivalence. Upstream mappings retain their own recorded scientific limitations.
+    - Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the unrelated
+      generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion boundary.
+      The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler as
+      a scale/application proxy.
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+      reference product:
+      - heat, from residential heating system
+      location:
+      - RER
+      unit: megajoule
+    native_reference_amount: 1
+    supplement_kind: clic
+    native_limitations:
+    - Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity,
+      infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA
+      equivalence. Upstream mappings retain their own recorded scientific limitations.
+    - Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the
+      unrelated generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion
+      boundary. The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler
+      as a scale/application proxy.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -962,6 +1112,26 @@ heat, secondary, from oil with CCS:
     tiam-ucl: Secondary Energy|Heat|Oil|Heat|w CCS
 
 heat, secondary, from electricity:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat production, electric boiler, industrial, native UVEK electricity
+      reference product:
+      - heat, district or industrial
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    supplement_kind: retained_electric_boiler
+    native_limitations:
+    - Use the retained workbook's complete1MJelectric-boiler service and exact0.2805836139169472kWhdraw, on native Swiss medium-voltage electricity.
+      The stated99%efficiency defines the source quantity; no extraefficiency factor is applied to its LCI. Native electricity, geography and vintage
+      remain explicit proxies.
+    - The retained workbook omits infrastructure because it has no process-material inventory. Preserve that limitation; do not invent a plant,
+      lifetime, capacity, heat credit or extra loss. IAMfinal-electricity converts to delivered heat using the actual electricity draw*3.6MJ/kWh;
+      heat-output secondary roles use factor1. No LCIAequivalence or impactcompleteness is claimed.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none

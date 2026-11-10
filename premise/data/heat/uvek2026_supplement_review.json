@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "authorization": "Standing autonomous modelling approval; preserve pinned source inventories and explicit source energy bases, with warnings.",
+  "scope": "Supplemental heat supplier planning only. Public heat gate stays closed pending complete three-layer transformation, consumer relinking and export checks.",
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "records": [
+    {
+      "kind": "clic",
+      "roles": [
+        "heat, buildings, from biomass-based methanol boiler",
+        "heat, industrial, from biofuel boiler"
+      ],
+      "identity": {
+        "name": "heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass",
+        "reference product": "heat, from residential heating system",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "pin": {
+        "slug": "heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass",
+        "version": "1.0.1",
+        "version_id": 4911,
+        "sha256": "d3f314bc0ad2a18c31b553e9a387e7bb3aba3017b282005fe95730d4d19712c1"
+      },
+      "source_profile": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.10"
+        }
+      },
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "carrier": {
+        "name": "Methanol, from synthetic gas, at plant",
+        "reference product": "Methanol, from synthetic gas, at plant",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "carrier_MJ_per_unit": 20,
+      "reviewed_fuel_amount_per_MJ": 0.0555555555555556,
+      "nominal_factor": 0.8999999999999992,
+      "basis_evidence": {
+        "kind": "explicitsourceboilercomment20MJ/kg",
+        "source_heat_comment_sha256": "034798ba3df739352e80026fdb6397d088379ab7b535b1ee35993f2d50494583"
+      },
+      "limitations": [
+        "Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity, infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA equivalence. Upstream mappings retain their own recorded scientific limitations.",
+        "Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the unrelated generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion boundary. The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler as a scale/application proxy."
+      ],
+      "role_bases": {
+        "heat, buildings, from biomass-based methanol boiler": {
+          "energy_basis": "final_energy",
+          "conversion": "combustion"
+        },
+        "heat, industrial, from biofuel boiler": {
+          "energy_basis": "final_energy",
+          "conversion": "combustion"
+        }
+      },
+      "carrier_pin": null
+    },
+    {
+      "kind": "clic",
+      "roles": [
+        "heat, buildings, from coal-based methanol boiler"
+      ],
+      "identity": {
+        "name": "heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal",
+        "reference product": "heat, from residential heating system",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "pin": {
+        "slug": "heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-coal",
+        "version": "1.0.1",
+        "version_id": 4912,
+        "sha256": "78af558d6f6314f500d7198258c3182f91c78183f177a027fee24f29ac486a27"
+      },
+      "source_profile": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.10"
+        }
+      },
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "carrier": {
+        "name": "methanol production, coal gasification",
+        "reference product": "methanol",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "carrier_MJ_per_unit": 20,
+      "reviewed_fuel_amount_per_MJ": 0.05555555555555556,
+      "nominal_factor": 0.8999999999999999,
+      "basis_evidence": {
+        "kind": "explicitsourceboilercomment20MJ/kg",
+        "source_heat_comment_sha256": "9108af31eeff395093db93e4ffa053cd9656e0d6ae2afbf9834120b31de864dd"
+      },
+      "limitations": [
+        "Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity, infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA equivalence. Upstream mappings retain their own recorded scientific limitations.",
+        "Use the heat record's explicit20MJ/kgmethanol and unchanged0.05555555555556kg/MJfuel draw, giving nominal90%LHVconversion. Do not use the unrelated generic19.9MJ/kgdefault. Auxiliary pumping electricity remains in the complete LCI but is outside this fuel-final-energy conversion boundary. The qualified500km-equivalent truck scenario is not a verified physical route. Industrial bio-liquid use retains the residential10kWboiler as a scale/application proxy."
+      ],
+      "role_bases": {
+        "heat, buildings, from coal-based methanol boiler": {
+          "energy_basis": "final_energy",
+          "conversion": "combustion"
+        }
+      },
+      "carrier_pin": {
+        "slug": "methanol-production-coal-gasification",
+        "version": "1.0.0",
+        "version_id": 2028,
+        "sha256": "fc98495d4200293aee26a0b9835157479e14c614109d8e2ec64d9d5d05d2f3e1"
+      }
+    },
+    {
+      "kind": "clic",
+      "roles": [
+        "heat, industrial, from hydrogen boiler"
+      ],
+      "identity": {
+        "name": "heat production, from hydrogen-fired one gigawatt gas turbine",
+        "reference product": "heat",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "pin": {
+        "slug": "heat-production-from-hydrogen-fired-one-gigawatt-gas-turbine",
+        "version": "1.0.0",
+        "version_id": 2104,
+        "sha256": "79ae29716a53c868044f9ec31cc0bb8600b8eb6cca7b961b56c572e377eec75e"
+      },
+      "source_profile": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        }
+      },
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "carrier": {
+        "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+        "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "carrier_MJ_per_unit": 120.21,
+      "reviewed_fuel_amount_per_MJ": 0.008947368421052631,
+      "nominal_factor": 0.9297454944044002,
+      "basis_evidence": {
+        "kind": "original3.9hydrogenproductionreferenceproperty",
+        "source_heat_comment_sha256": "93a94868f6bdb88e375a3738048ff7b5cfdab22b1d2d6edacc41f9e967e72754",
+        "identity": {
+          "name": "market for hydrogen, gaseous",
+          "reference product": "hydrogen, gaseous",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "inventory_sha256": "b464f857f14022f4d13aee04558e55fe1a5528f11b0d7eed22ad16e63bdd8422",
+        "metadata_sha256": "ba30da65f36201e2330d7193aec789f2dc007799f657ebee2d03f83784cd1bbf"
+      },
+      "limitations": [
+        "Complete pinned CLIC heat inventory retained at its source geography as an explicit UVEK screening supplier. Signed fuel, auxiliary electricity, infrastructure, freight, treatment/emissions and supported uncertainty remain unchanged. No inventory rescaling, added credit or implied geographic/LCIA equivalence. Upstream mappings retain their own recorded scientific limitations.",
+        "Industrial hydrogen-boiler role uses the existing pinned1GWturbine-heat inventory as an explicit technology/scale proxy. It is not an exergy-allocated CHP fuel-efficiency inference: this single heat record supplies+1MJand lists a positive H2input, with no electricity co-product or recovery credit. Retain the complete inventory and SMRhydrogen screening correspondence.",
+        "Source prose states95%HHVwhile its fuel-exchange comment states95%LHVplus0.5%loss. Actual0.008947368421052631kg/MJand source supplier net heating value120.21MJ/kggive nominalfactor1/(q*120.21), not either claimed95%efficiency. Preserve that inconsistency and the existing fuel/loss quantity; do not add another loss, force0.95, adopt a generic120MJ/kgor change the inventory. This is an inventory-derived nominal final-energy factor; upstream technology/pressure/allocation and score effects remain qualified.",
+        "The resulting factor is a nominal inventory-derived final-energy proxy, not a validated turbine or CHP efficiency. The retained source does not establish a consistent engineering heat/power balance; no separate co-production allocation or electricity credit is reconstructed."
+      ],
+      "role_bases": {
+        "heat, industrial, from hydrogen boiler": {
+          "energy_basis": "final_energy",
+          "conversion": "combustion"
+        }
+      },
+      "carrier_pin": null
+    },
+    {
+      "kind": "retained_electric_boiler",
+      "roles": [
+        "heat, industrial, from electric boiler",
+        "heat, secondary, from electricity"
+      ],
+      "identity": {
+        "name": "heat production, electric boiler, industrial, native UVEK electricity",
+        "reference product": "heat, district or industrial",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "workbook": "additional_inventories/lci-electric-boiler-industrial.xlsx",
+      "workbook_sha256": "f45cbda54fdaad64a8c3c93655d9029af9efbb1f283124e097e9b7c3cb618d15",
+      "energy_basis": "final_energy",
+      "conversion": "electric_boiler",
+      "carrier": {
+        "name": "Electricity, medium voltage, at grid",
+        "reference product": "Electricity, medium voltage, at grid",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "carrier_MJ_per_unit": 3.6,
+      "reviewed_fuel_amount_per_MJ": 0.2805836139169472,
+      "nominal_factor": 0.99,
+      "limitations": [
+        "Use the retained workbook's complete1MJelectric-boiler service and exact0.2805836139169472kWhdraw, on native Swiss medium-voltage electricity. The stated99%efficiency defines the source quantity; no extraefficiency factor is applied to its LCI. Native electricity, geography and vintage remain explicit proxies.",
+        "The retained workbook omits infrastructure because it has no process-material inventory. Preserve that limitation; do not invent a plant, lifetime, capacity, heat credit or extra loss. IAMfinal-electricity converts to delivered heat using the actual electricity draw*3.6MJ/kWh; heat-output secondary roles use factor1. No LCIAequivalence or impactcompleteness is claimed."
+      ],
+      "role_bases": {
+        "heat, industrial, from electric boiler": {
+          "energy_basis": "final_energy",
+          "conversion": "electric_boiler"
+        },
+        "heat, secondary, from electricity": {
+          "energy_basis": "heat_output",
+          "conversion": "none"
+        }
+      },
+      "carrier_pin": null
+    }
+  ]
+}
