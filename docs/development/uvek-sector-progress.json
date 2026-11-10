@@ -1044,6 +1044,38 @@
         "verification": "docs/development/uvek-heat-consumer-frontier.json",
         "runtime_matcher": "not yet implemented; text search is discovery only",
         "source_mutation": false
+      },
+      "consumer_relinking_stage": {
+        "status": "exact_native_consumer_planner_and_virtual_graph_verified_public_integration_pending",
+        "implementation": "premise/energy/uvek_heat_consumers.py",
+        "review": "premise/data/heat/uvek2026_consumer_review.json",
+        "exact_reviewed_identities": 165,
+        "modified_consumers": 736,
+        "substituted_exchanges": 962,
+        "routes": {
+          "industrial_end_use": 870,
+          "buildings_end_use": 89,
+          "district_delivery": 3
+        },
+        "preserved_negative_inputs": 1,
+        "geographic_World_proxies": 1,
+        "retained_boundaries": [
+          "network-only transport",
+          "ambient heat extraction",
+          "mass-based chemical steam with fuel-input MJ services",
+          "documented zero-allocated MSWI heat"
+        ],
+        "focused_tests": 176,
+        "full_virtual_graph_activities": 12606,
+        "checkout_signed_LCIs": 16,
+        "installed_package_plan_equals_checkout": true,
+        "public_heat_gate": "closed",
+        "remaining": [
+          "Integrate native heat callback and inventory preparation in the existing public API.",
+          "Add semantic certification and exported audit/provenance handling.",
+          "Verify combined/default cold/warm installed Brightway export before opening the heat gate."
+        ],
+        "verification": "docs/development/uvek-heat-consumers-verification.json"
       }
     },
     {

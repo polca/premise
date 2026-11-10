@@ -523,3 +523,32 @@ consumer LCI checks remain to implement. The prior three-layer stage is committe
 as `405dcbf1`. Its verified installed package supersedes an obsolete install,
 removed after retained-wheel hash and live-process checks, reclaiming about
 465 MB. Source databases, encrypted IAM archives, evidence and exports remain.
+
+
+### Exact native heat-consumer planning
+
+The consumer planner now produces 962 supplier-only changes in 736 native
+consumer copies: 870 industrial, 89 buildings and three delivered-district inputs.
+All signed quantities, formulas, uncertainty and literal originals are retained;
+one negative input remains negative and one CPA location has an explicit World
+proxy. Exact reviewed identities replace name heuristics at runtime. Native
+MJ/kWh energy-reference inventories, CLIC sources and mapping helpers stay intact.
+
+Read-only checks exposed the MSWI heat handover's actual production-only
+inventory. Its native documentation allocates all burdens to disposal and zero
+to heat/electricity. This handover now has an explicit retained-empty-boundary
+rule; it does not acquire a future IAM heat burden. Network-only, ambient heat
+and kg steam remain explicit historical exceptions too. This corrects the
+initial candidate classification of MSWI heat as ordinary industrial supply.
+
+All 176 focused tests pass. The complete 12,606-activity virtual graph passes
+canonical-biosphere/key/identity checks and 16 signed LCIs using actual production
+references, including 12 non-unit native references. The checker initially
+assumed unit native production and was corrected without normalizing source
+inventories. Installed consumer plans, literal audits and diagnostics match the
+checkout. Source database scientific contents are unchanged and no database is
+written. See `uvek-heat-consumers.md` and its verification receipt.
+
+Public callback/preparation, semantic certification, exported audits and combined
+Brightway export still need integration. The public heat gate remains closed;
+this stage does not complete heat or the remaining 16 sectors.

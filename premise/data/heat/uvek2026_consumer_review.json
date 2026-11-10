@@ -1,0 +1,2002 @@
+{
+  "schema_version": 1,
+  "status": "exact_native_consumer_boundaries_reviewed_public_heat_gate_closed",
+  "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "authorization": "Standing autonomous approval; decisions and limitations recorded for later review.",
+  "policy": {
+    "reference_basis": "Keep each caller signed physical quantity, formula and supported uncertainty exactly; only supplier identity changes for useful-heat MJ. No efficiency or loss is applied again.",
+    "classification": "Exact provider identities only. Industrial furnaces, chemical heat and allocated plant heat proxy industrial final heat. Small/central boilers, domestic fuel cells and heat pumps proxy buildings final heat. Explicit delivered district heat uses complete native delivery, never the transport-only network service. Consumer use may differ from source technology class; this is an explicit screening boundary.",
+    "protected_inventory": "Keep all CLIC source records, Brightpath migration helpers, scenario heat-owned records and native MJ/kWh energy-reference inventories unchanged. This preserves direct generation/combustion/network inventories; infrastructure and other material-producing consumers can change upstream heat supply.",
+    "retained_boundaries": "Keep network-only, ambient heat-extraction components and mass-based steam supplies. Native steam uses fuel-input MJ services; no useful-heat conversion has been established here. These retained services remain historical and are not claimed updated. Retain the explicitly documented zero-allocated MSWI heat handover and all its signed uses; do not turn a burden-free allocated handover into an avoided IAM mix.",
+    "geography": "Use the consumer IAM region where that layer exists; otherwise use the delivered-volume-weighted World fallback with a literal geographic-proxy audit. Missing entire IAM layers are explicitly non-applicable; industrial inputs may use secondary supply only when industrial end-use data are absent, matching existing supply-only behavior."
+  },
+  "limitations": [
+    "Heat grade, temperature, pressure, quality, technology class, on-site/purchased boundary, source geography, vintage, coproduct allocation and internal uncertainty differ. IAM role assumptions and supplier limitations remain; score effects are unquantified.",
+    "Replacing recovered or allocated heat inputs with an IAM mix changes the credit/supply basis. Preserve every signed caller quantity; do not alter treatment inputs, emissions or add avoided-emission credits.",
+    "Native heat/electricity and combustion inventories and all CLIC/helper records stay complete. Native steam, environmental heat components and network-only supplies remain historical at this stage. No claim of complete heat decarbonization or LCIA equivalence."
+  ],
+  "sources": [
+    {
+      "identity": {
+        "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "district_delivery",
+      "reference_amount": 1,
+      "primary_source": "process_e8c316e3-ddf2-395f-b110-a70e130a9145.xml",
+      "primary_metadata_sha256": "5113f9049657bb750c2451659a42a4ab2b4f59a816d2a6e68c07191654531592"
+    },
+    {
+      "identity": {
+        "name": "District heat, at consumer, wood chips cogen 1MWth, allocation exergy",
+        "reference product": "District heat, at consumer, wood chips cogen 1MWth, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "district_delivery",
+      "reference_amount": 1,
+      "primary_source": "process_6031ccda-37ae-3318-861e-45c12c9c2f08.xml",
+      "primary_metadata_sha256": "ed70d921f6b22e5e21f1bbe6eda4e1cc7e00d8ae96edf61f2a13d08333e03786"
+    },
+    {
+      "identity": {
+        "name": "Heat from waste, at municipal waste incineration plant",
+        "reference product": "Heat from waste, at municipal waste incineration plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "retain_zero_allocated_heat",
+      "reference_amount": 1,
+      "primary_source": "process_cc476d2d-20a3-3064-a77e-8d173cc5ac5e.xml",
+      "primary_metadata_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+      "empty_inventory_expected": true,
+      "evidence": "Native source documentation allocates 100% of MSWI burdens to disposal and 0% to heat/electricity; actual native heat inventory contains only +1MJ production. Keep its caller credits/handover unchanged rather than assigning a new avoided IAM-heat burden."
+    },
+    {
+      "identity": {
+        "name": "Heat, at air-water heat pump 10kW",
+        "reference product": "Heat, at air-water heat pump 10kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_00589304-66c8-37b6-8d7a-117677d4ca06.xml",
+      "primary_metadata_sha256": "7dcd219fc0c90236d93e4f6a8a76365333ead8fdeb340d6bad25cbd7ab14a272"
+    },
+    {
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 15kW, CH electricity, in old building",
+        "reference product": "Heat, at borehole heat pump, brine-water, 15kW, CH electricity, in old building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_27fabca5-327c-3273-b3c1-365d020fbc9a.xml",
+      "primary_metadata_sha256": "845a31036a4a10db148bda8bd243464bb3f8c99b45cdf1b867123edf24f5c564"
+    },
+    {
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+        "reference product": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_d745d499-4854-3661-8944-c94d64d55ed5.xml",
+      "primary_metadata_sha256": "b196bbe618d74bf5cc39037186e5416523a545490642cd49ff67f299d4d72dbe"
+    },
+    {
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity",
+        "reference product": "Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_84349389-ccae-3213-a0d1-3b631d4d7fd6.xml",
+      "primary_metadata_sha256": "94f73f2739bf26f9c89f00d1d094811dc90f368f9746c218ec485b7e8aa6715c"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation electricity",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c19e16c9-45b6-3795-8703-bb5f06fa6c8a.xml",
+      "primary_metadata_sha256": "530e020ef1d96fb1962009416589b4938697449f593abd46325fbd4e007268cd"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation energy",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_264bc412-c300-300c-82b2-0bfdbd4834ac.xml",
+      "primary_metadata_sha256": "5b4510e3cbc356a9e3af1e39f20cc2335f7cc53164ad5d8c9ac73827e6a5d652"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation exergy",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a1d97f81-0932-3069-84cc-8ce236ae83f3.xml",
+      "primary_metadata_sha256": "c14f4256ff819f52e8349f49f607b7f07de33d870a1dae8f224494ecd4a7ad39"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation heat",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_1b55beb7-ca94-36b2-9cc6-0028820dc47d.xml",
+      "primary_metadata_sha256": "65ebfb40d2ffa36b051ba133ca47b8371bdc8cfd59933ef590ac002bdfa7849f"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation price",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_8e7efd07-f748-32b0-a763-3081d47a1c1d.xml",
+      "primary_metadata_sha256": "58ded50d1e8aad3c249a4f0856f8154778ecabd4d1a6c4623b290e375f0d6be1"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe lambda=1, allocation exergy",
+        "reference product": "Heat, at cogen 160kWe lambda=1, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_65f30b08-8a39-3492-9c4a-2a1914a48a06.xml",
+      "primary_metadata_sha256": "b85ab56223393c86467dcf5f77e8666fb38857f084e7775a02045a3991de6160"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+        "reference product": "Heat, at cogen 1MWe lean burn, allocation exergy",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_7618459b-c633-3378-89c3-44b74cf2d085.xml",
+      "primary_metadata_sha256": "edb9ed4c51fe4fbfba6eb648e04817761a963ea0173c60686cc2ac303a964acb"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWe lean burn, allocation heat",
+        "reference product": "Heat, at cogen 1MWe lean burn, allocation heat",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c7a0220a-a34b-3dbf-bf68-d5f8dceec8d2.xml",
+      "primary_metadata_sha256": "e3430b45e7180debd5eaadc364119bec18c34df6eb6752a42722d232afa2a8c0"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, biomethane, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e7808416-d2a6-3675-934d-99c959ec47ed.xml",
+      "primary_metadata_sha256": "1c55b2bb17a513410a8843795b62d1d7c43afed9aeb9c505abcc8c24060c9ae6"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, biomethane, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_d184d862-2e7d-3f12-893f-59ef9d0bce8c.xml",
+      "primary_metadata_sha256": "b830629d0da953c8cde4817d698ee0b927c29a08553f428cfe3dd80333e919c4"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, diesel, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, diesel, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_84ae5a48-75d1-3223-804c-9889b64e4202.xml",
+      "primary_metadata_sha256": "8825defcf9d6f30e82b34264320593e48726f6dcedd5f67d3f087238b0b141bc"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, diesel, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, diesel, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6e688b33-5c21-3c74-82aa-d9e2f5b1e8bb.xml",
+      "primary_metadata_sha256": "93a10c35684f2033cbe2192e7d4f7a306185ec97454f489ad6d8f5a7a8e8f4a0"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_af0e1a24-c693-364b-bf6e-b9f666f5a9ab.xml",
+      "primary_metadata_sha256": "f1ed2e5c33f6ed7a3547fddc4e8687227efd3351abb0c9e012c3792676a98e6f"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, natural gas, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a6f7fc1e-c32f-3214-adb6-40cf68f0996d.xml",
+      "primary_metadata_sha256": "4ab0a2fa2ec01a08c8579e514ab67f96eb1d37782c6a5bace242946353393ad0"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f1be790e-5a70-397f-85d5-2eefe20ff2d6.xml",
+      "primary_metadata_sha256": "64f8a589afb8f97b9de5df5c33574bb411c3113231c5297e1012a130fa776f8b"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, wood chips, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, wood chips, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_38630142-ef62-39b3-98da-65a78d42749d.xml",
+      "primary_metadata_sha256": "2174458442d43f9efa41628490744d0d2a6e442df7b80ad21076589fdf67354e"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with biogas engine, agricultural covered, allocation exergy",
+        "reference product": "Heat, at cogen with biogas engine, agricultural covered, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_2c089e30-1b8b-3071-91d5-da32372dbfaa.xml",
+      "primary_metadata_sha256": "f099a7a4b9180f3749ce633c94715332e69e7ed4d60aff8ae78d13d701f0561f"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with biogas engine, agricultural, allocation exergy",
+        "reference product": "Heat, at cogen with biogas engine, agricultural, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_8cce5374-ab49-35e2-a559-e2051fb6f5ab.xml",
+      "primary_metadata_sha256": "b6814d95f91cc28bc4d10bc96fae3ff4cbebaed8ebaf94009e25f0d82155b27e"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with biogas engine, allocation exergy",
+        "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_ec20f738-0516-3cf9-82fc-b0d106ae2e0c.xml",
+      "primary_metadata_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with ignition biogas engine, agricultural covered, alloc. exergy",
+        "reference product": "Heat, at cogen with ignition biogas engine, agricultural covered, alloc. exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e8b828bf-8f9a-3eec-885c-6297617afdb6.xml",
+      "primary_metadata_sha256": "7960de384d03ff10fb68b6ed60e2a5aa86ae12f3880b30672016562c6bebf7ae"
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with ignition biogas engine, allocation exergy",
+        "reference product": "Heat, at cogen with ignition biogas engine, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_5d0ddf39-01a0-3bb8-a8bf-5611e46024a1.xml",
+      "primary_metadata_sha256": "84ec29567feaa52618a5ecfe42cc6d4d332decfbcfe65343c1cf2f64f0baf1b8"
+    },
+    {
+      "identity": {
+        "name": "Heat, at groundwater heat pump, brine-water, 50kW, for district heating, CH electr.",
+        "reference product": "Heat, at groundwater heat pump, brine-water, 50kW, for district heating, CH electr.",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_39abc2b1-3d46-3123-9bf7-6519e0083ba5.xml",
+      "primary_metadata_sha256": "26b334fbe0016510be0822582aa6f05ff2c661dd7b4e9da2165795ac74b14fbc"
+    },
+    {
+      "identity": {
+        "name": "Heat, at hard coal industrial furnace 1-10MW",
+        "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_78fa456f-a455-38b2-9332-67df26933a8c.xml",
+      "primary_metadata_sha256": "966bee7d3b22287477275e8680026cfd8dd86f33acc68b33e6c8faa331592930"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation electricity",
+        "reference product": "Heat, at heat pump 30kW, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3086ceb8-c971-39c8-bb94-4e9cd7fd0fed.xml",
+      "primary_metadata_sha256": "80fa17a2f494b1f44f699e75f6e9b1c7efc52c1843172478c04af2016d453cc6"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation energy",
+        "reference product": "Heat, at heat pump 30kW, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6e0b744c-335c-37a7-8103-0a372ab7ea00.xml",
+      "primary_metadata_sha256": "a8f7339fb01ea63709ee9806c96c65d62a20ecb803d41da61176882409e5add8"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation exergy",
+        "reference product": "Heat, at heat pump 30kW, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_ce71934f-f039-3a6b-922b-052fb96dcbe5.xml",
+      "primary_metadata_sha256": "20a951e8de5dca4ad9f4fd3b3e5c4ed533e8696a35cd206c0299a6e3f1861b35"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation heat",
+        "reference product": "Heat, at heat pump 30kW, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_1b5aa747-5401-3b35-9478-c2dc5c6772d9.xml",
+      "primary_metadata_sha256": "2ee90c93aa53ade7a85ff2cee85bcb8ec8b7317c5fd3e1a5fe17910031b18171"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation price",
+        "reference product": "Heat, at heat pump 30kW, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_357087ab-7e3e-3eb2-afa1-389a288bb452.xml",
+      "primary_metadata_sha256": "4038132838ec09ea2ff7daeed8a55d2921a1f2f48fe8ae7490ac412164d91bf8"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump, air-water, 15kW, CH electricity, in old building",
+        "reference product": "Heat, at heat pump, air-water, 15kW, CH electricity, in old building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f6ca9cc5-8ea0-3c02-8eda-233b0c291889.xml",
+      "primary_metadata_sha256": "78028ecf8053d9e797456ef3cc35b945d42ea0e4f3e0be77f3d49b55136a5f31"
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump, air-water, 50kW, CH electricity, in old building",
+        "reference product": "Heat, at heat pump, air-water, 50kW, CH electricity, in old building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6044f547-291d-347a-a07c-620a38e22934.xml",
+      "primary_metadata_sha256": "b7fd6b6efc880f6ddbceb2556d50cd700fd634c49362dd50980cb55f8a6564e8"
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation electricity",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6fcc8cad-6170-3cf2-b80d-d841d7429e44.xml",
+      "primary_metadata_sha256": "65ed3c5f738486981256d35962a12efa7737778845deb51a164782746d95e6b3"
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation energy",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_dd4c73f8-b410-3ca0-97d0-87327f926d8c.xml",
+      "primary_metadata_sha256": "622887184947032e9dd253c6a63418cd59ba1a879e798515b33c612f9899f9b6"
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation exergy",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_12040cde-d152-3473-b22f-3b7c0aedc525.xml",
+      "primary_metadata_sha256": "3792fd1d480caa1002ff072535a34bfb75058e7870498a804fe39898aa11b1f4"
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation heat",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_73409587-b116-3386-8410-b539b197f81a.xml",
+      "primary_metadata_sha256": "844711307fc60816d62c1c57967018c5032a4b630f49b22e8adbd1d178906a78"
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation price",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a34b94a5-638c-3283-bde2-d040991266e8.xml",
+      "primary_metadata_sha256": "c18488b5b50d8d92912e4ea77da0c20e0eca674a58932631495f9f6febbb7dbe"
+    },
+    {
+      "identity": {
+        "name": "Heat, at nuclear power plant, allocation exergy",
+        "reference product": "Heat, at nuclear power plant, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_b9f7599f-a119-343b-97a9-dd29a6999a80.xml",
+      "primary_metadata_sha256": "625835e5642c950267fa117dd08b8e6c0c43e1adab782d8d4bbaabd2dfd7720f"
+    },
+    {
+      "identity": {
+        "name": "Heat, at nuclear power plant, economic allocation",
+        "reference product": "Heat, at nuclear power plant, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_cff77537-4513-397d-9082-d0feceb42d77.xml",
+      "primary_metadata_sha256": "590e50ab9dea299d4629447423113d03502e06a59b8ea838a7762061037c6cad"
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation electricity",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_ebb3b4eb-f0f7-34cb-bcfe-daad33d7ff35.xml",
+      "primary_metadata_sha256": "45ec0efe65a71f69137bd3a6fb307f3954b35b5f628901063ea0d955b03b2538"
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation energy",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f7a740d1-a1de-3112-8a41-415b8fd06d5c.xml",
+      "primary_metadata_sha256": "5c84cad3cf37ab6a462be21405abc94637e623286c43ffdca3fe002d85c46440"
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation exergy",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f59b6da2-7404-379a-b53a-422ce8600700.xml",
+      "primary_metadata_sha256": "76ccaea295d7bd80e52fb6bad3c02ae62fa265bd9fc0043db5b9356a030f7714"
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation heat",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e1e448df-4c6c-3eda-8de2-885a9f13bdcd.xml",
+      "primary_metadata_sha256": "1a64f0faf9433dc803c1233e01faffb4ffc44291d8da993318f1129aeca132b4"
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation price",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e4d26b45-2a5e-30e1-bf89-50f8d1205b4b.xml",
+      "primary_metadata_sha256": "82e57933cdc9554786d2e9c06779ea9eca59d8f413caef152e9b222eb4eed807"
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from beet residues, at cogen",
+        "reference product": "Heat, biogas from beet residues, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_15bca911-3e5d-3055-b253-fe07728fb8ba.xml",
+      "primary_metadata_sha256": "367a65a6825c37db437ac60615435b3c53dfa6f73663cfe5bb0af763809015ed"
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from fodder beet, at cogen",
+        "reference product": "Heat, biogas from fodder beet, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_447c5155-32c9-37b3-bdbc-18d3b3e4b49a.xml",
+      "primary_metadata_sha256": "b29a50b06b6ae6d7ce6fbd1c2e380deaa45048330f6532d49d2efa42fea36443"
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from glycerine, at cogen",
+        "reference product": "Heat, biogas from glycerine, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_5e87e367-06f7-3d3b-885e-1d71abf149f5.xml",
+      "primary_metadata_sha256": "8651cf8f00269df251ea254d40457302eeaff2ffddf7bc0634ae34d8d608dac2"
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from glycerine, at cogen, scenario vegetable oil",
+        "reference product": "Heat, biogas from glycerine, at cogen, scenario vegetable oil",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_02591631-9cc7-3336-85ab-b619cbea7c7c.xml",
+      "primary_metadata_sha256": "1721d3fab7737ae7622a837467b0dadbd5b7673b75eb2453a21c48e090203aee"
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from maize silage, at cogen",
+        "reference product": "Heat, biogas from maize silage, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_cd6b5050-fb37-34ab-9d16-e129bdaf6aeb.xml",
+      "primary_metadata_sha256": "76af860f11bb99047711e7ecb810474a68d38d104c6d3b3f6d33bfdfac37c6ab"
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from molasses, at cogen",
+        "reference product": "Heat, biogas from molasses, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_64f84d81-d63b-3966-bda5-200a94795fe0.xml",
+      "primary_metadata_sha256": "21acc1ace7c4c661e14ab1d9634a1bf4cd2029e9f1b6a78dad5bd67fea067ba1"
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from sugar beet, at cogen",
+        "reference product": "Heat, biogas from sugar beet, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_ff2cbbda-133e-362f-b423-9eaf4ef7da47.xml",
+      "primary_metadata_sha256": "1a7c04224d5cf83c46929e61bfed7ca57527569454d5852953d38fb329bde460"
+    },
+    {
+      "identity": {
+        "name": "Heat, biomethane, at industrial furnace 1MW",
+        "reference product": "Heat, biomethane, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a62543c0-11b9-33fb-a5cb-18d9f90de65a.xml",
+      "primary_metadata_sha256": "fd273325fdcb902f6aadcbd48aa3857472e81957e8ef0778abbb8fd1dd586704"
+    },
+    {
+      "identity": {
+        "name": "Heat, borehole heat exchanger, at brine-water heat pump 10kW",
+        "reference product": "Heat, borehole heat exchanger, at brine-water heat pump 10kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "retain_component_service",
+      "reference_amount": 1,
+      "primary_source": "process_c5145e64-c144-3075-84ed-736c6ddef027.xml",
+      "primary_metadata_sha256": "c146fe5e5857e757204febe048698dd1e3f8dc9f994d0104e1dd9a2c3a81c707"
+    },
+    {
+      "identity": {
+        "name": "Heat, coffee ground pellets, in wood furnace 25kW",
+        "reference product": "Heat, coffee ground pellets, in wood furnace 25kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e17a0b9a-9b4f-35d5-b6a6-a0723daf629b.xml",
+      "primary_metadata_sha256": "f8be32066bf2f58886ad211ef1737ffcbce330ab917211fa17c7d458c6acb655"
+    },
+    {
+      "identity": {
+        "name": "Heat, digester sludge, at incineration plant, future, allocation price",
+        "reference product": "Heat, digester sludge, at incineration plant, future, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_1f7aaeeb-adba-30d5-ab33-cc8353f1243e.xml",
+      "primary_metadata_sha256": "6b056bd18da4b9ff1fc3610e02f23b7358d474959a5b6d40cb6f77a06cc801e9"
+    },
+    {
+      "identity": {
+        "name": "Heat, from natural gas",
+        "reference product": "Heat, from natural gas",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_183958a2-e1ee-3e9a-9c15-80b3f41bea7a.xml",
+      "primary_metadata_sha256": "d49f4749d23f00646e47e095fd6237391ae03efc848fa9ee132bbaf5a449409b"
+    },
+    {
+      "identity": {
+        "name": "Heat, from sewage heat exchanger",
+        "reference product": "Heat, from sewage heat exchanger",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "retain_component_service",
+      "reference_amount": 1,
+      "primary_source": "process_849132ed-5cdb-37ba-b696-98691fb20f58.xml",
+      "primary_metadata_sha256": "a24193f6c4b6c24109e202817ed5dd5ab0f842311a7e80adbfa9130c93680830"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal coke, at stove 5-15kW",
+        "reference product": "Heat, hard coal coke, at stove 5-15kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_97284c3f-4716-3676-be5d-a5c234910568.xml",
+      "primary_metadata_sha256": "444f31419f7e57dede5ee3d7fa971afa0a0281ac8f91253b1df717eab6a017c2"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_ef0f6c84-c62b-35a8-afe1-a3a280ecbff1.xml",
+      "primary_metadata_sha256": "c61d012485365423d31c25ed58b191bda4abfe8ca6461abc52f8c80e9c592a7f"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_edcf6e01-f198-3f60-922e-f32f8fe31295.xml",
+      "primary_metadata_sha256": "63b322b96cc6628ad6079a827acbd77419105a2697668eb02f24e2184b7895bc"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6313e315-c12d-32d6-b88d-0962a8845cbb.xml",
+      "primary_metadata_sha256": "f6573bd78114c0ac68085b2a2df73b75fd5d1551f6b3a4c098bb281b4892e16c"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_479f3340-2fdf-30fa-a01d-7beb63c90dfe.xml",
+      "primary_metadata_sha256": "6180034474c45559c16c0f6e5b53fec190dfdfc4df62d3a4bf3fb6a4040089cd"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_2d1b6a2a-c5aa-3042-9ffc-91b4b056565e.xml",
+      "primary_metadata_sha256": "1fb99dc7f913d55d3079187c4dc957de3fa705ea55cb3cd2c7a10c353bfe3b86"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_21a707e2-300a-3b1d-80ca-71e3e8990aab.xml",
+      "primary_metadata_sha256": "e45ebbbd75884092508fb05287c305f8f9af23e2873a156c06b3687ed1dc941a"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_622a26f5-87e6-33cb-9a9b-077b687799d5.xml",
+      "primary_metadata_sha256": "bc4dd28c21a3cfbb41a44df826b4e6aeaff00676e6d99122c403e41128d06f69"
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a00e2266-0ee5-341c-bbfb-7faf3cc9b25f.xml",
+      "primary_metadata_sha256": "a9abc95bece1ef187386fca5d59c85a8a1170ba44946f7501a338696c957d234"
+    },
+    {
+      "identity": {
+        "name": "Heat, hardwood chips from industry, at furnace 300kW",
+        "reference product": "Heat, hardwood chips from industry, at furnace 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3c7bfd5c-8c13-3393-86ae-305c8ff436df.xml",
+      "primary_metadata_sha256": "8c4ac9c02ac0b37c748579677e6891d41c84359bb277ed66a7670582ca1b1027"
+    },
+    {
+      "identity": {
+        "name": "Heat, hardwood chips from industry, at furnace 50kW",
+        "reference product": "Heat, hardwood chips from industry, at furnace 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c75a1dae-2861-341c-9e96-ca1a81945a0f.xml",
+      "primary_metadata_sha256": "f0cebff1ba822ad5b9a8ae5dab8856ea92b521682955f9cdf4c31908887b8a29"
+    },
+    {
+      "identity": {
+        "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6f791b2f-bd63-31d7-93f2-0dfd93f5e011.xml",
+      "primary_metadata_sha256": "ac8a7f7abb955d981fe148a3cb4790c6d671150a00450657125b5b6a938aeb6e"
+    },
+    {
+      "identity": {
+        "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_1223f12d-41ed-32f2-a8fa-e9811708964f.xml",
+      "primary_metadata_sha256": "6df03f354c8f4fa34ac7a4be984f04a622e629d1a36112d863dfe0940eb52327"
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+        "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3fc81225-a6c6-3ea9-b16f-764a39c9e76a.xml",
+      "primary_metadata_sha256": "4a7141eadb33e5559fbb1f3dc11ab2d54c810b0294b09672ed0d3c2b5dacfa71"
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+        "reference product": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_aea3ca72-3cb0-3806-934a-01a2f22a4094.xml",
+      "primary_metadata_sha256": "6f85fdfc9b1381d252bbe1423a51d394fc9d0a9e22dd008017f091a9ce8f4d25"
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+        "reference product": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3dc4c019-1c64-33d2-962f-2e4de66707fa.xml",
+      "primary_metadata_sha256": "a776bd11fd740d53271fdf8f6f77f4c14eef424da0e5a93525e812f652cb49cd"
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6c637b2c-5fc0-3116-809b-667e4ece6eec.xml",
+      "primary_metadata_sha256": "48b4c2d9af4bfb86c6eeb78ed74328759556a2fe1278383b07a65c4703a4f495"
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_5c9a8f03-0938-3057-a036-97ae8a6f2fb7.xml",
+      "primary_metadata_sha256": "a3e19a3b2ec70057877cefe0539cbb6dd3b486676d73b4625c4513b0d183f5cb"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "BA",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_7a9ce354-cc7f-3d05-8ad8-25f5fb0d6477.xml",
+      "primary_metadata_sha256": "1895a0364d7d474a8327e1eaac8844068d6c4071664bb6fb27bce60aeb4982fa"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_5bf5f6e6-d52a-3263-be16-62d57b72d391.xml",
+      "primary_metadata_sha256": "9fe3ee3baf946334ed630b78e854a2805df984134125d277def0b098c3151360"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_ee67117d-9a77-36c3-ba5b-27ef100fad38.xml",
+      "primary_metadata_sha256": "73aed3885a9548940554f45e20f8238cb2a019588090567be8958f60953648b7"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e2d7d299-a206-348e-8517-4a6a3fd4e14c.xml",
+      "primary_metadata_sha256": "2865c4ea28af4b0f07b9c65bebf6116fbe8473aa15521a93b62f371d88099f49"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f029267f-aad4-3a61-8805-40502adbd912.xml",
+      "primary_metadata_sha256": "00a45790951cf88d8177537f41b78f791f5917dda2475aa1e2a3c10b51eb620b"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c266e0e0-a1e9-3f35-ba2d-29bbf95e5986.xml",
+      "primary_metadata_sha256": "d92be56770de0cfce05af27fd1016961a4f324e05b1309fd9f635aee5a4ecaf0"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "RS",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e267a680-ecac-37fd-9fcf-12980a68944a.xml",
+      "primary_metadata_sha256": "22dbadb823be9fea7dd692930d7579c1ab09dc6011395f44eec1c711251556f1"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c5dc6310-8b26-3ac3-9443-4a56f3976ee6.xml",
+      "primary_metadata_sha256": "7b82e5cc2393f82d4645b0a21e1e69d14dfa85146e1d8797d5a81d5f6426f45f"
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_39d7fe46-e0b5-3d99-a12c-d3095664ab5d.xml",
+      "primary_metadata_sha256": "4ed6b4ce2df0bb1e580a5e138bcc28c87ed56dc0cce0eb2008ec94b75cdbbd69"
+    },
+    {
+      "identity": {
+        "name": "Heat, mixed chips from forest, at furnace 1000kW",
+        "reference product": "Heat, mixed chips from forest, at furnace 1000kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_4d188886-a3cb-3e45-92e6-8faf661d7a9d.xml",
+      "primary_metadata_sha256": "fa1b2d6c873d6cd58ec8ff2c176233feb1a8c4e09398510ba7e9602618ca4262"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future",
+        "reference product": "Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_67b9d212-8f17-36b0-bb3e-61361c26f0ad.xml",
+      "primary_metadata_sha256": "b79b1b7879046089dbd4cab31fb3e17f7c62db4477517d573355ffa89b3cb926"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_7acea637-7eee-3f02-a624-245f33caa967.xml",
+      "primary_metadata_sha256": "675ca859c0f5807a7a3de3755811185354243b9d72f5e486404eeacc980f1ebb"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_492f997d-3368-3082-80d8-b341da94d600.xml",
+      "primary_metadata_sha256": "9d3da78912ea45b9a394cbe6e7d6a191d5f6dc02afb691aae8ed767d43163ee7"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c265061c-2f42-33ea-ae8f-6f206bebe081.xml",
+      "primary_metadata_sha256": "0f1a5342861ce86c41039b8a0dfd1d712ba69b5f822034f03532c14ce77c8687"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_b5d093e4-0d62-32cd-bd2f-4c9022f5ff8b.xml",
+      "primary_metadata_sha256": "069e9a11397d726dc2fbd92c38349cd2493beeefae34e40a411e3542f5dffd84"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CN",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_53a09884-10bf-3180-b3f4-40b866f8561b.xml",
+      "primary_metadata_sha256": "34a914ec5aafb64b9ff3bc71f82dccd45a8cda16d151cb22e3c08231bda8f504"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_9af69b4c-2e29-4621-a70f-2a3bb83d5575.xml",
+      "primary_metadata_sha256": "0b7918ba771e465199d8d27dabf3add6c9832cf7123ad46a33bbe2b95f15f76d"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a6ea3760-45bb-3cd2-888f-2c7f73635676.xml",
+      "primary_metadata_sha256": "ab7069711ea41df5601af93a985a939607e46e18c05405961af064a72356ef16"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3f7a8736-76bb-3774-b2de-5df04c924226.xml",
+      "primary_metadata_sha256": "732264be97e70db7ef88ba8ab31c1b24799ee59ac33a1f65d10081c8e3dec03c"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_d0cb6aac-16bd-306d-8263-df1614b4cee6.xml",
+      "primary_metadata_sha256": "189d505252c461fa94636d3db020d2ebd1c45646fda7246be73d0d3c833f9c26"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3c846cfd-d03e-354a-86a3-ca5a76714ee4.xml",
+      "primary_metadata_sha256": "6106d565f56e3502dc7e6a0005c80107f70e0659ad6905c2ccee75ddb6fd0770"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "ES",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_8093b149-5d4c-3f5d-85c0-cd9c9d199c59.xml",
+      "primary_metadata_sha256": "b37f3359523a3b89a80b1c921b0f657435817363547f57f39258ad77afc782f9"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_9f6f36f3-9ae8-341a-aec9-a13e8b4f7ad5.xml",
+      "primary_metadata_sha256": "f535c1c59458245ac4425a1b7fe43ce53687d4c870c14b3892a402fc9e20d671"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_5a3654ab-c803-3301-9bca-c52bb28136fb.xml",
+      "primary_metadata_sha256": "7a16b2f81f91f98b58ab6b0eb7c9d14fd67b1b80907477b401fbafb0464eb7f9"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_bea7c970-9210-3713-9be8-465ef83fa843.xml",
+      "primary_metadata_sha256": "93aba406a31ee43b57ebaeac2beb206997d92b51b5da1dbf6db598ed635f210f"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_4ccba083-dc3b-35fe-ac9d-d678bcee8599.xml",
+      "primary_metadata_sha256": "020bdd6f66e40b8fa1b5eab1161e78c00315852d2e9d144160911d5ae5a4958f"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_8a15a4bb-ba19-3824-ae8a-2233d9146fe8.xml",
+      "primary_metadata_sha256": "a60e3b25c60e0749bd6fd8d3d87c379dcda13a72e3a32f24dea415ea439e53e0"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "IE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_bdfc85d7-b098-313a-aa61-7a2e4b685d08.xml",
+      "primary_metadata_sha256": "bf24b2836a44ca263613c23ad85cf0c996aa1571bcf409ae67373404f01c9a81"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_826cf554-c98b-388a-a750-c76bd0c2fb86.xml",
+      "primary_metadata_sha256": "9c96ea38fa513f810b604efcb8e78499e11ad815d3ec4e4f92622edeb76e2415"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_87f3ce7a-f477-3441-bd42-aa9628b200fa.xml",
+      "primary_metadata_sha256": "ee8a05719bbef560b0058c5ce9c0469c036bf8289b4f3169b2e2cdd01ec0dff8"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3dbfd5a2-f9f8-3815-b016-e6d5c3f54306.xml",
+      "primary_metadata_sha256": "21b04694dc1f72d1d8c7f7da31757745d0ade99974e365a4a8e29415c4c54df5"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c7533c2e-cc59-398e-99ec-25b41874fb1e.xml",
+      "primary_metadata_sha256": "fce4cbfe60d7818b224ce9e694d10e3f8f3af15c93c6b0c7dc841c99ae11da7c"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_8044fa1a-44ac-34a9-97f0-7d0383db3d6b.xml",
+      "primary_metadata_sha256": "9582c047cef619faa30f74b6b23099e2ff83f662fe5567c618b173d832d9261d"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e2c9e100-e9d2-322c-8513-cb9f2e441de7.xml",
+      "primary_metadata_sha256": "b1cbcfb8d5331a321eaf5c962c74f34fdde3d862549ee9cefdace23be50fcdc0"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_2016408d-ae95-33ba-816a-c596c7a4bb7c.xml",
+      "primary_metadata_sha256": "c83027bc4990f4debf2584855c137a0a58efd0826f37d9deb649f51be92de426"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "PT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_eb5615b7-1626-3326-ac5f-def0409dba17.xml",
+      "primary_metadata_sha256": "2d932b2736a5ec6cbdfc2906495d15a783a97ae46c3a04d91c9b1a8467cd2e1c"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_47428e0b-f97f-3fb5-a3d4-2578f4bb4d5d.xml",
+      "primary_metadata_sha256": "9f3b9f45ebb90ac47ae9ffe6a6fc2a42dabdb70fddf9311f1f3b5245743e987c"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f8206ab6-71fa-3f2f-8c15-671c6275b2b9.xml",
+      "primary_metadata_sha256": "7560f6655930e2d20e5bfe84c000a92aebb6f1ad7057b0a6cfee6bc88bf95e93"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_fe1f1911-309c-4d4c-bddb-9b46f17e7085.xml",
+      "primary_metadata_sha256": "4da3cbeda476a2135b776cf5f74f10d277d954bf06933434a809a3990155756a"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6fff660d-1220-31fe-80d3-de5f7874601e.xml",
+      "primary_metadata_sha256": "08303eb664c77dcaeaf183176e8b9dd00f190e93131f6a030c1ce505797f4980"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_67761948-992b-3a71-a2f0-965803571ee3.xml",
+      "primary_metadata_sha256": "1e4baa86d55f2c4ecfbf49d5d2c58c51cfc4ddf1a03acf6fced38eb845cca442"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "TW",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_6f6e8edc-48a0-323a-bd59-1465eb1c97af.xml",
+      "primary_metadata_sha256": "394b39931e20a12b47a65bf9ba2617b473f4c2104715c446f5df2c7390d3d421"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "US",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_74ba85d0-2bbe-37ee-8468-fc18973f6609.xml",
+      "primary_metadata_sha256": "e58104bc83c9627351b811a4f86e071821b5bd594b455bd03306b8649a26771c"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating 300kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_cc40bf11-962d-3503-9537-b656e8ff9d62.xml",
+      "primary_metadata_sha256": "350589ec225a6baec9e8036f09aa9ecd08c93d1324d3f99bddb876af0d0ce16b"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating 50kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f9a96f35-a17a-3834-8e29-74b198153d89.xml",
+      "primary_metadata_sha256": "911e41b98a3209c097b0ab4ee37df5c9102beea248bc01e6da0dce2f3e977471"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_042b6bd1-3e1c-3227-a7c2-74d1b491348b.xml",
+      "primary_metadata_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_40cc7c95-ca68-36da-b28a-d97ac9854a92.xml",
+      "primary_metadata_sha256": "40ecc1a935f8b642455334fcd1e04f9f40993b37e24756683bddb05525d1569b"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_1b46f932-0c38-3127-86f4-c2dc71032f35.xml",
+      "primary_metadata_sha256": "c919c87908789c222cfd48c1776a9bb179a2a7da6579325cf0ca29ea395e16d6"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_651d8d75-68f2-3524-810b-20ec92df864a.xml",
+      "primary_metadata_sha256": "9558cb189ff5de292a5c413b4226e177b04a0f630f67b207771b61bf59290757"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_64bd564c-935d-333d-b97b-cb44a9745978.xml",
+      "primary_metadata_sha256": "85347edabdfb3dcd4011865ed6f362644699641dae5c060f0d2f77bce641886f"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_73901ca7-b799-3a64-bd5c-c8f9fd542465.xml",
+      "primary_metadata_sha256": "d1c77eb58b12fd9b08278ea809a73df19b1eb431e88a459faf1a43f599de7731"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_e528eee4-a1d7-3237-9a9a-2628557ce87a.xml",
+      "primary_metadata_sha256": "a997128596bdd73f3b2757833d839719032ea177f8f6e4f32f3c0233c5ba3abb"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_63eccaa7-cb1f-3458-867a-5b581488a539.xml",
+      "primary_metadata_sha256": "779f9e0dae377fac00cd1fa0571ff48e9eafdf5d979e110d0c8a0867674a0570"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_15fff3ae-f421-32ad-b68a-cebbadfbe6ba.xml",
+      "primary_metadata_sha256": "86c941971cd141546a1870437d4ef3ef97b3fbb6ffd8464d21dbfb9e50a956e3"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_48e053ec-f59d-3fae-8193-fd972cc7f0de.xml",
+      "primary_metadata_sha256": "d3c75f7af179b197f560671881932b279c02d949de7f71f144904e7763382d5f"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_c879622e-cd77-3c3c-8c27-c9f6ad943591.xml",
+      "primary_metadata_sha256": "c8dc08f3aa932ec987136476ad2590998b718098331da86d5b9b1e9ebfb4029a"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a7269fd1-0a04-3f2f-9173-3dcdea542113.xml",
+      "primary_metadata_sha256": "5ca5604b25edc82ec335899728ab1a82db40354414087e01bd94f3b5514a0e07"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_806676bc-4944-33b4-a9ec-462429a1eaea.xml",
+      "primary_metadata_sha256": "d6dbc7f2636d812516a796557fa3b98682639c7927e7d79323721c848f246708"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_d4074aa5-d094-3096-bc6e-3427c85ace80.xml",
+      "primary_metadata_sha256": "7e1c8065bcddc13a04f9593ea82b95c67a7252d3170aee4f289c67aba50fc72f"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3255fd1f-7e44-3e42-a303-71974bb53828.xml",
+      "primary_metadata_sha256": "3a1dd8cb9f60a873c6499edb2f5e91ed1929ca3fbf1542f4be032a172b5115da"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f9b15be7-2684-3d34-b72c-ab6009989ba7.xml",
+      "primary_metadata_sha256": "75dfdd0ad298e5616709cdc3f2b11f42a3bc703f190ad40d5fe5e9f5b4fa0747"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "JP",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_f46840d3-bec5-364d-829f-fce4e548f68b.xml",
+      "primary_metadata_sha256": "0a29a9f7791c8d8f841ad3680ef5e0b26ef9e3db4a8aa0e8cd12692bed4ee0ce"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_3c91676d-265f-3261-91c4-ff6014e7a9bd.xml",
+      "primary_metadata_sha256": "9b661639068915eef512d99e0fea8dd0274d65d1a8ba3e2f454e1d0f4e614473"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_bb529331-26e1-3d82-96af-07bd7bdb67ec.xml",
+      "primary_metadata_sha256": "5c09742802ed28d210751863fa04443230a69edba535c8f12d60df53b88b324c"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_74605a58-9a98-3f66-a33f-e0e2071e661e.xml",
+      "primary_metadata_sha256": "7c6bd9558a3e612663175d803c539673049679c9ac90f4e88a74bbc34de5a7c0"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_96db69fe-b29a-382c-bb58-4d9761ccb8bb.xml",
+      "primary_metadata_sha256": "cdf75e6547732b1003ebb0072ac756bc9a32894af0f4ef62c06573f0c63e7c22"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_7a2886a6-d13f-3c72-bda6-28b38ac8bff8.xml",
+      "primary_metadata_sha256": "ee428b64499e1406b39e002f49d70f1e593cd617711a76ce9495205bc23cfa2f"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_9486dd1c-c8c1-3d3d-8899-def9e99439ec.xml",
+      "primary_metadata_sha256": "c327cf37a2cb1798a4d877b9e9f551413263b211b7ce4b3d0d13c54a167e4b47"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_dbe67218-4ca6-3176-a35a-8a904ac74940.xml",
+      "primary_metadata_sha256": "c2a1fd73bab5a35e4862be798036d1264c0957d9945ab71dbff2129520ddcf3c"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_d915a392-7258-480a-b219-b25ed1761c49.xml",
+      "primary_metadata_sha256": "e38aba2ff64ebad3af2a516fc8dc1ebd5f52b70d3304bba862b4fec953293ec3"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_230120ba-dd03-3329-a890-e8d7a7ce3d51.xml",
+      "primary_metadata_sha256": "0a1ee40b4ad7c34d66e735fddaf8aefd5769541e378c7090c20a818394dda451"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_baa1b601-5c51-37ea-9810-100f87ee227b.xml",
+      "primary_metadata_sha256": "4cf8ee5312441f77463a8943f9e02006ca8fe4bc335a49c4d97b3e1efc46cef0"
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at industrial furnace 1MW",
+        "reference product": "Heat, natural gas, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_2fcda415-e506-38d9-9c3e-8ce2c2e7c8f2.xml",
+      "primary_metadata_sha256": "7a844551e1a3f0778c2fd8296dd12e28927987f6dda3e0d6b5b0f0f05294723f"
+    },
+    {
+      "identity": {
+        "name": "Heat, olive pomace, at boiler furnace, in oil mill",
+        "reference product": "Heat, olive pomace, at boiler furnace, in oil mill",
+        "location": "CY",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_0e5e042b-f318-3b59-8bec-a5c5a7547e98.xml",
+      "primary_metadata_sha256": "171bedfd9ea9127e46e3975ca80b57c3b90caa9b616974478afd2ff696f78baf"
+    },
+    {
+      "identity": {
+        "name": "Heat, poultry litter pellets, in rotating grate furnace 250-350kW",
+        "reference product": "Heat, poultry litter pellets, in rotating grate furnace 250-350kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_020dba78-04b1-39c5-974a-9d6db0c0c996.xml",
+      "primary_metadata_sha256": "5e2027a63e83fe2b736d7a29206d9cc658f820ddc91636c7dfcf892e4a93bfef"
+    },
+    {
+      "identity": {
+        "name": "Heat, propane/butane, at boiler condensing modulating 50kW",
+        "reference product": "Heat, propane/butane, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_03ffc4e6-43e4-3793-80d1-8b82ba3f2b6a.xml",
+      "primary_metadata_sha256": "45d7224cb014abf9e83ef72d8c1fd2145dd7d256c8ca0bfe1d90d059c2f98ea8"
+    },
+    {
+      "identity": {
+        "name": "Heat, softwood chips from forest, at furnace 50kW",
+        "reference product": "Heat, softwood chips from forest, at furnace 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_152df0cc-1050-3942-95c2-889cd3044830.xml",
+      "primary_metadata_sha256": "a2eb2823fdea55e2bac4904b65e36290e5ceb1f1e1f97d51d570067ee92592f5"
+    },
+    {
+      "identity": {
+        "name": "Heat, softwood chips from industry, at furnace 300kW",
+        "reference product": "Heat, softwood chips from industry, at furnace 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_4596c88b-d5cf-3f17-b17a-8da41a578b71.xml",
+      "primary_metadata_sha256": "28b6a53488c3973a7f7d88c7673cdc3e2f1f3f0c3527d54c46e073f503d51474"
+    },
+    {
+      "identity": {
+        "name": "Heat, unspecific, in chemical plant",
+        "reference product": "Heat, unspecific, in chemical plant",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_af5e1165-acae-352e-a391-322c00c8a054.xml",
+      "primary_metadata_sha256": "d4baf4e5fef8102c25d6790052c3f14b7e4ba4a0e29958cf5260441c6d607bf9"
+    },
+    {
+      "identity": {
+        "name": "Heat, wood pellets, at furnace 50kW",
+        "reference product": "Heat, wood pellets, at furnace 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_2adf95cf-96c0-3f81-85e6-d732653f6603.xml",
+      "primary_metadata_sha256": "273e43d6b83e3df4d252335ab407529207b8d4595d64cc22c37307f1c45e3f0d"
+    },
+    {
+      "identity": {
+        "name": "Steam, for chemical processes, at plant",
+        "reference product": "Steam, for chemical processes, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "route": "retain_mass_steam",
+      "reference_amount": 1,
+      "primary_source": "process_ca51da0f-d926-3dbe-bc07-e0449bb7dcab.xml",
+      "primary_metadata_sha256": "a8bb4c3ce7f4c9c40fee66e82f43a6fc53cda6abab64269f3d5477abe02e5632"
+    },
+    {
+      "identity": {
+        "name": "Transport, district heat, average",
+        "reference product": "Transport, district heat, average",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "retain_network_service",
+      "reference_amount": 1,
+      "primary_source": "process_7940d64f-9c6b-3a93-8955-811533ded804.xml",
+      "primary_metadata_sha256": "d7cd7ee9ff73c63eb766c5b4406ee2a1ae029853128787108f145ccdbafe1c83"
+    },
+    {
+      "identity": {
+        "name": "Transport, district heat, large area network, for warm water",
+        "reference product": "Transport, district heat, large area network, for warm water",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "route": "retain_network_service",
+      "reference_amount": 1,
+      "primary_source": "process_8a0204cf-b7ec-38ce-9a9c-444a7f60b1ec.xml",
+      "primary_metadata_sha256": "9cdaff83cfbc73ae7fe61ea803c4b519bb545aaa64de19dfab9f233f9318fe53"
+    },
+    {
+      "identity": {
+        "name": "xx Heat, natural gas, at boiler modulating >100kW",
+        "reference product": "xx Heat, natural gas, at boiler modulating >100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "buildings_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_a3d49f2b-7363-3c00-ad5f-c248a33438c4.xml",
+      "primary_metadata_sha256": "eb5241b63905195f4048f587bfe2eaf47ef18fd59b7aa0dab14d631dbdd2f42c"
+    },
+    {
+      "identity": {
+        "name": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+        "reference product": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "route": "industrial_end_use",
+      "reference_amount": 1,
+      "primary_source": "process_72d574ad-634c-33e3-a037-41c027e813f0.xml",
+      "primary_metadata_sha256": "a4e263f8c7743d6309a016a4eda16d56b4c9f4401ef95534e7c2526a380ed21a"
+    }
+  ]
+}

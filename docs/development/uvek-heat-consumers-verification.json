@@ -1,0 +1,93 @@
+{
+  "status": "consumer_planning_and_complete_virtual_graph_verified_public_heat_integration_pending",
+  "implementation": "premise/energy/uvek_heat_consumers.py",
+  "review": "premise/data/heat/uvek2026_consumer_review.json",
+  "review_sha256": "a0d9bce262c5fe6f20bc5246b794b833556621a8eacdc3debddf3a04afcb3567",
+  "reviewed_native_identities": 165,
+  "modified_consumers": 736,
+  "supplier_only_substitutions": 962,
+  "source_routes": {
+    "industrial_end_use": 870,
+    "buildings_end_use": 89,
+    "district_delivery": 3
+  },
+  "negative_inputs_preserved": 1,
+  "geographic_World_proxies": 1,
+  "complete_virtual_graph_activities": 12606,
+  "actual_production_references_preserved": true,
+  "native_nonunit_references": 12,
+  "canonical_biosphere": "ecoinvent-3.10-biosphere",
+  "complete_links_and_identity_checks": true,
+  "all606_prepared_source_and_helper_records_unchanged": true,
+  "direct_energy_reference_inventories_unchanged": true,
+  "native_source_database_scientific_contents_unchanged": true,
+  "literal_original_exchange_audit": true,
+  "cache_replay_idempotent": true,
+  "encrypted_IAM_sha256": "1720125d7890fc4dadda88cd3abc978b2421be764756b0a9624d6dac272f6aa4",
+  "validation": {
+    "focused_tests": 176,
+    "installed_consumer_plans_equal_checkout": true,
+    "installed_packaged_data_equal_worktrees": {
+      "premise": 249,
+      "brightpath": 272
+    },
+    "checkout_signed_finite_LCIs": 16,
+    "installed_signed_finite_LCIs": 16,
+    "maximum_absolute_matrix_residual": 2.807307776477153e-13,
+    "no_database_write": true
+  },
+  "retained_route_counts_including_protected_records": {
+    "industrial_end_use": 380,
+    "retain_network_service": 34,
+    "buildings_end_use": 70,
+    "retain_mass_steam": 55,
+    "retain_zero_allocated_heat": 102,
+    "retain_component_service": 2,
+    "district_delivery": 5
+  },
+  "scientific_limitations": [
+    "Source technology class proxies consumer heat application; heat grade, temperature, pressure, allocation, geography, vintage and internal uncertainty differ, with unquantified score effects.",
+    "MSWI heat handover is documented zero allocated and actually production-only; its caller uses remain historical and gain no new IAM heat burden.",
+    "Network-only transport, ambient components and mass-based steam remain unchanged. Steam consumes fuel-input MJ services; useful-heat conversion has not been established.",
+    "Direct MJ/kWh energy inventories, CLIC sources and helpers remain complete; upstream heat for infrastructure/material production can change. No full-supply-chain score invariance or LCIA equivalence."
+  ],
+  "public_heat_gate": "closed",
+  "remaining": [
+    "Integrate native callback and normal inventory preparation.",
+    "Integrate semantic certification and exported heat audits/provenance.",
+    "Verify combined/default cold/warm installed-package Brightway export.",
+    "Continue other16sector operationalization; this milestone does not complete heat or the full goal."
+  ],
+  "receipts": [
+    {
+      "name": "heat_consumer_tests.log",
+      "sha256": "a6e64e0c20c3018522970554a48cd9746aa524798574226cfd27987da5fecaec",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_consumer_real_report.json",
+      "sha256": "3679fcba5582df173efe9d7bd5d458c366a3951d8dd07944f0879f85255f2695",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_consumer_graph_checks.json",
+      "sha256": "9866de787a108ab920af8b82a1fd5aba5e83637a4fff1acc35fddbc71d31e899",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_consumer_installed_replay.json",
+      "sha256": "bc9b382f5eb4290590e0f3324d7f5a53bdc5baab9f107fb5654f6741b6dbafba",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_consumer_installed_graph_checks.json",
+      "sha256": "9866de787a108ab920af8b82a1fd5aba5e83637a4fff1acc35fddbc71d31e899",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_consumer_packaged_data.json",
+      "sha256": "ebc7574e65f97ea035be561aebe36cae3a89d971b38a831e4bd348431b43c324",
+      "location": "private task workspace"
+    }
+  ]
+}
