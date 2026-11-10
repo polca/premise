@@ -1953,7 +1953,21 @@
           "inventory_sha256": "8176209a1fbad38a48e033842db345239c8039cce03e5527be7d77c9e0b5935d",
           "metadata_sha256": "110156394c311ca9a47e3675771712c42a2b78e8576ff10e1144b869b7f38449"
         }
-      ]
+      ],
+      "investigation": {
+        "status": "documented_scrap_processing_proxy_explained_mapping_still_pending",
+        "original_native_xml": {
+          "member": "ecoSpold files/process_1663ffbe-5722-3413-b13b-23c44323dabf.xml",
+          "sha256": "308e2ce27c40eada2c089de156fa34c4d304a215c265deb5b203cdcd81569623"
+        },
+        "source_finding": "Both independently inspected3.8zinc-oxide producers explicitly document iron scrap as a proxy for zinc scrap processing, at0.84526kgperkgoxide, matching native. Do not interpret this as actual iron-to-zinc conversion or invent a zinc-metal production input.",
+        "remaining_review": "Source heat8MJversus native36.428MJ, electricity/infrastructure/direct emissions, geographic production shares and all source market delivery/freight. No mapping approval yet.",
+        "private_evidence": {
+          "name": "heat_38_zinc_feedstock_primary.private.json",
+          "sha256": "21deca75d2e60409e0b0a47c3c636f8a29adf614684b74179e268f25dbcade12",
+          "records": 3
+        }
+      }
     },
     {
       "rule_id": "bp-3977d3526b1a0617",

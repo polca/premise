@@ -776,3 +776,18 @@ The last verified public export still covers biomass/electricity only.
 Evidence: `export/uvek_heat_38_services_review.json` in Brightpath and
 `docs/development/uvek-heat-38-services-verification.json` in Premise. Standing
 autonomous modelling authorization applies; no LCIA equivalence is claimed.
+
+
+### Pending zinc-oxide market: scrap label explained
+
+The original UVEK 2026 XML confirms the 0.84526 kg iron-scrap input. Independently
+inspected ecoinvent 3.8 RER and RoW zinc-oxide producers explicitly document iron
+scrap as a proxy for zinc-scrap processing, at that same quantity. The native
+supplier performs scrap collection, sorting, pressing and transport. This is a
+documented processing proxy, rather than an import-link error or a proposed
+iron-to-zinc material conversion. Do not invent a new zinc-metal input.
+
+The mapping is still pending: source heat is 8 MJ/kg oxide versus native
+36.428 MJ/kg, and electricity, direct emissions, production shares and market
+delivery/freight still require a final disposition. The frontier pins original
+XML and primary-reference evidence. No approval or LCIA-equivalence claim is made.
