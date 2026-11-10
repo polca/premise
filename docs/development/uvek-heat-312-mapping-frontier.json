@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "status": "three_observed3_12cases_pending_independent_review",
+  "identified_cases": 3,
+  "qualified_cases": 0,
+  "pending_cases": 3,
+  "context": "Reached by real strict12root76recordheat preparation after all24observed3.8cases clear. Exact cut-off profiles only; publicheatgate remains closed.",
+  "primary_evidence_receipt": {
+    "name": "heat_312_frontier_primary.private.json",
+    "sha256": "13570cbc06298dcdd3ad08e9978f0ea515f8b1187473d662c5873ac7eab54cc6",
+    "records": 3,
+    "producers": 7,
+    "errors": []
+  },
+  "cases": [
+    {
+      "rule_id": "bp-ca080a54d1c79f8d",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for polyethylene terephthalate, granulate, amorphous",
+        "reference product": "polyethylene terephthalate, granulate, amorphous",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+        "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+        "unit": "kilogram"
+      },
+      "references": {
+        "3.12": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for polyethylene terephthalate, granulate, amorphous",
+            "reference product": "polyethylene terephthalate, granulate, amorphous",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+          "metadata_sha256": "489cdfd8e60288a457d14af692e705fc7287cf18edca3e84b9645e0b094bdea3",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+            "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4a007e156f9b8e43c5fb77eae1d98074bc6a6da48345fa08a4e12435f9a7f276",
+          "metadata_sha256": "ac22569a2ebb9ab1e3a7009b5a69321a6d114caba7f706f022f1913f3917481d",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+            "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "efe239fbb7ff0e4d10d08f87f45a15fe550909e763ff45071d19c5fa786198ea",
+          "metadata_sha256": "6f708f90c9fcca12a8c3f61d836137a39685d6adbaf496b423147681a02ed115",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "polyethylene terephthalate production, granulate, amorphous",
+            "reference product": "polyethylene terephthalate, granulate, amorphous",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "00feef314f558dcf642eb23438b57a51d57026a2a4b1cfd52570fd39322e299b",
+          "metadata_sha256": "9aea859916b1ba87b68e93a7742ea610f85a57e5cf916521ff06087aa5512298"
+        },
+        {
+          "identity": {
+            "name": "polyethylene terephthalate production, granulate, amorphous",
+            "reference product": "polyethylene terephthalate, granulate, amorphous",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a7e60a0f666c0a61edbb76ac6de1cda368905b9b39f164735e12fee3ade9e515",
+          "metadata_sha256": "5665813c03311124d6a0b515c9ef0f8dad2c2abd772a680e404aa44b44db9324"
+        },
+        {
+          "identity": {
+            "name": "polyethylene terephthalate production, granulate, amorphous",
+            "reference product": "polyethylene terephthalate, granulate, amorphous",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "164cc64e9c2e46e3d2224471b2997a8cb206f4a39cf8bc773dac25dcac12a983",
+          "metadata_sha256": "7d15fc39eb435af0f9409ecf64721c8d2627592707462762f3fcaa5f279f39bf"
+        }
+      ],
+      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval."
+    },
+    {
+      "rule_id": "bp-7e5fcabe5aabe23c",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for extrusion, plastic film",
+        "reference product": "extrusion, plastic film",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Extrusion, plastic film",
+        "reference product": "Extrusion, plastic film",
+        "unit": "kilogram"
+      },
+      "references": {
+        "3.12": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for extrusion, plastic film",
+            "reference product": "extrusion, plastic film",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+          "metadata_sha256": "dc2c0612bf5fe374dd9cbe082a75c1103023b1264b1e8052d409f2a5335bdde1",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Extrusion, plastic film",
+            "reference product": "Extrusion, plastic film",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "23e5daab6d958a50f0c603c17a9205431b3c8e499c57176ff2f5bde662a2810f",
+          "metadata_sha256": "66753a182ae9707890ad0c80e62510a9fd733d3a32fcac12f400abaf1313c6ae",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Extrusion, plastic film",
+            "reference product": "Extrusion, plastic film",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "db4b268f2db7bf65091bb85a6cba6d827e5da507e53af34bd6242f5b30251e84",
+          "metadata_sha256": "58d4f2d0326a6ecc1b6b1f572766f133203bdf90ed4e9beba00788617d8a2d10",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "extrusion, plastic film",
+            "reference product": "extrusion, plastic film",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "ab59f53a6cc35bd09347734b0bbbab5232e6f0597cf54e210e022cc4a5a4dcc8",
+          "metadata_sha256": "214895ec58de38ff9d514d1226b6bbe4859ab6aab4a13d2218ddfb76c7eb745e"
+        },
+        {
+          "identity": {
+            "name": "extrusion, plastic film",
+            "reference product": "extrusion, plastic film",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "eaa67abfedbd9f41168eda083881d7ed488c36d1b69dff97f5957de62ed8f190",
+          "metadata_sha256": "04db803235b5ac87489ebd102b94998d3deabcfb7dbbac9a10185a2d46cd378f"
+        },
+        {
+          "identity": {
+            "name": "extrusion, plastic film",
+            "reference product": "extrusion, plastic film",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "83e6de803b560d2d67ef091a15d83226c13f7c3d7a7360c19305c49897d20d16",
+          "metadata_sha256": "cf3f9cbc5133641bb966607582a45bb73bce214c07b72e7dffa1a8b2eec64731"
+        }
+      ],
+      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval."
+    },
+    {
+      "rule_id": "bp-1000a6cd16a9b940",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for adhesive, for metal",
+        "reference product": "adhesive, for metal",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "DE",
+        "name": "Adhesive for metals, at plant",
+        "reference product": "Adhesive for metals, at plant",
+        "unit": "kilogram"
+      },
+      "references": {
+        "3.12": {
+          "identity": {
+            "location": "RER",
+            "name": "market for adhesive, for metal",
+            "reference product": "adhesive, for metal",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d1a23b54379f92c0186e69391cbb89acf0530f487274e611979d9df1d335c3b1",
+          "metadata_sha256": "43a329e49f1893217f7a1fee7d1f501286b1d846520cdc6d40bd721e1dc5e56d",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "DE",
+            "name": "Adhesive for metals, at plant",
+            "reference product": "Adhesive for metals, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9c8614e38b6a79672d1e51d970837d6c5266c6f0df0594b59861fe60521ef2da",
+          "metadata_sha256": "acb26f628c4d70981df7b045f17b420074ed6b17fea1d01fbb3a124016b55c70",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "DE",
+            "name": "Adhesive for metals, at plant",
+            "reference product": "Adhesive for metals, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d7997054dbe71e7d95c2327caaabae026fee70577ae2c154ab02559821641b73",
+          "metadata_sha256": "58866d5dab70067b940af72d79364fbd747ec83cedb48dae9d4946601d873997",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "adhesive production, for metal",
+            "reference product": "adhesive, for metal",
+            "location": "DE",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "eac149c7148285ac52b0f81ceda4f10f172b5ece2d3d6f9ad17b6625d83a88e8",
+          "metadata_sha256": "84cd902034dfc69580ebc834a0e4a2ddb21397c7093e8a7632c6f1268e7d63c3"
+        }
+      ],
+      "required_review": "Inspect actual production/service reference and complete boundary. Retain each original producer share and all market freight, formulas and supported uncertainty. Film extrusion excludes converted polymer and shares the0.976kgfilm/kgservice basis; do not invent a yield factor. Native complete resin/adhesive proxies require geography/technology/basis warnings. No automatic prior-profile approval."
+    }
+  ],
+  "later_cohorts": "unproven"
+}

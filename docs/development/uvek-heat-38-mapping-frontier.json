@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "status": "sixteen_of_twenty_four_observed3_8cases_qualified_eight_pending",
+  "status": "all_twenty_four_observed3_8cases_qualified_next3_12cohort_pending",
   "context": "New cohort reached after all38previously observed3.10cases clear strict preparation. Publicheatgate remains closed; no automatic version-wide approvals.",
   "identified_cases": 24,
-  "qualified_cases": 16,
-  "pending_cases": 8,
+  "qualified_cases": 24,
+  "pending_cases": 0,
   "categories": {
     "barge_transport_boundary": 1,
     "reviewed_correspondence_new_exact_profile": 8,
@@ -169,7 +169,7 @@
     },
     {
       "rule_id": "bp-771ff30bce4560aa",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -231,7 +231,9 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-aaa1b2617895fc58",
@@ -947,7 +949,7 @@
     },
     {
       "rule_id": "bp-66394d45f1ae5fbc",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1070,11 +1072,13 @@
           "inventory_sha256": "c76b44c0560106a429e7d7d1a2bcc6cdd79fbc40b1380c4e0bbdbeea8a97c05d",
           "metadata_sha256": "6abc6b6dcdfe58f967db4d08898ab1f556ae9b5207de43834e6e468fdaed438f"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-46a8f88f9ecae2d1",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1107,7 +1111,9 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-edf1518533a281df",
@@ -1231,7 +1237,7 @@
     },
     {
       "rule_id": "bp-2be1399569d5de28",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1304,7 +1310,9 @@
           "inventory_sha256": "743b3c1355414e318d917d25094571388d07b3071613bad18cfa6a75ba2239dc",
           "metadata_sha256": "3b5cc91d8b8d39d729e5f00bf9c11d87049c85571d503d61cf2ab2947c9282e0"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-90d9ae3ee389f465",
@@ -1508,7 +1516,7 @@
     },
     {
       "rule_id": "bp-76d8e69be0f742aa",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1591,7 +1599,9 @@
           "inventory_sha256": "6ee95352666d79a39a1ef33d8a4b656164b619acac1f6d225ef1693534760df3",
           "metadata_sha256": "20f3609b7e976642a5a5b13db9b3da01a9545d1f9b6b11145b1eb9fc04d7b614"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-18e8ed0207bbd5f8",
@@ -1870,7 +1880,7 @@
     },
     {
       "rule_id": "bp-9f742d14ef4d8ca9",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1967,11 +1977,13 @@
           "sha256": "21deca75d2e60409e0b0a47c3c636f8a29adf614684b74179e268f25dbcade12",
           "records": 3
         }
-      }
+      },
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-3977d3526b1a0617",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -2054,11 +2066,13 @@
           "inventory_sha256": "c535bbba51cfa7d1e88df296f636f86f1abc3571a1a969a882a47ce12ef3399f",
           "metadata_sha256": "33d3233b3b04e37b100c095fad9a6457a4c60f497e478ed7f695440f40d704dd"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-57c9160454525453",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_proxy_or_source_delivery_recipe",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -2161,7 +2175,9 @@
           "inventory_sha256": "4271883a3705a29ea81b0f801e3be9e139ae368bfc37fb1a8b6fecb0013ba6c9",
           "metadata_sha256": "4704c7503a98c5a58e2d9a167e5b98c2993c9260bb41d0ad50b3cdd9dc361b92"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-closure-verification.json",
+      "review_path": "export/uvek_heat_38_closure_review.json"
     },
     {
       "rule_id": "bp-725eff919d0ce812",
@@ -2238,12 +2254,7 @@
       "review_path": "export/uvek_heat_38_corrections_review.json"
     }
   ],
-  "later_cohorts": "unproven",
-  "verification": "docs/development/uvek-heat-38-services-verification.json",
-  "remaining_categories": {
-    "waste_moisture_and_landfill_boundary": 1,
-    "mineral_or_chemical_product_boundary": 5,
-    "chemical_heat_and_water_boundary": 1,
-    "infrastructure_capacity_and_reference": 1
-  }
+  "later_cohorts": "Three observed3.12cases now pending; see uvek-heat-312-mapping-frontier.json. Further cohorts remain unproven.",
+  "verification": "docs/development/uvek-heat-38-closure-verification.json",
+  "remaining_categories": {}
 }

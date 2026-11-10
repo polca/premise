@@ -1,0 +1,111 @@
+{
+  "status": "all24observed3_8cases_qualified_three_new3_12cases_pending_heat_gate_closed",
+  "review": "export/uvek_heat_38_closure_review.json",
+  "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+  "approval_scopes": 526,
+  "prior_fingerprints_unchanged": 518,
+  "new_exact_scopes": 8,
+  "changed_rules": 7,
+  "new_helpers": 8,
+  "retained_market_import_source_exchanges": 53,
+  "recipe_count": 3682,
+  "shared_review_count": 790,
+  "existing_steam_rule_all_profiles_and_recipes_unchanged": true,
+  "all_other_rules_prior_recipes_reviews_superseded_history_unchanged": true,
+  "validation": {
+    "brightpath_tests": 54,
+    "premise_cache_and_drift_tests": 13,
+    "signed_finite_LCIs": 16,
+    "installed_signed_demands": 16,
+    "installed_original_callers": 41,
+    "generated_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 271,
+      "premise": 247
+    },
+    "native_scientific_contents_unchanged": true
+  },
+  "real_preparation": {
+    "roots": 12,
+    "foreground_records": 76,
+    "original_pins": 55,
+    "current3_8cohort_qualified": 24,
+    "current3_8cohort_pending": 0,
+    "next3_12cohort_pending": 3,
+    "further_cohorts": "unproven"
+  },
+  "public_heat_gate": "closed; no new heat export claimed",
+  "last_public_default_export": "docs/development/uvek-heat-38-corrections-verification.json;12529activities,biomass/electricity only. All518priorapproved fingerprints unchanged by this batch; current signed/caller/package regressions verified.",
+  "scientific_limitations": [
+    "Complete native production proxies replace regional alumina/ZnO/CuO/compressor inventories; internal process uncertainty and scores differ.",
+    "European alumina retains three import helpers and separate market-level delivery; no freight-layer flattening or share renormalization.",
+    "Zinc scrap processing uses documented iron-scrap proxy; native/source heat36.428versus8MJ/kgand electricity differ.",
+    "Native compressor0.251m2PCBversus source two0.1255kgPCBs; no invented area/mass conversion.",
+    "Float-glass soda-hydrate/powder, gas, waste and background bases differ; retain documented particulate/tin/lead double-counting limitation.",
+    "Gypsum complete native landfill includes60000yearleachate fate whereas older source omits leachate as negligible;wetmasssignfactor-1once.",
+    "Exact3.8steam helper uses1MJnativeheat plus seven source water entries and two releases; no0.36kg/MJfactor.",
+    "Native freight geography/fleet/vintage, biosphere exclusions, internal uncertainty and unquantified score effects remain warnings. No LCIAequivalence or impactcompleteness."
+  ],
+  "receipts": [
+    {
+      "name": "heat_38_closure_registration.json",
+      "sha256": "35b4d326d7b81191386273d1db9401ef7fa71b1f3eac97e9bcdef89f0d92f6ff",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_tests.log",
+      "sha256": "04fbe53401f022a8b3a69424b841ef4988c49e5ea8280b769ef7421fd5f2d9ca",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_premise_tests.log",
+      "sha256": "52030b20650193a2ae586195ba2e5dd1a8ce01dd656bdfea929f2bc64c59ae34",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_native_lci_checks.json",
+      "sha256": "10232488a6e978b570c89ab2d6afcbd73bde9d691ad8135e6c884446dd3974cd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_installed_checks.json",
+      "sha256": "ba10ccbe0d68c883efc16cc7ff23fbe62c83e05d15129b6bc217f607ecf57252",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_original_callers.json",
+      "sha256": "e54cde0d3ea05350ee26f58102c747e8cd889c47688af93a21edf7bd3c5b4a80",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_generator_replay.json",
+      "sha256": "0798b4500b43fcb839cad6dc0e1fa3146ce3d7f43bde47985ef9d27ee3393d2c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_packaged_data.json",
+      "sha256": "ae75e3bb70925e30b5fd6b766c78814049f2ebb699c888c1874281e8636e3655",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_closure_remaining_audit_receipt.json",
+      "sha256": "84f9e9cf95affef1874b5ba857c9b8dc1f4b8b2acc17ec29523a4c2c1ee925b9",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_312_frontier_primary_receipt.json",
+      "sha256": "08aaf549322bfd457a9d368cf6ccc165d30d95ffdaccdb9aaf1f66651ebc0da8",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_final_candidates_receipt.json",
+      "sha256": "a49faedf5031cf506ae329c2e4b1e58f5d8afa997cb0308bee8aa8e013a870e1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_zinc_feedstock_primary_receipt.json",
+      "sha256": "f9940a2df97d5ab95c4c13a23c1b3cc90bf8dedac645b157f50ca2d9547cec84",
+      "location": "private task workspace"
+    }
+  ]
+}

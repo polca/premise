@@ -344,3 +344,43 @@ The last verified public export still covers biomass/electricity only.
 Evidence: `export/uvek_heat_38_services_review.json` in Brightpath and
 `docs/development/uvek-heat-38-services-verification.json` in Premise. Standing
 autonomous modelling authorization applies; no LCIA equivalence is claimed.
+
+
+### Last eight observed 3.8 heat cases qualified; three 3.12 cases reached
+
+Independently reviewed gypsum disposal, uncoated float glass, the 300 kW compressor,
+both delivered alumina markets, delivered zinc/copper oxide and the effective 3.8
+chemical-heat recipe. Eight new helpers retain 53 original market/import exchanges,
+including separate production shares, freight, numeric formulas and supported
+uncertainty. The European alumina market retains all three import helpers with
+their own freight, plus its separate market delivery. No shares are renormalized.
+
+Complete native production services remain disclosed screening proxies. Warnings
+retain zinc-oxide heat/electricity differences and the documented iron-scrap proxy
+for zinc-scrap processing; compressor PCB kg/m² bases; glass soda/gas/waste bases;
+and gypsum landfill leachate differences through 60,000 years. Source gypsum wet
+water 0.194 versus native 0.193990 does not justify a wet/dry multiplier; the −1
+reference conversion is applied once. The existing steam rule/recipes remain
+unchanged: its exact 3.8 target uses 1 MJ native heat plus all seven source water
+entries and two physical water releases. No rounded kg/MJ conversion is used.
+No source/native database is edited and no market/import input is omitted.
+
+Validation: 54 Brightpath tests, 13 Premise cache/drift checks, 16 signed finite
+LCIs, 16 installed demands, 41 original caller regressions, both generator resources
+replayed byte-for-byte and all packaged data matched. All 518 prior approval
+fingerprints, old recipes/reviews and inactive superseded-lime history remain
+unchanged. Eight scopes bring the total to 526; eight new helpers bring recipes
+to 3,682, and seven new shared reviews bring reviews to 790.
+
+Real strict 12-root/76-record preparation clears all 24 observed 3.8 cases and
+reaches three additional exact 3.12 cases: amorphous PET granulate, plastic-film
+extrusion and metal adhesive. Primary evidence for those three and seven producers
+is collected without read errors; mapping decisions remain pending. Further
+cohorts are unproven. Public heat remains closed pending the remaining preparation,
+transformation/relinking and export checks. The last verified public default export
+still covers biomass/electricity only; no LCIA equivalence is claimed.
+
+Evidence: Brightpath `export/uvek_heat_38_closure_review.json`, Premise
+`docs/development/uvek-heat-38-closure-verification.json` and the new
+`docs/development/uvek-heat-312-mapping-frontier.json`. Standing autonomous
+modelling authorization applies; scientific limitations remain visible.

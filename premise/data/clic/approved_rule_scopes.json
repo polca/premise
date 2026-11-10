@@ -129910,6 +129910,2320 @@
           "fingerprint": "9a40e94aee716725f937858e49a9bd17aa58aa9d43a27ab0b6ac242989919fe3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-771ff30bce4560aa",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "treatment of waste gypsum, inert material landfill",
+          "reference product": "waste gypsum",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+          "reference product": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "b99c623b2d7390a1311c7500f6184b15ed2bf8cc6fec936efccd346319a1b5dc",
+        "source_metadata_sha256": "f6124e167fcf2f754ea8bc2a4c1eea861c293518fac63125348d3f3d244df25e",
+        "source_producer_witnesses": [],
+        "retained_input_bindings": []
+      },
+      "limitations": [
+        "Use complete native Swiss construction-waste gypsum landfill per wet kgas a disposal-technology/vintage screening proxy. Actual source water-in-wet-mass is0.194kg/kg; native is0.193990kg/kg. Both represent gypsum, not accompanying cardboard, fibres or reinforced composites. Preserve wet kgand the source-1/native+1reference-sign factor-1once; do not apply a guessed wet/dry, hydrate or composition correction.",
+        "The older source inert landfill excludes direct leachate emissions as negligible and models process burdens/infrastructure. Native VVEAtypeBconstruction landfill instead includes gypsum-specific short-term and long-term leachate/fate through60000years, waste placement, access road, infrastructure and land use. This changed emissions, hydrology, landfill-height/operation and closure boundary is explicit; score effects are unquantified. Do not retain source landfill burdens on top of complete native disposal, omit native long-term emissions, or add a recovery credit.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8d02f71ce3d85df6da818d9f55af6ab978afb73efcccd2a04f8b3cc59e2f65b0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2be1399569d5de28",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for flat glass, uncoated",
+          "reference product": "flat glass, uncoated",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Flat glass, uncoated, at plant",
+          "reference product": "Flat glass, uncoated, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "9d514a4040d9479970250c9173f7b6c789024ad0dfacb7381d6322b9d0952cdd",
+        "source_metadata_sha256": "188bd82f965ac0739ab8fceebfd9b668788a4ba64178429855a34f3b74bf3611",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "flat glass production, uncoated",
+              "reference product": "flat glass, uncoated",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "743b3c1355414e318d917d25094571388d07b3071613bad18cfa6a75ba2239dc",
+            "metadata_sha256": "3b5cc91d8b8d39d729e5f00bf9c11d87049c85571d503d61cf2ab2947c9282e0"
+          }
+        ],
+        "retained_input_bindings": []
+      },
+      "limitations": [
+        "The source European uncoated-flat-glass market has one unit share of European float-glass production and explicitly no market delivery freight or losses. Use complete native European uncoated float glass per signed kg. Both cover feed preparation/cullet, melting, float bath, annealing, cutting/storage and infrastructure, with no coating or packing service. Flatten the one producer share without adding another market/delivery service.",
+        "Actual inventories share characteristic silica, limestone-milling, oil, refractory, nitrogen, tin, hydrogen and electricity coordinates, but source soda uses a heptahydrate/light-ash label while native uses powder, and natural gas, chemical/reference bases, wastewater/solid-waste routes, regional backgrounds and internal uncertainty differ. Preserve complete native glass rather than infer a soda-hydrate, gas-volume/LHV or thickness/density correction. Retain the documented source/native tin/lead-versus-particulate double-counting limitation; no emissions cancellation or LCIAequivalence is inferred.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8d3ceda6452af6c0610d556259da68c27ca4a52b73dfcd47d9165b6bdef7ec3b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-76d8e69be0f742aa",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for air compressor, screw-type compressor, 300kW",
+          "reference product": "air compressor, screw-type compressor, 300kW",
+          "unit": "unit"
+        },
+        "target": {
+          "recipe_ref": "heat-38-closure-97725a18e1947a0a4ab9"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "036d562b10163af3812e79d71b98b819612654694bb27e945e1ed7b687a5d8ce",
+        "source_metadata_sha256": "cb70915551753ef0c2adfe5b5bbda0faf67fff5c291e7604840d1a5fa991dece",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "air compressor production, screw-type compressor, 300kW",
+              "reference product": "air compressor, screw-type compressor, 300kW",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "inventory_sha256": "437d407de7b5fbfe10cb5484fec4bfc4298d3bdac5f08fa6cc8665464b6b60da",
+            "metadata_sha256": "327164d4b0ac9e6cbf1522cb74a333d70253920f96d8cccab8b5236535b1db79"
+          },
+          {
+            "identity": {
+              "name": "air compressor production, screw-type compressor, 300kW",
+              "reference product": "air compressor, screw-type compressor, 300kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "6ee95352666d79a39a1ef33d8a4b656164b619acac1f6d225ef1693534760df3",
+            "metadata_sha256": "20f3609b7e976642a5a5b13db9b3da01a9545d1f9b6b11145b1eb9fc04d7b614"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for air compressor, screw-type compressor, 300kW",
+              "reference product": "air compressor, screw-type compressor, 300kW",
+              "unit": "unit"
+            },
+            "source_inventory_sha256": "036d562b10163af3812e79d71b98b819612654694bb27e945e1ed7b687a5d8ce",
+            "original_index": 1,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "air compressor production, screw-type compressor, 300kW",
+              "reference product": "air compressor, screw-type compressor, 300kW",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "target_input": {
+              "amount": 0.330592351639303,
+              "uncertainty type": 0,
+              "loc": 0.330592351639303,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Air compressor, screw-type compressor, 300 kW, at plant",
+              "reference product": "Air compressor, screw-type compressor, 300 kW, at plant",
+              "unit": "unit"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for air compressor, screw-type compressor, 300kW",
+              "reference product": "air compressor, screw-type compressor, 300kW",
+              "unit": "unit"
+            },
+            "source_inventory_sha256": "036d562b10163af3812e79d71b98b819612654694bb27e945e1ed7b687a5d8ce",
+            "original_index": 2,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "air compressor production, screw-type compressor, 300kW",
+              "reference product": "air compressor, screw-type compressor, 300kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "target_input": {
+              "amount": 0.669407648360697,
+              "uncertainty type": 0,
+              "loc": 0.669407648360697,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Air compressor, screw-type compressor, 300 kW, at plant",
+              "reference product": "Air compressor, screw-type compressor, 300 kW, at plant",
+              "unit": "unit"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the source global300kWscrew-compressor market with its two original producer shares kept separately, mapping each complete4600kgcompressor to the complete native European300kWunit. The source market has no separate freight/loss inputs. This is a geographic/background complete-capital-service proxy; no rated-power, equipment-mass, lifetime, compressed-air-output or operating-electricity factor is introduced.",
+        "Native and source materials/machining/disposal have the same nominal equipment role but differ in alloy and recycling boundaries, manufacturing/delivery freight and electronics. In particular source electronics are two0.1255kgPCBinputs, whereas native electronics are0.251m2PCB; no undocumented kg/m2conversion or claim of equal board area/mass is made. Keep the complete native unit and its own freight/disposal once, with explicit coating/electronics, allocation, geographic, vintage and internal uncertainty differences.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "452c826a4b70ad80e4a8abe38e35f0df91a1679bd93ff338064d22380493ba21"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-66394d45f1ae5fbc",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for aluminium oxide, metallurgical",
+          "reference product": "aluminium oxide, metallurgical",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "heat-38-closure-1149bd16f04aae090d46"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+        "source_metadata_sha256": "91e51f804847fcf07e405f8db544db54eff05a9b688053dcfa5feaece6eafdad",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2b3b854ae54a48c788c20f678a237abc80e8c4ddbf822c4108b0c2f1d43d8dce",
+            "metadata_sha256": "f712f2facdb1569e9e22f961db6febe7a5da3c124aa866161a494d82f15fd335"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, Asia, without China and GCC",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "822a44c149be927623bdaf0de14e1860ed06888edcc8da532af456dae649d17b",
+            "metadata_sha256": "75f2a9bda05a20371c35bf6e2a28849b4f772466cc7a7bebd2c66920db195816"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, Russia & RER w/o EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "91dc592dd717ac5aeb8ebdcac0cbe2285f595b1340d29449f584deac154a4a1e",
+            "metadata_sha256": "a5972ad7fff9820f6fb5254693dc05b302dccca78eca00d042c15f2336afb882"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, South America",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2df3f1ea3b8c9f40eafd94a369408d5fbba87cfe16877559482349d0e624ee08",
+            "metadata_sha256": "07759fd59524c3d18ceb86af174ed22c987c3ad68d0ce274e7efea1076593e25"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f9e502fd24da9e5852513902019454f9f6ce12ce691b69c04b64f2dde10535be",
+            "metadata_sha256": "2bd099b418674e7cc77a26258e0e0625406174d5b0b1c8d17db6d83ee4ea18bf"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "UN-OCEANIA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c76b44c0560106a429e7d7d1a2bcc6cdd79fbc40b1380c4e0bbdbeea8a97c05d",
+            "metadata_sha256": "6abc6b6dcdfe58f967db4d08898ab1f556ae9b5207de43834e6e468fdaed438f"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 0,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 10.316,
+              "uncertainty type": 2,
+              "loc": 2.3336960880190984,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 2,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.559924427096212,
+              "uncertainty type": 0,
+              "loc": 0.559924427096212,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 3,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, Asia, without China and GCC",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.0540316025160839,
+              "uncertainty type": 0,
+              "loc": 0.0540316025160839,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 4,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, Russia & RER w/o EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.038707414800901,
+              "uncertainty type": 0,
+              "loc": 0.038707414800901,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 5,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, South America",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.0977534249277639,
+              "uncertainty type": 0,
+              "loc": 0.0977534249277639,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 6,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.0531440295801187,
+              "uncertainty type": 0,
+              "loc": 0.0531440295801187,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 7,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "UN-OCEANIA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.19643910107892,
+              "uncertainty type": 0,
+              "loc": 0.19643910107892,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 8,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.00013933530382956,
+              "uncertainty type": 2,
+              "loc": -8.878627271890213,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 9,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.0180302816093195,
+              "uncertainty type": 2,
+              "loc": -4.015702622958242,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 10,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.00499538282132457,
+              "uncertainty type": 2,
+              "loc": -5.299241228912565,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 11,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.0196951971051018,
+              "uncertainty type": 2,
+              "loc": -3.92738047473416,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 12,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.00126493528913171,
+              "uncertainty type": 2,
+              "loc": -6.6727343129477,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 13,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.0248748678712929,
+              "uncertainty type": 2,
+              "loc": -3.6938973076584056,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 14,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.000766753514501591,
+              "uncertainty type": 2,
+              "loc": -7.17334517134613,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 15,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.000120045313644918,
+              "uncertainty type": 2,
+              "loc": -9.02764127275269,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "RoW",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+            "original_index": 16,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.00581320117185349,
+              "uncertainty type": 2,
+              "loc": -5.147623883627353,
+              "scale": 0.40570925550201586,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 3,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the RoWmetallurgical-alumina market using all six original regional production shares as separate complete native European alumina production proxies, retaining every original finished-product road/rail/ocean delivery entry. Native output is+1kgAl2O3; it includes both hydroxide production and calcination from bauxite. Do not use only aluminium hydroxide, add source hydroxide/raw-bauxite burdens on top, or invent a purity/stoichiometric conversion.",
+        "The source regionalIAIproduction portfolio and nativeEAA2010/2013European chain differ in ore/grade, hydrate-calcination boundary, electricity/heat/fuels, caustic solution basis, red-mud/water/emissions, infrastructure, allocation and internal uncertainty. Complete native production is a screening technology/geography proxy, not equivalent regionalIAIproduction. Preserve finished-product delivery separately from the native upstream bauxite/raw-material transport.",
+        "Retain each source producer share and every separate freight coefficient, numeric formula and supported uncertainty, without renormalizing, merging or inferring distances. Use complete native European rail (electric/diesel/shunting), European lorry fleet, Rhine barge and ocean container services per signed tonne-km as explicit geographic/fleet/vintage proxies. Native lorry fleet is based on Swiss2020shares despite itsRERlabel. Rail traction, roads, canals/ports, loads, fuels, exhaust/emissions and infrastructure differ; native barge has no separate bilge-oil treatment exchange. Production processes include their own upstream raw-material transport; retained market/import freight delivers finished product and is counted separately, not duplicated as additional raw-material freight.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "42db1c9e2738341563110c712b5b0f7ea5d2c10d3f2813d7fcc1dce9f4e5d19e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-57c9160454525453",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "IAI Area, EU27 & EFTA",
+          "name": "market for aluminium oxide, metallurgical",
+          "reference product": "aluminium oxide, metallurgical",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "heat-38-closure-b09d57715ebe7b3ee871"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+        "source_metadata_sha256": "eb5888b4e016d5f98646eceddbf4113636d54e6b7a652bb2ea4abe10a3b21025",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a8100e80049098f02c93f8fa76eee8386c0aa3fa4ca389af5b69de779162ea14",
+            "metadata_sha256": "8cfda0cc6da5258edab3431d44f1772ec361dd0a3579f14837513e66927740fd"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2c22b53c38bccb40b70c059187fa684330a03272a442bbea6e8a31080f18f028",
+            "metadata_sha256": "11857389023b55d64776f4c1c85f825c1ee0bcd08bfee718ecec4e001bb45b44"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "3f0dc52032e5a835f4fddef0545039899af8b2c9aae2cdca70c626c25eb63b48",
+            "metadata_sha256": "e40e39052de36b1cdb25f45764b0450083c15763f3d804aaaec2f3bd0b1283c6"
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "4271883a3705a29ea81b0f801e3be9e139ae368bfc37fb1a8b6fecb0013ba6c9",
+            "metadata_sha256": "4704c7503a98c5a58e2d9a167e5b98c2993c9260bb41d0ad50b3cdd9dc361b92"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 0,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.005,
+              "uncertainty type": 2,
+              "loc": -5.298317366548036,
+              "scale": 0.3492849839314596,
+              "formula": "5/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 1,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2,
+              "uncertainty type": 2,
+              "loc": -1.6094379124341003,
+              "scale": 0.3492849839314596,
+              "formula": "200/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 2,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2,
+              "uncertainty type": 2,
+              "loc": -1.6094379124341003,
+              "scale": 0.3492849839314596,
+              "formula": "200/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 3,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.05,
+              "uncertainty type": 2,
+              "loc": -2.995732273553991,
+              "scale": 0.3492849839314596,
+              "formula": "50/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "a8100e80049098f02c93f8fa76eee8386c0aa3fa4ca389af5b69de779162ea14",
+            "original_index": 0,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 1.0,
+              "uncertainty type": 2,
+              "loc": 0.0,
+              "scale": 0.05099019513592785,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "a8100e80049098f02c93f8fa76eee8386c0aa3fa4ca389af5b69de779162ea14",
+            "original_index": 1,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.05,
+              "uncertainty type": 2,
+              "loc": -2.995732273553991,
+              "scale": 0.4538722287164087,
+              "formula": "50/1000",
+              "pedigree": {
+                "reliability": 5,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "a8100e80049098f02c93f8fa76eee8386c0aa3fa4ca389af5b69de779162ea14",
+            "original_index": 2,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2,
+              "uncertainty type": 2,
+              "loc": -1.6094379124341003,
+              "scale": 0.4538722287164087,
+              "formula": "200/1000",
+              "pedigree": {
+                "reliability": 5,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "a8100e80049098f02c93f8fa76eee8386c0aa3fa4ca389af5b69de779162ea14",
+            "original_index": 4,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.005,
+              "uncertainty type": 2,
+              "loc": -5.298317366548036,
+              "scale": 0.4538722287164087,
+              "formula": "5/1000",
+              "pedigree": {
+                "reliability": 5,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "a8100e80049098f02c93f8fa76eee8386c0aa3fa4ca389af5b69de779162ea14",
+            "original_index": 5,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 6.5755,
+              "uncertainty type": 2,
+              "loc": 1.8833506207998825,
+              "scale": 0.3492849839314596,
+              "formula": "6575.5/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 5,
+            "kind": "import_helper",
+            "source_identity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.012869604586062,
+              "uncertainty type": 0,
+              "loc": 0.012869604586062,
+              "recipe": "heat-38-closure-417a00843486a8c6762f"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "2c22b53c38bccb40b70c059187fa684330a03272a442bbea6e8a31080f18f028",
+            "original_index": 1,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2,
+              "uncertainty type": 2,
+              "loc": -1.6094379124341003,
+              "scale": 0.4538722287164087,
+              "formula": "200/1000",
+              "pedigree": {
+                "reliability": 5,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "2c22b53c38bccb40b70c059187fa684330a03272a442bbea6e8a31080f18f028",
+            "original_index": 2,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, Russia & RER w/o EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 1.0,
+              "uncertainty type": 2,
+              "loc": 0.0,
+              "scale": 0.05099019513592785,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "2c22b53c38bccb40b70c059187fa684330a03272a442bbea6e8a31080f18f028",
+            "original_index": 3,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.05,
+              "uncertainty type": 2,
+              "loc": -2.995732273553991,
+              "scale": 0.4538722287164087,
+              "formula": "50/1000",
+              "pedigree": {
+                "reliability": 5,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "2c22b53c38bccb40b70c059187fa684330a03272a442bbea6e8a31080f18f028",
+            "original_index": 4,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.005,
+              "uncertainty type": 2,
+              "loc": -5.298317366548036,
+              "scale": 0.4538722287164087,
+              "formula": "5/1000",
+              "pedigree": {
+                "reliability": 5,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "2c22b53c38bccb40b70c059187fa684330a03272a442bbea6e8a31080f18f028",
+            "original_index": 5,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2,
+              "uncertainty type": 2,
+              "loc": -1.6094379124341003,
+              "scale": 0.4538722287164087,
+              "formula": "200/1000",
+              "pedigree": {
+                "reliability": 5,
+                "completeness": 4,
+                "temporal correlation": 3,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 6,
+            "kind": "import_helper",
+            "source_identity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.02144934097677,
+              "uncertainty type": 0,
+              "loc": 0.02144934097677,
+              "recipe": "heat-38-closure-7ab3661d890fb7c1cbec"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "3f0dc52032e5a835f4fddef0545039899af8b2c9aae2cdca70c626c25eb63b48",
+            "original_index": 1,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, South America",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 1.0,
+              "uncertainty type": 2,
+              "loc": 0.0,
+              "scale": 0.05099019513592785,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "3f0dc52032e5a835f4fddef0545039899af8b2c9aae2cdca70c626c25eb63b48",
+            "original_index": 2,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.005,
+              "uncertainty type": 2,
+              "loc": -5.298317366548036,
+              "scale": 0.3492849839314596,
+              "formula": "5/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "3f0dc52032e5a835f4fddef0545039899af8b2c9aae2cdca70c626c25eb63b48",
+            "original_index": 3,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 7.5,
+              "uncertainty type": 2,
+              "loc": 2.0149030205422647,
+              "scale": 0.3492849839314596,
+              "formula": "7500/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "3f0dc52032e5a835f4fddef0545039899af8b2c9aae2cdca70c626c25eb63b48",
+            "original_index": 4,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2,
+              "uncertainty type": 2,
+              "loc": -1.6094379124341003,
+              "scale": 0.3492849839314596,
+              "formula": "200/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "3f0dc52032e5a835f4fddef0545039899af8b2c9aae2cdca70c626c25eb63b48",
+            "original_index": 5,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "Europe without Switzerland",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.05,
+              "uncertainty type": 2,
+              "loc": -2.995732273553991,
+              "scale": 0.3492849839314596,
+              "formula": "50/1000",
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 1
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 7,
+            "kind": "import_helper",
+            "source_identity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.394667873972568,
+              "uncertainty type": 0,
+              "loc": 0.394667873972568,
+              "recipe": "heat-38-closure-6485ad0c5b1cd4402247"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "IAI Area, EU27 & EFTA",
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+            "original_index": 8,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.5710131804646,
+              "uncertainty type": 0,
+              "loc": 0.5710131804646,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "unit": "kilogram"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the EuropeanIAImetallurgical-alumina market, retaining the0.5710131804646domestic share and the three original import shares separately. Each import remains a distinct helper with1kgcomplete native European alumina production plus its original within-region rail/road/barge and international ocean freight. Also retain all four market-level delivery entries. Do not collapse import transport into the production proxy or assume the market freight replaces the import freight.",
+        "The original northern-American, rest-of-European and South-American import boundaries are verified from their complete3.8inventories. Native European production proxies their full bauxite-to-hydroxide-to-calcination chains; ore/grade, fuels, electricity, caustic basis, red mud, water/emissions, allocation, vintage and internal uncertainty differ. No additional hydroxide/bauxite production, purity/yield multiplier or recovery credit is added.",
+        "Retain each source producer share and every separate freight coefficient, numeric formula and supported uncertainty, without renormalizing, merging or inferring distances. Use complete native European rail (electric/diesel/shunting), European lorry fleet, Rhine barge and ocean container services per signed tonne-km as explicit geographic/fleet/vintage proxies. Native lorry fleet is based on Swiss2020shares despite itsRERlabel. Rail traction, roads, canals/ports, loads, fuels, exhaust/emissions and infrastructure differ; native barge has no separate bilge-oil treatment exchange. Production processes include their own upstream raw-material transport; retained market/import freight delivers finished product and is counted separately, not duplicated as additional raw-material freight.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3f747c91ba45953b4298176dd56fe6e9edb77d7e1e6dc9c7467266de38ccbbd4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f742d14ef4d8ca9",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for zinc oxide",
+          "reference product": "zinc oxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "heat-38-closure-0209b4bba0cdc2966398"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+        "source_metadata_sha256": "53b2d6005a3c1427423da2cc287f544368ed107760d1f145d4b65a01df601870",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "zinc oxide production",
+              "reference product": "zinc oxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1458fa769c596e82dd7ec899f2701aeb70ea52c7dc0119b93ebe7166ebc6e241",
+            "metadata_sha256": "1ec16ee6d178ae97c6d468dabf0de2d48a9e83f761741cf41de1ad07696187da"
+          },
+          {
+            "identity": {
+              "name": "zinc oxide production",
+              "reference product": "zinc oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8176209a1fbad38a48e033842db345239c8039cce03e5527be7d77c9e0b5935d",
+            "metadata_sha256": "110156394c311ca9a47e3675771712c42a2b78e8576ff10e1144b869b7f38449"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for zinc oxide",
+              "reference product": "zinc oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+            "original_index": 1,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.3091,
+              "uncertainty type": 2,
+              "loc": -1.1740904298440664,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for zinc oxide",
+              "reference product": "zinc oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+            "original_index": 2,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for zinc oxide",
+              "reference product": "zinc oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+            "original_index": 3,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for zinc oxide",
+              "reference product": "zinc oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+            "original_index": 4,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2088,
+              "uncertainty type": 2,
+              "loc": -1.5663784229736533,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for zinc oxide",
+              "reference product": "zinc oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+            "original_index": 5,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "zinc oxide production",
+              "reference product": "zinc oxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.254867256637168,
+              "uncertainty type": 0,
+              "loc": 0.254867256637168,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for zinc oxide",
+              "reference product": "zinc oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+            "original_index": 6,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "zinc oxide production",
+              "reference product": "zinc oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.745132743362832,
+              "uncertainty type": 0,
+              "loc": 0.745132743362832,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "unit": "kilogram"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the globalZnOmarket with both original producer shares and all four delivery-mode entries retained separately. Use complete native indirect/French-process solidZnOproduction per source kgas a regional/technology screening proxy. Both source producers explicitly document iron scrap as a zinc-scrap-processing proxy at0.84526kg/kgoxide; original nativeXMLand actual scrap supplier confirm that same collection/sorting/pressing approximation. Do not treat it as literal iron-to-zinc conversion or invent zinc-metal production burdens.",
+        "Source heat is8MJ/kgoxide while native heat is36.428MJ/kg; source electricity is0.416kWh/kgwhile native is0.33333kWh/kg. Keep the complete native production inventory unchanged as the disclosed process proxy, without energy-based mass scaling or adding source heat/electricity. Retain the documented incomplete solid-waste/water/emissions modelling, scrap allocation, infrastructure, upstream delivery and internal uncertainty limitations. Final-product market delivery remains additional to native production inputs.",
+        "Retain each source producer share and every separate freight coefficient, numeric formula and supported uncertainty, without renormalizing, merging or inferring distances. Use complete native European rail (electric/diesel/shunting), European lorry fleet, Rhine barge and ocean container services per signed tonne-km as explicit geographic/fleet/vintage proxies. Native lorry fleet is based on Swiss2020shares despite itsRERlabel. Rail traction, roads, canals/ports, loads, fuels, exhaust/emissions and infrastructure differ; native barge has no separate bilge-oil treatment exchange. Production processes include their own upstream raw-material transport; retained market/import freight delivers finished product and is counted separately, not duplicated as additional raw-material freight.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "662edc3699f2e460eabdcfc71552795a35565f69b9d1d9463b0ec92214ca99ee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3977d3526b1a0617",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for copper oxide",
+          "reference product": "copper oxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "recipe_ref": "heat-38-closure-ee373ef5bc9327fdcb0e"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+        "source_metadata_sha256": "f4ac31187760b391746ac7070867faddff01c39a5da1a4bdbbe9cf91f0d1ee28",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "copper oxide production",
+              "reference product": "copper oxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b2ccadaf4eb5c91397865aa70cbd4759888d4a3246e9c08f76ca2c5aa4da418e",
+            "metadata_sha256": "465734363ed724bd5445e5eca72f8a5ba9c3f9b1bdf7e4a4392911857c16540e"
+          },
+          {
+            "identity": {
+              "name": "copper oxide production",
+              "reference product": "copper oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c535bbba51cfa7d1e88df296f636f86f1abc3571a1a969a882a47ce12ef3399f",
+            "metadata_sha256": "33d3233b3b04e37b100c095fad9a6457a4c60f497e478ed7f695440f40d704dd"
+          }
+        ],
+        "retained_input_bindings": [
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for copper oxide",
+              "reference product": "copper oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+            "original_index": 0,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for copper oxide",
+              "reference product": "copper oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+            "original_index": 1,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for copper oxide",
+              "reference product": "copper oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+            "original_index": 3,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.3091,
+              "uncertainty type": 2,
+              "loc": -1.1740904298440664,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for copper oxide",
+              "reference product": "copper oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+            "original_index": 4,
+            "kind": "freight",
+            "source_identity": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "target_input": {
+              "amount": 0.2088,
+              "uncertainty type": 2,
+              "loc": -1.5663784229736533,
+              "scale": 0.44944410108488464,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "type": "technosphere",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for copper oxide",
+              "reference product": "copper oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+            "original_index": 5,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "copper oxide production",
+              "reference product": "copper oxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.174,
+              "uncertainty type": 0,
+              "loc": 0.174,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_activity": {
+              "location": "GLO",
+              "name": "market for copper oxide",
+              "reference product": "copper oxide",
+              "unit": "kilogram"
+            },
+            "source_inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+            "original_index": 6,
+            "kind": "complete_production_proxy",
+            "source_identity": {
+              "name": "copper oxide production",
+              "reference product": "copper oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "target_input": {
+              "amount": 0.826,
+              "uncertainty type": 0,
+              "loc": 0.826,
+              "type": "technosphere",
+              "location": "RER",
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "unit": "kilogram"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the globalCuOmarket with both original producer shares and all four delivery modes retained separately. Use complete native solidcopper(II)oxide hydrometallurgical production per signed source kgas the production proxy. This retains the product/oxidation state and complete raw-copper, ammonia/carbonate, heat/electricity and plant boundary rather than substituting metallic copper or copper(I)oxide.",
+        "Native and source document a98%process yield, but that is already reflected in their inputs and is not an extra multiplier. Supplier geography, copper/allocation, reagent solution/purity bases, estimated air/water fate, transport, vintage and incomplete solid-waste inventories differ. Preserve native complete production once with its own upstream freight; retain source finished-product delivery separately. No additional source emissions, reagent/fuel inventories or recovery credit is added.",
+        "Retain each source producer share and every separate freight coefficient, numeric formula and supported uncertainty, without renormalizing, merging or inferring distances. Use complete native European rail (electric/diesel/shunting), European lorry fleet, Rhine barge and ocean container services per signed tonne-km as explicit geographic/fleet/vintage proxies. Native lorry fleet is based on Swiss2020shares despite itsRERlabel. Rail traction, roads, canals/ports, loads, fuels, exhaust/emissions and infrastructure differ; native barge has no separate bilge-oil treatment exchange. Production processes include their own upstream raw-material transport; retained market/import freight delivers finished product and is counted separately, not duplicated as additional raw-material freight.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "52c397b45b82b57c600c578f3e16379878e7be8169db419fd3861e8a96ff7061"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-46a8f88f9ecae2d1",
+      "operation": "replace",
+      "mapping_method": "reviewed_chemical_heat_with_retained_water",
+      "review_path": "export/uvek_heat_38_closure_review.json",
+      "review_sha256": "06faaf20a764fb4c149ffdf8ca7be98295a40a54052a3cc08475ea92aeaa5d44",
+      "authorization": "Standing autonomous modelling approval: independently inspected functional proxies and source-preserving delivery reconstructions, with explicit warnings and no source/native database edits.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "steam production, as energy carrier, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "unit": "megajoule"
+        },
+        "target": {
+          "recipe_ref": "chemical-heat-water-70a169b5d18abfcc14e6"
+        },
+        "conversion_factor": 1,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_inventory_sha256": "295dcb145103d178a54e33ef010407daf37067aa573addb4e3e700f843b34a33",
+        "source_metadata_sha256": "aa6d8045c2b2697984067b764232a255dea5a8abd28fdf799c035cf92de2d8ef",
+        "source_producer_witnesses": [],
+        "retained_input_bindings": []
+      },
+      "limitations": [
+        "Independently confirm the existing reviewed3.8profile-specific chemical-heat recipe. Source and native heat references are+1MJ, not1kgsteam; original nativeXMLexplicitly excludes make-up water because of closed-system use. Reuse the already authored exact3.8helper with one nativeMJheat service plus all seven original source tap-water coefficients and the exact air/water releases. The base rule default points to another profile helper; approval must bind the effective3.8target, not copy that default.",
+        "The source documentation2.75MJ/kgsteam is not a conversion factor for a nativeMJheat reference. Source fuel/electricity mix and native complete heat supply differ and remain a screening limitation. Do not add source oil/gas/coal/electricity on top of the native heat service, omit water, reuse another versions water coefficients, apply rounded0.36kg/MJ, normalize water shares or infer reverse water cancellation. No existing rule, recipe, original review or approval is changed for this case.",
+        "Only the exact independently inspected ecoinvent3.8cut-off profile is newly qualified. Preserve signed caller amounts, formulas, supported uncertainty, foreground ownership and separately listed caller emissions. Keep native complete suppliers unchanged and count them once. No density, purity, LHV, stoichiometric, yield, capacity, lifetime or payload factor, new recovery credit, inverse or cross-system-model route is inferred. Native biosphere exclusions, geography, vintage and unquantified score differences remain explicit. No LCIAequivalence or impactcompleteness is established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f99132bb35ccd03faa2d75f051217d201317b96ba2a9d71c844282027b22c6eb"
+        }
+      ]
     }
   ],
   "superseded_operations": [

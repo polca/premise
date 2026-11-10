@@ -2825,3 +2825,57 @@ def test_heat_38_complete_services_survive_cache(tmp_path, row_index):
             for d in result.diagnostics
         )
     assert resolved.activities == before
+
+
+@pytest.mark.parametrize("index", range(8))
+def test_heat_38_closure_preserves_delivery_and_limits_through_cache(tmp_path, index):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    row = json.loads(
+        (DATA_DIR / "export/uvek_heat_38_closure_review.json").read_text()
+    )["records"][index]
+    resolved = graph(row["source"], version="3.8")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2 * row["conversion_factor"]
+        if "recipe_ref" in row["target"]:
+            helpers = {
+                a["brightpath_conversion"]["recipe_id"]: a
+                for a in result.activities
+                if a.get("brightpath_conversion")
+            }
+            target = helpers[row["target"]["recipe_ref"]]
+            assert all(
+                edge[k] == target[k]
+                for k in ("name", "reference product", "location", "unit")
+            )
+            for rid, recipe in row["new_recipes"].items():
+                actual = helpers[rid]["exchanges"][1:]
+                assert [e["amount"] for e in actual] == [
+                    e["amount"] for e in recipe["inputs"]
+                ]
+                for expected, mapped in zip(recipe["inputs"], actual, strict=True):
+                    for key in (
+                        "formula",
+                        "uncertainty type",
+                        "loc",
+                        "scale",
+                        "pedigree",
+                    ):
+                        if key in expected:
+                            assert mapped[key] == expected[key]
+        else:
+            assert all(edge[k] == v for k, v in row["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+            and d["details"]["review_path"] == "export/uvek_heat_38_closure_review.json"
+            and d["details"]["limitations"] == row["limitations"]
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
