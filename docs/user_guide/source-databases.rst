@@ -159,6 +159,22 @@ those files in `source_file_path`, as well as indicate the database format in
 UVEK 2026 with the ecoinvent 3.10 biosphere
 ------------------------------------------
 
+This development branch installs Brightpath from a qualified GitHub revision,
+including the scoped-approval module and reviewed mappings required by UVEK.
+Released Brightpath ``1.0.0a14`` lacks these changes, although the development
+revision currently has the same version number. Git must be installed so pip
+can fetch this dependency.
+
+From the Premise checkout, run this command in the environment that runs Jupyter:
+
+.. code-block:: console
+
+    python -m pip install -e ".[bw25]"
+
+Premise pins Brightpath revision
+``6b6163de075db641f5a31000bd0d07170243e0b3`` for reproducibility. No adjacent
+Brightpath checkout is required. Restart the notebook kernel after upgrading.
+
 With the native database and biosphere installed in the selected Brightway
 project, use the usual scenario workflow:
 
