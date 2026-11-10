@@ -1,0 +1,102 @@
+{
+  "status": "native_gas_supply_combustion_mapping_data_verified_internal_component_public_gate_closed",
+  "review": "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
+  "no_Python_edits": true,
+  "new_exact_caller_supplier_pairs": 868,
+  "new_separate_input_coordinates": 909,
+  "used_new_source_identities": 73,
+  "new_owned_variants": 74,
+  "combined_native_GAINS_roles": 16,
+  "validation": {
+    "activities": 12911,
+    "initial_checks": {
+      "caller_inputs": 3487,
+      "reviewed_input_coverage": 3487,
+      "gaseous_air_changes": 483,
+      "links": 449099,
+      "applicability": "applicable",
+      "full_sector_mapping_complete": false
+    },
+    "owned_variants": 289,
+    "modified_callers": 2816,
+    "provenance_events": 3105,
+    "signed_finite_LCIs": 196,
+    "common_sector_contract_valid": true,
+    "idempotent_replay_adds_no_events_or_inventory_changes": true,
+    "source_scientific_contents_unchanged": true,
+    "source_graph_unchanged": true
+  },
+  "focused_native_legacy_heat_tests_passed": 61,
+  "all215previous_variants_retain_exact_scientific_coordinates_on_identical_input_graph": true,
+  "coverage_of_signed_checks": "Existing sector representatives, every one of74newvariants, and six actual gas-supply/chemical/helium/electricity callers.",
+  "scientific_decisions": [
+    "Use End_Use_Industry_NatGas as an explicit stationary-compression/process-energy screening proxy for reviewed pipeline, LNG/liquefaction/regasification and silicone/helium uses. This is not proof of energy-industry own-use versus industrial end-use control equivalence.",
+    "The inspected historical xx Electricity turbine caller documents electrical production and uses Power_Gen_NatGas without changing its original efficiency-related input or waste-heat adjustment.",
+    "The exact two LBFAC32-emitter inputs use explicit World-factor screening while their native source locations stay unchanged. Swiss baseline assumptions do not establish Swiss operation; shared geography mappings remain untouched.",
+    "Gas distribution has missing NOx/SO2 observations across all13regions including World. Do not use these as zero emissions or combustion factors. Caller-owned leaks/process emissions stay unchanged and require separate review.",
+    "Preserve complete native +1MJ fuel references, country gas composition, fuel/infrastructure, upstream links and signed caller quantities/formulas/uncertainty. No new efficiency, calorific value, allocation or recovery credit.",
+    "Only reviewed gaseous air reductions change. CO2, particles, non-air, aggregate VOC and other unreviewed species remain; geographic/control/vintage and score effects are unquantified.",
+    "Internal callback on the prior verified public three-sector graph only. Full normal public emissions build/certification/Brightway export, other combustion/direct/foreground and particle/VOC mapping work remain pending;15othersectors and11heatgaps remain in the expanded goal."
+  ],
+  "public_emissions_gate": "closed",
+  "installed_package": {
+    "resources_checked": 282,
+    "runtime_modules_checked": 131,
+    "all_package_files_equal_checkout": true,
+    "runtime_and_test_Python_edits": false,
+    "wheel_sha256": "a01a44cffb7361f4394517c9fed6fb955e3cb5298c4cda085e5f31b2cce289d2"
+  },
+  "installed_replay": {
+    "installed_graph_metadata_and_all3105events_equal_checkout": true,
+    "signed_finite_LCIs": 196,
+    "all282resources_and131modules_equal_checkout": true,
+    "no_Python_edits": true
+  },
+  "receipts": [
+    {
+      "name": "uvek_emissions_gas_supply_checkout_verification.json",
+      "sha256": "4cd52b3415e5fdd8df0d9a2c655c402351d6fa9ad9bf00e7008207236d6d3220",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_final_installed_verification.json",
+      "sha256": "4cd52b3415e5fdd8df0d9a2c655c402351d6fa9ad9bf00e7008207236d6d3220",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_final_installed_resources.json",
+      "sha256": "86d1170da233adc382b5cd1b5dee09926399bb15eaac6d32505a7050dee1cc25",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_final_installed_comparison.json",
+      "sha256": "60bd60fad5095cbe85f95b6bed837ea78250bd427ffca028fdf3bb129894334f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_same_input_regression.json",
+      "sha256": "7f927d241b2bbefc7233b63d3f0950d2377f3f2c35c99ff29526cd5a2fcfee78",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_mapping_regression.json",
+      "sha256": "f9824e3797123cdaaa3887d30d2c16901c5d7b775108d194c7d0fcb25994e570",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_factor_boundary.json",
+      "sha256": "7f129af5f5e5bf8f4a18caecb515a43e3d1c4f00e34bf618bdc941b9be7fac6f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_final_tests.log",
+      "sha256": "e652f7ea89251faf8a0dd06dc5f824ae7af8547c81d8ecdfd453cebc6640f472",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_gas_supply_unresolved_geography_preflight.log",
+      "sha256": "8a9938e6b80f1f7df7719a42b0d89463bea0121c642d4383db82f066a2df7050",
+      "location": "private task workspace"
+    }
+  ]
+}

@@ -1478,3 +1478,55 @@ input graph, without quantity or representation tolerances. See
 `uvek-emissions-machinery-verification.json` for package checks and evidence
 receipts. No public emissions admission or new Brightway export is claimed.
 Other combustion, gas-supply/direct/foreground and particle/VOC work remains.
+
+
+### Gas-supply turbine combustion: explicit stationary proxy, separate leakage
+
+The gas review adds 868 exact caller/supplier pairs covering 909 separate input
+coordinates and 73 used source identities. Complete native turbine inventories
+serve pipeline compression, liquefaction/regasification and direct silicone/helium
+process energy. Under standing approval, use End_Use_Industry_NatGas as an
+explicit stationary-industrial-combustion screening proxy. IIASA's
+[GAINS glossary](https://gains.iiasa.ac.at/gains/GOD/abbreviations.info) distinguishes
+industrial gas combustion, gas power generation and gas distribution; it does
+not prove that energy-industry own-use and industrial end-use control regimes
+are equivalent. Duty cycle, technology/vintage/geography and score differences
+remain unquantified. Do not claim a new physical turbine technology or efficiency.
+
+The current gas-distribution series has no NOx/SO2 observations in any of the
+12 regions or computed World aggregate. It cannot supply combustion factors.
+Caller-owned leaks/process releases remain literal and outside this cohort;
+missing observations are not zero emissions or invented unity factors. The
+historical xx Electricity turbine caller explicitly documents electrical
+generation, so it retains Power_Gen_NatGas and its original efficiency-related
+input and waste-heat adjustment. Its label is preserved.
+
+Actual preflight refuses the source code LBFAC32. The two affected exact
+low/high-pressure gas-supply inputs now use an explicit World-factor screening
+proxy. Their documentation specifies Swiss baseline composition/energy data
+but does not establish Swiss operating geography. Retain the source location
+and native assumptions; no country inference or shared geography-map change
+is introduced. The original failed preflight remains private evidence.
+
+Preserve +1-MJ fuel references, gas composition, complete upstream fuel and
+infrastructure, signed caller quantities, formulas and supported uncertainty.
+Multiple inputs keep independent coordinates and literal audits. No compressor
+efficiency, calorific-value conversion, gas-loss multiplier, new allocation or
+recovery credit is introduced. Only reviewed gaseous air reductions change;
+CO2, particles, non-air, aggregate VOC and unreviewed species remain. Original
+source burners remain unchanged. All prior exact gas pairs/receipts/limitations
+and all 55 legacy role definitions are retained. Only two native YAML alias
+blocks and the existing gas-review data are extended; no Python edits.
+
+All 61 focused native/legacy/heat tests pass. The real internal callback on the
+prior verified three-sector graph produces 12,911 activities with 3,487 reviewed
+inputs, 289 variants, 2,816 modified callers, 483 gaseous-air changes and 3,105
+provenance events. Every one of the 74 new variants and six actual supply/
+chemical/helium/electricity callers is exercised alongside earlier sector
+representatives: 196 signed LCIs are finite. All links and source database
+scientific signatures pass; replay adds no changes/events. All 215 earlier
+variants retain exact scientific coordinates on identical starting data. See
+`uvek-emissions-gas-supply-verification.json` for installed-package evidence.
+This is not a normal public four-sector build or new Brightway export. Emissions
+stays gated; other combustion, caller-owned extraction/direct/foreground and
+particle/VOC work remains, along with the other expanded-sector requirements.
