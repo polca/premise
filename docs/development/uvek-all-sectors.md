@@ -424,3 +424,21 @@ An additional actual licensed ecoinvent 3.10 cut-off REMIND SSP2-NPi 2050
 cement update succeeds with the original public API and default ecoinvent family.
 Its recorded cement and contract phases have no findings. This is an update
 regression, not an additional ecoinvent export/LCI certification.
+
+## Remaining-sector dependency baseline
+
+A diagnostic preparation of all 15 remaining built-in sectors reaches the first
+3.9 cut-off cohort and reports **476 independently unapproved correspondences**:
+372 heuristic matches and 104 curated/reviewed matches of other kinds. This is
+an initial cohort count, not the total remaining across all versions or evidence
+that every rule needs a new physical model. Public support remains the qualified
+four sectors; the diagnostic only bypasses the preparation availability guard.
+
+The batch contains clear product/function mismatches (pitch to paper-industry
+pitch dispersants, nylon 6-6 to nylon 6, and holmium oxide to lithium manganese
+oxide), as well as apparently reusable correspondences whose exact source
+profile still needs inspection. Do not admit the whole cohort or infer validity
+from a reference sign, confidence or product-name similarity. First isolate the
+fuels dependency subset, review common materials/services by physical category,
+and correct the wrong matches in Brightpath data. The already qualified sectors
+must retain their closed approvals and regression evidence.
