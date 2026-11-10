@@ -1,0 +1,83 @@
+{
+  "status": "two_material_reference_corrections_and_four_upstream_qualifications_verified_heat_gate_closed",
+  "scope": "Six exact ecoinvent3.10cutoff correspondences for nativeUVEK2026with canonicalecoinvent3.10biosphere. Four observed frontier cases and two additional helper inputs.",
+  "sodium": "Complete already allocated source electrolysis/purification inventory retained: four upstream services and five canonical direct biosphere flows; salt is feedstock only. No reallocation, newchlorinecredit or omission.",
+  "potassium_chloride": "Documented source60%K2O divided by native1kgK2Oreference gives factor0.60. Rounded1.67kgstatement and inconsistent genericNPK0-0-50markettext are disclosed. Whole regional-storehouse screening boundary replaces source production/market delivery.",
+  "prior462approval_fingerprints_unchanged": true,
+  "total_exact_scopes": 468,
+  "prior_recipes_and_shared_reviews_unchanged": true,
+  "new_recipes": 1,
+  "recipe_count": 3669,
+  "new_shared_reviews": 2,
+  "shared_review_count": 769,
+  "validation": {
+    "brightpath_tests_passed": 22,
+    "focused_premise_tests_passed": 14,
+    "signed_foreground_composed_finite_LCIs": 4,
+    "source_scientific_signatures_unchanged": true,
+    "installed_signed_demands": 12,
+    "installed_original_callers_checked": 41,
+    "generator_resource_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 261,
+      "premise": 247
+    },
+    "lint": "Changed modules passRuff/Black; generator passesBlack andRuff except its two pre-existingI001import-order findings. Premise reference tables checked."
+  },
+  "real_heat_preparation": "still fails with34unapproved correspondences in current3.10cohort, down from38; latercohorts unproven",
+  "public_heat_gate": "closed; no public heat export claimed",
+  "public_electricity_biomass_export": "Prior committed7cd5279acheckpoint passed12529activity export/readback. This batch verifies unchanged earlier fingerprints/recipes/reviews and41installed caller regressions; no fresh public export was run.",
+  "cache_cleanup_bytes": 476478761,
+  "receipts": [
+    {
+      "name": "heat_salts_scope_registration.json",
+      "sha256": "4cd65f2e436bd2e7dac32afdbbd518791b11efcc046125cf1500153294eea4d1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_tests.log",
+      "sha256": "373b99cff9ff0a74fd949a8a8c33986496b9fe4d83bc6e919347232a99882dfe",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_premise_tests.log",
+      "sha256": "d02fae0dd79e6412dd204f8ccc43fc74fb0d105363fc4cccb21965435e493209",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_native_lci_checks.json",
+      "sha256": "c8236aa16883b9c54c4a4023ac018d0949385694a8c7f708037dc89d955c871b",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_installed_checks.json",
+      "sha256": "630a598da9de3b77aaf73e2a80bc535ec4ff649294a604a73f319ebfa22fd49e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_original_callers.json",
+      "sha256": "26f6e4b1b538d8f514c89b9da2ff61e2395b213fec2c896c433e59264a33e9c8",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_generator_replay.json",
+      "sha256": "31a3cb3be511109e7da24c34af7c0a9508763183c3094731f433bc4488117c51",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_packaged_data.json",
+      "sha256": "e25b2f69ad55d7f40203190ad866194336de42129eab0473c5b0de5c4b4dd447",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_salts_remaining_audit_receipt.json",
+      "sha256": "54ac1bc7f11cf02f36e5de7ad8921d04a47b7e1e723709c0d1b37f56c9335c6d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_salts.json",
+      "sha256": "86b88e6deeefaa8d63276e0294c9339215378ca5be9a5a00e0387368256bfafc",
+      "location": "private task workspace"
+    }
+  ]
+}

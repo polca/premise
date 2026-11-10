@@ -119,3 +119,13 @@ metals, infrastructure, fuels, fleet and other product/service cases. These are
 pending reviews, not newly approved mappings. In particular, source sodium metal
 cannot map to sodium chloride, and KCl mass cannot silently inherit a K2O basis.
 The public heat gate remains closed.
+
+The sodium/KCl batch qualifies four cases in the later 3.10 cohort plus two
+additional sodium-helper inputs. Sodium metal is now represented by its retained
+allocated electrolysis model, with four native upstream screening services and
+five exact canonical direct flows; salt is only its feedstock. KCl uses the actual
+producer's documented 60% K2O basis at factor 0.60, with the generic market-text
+inconsistency and native grade/delivery differences disclosed. All 462 earlier
+fingerprints remain unchanged. There are 468 exact scopes in total, and real
+preparation reports 34 pending correspondences in the current cohort. The public
+heat gate stays closed.

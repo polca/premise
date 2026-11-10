@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "primary_evidence_collected_not_qualified",
+  "status": "four_of_thirty_eight_observed3_10cases_qualified_thirty_four_pending",
   "context": "Later3.10cohort exposed after all14initial3.9cases qualified; publicheatgate remains closed.",
   "identified_cases": 38,
   "previously_scoped_rules": 16,
@@ -1513,7 +1513,7 @@
     },
     {
       "rule_id": "bp-9f7197c47047750a",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1549,7 +1549,16 @@
           ]
         }
       },
-      "source_producer_witness_count": 1
+      "source_producer_witness_count": 1,
+      "review": "brightpath/data/export/uvek_heat_salts_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "recipe_ref": "chemical-heat-water-1ced12d9ab9a80752fd2"
+      },
+      "limitations": [
+        "The exact existing3.10cutoff chemical-heat review already records the current source market inventory hash. Use its actual3.10profile-specificMJhelper, retaining the original make-upwater shares and both physical water releases. This is an exact-profile qualification of an existing reviewed helper; do not borrow3.9byfallback, substitute kgsteam or count the source fuel inventory twice. Native complete heat and delivered-water boundaries remain explicit screening proxies.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ]
     },
     {
       "rule_id": "bp-3f19534eb7d97f64",
@@ -1621,7 +1630,7 @@
     },
     {
       "rule_id": "bp-fa8c66186468f780",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1683,7 +1692,19 @@
           ]
         }
       },
-      "source_producer_witness_count": 0
+      "source_producer_witness_count": 0,
+      "review": "brightpath/data/export/uvek_heat_salts_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Chemical plant, organics",
+        "reference product": "Chemical plant, organics",
+        "unit": "unit"
+      },
+      "limitations": [
+        "Source and native describe one average organic chemical plant unit, including land use, buildings, facilities and dismantling, based on the same two German-site lineage. Use the complete native infrastructure per signed sourceunit; no production-capacity or lifetime factor is inferred. Native materials, land classes, internal uncertainty and vintage remain screening differences.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ]
     },
     {
       "rule_id": "bp-a3a951644bd5ed9c",
@@ -2353,7 +2374,7 @@
     },
     {
       "rule_id": "bp-112e275f32033672",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -2415,11 +2436,24 @@
           ]
         }
       },
-      "source_producer_witness_count": 1
+      "source_producer_witness_count": 1,
+      "review": "brightpath/data/export/uvek_heat_salts_review.json",
+      "conversion_factor": 0.6,
+      "qualified_target": {
+        "location": "RER",
+        "name": "Potassium chloride, as K2O, at regional storehouse",
+        "reference product": "Potassium chloride, as K2O, at regional storehouse",
+        "unit": "kilogram"
+      },
+      "limitations": [
+        "The actual3.10producer explicitly provides1kgpotassiumchloride with60%K2O. Native references1kgK2O and declares60%K2Ocontent; use factor0.60per signed sourcekg. Its rounded1.67kgKClperkgK2Onote is not treated as an exact reciprocal. The generic source market text also contains anNPK0-0-50statement; the inspected actual producer's60%basis governs this qualification, while that metadata inconsistency is disclosed. Do not infer pureKClstoichiometry, concentration, purity or fertiliser factors for another profile.",
+        "Use the complete native RERregional-storehouse service once. Its mining/concentration/drying, tailings, energy, infrastructure and delivery model replace the source producer and market as a screening proxy. The source market's three freight exchanges are not separately retained; do not add them on top of the complete regional-storehouse boundary. Source industrial-grade versus native fertiliser-oriented documentation, delivery, technology, allocation, uncertainty and vintage remain differences. No exact chemical-grade or score equivalence is claimed.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ]
     },
     {
       "rule_id": "bp-2a1ae0fa7f1d5caa",
-      "status": "pending_independent_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -2481,8 +2515,22 @@
           ]
         }
       },
-      "source_producer_witness_count": 0
+      "source_producer_witness_count": 0,
+      "review": "brightpath/data/export/uvek_heat_salts_review.json",
+      "conversion_factor": 1,
+      "qualified_target": {
+        "recipe_ref": "heat-sodium-electrolysis-a25b1f4b760eecdb55da"
+      },
+      "limitations": [
+        "Reject sodium metal -> sodium chloride: the chemicals have different functions. Reconstruct the inspected positive1kgsodium-metal reference using its complete already allocated source electrolysis/purification inputs: four upstream services and five direct canonical3.10biosphere flows. Saltpowder is retained only as an electrolysis input. The source allocation metadata is not applied a second time; add no chlorine co-product or avoided-production credit.",
+        "Retain all actual source coefficients, supported internal uncertainty and formulas. Native chemical factory, medium-voltage grid and saltpowder supply are whole-service/product screening proxies; the source regional electricity market portfolio and salt-market producer/final-delivery mix are not reconstructed. The exact3.10chemical-heat helper retains its reviewed source make-upwater and two water releases without adding source combustion again. Those are heat-service water flows, distinct from the sodium process's five direct flows. This is a preserved source electrolysis model on approximate native upstream suppliers, not a native sodium dataset or LCIA-equivalence finding.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ]
     }
   ],
-  "later_cohorts": "unproven"
+  "later_cohorts": "unproven",
+  "qualified_cases": 4,
+  "pending_cases": 34,
+  "additional_helper_input_qualifications": 2,
+  "verification": "docs/development/uvek-heat-salts-verification.json"
 }

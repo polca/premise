@@ -121334,6 +121334,308 @@
           "fingerprint": "a5fc6b6f1c0ac72f2c62f06c3484c71d505dfdc35ec16f5aba593822530e6412"
         }
       ]
+    },
+    {
+      "rule_id": "bp-2a1ae0fa7f1d5caa",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_source_electrolysis_helper",
+      "review_path": "export/uvek_heat_salts_review.json",
+      "review_sha256": "3e5aba4af887970b65684f7346fe6b19dab2b3bf6239d9e240b14154da698ca8",
+      "authorization": "Standing autonomous modelling approval: correct independently inspected material/reference-basis errors using complete functional proxies or faithfully retained source services, with warnings, no blanket profile approval.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "sodium production, sodium chloride electrolysis, molten salt cell",
+          "reference product": "sodium",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "recipe_ref": "heat-sodium-electrolysis-a25b1f4b760eecdb55da"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "e79d42b47d2d420e5d0887e1ae0a01322933f9f184e868dd28e7b6b5eae8f4a2",
+        "source_metadata_sha256": "ce99a989154fa0e07f4eea81cf298d3040ac8d66f591451717571c9a402028e3"
+      },
+      "limitations": [
+        "Reject sodium metal -> sodium chloride: the chemicals have different functions. Reconstruct the inspected positive1kgsodium-metal reference using its complete already allocated source electrolysis/purification inputs: four upstream services and five direct canonical3.10biosphere flows. Saltpowder is retained only as an electrolysis input. The source allocation metadata is not applied a second time; add no chlorine co-product or avoided-production credit.",
+        "Retain all actual source coefficients, supported internal uncertainty and formulas. Native chemical factory, medium-voltage grid and saltpowder supply are whole-service/product screening proxies; the source regional electricity market portfolio and salt-market producer/final-delivery mix are not reconstructed. The exact3.10chemical-heat helper retains its reviewed source make-upwater and two water releases without adding source combustion again. Those are heat-service water flows, distinct from the sodium process's five direct flows. This is a preserved source electrolysis model on approximate native upstream suppliers, not a native sodium dataset or LCIA-equivalence finding.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1e8a76ba5a3e31917c1ba3f332a749e992621e2d7fd4153cd6834b87771c2fc5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-112e275f32033672",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_documented_K2O_basis_conversion",
+      "review_path": "export/uvek_heat_salts_review.json",
+      "review_sha256": "3e5aba4af887970b65684f7346fe6b19dab2b3bf6239d9e240b14154da698ca8",
+      "authorization": "Standing autonomous modelling approval: correct independently inspected material/reference-basis errors using complete functional proxies or faithfully retained source services, with warnings, no blanket profile approval.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for potassium chloride",
+          "reference product": "potassium chloride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Potassium chloride, as K2O, at regional storehouse",
+          "reference product": "Potassium chloride, as K2O, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 0.6,
+        "source_inventory_sha256": "e7f83d55b724f98c7d9d49706dced8e2eba840f48c2b3a5e6aea39f6468af488",
+        "source_metadata_sha256": "b24238f72e4d9281a0b81267e1281b389d06c0494007315f782c603aa64dbe09"
+      },
+      "limitations": [
+        "The actual3.10producer explicitly provides1kgpotassiumchloride with60%K2O. Native references1kgK2O and declares60%K2Ocontent; use factor0.60per signed sourcekg. Its rounded1.67kgKClperkgK2Onote is not treated as an exact reciprocal. The generic source market text also contains anNPK0-0-50statement; the inspected actual producer's60%basis governs this qualification, while that metadata inconsistency is disclosed. Do not infer pureKClstoichiometry, concentration, purity or fertiliser factors for another profile.",
+        "Use the complete native RERregional-storehouse service once. Its mining/concentration/drying, tailings, energy, infrastructure and delivery model replace the source producer and market as a screening proxy. The source market's three freight exchanges are not separately retained; do not add them on top of the complete regional-storehouse boundary. Source industrial-grade versus native fertiliser-oriented documentation, delivery, technology, allocation, uncertainty and vintage remain differences. No exact chemical-grade or score equivalence is claimed.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dacd1bad3a1527486f6150a8ce6ecc1ade019c137274b145734a62e224a19a08"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fa8c66186468f780",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_salts_review.json",
+      "review_sha256": "3e5aba4af887970b65684f7346fe6b19dab2b3bf6239d9e240b14154da698ca8",
+      "authorization": "Standing autonomous modelling approval: correct independently inspected material/reference-basis errors using complete functional proxies or faithfully retained source services, with warnings, no blanket profile approval.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "chemical factory construction, organics",
+          "reference product": "chemical factory, organics",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chemical plant, organics",
+          "reference product": "Chemical plant, organics",
+          "unit": "unit"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "f808a0a5e2a32a6ae7f112ddab82b6ccc3651316c17baf5b4fa8aae211404a8f",
+        "source_metadata_sha256": "f6daad03d6eebd4b7a45305c0a1f607a963305b423ceaa1c95c46a7d97ebe8e5"
+      },
+      "limitations": [
+        "Source and native describe one average organic chemical plant unit, including land use, buildings, facilities and dismantling, based on the same two German-site lineage. Use the complete native infrastructure per signed sourceunit; no production-capacity or lifetime factor is inferred. Native materials, land classes, internal uncertainty and vintage remain screening differences.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1f18aac1dde626c6abe508893ceaf120ddf56e405ac8a8462031fc6f6ae13e6f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-49b843b95c0c6223",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_salts_review.json",
+      "review_sha256": "3e5aba4af887970b65684f7346fe6b19dab2b3bf6239d9e240b14154da698ca8",
+      "authorization": "Standing autonomous modelling approval: correct independently inspected material/reference-basis errors using complete functional proxies or faithfully retained source services, with warnings, no blanket profile approval.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "e3d65e940983395cabac800f48c814e8579ba38fd5903bca3b6de83c110ddf55",
+        "source_metadata_sha256": "26d71ee695f658abc14c266f56a43d9aa9f8a33783db5b44d74fffd6e7ceb384"
+      },
+      "limitations": [
+        "Source RERmarketgroup delivers1kWhmedium-voltage electricity through regional markets. Use the complete native RERmedium-voltage grid per signed kWh, retaining its actual generation, grid, losses and infrastructure once. It replaces the source regional electricity portfolio with the native model. Native prose has differing loss/portfolio boundary descriptions; actual inventory topology is retained without a guessed grid-loss multiplier. Geography, vintage, trade, losses and internal uncertainty remain differences.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4c2020e4715327b81ed0fa6af93fd2bd7b30dbd440f59e654fa25a6130c183c2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f7197c47047750a",
+      "operation": "replace",
+      "mapping_method": "reviewed_chemical_heat_with_retained_water",
+      "review_path": "export/uvek_heat_salts_review.json",
+      "review_sha256": "3e5aba4af887970b65684f7346fe6b19dab2b3bf6239d9e240b14154da698ca8",
+      "authorization": "Standing autonomous modelling approval: correct independently inspected material/reference-basis errors using complete functional proxies or faithfully retained source services, with warnings, no blanket profile approval.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for heat, from steam, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "unit": "megajoule"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "recipe_ref": "chemical-heat-water-1ced12d9ab9a80752fd2"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "49533c675cc695bf3860c9c56e1de169b06346b43a0859f5e09c16b7b157bae8",
+        "source_metadata_sha256": "b2eb2eba971148cef1f42d842cfc29b370c377668ba2991487615de06829298f"
+      },
+      "limitations": [
+        "The exact existing3.10cutoff chemical-heat review already records the current source market inventory hash. Use its actual3.10profile-specificMJhelper, retaining the original make-upwater shares and both physical water releases. This is an exact-profile qualification of an existing reviewed helper; do not borrow3.9byfallback, substitute kgsteam or count the source fuel inventory twice. Native complete heat and delivered-water boundaries remain explicit screening proxies.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "08807a14eabb62b855cc89dcc190d4de09365eb309b8329c73a176c088d49fc8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0cdecef35c6741e6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_salts_review.json",
+      "review_sha256": "3e5aba4af887970b65684f7346fe6b19dab2b3bf6239d9e240b14154da698ca8",
+      "authorization": "Standing autonomous modelling approval: correct independently inspected material/reference-basis errors using complete functional proxies or faithfully retained source services, with warnings, no blanket profile approval.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for sodium chloride, powder",
+          "reference product": "sodium chloride, powder",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sodium chloride, powder, at plant",
+          "reference product": "Sodium chloride, powder, at plant",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "851c502e03592f8837f3e7f45e8ddb1c488c1e87e7619c6782a5f10c0bad214e",
+        "source_metadata_sha256": "358aa6d1c4a7e73a8e966658b7ef92abdd355c2d85cfa8afadae36488caad584"
+      },
+      "limitations": [
+        "Source global market supplies pure dry NaClpowder and contains four producer shares plus market freight. Native supplies bulk cleaned/dried solution-minedNaClpowder with the same declared formula/CAS and positive1kgoutput. Use the complete native RERat-plant product per signed sourcekg. Source producer weights/extraction routes and final market freight are not reconstructed. Native upstream process freight remains once; no invented final-delivery leg is added. Geography, grade, mining/cleaning/drying, allocation, internal uncertainty and vintage differences remain screening limitations.",
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a60ca07b688f3111af3786a787ac31926bbcc5b2675f72522e60aea07bcc8b6a"
+        }
+      ]
     }
   ]
 }

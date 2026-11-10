@@ -356,6 +356,45 @@ def test_heat_delivered_air_keeps_both_native_networks_and_warning_on_cache_hits
     assert resolved.activities == before
 
 
+@pytest.mark.parametrize("index", range(6))
+def test_heat_salts_keep_reviewed_reference_basis_and_warnings_in_cache(
+    tmp_path, index
+):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads((DATA_DIR / "export/uvek_heat_salts_review.json").read_text())
+    row = review["records"][index]
+    resolved = graph(row["source"], version="3.10")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2 * row["conversion_factor"]
+        if row["action"] == "source_electrolysis_helper":
+            helper = next(
+                a
+                for a in result.activities
+                if a.get("brightpath_conversion", {}).get("recipe_id")
+                == row["recipe_ref"]
+            )
+            assert helper["reference product"] == "sodium"
+            assert (
+                len([e for e in helper["exchanges"] if e["type"] == "biosphere"]) == 5
+            )
+        elif "recipe_ref" not in row["target"]:
+            assert all(edge[k] == v for k, v in row["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+            and d["details"]["review_path"] == "export/uvek_heat_salts_review.json"
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before
+
+
 def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource

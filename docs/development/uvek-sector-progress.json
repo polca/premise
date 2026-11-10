@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "initial14mapping_cases_qualified_later38case3_10cohort_under_review_public_heat_gate_closed",
+      "status": "initial14cases_and_four_later3_10cases_qualified_thirty_four_pending_public_heat_gate_closed",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -833,6 +833,11 @@
           "decision": "Qualify exact3.9cutoff delivered-air market through complete native average/optimised supply-network services in original50/50shares. Preserve native1.5/1.05generation draws and literalxxlabel with warnings; no guessed physical-condition conversion.",
           "review": "brightpath/data/export/uvek_heat_compressed_air_review.json",
           "authorization": "Standing autonomous approval of coming modelling decisions and complete functional screening proxies, with evidence and warnings retained for later review."
+        },
+        {
+          "decision": "Reject sodium-metal to sodium-chloride substitution; retain complete already allocated source electrolysis inventory through native upstream proxies and five canonical direct biosphere flows. Convert inspected KClkg to nativeK2Oreference at0.60from actual60%producer basis, disclosing market-text and grade/delivery differences. Four source3.10upstream services qualified with warnings.",
+          "review": "brightpath/data/export/uvek_heat_salts_review.json",
+          "authorization": "Standing autonomous modelling approval: correct independently inspected material/reference-basis errors using complete functional proxies or faithfully retained source services, with warnings, no blanket profile approval."
         }
       ],
       "implementation_commits": [
@@ -923,9 +928,10 @@
         "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases",
         "initial_observed_pending3_9cases": 14,
         "qualified3_9cases": 14,
-        "verification": "docs/development/uvek-heat-compressed-air-verification.json",
-        "observed_pending3_10cases": 38,
-        "next_cohort_review": "docs/development/uvek-heat-310-mapping-frontier.json"
+        "verification": "docs/development/uvek-heat-salts-verification.json",
+        "observed_pending3_10cases": 34,
+        "next_cohort_review": "docs/development/uvek-heat-310-mapping-frontier.json",
+        "qualified3_10cases": 4
       }
     },
     {

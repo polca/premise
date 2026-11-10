@@ -515,3 +515,29 @@ The initial fourteen 3.9 cases are now qualified, but the next real preparation
 fails on 38 later 3.10 correspondences. Their read-only source/native evidence and
 categories are recorded in `uvek-heat-310-mapping-frontier.json`. No version-wide
 approval or public heat support follows from completing the earlier cohort.
+
+### Sodium electrolysis and the KCl nutrient reference
+
+The 3.10 sodium-metal process cannot use sodium chloride as its output supplier.
+A new helper retains all nine allocated source inputs: four upstream services
+and five direct canonical 3.10 biosphere flows, preserving coefficients, supported
+uncertainty and formulas. The native factory, medium-voltage grid and dry salt
+supply are independently inspected screening proxies. Chemical heat uses its
+existing exact 3.10 helper, including source water flows. No allocation is applied
+again, and no chlorine credit or physical omission is introduced. Source market
+portfolio/delivery and native technology/vintage differences remain explicit.
+
+The actual 3.10 KCl producer states 60% K2O. Native references one kg K2O at 60%
+content, so factor 0.60 preserves that documented nutrient basis. The native
+1.67 kg statement is rounded; the generic source market's NPK 0-0-50 statement
+is inconsistent with its actual producer and remains warned. Use the complete
+native regional-storehouse service once as a screening proxy, without adding
+source market freight on top. Grade, delivery, mining, tailings, energy, allocation,
+internal uncertainty and score differences remain unquantified.
+
+`export/uvek_heat_salts_review.json` records the two corrections and four upstream
+qualifications. All 462 previous fingerprints remain unchanged; six exact 3.10
+scopes bring the total to 468. Four of the observed 38 cases are qualified and
+two additional sodium-input correspondences are reviewed. Real preparation now
+reports 34 pending cases in this cohort. Later cohorts and the public heat update
+remain unproven.
