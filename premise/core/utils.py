@@ -7,6 +7,7 @@ import hashlib
 import math
 import os
 import pickle
+import shutil
 import sys
 import uuid
 from copy import deepcopy
@@ -544,10 +545,21 @@ def clear_existing_cache(
 
 # clear the cache folder
 def clear_cache() -> None:
-    """Remove all cached database files."""
+    """Remove database, scenario and default CLIC caches when no build is active.
 
-    clear_existing_cache(all_versions=True)
-    print("Cache folder cleared!")
+    Custom CLIC cache directories are not affected. Active NewDatabase instances
+    prevent deletion of either cache directory and raise RuntimeError.
+    """
+    from .cache_cleanup import exclusive_cache_access
+
+    with exclusive_cache_access():
+        clear_existing_cache(all_versions=True)
+        for path in DIR_CACHED_FILES.iterdir():
+            if path.is_dir() and not path.is_symlink():
+                shutil.rmtree(path)
+            else:
+                path.unlink()
+    print("Database, scenario and default CLIC caches cleared!")
 
 
 def clear_inventory_cache() -> None:

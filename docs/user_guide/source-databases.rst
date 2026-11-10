@@ -100,11 +100,11 @@ stored in the configured user data directory. Compatible subsequent builds
 can reuse it; source and inventory fingerprints determine cache validity.
 See :doc:`inventories` for cache and checkpoint behaviour.
 
-If you wish to clear that cache folder (database and *premise* additional inventories), do:
+To clear source and inventory caches, scenario checkpoints and default CLIC
+caches, first release all ``NewDatabase`` instances, then run:
 
 .. code-block:: python
 
-    import os
     from premise import clear_cache
 
     clear_cache()

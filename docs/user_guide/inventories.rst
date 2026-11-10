@@ -103,6 +103,15 @@ caches, and extracted datapackages are outside this expiry policy.
 Cleanup logs a count and estimated reclaimed space at INFO level (unless
 ``quiet=True``); filesystem errors are warnings and do not abort a build.
 
+To manually remove all source/import caches in ``cache`` and all contents of
+``cached_files``, call ``premise.clear_cache()``. This includes recent and unmarked
+checkpoints, incomplete writes and default CLIC caches, regardless of age.
+Custom CLIC cache directories and Brightway databases are not affected.
+If any ``NewDatabase`` instance is alive, the call raises ``RuntimeError`` before
+deleting anything. Release those instances or restart their notebook kernels
+or processes first. Manual cleanup holds the exclusive build lock until it
+finishes, preventing a new build from accessing caches during deletion.
+
 Self-contained API example
 ----------------------------
 

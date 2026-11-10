@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import functools
+from contextlib import contextmanager
 import inspect
 import json
 import logging
@@ -23,6 +24,25 @@ MAX_AGE_SECONDS = 24 * 60 * 60
 EXPIRY_FILE = ".premise-expiry.json"
 _CHECKPOINT = re.compile(r"[0-9a-f]{32}\.inventory-store\Z")
 _TEMPORARY = re.compile(r"\.[0-9a-f]{32}\.inventory-store\.tmp-[\w-]+\Z")
+
+
+@contextmanager
+def exclusive_cache_access():
+    """Prevent manual cache deletion while any NewDatabase instance is alive."""
+    root = fs.DIR_CACHED_FILES
+    root.mkdir(parents=True, exist_ok=True)
+    with (root.parent / ".premise-inventory-cache.lock").open("a+b") as handle:
+        try:
+            portalocker.lock(handle, portalocker.LOCK_EX | portalocker.LOCK_NB)
+        except portalocker.exceptions.LockException as error:
+            raise RuntimeError(
+                "Cannot clear caches while a NewDatabase instance is active. "
+                "Release existing instances or restart their kernels/processes first."
+            ) from error
+        try:
+            yield
+        finally:
+            portalocker.unlock(handle)
 
 
 def _recognized(path: Path) -> bool:

@@ -323,3 +323,90 @@ def test_interrupted_write_gets_expiry_marker(cache_root, monkeypatch):
     monkeypatch.setattr(cleanup.time, "time", lambda: 300_000)
     sweep()
     assert not leftovers[0].exists()
+
+
+@pytest.fixture
+def manual_cache_roots(cache_root, tmp_path, monkeypatch):
+    from premise import utils
+
+    source = tmp_path / "cache"
+    source.mkdir()
+    (source / "source.pickle").write_bytes(b"source")
+    monkeypatch.setattr(utils, "DIR_CACHED_DB", source)
+    monkeypatch.setattr(utils, "DIR_CACHED_FILES", cache_root)
+    return source, cache_root
+
+
+def test_clear_cache_removes_all_defaults_without_following_symlinks(
+    manual_cache_roots, tmp_path, capsys
+):
+    from premise import clear_cache
+
+    source, root = manual_cache_roots
+    checkpoint(root, age=0)
+    checkpoint(root, marked=False)
+    checkpoint(root, temporary=True)
+    clic = root / "clic" / "archives"
+    clic.mkdir(parents=True)
+    (clic / "archive.zip").write_bytes(b"archive")
+    (root / "scenario.pickle").write_bytes(b"scenario")
+    external = tmp_path / "custom-clic-cache"
+    external.mkdir()
+    (external / "keep").write_bytes(b"external")
+    (root / "external-link").symlink_to(external, target_is_directory=True)
+
+    clear_cache()
+
+    assert not list(source.iterdir())
+    assert not list(root.iterdir())
+    assert (external / "keep").read_bytes() == b"external"
+    assert (
+        "Database, scenario and default CLIC caches cleared!" in capsys.readouterr().out
+    )
+
+
+def test_clear_cache_refuses_active_build_before_deleting_anything(manual_cache_roots):
+    from premise import clear_cache
+
+    source, root = manual_cache_roots
+    path = checkpoint(root)
+    active = cleanup.CacheSession(cleanup=False)
+    try:
+        with pytest.raises(RuntimeError, match="NewDatabase instance is active"):
+            clear_cache()
+        assert (source / "source.pickle").exists()
+        assert path.exists()
+    finally:
+        active.close()
+    clear_cache()
+    assert not list(source.iterdir())
+    assert not list(root.iterdir())
+
+
+def test_clear_cache_refuses_build_in_another_process(manual_cache_roots):
+    from premise import clear_cache
+
+    source, root = manual_cache_roots
+    path = checkpoint(root)
+    context = multiprocessing.get_context("spawn")
+    ready = context.Event()
+    process = context.Process(target=_hold_session, args=(str(root), ready))
+    process.start()
+    try:
+        assert ready.wait(30)
+        with pytest.raises(RuntimeError, match="NewDatabase instance is active"):
+            clear_cache()
+        assert (source / "source.pickle").exists()
+        assert path.exists()
+    finally:
+        process.terminate()
+        process.join(30)
+
+
+def test_manual_cleanup_holds_lock_until_deletion_finishes(manual_cache_roots):
+    with cleanup.exclusive_cache_access():
+        with pytest.raises(RuntimeError, match="NewDatabase instance is active"):
+            with cleanup.exclusive_cache_access():
+                pytest.fail("Concurrent cleanup acquired the exclusive lock")
+    with cleanup.exclusive_cache_access():
+        pass
