@@ -5238,9 +5238,9 @@
       "rule_id": "bp-76fc3358de421a01",
       "operation": "replace",
       "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_pilot_incinerator_endpoint_review.json",
-      "review_sha256": "1c79c2adb0d30e5223040d6a4edd3f963f998b787451b18784fe8cde39739d4a",
-      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, applied only to the four enumerated Swiss ecoinvent 3.6 cut-off municipal-incineration services after matching all 42 wet-composition coordinates and both heating values and opposite one-kg reference signs. Select the dedicated complete incinerator rather than a building-waste wrapper; no new disposal technology, material, moisture basis or recovery model is introduced.",
+      "review_path": "export/uvek_cement_treatment_39_review.json",
+      "review_sha256": "b6c424b3b8c378e24b6541b599cbf52619b3cd7e7489ee8f5fda61fa8482ad45",
+      "authorization": "Retain independently reviewed 3.6 approval and extend only the newly inspected 3.9 cut-off profile under the active goal and standing auto-approval. The frozen review includes the original parent and proves its 3.6 target, factor and reference-review profile unchanged. Closed fingerprint refresh is limited to this modified parent.",
       "inspection": {
         "rule_id": "bp-76fc3358de421a01",
         "source": {
@@ -5280,13 +5280,58 @@
         },
         "native_2026_wet_composition_matches_source": true,
         "matching_composition_coordinates": 44,
-        "conversion_factor": -1
+        "conversion_factor": -1,
+        "cement_39_extension": {
+          "source": {
+            "identity": {
+              "name": "treatment of waste polyethylene, municipal incineration",
+              "reference product": "waste polyethylene",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "metadata_sha256": "d8430d9e4fd0cf3f9d8cd49d4f77c10e80474d8f48e57db0c45b5895758cedd0",
+            "inventory_sha256": "35915776d02a821b0589550fe794a31c0a346e9324c56c75fd1b86f118b07d5e",
+            "comment_sha256": "2f81442c002b12f2a81175c7793f09cdd2067271682598dd7037502dfb0d4e23",
+            "product_information_sha256": "b1a69a6812c71bf1867a089d957c40817e6e689cf9f676325db7ba5d0da09fc7",
+            "nonproduction_counts": {
+              "technosphere": 18,
+              "biosphere": 102
+            }
+          },
+          "native_2026": {
+            "identity": {
+              "name": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+              "reference product": "Disposal, polyethylene, 0.4% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "845d910ac57d68adf365c5a9b972375aef654c2ae268e006dee75e875fba6804",
+            "inventory_sha256": "12b5ff50eabd8894a6ec5a82141df60b11d0d330c344de0e8a41a342c0d0523c",
+            "comment_sha256": "68de515b384caee98e7d6214db81a8b2e05ba61aded1379b4e43999b1428527f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "nonproduction_counts": {
+              "technosphere": 20,
+              "biosphere": 113
+            }
+          },
+          "matching_composition_coordinates": 44,
+          "composition_sha256": "effa3138ca33b3de414b42a1c8750b0c9e36b0695638181bb48b2884742f8ecc",
+          "previous_36_authority": {
+            "path": "export/uvek_pilot_incinerator_endpoint_review.json",
+            "sha256": "1c79c2adb0d30e5223040d6a4edd3f963f998b787451b18784fe8cde39739d4a"
+          },
+          "previous_36_closed_fingerprint": "ec3a5efa70bcb79a206e8eb3e476f878582789b68b1bce6e82ad6378bebd5600",
+          "previous_36_target_factor_and_profile_unchanged": true
+        }
       },
       "limitations": [
-        "Dedicated municipal-incineration services replace the prior construction-waste transport wrappers. In particular, polypropylene uses its own 15.9%-water service instead of a wrapper feeding polyethylene incineration. No wrapper freight is inserted; separately listed caller transport remains unchanged.",
-        "Preserve signed wet kg with factor -1 and no moisture, dry-mass, heating-value or recovery-yield scaling. All 42 wet-composition coordinates and both heating values match native UVEK 2026. The glass supplier retains its legacy 0%-water name although its documented H2O matches the source; names do not override the inspected composition.",
-        "The native 2025 bridge has matching named material, incineration function and positive kg reference, but shorter composition comments. Complete native technology, energy recovery, allocation, emissions and upstream biosphere exclusions remain unchanged; no inventory or LCIA equality or additional source-specific recovery credit is inferred.",
-        "Only the enumerated 3.6 cut-off profiles are reviewed. Other releases and patch profiles remain unreviewed, and no reverse or cross-system-model correspondence is introduced."
+        "Inspected ecoinvent 3.9 cut-off polyethylene municipal-incineration service: all 42 wet-composition coordinates and both heating values match native UVEK 2026. Preserve wet kg with factor -1 from source reference -1 to native service +1. Retain the complete dedicated 0.4%-water incinerator, including its existing energy recovery, allocation and emissions, without adding recovery credits or wrapper transport. Caller signs, formulas, uncertainty and separate emissions/freight remain. Native source vintage/background and mapped-export limitations remain with unquantified score effects. Only this exact 3.9 profile is added; the separately reviewed 3.6 profile remains unchanged. No patch, consequential or inverse approval is inferred."
       ],
       "scopes": [
         {
@@ -5300,7 +5345,20 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "ec3a5efa70bcb79a206e8eb3e476f878582789b68b1bce6e82ad6378bebd5600"
+          "fingerprint": "e5113eca027bcb138f79be9427c3a292b400ce1f2554d47a4db966bb1b2ef8a5"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7fb2ca99ab91cc9b1e6fdec01390ea1bfc895f78e6c29a0856a334ef7db96176"
         }
       ]
     },
@@ -133991,6 +134049,137 @@
             "system_model": "cutoff"
           },
           "fingerprint": "a5c92de824474677e559415f5eac7cc338c321e9481cf86aa966d087907daafb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-491823c78ac7cf2d",
+      "operation": "replace",
+      "mapping_method": "reviewed_cement_concrete_inert_service",
+      "review_path": "export/uvek_cement_treatment_39_review.json",
+      "review_sha256": "b6c424b3b8c378e24b6541b599cbf52619b3cd7e7489ee8f5fda61fa8482ad45",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for complete matching-function landfill operation/facility services, with exact source coefficients and uncertainty. Empty disposal markers are not accepted.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste concrete, inert material landfill",
+            "reference product": "waste concrete",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "c4823c95b409ac8cdb382661a305a5b15b99e05f0e567fc6c08d565d90377c94",
+          "inventory_sha256": "d497de0887d23ed8a5d7b78fc27bb232c5283444ffbeadfb9ae05bd9e312491a",
+          "comment_sha256": "e5ab9d6375a6f9eb37c93c7a90d2445480da74a8d5c9f5253c37fefdd5495aaf",
+          "product_information_sha256": "9ab55d0fc53158136d5d740ea358efa785f6035a9a9d3ab8417792d96045b5dd",
+          "nonproduction_counts": {
+            "technosphere": 2
+          }
+        },
+        "source_market_witnesses": [
+          {
+            "identity": {
+              "name": "market for inert material landfill",
+              "reference product": "inert material landfill",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "metadata_sha256": "69dfdea9f14ed633c2f11e52fef7e67ffb6747b0a523ef90cf6cf728a744f588",
+            "inventory_sha256": "2460cc62e8edfade95229658ce5ecd88b023b8a47dc7124679cd90a43e1d59ca",
+            "child_identity": {
+              "name": "inert material landfill construction",
+              "reference product": "inert material landfill",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "child_metadata_sha256": "5340d49a3ee88b4899e070c17208525b31e24a3f44de13c640b69d78dc6b129e",
+            "child_inventory_sha256": "65a6a5a037a2a1e242b00fe60262d161d7aedf4b2d7171030fcc86bef869f9f9",
+            "child_reference_amounts": [
+              1.0
+            ],
+            "child_nonproduction_count": 24,
+            "single_deterministic_one_supplier": true
+          },
+          {
+            "identity": {
+              "name": "market for process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "metadata_sha256": "8653b0bbe74bffcfbbd36651f88de9db59fa62af9ca9bd25eafa9b486413982f",
+            "inventory_sha256": "b68943b29ccb22a696f80cc417da0a81945798ef35965b047d539af9d03ca081",
+            "child_identity": {
+              "name": "process-specific burdens, inert material landfill",
+              "reference product": "process-specific burdens, inert material landfill",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "child_metadata_sha256": "91554fa441b2e33bf89bfcedaaa41d08bf371b54625d85e890b0b27744b6e4ab",
+            "child_inventory_sha256": "4542062307946f1c17c5a20308e1fe1a2bbab2af6ced5455bc416a8384ddaca4",
+            "child_reference_amounts": [
+              1.0
+            ],
+            "child_nonproduction_count": 20,
+            "single_deterministic_one_supplier": true
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 13,
+            "metadata_sha256": "41e5de4abe9c89cbbe2b36a6b0a413e442bda00f05ef3b3a5fd15a888e3bb96b",
+            "inventory_sha256": "72219a316742a8b70b4e5523697cc73d71217d5c2a88d8b38438fe12a4f0c588"
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 13,
+            "metadata_sha256": "e286eaac53d4befeee7b62184b35412b707cada9d2ec0713f748689a9c7b694a",
+            "inventory_sha256": "51d53d7be2cdae67118b340d0169025b463bc1ea745ee1cfa266bd9aeac1a381"
+          }
+        ],
+        "target_recipe": {
+          "recipe_ref": "cement-concrete-inert-0f52eacf815af60f6591"
+        },
+        "source_uncertainty_retained": true,
+        "physical_omissions": [],
+        "new_collection_transport": false
+      },
+      "limitations": [
+        "Reconstruct only the inspected ecoinvent 3.9 cut-off European waste-concrete inert-landfill treatment using 1 kg complete native generic inert-landfill operation and 1.48e-9 complete native facility units per signed wet kg. The selected old disposal record is empty and cannot stand in for these burdens. Flatten only the two deterministic +1 source markets; retain both parent coefficients and their independent lognormal uncertainty, pedigree and scale metadata. The corresponding native generic operation/facility functions were independently reviewed for the Swiss service; their Swiss geography, heat supply, material/freight background, land-class, operating duration, aftercare and vintage remain screening proxies for the RoW component supplies. No building-waste recycling, crushing, demolition, dry-mass, density, capacity, lifetime or moisture scaling is introduced. Source treatment has no separate collection transport or material-specific emissions; do not add them, infer recovery credit or omit physical emissions. Caller signs, formulas, uncertainty, separate transport and separate emissions remain. No patch, consequential or inverse route is authorized; score differences are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "29a2e6f15551e9416c64da61af64cad0dc2e8bed934a67c5003d296735cc2bf4"
         }
       ]
     }

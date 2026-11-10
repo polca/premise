@@ -3111,3 +3111,66 @@ def test_cement_inspected_39_supplies_keep_reference_sign_and_scope(
             for d in result.diagnostics
         )
     assert resolved.activities == before
+
+
+@pytest.mark.parametrize("label", ["polyethylene", "concrete"])
+def test_cement_39_treatments_retain_complete_service_and_exact_scope(tmp_path, label):
+    from brightpath import DATA_DIR, TechnosphereProfile
+    from brightpath.background import PackageCatalogProvider
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+    from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_cement_treatment_39_review.json").read_text()
+    )
+    record = review[label]
+    resource = load_uvek_technosphere_resource()
+    rule = next(r for r in resource["replace"] if r["id"] == record["rule_id"])
+    scopes = approved_compatibility_rule_scopes(
+        resolve_inventory_target("2026", family="uvek")
+    )
+    bridge = TechnosphereProfile("uvek", "2025", "cutoff")
+    for version, approved in [("3.9", True), ("3.9.1", False), ("3.10", False)]:
+        fingerprint = compatibility_rule_fingerprint(
+            resource,
+            "replace",
+            rule,
+            TechnosphereProfile("ecoinvent", version, "cutoff"),
+            bridge,
+        )
+        assert (fingerprint in scopes) is approved
+    if label == "polyethylene":
+        assert (
+            compatibility_rule_fingerprint(
+                resource,
+                "replace",
+                rule,
+                TechnosphereProfile("ecoinvent", "3.6", "cutoff"),
+                bridge,
+            )
+            in scopes
+        )
+    resolved = graph(rule["source"], version="3.9")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for cached in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is cached
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == 2
+        if label == "concrete":
+            helper = next(a for a in result.activities if a["code"] == edge["input"][1])
+            inputs = [e for e in helper["exchanges"] if e["type"] != "production"]
+            assert len(inputs) == 2
+            for actual, expected in zip(
+                inputs, record["recipe"]["inputs"], strict=True
+            ):
+                assert all(actual[k] == v for k, v in expected.items())
+        else:
+            assert all(edge[k] == v for k, v in rule["target"].items())
+        assert any(
+            d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == rule["id"]
+            for d in result.diagnostics
+        )
+    assert resolved.activities == before

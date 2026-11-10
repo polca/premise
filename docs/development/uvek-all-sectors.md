@@ -298,3 +298,47 @@ reference review after verifying its actual 3.9 composition; replace the empty
 concrete-disposal marker with complete inert-landfill operation and facility
 services. Neither is approved by this batch. Cement preparation and the shared
 sector update remain unfinished.
+
+## Cement preparation: retained treatment burdens and successful preparation
+
+Brightpath `aff7e30a6ebe6ba5cc41e5fa0ef3942a1f8c80ae` adds the two remaining
+3.9 cut-off treatment decisions in this cohort. Polyethylene retains the
+complete dedicated municipal incinerator: all 42 wet composition coordinates
+and both heating values match the actual native 2026 service. Append exactly
+3.9; preserve the old 3.6 target, factor and reference-review profile. Updating
+the parent's closed fingerprint is necessary because it includes every profile.
+Premise proves the old fingerprint against the frozen original parent before
+refreshing only that operation's 3.6 closure. No blanket fingerprint refresh.
+
+Concrete no longer selects an empty disposal marker. The helper retains 1 kg
+of the complete native generic inert-landfill operation plus 1.48e-9 facility
+units. Each original European source market has a single deterministic +1
+supplier and no biosphere exchanges; only these wrappers are flattened. Keep
+both source coefficients and their independent lognormal distributions,
+pedigree and scale metadata. Use the previously reviewed Swiss operation and
+facility functions as explicit geographic/background screening proxies; retain
+heat, materials, waste fate, land-class, use/aftercare and vintage limitations.
+No dry-mass, density, capacity, demolition, recycling, collection or recovery
+credit is inferred. Physical exchanges are not omitted.
+
+The frozen review, maintainer replay, packaged mappings, manifest and wheel
+contents agree. No Brightpath runtime module changes. The final treatment and
+incinerator group passes 22 tests; the wider treatment group had 151 passes and
+two old-stage test expectations, subsequently corrected and included in those
+22 passes. The resource/schema/generation group had 129 passes and two stale
+storage assertions. Storage checks now pass all ten tests after updating
+historical counts and validating evidence-bearing review structure independently
+of a handwritten whitelist. Committed baseline counts (794 reviews, 3,993 direct
+targets) already disagreed with those old assertions; this change adds one review.
+Scientific correspondence authorities and exact decisions retain separate tests.
+Premise's 13 focused cement approval/cache/sign/scope checks pass.
+
+Actual encrypted REMIND SSP2-NPi 2050 **inventory preparation succeeds**, yielding
+12 additional records (four capture/storage services and eight converted helpers).
+This diagnostic bypasses only the public sector-availability guard; it does not
+run or certify cement transformation/export. The next step remains shared Cement
+family/biosphere routing and native clinker/cement selectors, followed by the
+ordinary sector validation and a combined build. The public UVEK guard still
+admits biomass, electricity and heat only. Existing three-sector notebook behavior
+is unchanged. Premise pins the published Brightpath revision; existing kernels
+must restart after replacement of the installed same-version alpha package.
