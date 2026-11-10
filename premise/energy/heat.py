@@ -217,7 +217,19 @@ def normalize_cogeneration_heat_efficiency(database, regions) -> None:
                 rescale_exchanges(dataset, efficiency / 3.0)
 
 
-def _update_heat(scenario, version, system_model):
+def _update_heat(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
+    if family != "ecoinvent":
+        from .uvek_heat import update_uvek_heat
+
+        return update_uvek_heat(
+            scenario,
+            version,
+            system_model,
+            family=family,
+            biosphere_version=biosphere_version,
+        )
 
     heat_layers = (
         "buildings_heat_end_use",

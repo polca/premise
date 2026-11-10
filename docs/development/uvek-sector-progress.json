@@ -849,7 +849,8 @@
         "27ec8018",
         "7f8356be",
         "d1149c50",
-        "405dcbf1"
+        "405dcbf1",
+        "63e7fd77"
       ],
       "tests": [
         "46 reference-basis plus existing heat tests passed.",
@@ -1076,6 +1077,26 @@
           "Verify combined/default cold/warm installed Brightway export before opening the heat gate."
         ],
         "verification": "docs/development/uvek-heat-consumers-verification.json"
+      },
+      "native_callback_stage": {
+        "status": "internal_native_heat_callback_verified_public_route_and_export_pending",
+        "implementation": "premise/energy/uvek_heat.py",
+        "verification": "docs/development/uvek-heat-callback-verification.json",
+        "normal_wrapper_family_dispatch": true,
+        "complete_virtual_graph_equal": true,
+        "common_sector_contract_valid": true,
+        "provenance_events": 789,
+        "metadata_retains_native_heat_audits": true,
+        "focused_and_sector_tests": 208,
+        "shared_regressions": 110,
+        "installed_callback_metadata_and_events_equal": true,
+        "public_heat_gate": "closed",
+        "remaining": [
+          "Run complete CLIC preparation and standard NewDatabase heat update/certification/export through existing public API.",
+          "Verify combined/default biomass/electricity/heat, cold/warm cache equivalence and installed-package Brightway readback before opening gate.",
+          "Retain documented steam/network/ambient/zero-allocated boundaries and all proxy limitations.",
+          "Continue other16sectors; full goal remains incomplete."
+        ]
       }
     },
     {

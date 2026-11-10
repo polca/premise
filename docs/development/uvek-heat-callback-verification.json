@@ -1,0 +1,77 @@
+{
+  "status": "internal_native_heat_callback_verified_public_route_and_export_pending",
+  "implementation": "premise/energy/uvek_heat.py",
+  "public_wrapper": "premise/energy/heat.py:_update_heat",
+  "source_family_and_biosphere_dispatch": "UVEK receives family/version axes; ecoinvent branch unchanged.",
+  "activities": 12606,
+  "modified_consumers": 736,
+  "supplier_only_substitutions": 962,
+  "owned_additions": 53,
+  "result_equals_previously_verified_virtual_graph": true,
+  "source_working_graph_unchanged": true,
+  "common_sector_contract_valid": true,
+  "declared_added_activity_keys": 53,
+  "independent_validation": [
+    "Literal original/audit equality and unchanged signed quantity/formula/uncertainty fields.",
+    "No changes outside consumer supplier fields, or to protected energy/foreground/helper inventories.",
+    "Unique activity keys, actual nonzero production references and complete supplier identity/key agreement.",
+    "No new unverified biosphere inputs.",
+    "Invalid planning/validation leaves scenario inventory uncommitted."
+  ],
+  "validation": {
+    "focused_and_sector_contract_tests": 208,
+    "shared_metadata_reporting_and_validation_tests": 110,
+    "installed_callback_matches_checkout": true,
+    "installed_export_metadata_matches_checkout": true,
+    "installed_provenance_events_match_checkout": 789,
+    "packaged_data_matches_worktrees": {
+      "premise": 249,
+      "brightpath": 272
+    },
+    "no_database_write": true
+  },
+  "warnings_emitted": 20,
+  "export_metadata_status": "screening_only with native heat limitations and retained-boundary audits",
+  "cache_behavior": "Discard stale provider index/row caches; declare exact added and relinked validation targets. Tuple/list and NumPy scalar audit representation supported without changing numeric values.",
+  "legitimate_no_data": "Absent or validated zero selected heat is explicit not_applicable, including common sector contract; positive unsupported roles remain refused by market planner.",
+  "encrypted_IAM_sha256": "1720125d7890fc4dadda88cd3abc978b2421be764756b0a9624d6dac272f6aa4",
+  "public_heat_gate": "closed",
+  "remaining": [
+    "Run complete CLIC preparation and standard NewDatabase heat update/certification/export through existing public API.",
+    "Verify combined/default biomass/electricity/heat, cold/warm cache equivalence and installed-package Brightway readback before opening gate.",
+    "Retain documented steam/network/ambient/zero-allocated boundaries and all proxy limitations.",
+    "Continue other16sectors; full goal remains incomplete."
+  ],
+  "receipts": [
+    {
+      "name": "heat_callback_tests.log",
+      "sha256": "f647ee693fb9e57b84fb9bf2cc3e942667bdab680c8aed6e9ae68d18657b16fd",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_callback_shared_tests.log",
+      "sha256": "bb1b6b648675b7f5d297744f49cf58dafb385815074766f7461cb5b67695ba23",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_callback_real_report.json",
+      "sha256": "6f27eb435d36a52f0f1e7326b587f0359122438a32caff1d9dcdcfa14892cbe7",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_callback_installed_report.json",
+      "sha256": "239ee12a36bf5f3ac7c3bf0c11c0191f28e9b3a302ad2d499449eeb422652bce",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_callback_installed_replay.json",
+      "sha256": "98746cc5b9b5ce6a1762d807dc307f97a95dbca515cdcc5b31ffbd07e4098af4",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_callback_packaged_data.json",
+      "sha256": "ad05c17a469f6b070021a6c5af0812acd427ab324739efc6b20aed1e16447bce",
+      "location": "private task workspace"
+    }
+  ]
+}

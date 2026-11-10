@@ -999,3 +999,35 @@ written. See `uvek-heat-consumers.md` and its verification receipt.
 Public callback/preparation, semantic certification, exported audits and combined
 Brightway export still need integration. The public heat gate remains closed;
 this stage does not complete heat or the remaining 16 sectors.
+
+
+### Native heat callback, semantic contracts and metadata
+
+The standard heat wrapper now dispatches UVEK to a dedicated native callback;
+ecoinvent retains its existing path. The native callback plans supply and
+consumer copies, independently checks literal originals and quantity fields,
+protected inventories, unique keys, actual production references and full links,
+and commits only after validation. It records exact addition/relinking scope,
+clears stale provider caches, and emits proxy warnings. Absent/validated-zero
+selected heat is explicitly non-applicable rather than a false success or a
+common-contract target-coverage error. Positive unsupported roles still fail.
+
+The real encrypted REMIND2050 callback equals the independently verified
+12,606-activity virtual graph: 53 additions and 962 supplier changes in 736
+consumer copies. Its common sector contract is valid, all 53 additions are
+declared, and 789 provenance events explain the changes. Export metadata now
+retains native heat screening limitations and historical retained-input audits;
+literal changed-exchange originals remain on their consumer records. NumPy
+scalar/JSON audit comparisons normalize representation without rounding values.
+
+All 208 focused/sector checks and 110 shared metadata/reporting/validation checks
+pass. Isolated wheels reproduce callback results, all export metadata and all
+789 provenance events; only phase elapsed times differ. Package resources and
+changed modules match the checkout. Source working inventories stay unchanged,
+and no database is written. This is internal-callback verification, not a public
+update or Brightway export. See `uvek-heat-callback-verification.json`.
+
+Public heat remains gated pending complete normal CLIC preparation, combined/
+default callback certification, cold/warm replay and installed Brightway export
+readback. Historical steam, ambient/network-only services and zero-allocated
+MSWI heat remain explicit limitations. The broader 16-sector work is unfinished.

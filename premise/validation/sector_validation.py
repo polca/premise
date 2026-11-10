@@ -128,6 +128,13 @@ def _static_targets(
 
 
 def _sector_applicable(scenario: Mapping[str, Any], sector: str) -> bool:
+    if (
+        sector == "heat"
+        and scenario.get("background context", {}).get("family") == "uvek"
+        and scenario.get("heat diagnostics", {}).get("applicability")
+        == "not_applicable"
+    ):
+        return False
     if sector in {"renewable", "mining"}:
         return True
     if sector == "external":

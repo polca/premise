@@ -323,6 +323,10 @@ def scenario_metadata(
         metadata.setdefault("screening_limitations", {})["native_sector_proxies"] = (
             sorted(native_limits)
         )
+        if scenario.get("native sector audits"):
+            metadata["native_sector_audits"] = deepcopy(
+                scenario["native sector audits"]
+            )
 
     return metadata
 

@@ -7,6 +7,8 @@ import json
 import math
 from collections import Counter, defaultdict
 
+import numpy as np
+
 from ..core.filesystem_constants import DATA_DIR
 from ..inventory.profiles import identity
 
@@ -28,7 +30,15 @@ def _key(record):
 
 def _same(left, right):
     """Accept the normal tuple/list change introduced by the JSON cache."""
-    return json.dumps(left, sort_keys=True) == json.dumps(right, sort_keys=True)
+
+    def scalar(value):
+        if isinstance(value, np.generic):
+            return value.item()
+        raise TypeError(f"Unsupported heat-audit value: {type(value).__name__}.")
+
+    return json.dumps(left, sort_keys=True, default=scalar) == json.dumps(
+        right, sort_keys=True, default=scalar
+    )
 
 
 def _protected(dataset):
