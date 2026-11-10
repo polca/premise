@@ -1,0 +1,211 @@
+{
+  "status": "read_only_frontier_triage_not_mapping_completion",
+  "baseline_implementation": "0d200278",
+  "source_graph_sha256": "904d5433bf57db3a354128068d221296aeba720b7228dc0fb83d539368bf8412",
+  "selection": "Triage only: exact native database; name contains burned; +1MJ single production; direct air inventory; subtract current reviewed pairs. Not exhaustive process coverage and not a mapping decision.",
+  "supplier_identities": 155,
+  "native_unreviewed_inputs": 2370,
+  "separate_other_owner_inputs": 105,
+  "excluded_supplier_counts": {
+    "non_1MJ_reference": 20,
+    "no_direct_air_inventory": 16
+  },
+  "largest_groups": [
+    {
+      "supplier_identity": [
+        "Diesel, burned in building machine, average",
+        "Diesel, burned in building machine, average",
+        "CH",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 675,
+      "other_owner_inputs": 44
+    },
+    {
+      "supplier_identity": [
+        "Diesel, burned in diesel-electric generating set, at extraction site",
+        "Diesel, burned in diesel-electric generating set, at extraction site",
+        "GLO",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 200,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Sweet gas, burned in gas turbine, production",
+        "Sweet gas, burned in gas turbine, production",
+        "GLO",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 200,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Natural gas, burned in gas turbine",
+        "Natural gas, burned in gas turbine",
+        "US",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 63,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Diesel, burned in diesel-electric generating set",
+        "Diesel, burned in diesel-electric generating set",
+        "GLO",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 58,
+      "other_owner_inputs": 9
+    },
+    {
+      "supplier_identity": [
+        "Natural gas, burned in gas turbine",
+        "Natural gas, burned in gas turbine",
+        "RU",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 54,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Petrol, burned in building machine, with particle filter",
+        "Petrol, burned in building machine, with particle filter",
+        "CH",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 52,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Natural gas, burned in gas turbine",
+        "Natural gas, burned in gas turbine",
+        "TT",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 48,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Natural gas, burned in gas turbine",
+        "Natural gas, burned in gas turbine",
+        "DZ",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 47,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Natural gas, burned in gas turbine",
+        "Natural gas, burned in gas turbine",
+        "NG",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 47,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Natural gas, burned in gas turbine",
+        "Natural gas, burned in gas turbine",
+        "QA",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 45,
+      "other_owner_inputs": 0
+    },
+    {
+      "supplier_identity": [
+        "Natural gas, burned in gas turbine",
+        "Natural gas, burned in gas turbine",
+        "EG",
+        "megajoule"
+      ],
+      "native_unreviewed_inputs": 40,
+      "other_owner_inputs": 0
+    }
+  ],
+  "findings": [
+    "Name matching includes infrastructure false positives; triage must require a positive reference and direct air releases before scientific review.",
+    "Native gas-turbine service callers include gas supply/pipeline/liquefaction, so turbine technology alone does not establish a power-generation GAINS role.",
+    "Extraction-site diesel and sweet-gas combustion documentation explicitly excludes NOx, SO2 and CH4 emissions and requires those to be assessed separately. Inspect both burner and extraction caller direct emissions before selecting factors; do not invent missing emissions or double scale.",
+    "Average building-machine diesel documents Swiss non-road 2015 machinery, excluding hydraulic diggers, pumps and mobile generators. Existing transport or residential aliases do not establish its native GAINS sector.",
+    "Owned prepared CLIC/supplement callers need separate review; native evidence does not authorize rewriting them.",
+    "Actual-coordinate check confirms both extraction burners have no NOx, SO2 or fossil-methane coordinates. All200native callers of each have direct air NOx and SO2, but no exact fossil-methane label. Other methane species/compartments and caller emission causes still require review; absence of this exact label is not proof of zero methane."
+  ],
+  "next": "Review GAINS non-road sector boundary and caller-specific gas supply/distribution roles, then inspect extraction direct-emission ownership. Preserve all inventories pending explicit decisions.",
+  "receipts": [
+    {
+      "name": "uvek_emissions_remaining_1MJ_burners.private.json",
+      "sha256": "0d205d30d2a435b6a6660a4421e63ceb8781aefeb8590ccdee3ece8eedbe509d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_extraction_emission_ownership.json",
+      "sha256": "e15b296b644136ff1504dbd3c60a4ebef08902d763c68676704273ee4c157383",
+      "location": "private task workspace"
+    }
+  ],
+  "public_emissions_gate": "closed",
+  "extraction_emission_ownership_counts": [
+    {
+      "source_identity": [
+        "Diesel, burned in diesel-electric generating set, at extraction site",
+        "Diesel, burned in diesel-electric generating set, at extraction site",
+        "GLO",
+        "megajoule"
+      ],
+      "callers": 200,
+      "emission_ownership_counts": {
+        "Methane, fossil": {
+          "burner_coordinates": 0,
+          "burner_nonzero_coordinates": 0,
+          "callers_with_direct_air_coordinate": 0
+        },
+        "Nitrogen oxides": {
+          "burner_coordinates": 0,
+          "burner_nonzero_coordinates": 0,
+          "callers_with_direct_air_coordinate": 200
+        },
+        "Sulfur dioxide": {
+          "burner_coordinates": 0,
+          "burner_nonzero_coordinates": 0,
+          "callers_with_direct_air_coordinate": 200
+        }
+      }
+    },
+    {
+      "source_identity": [
+        "Sweet gas, burned in gas turbine, production",
+        "Sweet gas, burned in gas turbine, production",
+        "GLO",
+        "megajoule"
+      ],
+      "callers": 200,
+      "emission_ownership_counts": {
+        "Methane, fossil": {
+          "burner_coordinates": 0,
+          "burner_nonzero_coordinates": 0,
+          "callers_with_direct_air_coordinate": 0
+        },
+        "Nitrogen oxides": {
+          "burner_coordinates": 0,
+          "burner_nonzero_coordinates": 0,
+          "callers_with_direct_air_coordinate": 200
+        },
+        "Sulfur dioxide": {
+          "burner_coordinates": 0,
+          "burner_nonzero_coordinates": 0,
+          "callers_with_direct_air_coordinate": 200
+        }
+      }
+    }
+  ]
+}

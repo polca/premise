@@ -1403,3 +1403,34 @@ or a new Brightway export. Emissions stays gated pending remaining turbine/CHP,
 biomethane, machinery, waste-gas, direct-process/foreground and particle/VOC
 review plus full public certification/export. Fifteen other sectors and eleven
 heat binding gaps remain in the expanded goal. No new omission is made here.
+
+
+### Remaining combustion frontier: separate source technology from emission ownership
+
+A read-only triage after 0d200278 selects 155 native supplier identities whose
+names contain “burned”, with a single +1-MJ reference and direct air releases.
+After subtracting reviewed endpoint pairs, these have 2,370 native caller inputs
+and 105 separately owned prepared/supplement inputs. This is a bounded search,
+not exhaustive sector coverage or a new mapping decision. It excludes 20
+non-matching reference classes and 16 classes without direct air inventories;
+name matches such as engine construction/disposal are not combustion evidence.
+
+The largest class is Swiss average construction-machine diesel, with 675 native
+inputs and 44 separately owned inputs. Its documentation specifies Swiss2015
+non-road machinery and excludes hydraulic diggers, pumps and mobile generators.
+Verify the native GAINS non-road boundary before assigning a transport or
+residential role. Prepared ownership needs separate review.
+
+Natural-gas turbine callers include pipeline compression, liquefaction and
+gas-supply chains. Turbine technology alone does not justify power-generation
+factors. The extraction-site diesel generator and sweet-gas turbine each have
+200 native callers. Both document separate NOx/SO2/CH4 assessment. Actual
+coordinates confirm no NOx, SO2 or exact fossil-methane entries in these burners,
+while every caller carries direct air NOx and SO2. No caller has the exact
+fossil-methane label; other species/compartments and emission causes still need
+inspection. Do not invent missing emissions or scale an inventory twice.
+
+Review caller-owned extraction emissions together with combustion roles next.
+No inventory or public support gate changes in this triage. See
+`uvek-emissions-remaining-combustion-frontier.json` for counts, primary hashes
+and the precise selection boundary.
