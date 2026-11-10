@@ -1124,3 +1124,25 @@ refused when selected. Existing steam, ambient/network-only and zero-allocated
 heat boundaries, upstream biosphere exclusions, approved proxies and explicit
 omissions retain their warnings and unquantified effects. Historical closed-gate
 qualification entries above describe earlier stages, not current admission.
+
+
+### Remaining heat roles: physical boundaries before aliases
+
+Primary native inventory inspection separates the 13 remaining roles into two
+solar, two hydrogen fuel-cell, one coke, one deep-geothermal, five CCS and two
+frozen-residual roles. See `uvek-heat-remaining-role-frontier.json`. No additional
+role is admitted by this inspection.
+
+The native hydrogen SOFC heat inventory states 33% physical heat conversion and
+8% exergy allocation. Inverting its allocated hydrogen inputs instead yields
+about 4.019 MJ/MJ. That is not a physical conversion efficiency. A future binding
+must preserve its allocated inventory and use separately reviewed performance
+for IAM final-energy conversion, including the SOFC versus PEM limitation.
+
+Native PVT hot-water and borehole-regeneration outputs are not established
+industrial CSP counterparts. Combined solar/fuel heat also cannot silently
+replace pure solar heat. Inspect the dedicated CLIC CSP heat root and its whole
+dependency graph next. Same-fuel coke stoves and native ground-source heat pumps
+likewise do not establish industrial coke or deep-geothermal correspondences.
+CCS heat co-products need independent allocation and capture/storage-boundary
+review; residual mixes need a frozen composition outside the updated IAM markets.

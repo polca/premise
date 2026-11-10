@@ -1195,6 +1195,12 @@
         "strict_unreviewed_role_and_sector_refusals": true,
         "verification": "docs/development/uvek-heat-public-verification.json",
         "installed_automatic_no_recipe_export_readback": true
+      },
+      "remaining_role_frontier": {
+        "verification": "docs/development/uvek-heat-remaining-role-frontier.json",
+        "native_inventory_boundaries_inspected": true,
+        "new_runtime_roles_admitted": 0,
+        "priority": "Dedicated CLIC CSP heat root; documented physical rather than allocated hydrogen fuel-cell conversion; then CCS and residual compositions."
       }
     },
     {

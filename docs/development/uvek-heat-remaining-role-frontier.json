@@ -1,0 +1,54 @@
+{
+  "status": "primary_native_boundary_inspection_not_runtime_qualification",
+  "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "public_heat_commit": "033a47d3",
+  "missing_roles_before_this_inspection": 13,
+  "findings": [
+    {
+      "roles": [
+        "heat, industrial, from solar thermal",
+        "heat, secondary, from solar thermal"
+      ],
+      "native_candidate": "Heat, at 100m2 solar collector in PVT system, Al-Cu, slanted roof, hot water heat storage",
+      "finding": "Native PVT hot-water output is not an established substitute for industrial/district CSP heat. Its paired electricity allocation and excluded auxiliary heating require explicit grade and system-boundary review. Borehole regeneration output is also not delivered useful heat. Combined solar+wood/gas outputs cannot represent pure solar supply without double-counting fossil/wood generation.",
+      "decision": "Do not accept these native candidates as industrial CSP aliases. Inspect the dedicated published CLIC heat CSP root and its complete dependencies next; do not reuse the electricity output per MJ.",
+      "registry_root": "heat-production-at-110-mw-concentrating-solar-power-plant-with-thermal-energy-storage"
+    },
+    {
+      "roles": [
+        "heat, buildings, from hydrogen fuel cell",
+        "heat, industrial, from hydrogen fuel cell"
+      ],
+      "native_candidate": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+      "finding": "Native SOFC documentation states 33% heat conversion and 8% exergy allocation. Allocated inventory fuel draw cannot be inverted to infer physical conversion. Existing IAM source proxy is PEM, introducing an explicit technology difference.",
+      "observed_inverse_allocated_draw_factor": 4.018872625850997,
+      "decision": "Retain complete allocated inventory if accepted, but derive nominal final-energy conversion from independently documented physical performance. Add an explicit reviewed allocated-conversion path with quantity witnesses and refusal tests before admitting these roles. No deallocation, additional electricity credit or inferred efficiency."
+    },
+    {
+      "roles": [
+        "heat, secondary, from coke"
+      ],
+      "native_candidate": "Heat, hard coal coke, at stove 5-15kW",
+      "finding": "Same-fuel native candidate is a small historical German stove, not industrial secondary heat. The current ecoinvent role explicitly uses the industrial hard-coal furnace as a proxy.",
+      "decision": "Compare full native industrial hard-coal proxy with small coke stove before choosing. Retain fuel/technology/geography warnings; do not silently substitute same-fuel name alone."
+    },
+    {
+      "roles": [
+        "heat, secondary, from geothermal"
+      ],
+      "finding": "Found native ground/water source heat pumps, not an established dedicated deep-geothermal heat plant counterpart. Pump output and borehole-regeneration services have different energy boundaries.",
+      "decision": "Inspect the retained deep-geothermal workbook family and physical heat reference. Do not map geothermal heat to ambient extraction or another heat-pump role by name."
+    }
+  ],
+  "CCS_roles": 5,
+  "CCS_next_step": "Inspect complete heat co-product source roots and their allocations, capture energy demand and storage chain. Electricity CCS approval alone does not establish heat allocation or justify extra capture/storage burdens.",
+  "frozen_residual_roles": 2,
+  "residual_next_step": "Review a frozen native delivered-heat composition separately from IAM-updated markets, to avoid cycles, duplicated supply and invented residual fuel shares.",
+  "native_candidates_evidence": {
+    "name": "heat_remaining_role_native_candidates.private.json",
+    "sha256": "fdfbb5d352623ecf698e9bc53589dde281c205753ed63c29c1a4ac41c9629509",
+    "location": "private task workspace"
+  },
+  "licensed_inventory_coefficients_published": false,
+  "runtime_roles_newly_admitted": 0
+}
