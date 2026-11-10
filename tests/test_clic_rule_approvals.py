@@ -3356,6 +3356,9 @@ def test_fuels_312_corrected_dependencies_keep_complete_targets_and_cache(
         ("bp-1b70797abf9bd524", 1),
         ("bp-69890c0224467208", 1),
         ("bp-cbd05b3ad7592f70", 1),
+        ("bp-17d4104946dac764", 1),
+        ("bp-2b86a55ab1009223", 1),
+        ("bp-cd3492574a089af6", -1),
     ],
 )
 def test_fuels_39_material_reviews_preserve_signed_basis_and_exact_profile(

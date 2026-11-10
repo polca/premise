@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-10",
+  "purpose": "Correct three exact 3.9 native endpoints for shared fuel preparation; no fuel-sector qualification.",
+  "brightpath_revision": "92e89c4acdb7d2904c97ef82b7856d93f6deacc7",
+  "brightpath_technosphere_sha256": "a184b2d59483f28a472c3108ac120e758c932b13d4c6adcb4308ab00903204ab",
+  "review_sha256": "8982ef7bbb7082e0a29b4bf6d4e807b3090cb5c72ee50bc9c8e542378d276653",
+  "new_rule_scopes": [
+    "bp-17d4104946dac764",
+    "bp-2b86a55ab1009223",
+    "bp-cd3492574a089af6"
+  ],
+  "existing_approval_operations_retained_exactly": true,
+  "existing_scopes_retained": 572,
+  "validated_unique_scopes": 575,
+  "new_runtime_python_changes": false,
+  "maintainer_changes": "One frozen-review replay stage and its tests; existing generator adds three lines.",
+  "tests": {
+    "brightpath_endpoint_previous_fuels_storage": {
+      "passed": 67,
+      "seconds": 65.83
+    },
+    "premise_fuels_scopes_sign_cache": {
+      "passed": 37,
+      "warnings": 1,
+      "seconds": 119.88
+    },
+    "broader_brightpath_reference_signs": {
+      "passed": 731,
+      "failed": 1,
+      "seconds": 204.0,
+      "failure": "test_all_approved_model_dependent_rules_have_exact_profile_decisions: hard-coded historical count expects 996; current exact-profile count is 1186.",
+      "baseline_reproduced": {
+        "revision": "6d24057f6b06aa8150b8fb5e2c0925e1d21a1e5d",
+        "same_failure": true,
+        "observed_count": 1183,
+        "expected_count": 996
+      },
+      "status": "Known pre-existing assertion failure remains open; no runtime gate or validation was weakened."
+    }
+  },
+  "reproducibility": {
+    "full_generator_byte_identical": true,
+    "canonical_biosphere_unchanged": true,
+    "wheel_review_resource_manifest_exact": true,
+    "installed_git_commit_verified": true
+  },
+  "native_lci_checks": {
+    "date": "2026-11-10",
+    "brightpath_commit": "92e89c4acdb7d2904c97ef82b7856d93f6deacc7",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "checks": [
+      {
+        "rule_id": "bp-17d4104946dac764",
+        "target": {
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "location": "RER",
+          "unit": "kilowatt hour"
+        },
+        "native_demand": 1,
+        "inventory_finite": true,
+        "supply_finite": true,
+        "inventory_nnz": 87892
+      },
+      {
+        "rule_id": "bp-2b86a55ab1009223",
+        "target": {
+          "name": "Sodium silicate, furnace process, pieces, at plant",
+          "reference product": "Sodium silicate, furnace process, pieces, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_demand": 1,
+        "inventory_finite": true,
+        "supply_finite": true,
+        "inventory_nnz": 87885
+      },
+      {
+        "rule_id": "bp-cd3492574a089af6",
+        "target": {
+          "name": "Disposal, polyurethane, 0.2% water, to municipal incineration",
+          "reference product": "Disposal, polyurethane, 0.2% water, to municipal incineration",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "native_demand": 1,
+        "inventory_finite": true,
+        "supply_finite": true,
+        "inventory_nnz": 87891
+      }
+    ],
+    "scope": "Native positive-one supplier LCIs only; not future Premise fuel update or export."
+  },
+  "licensed_preparation": {
+    "success": false,
+    "diagnostic_public_scope_guard_bypass": true,
+    "sector_transformation_or_export_run": false,
+    "unapproved_39_correspondences_before": 36,
+    "unapproved_39_correspondences_after": 33,
+    "new_three_rules_clear": true,
+    "audit_sha256": "58393738c73f209b417ff6784ed5b3f7ae611f316d83c5bda8d36424933d2786",
+    "issue_counts": {
+      "migration.unit_changes_require_factors": 1,
+      "migration.canonical_biosphere_identity": 2,
+      "migration.catalog_correspondence": 1,
+      "migration.scoped_compatibility_review": 2,
+      "migration.unapproved_correspondence": 33,
+      "migration.approved_correspondence": 95,
+      "clic.compatibility_proxy_limitations": 95
+    }
+  },
+  "lint": {
+    "black_changed_python": true,
+    "ruff_new_replay_test_and_storage": true,
+    "generator_ruff_baseline_findings": 2,
+    "generator_ruff_current_findings": 2,
+    "generator_findings": "Existing I001 import-block ordering, reproduced on committed baseline; three added stage lines do not add a diagnostic.",
+    "premise_changed_test_ruff": true,
+    "whitespace": true
+  },
+  "remaining": [
+    "33 first-cohort 3.9 fuel correspondences, further dependencies/cohorts, actual shared transformation/filter/validation/market-linking/export checks.",
+    "Activated silica, granular activated carbon and molybdenum trioxide need actual chemical inventories, not current sand/carbon-black/concentrate proxies.",
+    "The additional RER solid-silicate market still maps to spray powder and is not approved; it is an ingredient discovered while inspecting activated silica.",
+    "Historical profile-count regression needs a proper authoring-stage/current-review repair before full-goal completion."
+  ],
+  "cleanup": {
+    "obsolete_verified_wheel_and_generator_replay_removed_mib": 116.6,
+    "active_caches_and_brightway_databases_retained": true
+  }
+}

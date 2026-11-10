@@ -137772,6 +137772,1016 @@
           "fingerprint": "168d22d3fe98d070f8e2bca39c43d7b258e23ca64e2deee09ecf6d58cfea3207"
         }
       ]
+    },
+    {
+      "rule_id": "bp-17d4104946dac764",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_native_endpoint",
+      "review_path": "export/uvek_fuels_39_endpoint_review.json",
+      "review_sha256": "8982ef7bbb7082e0a29b4bf6d4e807b3090cb5c72ee50bc9c8e542378d276653",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for inspected native screening proxies, with recorded primary evidence and warnings.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "location": "Europe without Switzerland",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "bc400e83affb2d1a0456a8467ec57a6e374a96583e9e9fc4b600c49419673825",
+          "inventory_sha256": "c64b32cd4da859cf1af336179601474ac3e67a190893645189e798865405606b",
+          "nonproduction_counts": {
+            "technosphere": 39
+          },
+          "comment_sha256": "1c5462a11f17b530313737b56f1e46d5f9ab20bb040269f4e10bebb4cc9ba627",
+          "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "FR",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e976b9d18ca377f61187ca7d21dbe9a402c4b6fbffd36733a8d5ce308c85fddf",
+            "inventory_sha256": "4f3324fa3f371f9bc7a47d5827a4c1e00d16fa25aa30141f9220f7d028171f15",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "725fe503abb086a0fb641a5ca3582d660a917b6be9b69f690e40208e5cc79ad8",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "SE",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a84ad1f866350f4a60f268ca505dab23df4f8ecfb57fe299eed726251135ab75",
+            "inventory_sha256": "7648e1238b4928a9fd3ffff4a03f5aee71ca5a9e56378dc69792b8255b178367",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "73bfddc845f7cac06b26d79814435a4290d9fc69223a1db22f3d0bbf31c7f1dc",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "AT",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4829f0ee9f976648810d3307ef1ed425a44f7ee9e2268cea08cbea3e29f22dd1",
+            "inventory_sha256": "d2bd697a46d73633883524fbf779f2dad8eb971a8ebbbc38fd22d299b3dc2e91",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "222488daea452acd7a0603c1e7667a10f807b789e003bc16fcd27873d15f023d",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "AL",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "56273702a3c3b0fac7d20007bb68711464f22b42226c0161a31dc9e518a698d7",
+            "inventory_sha256": "93f213e55149127c2356fc070a8f8d0aa94ba4c9affde2cf1f2ed80fbeb1822d",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "547711a92af25db6c1049640576fd574fb3b43a38a7f7ee2f52f717ebc144322",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "DK",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "500b50197f5a154c9e13e9dbf9ddaadbc5b91e612bb643e365ed0a0c36261754",
+            "inventory_sha256": "85446206160b1c0df6741fbee9c93d1270a30173668097613efe9a2cd5019ed2",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "aa4c51afdc71e4859dfd91ac780e5427270c4a036139e578f151c5d55df41fc8",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "IT",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "56b63881bd6d6dfea71769991e600b834fbf366c09687d669d53b8d6c315e33b",
+            "inventory_sha256": "4eb4fe204e8b62f6981685083a5802e2e1c24265393b51bf50db49ca3c2c1037",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "0c84dd29142f389bb7800ae5a0a8377d7a2b3860dbd7f7a64c71318be31fa886",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "MD",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "54779dcbb6f82b2e65a24f291183dfdfe19f683bdcd10dc61311168417b28586",
+            "inventory_sha256": "a3039f3f34e79f19a4e71243518c293a683b196c5b68b4725ed5fbc6b2a3b715",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "0d5e987f7b60ec031e5004e484d625fd5fc3f0a76d1fc509887581db76647995",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "EE",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "5e9d0cb6548ad2d35cba5b21717070ac0d54f1ce39d55be02de3086e177a927c",
+            "inventory_sha256": "35949278e2d133379ed2aad55963414211ca6b8d1fe6e94014281cbca24f199e",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "8ca92c23cdbe51ad4f79a8062759c9db74372bdb3d0aa8633bbca47129709d39",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "LU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "fb3b3c86efa3c956ce00ddad42460a56ff29f497ea011a11ca883b1f3b7115ed",
+            "inventory_sha256": "c74e36886d77902774323e5e237ba9f10f2ed3d00b3132052d3b06b18c85623e",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "5771cd883db5624e44863e0f00f38d54afb84b6b098b938ef584b009d4b6fd05",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "PL",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d461ef8d3042815b4653160cecce8bd8b344eca3fb8d6cf77542bfac6084978e",
+            "inventory_sha256": "21d4b9fa5bcb1910bacab89db69f22c98124c013dda5b27657acc0542e758ff8",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "091b9dffd712a034bee6dc8e14006662070cbb41bc5df28659425f6200e9477d",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "IS",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a71382c192268b86826d280df2253b58ace79660371072e7014368ce62161fe6",
+            "inventory_sha256": "509aab67d459e0149f20cc44c381cb79e8d02ef330ffa5b5765bb76a64fbbab7",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 1
+            },
+            "comment_sha256": "fec40aaeaa04f5a449ddd5987d44e59899166fc4369511d816d7be843895dd67",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "BE",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "92bbef032c34c44c26ca6166ea9ffcee04a538125b850d97426e526363df2c5a",
+            "inventory_sha256": "a7d97deb97ece405241765ad955aed23bf7d7fc73bbabb001cce1405d101b952",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "cc13a871ca1edc4683b6d8ff7ddcb18eedd204ef475093d62914589dc34e8c5e",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "LT",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "18478c95acaf59d7ca9454504a81c71fb291a041a5013686932fee1e3863d777",
+            "inventory_sha256": "1a4d87f3f101abb67666c2edfadf0d235a2ae40bf5d6b7580b2e9a0aaf836cdc",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "a14abb734c68a118084b5eaf82cf2badc4bcad3905908446c59bb221d844d56b",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "BA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "40bf6a4ec2d68e4ff4e1db2b44be13c5653f42b3e54851d591f53c51b9259b1b",
+            "inventory_sha256": "f178386bf510bffd63250685a98a94dc470d071c023c746c9189375a12b97ec0",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "0449a0e48811cb5b8394fe8188c412372500cbf68a1dbf17914e3014b26133d2",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "MT",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7e20e7efeaf9554a0bec1ae1f135be0469607d06fce0d92e799068bcce32528f",
+            "inventory_sha256": "b29d494b912e7f3a7276568d619cc65e3d265a1a70503cabb5a23c20d492bf4c",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "cf107f0c38d4028462baebf2e2b9e2abada50ba9d82c30cf606335547b04cd61",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "HU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1e2bdabc41d75fa94a493cb5a143932200de6b9c872836a34aecbcf16ce2ba4f",
+            "inventory_sha256": "58704f30c658720c65fe9bbd9826feaae48b83f1268f1b90d8f46e18276c5580",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "cf62871c01629d3b564ee907ddd1f7ad602c3f7f8b32260790bcac313d15b32d",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "UA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1f939c8416a47e4b6246210ce18b6635b3eacbec197f9afe9ce8006f54b11a00",
+            "inventory_sha256": "a5deb905b6ae16b806d378a66c3ac70a4d6e6015a4d3045b4d9fc2f73c2fa3e2",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "a1b2029d98434282fec4583a5de54887e056385804f3e819a0cc7ddaaef76386",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "ES",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c4035556c172698956814d5aa00a03aedb497138e55200aead2378946f18e604",
+            "inventory_sha256": "8906673e573040c8653828de8a51726b4651c1d1a732b104a86b46062a10850c",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "f133c7c17e257ef3835614d14e916137af6d17cad97734bc0264dac6ff0ead22",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "BG",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e5e702525c2ccf47ff5359e57e5596450424a660183f043836ca3a970f30607c",
+            "inventory_sha256": "08e66f189557be665bcec9b19201999f644176f4e13daa935543048c73b8fd05",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "f0c92acf38d277b48e2377ae1a28f66072ac8720701392774ad10cc14ece01c8",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "FI",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "feef72269755618e091740b30d1d2bfe84f3e3676ae3fd1aad900e12514b2cb7",
+            "inventory_sha256": "a6e2448a48964180bd9e7243bd9da5ab6713cc6178b24e09c74afd203fa5667a",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "cae4cffff3fd9a61c6b021212535a6a7644c7b192dc22da767797b73a141adc8",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "SI",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c2fb8c95a22d631ccb2934ca475e81a374961d24f3cf2f47b2b26e61290d67dc",
+            "inventory_sha256": "c5f444eb26b9bd66362645218f5ae9ec931eae34e5fb725e5e8a2e71e676012e",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "4e09992bb54455542c87c4fa6ad0e865c07094a23b934f4568f7d55dd9f6c9e2",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "NL",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ed5bd25e2a9d111cbbc72317d89ad60da760ddeefe40ad66b3ae19c09e8560b4",
+            "inventory_sha256": "379698021e50149a7c05e192dbb787f4d17f0715724a28ee41cfa6cf1ecfcef4",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "694757adf3911736dded20b48fa3c3a182b3e1a56d4bbfcce4bf0b375c692390",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "GI",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "bfa6dad2a98d2e101989eb4718b1f9bbcad6f23ebe2d11c4bf8b2ba52e36046d",
+            "inventory_sha256": "d63b8a5c470b28a45bec5a00a0074850621ae51eef58b0756c75f8931bde6b75",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 1
+            },
+            "comment_sha256": "f697538750ca55b86e4ef27cc1785bf9cd8fad24f6e9233d9d55d0c2207ac3bb",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0fc4da05a49e99939c34ea1b4365a6accf5e8fd2498551b3f98c1784c6be2580",
+            "inventory_sha256": "931451f9d61f8a124a7c97b069261daad6b056ded473c6cafd748df6fc5b040c",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "75f1e2c3b872b145d25e3c72fe1c7518891001672639423c86669b597473c011",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "GB",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "89dcfe785be69463b45926ef04aefe37b4f7f1090f73dde4e0a071d37e84e206",
+            "inventory_sha256": "f574c3744c15643bec2d01c62e7f31eca310631b07ab9ccc8e4fcacc0619e5e7",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "2df38d188dd2d905dcb340bc375a9c52b172e9a81dcb8131e9a66bcd3f42ce61",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "NO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8b19d5fc0157bf8e627879a33a3479381b72bc9623b754df9b83b4c61d1767c5",
+            "inventory_sha256": "125b5a4e82cc6e37f7e7b4f4289802df471a0f3109fd4a791535f4ace0305141",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "7b8a2d56ec9e709b66e0e393deb2f48679fbd0ebd87a622d0fc00addb4d17a42",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "LV",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a0138261b32dedcafdfb81711ff1cdf5c4bc1509eaba88ae4e14cb20ced5e757",
+            "inventory_sha256": "a89e6524cfe27d79a6cb8387495da24b092bc19a8dd266c2dc89143b1e395711",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "b55939bb6221f2848c8e8e0b731e91072cea5364c1bbf2953a68409912fa8090",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "GR",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a56d70e4bb185f493058485d0cc4f1cde7f6f888d6d9a04d33c440a25aa70548",
+            "inventory_sha256": "98a2ad20e2253ad0f7da59302f0e1f69d45810f7e688af23a4a115667896ce1c",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "0b4b5d0486f7f2918d96e279aae428386312e15d108a24074544e12585dbefb2",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "XK",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "453fa7cdc498b24ca24be7efab986c64eb4c9d1b6613a43a7733e7cd13e1c5ff",
+            "inventory_sha256": "34fb20ba58c4b7bff2565c717073b82f7264f2d983512a5364ef7e489a408a7d",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "15a9c05cbab5a64aad9b13afeb4c5878141ebab011b580ab6f7f7b8076400b7a",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "RS",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "cb0dcdaed720d5632adf292e02e91c384ee48bc256e9645a152c242ab12f74ca",
+            "inventory_sha256": "d3720135ff916f92c39d81a6ee9cf11843fc21ddd0dc0f6afd11617b50a2d16e",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "4fd8d81b2da1f9146dd9b770d771047f70c6aead675118b87d31c5ae92af0c26",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "MK",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7abaca6ca7074bcfd72872f391f92a92c06512df69ce0e1d716a63296ebe0729",
+            "inventory_sha256": "50574fda358a3460afb241582143dca94feaf38e53c5201f506843dd0d571982",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "6e4e5ed9c23e4921f75a68925dc246a71df409f6a07b5fc305c958fac4d531df",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CZ",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "39d90a45a642a175ca38b3dcf18b00685af2d7fb8bbcd691417334e8b90db319",
+            "inventory_sha256": "ed8391bf993d837fed9177c516779fdd34a8050d6ae1721397aea96d9494e8c0",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "eed00691af5ae2288e5cf27a442a85ba259d5971880d3c1cc55dc79f67d60c74",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "SK",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e65023424966900e96b5ce32597a7df756f459bcb2b876ce2a2ef3d2aff53c0d",
+            "inventory_sha256": "0c837234331f187ed502e864473e97b4e390e35e6fac49cc3f090801f01c3c71",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "713fc1c71a632b90df6c8f1a3df2585f51f580d43d14055ffb4859bd673e111c",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "PT",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e4fe5ba586871782662d69e5c64a321d2a0c58ffb8104085e18ecfb7e24dd26b",
+            "inventory_sha256": "02835789dfbd825d841c90b7dc4b5e8153693e6c2daef6d7eee13020eb2eac40",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "e9ad980df61ca5b595e7e0d2f4889f81a91f995819cff88b633a06d11537b90e",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "IE",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7438774b759aca07338e66bf6535c757063544d45e598cf3917af1a16d6d1c1e",
+            "inventory_sha256": "dcd18d284a1aca4e65a74c003ef76268c5dc27c8861112cd93ad7bc54bd2da35",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "1ee61d7cf0ae80d7e37a40ff10e8ed3bda6b81db08941bc10e756ccb2c10e009",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "DE",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "be121f7e8fe797b8a87adc6f5817542677202929add1ec43b1cc56ca6909d61c",
+            "inventory_sha256": "5aaa488a035e2f8c48111893cb19be1c3975a8d759fea24d434d59d3cf3ee0e8",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 1
+            },
+            "comment_sha256": "15042f2a28bf26c3ed4d16d92287ef26f6333156ffea4d7ae4f2b51633ad5bfa",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "HR",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9b811275e4a444310f8bf74fae2841747c420a995a83e9984d6905dd0696e8fa",
+            "inventory_sha256": "65c82b82abbebbacf5613b7002b4a5ba4015861b55aebc7a6f040fea982b57d8",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "5d70a05cbb8b5238577489ac0c41f62cde6af76119a937a2304ecb28d2fbd60b",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "ME",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c0ad09f8d2e5426ff71d18cbf6d9951322215fabd82174191fa57ed0da221e13",
+            "inventory_sha256": "d2eabc01fa96c19a449974740b4bc1f4b48580e09309afa981e260624e541967",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 1
+            },
+            "comment_sha256": "0cf16a8a35756cdfef33cf61c547cd607380e0ffaf6ee7a90244e6e148795fcd",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "BY",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "2b8588861eba9fd72302f0bcefb8799129b234a4b4c758d4f84c05464ee2b19f",
+            "inventory_sha256": "5cb38c62af7aecbebfc00aa2f0a5b832786cc9c9877f1e10795edb096b93e6f2",
+            "nonproduction_counts": {
+              "technosphere": 5,
+              "biosphere": 1
+            },
+            "comment_sha256": "f5c0cded514398bb6f75114784c593ef0581b6915209bf3b1be1f0846cc0c702",
+            "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+          }
+        ],
+        "native_2026": {
+          "identity": {
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "location": "RER",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "65a9b09f4ad301421facbea5f2d5b0e78532679c411f786b77ef9dd6a7a2988f",
+          "inventory_sha256": "75abb47fb45263c9995f8a33c034c56a33e69551f83f7375256ecc6fd06635c4",
+          "nonproduction_counts": {
+            "technosphere": 3,
+            "biosphere": 3
+          },
+          "comment_sha256": "b3bc29b6a49467f456ed2e414731a3a8349a959ea5203385f8a4cfc769f126c3",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "basis": "Replace the erroneous Swiss-only target for the European-excluding-Switzerland low-voltage market with the complete native European RER low-voltage grid per kWh. Both actual references are +1 kWh; retain native grid generation, voltage transformation, infrastructure, losses and direct emissions once, without extra losses or Swiss generation substitution. Native RER geography can include Switzerland and differs from the source exclusion and country portfolio; historical mix, topology, vintage, allocation and internal uncertainty differ. Preserve the grid identity for ordinary Premise IAM electricity updates; a mapped baseline alone is not proof of future market relinking.",
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Replace the erroneous Swiss-only target for the European-excluding-Switzerland low-voltage market with the complete native European RER low-voltage grid per kWh. Both actual references are +1 kWh; retain native grid generation, voltage transformation, infrastructure, losses and direct emissions once, without extra losses or Swiss generation substitution. Native RER geography can include Switzerland and differs from the source exclusion and country portfolio; historical mix, topology, vintage, allocation and internal uncertainty differ. Preserve the grid identity for ordinary Premise IAM electricity updates; a mapped baseline alone is not proof of future market relinking.",
+        "Only the independently inspected ecoinvent 3.9 cut-off identity qualifies. Preserve signed caller coefficients, formulas, uncertainty, foreground ownership and separate freight/emissions. Complete native model, geography, allocation, vintage, delivery and biosphere coverage differ; no equal-score claim, new credit or omitted physical exchange is inferred. Other releases, consequential and inverse mappings remain unreviewed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "40ca542a578995339b23c04614040c1eb4983ca30407b267ac4d98354526b27b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2b86a55ab1009223",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_native_endpoint",
+      "review_path": "export/uvek_fuels_39_endpoint_review.json",
+      "review_sha256": "8982ef7bbb7082e0a29b4bf6d4e807b3090cb5c72ee50bc9c8e542378d276653",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for inspected native screening proxies, with recorded primary evidence and warnings.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium silicate, solid",
+            "reference product": "sodium silicate, solid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "91795ecd327c8a2194ec54068168429f6b98d2d26a802a45f65d72d97cdeed93",
+          "inventory_sha256": "9734aeadc912e60de87305070c337bafaf189e5caeb52f7d7949eba35e74e155",
+          "nonproduction_counts": {
+            "technosphere": 11
+          },
+          "comment_sha256": "7f710c08549b011e7d4325db717a59d7554170ffdd874ce6bad80555125e7d2b",
+          "product_information_sha256": "6cc088fcaa2feceb69947bca8006e1a817e0c29e517f97c0e1c63efa6f8c311a"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "sodium silicate production, furnace process, solid product",
+              "reference product": "sodium silicate, solid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c0876410b75252042981612c706de5e85e7939fd3c68c9835c659e9f9e241e5b",
+            "inventory_sha256": "b6d1c174b43d4d00751e4fd5ef3cbd4261f638f3399b88c1333504f30f114155",
+            "nonproduction_counts": {
+              "technosphere": 16,
+              "biosphere": 10
+            },
+            "comment_sha256": "8c17977a71335ef0d2f8c7ff32690696414209a8e3e76d900384bc648695f779",
+            "product_information_sha256": "6cc088fcaa2feceb69947bca8006e1a817e0c29e517f97c0e1c63efa6f8c311a"
+          }
+        ],
+        "native_2026": {
+          "identity": {
+            "name": "Sodium silicate, furnace process, pieces, at plant",
+            "reference product": "Sodium silicate, furnace process, pieces, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "c616f2b9f8139b45dc4134460e89e4c537462a3a47cc09deb4c7deab132b107e",
+          "inventory_sha256": "9f6fdae4cf9f63e21216f660a04e08e9eb9e737953d65e1d018970cad944a727",
+          "nonproduction_counts": {
+            "technosphere": 11,
+            "biosphere": 9
+          },
+          "comment_sha256": "b75a6edb344a410d8ad5723404bb37d988387b994e790933a53b1f2617c74ac0",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "basis": "Use complete native solid furnace-process sodium silicate per kg, not hydrothermal spray powder at 80% or a silicate solution. The actual source furnace producer and native furnace process have matching silica-sand and soda input quantities and a matching steam basis per one-kg solid reference; the source market product is explicitly without added solvent. Both carry the same erroneous sodium-phosphate/phosphoric-acid legacy prose, while their actual sand/soda reaction inventories identify sodium silicate. Do not infer metasilicate stoichiometry from generic CAS/formula metadata or use 1/0.8, drying, hydrate, solvent or yield corrections. Native European producer, process heat/electricity, historical recipe, emissions, allocation and internal freight replace the source market and its RoW origin/delivery portfolio; exact chemical grade/modulus and equal LCIA are not established.",
+        "conversion_factor": 1,
+        "basis_comparison": {
+          "source_producer_inventory_sha256": "e8169ccfc4f35fc99c1cb4ff23339cc07e9771d5a8e7f5e0cf37e7ec27a9e80e",
+          "native_inventory_sha256": "9f6fdae4cf9f63e21216f660a04e08e9eb9e737953d65e1d018970cad944a727",
+          "comparison": "Independent equality checks on corresponding raw-material and steam quantities per one-kg reference, without publishing original source inventory coefficients.",
+          "matches": [
+            {
+              "source_name": "market for silica sand",
+              "native_name": "Silica sand, at plant",
+              "same_amount_and_unit": true
+            },
+            {
+              "source_name": "market for soda ash, light",
+              "native_name": "Soda, powder, at plant",
+              "same_amount_and_unit": true
+            },
+            {
+              "source_name": "market for steam, in chemical industry",
+              "native_name": "Steam, for chemical processes, at plant",
+              "same_amount_and_unit": true
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Use complete native solid furnace-process sodium silicate per kg, not hydrothermal spray powder at 80% or a silicate solution. The actual source furnace producer and native furnace process have matching silica-sand and soda input quantities and a matching steam basis per one-kg solid reference; the source market product is explicitly without added solvent. Both carry the same erroneous sodium-phosphate/phosphoric-acid legacy prose, while their actual sand/soda reaction inventories identify sodium silicate. Do not infer metasilicate stoichiometry from generic CAS/formula metadata or use 1/0.8, drying, hydrate, solvent or yield corrections. Native European producer, process heat/electricity, historical recipe, emissions, allocation and internal freight replace the source market and its RoW origin/delivery portfolio; exact chemical grade/modulus and equal LCIA are not established.",
+        "Only the independently inspected ecoinvent 3.9 cut-off identity qualifies. Preserve signed caller coefficients, formulas, uncertainty, foreground ownership and separate freight/emissions. Complete native model, geography, allocation, vintage, delivery and biosphere coverage differ; no equal-score claim, new credit or omitted physical exchange is inferred. Other releases, consequential and inverse mappings remain unreviewed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "622404fbf05e2997226de942bfd1dbae5e402301ca15d6c54bd6c2007c87ec2a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cd3492574a089af6",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_native_endpoint",
+      "review_path": "export/uvek_fuels_39_endpoint_review.json",
+      "review_sha256": "8982ef7bbb7082e0a29b4bf6d4e807b3090cb5c72ee50bc9c8e542378d276653",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for inspected native screening proxies, with recorded primary evidence and warnings.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste polyurethane, municipal incineration",
+            "reference product": "waste polyurethane",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "b20ee92c9e9af2ff3d31681b48478e27cb424ead1cd84b5f6ec3ff04c6c78d0a",
+          "inventory_sha256": "aa3e2ffc02aac29a5a3ee3d3b76ecf370dff217b80e823f8268e42b7d66a7be5",
+          "nonproduction_counts": {
+            "technosphere": 18,
+            "biosphere": 96
+          },
+          "comment_sha256": "3c46291be6017d86eee288b7fb2759a5b07f776a8ed609bf2bcb16461a92313b",
+          "product_information_sha256": "48c55d1b62cee2e2b9a9b504aa9420cc19e9ce8583109bfa9d8d278037a70a7f"
+        },
+        "source_producer_witnesses": [],
+        "native_2026": {
+          "identity": {
+            "name": "Disposal, polyurethane, 0.2% water, to municipal incineration",
+            "reference product": "Disposal, polyurethane, 0.2% water, to municipal incineration",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "d4fec6e4b50fc99e74564280e84fe076737d0752feddfb1b1881e07cfb71605f",
+          "inventory_sha256": "badd9c610d00922b696da9bdd8d2227aff89105863dc292a7583b9ff405474b9",
+          "nonproduction_counts": {
+            "technosphere": 20,
+            "biosphere": 107
+          },
+          "comment_sha256": "d7672a43b6a03b4095d7c5e206e352e7ab572e0b8df6397f619bf2fe14a858b0",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "basis": "Use the complete dedicated polyurethane municipal incinerator per wet kg, not the construction-waste wrapper that adds 0.031 tkm of collection transport before this same service. Actual source and native waste descriptions have 0.2% water, 30.67 MJ/kg lower heating value and the same polyurethane composition. Source reference -1 kg versus native +1 kg service requires factor -1 independent of caller sign. Preserve separate caller transport and emissions; do not add wrapper collection, further incineration, energy credit, metal recovery or moisture scaling. Net energy, allocation, flue-gas treatment, emissions, residue disposal, vintage and uncertainty differ with unquantified score effects. This exact ordinary-incineration identity does not approve separately named fly-ash-extraction services.",
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Use the complete dedicated polyurethane municipal incinerator per wet kg, not the construction-waste wrapper that adds 0.031 tkm of collection transport before this same service. Actual source and native waste descriptions have 0.2% water, 30.67 MJ/kg lower heating value and the same polyurethane composition. Source reference -1 kg versus native +1 kg service requires factor -1 independent of caller sign. Preserve separate caller transport and emissions; do not add wrapper collection, further incineration, energy credit, metal recovery or moisture scaling. Net energy, allocation, flue-gas treatment, emissions, residue disposal, vintage and uncertainty differ with unquantified score effects. This exact ordinary-incineration identity does not approve separately named fly-ash-extraction services.",
+        "Only the independently inspected ecoinvent 3.9 cut-off identity qualifies. Preserve signed caller coefficients, formulas, uncertainty, foreground ownership and separate freight/emissions. Complete native model, geography, allocation, vintage, delivery and biosphere coverage differ; no equal-score claim, new credit or omitted physical exchange is inferred. Other releases, consequential and inverse mappings remain unreviewed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ac1737bba33b8042601ff4953716424d3538ae7b18b52c1ef2c623e33dc8c323"
+        }
+      ]
     }
   ],
   "superseded_operations": [

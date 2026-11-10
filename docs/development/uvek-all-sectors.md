@@ -657,3 +657,56 @@ candidate evidence have been collected privately to resolve their complete
 process boundaries. The European low-voltage market mapped to a Swiss native
 grid likewise needs a corrected regional target before approval. None of these
 remaining mappings is approved by the runtime correction.
+
+
+### Three corrected 3.9 native endpoints (10 November 2026)
+
+Brightpath `92e89c4acdb7d2904c97ef82b7856d93f6deacc7` corrects the European
+low-voltage market's Swiss-only target to the complete RER grid; solid sodium
+silicate's spray-powder target to the solid furnace process; and polyurethane
+waste's construction-transport wrapper to the dedicated incinerator. Only the
+inspected 3.9 cut-off identities qualify. The waste factor is -1; grid and solid
+silicate factors remain +1. Actual source/native sand, soda and steam quantities
+match per kg of furnace silicate. Neither the common erroneous phosphate prose
+nor generic formula metadata justifies an invented concentration, hydrate or
+stoichiometric adjustment. Grid geography, source-market delivery, technology,
+allocation, emissions, residue, vintage and uncertainty limitations stay explicit.
+
+All previous 572 approval scopes and their complete ledger operations remain
+unchanged. Three additions give **575 validated scopes**, verified against the
+Git-installed companion in the regular conda environment. No runtime Python
+module changes occur in either repository. One maintainer-only frozen-review
+replay stage and its tests accompany the mapping data. Full generation is
+byte-identical, the canonical biosphere is unchanged, and the built wheel
+contains the exact review, resource and manifest. Black and Ruff pass for the
+new replay/test files; the existing generator's two import-order Ruff findings
+are reproduced before and after its three added stage lines.
+
+The endpoint/previous-fuels/storage group passes 67 checks; Premise's exact
+scope/sign/uncertainty/formula/fresh-cache group passes 37. The broader Brightpath
+reference-sign suite passes 731 checks and fails one historical hard-coded count
+assertion. The **previous committed companion also fails that same assertion**
+(1,183 exact-profile rules versus its expected 996; the new total is 1,186).
+This stale cross-review assertion remains open and is not hidden by a validator
+waiver or a raised expected count. A proper historical-stage/current-review test
+repair remains required before full-goal completion.
+
+All three complete native providers have finite positive-one LCIs and supply
+arrays. The original BAFU source remains at 11,947 activities with its modified
+timestamp unchanged. These are native supplier checks, not prospective fuel
+market/export qualification. The actual licensed preparation rerun clears all
+three corrected rules and reduces this cohort from **36 to 33** unapproved
+correspondences. The diagnostic bypasses only the public availability guard to
+inspect preparation; no fuel transformation or export is run. See the
+[endpoint preparation receipt](uvek-fuels-39-endpoint-preparation-verification.json).
+
+Next: reconstruct the actual activated-silica, granular activated-carbon and
+molybdenum-trioxide boundaries instead of approving sand, carbon black or ore
+concentrate. Component inspection also finds a separate RER solid-silicate
+market still mapped to spray powder; it has no Premise approval and must be
+corrected before that chemical reconstruction is admitted. Further preparation
+cohorts, fuel/IAM market linking and remaining registered sectors stay in scope.
+
+Removed 116.6 MiB of obsolete private wheel/generator-replay artifacts after
+verification; active caches, primary inspection evidence and Brightway databases
+are retained.
