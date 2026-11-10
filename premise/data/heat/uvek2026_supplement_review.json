@@ -20,7 +20,7 @@
         "slug": "heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass",
         "version": "1.0.1",
         "version_id": 4911,
-        "sha256": "d3f314bc0ad2a18c31b553e9a387e7bb3aba3017b282005fe95730d4d19712c1"
+        "sha256": "de2830c1029fe196edda983aebeb1c31ab4db8917a8184d3b08a65ccccf0c237"
       },
       "source_profile": {
         "biosphere": {
@@ -79,7 +79,7 @@
         "slug": "heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-coal",
         "version": "1.0.1",
         "version_id": 4912,
-        "sha256": "78af558d6f6314f500d7198258c3182f91c78183f177a027fee24f29ac486a27"
+        "sha256": "0ea3a5a136fd72b3e5b4a121ab3521b3e8f5890e59d57c09c09972e2ed2bfdc9"
       },
       "source_profile": {
         "biosphere": {
@@ -121,7 +121,7 @@
         "slug": "methanol-production-coal-gasification",
         "version": "1.0.0",
         "version_id": 2028,
-        "sha256": "fc98495d4200293aee26a0b9835157479e14c614109d8e2ec64d9d5d05d2f3e1"
+        "sha256": "1015e1192a31dd4dbacdcbfe187cd2888c34f6f15fda92d117807cbcd264fe35"
       }
     },
     {
@@ -139,7 +139,7 @@
         "slug": "heat-production-from-hydrogen-fired-one-gigawatt-gas-turbine",
         "version": "1.0.0",
         "version_id": 2104,
-        "sha256": "79ae29716a53c868044f9ec31cc0bb8600b8eb6cca7b961b56c572e377eec75e"
+        "sha256": "438c96b5f3148e75e8c1f1fd276851cb87371094746619aa285812206a85ee31"
       },
       "source_profile": {
         "biosphere": {
@@ -230,5 +230,122 @@
       },
       "carrier_pin": null
     }
-  ]
+  ],
+  "metadata_refresh": {
+    "reviewed_on": "2026-11-10",
+    "archive_record_id": 24096463,
+    "method": "Compared full inventory_snapshot objects to the original reviewed archive; all equal. Refresh metadata-only version hashes without changing mappings, inventories, fuel quantities or energy bases.",
+    "records": [
+      {
+        "slug": "heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass",
+        "version_id": 4911,
+        "previous_sha256": "d3f314bc0ad2a18c31b553e9a387e7bb3aba3017b282005fe95730d4d19712c1",
+        "current_sha256": "de2830c1029fe196edda983aebeb1c31ab4db8917a8184d3b08a65ccccf0c237",
+        "unchanged_inventory_sha256": "5db80481dbc02ce6b14a97f63a118aef9abbc702da54093a3d33fceff98d0f95",
+        "changed_metadata_fields": [
+          "annual_production_volume",
+          "annual_production_volume_unit",
+          "capacity_factor_percent",
+          "description",
+          "design_capacity",
+          "design_capacity_unit",
+          "intended_application",
+          "metadata_corrected_at",
+          "methodology_notes",
+          "original_citation",
+          "plant_lifetime_years",
+          "source",
+          "structured_metadata",
+          "system_boundary",
+          "technological_representativeness",
+          "technology_description",
+          "temporal_representativeness",
+          "updated_at",
+          "use_limitations"
+        ]
+      },
+      {
+        "slug": "heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-coal",
+        "version_id": 4912,
+        "previous_sha256": "78af558d6f6314f500d7198258c3182f91c78183f177a027fee24f29ac486a27",
+        "current_sha256": "0ea3a5a136fd72b3e5b4a121ab3521b3e8f5890e59d57c09c09972e2ed2bfdc9",
+        "unchanged_inventory_sha256": "e09034fae21b34401bcdad1d2911640f82197858b42ef1ce3e27e3d83c0bd009",
+        "changed_metadata_fields": [
+          "annual_production_volume",
+          "annual_production_volume_unit",
+          "capacity_factor_percent",
+          "description",
+          "design_capacity",
+          "design_capacity_unit",
+          "intended_application",
+          "metadata_corrected_at",
+          "methodology_notes",
+          "original_citation",
+          "plant_lifetime_years",
+          "source",
+          "structured_metadata",
+          "system_boundary",
+          "technological_representativeness",
+          "technology_description",
+          "temporal_representativeness",
+          "updated_at",
+          "use_limitations"
+        ]
+      },
+      {
+        "slug": "methanol-production-coal-gasification",
+        "version_id": 2028,
+        "previous_sha256": "fc98495d4200293aee26a0b9835157479e14c614109d8e2ec64d9d5d05d2f3e1",
+        "current_sha256": "1015e1192a31dd4dbacdcbfe187cd2888c34f6f15fda92d117807cbcd264fe35",
+        "unchanged_inventory_sha256": "3fdcef3c4435e11001a78815501a60ff785a7024e96b52526d1ec4aab3719b86",
+        "changed_metadata_fields": [
+          "description",
+          "intended_application",
+          "metadata_corrected_at",
+          "methodology_notes",
+          "original_doi",
+          "source",
+          "source_type",
+          "structured_metadata",
+          "system_boundary",
+          "technological_representativeness",
+          "technology_description",
+          "temporal_representativeness",
+          "updated_at",
+          "use_limitations"
+        ]
+      },
+      {
+        "slug": "heat-production-from-hydrogen-fired-one-gigawatt-gas-turbine",
+        "version_id": 2104,
+        "previous_sha256": "79ae29716a53c868044f9ec31cc0bb8600b8eb6cca7b961b56c572e377eec75e",
+        "current_sha256": "438c96b5f3148e75e8c1f1fd276851cb87371094746619aa285812206a85ee31",
+        "unchanged_inventory_sha256": "846295232b2ccd8051e7ce6e10b498d9ec2dd7cadee989456828a4312526d3ea",
+        "changed_metadata_fields": [
+          "annual_production_volume",
+          "annual_production_volume_unit",
+          "capacity_factor_percent",
+          "commercial_maturity_stage",
+          "data_origins",
+          "description",
+          "design_capacity",
+          "design_capacity_unit",
+          "geographical_representativeness",
+          "intended_application",
+          "metadata_corrected_at",
+          "methodology_notes",
+          "original_citation",
+          "source",
+          "structured_metadata",
+          "system_boundary",
+          "technological_representativeness",
+          "technology_description",
+          "technology_readiness_level",
+          "temporal_representativeness",
+          "updated_at",
+          "use_limitations"
+        ]
+      }
+    ]
+  }
 }
