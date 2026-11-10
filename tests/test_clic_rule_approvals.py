@@ -3348,6 +3348,14 @@ def test_fuels_312_corrected_dependencies_keep_complete_targets_and_cache(
         ("bp-c291034cfcb83f1c", 1),
         ("bp-39c96c652df31373", 1),
         ("bp-9a4457b9bc852f72", 1),
+        ("bp-ee26f1f2fa935429", -1),
+        ("bp-b8b81a3c16e46627", -1),
+        ("bp-faa8d193360beec8", -1),
+        ("bp-bb4f40528bc8819a", 1),
+        ("bp-603ffa52668e2ab6", 1),
+        ("bp-1b70797abf9bd524", 1),
+        ("bp-69890c0224467208", 1),
+        ("bp-cbd05b3ad7592f70", 1),
     ],
 )
 def test_fuels_39_material_reviews_preserve_signed_basis_and_exact_profile(

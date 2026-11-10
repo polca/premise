@@ -585,3 +585,35 @@ the public sector-availability guard only to inspect preparation; it performs
 no fuel transformation or export. Fuels remains unqualified, and the four-sector
 public scope is unchanged. The full goal remains active. See the
 [preparation receipt](uvek-fuels-39-material-preparation-verification.json).
+
+
+### Eight 3.9 treatment, supply and infrastructure reviews (10 November 2026)
+
+Primary source/native inspection supports complete potable-water anion-resin,
+mixed-plastic and PVC municipal incineration services. Their source references
+are -1 kg of waste and native references +1 kg of service: factor **-1** preserves
+a positive disposal burden for an ordinary negative ecoinvent waste demand.
+The corresponding waste compositions, moisture contents and heating values are
+documented, while net energy, allocation, emissions and residue models differ.
+The historical source ordinary-incineration records describe later replacement
+by extraction technology; these identities do not represent separately named
+fly-ash-extraction processes. No extra recovery or energy credit is introduced.
+
+Five further +1 correspondences cover packed milled quicklime, deionised water
+from ion exchange, a km of high/middle-pressure gas-distribution infrastructure,
+a complete gas service station, and allocated diethanolamine. Actual plant and
+station capacities/lifetimes agree; no annual-output or lifetime multiplier is
+applied. The nonempty native diethanolamine inventory retains its documented
+40/40/20 mass allocation and its legacy `xx` title. Feed-water quality, chemical
+production, geographical, delivery, vintage, allocation, biosphere coverage and
+uncertainty limitations remain explicit. Original proprietary inventories stay
+private; the ledger retains primary hashes and inspected reference bases.
+
+All previous 564 scopes are retained; the total is **572**. Thirty-four focused
+scope/sign/formula/uncertainty/fresh-cache tests pass, including the preceding
+3.12 and 3.9 batches. Black and Ruff pass. The actual licensed preparation rerun
+confirms all eight cases clear, leaving **36 unresolved 3.9 correspondences**,
+down from 44. This diagnostic does not run fuel transformations or export.
+No production Python, YAML or Brightpath resource changes are needed for this
+batch. Fuels remains unqualified and the full goal remains active. See the
+[service preparation receipt](uvek-fuels-39-service-preparation-verification.json).

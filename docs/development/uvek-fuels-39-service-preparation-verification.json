@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-10",
+  "purpose": "Eight exact 3.9 cut-off treatment, supply and infrastructure reviews for shared fuels preparation; not sector qualification.",
+  "companion_revision": "6d24057f6b06aa8150b8fb5e2c0925e1d21a1e5d",
+  "source_project": "bafu-2026-ecospold2-biosphere-310",
+  "source_database": "BAFU:2026-reimported",
+  "biosphere_database": "ecoinvent-3.10-biosphere",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "archive_version": "20261110T030235Z-613ea498808a",
+  "new_rule_scopes": [
+    "bp-1b70797abf9bd524",
+    "bp-603ffa52668e2ab6",
+    "bp-69890c0224467208",
+    "bp-b8b81a3c16e46627",
+    "bp-bb4f40528bc8819a",
+    "bp-cbd05b3ad7592f70",
+    "bp-ee26f1f2fa935429",
+    "bp-faa8d193360beec8"
+  ],
+  "existing_scopes_retained": 564,
+  "new_scopes": 8,
+  "validated_unique_scopes": 572,
+  "licensed_preparation": {
+    "success": false,
+    "diagnostic_scope_guard_bypass": true,
+    "sector_transformations_run": false,
+    "database_exported": false,
+    "audit_sha256": "50ae3529809508db32c72a6c5591d0efe371c75304225345f3911eeb4a87d8fb",
+    "unapproved_correspondences_before": 44,
+    "unapproved_correspondences_after": 36,
+    "issue_counts": {
+      "migration.unit_changes_require_factors": 1,
+      "migration.canonical_biosphere_identity": 2,
+      "migration.catalog_correspondence": 1,
+      "migration.scoped_compatibility_review": 2,
+      "migration.unapproved_correspondence": 36,
+      "migration.approved_correspondence": 92,
+      "clic.compatibility_proxy_limitations": 92
+    },
+    "all_eight_new_scopes_clear": true
+  },
+  "tests": {
+    "command": "pytest -q tests/test_clic_rule_approvals.py -k \"fuels_39_material or fuels_312 or only_exact_packaged_profile or ledger_drift\"",
+    "passed": 34,
+    "warnings": 1,
+    "warning": "Existing pythonjsonlogger import deprecation",
+    "seconds": 104.4
+  },
+  "limitations": [
+    "Fuels is not operational or publicly qualified. Remaining material/function/reference reviews, version-axis forwarding, IAM market relinking, full update, validation and export remain required.",
+    "No original proprietary inventory coefficients or comments are published. Primary metadata/inventory hashes and derived modelling decisions are recorded in the approval ledger.",
+    "No production Python, YAML, Brightpath resource or source database changes in this batch."
+  ]
+}
