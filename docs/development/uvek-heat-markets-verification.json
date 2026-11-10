@@ -1,0 +1,80 @@
+{
+  "status": "three_layer_heat_planning_verified_consumer_integration_pending",
+  "implementation": "premise/energy/uvek_heat_markets.py",
+  "encrypted_IAM_sha256": "1720125d7890fc4dadda88cd3abc978b2421be764756b0a9624d6dac272f6aa4",
+  "IAM_input_differs_from_last_public_baseline": true,
+  "positive_IAM_roles": 28,
+  "market_counts": {
+    "secondary_supply": 13,
+    "buildings_end_use": 13,
+    "industrial_end_use": 13
+  },
+  "district_delivery_copies": 13,
+  "new_owned_activities": 53,
+  "prepared_and_owned_records": 659,
+  "source_records": 76,
+  "mapping_helpers": 530,
+  "original55pins_unchanged": true,
+  "all76_versions_ids_hashes_verified": true,
+  "explicit_source_pin_flags": 58,
+  "automatically_resolved_dependencies_locked": 18,
+  "complete_links_and_canonical_biosphere_verified": true,
+  "source_scientific_contents_unchanged": true,
+  "validation": {
+    "focused_tests": 158,
+    "installed_plans_equal_checkout": true,
+    "installed_packaged_resources_equal_checkout": {
+      "premise": 248,
+      "brightpath": 272
+    },
+    "checkout_finite_signed_LCIs": 14,
+    "installed_finite_signed_LCIs": 14,
+    "no_database_write": true
+  },
+  "decisions": [
+    "Convert final-energy volumes to delivered heat before normalization, never scale supplier LCIs again.",
+    "Purchased heat uses complete native district delivery with actual 1.11MJ heat and 1MJ network inputs.",
+    "World fallback weights regional markets by delivered volumes, preserving regional delivery paths and avoiding counting the World row twice.",
+    "Refuse unsupported positive roles, invalid volumes/units/layers and missing purchased-heat supply before mutation.",
+    "Retain all supplier proxy limitations and IAM role assumptions; do not claim LCIA equivalence."
+  ],
+  "remaining": [
+    "Review native consumer boundaries and implement cycle-safe relinking.",
+    "Integrate public callback, inventory preparation and semantic validation.",
+    "Verify combined/default public installed-package certification and Brightway export before opening heat gate.",
+    "Qualify other IAM role selections before claiming their support."
+  ],
+  "public_heat_gate": "closed",
+  "receipts": [
+    {
+      "name": "heat_three_layer_tests.log",
+      "sha256": "9ed30b9caa114ebe4c136977f81d7615413bb8d73a3ec6c3415e61735d8f6302",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_three_layer_real_IAM_report.json",
+      "sha256": "7f10485b992aca1912656ea666d0f5b471d99b278380fe50261cbbd398af664e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_three_layer_graph_checks.json",
+      "sha256": "e0364eed21224e4d834eda78249c1e8d7bb7c9b73cd355ff90465207a8ad6952",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_three_layer_installed_replay.json",
+      "sha256": "f5c70cf13da70aefe92df7b156afe563d9641c8680d1b3f850a33e313e90872c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_three_layer_installed_graph_checks.json",
+      "sha256": "b9a179738f53cd35bbb932227d40501e2aac605c0d494513b7a96854da5cf697",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_three_layer_packaged_data.json",
+      "sha256": "2d7a81e03bc7d79d2ff37da0542ee9c6cbb498fa22e2ed6ecc055655ea921c60",
+      "location": "private task workspace"
+    }
+  ]
+}

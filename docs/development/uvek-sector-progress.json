@@ -1002,6 +1002,37 @@
         "public_heat_gate": "closed",
         "standard_CLIC_namespaces_and_JSON_cache_replay_verified": true,
         "additional_foreground_fuel_pin": 1
+      },
+      "three_layer_market_stage": {
+        "status": "three_layer_heat_planning_verified_consumer_integration_pending",
+        "implementation": "premise/energy/uvek_heat_markets.py",
+        "encrypted_IAM_sha256": "1720125d7890fc4dadda88cd3abc978b2421be764756b0a9624d6dac272f6aa4",
+        "market_counts": {
+          "secondary_supply": 13,
+          "buildings_end_use": 13,
+          "industrial_end_use": 13
+        },
+        "district_delivery_copies": 13,
+        "new_owned_activities": 53,
+        "validation": {
+          "focused_tests": 158,
+          "installed_plans_equal_checkout": true,
+          "installed_packaged_resources_equal_checkout": {
+            "premise": 248,
+            "brightpath": 272
+          },
+          "checkout_finite_signed_LCIs": 14,
+          "installed_finite_signed_LCIs": 14,
+          "no_database_write": true
+        },
+        "remaining": [
+          "Review native consumer boundaries and implement cycle-safe relinking.",
+          "Integrate public callback, inventory preparation and semantic validation.",
+          "Verify combined/default public installed-package certification and Brightway export before opening heat gate.",
+          "Qualify other IAM role selections before claiming their support."
+        ],
+        "public_heat_gate": "closed",
+        "verification": "docs/development/uvek-heat-markets-verification.json"
       }
     },
     {

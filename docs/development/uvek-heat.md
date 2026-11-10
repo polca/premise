@@ -478,3 +478,26 @@ remains exact. The coal-methanol foreground fuel has its own captured version/ID
 hash pin, including when resolved as an automatic dependency. Retained boiler
 reuse survives JSON tuple/list round trips without duplicate creation or source
 mutation. These cases are included in the 119 focused checks above.
+
+
+### Three-layer heat markets: private IAM and installed-package verification
+
+The read-only planner now covers secondary supply, buildings end use and
+industrial end use: 39 markets, 13 complete native delivery copies and one retained
+boiler for encrypted REMIND SSP2-NPi 2050. Final-energy conversion precedes share
+normalization; supplier inventories are not rescaled. Purchased heat follows the
+native delivery network. World fallbacks weight regional delivered volumes and
+retain regional delivery paths, without counting the IAM World row twice.
+Negative/nonfinite World values are validated before aggregation too.
+
+All 158 focused tests pass. Installed wheels reproduce all 53 owned records and
+all diagnostics exactly using the same archived encrypted input. Fourteen signed
+LCIs pass in both checkout and installed checks; complete links, all 76 captured
+source versions/IDs/hashes, the original 55 pins and native scientific contents
+are preserved. The encrypted input hash differs from the last public baseline;
+no equality of those scenario results is claimed. See `uvek-heat-markets.md` and
+`uvek-heat-markets-verification.json` for evidence and limitations.
+
+This completes market planning only. Consumer classification/relinking, public
+callback/preparation/certification and combined export remain unfinished. Public
+heat stays gated, and the other 16 sectors still require operationalization.
