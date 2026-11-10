@@ -461,6 +461,9 @@ Coal CHP CCS:
     image: Efficiency|Electricity|Coal|w/ CCS|2
   max_efficiency: 0.4
 Coal IGCC:
+  uvek_igcc_fuel_slugs:
+    hard coal: electricity-production-at-hard-coal-fired-igcc-power-plant
+    lignite: electricity-production-at-lignite-fired-igcc-power-plant
   uvek_aliases: {}
   uvek_fuel_aliases:
     exact: true
@@ -513,6 +516,9 @@ Coal IGCC:
     tiam-ucl: Secondary Energy|Electricity|Coal IGCC|w/o CCS
   max_efficiency: 0.55
 Coal IGCC CCS:
+  uvek_igcc_fuel_slugs:
+    hard coal: electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m
+    lignite: electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m
   uvek_aliases: {}
   uvek_fuel_aliases:
     exact: true

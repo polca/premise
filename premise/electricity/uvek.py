@@ -72,16 +72,7 @@ NATIVE_COAL_FUELS = {
     "Electricity, hard coal, at power plant": "hard coal",
     "Electricity, lignite, at power plant": "lignite",
 }
-IGCC_FUEL_SLUGS = {
-    "Coal IGCC": {
-        "hard coal": "electricity-production-at-hard-coal-fired-igcc-power-plant",
-        "lignite": "electricity-production-at-lignite-fired-igcc-power-plant",
-    },
-    "Coal IGCC CCS": {
-        "hard coal": "electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
-        "lignite": "electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m",
-    },
-}
+IGCC_FUEL_SLUGS = get_mapping(POWERPLANT_TECHS, "uvek_igcc_fuel_slugs")
 
 
 class UVEKSourceWeightError(ValueError):
