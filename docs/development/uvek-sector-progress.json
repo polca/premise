@@ -2382,7 +2382,7 @@
     },
     {
       "sector": "emissions",
-      "status": "audited_not_operational",
+      "status": "native_boundary_and_real_GAINS_factor_preflight_verified_not_operational",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2413,11 +2413,21 @@
           "code": "inventory_family_default",
           "path": "premise/emissions/emissions.py",
           "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        },
+        {
+          "code": "shared_combustion_sector_boundary",
+          "finding": "27 native gas burners serve power and standalone heat plants with different real NOx factors/dispositions. Caller-specific owned variants are required before scaling; hard-coal services also have power/heat/paper callers."
+        },
+        {
+          "code": "air_compartment_and_species_review",
+          "finding": "199 named-pollutant water/soil exchanges must remain outside the native air update. Particulate/VOC definitions need explicit review; source file names do not justify invented size bins or absolute-emission subtraction."
         }
       ],
       "decisions": [],
       "implementation_commits": [],
-      "tests": [],
+      "tests": [
+        "35 native factor and existing emissions tests passed; real encrypted REMIND GAINS arrays replay without mutation. This is preflight, not a runtime sector update."
+      ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_emissions",
@@ -2440,6 +2450,13 @@
         "version_assumption_lines_to_review": [],
         "role_files": [],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "factor_preflight": {
+        "verification": "docs/development/uvek-emissions-preflight.json",
+        "implementation": "premise/emissions/uvek_factors.py",
+        "tests_passed": 35,
+        "inventory_updated": false,
+        "full_public_update_or_export_verified": false
       }
     }
   ],

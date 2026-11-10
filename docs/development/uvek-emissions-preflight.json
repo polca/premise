@@ -1,0 +1,88 @@
+{
+  "status": "native_emissions_boundary_and_real_factor_preflight_verified_not_operational",
+  "background": "UVEK2026cutoff with ecoinvent3.10biosphere",
+  "native_activities": 11947,
+  "native_activities_with_shipped_pollutant_names": 4299,
+  "named_pollutant_exchanges": 23352,
+  "non_air_named_pollutant_exchanges_to_retain": 199,
+  "real_GAINS_data": {
+    "scenario": "REMIND SSP2-NPi2050 CLE",
+    "encrypted_input_sha256": "1720125d7890fc4dadda88cd3abc978b2421be764756b0a9624d6dac272f6aa4",
+    "regions": 12,
+    "sectors": 56,
+    "pollutants": 12,
+    "years": 13,
+    "factor_dispositions_all_GAINS_labels_including_unqualified_species": {
+      "increase_not_applied": 1257,
+      "missing_data": 3141,
+      "reduction": 2559,
+      "unchanged": 1779
+    }
+  },
+  "shared_combustion_boundaries": {
+    "natural_gas_burner_records": 38,
+    "gas_burner_consumer_references": 127,
+    "gas_electricity_consumer_references": 62,
+    "gas_heat_consumer_references": 61,
+    "gas_inverter_consumer_references": 4,
+    "gas_burners_used_by_both_power_and_standalone_heat_plants": 27,
+    "different_factor_or_disposition_counts": {
+      "NOx": 27,
+      "SO2": 24,
+      "CH4": 27
+    },
+    "hard_coal_burner_records": 25,
+    "hard_coal_electricity_consumer_references": 25,
+    "hard_coal_heat_consumer_references": 13,
+    "hard_coal_paper_consumer_references": 1
+  },
+  "implementation": {
+    "module": "premise/emissions/uvek_factors.py",
+    "read_only": true,
+    "inventory_updated": false,
+    "exact_baseline_year": 2020,
+    "missing_data_not_accepted_as_factor_one": true,
+    "World_emissions_weighted_from_complete_regional_evidence": true,
+    "World_missing_regions_not_zero_filled": true,
+    "reduction_only_convention_preserved": true,
+    "zero_targets_and_increases_explicitly_reported_not_applied": true,
+    "size_bin_correspondence_or_subtraction_not_inferred": true,
+    "legacy_ecoinvent_path_unchanged": true
+  },
+  "tests_passed": 35,
+  "remaining": [
+    "Review exact native and prepared-foreground GAINS sector bindings alongside ecoinvent aliases.",
+    "Plan separate owned combustion variants when caller GAINS sectors differ, preserving original signed caller quantities and complete links. Do not apply one sector globally to the shared source burner.",
+    "Restrict native hot-pollutant updates to reviewed air compartments; retain water/soil entries.",
+    "Establish native particulate/VOC correspondence from source definitions. File labels alone do not establish compatible size bins or common absolute units; no invented subtraction or size-bin reassignment.",
+    "Integrate common sector validation, signed quantity/uncertainty updates, audit/provenance, real public update and export, installed package replay and combined/default workflow before enabling emissions."
+  ],
+  "public_emissions_gate": "closed",
+  "receipts": [
+    {
+      "name": "uvek_emissions_real_gains_preflight.json",
+      "sha256": "562c81f6bd68cec4c16d7feee5d54b83723b24e70f24394d350a0f3cb0cb016d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_real_factor_preflight.json",
+      "sha256": "a43579e9ab02cc91e0a5c96cf627f97effc47d75bfaee44a782e582e3beeaa8e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_shared_burner_primary.private.json",
+      "sha256": "89d2885a0d352099f3b3bb3a8202fb01aef736e07fd20d0d61edcebf7c3a1567",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_shared_burner_factor_comparison.json",
+      "sha256": "fee65c4e0ef0f34664834e79d98cf3f611c3c21801ca489a27f6222a6c352809",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_factor_tests.log",
+      "sha256": "55c5b1f7fe0c9910ea2d6604428644fff45fd4eb4c24ca257cb266acae9c000c",
+      "location": "private task workspace"
+    }
+  ]
+}

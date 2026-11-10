@@ -1194,3 +1194,36 @@ its hot-water grade, residential scale and Swiss climate need separate review
 for industrial/district heat. Positive IAM solar heat remains explicitly refused
 until a defensible binding exists. See `uvek-heat-csp-reference-review.json`;
 no new omission or solar-role admission is made here.
+
+
+### Native emissions preflight: caller-specific combustion and explicit factors
+
+The encrypted REMIND SSP2-NPi2050 CLE data supplies 12 regions, 56 GAINS sectors,
+12 pollutant labels and 13 source years. The new read-only factor planner uses
+the exact 2020 base, interpolates absolute observations only within the source
+year range, and distinguishes missing data, zero baselines, zero targets,
+increases and unchanged projections. It retains the existing reduction-only
+convention. World is calculated from regional evidence without counting a
+source World aggregate twice; incomplete regional evidence does not become zero.
+No inventory is updated by this component. All 35 native-factor and existing
+emissions checks pass. Ecoinvent transformation behavior remains unchanged.
+
+Native UVEK contains 4,299 activities with 23,352 exchanges named by the shipped
+pollutant map. Of these, 199 exchanges are water/soil releases; native GAINS air
+updates must retain them. Names alone are not sufficient compartment evidence.
+
+The 38 natural-gas power/heat burner records have 127 caller references: 62
+electricity, 61 heat and four inverter-manufacturing uses. Twenty-seven burners
+serve both electricity producers and standalone heat plants. All 27 have
+different real NOx factors/dispositions between Power_Gen_NatGas and
+End_Use_Industry_NatGas (24 for SO2, 27 for CH4). A global sector assignment on
+the shared burner would apply the wrong projection to some callers. Plan owned
+combustion variants per reviewed caller sector, preserve signed caller
+quantities, and retain original source services for unreviewed uses. Native
+hard-coal burners also have power, heat and paper-production callers.
+
+Particulate file labels do not establish compatible size bins or common absolute
+units. Do not infer new bin correspondences or subtract series without source
+evidence. Species/compartment and exact native GAINS sector bindings, controlled
+changes, audit/uncertainty handling and real public/installed export remain
+required. Emissions stays gated. See `uvek-emissions-preflight.json`.
