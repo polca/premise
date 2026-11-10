@@ -1654,7 +1654,7 @@ class Export:
                                 if dict_classifications[key]["category 3"] != "":
                                     category = (
                                         dict_classifications[key]["category 2"]
-                                        + "\ ".strip()
+                                        + "\\"
                                         + dict_classifications[key]["category 3"]
                                     )
                                 else:
@@ -1677,7 +1677,7 @@ class Export:
                                             dict_classifications[
                                                 x[1].split(":")[0].strip()
                                             ]["category 2"]
-                                            + "\ ".strip()
+                                            + "\\"
                                             + dict_classifications[
                                                 x[1].split(":")[0].strip()
                                             ]["category 3"]
