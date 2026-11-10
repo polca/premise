@@ -935,3 +935,82 @@ Next: the 28 current-cohort correspondences, beginning with perimeter-insulation
 polystyrene foam and metallurgical alumina; further preparation cohorts, shared
 fuel transformation/linking and all remaining registered sectors still follow.
 The full goal remains active; eligible missing mappings are unfinished work.
+
+### Eight material markets: licensed fuel preparation advances to 20 cases
+
+Brightpath `025c0ca` qualifies eight exact ecoinvent 3.9 cut-off material markets:
+perimeter EPS slab, chromium oxide flakes, magnesium oxide, class-1 nickel,
+chemical-factory equipment, molecular iodine, crushed limestone for mill and
+flexible polyurethane foam. Every one of the 22 source producer entries and
+29 original finished-product freight entries retains its quantity, uncertainty,
+formula, bounds, pedigree and order; none is merged or renormalized. Complete
+native production stocks replace source production inventories as explicitly
+warned screening proxies. This does not reproduce their individual routes or
+source process emissions, which are not added again. No new physical source
+input omission, zero-burden supplier or recovery credit is introduced.
+
+The factory correction is substantive: source construction represents one kg
+of equipment stock, not one complete chemical plant. Native **Facilities,
+chemical production, kg** matches nine independently checked source quantities
+(both steels, combined concrete, electronics, solder, inorganic chemicals, rock
+wool, electricity and heat). The former plant-unit candidate separately contains
+12.6 million kg of facilities plus buildings and disposal. Both source market
+shares now use the complete kg stock at factor +1; no plant-mass, lifetime,
+capacity or annual-output multiplier is applied. Native heating technology and
+internal freight still differ. Other unit-based organic-chemical-plant mappings
+remain unchanged.
+
+Other material limitations are explicit. Perimeter EPS differs in density,
+conductivity and additives; no 33/30 mass multiplier or equal thermal-service
+claim is made. Chromium source product information says Cr(III), while actual
+producer descriptions and two matching reaction-input quantities point to the
+recorded wet flakes process represented by native CrO3. This unresolved label /
+caller-intent inconsistency is warned, not silently corrected or generalized
+into a Cr2O3/CrO3 substitution. MgO uses the complete native process including
+its existing fossil-CO2 term, without an added theoretical calcination balance.
+Nickel uses a historical global Class-I mix for all eight source stock entries,
+with grade, route/recycling/allocation and important-impact sensitivity warnings;
+source 99.70%+ versus native nominal 99.5% does not justify an invented purity
+multiplier. Native iodine and limestone retain their complete inventories with
+geography, age, process and infrastructure limitations. Flexible PUR keeps the
+20% MDI / 40% high-density TDI / 40% low-density TDI shares and nine freight
+rows, but all use complete native TDI/polyol flexible foam: MDI chemistry,
+viscoelastic performance, density grades, additives, losses, emissions and waste
+fates are not reproduced. Those whole-product proxy differences remain warnings
+with unquantified score effects.
+
+The existing 3.12 nickel selected rule, native target, factor, shared review and
+warnings are byte-identical. Its full-rule approval fingerprint necessarily
+changes when the new 3.9 profile/helper is appended. Exactly that one previous
+fingerprint is refreshed after proving the selected behavior and shared review
+unchanged; every other previous approval operation is identical. Eight additions
+give **597 validated scopes**, checked in the regular conda Git installation.
+No other release or system-model approval is inferred. The historical deferred
+material test restores its original nickel stage after checking unchanged 3.12
+behavior; the current complete frozen replay and new 3.9 tests independently
+verify the added profile.
+
+Brightpath passes 175 new/adjacent mapping tests, 70 existing deferred-material
+regressions and two full frozen-resource / historical-initial-stage replay
+checks. Premise passes eleven strict fresh/cache and adjacent carbon/oxide
+checks. Independent comparison against the licensed source checks all 51 market
+rows field by field. All eight individual native-matrix LCIs have finite supply
+and inventory. Full generation is byte-identical, canonical biosphere unchanged,
+and wheel review/resource/manifest bytes match. Black/Ruff pass for changed
+replay/tests. No runtime Python modules change. Installation and colleague/user
+guides pin the pushed Brightpath revision; the colleague notebook is unchanged.
+
+Actual licensed preparation accepts all eight current-cohort correspondences,
+reducing **28 to 20** unapproved mappings. It still stops on other unreviewed
+correspondences, beginning with metallurgical alumina. The existing unit-planning
+diagnostic remains recorded; it is not suppressed or waived. No prospective
+fuel update or export is qualified. The source remains at 11,947 activities and
+its unchanged September modified timestamp. Removed 117.2 MiB of verified
+obsolete generated replay/wheel files, retaining source evidence, logs, active
+caches and databases. See the
+[material-market preparation receipt](uvek-fuels-39-material-markets-preparation-verification.json).
+
+Next: metallurgical alumina, copper/zinc oxides, silica-sand composition and KOH
+basis, followed by the other current-cohort heat/treatment correspondences,
+further preparation cohorts, shared fuel transformation/linking and all remaining
+registered sectors. The full integration goal remains active.

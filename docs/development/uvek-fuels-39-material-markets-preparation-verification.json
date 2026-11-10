@@ -1,0 +1,363 @@
+{
+  "date": "2026-11-11",
+  "status": "licensed preparation accepts all eight new material-market profiles; twenty other correspondences still block preparation",
+  "brightpath_commit": "025c0ca8af25bd70e827195ba854b8b50a9936d9",
+  "review_sha256": "39758c9adaca63c27ef0e6be1085b468782185b9bd20dcd83d33864beec22e1a",
+  "resource_sha256": "10d6628e09bfb710c085763b041efb6caf34b82c92afda5f4a7a1a24277c8cfb",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_rules": [
+    "bp-5b8870937f5c5812",
+    "bp-00172801eed4fadd",
+    "bp-bfe333cadde4fa6d",
+    "bp-1104956dff1c701e",
+    "bp-9860f8d2b0136d04",
+    "bp-9995a288c793dd83",
+    "bp-b7a1aa51acf41a9e",
+    "bp-e25771265d4d36c5"
+  ],
+  "new_helpers": 8,
+  "native_witnesses": 16,
+  "source_producer_rows_retained": 22,
+  "source_freight_rows_retained": 29,
+  "new_source_omissions": 0,
+  "new_zero_burden_recipes": 0,
+  "previous_approval_operations_unchanged_except_one_proven_fingerprint_refresh": true,
+  "preserved_scope_fingerprint_refreshes": [
+    {
+      "rule_id": "bp-1104956dff1c701e",
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "version": "2025",
+        "system_model": "cutoff"
+      },
+      "old_fingerprint": "794c769f8993d7160aee4008fe7718e4efe74fc90b9ebfab4fae32ec843519e9",
+      "new_fingerprint": "0022e415821d896a1c888a15c59d7f49c3e26e5388d539ef984d68bc0b40d222",
+      "selected_rule_and_shared_review_byte_identical": true,
+      "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved 3.12 native target, factor, warnings, shared review and selected rule remain unchanged."
+    }
+  ],
+  "tests": {
+    "brightpath_new_markets_and_carbon_oxide_silica_regression": {
+      "passed": 175,
+      "seconds": 47.82
+    },
+    "brightpath_existing_deferred_materials_including_312_nickel": {
+      "passed": 70,
+      "seconds": 33.9
+    },
+    "current_full_frozen_resource_replay_and_historical_initial_stage": {
+      "passed": 2,
+      "deselected": 731,
+      "seconds": 61.98
+    },
+    "premise_eight_markets_fresh_cache_and_adjacent_carbon_oxide": {
+      "passed": 11,
+      "seconds": 45.77
+    }
+  },
+  "native_matrix": {
+    "date": "2026-11-11",
+    "scope": "Eight individual kg-based native-matrix LCIs, preserving each original market row; not a prospective fuel update or export.",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "primary_market_rows_compared_field_by_field": 51,
+    "producer_rows": 22,
+    "freight_rows": 29,
+    "caller_formulas_uncertainty_bounds_and_pedigree_preserved": true,
+    "native_matrix_checks": [
+      {
+        "rule_id": "bp-5b8870937f5c5812",
+        "recipe": "fuels-39-material-market-70b72016acb90421509e",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 5,
+        "source_nonproduction_rows_checked": 6,
+        "source_producer_rows": 2,
+        "source_freight_rows": 4,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-00172801eed4fadd",
+        "recipe": "fuels-39-material-market-ad587b9902fa988ee00a",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 5,
+        "source_nonproduction_rows_checked": 6,
+        "source_producer_rows": 2,
+        "source_freight_rows": 4,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-bfe333cadde4fa6d",
+        "recipe": "fuels-39-material-market-12243f2fe1c12b0b2808",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 5,
+        "source_nonproduction_rows_checked": 6,
+        "source_producer_rows": 2,
+        "source_freight_rows": 4,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-1104956dff1c701e",
+        "recipe": "fuels-39-material-market-c690705ef7482f0465db",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 5,
+        "source_nonproduction_rows_checked": 12,
+        "source_producer_rows": 8,
+        "source_freight_rows": 4,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-9860f8d2b0136d04",
+        "recipe": "fuels-39-material-market-0f5c7cde361642e72879",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 1,
+        "source_nonproduction_rows_checked": 2,
+        "source_producer_rows": 2,
+        "source_freight_rows": 0,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-9995a288c793dd83",
+        "recipe": "fuels-39-material-market-538acce7985de1044e9e",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 5,
+        "source_nonproduction_rows_checked": 6,
+        "source_producer_rows": 2,
+        "source_freight_rows": 4,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-b7a1aa51acf41a9e",
+        "recipe": "fuels-39-material-market-a7316a2933a304fd2a90",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 1,
+        "source_nonproduction_rows_checked": 1,
+        "source_producer_rows": 1,
+        "source_freight_rows": 0,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-e25771265d4d36c5",
+        "recipe": "fuels-39-material-market-3c246f5f10c87a2697eb",
+        "unit": "kilogram",
+        "demand": 1,
+        "native_leaf_demands": 6,
+        "source_nonproduction_rows_checked": 12,
+        "source_producer_rows": 3,
+        "source_freight_rows": 9,
+        "inventory_finite": true,
+        "supply_finite": true
+      }
+    ],
+    "database_written": false
+  },
+  "factory_basis_comparison": {
+    "source_producer": {
+      "identity": {
+        "name": "chemical factory construction",
+        "reference product": "chemical factory",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "reference_amounts": [
+        1.0
+      ],
+      "enriched_inventory_sha256": "90dbd667138c86dc3f06c24e94ecad45e0e9e8ec502247ac7cc382d902a2db4b",
+      "metadata_sha256": "ea4cac11b09019e28e42916de2282eac4663bab96145d04bb68f385c2970c3dd",
+      "nonproduction_counts": {
+        "technosphere": 10,
+        "biosphere": 3
+      }
+    },
+    "native_reference_unit": "kilogram",
+    "native_reference_amount": 1,
+    "matches": [
+      {
+        "source_names": [
+          "market for brazing solder, cadmium free"
+        ],
+        "native_name": "Brazing solder, cadmium free, at plant",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market for chemical, inorganic"
+        ],
+        "native_name": "Chemicals inorganic, at plant",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market for concrete, normal strength"
+        ],
+        "native_name": "Concrete, sole plate and foundation, at plant",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market group for electricity, medium voltage"
+        ],
+        "native_name": "Electricity, medium voltage, production ENTSO-E, at grid",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market for electronics, for control units"
+        ],
+        "native_name": "Electronics for control units",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market group for heat, district or industrial, other than natural gas"
+        ],
+        "native_name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market for steel, chromium steel 18/8, hot rolled"
+        ],
+        "native_name": "Chromium steel 18/8, at plant",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market for steel, low-alloyed, hot rolled"
+        ],
+        "native_name": "Steel, low-alloyed, at plant",
+        "same_total_quantity_and_unit": true
+      },
+      {
+        "source_names": [
+          "market for stone wool"
+        ],
+        "native_name": "Rock wool, at plant",
+        "same_total_quantity_and_unit": true
+      }
+    ],
+    "rejected_target": "Chemical plant, organics (one plant unit, not one kg equipment stock)"
+  },
+  "chromium_source_inconsistency_checks": [
+    {
+      "source_producer": {
+        "name": "chromium oxide production, flakes",
+        "reference product": "chromium oxide, flakes",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "source_name": "market for sodium dichromate",
+      "native_name": "Sodium dichromate, at plant",
+      "same_quantity_and_unit": true
+    },
+    {
+      "source_producer": {
+        "name": "chromium oxide production, flakes",
+        "reference product": "chromium oxide, flakes",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "source_name": "market for sulfuric acid",
+      "native_name": "Sulphuric acid, liquid, at plant",
+      "same_quantity_and_unit": true
+    },
+    {
+      "source_producer": {
+        "name": "chromium oxide production, flakes",
+        "reference product": "chromium oxide, flakes",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "source_name": "market for sodium dichromate",
+      "native_name": "Sodium dichromate, at plant",
+      "same_quantity_and_unit": true
+    },
+    {
+      "source_producer": {
+        "name": "chromium oxide production, flakes",
+        "reference product": "chromium oxide, flakes",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "source_name": "market for sulfuric acid",
+      "native_name": "Sulphuric acid, liquid, at plant",
+      "same_quantity_and_unit": true
+    }
+  ],
+  "full_generator_byte_identical": true,
+  "wheel_contains_exact_review_resource_and_manifest": true,
+  "black_and_ruff_changed_replay_and_tests": "pass",
+  "runtime_python_changes": [],
+  "limitations": [
+    "Both actual source producers expand polystyrene granulate and form EPS slabs; do not substitute extruded polystyrene. Source perimeter EPS has density 33 kg/m3 and thermal conductivity 0.033 W/mK; complete native EPS slab is 30 kg/m3 and 0.035-0.04 W/mK. Use one kg of native finished slab per kg of source stock, retain both source shares and delivery, and warn about perimeter performance, graphite/additives, density, conductivity, geography and vintage. Do not introduce a 33/30 density multiplier or claim equal insulation service per m2.",
+    "Source product information calls this chromium(III) oxide, whereas the actual producer describes dark-red flakes and wet production from sodium dichromate and sulfuric acid. Both source producers and native explicitly modeled flakes process use 1.34 kg sodium dichromate and 1 kg sulfuric acid per positive kg; native declares CrO3. Match that actual recorded wet-process stock, retaining both source shares and delivery, with an explicit unresolved source-label/oxidation-state inconsistency warning. This does not establish that callers intended chromium(III) oxide, does not authorize a general Cr2O3-to-CrO3 substitution, and does not silently correct their inventory. Native yields, utilities, emissions, incomplete solid waste, geography and vintage differ. No oxidation-state or contained-chromium multiplier is inferred.",
+    "Both references are one kg of magnesium oxide; actual source producers describe caustic magnesia from open-pit magnesite, beneficiation and firing. Complete native MgO retains its own mining/processing inventory and recorded 0.909 kg fossil CO2, rather than adding source calcination emissions on top. Native machinery/mining/lime proxies and incomplete emissions are documented source-model limitations. Retain each source share and delivery; purity, caustic/sintered/fused grade, ore route, energy, allocation, geography, vintage and internal uncertainty differ. Do not infer a magnesite yield, purity or additional theoretical decarbonation factor.",
+    "Retain all eight source class-1 nickel stock entries and all four delivery modes. Each receives the complete native global 1994 Class-I production mix at one kg/kg as a screening proxy, replacing its individual primary/co-product/recycled production route rather than pretending those routes are reproduced. Source product states 99.70% purity or better; native is nominal 99.5%, with coupled copper and substituted emissions. Native explicitly warns against relying on this generic model where nickel impacts are important: retain that limitation and require sensitivity/detail review for nickel-dominated results. No 99.7/99.5 purity multiplier, extra refining, copper or recycling credit is inferred. The previously approved 3.12 selected rule, shared review, target and factor remain byte-identical; only the new 3.9 profile selects this delivery helper.",
+    "Source chemical-factory construction actually references one kg of equipment stock, not one complete chemical plant. Complete native Facilities, chemical production also references one kg and matches nine independently compared source quantities, including combined concrete, both steels, solder, inorganic chemicals, electronics, rock wool, electricity and heat. This corrects the former Chemical plant, organics unit target, which separately contains 12.6 million kg facilities plus buildings and disposal. Preserve both source producer shares at factor +1 kg/kg; do not divide by lifetime, annual output, capacity or plant mass. Native heating technology, internal transport, geography, vintage and construction boundary differ; source excludes end-of-life and no separate disposal is added. Unit-based organic-chemical-plant correspondences elsewhere remain unchanged.",
+    "Actual source is pure molecular iodine stock, with brine-based producers and positive kg references. Complete native molecular I2 includes its own raw materials, energy, water and air/water emissions. Retain both source producer rows and every delivery mode per kg without a solvent, iodine-atom or purity multiplier. The historical native European production model is a screening proxy for both source geographies; brine/feedstock/process, allocation, energy, emissions, delivery, vintage and internal uncertainty differ. Do not claim source production-route equivalence or add separate source processing emissions.",
+    "Actual source and complete native process provide one kg of crushed limestone for mill, including primary crushing, washing and conveyor transport. Both document the 145000 tonne/year infrastructure normalization. Preserve the original one-kg source producer entry; no capacity/lifetime rescaling, carbonation, calcination, calcium-content multiplier or new recovery credit is introduced. Native energy, on-site hydropower/grid split, dust, infrastructure, age and internal uncertainty differ; source market contains no extra freight row to invent.",
+    "Retain the original 20% MDI-based, 40% high-density TDI-based and 40% low-density TDI-based flexible-PUR producer rows and all nine freight entries. Complete native flexible PUR is a TDI/polyol formulation. It is an explicit whole-product screening proxy for all three source formulations: it does not reproduce the MDI-specific chemistry, viscoelastic performance, density grades, additives, blowing agents, production losses, emissions or waste fates. Those source production inventories are replaced by the complete native inventory once, not partly relinked through incorrect reagent aliases. Source caller quantities and separate emissions remain unchanged. No density, isocyanate-equivalence, dry-mass, extra blowing-agent, emission or recovery correction is invented; score and performance differences remain unquantified."
+  ],
+  "verification_log_sha256": {
+    "fuels-39-material-markets-tests.log": "3ccbf2e0162a50f6241cc5f08f7824ab920d58bba0d3711350b4ddc4c591d15c",
+    "fuels-39-material-markets-legacy-nickel-tests.log": "9a78ac5b0ba0371c6de033ac209ddd7f10d9b8797bb48a8f0d0f1274b171962c",
+    "fuels-39-material-markets-full-replay-tests.log": "2d54803b172039aa773c111dd4026b9ee128b6a6d04cffbf0110a6e24371c503",
+    "fuels-39-material-markets-premise-tests.log": "0cebb958ad798969aeb0116e3b60cdd9f0ab395bc68d709a0ca711b8cdbe1617",
+    "fuels-39-material-markets-native-lci.log": "f8a8d536d0a10f5fcabca231e75392b11e87ed8401f08b77cfe7ec55f9f0daf9",
+    "fuels-39-material-markets-replay.log": "d26760975cdd497fc8b8d73932566f1451724ef96a9195e6d863c05ed4ab9b4f",
+    "fuels-39-material-markets-wheel.log": "5409bed334b4bf476eb32365a0da5051fc8379094700ae70525cfb888f79d7ac",
+    "fuels-39-material-markets-probe.log": "a6e4b75c0511987aa8542f7412fe2ffca4de8988a369b42c8915c465121d107c"
+  },
+  "obsolete_generated_artifacts_removed_bytes": 122933051,
+  "validated_scopes": 597,
+  "installed_commit_verified": "025c0ca8af25bd70e827195ba854b8b50a9936d9",
+  "licensed_preparation": {
+    "audit_file": "a59b0dac01b453cb65587a387942018037b692719070b9857e512d55809f37fd.audit.json.gz",
+    "audit_sha256": "e0026a7865cb31cbaa76a64e94baa4320a6c6f51d1982a564542aab353ab2029",
+    "counts": {
+      "migration.unit_changes_require_factors": 1,
+      "migration.canonical_biosphere_identity": 2,
+      "migration.catalog_correspondence": 1,
+      "migration.scoped_compatibility_review": 2,
+      "migration.unapproved_correspondence": 20,
+      "migration.approved_correspondence": 108,
+      "clic.compatibility_proxy_limitations": 108
+    },
+    "new_current_cohort_rules_accepted": [
+      "bp-5b8870937f5c5812",
+      "bp-00172801eed4fadd",
+      "bp-bfe333cadde4fa6d",
+      "bp-1104956dff1c701e",
+      "bp-9860f8d2b0136d04",
+      "bp-9995a288c793dd83",
+      "bp-b7a1aa51acf41a9e",
+      "bp-e25771265d4d36c5"
+    ],
+    "previous_unapproved_count": 28,
+    "remaining_unapproved_count": 20,
+    "source_activities_after": 11947,
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "prospective_fuel_update_run": false,
+    "database_exported": false
+  }
+}
