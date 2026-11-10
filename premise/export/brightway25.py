@@ -15,6 +15,7 @@ from wurst.linking import change_db_name, check_internal_linking, link_internal
 
 from .export_payload import (
     normalize_activity_parameters,
+    normalize_exchange_owners,
     FAST_EXCHANGE_FORBIDDEN_FIELDS,
     FAST_EXCHANGE_REQUIRED_FIELDS,
     FAST_STRING_FIELDS,
@@ -787,11 +788,7 @@ def write_brightway_database(
         act.setdefault("database", name)
         normalize_activity_parameters(act)
 
-    needs_relink = any(
-        "input" not in exchange
-        for dataset in data
-        for exchange in dataset.get("exchanges", [])
-    )
+    needs_relink = normalize_exchange_owners(data, name)
 
     # Export preparation normally assigned the final database already. Avoid
     # rescanning every exchange merely to replace an identifier with itself.

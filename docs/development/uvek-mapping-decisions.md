@@ -1031,3 +1031,33 @@ Public heat remains gated pending complete normal CLIC preparation, combined/
 default callback certification, cold/warm replay and installed Brightway export
 readback. Historical steam, ambient/network-only services and zero-allocated
 MSWI heat remain explicit limitations. The broader 16-sector work is unfinished.
+
+
+### Normal combined workflow and exchange-owner serialization
+
+Normal CLIC preparation and default biomass → electricity → heat updates now
+qualify with the expanded 12-root/76-version lock, preserving the original 55
+pins. The combined graph has 12,622 activities: the prior heat graph plus 13
+biomass markets and three Bagnore screening inventories. All six native/common
+sector contracts pass, and the complete graph has finite signed inventories.
+Qualification uses a private process-local scope override; the public gate
+remains unchanged pending installed warm-cache and normal gate-admission checks.
+
+Full Brightway readback exposed stale serialized exchange owners. SQL rows and
+live exchange access were present, while `Database.load()` omitted exchanges
+whose pickled `output` still named their old owner. Both writers now reset that
+top-level output to the actual exported dataset; literal nested source audits
+stay historical. Three new regressions cover signed fields/audits and actual
+standard/fast modern Brightway bulk/live round trips; 74 existing writer,
+metadata and callback tests also pass. Existing exports are not modified.
+
+The corrected combined export reads back completely, with all 76 source version/
+ID/hash bindings, original 55 pins and 962 literal exchange audits verified.
+Sixteen signed Brightway inventories are finite. Quantities, units and supported
+uncertainty remain exact; existing export cleanup only removes empty properties/
+classification dictionaries and false negative flags from active rows. Their
+literal originals remain in the audit. Native source scientific signatures are
+unchanged. Screening metadata retains zero pending electricity omissions, one
+final unsupported omission and two partial mappings (22 recipe branches), with
+unquantified effects and no impact-completeness claim. See
+`uvek-heat-export-qualification.json` for evidence and remaining work.

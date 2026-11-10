@@ -850,7 +850,8 @@
         "7f8356be",
         "d1149c50",
         "405dcbf1",
-        "63e7fd77"
+        "63e7fd77",
+        "b3c04fa0"
       ],
       "tests": [
         "46 reference-basis plus existing heat tests passed.",
@@ -1096,6 +1097,24 @@
           "Verify combined/default biomass/electricity/heat, cold/warm cache equivalence and installed-package Brightway readback before opening gate.",
           "Retain documented steam/network/ambient/zero-allocated boundaries and all proxy limitations.",
           "Continue other16sectors; full goal remains incomplete."
+        ]
+      },
+      "normal_export_qualification": {
+        "status": "exchange_owner_serialization_fixed_normal_combined_export_qualified_public_heat_gate_closed",
+        "activities": 12622,
+        "normal_preparation_and_default_three_sector_update": true,
+        "private_gate_override": true,
+        "original55pins_and_all76_locked_versions_verified": true,
+        "signed_finite_Brightway_LCIs": 16,
+        "literal_consumer_audits_verified": 962,
+        "source_scientific_contents_unchanged": true,
+        "export_owner_serialization_fix": "premise/export/export_payload.py:normalize_exchange_owners",
+        "verification": "docs/development/uvek-heat-export-qualification.json",
+        "public_heat_gate": "closed",
+        "remaining": [
+          "Verify installed-package warm-cache combined export and compare scientific graphs.",
+          "Enable public heat/default selection only after qualification, then verify unchanged normal API without private override.",
+          "Complete remaining16sector operationalization; full goal remains active."
         ]
       }
     },

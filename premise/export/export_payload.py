@@ -61,6 +61,24 @@ def is_prepared_export_inventory(inventory: Any) -> bool:
     return bool(getattr(inventory, "_premise_exchange_payloads_prepared", False))
 
 
+def normalize_exchange_owners(inventory: Any, database_name: str) -> bool:
+    """Bind serialized outputs to their new owner and report missing inputs.
+
+    Brightway's bulk loader groups rows using the output inside each pickled
+    exchange, not its SQL owner columns. Retaining an imported output therefore
+    makes valid written exchanges disappear from ``Database.load()``. Nested
+    provenance/audit originals remain historical and must not be rewritten.
+    """
+    needs_relink = False
+    for dataset in inventory:
+        output = (database_name, dataset["code"])
+        for exchange in dataset.get("exchanges", []):
+            if exchange.get("output") != output:
+                exchange["output"] = output
+            needs_relink |= "input" not in exchange
+    return needs_relink
+
+
 def mark_prepared_export_inventory(inventory: list) -> list:
     """Mark a private checkout without changing activity or exchange ordering."""
 
@@ -169,5 +187,6 @@ __all__ = [
     "keep_fast_export_value",
     "mark_prepared_export_inventory",
     "normalize_no_uncertainty_exchange",
+    "normalize_exchange_owners",
     "prepare_fast_exchange_payload",
 ]

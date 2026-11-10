@@ -1,0 +1,97 @@
+{
+  "status": "exchange_owner_serialization_fixed_normal_combined_export_qualified_public_heat_gate_closed",
+  "problem": "Copied exchanges retained historical serialized output keys after SQL rows were assigned the new database. Brightway Database.load silently omitted those rows; live exchange reads and matrices could still see them.",
+  "fix": "Both writers bind top-level exchange output to the actual exported dataset before serialization. Historical nested audit originals remain unchanged.",
+  "implementation": "premise/export/export_payload.py:normalize_exchange_owners",
+  "qualified_normal_workflow": {
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat"
+    ],
+    "activities": 12622,
+    "roots": 12,
+    "locked_versions": 76,
+    "original55pins_unchanged": true,
+    "all76_manifest_versions_ids_hashes_verified": true,
+    "heat_consumer_changes": 962,
+    "changed_consumers": 736,
+    "additional_vs_heat_only_graph": "13 biomass markets and three Bagnore screening inventories",
+    "semantic_certification": "normal incremental certificate includes all six native/common sector phases; complete independent graph/link/LCI checks also pass",
+    "complete_Brightway_bulk_readback": true,
+    "signed_finite_Brightway_LCIs": 16,
+    "native_source_scientific_contents_unchanged": true,
+    "private_gate_override_for_qualification_only": true
+  },
+  "tests": {
+    "existing_writer_metadata_callback_tests": 74,
+    "new_owner_and_actual_standard_fast_Brightway_roundtrip_regressions": 3,
+    "lint": "New helper/tests clean; writer modules checked excluding six pre-existing F401 compatibility re-exports.",
+    "prepared_export_roundtrip_fails_in_pre_fix_installed_package": true
+  },
+  "audit_verification": {
+    "literal_source_audits_equal_preexport_graph": true,
+    "active_quantities_units_and_supported_uncertainty_unchanged": true,
+    "only_existing_export_representation_changes": {
+      "removed_empty_properties": 962,
+      "removed_empty_classifications": 962,
+      "omitted_false_negative_flags": 930
+    },
+    "other_exchange_field_differences": 0
+  },
+  "screening_status": {
+    "pending_electricity_mapping_omissions": 0,
+    "final_unsupported_exchange_omissions": 1,
+    "partial_mappings": 2,
+    "omitted_recipe_branches": 22,
+    "effects": "unquantified; no impact-completeness or LCIA-equivalence claim"
+  },
+  "public_heat_gate": "closed",
+  "remaining": [
+    "Verify installed-package warm-cache combined export and compare scientific graphs.",
+    "Enable public heat/default selection only after qualification, then verify unchanged normal API without private override.",
+    "Complete remaining16sector operationalization; full goal remains active."
+  ],
+  "receipts": [
+    {
+      "name": "heat_export_owner_tests_initial.log",
+      "sha256": "46a93bd9028a1ff7ab61282c4fa8ceae37ed8767f1ec18bea64f76a013520e6c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_export_owner_regressions.log",
+      "sha256": "09dfcc9ad0789f3f8008e5563fc48235b72ebb4ebc8cbe816679fd7b99946d97",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_normal_workflow_qualification.json",
+      "sha256": "be5a153f6cd0d97919540ead68a93f553c433ca7c7fa855419fd50df38587fda",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_normal_workflow_graph_checks.json",
+      "sha256": "6197904fbdea2a16836f89117f31d66ec002fe511734ec0c8b05fa7e45eed5a5",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_normal_fixed_export_qualification.json",
+      "sha256": "df5efa991521edafbcddb99569ee5dabadf902b1244a025424acef51c5d2cdf3",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_normal_fixed_export_readback.json",
+      "sha256": "8d590033e624b583b4b9be51f96f3853be21f9afdddbc86d779ff70db6bc0600",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_export_representation_checks.json",
+      "sha256": "a2f4cde88af8ddbee95c67d0b87dfda6f6f64d8a576422ee420f4631beebb548",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_export_owner_before_fix_reproduction.json",
+      "sha256": "7322f7a0e9cb3d7894da0fab6a4bf16cfc57f453407748cd74942cb9b133d358",
+      "location": "private task workspace"
+    }
+  ]
+}
