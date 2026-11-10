@@ -1,0 +1,285 @@
+{
+  "date": "2026-11-11",
+  "status": "licensed preparation accepts all nine new oxide/service profiles; eleven other correspondences still stop preparation",
+  "brightpath_commit": "a69e39bd528744655c8f55e15c288d06e3773e22",
+  "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+  "resource_sha256": "7b43a69d5f1059ad6541786c5be351c81bf17aed2265679270c23f17fe5dd218",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_rules": [
+    "bp-57c9160454525453",
+    "bp-3977d3526b1a0617",
+    "bp-9f742d14ef4d8ca9",
+    "bp-fa607ec8232396e4",
+    "bp-d11cb973ed24a79a",
+    "bp-f7cc2346dd145561",
+    "bp-af821ca7d28786a8",
+    "bp-eb7ad12f2fa498ed",
+    "bp-aa17e516d5f814ea"
+  ],
+  "new_helpers": 6,
+  "native_witnesses": 13,
+  "source_oxide_market_import_rows_retained": 35,
+  "new_source_omissions": 0,
+  "new_zero_burden_recipes": 0,
+  "legacy_helper_recipes_unchanged": 6,
+  "previous_operations_unchanged_except_four_proven_fingerprint_refreshes": true,
+  "preserved_scope_fingerprint_refreshes": [
+    {
+      "rule_id": "bp-57c9160454525453",
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "version": "2025",
+        "system_model": "cutoff"
+      },
+      "old_fingerprint": "3f747c91ba45953b4298176dd56fe6e9edb77d7e1e6dc9c7467266de38ccbbd4",
+      "new_fingerprint": "40500f2efd26e3b0ec330be8e096244591c5c1ab3a12b545526139d010ba5de4",
+      "selected_rule_and_shared_review_byte_identical": true,
+      "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+    },
+    {
+      "rule_id": "bp-3977d3526b1a0617",
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "version": "2025",
+        "system_model": "cutoff"
+      },
+      "old_fingerprint": "52c397b45b82b57c600c578f3e16379878e7be8169db419fd3861e8a96ff7061",
+      "new_fingerprint": "f6f82dfb72e872301f1c4f448260fd633e28bd9e0e3c31ba459e5565132e1d39",
+      "selected_rule_and_shared_review_byte_identical": true,
+      "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+    },
+    {
+      "rule_id": "bp-9f742d14ef4d8ca9",
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "version": "2025",
+        "system_model": "cutoff"
+      },
+      "old_fingerprint": "662edc3699f2e460eabdcfc71552795a35565f69b9d1d9463b0ec92214ca99ee",
+      "new_fingerprint": "f780af3942ee672c3aaf1ce9b86a1b13d1bce8463bbabfdf6a093127a487c71b",
+      "selected_rule_and_shared_review_byte_identical": true,
+      "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+    },
+    {
+      "rule_id": "bp-fa607ec8232396e4",
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "version": "2025",
+        "system_model": "cutoff"
+      },
+      "old_fingerprint": "280679eddbf2de2252b7587cae10159453434c1af6597598af79560b63f2a2c6",
+      "new_fingerprint": "d66b84184db27c150f971c31a733d42bcaefc6fe06feeb712bbec61e09e30929",
+      "selected_rule_and_shared_review_byte_identical": true,
+      "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+    }
+  ],
+  "tests": {
+    "brightpath_new_oxide_delivery_signs_and_services": {
+      "passed": 72,
+      "seconds": 28.58
+    },
+    "brightpath_heat_38_incinerators_and_adjacent_material_markets": {
+      "passed": 127,
+      "seconds": 41.01
+    },
+    "current_full_frozen_resource_replay_and_historical_initial_stage": {
+      "passed": 2,
+      "deselected": 731,
+      "seconds": 59.15
+    },
+    "premise_nine_new_and_eight_adjacent_fresh_cache_checks": {
+      "passed": 17,
+      "seconds": 62.31
+    }
+  },
+  "native_matrix": {
+    "date": "2026-11-11",
+    "scope": "Three oxide-market/helper closures and six direct native functional-service LCIs; not a prospective fuel update or export.",
+    "primary_oxide_market_import_rows_compared_field_by_field": 35,
+    "source_quantities_uncertainty_formulas_bounds_pedigree_and_units_retained": true,
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "native_matrix_checks": [
+      {
+        "rule_id": "bp-57c9160454525453",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": 1.0,
+        "native_leaf_demands": 5,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-3977d3526b1a0617",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": 1.0,
+        "native_leaf_demands": 5,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-9f742d14ef4d8ca9",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": 1.0,
+        "native_leaf_demands": 5,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-fa607ec8232396e4",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": -1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": -1.0,
+        "native_leaf_demands": 1,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-d11cb973ed24a79a",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": -1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": -1.0,
+        "native_leaf_demands": 1,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-f7cc2346dd145561",
+        "basis_amount": 1,
+        "basis_unit": "megajoule",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": 1.0,
+        "native_leaf_demands": 1,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-af821ca7d28786a8",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": -1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": -1.0,
+        "native_leaf_demands": 1,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-eb7ad12f2fa498ed",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": -1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": -1.0,
+        "native_leaf_demands": 1,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-aa17e516d5f814ea",
+        "basis_amount": 1,
+        "basis_unit": "kilowatt hour",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "source_to_target_factor": 1.0,
+        "native_leaf_demands": 1,
+        "inventory_finite": true,
+        "supply_finite": true
+      }
+    ],
+    "database_written": false
+  },
+  "full_generator_byte_identical": true,
+  "wheel_contains_exact_review_resource_and_manifest": true,
+  "black_and_ruff_changed_replay_and_tests": "pass",
+  "runtime_python_changes": [],
+  "limitations": [
+    "Reconstruct the independently inspected 3.9 European-IAI metallurgical-alumina market, retaining all four domestic/import shares and four market delivery rows. Retain each of three import helpers separately, with one kg complete native European alumina production and its four within-region/international freight rows. All 23 source market/import input identities, units and quantities independently match the older reviewed transport bindings, while uncertainty/formulas/parameters are read anew from 3.9. Complete native bauxite-to-hydroxide-to-calcination production replaces each actual producer, not an additional hydroxide/metal-refining inventory. Native ore/grade, fuels, electricity, caustic basis, red mud, water/emissions, allocation, geographic production and vintage differ. Preserve finished-product import and market freight separately from native raw-material freight. No purity, hydration, stoichiometric, yield or recovery correction is invented.",
+    "Reconstruct the independently inspected 3.9 global copper-oxide market, retaining both producer shares and all four delivery modes. Actual source producers provide positive kg of solid copper(II) oxide by hydrometallurgy; complete native CuO production retains that recorded product/process class. Do not substitute metal copper or copper(I) oxide, multiply an already modeled process yield, add source reagents/emissions again or infer a copper-content factor. All six source input identities, units and quantities independently match the older reviewed transport/production bindings; current 3.9 uncertainty/formulas remain. Native feedstock, reagent basis, estimated emissions, solid waste, allocation, geography and vintage differ with unquantified score effects.",
+    "Reconstruct the independently inspected 3.9 global zinc-oxide market, retaining both producer shares and all four delivery modes. Actual source and native refer to positive kg of ZnO product, with native French-process oxide production as a complete historical screening proxy. Do not substitute zinc metal, scale to contained Zn, apply another oxidation yield or add source processing emissions over the complete native inventory. All six source input identities, units and quantities independently match older reviewed bindings, while current 3.9 uncertainty/formulas remain. Native zinc purity, trace metals, production/energy, allocation, internal freight, geography, age and internal uncertainty differ.",
+    "One kg of wet polypropylene waste is treated: both actual source and native inventory describe H2O 159000 ppm (15.9% wet-mass water), UHV 36.16 MJ/kg and LHV 32.78 MJ/kg. Source production properties give dry mass 0.841 kg and water in wet mass 0.159 kg per kg waste; the separate water-content property is a dry-mass ratio, not 18.9% wet water. Use the complete native municipal-incineration service with factor -1 because source reference is -1 kg and native service is +1 kg. No dry/wet or heating-value multiplier, extra avoided-energy credit or added source incinerator emissions is inferred. Native residue, allocation, energy-recovery, geography, age and emission coverage differ.",
+    "Both actual source and native describe one kg inert brick waste with density 1600 kg/m3. Source collection-for-final-disposal includes its negative one-kg inert-waste market input, so the complete native dismantling/handling/final-disposal chain is the functional proxy, not an additional landfill on top. Source reference -1 kg becomes native +1 kg service with factor -1; no density/volume conversion, dismantling multiplier, separate landfill or recovery credit is added. Site/fleet, dust, final-disposal mix, allocation and age differences remain screening limitations.",
+    "Actual source and native provide positive one MJ useful heat from a condensing modulating natural-gas boiler greater than 100 kW. Use the complete native heat process including fuel supply, boiler infrastructure, operating electricity and direct emissions, once at factor +1. Do not substitute gas calorific input, a smaller noncondensing boiler or another temperature/service, and do not apply a second LHV/efficiency/capacity multiplier. Native RER supply proxies Europe without Switzerland; gas network/grade, measured-versus-real-operation emissions, efficiency, allocation and vintage differ. Separately listed caller emissions remain untouched.",
+    "Actual source waste mineral wool has one kg dry material and zero water in wet mass. Complete native dry-mineral-wool construction-waste landfill provides positive kg treatment service for the source negative kg waste reference, factor -1. It is an explicitly geographic/site-technology proxy for European inert-material landfill, not a hazardous-waste incinerator or recycled-wool product. Source excludes leachate emissions as negligible whereas native site/emission assumptions differ. Preserve one kg dry waste without a moisture/density multiplier, extra disposal, recycling or recovered-material credit; sealing, leachate, land use, infrastructure, geography and age differences remain warnings.",
+    "Source references one kg wet limestone residue, with 0.995 kg dry matter and 0.005 kg water (0.5% water by wet mass). Native complete limestone-residue construction-waste landfill explicitly has H2O 50000 ppm, 5% water, not 0.5%. Approve it only as a composition/moisture and paper-residue/site screening proxy per kg wet waste, with factor -1 from source negative kg to positive service. Preserve the original wet-waste mass; do not silently relabel the source as 5% water or infer a dry-load ratio that adds target waste/water mass. Native dry-matter load, transport/landfill burdens, composition/leaching, allocation, geography and age differ with unquantified score effects. No compensating water exchange, extra disposal or recovery credit is invented.",
+    "Actual source and native provide positive one kWh high-voltage electricity at the grid/consumption boundary. Use the complete native RER high-voltage grid once, retaining its original signed generation/import exchanges, voltage-specific losses, network infrastructure and direct grid emissions. It replaces the source historical regional-country consumption mix with the native 2023 mix and boundary; country coverage, generation/import technology, allocation, geography and vintage differences remain explicit. Do not substitute a production busbar or lower voltage, add a second loss factor, clip negative native coefficients or introduce a new IAM/grid algorithm. Existing shared Premise electricity updates continue to act on native suppliers."
+  ],
+  "verification_log_sha256": {
+    "fuels-39-oxide-services-tests.log": "b7724185d6b067c002cd67299f5e3c5d29e30e636b583f66bdb9158e9ded9835",
+    "fuels-39-oxide-services-legacy-tests.log": "0abd2d1a2a1541c35201e0caaed940e72cca7428c751e241b6388d86744d2fb7",
+    "fuels-39-oxide-services-full-replay-tests.log": "39b235f2a882119b401615f8ab48880d198dc835912fc403e47050cb36fe8a4e",
+    "fuels-39-oxide-services-premise-tests.log": "c6a846d29ae15d97c1a4f2936b560d0baf42f230679cbc845b486fe3cd987d51",
+    "fuels-39-oxide-services-native-lci.log": "1d7f6ed6b483c838d367918e17ab00b4484d9ea624d616e2e2dc0be754789768",
+    "fuels-39-oxide-services-replay.log": "89eaf9ab1b4c1812d8325ebdcf6bd2fe966e618e65e673b048bda47ae1cddd93",
+    "fuels-39-oxide-services-wheel.log": "ce1e823fcc58731a6e79f1e4af8b0cc625919b29457419afac6ffefeedf3cdc5",
+    "fuels-39-oxide-services-probe.log": "ae2c83a7b785711ac4252377d5c2b544b6aecb25fe7dd23e32647dbd33773c6f"
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123003114,
+  "validated_scopes": 606,
+  "installed_commit_verified": "a69e39bd528744655c8f55e15c288d06e3773e22",
+  "licensed_preparation": {
+    "audit_file": "fc002955452809b5fcc4190fe7a1e798d63f790c32423eff6f76e03d94e0fc95.audit.json.gz",
+    "audit_sha256": "2b55d595d4ec14bf17bef0a8371085c1588b3c116cb5b366c6700de83724c50d",
+    "counts": {
+      "migration.unit_changes_require_factors": 1,
+      "migration.canonical_biosphere_identity": 2,
+      "migration.catalog_correspondence": 1,
+      "migration.scoped_compatibility_review": 2,
+      "migration.unapproved_correspondence": 11,
+      "migration.approved_correspondence": 117,
+      "clic.compatibility_proxy_limitations": 117
+    },
+    "new_current_cohort_rules_accepted": [
+      "bp-57c9160454525453",
+      "bp-3977d3526b1a0617",
+      "bp-9f742d14ef4d8ca9",
+      "bp-fa607ec8232396e4",
+      "bp-d11cb973ed24a79a",
+      "bp-f7cc2346dd145561",
+      "bp-af821ca7d28786a8",
+      "bp-eb7ad12f2fa498ed",
+      "bp-aa17e516d5f814ea"
+    ],
+    "previous_unapproved_count": 20,
+    "remaining_unapproved_count": 11,
+    "source_activities_after": 11947,
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "prospective_fuel_update_run": false,
+    "database_exported": false
+  }
+}

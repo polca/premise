@@ -5828,7 +5828,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "280679eddbf2de2252b7587cae10159453434c1af6597598af79560b63f2a2c6"
+          "fingerprint": "d66b84184db27c150f971c31a733d42bcaefc6fe06feeb712bbec61e09e30929"
         }
       ]
     },
@@ -132391,7 +132391,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "3f747c91ba45953b4298176dd56fe6e9edb77d7e1e6dc9c7467266de38ccbbd4"
+          "fingerprint": "40500f2efd26e3b0ec330be8e096244591c5c1ab3a12b545526139d010ba5de4"
         }
       ]
     },
@@ -132657,7 +132657,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "662edc3699f2e460eabdcfc71552795a35565f69b9d1d9463b0ec92214ca99ee"
+          "fingerprint": "f780af3942ee672c3aaf1ce9b86a1b13d1bce8463bbabfdf6a093127a487c71b"
         }
       ]
     },
@@ -132923,7 +132923,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "52c397b45b82b57c600c578f3e16379878e7be8169db419fd3861e8a96ff7061"
+          "fingerprint": "f6f82dfb72e872301f1c4f448260fd633e28bd9e0e3c31ba459e5565132e1d39"
         }
       ]
     },
@@ -178961,6 +178961,2781 @@
             "system_model": "cutoff"
           },
           "fingerprint": "f573aca85c118d427d75f933161bb7e1054dbde0c8bf69f56a27ecb78abd2c07"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-57c9160454525453",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for aluminium oxide, metallurgical",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "38b591d3c2ba6267ff81f68198d2ec4e00067c5169945501bd4a2ce800747824",
+          "metadata_sha256": "2c2b93fe5540a323bedf8693ffec6cd08d66113d506eed6d7552c32d2281e6ed",
+          "nonproduction_counts": {
+            "technosphere": 8
+          },
+          "name": "market for aluminium oxide, metallurgical",
+          "reference product": "aluminium oxide, metallurgical",
+          "location": "IAI Area, EU27 & EFTA",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium oxide production",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "15907fbc3cf23700b45f175257ef0663e8970a060888e5ee1d15a1e2160ca715",
+            "metadata_sha256": "f8361f0a2a9e4d22077d334c5be0a7dcd008a19b6129b6112f2de92ee22f6bac",
+            "nonproduction_counts": {
+              "technosphere": 16
+            }
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "b50fadf8da547a520bedcda9b05c08107973f960de525efcb1b9b874118df999",
+            "metadata_sha256": "a26a7b172fc544efc129c8c9baac4762526166887b23538933efd4c4f21bc094",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "69945662b0aac949d032c0fc418c6518aa6ed4ccd177e13aea9c1bec2c56a463",
+            "metadata_sha256": "4156c6629ba76a7c0d494e83f0e86faa26ef0b0e7df66c3a54108f5d7ec0bf4e",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "fda8bccefe6e481a701f10a7a26ffe9e0f6e134315aed25209af80b5c0c4b938",
+            "metadata_sha256": "ffe7e8d0c43d1b659cd948b890d9d71c76ccab42a0d73f02ea5c3a4c66b56226",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          }
+        ],
+        "basis": "Reconstruct the independently inspected 3.9 European-IAI metallurgical-alumina market, retaining all four domestic/import shares and four market delivery rows. Retain each of three import helpers separately, with one kg complete native European alumina production and its four within-region/international freight rows. All 23 source market/import input identities, units and quantities independently match the older reviewed transport bindings, while uncertainty/formulas/parameters are read anew from 3.9. Complete native bauxite-to-hydroxide-to-calcination production replaces each actual producer, not an additional hydroxide/metal-refining inventory. Native ore/grade, fuels, electricity, caustic basis, red mud, water/emissions, allocation, geographic production and vintage differ. Preserve finished-product import and market freight separately from native raw-material freight. No purity, hydration, stoichiometric, yield or recovery correction is invented.",
+        "conversion_factor": 1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "recipe_ref": "fuels-39-oxide-93506aa4827411d057b1"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.8"
+            },
+            "selected_rule_sha256": "620c44ac16dcf13a782713cf8f1a104b8d415d428fcad7faf4e73909fa4d8079",
+            "shared_review_sha256": "cee2570c579ef6f1885be7eabce5c7fd0cac45aba9b12ccfe8db1c39acf1cdf9"
+          }
+        ],
+        "unchanged_existing_scope_fingerprint_refreshes": [
+          {
+            "rule_id": "bp-57c9160454525453",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "3f747c91ba45953b4298176dd56fe6e9edb77d7e1e6dc9c7467266de38ccbbd4",
+            "new_fingerprint": "40500f2efd26e3b0ec330be8e096244591c5c1ab3a12b545526139d010ba5de4",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          }
+        ],
+        "retention": {
+          "all_market_import_rows": 23,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "helper_recipe": "fuels-39-oxide-93506aa4827411d057b1",
+        "new_recipe_ids": [
+          "fuels-39-oxide-376e1275fd7678345f1d",
+          "fuels-39-oxide-acaf55f42c8e4000a457",
+          "fuels-39-oxide-2bce38f0ca975db371b4",
+          "fuels-39-oxide-93506aa4827411d057b1"
+        ],
+        "source_delivery_activity_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from Northern America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "69945662b0aac949d032c0fc418c6518aa6ed4ccd177e13aea9c1bec2c56a463",
+            "metadata_sha256": "4156c6629ba76a7c0d494e83f0e86faa26ef0b0e7df66c3a54108f5d7ec0bf4e",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "b50fadf8da547a520bedcda9b05c08107973f960de525efcb1b9b874118df999",
+            "metadata_sha256": "a26a7b172fc544efc129c8c9baac4762526166887b23538933efd4c4f21bc094",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "aluminium oxide, metallurgical, import from South America",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "fda8bccefe6e481a701f10a7a26ffe9e0f6e134315aed25209af80b5c0c4b938",
+            "metadata_sha256": "ffe7e8d0c43d1b659cd948b890d9d71c76ccab42a0d73f02ea5c3a4c66b56226",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "market for aluminium oxide, metallurgical",
+              "reference product": "aluminium oxide, metallurgical",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "38b591d3c2ba6267ff81f68198d2ec4e00067c5169945501bd4a2ce800747824",
+            "metadata_sha256": "2c2b93fe5540a323bedf8693ffec6cd08d66113d506eed6d7552c32d2281e6ed",
+            "nonproduction_counts": {
+              "technosphere": 8
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the independently inspected 3.9 European-IAI metallurgical-alumina market, retaining all four domestic/import shares and four market delivery rows. Retain each of three import helpers separately, with one kg complete native European alumina production and its four within-region/international freight rows. All 23 source market/import input identities, units and quantities independently match the older reviewed transport bindings, while uncertainty/formulas/parameters are read anew from 3.9. Complete native bauxite-to-hydroxide-to-calcination production replaces each actual producer, not an additional hydroxide/metal-refining inventory. Native ore/grade, fuels, electricity, caustic basis, red mud, water/emissions, allocation, geographic production and vintage differ. Preserve finished-product import and market freight separately from native raw-material freight. No purity, hydration, stoichiometric, yield or recovery correction is invented.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "541a027ed797574d1c955392e6c5a9a25e04a4fccff53532d9dc3b06329133ce"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3977d3526b1a0617",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for copper oxide",
+            "reference product": "copper oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "44e85244b5e26a83088c247872d0b316b017841aec516489299c7a56adaed004",
+          "metadata_sha256": "fa9a9c7f40041380e72f2204a0ea3e703f5d352ed48c61a5b5dbb5eccdb76c90",
+          "nonproduction_counts": {
+            "technosphere": 6
+          },
+          "name": "market for copper oxide",
+          "reference product": "copper oxide",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "copper oxide production",
+              "reference product": "copper oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "5c3392a67c8f5476ab8312b5db1989ab84bdbe0f800c10c17314d7d7f78c9291",
+            "metadata_sha256": "5d4031f7aac2edbfc443b630db05f52417daa47595680d5db2e588eb85037b49",
+            "nonproduction_counts": {
+              "technosphere": 30,
+              "biosphere": 8
+            }
+          },
+          {
+            "identity": {
+              "name": "copper oxide production",
+              "reference product": "copper oxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "13a1e1dab647213c830c30d73d70525a5f9b092673a8f4477dce358ae156bca6",
+            "metadata_sha256": "e64d565d0bac5a6b1142e5300ceadc27939a667500e718c9231a74b8cc10d2a0",
+            "nonproduction_counts": {
+              "technosphere": 11,
+              "biosphere": 8
+            }
+          }
+        ],
+        "basis": "Reconstruct the independently inspected 3.9 global copper-oxide market, retaining both producer shares and all four delivery modes. Actual source producers provide positive kg of solid copper(II) oxide by hydrometallurgy; complete native CuO production retains that recorded product/process class. Do not substitute metal copper or copper(I) oxide, multiply an already modeled process yield, add source reagents/emissions again or infer a copper-content factor. All six source input identities, units and quantities independently match the older reviewed transport/production bindings; current 3.9 uncertainty/formulas remain. Native feedstock, reagent basis, estimated emissions, solid waste, allocation, geography and vintage differ with unquantified score effects.",
+        "conversion_factor": 1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "recipe_ref": "fuels-39-oxide-24d8547a73b0aa2068ca"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.8"
+            },
+            "selected_rule_sha256": "87745bb13235e3455f6ce12cbfa6ee85ec56bb7c9bfb35a95d7da1f3f84f0e39",
+            "shared_review_sha256": "00aa09e9e4c94c3fd25a6ffef6d97f5df71baf7f439ad0e420cf1f30b803d2c9"
+          }
+        ],
+        "unchanged_existing_scope_fingerprint_refreshes": [
+          {
+            "rule_id": "bp-57c9160454525453",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "3f747c91ba45953b4298176dd56fe6e9edb77d7e1e6dc9c7467266de38ccbbd4",
+            "new_fingerprint": "40500f2efd26e3b0ec330be8e096244591c5c1ab3a12b545526139d010ba5de4",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          },
+          {
+            "rule_id": "bp-3977d3526b1a0617",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "52c397b45b82b57c600c578f3e16379878e7be8169db419fd3861e8a96ff7061",
+            "new_fingerprint": "f6f82dfb72e872301f1c4f448260fd633e28bd9e0e3c31ba459e5565132e1d39",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          }
+        ],
+        "retention": {
+          "all_market_import_rows": 6,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "helper_recipe": "fuels-39-oxide-24d8547a73b0aa2068ca",
+        "new_recipe_ids": [
+          "fuels-39-oxide-24d8547a73b0aa2068ca"
+        ],
+        "source_delivery_activity_witnesses": [
+          {
+            "identity": {
+              "name": "market for copper oxide",
+              "reference product": "copper oxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "44e85244b5e26a83088c247872d0b316b017841aec516489299c7a56adaed004",
+            "metadata_sha256": "fa9a9c7f40041380e72f2204a0ea3e703f5d352ed48c61a5b5dbb5eccdb76c90",
+            "nonproduction_counts": {
+              "technosphere": 6
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the independently inspected 3.9 global copper-oxide market, retaining both producer shares and all four delivery modes. Actual source producers provide positive kg of solid copper(II) oxide by hydrometallurgy; complete native CuO production retains that recorded product/process class. Do not substitute metal copper or copper(I) oxide, multiply an already modeled process yield, add source reagents/emissions again or infer a copper-content factor. All six source input identities, units and quantities independently match the older reviewed transport/production bindings; current 3.9 uncertainty/formulas remain. Native feedstock, reagent basis, estimated emissions, solid waste, allocation, geography and vintage differ with unquantified score effects.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a5dbcbeb49ca43fdb4c81eefd1f15138c95253e18cefef8fa89839a0d62f89ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f742d14ef4d8ca9",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_38_delivery_closure",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for zinc oxide",
+            "reference product": "zinc oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "3f07171310fd1107501c6a19224620c9a509dbca9fec7e4bb4e9d9e3d8a8c81d",
+          "metadata_sha256": "5c813da7277da7236921e117c42d897608dd9369f75ea17da25979a1420292c8",
+          "nonproduction_counts": {
+            "technosphere": 6
+          },
+          "name": "market for zinc oxide",
+          "reference product": "zinc oxide",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "zinc oxide production",
+              "reference product": "zinc oxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "90c890c18b15ce03b55bf971ca39b85dd462be6fba4cc93f13b8800d0ebeaaf1",
+            "metadata_sha256": "1bdaa587e6277a9a4ed962bbcacfebdb63a54ca50adfa14910bbf032b3fd1b4f",
+            "nonproduction_counts": {
+              "technosphere": 4,
+              "biosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "zinc oxide production",
+              "reference product": "zinc oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "fe45826c4f5e7ec361d7a211600c07ded5f962a1c457ed07719467e736d4e093",
+            "metadata_sha256": "c0384dbaa454c2dc2617a1af3e6fffe2eb6f98c3024a5af640da83716dd9831b",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 1
+            }
+          }
+        ],
+        "basis": "Reconstruct the independently inspected 3.9 global zinc-oxide market, retaining both producer shares and all four delivery modes. Actual source and native refer to positive kg of ZnO product, with native French-process oxide production as a complete historical screening proxy. Do not substitute zinc metal, scale to contained Zn, apply another oxidation yield or add source processing emissions over the complete native inventory. All six source input identities, units and quantities independently match older reviewed bindings, while current 3.9 uncertainty/formulas remain. Native zinc purity, trace metals, production/energy, allocation, internal freight, geography, age and internal uncertainty differ.",
+        "conversion_factor": 1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "recipe_ref": "fuels-39-oxide-84768ca49a8b4dada132"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.8"
+            },
+            "selected_rule_sha256": "c8c60f4dd2f735282dd1b7bb2a637c9bf84f0c9ab9608d62afaacf13541e47f3",
+            "shared_review_sha256": "63e5db01bd117a88729e07d8415ffd3f16a97f30460a90137b5f8db4d41ebfba"
+          }
+        ],
+        "unchanged_existing_scope_fingerprint_refreshes": [
+          {
+            "rule_id": "bp-57c9160454525453",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "3f747c91ba45953b4298176dd56fe6e9edb77d7e1e6dc9c7467266de38ccbbd4",
+            "new_fingerprint": "40500f2efd26e3b0ec330be8e096244591c5c1ab3a12b545526139d010ba5de4",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          },
+          {
+            "rule_id": "bp-3977d3526b1a0617",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "52c397b45b82b57c600c578f3e16379878e7be8169db419fd3861e8a96ff7061",
+            "new_fingerprint": "f6f82dfb72e872301f1c4f448260fd633e28bd9e0e3c31ba459e5565132e1d39",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          },
+          {
+            "rule_id": "bp-9f742d14ef4d8ca9",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "662edc3699f2e460eabdcfc71552795a35565f69b9d1d9463b0ec92214ca99ee",
+            "new_fingerprint": "f780af3942ee672c3aaf1ce9b86a1b13d1bce8463bbabfdf6a093127a487c71b",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          }
+        ],
+        "retention": {
+          "all_market_import_rows": 6,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "helper_recipe": "fuels-39-oxide-84768ca49a8b4dada132",
+        "new_recipe_ids": [
+          "fuels-39-oxide-84768ca49a8b4dada132"
+        ],
+        "source_delivery_activity_witnesses": [
+          {
+            "identity": {
+              "name": "market for zinc oxide",
+              "reference product": "zinc oxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "3f07171310fd1107501c6a19224620c9a509dbca9fec7e4bb4e9d9e3d8a8c81d",
+            "metadata_sha256": "5c813da7277da7236921e117c42d897608dd9369f75ea17da25979a1420292c8",
+            "nonproduction_counts": {
+              "technosphere": 6
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the independently inspected 3.9 global zinc-oxide market, retaining both producer shares and all four delivery modes. Actual source and native refer to positive kg of ZnO product, with native French-process oxide production as a complete historical screening proxy. Do not substitute zinc metal, scale to contained Zn, apply another oxidation yield or add source processing emissions over the complete native inventory. All six source input identities, units and quantities independently match older reviewed bindings, while current 3.9 uncertainty/formulas remain. Native zinc purity, trace metals, production/energy, allocation, internal freight, geography, age and internal uncertainty differ.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "12cae82a74d8a6593afa5644662ee363fa5e921bd1d488bb30b177dba42125e5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fa607ec8232396e4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste polypropylene, municipal incineration",
+            "reference product": "waste polypropylene",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "enriched_inventory_sha256": "b2aa1a898acac12b1cc0dcf21dda8f7205b39aec7db47b28e62c23f0c77b62ff",
+          "metadata_sha256": "49df207054601462f2182cfc61bad9cc0b811c04bc1b0d4e0026675463f1a390",
+          "nonproduction_counts": {
+            "technosphere": 18,
+            "biosphere": 102
+          },
+          "name": "treatment of waste polypropylene, municipal incineration",
+          "reference product": "waste polypropylene",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "One kg of wet polypropylene waste is treated: both actual source and native inventory describe H2O 159000 ppm (15.9% wet-mass water), UHV 36.16 MJ/kg and LHV 32.78 MJ/kg. Source production properties give dry mass 0.841 kg and water in wet mass 0.159 kg per kg waste; the separate water-content property is a dry-mass ratio, not 18.9% wet water. Use the complete native municipal-incineration service with factor -1 because source reference is -1 kg and native service is +1 kg. No dry/wet or heating-value multiplier, extra avoided-energy credit or added source incinerator emissions is inferred. Native residue, allocation, energy-recovery, geography, age and emission coverage differ.",
+        "conversion_factor": -1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+          "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.6"
+            },
+            "selected_rule_sha256": "2c8cf48f58667af167a6c0dea76716447eb8d3455b7611d0838f7df29ad7e0b5",
+            "shared_review_sha256": "8cbbb841ab0fe7801e1c79d750bc68db634f0b289b019f6412ebe539c75fa302"
+          }
+        ],
+        "unchanged_existing_scope_fingerprint_refreshes": [
+          {
+            "rule_id": "bp-57c9160454525453",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "3f747c91ba45953b4298176dd56fe6e9edb77d7e1e6dc9c7467266de38ccbbd4",
+            "new_fingerprint": "40500f2efd26e3b0ec330be8e096244591c5c1ab3a12b545526139d010ba5de4",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          },
+          {
+            "rule_id": "bp-3977d3526b1a0617",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "52c397b45b82b57c600c578f3e16379878e7be8169db419fd3861e8a96ff7061",
+            "new_fingerprint": "f6f82dfb72e872301f1c4f448260fd633e28bd9e0e3c31ba459e5565132e1d39",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          },
+          {
+            "rule_id": "bp-9f742d14ef4d8ca9",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "662edc3699f2e460eabdcfc71552795a35565f69b9d1d9463b0ec92214ca99ee",
+            "new_fingerprint": "f780af3942ee672c3aaf1ce9b86a1b13d1bce8463bbabfdf6a093127a487c71b",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          },
+          {
+            "rule_id": "bp-fa607ec8232396e4",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "family": "uvek",
+              "version": "2025",
+              "system_model": "cutoff"
+            },
+            "old_fingerprint": "280679eddbf2de2252b7587cae10159453434c1af6597598af79560b63f2a2c6",
+            "new_fingerprint": "d66b84184db27c150f971c31a733d42bcaefc6fe06feeb712bbec61e09e30929",
+            "selected_rule_and_shared_review_byte_identical": true,
+            "reason": "Only a new exact 3.9 profile/helper was appended to the fingerprinted full rule. Previously approved selected target, factor, warnings, shared review and helper closure remain unchanged."
+          }
+        ],
+        "source_wet_mass_properties": {
+          "dry mass": {
+            "amount": 0.841,
+            "unit": "kg"
+          },
+          "wet mass": {
+            "amount": 1.0,
+            "unit": "kg"
+          },
+          "water in wet mass": {
+            "amount": 0.159,
+            "unit": "kg"
+          },
+          "water content": {
+            "amount": 0.189060642092747,
+            "unit": "dimensionless"
+          }
+        }
+      },
+      "limitations": [
+        "One kg of wet polypropylene waste is treated: both actual source and native inventory describe H2O 159000 ppm (15.9% wet-mass water), UHV 36.16 MJ/kg and LHV 32.78 MJ/kg. Source production properties give dry mass 0.841 kg and water in wet mass 0.159 kg per kg waste; the separate water-content property is a dry-mass ratio, not 18.9% wet water. Use the complete native municipal-incineration service with factor -1 because source reference is -1 kg and native service is +1 kg. No dry/wet or heating-value multiplier, extra avoided-energy credit or added source incinerator emissions is inferred. Native residue, allocation, energy-recovery, geography, age and emission coverage differ.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "305c0494459af46b8f87446d94f548d28562127e2c9c116e3ac3af7b5fc31d00"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d11cb973ed24a79a",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_oxide_services",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste brick, collection for final disposal",
+            "reference product": "waste brick",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "enriched_inventory_sha256": "1ab5477cce5e3d2da37d76b6c1aef3d0fff2c5a4d52ee176c2b6272dc5b4e21a",
+          "metadata_sha256": "ab1a17268811ce3f95aca1a84981fe6765f8105a7ed3a2974ce6dbfb6ddc2993",
+          "nonproduction_counts": {
+            "technosphere": 2,
+            "biosphere": 3
+          },
+          "name": "treatment of waste brick, collection for final disposal",
+          "reference product": "waste brick",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Both actual source and native describe one kg inert brick waste with density 1600 kg/m3. Source collection-for-final-disposal includes its negative one-kg inert-waste market input, so the complete native dismantling/handling/final-disposal chain is the functional proxy, not an additional landfill on top. Source reference -1 kg becomes native +1 kg service with factor -1; no density/volume conversion, dismantling multiplier, separate landfill or recovery credit is added. Site/fleet, dust, final-disposal mix, allocation and age differences remain screening limitations.",
+        "conversion_factor": -1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "name": "Disposal, building, brick, to final disposal",
+          "reference product": "Disposal, building, brick, to final disposal",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": []
+      },
+      "limitations": [
+        "Both actual source and native describe one kg inert brick waste with density 1600 kg/m3. Source collection-for-final-disposal includes its negative one-kg inert-waste market input, so the complete native dismantling/handling/final-disposal chain is the functional proxy, not an additional landfill on top. Source reference -1 kg becomes native +1 kg service with factor -1; no density/volume conversion, dismantling multiplier, separate landfill or recovery credit is added. Site/fleet, dust, final-disposal mix, allocation and age differences remain screening limitations.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cc6d8c6158cdab04cc2b981d284fcc3d8ba49e113bf31f084e106a105c3b4068"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f7cc2346dd145561",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_oxide_services",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat production, natural gas, at boiler condensing modulating >100kW",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "Europe without Switzerland",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "1404285e084673d51911b4cd3f94149c70f7562ffb0b7b1f8bfaef443d9e01e3",
+          "metadata_sha256": "83bcab564771697d0243d88734c7f6012089c2f3b1ce1b6008c6290ddeeecefa",
+          "nonproduction_counts": {
+            "technosphere": 3,
+            "biosphere": 24
+          },
+          "name": "heat production, natural gas, at boiler condensing modulating >100kW",
+          "reference product": "heat, district or industrial, natural gas",
+          "location": "Europe without Switzerland",
+          "unit": "megajoule"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Actual source and native provide positive one MJ useful heat from a condensing modulating natural-gas boiler greater than 100 kW. Use the complete native heat process including fuel supply, boiler infrastructure, operating electricity and direct emissions, once at factor +1. Do not substitute gas calorific input, a smaller noncondensing boiler or another temperature/service, and do not apply a second LHV/efficiency/capacity multiplier. Native RER supply proxies Europe without Switzerland; gas network/grade, measured-versus-real-operation emissions, efficiency, allocation and vintage differ. Separately listed caller emissions remain untouched.",
+        "conversion_factor": 1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+          "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+          "location": "RER",
+          "unit": "megajoule"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": []
+      },
+      "limitations": [
+        "Actual source and native provide positive one MJ useful heat from a condensing modulating natural-gas boiler greater than 100 kW. Use the complete native heat process including fuel supply, boiler infrastructure, operating electricity and direct emissions, once at factor +1. Do not substitute gas calorific input, a smaller noncondensing boiler or another temperature/service, and do not apply a second LHV/efficiency/capacity multiplier. Native RER supply proxies Europe without Switzerland; gas network/grade, measured-versus-real-operation emissions, efficiency, allocation and vintage differ. Separately listed caller emissions remain untouched.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7c3fa4ea00f9f73ea7c9bca7530e09822b2214ca713f3ffc29f3115706592aa5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-af821ca7d28786a8",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_oxide_services",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste mineral wool, inert material landfill",
+            "reference product": "waste mineral wool, for final disposal",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "enriched_inventory_sha256": "0b272ddc27bf8fd4bbbf0087b4c53fafa39082b53192f50fd6e60c03f81cff9a",
+          "metadata_sha256": "d99b771550537eccbb73405455e941aef43cf499181d59d71fe4450f396bedd2",
+          "nonproduction_counts": {
+            "technosphere": 2
+          },
+          "name": "treatment of waste mineral wool, inert material landfill",
+          "reference product": "waste mineral wool, for final disposal",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Actual source waste mineral wool has one kg dry material and zero water in wet mass. Complete native dry-mineral-wool construction-waste landfill provides positive kg treatment service for the source negative kg waste reference, factor -1. It is an explicitly geographic/site-technology proxy for European inert-material landfill, not a hazardous-waste incinerator or recycled-wool product. Source excludes leachate emissions as negligible whereas native site/emission assumptions differ. Preserve one kg dry waste without a moisture/density multiplier, extra disposal, recycling or recovered-material credit; sealing, leachate, land use, infrastructure, geography and age differences remain warnings.",
+        "conversion_factor": -1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+          "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": [],
+        "source_wet_mass_properties": {
+          "dry mass": {
+            "amount": 1.0,
+            "unit": "kg"
+          },
+          "wet mass": {
+            "amount": 1.0,
+            "unit": "kg"
+          },
+          "water in wet mass": {
+            "amount": 0.0,
+            "unit": "kg"
+          },
+          "water content": {
+            "amount": 0.0,
+            "unit": "dimensionless"
+          }
+        }
+      },
+      "limitations": [
+        "Actual source waste mineral wool has one kg dry material and zero water in wet mass. Complete native dry-mineral-wool construction-waste landfill provides positive kg treatment service for the source negative kg waste reference, factor -1. It is an explicitly geographic/site-technology proxy for European inert-material landfill, not a hazardous-waste incinerator or recycled-wool product. Source excludes leachate emissions as negligible whereas native site/emission assumptions differ. Preserve one kg dry waste without a moisture/density multiplier, extra disposal, recycling or recovered-material credit; sealing, leachate, land use, infrastructure, geography and age differences remain warnings.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "846c5cd601b71a6275dbf871a291e52986fd78d60e6a9050a538248b5bcbcea9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-eb7ad12f2fa498ed",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_oxide_services",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of limestone residue, inert material landfill",
+            "reference product": "limestone residue",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "enriched_inventory_sha256": "c7bf76c16cd7e628a1d2df4ad1fe77196502e95b74fb572b1ae881f8533d462e",
+          "metadata_sha256": "b9a5eaeb81c7dae0a7552fa6b8e0df5e39722a12ff5b02e90fad2959d1adfa9d",
+          "nonproduction_counts": {
+            "technosphere": 2
+          },
+          "name": "treatment of limestone residue, inert material landfill",
+          "reference product": "limestone residue",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Source references one kg wet limestone residue, with 0.995 kg dry matter and 0.005 kg water (0.5% water by wet mass). Native complete limestone-residue construction-waste landfill explicitly has H2O 50000 ppm, 5% water, not 0.5%. Approve it only as a composition/moisture and paper-residue/site screening proxy per kg wet waste, with factor -1 from source negative kg to positive service. Preserve the original wet-waste mass; do not silently relabel the source as 5% water or infer a dry-load ratio that adds target waste/water mass. Native dry-matter load, transport/landfill burdens, composition/leaching, allocation, geography and age differ with unquantified score effects. No compensating water exchange, extra disposal or recovery credit is invented.",
+        "conversion_factor": -1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+          "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": [],
+        "source_wet_mass_properties": {
+          "dry mass": {
+            "amount": 0.995,
+            "unit": "kg"
+          },
+          "wet mass": {
+            "amount": 1.0,
+            "unit": "kg"
+          },
+          "water in wet mass": {
+            "amount": 0.005,
+            "unit": "kg"
+          },
+          "water content": {
+            "amount": 0.00502512562814,
+            "unit": "dimensionless"
+          }
+        }
+      },
+      "limitations": [
+        "Source references one kg wet limestone residue, with 0.995 kg dry matter and 0.005 kg water (0.5% water by wet mass). Native complete limestone-residue construction-waste landfill explicitly has H2O 50000 ppm, 5% water, not 0.5%. Approve it only as a composition/moisture and paper-residue/site screening proxy per kg wet waste, with factor -1 from source negative kg to positive service. Preserve the original wet-waste mass; do not silently relabel the source as 5% water or infer a dry-load ratio that adds target waste/water mass. Native dry-matter load, transport/landfill burdens, composition/leaching, allocation, geography and age differ with unquantified score effects. No compensating water exchange, extra disposal or recovery credit is invented.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "405a0173c8706f9df1bcb5a1be183b77641986b25ba7e4553ba010d5dd3a70a0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aa17e516d5f814ea",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_oxide_services",
+      "review_path": "export/uvek_fuels_39_oxide_services_review.json",
+      "review_sha256": "ab280c0ca2a309588ca89c2dbcc4e4d4d374bf9c7e97d64925c9936c2c38fb45",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected screening proxies with warnings and recorded decisions. No new physical omission or zero-burden supplier.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "location": "RER",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "9b20664a03f51c728d752ce413c1a99e1aac2cd3c39e15781de7e8e5f5a65098",
+          "metadata_sha256": "ee8b27d8dcb817fa70574c7aa0de85303e5ff0637c51afb4d24c5cfae9d5d13a",
+          "nonproduction_counts": {
+            "technosphere": 2
+          },
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "location": "RER",
+          "unit": "kilowatt hour"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market group for electricity, high voltage",
+              "reference product": "electricity, high voltage",
+              "location": "Europe without Switzerland",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "626837bfca1d4b960663d957485e470e15053c75a9db1271e66ca8d5e53dd078",
+            "metadata_sha256": "2a5d9a845d99e6b1c4888d074aad2f48fd1d856ac481a0f081a5b8873ef61ab2",
+            "nonproduction_counts": {
+              "technosphere": 39
+            }
+          },
+          {
+            "identity": {
+              "name": "market for electricity, high voltage",
+              "reference product": "electricity, high voltage",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "c0ab3cb8f0b3150d6f8c6ff6ead1daf2409e6cc38a8fda6f01c647c247b3b072",
+            "metadata_sha256": "eed0ea49cbb0bd630a630b150905612e1c15b392d48eb9aebb02103737197e62",
+            "nonproduction_counts": {
+              "technosphere": 19,
+              "biosphere": 2
+            }
+          }
+        ],
+        "basis": "Actual source and native provide positive one kWh high-voltage electricity at the grid/consumption boundary. Use the complete native RER high-voltage grid once, retaining its original signed generation/import exchanges, voltage-specific losses, network infrastructure and direct grid emissions. It replaces the source historical regional-country consumption mix with the native 2023 mix and boundary; country coverage, generation/import technology, allocation, geography and vintage differences remain explicit. Do not substitute a production busbar or lower voltage, add a second loss factor, clip negative native coefficients or introduce a new IAM/grid algorithm. Existing shared Premise electricity updates continue to act on native suppliers.",
+        "conversion_factor": 1.0,
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Aluminium oxide, at plant",
+              "reference product": "Aluminium oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 33,
+            "metadata_sha256": "fd8507c80e165d4af2b06a5ec91a073b940849791b7acda28f644a38f84d734c",
+            "inventory_sha256": "a6dbaf28a4869c42cbda0d1ad0c35c283ed1f2819dd54073a805308b5942ce7d",
+            "comment_sha256": "40b4c577b620f78d89941cb95c5bbe2f4024fcfd2b256d00bcd8577e49fc7831"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          },
+          {
+            "identity": {
+              "name": "Copper oxide, at plant",
+              "reference product": "Copper oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 15,
+            "metadata_sha256": "7ab267fcd822bf59d7db4c8022fe812b2a4aae6c40721a2b94fdb4cfee8270b2",
+            "inventory_sha256": "0f2454c8fb67e47b2c0bb60a0cd3b8e898c85aae24093a6865ec26b57fdcfe48",
+            "comment_sha256": "ed27f657f8a87f3ae9d07b518c449a76c68109ed9dcec1b0fb251df1632293b1"
+          },
+          {
+            "identity": {
+              "name": "Zinc oxide, at plant",
+              "reference product": "Zinc oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "5c00305cf506a47ddccf6a706f655292b2af88d0351f6df48cfad4dbffe8239d",
+            "inventory_sha256": "ce9f8dd7bd7d915ba9aa178f07111eeb8a3ed9812c6aa5e9c94ff8e6e597de08",
+            "comment_sha256": "f25662d3662397e394547647fd058c4e59cfe0a9867a0122ab7518dacb1623b5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "reference product": "Disposal, polypropylene, 15.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 133,
+            "metadata_sha256": "97d3da0e35048d16849e352c709674ee60c53957af7a0fe011d91251afc19e11",
+            "inventory_sha256": "c4a27882a1bf6e81564f3d90e46dd4441daa2d857f3472f5f37c6ccb41f4a8f2",
+            "comment_sha256": "dfdd3390eea5354da15d257047a5c4f50f0f43f1d99fc4bd3862edbb6da04bed"
+          },
+          {
+            "identity": {
+              "name": "Disposal, building, brick, to final disposal",
+              "reference product": "Disposal, building, brick, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "44d8934d05c5b3603fb2644b4edb2c9455dc758d7a067c5059c3a976b1beb471",
+            "inventory_sha256": "20ce64290d54746c4fcd7ec5333787e9877faf8cd229068caa2549e9fd639315",
+            "comment_sha256": "830cf7391610795f1c16dba93475e50126a2a7ce1247e2460ce6fcb8391cb5b2"
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "e4ae3d02292d15db69e4fff59f9d487c7d4ce9f34dd2c9bc42280adcfb52c0ef",
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "comment_sha256": "76921296ef839f5d68a784c973be289fe2da986cc359135b05248663af20633d"
+          },
+          {
+            "identity": {
+              "name": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "reference product": "Disposal, mineral wool, 0% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "0297cd584dc7e2a361e6c7874da8a49c28f1e19b6ce814b79e403531ed262d20",
+            "inventory_sha256": "9ccbb8d25fc066ddb08782b2906dfde7b43b8168b3236f8bacb380c69e31aba6",
+            "comment_sha256": "9b5339b21e66e76334145cff0021c89249bfaa6546bc6e59491d29729f16a0e5"
+          },
+          {
+            "identity": {
+              "name": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "reference product": "Disposal, limestone residue, 5% water, to construction waste landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 68,
+            "metadata_sha256": "62fc6ffe24cd97b181d7b290e5eae663f7cbee64c1f6271f4aa4c996ccc415e4",
+            "inventory_sha256": "b2bce1e40a49ef862c2d23d1a3cf4d1d03fe38e17bbbd845489028eba735c341",
+            "comment_sha256": "4159718663d85d499df53a2745d4b8008e96a5912b54dce8c6c193b8a24ac297"
+          },
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "1d8b7f2025fc189716bf4c91c9830794c869afca098c7ffe2b0e5457633249cd",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10"
+          }
+        ],
+        "new_target": {
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "location": "RER",
+          "unit": "kilowatt hour"
+        },
+        "existing_recipe_dependencies": {
+          "heat-38-closure-417a00843486a8c6762f": "9064a60e0888a88ba607d329a6fe306d9016e0a2236529bb95255b32f1281246",
+          "heat-38-closure-7ab3661d890fb7c1cbec": "e6a775b1cf931248348f50abcc44ff7ec4809c1f130dfff69834f3c10d2cae76",
+          "heat-38-closure-6485ad0c5b1cd4402247": "43fad9bbb39896e0afefc35a9a955051d7c395d9c0535347693f8092e956be65",
+          "heat-38-closure-b09d57715ebe7b3ee871": "a9f354422e072699ec914e1b93535bb0cd9677d9449654a0e2f5589d017e4d29",
+          "heat-38-closure-ee373ef5bc9327fdcb0e": "dd0be09734e478f3140a1c4b558c8de02946bd5defa7912ea821832b3aff156a",
+          "heat-38-closure-0209b4bba0cdc2966398": "4faaa03fe7f47c8b9d7e082a304e9b6a9b0e9bd6debb535fb0c1428bbe79e14a"
+        },
+        "component_bindings": [],
+        "preserved_profiles": []
+      },
+      "limitations": [
+        "Actual source and native provide positive one kWh high-voltage electricity at the grid/consumption boundary. Use the complete native RER high-voltage grid once, retaining its original signed generation/import exchanges, voltage-specific losses, network infrastructure and direct grid emissions. It replaces the source historical regional-country consumption mix with the native 2023 mix and boundary; country coverage, generation/import technology, allocation, geography and vintage differences remain explicit. Do not substitute a production busbar or lower voltage, add a second loss factor, clip negative native coefficients or introduce a new IAM/grid algorithm. Existing shared Premise electricity updates continue to act on native suppliers.",
+        "Only independently inspected exact cut-off profiles qualify. Preserve signed caller quantities, supported uncertainty/formulas and separate caller emissions. Complete native historical inventories are explicitly warned functional screening proxies, with technology, grade/composition, allocation, delivery, geography, vintage, internal uncertainty and biosphere differences and unquantified score effects. No new source-input omission, recovery credit, inferred purity/moisture/density/LHV/yield/capacity multiplier, inverse or cross-system-model conversion is approved. Every previously reviewed selected profile, shared review and helper closure remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "706bc41c9babbb137418cdf9dd74a206d4a1c39ab842f2a596ff6f931a07e8d8"
         }
       ]
     }

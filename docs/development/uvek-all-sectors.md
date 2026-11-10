@@ -1014,3 +1014,72 @@ Next: metallurgical alumina, copper/zinc oxides, silica-sand composition and KOH
 basis, followed by the other current-cohort heat/treatment correspondences,
 further preparation cohorts, shared fuel transformation/linking and all remaining
 registered sectors. The full integration goal remains active.
+
+### Oxide delivery and six services: licensed preparation advances to 11 cases
+
+Brightpath `a69e39b` qualifies nine exact 3.9 cut-off correspondences: European
+metallurgical alumina, copper/zinc oxide markets, RER high-voltage grid electricity,
+condensing/modulating gas-boiler heat above 100 kW, polypropylene incineration,
+brick collection/final disposal, dry mineral-wool landfill and limestone-residue
+landfill. The oxide markets introduce six helpers. All 35 actual 3.9 market/import
+input identities, units and quantities independently match earlier reviewed
+native bindings, while uncertainty, formulas, bounds, pedigree and parameters
+are read anew from 3.9. Alumina retains all three import helpers separately from
+its market-level shipping. CuO and ZnO retain two producer shares and four
+freight modes each, without substituting metal, adding production inventories
+again or applying purity/oxidation-yield multipliers. Native production, feedstock,
+grade, allocation, geography, emissions, internal freight, vintage and uncertainty
+differences remain explicit screening limitations.
+
+The six direct services use complete native inventories. High-voltage electricity
+retains native signed exchanges, loss/infrastructure quantities and grid emissions
+per kWh, with an explicit historical-country-mix proxy; it introduces no new IAM
+or voltage algorithm. Boiler heat retains the useful-MJ service and technology
+band, with geographic/operating differences and no second fuel/efficiency factor.
+The four waste references convert negative source kg to positive native treatment
+kg with factor -1, scaling uncertainty and formulas consistently. Source and native
+polypropylene describe the same 15.9% wet-mass water/heating coordinates; source
+water/dry-matter ratio is not mistaken for wet-water share. Brick retains the
+one-kg inert-waste basis and documented density, with final disposal already
+inside the complete chain rather than added again. Mineral-wool landfill retains
+one kg dry waste, with sealing, leachate, site, geographic and vintage differences.
+Limestone residue is explicitly a moisture/composition proxy: source has 0.5%
+wet-mass water, native has 5%. Original wet-waste kg remains the service basis;
+no dry-load multiplier, extra water, disposal or recovery credit is invented.
+Score differences remain unquantified. Caller quantities and separate emissions
+are preserved; source process emissions are not added over complete native models.
+
+Previously approved 3.8 oxide selected rules/shared reviews and all six legacy
+helper recipes are unchanged, as is the 3.6 polypropylene selection. Exactly four
+old full-rule fingerprints change when new 3.9 profiles are appended. Only those
+four are refreshed after proving identical old selected behavior, shared reviews
+and complete helper closures; every other previous approval operation is identical.
+Nine additions give **606 validated scopes**, checked in the regular conda Git
+installation. No other release/model approval is inferred. Historical authoring
+tests restore their own earlier profile tables only after checking this selected
+behavior; current complete replay and new-profile conversion tests independently
+cover the extension.
+
+Brightpath passes 72 new sign/delivery/service checks, 127 related heat/incinerator/
+material regressions and two complete frozen-resource / historical-initial-stage
+checks. Premise passes seventeen new/adjacent strict fresh/cache checks. Independent
+comparison against licensed source vectors verifies all 35 retained oxide rows
+field by field. All nine native-matrix LCIs have finite supply and inventory.
+Complete generation is byte-identical, canonical biosphere unchanged, and wheel
+review/resource/manifest bytes match. Black/Ruff pass for changed replay/tests.
+No runtime Python modules change. Requirements and user/colleague guides pin the
+pushed Brightpath revision; the colleague notebook is unchanged.
+
+Actual licensed preparation accepts all nine new current-cohort decisions,
+reducing **20 to 11** unapproved correspondences. Other mappings still stop
+preflight, beginning with silica sand; the existing unit-planning diagnostic
+remains recorded rather than suppressed. No prospective fuel update or export
+is qualified. The source still has 11,947 activities and its unchanged September
+modified timestamp. Removed 117.3 MiB of verified obsolete generated replay/wheel
+files, retaining primary evidence, logs, active caches and databases. See the
+[oxide/service preparation receipt](uvek-fuels-39-oxide-services-preparation-verification.json).
+
+Next: silica-sand co-product allocation, KOH/ethanol/ether quantity bases, remaining
+biogas/heat markets and wastewater/aluminium/waste-heat correspondences; further
+preparation cohorts, shared fuel transformation/linking and all remaining
+registered sectors still follow. The full integration goal remains active.
