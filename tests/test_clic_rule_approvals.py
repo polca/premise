@@ -279,6 +279,44 @@ def test_heat_dependency_batch_keeps_coordinate_and_warnings_in_cache(tmp_path, 
     assert resolved.activities == before
 
 
+@pytest.mark.parametrize("index", range(5))
+def test_heat_profile_extension_keeps_exact_scope_and_review_on_cache_hits(
+    tmp_path, index
+):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_profile_extension_review.json").read_text()
+    )
+    row = review["records"][index]
+    resolved = graph(row["source"])
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2
+        if "recipe_ref" not in row["target"]:
+            assert all(edge[k] == v for k, v in row["target"].items())
+        diagnostics = [
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+        ]
+        assert diagnostics
+        assert any(
+            d["details"]["review_path"]
+            == "export/uvek_heat_profile_extension_review.json"
+            for d in diagnostics
+        )
+        if row["rule_id"] == "bp-08f2432b62895931":
+            assert any("CAS" in str(d["details"]["limitations"]) for d in diagnostics)
+    assert resolved.activities == before
+
+
 def test_existing_packed_wool_approval_preserves_complete_generated_inventory(tmp_path):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource

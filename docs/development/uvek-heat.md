@@ -83,3 +83,19 @@ are not reconstructed by the plant proxies and their effects remain unquantified
 Wastewater keeps its existing -1 factor once, while the large COD, capacity,
 sewer, sludge and emission-model differences remain explicit. Six correspondence
 reviews remain in the observed cohort; later cohorts may reveal more work.
+
+A further exact-profile batch qualifies vehicle-grade gas, SCR, liquid nitrogen,
+chemical heat and liquid epoxy for ecoinvent 3.9 cut-off. The actual gas-station
+inventories share the initial 0.1–1 bar boundary, with no added pressure or energy
+conversion. SCR retains kg NOx removed without efficiency rescaling. Liquid
+nitrogen remains a liquid mass product. Chemical heat uses its existing exact
+3.9 recipe, retaining the checked make-up water and both water releases. Epoxy
+retains the unresolved native CAS/technology conflict and the earlier 3.12
+functional-proxy limitations.
+
+The ledger now has 461 scopes: 455 earlier fingerprints stay unchanged, and the
+one epoxy raw-rule fingerprint migration is documented after verifying identical
+3.12 effective decisions and unchanged shared reviews/recipe closures. The real
+12-root preparation now reports only compressed air as unapproved in the current
+3.9 cohort. Its distribution and reference-volume boundary still needs review;
+later cohorts are unproven. The public heat gate remains closed.

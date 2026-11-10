@@ -467,3 +467,29 @@ Evidence is in `export/uvek_heat_dependency_batch_review.json`. Eight exact scop
 are added, bringing the count to 456 with all 448 prior fingerprints unchanged.
 The observed blocked cohort falls from 14 to six correspondences. Heat remains
 outside the public update gate pending the rest of its mappings and integration.
+
+### Heat dependency exact-profile qualifications
+
+Five independently inspected 3.9 cut-off cases are recorded in
+`export/uvek_heat_profile_extension_review.json`: vehicle-grade gas, SCR, liquid
+nitrogen, chemical heat and liquid epoxy. Gas uses the complete native Swiss
+station per kg; both inventories' 0.1–1 bar describes initial pressure, so no extra
+compression, density or heating-value factor is inferred. Global supply sourcing
+is a geographic proxy. SCR remains per kg NOx retained despite different removal
+efficiencies. Nitrogen is liquid in both actual inventories. Chemical heat uses
+the already reviewed exact 3.9 helper and checked source water quantities.
+Epoxy preserves the unresolved CAS/technology conflict, including its warning.
+All retain signed caller quantities, formulas, uncertainty and separate flows.
+
+The source/native hashes and producer witnesses are in the review. No existing
+chemical-heat helper or shared review changes. SCR, nitrogen and chemical-heat
+rules are unchanged. Gas gains an exact-profile decision. Epoxy gains only a 3.9
+sign-profile entry: its former 3.12 effective rule remains identical. The ledger
+records the resulting single raw-rule fingerprint migration with old/new hashes
+and its evidence. All other 455 earlier fingerprints are unchanged; five new
+scopes bring the total to 461.
+
+The real supplementary preparation reports only compressed air as unapproved in
+the current 3.9 cohort. Matching pressure labels alone do not prove its reference
+volume or distribution boundary. This is not an enabled public heat update, and
+later cohorts may reveal additional gaps.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "eight_qualified_six_pending_in_observed_cohort",
+  "status": "thirteen_of_fourteen_observed_cases_qualified_one_pending_later_cohorts_unproven",
   "context": "First blocked ecoinvent3.9cutoff cohort of the12-root heat-expanded graph. This is an observed frontier, not a bound on all remaining heat or sector mapping work.",
   "identified_cases": 14,
   "foreground_records": 76,
@@ -19,7 +19,7 @@
   "cases": [
     {
       "rule_id": "bp-745c517f85a78ba7",
-      "status": "requires_initial_correspondence_review",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -49,7 +49,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Exact3.9cutoff screening correspondence; signed caller quantities retained, unquantified boundary and score differences remain.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -82,11 +82,18 @@
           "metadata_sha256": "e6028dce5a65b4bc992a5e0b58b489020b6930b2fa95d87b4095df15e241dd2f"
         }
       },
-      "previous_scopes": []
+      "previous_scopes": [],
+      "review": "brightpath/data/export/uvek_heat_profile_extension_review.json",
+      "conversion_factor": 1,
+      "limitations": [
+        "The actual source CH and RoW producer documentation and the native service-station documentation identify the same initial medium-pressure network boundary (0.1\u20131bar), electricity requirements and gas-loss emissions. This pressure is the inlet boundary; it does not establish the final vehicle delivery pressure. Both products reference+1kg. Use factor+1 per signed kg; do not add compression, assume a final pressure, or infer an energy/density factor.",
+        "Source global market shares are approximately99.1583%RoW and0.8417%CH, with no market freight or losses. Replace that market once by the complete native CH service station as a geographic screening proxy. Source CH station electricity and infrastructure draws match the native values; upstream gas supply, regional sourcing, LHV metadata and vintage differ. Source metadata contains conflicting46.5/48.98MJ/kg statements; native upstream fuel is MJ-based internally. Do not reinterpret the caller kg as MJ or normalize these inventories by an assumed heating value.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
+      ]
     },
     {
       "rule_id": "bp-deb7a57e4b2bc6e7",
-      "status": "requires_exact_profile_extension",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -116,7 +123,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Exact3.9cutoff screening correspondence; signed caller quantities retained, unquantified boundary and score differences remain.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -155,6 +162,13 @@
           "version": "3.6",
           "system_model": "cutoff"
         }
+      ],
+      "review": "brightpath/data/export/uvek_heat_profile_extension_review.json",
+      "conversion_factor": 1,
+      "limitations": [
+        "The inspected3.9producer provides+1kgNOx retained by SCR and states85%removal. Native provides+1kgNOx retained and states about80%. Use factor+1 of the complete native retained-mass service, preserving separately listed caller stack emissions. Do not multiply by85/80, alter plant emissions or introduce an avoided-NOx credit.",
+        "The native European1990s service includes ammonia supply and transport and spent-catalyst disposal. Source material/catalyst markets, allocation, geography and vintage differ. The earlier3.6approval is unchanged; the low heuristic matching confidence is not evidence of scientific or LCIA equivalence.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
       ]
     },
     {
@@ -530,7 +544,7 @@
     },
     {
       "rule_id": "bp-412f090ea47af121",
-      "status": "requires_exact_profile_extension",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -560,7 +574,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Exact3.9cutoff screening correspondence; signed caller quantities retained, unquantified boundary and score differences remain.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -599,11 +613,18 @@
           "version": "3.12",
           "system_model": "cutoff"
         }
+      ],
+      "review": "brightpath/data/export/uvek_heat_profile_extension_review.json",
+      "conversion_factor": 1,
+      "limitations": [
+        "The actual3.9supplier and native inventories both produce+1kgliquid nitrogen by cryogenic air separation; neither is gaseous nitrogen or a gas-volume reference. Native allocation uses vaporisation heat and heat capacity for liquid nitrogen, oxygen and crude argon, excluding gaseous co-products. Source allocation, electricity sourcing, vintage and market delivery differ. Use the complete native at-plant liquid product per signed kg, without gas density, liquefaction or purity rescaling.",
+        "The earlier3.12approval remains unchanged. This screening proxy does not reconstruct source market freight, producer weights or source internal uncertainty.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
       ]
     },
     {
       "rule_id": "bp-9f7197c47047750a",
-      "status": "requires_exact_profile_extension",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -623,7 +644,7 @@
       ],
       "native_production_amounts": {},
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Exact3.9cutoff screening correspondence; signed caller quantities retained, unquantified boundary and score differences remain.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -642,6 +663,13 @@
           "version": "3.8",
           "system_model": "cutoff"
         }
+      ],
+      "review": "brightpath/data/export/uvek_heat_profile_extension_review.json",
+      "conversion_factor": 1,
+      "limitations": [
+        "The existing chemical-heat review already independently inspected the exact3.9cutoff market: its inventory SHA256 matches the current read-only source. Select its actual3.9profile and profile-specific helper, not the older3.8profile by fallback. Retain one MJnative chemical heat, the original source make-up-water supply and both physical water releases. Do not substitute kg-steam or add source fuels a second time.",
+        "Verify the source market has only one local unit-share producer, source make-up-water and both water releases agree with the reviewed recipe, and all helper/review fingerprints remain unchanged. The native heat service excludes steam water; its fuel mix is an accepted screening proxy, not a reconstruction of source combustion. Earlier3.8approval and recipes remain unchanged.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
       ]
     },
     {
@@ -875,7 +903,7 @@
     },
     {
       "rule_id": "bp-08f2432b62895931",
-      "status": "requires_exact_profile_extension",
+      "status": "qualified_exact_profile_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.9",
@@ -905,7 +933,7 @@
         ]
       },
       "required_reference_sign_factor": null,
-      "warning": "Primary references alone do not establish process/grade/solution/pressure/market equivalence. Inspect full inventories before approval.",
+      "warning": "Exact3.9cutoff screening correspondence; signed caller quantities retained, unquantified boundary and score differences remain.",
       "witnesses": {
         "3.9": {
           "identity": {
@@ -944,6 +972,13 @@
           "version": "3.12",
           "system_model": "cutoff"
         }
+      ],
+      "review": "brightpath/data/export/uvek_heat_profile_extension_review.json",
+      "conversion_factor": 1,
+      "limitations": [
+        "The inspected3.9source liquid epoxy producer uses bisphenolA and epichlorohydrin and references+1kg without water. Native states the same production technology and a complete European liquid-resin eco-profile, but retains the previously reviewed CAS25928-94-3/technology conflict. Its chemical identity is uncertain; do not relabel its CAS, claim an exact monomer match or introduce a concentration factor.",
+        "Extend the existing complete native functional screening proxy to inspected3.9cutoff only at factor+1. Preserve the entire previous3.12profile decision, shared review and warning, including the unresolved CAS conflict. Source stoichiometric/Gendorf inputs versus the older European industry eco-profile, allocation, grade, delivery, emissions, internal uncertainty and vintage remain differences.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
       ]
     },
     {
@@ -1024,7 +1059,7 @@
     }
   ],
   "initial_identified_cases": 14,
-  "qualified_cases": 8,
-  "pending_cases": 6,
+  "qualified_cases": 13,
+  "pending_cases": 1,
   "correction": "Previous frontier text incorrectly inferred an inherited+1 wastewater factor. Inspection of the actual rule and its original sign evidence confirms-1 already existed. Preserve it exactly once; independent proxy qualification was missing."
 }

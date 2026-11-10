@@ -110371,7 +110371,22 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "40b5fff2d38fc092de9e4577a789a274e1eb84ffa06ec2ac5b97dbd38808d7d4"
+          "fingerprint": "af76886e698a7eb7928593f311e5f587a1becbeb8e2b608e7b34ee29a69648ae"
+        }
+      ],
+      "fingerprint_migrations": [
+        {
+          "rule_id": "bp-08f2432b62895931",
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "previous_fingerprint": "40b5fff2d38fc092de9e4577a789a274e1eb84ffa06ec2ac5b97dbd38808d7d4",
+          "fingerprint": "af76886e698a7eb7928593f311e5f587a1becbeb8e2b608e7b34ee29a69648ae",
+          "reason": "The raw rule gains independently inspected3.9cutoff sign evidence. Effective3.12projection, target, factor, shared reviews and all recipe closures are byte-equivalent. This is a reviewed structural fingerprint migration, not a new3.12modelling decision.",
+          "evidence_review_sha256": "ceb5b782aa15161a5680d1901cffa0851e0b384ead67dcdc4deae1f183231b6b",
+          "effective_projection_sha256": "4aa0ba58017c3fd0754af07a7b00cc14c1b178485d9d8c6a2e5b0d58bbbc228c"
         }
       ]
     },
@@ -120746,6 +120761,430 @@
             "system_model": "cutoff"
           },
           "fingerprint": "2fdbd1dfb90e4157de68ff63eb200c9cf6bfdcb04749cbc5fda074305c2f9109"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-745c517f85a78ba7",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_vehicle_gas_proxy",
+      "review_path": "export/uvek_heat_profile_extension_review.json",
+      "review_sha256": "ceb5b782aa15161a5680d1901cffa0851e0b384ead67dcdc4deae1f183231b6b",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous expanded UVEK sector work; inspect exact profiles and document limitations for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for natural gas, medium pressure, vehicle grade",
+          "reference product": "natural gas, medium pressure, vehicle grade",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+          "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "77ffeed5208ac0c43cf4b83f521f613fc6dfeccec0dfdeff7bf2c4e08623bb9b",
+        "source_metadata_sha256": "e174facee00e0067a2e187cf0e726624fd3129e1aa1519b6c3544573e4cd5288",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "CH",
+              "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "1a7da922111268a7c3f7a1a05d0ba74e63b5168ef4365c8c98d871f694276406",
+            "metadata_sha256": "785f52e3c0156b4866902403e6009b723403c6c02bf6b478150815d30ade6931"
+          },
+          "2026": {
+            "identity": {
+              "location": "CH",
+              "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "24ab63bd0df21ac69fe47734778d2acd6a4757417d5436727acfedb434c7eb97",
+            "metadata_sha256": "e6028dce5a65b4bc992a5e0b58b489020b6930b2fa95d87b4095df15e241dd2f"
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "natural gas production, medium pressure, vehicle grade",
+              "reference product": "natural gas, medium pressure, vehicle grade",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d21abc13a2558119be136810afe37164b48c7fed783dacb5c3ec1f6aeaaf394d",
+            "metadata_sha256": "142f5fbface1fa579683dc33d2085e7e944f4c012fba807a142a7d29ff24fde6"
+          },
+          {
+            "identity": {
+              "name": "natural gas production, medium pressure, vehicle grade",
+              "reference product": "natural gas, medium pressure, vehicle grade",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "598ad5f73ed955a36eaabbbe625cad1561c627922c6543b309ff30554b816751",
+            "metadata_sha256": "11c90d042f5c353fbd5917fec86256794e6d5704872436dd56a844ce0e114d62"
+          }
+        ]
+      },
+      "limitations": [
+        "The actual source CH and RoW producer documentation and the native service-station documentation identify the same initial medium-pressure network boundary (0.1\u20131bar), electricity requirements and gas-loss emissions. This pressure is the inlet boundary; it does not establish the final vehicle delivery pressure. Both products reference+1kg. Use factor+1 per signed kg; do not add compression, assume a final pressure, or infer an energy/density factor.",
+        "Source global market shares are approximately99.1583%RoW and0.8417%CH, with no market freight or losses. Replace that market once by the complete native CH service station as a geographic screening proxy. Source CH station electricity and infrastructure draws match the native values; upstream gas supply, regional sourcing, LHV metadata and vintage differ. Source metadata contains conflicting46.5/48.98MJ/kg statements; native upstream fuel is MJ-based internally. Do not reinterpret the caller kg as MJ or normalize these inventories by an assumed heating value.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "be1e4af581652dc2a81a82d992cb7b8b330acb0a2a4d3626f2d98abded9f3d0d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-deb7a57e4b2bc6e7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_profile_extension_review.json",
+      "review_sha256": "ceb5b782aa15161a5680d1901cffa0851e0b384ead67dcdc4deae1f183231b6b",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous expanded UVEK sector work; inspect exact profiles and document limitations for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for NOx retained, by selective catalytic reduction",
+          "reference product": "NOx retained, by selective catalytic reduction",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "NOx retained, in SCR",
+          "reference product": "NOx retained, in SCR",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "4cf32cd5ebb3a5f372398bf16fdd0e3e7debb6f93b089eb38dea17c410cc5ed4",
+        "source_metadata_sha256": "bedd9d439bead8e04a3cb9e9336d531c52f81699879ff8049eb138dafe65db74",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "GLO",
+              "name": "NOx retained, in SCR",
+              "reference product": "NOx retained, in SCR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e0767c14b4ac81bce5ac1e855b22cae40055cd04c935eb091e2ccc4f3209375e",
+            "metadata_sha256": "93106308eaab4084a885821f851c3b80d17e1dda65b7e75d38cf012a225c5101"
+          },
+          "2026": {
+            "identity": {
+              "location": "GLO",
+              "name": "NOx retained, in SCR",
+              "reference product": "NOx retained, in SCR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "6b429bd8cce6d39db967e213e110e5ce49d3481843c0400fac2446802b20181c",
+            "metadata_sha256": "c1006a438b08ffa20e3aacc3f168d6921a877eb64caf8a383a8eaea0337b9035"
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "selective catalytic reduction of nitrogen oxides",
+              "reference product": "NOx retained, by selective catalytic reduction",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "59e9d30b905f4cb2d4de3415bd34e95bd51281a499c8f4626e0f810faf78e4f8",
+            "metadata_sha256": "da32754d32bea3e4b97faf5129bb0f916efe8876f01d416779bce272dc840d15"
+          }
+        ]
+      },
+      "limitations": [
+        "The inspected3.9producer provides+1kgNOx retained by SCR and states85%removal. Native provides+1kgNOx retained and states about80%. Use factor+1 of the complete native retained-mass service, preserving separately listed caller stack emissions. Do not multiply by85/80, alter plant emissions or introduce an avoided-NOx credit.",
+        "The native European1990s service includes ammonia supply and transport and spent-catalyst disposal. Source material/catalyst markets, allocation, geography and vintage differ. The earlier3.6approval is unchanged; the low heuristic matching confidence is not evidence of scientific or LCIA equivalence.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fadf8f3b3cb80485b7a3c1d55f3f8e0da77126ef1ba78b5d13c99ae74a3ed18a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-412f090ea47af121",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_profile_extension_review.json",
+      "review_sha256": "ceb5b782aa15161a5680d1901cffa0851e0b384ead67dcdc4deae1f183231b6b",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous expanded UVEK sector work; inspect exact profiles and document limitations for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for nitrogen, liquid",
+          "reference product": "nitrogen, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Nitrogen, liquid, at plant",
+          "reference product": "Nitrogen, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "72abeb1b673ecc377e33f0a842036d7fca5645152017c606a2275fe5627e35eb",
+        "source_metadata_sha256": "9e1ac4a9296d18df27369320fdd3ee7956faaaec74d3436752164ce2c2d4fbfc",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "RER",
+              "name": "Nitrogen, liquid, at plant",
+              "reference product": "Nitrogen, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "81040a2f4b26a7c17ae5aa043d745afada9b2cef1e3c0f907923e89e0a5a8914",
+            "metadata_sha256": "ffa0ab3c4ba098b36feee2fc6ea82cb1bfd20ef3950eb734312dbb01bd10e082"
+          },
+          "2026": {
+            "identity": {
+              "location": "RER",
+              "name": "Nitrogen, liquid, at plant",
+              "reference product": "Nitrogen, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "74969c5cf801f7f306b85a8d434779cc34b356278cd42c7938fa43a954d54f35",
+            "metadata_sha256": "3f867419e38b8eeffcf5ec787389807a2166fdc087abea445f5ef350776faf28"
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "nitrogen, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a546a20b0c966faaf0a7b197c61c4860542ab62ed25611350c48a040de5260ac",
+            "metadata_sha256": "4d9b5c64d8fc0b7685b0464c235f84cb58c13eb851a2027b07ba481230eabfaa"
+          }
+        ]
+      },
+      "limitations": [
+        "The actual3.9supplier and native inventories both produce+1kgliquid nitrogen by cryogenic air separation; neither is gaseous nitrogen or a gas-volume reference. Native allocation uses vaporisation heat and heat capacity for liquid nitrogen, oxygen and crude argon, excluding gaseous co-products. Source allocation, electricity sourcing, vintage and market delivery differ. Use the complete native at-plant liquid product per signed kg, without gas density, liquefaction or purity rescaling.",
+        "The earlier3.12approval remains unchanged. This screening proxy does not reconstruct source market freight, producer weights or source internal uncertainty.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e59015807b4d48490221f1729547a7bbe533c1e05347ba579a696164021b2f1b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f7197c47047750a",
+      "operation": "replace",
+      "mapping_method": "reviewed_chemical_heat_with_retained_water",
+      "review_path": "export/uvek_heat_profile_extension_review.json",
+      "review_sha256": "ceb5b782aa15161a5680d1901cffa0851e0b384ead67dcdc4deae1f183231b6b",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous expanded UVEK sector work; inspect exact profiles and document limitations for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for heat, from steam, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "unit": "megajoule"
+        },
+        "target": {
+          "recipe_ref": "chemical-heat-water-1ced12d9ab9a80752fd2"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "2401364cb7d3637cb28682398b01d3e65e302c03b71ace94354914a3a037b69b",
+        "source_metadata_sha256": "8e8a90410cb65c2898b2ba150acb4cf457202cc040d2a95c88213f14c4d778ab",
+        "native_references": {},
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "steam production, as energy carrier, in chemical industry",
+              "reference product": "heat, from steam, in chemical industry",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "inventory_sha256": "027d6619a1074ed6bbcb2b79fbf989d125d301147e4c8c939dc6e986c0777477",
+            "metadata_sha256": "ae48f6664239f6f18beeb817d8218af6f7d963848fbd6dbcd7d1ce83d0f59df7"
+          }
+        ]
+      },
+      "limitations": [
+        "The existing chemical-heat review already independently inspected the exact3.9cutoff market: its inventory SHA256 matches the current read-only source. Select its actual3.9profile and profile-specific helper, not the older3.8profile by fallback. Retain one MJnative chemical heat, the original source make-up-water supply and both physical water releases. Do not substitute kg-steam or add source fuels a second time.",
+        "Verify the source market has only one local unit-share producer, source make-up-water and both water releases agree with the reviewed recipe, and all helper/review fingerprints remain unchanged. The native heat service excludes steam water; its fuel mix is an accepted screening proxy, not a reconstruction of source combustion. Earlier3.8approval and recipes remain unchanged.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1a8700f33408104200e233a122e1eeca3137e21ac0c795b4c4a5d9e9ccb53354"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-08f2432b62895931",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_heat_profile_extension_review.json",
+      "review_sha256": "ceb5b782aa15161a5680d1901cffa0851e0b384ead67dcdc4deae1f183231b6b",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous expanded UVEK sector work; inspect exact profiles and document limitations for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for epoxy resin, liquid",
+          "reference product": "epoxy resin, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Epoxy resin, liquid, at plant",
+          "reference product": "Epoxy resin, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "d99ab6d5ac6480b5c4532af04ad8810dfabb9401c29a06ee84a5e83d7e25cd5b",
+        "source_metadata_sha256": "2a3f5f1e6927c51ef858318454f968c33eaba4fcefce9a4ac1f3c3524c88f27e",
+        "native_references": {
+          "2025": {
+            "identity": {
+              "location": "RER",
+              "name": "Epoxy resin, liquid, at plant",
+              "reference product": "Epoxy resin, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e3a840103d230fca666df62e39dc3c30ccdfcb26200c98310b3195a149cb1dd2",
+            "metadata_sha256": "74324784ca1ec3a15c7bcdf0a53f61ce2edb5e3594863fe33cc139e425ce3339"
+          },
+          "2026": {
+            "identity": {
+              "location": "RER",
+              "name": "Epoxy resin, liquid, at plant",
+              "reference product": "Epoxy resin, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "5f9d559ddbf432c2573c7114151c06cbb95905d3e29ca690fb488703059be01f",
+            "metadata_sha256": "1627ee265173b932264d5de632dc6700141d89148a465793d0153290162d5ce4"
+          }
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "epoxy resin production, liquid",
+              "reference product": "epoxy resin, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1c46d70e620cce17679463bd7b19986d1ea960e31a2606dbb910e29596b60c93",
+            "metadata_sha256": "d37a8ecc5d6cdd3bf4d69ad56adfa0f445425e7788ccbad134cb8faea88a37a0"
+          }
+        ]
+      },
+      "limitations": [
+        "The inspected3.9source liquid epoxy producer uses bisphenolA and epichlorohydrin and references+1kg without water. Native states the same production technology and a complete European liquid-resin eco-profile, but retains the previously reviewed CAS25928-94-3/technology conflict. Its chemical identity is uncertain; do not relabel its CAS, claim an exact monomer match or introduce a concentration factor.",
+        "Extend the existing complete native functional screening proxy to inspected3.9cutoff only at factor+1. Preserve the entire previous3.12profile decision, shared review and warning, including the unresolved CAS conflict. Source stoichiometric/Gendorf inputs versus the older European industry eco-profile, allocation, grade, delivery, emissions, internal uncertainty and vintage remain differences.",
+        "Preserve signed caller quantities, formulas, supported uncertainty, separate freight and emissions. Retain the complete installed native inventory once, including its background, geography, allocation and vintage. This is an explicitly limited screening correspondence; score effects are unquantified and LCIA equivalence or impact completeness is not established. Only inspected ecoinvent3.9cutoff is added; no inverse, cross-system-model or other-release approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f15b108550cc9eaed5ad2d99a4b929a370a55310f1423b4f5c5ca18ac643bffe"
         }
       ]
     }

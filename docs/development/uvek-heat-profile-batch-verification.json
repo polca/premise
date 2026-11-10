@@ -1,0 +1,82 @@
+{
+  "status": "five_exact_profile_qualifications_verified_heat_public_gate_remains_closed",
+  "scope": "UVEK2026cutoff with canonical ecoinvent3.10biosphere; observed supplementary heat dependency cohort only",
+  "new_qualifications": 5,
+  "initial_observed_cases": 14,
+  "qualified_observed_cases": 13,
+  "pending_observed_cases": 1,
+  "remaining_case": "bp-9e802861048fdfa7: compressed-air reference-volume and distribution boundary",
+  "total_remaining_heat_case_count": "unproven beyond the current failing cohort",
+  "approval_scopes": 461,
+  "prior_fingerprints_unchanged": 455,
+  "qualified_structural_fingerprint_migrations": 1,
+  "earlier_epoxy3_12effective_rule_unchanged": true,
+  "all_prior_recipes_and_shared_reviews_unchanged": true,
+  "recipes": 3667,
+  "shared_reviews": 766,
+  "validation": {
+    "brightpath_tests_passed": 79,
+    "focused_premise_tests_passed": 17,
+    "installed_signed_demands": 10,
+    "installed_original_callers": 41,
+    "original_full_restorations": 39,
+    "original_partial_restorations": 2,
+    "original_final_unsupported_policy_and_refusals_verified": true,
+    "generator_resource_replay": "both emitted mapping resources byte-identical",
+    "installed_data_equal_checkout": {
+      "brightpath": 259,
+      "premise": 247
+    },
+    "real_supplemental_preparation": "still fails on compressed air in current3.9cohort",
+    "public_heat_update_or_new_heat_export": "not performed; gate remains closed",
+    "lint": "new modules pass Ruff/Black; generator passes Black and Ruff except its two pre-existing I001 import-order findings; Premise references checked"
+  },
+  "cache_cleanup_bytes": 476358733,
+  "receipts": [
+    {
+      "name": "heat_profile_batch_registration.json",
+      "sha256": "7694a103be2e579aa8ce26738697e796d5ad30baa785918a56dad48d3c7e7c9b",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_profile_batch_tests.log",
+      "sha256": "84d6f9ac4fe91d10e7a99d217a6128af1dc9920a612b7b5252bed5d9aeba1c13",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_profile_batch_premise_tests.log",
+      "sha256": "8f8d4171448e9608e0941ae6ef134b60aae5e68058071c24097b4aa0a5764d34",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_profile_batch_installed_checks.json",
+      "sha256": "f7f34df03669b9eda292c647e4485fa498c5f809d8b450f41acb0283e41f45cf",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_profile_batch_original_callers.json",
+      "sha256": "7a0e71563fdd510c4863b9c16f725c9ae5faa3d240499c7edf68bf6f7a1af2db",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_profile_batch_packaged_data.json",
+      "sha256": "e9451c980df1c7c5e54c17dc9e34c9282df20e8f2ba8fef60cf1fa242805a612",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_profile_batch_generator_replay.json",
+      "sha256": "f14a961e44822d98a193ef2cd5b0f2bc1391e89cf9379736084d96982ad86cba",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_profile_batch_remaining_audit_receipt.json",
+      "sha256": "42015006e9f5320a8bb50db7db339d39b8e8bf934e9e981e7508c3859db6747e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_profile_batch.json",
+      "sha256": "1624460ecbf6d977b174bfcb6208f051b2034f9fc91bf8a36707cf2654e0d74a",
+      "location": "private task workspace"
+    }
+  ]
+}
