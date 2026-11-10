@@ -11,6 +11,21 @@ from .clic_archive import ClicInventoryError, activity_identity, content_hash
 REVIEW_PATH = Path(__file__).resolve().parents[1] / "data/clic/approved_omissions.json"
 
 
+def _approval_error(activity, row, decision, target, differences):
+    """Identify the approval and the values that need another review."""
+    return ClicInventoryError(
+        "CLIC omission approval does not cover the selected dataset or exchange.\n"
+        f"Dataset: {activity['name']} ({row['slug']})\n"
+        f"Approval: {decision['id']}\n"
+        f"Exchange: {decision['exchange']['name']}\n"
+        f"Target background: {json.dumps(target, sort_keys=True)}\n"
+        + "\n".join(differences)
+        + f"\nApproval file: {REVIEW_PATH}\n"
+        "Conversion stopped; the changed inventory needs review before this "
+        "exchange can be omitted."
+    )
+
+
 def prepare_approved_omissions(activities, versions, target):
     """Omit only an exact pinned record and exchange in its approved context.
 
@@ -39,23 +54,41 @@ def prepare_approved_omissions(activities, versions, target):
             ]
             if not indices:
                 continue
-            if (
-                any(
-                    row.get(key) != decision[key]
-                    for key in ("version_id", "semantic_version", "sha256")
-                )
-                or row["background"] != decision["source"]
-                or len(indices) != 1
+            differences = []
+            for key, label in (
+                ("version_id", "Version ID"),
+                ("semantic_version", "Dataset version"),
+                ("sha256", "Inventory hash (sha256)"),
             ):
-                raise ClicInventoryError(
-                    "CLIC omission approval does not cover this source pin or context."
+                if row.get(key) != decision[key]:
+                    differences.append(
+                        f"{label}: approved {decision[key]!r}; received {row.get(key)!r}"
+                    )
+            if row["background"] != decision["source"]:
+                differences.append(
+                    f"Source background: approved {json.dumps(decision['source'], sort_keys=True)}; "
+                    f"received {json.dumps(row['background'], sort_keys=True)}"
                 )
+            if len(indices) != 1:
+                differences.append(
+                    f"Matching exchanges: approved 1; received {len(indices)} "
+                    f"at indices {indices}"
+                )
+            if differences:
+                raise _approval_error(activity, row, decision, target, differences)
             index = indices[0]
             exchange = activity["exchanges"][index]
             if content_hash(exchange) != content_hash(decision["exchange"]):
-                raise ClicInventoryError(
-                    "CLIC omission approval does not cover this changed exchange."
-                )
+                expected = decision["exchange"]
+                differences = [
+                    f"Exchange field {key!r}: approved {expected.get(key, '<missing>')!r}; "
+                    f"received {exchange.get(key, '<missing>')!r}"
+                    for key in sorted(expected.keys() | exchange.keys())
+                    if key not in expected
+                    or key not in exchange
+                    or content_hash(expected[key]) != content_hash(exchange[key])
+                ]
+                raise _approval_error(activity, row, decision, target, differences)
             original_index = original_indices[id(exchange)]
             audit = {
                 "severity": "warning",

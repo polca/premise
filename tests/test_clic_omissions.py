@@ -69,12 +69,26 @@ def test_exact_omission_keeps_owned_original_exchange_and_other_inventory():
 
 
 @pytest.mark.parametrize(
-    "change", ["pin", "source", "amount", "uncertainty", "foreground", "duplicate"]
+    "change,label",
+    [
+        ("pin", "Inventory hash (sha256)"),
+        ("version", "Dataset version"),
+        ("version_id", "Version ID"),
+        ("source", "Source background"),
+        ("amount", "Exchange field 'amount'"),
+        ("uncertainty", "Exchange field 'formula'"),
+        ("foreground", "Exchange field 'input'"),
+        ("duplicate", "Matching exchanges: approved 1; received 2"),
+    ],
 )
-def test_changed_approval_scope_fails_without_mutation(change):
+def test_changed_approval_scope_fails_without_mutation(change, label):
     activities, versions, target = fixture()
     if change == "pin":
         versions[0]["sha256"] = "0" * 64
+    elif change == "version":
+        versions[0]["semantic_version"] = "99.0.0"
+    elif change == "version_id":
+        versions[0]["version_id"] = -1
     elif change == "source":
         versions[0]["background"]["technosphere"]["version"] = "3.10"
     elif change == "amount":
@@ -86,8 +100,25 @@ def test_changed_approval_scope_fails_without_mutation(change):
     else:
         activities[0]["exchanges"].append(copy.deepcopy(activities[0]["exchanges"][1]))
     before = copy.deepcopy(activities)
-    with pytest.raises(ClicInventoryError, match="omission approval does not cover"):
+    with pytest.raises(
+        ClicInventoryError, match="omission approval does not cover"
+    ) as error:
         prepare_approved_omissions(activities, versions, target)
+    message = str(error.value)
+    assert "Dataset: CSP decommissioning" in message
+    assert DECISION["slug"] in message
+    assert f"Approval: {DECISION['id']}" in message
+    assert f"Exchange: {DECISION['exchange']['name']}" in message
+    assert label in message
+    assert "approved " in message and "received " in message
+    assert f"Approval file: {REVIEW_PATH}" in message
+    assert "Conversion stopped" in message
+    if change == "pin":
+        assert DECISION["sha256"] in message
+        assert "0" * 64 in message
+    elif change == "amount":
+        assert repr(DECISION["exchange"]["amount"]) in message
+        assert repr(-DECISION["exchange"]["amount"]) in message
     assert activities == before
 
 
