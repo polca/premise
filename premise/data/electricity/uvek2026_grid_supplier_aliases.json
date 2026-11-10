@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "review": {
+    "basis": "Names/products required by unchanged standard Premise market equations; same-unit one-for-one links to the exact native suppliers.",
+    "limitations": [
+      "Native Swiss electricity infrastructure and European SF6 represent the standard CH/CA-QC/RoW/RER supplier locations as explicit geographic screening proxies. Market-construction quantities remain Premise assumptions; no technology or inventory equivalence is claimed.",
+      "The European SF6 factory process proxies a delivered-material market: delivery/packaging boundaries, geography and vintage may differ, and missing delivery burdens are unquantified. No freight or packaging inventory is invented."
+    ]
+  },
+  "activities": [
+    {
+      "name": "market for sulfur hexafluoride, liquid",
+      "reference product": "sulfur hexafluoride, liquid",
+      "location": "RER",
+      "unit": "kilogram",
+      "database": "premise-native-grid-compatibility",
+      "code": "37a8efd9d03b9ee79850354df2c97d4d",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced. The European SF6 factory process proxies a delivered-material market: delivery/packaging boundaries, geography and vintage may differ, and missing delivery burdens are unquantified. No freight or packaging inventory is invented.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "market for sulfur hexafluoride, liquid",
+          "reference product": "sulfur hexafluoride, liquid",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Sulphur hexafluoride, liquid, at plant",
+          "reference product": "Sulphur hexafluoride, liquid, at plant",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    },
+    {
+      "name": "market for sulfur hexafluoride, liquid",
+      "reference product": "sulfur hexafluoride, liquid",
+      "location": "RoW",
+      "unit": "kilogram",
+      "database": "premise-native-grid-compatibility",
+      "code": "b8d575ebc5b1312300130f9e55c6869d",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Geographic screening proxy: source RER represents RoW. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced. The European SF6 factory process proxies a delivered-material market: delivery/packaging boundaries, geography and vintage may differ, and missing delivery burdens are unquantified. No freight or packaging inventory is invented.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "market for sulfur hexafluoride, liquid",
+          "reference product": "sulfur hexafluoride, liquid",
+          "location": "RoW",
+          "unit": "kilogram",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Sulphur hexafluoride, liquid, at plant",
+          "reference product": "Sulphur hexafluoride, liquid, at plant",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    },
+    {
+      "name": "distribution network construction, electricity, low voltage",
+      "reference product": "distribution network, electricity, low voltage",
+      "location": "CH",
+      "unit": "kilometer",
+      "database": "premise-native-grid-compatibility",
+      "code": "3f3b87006d772af3ba8116717352c4f5",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "distribution network construction, electricity, low voltage",
+          "reference product": "distribution network, electricity, low voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Distribution network, electricity, low voltage",
+          "reference product": "Distribution network, electricity, low voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    },
+    {
+      "name": "distribution network construction, electricity, low voltage",
+      "reference product": "distribution network, electricity, low voltage",
+      "location": "CA-QC",
+      "unit": "kilometer",
+      "database": "premise-native-grid-compatibility",
+      "code": "413c0f64af2f62860a2568b9c8a873af",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Geographic screening proxy: source CH represents CA-QC. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "distribution network construction, electricity, low voltage",
+          "reference product": "distribution network, electricity, low voltage",
+          "location": "CA-QC",
+          "unit": "kilometer",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Distribution network, electricity, low voltage",
+          "reference product": "Distribution network, electricity, low voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    },
+    {
+      "name": "distribution network construction, electricity, low voltage",
+      "reference product": "distribution network, electricity, low voltage",
+      "location": "RoW",
+      "unit": "kilometer",
+      "database": "premise-native-grid-compatibility",
+      "code": "92966afafa7c84be634edb9b7bb19cca",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Geographic screening proxy: source CH represents RoW. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "distribution network construction, electricity, low voltage",
+          "reference product": "distribution network, electricity, low voltage",
+          "location": "RoW",
+          "unit": "kilometer",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Distribution network, electricity, low voltage",
+          "reference product": "Distribution network, electricity, low voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    },
+    {
+      "name": "transmission network construction, electricity, medium voltage",
+      "reference product": "transmission network, electricity, medium voltage",
+      "location": "CH",
+      "unit": "kilometer",
+      "database": "premise-native-grid-compatibility",
+      "code": "8b0405abdadd80b0d467baff450bf362",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "transmission network construction, electricity, medium voltage",
+          "reference product": "transmission network, electricity, medium voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Transmission network, electricity, medium voltage",
+          "reference product": "Transmission network, electricity, medium voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    },
+    {
+      "name": "transmission network construction, electricity, medium voltage",
+      "reference product": "transmission network, electricity, medium voltage",
+      "location": "CA-QC",
+      "unit": "kilometer",
+      "database": "premise-native-grid-compatibility",
+      "code": "bc17348ef840a73f8e65046d7ec7da9d",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Geographic screening proxy: source CH represents CA-QC. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "transmission network construction, electricity, medium voltage",
+          "reference product": "transmission network, electricity, medium voltage",
+          "location": "CA-QC",
+          "unit": "kilometer",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Transmission network, electricity, medium voltage",
+          "reference product": "Transmission network, electricity, medium voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    },
+    {
+      "name": "transmission network construction, electricity, medium voltage",
+      "reference product": "transmission network, electricity, medium voltage",
+      "location": "RoW",
+      "unit": "kilometer",
+      "database": "premise-native-grid-compatibility",
+      "code": "7a9e125cf83855c0379ad70699bfd707",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Exact one-for-one unit-preserving supplier alias for standard Premise electricity-market inputs. The complete native supplier inventory remains upstream. Geographic screening proxy: source CH represents RoW. Standard Premise network/SF6 demand quantities are retained; no extra loss, avoided burden or recovery credit is introduced.",
+      "source": "UVEK 2026 native supplier; standard Premise electricity-market compatibility alias",
+      "exchanges": [
+        {
+          "name": "transmission network construction, electricity, medium voltage",
+          "reference product": "transmission network, electricity, medium voltage",
+          "location": "RoW",
+          "unit": "kilometer",
+          "type": "production",
+          "amount": 1
+        },
+        {
+          "name": "Transmission network, electricity, medium voltage",
+          "reference product": "Transmission network, electricity, medium voltage",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ]
+    }
+  ]
+}

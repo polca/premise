@@ -1992,7 +1992,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 26.4
                         for exc in ds["exchanges"]
-                        if "hard coal" in exc["name"]
+                        if "hard coal" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -2005,7 +2005,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"]
                         for exc in ds["exchanges"]
-                        if "briquettes" in exc["name"]
+                        if "briquettes" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "megajoule"
                     ]
@@ -2020,10 +2020,15 @@ class HeatValidation(BaseDatasetValidator):
                         * (
                             36
                             if exc["unit"] == "cubic meter"
-                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                            else (
+                                46.5 if "vehicle grade" in exc["name"].lower() else 47.5
+                            )
                         )
                         for exc in ds["exchanges"]
-                        if "natural gas" in exc["name"]
+                        if "natural gas" in exc["name"].lower()
+                        and not exc.get("product", exc["name"])
+                        .lower()
+                        .startswith("hydrogen")
                         and exc["type"] == "technosphere"
                         and exc["unit"] in ["cubic meter", "kilogram"]
                     ]
@@ -2039,10 +2044,12 @@ class HeatValidation(BaseDatasetValidator):
                         * (
                             36
                             if exc["unit"] == "cubic meter"
-                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                            else (
+                                46.5 if "vehicle grade" in exc["name"].lower() else 47.5
+                            )
                         )
                         for exc in ds["exchanges"]
-                        if "liquefied petroleum gas" in exc["name"]
+                        if "liquefied petroleum gas" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] in ["cubic meter", "kilogram"]
                     ]
@@ -2055,7 +2062,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 42.6
                         for exc in ds["exchanges"]
-                        if "diesel" in exc["name"]
+                        if "diesel" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -2068,7 +2075,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 42.6
                         for exc in ds["exchanges"]
-                        if "light fuel oil" in exc["name"]
+                        if "light fuel oil" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -2081,7 +2088,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 38.5
                         for exc in ds["exchanges"]
-                        if "heavy fuel oil" in exc["name"]
+                        if "heavy fuel oil" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -2110,10 +2117,15 @@ class HeatValidation(BaseDatasetValidator):
                         * (
                             36
                             if exc["unit"] == "cubic meter"
-                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                            else (
+                                46.5 if "vehicle grade" in exc["name"].lower() else 47.5
+                            )
                         )
                         for exc in ds["exchanges"]
-                        if "methane" in exc["name"]
+                        if "methane" in exc["name"].lower()
+                        and not exc.get("product", exc["name"])
+                        .lower()
+                        .startswith("hydrogen")
                         and exc["type"] == "technosphere"
                         and exc["unit"] in ["kilogram", "cubic meter"]
                     ]
@@ -2126,7 +2138,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 22.7
                         for exc in ds["exchanges"]
-                        if "biogas" in exc["name"]
+                        if "biogas" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "cubic meter"
                     ]
@@ -2139,7 +2151,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 20
                         for exc in ds["exchanges"]
-                        if "methanol" in exc["name"]
+                        if "methanol" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -2152,7 +2164,9 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 120
                         for exc in ds["exchanges"]
-                        if "hydrogen" in exc["name"]
+                        if exc.get("product", exc["name"])
+                        .lower()
+                        .startswith("hydrogen")
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -2163,7 +2177,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 3.6
                         for exc in ds["exchanges"]
-                        if "electricity" in exc["name"]
+                        if "electricity" in exc["name"].lower()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilowatt hour"
                     ]
@@ -3034,7 +3048,7 @@ class ElectricityValidation(BaseDatasetValidator):
             return (
                 exc["type"] == "technosphere"
                 and exc["unit"] == "kilowatt hour"
-                and "electricity" in exc.get("product")
+                and "electricity" in exc.get("product", "").lower()
                 and exc["name"] != dataset["name"]
             )
 
@@ -3154,6 +3168,12 @@ class ElectricityValidation(BaseDatasetValidator):
     def check_electricity_mix(self):
         # check that the electricity mix in the market datasets
         # corresponds to the IAM scenario projection
+        hydro_suppliers = {
+            provider["name"]
+            for technology, providers in getattr(self, "technology_map", {}).items()
+            if technology.lower().startswith("hydro")
+            for provider in providers
+        }
         vars = [
             x
             for x in self.iam_data.electricity_mix.coords["variables"].values
@@ -3200,6 +3220,7 @@ class ElectricityValidation(BaseDatasetValidator):
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["name"].startswith("electricity production, hydro")
+                        or x["name"] in hydro_suppliers
                     ]
                 )
 
@@ -4291,11 +4312,20 @@ class CementValidation(BaseDatasetValidator):
 
 class BiomassValidation(BaseDatasetValidator):
     def __init__(
-        self, model, scenario, year, regions, database, iam_data, system_model
+        self,
+        model,
+        scenario,
+        year,
+        regions,
+        database,
+        iam_data,
+        system_model,
+        expected_consumers=None,
     ):
         super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
         self.system_model = system_model
+        self.expected_consumers = expected_consumers
 
     def check_biomass_markets(self):
         # check that the biomass markets inputs
@@ -4329,7 +4359,7 @@ class BiomassValidation(BaseDatasetValidator):
 
         regions = self.iam_data.biomass_mix.coords["region"].values
 
-        for dataset in ws.get_many(
+        candidates = ws.get_many(
             self.database,
             ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
             ws.either(
@@ -4362,7 +4392,12 @@ class BiomassValidation(BaseDatasetValidator):
                     ]
                 )
             ),
-        ):
+        )
+        if self.expected_consumers is not None:
+            candidates = (
+                ds for ds in self.database if ds["code"] in self.expected_consumers
+            )
+        for dataset in candidates:
 
             if (
                 dataset["location"] in regions
@@ -4429,7 +4464,10 @@ class BiomassValidation(BaseDatasetValidator):
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
                         and x["unit"] == "kilogram"
-                        and "residue" in x["name"].lower()
+                        and (
+                            x.get("premise market technology") == "biomass - residual"
+                            or "residue" in x["name"].lower()
+                        )
                     ]
                 )
                 total = sum(

@@ -24,6 +24,15 @@ CLIC is the standard inventory provider. The target range starts at ecoinvent **
 Older native inventory sources remain supported for migration into newer
 backgrounds. CLIC does not fall back to public workbook replacements.
 
+Mapping entries may declare an `inventory_resource` pointing to packaged,
+already-reviewed inventory data in the exact destination background. The common
+inventory-preparation stage links these resources against the real destination,
+records owned-resource provenance and hashes, and then runs the standard sector
+transformations. This supports the reviewed geothermal, electric-boiler and
+same-unit grid supplier prerequisites without sector-specific transformation
+engines or new constructor arguments. Resources do not replace failed CLIC
+resolution or permit implicit background-family conversions.
+
 ## Current interface
 
 ```python

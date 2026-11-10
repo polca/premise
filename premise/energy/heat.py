@@ -220,17 +220,6 @@ def normalize_cogeneration_heat_efficiency(database, regions) -> None:
 def _update_heat(
     scenario, version, system_model, family="ecoinvent", biosphere_version=None
 ):
-    if family != "ecoinvent":
-        from .uvek_heat import update_uvek_heat
-
-        return update_uvek_heat(
-            scenario,
-            version,
-            system_model,
-            family=family,
-            biosphere_version=biosphere_version,
-        )
-
     heat_layers = (
         "buildings_heat_end_use",
         "industrial_heat_end_use",
@@ -253,6 +242,8 @@ def _update_heat(
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     heat.fetch_fuel_market_co2_emissions()
@@ -308,6 +299,8 @@ class Heat(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ):
         super().__init__(
             database,
@@ -319,19 +312,23 @@ class Heat(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
 
         self.carbon_intensity_markets = {}
-        self.mapping = InventorySet(self.database)
+        self.mapping = InventorySet(
+            self.database, version=self.version, model=self.model, family=self.family
+        )
         self.heat_metadata = load_heat_mapping(VARIABLES_DIR / "heat.yaml", self.model)
         self.heat_techs = self.mapping.generate_heat_map(model=self.model)
-        self.biosphere_flows = get_biosphere_code(self.version)
+        self.biosphere_flows = get_biosphere_code(self.biosphere_version)
         self.created_dataset_codes = set()
         self.frozen_suppliers = {}
         self.diagnostics = copy.deepcopy(getattr(self.iam_data, "heat_diagnostics", {}))
 
         fuel_mapping = InventorySet(
-            self.database, version=self.version, model=self.model
+            self.database, version=self.version, model=self.model, family=self.family
         ).generate_fuel_map()
         self.fuel_map_reverse = self._build_fuel_map_reverse(fuel_mapping)
         self.regionalizable_technologies = {

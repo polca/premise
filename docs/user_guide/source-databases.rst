@@ -155,3 +155,33 @@ those files in `source_file_path`, as well as indicate the database format in
 
     When using ``source_type="ecospold"``, no Brightway project or biosphere
     database is needed unless you later export the result back to Brightway.
+
+UVEK 2026 with the ecoinvent 3.10 biosphere
+------------------------------------------
+
+With the native database and biosphere installed in the selected Brightway
+project, use the usual scenario workflow:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+        scenarios=[{"model": "remind", "pathway": "SSP2-NPi", "year": 2050}],
+        source_db="BAFU:2026-reimported",
+        source_family="uvek",
+        source_version="2026",
+        biosphere_name="ecoinvent-3.10-biosphere",
+        key=os.environ["PREMISE_KEY"],
+    )
+    ndb.update(["biomass", "electricity", "heat"])
+    ndb.write_db_to_brightway()
+
+The database names above are examples; no custom Brightway background labels are
+required. UVEK uses the shared sector transformations. Electricity updates create
+high-, medium- and low-voltage IAM-region markets, including REMIND EUR and NEU,
+and connect consumers directly or through the usual country-market handovers.
+
+This three-sector REMIND workflow has been checked through export and LCI.
+Other sectors remain outside the current UVEK qualification. Existing inventory
+proxies, explicit omissions and geographic/loss-weighting approximations remain
+screening limitations. See the :doc:`../development/uvek-standard-workflow`
+audit for the scope, assumptions and verification record.

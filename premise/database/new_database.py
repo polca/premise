@@ -1643,6 +1643,40 @@ class NewDatabase:
             [*base, *records], records
         )
         records.extend(additional)
+        # Mapping-declared inventories are prepared before the shared sector
+        # transforms; their absence cannot be fixed by a supplier-name alias.
+        from ..inventory.activity_maps import get_mapping
+        from ..inventory.prepared_resources import prepare_inventory_resource
+
+        resources = {
+            entry["inventory_resource"]
+            for sector in wanted
+            for mapping in registry()["sector_mappings"].get(sector, [])
+            for entry in get_mapping(
+                DATA_DIR.parent / "iam_variables_mapping" / mapping,
+                var=f"{family}_aliases",
+            ).values()
+            if entry.get("inventory_resource")
+        }
+        resource_hashes = {}
+        for resource in sorted(resources):
+            resource_hashes[resource] = hashlib.sha256(
+                (DATA_DIR / resource).read_bytes()
+            ).hexdigest()
+            additions = prepare_inventory_resource(
+                [*base, *records],
+                DATA_DIR / resource,
+                target=provider.manifest["target"],
+            )
+            for activity in additions:
+                activity["inventory provenance"] = {
+                    "provider": "prepared_inventory_resource",
+                    "record_id": f"{resource}:{activity['code']}",
+                    "sha256": resource_hashes[resource],
+                }
+            records.extend(additions)
+        if resource_hashes:
+            provider.manifest["prepared_inventory_resources"] = resource_hashes
         provider.manifest["user_inventories"] = user_sources
         if family != "ecoinvent":
             user_diagnostics = getattr(self._clic_user_inputs, "diagnostics", [])
@@ -1683,6 +1717,11 @@ class NewDatabase:
         }
         self._clear_inventory_importer_state()
         semantic = {
+            **(
+                {"prepared_inventory_resources": resource_hashes}
+                if resource_hashes
+                else {}
+            ),
             "resolution": provider.manifest["resolution_fingerprint"],
             "target": provider.manifest["target"],
             "policy": provider.manifest["policy"],

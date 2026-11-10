@@ -9,6 +9,7 @@ the newly created electricity markets.
 
 import copy
 import re
+import warnings
 from collections import defaultdict
 from functools import lru_cache
 
@@ -275,20 +276,6 @@ def _update_electricity(
     biosphere_version=None,
 ):
 
-    if family == "uvek":
-        from .uvek import update_uvek_electricity
-
-        return update_uvek_electricity(
-            scenario,
-            version,
-            system_model,
-            use_absolute_efficiency,
-            family=family,
-            biosphere_version=biosphere_version,
-        )
-    if family != "ecoinvent":
-        raise ValueError(f"Unsupported electricity background family: {family!r}.")
-
     if scenario["iam data"].electricity_mix is None:
         print("No electricity scenario data available -- skipping")
         return scenario
@@ -518,7 +505,30 @@ class Electricity(BaseTransformation):
         }
 
         self.production_per_tech = self.get_production_per_tech_dict()
-        self.network_loss = self.get_network_losses()
+        self.market_mapping = yaml.safe_load(
+            (VARIABLES_DIR / "electricity_markets.yaml").read_text()
+        ).get(self.family, {})
+        losses = get_losses_per_country(self.database)
+        if self.market_mapping.get("grid_losses_file"):
+            from ..core.filesystem_constants import DATA_DIR
+
+            definition = yaml.safe_load(
+                (DATA_DIR / self.market_mapping["grid_losses_file"]).read_text()
+            )
+            losses.update(definition["country_losses"])
+            self.grid_loss_basis = {
+                key: definition[key]
+                for key in ("source", "basis", "weight_basis", "limitations")
+            }
+            warnings.warn(
+                " ".join(definition["limitations"]), UserWarning, stacklevel=2
+            )
+        self.network_loss = {
+            loc: get_production_weighted_losses(
+                losses, self.geo.iam_to_ecoinvent_location(loc)
+            )
+            for loc in self.regions
+        }
         self.system_model = system_model
         self.biosphere_dict = biosphere_flows_dictionary(self.biosphere_version)
         self.use_absolute_efficiency = use_absolute_efficiency
@@ -526,17 +536,6 @@ class Electricity(BaseTransformation):
         self.powerplant_min_efficiency, self.powerplant_max_efficiency = (
             self.mapping.generate_powerplant_efficiency_bounds()
         )
-
-    def get_network_losses(self):
-        """Return production-weighted IAM grid losses for the ECI topology."""
-
-        losses = get_losses_per_country(self.database)
-        return {
-            loc: get_production_weighted_losses(
-                losses, self.geo.iam_to_ecoinvent_location(loc)
-            )
-            for loc in self.regions
-        }
 
     def complete_consequential_powerplant_map(self) -> None:
         """Add valid MSW electricity providers when allocation removes them.
@@ -2429,6 +2428,8 @@ class Electricity(BaseTransformation):
         :rtype: list
         """
 
+        market_mapping = getattr(self, "market_mapping", {})
+
         list_to_empty = [
             "market group for electricity",
             "market for electricity",
@@ -2453,7 +2454,13 @@ class Electricity(BaseTransformation):
 
         for dataset in ws.get_many(
             self.database,
-            ws.either(*[ws.contains("name", n) for n in list_to_empty]),
+            ws.either(
+                *[ws.contains("name", n) for n in list_to_empty],
+                *[
+                    ws.equals("name", n)
+                    for n in market_mapping.get("source_markets", [])
+                ],
+            ),
             ws.equals("unit", "kilowatt hour"),
             ws.doesnt_contain_any("name", list_to_preserve),
         ):
@@ -2474,6 +2481,9 @@ class Electricity(BaseTransformation):
             else:
                 voltage = "low voltage"
 
+            voltage = market_mapping.get("source_voltage", {}).get(
+                dataset["name"], voltage
+            )
             dataset["exchanges"].append(
                 {
                     "name": f"market group for electricity, {voltage}",
@@ -2516,4 +2526,10 @@ class Electricity(BaseTransformation):
     def write_log(self, dataset, status="created"):
         """Record a structured electricity provenance event."""
 
+        if dataset["name"].startswith("market group for electricity") and getattr(
+            self, "grid_loss_basis", None
+        ):
+            dataset["electricity network loss provenance"] = copy.deepcopy(
+                self.grid_loss_basis
+            )
         record_change_event(self, dataset, status, sector="electricity")

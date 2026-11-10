@@ -1453,3 +1453,11 @@ LBFAC32:
 # See docs/development/uvek-standard-workflow.md for the retained limitation.
 CPA:
   remind: CHA
+# Legacy UVEK US-fleet generator labels. MRO/NPCC are representative
+# lookups for these documented US fleets, not exact NERC boundary claims.
+MRO:
+  remind: USA
+NPCC:
+  remind: USA
+US-SPP:
+  remind: USA

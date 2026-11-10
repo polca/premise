@@ -746,6 +746,11 @@ class InventorySet:
                     activity
                     for activity in activities
                     if not activity.get("clic provenance")
+                    or (
+                        filtr[technology].get("allow_generated_helpers", False)
+                        and activity.get("clic provenance", {}).get("role")
+                        == "generated helper"
+                    )
                 ]
                 for technology, activities in techs.items()
             }

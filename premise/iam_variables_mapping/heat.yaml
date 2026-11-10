@@ -35,12 +35,10 @@ heat, buildings, from hydrogen boiler:
       - Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
       reference product:
       - Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -68,8 +66,6 @@ heat, buildings, from hydrogen fuel cell:
       reference product:
       - Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis,
         PEM using electricity from grid
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
@@ -99,12 +95,10 @@ heat, buildings, from natural gas boiler:
       - Heat, natural gas, at boiler condensing modulating 50kW
       reference product:
       - Heat, natural gas, at boiler condensing modulating 50kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -130,12 +124,10 @@ heat, buildings, from biomethane boiler:
       - Heat, biomethane, at boiler condensing modulating 50kW
       reference product:
       - Heat, biomethane, at boiler condensing modulating 50kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -153,12 +145,10 @@ heat, buildings, from LPG boiler:
       - Heat, propane/butane, at boiler condensing modulating 50kW
       reference product:
       - Heat, propane/butane, at boiler condensing modulating 50kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native boiler comments incorrectly mention natural gas; actual linked fuel is propane/butane at refinery. Retain the actual LPG inventory and its uncertainty; no gas substitution is made.
   layer: buildings_end_use
   energy_basis: final_energy
@@ -192,8 +182,6 @@ heat, buildings, from biomass-based methanol boiler:
       - heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
       reference product:
       - heat, from residential heating system
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     supplement_kind: clic
@@ -237,8 +225,6 @@ heat, buildings, from coal-based methanol boiler:
       - heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
       reference product:
       - heat, from residential heating system
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     supplement_kind: clic
@@ -270,12 +256,10 @@ heat, buildings, from coal stove:
       - Heat, hard coal briquette, at stove 5-15kW
       reference product:
       - Heat, hard coal briquette, at stove 5-15kW
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: buildings_end_use
   energy_basis: final_energy
@@ -302,12 +286,10 @@ heat, buildings, from wood logs heater:
       - Heat, mixed logs, at wood heater 6kW
       reference product:
       - Heat, mixed logs, at wood heater 6kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -334,12 +316,10 @@ heat, buildings, from wood pellets heater:
       - Heat, wood pellets, at furnace 15kW
       reference product:
       - Heat, wood pellets, at furnace 15kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native15kWpellet furnace proxies the9kWrole; retain complete native pellet manufacture and furnace coefficients.
   layer: buildings_end_use
   energy_basis: final_energy
@@ -366,12 +346,10 @@ heat, buildings, from heat pump:
       - Heat, at heat pump, air-water, 7kW, CH electricity, in new building
       reference product:
       - Heat, at heat pump, air-water, 7kW, CH electricity, in new building
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native7kWair-water new-building system proxies the10kWbuilding heat-pump role; retain actual seasonal performance and refrigerant/infrastructure inventories.
   layer: buildings_end_use
   energy_basis: final_energy
@@ -392,12 +370,10 @@ heat, buildings, from electric heater:
       - Heat at electric storage heater, 5kW, CH electricity mix
       reference product:
       - Heat at electric storage heater, 5kW, CH electricity mix
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: electric_boiler
@@ -424,12 +400,10 @@ heat, buildings, from light fuel oil boiler:
       - Heat, light fuel oil, at boiler 100kW condensing, non-modulating
       reference product:
       - Heat, light fuel oil, at boiler 100kW condensing, non-modulating
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -471,12 +445,10 @@ heat, industrial, from biomass boiler:
       - Heat, softwood chips from forest, at furnace 1000kW
       reference product:
       - Heat, softwood chips from forest, at furnace 1000kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -515,8 +487,6 @@ heat, industrial, from hydrogen boiler:
       - heat production, from hydrogen-fired one gigawatt gas turbine
       reference product:
       - heat
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     supplement_kind: clic
@@ -545,8 +515,6 @@ heat, industrial, from hydrogen fuel cell:
       reference product:
       - Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis,
         PEM using electricity from grid
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
@@ -570,6 +538,7 @@ heat, industrial, from hydrogen fuel cell:
 
 heat, industrial, from electric boiler:
   uvek_aliases:
+    inventory_resource: heat/uvek2026_electric_boiler_inventory.json
     use_legacy_templates: false
     exact: true
     fltr:
@@ -577,8 +546,6 @@ heat, industrial, from electric boiler:
       - heat production, electric boiler, industrial, native UVEK electricity
       reference product:
       - heat, district or industrial
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     supplement_kind: retained_electric_boiler
@@ -617,12 +584,10 @@ heat, industrial, from heat pump:
       - Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building
       reference product:
       - Heat, at groundwater heat pump, brine-water, 50kW, CH electr., in old building
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native groundwater/brine-water nominal50kW building-service process proxies the industrial100kWwater-water role. Capacity, temperature/application and source-water cycle differ; source prose also says15kW. Actual inventory and power-component evidence govern; no temperature, size or efficiency correction is guessed.
   layer: industrial_end_use
   energy_basis: final_energy
@@ -644,12 +609,10 @@ heat, industrial, from natural gas boiler:
       - Heat, natural gas, at industrial furnace 1MW
       reference product:
       - Heat, natural gas, at industrial furnace 1MW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -671,12 +634,10 @@ heat, industrial, from biomethane boiler:
       - Heat, biomethane, at industrial furnace 1MW
       reference product:
       - Heat, biomethane, at industrial furnace 1MW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -697,12 +658,10 @@ heat, industrial, from coal furnace:
       - Heat, at hard coal industrial furnace 1-10MW
       reference product:
       - Heat, at hard coal industrial furnace 1-10MW
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: industrial_end_use
   energy_basis: final_energy
@@ -725,12 +684,10 @@ heat, industrial, from light fuel oil boiler:
       - Heat, light fuel oil, at industrial furnace 1MW
       reference product:
       - Heat, light fuel oil, at industrial furnace 1MW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -764,8 +721,6 @@ heat, industrial, from biofuel boiler:
       - heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
       reference product:
       - heat, from residential heating system
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     supplement_kind: clic
@@ -825,12 +780,10 @@ heat, secondary, from biomass:
       - Heat, softwood chips from forest, at furnace 1000kW
       reference product:
       - Heat, softwood chips from forest, at furnace 1000kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -850,12 +803,10 @@ heat, secondary, from biomass CHP:
       - xx Heat, at cogen ORC 1400kWth, wood, emission control, allocation exergy
       reference product:
       - xx Heat, at cogen ORC 1400kWth, wood, emission control, allocation exergy
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
   energy_basis: heat_output
@@ -878,12 +829,10 @@ heat, secondary, from biomass residual:
       - Heat, softwood chips from forest, at furnace 1000kW
       reference product:
       - Heat, softwood chips from forest, at furnace 1000kW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix.
   layer: secondary_supply
   energy_basis: heat_output
@@ -921,12 +870,10 @@ heat, secondary, from coal:
       - Heat, at hard coal industrial furnace 1-10MW
       reference product:
       - Heat, at hard coal industrial furnace 1-10MW
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: secondary_supply
   energy_basis: heat_output
@@ -947,12 +894,10 @@ heat, secondary, from coal CHP:
       - Heat, hard coal, at cogen, allocation exergy
       reference product:
       - Heat, hard coal, at cogen, allocation exergy
-      location:
-      - DE
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
     - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
@@ -975,12 +920,10 @@ heat, secondary, from coal residual:
       - Heat, at hard coal industrial furnace 1-10MW
       reference product:
       - Heat, at hard coal industrial furnace 1-10MW
-      location:
-      - RER
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix.
     - Native hard-coal technology represents the IAM coal role; no undocumented hard-coal/lignite split is inferred.
   layer: secondary_supply
@@ -1039,12 +982,10 @@ heat, secondary, from natural gas:
       - Heat, natural gas, at heat plant
       reference product:
       - Heat, natural gas, at heat plant
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -1064,12 +1005,10 @@ heat, secondary, from natural gas CHP:
       - Heat, at cogen 1MWth, natural gas, allocation exergy
       reference product:
       - Heat, at cogen 1MWth, natural gas, allocation exergy
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
   energy_basis: heat_output
@@ -1091,12 +1030,10 @@ heat, secondary, from natural gas residual:
       - Heat, natural gas, at heat plant
       reference product:
       - Heat, natural gas, at heat plant
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Dedicated native same-fuel furnace/heat-plant proxy for residual supply; it does not reconstruct the historical residual fleet or its allocation mix.
   layer: secondary_supply
   energy_basis: heat_output
@@ -1134,12 +1071,10 @@ heat, secondary, from oil:
       - Heat, light fuel oil, at industrial furnace 1MW
       reference product:
       - Heat, light fuel oil, at industrial furnace 1MW
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -1161,6 +1096,7 @@ heat, secondary, from oil with CCS:
 
 heat, secondary, from electricity:
   uvek_aliases:
+    inventory_resource: heat/uvek2026_electric_boiler_inventory.json
     use_legacy_templates: false
     exact: true
     fltr:
@@ -1168,8 +1104,6 @@ heat, secondary, from electricity:
       - heat production, electric boiler, industrial, native UVEK electricity
       reference product:
       - heat, district or industrial
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     supplement_kind: retained_electric_boiler
@@ -1197,12 +1131,10 @@ heat, secondary, from heat pump:
       - Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity
       reference product:
       - Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -1233,12 +1165,10 @@ heat, secondary, from nuclear:
       - Heat, at nuclear power plant, allocation exergy
       reference product:
       - Heat, at nuclear power plant, allocation exergy
-      location:
-      - CH
       unit: megajoule
     native_reference_amount: 1
     native_limitations:
-    - Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.
+    - Native source inventory provides a template for standard Premise regionalization and upstream relinking. Technology, geography, vintage, allocation and unquantified score differences remain; no additional recovery credit or invented efficiency multiplier is introduced by the mapping.
     - Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion.
   layer: secondary_supply
   energy_basis: heat_output

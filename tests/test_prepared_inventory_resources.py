@@ -5,11 +5,10 @@ import json
 
 import pytest
 
-from premise.inventory.uvek_supplements import (
-    GEOTHERMAL_PATH,
-    _identity,
-    prepare_geothermal_supplement,
-)
+from premise.inventory.prepared_resources import _identity, prepare_inventory_resource
+from premise.core.filesystem_constants import DATA_DIR
+
+GEOTHERMAL_PATH = DATA_DIR / "clic/uvek_2026_geothermal_screening.json"
 
 
 def background():
@@ -34,10 +33,10 @@ def background():
 def test_supplement_relinks_owned_copy_and_keeps_complete_source_quantities():
     database, template = background()
     before = copy.deepcopy(database)
-    generated = prepare_geothermal_supplement(database)
+    generated = prepare_inventory_resource(database, GEOTHERMAL_PATH)
     assert database[: len(before)] == before
     assert len(generated) == 3
-    assert prepare_geothermal_supplement(database) == []
+    assert prepare_inventory_resource(database, GEOTHERMAL_PATH) == []
     for actual, source in zip(generated, template, strict=True):
         assert actual["premise supplementary inventory"]["screening_only"]
         for x, original in zip(actual["exchanges"], source["exchanges"], strict=True):
@@ -65,5 +64,5 @@ def test_missing_ambiguous_or_partial_supplement_does_not_mutate(change):
         database.append(template[0])
     before = copy.deepcopy(database)
     with pytest.raises(ValueError):
-        prepare_geothermal_supplement(database)
+        prepare_inventory_resource(database, GEOTHERMAL_PATH)
     assert database == before

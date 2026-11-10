@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "review": {
+    "basis": "Existing reviewed electric-boiler workbook; same inventory previously built by the native pilot, now prepared as mapping-declared inventory data.",
+    "workbook_sha256": "f45cbda54fdaad64a8c3c93655d9029af9efbb1f283124e097e9b7c3cb618d15",
+    "limitations": [
+      "Use the retained workbook's complete1MJelectric-boiler service and exact0.2805836139169472kWhdraw, on native Swiss medium-voltage electricity. The stated99%efficiency defines the source quantity; no extraefficiency factor is applied to its LCI. Native electricity, geography and vintage remain explicit proxies.",
+      "The retained workbook omits infrastructure because it has no process-material inventory. Preserve that limitation; do not invent a plant, lifetime, capacity, heat credit or extra loss. IAMfinal-electricity converts to delivered heat using the actual electricity draw*3.6MJ/kWh; heat-output secondary roles use factor1. No LCIAequivalence or impactcompleteness is claimed."
+    ]
+  },
+  "activities": [
+    {
+      "name": "heat production, electric boiler, industrial, native UVEK electricity",
+      "reference product": "heat, district or industrial",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-retained-electric-boiler-f45cbda54fdaad64a8c3c936",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Use the retained workbook's complete1MJelectric-boiler service and exact0.2805836139169472kWhdraw, on native Swiss medium-voltage electricity. The stated99%efficiency defines the source quantity; no extraefficiency factor is applied to its LCI. Native electricity, geography and vintage remain explicit proxies. The retained workbook omits infrastructure because it has no process-material inventory. Preserve that limitation; do not invent a plant, lifetime, capacity, heat credit or extra loss. IAMfinal-electricity converts to delivered heat using the actual electricity draw*3.6MJ/kWh; heat-output secondary roles use factor1. No LCIAequivalence or impactcompleteness is claimed.",
+      "premise heat": {
+        "kind": "retained_workbook_electric_boiler",
+        "workbook": "additional_inventories/lci-electric-boiler-industrial.xlsx",
+        "workbook_sha256": "f45cbda54fdaad64a8c3c93655d9029af9efbb1f283124e097e9b7c3cb618d15",
+        "limitations": [
+          "Use the retained workbook's complete1MJelectric-boiler service and exact0.2805836139169472kWhdraw, on native Swiss medium-voltage electricity. The stated99%efficiency defines the source quantity; no extraefficiency factor is applied to its LCI. Native electricity, geography and vintage remain explicit proxies.",
+          "The retained workbook omits infrastructure because it has no process-material inventory. Preserve that limitation; do not invent a plant, lifetime, capacity, heat credit or extra loss. IAMfinal-electricity converts to delivered heat using the actual electricity draw*3.6MJ/kWh; heat-output secondary roles use factor1. No LCIAequivalence or impactcompleteness is claimed."
+        ]
+      },
+      "exchanges": [
+        {
+          "name": "heat production, electric boiler, industrial, native UVEK electricity",
+          "reference product": "heat, district or industrial",
+          "location": "CH",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-retained-electric-boiler-f45cbda54fdaad64a8c3c936"
+          ]
+        },
+        {
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "location": "CH",
+          "unit": "kilowatt hour",
+          "type": "technosphere",
+          "amount": 0.2805836139169472,
+          "uncertainty type": 0,
+          "loc": 0.2805836139169472
+        }
+      ]
+    }
+  ]
+}

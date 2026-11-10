@@ -27,7 +27,7 @@ biomass crops - purpose grown:
     native_supply_class: forest
     native_reference_amount: 1
     native_limitations:
-    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Complete native inventories and their existing carbon accounting are retained; no invented biogenic uptake, recovery credit or drying burden.
+    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Native source inventories and their carbon accounting provide templates for standard Premise regionalization and upstream relinking; no invented biogenic uptake, recovery credit or drying burden is introduced by the mapping.
     - All selected supplies reference one kilogram of dry wood; preserve fuel dry mass without converting the separate gross-energy residue process to kg. IAM technology fractions use a common woody-fuel basis; no density, moisture or calorific multiplier is inferred. Geographic portfolios and vintage remain screening proxies with unquantified score effects.
   iam_aliases:
     image:
@@ -74,7 +74,7 @@ biomass wood - purpose grown:
     native_supply_class: forest
     native_reference_amount: 1
     native_limitations:
-    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Complete native inventories and their existing carbon accounting are retained; no invented biogenic uptake, recovery credit or drying burden.
+    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Native source inventories and their carbon accounting provide templates for standard Premise regionalization and upstream relinking; no invented biogenic uptake, recovery credit or drying burden is introduced by the mapping.
     - All selected supplies reference one kilogram of dry wood; preserve fuel dry mass without converting the separate gross-energy residue process to kg. IAM technology fractions use a common woody-fuel basis; no density, moisture or calorific multiplier is inferred. Geographic portfolios and vintage remain screening proxies with unquantified score effects.
   iam_aliases:
     message: Primary Energy|Biomass|Fuelwood
@@ -105,7 +105,7 @@ biomass - residual:
     native_supply_class: sawmill
     native_reference_amount: 1
     native_limitations:
-    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Complete native inventories and their existing carbon accounting are retained; no invented biogenic uptake, recovery credit or drying burden.
+    - Native forest-road chips proxy purpose-grown woody/energy-crop supply; land use, cultivation, species, harvest and allocation differ. Clean sawmill chips proxy forest residues; collection/chipping, origin, coproduct allocation and delivery differ. Native source inventories and their carbon accounting provide templates for standard Premise regionalization and upstream relinking; no invented biogenic uptake, recovery credit or drying burden is introduced by the mapping.
     - All selected supplies reference one kilogram of dry wood; preserve fuel dry mass without converting the separate gross-energy residue process to kg. IAM technology fractions use a common woody-fuel basis; no density, moisture or calorific multiplier is inferred. Geographic portfolios and vintage remain screening proxies with unquantified score effects.
   iam_aliases:
     message: Primary Energy|Biomass|Residues

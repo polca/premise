@@ -16,7 +16,7 @@ from premise.emissions.uvek_combustion import (
     plan_native_combustion_variants,
 )
 from premise.emissions.uvek_factors import plan_native_gains_reductions
-from test_uvek_heat_distribution import edge, record
+from uvek_inventory_fixtures import edge, record
 
 
 def ident(record):

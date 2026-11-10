@@ -5,6 +5,40 @@ import math
 import numpy as np
 
 
+def normalize_reference_products(database, aliases):
+    """Apply explicit supplier-product aliases without changing quantities or links."""
+    changed = 0
+    for activity in database:
+        alias = aliases.get(activity["name"], {})
+        if (
+            alias
+            and activity["unit"] == alias["unit"]
+            and activity["reference product"] == alias["source_product"]
+        ):
+            activity.setdefault(
+                "premise source labels",
+                {
+                    "name": activity["name"],
+                    "reference product": activity["reference product"],
+                },
+            )
+            activity["reference product"] = alias["reference_product"]
+            changed += 1
+        for edge in activity["exchanges"]:
+            alias = aliases.get(edge.get("name"), {})
+            if (
+                alias
+                and edge["type"] in {"production", "technosphere"}
+                and edge.get("unit") == alias["unit"]
+                and edge.get("product", edge.get("reference product"))
+                == alias["source_product"]
+            ):
+                edge["product"] = alias["reference_product"]
+                if "reference product" in edge:
+                    edge["reference product"] = alias["reference_product"]
+    return changed
+
+
 def normalize_inventory_numeric_types(database, on_change=None):
     """Apply the historical scalar numeric conversions before validation.
 

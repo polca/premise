@@ -1,5 +1,11 @@
 # UVEK 2026 CLIC electricity pilot
 
+**Historical implementation, superseded for biomass, electricity and heat.**
+The [standard-workflow audit](uvek-standard-workflow.md) describes the current
+shared transformations, IAM-region markets and qualification. The separate
+native-topology sector engines described below have been removed. Source reviews
+and modelling history remain available as evidence, not current runtime gates.
+
 This document retains the original pilot scope and implementation history. The
 active [operationalization goal](uvek-operationalization-goal.md) now also covers
 all 18 other standard sector updates. [Biomass](uvek-biomass.md), electricity and

@@ -36,7 +36,7 @@ Biomass CHP:
       unit: kilowatt hour
     native_reference_amount: 1
     native_limitations:
-    - "Approved UVEK electricity-pilot Biomass CHP screening proxy: the complete Swiss wood-fired ORC 1400 kWth cogenerator, allocated by exergy, represents the IAM biomass CHP role per 1 kWh. Scale, cycle, allocation, geography and vintage may differ from the regional IAM fleet. Retain its allocated inventory and add no separate heat credit; no IAM efficiency rescaling is applied to this complete proxy."
+    - "Approved UVEK electricity-pilot Biomass CHP screening proxy: the complete Swiss wood-fired ORC 1400 kWth cogenerator, allocated by exergy, represents the IAM biomass CHP role per 1 kWh. Scale, cycle, allocation, geography and vintage may differ from the regional IAM fleet. No separate heat credit is added. Regional supplier selection and eligible IAM efficiency updates follow the standard Premise workflow; allocation, physical-performance and regional representativeness remain screening limitations."
   uvek_fuel_aliases:
     exact: true
     fltr:
@@ -401,7 +401,7 @@ Coal CHP:
       unit: kilowatt hour
     native_reference_amount: 1
     native_limitations:
-    - "Approved UVEK electricity-pilot Coal CHP screening proxy: native hard-coal and lignite electricity processes, documented as adjusted for cogeneration using exergy allocation, represent the IAM coal CHP role per 1 kWh. These historical fleet inventories do not identify dedicated IAM CHP plants; technology, fuel split, allocation, geography and vintage may differ. Retain their allocated inventories and the approved country/global source-weight rule; add no separate heat credit. Native suppliers shared with other coal roles retain their source inventories without IAM efficiency rescaling."
+    - "Approved UVEK electricity-pilot Coal CHP screening proxy: native hard-coal and lignite electricity processes, documented as adjusted for cogeneration using exergy allocation, represent the IAM coal CHP role per 1 kWh. These historical fleet inventories do not identify dedicated IAM CHP plants; technology, fuel split, allocation, geography and vintage may differ. No separate heat credit is added. Regional supplier selection, weighting and eligible IAM efficiency updates follow the standard Premise workflow; these allocated inventories do not independently establish physical fleet performance."
   uvek_fuel_aliases:
     exact: true
     fltr:
@@ -885,19 +885,24 @@ Gas CC:
       - Electricity, natural gas, at combined cycle plant, best technology
       unit: kilowatt hour
   uvek_fuel_aliases:
-    exact: true
+    allow_generated_helpers: true
+    exact: false
     fltr:
       name:
+      - market group for natural gas, high pressure, composed from resolved suppliers
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
       reference product:
+      - natural gas, high pressure
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
-      unit: megajoule
+      unit:
+      - megajoule
+      - cubic meter
   ecoinvent_aliases:
     fltr:
     - electricity production, natural gas, combined cycle power plant
@@ -934,19 +939,24 @@ Gas CC:
 Gas CC CCS:
   uvek_aliases: {}
   uvek_fuel_aliases:
-    exact: true
+    allow_generated_helpers: true
+    exact: false
     fltr:
       name:
+      - market group for natural gas, high pressure, composed from resolved suppliers
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
       reference product:
+      - natural gas, high pressure
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
-      unit: megajoule
+      unit:
+      - megajoule
+      - cubic meter
   ecoinvent_aliases:
     fltr:
     - electricity production, at natural gas-fired combined cycle power plant, post,
@@ -993,19 +1003,24 @@ Gas CHP:
       - Electricity, natural gas, at CHP power plant
       unit: kilowatt hour
   uvek_fuel_aliases:
-    exact: true
+    allow_generated_helpers: true
+    exact: false
     fltr:
       name:
+      - market group for natural gas, high pressure, composed from resolved suppliers
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
       reference product:
+      - natural gas, high pressure
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
-      unit: megajoule
+      unit:
+      - megajoule
+      - cubic meter
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, natural gas, combined cycle power plant, 400MW
@@ -1064,19 +1079,24 @@ Gas CHP CCS:
 Gas GT:
   uvek_aliases: {}
   uvek_fuel_aliases:
-    exact: true
+    allow_generated_helpers: true
+    exact: false
     fltr:
       name:
+      - market group for natural gas, high pressure, composed from resolved suppliers
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
       reference product:
+      - natural gas, high pressure
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
-      unit: megajoule
+      unit:
+      - megajoule
+      - cubic meter
   ecoinvent_aliases:
     fltr:
     - electricity production, natural gas, gas turbine, conventional power plant
@@ -1112,19 +1132,24 @@ Gas GT:
 Gas OC:
   uvek_aliases: {}
   uvek_fuel_aliases:
-    exact: true
+    allow_generated_helpers: true
+    exact: false
     fltr:
       name:
+      - market group for natural gas, high pressure, composed from resolved suppliers
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
       reference product:
+      - natural gas, high pressure
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
-      unit: megajoule
+      unit:
+      - megajoule
+      - cubic meter
   ecoinvent_aliases:
     fltr:
     - electricity production, natural gas, conventional power plant
@@ -1169,21 +1194,26 @@ Gas ST:
       unit: kilowatt hour
     native_reference_amount: 1
     native_limitations:
-    - "Approved UVEK electricity-pilot Gas ST screening proxy: complete native regional gas-power-plant inventories represent the IAM steam-cycle role per 1 kWh. Their average installed fleet does not identify a dedicated steam cycle; cycle, efficiency, geography and vintage can differ. Retain each source inventory without IAM efficiency rescaling and add no separate heat credit."
+    - "Approved UVEK electricity-pilot Gas ST screening proxy: complete native regional gas-power-plant inventories represent the IAM steam-cycle role per 1 kWh. Their average installed fleet does not identify a dedicated steam cycle; cycle, efficiency, geography and vintage can differ. No separate heat credit is added. Regional supplier selection and eligible IAM efficiency updates follow the standard Premise workflow, with explicit fleet/cycle proxy limitations."
   uvek_fuel_aliases:
-    exact: true
+    allow_generated_helpers: true
+    exact: false
     fltr:
       name:
+      - market group for natural gas, high pressure, composed from resolved suppliers
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
       reference product:
+      - natural gas, high pressure
       - Natural gas, high pressure, at consumer
       - Natural gas, low pressure, at consumer
       - Natural gas, burned in power plant or heat plant
       - Natural gas, burned in combined cycle plant, best technology
-      unit: megajoule
+      unit:
+      - megajoule
+      - cubic meter
   ecoinvent_aliases:
     fltr:
       - electricity production, natural gas, subcritical, steam cycle
@@ -1222,6 +1252,7 @@ Gas ST:
     reference product: electricity, high voltage
 Geothermal:
   uvek_aliases:
+    inventory_resource: clic/uvek_2026_geothermal_screening.json
     exact: true
     fltr:
       name: Electricity, geothermal flash, Bagnore source screening proxy, at plant
@@ -1779,3 +1810,9 @@ Wind Onshore:
     remind-eu: SE|Electricity|Wind|+|Onshore
     tiam-ucl: Secondary Energy|Electricity|Onshore wind centralised
     witch: Secondary Energy|Electricity|Wind|Onshore
+
+# Inventory prerequisites for the shared voltage-market equations; not an IAM technology.
+Electricity market infrastructure:
+  ecoinvent_aliases: {}
+  uvek_aliases:
+    inventory_resource: electricity/uvek2026_grid_supplier_aliases.json

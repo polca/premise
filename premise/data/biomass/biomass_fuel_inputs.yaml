@@ -1,0 +1,25 @@
+# Fuel supplies eligible for the standard biomass market relinking.
+# Native entries are dry-kg woody fuels; material and MJ residues are excluded.
+fuel inputs:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - market for wood chips
+      - market for wood pellet
+      unit: kilogram
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, hardwood, wet, measured as dry mass, at sawmill
+      - Wood chips, hardwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, softwood, wet, measured as dry mass, at sawmill
+      - Wood chips, softwood, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road
+      - Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill
+      - Wood pellet, measured as dry mass, at plant
+      unit: kilogram

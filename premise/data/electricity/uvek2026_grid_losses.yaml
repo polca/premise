@@ -1,0 +1,582 @@
+source: BAFU:2026-reimported; native voltage-grid coefficients
+basis: 'Exact one-kWh native grid input ratios: high-voltage ratio f becomes a self-consumption coefficient 1-1/f;
+  medium/low ratios f become upstream losses f-1. This represents the same chain in the standard Premise market
+  equations.'
+weight_basis: Native GLO production-mix hierarchy, followed to terminal generators; aggregate positive source coefficients
+  by supplier geography as explicit relative weighting proxies, not measured national production volumes. The standard
+  regional production-weighted aggregator normalizes these weights.
+limitations:
+- Native source production-volume metadata are zero. Generator-geography portfolio coefficients proxy country production
+  weights; suppliers can represent geographic fleets beyond their own location. Effects on regional loss weights
+  are unquantified. No IAM generation mix share is changed.
+- Terminal UCTE/NORDEL contributions have no exact native voltage grid and do not receive invented loss factors;
+  they are outside the loss-weight portfolio. Standard Premise infrastructure and SF6 quantities remain the standard
+  assumptions.
+country_losses:
+  AE:
+    Production volume: 0
+    Transformation loss high voltage: 0.01950673864068042
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.0069469058004199
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.039488043390679906
+  AR:
+    Production volume: 2.6550638404829473e-05
+    Transformation loss high voltage: 0.039503020690431434
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014448046473199971
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08452930343704002
+  AT:
+    Production volume: 0.02046214137831089
+    Transformation loss high voltage: 0.018741329389847516
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.006667611031190068
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.03786038725851992
+  AU:
+    Production volume: 0.0016650140145137542
+    Transformation loss high voltage: 0.019094059618265602
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.006796251072350046
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.03860963968104003
+  BA:
+    Production volume: 0.0003808541285043363
+    Transformation loss high voltage: 0.039564009275038114
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014471544665860092
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08467454183257006
+  BD:
+    Production volume: 0
+    Transformation loss high voltage: 0.027414777658992362
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.00986577386262999
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05670689806796991
+  BE:
+    Production volume: 0.005169089424297233
+    Transformation loss high voltage: 0.017338338703993705
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.006157120914779934
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.034894263023379946
+  BG:
+    Production volume: 4.853387618328307e-06
+    Transformation loss high voltage: 0.028485404826017913
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.010265665084780107
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05909596432541009
+  BR:
+    Production volume: 0.015098693980296122
+    Transformation loss high voltage: 0.03940357675872708
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014409740182270037
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08429259573109005
+  CA:
+    Production volume: 0.0003016073550810117
+    Transformation loss high voltage: 0.021699955189016795
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007750324211690085
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04418942278465998
+  CH:
+    Production volume: 0.03994817925357113
+    Transformation loss high voltage: 0.027237354085603127
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.009800000000000031
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.056400000000000006
+  CL:
+    Production volume: 0.002521885249103484
+    Transformation loss high voltage: 0.02031030432286307
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007240729276799973
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.041204092027079975
+  CN:
+    Production volume: 0.29090829204601193
+    Transformation loss high voltage: 0.013492832586679437
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.004767481611279933
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.026877640894690025
+  CO:
+    Production volume: 0
+    Transformation loss high voltage: 0.030484183124717346
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.011015288461859951
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.06359424612317
+  CZ:
+    Production volume: 0.0016046262363179696
+    Transformation loss high voltage: 0.021543387409463155
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007692816341160036
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04385194892689004
+  DE:
+    Production volume: 0.024946917804772085
+    Transformation loss high voltage: 0.020500164643594165
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007310242433040015
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04161063689748001
+  DK:
+    Production volume: 0.00012325485351262643
+    Transformation loss high voltage: 0.02010528653478849
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.0071657055554599225
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.040765559366430004
+  DZ:
+    Production volume: 0
+    Transformation loss high voltage: 0.04000720899929744
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.01464242071330002
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08573149939368996
+  EE:
+    Production volume: 0
+    Transformation loss high voltage: 0.049423624567383584
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.018321924219180108
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.1088381963618299
+  EG:
+    Production volume: 0
+    Transformation loss high voltage: 0.03933253115722701
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.01438237936708009
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08412356716541991
+  ENTSO-E:
+    Production volume: 0
+    Transformation loss high voltage: 0.03287201068326795
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.011916079110970035
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.06903409631831003
+  ES:
+    Production volume: 0.010663065550973098
+    Transformation loss high voltage: 0.03976957442745688
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014550775049680054
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08516444786836996
+  ET:
+    Production volume: 0
+    Transformation loss high voltage: 0.043741643515167294
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.016090404970410033
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.09474495567246999
+  FI:
+    Production volume: 0.04851872271586853
+    Transformation loss high voltage: 0.014643332984388358
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.005181770609949954
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.02925883753608005
+  FR:
+    Production volume: 0.016990417417977213
+    Transformation loss high voltage: 0.03212447758292469
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.011633459158089998
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.06732329169780993
+  GB:
+    Production volume: 0.00842113828724519
+    Transformation loss high voltage: 0.03412218669970746
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.012389999272959917
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.07191131075988011
+  GLO:
+    Production volume: 0
+    Transformation loss high voltage: 0.026868815906823884
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.009662288759860083
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.055494027538389945
+  GR:
+    Production volume: 0.014788700157136965
+    Transformation loss high voltage: 0.041506780325632486
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.015222102751980104
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08932766403118997
+  HR:
+    Production volume: 0.0005345430521687013
+    Transformation loss high voltage: 0.03615451610962572
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.01316382007431005
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.07663199988901992
+  HU:
+    Production volume: 0.0006228944339684251
+    Transformation loss high voltage: 0.02516707864519563
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.009029923850569999
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05173685783015003
+  ID:
+    Production volume: 0
+    Transformation loss high voltage: 0.0275646210293905
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.009921673547139909
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05704041871068011
+  IE:
+    Production volume: 0.00185487433744104
+    Transformation loss high voltage: 0.028700356817590533
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.010346089440210093
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05957732873355992
+  IL:
+    Production volume: 0.0007207474059156644
+    Transformation loss high voltage: 0.020970451349940245
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.00748257726028001
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04261945573189996
+  IN:
+    Production volume: 0.049335935028571004
+    Transformation loss high voltage: 0.03919280562117522
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.01432858410340998
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08379133805375005
+  IQ:
+    Production volume: 0
+    Transformation loss high voltage: 0.03899999999999726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014254385964910021
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08333333333332993
+  IR:
+    Production volume: 0
+    Transformation loss high voltage: 0.039647691100834215
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.01450379260082002
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08487390426812991
+  IS:
+    Production volume: 0
+    Transformation loss high voltage: 0.011090012002762495
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.0039062373545699636
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.02195114741112003
+  IT:
+    Production volume: 0.041919892458358435
+    Transformation loss high voltage: 0.02453596141702874
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.008796125133339938
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05035234419812995
+  JP:
+    Production volume: 0.06788304796585357
+    Transformation loss high voltage: 0.019083202348329498
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.00679228966770995
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.03858655593886007
+  KR:
+    Production volume: 0.001241649859675581
+    Transformation loss high voltage: 0.013335741979100701
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.004711010608470012
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.02655363834327007
+  KZ:
+    Production volume: 0
+    Transformation loss high voltage: 0.03307544099134285
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.011993087959299986
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.0695009074534001
+  LT:
+    Production volume: 1.8132069393561354e-05
+    Transformation loss high voltage: 0.02843435756586621
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.010246572496070083
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05898173297337994
+  LU:
+    Production volume: 2.868282188117859e-05
+    Transformation loss high voltage: 0.00923094605880026
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.0032435758521200952
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.01818217492321006
+  LV:
+    Production volume: 0
+    Transformation loss high voltage: 0.020984783999748235
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007487832760300073
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04265024128381989
+  MA:
+    Production volume: 1.2820917518278428e-05
+    Transformation loss high voltage: 0.0394123896613755
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014413134540210093
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08431356777690002
+  MK:
+    Production volume: 0.0005034203589186772
+    Transformation loss high voltage: 0.05855725081876495
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.021982694327550067
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.13250535189731005
+  MX:
+    Production volume: 0.0005628855725123723
+    Transformation loss high voltage: 0.039355905593273954
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014391380662690079
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08417917103352002
+  MY:
+    Production volume: 0.0002020928474338439
+    Transformation loss high voltage: 0.028205594121754496
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.010161042719809998
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05847021194252
+  NG:
+    Production volume: 0
+    Transformation loss high voltage: 0.041413232863931726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.015185871721129951
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08910242033321003
+  NL:
+    Production volume: 0.0034369415690226417
+    Transformation loss high voltage: 0.017007812054713356
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.0060371292187000325
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.034198729767789926
+  'NO':
+    Production volume: 5.600955152007356e-05
+    Transformation loss high voltage: 0.020557781282069754
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007331344364760017
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04173409312844001
+  NZ:
+    Production volume: 1.3141426065800227e-05
+    Transformation loss high voltage: 0.02808527561737373
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.010116079079689921
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05820143612272011
+  PE:
+    Production volume: 0
+    Transformation loss high voltage: 0.03899999999999726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014254385964910021
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08333333333332993
+  PH:
+    Production volume: 0
+    Transformation loss high voltage: 0.03863765689533194
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014115048473239966
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08247395670078994
+  PK:
+    Production volume: 0
+    Transformation loss high voltage: 0.03899999999999726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014254385964910021
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08333333333332993
+  PL:
+    Production volume: 0.005859372602364175
+    Transformation loss high voltage: 0.02171231275174823
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007754864197079936
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04421607109778991
+  PT:
+    Production volume: 0.00174311548073721
+    Transformation loss high voltage: 0.03556491006175255
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.01293888919519004
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.07525688991730006
+  QA:
+    Production volume: 0
+    Transformation loss high voltage: 0.02311406106157199
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.008270807901330057
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04725050473817993
+  RAF:
+    Production volume: 0
+    Transformation loss high voltage: 0.04038384758469038
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014787795018359917
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08663182601625996
+  RAS:
+    Production volume: 0
+    Transformation loss high voltage: 0.021749791657517448
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007768634296569932
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04429690295780997
+  RER:
+    Production volume: 0.1495466636553921
+    Transformation loss high voltage: 0.03391650095929233
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.012311918198989913
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.0714365472929599
+  RLA:
+    Production volume: 0
+    Transformation loss high voltage: 0.03899999999999726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014254385964910021
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08333333333332993
+  RME:
+    Production volume: 0
+    Transformation loss high voltage: 0.03899999999999726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014254385964910021
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08333333333332993
+  RNA:
+    Production volume: 0
+    Transformation loss high voltage: 0.020958095510102193
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007478046776790093
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04259291815194999
+  RO:
+    Production volume: 1.2256304101038123e-05
+    Transformation loss high voltage: 0.0439495485709972
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.01617144954515992
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.09525247342441001
+  RS:
+    Production volume: 0.0011032115666283527
+    Transformation loss high voltage: 0.046979841875389394
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.017357922607659892
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.10271956493514
+  RU:
+    Production volume: 0.006235365041801232
+    Transformation loss high voltage: 0.03517733455013261
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.012791225637899917
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.07435545550379996
+  SA:
+    Production volume: 0
+    Transformation loss high voltage: 0.036853560214229475
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.013430963298290077
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.07826829622701004
+  SE:
+    Production volume: 0.00022400181854099864
+    Transformation loss high voltage: 0.030373152796036362
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.010973542698309968
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.06334305899055992
+  SG:
+    Production volume: 0
+    Transformation loss high voltage: 0.0028694100428127145
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.0010000016684899027
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.005558996338540068
+  SI:
+    Production volume: 0.00010802870659088253
+    Transformation loss high voltage: 0.02418842978502289
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.008667548003949976
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04959198619142002
+  SK:
+    Production volume: 0.0034817146955576704
+    Transformation loss high voltage: 0.02105376978864404
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007513131265580064
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.042798451504550084
+  TH:
+    Production volume: 0.005671402112466649
+    Transformation loss high voltage: 0.025457008636159517
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.009137460137510045
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05237449883671008
+  TN:
+    Production volume: 0
+    Transformation loss high voltage: 0.03913561908115726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014306572755820035
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08365544041262996
+  TR:
+    Production volume: 0.0009159667298377185
+    Transformation loss high voltage: 0.0369179140943795
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.013455581723130106
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.07841925907899006
+  TW:
+    Production volume: 0.00012227568353161838
+    Transformation loss high voltage: 0.013084665033402665
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.004620801390939899
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.0260363478602601
+  TZ:
+    Production volume: 0
+    Transformation loss high voltage: 0.03899999999999726
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014254385964910021
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08333333333332993
+  UA:
+    Production volume: 5.343609483574932e-05
+    Transformation loss high voltage: 0.040895416128035045
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.014985486641130086
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08785780397335996
+  US:
+    Production volume: 0.14933225341824674
+    Transformation loss high voltage: 0.020559896982607295
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.007332119295079931
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.04173862721186006
+  VN:
+    Production volume: 0
+    Transformation loss high voltage: 0.025589931805671484
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.009186789549729957
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.05266717505734997
+  ZA:
+    Production volume: 0.0008263019479732927
+    Transformation loss high voltage: 0.041426258423349016
+    Transformation loss medium voltage: 0
+    Transmission loss to medium voltage: 0.015190915984059972
+    Transformation loss low voltage: 0
+    Transmission loss to low voltage: 0.08913377604687

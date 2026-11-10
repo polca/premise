@@ -1,4 +1,4 @@
-"""Pinned, reviewed native-context supplements needed by the UVEK pilot."""
+"""Reviewed inventory resources declared in source-family mapping data."""
 
 from __future__ import annotations
 
@@ -6,10 +6,6 @@ import copy
 import json
 from pathlib import Path
 
-GEOTHERMAL_PATH = (
-    Path(__file__).resolve().parents[1]
-    / "data/clic/uvek_2026_geothermal_screening.json"
-)
 FIELDS = ("name", "reference product", "location", "unit")
 
 
@@ -20,13 +16,15 @@ def _identity(record):
     )
 
 
-def prepare_geothermal_supplement(database):
-    """Resolve every supplier before appending; never edit native records.
-
-    Only the electricity pilot calls this loader when its IAM requires geothermal.
-    The template is already in the exact UVEK 2026 / biosphere 3.10 context.
-    """
-    definition = json.loads(GEOTHERMAL_PATH.read_text())
+def prepare_inventory_resource(database, path, *, target=None):
+    """Link a packaged, already-reviewed inventory declared by mapping data."""
+    definition = json.loads(Path(path).read_text())
+    if target is not None and definition["target"] != {
+        axis: target[axis] for axis in ("technosphere", "biosphere")
+    }:
+        raise ValueError(
+            "Prepared inventory resource has a different background context."
+        )
     records = copy.deepcopy(definition["activities"])
     existing = {record["code"]: record for record in database}
     present = [record["code"] in existing for record in records]
@@ -34,7 +32,7 @@ def prepare_geothermal_supplement(database):
         if not all(present) or any(
             _identity(existing[r["code"]]) != _identity(r) for r in records
         ):
-            raise ValueError("Incomplete or conflicting UVEK geothermal supplement.")
+            raise ValueError("Incomplete or conflicting prepared inventory resource.")
         return []
     providers = {}
     for record in database:
@@ -64,7 +62,7 @@ def prepare_geothermal_supplement(database):
                 matches = providers.get(_identity(exchange), [])
                 if len(matches) != 1:
                     raise ValueError(
-                        f"UVEK geothermal supplier is absent or ambiguous: {_identity(exchange)!r}."
+                        f"Prepared inventory supplier is absent or ambiguous: {_identity(exchange)!r}."
                     )
                 supplier = matches[0]
             exchange["input"] = (supplier["database"], supplier["code"])

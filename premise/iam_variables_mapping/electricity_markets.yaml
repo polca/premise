@@ -1,0 +1,37 @@
+# Native labels needed by the shared electricity market transformation.
+ecoinvent: {}
+uvek:
+  source_markets:
+  - Electricity, high voltage, at grid
+  - Electricity, medium voltage, at grid
+  - Electricity, low voltage, at grid
+  - Electricity mix
+  - Electricity, production mix
+  source_voltage:
+    Electricity, high voltage, at grid: high voltage
+    Electricity, medium voltage, at grid: medium voltage
+    Electricity, low voltage, at grid: low voltage
+    Electricity mix: high voltage
+    Electricity, production mix: high voltage
+  grid_losses_file: electricity/uvek2026_grid_losses.yaml
+  product_aliases:
+    Electricity, high voltage, at grid:
+      source_product: Electricity, high voltage, at grid
+      reference_product: electricity, high voltage
+      unit: kilowatt hour
+    Electricity, medium voltage, at grid:
+      source_product: Electricity, medium voltage, at grid
+      reference_product: electricity, medium voltage
+      unit: kilowatt hour
+    Electricity, low voltage, at grid:
+      source_product: Electricity, low voltage, at grid
+      reference_product: electricity, low voltage
+      unit: kilowatt hour
+    Electricity mix:
+      source_product: Electricity mix
+      reference_product: electricity, high voltage
+      unit: kilowatt hour
+    Electricity, production mix:
+      source_product: Electricity, production mix
+      reference_product: electricity, high voltage
+      unit: kilowatt hour

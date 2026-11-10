@@ -40,17 +40,6 @@ def _update_biomass(
     scenario, version, system_model, family="ecoinvent", biosphere_version=None
 ):
 
-    if family == "uvek":
-        from .uvek_biomass import update_uvek_biomass
-
-        return update_uvek_biomass(
-            scenario,
-            version,
-            system_model,
-            family=family,
-            biosphere_version=biosphere_version,
-        )
-
     if scenario["iam data"].biomass_mix is None:
         print("No biomass scenario data available -- skipping")
         return scenario
@@ -65,6 +54,8 @@ def _update_biomass(
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     biomass.regionalize_wood_chips_activities()
@@ -82,9 +73,11 @@ def _update_biomass(
         database=biomass.database,
         iam_data=scenario["iam data"],
         system_model=system_model,
+        expected_consumers=biomass.biomass_consumers,
     )
 
     record_validation_phase(scenario, validate.run_biomass_checks())
+    biomass.clear_validation_provenance_field("premise market technology")
 
     replace_scenario_inventory(scenario, biomass.database)
     scenario["index"] = biomass.index
@@ -124,6 +117,8 @@ class Biomass(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ) -> None:
         super().__init__(
             database,
@@ -135,13 +130,17 @@ class Biomass(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.system_model = system_model
-        self.biosphere_dict = biosphere_flows_dictionary(self.version)
-        self.mapping = InventorySet(database=database, version=version, model=model)
+        self.biosphere_dict = biosphere_flows_dictionary(self.biosphere_version)
+        self.mapping = InventorySet(
+            database=database, version=version, model=model, family=self.family
+        )
         self.biomass_map = self.mapping.generate_biomass_map()
         self.biomass_activities = self.mapping.generate_map(
-            get_mapping(filepath=BIOMASS_ACTIVITIES, var="ecoinvent_aliases")
+            get_mapping(filepath=BIOMASS_ACTIVITIES, var=f"{self.family}_aliases")
         )
 
     def _build_ordered_biomass_activity_mapping(self) -> dict:
@@ -152,9 +151,9 @@ class Biomass(BaseTransformation):
         ordered_mapping = {}
 
         for entry in config.values():
-            if "ecoinvent_aliases" not in entry:
+            if f"{self.family}_aliases" not in entry:
                 continue
-            aliases = entry.get("ecoinvent_aliases", {})
+            aliases = entry.get(f"{self.family}_aliases", {})
             fltr = aliases.get("fltr", {})
             mask = aliases.get("mask")
 
@@ -240,6 +239,7 @@ class Biomass(BaseTransformation):
             mapping=self.biomass_map,
             production_volumes=self.iam_data.biomass_mix,
             system_model=self.system_model,
+            retain_validation_technology=True,
             blacklist={
                 "consequential": [
                     "biomass - residual",
@@ -255,18 +255,26 @@ class Biomass(BaseTransformation):
             "unit": "kilogram",
         }
 
-        for dataset in ws.get_many(
-            self.database,
-            ws.either(
-                *[
-                    ws.equals("unit", u)
-                    for u in ["kilowatt hour", "megajoule", "kilogram", "cubic meter"]
-                ]
-            ),
-            ws.either(
-                *[
-                    ws.contains("name", n)
-                    for n in [
+        definitions = get_mapping(
+            DATA_DIR / "biomass" / "biomass_fuel_inputs.yaml",
+            var=f"{self.family}_aliases",
+        )
+        fuel_inputs = self.mapping.generate_sets_from_filters(definitions)[
+            "fuel inputs"
+        ]
+        fuel_keys = {
+            (a["name"], a["reference product"], a["location"], a["unit"])
+            for a in fuel_inputs
+        }
+        self.biomass_consumers = set()
+        for dataset in self.database:
+            name = dataset["name"].lower()
+            if (
+                dataset["unit"]
+                not in {"kilowatt hour", "megajoule", "kilogram", "cubic meter"}
+                or not any(
+                    n in name
+                    for n in (
                         "electricity",
                         "heat",
                         "power",
@@ -274,23 +282,16 @@ class Biomass(BaseTransformation):
                         "biomethane production",
                         "ethanol production",
                         "synthetic gas",
-                    ]
-                ]
-            ),
-            ws.doesnt_contain_any("name", ["logs", " residual ", "oil"]),
-        ):
-
-            for exc in ws.technosphere(
-                dataset,
-                ws.either(
-                    *[
-                        ws.contains("name", n)
-                        for n in ["market for wood chips", "market for wood pellet"]
-                    ]
-                ),
-                ws.equals("unit", "kilogram"),
+                    )
+                )
+                or any(n in name for n in ("logs", " residual ", "oil"))
             ):
-
+                continue
+            for exc in ws.technosphere(dataset):
+                key = (exc["name"], exc["product"], exc["location"], exc["unit"])
+                if key not in fuel_keys:
+                    continue
+                self.biomass_consumers.add(dataset["code"])
                 if dataset["location"] in self.regions:
                     location = dataset["location"]
                 else:
@@ -300,6 +301,7 @@ class Biomass(BaseTransformation):
                     exc["name"] = "market for lignocellulosic biomass, used as fuel"
                     exc["product"] = "lignocellulosic biomass"
                     exc["location"] = location
+                    exc.pop("input", None)
 
     def write_log(self, dataset, status="created"):
         """Record a structured biomass provenance event."""

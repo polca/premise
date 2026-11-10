@@ -755,6 +755,14 @@ hydrogen, from petroleum:
     - hydrogen production, gaseous, petroleum refinery operation
     mask: CCS
 hydrogen, from electrolysis, PEM:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+      reference product:
+      - Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+      unit: kilogram
   lhv:
     unit: megajoule
     value: 120
@@ -986,6 +994,14 @@ hydrogen, from coal, with CCS:
   ecoinvent_aliases:
     fltr: hydrogen production, coal gasification, with CCS
 hydrogen, from natural gas:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      reference product:
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
   lhv:
     unit: megajoule
     value: 120

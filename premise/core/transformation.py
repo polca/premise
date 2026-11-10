@@ -702,6 +702,19 @@ class BaseTransformation:
         self.version: str = version
         self.family: str = family
         self.biosphere_version: str = biosphere_version or version
+        from .filesystem_constants import VARIABLES_DIR
+        from .runtime_cache import load_yaml_cached
+        from ..inventory.inventory_normalization import normalize_reference_products
+
+        product_aliases = (
+            load_yaml_cached(VARIABLES_DIR / "electricity_markets.yaml")
+            .get(family, {})
+            .get("product_aliases", {})
+        )
+        if product_aliases and normalize_reference_products(
+            self.database, product_aliases
+        ):
+            index = None
         self.fuels_specs: dict = get_fuel_properties()
 
         self.system_model: str = system_model
