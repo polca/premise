@@ -4086,9 +4086,23 @@ class SteelValidation(BaseDatasetValidator):
 
 
 class CementValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
+    def __init__(
+        self,
+        model,
+        scenario,
+        year,
+        regions,
+        database,
+        iam_data,
+        clinker_production=None,
+    ):
         super().__init__(model, scenario, year, regions, database)
         self.iam_data = iam_data
+        self.clinker_production = (
+            {(ds["name"], ds["reference product"]) for ds in clinker_production}
+            if clinker_production is not None
+            else None
+        )
 
     def check_cement_markets(self):
         # check that the cement markets inputs
@@ -4198,11 +4212,13 @@ class CementValidation(BaseDatasetValidator):
         # lower bound for efficient kiln technologies.
 
         for ds in self.database:
-            if (
-                ds["name"].startswith("clinker production")
-                and ds["location"] in self.regions
+            is_clinker = (
+                (ds["name"], ds["reference product"]) in self.clinker_production
+                if self.clinker_production is not None
+                else ds["name"].startswith("clinker production")
                 and "clinker" in ds["reference product"]
-            ):
+            )
+            if is_clinker and ds["location"] in self.regions:
                 energy = ds.get("log parameters", {}).get(
                     "new accounted fuel energy per kg clinker"
                 )

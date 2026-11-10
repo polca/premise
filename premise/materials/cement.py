@@ -9,7 +9,10 @@ of the wurst database to the newly created cement markets.
 
 import copy
 import uuid
+import warnings
 
+from ..core.filesystem_constants import VARIABLES_DIR
+from ..core.runtime_cache import load_yaml_cached
 from ..export.export import biosphere_flows_dictionary
 from ..core.logger import create_logger
 from ..reporting.provenance import record_change_event
@@ -31,7 +34,9 @@ from ..validation.validation_framework import record_validation_phase
 logger = create_logger("cement")
 
 
-def _update_cement(scenario, version, system_model):
+def _update_cement(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
 
     if scenario["iam data"].cement_technology_mix is None:
         print("No cement scenario data available -- skipping")
@@ -47,6 +52,8 @@ def _update_cement(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     if scenario["iam data"].cement_technology_mix is not None:
@@ -69,6 +76,9 @@ def _update_cement(scenario, version, system_model):
             regions=scenario["iam data"].regions,
             database=cement.database,
             iam_data=scenario["iam data"],
+            clinker_production=[
+                ds for activities in cement.cement_map.values() for ds in activities
+            ],
         )
 
         record_validation_phase(scenario, validate.run_cement_checks())
@@ -116,6 +126,8 @@ class Cement(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ):
         super().__init__(
             database,
@@ -127,10 +139,21 @@ class Cement(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.version = version
 
-        mapping = InventorySet(self.database, self.version, self.model)
+        mapping = InventorySet(
+            self.database, self.version, self.model, family=self.family
+        )
+        self.source_mapping = load_yaml_cached(
+            VARIABLES_DIR / "cement_markets.yaml"
+        ).get(self.family, {})
+        if self.source_mapping.get("limitations"):
+            warnings.warn(
+                " ".join(self.source_mapping["limitations"]), UserWarning, stacklevel=2
+            )
         self.cement_fuels_map: dict = mapping.generate_cement_fuels_map()
         self.cement_map = mapping.generate_cement_map()
 
@@ -143,7 +166,7 @@ class Cement(BaseTransformation):
             for v in list(value):
                 self.fuel_map_reverse[v["name"]] = key
 
-        self.biosphere_dict = biosphere_flows_dictionary(self.version)
+        self.biosphere_dict = biosphere_flows_dictionary(self.biosphere_version)
 
     def build_clinker_production_datasets(self) -> list:
         """
@@ -245,8 +268,10 @@ class Cement(BaseTransformation):
         coal_lhv = self.fuels_specs["hard coal"]["lhv"]["value"]
         coal_exchanges = [
             exc
-            for exc in ws.technosphere(dataset, ws.contains("name", "hard coal"))
-            if exc.get("unit") == "kilogram" and float(exc.get("amount", 0)) > 0
+            for exc in ws.technosphere(dataset)
+            if "hard coal" in self._exchange_text(exc)
+            and exc.get("unit") == "kilogram"
+            and float(exc.get("amount", 0)) > 0
         ]
         coal_energy = sum(float(exc["amount"]) * coal_lhv for exc in coal_exchanges)
 
@@ -786,15 +811,37 @@ class Cement(BaseTransformation):
         So we replace the clinker production datasets with the clinker markets.
         """
 
-        for ds in ws.get_many(
-            self.database,
-            ws.contains("name", "cement production"),
-            ws.contains("reference product", "cement"),
-            ws.equals("unit", "kilogram"),
-        ):
+        clinker_inputs = self.source_mapping.get(
+            "clinker_inputs",
+            [{"name": "clinker production", "reference product": "clinker"}],
+        )
+        pairs = {(row["name"], row["reference product"]) for row in clinker_inputs}
+        for ds in self._cement_production_datasets():
             for exc in ws.technosphere(ds):
-                if exc["name"] == "clinker production" and exc["product"] == "clinker":
+                if (exc["name"], exc["product"]) in pairs and exc["unit"] == "kilogram":
                     exc["name"] = "market for clinker"
+                    exc["product"] = "clinker"
+                    exc.pop("input", None)
+
+    def _cement_production_datasets(self):
+        """Select source producers using reviewed pairs or the original filters."""
+        identities = self.source_mapping.get("cement_production")
+        if identities is not None:
+            pairs = {(row["name"], row["reference product"]) for row in identities}
+            return [
+                ds
+                for ds in self.database
+                if ds["unit"] == "kilogram"
+                and (ds["name"], ds["reference product"]) in pairs
+            ]
+        return list(
+            ws.get_many(
+                self.database,
+                ws.contains("name", "cement production"),
+                ws.contains("reference product", "cement"),
+                ws.equals("unit", "kilogram"),
+            )
+        )
 
     def create_clinker_market_datasets(self) -> None:
         """
@@ -894,10 +941,8 @@ class Cement(BaseTransformation):
         # cement production
         production_datasets = [
             ds
-            for ds in self.database
-            if "cement production" in ds["name"]
-            and "cement" in ds["reference product"]
-            and ds.get("regionalized", False) is False
+            for ds in self._cement_production_datasets()
+            if ds.get("regionalized", False) is False
         ]
 
         cement = {"cement": production_datasets}
@@ -908,12 +953,17 @@ class Cement(BaseTransformation):
 
     def create_clinker_technology_datasets(self):
 
+        template = self.source_mapping.get(
+            "clinker_template",
+            {
+                "name": "clinker production",
+                "reference product": "clinker",
+                "unit": "kilogram",
+                "location": "Europe without Switzerland",
+            },
+        )
         clinker_dataset = ws.get_one(
-            self.database,
-            ws.equals("name", "clinker production"),
-            ws.equals("reference product", "clinker"),
-            ws.equals("unit", "kilogram"),
-            ws.equals("location", "Europe without Switzerland"),
+            self.database, *[ws.equals(key, value) for key, value in template.items()]
         )
 
         for technolgy in self.cement_map.keys():

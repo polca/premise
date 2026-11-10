@@ -195,7 +195,7 @@ project, use the usual scenario workflow:
         biosphere_name="ecoinvent-3.10-biosphere",
         key=os.environ["PREMISE_KEY"],
     )
-    ndb.update(["biomass", "electricity", "heat"])
+    ndb.update(["biomass", "electricity", "heat", "cement"])
     ndb.write_db_to_brightway()
 
 The database names above are examples; no custom Brightway background labels are
@@ -203,8 +203,13 @@ required. UVEK uses the shared sector transformations. Electricity updates creat
 high-, medium- and low-voltage IAM-region markets, including REMIND EUR and NEU,
 and connect consumers directly or through the usual country-market handovers.
 
-This three-sector REMIND workflow has been checked through export and LCI.
-Other sectors remain outside the current UVEK qualification. Existing inventory
+This four-sector REMIND workflow has been checked through export and LCI.
+Cement uses the shared clinker efficiency, CCS, market and producer transformations,
+with native product/filter aliases declared in YAML. Cement grades retain their
+clinker doses and other recipe quantities; source geography and technology
+approximations remain explicit warnings. The no-argument update default remains
+biomass, electricity and heat; request cement explicitly. Other sectors remain
+outside the current UVEK qualification. Existing inventory
 proxies, explicit omissions and geographic/loss-weighting approximations remain
 screening limitations. See the :download:`implementation audit <../development/uvek-standard-workflow.md>`
 for the scope, assumptions and verification record.

@@ -366,3 +366,56 @@ consumer distribution. It belongs to the existing shared transformation;
 there is no UVEK-specific relinking engine. The four pre-existing Ruff findings
 in that module remain identical to its committed baseline. The final broader
 suite and combined graph evidence are recorded with the cement qualification.
+
+## Shared cement transformation qualified for REMIND
+
+The actual four-sector REMIND SSP2-NPi 2050 workflow runs without bypassing the
+public availability guard and exports 13,695 linked activities. It contains 13
+clinker markets (including the ordinary World aggregation), 24 regional clinker
+producers and 182 cement producers across 14 grades. EUR's clinker market uses
+the IAM's baseline/MEA-CCS shares; supplier product labels may remain native.
+Seven representative cement/capture/electricity/heat LCIs are finite. All
+technosphere links are internal. Original cement clinker doses and their
+uncertainty remain unchanged; other recipe inputs retain aggregate signed
+quantities and the normal geographic relinking's scaled distribution parameters.
+The original 970 heat inputs and 940 uncertain heat rows were independently
+rechecked, with five further heat/consumer LCIs.
+
+YAML supplies five native/generated clinker-route aliases, their source-fuel
+aliases, an exact positive-one-kg Swiss clinker template, 14 exact cement producer
+pairs and explicit limitations. Native clinker is a rotary-kiln industry average;
+the documentation does not prove a dry/wet subclass. Its use as the baseline for
+the ordinary IAM route transformations is a screening proxy. Source grades,
+clinker doses, non-clinker recipes, signed slag allocations and reference bases
+remain distinct. No separate cement market layer is invented where the native
+source has none.
+
+Small source hooks are necessary: forward family/biosphere axes into the existing
+Cement class; use the canonical biosphere release; let its existing template,
+consumer and producer selectors read the YAML pairs; recognize capitalized hard
+coal; and validate the actual mapped clinker producers rather than skipping them
+because of ecoinvent-only labels. The shared efficiency, CCS, market, producer
+regionalization and relinking sequence remains unchanged. Existing ecoinvent
+selectors remain defaults. The separate generic cached-rename uncertainty repair
+is documented above. No alternative UVEK cement module is introduced.
+
+The public guard now permits explicit cement updates, while the no-argument
+three-sector default stays unchanged. Other sectors remain guarded until they
+are qualified. Focused native-selector, sign, energy-validation and original
+cement/background regressions pass 57 tests. The shared handover group passes
+61 tests. Final broad regression and evidence details appear in the qualification
+receipt. Fourteen existing lignite-IGCC CO2 sanity warnings remain visible; do not
+claim that all electricity validation findings are resolved. No error was found
+in the recorded four-sector phases. No MESSAGE/IMAGE qualification is claimed.
+
+See [cement qualification receipt](uvek-shared-cement-qualification.json). The
+original three-sector colleague notebook remains usable; its guide explains how
+to opt into cement in the same update call. Remaining registered sector updates,
+additional IAM coverage and the existing CO2 warnings are still goal work.
+
+Final broad offline regression: **3,456 passed, four skipped**, eight warnings,
+76.44 seconds, with the same explicit exclusions as the earlier heat run.
+Black and documentation-reference checks pass. No new Ruff findings: the
+transformation and validation modules each retain their four committed baseline
+findings. The BAFU source still contains 11,947 records and retains modification
+time `2026-09-22T10:55:01.512934`.

@@ -1,0 +1,178 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261110-205617",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "public_scope_guard_bypassed": false,
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement"
+  ],
+  "activities": 13695,
+  "clinker_markets": 13,
+  "regional_clinker_producers": 24,
+  "regional_cement_plants": 182,
+  "cement_grades": 14,
+  "grade_clinker_quantities_and_uncertainty_retained": true,
+  "other_recipe_aggregate_signed_quantities_and_scaled_uncertainty_retained": true,
+  "geographic_split_limitations": "Ordinary Premise relinking can split one original supplier across regional suppliers. Aggregate quantities and scaled distribution parameters are checked; a new statistical correlation model is not introduced.",
+  "technosphere_links_internal": true,
+  "clinker_energy_check_count": 24,
+  "finite_lcis": [
+    {
+      "name": "market for clinker",
+      "product": "clinker",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 103980
+    },
+    {
+      "name": "market group for electricity, high voltage",
+      "product": "electricity, high voltage",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 103980
+    },
+    {
+      "name": "market for heat, for buildings",
+      "product": "heat, central or small-scale",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 104022
+    },
+    {
+      "name": "heat supply, district delivery",
+      "product": "heat, district or industrial, at consumer",
+      "location": "NEU",
+      "finite": true,
+      "inventory_nonzero": 104022
+    },
+    {
+      "name": "CEM I cement, at plant",
+      "product": "CEM I cement, at plant",
+      "location": "NEU",
+      "finite": true,
+      "inventory_nonzero": 103984
+    },
+    {
+      "name": "clinker production, dry feed rotary kiln, efficient, with MEA CCS",
+      "product": "Clinker, at plant",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 104025
+    },
+    {
+      "name": "carbon dioxide, captured, at cement production plant, using monoethanolamine",
+      "product": "carbon dioxide, captured",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 103983
+    }
+  ],
+  "limitation": "Qualified only for the stated four-sector REMIND scenario; remaining sectors and other IAM models remain pending.",
+  "validation": {
+    "sector_phase_ids": [
+      "sector:biomass",
+      "sector:biomass:contract",
+      "sector:electricity:supplier-vector",
+      "sector:electricity",
+      "sector:electricity:contract",
+      "sector:heat",
+      "sector:heat:contract",
+      "sector:cement",
+      "sector:cement:contract"
+    ],
+    "issues_by_severity": {
+      "warning": 14
+    },
+    "warning_categories": {
+      "LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT": 14
+    },
+    "errors": 0,
+    "note": "Legacy validators emit rule results for findings; the empty cement finding phase is not used as a producer-count claim. The independent audit checks all 24 regional clinker energy ledgers. Fourteen existing lignite-IGCC CO2 sanity warnings remain visible for later review."
+  },
+  "source": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "activity_count": 11947,
+    "modified_unchanged": "2026-09-22T10:55:01.512934"
+  },
+  "heat_recheck": {
+    "database": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261110-205617",
+    "checks": {
+      "industrial_end_use": 870,
+      "uncertainty_rows_retained": 940,
+      "buildings_end_use": 100,
+      "consumers": 746
+    },
+    "finite_eur_electricity_lci": true,
+    "lci_checks": [
+      {
+        "name": "market for heat, for buildings",
+        "location": "EUR",
+        "amount": 1,
+        "unit": "megajoule",
+        "finite": true
+      },
+      {
+        "name": "market for heat, district or industrial",
+        "location": "EUR",
+        "amount": 1,
+        "unit": "megajoule",
+        "finite": true
+      },
+      {
+        "name": "market for heat, secondary, district or industrial",
+        "location": "EUR",
+        "amount": 1,
+        "unit": "megajoule",
+        "finite": true
+      },
+      {
+        "name": "Battery cell, NCA",
+        "location": "GLO",
+        "amount": 1,
+        "unit": "kilogram",
+        "finite": true
+      },
+      {
+        "name": "Viscose fibres, at plant",
+        "location": "GLO",
+        "amount": 1,
+        "unit": "kilogram",
+        "finite": true
+      }
+    ]
+  },
+  "brightpath_revision": "aff7e30a6ebe6ba5cc41e5fa0ef3942a1f8c80ae",
+  "tests": {
+    "focused_cement_background": 57,
+    "shared_handover_heat_cement": 61,
+    "broad_offline": {
+      "passed": 3456,
+      "skipped": 4,
+      "warnings": 8,
+      "seconds": 76.44,
+      "exclusions": [
+        "tests/test_process_*.py",
+        "tests/test_clic_uvek_*.py",
+        "tests/test_clic_deferred_*.py",
+        "tests/test_clic_rule_approvals.py",
+        "tests/test_clic_partial_paperboard.py"
+      ],
+      "note": "The expensive migration/review and licensed process batteries are not claimed as a full-suite run. Thirteen exact cement correspondence/cache cases and actual licensed BAFU scenario preparation/build/export were checked separately."
+    },
+    "cement_migration_approvals": 13,
+    "black": "pass for changed files",
+    "documentation_reference": "pass",
+    "lint": "No new Ruff findings in changed code. Shared transformation and validation each retain four proven pre-existing findings; no unrelated cleanup."
+  }
+}

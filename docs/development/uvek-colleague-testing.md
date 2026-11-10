@@ -196,3 +196,12 @@ contains 13,430 activities. The number of activities can also change with CLIC
 archive revisions; the structural checks above are more useful than treating
 one historical total as a fixed acceptance threshold. See the current
 [heat qualification](uvek-shared-heat-qualification.json).
+
+Cement is now available through the same shared workflow. To include it in this
+REMIND test, add `"cement"` to the notebook's single `ndb.update(...)` call. The
+original three-sector example remains valid. The checked four-sector export has
+13,695 activities, 13 clinker markets and 182 regional cement producers covering
+14 native grades. See [cement qualification](uvek-shared-cement-qualification.json)
+for retained quantities/uncertainty, LCIs and remaining warnings. Other sector
+updates and other IAM models are still being qualified; this does not extend
+support to conversions between system models.

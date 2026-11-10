@@ -2,6 +2,24 @@
 # regarding cement production volumes and energy use
 ---
 cement, dry feed rotary kiln:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Clinker, at plant
+      reference product: Clinker, at plant
+      unit: kilogram
+  uvek_fuel_aliases: &uvek_cement_fuels
+    exact: true
+    fltr:
+      name:
+      - Pulverised lignite, at plant
+      - Heavy fuel oil, at regional storage
+      - Hard coal supply mix
+      - Diesel, burned in building machine, average
+      - Natural gas, high pressure, at consumer
+      - Light fuel oil, at regional storage
+      - Petroleum coke, at refinery
+
   iam_aliases:
     remind: Production|Industry|Cement
     remind-eu: Production|Industry|Cement
@@ -92,6 +110,14 @@ cement, dry feed rotary kiln:
 
 
 cement, dry feed rotary kiln, efficient:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: clinker production, dry feed rotary kiln, efficient
+      reference product: Clinker, at plant
+      unit: kilogram
+  uvek_fuel_aliases: *uvek_cement_fuels
+
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln
   ecoinvent_aliases:
@@ -147,6 +173,14 @@ cement, dry feed rotary kiln, efficient:
         - generic
 
 cement, dry feed rotary kiln, efficient, with on-site CCS:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: clinker production, dry feed rotary kiln, efficient, with on-site CCS
+      reference product: Clinker, at plant
+      unit: kilogram
+  uvek_fuel_aliases: *uvek_cement_fuels
+
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS
 
@@ -202,6 +236,14 @@ cement, dry feed rotary kiln, efficient, with on-site CCS:
         - generic
 
 cement, dry feed rotary kiln, efficient, with oxyfuel CCS:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: clinker production, dry feed rotary kiln, efficient, with oxyfuel CCS
+      reference product: Clinker, at plant
+      unit: kilogram
+  uvek_fuel_aliases: *uvek_cement_fuels
+
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS
 
@@ -257,6 +299,14 @@ cement, dry feed rotary kiln, efficient, with oxyfuel CCS:
         - generic
 
 cement, dry feed rotary kiln, efficient, with MEA CCS:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: clinker production, dry feed rotary kiln, efficient, with MEA CCS
+      reference product: Clinker, at plant
+      unit: kilogram
+  uvek_fuel_aliases: *uvek_cement_fuels
+
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS
     remind: Production|Industry|Cement w CCS

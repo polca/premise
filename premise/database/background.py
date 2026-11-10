@@ -44,10 +44,10 @@ def validate_uvek_scope(sectors):
     selected = [sectors] if isinstance(sectors, str) else sectors
     if not isinstance(selected, list) or not all(isinstance(s, str) for s in selected):
         raise TypeError("sectors must be a string or a list of strings.")
-    unsupported = sorted(set(selected) - {"biomass", "electricity", "heat"})
+    unsupported = sorted(set(selected) - {"biomass", "electricity", "heat", "cement"})
     if unsupported:
         raise ValueError(
-            "UVEK 2026 supports biomass, electricity and heat; "
+            "UVEK 2026 supports biomass, electricity, heat and cement; "
             f"unsupported sectors: {unsupported}."
         )
     return list(selected)

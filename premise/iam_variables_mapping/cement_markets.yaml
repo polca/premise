@@ -1,0 +1,52 @@
+# Source selectors for the shared cement transformation; no alternate sector algorithm.
+ecoinvent: {}
+uvek:
+  clinker_template:
+    name: Clinker, at plant
+    reference product: Clinker, at plant
+    unit: kilogram
+    location: CH
+  clinker_inputs:
+  - name: Clinker, at plant
+    reference product: Clinker, at plant
+  cement_production:
+  - name: Blast furnace slag cement, at plant
+    reference product: Blast furnace slag cement, at plant
+  - name: CEM I cement, at plant
+    reference product: CEM I cement, at plant
+  - name: CEM II, A cement, GGBFS with burdens, at plant
+    reference product: CEM II, A cement, GGBFS with burdens, at plant
+  - name: CEM II, A cement, at plant
+    reference product: CEM II, A cement, at plant
+  - name: CEM II, B cement, at plant
+    reference product: CEM II, B cement, at plant
+  - name: CEM II, B-LL cement, at plant
+    reference product: CEM II, B-LL cement, at plant
+  - name: CEM III, A cement, GGBFS with burdens, at plant
+    reference product: CEM III, A cement, GGBFS with burdens, at plant
+  - name: CEM III, A cement, at plant
+    reference product: CEM III, A cement, at plant
+  - name: CEM III, B cement, GGBFS with burdens, at plant
+    reference product: CEM III, B cement, GGBFS with burdens, at plant
+  - name: CEM III, B cement, at plant
+    reference product: CEM III, B cement, at plant
+  - name: Portland calcareous cement, at plant
+    reference product: Portland calcareous cement, at plant
+  - name: Portland cement, strength class Z 42.5, at plant
+    reference product: Portland cement, strength class Z 42.5, at plant
+  - name: Portland cement, strength class Z 52.5, at plant
+    reference product: Portland cement, strength class Z 52.5, at plant
+  - name: Portland slag sand cement, at plant
+    reference product: Portland slag sand cement, at plant
+  limitations:
+  - The native Swiss clinker inventory is a rotary-kiln industry average with a positive one-kg clinker
+    reference. Use it as the baseline clinker template for the existing shared IAM route transformations;
+    its documentation does not distinguish dry/wet kiln subclasses. This technology, geography and vintage
+    screening proxy has unquantified score effects. Retain its complete inventory, native product basis
+    and the ordinary Premise efficiency, CCS and regional market algorithms; do not infer a new kiln inventory
+    or alter source reference quantities.
+  - Fourteen inspected native cement factories consume this clinker per kg of their own cement grade.
+    Keep each grade, clinker dose and all non-clinker inputs. Replace only the clinker supplier with the
+    ordinary regional clinker market, preserving signed quantity, formula and uncertainty. The source
+    has no separate cement market tier; do not invent one. Existing positive/negative slag allocations
+    and grade distinctions remain.
