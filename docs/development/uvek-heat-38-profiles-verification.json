@@ -1,0 +1,95 @@
+{
+  "status": "eight_exact3_8profile_reviews_verified_sixteen_current_cases_pending_heat_gate_closed",
+  "review": "export/uvek_heat_38_profiles_review.json",
+  "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+  "approval_scopes": 510,
+  "prior_fingerprints_unchanged": 501,
+  "qualified_structural_fingerprint_migrations": 1,
+  "earlier_concrete3_6_effective_rule_and_all_prior_recipes_shared_reviews_unchanged": true,
+  "new_recipes": 0,
+  "new_shared_reviews": 0,
+  "recipe_count": 3674,
+  "shared_review_count": 774,
+  "reference_factors": "Ashsource-1kg/native+1kg retains existingfactor-1once. Other seven+1sameunit. No wet/dry, density, purity, loss or cement-content factors.",
+  "validation": {
+    "brightpath_tests_including_earlier_material_callers": 123,
+    "premise_cache_and_drift_tests": 12,
+    "signed_foreground_composed_finite_LCIs": 16,
+    "installed_signed_demands": 16,
+    "installed_original_caller_regressions": 41,
+    "generated_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 268,
+      "premise": 247
+    },
+    "source_scientific_signatures_unchanged": true
+  },
+  "authoring_stage_fixture": "Before this batch, final epoxy rule already contained a later3.9profile extension relative to the earlier deferred-material stage. Test fixture restores only its exact immutable earlier witness and verifies unchanged3.12effective projection. The production authoring guard remains strict; only frozen new concrete3.8extension is accepted during replay. Arbitrary added profiles or altered earlier target/review are refused.",
+  "real_heat_preparation": "16remainingcases, downfrom24inobserved3.8cohort. Allinitial14andlater38cases remain qualified. Further cohorts unproven.",
+  "next_evidence": "Read32nativecandidate/upstream records for quicklime, deliveredcoal and class4sewage treatment. No new correction is qualified by this batch.",
+  "public_heat_gate": "closed; no public heat export claimed",
+  "public_default_export": "Previous12529activitybiomass/electricityrun not repeated; all41original caller regressions and prior approved closures checked after profile addition. No heat/all-sector completion claim.",
+  "cache_cleanup_bytes": 460005731,
+  "receipts": [
+    {
+      "name": "heat_38_profiles_registration.json",
+      "sha256": "dd2d56d1dd3122ca7a6a77d2f9aa5d0c8f8a12c4d4d1ff3e1448ca39eb226624",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_tests.log",
+      "sha256": "442e0266652aca752c2d7e1e0bf50c615873e0047ef617924e81fceab1494a05",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_premise_tests.log",
+      "sha256": "87b20ecf4f73ff568f8bdadb93380f59e7fdcb25e1602cb77079ca4c7060f74a",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_native_lci_checks.json",
+      "sha256": "132532bb998de63e6158f92fc6ffd565afaf42812560863f937be3ebff795683",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_installed_checks.json",
+      "sha256": "905e70f47ebfbbb8e3bd3127cce70a5ffb343edc9bbdc82e64647d2700247088",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_original_callers.json",
+      "sha256": "9efb4fa4a5f0cc918a1e730b1d82fcbb34c10938016016defd0c1f5cba058494",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_packaged_data.json",
+      "sha256": "d0afcb305b23b11bce80610f81b70168cbbf031904eeafc4f4e25c97e7f05f49",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_generator_replay.json",
+      "sha256": "8f42bd0b4979ee2535756c0df3441faa9a4d39d3e3a276f01ba21aacc7b02026",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_remaining_audit_receipt.json",
+      "sha256": "71191f76fcdeeee33f02a05eb242181b9117a4e819229110c1e7a70fc13dd986",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_profiles_authoring_baseline.json",
+      "sha256": "b5f506b9bf89d94016163e76408a0275c363fd646d8c505d7c3071a7782eaf36",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_correction_candidates_receipt.json",
+      "sha256": "6e86d75544c351fc5d72025a1ef15701c021aa646216dc6d4d7e10ad8458eb18",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_38_profiles.json",
+      "sha256": "76e688272db4ab358262a0b7c15d9e8e6fa854cc3734cd11637f6ed0556931e3",
+      "location": "private task workspace"
+    }
+  ]
+}

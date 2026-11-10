@@ -109832,7 +109832,22 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "df34a56dd788e4ed82eba79df3818ec95d86d8d293f1bbb2ba12abf757c14458"
+          "fingerprint": "bec389f5d1b804d5db10d7fb2a39323fd683b411ed925eab8ce09e40d08b3b2b"
+        }
+      ],
+      "fingerprint_migrations": [
+        {
+          "rule_id": "bp-953779a9d7354634",
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "previous_fingerprint": "df34a56dd788e4ed82eba79df3818ec95d86d8d293f1bbb2ba12abf757c14458",
+          "fingerprint": "bec389f5d1b804d5db10d7fb2a39323fd683b411ed925eab8ce09e40d08b3b2b",
+          "reason": "Only independently inspected3.8profile evidence is appended. Earlier3.6effective rule, target, factor, warnings, shared review and all recipe closures are unchanged. Qualified structural fingerprint migration, not a refreshed scientific decision.",
+          "evidence_review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+          "effective_projection_sha256": "70f21f0e17299511216529117901ec8b80a50e7476ef7bd168d0cc492bfd0f25"
         }
       ]
     },
@@ -127903,6 +127918,929 @@
             "system_model": "cutoff"
           },
           "fingerprint": "ec299820c217a187be02da5ddc41f5f1a7f94d91c818cf3338a91c8fe6c87b98"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8c3b3ceb3e9c8bef",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "treatment of hard coal ash, residual material landfill",
+          "reference product": "hard coal ash",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "AT",
+          "name": "Disposal, hard coal ash, 0% water, to residual material landfill",
+          "reference product": "Disposal, hard coal ash, 0% water, to residual material landfill",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "target_reference_amount": 1,
+        "conversion_factor": -1,
+        "source_inventory_sha256": "92e3e4593bde57efaacc585b1fd454971388990c0cc6c5fdf248e316dcf96359",
+        "source_metadata_sha256": "f1826ce3a258e55b1506e4b40e32dbe4958b44113777952c8e799c7ebc311d4c",
+        "source_producer_witnesses": [],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "AT",
+              "name": "Disposal, hard coal ash, 0% water, to residual material landfill",
+              "reference product": "Disposal, hard coal ash, 0% water, to residual material landfill",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "31b5fb232a50fb1ba9c59372ea4a75a10d7a1a6c8c65d4643d682101e801cd1e",
+            "metadata_sha256": "e3014be79587e09649e8a589e82458681bcd88139730e1ced497e1bbbd947bdd"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "AT",
+              "name": "Disposal, hard coal ash, 0% water, to residual material landfill",
+              "reference product": "Disposal, hard coal ash, 0% water, to residual material landfill",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a01277ce4c719933a580437693c2d371f0f6537370e707920d380636a54f34c7",
+            "metadata_sha256": "ca5d9a7943b5bdc2015c04a6b99422a7ca12b03ca4002ffeb179504dd817e9ac"
+          }
+        }
+      },
+      "limitations": [
+        "The actual3.8source and native inventory describe the same100%Austrian hard-coal-ash composition and residual-landfill lineage. Source production properties explicitly state zero water and1kgdry/1kgwet, so no wet/dry multiplier is inferred from the native0%water label. Source reference is-1kgwaste and native+1kgtreatment service; preserve the existing factor-1exactly once.",
+        "Native landfill construction2.0833e-9units per kgmatches the source coefficient; native uses one complete residual-landfill operating service while source splits that burden geographically. Preserve the complete native landfill and its actual short/long-term emissions once. SourceRoWversus nativeATlabel/Swiss technology, operating allocation, emissions, uncertainty and vintage differ. Source carbon-prose versus zero-carbon property inconsistency does not establish a new carbon credit or emission correction.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "63829ac6c03432c3790d8e4fc01634eeb131fc45c5c29057399bcf913a62db5e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b25755fd394b9346",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "ebf5170fde5e8ce168132cb35f387a76fb99f55cfee90bbfeaebb6035b275b36",
+        "source_metadata_sha256": "691bbb3848bbdc5416c7fbd0a88510460769814d2ab0e46ba6bd6ca00e270f77",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight train, diesel",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "16020c8569d84f4b763955f662fdbde5fa8723a9ecc972b5a38854f6b6a1d815",
+            "metadata_sha256": "9873ede36db8364885bf533d8aad2dd4836099e787230444cf61d655c1be12e0"
+          },
+          {
+            "identity": {
+              "name": "transport, freight train, electricity",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "bb383d1ae68125e012178195f97fa8144a03cdc3962fa053c0574e0f47b58072",
+            "metadata_sha256": "e49c8b0c2978917844181749face06fe5c36ea611a5b68f7749e8b58b91cbc16"
+          },
+          {
+            "identity": {
+              "name": "transport, freight train, steam",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "2f94b2656ccf9ac88e4fb4fd9112acc9c1a1cb747ce21bd77da7f7d7ee57ce4c",
+            "metadata_sha256": "ecc641f8d52c452a2ae3a06ac6b015f466b42db044d3b36d0254b8f96bfd21ba"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+            "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad"
+          }
+        }
+      },
+      "limitations": [
+        "The source3.8RoWrail market has0.736255719763271diesel,0.25791426220616electric and0.00583001803056882steam freight shares per net tonne-km. Native is a complete European electric/diesel rail service including shunting, locomotives, wagons, maintenance, tracks and disposal. Replace the entire source portfolio with that reviewed native service at factor+1per nettonne-km, retaining no separate steam process or added coal/ash inventory.",
+        "The source steam share and regional traction, loading, routing, energy, infrastructure and allocation are not reconstructed by the native portfolio. Those technology/region/vintage and internal-uncertainty differences remain explicit. Native infrastructure gross-tonne-km accounting is internal; do not convert the caller nettonne-kmby gross vehicle mass, payload or distance, or add another train/track service.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ca00d3fbe0f18082b5205b43849b4c689c90c48ffab5a5f37d289c1905f5a507"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "6849fa4f425326585508cd94bd7c6d687f51d8af742be79bece3b5f6daa39682",
+        "source_metadata_sha256": "42a572d37c9f4a13973c79867107064c50e5aef4bfa6d39ba9b5c5bf57890a55",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "AU",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "a8ba3cb826d0eb61955609f33a269af9393f72e9d4c34fd319b7b7f28674767a",
+            "metadata_sha256": "4207c3be8e42d206b1246f83138391a7356e4d6526a89559485ca65c0fa0d88a"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "NZ",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "70298d6015d2508e13f4b8d6033e3622a83acd8c1dbbd41f1c1e7e2c121217de",
+            "metadata_sha256": "6498b0001a5f2cf8a53dc2770c5033a9cfe31dd494688f9e0d46eb0763f5a8f3"
+          },
+          {
+            "identity": {
+              "name": "market for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "RU",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "0e5588b76ce8677df5de65b70930ae15157ee7c15b6f630ebaaee02b93eb40af",
+            "metadata_sha256": "f6d05adbf74d8be98e4ac3255c13e781e1fa7812dac08cfd1a25062a7c10d97b"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "RAF",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "4a055bde6fd3f67328509c594d59a5b95509a000b9b615234dcb8cc1641e0db6",
+            "metadata_sha256": "c824d2e5f6de02f234ad752e6cf80fe3c97d3aee1c3d98d3921397d8b100f415"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "RAS",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "a9a1de73b98e50494801ad55b7b46f580d3a33be9d2a3ee54011f42551b2e7c1",
+            "metadata_sha256": "4b8930428f4e9c6646c62bcf25f8f0f1593bef5038dfffb351562c6812094897"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "c42fdb14fb531fa5b96b72c2437e4186632f6c939797a2af5f961594341d1b26",
+            "metadata_sha256": "a6fe8a2fed4dc9a09a27466622e572fa7cd382bce1f49d802dcf7bffd1645d54"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "RLA",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "dab58fd3bd78a2599924036fc1c25eaaff461208c71c757f031dc086d5328ecb",
+            "metadata_sha256": "adecba116234c5e979646eb6406e339b86ced99de83d86d4d47513c472bc8803"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "RNA",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "e2fecc6b2e2ad6700f1ea8885d05977cb5c71c5440816683603351c8f1108d1e",
+            "metadata_sha256": "c2e130bd0bdeaae1a7c87c0631d66e39f0366c607f765d9577021af7c15f6192"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "GLO",
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "3e84871942f1fecbfdc9e2548c8db28e688fd33b6c6f7db1f6c4f2abec2a6ce7",
+            "metadata_sha256": "857616342fe196acecdff387a38366b355d49f3a5be4b858238a4e5b78a2adef"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "GLO",
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "ad74016680b74cbf3aa9ce6ce6529962c4a15145e79a33ed6452e6fcd882792c",
+            "metadata_sha256": "ec2ab7fab8cb73a978a5905bfd6ff0e21da53724265e6ee49cd14e2dd70fbf88"
+          }
+        }
+      },
+      "limitations": [
+        "Both source global market-group and native global grid provide one kWhmedium-voltage electricity through complete country/technology and voltage-grid portfolios. Source country markets include grid/loss structures and direct emissions; native actual inventory uses1.00966228875986kWhhigh-voltage grid,1.1169e-7kgSF6and1.86e-8network units. Keep that native topology and its upstream generation once; source market/trade weights are not reconstructed.",
+        "Native prose contains conflicting generation-only versus transmission/loss descriptions. Retain the actual inventory rather than derive a loss multiplier from prose. Historical generation, trade, loss allocation, infrastructure, emissions, uncertainty and vintage differ. Preserve signed native exchanges and do not add extra generation, voltage transformation, transmission infrastructure or avoided electricity.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "87c04bc0d1378082d7554a589933dc5ca10e9f23ecb5a50075afffb95c7e41e8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for aluminium, cast alloy",
+          "reference product": "aluminium, cast alloy",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, production mix, cast alloy, at plant",
+          "reference product": "Aluminium, production mix, cast alloy, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "640c042d2956f7746eca29fe61dd18c01f69cd7751b7c6b11239479d40b9e1f5",
+        "source_metadata_sha256": "de504621037998e7867711d2d063b65ed9cbe605a73d63e3deed507e1f389e5e",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium ingot, primary, to aluminium, cast alloy market",
+              "reference product": "aluminium, cast alloy",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "64e1d2eed397b4a8ab520dc074ec449407f46901b6f348cf1fb8d23afea016c1",
+            "metadata_sha256": "abbbc3b05f4985929900f14d740b4d601a309845cc1bc8c87c5b32a2b3c67dbb"
+          },
+          {
+            "identity": {
+              "name": "treatment of aluminium scrap, new, at refiner",
+              "reference product": "aluminium, cast alloy",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "228e0f405fb3676a44ed0dfbe03a782e4c25640867b565c48a7c08feb1edfac4",
+            "metadata_sha256": "aad0f7bd8caaf3630c82ae18b7dedb9b396e5317c5831a0568a9810147c5ea0e"
+          },
+          {
+            "identity": {
+              "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner",
+              "reference product": "aluminium, cast alloy",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "65030770bf76714fb0fd3c814eb566ecc3e1c0615e84c9aaed5374c24788d9d7",
+            "metadata_sha256": "35bf3badd7369d32e0e3d68bd5625aceb3984440e13b9a19a859ebc738c45248"
+          },
+          {
+            "identity": {
+              "name": "treatment of aluminium scrap, new, at refiner",
+              "reference product": "aluminium, cast alloy",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "67b664b52899a95ea68bf7baa09465ac214eea82325e564455c353d7c1c8126c",
+            "metadata_sha256": "a31e9e5d895d1df01066e06fff7299ab7c76ca7a4e40f009bdcefd3f652b6ea3"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium, production mix, cast alloy, at plant",
+              "reference product": "Aluminium, production mix, cast alloy, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6924f77b3100fceda7d520434663ea33444f0351bcaf4f1f1c2a556e67431286",
+            "metadata_sha256": "d208ba666c7aebe1bfbf761c7fa2ed665d79092b063ba068399565f538950e91"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium, production mix, cast alloy, at plant",
+              "reference product": "Aluminium, production mix, cast alloy, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1b645116a1214230eaf8caf105f1cf9dcfd178f5ec0667ad3b1c34780f8c3b44",
+            "metadata_sha256": "f860a0ac10459ee2ac16af73c4e444e19c9a7c843caa3486b018f9e2a6d19f5c"
+          }
+        }
+      },
+      "limitations": [
+        "Both references deliver one kgcast aluminium alloy, not certified pure primary aluminium. Source3.8global market contains0.261401663638971primary and0.7385983363610289secondary/refiner supplies plus its freight. Native European2013cast-alloy mix contains0.44123primary,0.11334new-scrap and0.44543old-scrap aluminium per kg. Use that complete native production mix once without reconstructing source producer or recycling shares.",
+        "Alloy chemistry, primary/secondary allocation, sorting/refining yields, geography, final delivery, upstream energy, vintage and uncertainty differ. The target is a cast-alloy supply proxy, not a pure-metal or recycling-service equivalence. Do not add a purity or alloy-content factor, another casting process, source recycling burdens or an avoided-primary-metal credit.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4383813b1e051b4acce59a87fa235e13128d9558308b99ffa65ba80b0012a2bb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-90d9ae3ee389f465",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for cast iron",
+          "reference product": "cast iron",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Cast iron, at plant",
+          "reference product": "Cast iron, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "5e784f2fa9e3c95bc60e4fbaa31cdb90246de0605d00d6e47356bd7e0cc87fa0",
+        "source_metadata_sha256": "88f6251075a5ea51a5562dd337aee634b77f690a55d64f0b351ef065c167db78",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cast iron production",
+              "reference product": "cast iron",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "89955225043110423008e5d38f358d70f5232a9f88f10ad8a017ac3adbdc1bfb",
+            "metadata_sha256": "4fe4732737c17ebe6f9e15add6fec8e830666ad3e27899ca08be7d453980e9f4"
+          },
+          {
+            "identity": {
+              "name": "cast iron production",
+              "reference product": "cast iron",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "991f0e40ea28caabc3bc533fa2747714db688f6c832108ad8168b7e074507cf3",
+            "metadata_sha256": "6ded39c9be8e230fb87ae55bc663ed48beb34b9ee2ffd1cdb61278d8301c2d91"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Cast iron, at plant",
+              "reference product": "Cast iron, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f1d060833f612e1fbe33d41277eece7c901f10d16bcf6dbab82690b5e81364fa",
+            "metadata_sha256": "d48bd3e753653d98b125dae31e468bda81dd780f8b24d4511f3fec0b7227c399"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Cast iron, at plant",
+              "reference product": "Cast iron, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7ad525c70adccad69422aeb17fd14f99937b73f57c9bf5ac71dbbe629117fe30",
+            "metadata_sha256": "dc0b5adbab190aab059ec9b617e7bc1b634828d1e3560ddeb26b5b08b01b4b62"
+          }
+        }
+      },
+      "limitations": [
+        "Source3.8cast-iron producers and native European casting describe35%scrap and65%pig iron as iron feed. Actual market/producer and native references are+1kgcast iron. Keep complete native electric-furnace melting/refining/casting, its own material loss and internal energy model, once per signed kg; do not add another iron-feed or casting process.",
+        "Source global supplier weights and four freight services are replaced by the complete native product boundary rather than reconstructed. Feedstock, yield, foundry technology, casting grade, energy, delivery, waste allocation, geography, vintage and internal uncertainty differ. No pig-iron/scrap, yield, density or metal-recovery multiplier is established.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ae5511d70fed4124a664f323ffd8264ae8a50ef75005fcae57d502cfd972d0ae"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-953779a9d7354634",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "market for concrete, normal",
+          "reference product": "concrete, normal",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Concrete, normal, at plant",
+          "reference product": "Concrete, normal, at plant",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "0442aaddb924174d7355b2251cd383a5a50051e612a010f7918323ccc83ad7fb",
+        "source_metadata_sha256": "dada3e626abb34c9e51094acc80053b8e3eef5cb721e0b1af94e45443e2608f2",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "unreinforced concrete production, with cement CEM II/A",
+              "reference product": "concrete, normal",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "39463ede8e286dd7362a2c84915a04a0b2c490bf51a2f32cfd5d909d7a922b3b",
+            "metadata_sha256": "31edf6bace565830dee1d4a30ad6702d8ad165d19cffa4baf35ec4ff2720d67f"
+          },
+          {
+            "identity": {
+              "name": "unreinforced concrete production, with cement CEM II/B",
+              "reference product": "concrete, normal",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "84b04cde4818179d59097a82215a419810eefdfc37acc9f02d6b3b703f73da6b",
+            "metadata_sha256": "25a7da9fa6f65fe7362dcf9e743f8bf8aec3203edb0b2e6286babce1954515e1"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Concrete, normal, at plant",
+              "reference product": "Concrete, normal, at plant",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "db52b9f1cf7b65302d50e039e6c9b98a4ec9f78c25245c44b5e5c410224f9395",
+            "metadata_sha256": "c3e7a33110c02d5ff0c598c35f63dab62c3ea27a9b53a5afc8d5b711add17530"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Concrete, normal, at plant",
+              "reference product": "Concrete, normal, at plant",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "5abee5aa0e81b063ed20528360d266451342ec7c3fc79127c2b31094693c8bec",
+            "metadata_sha256": "0f3dca865b967c58b83346643850ab6be56241abd6ff67b07b463f2d758c474f"
+          }
+        }
+      },
+      "limitations": [
+        "Actual3.8Swiss market supplies0.25m3CEMII/Aand0.75m3CEMII/Bunreinforced normal concrete, with61.642road and8.806rail tonne-kmper m3. Producers document200kgcement/m3and2370kg/m3density forX0applications. Native complete Swiss concrete instead documents300kgCEMI42.5,190kgwater,1890kggravel and2380kg/m3density, with its own actual manufacturing/ancillary quantities.",
+        "This is the same complete per-volume screening approach already reviewed for source3.6, now independently inspected at3.8. Binder formulation, strength/exposure performance, water, density, manufacturing, delivery, allocation, vintage and uncertainty change. Source freight is not retained separately and no equal-strength service is claimed. Preserve signed m3without a cement-content or density multiplier; do not add source producers, freight, reinforcement or another mixing plant on top.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ae7fda8bec8c4cc277dce60ca5e4b9d7803ef44368b46a267e3312d6d11d2435"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-18e8ed0207bbd5f8",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
+        "source_metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
+            "metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4"
+          },
+          {
+            "identity": {
+              "name": "tap water production, conventional treatment",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "eae207c0304ece12e65df58ac1a77fe445e37755c50b29ee2d51eaa5270f7bae",
+            "metadata_sha256": "3dede8dff4244b01daa384af23f8a26cb47767224336e8c09dfcb5881dc53a5c"
+          },
+          {
+            "identity": {
+              "name": "tap water production, conventional with biological treatment",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6515c46a6b2066e2a89312c427d15046d055bd5a40e8bc5cf9261e875ac6de65",
+            "metadata_sha256": "f373f3226a9d2ff13d5ed936307bcef37d1e6d3777b5b44101e23f4d9f36b533"
+          },
+          {
+            "identity": {
+              "name": "tap water production, direct filtration treatment",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "583f5e1c92a9a4e415a4a658e7689e9915b88377265769b2f1955b5d998de8c9",
+            "metadata_sha256": "da53a30f05aefcbae6c4df9d0a38fa3b22f7a069a1fdebcbb735184b5ac63c8d"
+          },
+          {
+            "identity": {
+              "name": "tap water production, microstrainer treatment",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1e3abe265b31dad926656983f189c0f8ff613e33d6f143120e671f3366ea327f",
+            "metadata_sha256": "0b849ddfb2ee08d40be427868ce4bcb3d93d697210d8bc8a9f43182b1b6e7796"
+          },
+          {
+            "identity": {
+              "name": "tap water production, ultrafiltration treatment",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "48b5b9bc497abfcdee285c5cdd2633e0105f6213d79d0e5e3a3e409a4ae666c8",
+            "metadata_sha256": "1e8a94f22011fd1036ffba0cd83663009ea1513e56ac1ae55fa2344fb7b90b9b"
+          },
+          {
+            "identity": {
+              "name": "tap water production, underground water with chemical treatment",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8bd6a3a1ecc7cc9d06ba959a5f7a84e6de116fd7015d26d96a669999d901f4a5",
+            "metadata_sha256": "433b5542e95684244cb1af9b2f35a94a356f979bcecb43b3a1793980ac25bce6"
+          },
+          {
+            "identity": {
+              "name": "tap water production, underground water with disinfection",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "74c498aeddbf47641382fb9e64a15c5d63205ee2a3b40248e81e36862a3f60d6",
+            "metadata_sha256": "3681efa149ce2c57ed63027ea6372d633174a459b7c6150099588d0bad5a15cb"
+          },
+          {
+            "identity": {
+              "name": "tap water production, underground water without treatment",
+              "reference product": "tap water",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d3063d87df7f92a810bfea0e5bd964c47d5110614a87e4ba8707ddd602c85452",
+            "metadata_sha256": "26a9d2166a445ef5e9e01d0a1d732c8d6b8574efd14741b345f4147427d3b139"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e82e54cf92490c82a2cb0618b651b268abe22657daf0ca724799b6040e6cc011",
+            "metadata_sha256": "2df6257a30aae3002588c798b2fb2382dd30e1da0bf8a670a2127c56fff98dae"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a1398822a40bf793d2a22d27ce3608174c8ca43b390c446ae626c76a0627ded4",
+            "metadata_sha256": "4a84776ad668ee971da94272a8031bcd699593111474e4045970f82e3643f340"
+          }
+        }
+      },
+      "limitations": [
+        "The source3.8European-without-Switzerland delivered-water market includes eight treatment/groundwater producer types, distribution infrastructure and a0.12867kgrecursive water input per deliveredkg. Use the complete reviewed Swiss native tap-water service per signed kg, including its actual chemicals, electricity, treatment, water abstraction/returns and supply network. Native prose emphasizes infrastructure, but its actual inventory also contains treatment inputs and direct water flows.",
+        "The Swiss supply is an explicit geographic and treatment-portfolio screening proxy for this European market. Native intake, treatment, pressure, distribution/loss allocation, water returns, infrastructure, geography, vintage and uncertainty differ. Do not add the source supply loop, assume a1/(1-.12867)loss multiplier, infer river/lake shares, convert kgto m3using guessed density or apply a water-balance correction.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d1e51490532f312048f50a30a7394cf3e4cd8bc1969b40766130453927c8ae75"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f5891204a3feaf32",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_38_profiles_review.json",
+      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "b8fbc56d05a1c7c5e7701b94b89bf7aef5d87287f5369ec62a29225faef5d3aa",
+        "source_metadata_sha256": "75dfe7f9d17862a47a04a8c5d1bcb7e06db34f3d708bc4848d8e46509cb30ecb",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "eb4f59a32666b36a95da0bb0d4c6dffc3bcb79db2f7e44687c44a8ba0f65edf0",
+            "metadata_sha256": "57f4cccddb8c5cbe10ff97d7db1ac1491ed9b04a652ce2b975b6c86f32c9f4ea"
+          },
+          {
+            "identity": {
+              "name": "market group for electricity, low voltage",
+              "reference product": "electricity, low voltage",
+              "location": "Europe without Switzerland",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "a2fe5b13dd44c6b2625339663dc5d7f43a72f42f03bd6e80c5811782b9f7d8ca",
+            "metadata_sha256": "4cd8d87f0692ee117872a3db0b973ffc59ca51412024b7753fa9fc56f028c6ec"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "9918d53f738c649fd1efbe365b393c29136467f80c38f956eec026474ee675d5",
+            "metadata_sha256": "fdb68aea771258bd961a9ab22971908096acd391378886a1f6eead5612d741e3"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "8f7248a0a15d75d3ba4f79ec2a6b4682ccfd8a40b5b38f5d2c5a8d107d652eb1",
+            "metadata_sha256": "71c40c317115b22b01d441f1983b54847fc1355686150c0a0b0730bd25daed4c"
+          }
+        }
+      },
+      "limitations": [
+        "Source3.8RERlow-voltage market-group contains Swiss and non-Swiss European supply portfolios with their voltage transformation, generation and grid services. Native supplies+1kWhatRERlow-voltage through its complete installed grid, including actual1.07143654729296kWhmedium-voltage input,6.1599e-9kgSF6and8.74e-8distribution network units. Keep that full native grid and its signed coefficients once.",
+        "Source technology/geographic/trade weights, distributed photovoltaic placement and voltage-loss/infrastructure allocations differ from native historical supply. Native prose conflicts on loss inclusion; use actual inventory without a guessed loss/efficiency factor. Do not add generation, another low-voltage branch, extra network infrastructure or an avoided-energy credit. Caller signs and kWhremain unchanged.",
+        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d3ffc93c14ae63dc5f88b0fba53fd173801bd131ec2f11d891c3883f363a1b62"
         }
       ]
     }

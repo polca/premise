@@ -247,3 +247,31 @@ infrastructure, lime chemistry, fuel-delivery and chemical-heat boundaries.
 Further cohorts and public heat integration remain unproven. See
 `docs/development/uvek-heat-310-closure-verification.json` and
 `docs/development/uvek-heat-38-mapping-frontier.json`.
+
+
+Eight independently inspected 3.8 counterparts are qualified: hard-coal-ash
+residual landfill, RoW rail, global medium-voltage grid, cast aluminium alloy,
+cast iron, Swiss normal concrete, European-without-Switzerland tap water and
+European low-voltage grid. Source/native references and actual producer evidence
+are pinned. Keep the already-correct ash factor -1 once, all other factors +1,
+and caller signs, quantities, formulas, uncertainty and ownership intact. Complete
+native inventories replace source portfolios with explicit rail steam-share,
+recycling, binder/strength, delivery, water-network and geographic limitations;
+no LHV, wet/dry, density, loss, purity or cement-content factor is invented.
+
+Only concrete gains a raw 3.8 profile. Its earlier 3.6 effective rule and original
+shared review remain identical; one structural fingerprint migration is qualified,
+with 501 prior fingerprints unchanged. Eight permissions bring the ledger to 510.
+All 3674 recipes and 774 shared reviews remain unchanged. The older authoring stage
+accepts only this frozen concrete extension. A pre-existing epoxy stage mismatch
+is addressed only in the authoring test fixture, using the immutable earlier rule
+and preserving actual migration tests against final resources.
+
+123 Brightpath tests including earlier material callers, 12 Premise cache/drift
+tests, 16 signed finite LCIs, 16 installed signed demands, 41 original caller
+regressions and byte-identical replay of two generated resources pass. Source
+scientific signatures are unchanged. Real preparation now reports 16 pending
+3.8 cases, down from 24. Further cohorts and public heat integration remain
+unproven. Source/upstream candidate evidence for quicklime, delivered coal and
+class-4 sewage treatment has been collected; those corrections are not yet
+qualified. Verification: `docs/development/uvek-heat-38-profiles-verification.json`.

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "status": "twenty_four_observed3_8cases_pending_independent_review",
+  "status": "eight_of_twenty_four_observed3_8cases_qualified_sixteen_pending",
   "context": "New cohort reached after all38previously observed3.10cases clear strict preparation. Publicheatgate remains closed; no automatic version-wide approvals.",
   "identified_cases": 24,
-  "qualified_cases": 0,
-  "pending_cases": 24,
+  "qualified_cases": 8,
+  "pending_cases": 16,
   "categories": {
     "barge_transport_boundary": 1,
     "reviewed_correspondence_new_exact_profile": 8,
@@ -93,7 +93,7 @@
     },
     {
       "rule_id": "bp-8c3b3ceb3e9c8bef",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -161,7 +161,9 @@
           ]
         }
       },
-      "producer_witnesses": []
+      "producer_witnesses": [],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-771ff30bce4560aa",
@@ -648,7 +650,7 @@
     },
     {
       "rule_id": "bp-b25755fd394b9346",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -747,11 +749,13 @@
           "inventory_sha256": "2f94b2656ccf9ac88e4fb4fd9112acc9c1a1cb747ce21bd77da7f7d7ee57ce4c",
           "metadata_sha256": "ecc641f8d52c452a2ae3a06ac6b015f466b42db044d3b36d0254b8f96bfd21ba"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-61babdae6914f05a",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -905,7 +909,9 @@
           "inventory_sha256": "e2fecc6b2e2ad6700f1ea8885d05977cb5c71c5440816683603351c8f1108d1e",
           "metadata_sha256": "c2e130bd0bdeaae1a7c87c0631d66e39f0366c607f765d9577021af7c15f6192"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-66394d45f1ae5fbc",
@@ -1073,7 +1079,7 @@
     },
     {
       "rule_id": "bp-edf1518533a281df",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1187,7 +1193,9 @@
           "inventory_sha256": "67b664b52899a95ea68bf7baa09465ac214eea82325e564455c353d7c1c8126c",
           "metadata_sha256": "a31e9e5d895d1df01066e06fff7299ab7c76ca7a4e40f009bdcefd3f652b6ea3"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-2be1399569d5de28",
@@ -1268,7 +1276,7 @@
     },
     {
       "rule_id": "bp-90d9ae3ee389f465",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1367,11 +1375,13 @@
           "inventory_sha256": "991f0e40ea28caabc3bc533fa2747714db688f6c832108ad8168b7e074507cf3",
           "metadata_sha256": "6ded39c9be8e230fb87ae55bc663ed48beb34b9ee2ffd1cdb61278d8301c2d91"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-953779a9d7354634",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1460,7 +1470,9 @@
           "inventory_sha256": "84b04cde4818179d59097a82215a419810eefdfc37acc9f02d6b3b703f73da6b",
           "metadata_sha256": "25a7da9fa6f65fe7362dcf9e743f8bf8aec3203edb0b2e6286babce1954515e1"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-76d8e69be0f742aa",
@@ -1551,7 +1563,7 @@
     },
     {
       "rule_id": "bp-18e8ed0207bbd5f8",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1715,11 +1727,13 @@
           "inventory_sha256": "d3063d87df7f92a810bfea0e5bd964c47d5110614a87e4ba8707ddd602c85452",
           "metadata_sha256": "26a9d2166a445ef5e9e01d0a1d732c8d6b8574efd14741b345f4147427d3b139"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-f5891204a3feaf32",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_8_complete_native_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.8",
@@ -1818,7 +1832,9 @@
           "inventory_sha256": "a2fe5b13dd44c6b2625339663dc5d7f43a72f42f03bd6e80c5811782b9f7d8ca",
           "metadata_sha256": "4cd8d87f0692ee117872a3db0b973ffc59ca51412024b7753fa9fc56f028c6ec"
         }
-      ]
+      ],
+      "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+      "review_path": "export/uvek_heat_38_profiles_review.json"
     },
     {
       "rule_id": "bp-9f742d14ef4d8ca9",
@@ -2168,5 +2184,17 @@
       "producer_witnesses": []
     }
   ],
-  "later_cohorts": "unproven"
+  "later_cohorts": "unproven",
+  "verification": "docs/development/uvek-heat-38-profiles-verification.json",
+  "remaining_categories": {
+    "barge_transport_boundary": 1,
+    "waste_moisture_and_landfill_boundary": 1,
+    "wastewater_composition_and_capacity": 2,
+    "deionised_water_service": 1,
+    "infrastructure_capacity_and_reference": 3,
+    "wrong_lime_chemical_candidate": 1,
+    "fuel_market_versus_mine_boundary": 1,
+    "mineral_or_chemical_product_boundary": 5,
+    "chemical_heat_and_water_boundary": 1
+  }
 }
