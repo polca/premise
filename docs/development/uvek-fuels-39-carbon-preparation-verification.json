@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-10",
+  "status": "licensed preparation accepts activated-carbon mapping; other fuel correspondences still block preparation",
+  "brightpath_commit": "b4161c0ae48529cb4e8d6f8cb0931006ab82705f",
+  "review_sha256": "1d431e716ab7609f53db4cd514403a6b53dbd938e6242f344dd355d8f9bd0c34",
+  "resource_sha256": "f11f2c183da9cd1d6d0e16359c73cb2cd129ae35b8d8b2306e45451a76fe2fc2",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_rules": [
+    "bp-daed85adc1fa3b47",
+    "bp-016903afcf2e9b33",
+    "bp-849014459a4d0101",
+    "bp-cd9034c7a99199ed",
+    "bp-e808e3bdc371b59f",
+    "bp-d18c2cde59fa010a",
+    "bp-dd3e07b2dd28af80"
+  ],
+  "new_helpers": 7,
+  "frozen_existing_helper_dependencies": 4,
+  "native_2026_witnesses": 53,
+  "component_bindings": 47,
+  "existing_approval_operations_unchanged": true,
+  "validated_approval_scopes": 589,
+  "tests": {
+    "final_brightpath_carbon_molybdenum_silica_and_full_reference_sign_suite": {
+      "passed": 843,
+      "seconds": 252.67
+    },
+    "premise_fresh_cached_carbon_exact_omission_refusal_and_molybdenum": {
+      "passed": 3,
+      "seconds": 23.07
+    }
+  },
+  "full_generator_byte_identical": true,
+  "wheel_contains_exact_review_resource_and_manifest": true,
+  "black_and_ruff_changed_replay_and_tests": "pass",
+  "runtime_python_changes": [],
+  "primary_retention": {
+    "primary_nonproduction_rows_checked": 419,
+    "retained_target_rows_compared_field_by_field": 368,
+    "explicit_empty_receiver_omissions_compared_field_by_field": 51,
+    "exact_biosphere_uuid_compartment_unit_checks": 288,
+    "complete_named_parameters_checked": 12,
+    "new_nested_recipe_source_identity_links_checked": true,
+    "uncertainty_pedigree_formula_and_bounds_retained": true,
+    "all_51_omitted_source_inventories_independently_confirmed_production_only_negative_reference_and_zero_price": true,
+    "licensed_vectors_published": false
+  },
+  "native_matrix": {
+    "date": "2026-11-10",
+    "recipe": "fuels-39-carbon-fdb1fba5f10fbb9758f3",
+    "demand": 1,
+    "unit": "kilogram",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "native_leaf_demands": 53,
+    "direct_biosphere_identities": 72,
+    "expanded_recipe_identities": 11,
+    "native_inventory_finite": true,
+    "native_supply_finite": true,
+    "combined_inventory_finite": true,
+    "combined_inventory_identities": 1684,
+    "all_direct_biosphere_identities_match_installed_310": true,
+    "database_written": false,
+    "scope": "Linear expansion of the reviewed helper and all frozen children against the actual native BAFU matrix plus direct biosphere terms; not a prospective fuel update or export."
+  },
+  "empty_receiver_omission_policy": {
+    "count": 51,
+    "scope": "Only independently inspected production-only, zero-price receiving inventories with negative references, at their original source quantities. No nonempty treatment input is omitted.",
+    "mechanism": "Existing source_input_omissions recipe metadata and migration warning/audit machinery. Existing Premise exact approved_recipe_source_omissions check remains unchanged.",
+    "without_explicit_omission_approval": "Verified refusal even when the mapping correspondence remains approved.",
+    "positive_reference_zero_stock_validation": "Unchanged; no new zero-burden recipe."
+  },
+  "limitations": [
+    "Complete native historical coal supplies retain kg feedstock but have explicit grade, moisture, allocation, delivery and geographic differences. No LHV or carbon-content scaling is established.",
+    "The native municipal incinerator lacks Swiss fly-ash extraction and recovered residue; no recovery credit is added.",
+    "Native electricity, heat, water, infrastructure, transport and landfill inventories remain explicit technology/geography/vintage screening proxies with unquantified score effects.",
+    "Original 31.6% virgin / 68.4% reactivation market shares, all nonempty inputs, 288 biosphere entries, 331 lognormal exchanges, two deterministic stock inputs and twelve parameters are retained.",
+    "Fuel transformation and export remain unqualified; the public fuel guard remains closed."
+  ],
+  "verification_log_sha256": {
+    "fuels-39-carbon-final-tests.log": "099e5dfcaae9fa6cdb275debb9631d20641d04d242161f865c01089d11f4ba88",
+    "fuels-39-carbon-premise-tests.log": "677c8bffb1060597568d3a9f0f25daf202de4714768703736e430dc444e4490c",
+    "fuels-39-carbon-final-native-lci.log": "0bdf9b68dd35613bdf14312aaacc1e815f3fafc4c77d3d4b81a7e59845948ee5",
+    "fuels-39-carbon-final-replay.log": "1c8f279574a521123a527cb40afd26493d52aed36a6eeb3e3bc50b4656472a0f",
+    "fuels-39-carbon-final-wheel.log": "d8135b9bf076067ef27978727ca85e4f51a02d494928796bad815a01ee0aca25",
+    "fuels-39-carbon-probe.log": "161031846bc10f3dd08e03fbb42afe2cf6e313095499b1770a61a035faa82f44"
+  },
+  "obsolete_generated_artifacts_removed_bytes": 204388070,
+  "installed_commit_verified": "b4161c0ae48529cb4e8d6f8cb0931006ab82705f",
+  "licensed_preparation": {
+    "audit_file": "f97cc01044cc42932b4f21d95ed69d74c3574d008cf8b9473acbdbdc12aca9f8.audit.json.gz",
+    "audit_sha256": "7f41d3763120b4ebaadeb30f2443b9e8b9eb8702d93200fe6ae099e7ff08aecd",
+    "counts": {
+      "migration.unit_changes_require_factors": 1,
+      "migration.canonical_biosphere_identity": 2,
+      "migration.catalog_correspondence": 1,
+      "migration.scoped_compatibility_review": 2,
+      "migration.unapproved_correspondence": 28,
+      "migration.approved_correspondence": 100,
+      "clic.compatibility_proxy_limitations": 100
+    },
+    "accepted_current_cohort_rule": "bp-dd3e07b2dd28af80",
+    "previous_unapproved_count": 29,
+    "remaining_unapproved_count": 28,
+    "nested_ash_and_producer_scopes": "Verified by strict fresh/cached conversion and independent source/native-LCI checks; not separate current-cohort requests.",
+    "omission_warning_emission": "Verified on completed strict fresh/cache conversion. Licensed multi-inventory preparation stops during preflight on other unapproved correspondences before generating this helper closure.",
+    "source_activities_after": 11947,
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "prospective_fuel_update_run": false,
+    "database_exported": false
+  }
+}

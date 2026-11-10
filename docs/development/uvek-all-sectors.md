@@ -865,3 +865,73 @@ Next: implement granular activated-carbon production/reactivation and its full
 ash-service split, then the other 28 current-cohort cases, further preparation
 cohorts, shared fuel transformation/linking and all remaining sectors. The full
 goal and original Premise workflow requirements remain active.
+
+### Granular activated carbon: full production/reactivation and ash split
+
+Brightpath `b4161c0` replaces carbon-black/fibre/mercury-disposal matches with
+seven reviewed helper recipes: four granular-carbon production/reactivation
+inventories, their market, and the Swiss/RoW ash markets. Source market shares
+remain 31.6% virgin production / 68.4% reactivation, with RER and RoW entries
+separate. All four product references are positive, including reactivation.
+Each retains 72 direct biosphere entries and three parameters; parameter units,
+uncertainty and pedigree survive. Together the four inventories contain 331
+lognormal exchanges and two deterministic spent-carbon stock inputs. The
+existing reviewed positive-reference spent-carbon cut-off stock and its full
+freight remain unchanged; reactivation itself is not made burden-free.
+
+Virgin production keeps the original three kg of coal feedstock and all country
+rows. Complete native regional-storage supplies replace mine-only candidates;
+grade, moisture, ash, delivery, technology, allocation and geographic proxies
+are explicit limitations, without an invented LHV/carbon/yield multiplier.
+Native complete electricity, heat, water and infrastructure inputs remain.
+All 288 direct biosphere entries match the 3.10 publisher UUID, compartment and
+unit; 24 updated labels are identity renames, not substance/ionic-mass proxies.
+
+The two ash-service helpers preserve all sixteen nonempty receiving processes
+and eleven freight rows at source quantities. Disposal fractions are not
+renormalized. Exactly 51 independently verified production-only, zero-price
+negative-reference receiving inventories are omitted with explicit source
+identity, quantity, uncertainty, index and inventory-hash records. These use
+the existing recipe `source_input_omissions` mechanism: helper provenance and
+migration warnings retain every record, and Premise requires their exact
+separate approvals. Removing those approvals is tested to refuse conversion.
+No nonempty receiving inventory is omitted, no recovery credit is added and
+positive-reference zero-stock validation is unchanged. Native Swiss incineration
+lacks fly-ash extraction; technology, residue, allocation and emission differences
+remain explicit warnings. Negative ash references become positive services with
+factor -1 and consistently scaled uncertainty/formulas; positive freight remains
+positive. Score effects of the native proxies remain unquantified.
+
+An independent primary-source comparison checks all 419 source nonproduction
+rows: 368 retained target rows and 51 explicitly audited empty receivers,
+including every quantity, uncertainty, formula, bound and pedigree field, plus
+all twelve parameters and nested source-identity links. The native-matrix check
+expands eleven new/existing helpers into 53 native demands and 72 distinct direct
+biosphere identities; supply and combined inventory are finite. It writes no
+database. The source still has 11,947 activities and its unchanged September
+modified timestamp.
+
+The final Brightpath verification set passes **843 tests**, including the full
+733-test reference-sign suite and current frozen-resource replay. Premise passes
+three fresh/cache, explicit omission-refusal and neighbouring oxide checks.
+Seven new closed 3.9 cut-off scopes give **589 validated scopes**; every earlier
+approval operation remains unchanged. Existing non-3.9 profile entries on the
+RoW ash rule remain unchanged and receive no new approval. Full generation is
+byte-identical, canonical biosphere unchanged, and wheel review/resource/manifest
+bytes match. Black/Ruff pass for changed replay/tests. No runtime Python modules
+change in either checkout. Installation and colleague/user guides pin the pushed
+Brightpath revision; the regular conda Git installation is verified.
+
+Actual licensed preparation accepts the granular-carbon market, reducing the
+current cohort from **29 to 28** unapproved correspondences. Other mappings still
+stop preflight, before generating this closure; completed helper audits and all
+51 omission warnings are separately verified through strict fresh/cached
+conversion. This is not a successful prospective fuel transformation or export.
+Removed 194.9 MiB of superseded/verified generated replay and wheel artifacts,
+retaining logs, source evidence, active caches and databases. See the
+[carbon preparation receipt](uvek-fuels-39-carbon-preparation-verification.json).
+
+Next: the 28 current-cohort correspondences, beginning with perimeter-insulation
+polystyrene foam and metallurgical alumina; further preparation cohorts, shared
+fuel transformation/linking and all remaining registered sectors still follow.
+The full goal remains active; eligible missing mappings are unfinished work.
