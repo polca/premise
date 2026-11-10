@@ -2394,9 +2394,9 @@
           {
             "path": "premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml",
             "legacy_role_count": 55,
-            "explicit_native_role_count": 14,
+            "explicit_native_role_count": 16,
             "review": "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
-            "reviewed_caller_inputs": 1795,
+            "reviewed_caller_inputs": 2578,
             "reviews": [
               "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
               "premise/data/GAINS_emission_factors/uvek2026_ordinary_combustion_review.json",
@@ -2427,7 +2427,7 @@
         {
           "code": "native_mapping_frontier",
           "path": "premise/emissions/uvek_emissions.py",
-          "finding": "Native dispatch bypasses the ecoinvent-only Emissions class. Fourteen reviewed roles cover1795exact caller inputs; remaining combustion classes/direct processes/foreground emissions and particle/VOC definitions require explicit native review."
+          "finding": "Sixteen reviewed native roles now cover2578input coordinates. Remaining combustion/gas-supply, direct/foreground and particle/VOC definitions plus full public certification/export remain pending."
         },
         {
           "code": "shared_combustion_sector_boundary",
@@ -2440,20 +2440,24 @@
       ],
       "decisions": [
         "Reviewed complete native gas forks per exact caller sector and emitting supplier geography; retain signed caller quantities and upstream/production inventories. Only reviewed gaseous air reductions change.",
-        "Boiler/stove caller-specific industrial/residential screening roles preserve native inventories and reference quantities. Independently reviewed fuel-excluded wood resolves nine historical retained pairs; one epoxy methodological comparison remains retained. See uvek-emissions-heating-verification.json."
+        "Boiler/stove caller-specific industrial/residential screening roles preserve native inventories and reference quantities. Independently reviewed fuel-excluded wood resolves nine historical retained pairs; one epoxy methodological comparison remains retained. See uvek-emissions-heating-verification.json.",
+        "Use existing exact-review loader for non-road machinery mappings; YAML and existing review data only, per user preference. Six complete native inventories preserve fuel/infrastructure boundaries, particle filters and source limitations. Multiple same-supplier entries remain separate."
       ],
       "implementation_commits": [
         "f1b9f01d",
         "f256c569",
         "91ec8f91",
-        "f877976b"
+        "f877976b",
+        "0d200278",
+        "650126f4"
       ],
       "tests": [
         "35 native factor and existing emissions tests passed; real encrypted REMIND GAINS arrays replay without mutation. This is preflight, not a runtime sector update.",
         "46 native emissions and existing emissions checks pass; installed real graph reproduces65variants,127callerlinks,159air changes and16signedLCIs. Full sector integration/export remains pending.",
         "47 native/legacy emissions checks pass; combined real multi-fuel virtual graph and installed packages verify873callerinputs,149variants,281gaseousair changes and22signedLCIs. Emissions public integration remains pending.",
         "71focused and34shared checks pass for native callback atomicity, exact coverage, independently calculated air factors, literal audits, replay, provenance, metadata and both stores. Installed callback reproduces952events and22signedLCIs; the prior three-sector graph integrates to12771activities, but full public emissions export remains unverified.",
-        "73focused native/legacy/heat checks pass. Installed internal callback on prior three-sector graph reproduces1795inputs,209variants,1377callers,369air changes,1586events and32finite signedLCIs. All149previous variants have identical scientific coordinates with archived f877976b on the same input graph. Full public emissions export remains unverified."
+        "73focused native/legacy/heat checks pass. Installed internal callback on prior three-sector graph reproduces1795inputs,209variants,1377callers,369air changes,1586events and32finite signedLCIs. All149previous variants have identical scientific coordinates with archived f877976b on the same input graph. Full public emissions export remains unverified.",
+        "61focused native/legacy/heat tests pass for the final data-only machinery mappings. The real internal callback handles2578inputs,215variants and1949callers, with36finite signedLCIs. All209previous variants retain exact scientific coordinates on the same starting graph. Full public emissions export remains pending."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -2535,6 +2539,20 @@
         "remaining_retained_epoxy_cases": 1,
         "public_gate": "closed",
         "normal_public_update_or_new_Brightway_export_verified": false
+      },
+      "native_machinery_mapping_stage": {
+        "verification": "docs/development/uvek-emissions-machinery-verification.json",
+        "new_exact_pairs": 777,
+        "new_input_coordinates": 783,
+        "combined_inputs": 2578,
+        "owned_variants": 215,
+        "modified_callers": 1949,
+        "gaseous_air_changes": 392,
+        "provenance_events": 2164,
+        "signed_finite_LCIs": 36,
+        "focused_tests": 61,
+        "Python_code_changes": false,
+        "public_gate": "closed"
       }
     }
   ],

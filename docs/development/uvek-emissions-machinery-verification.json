@@ -1,0 +1,91 @@
+{
+  "status": "native_nonroad_machinery_mapping_data_verified_internal_component_public_gate_closed",
+  "implementation_change": "Existing GAINS YAML aliases and exact heating-review data extended; no runtime or test Python files changed.",
+  "existing_review": "premise/data/GAINS_emission_factors/uvek2026_heating_combustion_review.json",
+  "new_distinct_caller_supplier_pairs": 777,
+  "new_separate_input_coordinates": 783,
+  "new_source_identities": 6,
+  "combined_GAINS_native_roles": 16,
+  "combined_reviewed_inputs": 2578,
+  "all55legacy_GAINS_role_definitions_unchanged": true,
+  "validation": {
+    "activities": 12837,
+    "initial_checks": {
+      "caller_inputs": 2578,
+      "reviewed_input_coverage": 2578,
+      "gaseous_air_changes": 392,
+      "links": 448137,
+      "applicability": "applicable",
+      "full_sector_mapping_complete": false
+    },
+    "owned_variants": 215,
+    "modified_callers": 1949,
+    "provenance_events": 2164,
+    "signed_finite_LCIs": 36,
+    "common_sector_contract_valid": true,
+    "idempotent_replay_adds_no_events_or_inventory_changes": true,
+    "source_scientific_contents_unchanged": true,
+    "source_graph_unchanged": true
+  },
+  "focused_native_legacy_and_heat_tests_passed": 61,
+  "previous209variants_scientific_coordinates_unchanged_on_identical_input_graph": true,
+  "scientific_boundaries": [
+    "Use official non-road diesel/gasoline sector definitions with each source emitting location; preserve the complete source reference, fuel/lubricant/infrastructure/disposal boundaries and all signed caller quantities/formulas/uncertainty.",
+    "Retain particle-filter/average-fleet distinctions and all PM, CO2, non-air and unreviewed species; no new filter efficiencies, machinery upgrade or fuel factors.",
+    "Copied diesel wording in petrol source does not override its actual petrol input. The old global filtered-diesel source retains its historic baseline, global factor lookup and high-relative-importance source caution.",
+    "Multiple same-supplier entries remain separate with literal per-index audits. Prepared CLIC/supplement ownership is outside this native endpoint review.",
+    "Only internal callback on prior public biomass/electricity/heat graph verified here. Full normal public emissions build/certification/Brightway export remains pending, as do other combustion/direct/foreground/species classes, fifteen other sectors and eleven heat binding gaps."
+  ],
+  "official_sector_evidence": {
+    "url": "https://gains.iiasa.ac.at/gains/GOD/abbreviations.info",
+    "description": "IIASA identifies diesel and gasoline non-road EMF SSP sectors; this is sector-definition evidence, not identification of the bundled historical factor release."
+  },
+  "public_emissions_gate": "closed",
+  "installed_package": {
+    "all_wheel_declared_resources_equal_checkout": true,
+    "resources_checked": 282,
+    "all_runtime_modules_match_checkout": true,
+    "runtime_modules_checked": 131,
+    "wheel_sha256": "0c7e8c25ff6d426bf24b14038e28fc3eb661d12d7412b17119f0bca556837d57",
+    "python_source_edits": false,
+    "uses_existing_heating_review_loader": true,
+    "no_stale_abandoned_machinery_review_in_package": true
+  },
+  "installed_replay": {
+    "final_installed_graph_metadata_and_all_provenance_events_equal_checkout": true,
+    "runtime_and_test_Python_files_unchanged": true,
+    "existing_exact_review_loader_used": true
+  },
+  "receipts": [
+    {
+      "name": "uvek_emissions_machinery_checkout_verification.json",
+      "sha256": "8a5ebef2987ba2662c9e7d5ea91326dd367b6579f150fab3e3a8bda52f24ab7f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_machinery_final_installed_verification.json",
+      "sha256": "8a5ebef2987ba2662c9e7d5ea91326dd367b6579f150fab3e3a8bda52f24ab7f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_machinery_final_installed_resources.json",
+      "sha256": "6553bdb7c010c363c7137c65a8f0410445eb17d2e22b0bb2fab951e471fd7d09",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_machinery_final_installed_comparison.json",
+      "sha256": "32d30859e97f8d82df38f267f6f05be40b0c1e31d2ec9fdcb0d2a1ba0a895633",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_machinery_same_input_regression.json",
+      "sha256": "9253bd6f2ddf83444db17a16dd6786d8a89d8b26201ea4b3c384c230f862d44c",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_machinery_data_only_tests.log",
+      "sha256": "edd4fe6cfef9f0d66ca67fc7ef4fc91c8bae32948bd51582c6c19bedede00294",
+      "location": "private task workspace"
+    }
+  ]
+}

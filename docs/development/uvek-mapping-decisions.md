@@ -1434,3 +1434,47 @@ Review caller-owned extraction emissions together with combustion roles next.
 No inventory or public support gate changes in this triage. See
 `uvek-emissions-remaining-combustion-frontier.json` for counts, primary hashes
 and the precise selection boundary.
+
+
+### Non-road machinery: mapping data only, complete source boundaries
+
+Under standing modelling approval, 777 exact native caller/supplier pairs cover
+783 separately retained input coordinates across six complete machinery
+inventories. IIASA's [official GAINS glossary](https://gains.iiasa.ac.at/gains/GOD/abbreviations.info)
+defines diesel and gasoline non-road EMF SSP sectors. Diesel machinery uses
+End_Use_Transport_OFF_HLF; petrol machinery uses End_Use_Transport_OFF_LLF.
+Contemporary definitions do not establish the historical bundled factor release.
+The browser retrieval is archived with its hash; direct HTTP was refused.
+
+The actual petrol process consumes petrol despite copied diesel wording in its
+comment. Keep its complete inventory rather than copying diesel coefficients.
+Average and particle-filter machinery remain distinct. Preserve source +1-MJ
+fuel references, all fuel, lubricants, infrastructure and disposal exchanges,
+signed caller quantities, formulas and uncertainty. Variants excluding machinery
+or lubricants retain those boundaries; no missing capital burden is added. The
+older global filtered-diesel process retains its original historical inventory,
+global label and World lookup, including its source caution against high relative
+importance. No Swiss2015 replacement or high-contribution suitability is asserted.
+Only reviewed gaseous-air reductions change; all PM, CO2, non-air, aggregate VOC
+and unreviewed species remain. Geographic, fleet/vintage and score effects are
+unquantified. Prepared CLIC and supplement callers need separate review.
+
+Some callers contain repeated same-supplier inputs. Keep every coordinate and
+its per-index original audit, rather than aggregating quantities. The existing
+planner and validator already handle this. Per the user's mapping-only
+preference, the provisional Python loader/test edits were removed. Extend the
+existing YAML aliases and existing heating-review data path; no runtime or test
+Python file changes are part of this batch. All 55 legacy role definitions stay
+unchanged. This is Premise emissions selection, not a Brightpath background
+conversion change; no Brightpath mapping edit is required for this cohort.
+
+All 61 focused native/legacy/heat tests pass. The real internal callback on the
+prior verified three-sector graph now handles 2,578 input coordinates in 1,949
+callers, with 215 owned variants, 392 gaseous-air changes and 2,164 provenance
+events. The 12,837-activity graph has complete links and 36 finite signed LCIs;
+source database signatures remain unchanged. Replay adds no changes/events.
+All 209 prior variants retain their exact scientific coordinates on the same
+input graph, without quantity or representation tolerances. See
+`uvek-emissions-machinery-verification.json` for package checks and evidence
+receipts. No public emissions admission or new Brightway export is claimed.
+Other combustion, gas-supply/direct/foreground and particle/VOC work remains.
