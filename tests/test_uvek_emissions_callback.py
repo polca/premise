@@ -223,3 +223,31 @@ def test_cached_numpy_quantities_and_audits_keep_their_exact_values(callback):
         factor = 0.5 if variant[VARIANT]["sector"] == "power" else 0.2
         assert variant["exchanges"][2]["amount"] == original * factor
         assert variant[VARIANT]["changes"][0]["source_exchange"]["amount"] == original
+
+
+def test_provenance_points_each_caller_to_its_actual_review(callback, monkeypatch):
+    scenario, _, planner = callback
+
+    def labelled(*args, **kwargs):
+        result = planner(*args, **kwargs)
+        for record in result["activities"]:
+            record[VARIANT]["review"] = f"synthetic/{record[VARIANT]['sector']}.json"
+        return result
+
+    monkeypatch.setattr(native.combustion, "plan_reviewed_native_combustion", labelled)
+    collector = ProvenanceCollector("review-reference-test")
+    sid = ("remind", "test", 2050)
+    with collector.session(sid, "emissions"), pytest.warns(UserWarning):
+        update(scenario)
+    modified = [
+        event for event in collector.events_for(sid) if event.status == "modified"
+    ]
+    assert {event.configuration_reference for event in modified} == {
+        "synthetic/power.json",
+        "synthetic/heat.json",
+    }
+    assert all(
+        event.computed_target_values["configuration_references"]
+        == [event.configuration_reference]
+        for event in modified
+    )

@@ -559,6 +559,21 @@ Transformations_HLF:
     - market
   gains_aliases_IAM: Transformations_HLF
 End_Use_Residential_NatGas:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, natural gas, at boiler condensing modulating 15kW
+      - Heat, natural gas, at boiler condensing modulating 300kW
+      - Heat, natural gas, at boiler condensing modulating 50kW
+      - Heat, natural gas, at boiler condensing modulating >100kW
+      - xx Heat, natural gas, at boiler atm. low-NOx condensing non-modulating <100kW
+      - xx Heat, natural gas, at boiler atmospheric low-NOx non-modulating <100kW
+      - xx Heat, natural gas, at boiler atmospheric non-modulating <100kW
+      - xx Heat, natural gas, at boiler fan burner low-NOx non-modulating <100kW
+      - xx Heat, natural gas, at boiler fan burner non-modulating <100kW
+      - xx Heat, natural gas, at boiler modulating <100kW
   ecoinvent_aliases:
     fltr:
     - propane, burned in building machine
@@ -570,6 +585,20 @@ End_Use_Residential_NatGas:
     - market
   gains_aliases_IAM: End_Use_Residential_NatGas
 End_Use_Residential_LLF:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, light fuel oil, at boiler 100kW condensing, non-modulating
+      - Heat, light fuel oil, at boiler 100kW, average
+      - Heat, light fuel oil, at boiler 100kW, condensing, modulating
+      - Heat, light fuel oil, at boiler 100kW, non-modulating
+      - Heat, light fuel oil, at boiler 10kW condensing, non-modulating
+      - Heat, light fuel oil, at boiler 10kW, average
+      - Heat, light fuel oil, at boiler 10kW, condensing, modulating
+      - Heat, light fuel oil, at boiler 10kW, non-modulating
+      - Heat, propane/butane, at boiler condensing modulating 50kW
   ecoinvent_aliases:
     fltr:
     - petrol, unleaded, burned in machinery
@@ -594,6 +623,20 @@ End_Use_Services_Bio_Trad_Heat:
     - market
   gains_aliases_IAM: End_Use_Services_Bio_Trad_Heat
 End_Use_Residential_Bio_Trad_Heat:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, hardwood logs, at furnace 15kW
+      - Heat, hardwood logs, at furnace 50kW
+      - Heat, hardwood logs, at wood heater 6kW
+      - Heat, mixed logs, at furnace 15kW
+      - Heat, mixed logs, at furnace 50kW
+      - Heat, mixed logs, at wood heater 6kW
+      - Heat, softwood logs, at furnace 15kW
+      - Heat, softwood logs, at furnace 50kW
+      - Heat, softwood logs, at wood heater 6kW
   ecoinvent_aliases:
     fltr:
     - treatment of stalk, in wood heater 6kW
@@ -601,6 +644,15 @@ End_Use_Residential_Bio_Trad_Heat:
     - market
   gains_aliases_IAM: End_Use_Residential_Bio_Trad_Heat
 End_Use_Residential_Coal_Heat:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, hard coal briquette, at stove 5-15kW
+      - Heat, hard coal coke, at stove 5-15kW
+      - xx Heat, anthracite, at stove 5-15kW
+      - xx Heat, lignite briquette, at stove 5-15kW
   ecoinvent_aliases:
     fltr:
     - heat production, hard coal coke, stove
@@ -781,11 +833,609 @@ End_Use_Industry_NatGas:
     exact: true
     fltr:
       name:
+      - 1,1-difluoroethane, HFC-152a, at plant
+      - Absorption chiller 100kW
+      - Acetaldehyde, at plant
+      - Acetylene, at regional storehouse
+      - Acrylic acid, at plant
+      - Acrylic binder, 34% in H2O, at plant
+      - Agricultural machinery, general, production
+      - Agricultural machinery, tillage, production
+      - Air distribution housing, steel, 120 m3/h, at plant
+      - Air filter, central unit, 600 m3/h, at plant
+      - Air filter, decentralized unit, 180-250 m3/h, at plant
+      - Air filter, in exhaust air valve, at plant
+      - Aircraft, long haul
+      - Aircraft, medium haul
+      - Aluminium oxide, at plant
+      - Aluminium scrap, old, at plant
+      - Aluminium, primary, at plant
+      - Aluminium, secondary, from new scrap, at plant
+      - Aluminium, secondary, from old scrap, at plant
+      - Anionic resin, at plant
+      - Anode, aluminium electrolysis
+      - Anti-reflexx coating, etching, solar glass
+      - Antimony, at refinery
+      - Asphalt concrete (AC) 22 EME C1, 40% recycling, high temperature, at plant
+      - Asphalt concrete (AC) 22 EME C2, 50% recycling, high temperature, at plant
+      - Asphalt concrete (AC) base layer, 30% recycling, high temperature, at plant
+      - Asphalt concrete (AC) binder layer, 15% recycling, high temperature, at plant
+      - Asphalt concrete (AC) foundation layer, 80% recycling, high temperature, at plant
+      - Asphalt concrete (AC) surface layer, 0% recycling, high temperature, at plant
+      - Assembly, generator and motor, Mini CHP plant
+      - Assembly, generator and motor, cogen unit 160kWe
+      - Avoided burden from recycling, CdTe PV module
+      - Avoided burden from recycling, c-Si PV module
+      - Bentonite, at processing
+      - Bicycle, at regional storage
+      - Biogas purification, to methane, 99 vol-%, amino washing process
+      - Bitumen adhesive compound, hot, at plant
+      - Bitumen, at refinery
+      - Building machine
+      - Bus
+      - Butyl acrylate, at plant
+      - CZ single crystalline silicon, electronics, at plant
+      - CZ single crystalline silicon, photovoltaics, at plant
+      - Cathode, lithium-ion battery, NCM, at plant
+      - Cationic resin, at plant
+      - Ceramic tiles, at regional storage
+      - Chipper, mobile, diesel
+      - Chlorodifluoromethane, at plant
+      - Chloromethyl methyl ether, at plant
+      - Chromium, at regional storage
+      - Circulation pump
+      - Coating, flat glass
+      - Cogen unit 200kWe diesel SCR, common components for heat+electricity
+      - Compressor Bitzer
+      - Concrete for building construction, CEM III, A, NPK A, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, A, NPK A, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, A, NPK A, primary, at plant
+      - Concrete for building construction, CEM III, A, NPK B, 66% RC-C, at plant
+      - Concrete for building construction, CEM III, A, NPK B, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, A, NPK B, primary, at plant
+      - Concrete for building construction, CEM III, A, NPK C, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, A, NPK C, primary, at plant
+      - Concrete for building construction, CEM III, B, NPK A, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, B, NPK A, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, B, NPK A, primary, at plant
+      - Concrete for building construction, CEM III, B, NPK B, 66% RC-C, at plant
+      - Concrete for building construction, CEM III, B, NPK B, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, B, NPK B, primary, at plant
+      - Concrete for building construction, CEM III, B, NPK C, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, B, NPK C, primary, at plant
+      - Concrete for building construction, only common base, at plant
+      - Concrete for building construction, unspecific, at plant
+      - Concrete for building construction, unspecific, at plant, with resource correction
+      - Concrete for civil engineering, CEM III, A, NPK F (T3), primary, at plant
+      - Concrete for civil engineering, CEM III, B, NPK F (T3), primary, at plant
+      - Concrete for civil engineering, only common base, at plant
+      - Concrete for civil engineering, unspecific, at plant
+      - Concrete for civil engineering, unspecific, at plant, with resource correction
+      - Concrete for drilled piles, CEM I, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM I, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, A, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, A, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B-LL, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B-LL, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, A, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, A, NPK H (P1), primary, at plant
+      - Concrete for drilled piles, CEM III, A, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, A, NPK I (P2), primary, at plant
+      - Concrete for drilled piles, CEM III, B, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, B, NPK H (P1), primary, at plant
+      - Concrete for drilled piles, CEM III, B, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, B, NPK I (P2), primary, at plant
+      - Concrete for drilled piles, only common base, at plant
+      - Concrete for drilled piles, unspecific, at plant
+      - Concrete for drilled piles, unspecific, at plant, with resource correction
+      - Concrete, exacting, at plant
+      - Concrete, exacting, with de-icing salt contact, at plant
+      - Concrete, normal, at plant
+      - Concrete, sole plate and foundation, at plant
+      - Connection piece, steel, 100x50 mm, at plant
+      - Control and wiring, central unit, at plant
+      - Control and wiring, decentralized unit, at plant
+      - Control cabinet cogen unit 160kWe
+      - Copper, blister-copper, at primary smelter
+      - Copper, from combined metal production, at beneficiation
+      - Copper, from imported concentrates, at refinery
+      - Copper, primary, at refinery
+      - Corrugated board, mixed fibre, single wall, at plant
+      - Corrugated board, recycling fibre, double wall, at plant
+      - Diesel, at refinery
+      - Diffusion absorption heat pump 4kW, future
+      - Disposal, LCD module,  to municipal waste incineration
+      - Disposal, PE sealing sheet, 4% water, to municipal incineration
+      - Disposal, PVC sealing sheet, 1.64% water, to municipal incineration
+      - Disposal, aluminium in car shredder residue, 0% water, to municipal incineration
+      - Disposal, aluminium, 0% water, to municipal incineration
+      - Disposal, aluminium, 0% water, to sanitary landfill
+      - Disposal, aluminiumtrihydroxide-acrylic glass, to municipal incineration
+      - Disposal, anion exchange resin f. water, 50% water, to municipal incineration
+      - Disposal, ash coffee ground pellets, to sanitary landfill
+      - Disposal, ash horse dung and wood chips, to sanitary landfill
+      - Disposal, ash olive pomace, to sanitary landfill
+      - Disposal, ash poultry litter pellets, to sanitary landfill
+      - Disposal, ash slurry solids and bark chips, to sanitary landfill
+      - Disposal, asphalt, 0.1% water, to sanitary landfill
+      - Disposal, bilge oil, 90% water, to hazardous waste incineration
+      - Disposal, biowaste, 60% H2O, to municipal incineration, allocation price
+      - Disposal, bitumen sheet, 1.5% water, to municipal incineration
+      - Disposal, bitumen, 1.4% water, to sanitary landfill
+      - Disposal, building wood, chrome preserved, 20% water, to municipal incineration
+      - Disposal, capacitors, 0% water, to hazardous waste incineration
+      - Disposal, cation exchange resin f. water, 50% water, to municipal incineration
+      - Disposal, cement-fibre slab, 0% water, to municipal incineration
+      - Disposal, coatings in CRT screens,  to municipal waste incineration
+      - Disposal, copper in car shredder residue, 0% water, to municipal incineration
+      - Disposal, digester sludge, to municipal incineration
+      - Disposal, emulsion paint, 0% water, to municipal incineration
+      - Disposal, emulsion paint, 0% water, to sanitary landfill
+      - Disposal, energy saving bulb, burnable, 0.6% water, to municipal incineration
+      - Disposal, expanded polystyrene, 5% water, to municipal incineration
+      - Disposal, granite-acrylresin, to municipal incineration
+      - Disposal, gypsum, 19.4% water, to sanitary landfill
+      - Disposal, hard coal ash from stove, 0% water, to municipal incineration
+      - Disposal, hazardous waste, 25% water, to hazardous waste incineration
+      - Disposal, inert material, 0% water, to sanitary landfill
+      - Disposal, lead in car shredder residue, 0% water, to municipal incineration
+      - Disposal, lignite ash from stove, 0% water, to municipal incineration
+      - Disposal, municipal solid waste, 22.9% water, to municipal incineration
+      - Disposal, municipal solid waste, 22.9% water, to sanitary landfill
+      - Disposal, newspaper, 14.7% water, to municipal incineration
+      - Disposal, newspaper, 14.7% water, to sanitary landfill
+      - Disposal, packaging cardboard, 19.6% water, to municipal incineration
+      - Disposal, packaging cardboard, 19.6% water, to sanitary landfill
+      - Disposal, packaging paper, 13.7% water, to municipal incineration
+      - Disposal, paint, 0% water, to municipal incineration
+      - Disposal, paint, 0% water, to sanitary landfill
+      - Disposal, paper, 11.2% water, to municipal incineration
+      - Disposal, paper, 11.2% water, to sanitary landfill
+      - Disposal, plastic plaster, 0% water, to sanitary landfill
+      - Disposal, plastic, consumer electronics, 15.3% water, to municipal incineration
+      - Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration
+      - Disposal, plastics, mixture, 15.3% water, to municipal incineration
+      - Disposal, plastics, mixture, 15.3% water, to sanitary landfill
+      - Disposal, polyethylene terephtalate, 0.2% water, to municipal incineration
+      - Disposal, polyethylene, 0.4% water, to municipal incineration
+      - Disposal, polyethylene, 0.4% water, to sanitary landfill
+      - Disposal, polypropylene, 15.9% water, to municipal incineration
+      - Disposal, polystyrene, 0.2% water, to municipal incineration
+      - Disposal, polystyrene, 0.2% water, to sanitary landfill
+      - Disposal, polyurethane, 0.2% water, to municipal incineration
+      - Disposal, polyurethane, 0.2% water, to sanitary landfill
+      - Disposal, polyvinylchloride, 0.2% water, to municipal incineration
+      - Disposal, polyvinylchloride, 0.2% water, to sanitary landfill
+      - Disposal, polyvinylfluoride, 0.2% water, to municipal incineration
+      - Disposal, raw sewage sludge, to municipal incineration
+      - Disposal, refinery sludge, 89.5% water, to hazardous waste incineration
+      - Disposal, refinery sludge, 89.5% water, to sanitary landfill
+      - Disposal, residue from cooling tower, 30% water, to sanitary landfill
+      - Disposal, residues, mechanical treatment, CRT screen, in MSWI
+      - Disposal, residues, mechanical treatment, IT accessoires, in MSWI
+      - Disposal, residues, mechanical treatment, LCD screen, in MSWI
+      - Disposal, residues, mechanical treatment, desktop computer, in MSWI
+      - Disposal, residues, mechanical treatment, industrial device, in MSWI
+      - Disposal, residues, mechanical treatment, laptop computer, in MSWI
+      - Disposal, residues, mechanical treatment, laser printer, in MSWI
+      - Disposal, residues, shredder fraction from manual dismantling, in MSWI
+      - Disposal, rubber, unspecified, 0% water, to municipal incineration
+      - Disposal, separator sludge, 90% water, to hazardous waste incineration
+      - Disposal, sludge from pulp and paper production, 25% water, to sanitary landfill
+      - Disposal, solvents mixture, 16.5% water, to hazardous waste incineration
+      - Disposal, steel in car shredder residue, 0% water, to municipal incineration
+      - Disposal, textiles, soiled, 25% water, to municipal incineration
+      - Disposal, tin sheet, 0% water, to municipal incineration
+      - Disposal, tin sheet, 0% water, to sanitary landfill
+      - Disposal, vapour barrier, flame-retarded, 4.5% water, to municipal incineration
+      - Disposal, wire plastic, 3.55% water, to municipal incineration
+      - Disposal, wood ash mixture, pure, 0% water, to sanitary landfill
+      - Disposal, wood pole, chrome preserved, 20% water, to municipal incineration
+      - Disposal, wood untreated, 20% water, to municipal incineration
+      - Disposal, wood untreated, 20% water, to sanitary landfill
+      - Disposal, zinc in car shredder residue, 0% water, to municipal incineration
+      - "Elbow 90\xB0, steel, 100x50 mm, at plant"
+      - Electric bicycle, LiNCM battery, at regional storage
+      - Electric bicycle, at regional storage
+      - Electric parts of Mini CHP plant
+      - Electric scooter, at regional storage
+      - Electric storage heater, 5kW
+      - Emulsion polymerisation, polyvinylchlorid
+      - Epoxy resin, liquid, disaggregated data, at plant
+      - Evacuated tube collector, at plant
+      - Exhaust air outlet, steel/aluminum, 85x365 mm, at plant
+      - Exhaust air roof hood, steel, DN 400, at plant
+      - Exhaust air valve, in-wall housing, plastic/steel, DN 125, at plant
+      - Ferronickel, 25% Ni, at plant
+      - Fibre cement facing tile, large format, at plant
+      - Fibre cement facing tile, small format, at plant
+      - Fibre cement roof slate, at plant
+      - Flat glass, coated, at plant
+      - Flexible duct, aluminum/PET, DN of 125, at plant
+      - Flooring 2K, epoxy resin, industrial use, at plant
+      - Flooring, linoleum, at regional storage
+      - Flooring, natural rubber, at regional storage
+      - Flooring, xylolite, at plant
+      - Fluorspar, 97%, at plant
+      - Foam glass, at plant
+      - Folding boxboard, FBB, at plant
+      - Furnace, logs, hardwood, 15kW
+      - Furnace, logs, hardwood, 50kW
+      - Furnace, logs, hardwood, 6kW
+      - Furnace, logs, mixed, 15kW
+      - Furnace, logs, mixed, 50kW
+      - Furnace, logs, mixed, 6kW
+      - Furnace, logs, softwood, 15kW
+      - Furnace, logs, softwood, 50kW
+      - Furnace, logs, softwood, 6kW
+      - Furnace, pellets, 15kW
+      - Furnace, pellets, 300kW
+      - Furnace, pellets, 50kW
+      - Furnace, wood chips, hardwood, 1000kW
+      - Furnace, wood chips, hardwood, 300kW
+      - Furnace, wood chips, hardwood, 5000kW
+      - Furnace, wood chips, hardwood, 50kW
+      - Furnace, wood chips, mixed, 1000kW
+      - Furnace, wood chips, mixed, 300kW
+      - Furnace, wood chips, mixed, 5000kW
+      - Furnace, wood chips, mixed, 50kW
+      - Furnace, wood chips, softwood, 1000kW
+      - Furnace, wood chips, softwood, 300kW
+      - Furnace, wood chips, softwood, 5000kW
+      - Furnace, wood chips, softwood, 50kW
+      - Gas boiler 15kW
+      - Gas boiler 300kW
+      - Gas boiler 50kW
+      - Gas motor 206kW
+      - Gas motor Mini CHP plant
+      - Generator 200kWe
+      - Generator Mini CHP plant
+      - Glass fibre, at plant
+      - Glass production site
+      - Glass tube, borosilicate, at plant
+      - Glass wool mat, at plant
+      - Glazing, double (2-IV), U=1.1 W/m2K, 4 ESG / 16 Ar / VSG 2x4, 0.76 PVB, Low E 1.1 Float, at plant
+      - Glazing, double (2-IV), U=1.1 W/m2K, 4 Float / 16 Ar / 4 Low E 1.1 Float, at plant
+      - Glazing, double (2-IV), U=1.1 W/m2K, 4 Float / 16 Ar / VSG 2x4, 0.76 PVB, Low E 1.1, at plant
+      - Glazing, triple (3-IV), U=0.5 W/m2K, 4 Low E 1.1 Float / 12 Kr / 4 Float / 12 Kr / 4 Low E 1.1 Float, at plant
+      - Glazing, triple (3-IV), U=0.6 W/m2K, 4 Low E 1.1 ESG / 14 Ar / 4 Float / 14 Ar / 4 Low E 1.1 ESG, at plant
+      - Glazing, triple (3-IV), U=0.6 W/m2K, 4 Low E 1.1 ESG / 14 Ar / 4 Float / 14 Ar / VSG 2x4, 0.76 PVB, Low E 1.1 Float, at plant
+      - Glazing, triple (3-IV), U=0.6 W/m2K, 4 Low E 1.1 Float / 14 Ar / 4 Float / 14 Ar / 4 Low E 1.1 Float, at plant
+      - Glazing, triple (3-IV), U=0.6 W/m2K, 4 Low E 1.1 Float / 14 Ar / 4 Float / 14 Ar / VSG 2x4, 0.76 PVB, Low E 1.1 Float, at plant
+      - Glazing, triple (3-IV), U=0.6, W/m2K, 4 Low E 1.1 ESG / 14 Ar / 4 ESG / 14 Ar / 4 Low E 1.1 ESG, at plant
+      - Glued laminated timber, average glue mix, at plant
+      - Glued solid timber, average glue mix, at plant
+      - Gold, at refinery
+      - Gold, from combined gold-silver production, at refinery
+      - Gold, from combined metal production, at beneficiation
+      - Gold, from combined metal production, at refinery
+      - Grain maize IP, at feed mill
+      - Granite, natural stone council, at mine
+      - Ground heat exchanger, PE, DN 200, at plant
+      - Harvester, production
+      - Heat exchanger, heat pump Limmatschulhaus
+      - Heat pump, air-water, 15kW
+      - Heat pump, air-water, 50kW
+      - Heat pump, air-water, 7kW
+      - Heat pump, brine-water, 10kW
+      - Heat pump, brine-water, 15kW
+      - Heat pump, brine-water, 50kW
+      - Heat pump, brine-water, 7kW
+      - Heat storage 2000l, at plant
+      - Heat treatment, cold impact extrusion, aluminium
+      - Heat treatment, cold impact extrusion, steel
+      - Heat treatment, hot impact extrusion, steel
+      - Heat, digester sludge, at incineration plant, future, allocation price
       - Heat, natural gas, at heat plant
+      - Heat, natural gas, at industrial furnace 1MW
+      - Heat, unspecific, in chemical plant
+      - Heating, sanitary equipment Mini CHP plant
+      - Heavy fuel oil, at refinery
+      - Hot rolling, electric steel
+      - Hot rolling, steel
+      - Hot water tank 600l, at plant
+      - Hydraulic digger
+      - Hydrochloric acid, from Mannheim process, at plant
+      - Hydrogen fluoride, at plant
+      - Industrial furnace 1MW, oil
+      - Industrial furnace, 1MW, natural gas
+      - Insulation spiral-seam duct, rockwool, DN 400, 30 mm, at plant
       - Inverter, 10 kW, average, at plant
       - Inverter, 2.5 kW, average, at plant
       - Inverter, 20 kW, average, at plant
       - Inverter, 5 kW,  average, at plant
+      - Kerosene, at refinery
+      - Kraft paper, bleached, at plant
+      - Laminated safety glass, at plant
+      - Leaching residues, indium rich, from zinc circuit, at smelter
+      - Lead, from combined metal production, at beneficiation
+      - Lead, primary, at plant
+      - Lean concrete, CEM III, A, 100% RC-M, at plant
+      - Lean concrete, CEM III, A, primary, at plan
+      - Lean concrete, CEM III, B, 100% RC-M, at plant
+      - Lean concrete, CEM III, B, primary, at plant
+      - Lean concrete, only common base, at plant
+      - Lean concrete, unspecific, at plant
+      - Lean concrete, unspecific, at plant, with resource correction
+      - Light fuel oil, at refinery
+      - Lithium carbonate, at plant
+      - Lorry 16t
+      - Lorry 28t
+      - Lorry 40t
+      - Magnesium, at plant
+      - Maintenance, bus
+      - Maintenance, goods wagon
+      - Maintenance, locomotive
+      - Maintenance, tram
+      - Mastic asphalt (MA), 0% recycling, high temperature, at plant
+      - Melamine formaldehyde resin, at plant
+      - Metal working factory operation, average heat energy
+      - Metal working machine operation, average process heat
+      - Metallization paste, back side, aluminium, at plant
+      - Metallization paste, back side, at plant
+      - Metallization paste, front side, at plant
+      - Methane, 96 vol-%, from biogas, high pressure, at consumer
+      - Methane, 96 vol-%, from biogas, low pressure, at consumer
+      - Methanol, at plant
+      - Micro gas turbine 100kWe
+      - Mischmetal, primary, at plant
+      - Multi-Si wafer, at plant
+      - Naphtha, at refinery
+      - Nickel, 99.5%, at plant
+      - Nitrogen trifluoride, at plant
+      - Oil boiler 100kW
+      - Oil boiler 10kW
+      - Operation, maintenance, airport
+      - Outside air intake, stainless steel, DN 370, at plant
+      - Overflow element, steel, approx. 40 m3/h
+      - PEM fuel cell 2kWe, future
+      - Packaging, corrugated board, mixed fibre, single wall, at plant
+      - Palladium, primary, at refinery
+      - Palladium, secondary, at refinery
+      - Paper machine, at paper mill
+      - Paper, recycling, average, at plant
+      - Paper, recycling, no deinking, at plant
+      - Paper, recycling, with deinking, at plant
+      - Paper, woodcontaining, LWC, at plant
+      - Paper, woodcontaining, supercalendred (SC), at plant
+      - Paper, woodfree, coated, at non-integrated mill
+      - Paper, woodfree, uncoated, at non-integrated mill
+      - Parkes process crust, from desilverising of lead
+      - Passenger car, diesel, EURO5, city car, at plant
+      - Passenger car, electric, LiMn2O4, at plant
+      - Pellets, iron, at plant
+      - Petrol, at refinery
+      - Petroleum coke, at refinery
+      - Photovoltaic cell, multi-Si, at plant
+      - Photovoltaic cell, ribbon-Si, at plant
+      - Photovoltaic cell, single-Si, at plant
+      - Photovoltaic laminate, CdTe, First Solar Series 4, at plant
+      - Photovoltaic laminate, CdTe, First Solar Series 6, at plant
+      - Photovoltaic laminate, CdTe, at plant
+      - Photovoltaic laminate, ribbon-Si, at plant
+      - Photovoltaic panel, ribbon-Si, at plant
+      - Phthalic anhydride, at plant
+      - Plasticiser, for concrete, based on sulfonated melamine formaldehyde
+      - Platinum, primary, at refinery
+      - Platinum, secondary, at refinery
+      - Polyester resin, unsaturated, at plant
+      - Polylactide, granulate, at plant
+      - Polystyrene foam slab, 45% recycled, at plant
+      - Polyvinylalcohol, at plant
+      - Polyvinylbutyral, powder, at plant
+      - Polyvinylfluoride film, at plant
+      - Polyvinylfluoride, at plant
+      - Polyvinylfluoride, dispersion, at plant
+      - Poor concrete, at plant
+      - Porous asphalt (PA) surface layer, 0% recycling, high temperature, at plant
+      - Potassium chloride, as K2O, at regional storehouse
+      - Power saw, without catalytic converter
+      - Printed wiring board, 4 layers, at plant
+      - Process-specific burdens, hazardous waste incineration plant
+      - Process-specific burdens, municipal waste incineration
+      - Production of liquid packaging board containers, at plant
+      - Propane, butane, at refinery
+      - Protein peas IP, at feed mill
+      - Rail, at regional storage
+      - Refinery gas, at refinery
+      - Refractory, basic, packed, at plant
+      - Refractory, fireclay, packed, at plant
+      - Refractory, high aluminium oxide, packed, at plant
+      - Refrigerant R134a, at plant
+      - Refrigerant collector
+      - Rhodium, primary, at refinery
+      - Rhodium, secondary, at refinery
+      - Rock wool, packed, at plant
+      - Rough asphalt MR surface layer, 0% recycling, high temperature, at plant
+      - Rutile, 95% titanium dioxide, at plant
+      - Rye organic, at feed mill
+      - SOFC fuel cell 125kWe, future
+      - Sanitary ceramics, at regional storage
+      - Sawn timber (SFM), azobe, planed, air dried, u=15%, CM, at sawmill
+      - Scooter, ICE, at regional storage
+      - Sealing tape, aluminum/PE, 50 mm wide, at plant
+      - Secondary sulphur, at refinery
+      - Section bar extrusion, aluminium
+      - Selective coating, copper sheet, black chrome
+      - Semi-dense asphalt (SDA) surface layer, 0% recycling, high temperature, at plant
+      - Sheet rolling, aluminium
+      - Sheet rolling, chromium steel
+      - Sheet rolling, copper
+      - Sheet rolling, electric steel
+      - Sheet rolling, steel
+      - Silane, at plant
+      - Silencer, steel, DN 125, at plant
+      - Silencer, steel, DN 315, 50 mm, at plant
+      - Silicone product, at plant
+      - Silver, from combined gold-silver production, at refinery
+      - Silver, from combined metal production, at beneficiation
+      - Silver, from combined metal production, at refinery
+      - Single-Si wafer, electronics, at plant
+      - Single-Si wafer, photovoltaics, at plant
+      - Slurry tanker, production
+      - Sodium sulphate, from Mannheim process, at plant
+      - Sodium sulphate, powder, production mix, at plant
+      - Soft solder, Sn97Cu3, at plant
+      - Solar collector glass tube, with silver mirror, at plant
+      - Soya oil, at plant
+      - Spiral-seam duct, steel, DN 125, at plant
+      - Spiral-seam duct, steel, DN 400, at plant
+      - Stack PEM fuel cell 2kWe, future
+      - Stack SOFC fuel cell 125kWe, future
+      - Steam, for chemical processes, at plant
+      - Stirling cogen unit 3kWe, wood pellets, future
+      - Stone mastic asphalt (SMA) surface layer, 0% recycling, high temperature, at plant
+      - Structural timber, average glue mix, at plant
+      - Supply air inlet, steel, SS, DN 75, at plant
+      - Supply air input/spent air output cogen unit 160kWe
+      - Tempering, flat glass
+      - Tetrafluoroethylene film, on glass
+      - Tetrafluoroethylene, at plant
+      - Thermo-mechanical pulp, at plant
+      - Three- and five-layered board, at plant
+      - Tin plating, pieces
+      - Tomato, seedling, conventional, soilless production, at production site
+      - Tractor, production
+      - Trailer, production
+      - Treatment, LCD backlight production effluent, to wastewater treatment, class 2
+      - Treatment, LCD module production effluent, to wastewater treatment, class 2
+      - Treatment, PV cell production effluent, to wastewater treatment, class 3
+      - Treatment, black chrome coating effluent, to wastewater treatment, class 2
+      - Treatment, ceramic production effluent, to wastewater treatment, class 3
+      - Treatment, concrete production effluent, to wastewater treatment, class 3
+      - Treatment, condensate from light oil boiler, to wastewater treatment, class 2
+      - Treatment, effluent from NF3 production, to wastewater treatment, class 3
+      - Treatment, glass production effluent, to wastewater treatment, class 2
+      - Treatment, lorry production effluent, to wastewater treatment, class 1
+      - Treatment, maize starch production effluent, to wastewater treatment, class 2
+      - Treatment, pig iron production effluent, to wastewater treatment, class 3
+      - Treatment, potato starch production effluent, to wastewater treatment, class 2
+      - Treatment, rainwater mineral oil storage, to wastewater treatment, class 2
+      - Treatment, sewage whey digestion, to wastewater treatment, class 4
+      - Treatment, sewage, from residence, to wastewater treatment, class 2
+      - Treatment, sewage, to wastewater treatment, class 1
+      - Treatment, sewage, to wastewater treatment, class 2
+      - Treatment, sewage, to wastewater treatment, class 3
+      - Treatment, sewage, to wastewater treatment, class 4
+      - Treatment, sewage, to wastewater treatment, class 5
+      - Treatment, sewage, unpolluted, from residence, to wastewater treatment, class 2
+      - Treatment, sewage, unpolluted, to wastewater treatment, class 3
+      - Treatment, soft fibreboard production effluent, to wastewater treatment, class 3
+      - Treatment, tube collector production effluent, to wastewater treatment, class 2
+      - Treatment, wafer fabrication effluent, to wastewater treatment, class 2
+      - Trichloromethane, at plant
+      - Trimethylamine, at plant
+      - Tubular particleboard, at plant
+      - Uranium natural, in uranium hexafluoride, at conversion plant
+      - Uranium, enriched 3.0% at TENEX enrichment plant
+      - Uranium, enriched 3.0% at URENCO enrichment plant
+      - Uranium, enriched 3.0%, at EURODIF enrichment plant
+      - Uranium, enriched 3.8%, at EURODIF enrichment plant
+      - Uranium, enriched 3.8%, at TENEX enrichment plant
+      - Uranium, enriched 3.8%, at URENCO enrichment plant
+      - Uranium, enriched 3.9% at URENCO enrichment plant
+      - Uranium, enriched 3.9%, at EURODIF enrichment plant
+      - Uranium, enriched 3.9%, at TENEX enrichment plant
+      - Uranium, enriched 4.0%, at EURODIF enrichment plant
+      - Uranium, enriched 4.0%, at TENEX enrichment plant
+      - Uranium, enriched 4.0%, at URENCO enrichment plant
+      - Uranium, enriched 4.2%, at EURODIF enrichment plant
+      - Uranium, enriched 4.2%, at TENEX enrichment plant
+      - Uranium, enriched 4.2%, at URENCO enrichment plant
+      - Uranium, enriched 4.43%, at EURODIF enrichment plant
+      - Uranium, enriched 4.43%, at TENEX enrichment plant
+      - Uranium, enriched 4.43%, at URENCO enrichment plant
+      - Uranium, enriched 4.75%, at EURODIF enrichment plant
+      - Uranium, enriched 4.75%, at TENEX enrichment plant
+      - Uranium, enriched 4.75%, at URENCO enrichment plant
+      - Urea formaldehyde resin, at plant
+      - Ventilation duct, PE corrugated tube, DN 75, at plant
+      - Ventilation duct, steel, 100x50 mm, at plant
+      - Ventilation equipment, Avent E 97, at plant
+      - Ventilation equipment, GE 250 RH, at plant
+      - Ventilation equipment, KWL 250, at plant
+      - Ventilation equipment, Twl-700, at plant
+      - Ventilation equipment, central, 600-1200 m3/h, at plant
+      - Ventilation equipment, decentralized, 180-250 m3/h, at plant
+      - Vinyl fluoride, at plant
+      - Wheat IP, at feed mill
+      - Wheat organic, at feed mill
+      - Wire drawing, copper
+      - Wire drawing, steel
+      - Zinc coating, coils
+      - Zinc coating, pieces
+      - Zinc, from combined metal production, at beneficiation
+      - Zinc, from combined metal production, at refinery
+      - Zinc, primary, at regional storage
+      - Zircon, 50% zirconium, at plant
+      - xx Air filter, decentralized unit, 250 m3/h, at plant
+      - xx Aircraft, freight
+      - xx Aircraft, passenger
+      - xx Barley IP, at feed mill
+      - xx Barley organic, at feed mill
+      - xx Cellulose fibre, inclusive blowing in, at plant
+      - xx Chemi-thermomechanical pulp, at plant
+      - xx Copper, from combined metal production, at refinery
+      - xx Copper, primary, at refinery
+      - xx Copper, primary, couple production nickel
+      - xx Copper, primary, from platinum group metal production
+      - xx Corrugated board, fresh fibre, single wall, at plant
+      - xx Corrugated board, recycling fibre, single wall, at plant
+      - xx DDGS, from corn, at distillery
+      - xx DDGS, from potatoes, at distillery
+      - xx DDGS, from rye, at distillery
+      - xx Degreasing, metal part in alkaline bath
+      - xx Disposal, biowaste, 60% H2O, to municipal incineration, future, alloc. price
+      - xx Disposal, digester sludge, to incineration, future, allocation price
+      - xx Disposal, hard coal ash from stove, 0% water, to sanitary landfill
+      - xx Disposal, lignite ash from stove, 0% water, to sanitary landfill
+      - xx Disposal, packaging paper, 13.7% water, to sanitary landfill
+      - xx Disposal, polyethylene terephtalate, 0.2% water, to sanitary landfill
+      - xx Disposal, polypropylene, 15.9% water, to sanitary landfill
+      - xx Electricity, biowaste, at waste incineration plant, allocation price
+      - xx Electricity, biowaste, at waste incineration plant, future, alloc. price
+      - xx Electricity, digester sludge, at incineration plant, future, alloc. price
+      - xx Fava beans IP, at feed mill
+      - xx Grain maize organic, at feed mill
+      - xx Heat, biowaste, at waste incineration plant, allocation price
+      - xx Heat, biowaste, at waste incineration plant, future, allocation price
+      - xx Heat, natural gas, at boiler modulating >100kW
+      - xx Ilmenite, 54% titanium dioxide, at plant
+      - xx Industrial residual wood, azobe (SFM), u=15%, CM, at sawmill
+      - xx Lead, from combined metal production, at refinery
+      - xx Metal working factory operation, heat energy from natural gas
+      - xx Metal working machine operation, process heat from natural gas
+      - xx Nickel, primary, from platinum group metal production
+      - xx Polystyrene foam slab, 100% recycled, at plant
+      - xx Production of carton board boxes, gravure printing, at plant
+      - xx Production of carton board boxes, offset printing, at plant
+      - xx Rye IP, at feed mill
+      - xx Soya scrap, at plant
+      - xx Ventilation equipment, KWLC 1200, at plant
+      - xx Ventilation equipment, Storkair G 90, at plant
+      - xxx Butanol, 1-, at plant
+      - xxx Door, inner, glass-wood, at plant
+      - xxx Door, inner, wood, at plant
+      - xxx Door, outer, wood-aluminium, at plant
+      - xxx Door, outer, wood-glass, at plant
+      - xxx Fibreboard hard, at plant
+      - xxx Fibreboard soft, at plant
+      - xxx Heat, natural gas, at industrial furnace low-NOx >100kW
+      - xxx Mc-Si wafer, at plant
+      - xxx Medium density fibreboard, at plant
+      - xxx Methane, 96 vol-%, from sewage sludge, high pressure, at consumer
+      - xxx Oriented strand board, at plant
+      - xxx Particle board, indoor use, at plant
+      - xxx Particle board, outdoor use, at plant
+      - xxx Pc-Si wafer, at plant
+      - xxx Photovoltaic laminate, mc-Si, at plant
+      - xxx Photovoltaic laminate, pc-Si, at plant
+      - xxx Photovoltaic panel, mc-Si, at plant
+      - xxx Photovoltaic panel, pc-Si, at plant
+      - xxx Polylactide, granulate, NatureWorks Nebraska
+      - xxx Zinc , from Imperial smelting furnace
   ecoinvent_aliases:
     fltr:
     - heat production, natural gas
@@ -807,21 +1457,76 @@ End_Use_Industry_LLF:
       - 1-pentanol, at plant
       - 2-methyl-2-butanol, at plant
       - 3-methyl-1-butanol, at plant
+      - Absorption chiller 100kW
       - Acetic anhydride from ketene, at plant
+      - Agricultural machinery, general, production
+      - Agricultural machinery, tillage, production
       - Air distribution housing, steel, 120 m3/h, at plant
       - Air filter, central unit, 600 m3/h, at plant
       - Air filter, decentralized unit, 180-250 m3/h, at plant
       - Air filter, in exhaust air valve, at plant
       - Aircraft, long haul
       - Aircraft, medium haul
+      - Asbestos, crysotile type, at plant
+      - Asphalt concrete (AC) 22 EME C1, 40% recycling, high temperature, at plant
+      - Asphalt concrete (AC) 22 EME C2, 50% recycling, high temperature, at plant
+      - Asphalt concrete (AC) base layer, 30% recycling, high temperature, at plant
+      - Asphalt concrete (AC) binder layer, 15% recycling, high temperature, at plant
+      - Asphalt concrete (AC) foundation layer, 80% recycling, high temperature, at plant
+      - Asphalt concrete (AC) surface layer, 0% recycling, high temperature, at plant
       - Assembly, generator and motor, Mini CHP plant
       - Assembly, generator and motor, cogen unit 160kWe
       - Assembly, module cogen unit 160kWe
       - Basalt, at mine
+      - Bearing layer, bituminised
       - Bicycle, at regional storage
       - Bus
+      - Calcium borates, at plant
       - Cogen unit 200kWe diesel SCR, common components for heat+electricity
       - Compressor Bitzer
+      - Concrete for building construction, CEM III, A, NPK A, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, A, NPK A, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, A, NPK A, primary, at plant
+      - Concrete for building construction, CEM III, A, NPK B, 66% RC-C, at plant
+      - Concrete for building construction, CEM III, A, NPK B, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, A, NPK B, primary, at plant
+      - Concrete for building construction, CEM III, A, NPK C, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, A, NPK C, primary, at plant
+      - Concrete for building construction, CEM III, B, NPK A, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, B, NPK A, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, B, NPK A, primary, at plant
+      - Concrete for building construction, CEM III, B, NPK B, 66% RC-C, at plant
+      - Concrete for building construction, CEM III, B, NPK B, 91% RC-M, at plant
+      - Concrete for building construction, CEM III, B, NPK B, primary, at plant
+      - Concrete for building construction, CEM III, B, NPK C, 34% RC-C, at plant
+      - Concrete for building construction, CEM III, B, NPK C, primary, at plant
+      - Concrete for building construction, only common base, at plant
+      - Concrete for building construction, unspecific, at plant
+      - Concrete for building construction, unspecific, at plant, with resource correction
+      - Concrete for civil engineering, CEM III, A, NPK F (T3), primary, at plant
+      - Concrete for civil engineering, CEM III, B, NPK F (T3), primary, at plant
+      - Concrete for civil engineering, only common base, at plant
+      - Concrete for civil engineering, unspecific, at plant
+      - Concrete for civil engineering, unspecific, at plant, with resource correction
+      - Concrete for drilled piles, CEM I, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM I, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, A, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, A, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B-LL, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM II, B-LL, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, A, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, A, NPK H (P1), primary, at plant
+      - Concrete for drilled piles, CEM III, A, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, A, NPK I (P2), primary, at plant
+      - Concrete for drilled piles, CEM III, B, NPK H (P1), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, B, NPK H (P1), primary, at plant
+      - Concrete for drilled piles, CEM III, B, NPK I (P2), 66% RC-C, at plant
+      - Concrete for drilled piles, CEM III, B, NPK I (P2), primary, at plant
+      - Concrete for drilled piles, only common base, at plant
+      - Concrete for drilled piles, unspecific, at plant
+      - Concrete for drilled piles, unspecific, at plant, with resource correction
       - Concrete sleeper, at regional storage
       - Concrete, exacting, at plant
       - Concrete, exacting, with de-icing salt contact, at plant
@@ -835,12 +1540,58 @@ End_Use_Industry_LLF:
       - Copper telluride cement, from copper production
       - Corrugated board, mixed fibre, single wall, at plant
       - Corrugated board, recycling fibre, double wall, at plant
+      - Covering layer, bituminised
+      - Diesel, at regional storage
+      - Diesel, fossil, at regional storage
+      - Diffusion absorption heat pump 4kW, future
+      - Disposal, aluminium, 0% water, to sanitary landfill
+      - Disposal, antifreezer liquid, 51.8% water, to hazardous waste incineration
+      - Disposal, ash coffee ground pellets, to sanitary landfill
+      - Disposal, ash horse dung and wood chips, to sanitary landfill
+      - Disposal, ash olive pomace, to sanitary landfill
+      - Disposal, ash poultry litter pellets, to sanitary landfill
+      - Disposal, ash slurry solids and bark chips, to sanitary landfill
+      - Disposal, asphalt, 0.1% water, to sanitary landfill
+      - Disposal, bilge oil, 90% water, to hazardous waste incineration
+      - Disposal, bitumen, 1.4% water, to sanitary landfill
+      - Disposal, capacitors, 0% water, to hazardous waste incineration
+      - Disposal, emulsion paint remains, 0% water, to hazardous waste incineration
+      - Disposal, emulsion paint, 0% water, to sanitary landfill
+      - Disposal, gypsum, 19.4% water, to sanitary landfill
+      - Disposal, hazardous waste, 25% water, to hazardous waste incineration
+      - Disposal, inert material, 0% water, to sanitary landfill
+      - Disposal, municipal solid waste, 22.9% water, to sanitary landfill
+      - Disposal, newspaper, 14.7% water, to sanitary landfill
+      - Disposal, packaging cardboard, 19.6% water, to sanitary landfill
+      - Disposal, paint remains, 0% water, to hazardous waste incineration
+      - Disposal, paint, 0% water, to sanitary landfill
+      - Disposal, paper, 11.2% water, to sanitary landfill
+      - Disposal, plastic plaster, 0% water, to sanitary landfill
+      - Disposal, plastics, mixture, 15.3% water, to sanitary landfill
+      - Disposal, polyethylene, 0.4% water, to sanitary landfill
+      - Disposal, polystyrene, 0.2% water, to sanitary landfill
+      - Disposal, polyurethane, 0.2% water, to sanitary landfill
+      - Disposal, polyvinylchloride, 0.2% water, to sanitary landfill
+      - Disposal, refinery sludge, 89.5% water, to hazardous waste incineration
+      - Disposal, refinery sludge, 89.5% water, to sanitary landfill
+      - Disposal, residue from cooling tower, 30% water, to sanitary landfill
+      - Disposal, separator sludge, 90% water, to hazardous waste incineration
+      - Disposal, sludge from pulp and paper production, 25% water, to sanitary landfill
+      - Disposal, solvents mixture, 16.5% water, to hazardous waste incineration
+      - Disposal, tin sheet, 0% water, to sanitary landfill
+      - Disposal, wood ash mixture, pure, 0% water, to sanitary landfill
+      - Disposal, wood untreated, 20% water, to sanitary landfill
+      - Dolomite, at plant
       - "Elbow 90\xB0, steel, 100x50 mm, at plant"
       - Electric bicycle, LiNCM battery, at regional storage
       - Electric bicycle, at regional storage
       - Electric parts of Mini CHP plant
       - Electric parts of cogen unit 160kWe
       - Electric scooter, at regional storage
+      - Ethanol, 99.7% in H2O, from Swedish wood, at service station
+      - Ethanol, 99.7% in H2O, from biomass, at service station
+      - Ethanol, 99.7% in H2O, from biomass, production BR, at service station
+      - Ethanol, 99.7% in H2O, from biomass, production RER, at service station
       - Exhaust air outlet, steel/aluminum, 85x365 mm, at plant
       - Exhaust air roof hood, steel, DN 400, at plant
       - Exhaust air valve, in-wall housing, plastic/steel, DN 125, at plant
@@ -848,15 +1599,25 @@ End_Use_Industry_LLF:
       - Expanded vermiculite, at plant
       - Expansion vessel 25l, at plant
       - Expansion vessel 80l, at plant
+      - Explosives, tovex, at plant
       - Fibre cement corrugated slab, at plant
+      - Fibre cement facing tile, large format, at plant
+      - Fibre cement facing tile, small format, at plant
       - Fibre cement roof slate, at plant
       - Fleece production, polyethylene terephthalate
       - Flexible duct, aluminum/PET, DN of 125, at plant
+      - Flooring, PVC homogeneous, at regional storage
+      - Flooring, carpet from natural fibre, at regional storage
+      - Flooring, natural rubber, at regional storage
+      - Flooring, needle felt, at regional storage
+      - Flooring, tufted carpet with textile fabric backs, at regional storage
+      - Foam glass, at plant
       - Foaming, expanding
       - Gas motor 206kW
       - Gas motor Mini CHP plant
       - Generator 200kWe
       - Generator Mini CHP plant
+      - Geopolymer concrete pipe, precast concrete, at plant
       - Glass production site
       - Glass tube, borosilicate, at plant
       - Glued laminated timber, average glue mix, at plant
@@ -865,8 +1626,11 @@ End_Use_Industry_LLF:
       - Goods wagon
       - Grain drying, high temperature
       - Grain drying, low temperature
+      - Graphite, at plant
+      - Graphite, battery grade, at plant
       - Ground heat exchanger, PE, DN 200, at plant
       - Gypsum fibre board, at plant
+      - Harvester, production
       - Heat pump, air-water, 15kW
       - Heat pump, air-water, 50kW
       - Heat pump, air-water, 7kW
@@ -884,12 +1648,29 @@ End_Use_Industry_LLF:
       - Inverter, 20 kW, average, at plant
       - Inverter, 5 kW,  average, at plant
       - Isobutanol, at plant
+      - Kerosene, at regional storage
       - Kraft paper, bleached, at plant
+      - Lean concrete, CEM III, A, 100% RC-M, at plant
+      - Lean concrete, CEM III, A, primary, at plan
+      - Lean concrete, CEM III, B, 100% RC-M, at plant
+      - Lean concrete, CEM III, B, primary, at plant
+      - Lean concrete, only common base, at plant
+      - Lean concrete, unspecific, at plant
+      - Lean concrete, unspecific, at plant, with resource correction
+      - Lime, hydrated, loose, at plant
+      - Lime, hydrated, packed, at plant
+      - Limestone, at mine
+      - Limestone, crushed, for mill
+      - Limestone, crushed, washed
+      - Limestone, milled, loose, at plant
+      - Limestone, milled, packed, at plant
       - Locomotive
       - Lorry 16t
       - Lorry 28t
       - Lorry 40t
       - MOX fuel element for LWR, at nuclear fuel fabrication plant
+      - Magnesium oxide, at plant
+      - Magnesium sulphate, at plant
       - Maintenance, bus
       - Maintenance, cogen unit 160kWe
       - Maintenance, goods wagon
@@ -899,8 +1680,15 @@ End_Use_Industry_LLF:
       - Maintenance, lorry 40t
       - Maintenance, tram
       - Maize drying
+      - Malusil, at plant
+      - Mastic asphalt (MA), 0% recycling, high temperature, at plant
+      - Mercury, liquid, at plant
       - Metal working factory operation, average heat energy
       - Metal working machine operation, average process heat
+      - Methane, 96 vol.-%, from synthetic gas, wood, at plant
+      - Methanol, from biomass, at regional storage
+      - Micro gas turbine 100kWe
+      - Mineral filler, for asphalt concrete production, at plant
       - Nuclear power plant, boiling water reactor 1000MW
       - Nuclear power plant, pressure water reactor 1000MW
       - Oil boiler 100kW
@@ -908,13 +1696,21 @@ End_Use_Industry_LLF:
       - Operation, maintenance, airport
       - Outside air intake, stainless steel, DN 370, at plant
       - Overflow element, steel, approx. 40 m3/h
+      - PEM fuel cell 2kWe, future
       - Packaging, corrugated board, mixed fibre, single wall, at plant
       - Paper machine, at paper mill
       - Paper, recycling, average, at plant
       - Paper, recycling, with deinking, at plant
       - Passenger car
       - Passenger car, diesel, EURO5, city car, at plant
+      - Passenger car, electric, LiMn2O4, at plant
+      - Passenger car, electric, LiMn2O4, city car, at plant
+      - Passenger car, electric, city car, without battery, at plant
       - Perlite, at mine
+      - Petrol, 15% vol. ETBE additive, EtOH f. biomass, prod. RER, at service station
+      - Petrol, 4% vol. ETBE additive, EtOH f. biomass, prod. RER, at service station
+      - Petrol, at regional storage
+      - Petrol, fossil, at regional storage
       - Photovoltaic cell, multi-Si, at plant
       - Photovoltaic cell, ribbon-Si, at plant
       - Photovoltaic laminate, a-Si, at plant
@@ -928,32 +1724,73 @@ End_Use_Industry_LLF:
       - Polyester resin, unsaturated, at plant
       - Polylactide, granulate, at plant
       - Poor concrete, at plant
+      - Porous asphalt (PA) surface layer, 0% recycling, high temperature, at plant
+      - Portachrom, at plant
+      - Portafer, at plant
+      - Poultry manure, dried, at regional storehouse
+      - Precast concrete, high performance concrete, at plant
+      - Precast concrete, high performance concrete, only common base, at plant
+      - Precast concrete, reinforced, CEM II/A, with resource correction, at plant
+      - Precast concrete, standard concrete, at plant
+      - Precast concrete, standard concrete, only common base, at plant
+      - Precast polymer concrete, at plant
+      - Process-specific burdens, inert material landfill
+      - Process-specific burdens, residual material landfill
+      - Process-specific burdens, sanitary landfill
+      - Process-specific burdens, slag compartment
       - Propanal, at plant
+      - Quicklime, in pieces, loose, at plant
+      - Quicklime, in pieces, loose, at plant, with carbon capture and storage
+      - Quicklime, milled, loose, at plant
+      - Quicklime, milled, packed, at plant
       - Rail, at regional storage
       - Range extender, for hybrid passenger car
+      - Rape methyl ester, at regional storage
+      - Rape methyl ester, production RER, at service station
+      - Rape oil, at regional storage
       - Refinery
       - Render carrier board, resin bound, at plant
+      - Rough asphalt MR surface layer, 0% recycling, high temperature, at plant
+      - SOFC fuel cell 125kWe, future
       - Scooter, ICE, at regional storage
       - Sealing tape, aluminum/PE, 50 mm wide, at plant
       - Section bar extrusion, aluminium
       - Selective coating, aluminium sheet, nickel pigmented aluminium oxide
+      - Semi-dense asphalt (SDA) surface layer, 0% recycling, high temperature, at plant
       - Sheet rolling, aluminium
       - Sheet rolling, copper
       - Silencer, steel, DN 125, at plant
       - Silencer, steel, DN 315, 50 mm, at plant
       - Silver, from copper production, at refinery
       - Silver, secondary, at precious metal refinery
+      - Slurry tanker, production
+      - Sodium borates, at plant
       - Sodium sulphate, from natural sources, at plant
+      - Sorting plant for construction waste
       - Soya oil, at plant
+      - Soybean methyl ester, production US, at service station
       - Spiral-seam duct, steel, DN 125, at plant
       - Spiral-seam duct, steel, DN 400, at plant
+      - Spodumene, at plant
+      - Stirling cogen unit 3kWe, wood pellets, future
+      - Stone mastic asphalt (SMA) surface layer, 0% recycling, high temperature, at plant
       - Structural timber, average glue mix, at plant
       - Supply air inlet, steel, SS, DN 75, at plant
       - Supply air input/spent air output cogen unit 160kWe
       - Tetrahydrofuran, at plant
       - Thermo-mechanical pulp, at plant
       - Three- and five-layered board, at plant
+      - Tractor, production
+      - Trailer, production
       - Tram
+      - Treatment, black chrome coating effluent, to wastewater treatment, class 2
+      - Treatment, ceramic production effluent, to wastewater treatment, class 3
+      - Treatment, effluent from NF3 production, to wastewater treatment, class 3
+      - Treatment, lorry production effluent, to wastewater treatment, class 1
+      - Treatment, pig iron production effluent, to wastewater treatment, class 3
+      - Treatment, sewage, unpolluted, from residence, to wastewater treatment, class 2
+      - Treatment, sewage, unpolluted, to wastewater treatment, class 3
+      - Treatment, tube collector production effluent, to wastewater treatment, class 2
       - Tubular particleboard, at plant
       - U enriched 3.0%, in fuel element for LWR, at nuclear fuel fabrication plant
       - U enriched 3.8%, in fuel element for LWR, at nuclear fuel fabrication plant
@@ -971,6 +1808,7 @@ End_Use_Industry_LLF:
       - Uranium, enriched 4.43%, at USEC enrichment plant
       - Uranium, enriched 4.75%, at USEC enrichment plant
       - Van <3.5t
+      - Vegetable oil methyl ester, production FR, at service station
       - Ventilation duct, PE corrugated tube, DN 75, at plant
       - Ventilation duct, steel, 100x50 mm, at plant
       - Ventilation equipment, Avent E 97, at plant
@@ -980,8 +1818,10 @@ End_Use_Industry_LLF:
       - Ventilation equipment, central, 600-1200 m3/h, at plant
       - Ventilation equipment, decentralized, 180-250 m3/h, at plant
       - Vermiculite, at mine
+      - Waste paper, sorted, for further treatment
       - Wire drawing, copper
       - Wire drawing, steel
+      - Zinc coating for hydrogen pipeline
       - xx 2-methyl-1-butanol, at plant
       - xx Air filter, decentralized unit, 250 m3/h, at plant
       - xx Aircraft, freight
@@ -989,20 +1829,33 @@ End_Use_Industry_LLF:
       - xx Corrugated board, fresh fibre, single wall, at plant
       - xx Corrugated board, recycling fibre, single wall, at plant
       - xx Cyclohexanone, at plant
+      - xx Disposal, catalyst for EDC production, 0% water, to hazardous waste incineration
+      - xx Disposal, hard coal ash from stove, 0% water, to sanitary landfill
+      - xx Disposal, lignite ash from stove, 0% water, to sanitary landfill
+      - xx Disposal, packaging paper, 13.7% water, to sanitary landfill
+      - xx Disposal, polyethylene terephtalate, 0.2% water, to sanitary landfill
+      - xx Disposal, polypropylene, 15.9% water, to sanitary landfill
+      - xx Ethanol, 99.7% in H2O, from biomass, production CN, at service station
+      - xx Ethanol, 99.7% in H2O, from biomass, production US, at service station
       - xx Grass drying
       - xx Gypsum plaster board, at plant
+      - xx Intral, at plant
       - xx Metal working factory operation, heat energy from light fuel oil
       - xx Metal working machine operation, process heat from light fuel oil
       - xx Nuclear power plant, boiling water reactor 1000MW
       - xx Nuclear power plant, pressure water reactor 1000MW
       - xx Palladium, secondary, at precious metal refinery
+      - xx Palm methyl ester, production MY, at service station
       - xx Production of carton board boxes, gravure printing, at plant
       - xx Production of carton board boxes, offset printing, at plant
       - xx Soya scrap, at plant
+      - xx Soybean methyl ester, production BR, at service station
       - xx Sulphite pulp, bleached, at plant
       - xx Ventilation equipment, KWLC 1200, at plant
       - xx Ventilation equipment, Storkair G 90, at plant
+      - xxx Diesel, at regional storage
       - xxx Particle board, outdoor use, at plant
+      - xxx Petrol, unleaded, at regional storage
       - xxx Polylactide, granulate, NatureWorks Nebraska
   ecoinvent_aliases:
     fltr:
@@ -1168,6 +2021,7 @@ End_Use_Industry_Coal:
       - Parkes process crust, from desilverising of lead
       - Phthalic anhydride, at plant
       - Polyester resin, unsaturated, at plant
+      - Rail, at regional storage
       - Rutile, 95% titanium dioxide, at plant
       - Silver, from combined metal production, at beneficiation
       - Silver, from combined metal production, at refinery
@@ -1211,8 +2065,11 @@ End_Use_Industry_Bio_Trad:
     exact: true
     fltr:
       name:
+      - Bark chips, softwood, u=140%, holzpur, at plant
+      - Charcoal, at plant
       - Chlorodifluoromethane, at plant
       - Cork slab, at plant
+      - Cross-laminted timber, average glue mix, at plant
       - Door leaf, functional, inner, wood, at plant
       - Door leaf, outer, wood, at plant
       - Door leaf, outer, wood-glass, at plant
@@ -1224,6 +2081,8 @@ End_Use_Industry_Bio_Trad:
       - Frame extension, PVC, at plant, with resource correction
       - Frame extension, particle board, at plant
       - Frame extension, particle board, at plant, with resource correction
+      - Glued laminated timber, MUF adhesive, at plant
+      - Glued laminated timber, PUR adhesive, at plant
       - Glued laminated timber, average glue mix, at plant
       - Glued solid timber, average glue mix, at plant
       - Heat storage 2000l, at plant
@@ -1245,11 +2104,20 @@ End_Use_Industry_Bio_Trad:
       - Heat, softwood chips from industry, at furnace 1000kW
       - Heat, softwood chips from industry, at furnace 300kW
       - Heat, softwood chips from industry, at furnace 5000kW
+      - Heat, wood pellets, at furnace 300kW
+      - Holzpur, softwood, raw, air, kiln dried, u=6%, at plant
       - Hot water tank 600l, at plant
+      - Industrial residue wood, softwood, air, kiln dried, u=6%, holzpur, at plant
+      - Industrial residue wood, softwood, plant-debarked, u=70%, holzpur, at plant
       - Kraft paper, bleached, at plant
       - Paper, woodcontaining, LWC, at plant
       - Paper, woodcontaining, supercalendred (SC), at plant
+      - Plywood, hardwood veneer, UF-bonded, at plant
+      - Plywood, indoor use, at plant
+      - Plywood, outdoor use, at plant
       - "Sawn timber, paran\xE1 pine (SFM), kiln dried, u=15%, at sawmill"
+      - Sawn timber, softwood, raw, air, kiln dried, u=6%, holzpur, at plant
+      - Sawn timber, softwood, raw, plant-debarked, u=70%, holzpur, at plant
       - Scantling, softwood, laminated, CCC, at plant
       - Scantling, softwood, laminated, CCF, at plant
       - Scantling, softwood, laminated, CFC, at plant
@@ -1262,11 +2130,13 @@ End_Use_Industry_Bio_Trad:
       - Tetrafluoroethylene, at plant
       - Thermo-mechanical pulp, at plant
       - Three- and five-layered board, at plant
+      - Tubular particleboard, at plant
       - Viscose fibres, at plant
       - Window frame, wood, w/o surface treatment, m2 visible, at plant
       - Window frame, wood, w/o surface treatment, wall opening, at plant
       - Window frame, wood-metal, w/o surface treatment, m2 visible, at plant
       - Window frame, wood-metal, w/o surface treatment, wall opening, at plant
+      - Wood laths, softwood, plant-debarked, u=70%, holzpur, at plant
       - xx Chemi-thermomechanical pulp, at plant
       - "xx Industrial residual wood, paran\xE1 pine (SFM), u=15%, at sawmill"
       - xx Sodium sulphat from viscose production, at plant
@@ -1286,6 +2156,8 @@ End_Use_Industry_Bio_Trad:
       - xxx Sawn timber, softwood, raw, kiln dried, u=10%, at plant
       - xxx Sawn timber, softwood, raw, kiln dried, u=20%, at plant
       - xxx Three layered laminated board, at plant
+      - xxx Window frame, wood, U=1.5 W/m2K, at plant
+      - xxx Window frame, wood-metal, U=1.6 W/m2K, at plant
   ecoinvent_aliases:
     fltr:
     - heat production, softwood chips
@@ -1755,6 +2627,19 @@ End_Use_Services_Coal_Heat:
     - market
   gains_aliases_IAM: End_Use_Services_Coal_Heat
 End_Use_Residential_Bio_Mod:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, hardwood chips from forest, at furnace 50kW
+      - Heat, hardwood chips from industry, at furnace 50kW
+      - Heat, mixed chips from forest, at furnace 50kW
+      - Heat, mixed chips from industry, at furnace 50kW
+      - Heat, softwood chips from forest, at furnace 50kW
+      - Heat, softwood chips from industry, at furnace 50kW
+      - Heat, wood pellets, at furnace 15kW
+      - Heat, wood pellets, at furnace 50kW
   ecoinvent_aliases:
     fltr:
     - heat production, wood pellet

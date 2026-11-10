@@ -21,6 +21,16 @@ REVIEW_PATH = DATA_DIR / "GAINS_emission_factors" / "uvek2026_gas_review.json"
 ORDINARY_REVIEW_PATH = (
     DATA_DIR / "GAINS_emission_factors" / "uvek2026_ordinary_combustion_review.json"
 )
+HEATING_REVIEW_PATH = (
+    DATA_DIR / "GAINS_emission_factors" / "uvek2026_heating_combustion_review.json"
+)
+
+
+def review_paths():
+    """Return the reviewed combustion cohorts in their documented order."""
+    return REVIEW_PATH, ORDINARY_REVIEW_PATH, HEATING_REVIEW_PATH
+
+
 GASES = {
     "Nitrogen oxides": "NOx",
     "Sulfur dioxide": "SO2",
@@ -177,6 +187,7 @@ def plan_native_combustion_variants(
         return matches[0]
 
     additions, replacements, scopes = {}, {}, set()
+    variants = {}
     replayed = 0
     for binding in bindings:
         caller, source = unique(binding["caller"]), unique(binding["supplier"])
@@ -185,17 +196,29 @@ def plan_native_combustion_variants(
                 "Native combustion cannot rewrite an unreviewed foreground."
             )
         source_key = (source["database"], source["code"])
-        variant = _variant(
-            source,
-            binding["sector"],
-            binding["region"],
-            factors,
-            scenario,
-            biosphere_name,
-        )
-        if binding.get("geography_proxy"):
-            variant[VARIANT]["geography_proxy"] = copy.deepcopy(
-                binding["geography_proxy"]
+        variant_key = source_key, binding["sector"], binding["region"]
+        if variant_key not in variants:
+            variant = _variant(
+                source,
+                binding["sector"],
+                binding["region"],
+                factors,
+                scenario,
+                biosphere_name,
+            )
+            if binding.get("geography_proxy"):
+                variant[VARIANT]["geography_proxy"] = copy.deepcopy(
+                    binding["geography_proxy"]
+                )
+            if binding.get("review"):
+                variant[VARIANT]["review"] = binding["review"]
+            variants[variant_key] = variant
+        variant = variants[variant_key]
+        if variant[VARIANT].get("geography_proxy") != binding.get(
+            "geography_proxy"
+        ) or variant[VARIANT].get("review") != binding.get("review"):
+            raise ValueError(
+                "Conflicting review provenance for a shared combustion variant."
             )
         target_key = (variant["database"], variant["code"])
         existing = by_key.get(target_key)
@@ -311,7 +334,7 @@ def plan_reviewed_native_combustion(
         scenario,
         location_mapper,
         biosphere_name=biosphere_name,
-        paths=(REVIEW_PATH, ORDINARY_REVIEW_PATH),
+        paths=review_paths(),
     )
 
 
@@ -323,12 +346,31 @@ def _plan_reviews(
         row.get("schema_version") != 1 or not row.get("bindings") for row in reviews
     ):
         raise ValueError("Invalid reviewed native combustion bindings.")
-    records = [row for review in reviews for row in review["bindings"]]
+    records = [
+        {
+            **row,
+            "review": (
+                str(path.relative_to(DATA_DIR))
+                if path.is_relative_to(DATA_DIR)
+                else path.name
+            ),
+        }
+        for path, review in zip(paths, reviews)
+        for row in review["bindings"]
+    ]
+    # A legacy single-cohort replay still validates the complete alias pool.
+    # Exact per-input selection below remains limited to the requested reviews.
+    all_reviews = (
+        reviews
+        if tuple(paths) == review_paths()
+        else [json.loads(path.read_text()) for path in review_paths()]
+    )
+    alias_records = [row for review in all_reviews for row in review["bindings"]]
     aliases = get_mapping(GAINS_MAPPING, "uvek_aliases")
     sectors = {row["sector"] for row in records}
     for sector in sectors:
         names = sorted(
-            {row["caller"]["name"] for row in records if row["sector"] == sector}
+            {row["caller"]["name"] for row in alias_records if row["sector"] == sector}
         )
         definition = aliases.get(sector, {})
         if (
@@ -367,8 +409,28 @@ def _plan_reviews(
     result["diagnostics"]["limitations"] = list(
         dict.fromkeys(text for review in reviews for text in review["limitations"])
     )
-    result["diagnostics"]["retained_reviewed_cases"] = [
-        row for review in reviews for row in review.get("retained_cases", [])
-    ]
+
+    def pair(row):
+        return identity(row["caller"]), identity(row["supplier"])
+
+    active_pairs = {pair(row) for row in records}
+    superseded = {
+        pair(row)
+        for review in reviews
+        for row in review.get("supersedes_retained_cases", [])
+    }
+    retained, resolved = [], []
+    for review in reviews:
+        for row in review.get("retained_cases", []):
+            if pair(row) in active_pairs:
+                if pair(row) not in superseded:
+                    raise ValueError(
+                        "A retained combustion case needs an explicit review disposition."
+                    )
+                resolved.append(row)
+            else:
+                retained.append(row)
+    result["diagnostics"]["retained_reviewed_cases"] = retained
+    result["diagnostics"]["resolved_retained_cases"] = resolved
     result["diagnostics"]["emitting_location_aliases"] = geography
     return result

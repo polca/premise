@@ -1,0 +1,90 @@
+{
+  "status": "native_heating_emissions_component_verified_public_emissions_gate_closed",
+  "review": "premise/data/GAINS_emission_factors/uvek2026_heating_combustion_review.json",
+  "background": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "new_exact_caller_supplier_pairs": 922,
+  "combined_native_GAINS_roles": 14,
+  "all55legacy_GAINS_role_definitions_unchanged": true,
+  "validation": {
+    "activities": 12831,
+    "initial_checks": {
+      "caller_inputs": 1795,
+      "reviewed_input_coverage": 1795,
+      "gaseous_air_changes": 369,
+      "links": 447929,
+      "applicability": "applicable",
+      "full_sector_mapping_complete": false
+    },
+    "owned_variants": 209,
+    "modified_callers": 1377,
+    "provenance_events": 1586,
+    "signed_finite_LCIs": 32,
+    "common_sector_contract_valid": true,
+    "idempotent_replay_adds_no_events_or_inventory_changes": true,
+    "source_scientific_contents_unchanged": true,
+    "source_graph_unchanged": true
+  },
+  "focused_native_legacy_and_heat_tests_passed": 73,
+  "installed_package": {
+    "installed_module_path_verified": true,
+    "all_wheel_declared_resources_equal_checkout": true,
+    "resources_checked": 282,
+    "both_changed_runtime_modules_equal_checkout": true,
+    "wheel_sha256": "ee4996965d599bd6bf02cbb8a3aa526dce466a7957d15f061eb3cfcd6a23f4a1"
+  },
+  "same_input_archived_previous_implementation_regression": {
+    "previous_variants_compared": 149,
+    "all_scientific_coordinates_unchanged": true,
+    "source_graph": "verified prior biomass/electricity/heat graph",
+    "source_sha256": "904d5433bf57db3a354128068d221296aeba720b7228dc0fb83d539368bf8412",
+    "representation_or_quantity_relaxations": false
+  },
+  "final_package_graph_metadata_events_equal_checkout": true,
+  "resolved_previously_retained_wood_pairs": 9,
+  "remaining_retained_epoxy_methodological_comparison_pairs": 1,
+  "scientific_limits": [
+    "Boiler/stove caller end-use classifications are explicit screening conventions; no source equipment, efficiency, allocation or geography upgrade is asserted.",
+    "Preserve native +1 MJ fuel references, complete upstream/ash/infrastructure inventories and all signed caller quantities, formulas and supported uncertainty.",
+    "Fuel-excluded wood inventory retains its independently inspected historical baseline, zero fuel/freight entries and allocation; do not copy ordinary furnace coefficients or add fuel burdens.",
+    "Only reviewed gaseous air reductions change. Particles, aggregate VOC, CO2, non-air flows and other unreviewed species remain unchanged.",
+    "Verification applies the internal callback to the prior verified public biomass/electricity/heat graph. This is not a normal public four-sector NewDatabase build or a new Brightway database export.",
+    "Emissions remains gated: other combustion, direct processes, prepared foregrounds and particle/VOC definitions remain unfinished. Fifteen other sectors and eleven heat binding gaps also remain."
+  ],
+  "receipts": [
+    {
+      "name": "uvek_emissions_heating_checkout_verification.json",
+      "sha256": "0c6eab9de582b033d7a45a73ee133a2c469c7d3a0aba529b5327051d9995ea26",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_heating_final_installed_verification.json",
+      "sha256": "0c6eab9de582b033d7a45a73ee133a2c469c7d3a0aba529b5327051d9995ea26",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_heating_installed_comparison.json",
+      "sha256": "1b8147101960c62fc18590920d1d26df7bb8cb4768c23f99a829568eaf973bb5",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_heating_final_installed_resources.json",
+      "sha256": "05dfc923a7926f45a47f89ebe813ac20d7e07fdd5e1a2195d379c45612a3214f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_heating_alias_regression.json",
+      "sha256": "818cc98a6a536f9e850fce94511ac964a13b0022a081fe5d6c19e095dafee8a1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_heating_tests.log",
+      "sha256": "264224d7f02bf779f3b9d5c3a2321a849b5b4cb14931a0fee7175220440af89f",
+      "location": "private task workspace"
+    }
+  ]
+}

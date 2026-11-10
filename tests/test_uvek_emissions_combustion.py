@@ -3,6 +3,7 @@
 import copy
 import json
 import math
+from unittest.mock import Mock
 
 import numpy as np
 import pytest
@@ -265,6 +266,17 @@ def test_several_fuels_on_one_caller_keep_all_supplier_changes_and_replay(case):
     assert replay["diagnostics"]["already_applied"] == 3
 
 
+def test_shared_variant_is_computed_once_and_keeps_both_caller_links(case, monkeypatch):
+    data, bindings, *_ = case
+    bindings.append({**bindings[0], "caller": ident(data[4])})
+    factory = Mock(wraps=combustion._variant)
+    monkeypatch.setattr(combustion, "_variant", factory)
+    result = plan(case)
+    assert factory.call_count == 2
+    assert len(result["activities"]) == 2
+    assert len(result["replacements"]) == 3
+
+
 def test_reviewed_caller_wrapper_checks_aliases_and_maps_emitter_location(
     case, monkeypatch, tmp_path
 ):
@@ -311,6 +323,19 @@ def test_reviewed_caller_wrapper_checks_aliases_and_maps_emitter_location(
         a[VARIANT]["geography_proxy"]["source_location"] == "CH"
         for a in result["activities"]
     )
+    review["retained_cases"] = [{**bindings[0], "reason": "pending independent review"}]
+    path.write_text(json.dumps(review))
+    with pytest.raises(ValueError, match="explicit review disposition"):
+        combustion.plan_reviewed_gas_combustion(
+            data, factors, scenario, mapper, biosphere_name="bio310"
+        )
+    review["supersedes_retained_cases"] = [bindings[0]]
+    path.write_text(json.dumps(review))
+    resolved = combustion.plan_reviewed_gas_combustion(
+        data, factors, scenario, mapper, biosphere_name="bio310"
+    )
+    assert len(resolved["diagnostics"]["resolved_retained_cases"]) == 1
+    assert resolved["diagnostics"]["retained_reviewed_cases"] == []
     definitions["power"]["mask"] = ["Power"]
     with pytest.raises(ValueError, match="aliases disagree"):
         combustion.plan_reviewed_gas_combustion(

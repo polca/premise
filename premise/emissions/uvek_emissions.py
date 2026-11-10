@@ -47,10 +47,7 @@ def _key(record):
 
 def _contexts(mapper):
     """Independently bind reviewed input endpoints to sector and emitter region."""
-    reviews = [
-        json.loads(path.read_text())
-        for path in (combustion.REVIEW_PATH, combustion.ORDINARY_REVIEW_PATH)
-    ]
+    reviews = [json.loads(path.read_text()) for path in combustion.review_paths()]
     geography = {}
     for review in reviews:
         for location, proxy in review.get("emitting_location_aliases", {}).items():
@@ -427,7 +424,7 @@ def update_uvek_emissions(
             "created",
             sector="emissions",
             reason_code="emissions.uvek.reviewed_combustion",
-            configuration_reference=REFERENCE,
+            configuration_reference=record[combustion.VARIANT].get("review", REFERENCE),
             explanation="Fork reviewed native combustion by caller sector; preserve fuel inputs, allocation, source geography and literal air-emission audits.",
             computed_target_values={
                 "gaseous_air_changes": len(record[combustion.VARIANT]["changes"]),
@@ -435,14 +432,29 @@ def update_uvek_emissions(
                 "region": record[combustion.VARIANT]["region"],
             },
         )
+    providers = {_key(record): record for record in result}
     for record in changes.values():
+        references = sorted(
+            {
+                providers[tuple(record["exchanges"][row["index"]]["input"])][
+                    combustion.VARIANT
+                ].get("review", REFERENCE)
+                for row in record[combustion.CALLER]
+            }
+        )
         record_change_event(
             owner,
             record,
             "modified",
             sector="emissions",
             reason_code="emissions.uvek.caller_supplier",
-            configuration_reference=REFERENCE,
+            configuration_reference=(
+                references[0] if len(references) == 1 else "GAINS_emission_factors"
+            ),
             explanation="Relink reviewed combustion inputs only; signed caller quantities, formulas and uncertainty remain unchanged.",
+            computed_target_values={
+                "reviewed_combustion_inputs": len(record[combustion.CALLER]),
+                "configuration_references": references,
+            },
         )
     return scenario

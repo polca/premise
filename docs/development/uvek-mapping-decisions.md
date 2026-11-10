@@ -1348,3 +1348,58 @@ combustion sources and owned variants against double scaling. Full public
 certification/export and combined/default qualification remain required before
 opening emissions. Sixteen sectors, including emissions, remain unqualified end
 to end; remaining heat roles stay in the goal.
+
+
+### Native heating emissions: preserve reference inventories and explicit end uses
+
+The third combustion cohort reviews 922 additional exact caller/supplier pairs.
+Five residential heating roles extend the native catalogue to 14 GAINS roles;
+all 55 legacy role definitions remain unchanged. Combined coverage is 1,795
+inputs in 1,377 callers, represented by 209 complete owned variants.
+
+Dedicated industrial gas/oil furnaces and direct factory/disposal-site thermal
+inputs use industrial fuel roles. Small boiler heat wrappers use residential
+heating roles; automatic small pellet/chip heating uses modern biomass, logs use
+traditional biomass heat rather than cooking, and coal stoves use coal heat.
+Generic above-100-kW gas boilers use industrial gas. These are explicit screening
+conventions: actual space/process-heat splits, fleet composition and service
+boundaries are not established. Source equipment and inventories are unchanged.
+Every native burner retains its +1-MJ fuel reference; differing caller heat
+references do not justify another efficiency, allocation or 3.6 conversion.
+Special project variants remain outside this cohort.
+
+Independent primary inspection resolves nine previously retained wood inputs.
+Their fuel-excluded 300-kW supplier has a valid positive reference and distinct
+historical air, ash and electricity coefficients. Retain its zero fuel/freight
+entries and complete native baseline; do not copy the ordinary furnace, infer
+new allocation or add fuel burdens/credits. Only its own reviewed gaseous-air
+reductions change. The new review explicitly supersedes those nine historical
+retained pairs; activating a retained pair without an explicit disposition fails.
+The old review remains historical evidence. The epoxy methodological comparison
+whose documentation excludes background use remains retained unchanged.
+
+Shared variants are calculated once per supplier/sector/region and refuse
+conflicting review or geographic provenance. Each created variant and modified
+caller records its actual review reference(s). Signed caller amounts, formulas,
+uncertainty and all non-supplier fields remain literal. CO2, particles, aggregate
+VOC, non-air releases and unreviewed species are unchanged.
+
+All 73 focused native/legacy/heat checks pass. Applied to the prior verified
+public biomass/electricity/heat graph, the internal wrapper produces 12,831
+activities with complete links, 369 gaseous-air changes and 1,586 provenance
+events. Thirty-two signed LCIs are finite; original database scientific
+signatures remain unchanged. Replay adds no changes/events. The final installed
+wheel matches all 282 declared resources and both changed runtime modules, and
+reproduces the complete graph, metadata and events. Replaying archived f877976b
+on the identical starting graph proves all 149 earlier variants retain their
+scientific coordinates exactly; no representation or quantity tolerance was
+introduced. Comparing different pre/post-biomass starting graphs is not a valid
+implementation regression. Primary records and coefficients remain private;
+endpoint reviews and SHA256 receipts are versioned. See
+`uvek-emissions-heating-verification.json`.
+
+This is internal component verification, not a normal public four-sector build
+or a new Brightway export. Emissions stays gated pending remaining turbine/CHP,
+biomethane, machinery, waste-gas, direct-process/foreground and particle/VOC
+review plus full public certification/export. Fifteen other sectors and eleven
+heat binding gaps remain in the expanded goal. No new omission is made here.
