@@ -1,0 +1,105 @@
+{
+  "status": "three_exact3_10_native_route_corrections_verified_three_current_cases_pending_heat_gate_closed",
+  "review": "export/uvek_heat_310_routes_review.json",
+  "review_sha256": "11e0a2208e869ae67dabc994377a71572ed3fb27feb05709de67db32339c4f42",
+  "approval_scopes": 499,
+  "prior_fingerprints_unchanged": 496,
+  "changed_rules": [
+    "bp-0011da9202e829d4",
+    "bp-15b87e168609b72f",
+    "bp-af6afa89d820eabb"
+  ],
+  "all_other_rules_and_prior_recipes_shared_reviews_unchanged": true,
+  "new_shared_reviews": 3,
+  "recipe_count": 3671,
+  "shared_review_count": 772,
+  "validation": {
+    "brightpath_tests": 24,
+    "premise_cache_and_drift_tests": 7,
+    "native_finite_LCIs": 3,
+    "installed_signed_demands": 6,
+    "installed_original_caller_regressions": 41,
+    "generated_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 266,
+      "premise": 247
+    },
+    "source_scientific_signatures_unchanged": true
+  },
+  "real_heat_preparation": "3current3.10cases pending, down from6;35of38qualified;latercohortsunproven",
+  "public_heat_gate": "closed; public heat export not claimed",
+  "public_default_export": "Prior12529activitybiomass/electricityrun not repeated. Full41original caller regression and old fingerprint/helper closures checked after corrections; no new heat export claimed.",
+  "pending_evidence": [
+    "All17sourcecondensate directBIOfates exist in canonical3.10biosphere; keep treated/untreated fate and avoid native embedded sewer duplication.",
+    "Source urban/rural sewers are per m3sewered wastewater; native sewer per km. Native allocation-rate proxy remains to be implemented and reviewed.",
+    "Copper is consumed by the PEMfuelcellstack; existing target is cathode/refinery copper while source supplies anodes. Boundary/grade treatment remains pending.",
+    "Primaryaluminium import producer and native liquid-metal references now pinned; qualification remains pending."
+  ],
+  "receipts": [
+    {
+      "name": "heat_310_routes_registration.json",
+      "sha256": "d8fd4baca600959ad74d84b87871857a5eabbfd07be62aecea6a7bfdd8a1dec1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_resource_comparison.json",
+      "sha256": "7c3429389f780b7c580f4f520d768d5f61c9797e04bf93086d610980fd9f33c3",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_tests.log",
+      "sha256": "9834426827ea90be0968937b29a578f8f34323b384e1635c5fe2ed50644f51e9",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_premise_tests.log",
+      "sha256": "030b485c1b2463025a686d3e6482ce3181e1de776109e6c591a81496b690fec3",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_native_lci.json",
+      "sha256": "5ef8a83eb90d377e30ef3617f75ff5331b9ad679e2d3928fc714150d1e5a4631",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_installed_checks.json",
+      "sha256": "79233ebc1845b8cc8ace9dd738b7fa0907d3cd62ba6e04d882fa9cc37a1b01ca",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_original_callers.json",
+      "sha256": "61679fb0b4af552c55b2fbbd254cd7c5b1e6e2011fb8838e95d4b36d0f64cac0",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_packaged_data.json",
+      "sha256": "0865a8e53e054aef0508f70f988295dcb59d42f7eeb9f1b1324532c247871c8e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_generator_replay.json",
+      "sha256": "d4f837815db3765382435d7c11f458a3d9895fa1730db399801a2ee53dad69f9",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_routes_remaining_audit_receipt.json",
+      "sha256": "813c3e4200aec0d90c790c6380de62c457db3f9f12e76d693c841e5a1057ecc1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_condensate_biosphere_presence.json",
+      "sha256": "de0d4256d0499fc1a5b3924be85532904fe8475692612994b65c0fc23dff42de",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_copper_caller_context.json",
+      "sha256": "f981e798f036eb08dd97d85ad1fe9937545e41b727b3d3892cdff7cb011df741",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_primary_metals_boundary_receipt.json",
+      "sha256": "c8b26bbf982a83f946d6fed13d020c03287f0d20a209d186499ad7c98092ae5f",
+      "location": "private task workspace"
+    }
+  ]
+}

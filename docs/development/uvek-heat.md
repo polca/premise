@@ -197,3 +197,22 @@ All 486 prior fingerprints remain unchanged; ten scopes bring the ledger to 496.
 and ten finite native LCIs passed. Real preparation reports six pending cases,
 with 32 of the current 38 qualified. Later cohorts and public heat integration
 remain unproven. Verification: `docs/development/uvek-heat-310-products-verification.json`.
+
+
+Three exact 3.10 native route corrections replace electric-steel-to-converter-mix
+plus rolling with native electric cast steel, biomass-methanol storage/delivery
+with the independently verified wood-syngas plant-gate process, and all-size Swiss
+lorry freight with the native European 32–40 tonne diesel service. Caller physical
+quantities, signs, formulas and supported uncertainty remain unchanged. Scrap,
+energy, allocation, vintage and region differences remain warnings; the heavy-lorry
+class and fleet standard remain an explicit proxy for >32 tonne EURO IV.
+
+All 496 prior approval fingerprints and prior recipes/shared reviews are unchanged.
+Three new scopes bring the ledger to 499; three portable reviews bring shared
+reviews to 772, with 3671 recipes unchanged. 24 Brightpath tests, seven Premise
+cache/drift tests, six installed signed demands, 41 original caller regressions,
+three native finite LCIs and byte-identical replay of two generated resources pass.
+Real preparation now reports three pending cases, with 35 of the current 38 qualified.
+These are primary aluminium, copper anode and condensate. Later cohorts and public
+heat integration remain unproven. Verification:
+`docs/development/uvek-heat-310-routes-verification.json`.

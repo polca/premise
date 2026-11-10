@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "thirty_two_of_thirty_eight_observed3_10cases_qualified_six_pending",
+  "status": "thirty_five_of_thirty_eight_observed3_10cases_qualified_three_pending",
   "context": "Later3.10cohort exposed after all14initial3.9cases qualified; publicheatgate remains closed.",
   "identified_cases": 38,
   "previously_scoped_rules": 16,
@@ -108,7 +108,7 @@
     },
     {
       "rule_id": "bp-0011da9202e829d4",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_corrected_native_route",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -170,7 +170,15 @@
           ]
         }
       },
-      "source_producer_witness_count": 0
+      "source_producer_witness_count": 0,
+      "verification": "docs/development/uvek-heat-310-routes-verification.json",
+      "review_path": "export/uvek_heat_310_routes_review.json",
+      "qualified_target": {
+        "name": "Steel, electric, un- and low-alloyed, at plant",
+        "reference product": "Steel, electric, un- and low-alloyed, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      }
     },
     {
       "rule_id": "bp-15ef78b8ed5991f1",
@@ -1274,7 +1282,7 @@
     },
     {
       "rule_id": "bp-15b87e168609b72f",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_corrected_native_route",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1336,7 +1344,15 @@
           ]
         }
       },
-      "source_producer_witness_count": 0
+      "source_producer_witness_count": 0,
+      "verification": "docs/development/uvek-heat-310-routes-verification.json",
+      "review_path": "export/uvek_heat_310_routes_review.json",
+      "qualified_target": {
+        "name": "Methanol, from synthetic gas, at plant",
+        "reference product": "Methanol, from synthetic gas, at plant",
+        "location": "CH",
+        "unit": "kilogram"
+      }
     },
     {
       "rule_id": "bp-7380dfd0ac332f4f",
@@ -1949,7 +1965,7 @@
     },
     {
       "rule_id": "bp-af6afa89d820eabb",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_corrected_native_route",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -2011,7 +2027,15 @@
           ]
         }
       },
-      "source_producer_witness_count": 1
+      "source_producer_witness_count": 1,
+      "verification": "docs/development/uvek-heat-310-routes-verification.json",
+      "review_path": "export/uvek_heat_310_routes_review.json",
+      "qualified_target": {
+        "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+        "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+        "location": "RER",
+        "unit": "ton kilometer"
+      }
     },
     {
       "rule_id": "bp-89a9e0030212f423",
@@ -2740,8 +2764,8 @@
     }
   ],
   "later_cohorts": "unproven",
-  "qualified_cases": 32,
-  "pending_cases": 6,
+  "qualified_cases": 35,
+  "pending_cases": 3,
   "additional_helper_input_qualifications": 2,
-  "verification": "docs/development/uvek-heat-310-products-verification.json"
+  "verification": "docs/development/uvek-heat-310-routes-verification.json"
 }

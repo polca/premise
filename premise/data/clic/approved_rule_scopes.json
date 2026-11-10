@@ -124979,6 +124979,248 @@
           "fingerprint": "feb46bce2738dd56916e3d972bff056ed33bd96fd3aa45fff67d5c90e211cbb1"
         }
       ]
+    },
+    {
+      "rule_id": "bp-0011da9202e829d4",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_native_route",
+      "review_path": "export/uvek_heat_310_routes_review.json",
+      "review_sha256": "11e0a2208e869ae67dabc994377a71572ed3fb27feb05709de67db32339c4f42",
+      "authorization": "Standing autonomous approval of modelling corrections using independently inspected closer complete native counterparts, with warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland and Austria",
+          "name": "steel production, electric, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Steel, electric, un- and low-alloyed, at plant",
+          "reference product": "Steel, electric, un- and low-alloyed, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "0f42058e40b905d42939d4214e45a09ab84002cf71c364bcb25ecc678ca65041",
+        "source_metadata_sha256": "83e7538d5dbad10ef0c9d5a454049b6301c925606f556399d052546055eeada8",
+        "source_producer_witnesses": [],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Steel, electric, un- and low-alloyed, at plant",
+              "reference product": "Steel, electric, un- and low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8e70de31dbbf9ca9113ff033d77b530d966ffd5cdcf5229c22a28c9ff0fcf6e5",
+            "metadata_sha256": "cb9b335b3c50194a4a9e59089eba031f48b0a1177c19c6b61c8888db88d2c3c2"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Steel, electric, un- and low-alloyed, at plant",
+              "reference product": "Steel, electric, un- and low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f3cc41bebdcbd48a6ca406be39d8d148470e82b08d0a1aa5ed4d86f9bd1c5800",
+            "metadata_sha256": "3ef9c896e29c8cf082db678feaea70842ef3193f53cb47613228455660e7ccfa"
+          }
+        }
+      },
+      "limitations": [
+        "The actual source is cast secondary low-alloyed steel from an electric arc furnace, before downstream rolling. Native electric un/low-alloyed steel documents scrap as its only iron-bearing input and includes steelmaking and casting. Replace the previous37%electric/63%converter mix plus hot-rolling candidate with this complete native EAFsteel per kg. Do not include converter iron, another casting process or hot rolling.",
+        "Both source and native cite European2013BATlineage but scrap draw, alloying inputs, furnace/ladle operation, electricity, off-gas and slag/dust fate differ. Keep the complete native supplier unchanged once; no inferred melt yield, primary-metal credit or subtraction of source emissions. Geography, un/low-alloy grade, allocation and unquantified score differences remain explicit.",
+        "Only independently inspected exactecoinvent3.10cutoff is qualified to nativeUVEK2026 via the2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same unit. Complete native inventories and original caller emissions remain unchanged. Native biosphere exclusions remain explicit. No LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model conversion is approved; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6b6bd8ccc9ad3e8bc46f2329e58f51bf73bd72ff48e7f9b1612c67655d1bc359"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-15b87e168609b72f",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_native_route",
+      "review_path": "export/uvek_heat_310_routes_review.json",
+      "review_sha256": "11e0a2208e869ae67dabc994377a71572ed3fb27feb05709de67db32339c4f42",
+      "authorization": "Standing autonomous approval of modelling corrections using independently inspected closer complete native counterparts, with warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "methanol production, biomass gasification",
+          "reference product": "methanol, from biomass",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Methanol, from synthetic gas, at plant",
+          "reference product": "Methanol, from synthetic gas, at plant",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "4357b4739721add4d02ea845414a900c3f1d684b189c4c8e6aee851ad7666790",
+        "source_metadata_sha256": "d99adf8dfe2d2df91bc594acf3d73015523b1446e1d843a76f062a1851b8fa63",
+        "source_producer_witnesses": [],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Methanol, from synthetic gas, at plant",
+              "reference product": "Methanol, from synthetic gas, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "50028d6e4e18c4e0f2fda4a367d9ab8995d8c25f7191e4a49c238b366a497c2d",
+            "metadata_sha256": "e4b13145d795f2856daafdc2525c1ed816bb380d990fd1b5a4a48015998ef051"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Methanol, from synthetic gas, at plant",
+              "reference product": "Methanol, from synthetic gas, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "4b64800722df79c64913462691a5accdbbc95ee6b5e0b2682a0e6137a4ff9c27",
+            "metadata_sha256": "b2c74955865fe0db909f4898a4dbc05327aa1db038cade3570eb41a36b96968e"
+          }
+        }
+      },
+      "limitations": [
+        "The source is biomass-gasification methanol at the plant gate. The independently inspected native plant-gate process uses biomass-derived syngas, matching the source7.1255m3syngas/kg and0.27675kWhelectricity/kg. Both gas suppliers use equal fixed/fluidized wood-gasifier shares. This is not fossil methanol merely because the native name says synthetic gas. Replace the regional-storage candidate with this complete plant-gate methanol; exclude its extra downstream tank operation, evaporative loss and final distribution.",
+        "Native and source full-methanol reforming do not export a hydrogen or CO2credit. Native weak pilot-scale data, catalysts, water, waste treatment, actual feedstock sourcing and gas-calorific metadata remain limitations. Source generic syngas-market LHVmetadata differs from actual producer descriptions; preserve actual per-kg methanol and gas volume rather than inventing a heating-value or density conversion. Do not add source synthesis or additional upstream biomass/gasification on top of the native complete product.",
+        "Only independently inspected exactecoinvent3.10cutoff is qualified to nativeUVEK2026 via the2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same unit. Complete native inventories and original caller emissions remain unchanged. Native biosphere exclusions remain explicit. No LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model conversion is approved; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a9afb26a34f560df2decb838258445a9260316b934884d38198ced7f7e886dea"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-af6afa89d820eabb",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_native_route",
+      "review_path": "export/uvek_heat_310_routes_review.json",
+      "review_sha256": "11e0a2208e869ae67dabc994377a71572ed3fb27feb05709de67db32339c4f42",
+      "authorization": "Standing autonomous approval of modelling corrections using independently inspected closer complete native counterparts, with warnings and later review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for transport, freight, lorry >32 metric ton, EURO4",
+          "reference product": "transport, freight, lorry >32 metric ton, EURO4",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+          "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "73f7fbc7cce7171e76e62bcfbd8bff6c7a400616976425ceba6361c9c8b4d9f6",
+        "source_metadata_sha256": "e930a67e7e95e4bb327844f9f001391e0a99a644f4c2e7206e06db8b40ef751b",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight, lorry >32 metric ton, EURO4",
+              "reference product": "transport, freight, lorry >32 metric ton, EURO4",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "d6c0e1eb415d9871ab7f9c9f1914f058c787c41e27a7b35e99e5a20275087e6d",
+            "metadata_sha256": "4aa004c4cd6eed732f4da060134b6d6c2d915da5e563006f5737da3b881d59d1"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "3282aee3b1e8943b1ec07e35b0fb672ea37b717843dac5417a3170c3e0313c8b",
+            "metadata_sha256": "615ccdb1b1771989ba96b17f01291796bc0907d429b85a5ea644c6703d4aec72"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "5ef6c9a4baeecdc3a26baa1bc4079dfa0203ac0b8ee3d936522c7992804d8bfe",
+            "metadata_sha256": "83cdd128b67a3946801b6fb832d87d2e2076d126cca9928a7fbd155081ab1a6d"
+          }
+        }
+      },
+      "limitations": [
+        "The source is>32tonne gross-vehicle-weight EUROIVfreight per net tonne-kilometre. Select the complete native European32-40tonne diesel class instead of the all-size Swiss fleet containing small trucks. Its actual operation mix is0.8long-haul,0.1regional and0.1urban delivery. The source has no upper weight bound, so32-40tonne is a capacity-class proxy, not an exact fleet correspondence.",
+        "Native fleet averages use newer Mobitool/HBEFAdata and are not an exact EUROIVvehicle. Emissions standard, diesel technology, geography, route mix, loading, fuel draw, road/vehicle lifecycle, wear and allocation differ. Retain the native complete service once and preserve signed net tonne-km; do not divide by vehicle payload, add another lorry/road or infer a Euro-class emission multiplier.",
+        "Only independently inspected exactecoinvent3.10cutoff is qualified to nativeUVEK2026 via the2025edge. Preserve signed caller quantities, formulas, supported uncertainty and foreground ownership at factor+1 in the same unit. Complete native inventories and original caller emissions remain unchanged. Native biosphere exclusions remain explicit. No LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model conversion is approved; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "49237768c8aabaf12469d0c33bb6cb158a9447e77eee67e01dcec9059efde5c1"
+        }
+      ]
     }
   ]
 }

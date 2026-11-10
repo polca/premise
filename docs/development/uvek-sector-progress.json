@@ -730,7 +730,7 @@
     },
     {
       "sector": "heat",
-      "status": "initial14cases_and_thirty_two_later3_10cases_qualified_six_pending_public_heat_gate_closed",
+      "status": "initial14cases_and_thirty_five_later3_10cases_qualified_three_pending_public_heat_gate_closed",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -938,10 +938,10 @@
         "total_remaining_heat_case_count": "not bounded by this cohort; later cohorts may expose more cases",
         "initial_observed_pending3_9cases": 14,
         "qualified3_9cases": 14,
-        "verification": "docs/development/uvek-heat-310-products-verification.json",
-        "observed_pending3_10cases": 6,
+        "verification": "docs/development/uvek-heat-310-routes-verification.json",
+        "observed_pending3_10cases": 3,
         "next_cohort_review": "docs/development/uvek-heat-310-mapping-frontier.json",
-        "qualified3_10cases": 32
+        "qualified3_10cases": 35
       }
     },
     {
