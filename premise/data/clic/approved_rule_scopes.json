@@ -3852,11 +3852,62 @@
           }
         },
         "conversion_factor": 1,
-        "boundary": "Same chromium-steel 18/8 production mix including hot rolling, although hot rolled is absent from the native short name. Keep the complete native mix and add no second rolling service."
+        "boundary": "Same chromium-steel 18/8 production mix including hot rolling, although hot rolled is absent from the native short name. Keep the complete native mix and add no second rolling service.",
+        "additional_profile_reviews": {
+          "3.9": {
+            "date": "2026-11-10",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "identity": {
+                "name": "steel production, chromium steel 18/8, hot rolled",
+                "reference product": "steel, chromium steel 18/8, hot rolled",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "5a7c25c357ee90cd35f0230d9624ee8d36e522ef8078241bf1d3e875fbea590c",
+              "inventory_sha256": "98e77a70b3253cea4f7f8f925227fe2660cbd2cec6154db24b38818211b7be7a",
+              "nonproduction_counts": {
+                "technosphere": 2
+              },
+              "comment_sha256": "546362d930a9cbcc857b66f0f65f777651447e660f6e76367e71dffe9beba3b1",
+              "product_information_sha256": "6a581ee924a9bd361790b1243e29172519051e6ba53484fa328153485fd49ccd"
+            },
+            "native_2026": {
+              "identity": {
+                "name": "Chromium steel 18/8, at plant",
+                "reference product": "Chromium steel 18/8, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "c33af62302cac8c7b18f8be60327650b8ae4cb2125b1ded571e8217a5c7083c5",
+              "inventory_sha256": "32915b4612f1837ff5829688d78f910d5bc5969132a23cf371bb3cb323ca26fe",
+              "nonproduction_counts": {
+                "technosphere": 3
+              },
+              "comment_sha256": "83c5d3acd0469df50cfed08132a9d8d94e0b368974c806c4c20320791dee2f2b",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "source_producer_witnesses": [],
+            "basis": "Complete hot-rolled 18/8 stainless material per kg, not sheet rolling as a processing service or unworked stock. Actual source and native descriptions both include differently produced steels and hot rolling. Retain the complete native European production mix once, without adding a second rolling or steel input. Source producer geography, upstream stock and electricity mixes, allocation, vintage and internal uncertainty differ; the European native inventory is an explicit geographic screening proxy for RoW.",
+            "conversion_factor": 1,
+            "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Original source coefficients and comments remain private."
+          }
+        }
       },
       "limitations": [
         "The complete native UVEK inventory retains its own vintage, allocation and emissions. Matching the documented product or service coordinate does not establish equal inventories or LCIA results.",
-        "Same chromium-steel 18/8 production mix including hot rolling, although hot rolled is absent from the native short name. Keep the complete native mix and add no second rolling service."
+        "Same chromium-steel 18/8 production mix including hot rolling, although hot rolled is absent from the native short name. Keep the complete native mix and add no second rolling service.",
+        "Additional exact ecoinvent 3.9 cut-off review: Complete hot-rolled 18/8 stainless material per kg, not sheet rolling as a processing service or unworked stock. Actual source and native descriptions both include differently produced steels and hot rolling. Retain the complete native European production mix once, without adding a second rolling or steel input. Source producer geography, upstream stock and electricity mixes, allocation, vintage and internal uncertainty differ; the European native inventory is an explicit geographic screening proxy for RoW."
       ],
       "scopes": [
         {
@@ -3871,6 +3922,19 @@
             "system_model": "cutoff"
           },
           "fingerprint": "e9e3825200d814ec7a327ab3b9074533e60c8dc5dc34d6f24a90a069a4bccf9f"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "308f4058cd37dfacea856a0989c76ca36aaa1df1f34b2ef091d6080b92337191"
         }
       ]
     },
@@ -18762,13 +18826,104 @@
         },
         "conversion_factor": 1,
         "native_direct_technosphere_coordinates_match": true,
-        "boundary": "Same organic-chemical liquid-storage infrastructure module:four tanks of4000m3 each,total16000m3,with50year assumed life. One source/native unit is that complete module. Both include construction materials,delivery,dismantling/disposal and land use,while construction energy is excluded and disposal assumes no contamination. Preserve one module with no factor4,capacity/volume/lifetime factor or added stored chemicals/construction energy. Retain native building-disposal approximations,high technological uncertainty,market/geography/background and vintage limits."
+        "boundary": "Same organic-chemical liquid-storage infrastructure module:four tanks of4000m3 each,total16000m3,with50year assumed life. One source/native unit is that complete module. Both include construction materials,delivery,dismantling/disposal and land use,while construction energy is excluded and disposal assumes no contamination. Preserve one module with no factor4,capacity/volume/lifetime factor or added stored chemicals/construction energy. Retain native building-disposal approximations,high technological uncertainty,market/geography/background and vintage limits.",
+        "additional_profile_reviews": {
+          "3.9": {
+            "date": "2026-11-10",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "identity": {
+                "name": "market for liquid storage tank, chemicals, organics",
+                "reference product": "liquid storage tank, chemicals, organics",
+                "location": "GLO",
+                "unit": "unit"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "0c580e0352ab2d5ffd06a33d1d1f8f57c5c61a181e384e7bc0b2b2fd1ff2894e",
+              "inventory_sha256": "4b5871ee13a47e41a1affc0c11f910e255dcb4e42a225a782080ea1a04df7ae4",
+              "nonproduction_counts": {
+                "technosphere": 2
+              },
+              "comment_sha256": "48acb1c472e88d0b9e8d4fe3bf3cd167c9458dc7f9c9ea7f13d2a0ebae03bbbe",
+              "product_information_sha256": "934bfcbee15f0c10ebaa29109fd9d036f9f2c5ca8485995bbe205bdf7ddf7089"
+            },
+            "native_2026": {
+              "identity": {
+                "name": "Liquid storage tank, chemicals, organics",
+                "reference product": "Liquid storage tank, chemicals, organics",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "0151066a7a152d6e774291bb2ec8694416f83a80f31931229f0b9e9f39dd6db5",
+              "inventory_sha256": "2fcb3f06f71d57ef6c5c44b219660a3859fe6277a60ba430d5f79aca609cd675",
+              "nonproduction_counts": {
+                "technosphere": 12,
+                "biosphere": 5
+              },
+              "comment_sha256": "e11c3a58e9ad006e0caab3bdf27f85d7dacdf872e1f60e5d99b791095e90821d",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "source_producer_witnesses": [
+              {
+                "identity": {
+                  "name": "liquid storage tank production, chemicals, organics",
+                  "reference product": "liquid storage tank, chemicals, organics",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "17d08ca295f3cee8558504c6740276867836024ea1725a60cf12ddfb6470e4e6",
+                "inventory_sha256": "4aad4b8f7df580f385d76b8e978b1f277ab4139dc24ebcc1af5bb631fa2b4fa5",
+                "nonproduction_counts": {
+                  "technosphere": 26,
+                  "biosphere": 5
+                },
+                "comment_sha256": "13b268089abf03de7bad36d9181c62a8515b94f7b70856a3b927aa43742ea3ea",
+                "product_information_sha256": "934bfcbee15f0c10ebaa29109fd9d036f9f2c5ca8485995bbe205bdf7ddf7089"
+              },
+              {
+                "identity": {
+                  "name": "liquid storage tank production, chemicals, organics",
+                  "reference product": "liquid storage tank, chemicals, organics",
+                  "location": "CH",
+                  "unit": "unit"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "metadata_sha256": "20a0fef62bd2c4d3bfebd8abb9d13ae1f566274112c4f4c66442a27eb43b79ae",
+                "inventory_sha256": "e91f945c4f5bd89954d91c36f26f79e183df27326e3138fc60a30b9e38f18e51",
+                "nonproduction_counts": {
+                  "technosphere": 10,
+                  "biosphere": 5
+                },
+                "comment_sha256": "13b268089abf03de7bad36d9181c62a8515b94f7b70856a3b927aa43742ea3ea",
+                "product_information_sha256": "934bfcbee15f0c10ebaa29109fd9d036f9f2c5ca8485995bbe205bdf7ddf7089"
+              }
+            ],
+            "basis": "One whole storage facility consisting of four 4000-m3 tanks, total 16000 m3, with 50-year assumed life in both source and native descriptions. Retain factor +1 per facility unit, not four tank units or one cubic metre. Both include construction materials, material transport, dismantling/disposal and land use but exclude construction energy. No capacity, lifetime or throughput scaling is added. Swiss native modelling replaces the global market portfolio; materials, disposal, contamination assumptions, geography, vintage and internal uncertainty remain screening limitations.",
+            "conversion_factor": 1,
+            "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Original source coefficients and comments remain private."
+          }
+        }
       },
       "limitations": [
         "Same organic-chemical liquid-storage infrastructure module:four tanks of4000m3 each,total16000m3,with50year assumed life. One source/native unit is that complete module. Both include construction materials,delivery,dismantling/disposal and land use,while construction energy is excluded and disposal assumes no contamination. Preserve one module with no factor4,capacity/volume/lifetime factor or added stored chemicals/construction energy. Retain native building-disposal approximations,high technological uncertainty,market/geography/background and vintage limits.",
         "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
         "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
-        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes.",
+        "Additional exact ecoinvent 3.9 cut-off review: One whole storage facility consisting of four 4000-m3 tanks, total 16000 m3, with 50-year assumed life in both source and native descriptions. Retain factor +1 per facility unit, not four tank units or one cubic metre. Both include construction materials, material transport, dismantling/disposal and land use but exclude construction energy. No capacity, lifetime or throughput scaling is added. Swiss native modelling replaces the global market portfolio; materials, disposal, contamination assumptions, geography, vintage and internal uncertainty remain screening limitations."
       ],
       "scopes": [
         {
@@ -18783,6 +18938,19 @@
             "system_model": "cutoff"
           },
           "fingerprint": "cb84491130e0ebce7ff8fef8b2b66a0bfe49d4d4d7e773ad59a4e1bce1d3c52e"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4410eb3b8ca829db5d63dcf0e98e780932edd7604319d1d36a8771515fbda223"
         }
       ]
     },
@@ -121850,11 +122018,64 @@
         "target_reference_amount": 1,
         "conversion_factor": 1,
         "source_inventory_sha256": "f808a0a5e2a32a6ae7f112ddab82b6ccc3651316c17baf5b4fa8aae211404a8f",
-        "source_metadata_sha256": "f6daad03d6eebd4b7a45305c0a1f607a963305b423ceaa1c95c46a7d97ebe8e5"
+        "source_metadata_sha256": "f6daad03d6eebd4b7a45305c0a1f607a963305b423ceaa1c95c46a7d97ebe8e5",
+        "additional_profile_reviews": {
+          "3.9": {
+            "date": "2026-11-10",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source": {
+              "identity": {
+                "name": "chemical factory construction, organics",
+                "reference product": "chemical factory, organics",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "1e498770d24617edcbd5584fd0ecaea9d9a0a9f2929610e40e25d977004949b7",
+              "inventory_sha256": "6279ca4d50eb5d356ef39752c77d207b1cef0ab9ddfdf93bc21d4071750a12aa",
+              "nonproduction_counts": {
+                "technosphere": 4,
+                "biosphere": 4
+              },
+              "comment_sha256": "0eb177cda6488e892f8c018696cbd51c1da1ad569bf100f759cada0f9d7cb990",
+              "product_information_sha256": "a9b4d2687dd41ed638fee024b296dddde96a0fbc40c44c519941f8bc7c216e10"
+            },
+            "native_2026": {
+              "identity": {
+                "name": "Chemical plant, organics",
+                "reference product": "Chemical plant, organics",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "metadata_sha256": "55dbec9be92411ecc4e07c3ec81be1f92d4b12b6727930f4be4120aeda93be47",
+              "inventory_sha256": "6af55f901e1f9a39912315b633873cff639c255c8c345a590435aa302982f7fb",
+              "nonproduction_counts": {
+                "technosphere": 4,
+                "biosphere": 6
+              },
+              "comment_sha256": "69ac7ae680251cb24912a8fca18afb0e6afb746db112269c89f11245c809e11c",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "source_producer_witnesses": [],
+            "basis": "One complete organic chemical plant infrastructure unit, not a kg of chemicals or a plant-year. Both actual descriptions include land use, buildings, facilities and dismantling using estimates from two German sites; source product information states a 50-year assumed life. Retain native unit factor +1 with no lifetime, capacity or annual-output multiplier. Construction inventory, geography, vintage, estimates, biosphere coverage and internal uncertainty differ.",
+            "conversion_factor": 1,
+            "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Original source coefficients and comments remain private."
+          }
+        }
       },
       "limitations": [
         "Source and native describe one average organic chemical plant unit, including land use, buildings, facilities and dismantling, based on the same two German-site lineage. Use the complete native infrastructure per signed sourceunit; no production-capacity or lifetime factor is inferred. Native materials, land classes, internal uncertainty and vintage remain screening differences.",
-        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects."
+        "Only exact inspected ecoinvent3.10cutoff is newly qualified. Preserve signed caller quantities, formulas and supported uncertainty and complete links. No reverse or cross-system-model route, invented credit or silent omission is approved. Native background/geography/vintage/allocation differences and prior biosphere exclusions remain limitations, with unquantified score effects.",
+        "Additional exact ecoinvent 3.9 cut-off review: One complete organic chemical plant infrastructure unit, not a kg of chemicals or a plant-year. Both actual descriptions include land use, buildings, facilities and dismantling using estimates from two German sites; source product information states a 50-year assumed life. Retain native unit factor +1 with no lifetime, capacity or annual-output multiplier. Construction inventory, geography, vintage, estimates, biosphere coverage and internal uncertainty differ."
       ],
       "scopes": [
         {
@@ -121869,6 +122090,19 @@
             "system_model": "cutoff"
           },
           "fingerprint": "1f18aac1dde626c6abe508893ceaf120ddf56e405ac8a8462031fc6f6ae13e6f"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8d6a2df343582764e9faf47b9608873ddfbc65492ea97d4175785c3f1fed7cb3"
         }
       ]
     },
@@ -136413,6 +136647,423 @@
             "system_model": "cutoff"
           },
           "fingerprint": "0e9566c715a2f6187bfaf5260576251b93b44bf68a74b8c8a3070208dd00aa49"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-975df496dad5c2a7",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged evidence is supplemented by the exact 3.9 source/native primary inspection recorded here; no name-only or blanket heuristic approval.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for polyurethane, rigid foam",
+            "reference product": "polyurethane, rigid foam",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "6b125476089029f18a41440c2d241cf6c8ae795050dde7e42ac3ece59f7ab70f",
+          "inventory_sha256": "d9497c670672665a13a047384098e9c8ab0e9024d956feaf19e95ef6487bebfc",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "comment_sha256": "969cff7d653b9e8f9505ab8f245a796b4e792b46029ac519d27d5b4a144b0b45",
+          "product_information_sha256": "a8ab43e23c05f9d39aa3f1e023ad215a62ddb41b9cff0b0a55e458e6943b5268"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Polyurethane, rigid foam, at plant",
+            "reference product": "Polyurethane, rigid foam, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0a4c9cd00e83c1969a4a15c64378c08bd65a65d48e0ad7d802d784ff4d773f9d",
+          "inventory_sha256": "76bf098c49a72b2096cce10fb199c31f3653e0291eb081c8b1d420bae3a00336",
+          "nonproduction_counts": {
+            "technosphere": 7,
+            "biosphere": 2
+          },
+          "comment_sha256": "f9ae61262b5eded3bd318a0363c07948d1f5c882fa4854591ded700ef8b8cf0b",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "polyurethane production, rigid foam",
+              "reference product": "polyurethane, rigid foam",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e02aa8d5696aa2b23f75c5e61d5c9367714caed3ca96b06a98e6322f7b51812b",
+            "inventory_sha256": "42c9ee16b4fb63778f90b2b4440385d96ebfeccebea09a07eccacf10420b9dd9",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 1
+            },
+            "comment_sha256": "62e9296eae8e50d7c9c2a47a45bd1029c945796538d29f82b176df03b09b9a8f",
+            "product_information_sha256": "a8ab43e23c05f9d39aa3f1e023ad215a62ddb41b9cff0b0a55e458e6943b5268"
+          }
+        ],
+        "basis": "Complete rigid polyurethane foam per kg. Both actual producer descriptions identify one possible rigid PUR composition and include monomer transport and foam production energy/emissions. Retain native rigid foam, not flexible foam or resin alone, at factor +1. Market delivery, recipe, geography, vintage and internal uncertainty differ and are not reconstructed; no density, insulation-performance or finished-volume equivalence is inferred.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Original source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Complete rigid polyurethane foam per kg. Both actual producer descriptions identify one possible rigid PUR composition and include monomer transport and foam production energy/emissions. Retain native rigid foam, not flexible foam or resin alone, at factor +1. Market delivery, recipe, geography, vintage and internal uncertainty differ and are not reconstructed; no density, insulation-performance or finished-volume equivalence is inferred.",
+        "Preserve signed caller coefficients, formulas, uncertainty and separate transport/emissions. Retain the complete native inventory; mapped-export biosphere exclusions and unquantified score differences remain. Only this inspected 3.9 cut-off profile is newly approved, without uninspected releases, consequential or inverse routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dedde37209d5744ce5dd109f428a1a9770941d9625d5ae44b01b0a8fdb81aa7b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8ee398f404139d1f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_stainless_stock_review.json",
+      "review_sha256": "de19396e8bbc05b27a68d251fc80588e970da82bf85624fd9309e89882294e9a",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged evidence is supplemented by the exact 3.9 source/native primary inspection recorded here; no name-only or blanket heuristic approval.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "steel production, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2546034198c697a5cd68fa6b501c9171b406afd0707de8551bc5880b936e5086",
+          "inventory_sha256": "48cef97d09a819eb525879a397b5da971c7434190ff68c8c5a05ebf62171e739",
+          "nonproduction_counts": {
+            "technosphere": 2
+          },
+          "comment_sha256": "546362d930a9cbcc857b66f0f65f777651447e660f6e76367e71dffe9beba3b1",
+          "product_information_sha256": "6a581ee924a9bd361790b1243e29172519051e6ba53484fa328153485fd49ccd"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Chromium steel 18/8, at plant",
+            "reference product": "Chromium steel 18/8, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "c33af62302cac8c7b18f8be60327650b8ae4cb2125b1ded571e8217a5c7083c5",
+          "inventory_sha256": "32915b4612f1837ff5829688d78f910d5bc5969132a23cf371bb3cb323ca26fe",
+          "nonproduction_counts": {
+            "technosphere": 3
+          },
+          "comment_sha256": "83c5d3acd0469df50cfed08132a9d8d94e0b368974c806c4c20320791dee2f2b",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Complete hot-rolled 18/8 stainless material per kg, not sheet rolling as a processing service or unworked stock. Actual source and native descriptions both include differently produced steels and hot rolling. Retain the complete native European production mix once, without adding a second rolling or steel input. Source producer geography, upstream stock and electricity mixes, allocation, vintage and internal uncertainty differ; the European native inventory is an explicit geographic screening proxy for RoW.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Original source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Complete hot-rolled 18/8 stainless material per kg, not sheet rolling as a processing service or unworked stock. Actual source and native descriptions both include differently produced steels and hot rolling. Retain the complete native European production mix once, without adding a second rolling or steel input. Source producer geography, upstream stock and electricity mixes, allocation, vintage and internal uncertainty differ; the European native inventory is an explicit geographic screening proxy for RoW.",
+        "Preserve signed caller coefficients, formulas, uncertainty and separate transport/emissions. Retain the complete native inventory; mapped-export biosphere exclusions and unquantified score differences remain. Only this inspected 3.9 cut-off profile is newly approved, without uninspected releases, consequential or inverse routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7a16ac402228f29cb108991300bb17d9afc7b15e19a0c1d0100fbcf47491e7ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-39c96c652df31373",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged evidence is supplemented by the exact 3.9 source/native primary inspection recorded here; no name-only or blanket heuristic approval.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for portafer",
+            "reference product": "portafer",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ec112e62cb1eb6346373a541baa3a6361376d8cae9c5e62c566a29ca2a6e5c38",
+          "inventory_sha256": "b4ea62f4fbb211314c61bfafaf350f13f7e71ce092409ae2d117e81346004fd7",
+          "nonproduction_counts": {
+            "technosphere": 7
+          },
+          "comment_sha256": "e45b888b7e76642e0b4c83c8f1ae5a3951511b0e23806862e98b3f518dbc5082",
+          "product_information_sha256": "3588657c41f85e461de5e1bfee4c849803ec50ecea198467280878cb9cc59b8b"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Portafer, at plant",
+            "reference product": "Portafer, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "71a8628fe101c8669129f3d827c03facc6354e3ad812b2c902e006ce24e3cc19",
+          "inventory_sha256": "65bcf4b043c4fdc8a6dc2ea5d79f918d5f0d9a10fcf367dff7f46efac07a850b",
+          "nonproduction_counts": {
+            "technosphere": 9,
+            "biosphere": 10
+          },
+          "comment_sha256": "7040c85f67ea24561a96f60f22f55be794a673347e4e52d83dc24ebd1ba7429f",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "portafer production",
+              "reference product": "portafer",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9fe71c93dbe94d14c5b5b9fc5372cef7bdda0688df8e05d7c45852aa56eba7f6",
+            "inventory_sha256": "6d2496647359e8f3760a1fc5a0687a8eafae09c12ed3485fdc2e10ed2ff14180",
+            "nonproduction_counts": {
+              "technosphere": 15,
+              "biosphere": 10
+            },
+            "comment_sha256": "71b1e9a928fc65344bf10e86a33ed5f40f788f5edbe5c119b89a3618aadff5e2",
+            "product_information_sha256": "3588657c41f85e461de5e1bfee4c849803ec50ecea198467280878cb9cc59b8b"
+          },
+          {
+            "identity": {
+              "name": "portafer production",
+              "reference product": "portafer",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8f9675635e31f8d1f1017d29587226663822145acbc8370ea5416e8459baa8db",
+            "inventory_sha256": "f810d121bb36c7a9fa6bef5f813f522b093c7cb39a208b0d3486146cae791205",
+            "nonproduction_counts": {
+              "technosphere": 9,
+              "biosphere": 10
+            },
+            "comment_sha256": "583a15e05fd2266c3e7da189d095f79e4efe1a8cf84f69a3e2b083c14d12c79c",
+            "product_information_sha256": "3588657c41f85e461de5e1bfee4c849803ec50ecea198467280878cb9cc59b8b"
+          },
+          {
+            "identity": {
+              "name": "portafer production",
+              "reference product": "portafer",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4c14146c488a74b306388018f0ba197c44e67beb8cae9df353e8a04ced8adb35",
+            "inventory_sha256": "40ab89b0b3de277eef1312d3d7165b5dbb71e413bb357bd5780591ec1a52547c",
+            "nonproduction_counts": {
+              "technosphere": 9,
+              "biosphere": 10
+            },
+            "comment_sha256": "fce8831db8f484d5bb6a0538fa354b297ce5f66691799d988a778897d3155dd8",
+            "product_information_sha256": "3588657c41f85e461de5e1bfee4c849803ec50ecea198467280878cb9cc59b8b"
+          }
+        ],
+        "basis": "Complete mined, crushed and milled ferric oxide (Portafer) per kg. Both source producers and native documentation approximate mineral extraction with iron mining plus limestone crushing/milling, including energy, machinery, air emissions and infrastructure. This is not metallic iron, iron ore concentrate for smelting or a chemical conversion service. Retain factor +1 without extra yield correction. Native European production replaces the global market and Quebec/other producer mix; delivery, mining model, unmodelled water emissions/tailings, allocation, vintage and uncertainty differences remain unquantified.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Original source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Complete mined, crushed and milled ferric oxide (Portafer) per kg. Both source producers and native documentation approximate mineral extraction with iron mining plus limestone crushing/milling, including energy, machinery, air emissions and infrastructure. This is not metallic iron, iron ore concentrate for smelting or a chemical conversion service. Retain factor +1 without extra yield correction. Native European production replaces the global market and Quebec/other producer mix; delivery, mining model, unmodelled water emissions/tailings, allocation, vintage and uncertainty differences remain unquantified.",
+        "Preserve signed caller coefficients, formulas, uncertainty and separate transport/emissions. Retain the complete native inventory; mapped-export biosphere exclusions and unquantified score differences remain. Only this inspected 3.9 cut-off profile is newly approved, without uninspected releases, consequential or inverse routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "74d6c9fc37c0a701ffcb66360ae511779a904335cc08b3000f35847dd7cb1fd5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9a4457b9bc852f72",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_reference_flow_sign_review.json",
+      "review_sha256": "ba438a552acf53e82426c1ca3a226b93f6bd352f25dee49a745bd68929696bbc",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected same-function/product and reference-basis screening proxies. Packaged evidence is supplemented by the exact 3.9 source/native primary inspection recorded here; no name-only or blanket heuristic approval.",
+      "inspection": {
+        "date": "2026-11-10",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for polyvinylchloride, bulk polymerised",
+            "reference product": "polyvinylchloride, bulk polymerised",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "4ef307cfd055bc0c3b8e7632a6625a4af8e8ce2dad2df8b265f87bc8c9040725",
+          "inventory_sha256": "77b2554623bb4972fe3f066c81bd57376a4aef3c0fe47946ab96d58077c8583e",
+          "nonproduction_counts": {
+            "technosphere": 5
+          },
+          "comment_sha256": "737fbbb54afd07163ad81dd09c74eef15e5bf9858c8d79e60a0c575d1041f15d",
+          "product_information_sha256": "4823f8f4e81012706a297226748831661b6e9989c0b46820d64ea8737c3f360f"
+        },
+        "native_2026": {
+          "identity": {
+            "name": "Polyvinylchloride, bulk polymerised, at plant",
+            "reference product": "Polyvinylchloride, bulk polymerised, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "b55e04cd3d2cb7761b4e3132b6d4b2e6487c8230c375fbee5839dda1151e7b02",
+          "inventory_sha256": "d3ed9ced5c914294327d3eeb61a7d5c2f846567afce39a36871313cc33785e6f",
+          "nonproduction_counts": {
+            "technosphere": 2
+          },
+          "comment_sha256": "56bb38aa4a9cd801d4861a55e528239c3ebff39b21a957788cd8f9b6d7b905b7",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "polyvinylchloride production, bulk polymerisation",
+              "reference product": "polyvinylchloride, bulk polymerised",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1a83d9098851d85ce2de1b906e27f91f5cc07fe3cd69d0a4b63cc56d4bcac35c",
+            "inventory_sha256": "8370a615a1b8d2ce1a10452e61585f2f06e592411576d39903caf5cfd6b05193",
+            "nonproduction_counts": {
+              "technosphere": 2
+            },
+            "comment_sha256": "190a7bf732815003b85f9ae1f175cfc3ef980888961ace74e7d937c7a91f93e9",
+            "product_information_sha256": "4823f8f4e81012706a297226748831661b6e9989c0b46820d64ea8737c3f360f"
+          },
+          {
+            "identity": {
+              "name": "polyvinylchloride production, bulk polymerisation",
+              "reference product": "polyvinylchloride, bulk polymerised",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "aed71d1302976113d57c8ee98b092601e18bb861129c7f43bd276edfd212b0ad",
+            "inventory_sha256": "e44c9b699f1d0511b1c1ce9b11744d3b94d90e6c3e3c2f104016c30417bd4df2",
+            "nonproduction_counts": {
+              "technosphere": 2
+            },
+            "comment_sha256": "190a7bf732815003b85f9ae1f175cfc3ef980888961ace74e7d937c7a91f93e9",
+            "product_information_sha256": "4823f8f4e81012706a297226748831661b6e9989c0b46820d64ea8737c3f360f"
+          }
+        ],
+        "basis": "Virgin bulk-polymerised PVC per kg. Both actual source and native producer descriptions explicitly use a production-volume mix of suspension and emulsion PVC as their bulk-PVC approximation. Retain that complete native mix at factor +1, without adding resin, processing or a second polymerisation burden. This is not PVC waste treatment, recycled PVC or a fabricated profile. Source global market delivery, constituent process updates, allocation, geography, vintage and internal uncertainty differ and are not reconstructed.",
+        "conversion_factor": 1,
+        "hash_method": "SHA256 of sorted compact JSON with default=str for complete local Brightway metadata/exchange dictionaries; comment/product-information hashes are separate. Original source coefficients and comments remain private."
+      },
+      "limitations": [
+        "Virgin bulk-polymerised PVC per kg. Both actual source and native producer descriptions explicitly use a production-volume mix of suspension and emulsion PVC as their bulk-PVC approximation. Retain that complete native mix at factor +1, without adding resin, processing or a second polymerisation burden. This is not PVC waste treatment, recycled PVC or a fabricated profile. Source global market delivery, constituent process updates, allocation, geography, vintage and internal uncertainty differ and are not reconstructed.",
+        "Preserve signed caller coefficients, formulas, uncertainty and separate transport/emissions. Retain the complete native inventory; mapped-export biosphere exclusions and unquantified score differences remain. Only this inspected 3.9 cut-off profile is newly approved, without uninspected releases, consequential or inverse routes."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8b713e12f44edf97f55be1090eee7ca7f5b22a61591303f37f3b519a74b01f19"
         }
       ]
     }

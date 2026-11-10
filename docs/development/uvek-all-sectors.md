@@ -554,3 +554,34 @@ markets, with no validation errors and the same 14 existing IGCC warnings. No
 additional export is created for this regression. See the
 [fuel preparation receipt](uvek-fuels-312-preparation-verification.json). The earlier full export/LCI
 qualification remains the separate cement receipt.
+
+
+### Seven 3.9 fuel material/facility reviews (10 November 2026)
+
+The actual ecoinvent 3.9 cut-off inventories and native 2026 providers support
+seven narrowly scoped correspondences: rigid polyurethane foam, bulk PVC, RER
+and RoW hot-rolled 18/8 stainless steel, an organic chemical plant, an organic
+chemical storage facility, and milled ferric oxide (Portafer). Every source and
+native reference is positive one in the same unit, with a nonempty native
+inventory. The steel includes hot rolling; no extra rolling service is added.
+The storage unit represents the complete four-tank, 16,000-m3 facility, not one
+tank or one cubic metre. Plant and storage lifetime assumptions do not introduce
+annual-output or lifetime scaling. Both PVC descriptions explicitly use a
+suspension/emulsion production mix as their bulk-PVC approximation.
+
+The ledger retains primary inspection hashes, producer witnesses and explicit
+market-delivery, geography, process-model, allocation, vintage, uncertainty and
+biosphere-coverage limitations. Original source inventories/comments remain
+private. Existing 557 scopes are unchanged; seven additions give **564 validated
+unique scopes**. No production Python, YAML or Brightpath resource is changed.
+No approval is inferred for different releases, consequential models, or the
+physically mismatched chemical correspondences that remain under review.
+
+Twenty-six focused scope/sign/formula/uncertainty/fresh-cache tests pass, including
+all seven new cases and the previous 3.12 batch. Black and Ruff pass for the
+changed test file. A real licensed preparation rerun confirms all seven clear:
+**44 unapproved 3.9 correspondences remain, down from 51**. This diagnostic bypasses
+the public sector-availability guard only to inspect preparation; it performs
+no fuel transformation or export. Fuels remains unqualified, and the four-sector
+public scope is unchanged. The full goal remains active. See the
+[preparation receipt](uvek-fuels-39-material-preparation-verification.json).
