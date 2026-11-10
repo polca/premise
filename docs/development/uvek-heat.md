@@ -501,3 +501,25 @@ no equality of those scenario results is claimed. See `uvek-heat-markets.md` and
 This completes market planning only. Consumer classification/relinking, public
 callback/preparation/certification and combined export remain unfinished. Public
 heat stays gated, and the other 16 sectors still require operationalization.
+
+
+### Native consumer boundary discovery
+
+Read-only discovery found 162 used MJ heat-provider identities and 1,191 incoming
+exchanges, before protecting source heat/electricity generators and classifying
+end-use consumers. These are candidates, not approved runtime substitutions.
+Twenty-one network-only exchanges remain separate: the native transport service
+explicitly excludes heat supply. The chemical steam process has 55 incoming kg
+exchanges and consumes water plus MJ **fuel-combustion** services. Those inputs
+cannot be relinked one-for-one to delivered heat; their useful-heat basis still
+needs qualification. An initial interpretation as delivered-MJ inputs was
+corrected after inspecting the actual suppliers. No source exchange was changed.
+
+The exact candidate identities, positive production-reference checks and
+signed/formula/uncertainty counts are retained in
+`uvek-heat-consumer-frontier.json`; full licensed records remain private. Matching,
+geographic routing, protected-generation boundaries, omission/refusal audits and
+consumer LCI checks remain to implement. The prior three-layer stage is committed
+as `405dcbf1`. Its verified installed package supersedes an obsolete install,
+removed after retained-wheel hash and live-process checks, reclaiming about
+465 MB. Source databases, encrypted IAM archives, evidence and exports remain.

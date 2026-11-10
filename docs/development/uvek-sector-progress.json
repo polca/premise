@@ -848,7 +848,8 @@
         "25f0dacf",
         "27ec8018",
         "7f8356be",
-        "d1149c50"
+        "d1149c50",
+        "405dcbf1"
       ],
       "tests": [
         "46 reference-basis plus existing heat tests passed.",
@@ -1033,6 +1034,16 @@
         ],
         "public_heat_gate": "closed",
         "verification": "docs/development/uvek-heat-markets-verification.json"
+      },
+      "consumer_frontier": {
+        "status": "read_only_primary_boundary_discovery_runtime_relinking_pending",
+        "candidate_MJ_heat_provider_identities": 162,
+        "candidate_MJ_heat_uses": 1191,
+        "network_only_uses": 21,
+        "kg_steam_uses": 55,
+        "verification": "docs/development/uvek-heat-consumer-frontier.json",
+        "runtime_matcher": "not yet implemented; text search is discovery only",
+        "source_mutation": false
       }
     },
     {

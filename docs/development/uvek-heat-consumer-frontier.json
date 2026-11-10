@@ -1,0 +1,3199 @@
+{
+  "status": "read_only_consumer_frontier_classified_runtime_relinking_not_implemented",
+  "discovery_method": "Broad heat/steam name search across MJ and kg native providers, followed by exact catalog identities, production references and primary metadata inspection. Name search is discovery only, not an approved runtime matcher.",
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "discovered_provider_records": 651,
+  "providers_with_actual_uses": 250,
+  "discovered_exchange_uses": 1755,
+  "candidate_MJ_heat_provider_identities": 162,
+  "candidate_MJ_heat_uses": 1191,
+  "separate_network_only_identities": 2,
+  "network_only_uses": 21,
+  "discovered_fuel_input_service_identities": 41,
+  "fuel_input_service_uses": 130,
+  "kilogram_steam_uses": 55,
+  "boundary_findings": [
+    {
+      "identity": {
+        "name": "Steam, for chemical processes, at plant",
+        "reference product": "Steam, for chemical processes, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "finding": "Positive 1kg steam reference. Water plus MJ burned-fuel services, not delivered heat. Preserve water and steam quantities. No one-for-one MJ relink or inferred kg/MJ factor; establish reviewed useful-heat basis before changing combustion services."
+    },
+    {
+      "name": "Transport, district heat, average",
+      "finding": "Network infrastructure and transport energy only; primary description explicitly excludes heat supply. Do not replace with complete district delivery or add a second heat input."
+    },
+    {
+      "name": "Heat, unspecific, in chemical plant",
+      "finding": "Positive 1MJ useful-heat/steam-energy reference; water excluded for closed-loop steam. Potential industrial-heat screening boundary; steam grade and internal electricity remain limitations to review."
+    },
+    {
+      "name": "Heat, natural gas, at industrial furnace 1MW",
+      "finding": "Positive 1MJ useful heat at furnace, documented 95% net efficiency, no heat distribution. Candidate industrial end-use replacement at unchanged signed MJ, not fuel-input-MJ replacement."
+    }
+  ],
+  "pending_work": [
+    "Select exact reviewed consumer-facing heat providers and classify industrial/buildings/district boundaries.",
+    "Protect complete native energy-generation inventories, CLIC source inventories and migration helpers from rewriting their own supply pathways.",
+    "Record every unchanged network-only, fuel-service, mass-steam and unresolved endpoint explicitly.",
+    "Resolve IAM geography with reviewed fallback; preserve quantities, uncertainty, formulas and literal originals in audit.",
+    "Verify cycles, deterministic replay and finite consumer LCIs before public callback integration."
+  ],
+  "exact_candidates": [
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c4f716123ebe4b0b68e0542f55b1ae08"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, softwood chips from forest, at furnace 50kW",
+        "reference product": "Heat, softwood chips from forest, at furnace 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "bef476ecab7ecb6a672dde7f4a8e1d3f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "17b91fde389bda7d58a4aaeede109dd5"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "8d803eeda640adef752df5d52d0f5292"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with biogas engine, allocation exergy",
+        "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "47d76c259290fe48de16b6526f808779"
+      ],
+      "positive_unit_reference": true,
+      "uses": 17,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 17
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "99584ae08869e1b6f60ffd8132cc711e"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "571ef2956a602ecf7534f043aeebd100"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "ec0b1f6b34ec60d86f0d7315208f9ab2"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "ae60939110ff8a1a7ab618c9b96477f0"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d7008e498068a2e3cc5df810160cb068"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "3aa759981be240dc5857ce8eb8a912bb"
+      ],
+      "positive_unit_reference": true,
+      "uses": 33,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 27,
+        "0": 6
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, poultry litter pellets, in rotating grate furnace 250-350kW",
+        "reference product": "Heat, poultry litter pellets, in rotating grate furnace 250-350kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "4eac5a401ca04e1c85b99392dbba2e3e"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "e26020dfcb02220e81b5f230f3bab0eb"
+      ],
+      "positive_unit_reference": true,
+      "uses": 97,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 92,
+        "0": 5
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d374fb6f69c100e451d85116240a73f5"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "1c367bf15016238dee4d7d038d2933f8"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "PT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "bd6d554ce8e23b9996064e20cee3cb91"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "xx Heat, natural gas, at boiler modulating >100kW",
+        "reference product": "xx Heat, natural gas, at boiler modulating >100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "1977617b088b93461e9bfef310bbd48f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 3,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 3
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation electricity",
+        "reference product": "Heat, at heat pump 30kW, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "186f8df405d606498943be3e93d12a7a"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "005e013a2ebabdc493ea569f3e0cb760"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+        "reference product": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "96e4ffc336afc5816c72337f4d46bbc2"
+      ],
+      "positive_unit_reference": true,
+      "uses": 16,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 16
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at nuclear power plant, allocation exergy",
+        "reference product": "Heat, at nuclear power plant, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "289cd3d3b714a6b8025e9970b558ff5a"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "0c7d558dc21ebac36e07c11e0ece3665"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating 300kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "551fa561912bee455db273cd2144b286"
+      ],
+      "positive_unit_reference": true,
+      "uses": 3,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 3
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a61356b0435a800ec346bdcc7ae2295d"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "KR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "5bf1d08446a7e6c1f36c58876768b3db"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "GB",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "e0085fa95586dfd66074893da3d5da76"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from maize silage, at cogen",
+        "reference product": "Heat, biogas from maize silage, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "ffd3995f8321496b834e7b347dfb794b"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "7e81c5f340102e917cae46d8f6ba7448"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation energy",
+        "reference product": "Heat, at heat pump 30kW, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "b0292417b2afdaffe4c5aa70a311c822"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c4099af44c2874b3b6701842ca15061a"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, wood chips, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, wood chips, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "73dacd14b0309c829548a6b9b0b0bb64"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation price",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "1b03aa523ac73a3864f091ccb780daeb"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump, air-water, 50kW, CH electricity, in old building",
+        "reference product": "Heat, at heat pump, air-water, 50kW, CH electricity, in old building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f1f9a6e27eed4e8a7957456182ca8995"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "RS",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "4c73ba8267225e4b8820bca6186024b8"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f947f2701bfa0ae831d29866f462cddb"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "1c9b84c1c0a98e0f50bf3306826c9ecf"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "21a443670c644f4e2c65dfa3f50eb9e4"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c2480cca8f6b5ef38555e6ee05043aa3"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "e9782f38ac5738c51658409673dc2120"
+      ],
+      "positive_unit_reference": true,
+      "uses": 15,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 13,
+        "0": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "186eaff5b2e992173e9f028fb448e752"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+        "reference product": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c9605197c5049836eeaec3efbee2ec7e"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, heavy fuel oil, at industrial furnace 1MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a7910c1fc1ad447c72c7191835ee997f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 78,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 74,
+        "0": 4
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "ES",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "2c1c8dfe18e3743281b269a050d118f2"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "TW",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "74518a50734f5b5734b74e8314b69140"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "82f4b974895f350915d7e744c61ce93d"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d1b0d97f067ed32a5a888950ac762a76"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from sugar beet, at cogen",
+        "reference product": "Heat, biogas from sugar beet, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "1993773c1fa06c3cdba0c0eec1c19ae2"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a84d6d3d226ad4f984a5e2954ef3e04f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "LT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "b2047b8bae3feb8887d71fb033882f81"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "cd58b2b9244aaa571488f9141cfa02de"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "IE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d548c8eb8e2baadc7ea8f18db04bf381"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "30c4ea0cf08959520b20dfe7fd58aa17"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d8a241470aab0cc538175b3ff0d78c6d"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation electricity",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "cc9260b3dbbe7d07f8f1b1e6c02f4797"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with biogas engine, agricultural, allocation exergy",
+        "reference product": "Heat, at cogen with biogas engine, agricultural, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c0b3263b08ef9e59d4532f88d316ce2e"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "RU",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "eb1ff5b3b113bbc4dedf9e8745ad6715"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "BA",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "cf3bd8f3f2d6f70f0bf36849e0475f3b"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at boiler condensing modulating 50kW",
+        "reference product": "Heat, natural gas, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "ada38e4807c01e29304852ccb522360f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 8,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 8
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from fodder beet, at cogen",
+        "reference product": "Heat, biogas from fodder beet, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "eac89189a27e71f752c2290930d513e1"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "de8f01f3e2e981acc38e3bbdf0b32997"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, biomethane, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "6f35360b044dab3753318ba7d9ff5713"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "fb51358561350f3b81107c10eb44d3d9"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "b8f56a4a23313dce98167fa5afe92231"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation energy",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d8fa6f8c9251ebedfcdcbde54351baf9"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation exergy",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9d3058cd081b74374a50f2934efe6aea"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with ignition biogas engine, allocation exergy",
+        "reference product": "Heat, at cogen with ignition biogas engine, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "95995b678a50fb9fde0a23739130e45e"
+      ],
+      "positive_unit_reference": true,
+      "uses": 3,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 3
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+        "reference product": "Heat, at cogen 1MWe lean burn, allocation exergy",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9f19cfa77dd883958518f696e712e78f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 19,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 19
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "08e6794e70c1498fe43d77ce1b9e7713"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation electricity",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "ae3b86eb74da1cd60b61c9c4a5661078"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation heat",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "6222882504c28042a0df34b2601a2fdb"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from molasses, at cogen",
+        "reference product": "Heat, biogas from molasses, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f812ab238cc35290ac105a983b2912a7"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "FI",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "7f6cc9e231a122599e8de546310cede9"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "120685bc1d5e840c0d01d97ca6ca67fd"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a2a6e2998a826a1696507a41b835a6ca"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, biomethane, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "8b3746f10495bb297cadb1a7028cd43c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation price",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "798d6809aa722450098f637095dfc975"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at air-water heat pump 10kW",
+        "reference product": "Heat, at air-water heat pump 10kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "8b41eb01764f70e95c9eba7f7fbf0ef9"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DK",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "852506d5e99c0248b8ee1b57f8690868"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "GR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "2b1e3e6934a2c1de2e980e3a06ae7640"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c8d8887e74ede01f2e1d1e3914345d55"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat from waste, at municipal waste incineration plant",
+        "reference product": "Heat from waste, at municipal waste incineration plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "69ba3436b2c62227c8809e65580bbccc"
+      ],
+      "positive_unit_reference": true,
+      "uses": 82,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 82
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with ignition biogas engine, agricultural covered, alloc. exergy",
+        "reference product": "Heat, at cogen with ignition biogas engine, agricultural covered, alloc. exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "738f6b59f3da7e33a91f6ae8437cb28e"
+      ],
+      "positive_unit_reference": true,
+      "uses": 6,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 6
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+        "reference product": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "e5b1ca1321cb33c865bc525287ff537c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 4,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 4
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity",
+        "reference product": "Heat, at borehole heat pump, brine-water, 50kW, for district heating, CH electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9ac6162dcbfd8206b5c45431fae2301a"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "12efc1957f4aa56d241c674da987394b"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f2248da4adef7b7b45af9a6651063f7f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biomethane, at industrial furnace 1MW",
+        "reference product": "Heat, biomethane, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a6c2e60173268ea26682ed727f7f3e88"
+      ],
+      "positive_unit_reference": true,
+      "uses": 7,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 7
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation exergy",
+        "reference product": "Heat, at heat pump 30kW, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "263fa4a61fe1d8ba64dd109bf91f95dd"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "US",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "50354151e34218d1614012fa1b6a1f78"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "EE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "59f7722014fc176a72fd236c6e89c8e3"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "dadb7d9a7fe348d94f4e7b37f11b57bd"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, olive pomace, at boiler furnace, in oil mill",
+        "reference product": "Heat, olive pomace, at boiler furnace, in oil mill",
+        "location": "CY",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "47a20336bc87249e9b1576ec1af15907"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, softwood chips from industry, at furnace 300kW",
+        "reference product": "Heat, softwood chips from industry, at furnace 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "8285afc0b46ebce080e229f38ba73390"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, natural gas, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "05f2f9db208fbd599c0b9764f759d66f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c7795635d29e97ef1d6815b227249267"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "11c322ce7fd83dd66d6b866dd74a0ec6"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe Jakobsberg, allocation heat",
+        "reference product": "Heat, at cogen 160kWe Jakobsberg, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "cd1b1367f0be0c8885f29e119412ce6a"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "BE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d4c6d43949f1f834241549d6410c78ae"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation energy",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f2096b3bed38338ea6ecb521085d5855"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation price",
+        "reference product": "Heat, at heat pump 30kW, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "ebc821a601971aa6bf6031ccf521c84c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at nuclear power plant, economic allocation",
+        "reference product": "Heat, at nuclear power plant, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "1b7e127ca111bbc79039d383052c0769"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from beet residues, at cogen",
+        "reference product": "Heat, biogas from beet residues, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d71cbf47cf2020ccedd9cb6de6776f84"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+        "reference product": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a52c1a9752dff8a3776bd162ee344eb0"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "District heat, at consumer, wood chips cogen 1MWth, allocation exergy",
+        "reference product": "District heat, at consumer, wood chips cogen 1MWth, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "e1555d894d76dad87af6ee062d99ee65"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1,
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "ENTSO-E",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d19125000c48b05c27dc66421194d69c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "aaebf8b1263caef9e9098f4c2e3cc418"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "SI",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d9d843522a8f8b386a9a782a72d947f3"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation exergy",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "b61f69d5c8617d677d63b500360ec5cb"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "df0e63b9ba385c3e15f208b13f42edb5"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at industrial furnace 1MW",
+        "reference product": "Heat, natural gas, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "5aeaee22c31bde8c641cf08ced474eb7"
+      ],
+      "positive_unit_reference": true,
+      "uses": 316,
+      "negative_uses": 1,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 315,
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "06cee68dfb545bf51fbcaf5fcc9c2069"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation energy",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation energy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f18bfdf36ec0897c41c4f7d9603c7f90"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, borehole heat exchanger, at brine-water heat pump 10kW",
+        "reference product": "Heat, borehole heat exchanger, at brine-water heat pump 10kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "db04459d6d7f995aa1081259de60174b"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, from natural gas",
+        "reference product": "Heat, from natural gas",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "3728133d1f8f5a60d888495fd848f482"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "CN",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "e9a55e98c3f5c4b36612cfc9f192b1c0"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "SE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "935624ac0a52767a3f2b34faa31f88c1"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation exergy",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "746231c94a5f0a6333607aeb5154b6f9"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump, air-water, 15kW, CH electricity, in old building",
+        "reference product": "Heat, at heat pump, air-water, 15kW, CH electricity, in old building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "7c3012231c0f713af59f3eb0a464e9a4"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, mixed chips from forest, at furnace 1000kW",
+        "reference product": "Heat, mixed chips from forest, at furnace 1000kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "6f1900ea504326a88280af5de624760b"
+      ],
+      "positive_unit_reference": true,
+      "uses": 9,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 9
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, coffee ground pellets, in wood furnace 25kW",
+        "reference product": "Heat, coffee ground pellets, in wood furnace 25kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f80d932f269f4a2cae7748eefbc919c2"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal coke, at stove 5-15kW",
+        "reference product": "Heat, hard coal coke, at stove 5-15kW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "0b410ed1b0248be99e7cf7d41b2ac1f2"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation price",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9dc0d6dd4db7401b237fcd8f2b5d2c16"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "FR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "953237f9e6a2596c0086c0ebc2aeb072"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWe lean burn, allocation heat",
+        "reference product": "Heat, at cogen 1MWe lean burn, allocation heat",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "3a5263205e6df1d31f33d48ba1df1a67"
+      ],
+      "positive_unit_reference": true,
+      "uses": 7,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 7
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LU",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "129d056510afb5ff67869a4bcfb3ca9b"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 15kW, CH electricity, in old building",
+        "reference product": "Heat, at borehole heat pump, brine-water, 15kW, CH electricity, in old building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "71af2f45c6dbf562337584c435a4afc5"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, diesel, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, diesel, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "2fd96aabf871f49c5db23d56b9e8ab07"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "HU",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "6d67dc66510645a5eaf64b166995948f"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 160kWe lambda=1, allocation exergy",
+        "reference product": "Heat, at cogen 160kWe lambda=1, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "cf2a18cc01d655a047efe39574e1fabc"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "7c4ef2610abc85cc5e0826578a26ead6"
+      ],
+      "positive_unit_reference": true,
+      "uses": 25,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 24,
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "LV",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "7640d595dcfdf173a98aa1528e722f17"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "29e3dfdad021e881a98097656ca43315"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from glycerine, at cogen",
+        "reference product": "Heat, biogas from glycerine, at cogen",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f809ed1f7f3ac2b4a3f07f2fc7fee1f7"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at hard coal industrial furnace 1-10MW",
+        "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "2f8d68fa72fe006dc39f6274767b3114"
+      ],
+      "positive_unit_reference": true,
+      "uses": 63,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 61,
+        "0": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c5f9394a1bc39ae028477e101136089e"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "HR",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9b59b34683b32f9c1687138365c948a6"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, unspecific, in chemical plant",
+        "reference product": "Heat, unspecific, in chemical plant",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "5a9cb9c5ba6cac81e7b0933a63ca5d05"
+      ],
+      "positive_unit_reference": true,
+      "uses": 192,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 190,
+        "0": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, wood pellets, at furnace 50kW",
+        "reference product": "Heat, wood pellets, at furnace 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a525e27f369d65af199a970582859bf1"
+      ],
+      "positive_unit_reference": true,
+      "uses": 7,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 7
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, digester sludge, at incineration plant, future, allocation price",
+        "reference product": "Heat, digester sludge, at incineration plant, future, allocation price",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "94be6af731780b2e117a38e14e1aa842"
+      ],
+      "positive_unit_reference": true,
+      "uses": 3,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 3
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, biogas from glycerine, at cogen, scenario vegetable oil",
+        "reference product": "Heat, biogas from glycerine, at cogen, scenario vegetable oil",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "0d87e68222323ea2966b2d0146fedd22"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "JP",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "b9cd89198966fef0d4248f8300f73d24"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "b812201f49c4c58e56a018f06e3ec3e5"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at groundwater heat pump, brine-water, 50kW, for district heating, CH electr.",
+        "reference product": "Heat, at groundwater heat pump, brine-water, 50kW, for district heating, CH electr.",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "ac2b1edd300ff79d300ac3c82da33340"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "NL",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "e9b2a0dfcf515e2bb87aa4ce8a9e74f5"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "RO",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "7c5aecc03f484abd9fdc1a3d9880c89c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, propane/butane, at boiler condensing modulating 50kW",
+        "reference product": "Heat, propane/butane, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "5204cf427e013092acf7c00002135cbc"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+        "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "41618d0f5d4e388482b478eb338ab770"
+      ],
+      "positive_unit_reference": true,
+      "uses": 12,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 12
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "SK",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "07bd36836c6cc7b14b035633b07ad1ad"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, lignite, at cogen, allocation exergy",
+        "reference product": "Heat, lignite, at cogen, allocation exergy",
+        "location": "PL",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "cf91e904230a58e20334a9a03ebdf216"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "BG",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9e925ea1f3351d0f9b2f72f370bc1e1c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hardwood chips from industry, at furnace 300kW",
+        "reference product": "Heat, hardwood chips from industry, at furnace 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "38ee5560be80661b7f050cb2f702741c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 9,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 7,
+        "0": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, hardwood chips from industry, at furnace 50kW",
+        "reference product": "Heat, hardwood chips from industry, at furnace 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9d4fe9306a47cae304a1de02fe37a44d"
+      ],
+      "positive_unit_reference": true,
+      "uses": 5,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 5
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at heat pump 30kW, allocation heat",
+        "reference product": "Heat, at heat pump 30kW, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "4daf8196dbe0da3e257546be286950fe"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future",
+        "reference product": "Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "1f0cb106ef348e5dc0c553c5bfa75ab4"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at module cogen 160kWe Jakobsberg, allocation electricity",
+        "reference product": "Heat, at module cogen 160kWe Jakobsberg, allocation electricity",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "79e0bd41dae6bb1e08a95b5414f8f0f8"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "CZ",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "9533d0769aeeb7a87196decf0c9a06da"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "031f48227265a7bedcbb9678eb9d2e59"
+      ],
+      "positive_unit_reference": true,
+      "uses": 2,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 2
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen with biogas engine, agricultural covered, allocation exergy",
+        "reference product": "Heat, at cogen with biogas engine, agricultural covered, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "77510ad4bf3a0913f4a12c2669136072"
+      ],
+      "positive_unit_reference": true,
+      "uses": 7,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 7
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, diesel, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, diesel, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "f6fb309a9a9f4e5b53d32cf02cf19a7d"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, at system cogen 160kWe Jakobsberg, allocation heat",
+        "reference product": "Heat, at system cogen 160kWe Jakobsberg, allocation heat",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "3412856d3c5de5e5c4a37245e7ce29f0"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at heat plant",
+        "reference product": "Heat, natural gas, at heat plant",
+        "location": "IT",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "293ee86e186120ab5db6b024ff34c61c"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "0": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Heat, from sewage heat exchanger",
+        "reference product": "Heat, from sewage heat exchanger",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "c7c8be60bd9804cc988a251eff3e3101"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Transport, district heat, average",
+        "reference product": "Transport, district heat, average",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "a1d19c1a263e538c47ff58eed90aec03"
+      ],
+      "positive_unit_reference": true,
+      "uses": 20,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 20
+      }
+    },
+    {
+      "identity": {
+        "name": "Transport, district heat, large area network, for warm water",
+        "reference product": "Transport, district heat, large area network, for warm water",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "d0f10071c07ffdbf84f6a63e857fcc4b"
+      ],
+      "positive_unit_reference": true,
+      "uses": 1,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 1
+      }
+    },
+    {
+      "identity": {
+        "name": "Steam, for chemical processes, at plant",
+        "reference product": "Steam, for chemical processes, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "source_key": [
+        "UVEK:2026-biosphere310",
+        "2ec4478ea504554a931d576607a925ae"
+      ],
+      "positive_unit_reference": true,
+      "uses": 55,
+      "negative_uses": 0,
+      "formulas": 0,
+      "uncertainty_types": {
+        "2": 54,
+        "0": 1
+      }
+    }
+  ],
+  "private_receipt": {
+    "name": "heat_native_consumer_frontier.private.json",
+    "sha256": "a3ddd3636074e0a4b55b3587c26ff007fa73bbb623c2c5404fdbc778f55e8e16"
+  },
+  "no_source_inventory_mutation": true,
+  "public_heat_gate": "closed"
+}
