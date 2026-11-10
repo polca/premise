@@ -1,0 +1,104 @@
+{
+  "review_date": "2026-11-10",
+  "goal_state": "paused",
+  "verified_mapping_commit": "2528051fafd7b077ac8ab1a0a9e3b69dc79dcda3",
+  "scope": {
+    "standard_updates": 19,
+    "public_operational_updates_for_reviewed_scenario": [
+      "biomass",
+      "electricity",
+      "heat"
+    ],
+    "remaining_unqualified_updates": 16,
+    "remaining_heat_binding_gaps": 11
+  },
+  "verified_emissions": {
+    "internal_component_only": true,
+    "inputs": 3487,
+    "variants": 289,
+    "modified_callers": 2816,
+    "gaseous_air_changes": 483,
+    "provenance_events": 3105,
+    "signed_LCI_checks": 196,
+    "focused_tests": 61,
+    "public_gate": "closed"
+  },
+  "paused_draft": {
+    "committed": false,
+    "additional_input_coordinates": 137,
+    "source_inventories": 25,
+    "focused_tests_passed": 61,
+    "broader_signed_LCI_residual_check": "failed; cause not diagnosed",
+    "new_mixed_mechanism_retained_cases": 2,
+    "mapping_files": [
+      {
+        "path": "premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml",
+        "sha256": "1167a9a2282b7f53dc1a58786d7fc3b5d2dce55fde0a9aa605de0c077edad4a4"
+      },
+      {
+        "path": "premise/data/GAINS_emission_factors/uvek2026_gas_review.json",
+        "sha256": "406d37a202c9521d686cbf6539c32f6dbee9196aaf9aeef1e798348102827530"
+      },
+      {
+        "path": "premise/data/GAINS_emission_factors/uvek2026_heating_combustion_review.json",
+        "sha256": "737f5ea310c9c105652083e31f1a91f97bc9a413fd45c0f0add5ea292eed6eee"
+      },
+      {
+        "path": "premise/data/GAINS_emission_factors/uvek2026_ordinary_combustion_review.json",
+        "sha256": "be23063f053d79146f766cd6a51fa6c79e611dd4bae330bfefa38dab2d738294"
+      }
+    ],
+    "private_patch_checkpoint_sha256": "3c90800896221569b3fb37855e0d1bd7f34fdb0168a7f5f569e0220830c6216e"
+  },
+  "deliverable_checks": {
+    "pdf_pages": 2,
+    "pdf_pages_visually_inspected": true,
+    "notebook_schema_syntax_and_API_signatures_valid": true,
+    "notebook_default_mode_executed": "existing_verified_export_readback_only",
+    "activities_checked": 12622,
+    "signed_finite_LCIs": 6,
+    "fresh_build_export_and_optional_preview_executed_during_pause": false,
+    "distributed_notebook_has_saved_outputs": false
+  },
+  "evidence": [
+    {
+      "path": "docs/development/uvek-electricity-milestone-verification.json",
+      "sha256": "6a29a6a5fec2ac5bea19d3ba5e9f64a916db1c800034846862adb6c73f84c50d"
+    },
+    {
+      "path": "docs/development/uvek-heat-public-verification.json",
+      "sha256": "47c4955b2a528311510c862c6a6f18baefe5496811c70f33d56d99065d0f33bd"
+    },
+    {
+      "path": "docs/development/uvek-heat-fuel-cell-verification.json",
+      "sha256": "0baec343088d31bf62c26c0efd32b9869709a64bc3cbe4e9adc22a8fa960fe62"
+    },
+    {
+      "path": "docs/development/uvek-emissions-gas-supply-verification.json",
+      "sha256": "1de03c85ce6b0d2b06d82520504e5e9d8fe7a66ebc265dea32f33b27ad369026"
+    },
+    {
+      "path": "docs/development/uvek-sector-progress.json",
+      "sha256": "f9a1aaed54bb99e2f38f9da528371aa0fc87133b7b59cc6882264a8747e25a81"
+    },
+    {
+      "path": "docs/development/uvek-mapping-decisions.md",
+      "sha256": "d3fa510492bff70b944eade16c38f76ef6d175661cde1b9b3d824f1d6b36b80d"
+    }
+  ],
+  "notebook_run_receipt_sha256": "37138ef89df29a98efc7fae3a89f6d9e45e2c7a960c0c308f4d31e6134953286",
+  "artifacts": [
+    {
+      "path": "examples/uvek_2026_review_workflow.ipynb",
+      "sha256": "2ba2a078dc52be4eceab2981308172f8b04081a308a57841dbda1ee6c7447bdd"
+    },
+    {
+      "path": "docs/development/reviews/uvek-2026-11-10/uvek-review-summary.pdf",
+      "sha256": "1daddf2a125028971421e624b2f3454aa20668c3c856c315c866b79c1da6f507"
+    },
+    {
+      "path": "docs/development/reviews/uvek-2026-11-10/README.md",
+      "sha256": "b2173790089992136ec9112f62d9f149b1ee313791078dd896ff6f8afa915a91"
+    }
+  ]
+}
