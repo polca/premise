@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-10",
+  "purpose": "Fix reproduced shared-fuel family/biosphere forwarding only; not fuel-sector qualification.",
+  "production_files": [
+    "premise/fuels/base.py",
+    "premise/database/new_database.py"
+  ],
+  "before": {
+    "new_regressions_failed": 3,
+    "new_regressions_passed": 2,
+    "uvek_constructor_error": "UVEK 2026 is a technosphere release; supply its explicit biosphere version 3.10.",
+    "callback_error": "_update_fuels() got an unexpected keyword argument family"
+  },
+  "changes": [
+    "Forward explicit source family and biosphere version through the existing NewDatabase fuel callback.",
+    "Select family/version/model-aware InventorySet in the shared Fuels constructor.",
+    "Look up biosphere flows and refresh vehicle fuel CO2 using the explicit biosphere version, preserving the legacy ecoinvent default."
+  ],
+  "actual_conda_constructor": {
+    "success": true,
+    "technosphere_family": "uvek",
+    "technosphere_version": "2026",
+    "mapping_family": "uvek",
+    "biosphere_version": "3.10",
+    "biosphere_flow_count": 4362,
+    "database": [],
+    "sector_update_run": false
+  },
+  "focused_regression": {
+    "passed": 244,
+    "warnings": 2,
+    "seconds": 3.16,
+    "files": [
+      "tests/test_fuel_background_axes.py",
+      "tests/test_fuels.py",
+      "tests/test_fuel_energy_basis.py",
+      "tests/test_fuel_carbon_balance.py",
+      "tests/test_hydrogen_tank_inventories.py",
+      "tests/test_uvek_activity_maps.py",
+      "tests/test_new_database.py",
+      "tests/test_uvek_public_database.py"
+    ],
+    "note": "Before three additional dispatch/gate tests; all eight new axis tests are included in the subsequent broad suite."
+  },
+  "broad_offline_regression": {
+    "passed": 3464,
+    "skipped": 4,
+    "warnings": 8,
+    "seconds": 66.64,
+    "command": "pytest -q tests --ignore-glob=tests/test_process_*.py --ignore-glob=tests/test_clic_uvek_*.py --ignore-glob=tests/test_clic_deferred_*.py --ignore=tests/test_clic_rule_approvals.py --ignore=tests/test_clic_partial_paperboard.py",
+    "excluded": "Licensed process tests and separate migration-heavy suites are excluded explicitly; this is not a full licensed all-sector test claim."
+  },
+  "checks": [
+    "Black formatting",
+    "Ruff on both production files and new test file",
+    "git diff --check",
+    "Generated documentation reference check"
+  ],
+  "limitations": [
+    "Public UVEK fuel gate remains closed and is tested; no sector success or export is claimed.",
+    "The current licensed preparation cohort retains 36 unapproved 3.9 mappings; subsequent cohorts and runtime/filter/validation/export work remain required.",
+    "No new sector implementation, Python dataset-identity table, public constructor argument or alternative UVEK fuel engine is introduced."
+  ]
+}

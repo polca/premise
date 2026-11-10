@@ -617,3 +617,43 @@ down from 44. This diagnostic does not run fuel transformations or export.
 No production Python, YAML or Brightpath resource changes are needed for this
 batch. Fuels remains unqualified and the full goal remains active. See the
 [service preparation receipt](uvek-fuels-39-service-preparation-verification.json).
+
+
+### Necessary shared-fuel version-axis correction (10 November 2026)
+
+A direct shared `Fuels` constructor call with `family="uvek"`,
+`version="2026"` and `biosphere_version="3.10"` failed because the constructor
+still looked up biosphere flows using 2026. The callback also rejected the
+explicit family/biosphere arguments. New regressions reproduce three failures
+before the correction; the two default ecoinvent constructor cases already pass.
+
+The two small production adaptations follow the existing shared heat/cement
+pattern: `NewDatabase` forwards the two axes to the original fuel callback;
+`fuels/base.py` passes them to the existing constructor, selects the appropriate
+`InventorySet`, and uses the biosphere axis for flow lookup and the existing
+vehicle-carbon refresh. YAML cannot repair a runtime lookup using the wrong
+version argument. Ecoinvent defaults and all generation, blending, carbon,
+regionalisation and relinking algorithms remain in the shared engine. No
+alternative UVEK engine, dataset-specific Python branch or new public argument
+is introduced. The unqualified public fuel gate stays closed and is tested.
+
+The actual regular conda environment now constructs UVEK 2026 fuels with
+3.10 biosphere definitions (4,362 flow keys) and the native UVEK filter family.
+This is a constructor check with an empty inventory, not an actual fuel-sector
+update. The focused fuel/carbon/filter/database suite passes 244 tests. After
+adding dispatch and gate cases, the broader offline regression suite passes
+**3,464 tests**, with four skips and eight dependency/data warnings. Licensed
+process and separate migration-heavy suites are explicitly excluded from that
+number; the separate 34 reviewed-mapping checks above pass independently.
+Black, Ruff, diff whitespace and generated-reference checks pass. See the
+[axis correction receipt](uvek-fuels-background-axes-verification.json).
+
+The next correspondence work must correct three physically wrong chemical
+targets: activated silica is chemically precipitated material, not mined sand;
+the granular activated-carbon market combines virgin production and reactivation,
+not carbon-black manufacture; and molybdenum trioxide requires roasting rather
+than concentrate alone. Actual primary source producer vectors and native
+candidate evidence have been collected privately to resolve their complete
+process boundaries. The European low-voltage market mapped to a Swiss native
+grid likewise needs a corrected regional target before approval. None of these
+remaining mappings is approved by the runtime correction.

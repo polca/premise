@@ -26,7 +26,9 @@ from ..inventory.inventory_store import (
 logger = create_logger("fuel")
 
 
-def _update_fuels(scenario, version, system_model):
+def _update_fuels(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
 
     fuels = Fuels(
         database=get_scenario_inventory(scenario),
@@ -38,6 +40,8 @@ def _update_fuels(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     if any(
@@ -71,7 +75,7 @@ def _update_fuels(scenario, version, system_model):
         fuels.clear_validation_provenance()
         fuels.relink_datasets()
         annotate_cng_properties(fuels.database)
-        update_vehicle_fuel_co2(fuels.database, version)
+        update_vehicle_fuel_co2(fuels.database, biosphere_version or version)
         replace_scenario_inventory(scenario, fuels.database)
         scenario["cache"] = fuels.cache
         scenario["index"] = fuels.index
@@ -119,7 +123,9 @@ class Fuels(
         # Initialize any additional attributes
         # or methods specific to Fuels class
         self.cached_suppliers = {}
-        self.mapping = InventorySet(self.database)
+        self.mapping = InventorySet(
+            self.database, version=self.version, model=self.model, family=self.family
+        )
         self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
 
         self.rev_fuel_map = {
@@ -128,7 +134,7 @@ class Fuels(
             for activity in activities
         }
         self.fuel_groups = fetch_mapping(FUEL_GROUPS)
-        self.biosphere_flows = get_biosphere_code(self.version)
+        self.biosphere_flows = get_biosphere_code(self.biosphere_version)
         self.iam_fuel_markets = self.iam_data.production_volumes.sel(
             variables=[
                 g
