@@ -1146,3 +1146,31 @@ dependency graph next. Same-fuel coke stoves and native ground-source heat pumps
 likewise do not establish industrial coke or deep-geothermal correspondences.
 CCS heat co-products need independent allocation and capture/storage-boundary
 review; residual mixes need a frozen composition outside the updated IAM markets.
+
+
+### Allocated fuel-cell heat: separate physical conversion
+
+The building and industrial hydrogen fuel-cell roles now bind the complete
+native Swiss grid-hydrogen SOFC heat inventory. It supplies one MJ and documents
+33% LHV heat conversion with 8% exergy allocation. IAM final energy uses the
+independent 0.33 physical factor; the allocated inventory and both original
+hydrogen inputs remain unchanged. No deallocation, electricity credit, fuel
+rescaling or additional use-loss correction is introduced.
+
+Binding requires the exact native identity/reference, independent documentation
+fragments and a SHA256 witness of the linked energy coordinates, including
+quantity, formula and uncertainty. Owner renaming and omitted false flags are
+representation changes only. Changed scientific coordinates or missing physical
+documentation fail before mutation. The nominal factor does not reconstruct an
+exact energy balance from rounded allocated fuel/loss entries. Warnings retain
+the source PEM versus native SOFC difference, residential scale for industry,
+Swiss grid/pipeline hydrogen, regional extrapolation, vintage and allocation.
+
+All 219 relevant checks pass. Controlled positive MESSAGE heat volumes over the
+complete actual native/prepared graph produce four markets and ten finite signed
+inventories; source records are unchanged. An installed wheel reproduces these
+checks and matches all 279 wheel-declared resources (including package helper
+Python files). Both bindings replay after prior export owner/metadata cleanup.
+This is controlled conversion qualification, not a full real MESSAGE scenario
+or new MESSAGE Brightway export. Eleven heat roles still lack reviewed bindings;
+the other 16 sectors remain unfinished. See `uvek-heat-fuel-cell-verification.json`.

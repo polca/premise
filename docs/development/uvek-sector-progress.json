@@ -742,12 +742,10 @@
           {
             "path": "premise/iam_variables_mapping/heat.yaml",
             "ecoinvent_role_count": 49,
-            "explicit_nonempty_uvek_role_count": 34,
+            "explicit_nonempty_uvek_role_count": 36,
             "missing_or_empty_uvek_roles": [
               "heat, buildings, from district heating",
-              "heat, buildings, from hydrogen fuel cell",
               "heat, buildings, residual",
-              "heat, industrial, from hydrogen fuel cell",
               "heat, industrial, from solar thermal",
               "heat, industrial, from district heating",
               "heat, secondary, from biomass with CCS",
@@ -760,17 +758,15 @@
               "heat, secondary, from solar thermal",
               "heat, secondary, residual"
             ],
-            "interpretation": "34 explicit native/supplemental declarations plus two purchased roles handled through reviewed delivery. All 28 positive REMIND SSP2-NPi2050 roles verified through public update and export. Thirteen other roles remain unqualified."
+            "interpretation": "36 explicit native/supplemental declarations plus two purchased roles handled through reviewed delivery. All 28 positive REMIND2050 roles have public run evidence. Two MESSAGE fuel-cell roles additionally have reviewed native allocation/physical conversion with controlled actual-graph validation; full MESSAGE run remains unverified. Eleven other roles remain without reviewed bindings."
           }
         ],
         "runtime_verified": true,
         "supplier_preflight_verified": true,
         "runtime_scope": "reviewed positive REMIND SSP2-NPi2050 roles, not every model/technology",
-        "current_explicit_alias_count": 34,
+        "current_explicit_alias_count": 36,
         "current_missing_roles": [
-          "heat, buildings, from hydrogen fuel cell",
           "heat, buildings, residual",
-          "heat, industrial, from hydrogen fuel cell",
           "heat, industrial, from solar thermal",
           "heat, secondary, from biomass with CCS",
           "heat, secondary, from coal with CCS",
@@ -788,9 +784,7 @@
         ],
         "empty_native_alias_declarations": [
           "heat, buildings, from district heating",
-          "heat, buildings, from hydrogen fuel cell",
           "heat, buildings, residual",
-          "heat, industrial, from hydrogen fuel cell",
           "heat, industrial, from solar thermal",
           "heat, industrial, from district heating",
           "heat, secondary, from biomass with CCS",
@@ -808,11 +802,9 @@
         {
           "code": "unqualified_IAM_heat_roles",
           "path": "premise/iam_variables_mapping/heat.yaml",
-          "finding": "The REMIND2050 positive roles are qualified. Other selections containing these unreviewed roles still fail explicitly; they remain required work for the broader goal.",
+          "finding": "REMIND2050 positive roles are qualified; two MESSAGE fuel-cell roles have controlled actual-graph conversion checks. Eleven remaining roles lack reviewed bindings and still fail explicitly.",
           "roles": [
-            "heat, buildings, from hydrogen fuel cell",
             "heat, buildings, residual",
-            "heat, industrial, from hydrogen fuel cell",
             "heat, industrial, from solar thermal",
             "heat, secondary, from biomass with CCS",
             "heat, secondary, from coal with CCS",
@@ -1201,6 +1193,18 @@
         "native_inventory_boundaries_inspected": true,
         "new_runtime_roles_admitted": 0,
         "priority": "Dedicated CLIC CSP heat root; documented physical rather than allocated hydrogen fuel-cell conversion; then CCS and residual compositions."
+      },
+      "allocated_fuel_cell_stage": {
+        "verification": "docs/development/uvek-heat-fuel-cell-verification.json",
+        "roles": [
+          "heat, buildings, from hydrogen fuel cell",
+          "heat, industrial, from hydrogen fuel cell"
+        ],
+        "physical_heat_factor": 0.33,
+        "allocated_LCI_unchanged": true,
+        "synthetic_MESSAGE_actual_native_graph_verified": true,
+        "full_real_MESSAGE_run_verified": false,
+        "tests_passed": 219
       }
     },
     {

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
+import math
 from numbers import Real
 
 from ..core.filesystem_constants import DATA_DIR
@@ -12,6 +14,88 @@ from ..inventory.profiles import identity
 from .uvek_heat_basis import resolve_heat_energy_basis
 
 REVIEW_PATH = DATA_DIR / "heat" / "uvek2026_review.json"
+
+
+def allocated_energy_fingerprint(witnesses):
+    """Hash reviewed energy coordinates without export-dependent ownership keys."""
+    fields = (
+        "name",
+        "product",
+        "location",
+        "unit",
+        "type",
+        "amount",
+        "formula",
+        "uncertainty type",
+        "loc",
+        "scale",
+        "shape",
+        "minimum",
+        "maximum",
+        "negative",
+        "pedigree",
+        "scale without pedigree",
+    )
+    rows = [
+        {
+            "supplier": witness["supplier"],
+            "production_amount": witness["production_amount"],
+            "routes": [
+                {
+                    "supplier": route["supplier"],
+                    "exchanges": [
+                        {
+                            key: exchange[key]
+                            for key in fields
+                            if key in exchange
+                            and not (key == "negative" and exchange[key] is False)
+                        }
+                        for exchange in route["exchanges"]
+                    ],
+                }
+                for route in witness["energy_routes"]
+            ],
+        }
+        for witness in witnesses
+        if "energy_routes" in witness
+    ]
+    return hashlib.sha256(
+        json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+
+
+def _documented_allocated_conversion(supplier, row, witnesses):
+    """Keep allocated LCI burdens separate from documented physical performance."""
+    basis = row["documented_physical_conversion"]
+    factor = basis.get("factor")
+    fragments = basis.get("documentation_fragments")
+    if (
+        basis.get("kind") != "allocated_fuel_cell"
+        or row["conversion"] != "combustion"
+        or not isinstance(factor, Real)
+        or isinstance(factor, bool)
+        or not math.isfinite(factor)
+        or not 0 < factor <= 1
+        or not isinstance(fragments, list)
+        or not fragments
+        or not all(
+            isinstance(fragment, str)
+            and fragment
+            and fragment in supplier.get("comment", "")
+            for fragment in fragments
+        )
+        or allocated_energy_fingerprint(witnesses)
+        != basis.get("allocated_energy_routes_sha256")
+    ):
+        raise ValueError(
+            "Allocated heat needs its reviewed physical conversion evidence."
+        )
+    witness = {
+        "supplier": identity(supplier),
+        "physical_conversion_basis": copy.deepcopy(basis),
+        "allocated_inventory_not_inverted_or_rescaled": True,
+    }
+    return factor, (*witnesses, witness)
 
 
 def plan_native_heat_suppliers(database, roles, *, model):
@@ -92,6 +176,10 @@ def plan_native_heat_suppliers(database, roles, *, model):
                 database, expected, routes=routes, carrier_MJ_per_unit=carriers
             )
             factor, witnesses = evidence.delivered_heat_factor, evidence.witnesses
+            if "documented_physical_conversion" in row:
+                factor, witnesses = _documented_allocated_conversion(
+                    supplier, row, witnesses
+                )
             lower, upper = {
                 "combustion": (0, 1.2),
                 "heat_pump": (1, 6),

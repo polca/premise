@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "status": "native_bindings_and_nominal_energy_routes_reviewed_sector_not_operational",
+  "status": "reviewed_native_bindings_with_explicit_physical_allocated_conversion",
   "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
   "authorization": "Standing autonomous approval; retain exact source identities and review limitations for later review.",
-  "scope": "28 native role bindings only. Public heat update remains gated. Missing roles, layered markets, consumer relinking, certification and export are unfinished.",
+  "scope": "30 native role bindings. Reviewed REMIND2050 public runtime remains verified; the two MESSAGE fuel-cell roles additionally have exact native bindings and separately documented physical conversion. Other unqualified roles remain refused.",
   "reference_basis": "Actual positive1MJdelivered heat reference. Complete native inventories, allocation, source geography and uncertainty retained; no relocation, inferred mixture or inventory scaling. Nominal final-energy factors follow explicitly reviewed fuel-input combustion services, electricity or documented hydrogen LHV, with actual source quantities.",
   "roles": [
     {
@@ -1080,6 +1080,130 @@
       "limitations": [
         "Complete native supplier inventory retained at its original location as a screening proxy; technology, geography, vintage, allocation and unquantified score differences remain. No added recovery credit or invented efficiency multiplier.",
         "Retain native exergy-allocated heat LCI and original joint-production model. Allocated fuel draw is not a physical heat-efficiency measurement; this heat-output IAM role needs no final-energy conversion."
+      ]
+    },
+    {
+      "role": "heat, buildings, from hydrogen fuel cell",
+      "identity": {
+        "name": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+        "reference product": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "reference product": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+                "reference product": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+                "location": "CH",
+                "unit": "kilogram"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "reference product": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "MJ_per_unit": 120.0
+          }
+        ],
+        "basis": "Allocated fuel draw is evidence of the retained LCI, not physical conversion. Native source independently documents 33% heat efficiency on LHV and 8% exergy allocation.",
+        "nominal_only": true
+      },
+      "documented_physical_conversion": {
+        "kind": "allocated_fuel_cell",
+        "factor": 0.33,
+        "documentation_fragments": [
+          "Heat conversion efficiency [% LHV input]: 33%.",
+          "LHV [MJ/kg]: 120.",
+          "Allocation factor: 0.08."
+        ],
+        "allocated_energy_routes_sha256": "d7ccf8b0ebba8861d1952f7b4cfbcc2664d33481d7698cd1b46318622f2646fe"
+      },
+      "limitations": [
+        "Complete native exergy-allocated SOFC heat inventory retained at its original Swiss location, including both signed hydrogen inputs, infrastructure, maintenance, water and supported uncertainty. No deallocation, electricity co-product credit, inventory rescaling or added upstream hydrogen burden.",
+        "IAM final hydrogen energy converts to delivered heat using the independently documented nominal 33% LHV heat efficiency. Allocated fuel inputs must not be inverted to infer physical efficiency. The source documents 8% exergy allocation and 0.56% use loss; retain those quantities without an additional loss correction. Nominal documentation and rounded/allocated inventory draws are not an exact physical energy balance.",
+        "The IAM source proxy is PEM; native SOFC technology, residential scale for industrial use, Swiss electricity/pipeline hydrogen, vintage, allocation and regional extrapolation are explicit screening limitations with unquantified score effects. Future hydrogen decarbonization is not implied by this heat-only mapping."
+      ]
+    },
+    {
+      "role": "heat, industrial, from hydrogen fuel cell",
+      "identity": {
+        "name": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+        "reference product": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+      "reference_amount": 1,
+      "reference_unit": "megajoule",
+      "energy_basis": "final_energy",
+      "conversion": "combustion",
+      "energy_boundary": {
+        "routes": [
+          {
+            "supplier": {
+              "name": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "reference product": "Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "targets": [
+              {
+                "name": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+                "reference product": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+                "location": "CH",
+                "unit": "kilogram"
+              }
+            ]
+          }
+        ],
+        "carriers": [
+          {
+            "identity": {
+              "name": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "reference product": "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "MJ_per_unit": 120.0
+          }
+        ],
+        "basis": "Allocated fuel draw is evidence of the retained LCI, not physical conversion. Native source independently documents 33% heat efficiency on LHV and 8% exergy allocation.",
+        "nominal_only": true
+      },
+      "documented_physical_conversion": {
+        "kind": "allocated_fuel_cell",
+        "factor": 0.33,
+        "documentation_fragments": [
+          "Heat conversion efficiency [% LHV input]: 33%.",
+          "LHV [MJ/kg]: 120.",
+          "Allocation factor: 0.08."
+        ],
+        "allocated_energy_routes_sha256": "d7ccf8b0ebba8861d1952f7b4cfbcc2664d33481d7698cd1b46318622f2646fe"
+      },
+      "limitations": [
+        "Complete native exergy-allocated SOFC heat inventory retained at its original Swiss location, including both signed hydrogen inputs, infrastructure, maintenance, water and supported uncertainty. No deallocation, electricity co-product credit, inventory rescaling or added upstream hydrogen burden.",
+        "IAM final hydrogen energy converts to delivered heat using the independently documented nominal 33% LHV heat efficiency. Allocated fuel inputs must not be inverted to infer physical efficiency. The source documents 8% exergy allocation and 0.56% use loss; retain those quantities without an additional loss correction. Nominal documentation and rounded/allocated inventory draws are not an exact physical energy balance.",
+        "The IAM source proxy is PEM; native SOFC technology, residential scale for industrial use, Swiss electricity/pipeline hydrogen, vintage, allocation and regional extrapolation are explicit screening limitations with unquantified score effects. Future hydrogen decarbonization is not implied by this heat-only mapping."
       ]
     }
   ],

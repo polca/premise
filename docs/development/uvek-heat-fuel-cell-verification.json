@@ -1,0 +1,65 @@
+{
+  "status": "reviewed_allocated_SOFC_heat_bindings_and_controlled_conversion_verified",
+  "roles": [
+    "heat, buildings, from hydrogen fuel cell",
+    "heat, industrial, from hydrogen fuel cell"
+  ],
+  "native_source_pin": "794d90f2c2dbb90f0c56ba8cc527fa1494aa8ef6",
+  "physical_conversion": {
+    "documented_LHV_heat_factor": 0.33,
+    "documented_exergy_allocation": 0.08,
+    "inverse_allocated_fuel_draw_is_not_physical_efficiency": true,
+    "no_inventory_rescaling_or_extra_electricity_credit": true,
+    "guard": "Exact native identity/reference, independent documentation fragments, and SHA256 of linked energy quantities/formulas/uncertainty; export ownership keys and absent false flags do not alter the guard."
+  },
+  "validation": {
+    "tests_passed": 219,
+    "complete_actual_native_and_prepared_graph": true,
+    "controlled_IAM_input": "Synthetic positive MESSAGE building/industrial fuel-cell and natural-gas volumes; this is not a full real MESSAGE run.",
+    "new_markets": 4,
+    "signed_finite_LCIs": 10,
+    "source_graph_unchanged": true,
+    "installed_package_replay": true,
+    "wheel_declared_resources_matching_checkout": 279,
+    "resource_count_includes_package_helper_Python_files": true,
+    "previous_export_representation_replay": true
+  },
+  "remaining": {
+    "heat_roles_without_reviewed_bindings": 11,
+    "other_sectors_not_operational": 16,
+    "full_MESSAGE_run_verified": false
+  },
+  "limitations": [
+    "SOFC versus IAM source PEM proxy; residential scale for industrial application.",
+    "Swiss grid-based pipeline hydrogen and complete exergy allocation retained; no claim of prospective hydrogen decarbonization.",
+    "33% nominal source performance is separate from rounded allocated fuel/loss entries. No second loss multiplier or deallocation.",
+    "Geographic, technology, vintage, allocation and upstream biosphere exclusions retain unquantified score effects; no LCIA equivalence or impact-completeness claim."
+  ],
+  "receipts": [
+    {
+      "name": "heat_fuel_cell_graph_verification.json",
+      "sha256": "a4739dde2fb915a50573e6b8542789123ef229a7293d30323963e21fac353531",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_fuel_cell_installed_resources.json",
+      "sha256": "0d25f3fd4cf934b34dd4cd661688640f30190b6a987e76919f0cdcee30ba3f68",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_fuel_cell_export_representation_replay.json",
+      "sha256": "93e5275d1a7721779471b19450459cc102422a663616283758e781bc8497f586",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_fuel_cell_tests.log",
+      "sha256": "3a9176b5596ef83d6e790b7926d5452d12dfc5b8f5eeac4e96ded1b9af10d2b0",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_fuel_cell_primary.private.json",
+      "sha256": "a53eaa41c230038873eabf3f860d3cabe09362e735a672ea1e475d5d9615af87",
+      "location": "private task workspace"
+    }
+  ]
+}

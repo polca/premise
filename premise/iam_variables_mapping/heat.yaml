@@ -58,6 +58,30 @@ heat, buildings, from hydrogen boiler:
     message: Final Energy|Residential and Commercial|Hydrogen|Combustion
 
 heat, buildings, from hydrogen fuel cell:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis,
+        PEM using electricity from grid
+      reference product:
+      - Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis,
+        PEM using electricity from grid
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native exergy-allocated SOFC heat inventory retained at its original Swiss location, including both signed hydrogen inputs, infrastructure,
+      maintenance, water and supported uncertainty. No deallocation, electricity co-product credit, inventory rescaling or added upstream hydrogen
+      burden.
+    - IAM final hydrogen energy converts to delivered heat using the independently documented nominal 33% LHV heat efficiency. Allocated fuel inputs
+      must not be inverted to infer physical efficiency. The source documents 8% exergy allocation and 0.56% use loss; retain those quantities without
+      an additional loss correction. Nominal documentation and rounded/allocated inventory draws are not an exact physical energy balance.
+    - The IAM source proxy is PEM; native SOFC technology, residential scale for industrial use, Swiss electricity/pipeline hydrogen, vintage, allocation
+      and regional extrapolation are explicit screening limitations with unquantified score effects. Future hydrogen decarbonization is not implied
+      by this heat-only mapping.
   layer: buildings_end_use
   energy_basis: final_energy
   conversion: combustion
@@ -511,6 +535,30 @@ heat, industrial, from hydrogen boiler:
     remind-eu: FE|Industry|+|Hydrogen
 
 heat, industrial, from hydrogen fuel cell:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis,
+        PEM using electricity from grid
+      reference product:
+      - Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis,
+        PEM using electricity from grid
+      location:
+      - CH
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native exergy-allocated SOFC heat inventory retained at its original Swiss location, including both signed hydrogen inputs, infrastructure,
+      maintenance, water and supported uncertainty. No deallocation, electricity co-product credit, inventory rescaling or added upstream hydrogen
+      burden.
+    - IAM final hydrogen energy converts to delivered heat using the independently documented nominal 33% LHV heat efficiency. Allocated fuel inputs
+      must not be inverted to infer physical efficiency. The source documents 8% exergy allocation and 0.56% use loss; retain those quantities without
+      an additional loss correction. Nominal documentation and rounded/allocated inventory draws are not an exact physical energy balance.
+    - The IAM source proxy is PEM; native SOFC technology, residential scale for industrial use, Swiss electricity/pipeline hydrogen, vintage, allocation
+      and regional extrapolation are explicit screening limitations with unquantified score effects. Future hydrogen decarbonization is not implied
+      by this heat-only mapping.
   layer: industrial_end_use
   energy_basis: final_energy
   conversion: combustion
