@@ -57,6 +57,8 @@ heat, buildings, from hydrogen boiler:
 
 heat, buildings, from hydrogen fuel cell:
   uvek_aliases:
+    delivered_heat_factor: 0.33
+    delivered_heat_basis: "premise/data/heat/uvek2026_review.json: heat, buildings, from hydrogen fuel cell; independently documented LHV heat efficiency, not allocated fuel draw"
     use_legacy_templates: false
     exact: true
     fltr:
@@ -163,6 +165,8 @@ heat, buildings, from LPG boiler:
 
 heat, buildings, from biomass-based methanol boiler:
   uvek_aliases:
+    delivered_heat_factor: 0.8999999999999992
+    delivered_heat_basis: "premise/data/heat/uvek2026_supplement_review.json: heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass"
     clic_slugs:
     - heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass
     clic_unit: megajoule
@@ -206,6 +210,8 @@ heat, buildings, from biomass-based methanol boiler:
 
 heat, buildings, from coal-based methanol boiler:
   uvek_aliases:
+    delivered_heat_factor: 0.8999999999999999
+    delivered_heat_basis: "premise/data/heat/uvek2026_supplement_review.json: heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-coal"
     clic_slugs:
     - heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-coal
     clic_unit: megajoule
@@ -463,6 +469,8 @@ heat, industrial, from biomass boiler:
 
 heat, industrial, from hydrogen boiler:
   uvek_aliases:
+    delivered_heat_factor: 0.9297454944044002
+    delivered_heat_basis: "premise/data/heat/uvek2026_supplement_review.json: heat-production-from-hydrogen-fired-one-gigawatt-gas-turbine"
     clic_slugs:
     - heat-production-from-hydrogen-fired-one-gigawatt-gas-turbine
     clic_unit: megajoule
@@ -506,6 +514,8 @@ heat, industrial, from hydrogen boiler:
 
 heat, industrial, from hydrogen fuel cell:
   uvek_aliases:
+    delivered_heat_factor: 0.33
+    delivered_heat_basis: "premise/data/heat/uvek2026_review.json: heat, industrial, from hydrogen fuel cell; independently documented LHV heat efficiency, not allocated fuel draw"
     use_legacy_templates: false
     exact: true
     fltr:
@@ -702,6 +712,8 @@ heat, industrial, from light fuel oil boiler:
 
 heat, industrial, from biofuel boiler:
   uvek_aliases:
+    delivered_heat_factor: 0.8999999999999992
+    delivered_heat_basis: "premise/data/heat/uvek2026_supplement_review.json: heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass"
     clic_slugs:
     - heat-residential-by-combustion-of-methanol-using-boiler-distributed-by-truck-produced-with-biomass
     clic_unit: megajoule

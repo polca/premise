@@ -163,3 +163,39 @@ Remaining heat audit: preserve the independently documented conversion bases for
 allocated fuel-cell heat and the reviewed methanol/hydrogen supplements; do not
 infer physical efficiencies by inverting allocated inventory burdens or use a
 generic calorific value where the reviewed source states another basis.
+
+
+## Heat: documented conversion bases
+
+Checkpoint `a5700068` retains delivered heat. The final active-role comparison
+reproduced two smaller source-basis errors in the shared default calculation:
+0.904522613 for methanol heat instead of the reviewed 0.9 (20 MJ/kg), and
+0.931372549 for industrial hydrogen heat instead of 0.929745494 (120.21 MJ/kg).
+The two allocated fuel-cell roles separately document 0.33 physical LHV heat
+conversion, which cannot be recovered by inverting allocated fuel burdens.
+
+Declare these six already-reviewed factors and their evidence under the roles'
+`uvek_aliases`. The common final-energy-to-delivered-heat conversion reads an
+optional documented factor, retaining its existing supplier-availability gate,
+positive combustion-factor bound, volume conversion, normalization and diagnostics.
+Absent a declaration, the original supplier-weighted inventory calculation runs.
+The ecoinvent route retains that original calculation. No LCI exchange, allocation
+or extra energy/heat credit is changed. This small generic hook is necessary:
+filters alone cannot correct an inappropriate calorific value or an allocated
+fuel-efficiency inference. Scalars match the recorded source review; inventory
+or reference-basis changes require renewed review, not a guessed adjustment.
+
+Verification: 88 focused tests pass; the broad offline group passes 3,443 tests
+with four skips (same exclusions as above). All nine notebook code cells execute
+through the 13,430-activity export. Actual EUR/NEU supplier selections use the
+four active supplemental factors and retain complete supplier inventories. The
+two fuel-cell factors have positive-volume conversion tests and prior native
+source documentation; no MESSAGE scenario certification is claimed. The 970
+ordinary heat inputs, 940 uncertainty distributions, three delivered inputs,
+13 delivery services, internal supplier links and representative finite LCIs
+were rechecked. See [heat qualification receipt](uvek-shared-heat-qualification.json).
+
+Heat is qualified for the current shared three-sector REMIND workflow. Steam,
+ambient components and network-only services retain their explicitly distinct
+physical boundaries; they are not silently mapped to useful heat. Final
+qualification alongside the remaining sector updates is still part of this goal.

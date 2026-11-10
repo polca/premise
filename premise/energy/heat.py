@@ -3,6 +3,7 @@ Integrates projections regarding heat production and supply.
 """
 
 import copy
+import math
 import uuid
 import warnings
 
@@ -792,17 +793,37 @@ class Heat(BaseTransformation):
                         f"Positive IAM heat volume for {technology!r} in {region!r}, "
                         "but no inventory supplier is available."
                     )
-                factor = sum(
-                    self._supplier_conversion_factor(supplier, conversion)
-                    * supplier.get("share", 1.0)
-                    for supplier in suppliers
+                aliases = metadata.get(
+                    f"{getattr(self, 'family', 'ecoinvent')}_aliases", {}
                 )
+                factor = aliases.get("delivered_heat_factor")
+                basis = aliases.get("delivered_heat_basis")
+                if factor is None:
+                    factor = sum(
+                        self._supplier_conversion_factor(supplier, conversion)
+                        * supplier.get("share", 1.0)
+                        for supplier in suppliers
+                    )
+                    basis = "supplier-weighted inventory energy inputs"
+                elif (
+                    conversion != "combustion"
+                    or isinstance(factor, bool)
+                    or not isinstance(factor, (int, float))
+                    or not math.isfinite(factor)
+                    or not 0 < factor <= 1.2
+                    or not isinstance(basis, str)
+                    or not basis.strip()
+                ):
+                    raise ValueError(
+                        f"Invalid documented delivered-heat factor for {technology!r}."
+                    )
                 delivered.loc[dict(variables=technology, region=region)] = raw * factor
                 factor_log.append(
                     {
                         "technology": technology,
                         "region": region,
                         "factor": float(factor),
+                        "factor basis": basis,
                         "conversion": conversion,
                         "suppliers": [
                             (supplier["name"], supplier["location"])

@@ -1,0 +1,63 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-192901",
+  "checked_active_role_bases": [
+    {
+      "role": "heat, buildings, from biomass-based methanol boiler",
+      "factor": 0.8999999999999992,
+      "regions": [
+        "EUR",
+        "NEU"
+      ],
+      "complete_supplier_inventories_unchanged": true
+    },
+    {
+      "role": "heat, industrial, from biofuel boiler",
+      "factor": 0.8999999999999992,
+      "regions": [
+        "EUR",
+        "NEU"
+      ],
+      "complete_supplier_inventories_unchanged": true
+    },
+    {
+      "role": "heat, buildings, from coal-based methanol boiler",
+      "factor": 0.8999999999999999,
+      "regions": [
+        "EUR",
+        "NEU"
+      ],
+      "complete_supplier_inventories_unchanged": true
+    },
+    {
+      "role": "heat, industrial, from hydrogen boiler",
+      "factor": 0.9297454944044002,
+      "regions": [
+        "EUR",
+        "NEU"
+      ],
+      "complete_supplier_inventories_unchanged": true
+    }
+  ],
+  "allocated_fuel_cell_nominal_basis": {
+    "factor": 0.33,
+    "verification": "source review and positive-volume synthetic conversion tests; no MESSAGE scenario qualification is claimed"
+  },
+  "focused_tests_passed": 88,
+  "broad_regression_passed": 3443,
+  "broad_regression_skipped": 4,
+  "heat_consumer_checks": {
+    "industrial_end_use": 870,
+    "uncertainty_rows_retained": 940,
+    "buildings_end_use": 100,
+    "consumers": 746
+  },
+  "delivery_checks": {
+    "database": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-192901",
+    "delivery_copies": 13,
+    "native_heat_and_network_coefficients_retained": true,
+    "relinked_consumer_inputs": 3,
+    "finite_NEU_delivery_lci": true,
+    "all_technosphere_links_internal": true
+  },
+  "qualification": "Shared biomass/electricity/heat REMIND SSP2-NPi 2050 build, export and finite LCIs; remaining-sector integration stays pending."
+}

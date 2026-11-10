@@ -177,3 +177,12 @@ produced finite supply and inventory arrays for the EUR high-voltage LCI.
 The shared workflow was also previously qualified on Python 3.12. This verifies
 the supplied source data and scenario, not every possible source import or IAM
 scenario. The notebook is distributed with outputs and execution counts cleared.
+
+
+Later shared heat fixes add 13 regional district-delivery services and connect
+reviewed native heat consumers to the IAM markets while preserving their signed
+quantities and uncertainty. The current qualified three-sector export therefore
+contains 13,430 activities. The number of activities can also change with CLIC
+archive revisions; the structural checks above are more useful than treating
+one historical total as a fixed acceptance threshold. See the current
+[heat qualification](uvek-shared-heat-qualification.json).
