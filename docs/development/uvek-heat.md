@@ -216,3 +216,34 @@ Real preparation now reports three pending cases, with 35 of the current 38 qual
 These are primary aluminium, copper anode and condensate. Later cohorts and public
 heat integration remain unproven. Verification:
 `docs/development/uvek-heat-310-routes-verification.json`.
+
+
+The last three observed 3.10 cases are qualified: complete primary aluminium,
+global refined-copper screening proxy with explicit anode/cathode and additional
+refining differences, and a condensate market reconstruction retaining its original
+treated share, two separate collection volumes and 17 direct untreated fates.
+Native treatment retains all 26 non-sewer inputs and 50 canonical biosphere flows;
+its sole embedded sewer link is moved to a volume-based collection helper using
+the actual native allocation. No invented density, recovery credit, independent
+negative uncertainty cancellation, duplicated sewer or new source omission is used.
+The existing -1 waste-reference factor is retained exactly once.
+
+All 499 earlier approval fingerprints and prior recipes/shared reviews are unchanged.
+Three scopes bring the ledger to 502, with three new recipes (3674 total) and two
+portable reviews (774 total). 27 Brightpath tests, seven Premise cache/drift tests,
+six installed signed demands, 41 original caller regressions and six finite composed
+LCIs pass; both generated resources replay byte-for-byte. The numerical comparison
+uses all 4362 canonical biosphere rows. Native matrix coefficients exactly match
+float32-rounded raw exchanges; the recipe preserves the full raw values. A strict
+exploratory LCI bound failed (1.58e-8 relative; 4.19e-7 maximum absolute), and remains
+recorded. Independent coefficient checks explain processing precision with less
+than 1.24e-17 unexplained residual; no LCIA equivalence is asserted.
+
+Real preparation now passes all 38 observed 3.10 cases and reaches a new 24-case
+3.8 cohort. Primary evidence for those 24 references and 49 producers has been
+collected without lookup errors and grouped by issue. Eight are exact-profile
+reviews of previously inspected correspondences; others include wastewater,
+infrastructure, lime chemistry, fuel-delivery and chemical-heat boundaries.
+Further cohorts and public heat integration remain unproven. See
+`docs/development/uvek-heat-310-closure-verification.json` and
+`docs/development/uvek-heat-38-mapping-frontier.json`.

@@ -1,0 +1,2172 @@
+{
+  "schema_version": 1,
+  "status": "twenty_four_observed3_8cases_pending_independent_review",
+  "context": "New cohort reached after all38previously observed3.10cases clear strict preparation. Publicheatgate remains closed; no automatic version-wide approvals.",
+  "identified_cases": 24,
+  "qualified_cases": 0,
+  "pending_cases": 24,
+  "categories": {
+    "barge_transport_boundary": 1,
+    "reviewed_correspondence_new_exact_profile": 8,
+    "waste_moisture_and_landfill_boundary": 1,
+    "wastewater_composition_and_capacity": 2,
+    "deionised_water_service": 1,
+    "infrastructure_capacity_and_reference": 3,
+    "wrong_lime_chemical_candidate": 1,
+    "fuel_market_versus_mine_boundary": 1,
+    "mineral_or_chemical_product_boundary": 5,
+    "chemical_heat_and_water_boundary": 1
+  },
+  "primary_evidence_receipt": {
+    "name": "heat_38_frontier_primary.private.json",
+    "sha256": "f54804b7a716dc92bdf8793be492a301330595b0d9c5431ffc3a7709fd65519e",
+    "record_count": 24,
+    "producer_count": 49,
+    "errors": []
+  },
+  "cases": [
+    {
+      "rule_id": "bp-48860f9f90dd62eb",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "transport, freight, inland waterways, barge",
+        "reference product": "transport, freight, inland waterways, barge",
+        "unit": "ton kilometer"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Transport, barge",
+        "reference product": "Transport, barge",
+        "unit": "ton kilometer"
+      },
+      "category": "barge_transport_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect complete tonne-kmservice, loading, barge/infrastructure and route/region assumptions; no payload or distance multiplier.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "transport, freight, inland waterways, barge",
+            "reference product": "transport, freight, inland waterways, barge",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "87b0f809080fd998848c9286d06d9159c3365a68ec49fd5c46b9488dbdeb223d",
+          "metadata_sha256": "13a66d4373d0fc918fcb48fc113186e3f93a6c0b61d60a7c613b7f162dd07830",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Transport, barge",
+            "reference product": "Transport, barge",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+          "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Transport, barge",
+            "reference product": "Transport, barge",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "ede9a55f91db61662b4a9ccb437cf4b8393ce59af94809c37cd3e06c72071b82",
+          "metadata_sha256": "671108054c8945359d4378e0d7679b1de893d973b4dece3e0d629e42a6d103fb",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-8c3b3ceb3e9c8bef",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "treatment of hard coal ash, residual material landfill",
+        "reference product": "hard coal ash",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "AT",
+        "name": "Disposal, hard coal ash, 0% water, to residual material landfill",
+        "reference product": "Disposal, hard coal ash, 0% water, to residual material landfill",
+        "unit": "kilogram"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "treatment of hard coal ash, residual material landfill",
+            "reference product": "hard coal ash",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "92e3e4593bde57efaacc585b1fd454971388990c0cc6c5fdf248e316dcf96359",
+          "metadata_sha256": "f1826ce3a258e55b1506e4b40e32dbe4958b44113777952c8e799c7ebc311d4c",
+          "reference_amounts": [
+            -1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "AT",
+            "name": "Disposal, hard coal ash, 0% water, to residual material landfill",
+            "reference product": "Disposal, hard coal ash, 0% water, to residual material landfill",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "31b5fb232a50fb1ba9c59372ea4a75a10d7a1a6c8c65d4643d682101e801cd1e",
+          "metadata_sha256": "e3014be79587e09649e8a589e82458681bcd88139730e1ced497e1bbbd947bdd",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "AT",
+            "name": "Disposal, hard coal ash, 0% water, to residual material landfill",
+            "reference product": "Disposal, hard coal ash, 0% water, to residual material landfill",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a01277ce4c719933a580437693c2d371f0f6537370e707920d380636a54f34c7",
+          "metadata_sha256": "ca5d9a7943b5bdc2015c04a6b99422a7ca12b03ca4002ffeb179504dd817e9ac",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-771ff30bce4560aa",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "treatment of waste gypsum, inert material landfill",
+        "reference product": "waste gypsum",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+        "reference product": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+        "unit": "kilogram"
+      },
+      "category": "waste_moisture_and_landfill_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source gypsum moisture/composition and landfill class; native label19.4%water does not justify an uninspected wet/dry factor.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "treatment of waste gypsum, inert material landfill",
+            "reference product": "waste gypsum",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "b99c623b2d7390a1311c7500f6184b15ed2bf8cc6fec936efccd346319a1b5dc",
+          "metadata_sha256": "f6124e167fcf2f754ea8bc2a4c1eea861c293518fac63125348d3f3d244df25e",
+          "reference_amounts": [
+            -1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+            "reference product": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "801bb3d3e8b79d4b0323fad887be4caea60ab0884ec7d376f1679367d3fdbc81",
+          "metadata_sha256": "e9b775ecf97a69c39974378b7f0f26eccbebd3cbf2a5070994ebd9828c0eafb6",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+            "reference product": "Disposal, gypsum, 19.4% water, to construction waste landfill",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0d3ad18991066af512b35e4ac72b2457437184d3eb5cb66ffa626ec5530f1f65",
+          "metadata_sha256": "ad7209831c7413931ac146c633e96d31bbc4d177b990b5b07a4f909814e07e01",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-aaa1b2617895fc58",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "treatment of wastewater, average, capacity 1E9l/year",
+        "reference product": "wastewater, average",
+        "unit": "cubic meter"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Treatment, sewage, to wastewater treatment, class 1",
+        "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+        "unit": "cubic meter"
+      },
+      "category": "wastewater_composition_and_capacity",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect actual source wastewater composition, treated reference, plant capacity, sludge fate and native class1/class2boundaries. A shared m3unit does not establish matching influent or treatment.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "treatment of wastewater, average, capacity 1E9l/year",
+            "reference product": "wastewater, average",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "408310b2d8611c36c3e3dc428e3f56947de0c19842d398779735a33a4d194f93",
+          "metadata_sha256": "dde5a6df9bc07a74a4c5664d042f26d7ef92931e174d35b9be797c37f0cf81a4",
+          "reference_amounts": [
+            -1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, sewage, to wastewater treatment, class 1",
+            "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "325deffc585f7e9186114d29a52ef831e90c393a5246ccdba4d7b8fe699ba1e2",
+          "metadata_sha256": "9f594f4139d789ec83bb14819ba02dd891f77e2259a819508c2fa490a2f9da37",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, sewage, to wastewater treatment, class 1",
+            "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "f5e2d9baac53590add03c8d761ebf71d4ba3cc616563a7754f0bed7c31459b68",
+          "metadata_sha256": "91d590ed22f26bc2c16fb58ae87dae12ab2bd736340e23dbffa25976d5957856",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-b53187b24a160299",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "water production, deionised",
+        "reference product": "water, deionised",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Water, deionised, at plant",
+        "reference product": "Water, deionised, at plant",
+        "unit": "kilogram"
+      },
+      "category": "deionised_water_service",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect ion-exchange/water-quality and complete native kgservice; no guessed density or purity factor.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "water production, deionised",
+            "reference product": "water, deionised",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d990126377ef82b0328f818ad26b16f5ca40e0f3441267164566e8b379c9d405",
+          "metadata_sha256": "f1e296573b760c294e1cad2572eb7890a911cded83b4cc1efa0ff521fba7cb25",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "bd7bbc1dab9ed071b021b11d8f27fdf5f8ce3dcc69ce2923c6d4844ac9142191",
+          "metadata_sha256": "f7243056c2b914cac1744fc5c6d8218047608c12caf8d3880df34f936467d944",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "1d7fe7c87e6806833088deed8891fb9928f2bf7abfcf50c1bd3f3e794f707988",
+          "metadata_sha256": "be7c253619e026023bd1d16979cff690835a02863c07132bdb4ab4f069e33afd",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-32d329d5cd56c9d8",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "chemical factory construction, organics",
+        "reference product": "chemical factory, organics",
+        "unit": "unit"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Chemical plant, organics",
+        "reference product": "Chemical plant, organics",
+        "unit": "unit"
+      },
+      "category": "infrastructure_capacity_and_reference",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect actual reference unit, capacity, lifetime, material inventory, infrastructure and decommissioning; never use a machine name to infer installed energy or volume.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "chemical factory construction, organics",
+            "reference product": "chemical factory, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "85f9332bb44b10b184b1042ddab3c105ec6905ada0521680f8efceed697caed5",
+          "metadata_sha256": "1f1fa6e8f863b13f2b5c672b8a73d565b375f3fb9ed0b1f9cf646db0a65ff3fb",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Chemical plant, organics",
+            "reference product": "Chemical plant, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "a3fb03d807728075a8272837a874f366990d35aef384d3030dd50dafc004266e",
+          "metadata_sha256": "37c3203255909050a9d0e8723887bcf18a0a09348c07c392fc305c369240a7c6",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Chemical plant, organics",
+            "reference product": "Chemical plant, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "51279bb8c3f63cae7189fcfbbefbd147f87e70db629bfbda44c451c280a03c8a",
+          "metadata_sha256": "f7c1e9fd56fba7a2bc076a14097ed4dc5c745d246f7e7f64d710111412bbaad8",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-cc95e6fdfe8919b8",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "lime production, milled, packed",
+        "reference product": "lime, packed",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Lime, hydrated, packed, at plant",
+        "reference product": "Lime, hydrated, packed, at plant",
+        "unit": "kilogram"
+      },
+      "category": "wrong_lime_chemical_candidate",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Source milled lime is currently linked to hydrated lime. Inspect actual CaO/Ca(OH)2chemistry and a native quicklime candidate before changing the rule; do not invent a molar conversion between different products.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "lime production, milled, packed",
+            "reference product": "lime, packed",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e2b28435f2d1a2ab9ff81efd87423246c8487059e9718d94fbbad64c26f75b05",
+          "metadata_sha256": "1f4a43b4fd136446b373aeb4aa3841c0747f510fca543aef13e1905dcaad5b6d",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Lime, hydrated, packed, at plant",
+            "reference product": "Lime, hydrated, packed, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "08f1cc184c46501d0109fa0cb702b6106d58f51046b442afef1a6d3cea3119e4",
+          "metadata_sha256": "caf87295659106bc5219e6f9c1290ba589533242b72c758ddff58e8a88e150f5",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Lime, hydrated, packed, at plant",
+            "reference product": "Lime, hydrated, packed, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9977da185bf423e230fb0ab84aa84a7df6852a7b24c074916127b575c56da12f",
+          "metadata_sha256": "3c52369be986a8b32af7a2da7dc6069630dad287ebe53c00a6ed0699dde90be9",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-95da75538a86123f",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "liquid storage tank production, chemicals, organics",
+        "reference product": "liquid storage tank, chemicals, organics",
+        "unit": "unit"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Liquid storage tank, chemicals, organics",
+        "reference product": "Liquid storage tank, chemicals, organics",
+        "unit": "unit"
+      },
+      "category": "infrastructure_capacity_and_reference",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect actual reference unit, capacity, lifetime, material inventory, infrastructure and decommissioning; never use a machine name to infer installed energy or volume.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "liquid storage tank production, chemicals, organics",
+            "reference product": "liquid storage tank, chemicals, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "36f414380c3171f05c182bb4dfb81e431993bceafd8f79d6651d595e3d05569d",
+          "metadata_sha256": "9e57a6dec83728cf211de86e267ad5d997e8601e285d95c1d2c20be564172c67",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Liquid storage tank, chemicals, organics",
+            "reference product": "Liquid storage tank, chemicals, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "d7b69f5056dd46c477a9e6add3467f823e0f0ffcc2e367fe8544b4d54e3658fe",
+          "metadata_sha256": "be4472ba08051a2ebcb6b3da219618edd9e37303a8f64b66fa92b8a647afd20b",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Liquid storage tank, chemicals, organics",
+            "reference product": "Liquid storage tank, chemicals, organics",
+            "unit": "unit"
+          },
+          "inventory_sha256": "e6c053efd1758971dd12e8446ffdd3f84ba2dfb7ac9409d827a664949c138402",
+          "metadata_sha256": "4ba2dd5d2df744148b00cfa7c285348e0e338d4ce50c67255b9458a91cdee351",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-5ede2be860ad337d",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "AU",
+        "name": "Hard coal, at mine",
+        "reference product": "Hard coal, at mine",
+        "unit": "kilogram"
+      },
+      "category": "fuel_market_versus_mine_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source coal mix and market delivery; mine-gate candidate may omit delivery. Review closer native complete regional-storage mix and retain energy/mass basis without inventing LHV.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "market for hard coal",
+            "reference product": "hard coal",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8c9681c9ced3a16e2dfe5a49638807e9aceea99f8a032c595dd120ea8ff9ed75",
+          "metadata_sha256": "46ad5ff23da013e740cbb3e4a0cbbaeeeb8d745d3a82d27ceaf83bb1bd64b094",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "AU",
+            "name": "Hard coal, at mine",
+            "reference product": "Hard coal, at mine",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "beae5851ab6a3cf7783768f6c88dbbdeebf71b6245f178765407b0c2d6ea672d",
+          "metadata_sha256": "83c1324bdc1b42eed9896036724e03f03ee0919ae358860202b4c240c004c35e",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "AU",
+            "name": "Hard coal, at mine",
+            "reference product": "Hard coal, at mine",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0c9818b7723c4b34c544732f22acbc414708a3eb2663eaa5a0a6ccb5a06793b6",
+          "metadata_sha256": "973428efd012e76954ecd4a93ddea33ff89bb63977a71ac79de13eec09c56791",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "market for hard coal",
+            "reference product": "hard coal",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8c9681c9ced3a16e2dfe5a49638807e9aceea99f8a032c595dd120ea8ff9ed75",
+          "metadata_sha256": "46ad5ff23da013e740cbb3e4a0cbbaeeeb8d745d3a82d27ceaf83bb1bd64b094"
+        },
+        {
+          "identity": {
+            "name": "hard coal mine operation and hard coal preparation",
+            "reference product": "hard coal",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "eac63eff7951b3fe6daf059608d35cbcfd414307416f01947f9b2880f81a47a4",
+          "metadata_sha256": "cd0dc73e1e7f739fd63a58a4ea3d5ecba09cb6fcf3884e7721c072f82b13f816"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b25755fd394b9346",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Transport, freight, rail",
+        "reference product": "Transport, freight, rail",
+        "unit": "ton kilometer"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "ebf5170fde5e8ce168132cb35f387a76fb99f55cfee90bbfeaebb6035b275b36",
+          "metadata_sha256": "691bbb3848bbdc5416c7fbd0a88510460769814d2ab0e46ba6bd6ca00e270f77",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+          "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+          "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "transport, freight train, diesel",
+            "reference product": "transport, freight train",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "16020c8569d84f4b763955f662fdbde5fa8723a9ecc972b5a38854f6b6a1d815",
+          "metadata_sha256": "9873ede36db8364885bf533d8aad2dd4836099e787230444cf61d655c1be12e0"
+        },
+        {
+          "identity": {
+            "name": "transport, freight train, electricity",
+            "reference product": "transport, freight train",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "bb383d1ae68125e012178195f97fa8144a03cdc3962fa053c0574e0f47b58072",
+          "metadata_sha256": "e49c8b0c2978917844181749face06fe5c36ea611a5b68f7749e8b58b91cbc16"
+        },
+        {
+          "identity": {
+            "name": "transport, freight train, steam",
+            "reference product": "transport, freight train",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "inventory_sha256": "2f94b2656ccf9ac88e4fb4fd9112acc9c1a1cb747ce21bd77da7f7d7ee57ce4c",
+          "metadata_sha256": "ecc641f8d52c452a2ae3a06ac6b015f466b42db044d3b36d0254b8f96bfd21ba"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market group for electricity, medium voltage",
+        "reference product": "electricity, medium voltage",
+        "unit": "kilowatt hour"
+      },
+      "target_candidate": {
+        "location": "GLO",
+        "name": "Electricity, medium voltage, at grid",
+        "reference product": "Electricity, medium voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "GLO",
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "6849fa4f425326585508cd94bd7c6d687f51d8af742be79bece3b5f6daa39682",
+          "metadata_sha256": "42a572d37c9f4a13973c79867107064c50e5aef4bfa6d39ba9b5c5bf57890a55",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "GLO",
+            "name": "Electricity, medium voltage, at grid",
+            "reference product": "Electricity, medium voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "3e84871942f1fecbfdc9e2548c8db28e688fd33b6c6f7db1f6c4f2abec2a6ce7",
+          "metadata_sha256": "857616342fe196acecdff387a38366b355d49f3a5be4b858238a4e5b78a2adef",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "GLO",
+            "name": "Electricity, medium voltage, at grid",
+            "reference product": "Electricity, medium voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "ad74016680b74cbf3aa9ce6ce6529962c4a15145e79a33ed6452e6fcd882792c",
+          "metadata_sha256": "ec2ab7fab8cb73a978a5905bfd6ff0e21da53724265e6ee49cd14e2dd70fbf88",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "market for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "AU",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "a8ba3cb826d0eb61955609f33a269af9393f72e9d4c34fd319b7b7f28674767a",
+          "metadata_sha256": "4207c3be8e42d206b1246f83138391a7356e4d6526a89559485ca65c0fa0d88a"
+        },
+        {
+          "identity": {
+            "name": "market for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "NZ",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "70298d6015d2508e13f4b8d6033e3622a83acd8c1dbbd41f1c1e7e2c121217de",
+          "metadata_sha256": "6498b0001a5f2cf8a53dc2770c5033a9cfe31dd494688f9e0d46eb0763f5a8f3"
+        },
+        {
+          "identity": {
+            "name": "market for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "RU",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "0e5588b76ce8677df5de65b70930ae15157ee7c15b6f630ebaaee02b93eb40af",
+          "metadata_sha256": "f6d05adbf74d8be98e4ac3255c13e781e1fa7812dac08cfd1a25062a7c10d97b"
+        },
+        {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "RAF",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "4a055bde6fd3f67328509c594d59a5b95509a000b9b615234dcb8cc1641e0db6",
+          "metadata_sha256": "c824d2e5f6de02f234ad752e6cf80fe3c97d3aee1c3d98d3921397d8b100f415"
+        },
+        {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "RAS",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "a9a1de73b98e50494801ad55b7b46f580d3a33be9d2a3ee54011f42551b2e7c1",
+          "metadata_sha256": "4b8930428f4e9c6646c62bcf25f8f0f1593bef5038dfffb351562c6812094897"
+        },
+        {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "RER",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "c42fdb14fb531fa5b96b72c2437e4186632f6c939797a2af5f961594341d1b26",
+          "metadata_sha256": "a6fe8a2fed4dc9a09a27466622e572fa7cd382bce1f49d802dcf7bffd1645d54"
+        },
+        {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "RLA",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "dab58fd3bd78a2599924036fc1c25eaaff461208c71c757f031dc086d5328ecb",
+          "metadata_sha256": "adecba116234c5e979646eb6406e339b86ced99de83d86d4d47513c472bc8803"
+        },
+        {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "RNA",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "e2fecc6b2e2ad6700f1ea8885d05977cb5c71c5440816683603351c8f1108d1e",
+          "metadata_sha256": "c2e130bd0bdeaae1a7c87c0631d66e39f0366c607f765d9577021af7c15f6192"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-66394d45f1ae5fbc",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "market for aluminium oxide, metallurgical",
+        "reference product": "aluminium oxide, metallurgical",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Aluminium oxide, at plant",
+        "reference product": "Aluminium oxide, at plant",
+        "unit": "kilogram"
+      },
+      "category": "mineral_or_chemical_product_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source product grade, route, market shares, native feedstock/complete boundaries and reference quantity. Do not infer chemical purity, yield, moisture or density factors.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "market for aluminium oxide, metallurgical",
+            "reference product": "aluminium oxide, metallurgical",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "de6326e6f0952fe33034bb9999891d930fa34e273132508d1356c7b9d1d365a2",
+          "metadata_sha256": "91e51f804847fcf07e405f8db544db54eff05a9b688053dcfa5feaece6eafdad",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium oxide, at plant",
+            "reference product": "Aluminium oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c517cb807d4e0b165327d132899d73ef082c74964039d3edc4f02a7d2392266f",
+          "metadata_sha256": "d88cb51dece7ef6215b76c2b6cc2d29fe706ed5f4820893e4b4fcbfea7151209",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium oxide, at plant",
+            "reference product": "Aluminium oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4389194cee37e885b653ef43a46ccba20e27bd10d547ca171a5a47c3a1b08c0b",
+          "metadata_sha256": "6a30d4e79bcf1628b3f2b9f25ea16f9a6a70baa550071464d2d2659ea0773e21",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "aluminium oxide production",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "2b3b854ae54a48c788c20f678a237abc80e8c4ddbf822c4108b0c2f1d43d8dce",
+          "metadata_sha256": "f712f2facdb1569e9e22f961db6febe7a5da3c124aa866161a494d82f15fd335"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide production",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, Asia, without China and GCC",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "822a44c149be927623bdaf0de14e1860ed06888edcc8da532af456dae649d17b",
+          "metadata_sha256": "75f2a9bda05a20371c35bf6e2a28849b4f772466cc7a7bebd2c66920db195816"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide production",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, Russia & RER w/o EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "91dc592dd717ac5aeb8ebdcac0cbe2285f595b1340d29449f584deac154a4a1e",
+          "metadata_sha256": "a5972ad7fff9820f6fb5254693dc05b302dccca78eca00d042c15f2336afb882"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide production",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, South America",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "2df3f1ea3b8c9f40eafd94a369408d5fbba87cfe16877559482349d0e624ee08",
+          "metadata_sha256": "07759fd59524c3d18ceb86af174ed22c987c3ad68d0ce274e7efea1076593e25"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide production",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "RNA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f9e502fd24da9e5852513902019454f9f6ce12ce691b69c04b64f2dde10535be",
+          "metadata_sha256": "2bd099b418674e7cc77a26258e0e0625406174d5b0b1c8d17db6d83ee4ea18bf"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide production",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "UN-OCEANIA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c76b44c0560106a429e7d7d1a2bcc6cdd79fbc40b1380c4e0bbdbeea8a97c05d",
+          "metadata_sha256": "6abc6b6dcdfe58f967db4d08898ab1f556ae9b5207de43834e6e468fdaed438f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-46a8f88f9ecae2d1",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RoW",
+        "name": "steam production, as energy carrier, in chemical industry",
+        "reference product": "heat, from steam, in chemical industry",
+        "unit": "megajoule"
+      },
+      "target_candidate": {
+        "recipe_ref": "chemical-heat-water-3c6646f8818b0558feee"
+      },
+      "category": "chemical_heat_and_water_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source per-MJsteam/heat allocation, water and fossil heat requirements against the existing helper; preserve source basis and no copied older-release quantities.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RoW",
+            "name": "steam production, as energy carrier, in chemical industry",
+            "reference product": "heat, from steam, in chemical industry",
+            "unit": "megajoule"
+          },
+          "inventory_sha256": "295dcb145103d178a54e33ef010407daf37067aa573addb4e3e700f843b34a33",
+          "metadata_sha256": "aa6d8045c2b2697984067b764232a255dea5a8abd28fdf799c035cf92de2d8ef",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    },
+    {
+      "rule_id": "bp-edf1518533a281df",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for aluminium, cast alloy",
+        "reference product": "aluminium, cast alloy",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Aluminium, production mix, cast alloy, at plant",
+        "reference product": "Aluminium, production mix, cast alloy, at plant",
+        "unit": "kilogram"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for aluminium, cast alloy",
+            "reference product": "aluminium, cast alloy",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "640c042d2956f7746eca29fe61dd18c01f69cd7751b7c6b11239479d40b9e1f5",
+          "metadata_sha256": "de504621037998e7867711d2d063b65ed9cbe605a73d63e3deed507e1f389e5e",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium, production mix, cast alloy, at plant",
+            "reference product": "Aluminium, production mix, cast alloy, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6924f77b3100fceda7d520434663ea33444f0351bcaf4f1f1c2a556e67431286",
+          "metadata_sha256": "d208ba666c7aebe1bfbf761c7fa2ed665d79092b063ba068399565f538950e91",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium, production mix, cast alloy, at plant",
+            "reference product": "Aluminium, production mix, cast alloy, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "1b645116a1214230eaf8caf105f1cf9dcfd178f5ec0667ad3b1c34780f8c3b44",
+          "metadata_sha256": "f860a0ac10459ee2ac16af73c4e444e19c9a7c843caa3486b018f9e2a6d19f5c",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "aluminium ingot, primary, to aluminium, cast alloy market",
+            "reference product": "aluminium, cast alloy",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "64e1d2eed397b4a8ab520dc074ec449407f46901b6f348cf1fb8d23afea016c1",
+          "metadata_sha256": "abbbc3b05f4985929900f14d740b4d601a309845cc1bc8c87c5b32a2b3c67dbb"
+        },
+        {
+          "identity": {
+            "name": "treatment of aluminium scrap, new, at refiner",
+            "reference product": "aluminium, cast alloy",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "228e0f405fb3676a44ed0dfbe03a782e4c25640867b565c48a7c08feb1edfac4",
+          "metadata_sha256": "aad0f7bd8caaf3630c82ae18b7dedb9b396e5317c5831a0568a9810147c5ea0e"
+        },
+        {
+          "identity": {
+            "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner",
+            "reference product": "aluminium, cast alloy",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "65030770bf76714fb0fd3c814eb566ecc3e1c0615e84c9aaed5374c24788d9d7",
+          "metadata_sha256": "35bf3badd7369d32e0e3d68bd5625aceb3984440e13b9a19a859ebc738c45248"
+        },
+        {
+          "identity": {
+            "name": "treatment of aluminium scrap, new, at refiner",
+            "reference product": "aluminium, cast alloy",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "67b664b52899a95ea68bf7baa09465ac214eea82325e564455c353d7c1c8126c",
+          "metadata_sha256": "a31e9e5d895d1df01066e06fff7299ab7c76ca7a4e40f009bdcefd3f652b6ea3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2be1399569d5de28",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market for flat glass, uncoated",
+        "reference product": "flat glass, uncoated",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Flat glass, uncoated, at plant",
+        "reference product": "Flat glass, uncoated, at plant",
+        "unit": "kilogram"
+      },
+      "category": "mineral_or_chemical_product_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source product grade, route, market shares, native feedstock/complete boundaries and reference quantity. Do not infer chemical purity, yield, moisture or density factors.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RER",
+            "name": "market for flat glass, uncoated",
+            "reference product": "flat glass, uncoated",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9d514a4040d9479970250c9173f7b6c789024ad0dfacb7381d6322b9d0952cdd",
+          "metadata_sha256": "188bd82f965ac0739ab8fceebfd9b668788a4ba64178429855a34f3b74bf3611",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Flat glass, uncoated, at plant",
+            "reference product": "Flat glass, uncoated, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a0c0ce3e86246c77c768d361e522017ad68f554518bc263a18462e38eae949af",
+          "metadata_sha256": "367f8fcea07c6eb06ba7ada41b1e3932d1d09fb57449bb39ab87e1d3ce9cca1a",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Flat glass, uncoated, at plant",
+            "reference product": "Flat glass, uncoated, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "88485796e5f944fd0ba1ee74cc8e7150b66997a0db930d1f254cea666ddc9d2e",
+          "metadata_sha256": "8d2b05ee1b288b0035a0212bbda06afa9473a6246c35a3f6a928e7e5e3c0ba46",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "flat glass production, uncoated",
+            "reference product": "flat glass, uncoated",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "743b3c1355414e318d917d25094571388d07b3071613bad18cfa6a75ba2239dc",
+          "metadata_sha256": "3b5cc91d8b8d39d729e5f00bf9c11d87049c85571d503d61cf2ab2947c9282e0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-90d9ae3ee389f465",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for cast iron",
+        "reference product": "cast iron",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Cast iron, at plant",
+        "reference product": "Cast iron, at plant",
+        "unit": "kilogram"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for cast iron",
+            "reference product": "cast iron",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "5e784f2fa9e3c95bc60e4fbaa31cdb90246de0605d00d6e47356bd7e0cc87fa0",
+          "metadata_sha256": "88f6251075a5ea51a5562dd337aee634b77f690a55d64f0b351ef065c167db78",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Cast iron, at plant",
+            "reference product": "Cast iron, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "f1d060833f612e1fbe33d41277eece7c901f10d16bcf6dbab82690b5e81364fa",
+          "metadata_sha256": "d48bd3e753653d98b125dae31e468bda81dd780f8b24d4511f3fec0b7227c399",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Cast iron, at plant",
+            "reference product": "Cast iron, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "7ad525c70adccad69422aeb17fd14f99937b73f57c9bf5ac71dbbe629117fe30",
+          "metadata_sha256": "dc0b5adbab190aab059ec9b617e7bc1b634828d1e3560ddeb26b5b08b01b4b62",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "cast iron production",
+            "reference product": "cast iron",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "89955225043110423008e5d38f358d70f5232a9f88f10ad8a017ac3adbdc1bfb",
+          "metadata_sha256": "4fe4732737c17ebe6f9e15add6fec8e830666ad3e27899ca08be7d453980e9f4"
+        },
+        {
+          "identity": {
+            "name": "cast iron production",
+            "reference product": "cast iron",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "991f0e40ea28caabc3bc533fa2747714db688f6c832108ad8168b7e074507cf3",
+          "metadata_sha256": "6ded39c9be8e230fb87ae55bc663ed48beb34b9ee2ffd1cdb61278d8301c2d91"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-953779a9d7354634",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "CH",
+        "name": "market for concrete, normal",
+        "reference product": "concrete, normal",
+        "unit": "cubic meter"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Concrete, normal, at plant",
+        "reference product": "Concrete, normal, at plant",
+        "unit": "cubic meter"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "CH",
+            "name": "market for concrete, normal",
+            "reference product": "concrete, normal",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "0442aaddb924174d7355b2251cd383a5a50051e612a010f7918323ccc83ad7fb",
+          "metadata_sha256": "dada3e626abb34c9e51094acc80053b8e3eef5cb721e0b1af94e45443e2608f2",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Concrete, normal, at plant",
+            "reference product": "Concrete, normal, at plant",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "db52b9f1cf7b65302d50e039e6c9b98a4ec9f78c25245c44b5e5c410224f9395",
+          "metadata_sha256": "c3e7a33110c02d5ff0c598c35f63dab62c3ea27a9b53a5afc8d5b711add17530",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Concrete, normal, at plant",
+            "reference product": "Concrete, normal, at plant",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "5abee5aa0e81b063ed20528360d266451342ec7c3fc79127c2b31094693c8bec",
+          "metadata_sha256": "0f3dca865b967c58b83346643850ab6be56241abd6ff67b07b463f2d758c474f",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "unreinforced concrete production, with cement CEM II/A",
+            "reference product": "concrete, normal",
+            "location": "CH",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "39463ede8e286dd7362a2c84915a04a0b2c490bf51a2f32cfd5d909d7a922b3b",
+          "metadata_sha256": "31edf6bace565830dee1d4a30ad6702d8ad165d19cffa4baf35ec4ff2720d67f"
+        },
+        {
+          "identity": {
+            "name": "unreinforced concrete production, with cement CEM II/B",
+            "reference product": "concrete, normal",
+            "location": "CH",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "84b04cde4818179d59097a82215a419810eefdfc37acc9f02d6b3b703f73da6b",
+          "metadata_sha256": "25a7da9fa6f65fe7362dcf9e743f8bf8aec3203edb0b2e6286babce1954515e1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-76d8e69be0f742aa",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for air compressor, screw-type compressor, 300kW",
+        "reference product": "air compressor, screw-type compressor, 300kW",
+        "unit": "unit"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Air compressor, screw-type compressor, 300 kW, at plant",
+        "reference product": "Air compressor, screw-type compressor, 300 kW, at plant",
+        "unit": "unit"
+      },
+      "category": "infrastructure_capacity_and_reference",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect actual reference unit, capacity, lifetime, material inventory, infrastructure and decommissioning; never use a machine name to infer installed energy or volume.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for air compressor, screw-type compressor, 300kW",
+            "reference product": "air compressor, screw-type compressor, 300kW",
+            "unit": "unit"
+          },
+          "inventory_sha256": "036d562b10163af3812e79d71b98b819612654694bb27e945e1ed7b687a5d8ce",
+          "metadata_sha256": "cb70915551753ef0c2adfe5b5bbda0faf67fff5c291e7604840d1a5fa991dece",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Air compressor, screw-type compressor, 300 kW, at plant",
+            "reference product": "Air compressor, screw-type compressor, 300 kW, at plant",
+            "unit": "unit"
+          },
+          "inventory_sha256": "aac7b6fc52f3d28c19481ce3a6d8f97b5580e11688385e698f62375062b90163",
+          "metadata_sha256": "4fc9637e82732adbe17cd3c6d47804b4fc28edb7974cb3dca55539ce1e60b26c",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Air compressor, screw-type compressor, 300 kW, at plant",
+            "reference product": "Air compressor, screw-type compressor, 300 kW, at plant",
+            "unit": "unit"
+          },
+          "inventory_sha256": "b5cc874eff274c879b4f599c217ec8fe57df6decec37a6a0bf46dc9e6dc76267",
+          "metadata_sha256": "5d72b1397fe37689123e3542559d93ad8c8dd8bf51662b0d4a52c68ea02426f3",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "air compressor production, screw-type compressor, 300kW",
+            "reference product": "air compressor, screw-type compressor, 300kW",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "inventory_sha256": "437d407de7b5fbfe10cb5484fec4bfc4298d3bdac5f08fa6cc8665464b6b60da",
+          "metadata_sha256": "327164d4b0ac9e6cbf1522cb74a333d70253920f96d8cccab8b5236535b1db79"
+        },
+        {
+          "identity": {
+            "name": "air compressor production, screw-type compressor, 300kW",
+            "reference product": "air compressor, screw-type compressor, 300kW",
+            "location": "RoW",
+            "unit": "unit"
+          },
+          "inventory_sha256": "6ee95352666d79a39a1ef33d8a4b656164b619acac1f6d225ef1693534760df3",
+          "metadata_sha256": "20f3609b7e976642a5a5b13db9b3da01a9545d1f9b6b11145b1eb9fc04d7b614"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-18e8ed0207bbd5f8",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for tap water",
+        "reference product": "tap water",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Tap water, at user",
+        "reference product": "Tap water, at user",
+        "unit": "kilogram"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
+          "metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "e82e54cf92490c82a2cb0618b651b268abe22657daf0ca724799b6040e6cc011",
+          "metadata_sha256": "2df6257a30aae3002588c798b2fb2382dd30e1da0bf8a670a2127c56fff98dae",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a1398822a40bf793d2a22d27ce3608174c8ca43b390c446ae626c76a0627ded4",
+          "metadata_sha256": "4a84776ad668ee971da94272a8031bcd699593111474e4045970f82e3643f340",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
+          "metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4"
+        },
+        {
+          "identity": {
+            "name": "tap water production, conventional treatment",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "eae207c0304ece12e65df58ac1a77fe445e37755c50b29ee2d51eaa5270f7bae",
+          "metadata_sha256": "3dede8dff4244b01daa384af23f8a26cb47767224336e8c09dfcb5881dc53a5c"
+        },
+        {
+          "identity": {
+            "name": "tap water production, conventional with biological treatment",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "6515c46a6b2066e2a89312c427d15046d055bd5a40e8bc5cf9261e875ac6de65",
+          "metadata_sha256": "f373f3226a9d2ff13d5ed936307bcef37d1e6d3777b5b44101e23f4d9f36b533"
+        },
+        {
+          "identity": {
+            "name": "tap water production, direct filtration treatment",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "583f5e1c92a9a4e415a4a658e7689e9915b88377265769b2f1955b5d998de8c9",
+          "metadata_sha256": "da53a30f05aefcbae6c4df9d0a38fa3b22f7a069a1fdebcbb735184b5ac63c8d"
+        },
+        {
+          "identity": {
+            "name": "tap water production, microstrainer treatment",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "1e3abe265b31dad926656983f189c0f8ff613e33d6f143120e671f3366ea327f",
+          "metadata_sha256": "0b849ddfb2ee08d40be427868ce4bcb3d93d697210d8bc8a9f43182b1b6e7796"
+        },
+        {
+          "identity": {
+            "name": "tap water production, ultrafiltration treatment",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "48b5b9bc497abfcdee285c5cdd2633e0105f6213d79d0e5e3a3e409a4ae666c8",
+          "metadata_sha256": "1e8a94f22011fd1036ffba0cd83663009ea1513e56ac1ae55fa2344fb7b90b9b"
+        },
+        {
+          "identity": {
+            "name": "tap water production, underground water with chemical treatment",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8bd6a3a1ecc7cc9d06ba959a5f7a84e6de116fd7015d26d96a669999d901f4a5",
+          "metadata_sha256": "433b5542e95684244cb1af9b2f35a94a356f979bcecb43b3a1793980ac25bce6"
+        },
+        {
+          "identity": {
+            "name": "tap water production, underground water with disinfection",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "74c498aeddbf47641382fb9e64a15c5d63205ee2a3b40248e81e36862a3f60d6",
+          "metadata_sha256": "3681efa149ce2c57ed63027ea6372d633174a459b7c6150099588d0bad5a15cb"
+        },
+        {
+          "identity": {
+            "name": "tap water production, underground water without treatment",
+            "reference product": "tap water",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d3063d87df7f92a810bfea0e5bd964c47d5110614a87e4ba8707ddd602c85452",
+          "metadata_sha256": "26a9d2166a445ef5e9e01d0a1d732c8d6b8574efd14741b345f4147427d3b139"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f5891204a3feaf32",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "RER",
+        "name": "market group for electricity, low voltage",
+        "reference product": "electricity, low voltage",
+        "unit": "kilowatt hour"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Electricity, low voltage, at grid",
+        "reference product": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "category": "reviewed_correspondence_new_exact_profile",
+      "prior_reviewed_source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        }
+      ],
+      "required_review": "Independently compare actual3.8reference quantities, source boundaries and composition with the earlier decision and native references; do not inherit approval by name or rehash an altered rule blindly.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "RER",
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "b8fbc56d05a1c7c5e7701b94b89bf7aef5d87287f5369ec62a29225faef5d3aa",
+          "metadata_sha256": "75dfe7f9d17862a47a04a8c5d1bcb7e06db34f3d708bc4848d8e46509cb30ecb",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "9918d53f738c649fd1efbe365b393c29136467f80c38f956eec026474ee675d5",
+          "metadata_sha256": "fdb68aea771258bd961a9ab22971908096acd391378886a1f6eead5612d741e3",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Electricity, low voltage, at grid",
+            "reference product": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "8f7248a0a15d75d3ba4f79ec2a6b4682ccfd8a40b5b38f5d2c5a8d107d652eb1",
+          "metadata_sha256": "71c40c317115b22b01d441f1983b54847fc1355686150c0a0b0730bd25daed4c",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "market for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "location": "CH",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "eb4f59a32666b36a95da0bb0d4c6dffc3bcb79db2f7e44687c44a8ba0f65edf0",
+          "metadata_sha256": "57f4cccddb8c5cbe10ff97d7db1ac1491ed9b04a652ce2b975b6c86f32c9f4ea"
+        },
+        {
+          "identity": {
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "location": "Europe without Switzerland",
+            "unit": "kilowatt hour"
+          },
+          "inventory_sha256": "a2fe5b13dd44c6b2625339663dc5d7f43a72f42f03bd6e80c5811782b9f7d8ca",
+          "metadata_sha256": "4cd8d87f0692ee117872a3db0b973ffc59ca51412024b7753fa9fc56f028c6ec"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9f742d14ef4d8ca9",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for zinc oxide",
+        "reference product": "zinc oxide",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Zinc oxide, at plant",
+        "reference product": "Zinc oxide, at plant",
+        "unit": "kilogram"
+      },
+      "category": "mineral_or_chemical_product_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source product grade, route, market shares, native feedstock/complete boundaries and reference quantity. Do not infer chemical purity, yield, moisture or density factors.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for zinc oxide",
+            "reference product": "zinc oxide",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0f0be2a8771843edf514a9e078100f8b207a9d6c695541ab5973baced1778d71",
+          "metadata_sha256": "53b2d6005a3c1427423da2cc287f544368ed107760d1f145d4b65a01df601870",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Zinc oxide, at plant",
+            "reference product": "Zinc oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0d6000eec4e4cc190638763bca6d49f2de5fb6adcb8976d115b9110957a4a4ea",
+          "metadata_sha256": "e3723104bbbfc9ed8e8932b06e95a5e36fe1d928d3636eee4e778c8df9a2a68d",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Zinc oxide, at plant",
+            "reference product": "Zinc oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "d629e843fd6d949f385008502e701404425b00db72a107367cda4039bdc08ae3",
+          "metadata_sha256": "58def3cd4b69ccbe744cce7d1f6571ebdd0d024d621e3c8a2e3ef4401dea2484",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "zinc oxide production",
+            "reference product": "zinc oxide",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "1458fa769c596e82dd7ec899f2701aeb70ea52c7dc0119b93ebe7166ebc6e241",
+          "metadata_sha256": "1ec16ee6d178ae97c6d468dabf0de2d48a9e83f761741cf41de1ad07696187da"
+        },
+        {
+          "identity": {
+            "name": "zinc oxide production",
+            "reference product": "zinc oxide",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "8176209a1fbad38a48e033842db345239c8039cce03e5527be7d77c9e0b5935d",
+          "metadata_sha256": "110156394c311ca9a47e3675771712c42a2b78e8576ff10e1144b869b7f38449"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3977d3526b1a0617",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "market for copper oxide",
+        "reference product": "copper oxide",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Copper oxide, at plant",
+        "reference product": "Copper oxide, at plant",
+        "unit": "kilogram"
+      },
+      "category": "mineral_or_chemical_product_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source product grade, route, market shares, native feedstock/complete boundaries and reference quantity. Do not infer chemical purity, yield, moisture or density factors.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for copper oxide",
+            "reference product": "copper oxide",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "9d4566728dfa515b65824a08642730b8d9a3f9d0d9c4bf2c45d181be69e864e5",
+          "metadata_sha256": "f4ac31187760b391746ac7070867faddff01c39a5da1a4bdbbe9cf91f0d1ee28",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Copper oxide, at plant",
+            "reference product": "Copper oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "900c6d1a2953f05c47a80097f0ec455e21fdd8f1360bfd05fd235f2ab7a2af57",
+          "metadata_sha256": "285ea0c47d4c6cb230d8cbd0d90f980c335fb5bb3d1e8e868c6af51fe72ed146",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Copper oxide, at plant",
+            "reference product": "Copper oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "0583e89866910482d813e549bd0d971c6442006e5347e4502b50c4b17ebf9806",
+          "metadata_sha256": "e12b75f4ce0ad0b39a9a4c33dc3ec908243258e0fa9d131244568c58058db240",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "copper oxide production",
+            "reference product": "copper oxide",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "b2ccadaf4eb5c91397865aa70cbd4759888d4a3246e9c08f76ca2c5aa4da418e",
+          "metadata_sha256": "465734363ed724bd5445e5eca72f8a5ba9c3f9b1bdf7e4a4392911857c16540e"
+        },
+        {
+          "identity": {
+            "name": "copper oxide production",
+            "reference product": "copper oxide",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c535bbba51cfa7d1e88df296f636f86f1abc3571a1a969a882a47ce12ef3399f",
+          "metadata_sha256": "33d3233b3b04e37b100c095fad9a6457a4c60f497e478ed7f695440f40d704dd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-57c9160454525453",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "IAI Area, EU27 & EFTA",
+        "name": "market for aluminium oxide, metallurgical",
+        "reference product": "aluminium oxide, metallurgical",
+        "unit": "kilogram"
+      },
+      "target_candidate": {
+        "location": "RER",
+        "name": "Aluminium oxide, at plant",
+        "reference product": "Aluminium oxide, at plant",
+        "unit": "kilogram"
+      },
+      "category": "mineral_or_chemical_product_boundary",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect source product grade, route, market shares, native feedstock/complete boundaries and reference quantity. Do not infer chemical purity, yield, moisture or density factors.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "IAI Area, EU27 & EFTA",
+            "name": "market for aluminium oxide, metallurgical",
+            "reference product": "aluminium oxide, metallurgical",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "54fac5eb2ea1df6e068c2fe778335b54e1bc94a33d86bbed0618ca2ba19517d1",
+          "metadata_sha256": "eb5888b4e016d5f98646eceddbf4113636d54e6b7a652bb2ea4abe10a3b21025",
+          "reference_amounts": [
+            1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium oxide, at plant",
+            "reference product": "Aluminium oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "c517cb807d4e0b165327d132899d73ef082c74964039d3edc4f02a7d2392266f",
+          "metadata_sha256": "d88cb51dece7ef6215b76c2b6cc2d29fe706ed5f4820893e4b4fcbfea7151209",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "RER",
+            "name": "Aluminium oxide, at plant",
+            "reference product": "Aluminium oxide, at plant",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4389194cee37e885b653ef43a46ccba20e27bd10d547ca171a5a47c3a1b08c0b",
+          "metadata_sha256": "6a30d4e79bcf1628b3f2b9f25ea16f9a6a70baa550071464d2d2659ea0773e21",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": [
+        {
+          "identity": {
+            "name": "aluminium oxide, metallurgical, import from Northern America",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "a8100e80049098f02c93f8fa76eee8386c0aa3fa4ca389af5b69de779162ea14",
+          "metadata_sha256": "8cfda0cc6da5258edab3431d44f1772ec361dd0a3579f14837513e66927740fd"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide, metallurgical, import from Rest of Europe",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "2c22b53c38bccb40b70c059187fa684330a03272a442bbea6e8a31080f18f028",
+          "metadata_sha256": "11857389023b55d64776f4c1c85f825c1ee0bcd08bfee718ecec4e001bb45b44"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide, metallurgical, import from South America",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "3f0dc52032e5a835f4fddef0545039899af8b2c9aae2cdca70c626c25eb63b48",
+          "metadata_sha256": "e40e39052de36b1cdb25f45764b0450083c15763f3d804aaaec2f3bd0b1283c6"
+        },
+        {
+          "identity": {
+            "name": "aluminium oxide production",
+            "reference product": "aluminium oxide, metallurgical",
+            "location": "IAI Area, EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "inventory_sha256": "4271883a3705a29ea81b0f801e3be9e139ae368bfc37fb1a8b6fecb0013ba6c9",
+          "metadata_sha256": "4704c7503a98c5a58e2d9a167e5b98c2993c9260bb41d0ad50b3cdd9dc361b92"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-725eff919d0ce812",
+      "status": "pending_independent_review",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "treatment of wastewater, average, capacity 1E9l/year",
+        "reference product": "wastewater, average",
+        "unit": "cubic meter"
+      },
+      "target_candidate": {
+        "location": "CH",
+        "name": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+        "reference product": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+        "unit": "cubic meter"
+      },
+      "category": "wastewater_composition_and_capacity",
+      "prior_reviewed_source_profiles": [],
+      "required_review": "Inspect actual source wastewater composition, treated reference, plant capacity, sludge fate and native class1/class2boundaries. A shared m3unit does not establish matching influent or treatment.",
+      "references": {
+        "3.8": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of wastewater, average, capacity 1E9l/year",
+            "reference product": "wastewater, average",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "7286eedad3b9f94be1d10726ffb5bc04e20fcfd62aac6fb04571d0e3c0e876f5",
+          "metadata_sha256": "d31f5f62da36322a07cef5d31d1b95b38b3aedfbaf1ab61a143573828e3c52d4",
+          "reference_amounts": [
+            -1.0
+          ]
+        },
+        "2025": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+            "reference product": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "94fa890ceee253bb49329ab4df4e8cce06930377bbc2c3a4f0dd509f3c0fbd6c",
+          "metadata_sha256": "856f5eec307aa8d546288a790832b68a654c5958c0c521027ec871f6d914b6e3",
+          "reference_amounts": [
+            1
+          ]
+        },
+        "2026": {
+          "identity": {
+            "location": "CH",
+            "name": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+            "reference product": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+            "unit": "cubic meter"
+          },
+          "inventory_sha256": "d85f792778e3330b202796928aed97684b61c9f8a2e12ceddd3eea31cd6315de",
+          "metadata_sha256": "5d43a9007af9eee298e57e5d2f1851e9dd7faf506347618f4ad775ab8c1b0de3",
+          "reference_amounts": [
+            1.0
+          ]
+        }
+      },
+      "producer_witnesses": []
+    }
+  ],
+  "later_cohorts": "unproven"
+}

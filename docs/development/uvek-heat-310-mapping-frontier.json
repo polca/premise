@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "thirty_five_of_thirty_eight_observed3_10cases_qualified_three_pending",
+  "status": "all_thirty_eight_observed3_10cases_qualified_new3_8cohort_pending",
   "context": "Later3.10cohort exposed after all14initial3.9cases qualified; publicheatgate remains closed.",
   "identified_cases": 38,
   "previously_scoped_rules": 16,
@@ -462,7 +462,7 @@
     },
     {
       "rule_id": "bp-4a9a4566f35ab410",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_complete_boundary_proxy_or_fate_reconstruction",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -524,7 +524,15 @@
           ]
         }
       },
-      "source_producer_witness_count": 8
+      "source_producer_witness_count": 8,
+      "verification": "docs/development/uvek-heat-310-closure-verification.json",
+      "review_path": "export/uvek_heat_310_closure_review.json",
+      "qualified_target": {
+        "location": "RER",
+        "name": "Aluminium, primary, at plant",
+        "reference product": "Aluminium, primary, at plant",
+        "unit": "kilogram"
+      }
     },
     {
       "rule_id": "bp-c778372182af9cff",
@@ -744,7 +752,7 @@
     },
     {
       "rule_id": "bp-1240bf1e5820731a",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_complete_boundary_proxy_or_fate_reconstruction",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -806,7 +814,15 @@
           ]
         }
       },
-      "source_producer_witness_count": 7
+      "source_producer_witness_count": 7,
+      "verification": "docs/development/uvek-heat-310-closure-verification.json",
+      "review_path": "export/uvek_heat_310_closure_review.json",
+      "qualified_target": {
+        "name": "Copper, primary, at refinery",
+        "reference product": "Copper, primary, at refinery",
+        "location": "GLO",
+        "unit": "kilogram"
+      }
     },
     {
       "rule_id": "bp-f5891204a3feaf32",
@@ -1560,7 +1576,7 @@
     },
     {
       "rule_id": "bp-a1c34b995d6289b2",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_complete_boundary_proxy_or_fate_reconstruction",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1622,7 +1638,12 @@
           ]
         }
       },
-      "source_producer_witness_count": 1
+      "source_producer_witness_count": 1,
+      "verification": "docs/development/uvek-heat-310-closure-verification.json",
+      "review_path": "export/uvek_heat_310_closure_review.json",
+      "qualified_target": {
+        "recipe_ref": "heat-310-condensate-market-08e0723e7fb6fe67b3d9"
+      }
     },
     {
       "rule_id": "bp-e0c46eb6a6d0891b",
@@ -2763,9 +2784,9 @@
       ]
     }
   ],
-  "later_cohorts": "unproven",
-  "qualified_cases": 35,
-  "pending_cases": 3,
+  "later_cohorts": "New3.8cohort24cases observed; see docs/development/uvek-heat-38-mapping-frontier.json. Further cohorts unproven.",
+  "qualified_cases": 38,
+  "pending_cases": 0,
   "additional_helper_input_qualifications": 2,
-  "verification": "docs/development/uvek-heat-310-routes-verification.json"
+  "verification": "docs/development/uvek-heat-310-closure-verification.json"
 }

@@ -1,0 +1,145 @@
+{
+  "status": "all38observed3_10cases_qualified_new24case3_8cohort_pending_heat_gate_closed",
+  "review": "export/uvek_heat_310_closure_review.json",
+  "review_sha256": "4843438cf642091f696cdfbbbc1e4b7c2653d635a8c0f96e2fdeac0dcaf08a33",
+  "approval_scopes": 502,
+  "prior_fingerprints_unchanged": 499,
+  "changed_rules": [
+    "bp-1240bf1e5820731a",
+    "bp-a1c34b995d6289b2"
+  ],
+  "all_other_rules_and_prior_recipes_shared_reviews_unchanged": true,
+  "new_shared_reviews": 2,
+  "new_recipes": 3,
+  "recipe_count": 3674,
+  "shared_review_count": 774,
+  "condensate": {
+    "source_treated_m3": 0.4126619233000178,
+    "source_separate_collection_m3": [
+      0.1723,
+      0.8277
+    ],
+    "native_collection_allocation_km_per_m3": 1.6832e-07,
+    "source_untreated_biosphere_exchanges": 17,
+    "retained_native_treatment_technosphere_exchanges": 26,
+    "retained_native_treatment_biosphere_exchanges": 50,
+    "native_sewer_relocated_not_duplicated": true,
+    "source_reference_factor": -1,
+    "new_source_omissions": 0
+  },
+  "validation": {
+    "brightpath_tests": 27,
+    "premise_cache_and_drift_tests": 7,
+    "signed_foreground_composed_finite_LCIs": 6,
+    "installed_signed_demands": 6,
+    "installed_original_caller_regressions": 41,
+    "generated_resources_replay_byte_identical": 2,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 267,
+      "premise": 247
+    },
+    "source_scientific_signatures_unchanged": true,
+    "native_composition_precision_checks": [
+      {
+        "equation": "treated*native_full_WWT + (source_collection_volume-treated)*native_sewer_km_per_m3*native_sewer + exact_source_untreated_flows",
+        "relative_L2_difference": 1.5770357010840033e-08,
+        "max_absolute_difference": 4.186973541209227e-07,
+        "exploratory_LCI_1e_minus8_bound_passed": false,
+        "technosphere_coefficient_identity_max_residual": 1.1082229370296126e-09,
+        "biosphere_coefficient_identity_max_residual": 5.131827796045485e-09,
+        "coefficient_identity_bound": 1e-12,
+        "native_matrix_precision": "Native persisted column equals float32-rounded audited raw exchange values. Recipe retains full raw values. No quantity is rounded in production mapping.",
+        "native_technosphere_float32_column_error": 0.0,
+        "native_biosphere_float32_column_error": 0.0,
+        "unexplained_technosphere_coefficient_residual": 2.6630513202425127e-18,
+        "unexplained_biosphere_coefficient_residual": 1.2338829858688125e-17,
+        "precision_note": "The raw-recipe versus persisted-background LCI comparison includes native float32 processing differences. Independent native column/quantization-residual identities must pass1e-12. Actual LCI difference and failed exploratory bound remain recorded; no LCIA equivalence claim.",
+        "canonical_flow_rows": 4362,
+        "interpretation": "Internal model/component conservation only, not source/native LCIA equivalence."
+      },
+      {
+        "equation": "treated*native_full_WWT + (source_collection_volume-treated)*native_sewer_km_per_m3*native_sewer + exact_source_untreated_flows",
+        "relative_L2_difference": 1.5770357010840033e-08,
+        "max_absolute_difference": 4.186973541209227e-07,
+        "exploratory_LCI_1e_minus8_bound_passed": false,
+        "technosphere_coefficient_identity_max_residual": 1.1082229370296126e-09,
+        "biosphere_coefficient_identity_max_residual": 5.131827796045485e-09,
+        "coefficient_identity_bound": 1e-12,
+        "native_matrix_precision": "Native persisted column equals float32-rounded audited raw exchange values. Recipe retains full raw values. No quantity is rounded in production mapping.",
+        "native_technosphere_float32_column_error": 0.0,
+        "native_biosphere_float32_column_error": 0.0,
+        "unexplained_technosphere_coefficient_residual": 2.6630513202425127e-18,
+        "unexplained_biosphere_coefficient_residual": 1.2338829858688125e-17,
+        "precision_note": "The raw-recipe versus persisted-background LCI comparison includes native float32 processing differences. Independent native column/quantization-residual identities must pass1e-12. Actual LCI difference and failed exploratory bound remain recorded; no LCIA equivalence claim.",
+        "canonical_flow_rows": 4362,
+        "interpretation": "Internal model/component conservation only, not source/native LCIA equivalence."
+      }
+    ]
+  },
+  "real_heat_preparation": "Passes the complete observed3.10cohort; now stops at24unapproved3.8cases. Primaryevidence24records/49producers with0lookuperrors. Further cohorts unproven.",
+  "public_heat_gate": "closed; public heat export not claimed",
+  "public_default_export": "Prior12529activitybiomass/electricityrun not repeated; original41callerregressions and all previous approved closures checked. No heat/default-all-sector export claimed.",
+  "cache_cleanup": "Two superseded installs removed; encrypted runtime IAM CSV archived by verified content hash; wheels, source databases, exports and primary evidence retained.",
+  "receipts": [
+    {
+      "name": "heat_310_closure_registration.json",
+      "sha256": "db4bd00aaa0792264c35bcf50f7d8203c67ff98111fa610315d42ec0ac3dea66",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_resource_comparison.json",
+      "sha256": "4e18c91d71e9f5f5b727f2b6d32b5e46df85b30ebae46a864b81e4fe9310ed3d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_tests.log",
+      "sha256": "2a520e86e085d33d5b530625a569fb74d43c417e291c5212262c1a19ebc4d4c7",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_premise_tests.log",
+      "sha256": "57f1e669e4129f3a0af1bd0ebf12e265ff032f8a8e9db06ee545a8ea931b9211",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_native_lci_checks.json",
+      "sha256": "e5e6ed0b01201748c121c5074700a23ff29ddf55eb3b43a450223cd394ce85f7",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_installed_checks.json",
+      "sha256": "8989661b4452705207668207f6a80758c17264b77ddec37c62330ebe79860d41",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_original_callers.json",
+      "sha256": "efefd810776e6bef72be797c7ea6da5c3577c4caca7c8fea7f7da1f53bcffdef",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_packaged_data.json",
+      "sha256": "a7df640ded2fb9c6ef86f0b1f365e88027f726cac508810772b5d45a9416509d",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_generator_replay.json",
+      "sha256": "ffdaa8f4541cd281e118a7b4ecc196f416d83012a0db7fcf2ee5e88da620e1da",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_closure_remaining_audit_receipt.json",
+      "sha256": "a4e1e70a0a6a2478824f901c0523c78c195c73b5e237474733f66c046e79a440",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_38_frontier_primary_receipt.json",
+      "sha256": "f4f14c721b44e673d62a6c200edc5189d5e1593bdd3fbc4484a7a59bd27f6870",
+      "location": "private task workspace"
+    },
+    {
+      "name": "cache_cleanup_after_heat_310_closure.json",
+      "sha256": "a1cb4a07b299a75da92cbff4813d6235ca79fb61a6db0657e8226d8e8bf7090c",
+      "location": "private task workspace"
+    }
+  ]
+}

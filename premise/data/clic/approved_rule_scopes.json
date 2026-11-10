@@ -125221,6 +125221,2690 @@
           "fingerprint": "49237768c8aabaf12469d0c33bb6cb158a9447e77eee67e01dcec9059efde5c1"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4a9a4566f35ab410",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_closure_review.json",
+      "review_sha256": "4843438cf642091f696cdfbbbc1e4b7c2653d635a8c0f96e2fdeac0dcaf08a33",
+      "authorization": "Standing autonomous approval of forthcoming modelling decisions, complete functional proxies and scientifically documented reconstructions with warnings and later review. No routine approval requested.",
+      "inspection": {
+        "rule_id": "bp-4a9a4566f35ab410",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "IAI Area, EU27 & EFTA",
+          "name": "market for aluminium, primary, ingot",
+          "reference product": "aluminium, primary, ingot",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium, primary, at plant",
+          "reference product": "Aluminium, primary, at plant",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "38623e3cc6f18211b18b0907892683f697681cc44ff55484bd39c821bd100f10",
+        "source_metadata_sha256": "e5292d9fd74255dd4643b1788a9708fa2a2315f402607ea7ab512cbd9f8d1b82",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium, ingot, primary, import from Africa",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "44d3db7c9356e7963da0b59e282e96bacfe423cd0da78c9fbec94daa17105ee3",
+            "metadata_sha256": "058fa355a21f53ad89ba67b9a4e32496933edd7107a45449f0f6c829cbd44564"
+          },
+          {
+            "identity": {
+              "name": "aluminium, ingot, primary, import from Middle East (Gulf cooperation Council)",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8abe62675c873b1e95dec4509ae7e23c6c7bb7fb106294fc6fc5298f67b687e1",
+            "metadata_sha256": "35d3b2e78c253d5ea6ae35abb8145067faf713285ca9563b7a2571b87584afb6"
+          },
+          {
+            "identity": {
+              "name": "aluminium, ingot, primary, import from Oceania",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "40b95949cfa136fbed270db97d52b7f119f9d773533ba5e5b753839a7d843976",
+            "metadata_sha256": "0a14e78846d0f3534c84ff27fd80067b0d7c30daadc7266ae27d9ad0122ee1ad"
+          },
+          {
+            "identity": {
+              "name": "aluminium, ingot, primary, import from Asia (excluding China)",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b4aa9d8db776c7841355494a61a472b4f7c3a694d3c3fbbf3d0c5016cd94e312",
+            "metadata_sha256": "67665d66c2f11cf61a0e81798d2bc178e5c7252947ba7f3e1683a9d9234b3f15"
+          },
+          {
+            "identity": {
+              "name": "aluminium, ingot, primary, import from Northern America",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "ebde65d7cb2ac0209a74b1816f1972cc7162e367a4d6b6ab5602f92b504d16e1",
+            "metadata_sha256": "0bda86dc089b021242390eb4684b60a7bcdd3b51cedcd4af0adb934109246e5a"
+          },
+          {
+            "identity": {
+              "name": "aluminium, ingot, primary, import from Rest of Europe",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "74c22a4161b4136d7181ae602d21c292c6326b744d5d4cec551341e5c8395416",
+            "metadata_sha256": "09d093506c200e2b75728022faa3556ec789f04688c2dcce15990518d2b5253a"
+          },
+          {
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "df18c82a464bf3692993de6e4a7f95f7548d1ba7cb61d8851fad424493e57fa8",
+            "metadata_sha256": "def1b0fda84eb5799409e831495922e8c9bd0db0c49f369851e8b9dae17db603"
+          },
+          {
+            "identity": {
+              "name": "aluminium, ingot, primary, import from South America",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "600765bab137dcf9a17dcfa06004dbd2eef6243bb9cc79cdc780ee0d0c11fce3",
+            "metadata_sha256": "1b141f3c02a3c241a9a068e8ebb35f4a2b2645fba611e77b658d6f687fe0fdfb"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "53207f3ef6cc5a7c4c65c6f26ea8812a744a465065a953a9c25904a9613140a8",
+            "metadata_sha256": "9c2da65149859c157127c43de436593efcfa8f345ad68d300fa29877a2ab4946"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8b8bd682c15d8099c8e2969477a5675e13c8eb9aeefd1ed3263b30c5c209160e",
+            "metadata_sha256": "4873821f600ec055865f4f21e9bd76d0f774fa3ea1af041667b9420c62527f8a"
+          }
+        },
+        "upstream_witnesses": [
+          {
+            "kind": "source_import_producer",
+            "version": "3.10",
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, Africa",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1df3475493a33c379547f0cd68aae2e755935a8da7d1ca27532fb137720d20ce",
+            "metadata_sha256": "7dc4904222239835558cee5e3b7a318d08df03515b68d4ff17ffdeb0de961fdc"
+          },
+          {
+            "kind": "source_import_producer",
+            "version": "3.10",
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, Gulf Cooperation Council",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e605569af44bb500226b5effb39cfe4d39e0ccbfde92982fbcef3170b60a3399",
+            "metadata_sha256": "859da1e0806cf16d1596cb43f9a1edcff0ed32dbdb0e9ec5eedb5592f06fd94f"
+          },
+          {
+            "kind": "source_import_producer",
+            "version": "3.10",
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "UN-OCEANIA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e3b1ef786e395d1d0c68e7b0f240ecee013334c1a4b6b0cb60d09801ba96ff28",
+            "metadata_sha256": "2fcb9d18757e2dfa530f828874dcc2a6615f36da367006eb1a2e0c081b3fe9de"
+          },
+          {
+            "kind": "source_import_producer",
+            "version": "3.10",
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, Asia, without China and GCC",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "0948cf4b4d910ceb7add1b26dc1c93e65be2fde83d09be54a71c08a632f1857f",
+            "metadata_sha256": "ea17a46fa2a956c534fbd14d6a3717a931978c7e1b3d24d6b57f68012948e34d"
+          },
+          {
+            "kind": "source_import_producer",
+            "version": "3.10",
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "CA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "0d2ac601a88c16848f816199b4e0eec2b8c880cae77798a3555f86c334bce3c8",
+            "metadata_sha256": "b2f709b5b3e4dd5e377e4057e11304f3d0557fa560bcef4faba8822800364aec"
+          },
+          {
+            "kind": "source_import_producer",
+            "version": "3.10",
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, Russia & RER w/o EU27 & EFTA",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "090d1d7dcd69ae8c07bf09105f5a629d5bffb2c7d360c4f26626e32d959a2199",
+            "metadata_sha256": "e26f84cffb3589d323d9c50bd88cea50a2f44dedac109112c48406b6ff66aec4"
+          },
+          {
+            "kind": "source_import_producer",
+            "version": "3.10",
+            "identity": {
+              "name": "aluminium production, primary, ingot",
+              "reference product": "aluminium, primary, ingot",
+              "location": "IAI Area, South America",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9356ca5ef283bfb3f7c8179d0e525e4229cd42bc2adf971e9e8c5c911123fa28",
+            "metadata_sha256": "b9ee8728fc3fb76e8c89f594201b1f5006a268f384e1b39f3fcb8c1f1b3f83c5"
+          },
+          {
+            "kind": "native_reference",
+            "version": "2025",
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "53207f3ef6cc5a7c4c65c6f26ea8812a744a465065a953a9c25904a9613140a8",
+            "metadata_sha256": "9c2da65149859c157127c43de436593efcfa8f345ad68d300fa29877a2ab4946"
+          },
+          {
+            "kind": "native_liquid_metal",
+            "version": "2025",
+            "identity": {
+              "name": "Aluminium, primary, liquid, at plant",
+              "reference product": "Aluminium, primary, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8746488f08c668228ad96060020870638d11f1ca4ef3392ce14d3d18444e4d41",
+            "metadata_sha256": "c088c3f69ea38f6033947b88867c73a7dd259f13b48c6197cedf7211a0cbf584"
+          },
+          {
+            "kind": "native_reference",
+            "version": "2026",
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8b8bd682c15d8099c8e2969477a5675e13c8eb9aeefd1ed3263b30c5c209160e",
+            "metadata_sha256": "4873821f600ec055865f4f21e9bd76d0f774fa3ea1af041667b9420c62527f8a"
+          },
+          {
+            "kind": "native_liquid_metal",
+            "version": "2026",
+            "identity": {
+              "name": "Aluminium, primary, liquid, at plant",
+              "reference product": "Aluminium, primary, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "815865703ada361f3c0bcea260be648a6e8d67ffd36e0024637abdbfc06909fb",
+            "metadata_sha256": "d65bd887b198ec2a186b7f1999002649a329e2fbf1f0c06ae0b79c8daa4611c2"
+          }
+        ]
+      },
+      "limitations": [
+        "Both references provide one kg of solid primary aluminium at plant. Source European primary-ingot market includes domestic and seven import handovers; actual supplying ingot producers were inspected, including their liquid-metal technology mix. Source documentation explicitly excludes scrap remelting and replaces alloying additions to model a theoretical100%Alingot. Native is the complete European EAA2013/2010primary casting inventory, with1.019kgprimary liquid metal per kgsolid. Do not substitute a recycled/production-mix alloy or add another electrolysis, casting or ingot-loss factor.",
+        "The complete native primary-ingot inventory replaces source origin/producer/freight weights. Native and source liquid-metal input, dross allocation/recovery, electrolysis route, electricity, casting chemicals, packaging, emission and residue boundaries differ. Native grade is not independently certified to a particular purity; no purity multiplier or invented dross/recycling credit is introduced. Preserve signed solid-metal kg and retain the complete native model once.",
+        "Exact independently inspected ecoinvent3.10cutoff only, to nativeUVEK2026 via the2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty, separate caller emissions and complete links. Source/native technology, allocation, vintage, geography and internal uncertainty differ. Native upstream biosphere exclusions remain explicit. Score effects are unquantified; no LCIA equivalence, impact completeness, inverse, unreviewed release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "13a23f43555cd1c837e83c4ca425303f84fab3ef5e1fd41a9662f0613f4fdb29"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1240bf1e5820731a",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_correct_native_boundary",
+      "review_path": "export/uvek_heat_310_closure_review.json",
+      "review_sha256": "4843438cf642091f696cdfbbbc1e4b7c2653d635a8c0f96e2fdeac0dcaf08a33",
+      "authorization": "Standing autonomous approval of forthcoming modelling decisions, complete functional proxies and scientifically documented reconstructions with warnings and later review. No routine approval requested.",
+      "inspection": {
+        "rule_id": "bp-1240bf1e5820731a",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for copper, anode",
+          "reference product": "copper, anode",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Copper, primary, at refinery",
+          "reference product": "Copper, primary, at refinery",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "2153b879973e66b002abddfeb3868fdbb0d69a23d8f5ec3af618a29e1722936a",
+        "source_metadata_sha256": "d88935b6a2c8ad033b0e6d9aeb914f2b06d60da388d8d007a9f8d8cde2c87d92",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "copper, anode",
+              "location": "CL",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "11daede4e63739de97740eb16554d0cc3c9a3167a110bed4420a433210fa372a",
+            "metadata_sha256": "5b3e049bf4ed57aec0d864ec68be803eec8553643ba54df07b6b00e160a9382b"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "copper, anode",
+              "location": "RU",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "86df8917eb1b32d5a0623fa81af6638dec10853e1dd65217420d5b30829ebabb",
+            "metadata_sha256": "05b05ebc2c73220113520e26a71c692acb66b24ccbdba95d7b6dab926ee215cf"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "copper, anode",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "65a956501c35d3be6a9ab22a7f4e7cad0e27e76100d47a085fc278eed33b6424",
+            "metadata_sha256": "7b2c29c4c091a7aaef93ea85edf8b552f9025a821c93be0842383b3531ff98a0"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "copper, anode",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "dcb7a02c36aa52401bcde4d2ae50edb81d6773e3336d87d1f5d7159d88504ac5",
+            "metadata_sha256": "aac6dbe836687ea83dc8762e4811185c2251ea53e6ff10b2060206cf23b28345"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "copper, anode",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "07901dca22291caa1c713d6c50af256847326bd6b4df05dae94d2a20e789416b",
+            "metadata_sha256": "33cd17d4c882a92ca28b71313295c912783ae76417720593c5cf4c371c08f389"
+          },
+          {
+            "identity": {
+              "name": "smelting of copper concentrate, sulfide ore",
+              "reference product": "copper, anode",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e14a45b933281109e580da974ea05c1fcf4c7bf3052470c09105b34ec0415c06",
+            "metadata_sha256": "d6975ff7b9213ffd80b22b527071d74b2a414206bbf368f1d458266c5a58756a"
+          },
+          {
+            "identity": {
+              "name": "cobalt production",
+              "reference product": "copper, anode",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "4dff99a40a965cce959624cca7574523969dc7bb4deeb61cff105ef851856a44",
+            "metadata_sha256": "ea0a09defadd732388e790b6a2fd3565d05dfa0a451c8a77fd2142db8cb69b3a"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Copper, primary, at refinery",
+              "reference product": "Copper, primary, at refinery",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "4302ff288c1f634897a7d1858705d24c229afdf2e4984d138061557869904232",
+            "metadata_sha256": "2d7356e9356e1fea76a43de7fec75ca4b5f6861ef09a0672cffcf3112147598c"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "name": "Copper, primary, at refinery",
+              "reference product": "Copper, primary, at refinery",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b760e5f00c1c73fcbebb15907c35497a167b6d647b84a0fc5622a2116c49613c",
+            "metadata_sha256": "aa48cc56d33dce3d301e1caaed3ccd2c3cda0d444e611a7db73bee9a86ba2fda"
+          }
+        },
+        "rejected_previous_candidates": {
+          "2025": {
+            "identity": {
+              "location": "RLA",
+              "name": "Copper, primary, at refinery",
+              "reference product": "Copper, primary, at refinery",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7ffc18fe4263f3548afb9267021af1b8e2da86db3cb70c24fd0112fa848d942a",
+            "metadata_sha256": "16382591e0cf2c6a4e952dcd6ddd4ab4c610e764daf27a2258b56024fd8158d0"
+          },
+          "2026": {
+            "identity": {
+              "location": "RLA",
+              "name": "Copper, primary, at refinery",
+              "reference product": "Copper, primary, at refinery",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "ad29d5c916e2ecbc765e31df28fc329bd0b40124ac80f0dfc4879e9350a9e13e",
+            "metadata_sha256": "473066f43b58527ae00830e544f14afd1b8439231292b2896ab5f3ba292d0ff3"
+          }
+        },
+        "caller_context": {
+          "source_file": "heat_supplemental_resolved.private.json",
+          "sha256": "77fc14195044d80cacd73574fbfafbc41c455408bea28eff2a9620683442c45b",
+          "records": [
+            {
+              "caller": {
+                "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+                "reference product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+                "location": "GLO",
+                "code": "clic-15167012dba04d39b16719152f4fa8b5"
+              },
+              "amount": 0.01979,
+              "unit": "kilogram",
+              "other_copper_or_refining_exchanges": [
+                {
+                  "name": "market for copper, anode",
+                  "amount": 0.01979,
+                  "unit": "kilogram"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "The inspected pilot caller is a PEMfuel-cell stack using0.01979kgof copper-anode market supply; it lists no separate copper-refining service. Use complete native global primary copper at refinery as an explicit screening proxy for that material requirement, replacing the previous Latin-American candidate. The source supplies anode intermediate while native supplies cathode/refined copper; this is a grade and processing-boundary proxy, not a matched anode-making technology.",
+        "Native includes electrorefining and9.4%SX-EWroute, beyond the source anode boundary. Its global smelter, concentrate, co-product allocation, slag/acid/emission and1994technology mix differ from the source smelters and allocated cobalt-production co-supply. Retain those additional/different burdens with explicit warnings and unquantified effects; do not subtract a guessed refinery inventory, infer an anode/cathode purity or yield multiplier, add a metal-recovery credit or claim a conservative score bound. Preserve signed physical kg. Other consumers with their own downstream refining need a separate boundary assessment; no matched refining-service equivalence is asserted.",
+        "Exact independently inspected ecoinvent3.10cutoff only, to nativeUVEK2026 via the2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty, separate caller emissions and complete links. Source/native technology, allocation, vintage, geography and internal uncertainty differ. Native upstream biosphere exclusions remain explicit. Score effects are unquantified; no LCIA equivalence, impact completeness, inverse, unreviewed release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3f62408af10c520833aa8f100b7fd120964ba79dc37f67b5a5d9de113cf9e877"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a1c34b995d6289b2",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_reconstruct_market",
+      "review_path": "export/uvek_heat_310_closure_review.json",
+      "review_sha256": "4843438cf642091f696cdfbbbc1e4b7c2653d635a8c0f96e2fdeac0dcaf08a33",
+      "authorization": "Standing autonomous approval of forthcoming modelling decisions, complete functional proxies and scientifically documented reconstructions with warnings and later review. No routine approval requested.",
+      "inspection": {
+        "rule_id": "bp-a1c34b995d6289b2",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for condensate from light oil boiler",
+          "reference product": "condensate from light oil boiler",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "recipe_ref": "heat-310-condensate-market-08e0723e7fb6fe67b3d9"
+        },
+        "source_reference_amount": -1,
+        "target_reference_amount": 1,
+        "conversion_factor": -1,
+        "source_inventory_sha256": "1fb74bfe3ac3878be5e7560777d7c021e3f65c0e3090cd3cbdeea2e0d7ffafd5",
+        "source_metadata_sha256": "265685b9d87d8aae4b841167886dee0fa4ca959e85d20496b2569b87d1fe9699",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of condensate from light oil boiler, wastewater treatment",
+              "reference product": "condensate from light oil boiler",
+              "location": "RoW",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "72f44b0de4bc44df6dbcbf7d764cf2d1ff799de7b985703e5d84844d4b74805b",
+            "metadata_sha256": "583bdf027f140710d626a246003eb261f336f29439d950989ea8f0142c1bbb3e"
+          }
+        ],
+        "treatment_recipe_ref": "heat-310-condensate-treatment-18ba9aca8ce834387781",
+        "collection_recipe_ref": "heat-310-condensate-collection-fa542e1be839dd63cfaf",
+        "market_recipe_ref": "heat-310-condensate-market-08e0723e7fb6fe67b3d9",
+        "retained_source_bindings": [
+          {
+            "source_exchange": {
+              "type": "technosphere",
+              "name": "treatment of condensate from light oil boiler, wastewater treatment",
+              "reference product": "condensate from light oil boiler",
+              "location": "RoW",
+              "unit": "cubic meter",
+              "amount": -0.4126619233000178,
+              "uncertainty type": 0,
+              "loc": -0.4126619233000178
+            },
+            "target_input": {
+              "recipe": "heat-310-condensate-treatment-18ba9aca8ce834387781",
+              "amount": 0.4126619233000178,
+              "uncertainty type": 0,
+              "loc": 0.4126619233000178
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "technosphere",
+              "name": "sewer grid construction, rural",
+              "reference product": "sewer grid, rural",
+              "location": "GLO",
+              "unit": "cubic meter",
+              "amount": 0.1723,
+              "uncertainty type": 0,
+              "loc": 0.1723
+            },
+            "target_input": {
+              "recipe": "heat-310-condensate-collection-fa542e1be839dd63cfaf",
+              "amount": 0.1723,
+              "uncertainty type": 0,
+              "loc": 0.1723
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "technosphere",
+              "name": "sewer grid construction, urban",
+              "reference product": "sewer grid, urban",
+              "location": "GLO",
+              "unit": "cubic meter",
+              "amount": 0.8277,
+              "uncertainty type": 0,
+              "loc": 0.8277
+            },
+            "target_input": {
+              "recipe": "heat-310-condensate-collection-fa542e1be839dd63cfaf",
+              "amount": 0.8277,
+              "uncertainty type": 0,
+              "loc": 0.8277
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Aluminium III",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.0117467615339996
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Aluminium III",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.0117467615339996
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "BOD5, Biological Oxygen Demand",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0276868648744193,
+              "uncertainty type": 0,
+              "loc": 0.0276868648744193
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "BOD5, Biological Oxygen Demand",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0276868648744193,
+              "uncertainty type": 0,
+              "loc": 0.0276868648744193
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "COD, Chemical Oxygen Demand",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0572454265789456,
+              "uncertainty type": 0,
+              "loc": 0.0572454265789456
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "COD, Chemical Oxygen Demand",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0572454265789456,
+              "uncertainty type": 0,
+              "loc": 0.0572454265789456
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Chlorine",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00587338076699982,
+              "uncertainty type": 0,
+              "loc": 0.00587338076699982
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Chlorine",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00587338076699982,
+              "uncertainty type": 0,
+              "loc": 0.00587338076699982
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Chromium III",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.000234935230679993,
+              "uncertainty type": 0,
+              "loc": 0.000234935230679993
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Chromium III",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.000234935230679993,
+              "uncertainty type": 0,
+              "loc": 0.000234935230679993
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Copper ion",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 1.76201423009995e-05,
+              "uncertainty type": 0,
+              "loc": 1.76201423009995e-05
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Copper ion",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 1.76201423009995e-05,
+              "uncertainty type": 0,
+              "loc": 1.76201423009995e-05
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "DOC, Dissolved Organic Carbon",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0099847473038997,
+              "uncertainty type": 0,
+              "loc": 0.0099847473038997
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "DOC, Dissolved Organic Carbon",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0099847473038997,
+              "uncertainty type": 0,
+              "loc": 0.0099847473038997
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Fluorine",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.000264302134514992,
+              "uncertainty type": 0,
+              "loc": 0.000264302134514992
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Fluorine",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.000264302134514992,
+              "uncertainty type": 0,
+              "loc": 0.000264302134514992
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Hydrogen",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00939740922719972,
+              "uncertainty type": 0,
+              "loc": 0.00939740922719972
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Hydrogen",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00939740922719972,
+              "uncertainty type": 0,
+              "loc": 0.00939740922719972
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Iron ion",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.00117467615339996
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Iron ion",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.00117467615339996
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Nickel II",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.00117467615339996
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Nickel II",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.00117467615339996
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Nitrogen",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.00117467615339996
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Nitrogen",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.00117467615339996,
+              "uncertainty type": 0,
+              "loc": 0.00117467615339996
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Oxygen",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0017987228598937,
+              "uncertainty type": 0,
+              "loc": 0.0017987228598937
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Oxygen",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0017987228598937,
+              "uncertainty type": 0,
+              "loc": 0.0017987228598937
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Sulfur",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0493363984427985,
+              "uncertainty type": 0,
+              "loc": 0.0493363984427985
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Sulfur",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0493363984427985,
+              "uncertainty type": 0,
+              "loc": 0.0493363984427985
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "TOC, Total Organic Carbon",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0146834519174996,
+              "uncertainty type": 0,
+              "loc": 0.0146834519174996
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "TOC, Total Organic Carbon",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 0.0146834519174996,
+              "uncertainty type": 0,
+              "loc": 0.0146834519174996
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Water",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "cubic meter",
+              "amount": 0.587241188,
+              "uncertainty type": 0,
+              "loc": 0.587241188
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Water",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "cubic meter",
+              "amount": 0.587241188,
+              "uncertainty type": 0,
+              "loc": 0.587241188
+            }
+          },
+          {
+            "source_exchange": {
+              "type": "biosphere",
+              "name": "Zinc II",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 1.17467615339996e-05,
+              "uncertainty type": 0,
+              "loc": 1.17467615339996e-05
+            },
+            "target_input": {
+              "type": "biosphere",
+              "name": "Zinc II",
+              "categories": [
+                "water",
+                "surface water"
+              ],
+              "unit": "kilogram",
+              "amount": 1.17467615339996e-05,
+              "uncertainty type": 0,
+              "loc": 1.17467615339996e-05
+            }
+          }
+        ],
+        "native_references": {
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+              "reference product": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "03b2c1b1120583b34199b8dcd1e794d3ac46508b0558a24b4ed054a219936057",
+            "metadata_sha256": "8fc73daa5089ca49903da087f0b4bfabd16b7a51282e0a1117cd363024b9147e"
+          }
+        },
+        "native_sewer_relocation": {
+          "native_treatment": {
+            "identity": {
+              "location": "CH",
+              "name": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+              "reference product": "Treatment, condensate from light oil boiler, to wastewater treatment, class 2",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "03b2c1b1120583b34199b8dcd1e794d3ac46508b0558a24b4ed054a219936057",
+            "metadata_sha256": "8fc73daa5089ca49903da087f0b4bfabd16b7a51282e0a1117cd363024b9147e"
+          },
+          "removed_embedded_exchange": {
+            "type": "technosphere",
+            "name": "Sewer grid, class 2",
+            "reference product": "Sewer grid, class 2",
+            "location": "CH",
+            "unit": "kilometer",
+            "amount": 1.6832e-07,
+            "uncertainty type": 0,
+            "loc": 1.6832e-07
+          },
+          "removed_raw_exchange_sha256": "12cfaaadf680e111bed172b1ed76cc9be0e13a73fe7f08456547eed102802de8",
+          "collection_recipe_ref": "heat-310-condensate-collection-fa542e1be839dd63cfaf",
+          "allocation_rate_km_per_m3": 1.6832e-07,
+          "rationale": "Move collection outside treatment to retain source volume shares without duplicate sewer demand or an independent negative uncertainty cancellation."
+        },
+        "source_collection_witnesses": [
+          {
+            "identity": {
+              "name": "sewer grid construction, rural",
+              "reference product": "sewer grid, rural",
+              "location": "GLO",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "1ab19b3825848570ddf66070de9b9e375dca35bd2857ade128c6061b47e8ef2f",
+            "metadata_sha256": "9a325e972e5b0d3c44700537fa6316980d37403b65bcac189502f50199b031b9"
+          },
+          {
+            "identity": {
+              "name": "sewer grid construction, urban",
+              "reference product": "sewer grid, urban",
+              "location": "GLO",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "21feb90dd5ffc9f8c5b57d18e379c12b59cb094f1b51c08bc10710c3a6b9858f",
+            "metadata_sha256": "9efa586e1790c8e4b6023b6c7ea626b4b2df401dc988bd57eab7cbfd6c6977ed"
+          }
+        ],
+        "native_collection_witnesses": [
+          {
+            "identity": {
+              "name": "Sewer grid, class 2",
+              "reference product": "Sewer grid, class 2",
+              "location": "CH",
+              "unit": "kilometer"
+            },
+            "inventory_sha256": "d8d40db83a577c987e6f6851f6fa61124e3daf406fd27edd34d44895d13f55fc",
+            "metadata_sha256": "5a267652856d69dbbb304108ed2de0215429796d2c1d46f25da3bfe8e4374cc5"
+          }
+        ],
+        "native_treatment_input_sha256": "4e01e7628890a4fcbdea055213799e248f549e5b6db49a4e64a819e6aa8c1a71",
+        "retained_untreated_biosphere_inputs": [
+          {
+            "type": "biosphere",
+            "name": "Aluminium III",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0117467615339996,
+            "uncertainty type": 0,
+            "loc": 0.0117467615339996
+          },
+          {
+            "type": "biosphere",
+            "name": "BOD5, Biological Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0276868648744193,
+            "uncertainty type": 0,
+            "loc": 0.0276868648744193
+          },
+          {
+            "type": "biosphere",
+            "name": "COD, Chemical Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0572454265789456,
+            "uncertainty type": 0,
+            "loc": 0.0572454265789456
+          },
+          {
+            "type": "biosphere",
+            "name": "Chlorine",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00587338076699982,
+            "uncertainty type": 0,
+            "loc": 0.00587338076699982
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium III",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.000234935230679993,
+            "uncertainty type": 0,
+            "loc": 0.000234935230679993
+          },
+          {
+            "type": "biosphere",
+            "name": "Copper ion",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 1.76201423009995e-05,
+            "uncertainty type": 0,
+            "loc": 1.76201423009995e-05
+          },
+          {
+            "type": "biosphere",
+            "name": "DOC, Dissolved Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0099847473038997,
+            "uncertainty type": 0,
+            "loc": 0.0099847473038997
+          },
+          {
+            "type": "biosphere",
+            "name": "Fluorine",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.000264302134514992,
+            "uncertainty type": 0,
+            "loc": 0.000264302134514992
+          },
+          {
+            "type": "biosphere",
+            "name": "Hydrogen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00939740922719972,
+            "uncertainty type": 0,
+            "loc": 0.00939740922719972
+          },
+          {
+            "type": "biosphere",
+            "name": "Iron ion",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00117467615339996,
+            "uncertainty type": 0,
+            "loc": 0.00117467615339996
+          },
+          {
+            "type": "biosphere",
+            "name": "Nickel II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00117467615339996,
+            "uncertainty type": 0,
+            "loc": 0.00117467615339996
+          },
+          {
+            "type": "biosphere",
+            "name": "Nitrogen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00117467615339996,
+            "uncertainty type": 0,
+            "loc": 0.00117467615339996
+          },
+          {
+            "type": "biosphere",
+            "name": "Oxygen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0017987228598937,
+            "uncertainty type": 0,
+            "loc": 0.0017987228598937
+          },
+          {
+            "type": "biosphere",
+            "name": "Sulfur",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0493363984427985,
+            "uncertainty type": 0,
+            "loc": 0.0493363984427985
+          },
+          {
+            "type": "biosphere",
+            "name": "TOC, Total Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0146834519174996,
+            "uncertainty type": 0,
+            "loc": 0.0146834519174996
+          },
+          {
+            "type": "biosphere",
+            "name": "Water",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "cubic meter",
+            "amount": 0.587241188,
+            "uncertainty type": 0,
+            "loc": 0.587241188
+          },
+          {
+            "type": "biosphere",
+            "name": "Zinc II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 1.17467615339996e-05,
+            "uncertainty type": 0,
+            "loc": 1.17467615339996e-05
+          }
+        ],
+        "native_treatment_biosphere_inputs": [
+          {
+            "type": "biosphere",
+            "name": "DOC, Dissolved Organic Carbon",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 3.8465e-05,
+            "uncertainty type": 2,
+            "loc": -10.165761821053376,
+            "scale": 0.17680512628294365,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Methane, fossil",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00018674,
+            "uncertainty type": 2,
+            "loc": -8.585793282908494,
+            "scale": 0.23935778492387863,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Heat, waste",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "megajoule",
+            "amount": 0.44504,
+            "uncertainty type": 2,
+            "loc": -0.8095911132150992,
+            "scale": 0.168807220599995,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Cyanide",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 7.9805e-09,
+            "uncertainty type": 2,
+            "loc": -18.646264770805935,
+            "scale": 0.5014176666371705,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nitrate",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 3.1854e-07,
+            "uncertainty type": 2,
+            "loc": -14.959517781122775,
+            "scale": 0.3105838553838906,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nickel II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0012131,
+            "uncertainty type": 2,
+            "loc": -6.7145762121874,
+            "scale": 0.8020116398663008,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Aluminium III",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 1.8011e-05,
+            "uncertainty type": 2,
+            "loc": -10.924527875609353,
+            "scale": 0.8415114453537522,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nickel II",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 2.0835e-11,
+            "uncertainty type": 2,
+            "loc": -24.594386851054132,
+            "scale": 0.8870437851585191,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Zinc II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 6.1836e-06,
+            "uncertainty type": 2,
+            "loc": -11.993609931824231,
+            "scale": 0.7935859266899641,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Carbon monoxide, fossil",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 6.7344e-05,
+            "uncertainty type": 2,
+            "loc": -9.60569674593606,
+            "scale": 0.313717318597282,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Chloride",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.01,
+            "uncertainty type": 2,
+            "loc": -4.605170185988091,
+            "scale": 0.8058476812376577,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nickel II",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00045199,
+            "uncertainty type": 2,
+            "loc": -7.7018505022705845,
+            "scale": 0.8296375736406361,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "TOC, Total Organic Carbon",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 3.8465e-05,
+            "uncertainty type": 2,
+            "loc": -10.165761821053376,
+            "scale": 0.17680512628294365,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "DOC, Dissolved Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0028001,
+            "uncertainty type": 2,
+            "loc": -5.878100148153004,
+            "scale": 0.06901064894868741,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Dinitrogen monoxide",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 5.4378e-06,
+            "uncertainty type": 2,
+            "loc": -12.12213599065762,
+            "scale": 0.2391718767603686,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nitrate",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0074931,
+            "uncertainty type": 2,
+            "loc": -4.893772681899614,
+            "scale": 0.24847489911517148,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Iron ion",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00028294,
+            "uncertainty type": 2,
+            "loc": -8.170275696933485,
+            "scale": 1.233541032437724,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Aluminium III",
+            "categories": [
+              "soil",
+              "agricultural"
+            ],
+            "unit": "kilogram",
+            "amount": 0.007271,
+            "uncertainty type": 2,
+            "loc": -4.923861445314217,
+            "scale": 0.8321902699491123,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nitrogen oxides",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 4.3453e-06,
+            "uncertainty type": 2,
+            "loc": -12.346415756751234,
+            "scale": 0.30007715685539027,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Iron ion",
+            "categories": [
+              "soil",
+              "agricultural"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00038094,
+            "uncertainty type": 2,
+            "loc": -7.87286867555386,
+            "scale": 0.8305880539192574,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Zinc II",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 1.3844e-10,
+            "uncertainty type": 2,
+            "loc": -22.700584097161403,
+            "scale": 0.8577540880805834,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Carbon dioxide, fossil",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 0.071518,
+            "uncertainty type": 2,
+            "loc": -2.6378061127137005,
+            "scale": 0.07803156781579379,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium VI",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00020694,
+            "uncertainty type": 2,
+            "loc": -8.48308166178747,
+            "scale": 0.7882713753649156,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "COD, Chemical Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.011189,
+            "uncertainty type": 2,
+            "loc": -4.4928241261565525,
+            "scale": 0.053888796086715644,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Zinc II",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 1.3138e-07,
+            "uncertainty type": 2,
+            "loc": -15.845171949482083,
+            "scale": 2.3422678706844158,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium VI",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 1.2789e-05,
+            "uncertainty type": 2,
+            "loc": -11.26692513151309,
+            "scale": 1.0348092263655366,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Carbon",
+            "categories": [
+              "soil",
+              "agricultural"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0024842,
+            "uncertainty type": 2,
+            "loc": -5.99780460285418,
+            "scale": 0.15256449302775082,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium III",
+            "categories": [
+              "soil",
+              "agricultural"
+            ],
+            "unit": "kilogram",
+            "amount": 7.6188e-05,
+            "uncertainty type": 2,
+            "loc": -9.48230658798796,
+            "scale": 0.8305880539192574,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "BOD5, Biological Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0036744,
+            "uncertainty type": 2,
+            "loc": -5.60636542495269,
+            "scale": 0.0730448529359476,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Fluoride",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00045,
+            "uncertainty type": 2,
+            "loc": -7.706262975199908,
+            "scale": 0.8058476812376577,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Ammonia",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 2.2109e-06,
+            "uncertainty type": 2,
+            "loc": -13.022110885515238,
+            "scale": 0.525847684440179,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Aluminium III",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0085323,
+            "uncertainty type": 2,
+            "loc": -4.76389631724717,
+            "scale": 0.8378374951036265,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium III",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 8.9329e-12,
+            "uncertainty type": 2,
+            "loc": -25.441280025719056,
+            "scale": 0.884791012141676,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nickel II",
+            "categories": [
+              "soil",
+              "agricultural"
+            ],
+            "unit": "kilogram",
+            "amount": 0.00030444,
+            "uncertainty type": 2,
+            "loc": -8.097036534565083,
+            "scale": 0.8302460891282999,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Copper ion",
+            "categories": [
+              "soil",
+              "agricultural"
+            ],
+            "unit": "kilogram",
+            "amount": 8.5929e-06,
+            "uncertainty type": 2,
+            "loc": -11.664574277080165,
+            "scale": 0.8314703819757036,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "BOD5, Biological Oxygen Demand",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 3.1796e-05,
+            "uncertainty type": 2,
+            "loc": -10.356170062253408,
+            "scale": 0.17680512628294365,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "TOC, Total Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0029977,
+            "uncertainty type": 2,
+            "loc": -5.809909951019879,
+            "scale": 0.058090877144704726,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "COD, Chemical Oxygen Demand",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 9.7208e-05,
+            "uncertainty type": 2,
+            "loc": -9.238657545357963,
+            "scale": 0.17680512628294365,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Copper ion",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 1.0058e-10,
+            "uncertainty type": 2,
+            "loc": -23.020067685184728,
+            "scale": 0.8620792428791243,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "NMVOC, non-methane volatile organic compounds",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 8.4744e-07,
+            "uncertainty type": 2,
+            "loc": -13.98104579665817,
+            "scale": 0.41647630012541065,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Aluminium III",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0012005,
+            "uncertainty type": 2,
+            "loc": -6.725017142302966,
+            "scale": 0.7238475761136145,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Copper ion",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "amount": 1.1014e-05,
+            "uncertainty type": 2,
+            "loc": -11.416343367123984,
+            "scale": 0.8400600115098156,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Iron ion",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram",
+            "amount": 2.0166e-08,
+            "uncertainty type": 2,
+            "loc": -17.719267818975386,
+            "scale": 0.8550848660940502,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Iron ion",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.0010152,
+            "uncertainty type": 2,
+            "loc": -6.892669641564096,
+            "scale": 0.8013576833366367,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium III",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.8504e-07,
+            "uncertainty type": 2,
+            "loc": -14.769918611951557,
+            "scale": 0.8381462497096708,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Sulfate",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 0.25661,
+            "uncertainty type": 2,
+            "loc": -1.3601978563986163,
+            "scale": 0.24814017616197742,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Nitrogen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 6.8098e-06,
+            "uncertainty type": 2,
+            "loc": -11.897147806809741,
+            "scale": 0.30718724969727473,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Heat, waste",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "megajoule",
+            "amount": 0.4417,
+            "uncertainty type": 2,
+            "loc": -0.8171243603796563,
+            "scale": 0.06914129390000333,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Zinc II",
+            "categories": [
+              "soil",
+              "agricultural"
+            ],
+            "unit": "kilogram",
+            "amount": 5.344e-06,
+            "uncertainty type": 2,
+            "loc": -12.139536121729929,
+            "scale": 0.8312902479160933,
+            "negative": false
+          },
+          {
+            "type": "biosphere",
+            "name": "Copper ion",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 7.7818e-06,
+            "uncertainty type": 2,
+            "loc": -11.763722884066276,
+            "scale": 0.7903854562093571,
+            "negative": false
+          }
+        ],
+        "native_component_witnesses": [
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Residual material landfill facility",
+              "reference product": "Residual material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "0eb34e8637b4f8b59f2c430963975c245d900eb435fbde65dbac8f81b56a8837",
+            "metadata_sha256": "279efa2271021711aaf65bf37bc2cb747c7293a2719acf0f762155f2a3118bd9"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Residual material landfill facility",
+              "reference product": "Residual material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "b5c1dccbcbf5650e93295aa60a70a40279edc02e8c280635ca5f5b718e3c48c2",
+            "metadata_sha256": "9148e73b79ff39ac68ac395571e31db2ecdb8c825976e9eb8aa9072b8f342d7b"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "90306369d33f45fe051dcdbe369567eda442cfd434cdbfa970be1dff2663946f",
+            "metadata_sha256": "81de0d9d292a79cbb58a14c159ca303f226902ae52bda6381be9066a790096ad"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Natural gas, burned in industrial furnace 1MW",
+              "reference product": "Natural gas, burned in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "inventory_sha256": "d860fd5751a71c5b00ed00b2417be28162c487a58ec279c7cb179d7ed1ef7e9f",
+            "metadata_sha256": "2af04297c1f97fb7df9c8adb4c0c2043fe1389a3251c2138ffecac53327107ff"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Natural gas, burned in industrial furnace 1MW",
+              "reference product": "Natural gas, burned in industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "inventory_sha256": "dbe787aeea19598294f8acf70c40cc0eb5a3b073c228fb3c84b282ae184d2690",
+            "metadata_sha256": "218522d8f5cd27217e9445519f57ea6b8e06f619f8e4f3b440fef8e2c03199d8"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, paper, 11.2% water, to municipal incineration",
+              "reference product": "Disposal, paper, 11.2% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5d488244c7d6abafbb25d473749f326461e31daa6ddd7e5f3acd227adf9250d6",
+            "metadata_sha256": "f3fe698190d5f0a4d7ef56fbeb0818e6df6e9f08c2b49b51f224ea9a08700e1c"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, paper, 11.2% water, to municipal incineration",
+              "reference product": "Disposal, paper, 11.2% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "041675469108ba3fd8c45b235bbe895fb32369a05d5f15c9987cf689d0609e4e",
+            "metadata_sha256": "f52fb6961012cc801bea89c1a44d88d0fb6083835966daeb1dcfc6f63cfae1d5"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Chemicals inorganic, at plant",
+              "reference product": "Chemicals inorganic, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "41fc1997b287260e46ef25fcc7a99946879c88dcdba2a5b86232bc430290c0c0",
+            "metadata_sha256": "44ff515992b033456c41d0835db3695e8d2f87dbf9a9a2c15d920df0fdd1823d"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Chemicals inorganic, at plant",
+              "reference product": "Chemicals inorganic, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e04bf65ec4b02590d6848742a678a5b70895b9487f346bfad46711d21f6b63d3",
+            "metadata_sha256": "723636d51aba73e383044d629f6e513e7a16cc75e2543170a3c8a6affd2cd3dc"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Hydrochloric acid, 30% in H2O, at plant",
+              "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5bf09c2abf0cc6f016914b03964ae13cdd1650de52d638921643ee684430f8d5",
+            "metadata_sha256": "107d7b144d4effb58e54c5a694dce49788b6de085b8f049229ac61fea7cbd51f"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Hydrochloric acid, 30% in H2O, at plant",
+              "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "04e11f4d4e7a8ccacf71ab584b53af490c5d7592cd6870819b7291ce22cdb9f6",
+            "metadata_sha256": "385f5b3fe45b2cc9d9595ad4b12d475986df6780af3ff6f905f5216351518a2d"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Iron (III) chloride, 40% in H2O, at plant",
+              "reference product": "Iron (III) chloride, 40% in H2O, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "459568405c7dbb882ed351048b780e795bc5515d5592173c0a55d55cabb7f069",
+            "metadata_sha256": "1fbc038cd8c4c4ebeb2270b3a576dee6e35308eb373f912d33e3ea926d993a45"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Iron (III) chloride, 40% in H2O, at plant",
+              "reference product": "Iron (III) chloride, 40% in H2O, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "94fab1e13fbf73bc0d60b624bbcce9ff9469166f701e60fbf8a2b442c832c969",
+            "metadata_sha256": "4cf537271da2718105349f3534909efd1e14d0efd6146cedb50d16ed2c6abfff"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Slurry spreading, by vacuum tanker",
+              "reference product": "Slurry spreading, by vacuum tanker",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "cfec3b09c67bd1f5c8c409eae959bc1ac79c552f299fd8b5ebd4d908393564c2",
+            "metadata_sha256": "dc58f4c46005669b6eef8cba4a94ea057e89ff12b4e9170b2d3c75ebe85bf785"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Slurry spreading, by vacuum tanker",
+              "reference product": "Slurry spreading, by vacuum tanker",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "inventory_sha256": "111fd63a29d22414eac4e1d60b24359302ea262d1dc4605ca53dc4916a1d08d2",
+            "metadata_sha256": "f9f306890f6b1577f7be644946ed7ea97a536f0f3d5cd4fa5e9f6f7693b7ad5a"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+              "reference product": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "46896ae59c5943999fc79d63a91eacd62a6600bf0ffd45b6a52278bb21322703",
+            "metadata_sha256": "bf8dad4f561d1e62794bf7ed0de3b9e4d31dc5057614f647d542814d1d4dcf3a"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+              "reference product": "Sodium hydroxide, 50% in H2O, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5460ae56fb3e20fa0096ef25da2971f9d5d3c42e924bfbf191b867d1032e0bf9",
+            "metadata_sha256": "4a5fdeff2ce0df526e0995feb5ba88bf18b43889fdc9fdfb8b6fda04f89d4fa8"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "reference product": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "006f46a2a712fc9300a21cc7baedc5b5825789de963e043dfb090d623a8e3c8b",
+            "metadata_sha256": "6adac033006c64e181bb000564a5f41bda8ea58debbec11bcfe221e356a87d8b"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "reference product": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2b2738938e60ca69fba873fdb27c6c50e75c2220aebe727fe833cdc8c11a9c3a",
+            "metadata_sha256": "b4a06c1ab898d242a214d28483b6f41ec3821ac9b3fbb7a839368dcf35ee18f2"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Process-specific burdens, municipal waste incineration",
+              "reference product": "Process-specific burdens, municipal waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "349a9694ad88eb1699c0b9bfdb77c230371a666ac66b850d53df27ba0eccbb77",
+            "metadata_sha256": "91796eb733f5f26dde134947e89ad61084743e5dac9e270b8145e941bd1bb208"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Process-specific burdens, municipal waste incineration",
+              "reference product": "Process-specific burdens, municipal waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "5917a4b348140d7de2cda0ecca4491dda26ccc542806f5ecb2dcd21aed11d5a8",
+            "metadata_sha256": "b95907b823fd3a10beea1c96d783c7507938f59453ac1ed7d838701df540df0b"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "fe9701ac984b524d76456eb20cfaec7988e60d7da657e54489722ddfaa1d0645",
+            "metadata_sha256": "d2942a2a4d9d4668e0609bbccd422b0aeb0d0dfe5739479ea4c20e0f500aa19d"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e5240c022f5dcff23ad8671c77812695ce6ac94dc668908851ea68a25e35045e",
+            "metadata_sha256": "b76a7b69224da0be67cf1744145daeb146bf2cfff626e8b07e1e40f4260b3e14"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Cement, unspecified, at plant",
+              "reference product": "Cement, unspecified, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c0647dcb983f8d5edba12609518a80123554c409780db82bee4a2743bae36177",
+            "metadata_sha256": "f8d501a8260c0a778ace69beaa8c8b084449473b17d0186f84297609f37f0294"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Cement, unspecified, at plant",
+              "reference product": "Cement, unspecified, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6462d3df5e12f5aa4415f28004cbef18576fac09b53bab32d1447dea3170dffe",
+            "metadata_sha256": "58444377a31d6cb75515575e43dc00b1e973510a8201684ddaaed3fcc755824f"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "reference product": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "05c21ab1252647fa81dd7d690771c568ce10dbf0ed250b9d3846d6d4e22f83e3",
+            "metadata_sha256": "9136b4675045dc8779fed3d49e1f6a557224acaa8c07f5d8f8eac5847dc364cd"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "reference product": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7c60a7e648f9dd6245d11a271b9478e8745be2b028045e2a2321787321756bd1",
+            "metadata_sha256": "7851a4c82dbfc28fa17e3f20053e291ca9fe288ab5db337cc536a6f29ba44a65"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "201111ff1fc4928f32b3f6f7650411a1d85e73e3956bf65069bd6e5f031aafe1",
+            "metadata_sha256": "55e49024c0cce9bba5b56477d81edb2142c9824bdf9431faf3fafd968e677222"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "inventory_sha256": "4157f35cb735f38a33089c64410889c4806d8b651a703d3923519d559145283e",
+            "metadata_sha256": "d86fdc813dfe0250c489c43e25cd49417d3ea21dfbc08101245c9ba89d02c312"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "cbc7e2b72f58d99b9016ae5693b4570f38ccee6b8c6b920cf8c444572ceb6185",
+            "metadata_sha256": "325f27bc6ed93d6b40301870cfc10e56aefe699b929c286efa38793f3ec57aff"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "9865aa47409920f56dca68262aa84377154a138799c5908faff6c0c36fe220a7",
+            "metadata_sha256": "9eabde8cf341e7787d7388f5963670763fcd014909074d0f92a2e654fbf6d9e8"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Wastewater treatment plant, class 2",
+              "reference product": "Wastewater treatment plant, class 2",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "85bda21438a412ad827068e1c3ac622fee288f64ecce0b0bc958af7fc9f8d865",
+            "metadata_sha256": "9e9139167d913ab01559d5a3dea2dc494e37da41674824b1f20aa5c3b6cff111"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Wastewater treatment plant, class 2",
+              "reference product": "Wastewater treatment plant, class 2",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "853abbf6687a7b8e5fc18be3364919ef9a5567c353f6b90b4ef09249206b90e5",
+            "metadata_sha256": "3634f55a1ad5fd54fe99742ed53a8a3e34f6567fc84c06798e563f9bf938a863"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Electricity from waste, at municipal waste incineration plant",
+              "reference product": "Electricity from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "fe671b048e2594be3b3412d200ca4dd35db1ed76c381e30fa355540abe52e395",
+            "metadata_sha256": "46a97c2617e5f35cc9653ea11332b3c6e2a08861da922d2ee1935efc5dcc4dd5"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Electricity from waste, at municipal waste incineration plant",
+              "reference product": "Electricity from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "kilowatt hour"
+            },
+            "inventory_sha256": "12822d75152a994f80ae4a7232809272e1c288e6ebb2a7a59321dd876f702811",
+            "metadata_sha256": "3bdfb935b79930dcecc73fe1ec3c696f875e4ba48fa26cf90a7c96f709184c16"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Slag compartment",
+              "reference product": "Slag compartment",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "8752f7e96d1b90a45e6d929223072ca2bbcf51d9127539ded15544641c5f2417",
+            "metadata_sha256": "ae69bcb7d94a75ad359688b2a2e20ab9eefd8f1b1aa2742d9ff2624851ed34c8"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Slag compartment",
+              "reference product": "Slag compartment",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "7fa22d18d5959e7365707fe4af43f69f1608ac7621e9c74d3d8195bb7fd664a1",
+            "metadata_sha256": "a66c03b6539d86729fda7a950980ca538dacec546de1cd4324e458d330d0d81e"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "inventory_sha256": "b4f5819615fb9638afcbf4ff47346f4d853f4bfe024d6ec13ea9c4d979e6071c",
+            "metadata_sha256": "5a68f126e6e36a74cadac046db13d997ed62473a7112c26718a82f73205c9e55"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "inventory_sha256": "e431e1f33d63f622b345d9451739e70f5770ab3eafa8ec2c1ffaa6070e078a12",
+            "metadata_sha256": "b30145e98ccf45bc6c77a88e7c499e61e42137e5e7cdfa239d7c25d7f6264676"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Municipal waste incineration plant",
+              "reference product": "Municipal waste incineration plant",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "b8e6cb97cbedd371a9951e9f39bded41a02d6ab33b6251c219cb33016a7fbf5f",
+            "metadata_sha256": "186172b6c4359cc03d083127bae5e45205a00399881d66b5b68493bfee12f59e"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Municipal waste incineration plant",
+              "reference product": "Municipal waste incineration plant",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "f71523e4428ce44f5a0ff497821ec3f567f55e58f12e2ebaf576ce12eff3ad18",
+            "metadata_sha256": "493e161762063f72670bba6fa0aec0a3d9c61ad770437a5434b989f88c248325"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Chromium oxide, flakes, at plant",
+              "reference product": "Chromium oxide, flakes, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "615e73a2a54eaa8e1467b582c9ab4518bbf8d29e561819c8196ce71bf7975987",
+            "metadata_sha256": "9b4017772bfbd36515fe7035a441730fc52c583de612097cd070459b45f80c5d"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Chromium oxide, flakes, at plant",
+              "reference product": "Chromium oxide, flakes, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "76e4d4dc199f10ebca5d73855a6b9d9d130dba03db67c97bb520434db8fa7166",
+            "metadata_sha256": "3f00709c1970fdca0054921c28ac4b9331d3173bd2cae9a1e17f44b0cfac254f"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Process-specific burdens, slag compartment",
+              "reference product": "Process-specific burdens, slag compartment",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "902b3e26981739c2a7f190d9b834abbf88322d8f1d69d9842fa57dbbb679a9fc",
+            "metadata_sha256": "69802cb0071506330b1f9faeb773c0ab93b0c49a9c85c95f44c1de80e5a32ef7"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Process-specific burdens, slag compartment",
+              "reference product": "Process-specific burdens, slag compartment",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "cfa54e2580cf2163e1e6189accae2ce7d8ad6f6a1b06702a0166a8c217bb3791",
+            "metadata_sha256": "ce1fece495c1bdfed0b365ffe1f1515c4e42b18bf78272bc1ee69ea38fb3596e"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Process-specific burdens, residual material landfill",
+              "reference product": "Process-specific burdens, residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2e69d01c38e918dd4a7624aa060fdb52e19a850ef0dc8c93d57425d5f69819bd",
+            "metadata_sha256": "9f2c5091541b497306dd696e9b72d5c8f016c80137d3c2eafe5a84558c70cae9"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Process-specific burdens, residual material landfill",
+              "reference product": "Process-specific burdens, residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "1e6e2633f95b139b205c2fe1c4734dcea819b9e442ccc89c408fa4a904e84a96",
+            "metadata_sha256": "c26ab65cc89644256eb6f7ffa1a09c9d1d2c78de35e89279007470fb16fea025"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Titanium dioxide, production mix, at plant",
+              "reference product": "Titanium dioxide, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "bbb46d69f32dcaa591001e44994a6907e756b1847bc3c068eb92a455cc50e041",
+            "metadata_sha256": "87584812fcaf7138bf936c80c39f5caa4049477656efa39f04f3e3428585f8cb"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Titanium dioxide, production mix, at plant",
+              "reference product": "Titanium dioxide, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "583d3506ef2e2f228a068a59909e8ee9bac7ed4c7319ad07576802d427f6dda9",
+            "metadata_sha256": "1efa1530e7e59a33474c91ab36204a765cd23a971c61289cf4757e67a04443c4"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Quicklime, milled, packed, at plant",
+              "reference product": "Quicklime, milled, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f6f5054626ccd619421acf41e02d1ca2c8eb8da919c9248fbeee44fa373e367d",
+            "metadata_sha256": "95bc7b1e5dafe33bcb4f7a259d85fb6e13edf323ea902691709af88556398a13"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Quicklime, milled, packed, at plant",
+              "reference product": "Quicklime, milled, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "800d0fb303b22000d8e13722b81da8c4a14f8741ee892115640b05c9408ef26f",
+            "metadata_sha256": "6f5c4bbe26364c695d6aa9cf96fd0ff5f10a41bbd3b59b1dd03e9e11fcf25ac8"
+          },
+          {
+            "version": "2025",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Sewer grid, class 2",
+              "reference product": "Sewer grid, class 2",
+              "location": "CH",
+              "unit": "kilometer"
+            },
+            "inventory_sha256": "564fa8444069443257aec100bd397a9637337f2445baa93452951354d08ed790",
+            "metadata_sha256": "1dc5145f69b8386149ce0c8a73536104dfdc75417348925220aac37a42189475"
+          },
+          {
+            "version": "2026",
+            "reference_amount": 1,
+            "identity": {
+              "name": "Sewer grid, class 2",
+              "reference product": "Sewer grid, class 2",
+              "location": "CH",
+              "unit": "kilometer"
+            },
+            "inventory_sha256": "d8d40db83a577c987e6f6851f6fa61124e3daf406fd27edd34d44895d13f55fc",
+            "metadata_sha256": "5a267652856d69dbbb304108ed2de0215429796d2c1d46f25da3bfe8e4374cc5"
+          }
+        ]
+      },
+      "limitations": [
+        "Reconstruct the source condensate market composition: retain0.4126619233000178m3treated condensate, separate0.1723rural and0.8277urban m3collection entries, and all17direct untreated-discharge flows with their exact signed source amounts, units, compartments and supported uncertainty. Untreated water amount0.587241188m3is retained literally; do not renormalize it to the complement or claim closure of a recalculated water balance. Source waste reference is-1m3, target service+1m3: retain the already-correct factor-1exactly once.",
+        "The source treated fraction uses a regional1/2/3stage portfolio; replace only that fraction with native Swiss class2three-stage condensate treatment as a complete process proxy. Materialize its full retained26technosphere and50canonical3.10biosphere exchanges, excluding only its embedded deterministic1.6832e-7kmsewer link. That component is relocated to collection accounting, not cancelled through an independent negative uncertain exchange. Do not retain both the embedded sewer and the separately reconstructed collection service.",
+        "Source rural/urban collection references are per m3sewered wastewater, whereas native class2sewer infrastructure is per km. A separate1m3collection proxy uses the actual native condensate-treatment sewer allocation1.6832e-7km/m3and complete native sewer inventory. Both original collection entries call it separately at unchanged volumes and uncertainty. This replaces rural/urban geometry, capacity and infrastructure allocations by the native class2allocation; do not infer sewer length from density, annual flow, lifetime or population. Native sewer class is242km/100year/71133PCEdocumented infrastructure, not a geometrically equivalent rural/urban design.",
+        "Treatment-stage portfolio, sludge disposal/use, municipal incineration, own energy purchases, auxiliaries, pollutant fate, long-term emissions and supply geography change inside the treated fraction. Retain the native copy's actual signed coefficients and supported uncertainty without changing residues, adding avoided-energy/recovery credits or adjusting separately retained untreated emissions. Full native quantities are preserved before multiplication by the source treated share. Its inherited biosphere exclusions remain a limitation; no pollutant-removal or impact equivalence is established.",
+        "Exact independently inspected ecoinvent3.10cutoff only, to nativeUVEK2026 via the2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty, separate caller emissions and complete links. Source/native technology, allocation, vintage, geography and internal uncertainty differ. Native upstream biosphere exclusions remain explicit. Score effects are unquantified; no LCIA equivalence, impact completeness, inverse, unreviewed release or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ec299820c217a187be02da5ddc41f5f1a7f94d91c818cf3338a91c8fe6c87b98"
+        }
+      ]
     }
   ]
 }

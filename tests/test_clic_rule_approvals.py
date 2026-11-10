@@ -2651,3 +2651,59 @@ def test_heat_310_routes_scope_and_limitations_survive_cache(tmp_path, index):
             d["details"]["limitations"] == row["limitations"] for d in diagnostics
         )
     assert resolved.activities == before
+
+
+@pytest.mark.parametrize("index", range(3))
+def test_heat_310_closure_retains_boundaries_and_condensate_fates_through_cache(
+    tmp_path, index
+):
+    from brightpath import DATA_DIR
+    from brightpath.background import PackageCatalogProvider
+
+    review = json.loads(
+        (DATA_DIR / "export/uvek_heat_310_closure_review.json").read_text()
+    )
+    row = review["records"][index]
+    resolved = graph(row["source"], version="3.10")
+    before = copy.deepcopy(resolved.activities)
+    harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
+    for hit in (False, True):
+        result = harmonizer.harmonize(resolved, version="2026", family="uvek")
+        assert result.manifest["cohorts"][0]["cache_hit"] is hit
+        edge = result.activities[0]["exchanges"][1]
+        assert edge["amount"] == -2 * row["conversion_factor"]
+        if row["new_recipes"]:
+            helpers = {
+                a["brightpath_conversion"]["recipe_id"]: a
+                for a in result.activities
+                if a.get("brightpath_conversion")
+            }
+            assert set(helpers) == set(row["new_recipes"])
+            treatment = helpers[row["treatment_recipe_ref"]]
+            assert not any(
+                e.get("name") == "Sewer grid, class 2" for e in treatment["exchanges"]
+            )
+            assert sum(e["type"] == "biosphere" for e in treatment["exchanges"]) == 50
+            market = helpers[row["market_recipe_ref"]]
+            assert sum(e["type"] == "biosphere" for e in market["exchanges"]) == 17
+        else:
+            assert all(edge[k] == v for k, v in row["target"].items())
+        diagnostics = [
+            d
+            for d in result.diagnostics
+            if d["code"] == "clic.compatibility_proxy_limitations"
+            and d["details"]["rule_id"] == row["rule_id"]
+            and d["details"]["review_path"]
+            == "export/uvek_heat_310_closure_review.json"
+        ]
+        assert diagnostics
+        assert all(
+            d["details"]["limitations"] == row["limitations"] for d in diagnostics
+        )
+        if row["new_recipes"]:
+            assert all(
+                d["details"]["inspection"]["native_sewer_relocation"]
+                == row["native_sewer_relocation"]
+                for d in diagnostics
+            )
+    assert resolved.activities == before
