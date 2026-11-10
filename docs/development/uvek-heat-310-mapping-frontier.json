@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "nineteen_of_thirty_eight_observed3_10cases_qualified_nineteen_pending",
+  "status": "twenty_two_of_thirty_eight_observed3_10cases_qualified_sixteen_pending",
   "context": "Later3.10cohort exposed after all14initial3.9cases qualified; publicheatgate remains closed.",
   "identified_cases": 38,
   "previously_scoped_rules": 16,
@@ -1332,7 +1332,7 @@
     },
     {
       "rule_id": "bp-7380dfd0ac332f4f",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_complete_infrastructure_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1394,11 +1394,13 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "verification": "docs/development/uvek-heat-310-infrastructure-verification.json",
+      "review_path": "export/uvek_heat_310_infrastructure_review.json"
     },
     {
       "rule_id": "bp-07216020d01485c5",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_complete_infrastructure_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1460,11 +1462,13 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "verification": "docs/development/uvek-heat-310-infrastructure-verification.json",
+      "review_path": "export/uvek_heat_310_infrastructure_review.json"
     },
     {
       "rule_id": "bp-a73848b70d94bf8a",
-      "status": "pending_independent_review",
+      "status": "qualified_exact3_10_complete_infrastructure_proxy",
       "source_profile": {
         "family": "ecoinvent",
         "version": "3.10",
@@ -1526,7 +1530,9 @@
           ]
         }
       },
-      "source_producer_witness_count": 2
+      "source_producer_witness_count": 2,
+      "verification": "docs/development/uvek-heat-310-infrastructure-verification.json",
+      "review_path": "export/uvek_heat_310_infrastructure_review.json"
     },
     {
       "rule_id": "bp-a1c34b995d6289b2",
@@ -2714,8 +2720,8 @@
     }
   ],
   "later_cohorts": "unproven",
-  "qualified_cases": 19,
-  "pending_cases": 19,
+  "qualified_cases": 22,
+  "pending_cases": 16,
   "additional_helper_input_qualifications": 2,
-  "verification": "docs/development/uvek-heat-310-waste-verification.json"
+  "verification": "docs/development/uvek-heat-310-infrastructure-verification.json"
 }

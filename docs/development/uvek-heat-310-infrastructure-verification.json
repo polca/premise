@@ -1,0 +1,65 @@
+{
+  "status": "three_exact3_10_complete_infrastructure_proxies_verified_sixteen_current_cases_pending_heat_gate_closed",
+  "review": "export/uvek_heat_310_infrastructure_review.json",
+  "review_sha256": "87aa35eb7d9e7acc11787c1df4e3b76f1cd77b5ad324699a8720bba24679859f",
+  "approval_scopes": 486,
+  "prior_fingerprints_unchanged": 483,
+  "underlying_rules_recipes_shared_reviews_and_native_inventories_unchanged": true,
+  "validation": {
+    "brightpath_tests": 19,
+    "premise_cache_and_drift_tests": 7,
+    "native_finite_LCIs": 3,
+    "installed_signed_demands": 6,
+    "installed_packaged_data_equal_worktrees": {
+      "brightpath": 264,
+      "premise": 247
+    },
+    "source_scientific_signatures_unchanged": true
+  },
+  "real_heat_preparation": "16current3.10cases pending, down from19;22of38qualified;latercohortsunproven",
+  "public_heat_gate": "closed",
+  "original_public_export": "Previously verified12529activitybiomass/electricityexport unchanged by this scope-only qualification; not rerun or represented as a heat export.",
+  "next_condensate_evidence": "Source urban/rural sewer references are per m3 sewered wastewater; native sewer reference is km. Read-only primary evidence obtained; no new condensate factor or treatment-fate decision approved by this batch.",
+  "receipts": [
+    {
+      "name": "heat_310_infrastructure_registration.json",
+      "sha256": "07221737402902180fe3a60c30dbe4ad92944b09c1583cd153301f70bc0b968e",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_infrastructure_tests.log",
+      "sha256": "87d7a3b2ab585e3070ed513ccf1f615c8313cdd5b2b44cc82aba5e56b482cfd1",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_infrastructure_premise_tests.log",
+      "sha256": "0740926275aee7eb68dbdf967a25bb4836810ed5aeb3d7b6adfd3b1ccc1b99a3",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_infrastructure_native_lci.json",
+      "sha256": "3de95d69659639ab2adef3208c30b5e122c382d0681fa428c908a4c749ebaf4f",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_infrastructure_installed_checks.json",
+      "sha256": "1d82ea03fc640246fb94e64dea15242f1081ec5c1f21a7c9ec5cc5c1617fe693",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_infrastructure_packaged_data.json",
+      "sha256": "dc1cf763a02006084d700dc77e1bae37bbad4ce0fc3fe3a709080a67b2914938",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_310_infrastructure_remaining_audit_receipt.json",
+      "sha256": "024221565047481cccaa95871891f213bcfab5a3d9a0ab06cac90e3b6e643057",
+      "location": "private task workspace"
+    },
+    {
+      "name": "heat_condensate_sewer_primary_receipt.json",
+      "sha256": "e934a5ffaf7b3cfb855bdcfeda28c0a6326a3471ed8c46a10362d5648fb21262",
+      "location": "private task workspace"
+    }
+  ]
+}

@@ -123747,6 +123747,300 @@
           "fingerprint": "896b0792cd5adc4d8b56123ce0b3a1d88b2a8ebe6808a70731f57a3caae0fd95"
         }
       ]
+    },
+    {
+      "rule_id": "bp-7380dfd0ac332f4f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_infrastructure_review.json",
+      "review_sha256": "87aa35eb7d9e7acc11787c1df4e3b76f1cd77b5ad324699a8720bba24679859f",
+      "authorization": "Standing autonomous approval of forthcoming modelling decisions, with explicit screening limitations retained for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for oil boiler, 10kW",
+          "reference product": "oil boiler, 10kW",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Oil boiler 10kW",
+          "reference product": "Oil boiler 10kW",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "7e40d55b26100805c93dd204f39377365d2fd802658a6a4917a1c7ffbc8edaaa",
+        "source_metadata_sha256": "a7c6597729315694a1112f3815bc522d12046d5f7b138611800eefc8d14e7070",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "oil boiler production, 10kW",
+              "reference product": "oil boiler, 10kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "08b0a82bf169f6456b89582c8888e177aa25663e2a9d799bb3691799a428a467",
+            "metadata_sha256": "45eb90e316ad51f95eef36dae408de4aee2a1f26dd507c7a03203f962544c138"
+          },
+          {
+            "identity": {
+              "name": "oil boiler production, 10kW",
+              "reference product": "oil boiler, 10kW",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "e13c0e6b3b48771b7840ad2ed89264862e3ee20f48159c6094da4deae7af58f7",
+            "metadata_sha256": "8343825bb6215caea150d7d88f1af6123e605f6ed0631d5149dbbd3bd7529996"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Oil boiler 10kW",
+              "reference product": "Oil boiler 10kW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "cb3de2244be1ff7026fe9e4e1a7547f9fe2af73c30b878db48ee191a589ec705",
+            "metadata_sha256": "f4e739563da8c150f495d6f770de3436b74fdc072fc47ecd9c1d063021788c7a"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Oil boiler 10kW",
+              "reference product": "Oil boiler 10kW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "2f34e2e592e3be9b6846f091aede61114ea4af26141990a85daae0141b022113",
+            "metadata_sha256": "6360f769344fdbbb0c22b04cd1c95bdd9b2c660d3a74848baadb06628b6c9df4"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native reference one complete 10kW residential oil boiler. Source CH/RoW producers and native document a twenty-year lifetime. Both include materials, electrical equipment, manufacturing energy and decommissioning. Native additionally states 2100 operating hours/year; that statement is not a conversion factor for one physical boiler.",
+        "Actual source/native material quantities include 7.5kg aluminium, 3.03kg copper and 4kg solder; steel differs (115 versus115.03kg), as do manufacturing electricity (81.7 versus112.79kWh), delivered manufacturing heat versus burned-fuel services, water flows, waste allocation and delivery. Source alkyd paint is referenced without solvent in60%solution state while native references a solvent-containing mixture with60%paint; this internal basis difference is retained as a complete-infrastructure proxy limitation, not independently remapped or scaled. Source uses paperboard recycling handover while native includes incineration. The native inventory is retained once, including its actual separate polyethylene inputs, packaging, freight, water and waste heat. Do not add source components, a separate electrical installation, operating fuel or another end-of-life process.",
+        "Exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 only, through the existing UVEK2025 edge. Preserve signed caller quantity, formula, supported uncertainty and ownership at factor+1 in the same declared unit. Source global producer shares are replaced by the complete native Swiss infrastructure. Source/native supply geography, material route, internal allocation, vintage and uncertainty differ. Keep canonical ecoinvent3.10biosphere and the native upstream biosphere-exclusion limitation explicit. No LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e7683af64d80a53aa68f8fef34337022177ddc46fe75f80bed17938ba72a390b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-07216020d01485c5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_infrastructure_review.json",
+      "review_sha256": "87aa35eb7d9e7acc11787c1df4e3b76f1cd77b5ad324699a8720bba24679859f",
+      "authorization": "Standing autonomous approval of forthcoming modelling decisions, with explicit screening limitations retained for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for oil storage, 3000l",
+          "reference product": "oil storage, 3000l",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Oil storage 3000l",
+          "reference product": "Oil storage 3000l",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "50c65452169b47a05c8b2389f75a1f793f99f40c0f763213b3999563113442b1",
+        "source_metadata_sha256": "d95bcadd2ab93829af36fd7c69ffac9fbdbf72ec747eb641619b890769538336",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "oil storage production, 3000l",
+              "reference product": "oil storage, 3000l",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "25605fc6d84c054211371e288783dabfa40663629b7d3c4e51130a1b48070fc6",
+            "metadata_sha256": "6865a60446d2390b0740700ab2b15c462efca55581e391a5b8184ecd5a3405e9"
+          },
+          {
+            "identity": {
+              "name": "oil storage production, 3000l",
+              "reference product": "oil storage, 3000l",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "6cec0df15e24e7266af1e25a34b165c9d603b84062823a93fa4a1d3a257e3a80",
+            "metadata_sha256": "c7e87694fd40364a4a44df6eeb7d48fe1453f39bfbd0d3339718688b10978325"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Oil storage 3000l",
+              "reference product": "Oil storage 3000l",
+              "unit": "unit"
+            },
+            "inventory_sha256": "def043aa804b8d0ccf5e500068edc64714d342634afa84c4f7b13990a6197c31",
+            "metadata_sha256": "0f7d21386c7c2dd85376afbe02f6f7bb2f13e73f3bc0f9bbcd3d55f8d7cb9b78"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Oil storage 3000l",
+              "reference product": "Oil storage 3000l",
+              "unit": "unit"
+            },
+            "inventory_sha256": "951457b89ba4bca29e64fe73d2f15e8e59df96b5de45a9e0f9a72ce0868ce5af",
+            "metadata_sha256": "0f110fe254733a8f9c26067dd0419a103dc0db551f89e475139c6a4df3e55aed"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native reference one complete3000litre oil tank, including oil pipes and valves for small oil heating, with a documented twenty-year lifetime. Both exclude manufacturing energy. Capacity describes the infrastructure, not3000litres of delivered oil: retain factor+1per signed tank unit and add no stored fuel, density, volume or annual-service conversion.",
+        "Actual source/native include20.1kg copper,6kg cast iron,1.4kg brass,0.55kg polyethylene and0.225m3concrete; steel differs452versus451.5kg. Native retains its own paint mixture, delivery and disposal, including495kg concrete and0.55kg plastics treatment. Source paint references a solvent-free basis in60%solution state whereas native references a solvent-containing mixture with60%paint. The complete native tank is a screening proxy for the source regional producer mix; internal coating, steel-route, freight, waste treatment and uncertainty differ. Do not combine either inventory with additional tank manufacture, operating fuel, pipes, valves or disposal.",
+        "Exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 only, through the existing UVEK2025 edge. Preserve signed caller quantity, formula, supported uncertainty and ownership at factor+1 in the same declared unit. Source global producer shares are replaced by the complete native Swiss infrastructure. Source/native supply geography, material route, internal allocation, vintage and uncertainty differ. Keep canonical ecoinvent3.10biosphere and the native upstream biosphere-exclusion limitation explicit. No LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b2915f7d054568e69c55b363060d05a929453d65528a316d7f8bb9ab29672519"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a73848b70d94bf8a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_310_infrastructure_review.json",
+      "review_sha256": "87aa35eb7d9e7acc11787c1df4e3b76f1cd77b5ad324699a8720bba24679859f",
+      "authorization": "Standing autonomous approval of forthcoming modelling decisions, with explicit screening limitations retained for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for chimney",
+          "reference product": "chimney",
+          "unit": "meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Chimney",
+          "reference product": "Chimney",
+          "unit": "meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_inventory_sha256": "3547fee2ead9a3be5df0c2f54e1171a9ff1697070d143abcafffef02f310fd1a",
+        "source_metadata_sha256": "dc303877f009729125c1ee5c99c5caa100fad6631e28b2a43671219d1d1eae46",
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "chimney production",
+              "reference product": "chimney",
+              "location": "CH",
+              "unit": "meter"
+            },
+            "inventory_sha256": "35341c15ece0af0b75835b1aa2ca166c132accd0fa3c0171815928cf93fb5987",
+            "metadata_sha256": "3ae98e2198d07aabbde610b8fa7d84b0fc170c7690750df0cce9d65baeb7c803"
+          },
+          {
+            "identity": {
+              "name": "chimney production",
+              "reference product": "chimney",
+              "location": "RoW",
+              "unit": "meter"
+            },
+            "inventory_sha256": "5e46ce0d350f84cdf1a1934290c4e366f712248ac9f57a2a744e66a1e7b16b45",
+            "metadata_sha256": "c5669a978d619f2513f1a6299d0cac1c7012083d8df9bed02e0c97b7d0c3fdf7"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Chimney",
+              "reference product": "Chimney",
+              "unit": "meter"
+            },
+            "inventory_sha256": "b21d59c25d1595ed5595648848047fb9e0a5dbab943c962881eef25ef3c9eb42",
+            "metadata_sha256": "72149fd3845d38cf82c2780dc14de0fe34d286b7d6a7dfaf76d2fcbba47b885e"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "identity": {
+              "location": "CH",
+              "name": "Chimney",
+              "reference product": "Chimney",
+              "unit": "meter"
+            },
+            "inventory_sha256": "bdbd4e6f2295f97149b897330aec01ad2658c50ef98c6ee90030a383335f46b4",
+            "metadata_sha256": "f27d09f37bc96860d03af7a843a8ae8bac5359102f08516b7075693475773361"
+          }
+        }
+      },
+      "limitations": [
+        "Both reference one physical metre of small-heating chimney, including building materials and disposal but excluding construction energy. The inspected ecoinvent3.10producers document eighty years; native documents forty years. The conversion preserves signed physical metres: do not infer an80/40replacement or annualisation factor, and do not claim equivalent lifetime heat service.",
+        "The actual source chimney uses0.0432m3concrete and0.5kgstone wool per metre; native instead uses95kgfireclay refractory,0.5kgrock wool and5.9kgchromium steel plus5.9kgpipe drawing. Native documents a2016liner addition. Retain that complete native chimney once, including its actual transport and disposal; do not assert concrete/fireclay equivalence, convert volume to mass using an invented density, subtract the liner, add an extra chimney or introduce a metal recovery credit. Geometry, liner, fire resistance, lifetime, installation and residue differences are explicit and their score effects unquantified.",
+        "Exact independently inspected ecoinvent3.10cutoff to nativeUVEK2026 only, through the existing UVEK2025 edge. Preserve signed caller quantity, formula, supported uncertainty and ownership at factor+1 in the same declared unit. Source global producer shares are replaced by the complete native Swiss infrastructure. Source/native supply geography, material route, internal allocation, vintage and uncertainty differ. Keep canonical ecoinvent3.10biosphere and the native upstream biosphere-exclusion limitation explicit. No LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a0b6374c116ed03e14c078bcc8b58f52d93754b989555c2a79b64cef6da09fa5"
+        }
+      ]
     }
   ]
 }

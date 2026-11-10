@@ -161,3 +161,20 @@ residue and emission differences remain warnings. No energy credit is invented.
 Earlier helpers, shared reviews and omission audits remain unchanged. There are
 483 exact scopes and 19 pending cases in the current cohort, with 19 of its
 original 38 qualified. The public heat gate remains closed.
+
+
+Three exact 3.10 complete infrastructure proxies qualify the 10 kW oil boiler,
+3000 litre oil tank and chimney. Boiler and tank have matching physical units,
+capacities and documented twenty-year lifetimes. Chimney documentation differs:
+eighty years in the source versus forty years and an added steel liner in native
+UVEK. Caller physical metres remain unchanged; no lifetime or density multiplier
+is inferred. Complete material, energy, paint-basis, freight, disposal, geography
+and vintage differences remain explicit warnings with unquantified score effects.
+
+No underlying migration rule, recipe, shared review or native inventory changes.
+All 483 previous fingerprints remain unchanged; three new scopes bring the ledger
+to 486. Nineteen Brightpath tests, seven Premise cache/drift tests, six installed
+signed demands and three finite native LCIs passed. Real preparation now reports
+16 pending cases in the current cohort, with 22 of 38 qualified. Later cohorts
+and public heat integration remain unproven. Verification:
+`docs/development/uvek-heat-310-infrastructure-verification.json`.
