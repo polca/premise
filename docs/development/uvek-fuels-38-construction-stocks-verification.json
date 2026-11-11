@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-11",
+  "status": "Three exact 3.8 construction-stock proxies qualified; complete fuels transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "c519f07a8502c898df31c17cc883498469b30f0a",
+  "review_sha256": "ea7717d7f91d3dc92125cf2ef5f6a1555a269f8142b7ae5b54895c70cc3a3474",
+  "forward_resource_sha256": "d18a674f07ae5a1ee5c16955cd8c27696dd02033760be6399845fa6503ae04bf",
+  "migration_resource_unchanged": true,
+  "new_approval_scopes": 3,
+  "validated_approval_scopes": 678,
+  "all_prior_675_operations_and_fingerprints_preserved": true,
+  "tests": {
+    "brightpath": "14 passed; signed normal/lognormal statistics, unchanged rules, complete rolling routes and concrete volume/binder warnings",
+    "premise": "15 passed; strict fresh/cache statistics, exact warnings and independent approval removal",
+    "broader_baseline": "Earlier regression checkpoints remain historical; no post-change full-suite pass claimed."
+  },
+  "native_lci_checks": [
+    {
+      "identity": {
+        "location": "RER",
+        "name": "Chromium steel 18/8, at plant",
+        "reference product": "Chromium steel 18/8, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "location": "RER",
+        "name": "Reinforcing steel, at plant",
+        "reference product": "Reinforcing steel, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "location": "CH",
+        "name": "Concrete, sole plate and foundation, at plant",
+        "reference product": "Concrete, sole plate and foundation, at plant",
+        "unit": "cubic meter"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "reinforcing_route_rolling_checks": [
+    {
+      "identity": {
+        "name": "Reinforcing steel, converter, at plant",
+        "reference product": "Reinforcing steel, converter, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "market_share": 0.3,
+      "hot_rolling_kg": 1,
+      "hot_rolling_identity": {
+        "name": "Hot rolling, steel",
+        "reference product": "Hot rolling, steel",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "c6942f2e804784e18a73b96347c54aec73334a089185323253a8b9ba0d8799d4"
+    },
+    {
+      "identity": {
+        "name": "Reinforcing steel, electric, at plant",
+        "reference product": "Reinforcing steel, electric, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "market_share": 0.7,
+      "hot_rolling_kg": 1,
+      "hot_rolling_identity": {
+        "name": "Hot rolling, electric steel",
+        "reference product": "Hot rolling, electric steel",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "inventory_sha256": "eec194aa7e38c29e22f7d55ea04efab49d47d1937b6eedd29a767ffbb01b00b9"
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "wheel": "Review/resource/manifest bytes match checkout.",
+  "runtime_python_changes": false,
+  "regular_environment": "Pushed Git revision installed; exact resource SHA and 678 scopes verified.",
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 36,
+    "distinct_rule_identities": 34,
+    "only_removed_cases": [
+      [
+        "3.8",
+        "bp-263c185cdbca7a8c"
+      ],
+      [
+        "3.8",
+        "bp-6b60ae27d55196e6"
+      ],
+      [
+        "3.8",
+        "bp-7ca3587cbfe4ce9b"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 41461822,
+  "limitations": [
+    [
+      "Same finished hot-rolled 18/8 stainless material per kg, not cold-rolling service or unrolled cast stock. Source RER and RoW producers include material stock and hot rolling. Native contains 0.63 kg converter steel, 0.37 kg electric steel and 1 kg hot rolling per kg finished material. Keep that native route mix once; no second rolling operation, scrap-loss, alloy-grade or forming-yield multiplier is introduced. Native European production mix is an explicit geographic/technology proxy for global supply; source GLO market has no final transport or loss requirement. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection."
+    ],
+    [
+      "Same finished reinforcing-steel material per kg, not unformed stock or rolling service. Native complete European mix uses 30% converter and 70% electric furnace production. Both native routes already include one kg of hot rolling plus their steel stock. Do not add rolling again, apply the 30/70 shares to caller kg, or infer diameter/length/strength conversion. Source Austrian electric-furnace and other regional producer shares, scrap sourcing and final freight are not reconstructed. Native mix does not establish B500/B550 grade or mechanical-performance equivalence. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection."
+    ],
+    [
+      "Use complete native Swiss sole-plate/foundation concrete per signed cubic metre as an explicit binder/formulation screening proxy. Source market supplies CEM I and CEM II/A or II/B civil-engineering/pile concretes, documenting 355 kg cement per cubic metre and 2400 kg/m3 density. Native documents blast-furnace-slag cement CEM III/B 32.5, 325 kg cement per cubic metre and 2385 kg/m3 density. It is not the same cement blend, clinker content, strength, durability, exposure or pile-performance model; those differences and their potentially substantial score effects are unquantified. Preserve caller cubic metres without multiplying by 355/325, 2400/2385 or any cement, clinker, density, strength or service-life ratio. Retain complete native aggregates, water, mixing energy, wastewater, infrastructure and input transport once. Native ingredient transport does not reproduce source market final delivery. Do not add source cement or freight to this complete screening inventory, invent supplementary burdens, or renormalize source producer shares into a false native reconstruction. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection."
+    ]
+  ]
+}

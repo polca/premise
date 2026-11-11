@@ -196316,6 +196316,338 @@
           "fingerprint": "2585ceec9f13cd66b6bf19c8ecdb2ee09695041c5b32540b007a65a2ec1c8dd2"
         }
       ]
+    },
+    {
+      "rule_id": "bp-263c185cdbca7a8c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_construction_stocks_review.json",
+      "review_sha256": "ea7717d7f91d3dc92125cf2ef5f6a1555a269f8142b7ae5b54895c70cc3a3474",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for steel, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "f456a687ed0d7ae61d0232b647a7b2a67b83a818851087037fe03cbffd83853f",
+          "inventory_sha256": "013264b9d1d0adf32e8d3def6308d7e5d6213f21131023430785e5f354d10d91",
+          "name": "market for steel, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "steel production, chromium steel 18/8, hot rolled",
+              "reference product": "steel, chromium steel 18/8, hot rolled",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "743bd78b72f13c6225910b69227f20ede1f047f011087ebf4f7554b6ea8a70d8",
+            "inventory_sha256": "cc94736837ee2692173be336224d4d81633d87ff7909ed1eeeef49bf7bba02f4"
+          },
+          {
+            "identity": {
+              "name": "steel production, chromium steel 18/8, hot rolled",
+              "reference product": "steel, chromium steel 18/8, hot rolled",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "557bbc01704a2b2c457217392b9b18398f5d1bee6105cdf240bab261caa2f35f",
+            "inventory_sha256": "aaf77db2346a80bf5cea2704c4ca115808d2e2af75a804cbfb69f6971cfa82fb"
+          }
+        ],
+        "basis": "Same finished hot-rolled 18/8 stainless material per kg, not cold-rolling service or unrolled cast stock. Source RER and RoW producers include material stock and hot rolling. Native contains 0.63 kg converter steel, 0.37 kg electric steel and 1 kg hot rolling per kg finished material. Keep that native route mix once; no second rolling operation, scrap-loss, alloy-grade or forming-yield multiplier is introduced. Native European production mix is an explicit geographic/technology proxy for global supply; source GLO market has no final transport or loss requirement. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Chromium steel 18/8, at plant",
+          "reference product": "Chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Chromium steel 18/8, at plant",
+              "reference product": "Chromium steel 18/8, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "metadata_sha256": "c33af62302cac8c7b18f8be60327650b8ae4cb2125b1ded571e8217a5c7083c5",
+            "enriched_inventory_sha256": "e7569e8350367003b7e8c9130d7d44bbeae9358d3f7e09291cfc446a1735ca35"
+          }
+        ]
+      },
+      "limitations": [
+        "Same finished hot-rolled 18/8 stainless material per kg, not cold-rolling service or unrolled cast stock. Source RER and RoW producers include material stock and hot rolling. Native contains 0.63 kg converter steel, 0.37 kg electric steel and 1 kg hot rolling per kg finished material. Keep that native route mix once; no second rolling operation, scrap-loss, alloy-grade or forming-yield multiplier is introduced. Native European production mix is an explicit geographic/technology proxy for global supply; source GLO market has no final transport or loss requirement. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "841e8a488903c18f77e0c1413bc32475238bc7dae67c168f4bb93d5e76647048"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_construction_stocks_review.json",
+      "review_sha256": "ea7717d7f91d3dc92125cf2ef5f6a1555a269f8142b7ae5b54895c70cc3a3474",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for reinforcing steel",
+            "reference product": "reinforcing steel",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "d06e29433194b530af96d26e4e8a4a25aa5582741863a233f2f03d716e856f8a",
+          "inventory_sha256": "4f083ccd7476f5ba7fe61b15943a6fa4ff983f4ce38250aca00610e2435b8922",
+          "name": "market for reinforcing steel",
+          "reference product": "reinforcing steel",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "reinforcing steel production",
+              "reference product": "reinforcing steel",
+              "location": "AT",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "109411dad38da0c69a689beeaa56dc0645b049b1a92500f22e8fde2a2bfd8ec2",
+            "inventory_sha256": "2d7cd545d91dd8e572a209f8881845030976ada4c8f3b36a55a0a8faeff69f2d"
+          },
+          {
+            "identity": {
+              "name": "reinforcing steel production",
+              "reference product": "reinforcing steel",
+              "location": "Europe without Austria",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e56a4f0c6d98d0785ac2000a5196e65a54ea9d5f82c98110b2ef2e15165a0c58",
+            "inventory_sha256": "321901af9049ce2bb3e605fed9d0263cb59a6f619ab42894b572fe66e2f98e43"
+          },
+          {
+            "identity": {
+              "name": "reinforcing steel production",
+              "reference product": "reinforcing steel",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1adaa3cd9c2753403b0fd5f97f76f8027b9e06960dab24d1d855b6b8b80fb635",
+            "inventory_sha256": "91823d98dd1c4d61320dd8eff42ed3c947464bf7bf47a64c683ffe44bbb3d26e"
+          }
+        ],
+        "basis": "Same finished reinforcing-steel material per kg, not unformed stock or rolling service. Native complete European mix uses 30% converter and 70% electric furnace production. Both native routes already include one kg of hot rolling plus their steel stock. Do not add rolling again, apply the 30/70 shares to caller kg, or infer diameter/length/strength conversion. Source Austrian electric-furnace and other regional producer shares, scrap sourcing and final freight are not reconstructed. Native mix does not establish B500/B550 grade or mechanical-performance equivalence. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Reinforcing steel, at plant",
+          "reference product": "Reinforcing steel, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Reinforcing steel, at plant",
+              "reference product": "Reinforcing steel, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "ca35a53e1baab8880ef55cbb0651a17c5821f53dfdc982f76c03c12e9d53b25f",
+            "enriched_inventory_sha256": "187df5eb0eefaecc84a6d97ea284af4a43f0f7f915acd906bb3abd2089cac58b"
+          }
+        ]
+      },
+      "limitations": [
+        "Same finished reinforcing-steel material per kg, not unformed stock or rolling service. Native complete European mix uses 30% converter and 70% electric furnace production. Both native routes already include one kg of hot rolling plus their steel stock. Do not add rolling again, apply the 30/70 shares to caller kg, or infer diameter/length/strength conversion. Source Austrian electric-furnace and other regional producer shares, scrap sourcing and final freight are not reconstructed. Native mix does not establish B500/B550 grade or mechanical-performance equivalence. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ebe7f2f085c254bffb9a010db2d704d0048b3d2136e8c9c00d79a15d236c3271"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6b60ae27d55196e6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_construction_stocks_review.json",
+      "review_sha256": "ea7717d7f91d3dc92125cf2ef5f6a1555a269f8142b7ae5b54895c70cc3a3474",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for concrete, sole plate and foundation",
+            "reference product": "concrete, sole plate and foundation",
+            "location": "CH",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "af29bfdf9705cc9f89fa81b2927960a57f41a7609e2a95dc75ee9e128b9a80db",
+          "inventory_sha256": "fc973db00a396e79124a2bc656782cd31f5a355f31171913bd7660ca22f9db8b",
+          "name": "market for concrete, sole plate and foundation",
+          "reference product": "concrete, sole plate and foundation",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "concrete production, for civil engineering, with cement CEM I",
+              "reference product": "concrete, sole plate and foundation",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b812b5ad2304c225d50290cbe17cf22fd4f4f6223c94a4a974baeb0827784ecd",
+            "inventory_sha256": "4d29d5f1c85af2dbc0d8f90933c9c7abd41009e670e175c2aee83b9e028e7a5a"
+          },
+          {
+            "identity": {
+              "name": "concrete production, for civil engineering, with cement CEM II/A",
+              "reference product": "concrete, sole plate and foundation",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0104efc6a7fcc0ccfa1bd14d76b742597c8d8431bc0aa0b32affd26c509667a2",
+            "inventory_sha256": "bd1aa00cbc1e430224267af3dd3956306605c4423b652fcc04a36808465ee8f4"
+          },
+          {
+            "identity": {
+              "name": "concrete production, for civil engineering, with cement CEM II/B",
+              "reference product": "concrete, sole plate and foundation",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "26c1f5474eb536dc3a25aedfb7030b114a675a00e017de985b2a031244506bb8",
+            "inventory_sha256": "896bae210c92d8ec2e227579d436cc284a53c573418627c13aac9fb7411afd28"
+          }
+        ],
+        "basis": "Use complete native Swiss sole-plate/foundation concrete per signed cubic metre as an explicit binder/formulation screening proxy. Source market supplies CEM I and CEM II/A or II/B civil-engineering/pile concretes, documenting 355 kg cement per cubic metre and 2400 kg/m3 density. Native documents blast-furnace-slag cement CEM III/B 32.5, 325 kg cement per cubic metre and 2385 kg/m3 density. It is not the same cement blend, clinker content, strength, durability, exposure or pile-performance model; those differences and their potentially substantial score effects are unquantified. Preserve caller cubic metres without multiplying by 355/325, 2400/2385 or any cement, clinker, density, strength or service-life ratio. Retain complete native aggregates, water, mixing energy, wastewater, infrastructure and input transport once. Native ingredient transport does not reproduce source market final delivery. Do not add source cement or freight to this complete screening inventory, invent supplementary burdens, or renormalize source producer shares into a false native reconstruction. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Concrete, sole plate and foundation, at plant",
+          "reference product": "Concrete, sole plate and foundation, at plant",
+          "unit": "cubic meter"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Concrete, sole plate and foundation, at plant",
+              "reference product": "Concrete, sole plate and foundation, at plant",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "c2804ceec33e122253d356479fa2283142e64c4f3e995ed7a318e51f525a2dfb",
+            "enriched_inventory_sha256": "d97d25221231be66540e27ceab793260d430aea0af02abd188642f44f209eb38"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native Swiss sole-plate/foundation concrete per signed cubic metre as an explicit binder/formulation screening proxy. Source market supplies CEM I and CEM II/A or II/B civil-engineering/pile concretes, documenting 355 kg cement per cubic metre and 2400 kg/m3 density. Native documents blast-furnace-slag cement CEM III/B 32.5, 325 kg cement per cubic metre and 2385 kg/m3 density. It is not the same cement blend, clinker content, strength, durability, exposure or pile-performance model; those differences and their potentially substantial score effects are unquantified. Preserve caller cubic metres without multiplying by 355/325, 2400/2385 or any cement, clinker, density, strength or service-life ratio. Retain complete native aggregates, water, mixing energy, wastewater, infrastructure and input transport once. Native ingredient transport does not reproduce source market final delivery. Do not add source cement or freight to this complete screening inventory, invent supplementary burdens, or renormalize source producer shares into a false native reconstruction. Preserve signed caller quantity, uncertainty, formulas and properties at factor +1 in the declared source unit. Use each complete native inventory once, without grafting source energy, precursors, extra forming or emissions onto it. Source background supplier shares, final delivery and internal uncertainty are replaced rather than reconstructed. Native geography, furnace/binder mix, allocation, technology, vintage and upstream biosphere exclusions differ. Separate caller transport, processing and emissions remain unchanged. Score effects remain unquantified; no inventory, structural-performance or LCIA equivalence is claimed. Only independently inspected ecoinvent 3.8 cut-off is added; other profiles cannot borrow this inspection."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "631fcabb7c06734a1965f47fb037d8623fb80ffe1ee0a26464f23858a381e5d7"
+        }
+      ]
     }
   ],
   "superseded_operations": [
