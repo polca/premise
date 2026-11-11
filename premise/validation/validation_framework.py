@@ -29,7 +29,7 @@ import yaml
 from ..core.filesystem_constants import DATA_DIR
 from ..inventory.inventory_store import InventoryStore
 
-VALIDATION_RULESET_VERSION = 7
+VALIDATION_RULESET_VERSION = 8
 ValidationSeverity = Literal["error", "warning"]
 Applicability = Literal["applicable", "not_applicable"]
 ValidationPhaseKind = Literal["sector", "graph", "export"]
@@ -772,6 +772,7 @@ class _Accumulator:
     expected: Any = None
     tolerance: float | None = None
     issues: list[ValidationIssue] = field(default_factory=list)
+    evidence: dict[str, Any] = field(default_factory=dict)
 
     def issue(self, message: str, **kwargs: Any) -> None:
         self.issues.append(
@@ -795,7 +796,7 @@ class _Accumulator:
             applicability=self.applicability,
             checked_object_count=self.checked,
             expected=self.expected,
-            actual={"issue_count": len(issues)},
+            actual={"issue_count": len(issues), **self.evidence},
             tolerance=self.tolerance,
             issues=issues,
         )
@@ -972,6 +973,52 @@ def inventory_cycle_signatures(
     """Return semantic cycle signatures for a baseline inventory graph."""
 
     return inventory_baseline_snapshot(store)[1]
+
+
+def _feedback_convergence_bound(cycle, ids_by_key, requirements, references):
+    """Prove absolute convergence using a positive-vector upper bound on rho.
+
+    For nonnegative B, max(Bv/v) bounds its spectral radius for any v > 0.
+    Use the absolute, reference-normalized net technosphere requirements so
+    signed credits cannot conceal a divergent feedback. Failure to establish
+    a bound is a refusal, not an inferred approval.
+    """
+    import numpy as np
+    from scipy import sparse
+
+    if any(len(ids_by_key.get(key, ())) != 1 for key in cycle):
+        return None
+    ids = [ids_by_key[key][0] for key in cycle]
+    positions = {activity_id: index for index, activity_id in enumerate(ids)}
+    rows, columns, values = [], [], []
+    for activity_id in ids:
+        reference = references.get(activity_id)
+        if reference is None or not math.isfinite(reference) or reference == 0:
+            return None
+        for provider_id, amount in requirements[activity_id].items():
+            if provider_id in positions:
+                rows.append(positions[activity_id])
+                columns.append(positions[provider_id])
+                values.append(abs(amount / reference))
+    matrix = sparse.csr_matrix((values, (rows, columns)), shape=(len(ids), len(ids)))
+    if not np.isfinite(matrix.data).all():
+        return None
+    vector = np.ones(len(ids))
+    for _ in range(512):
+        result = matrix @ vector
+        if not np.isfinite(result).all():
+            return None
+        bound = float(np.max(result / vector))
+        if bound < 1 - 1e-10:
+            return bound
+        # A diagonal shift avoids periodic power iterations. Normalization
+        # preserves the bound and avoids unit-dependent fixed-point scaling.
+        shifted = vector + result
+        scale = float(np.max(shifted))
+        if not math.isfinite(scale) or scale <= 0:
+            return None
+        vector = np.maximum(shifted / scale, np.finfo(float).tiny)
+    return None
 
 
 def inventory_baseline_snapshot(
@@ -1245,6 +1292,10 @@ class InventoryGraphValidator:
 
         adjacency: dict[int, set[int]] = defaultdict(set)
         fingerprint_rows: dict[tuple[Any, Any, Any], list[str]] = defaultdict(list)
+        requirements: dict[int, dict[int, float]] = defaultdict(
+            lambda: defaultdict(float)
+        )
+        reference_amounts: dict[int, float | None] = {}
         scope_targeted_keys = set(intent.affected_activity_keys) if intent else set()
         if intent is not None:
             scope_targeted_keys.update(
@@ -1252,6 +1303,12 @@ class InventoryGraphValidator:
                 for activity_id in intent.affected_activity_ids
                 if activity_id in keys_by_id
             )
+        declared_feedback = bool(
+            intent is not None
+            and intent.scope_complete
+            and scope_targeted_keys
+            and intent.allowed_added_keys
+        )
         scope_fingerprint_keys = (
             set(intent.baseline_fingerprints) - scope_targeted_keys
             if intent is not None and intent.baseline_fingerprints
@@ -1416,6 +1473,8 @@ class InventoryGraphValidator:
                         == activity_unit
                     ):
                         reference_productions += 1
+                        if declared_feedback and _finite(exchange_amount):
+                            reference_amounts[activity_id] = float(exchange_amount)
                         if _finite(exchange_amount) and float(exchange_amount) < 0:
                             negative_reference_product = True
                         production_amount = rules["GRAPH.REFERENCE_PRODUCTION_AMOUNT"]
@@ -1531,6 +1590,8 @@ class InventoryGraphValidator:
                             },
                         )
                     adjacency[activity_id].add(resolved_id)
+                    if declared_feedback and _finite(exchange_amount):
+                        requirements[activity_id][resolved_id] += float(exchange_amount)
                 elif not matches:
                     name_location_matches = ids_by_name_location.get(
                         (exchange_name, exchange_location), ()
@@ -1648,6 +1709,8 @@ class InventoryGraphValidator:
                     actual=reference_productions,
                 )
             actual_vectors[key] = dict(vector)
+            if declared_feedback and reference_productions != 1:
+                reference_amounts[activity_id] = None
 
         fingerprints = {
             key: values[0] if len(values) == 1 else _stable_hash(sorted(values))
@@ -1679,7 +1742,32 @@ class InventoryGraphValidator:
             else self.baseline_cycles
         )
 
+        declared_additions = (
+            intent.allowed_added_keys if intent is not None else frozenset()
+        )
+        productive_components = []
         for cycle in cycles.difference(baseline_cycles):
+            # Removing links may split an existing cyclic component without
+            # introducing a cycle. Added nodes require a separate proof below.
+            if any(cycle <= baseline for baseline in baseline_cycles):
+                continue
+            if (
+                declared_feedback
+                and cycle.intersection(declared_additions)
+                and cycle.intersection(scope_targeted_keys)
+                and any(cycle.intersection(baseline) for baseline in baseline_cycles)
+            ):
+                bound = _feedback_convergence_bound(
+                    cycle, ids_by_key, requirements, reference_amounts
+                )
+                if bound is not None:
+                    productive_components.append(
+                        {
+                            "activity_count": len(cycle),
+                            "absolute_convergence_upper_bound": bound,
+                        }
+                    )
+                    continue
             representative = min(cycle, key=repr, default=None)
             cycles_rule.issue(
                 "Transformation introduced a technosphere cycle absent from the baseline.",
@@ -1688,6 +1776,8 @@ class InventoryGraphValidator:
                 actual=sorted(cycle, key=repr),
             )
 
+        if productive_components:
+            cycles_rule.evidence["declared_productive_feedback"] = productive_components
         results = tuple(
             self._apply_suppressions(rule.result()) for rule in rules.values()
         )

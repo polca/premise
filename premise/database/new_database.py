@@ -2021,10 +2021,31 @@ class NewDatabase:
             checkpoint = getattr(self, "_compact_source_checkpoint", None)
             if checkpoint is not None:
                 source_store = InventoryStore.open(checkpoint)
+        if source_store is None and self._can_reload_original_database():
+            records = self._load_original_database()
+            source_store = create_inventory_store(
+                _normalize_inventory_before_certification(records),
+                backend=getattr(self, "inventory_backend", "compact"),
+                take_ownership=True,
+            )
         if source_store is None:
             cached = ({}, frozenset())
         else:
+            from ..core.runtime_cache import load_yaml_cached
+            from ..inventory.inventory_normalization import normalize_reference_products
+
+            aliases = (
+                load_yaml_cached(
+                    DATA_DIR.parent / "iam_variables_mapping/electricity_markets.yaml"
+                )
+                .get(getattr(self, "source_family", "ecoinvent"), {})
+                .get("product_aliases", {})
+            )
             source_fingerprint = self._validation_source_fingerprint()
+            if aliases:
+                source_fingerprint = hashlib.sha256(
+                    json.dumps([source_fingerprint, aliases], sort_keys=True).encode()
+                ).hexdigest()
             cache_path = DIR_CACHED_FILES / (
                 f"validation-baseline-r{VALIDATION_RULESET_VERSION}-"
                 f"s{STORE_SCHEMA_VERSION}-{source_fingerprint}.pkl"
@@ -2050,6 +2071,14 @@ class NewDatabase:
                 # columnar checkpoint is reopened so the baseline and the
                 # transformed scenario use the same scalar/mapping
                 # representation.  The resulting audit is cached below.
+                if aliases:
+                    records = source_store.materialize(restore_metadata=True)
+                    normalize_reference_products(records, aliases)
+                    source_store = create_inventory_store(
+                        _normalize_inventory_before_certification(records),
+                        backend=getattr(self, "inventory_backend", "compact"),
+                        take_ownership=True,
+                    )
                 underlying = getattr(source_store, "_store", source_store)
                 state = getattr(underlying, "_state", None)
                 if state is not None:

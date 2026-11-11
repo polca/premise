@@ -1,0 +1,9 @@
+# Exhaustive validation of declared productive feedback
+
+A reproduced heat update released the reloadable source store before exhaustive validation. Without a baseline reload, existing source cycles were reported as new. The baseline loader now recovers the original inventory and uses the same mapping-declared product aliases as the transformed graph. Its cache includes those aliases and the validation ruleset version.
+
+A component contained within an existing cyclic component remains an inherited component under the validator's existing strongly-connected-component comparison. A larger component is not accepted merely because it contains source nodes. Only a complete transformation declaration identifying both affected and added activities can request a productivity proof for an extension of source feedback.
+
+The proof forms the absolute, reference-output-normalized net requirements matrix B. For a strictly positive vector v, max(Bv/v) bounds its spectral radius. A bound below one, with numerical margin, proves absolute convergence. A shifted, normalized power iteration seeks such a witness; failure, ambiguous identities, missing references or non-finite data refuses the component. Taking absolute requirements prevents negative credits from concealing divergence. Each accepted component records its size and bound in the graph rule's evidence. Validation ruleset 8 invalidates older certificates.
+
+Synthetic tests cover released-source recovery, split baseline components, insufficient declarations, productive feedback, unit-gain and divergent feedback, non-unit reference outputs, and heterogeneous coordinate scales. The controlled native CCS export additionally exercises a 4,220-activity component with a recorded upper bound of 0.978119331593451. This is a convergence proof, not LCIA equivalence or a general approval of all cycles.

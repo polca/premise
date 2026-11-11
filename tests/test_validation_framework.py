@@ -639,3 +639,176 @@ def test_invalid_build_fails_before_replacing_or_checkpointing_scenario(
         "last known good": True,
     }
     assert not tuple(tmp_path.glob("*.inventory-store"))
+
+
+def test_exhaustive_baseline_reloads_released_source(
+    valid_inventory, tmp_path, monkeypatch
+):
+    valid_inventory[0]["exchanges"].append(
+        {
+            "name": MARKET_KEY[0],
+            "product": MARKET_KEY[1],
+            "location": MARKET_KEY[2],
+            "unit": "kilogram",
+            "type": "technosphere",
+            "amount": 0.1,
+            "input": ("test-db", "market"),
+        }
+    )
+    database = configured_new_database(valid_inventory)
+    expected = inventory_cycle_signatures(database._source_inventory_store)
+    database._source_inventory_store = None
+    monkeypatch.setattr(database, "_can_reload_original_database", lambda: True)
+    monkeypatch.setattr(
+        database, "_load_original_database", lambda: copy.deepcopy(valid_inventory)
+    )
+    monkeypatch.setattr(new_database_module, "DIR_CACHED_FILES", tmp_path)
+    _, cycles = database._ensure_validation_baseline_snapshot()
+    assert cycles == expected and cycles
+    assert database._source_inventory_store is None
+
+
+def cycle_with_wrapper(valid_inventory):
+    inventory = copy.deepcopy(valid_inventory)
+    wrapper = copy.deepcopy(inventory[0])
+    wrapper.update(
+        name="declared regional supplier",
+        **{"reference product": "regional fuel"},
+        code="regional",
+    )
+    wrapper["exchanges"][0].update(
+        name=wrapper["name"], product=wrapper["reference product"]
+    )
+    wrapper["exchanges"].append(
+        {
+            "name": MARKET_KEY[0],
+            "product": MARKET_KEY[1],
+            "location": MARKET_KEY[2],
+            "unit": "kilogram",
+            "type": "technosphere",
+            "amount": 0.1,
+            "input": ("test-db", "market"),
+        }
+    )
+    inventory[0]["exchanges"].append(
+        {
+            "name": wrapper["name"],
+            "product": wrapper["reference product"],
+            "location": wrapper["location"],
+            "unit": "kilogram",
+            "type": "technosphere",
+            "amount": 0.1,
+            "input": ("test-db", "regional"),
+        }
+    )
+    inventory.append(wrapper)
+    return inventory, (
+        wrapper["name"],
+        wrapper["reference product"],
+        wrapper["location"],
+    )
+
+
+def test_split_baseline_component_is_not_a_new_cycle(valid_inventory):
+    inventory, key = cycle_with_wrapper(valid_inventory)
+    baseline = frozenset(
+        {SUPPLIER_KEY, MARKET_KEY, key, ("removed branch", "fuel", "CH")}
+    )
+    report = validate(inventory, baseline_cycles=[baseline])
+    assert not rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")
+
+
+def test_declaring_added_nodes_alone_does_not_authorize_a_cycle(valid_inventory):
+    inventory, key = cycle_with_wrapper(valid_inventory)
+    baseline = frozenset({SUPPLIER_KEY, MARKET_KEY})
+    undeclared = validate(inventory, baseline_cycles=[baseline])
+    assert rule_issues(undeclared, "GRAPH.NEW_FORBIDDEN_CYCLE")
+    intent = ValidationIntent(
+        transformation="heat", targeted=False, allowed_added_keys=frozenset({key})
+    )
+    declared = validate(inventory, baseline_cycles=[baseline], intent=intent)
+    assert rule_issues(declared, "GRAPH.NEW_FORBIDDEN_CYCLE")
+    # Declaring every node new must not authorize an entirely new cycle.
+    all_new = ValidationIntent(
+        transformation="heat",
+        targeted=False,
+        allowed_added_keys=frozenset({key, SUPPLIER_KEY, MARKET_KEY}),
+    )
+    assert rule_issues(validate(inventory, intent=all_new), "GRAPH.NEW_FORBIDDEN_CYCLE")
+    # A declaration cannot authorize joining two separate baseline components.
+    separate = [frozenset({SUPPLIER_KEY}), frozenset({MARKET_KEY})]
+    assert rule_issues(
+        validate(inventory, baseline_cycles=separate, intent=intent),
+        "GRAPH.NEW_FORBIDDEN_CYCLE",
+    )
+
+
+def feedback_intent(key, *, complete=True):
+    return ValidationIntent(
+        transformation="heat",
+        targeted=False,
+        scope_complete=complete,
+        affected_activity_keys=frozenset({SUPPLIER_KEY, MARKET_KEY, key}),
+        allowed_added_keys=frozenset({key}),
+    )
+
+
+def test_declared_existing_feedback_extension_requires_convergence(valid_inventory):
+    inventory, key = cycle_with_wrapper(valid_inventory)
+    baseline = [frozenset({SUPPLIER_KEY, MARKET_KEY})]
+    report = validate(inventory, baseline_cycles=baseline, intent=feedback_intent(key))
+    assert not rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")
+    result = next(
+        r for r in report.rule_results if r.rule_id == "GRAPH.NEW_FORBIDDEN_CYCLE"
+    )
+    assert (
+        result.actual["declared_productive_feedback"][0][
+            "absolute_convergence_upper_bound"
+        ]
+        < 1
+    )
+    incomplete = validate(
+        inventory, baseline_cycles=baseline, intent=feedback_intent(key, complete=False)
+    )
+    assert rule_issues(incomplete, "GRAPH.NEW_FORBIDDEN_CYCLE")
+
+
+@pytest.mark.parametrize("amount", [1.0, -1.0, 2.0])
+def test_declaring_feedback_cannot_approve_unit_gain_or_divergence(
+    valid_inventory, amount
+):
+    inventory, key = cycle_with_wrapper(valid_inventory)
+    inventory[0]["exchanges"][-1]["amount"] = amount
+    inventory[-1]["exchanges"][-1]["amount"] = 1
+    report = validate(
+        inventory,
+        baseline_cycles=[frozenset({SUPPLIER_KEY, MARKET_KEY})],
+        intent=feedback_intent(key),
+    )
+    assert rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")
+
+
+def test_feedback_proof_normalizes_the_reference_output(valid_inventory):
+    inventory, key = cycle_with_wrapper(valid_inventory)
+    inventory[0]["exchanges"][-1]["amount"] = 1
+    inventory[-1]["exchanges"][-1]["amount"] = 1
+    inventory[-1]["exchanges"][0]["amount"] = 2
+    inventory[-1]["production amount"] = 2
+    report = validate(
+        inventory,
+        baseline_cycles=[frozenset({SUPPLIER_KEY, MARKET_KEY})],
+        intent=feedback_intent(key),
+    )
+    assert not rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")
+
+
+def test_feedback_proof_handles_different_coordinate_scales(valid_inventory):
+    inventory, key = cycle_with_wrapper(valid_inventory)
+    inventory[0]["exchanges"][-1]["amount"] = 1e20
+    inventory[-1]["exchanges"][-1]["amount"] = 1e-22
+    report = validate(
+        inventory,
+        baseline_cycles=[frozenset({SUPPLIER_KEY, MARKET_KEY})],
+        intent=feedback_intent(key),
+    )
+    assert not rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")
