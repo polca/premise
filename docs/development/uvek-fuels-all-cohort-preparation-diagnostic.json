@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "e09ecc47b2c261db52caeeb752aa7a2542f95e67",
-  "approval_ledger_sha256": "6c78651f15188eda6485415bc279012426ba2ef41aeced33189186ed5f1c15f7",
-  "validated_scopes": 702,
+  "brightpath_commit": "e3bdbba3c8ee43069174d891f4f8db9ea211c42b",
+  "approval_ledger_sha256": "afa80138e63ff6617de8e6ea567634720f05a44ec1983de85318b573ce106eab",
+  "validated_scopes": 706,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 12,
-  "distinct_unapproved_rule_identities": 12,
+  "unapproved_source_profile_cases": 8,
+  "distinct_unapproved_rule_identities": 8,
   "cohorts": [
     {
       "source": {
@@ -72,8 +72,8 @@
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 2,
-      "refusal_audit_filename": "9936ec76a5429a7e8279a1f85a6e2a77a24f776fbc874e850bd8516eeb729281.audit.json.gz",
-      "refusal_audit_sha256": "54f664e316b2271eeeb8058e328c42702a28a41c9eb10f2f2bca40ba586d4124",
+      "refusal_audit_filename": "8264642e2ac365320d80241143d31f34472ef87e41c6bedfb854142604be79f0.audit.json.gz",
+      "refusal_audit_sha256": "360843e80a86d8e4dfb759c752022913d970457e139a92df37231a81bd25bc67",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -141,8 +141,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 6,
-      "refusal_audit_filename": "04a30e619525d97d4d5750e5f3130e66e076de6b598788beb7ef0278b125ad21.audit.json.gz",
-      "refusal_audit_sha256": "3b0bd09344df5c4c5171b1d6e8194b7aa833533581386250a2b57d5a1143b7cf",
+      "refusal_audit_filename": "6a0a51e7bb026d30b7d43043cf9b511694e1b67a34eb72d09456dda2e428b46d.audit.json.gz",
+      "refusal_audit_sha256": "5b9abe3deb0d5bb837739d71b8bcdcde3b94f7ed9c733a0d8fa1ae16e68ebc54",
       "pending": [
         {
           "rule_id": "bp-22c3a52062d0cb16",
@@ -237,72 +237,11 @@
         }
       },
       "source_activities": 7,
-      "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 4,
-      "refusal_audit_filename": "db7d9f636b05d0be875330ddbe1fdf691f0c2c6df1594c0182b8a579985c74e3.audit.json.gz",
-      "refusal_audit_sha256": "3c3803199d249e30a57ff5e665927ac941a06dd8793a806278912ccba5ee0476",
-      "pending": [
-        {
-          "rule_id": "bp-cf83bb724223e5b7",
-          "source": {
-            "location": "RER",
-            "name": "market for hydrogen, gaseous, low pressure",
-            "reference product": "hydrogen, gaseous, low pressure",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
-            "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-2ff13efabe033fe6",
-          "source": {
-            "location": "GLO",
-            "name": "market for aluminium alloy, AlMg3",
-            "reference product": "aluminium alloy, AlMg3",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Aluminium alloy, AlMg3, at plant",
-            "reference product": "Aluminium alloy, AlMg3, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-1104956dff1c701e",
-          "source": {
-            "location": "GLO",
-            "name": "market for nickel, class 1",
-            "reference product": "nickel, class 1",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "GLO",
-            "name": "Nickel, 99.5%, at plant",
-            "reference product": "Nickel, 99.5%, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-263c185cdbca7a8c",
-          "source": {
-            "location": "GLO",
-            "name": "market for steel, chromium steel 18/8, hot rolled",
-            "reference product": "steel, chromium steel 18/8, hot rolled",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Chromium steel 18/8, at plant",
-            "reference product": "Chromium steel 18/8, at plant",
-            "unit": "kilogram"
-          }
-        }
-      ]
+      "migration_stage_status": "passed before another cohort failed",
+      "unapproved_count": 0,
+      "refusal_audit_filename": null,
+      "refusal_audit_sha256": null,
+      "pending": []
     }
   ],
   "limitations": [

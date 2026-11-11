@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-11",
+  "status": "Four 3.11 material/hydrogen profiles qualified; full fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "e3bdbba3c8ee43069174d891f4f8db9ea211c42b",
+  "review_sha256": "eb77660a7a48e8df51953d488a8b8cb19ec5ca67ea23ea24afd3adef263aa22e",
+  "new_approval_scopes": 4,
+  "validated_approval_scopes": 706,
+  "previous_validated_scopes": 702,
+  "previous_operation_objects": 609,
+  "previous_operation_semantics_preserved": true,
+  "older_fingerprints_refreshed_after_original_rule_proof": 3,
+  "tests": {
+    "brightpath": "19 passed: signs, uncertainty, formulas, source preservation and exact licensed source evidence",
+    "premise": "23 passed: strict fresh/cache, exact warnings, individual approval withdrawal and three older profile checks"
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-2ff13efabe033fe6",
+      "identity": {
+        "location": "RER",
+        "name": "Aluminium alloy, AlMg3, at plant",
+        "reference product": "Aluminium alloy, AlMg3, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-cf83bb724223e5b7",
+      "identity": {
+        "location": "CH",
+        "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+        "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-1104956dff1c701e",
+      "identity": {
+        "location": "GLO",
+        "name": "Nickel, 99.5%, at plant",
+        "reference product": "Nickel, 99.5%, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-263c185cdbca7a8c",
+      "identity": {
+        "location": "RER",
+        "name": "Chromium steel 18/8, at plant",
+        "reference product": "Chromium steel 18/8, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "runtime_python_changes": false,
+  "migration_resource_changes": "Only two exact 3.11 profiles appended; helpers/shared reviews unchanged; full forward/canonical replay and wheel reviewed data byte-identical.",
+  "regular_environment": "Pushed Git revision installed and all 706 scopes validated.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 8,
+    "distinct_rule_identities": 8,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_cases": [
+      [
+        "3.11",
+        "bp-1104956dff1c701e"
+      ],
+      [
+        "3.11",
+        "bp-263c185cdbca7a8c"
+      ],
+      [
+        "3.11",
+        "bp-2ff13efabe033fe6"
+      ],
+      [
+        "3.11",
+        "bp-cf83bb724223e5b7"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "limitations": [
+    [
+      "One kg complete native AlMg3 alloy with 3 percent magnesium, not pure aluminium, magnesium metal or a forming service. Both inspected source producers describe the same alloy. Native primary-metal production represents one historical European producer, excluding extra infrastructure; no scrap-content, alloy-content or yield multiplier. Native at-plant boundary replaces source global producers and final delivery, not their original mix or logistics. No certification of downstream mechanical properties is implied.",
+      "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+    ],
+    [
+      "One kg native gaseous hydrogen from complete Swiss natural-gas steam methane reforming at 25 bar replaces the source low-pressure European mix of eleven suppliers including allocated co-products. This is a production-route, allocation and delivery-pressure screening proxy, not preservation of that mix. Retain the complete native process and its pressure-related burdens once; no invented decompression process, pressure-work credit, compression multiplier, gas-volume factor or hydrogen loss. No equivalence of purity or application-specific pressure requirements is established. Do not use this assumption for an explicitly specified non-SMR route or a pressure-sensitive engineering design.",
+      "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+    ],
+    [
+      "One kg complete native nickel labelled 99.5 percent replaces one kg source class-1 nickel. Native documentation calls it Class I but its stated assay must not be interpreted as certification of a higher-purity specification. The historical 1994 sulphidic-ore production model, copper co-production allocation and surrogate emissions replace the source eight-supplier primary/co-product/recycled mix and final delivery. No 99.5-to-99.8 purity factor, invented extra refining, recycled share or recovery credit. Native documentation discourages use when nickel dominates: require specific primary data or sensitivity analysis for important contributions or purity-critical applications.",
+      "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+    ],
+    [
+      "One kg complete native hot-rolled 18/8 chromium steel. Native 0.63 converter and 0.37 electric stocks plus 1 kg hot rolling replace the source two regional producers; source market contains no transport. Both source producers and native include rolling. Do not add a second rolling step or use this for unrolled cast stock. Historical route mix, technology, allocation and geography differ; no exact mechanical-grade equivalence is claimed.",
+      "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+    ]
+  ]
+}

@@ -84,3 +84,20 @@ The verification receipt ``uvek-fuels-37-oils-lto-verification.json`` records
 25 focused tests, two finite native inventories, exact resource replay and wheel
 checks. Fuel preparation has 12 remaining mapping cases. Fuel transformation and
 export are still unfinished; this review does not approve the waste-oil market.
+
+Separate 3.11 source checkpoint
+------------------------------
+
+All four remaining 3.11 cases were inspected directly in the installed licensed
+3.11 cut-off database, not inferred from 3.7.1. The AlMg3 and hot-rolled 18/8 steel
+mappings retain their kg and processing bases. Hydrogen uses an explicit native
+SMR/25-bar screening proxy for the source low-pressure supplier mix; nickel uses
+an explicit historical 99.5%-labelled production proxy, without claiming purity
+certification or adding invented refining. No pressure, purity or rolling factor
+is introduced. Earlier hydrogen/nickel helpers and their supplier links remain
+unchanged.
+
+See ``uvek-fuels-311-remaining-verification.json`` for 42 focused passing checks,
+four finite native inventories, unchanged licensed source stamps and exact
+resource/wheel verification. All 3.11 migration-preparation cases now pass, leaving
+eight cases in other cohorts; full fuel transformation/export is not qualified.

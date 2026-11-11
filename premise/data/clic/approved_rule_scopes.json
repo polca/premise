@@ -111147,7 +111147,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "0022e415821d896a1c888a15c59d7f49c3e26e5388d539ef984d68bc0b40d222"
+          "fingerprint": "b4ff152c550c0077f89e35d6125e00e7f45c24898d07f1a0fef5f9033b5457f8"
         }
       ]
     },
@@ -136778,7 +136778,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "0e9566c715a2f6187bfaf5260576251b93b44bf68a74b8c8a3070208dd00aa49"
+          "fingerprint": "24a80555d63ea45d842db70c0558c8bf6a922ef08c8be94e59f2a994bc419758"
         }
       ]
     },
@@ -176657,7 +176657,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "f54c881ecad9015082a10450b25b09e8402ca3192a5bfd46d2e19eeccde45cc4"
+          "fingerprint": "5f200ca7026f4e8aa076b2867460db9b2cedcf4ea94f764f4bdb472b5bd0a651"
         }
       ]
     },
@@ -199750,6 +199750,748 @@
             "system_model": "cutoff"
           },
           "fingerprint": "a742f5191aa52ea3157402c758464e1a80e133b6b8ecc6d5ac70706522195f2d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2ff13efabe033fe6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_311_remaining_review.json",
+      "review_sha256": "eb77660a7a48e8df51953d488a8b8cb19ec5ca67ea23ea24afd3adef263aa22e",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.11",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for aluminium alloy, AlMg3",
+            "reference product": "aluminium alloy, AlMg3",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "177c9c54516cc003d86db11dc6812ee9f24831c39a3c29a42f26f44c417d3150",
+          "inventory_sha256": "debcd81521efb95ae06260879f30c057035a08a4cfa7943e44a89a0cb3f2fe83",
+          "name": "market for aluminium alloy, AlMg3",
+          "reference product": "aluminium alloy, AlMg3",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium alloy production, AlMg3",
+              "reference product": "aluminium alloy, AlMg3",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c857894faeb4b291ce57f3dff84ae52a3e3a30ab42f2923efda3b32c8854156b",
+            "inventory_sha256": "6f449fc7cd9b419890cec04a81e527b4196d01e15808ac3a3580f67c978f6701"
+          },
+          {
+            "identity": {
+              "name": "aluminium alloy production, AlMg3",
+              "reference product": "aluminium alloy, AlMg3",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a7435b7215933c4bff469784495766e71090f206b629546a0e7003907152febc",
+            "inventory_sha256": "547a2b112fa0d6ed9033637c72713298c50f75cba34d9444aee94bfbbf445d6c"
+          }
+        ],
+        "basis": "One kg complete native AlMg3 alloy with 3 percent magnesium, not pure aluminium, magnesium metal or a forming service. Both inspected source producers describe the same alloy. Native primary-metal production represents one historical European producer, excluding extra infrastructure; no scrap-content, alloy-content or yield multiplier. Native at-plant boundary replaces source global producers and final delivery, not their original mix or logistics. No certification of downstream mechanical properties is implied. Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "location": "RER",
+          "name": "Aluminium alloy, AlMg3, at plant",
+          "reference product": "Aluminium alloy, AlMg3, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Aluminium alloy, AlMg3, at plant",
+              "reference product": "Aluminium alloy, AlMg3, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "metadata_sha256": "3e01ff51c54feacbd0d415e0e70431262cccd06e2a6ca68112591cf1b32b2ef5",
+            "inventory_sha256": "c13c36d091e14fb70f072b4d49bb33577c6aa40af33b6582862ddc6ab130dc23"
+          }
+        ]
+      },
+      "limitations": [
+        "One kg complete native AlMg3 alloy with 3 percent magnesium, not pure aluminium, magnesium metal or a forming service. Both inspected source producers describe the same alloy. Native primary-metal production represents one historical European producer, excluding extra infrastructure; no scrap-content, alloy-content or yield multiplier. Native at-plant boundary replaces source global producers and final delivery, not their original mix or logistics. No certification of downstream mechanical properties is implied.",
+        "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4e19f484de880d62e80041917548a17b232bba3a33caa271ee792fc8bf2098ec"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cf83bb724223e5b7",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_312_dependency",
+      "review_path": "export/uvek_fuels_311_remaining_review.json",
+      "review_sha256": "eb77660a7a48e8df51953d488a8b8cb19ec5ca67ea23ea24afd3adef263aa22e",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.11",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hydrogen, gaseous, low pressure",
+            "reference product": "hydrogen, gaseous, low pressure",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "f3e62e28e3764c598d8a61a9e9f78acd97b31575bcef0629f1a9fa19d2f41aa7",
+          "inventory_sha256": "aef8b87e6c77d17a5a5ae730de6bdceb1f9c8653d12a1612d33791f65b1fd6a9",
+          "name": "market for hydrogen, gaseous, low pressure",
+          "reference product": "hydrogen, gaseous, low pressure",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "carbon monoxide production, from synthesis gas, through absorption",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ad17af3046a73d2e59872143b8c280b87ada4d908af5e9aa8ceb4b2501e20328",
+            "inventory_sha256": "d60dcf83225ca25ddf430cb408c8bdaa5e02b793cea5b260efb9b9f5424d46be"
+          },
+          {
+            "identity": {
+              "name": "hydrogen production, gaseous, petroleum refinery operation",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "dcc9a8eea642b20a84a95a8067f45d8eb1ae01f98059768ee9f8c5645bfc00e9",
+            "inventory_sha256": "f2db6e81dd0ecf46345920e2e3c95b8abf97bae13882f13b685dd58a59b2778e"
+          },
+          {
+            "identity": {
+              "name": "pyridine production, Chichibabin process",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f88291e9c4d9b1e2958575e4e3f487110453ba2c08baa1f40413800142d24276",
+            "inventory_sha256": "0f1f0f2984a5f09afd7673de634342f608275d755b76ff0d4756d30f4f56ac30"
+          },
+          {
+            "identity": {
+              "name": "hydrogen production, steam methane reforming",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "57a05db36e013d04eef8701d98c15b740644e0daa113fff9c57a6c63ef8aad49",
+            "inventory_sha256": "225617dfd80128d4ee97d77fa42d04e528c5731315d52fd28b18a10f7604e704"
+          },
+          {
+            "identity": {
+              "name": "butyrolactone production, dehydrogenation of 1,4-butanediol",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "43979b55a0ab665ca48572261b10393187d066e9cc91442c46491f50015d9880",
+            "inventory_sha256": "cdbd2ac0de3825f2a9309dc5b093f838db02ab7e5be87d07baf53b6e0aafe777"
+          },
+          {
+            "identity": {
+              "name": "carbon monoxide production, from synthesis gas, through cryogenic separation",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "5d7f5405ea23d75c7246a09d090c3829d86ff4d787eb3e8917d5852ba25e3ca8",
+            "inventory_sha256": "1be7c3591f1746ce719880fe2cc7eae7478d10cd8a595df1d73d933ad19666d7"
+          },
+          {
+            "identity": {
+              "name": "aminopyridine production, Chichibabin amination",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "322453990becf2020bbe81b90c2afb6900b9ed25de260694c1d9937a0323fc0a",
+            "inventory_sha256": "0a24275c25838a63549cc3b2c5e0cff5671bbe86642a99f74bac0667e90ce9e5"
+          },
+          {
+            "identity": {
+              "name": "chlor-alkali electrolysis, average production",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "da9313b9e84029db65108e9ae3225f925b88273ee988f32c52a706b375ff131e",
+            "inventory_sha256": "7f34276c0918e0d870ccf17c291b092849f738d218cb79552fda04582835ccdd"
+          },
+          {
+            "identity": {
+              "name": "potassium hydroxide production",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4a8b86b7a7863f0d94dfe04ab1457446389b738c68c6dccfe569a205af7de84a",
+            "inventory_sha256": "ed4ecce2ee295826c529c6c1ae5322a3a96d28135ed5eaf4ba9bf6a17dc692a0"
+          },
+          {
+            "identity": {
+              "name": "unsaturated hydrocarbons production, steam cracking operation, average",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "aa4a69d2414093184be1851a0a2bfb4381f0be263067537f48eeb9ce7cb86498",
+            "inventory_sha256": "57e945c909d59bfac576ff3a3e7b1c08352e696fb27b2caf86060868ed4f1895"
+          },
+          {
+            "identity": {
+              "name": "methyl ethyl ketone production",
+              "reference product": "hydrogen, gaseous, low pressure",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c42e14059b3bfa5aa9a3710fbabb55566215684e5d25cc4b01ee9ad3f2fce511",
+            "inventory_sha256": "21002f4b31bd3875b52fda0b9f7f5f32cdae2930a1174e08839655414f4444f4"
+          }
+        ],
+        "basis": "One kg native gaseous hydrogen from complete Swiss natural-gas steam methane reforming at 25 bar replaces the source low-pressure European mix of eleven suppliers including allocated co-products. This is a production-route, allocation and delivery-pressure screening proxy, not preservation of that mix. Retain the complete native process and its pressure-related burdens once; no invented decompression process, pressure-work credit, compression multiplier, gas-volume factor or hydrogen loss. No equivalence of purity or application-specific pressure requirements is established. Do not use this assumption for an explicitly specified non-SMR route or a pressure-sensitive engineering design. Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "location": "CH",
+          "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+          "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 37,
+            "metadata_sha256": "65f57d72ffbab9347dc77cbcc5ec1c12cc3c81ff78858cf176212fcec113125b",
+            "inventory_sha256": "1b2a95eeb61b192a79895288fff4bd6aaa68b2a4a874ef54e64b9e1cfb85ed20"
+          }
+        ]
+      },
+      "limitations": [
+        "One kg native gaseous hydrogen from complete Swiss natural-gas steam methane reforming at 25 bar replaces the source low-pressure European mix of eleven suppliers including allocated co-products. This is a production-route, allocation and delivery-pressure screening proxy, not preservation of that mix. Retain the complete native process and its pressure-related burdens once; no invented decompression process, pressure-work credit, compression multiplier, gas-volume factor or hydrogen loss. No equivalence of purity or application-specific pressure requirements is established. Do not use this assumption for an explicitly specified non-SMR route or a pressure-sensitive engineering design.",
+        "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "53f2a71d10e2ad775486e2888a85603fa68d7c97b27ee27f04f55d479da48b62"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1104956dff1c701e",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_fuels_311_remaining_review.json",
+      "review_sha256": "eb77660a7a48e8df51953d488a8b8cb19ec5ca67ea23ea24afd3adef263aa22e",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.11",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for nickel, class 1",
+            "reference product": "nickel, class 1",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0c2734716c0202790d3717e20c824f05d0d076fa7acfefbc9d6a6270522eeccd",
+          "inventory_sha256": "358b05ab60e2988d508cfdd380028f6c05216b1cdca8d21d97b7edfc22122fc5",
+          "name": "market for nickel, class 1",
+          "reference product": "nickel, class 1",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining",
+              "reference product": "nickel, class 1",
+              "location": "SE",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "600f92fe3b71a2ddbc95dd9f382ace11009b65bb144d121f4d19c158f542a183",
+            "inventory_sha256": "dd3b099d3122e5c5ca5d8061c930240d0bed228c6509d809f7de91c32dcb85ce"
+          },
+          {
+            "identity": {
+              "name": "treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining",
+              "reference product": "nickel, class 1",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "70fe648e7d75031f8a65e5f289d64448bba67f5ad1263d213f8af194c5864c25",
+            "inventory_sha256": "3a89aad433c5d4b11c7a716528cff117a1334d65d59caece52071df1b8ae2505"
+          },
+          {
+            "identity": {
+              "name": "cobalt production",
+              "reference product": "nickel, class 1",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e331a9415696786fe11dad7822aeee454fe3475dd987b9fb3a052e0c16e8fa2d",
+            "inventory_sha256": "da3e8616681c29ef7b37d144b0dd1b0b74884f86f51b61b3b0d15b7b4c31562d"
+          },
+          {
+            "identity": {
+              "name": "smelting and refining of nickel concentrate, 7% Ni",
+              "reference product": "nickel, class 1",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9f9a17f7a8264eea4213538106345dd1d404c0f25d3a0e9652bdd7b8bb52b799",
+            "inventory_sha256": "452370a03dc4caa929b864f859087e79f67abe58ea88d6924f69243375501c15"
+          },
+          {
+            "identity": {
+              "name": "processing of nickel-rich materials",
+              "reference product": "nickel, class 1",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "32035e08cd282e6b9d26d2983299ef680a5aa22c6b5aeb84daf784033d7fa8a3",
+            "inventory_sha256": "8781dc70bca0057b3174af4aa099d6f41d134c5d36ef10b87af36ec075f4c7ab"
+          },
+          {
+            "identity": {
+              "name": "platinum group metal, extraction and refinery operations",
+              "reference product": "nickel, class 1",
+              "location": "ZA",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "adda92fb987cfde5d5cf8546f4fd2964154f5d93ee98e4ce011f2efbe921407a",
+            "inventory_sha256": "1aa2990beadb15158bc7bec9bb809f20d1a41a23138ab81dae7231ae5f8af817"
+          },
+          {
+            "identity": {
+              "name": "smelting and refining of nickel concentrate, 16% Ni",
+              "reference product": "nickel, class 1",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f8cddf7a5cad97e2acd7de07b86caab2960ee557d324a20070f5b4a9ceb7450d",
+            "inventory_sha256": "d89c3c354ef9aa71400e865bd236596cb127f2e59f9f4debe67c6721b07e0d93"
+          },
+          {
+            "identity": {
+              "name": "platinum group metal mine operation, ore with high palladium content",
+              "reference product": "nickel, class 1",
+              "location": "RU",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d08f1e476907efb809a704d9b0e1ffd61c8ad2464e3ac31fb1414aa3d57f4731",
+            "inventory_sha256": "f7a511f38fd148fa03c25785798eb889061d9e37a3031272d60492f13f27d7bb"
+          }
+        ],
+        "basis": "One kg complete native nickel labelled 99.5 percent replaces one kg source class-1 nickel. Native documentation calls it Class I but its stated assay must not be interpreted as certification of a higher-purity specification. The historical 1994 sulphidic-ore production model, copper co-production allocation and surrogate emissions replace the source eight-supplier primary/co-product/recycled mix and final delivery. No 99.5-to-99.8 purity factor, invented extra refining, recycled share or recovery credit. Native documentation discourages use when nickel dominates: require specific primary data or sensitivity analysis for important contributions or purity-critical applications. Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "location": "GLO",
+          "name": "Nickel, 99.5%, at plant",
+          "reference product": "Nickel, 99.5%, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "GLO",
+              "name": "Nickel, 99.5%, at plant",
+              "reference product": "Nickel, 99.5%, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 72,
+            "metadata_sha256": "08114dfe0e815d4f177e68d09a85df57d8d2b389ef0a303a9655ee2bab9b5cc4",
+            "inventory_sha256": "ab10f3238068349f79e6ab0a82ff24344d132a0486bcdd716bb36ae2ee54f7b9"
+          }
+        ]
+      },
+      "limitations": [
+        "One kg complete native nickel labelled 99.5 percent replaces one kg source class-1 nickel. Native documentation calls it Class I but its stated assay must not be interpreted as certification of a higher-purity specification. The historical 1994 sulphidic-ore production model, copper co-production allocation and surrogate emissions replace the source eight-supplier primary/co-product/recycled mix and final delivery. No 99.5-to-99.8 purity factor, invented extra refining, recycled share or recovery credit. Native documentation discourages use when nickel dominates: require specific primary data or sensitivity analysis for important contributions or purity-critical applications.",
+        "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ed76eef825bbc8dc8b0917071cb04676858f718510ee03eedf33732963a331a2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-263c185cdbca7a8c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_311_remaining_review.json",
+      "review_sha256": "eb77660a7a48e8df51953d488a8b8cb19ec5ca67ea23ea24afd3adef263aa22e",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.11",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for steel, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ea5817a8e3e3f5c8f34b0967a6f98523d7253f216679b45bfc15e52ff8f63d15",
+          "inventory_sha256": "f0450172362835c7969c99d945ed0c69d1d7a8152d8b380bda63a95feb9dec56",
+          "name": "market for steel, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "steel production, chromium steel 18/8, hot rolled",
+              "reference product": "steel, chromium steel 18/8, hot rolled",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "825ef37167d663aafa7da0675ed02af7b39e01188bdb694a75036226d4f24f77",
+            "inventory_sha256": "6a2078d7e1f11b0675ea5a69df603928e7ebc649b2c14c2ef3a2c5c5f16a9bf8"
+          },
+          {
+            "identity": {
+              "name": "steel production, chromium steel 18/8, hot rolled",
+              "reference product": "steel, chromium steel 18/8, hot rolled",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1e1c1cc4501ba5bb28b8f65d4d3301527a8368b796b7d15198ef6c8107e83135",
+            "inventory_sha256": "3050bb2b90de5eb721d5dd0af345bb3febe6c850e2ef5f71ad380ea75c82d7c2"
+          }
+        ],
+        "basis": "One kg complete native hot-rolled 18/8 chromium steel. Native 0.63 converter and 0.37 electric stocks plus 1 kg hot rolling replace the source two regional producers; source market contains no transport. Both source producers and native include rolling. Do not add a second rolling step or use this for unrolled cast stock. Historical route mix, technology, allocation and geography differ; no exact mechanical-grade equivalence is claimed. Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "location": "RER",
+          "name": "Chromium steel 18/8, at plant",
+          "reference product": "Chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Chromium steel 18/8, at plant",
+              "reference product": "Chromium steel 18/8, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "metadata_sha256": "c33af62302cac8c7b18f8be60327650b8ae4cb2125b1ded571e8217a5c7083c5",
+            "inventory_sha256": "e7569e8350367003b7e8c9130d7d44bbeae9358d3f7e09291cfc446a1735ca35"
+          }
+        ]
+      },
+      "limitations": [
+        "One kg complete native hot-rolled 18/8 chromium steel. Native 0.63 converter and 0.37 electric stocks plus 1 kg hot rolling replace the source two regional producers; source market contains no transport. Both source producers and native include rolling. Do not add a second rolling step or use this for unrolled cast stock. Historical route mix, technology, allocation and geography differ; no exact mechanical-grade equivalence is claimed.",
+        "Preserve signed caller quantities, formulas, supported uncertainty and properties at factor +1 in kg. Retain complete native inventories once; source internal supplier shares and uncertainty are replaced rather than reconstructed. Geography, technology, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is asserted. Only the inspected 3.11 cut-off profile is added; other releases and cross-system-model routes do not inherit this review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0a00e1a8d11da3fb7c9c1f5ff84d879fcc4ba8bdd12d2e68cc7e8d5ecf1f623f"
         }
       ]
     }
