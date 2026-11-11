@@ -2628,8 +2628,8 @@
   "reproduced_electricity_role_overlap": "docs/development/uvek-electricity-role-overlap-evidence.json",
   "coal_role_copy_verification": "docs/development/uvek-coal-role-copy-verification.json",
   "latest_geothermal_prerequisite_review": {
-    "status": "24_grid_correspondences_reviewed_11_non_electricity_correspondences_still_block_preparation",
-    "evidence": "docs/development/uvek-geothermal-grid-verification.json",
+    "status": "24_grid_and_6_material_correspondences_reviewed_5_remaining_correspondences_block_preparation",
+    "evidence": "docs/development/uvek-geothermal-material-verification.json",
     "heat_role_qualified": false
   }
 }

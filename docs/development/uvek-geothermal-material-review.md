@@ -1,0 +1,11 @@
+# Deep-geothermal heat: six material screening proxies
+
+Reviewed six exact ecoinvent 3.6 cut-off material-market correspondences: benzene, potassium carbonate, powdered sodium chloride, barite, bentonite and cellulose insulation inclusive of blowing in. Actual source market and producer records and native UVEK 2025/2026 records have positive 1 kg references. Product bases agree: solid carbonate, dry salt, mined minerals and installed insulation, without a solution, density or installation multiplier.
+
+Use the complete native processes as screening proxies. Retain every signed caller amount, uncertainty, formula and separately listed exchange. These proxies replace source producer shares and market delivery with the native boundary. Source freight, losses and market uncertainty are not reconstructed; geography, vintage, technology and allocation differ. Benzene also replaces the coking coproduct contribution with the native petrochemical process. Barite beneficiation and purity can differ. Effects on scores are unquantified. Detailed, per-material limitations are packaged in Brightpath's `export/uvek_geothermal_36_material_reference_review.json`.
+
+Brightpath commit `ebea3a19d7643347b234adac246246944b2324cc` adds only this evidence file. The conversion rules and Python files are unchanged. Premise adds six exact-profile approval scopes, for 744 total; no other version or consequential approval is added.
+
+Twelve signed conversions preserve caller kg, uncertainty and formula, with no mutation. The built wheel contains the exact reviewed evidence. The full retained-workbook preparation now accepts 34 correspondences and stops at five remaining ones: inert waste, diesel generation service, drilling waste, wastewater and Portland cement. This does not qualify the geothermal heat role. In particular, do not approve drilling waste as pure landfarming: its source market also includes residual-material landfill. Do not approve ordinary Portland cement as slag cement.
+
+See [verification receipt](uvek-geothermal-material-verification.json) for the exact remaining identities. The broader approval regression launched for the preceding grid change remains in progress; its final result is tracked separately.

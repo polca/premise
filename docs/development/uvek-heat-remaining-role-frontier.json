@@ -55,8 +55,9 @@
     "retained_workbook": "lci-geothermal.xlsx",
     "selected_records": 48,
     "reviewed_grid_correspondences": 24,
-    "remaining_non_electricity_correspondences": 11,
+    "remaining_non_electricity_correspondences": 5,
     "runtime_role_qualified": false,
-    "evidence": "docs/development/uvek-geothermal-grid-verification.json"
+    "evidence": "docs/development/uvek-geothermal-material-verification.json",
+    "reviewed_material_correspondences": 6
   }
 }

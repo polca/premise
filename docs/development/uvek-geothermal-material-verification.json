@@ -1,0 +1,88 @@
+{
+  "material_correspondences": 6,
+  "signed_conversions_passed": 12,
+  "caller_quantities_uncertainty_formula_preserved": true,
+  "caller_unchanged": true,
+  "approved_scope_count": 744,
+  "full_geothermal_qualified": false,
+  "brightpath_commit": "ebea3a19d7643347b234adac246246944b2324cc",
+  "packaged_wheel_evidence_bytes_verified": true,
+  "preparation_approved_correspondences": 34,
+  "remaining_unapproved_correspondences": [
+    {
+      "rule_id": "bp-8be1ae15c0ed8dc7",
+      "source": {
+        "location": "CH",
+        "name": "market for inert waste, for final disposal",
+        "reference product": "inert waste, for final disposal",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, construction waste, to final disposal type B",
+        "reference product": "Disposal, construction waste, to final disposal type B",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-72e073827ada5981",
+      "source": {
+        "location": "GLO",
+        "name": "market for diesel, burned in diesel-electric generating set, 10MW",
+        "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+        "unit": "megajoule"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Diesel, burned in diesel-electric generating set",
+        "reference product": "Diesel, burned in diesel-electric generating set",
+        "unit": "megajoule"
+      }
+    },
+    {
+      "rule_id": "bp-0e06c5c52d7be464",
+      "source": {
+        "location": "RoW",
+        "name": "market for drilling waste",
+        "reference product": "drilling waste",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, drilling waste, 71.5% water, to landfarming",
+        "reference product": "Disposal, drilling waste, 71.5% water, to landfarming",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-1338a8724acf99de",
+      "source": {
+        "location": "CH",
+        "name": "market for wastewater, average",
+        "reference product": "wastewater, average",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "recipe_ref": "pilot-wastewater-routes-eff76270716fb3e521c0"
+      }
+    },
+    {
+      "rule_id": "bp-1fb80e50b9bf1b78",
+      "source": {
+        "location": "CH",
+        "name": "market for cement, Portland",
+        "reference product": "cement, Portland",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Portland slag sand cement, at plant",
+        "reference product": "Portland slag sand cement, at plant",
+        "unit": "kilogram"
+      }
+    }
+  ],
+  "runtime_python_changes": false,
+  "regular_conda_git_install_verified": true,
+  "regular_conda_all_744_scopes_validated": true
+}
